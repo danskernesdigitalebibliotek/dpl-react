@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect } from "react";
 import SelectableMaterial from "../../apps/loan-list/materials/selectable-material/selectable-material";
-import { formatDate } from "../../apps/loan-list/utils/helpers";
 import { useText } from "../../core/utils/text";
 import usePager from "../result-pager/use-pager";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
+import ReservationInfo from "../../apps/reservation-list/reservation-material/reservation-info";
 
 export interface GroupModalReservationsListProps {
   materials: ReservationType[];
@@ -56,11 +56,15 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
     <>
       <h3 className="text-body-medium-regular">{header}</h3>
       <ul className="modal-loan__list-materials">
-        {displayedMaterials.map(
-          (
-            { expiryDate, faust, identifier, numberInQueue, reservationId },
-            i
-          ) => (
+        {displayedMaterials.map((material, i) => {
+          const {
+            expiryDate,
+            faust,
+            identifier,
+            numberInQueue,
+            reservationId
+          } = material;
+          return (
             <>
               {(identifier || reservationId || faust) && (
                 <SelectableMaterial
@@ -77,15 +81,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                               })
                             : ""
                         }
-                        infoText={
-                          expiryDate
-                            ? t("pickUpLatestText", {
-                                placeholders: {
-                                  "@date": formatDate(expiryDate)
-                                }
-                              })
-                            : ""
-                        }
+                        infoText=""
                       />
                     ) : null
                   }
@@ -102,13 +98,20 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                   faust={faust}
                   identifier={identifier}
                   statusMessageComponentMobile={null}
-                  statusMessageComponentDesktop={null}
+                  statusMessageComponentDesktop={
+                    <ReservationInfo
+                      reservationInfo={material}
+                      showArrow={false}
+                      showStatusCircleIcon={false}
+                      reservationStatusClassNameOverride=""
+                    />
+                  }
                 />
               )}
               {!identifier && null}
             </>
-          )
-        )}
+          );
+        })}
       </ul>
       <PagerComponent
         classNames={marginBottonPager ? "result-pager--margin-bottom" : ""}
