@@ -61,7 +61,7 @@
     "@graphql-codegen/typescript-graphql-files-modules": "^2.1.1",
     "@graphql-codegen/typescript-operations": "^2.4.0",
     "@graphql-codegen/typescript-react-query": "^3.5.12",
-    "@graphql-typed-document-node/core": "^3.1.1",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@namics/stylelint-bem": "^9.0.0",
     "@storybook/addon-essentials": "^6.5.10",
