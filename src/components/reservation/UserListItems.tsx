@@ -18,11 +18,11 @@ import { useConfig } from "../../core/utils/config";
 import {
   isConfigValueOne,
   getPreferredBranch,
-  getNoInterestAfter,
-  OptionsProps
+  getNoInterestAfter
 } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
+import { Option } from "../Dropdown/Dropdown";
 
 export interface UserListItemsProps {
   patron: PatronV5;
@@ -51,7 +51,7 @@ const UserListItems: FC<UserListItemsProps> = ({
 }) => {
   const t = useText();
   const config = useConfig();
-  const interstPeriods = config<OptionsProps[]>("interestPeriodsConfig", {
+  const interstPeriods = config<Option[]>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
 

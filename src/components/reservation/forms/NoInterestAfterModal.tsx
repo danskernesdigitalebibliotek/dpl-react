@@ -2,7 +2,7 @@ import React from "react";
 import { useText } from "../../../core/utils/text";
 import ModalReservationFormSelect from "./ModalReservationFormSelect";
 import { useConfig } from "../../../core/utils/config";
-import { OptionsProps } from "../helper";
+import { Option } from "../../Dropdown/Dropdown";
 import { RequestStatus } from "../../../core/utils/types/request";
 
 export interface PickupModalProps {
@@ -22,7 +22,7 @@ const NoInterestAfterModal = ({
 }: PickupModalProps) => {
   const t = useText();
   const config = useConfig();
-  const interstPeriods = config<OptionsProps[]>("interestPeriodsConfig", {
+  const interstPeriods = config<Option[]>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
 
