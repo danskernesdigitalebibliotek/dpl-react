@@ -1,4 +1,5 @@
-// Todo: This componenet should be merged with the ReservationFormListItem
+// Todo: Merge this component with ReservationFormListItem for consistency.
+// They are very similar, and this will simplify code maintenance.
 import React, { FC, ReactNode } from "react";
 import { useText } from "../../core/utils/text";
 
