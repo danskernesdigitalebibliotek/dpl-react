@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback } from "react";
+import React, { FC, ReactNode } from "react";
 import {
   formatDate,
   isDigital,
@@ -31,7 +31,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
   const { dueDate, loanDate, loanId, identifier } = loan;
   const isStacked = materialsAreStacked(additionalMaterials);
 
-  const notificationClickEventHandler = useCallback(() => {
+  const notificationClickEventHandler = () => {
     if (isStacked && openDueDateModal && dueDate) {
       openDueDateModal(dueDate);
     }
@@ -41,14 +41,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
     if (!isStacked && identifier) {
       openDetailsModal(identifier);
     }
-  }, [
-    isStacked,
-    openDueDateModal,
-    dueDate,
-    openDetailsModal,
-    loanId,
-    identifier
-  ]);
+  };
 
   if (!dueDate || !loanDate)
     return (

@@ -1,4 +1,4 @@
-import React, { useCallback, FC } from "react";
+import React, { FC } from "react";
 import fetchMaterial, {
   MaterialProps
 } from "../../loan-list/materials/utils/material-fetch-hoc";
@@ -19,9 +19,9 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   focused,
   openReservationDetailsModal
 }) => {
-  const openDetailsModal = useCallback(() => {
+  const openDetailsModal = () => {
     openReservationDetailsModal(reservation);
-  }, [openReservationDetailsModal, reservation]);
+  };
 
   return (
     <li>

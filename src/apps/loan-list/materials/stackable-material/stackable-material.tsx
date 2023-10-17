@@ -1,4 +1,4 @@
-import React, { useCallback, FC } from "react";
+import React, { FC } from "react";
 import clsx from "clsx";
 import MaterialOverdueLink from "./material-overdue-link";
 import AdditionalMaterialsButton from "./additional-materials-button";
@@ -29,14 +29,14 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 }) => {
   const { dueDate, identifier, periodical } = loan;
 
-  const openLoanDetailsModalHandler = useCallback(() => {
+  const openLoanDetailsModalHandler = () => {
     if (loanId) {
       openLoanDetailsModal(String(loanId));
     }
     if (identifier) {
       openLoanDetailsModal(identifier);
     }
-  }, [loanId, identifier, openLoanDetailsModal]);
+  };
 
   return (
     <div
