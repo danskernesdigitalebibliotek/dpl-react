@@ -247,7 +247,7 @@ export default {
       control: { type: "text" }
     },
     handleResponseInformationText: {
-      defaultValue: "Dine ændringer er gemt.",
+      defaultValue: "Your changes are saved.",
       control: { type: "text" }
     },
     loadingText: {
