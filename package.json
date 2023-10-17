@@ -164,7 +164,7 @@
     "react-query": "^3.39.0",
     "react-redux": "^8.0.1",
     "react-use": "^17.4.0",
-    "redux": "^4.2.0",
+    "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "unfetch": "^4.2.0"
   },
