@@ -4,10 +4,7 @@ import { useMultipleSelection } from "downshift";
 import clsx from "clsx";
 import { useClickAway, useDeepCompareEffect } from "react-use";
 import CheckBox from "../checkbox/Checkbox";
-import {
-  MultiselectExternalUpdate,
-  MultiselectOption
-} from "./types";
+import { MultiselectExternalUpdate, MultiselectOption } from "./types";
 import useMultiselectOptions from "./useMultiselectOptions";
 import { useText } from "../../core/utils/text";
 import {
