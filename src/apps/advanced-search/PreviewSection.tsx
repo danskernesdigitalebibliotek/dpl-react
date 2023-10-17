@@ -20,13 +20,13 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({
   setIsFormMode
 }) => {
   const t = useText();
-  // The "value" isn't used, but needs to be destructured from the hook.
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [value, copy] = useCopyToClipboard();
+  const [, copy] = useCopyToClipboard();
   const [copiedToClipboard, setCopiedToClipboard] = useState<boolean>(false);
 
   useEffect(() => {
     if (copiedToClipboard) {
+      // We reset copiedLinkToSearch to show the "copy link" text again, instead
+      // of "link was copied" after 2 seconds.
       setTimeout(() => {
         setCopiedToClipboard(false);
       }, 2000);

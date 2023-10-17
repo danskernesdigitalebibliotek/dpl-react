@@ -35,9 +35,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     pageSize
   });
   const [cql, setCql] = useState<string>(q);
-  // The "value" property isn't used, but needs to be destructured
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [value, copy] = useCopyToClipboard();
+  const [, copy] = useCopyToClipboard();
 
   useEffect(() => {
     setCql(q);
@@ -93,9 +91,9 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   const shouldShowResultHeadline = hitcount && !isLoading;
 
   useEffect(() => {
-    // We reset copiedLinkToSearch to show the "copy link" text again, instead
-    // of "link was copied".
     if (copiedLinkToSearch) {
+      // We reset copiedLinkToSearch to show the "copy link" text again, instead
+      // of "link was copied" after 2 seconds.
       setTimeout(() => {
         setCopiedLinkToSearch(false);
       }, 2000);
