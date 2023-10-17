@@ -2,7 +2,7 @@ import { useSelect } from "downshift";
 import {
   MultiselectExternalUpdate,
   MultiselectOption
-} from "../../core/utils/types/multiselect-types";
+} from "./types";
 
 export const deselectMultiselectAllOption = (
   selectedItems: MultiselectOption[],

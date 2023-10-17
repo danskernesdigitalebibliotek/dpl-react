@@ -1,4 +1,4 @@
-import { MultiselectOption } from "../../core/utils/types/multiselect-types";
+import { MultiselectOption } from "./types";
 
 function useMultiselectOptions(
   options: MultiselectOption[],

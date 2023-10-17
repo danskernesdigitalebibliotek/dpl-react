@@ -7,7 +7,7 @@ import CheckBox from "../checkbox/Checkbox";
 import {
   MultiselectExternalUpdate,
   MultiselectOption
-} from "../../core/utils/types/multiselect-types";
+} from "./types";
 import useMultiselectOptions from "./useMultiselectOptions";
 import { useText } from "../../core/utils/text";
 import {

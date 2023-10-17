@@ -14,7 +14,7 @@ import Multiselect from "../../components/multiselect/Multiselect";
 import {
   MultiselectExternalUpdateFunction,
   MultiselectOption
-} from "../../core/utils/types/multiselect-types";
+} from "../../components/multiselect/types";
 import CqlSearchHeader from "./CqlSearchHeader";
 import {
   shouldAdvancedSearchButtonBeDisabled,
