@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback } from "react";
+import React, { FC, ReactNode } from "react";
 import ArrowButton from "../../../components/Buttons/ArrowButton";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
@@ -24,11 +24,11 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   label,
   children
 }) => {
-  const notificationClickEventHandler = useCallback(() => {
+  const notificationClickEventHandler = () => {
     if (openReservationDetailsModal && reservationInfo) {
       openReservationDetailsModal(reservationInfo);
     }
-  }, [openReservationDetailsModal, reservationInfo]);
+  };
 
   return (
     <div className="list-reservation__status">

@@ -20,7 +20,12 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
       aria-labelledby={arrowLabelledBy}
       style={pointer}
       type="button"
-      onClick={clickEventHandler}
+      onClick={(e) => {
+        if (clickEventHandler) {
+          e.stopPropagation();
+          clickEventHandler();
+        }
+      }}
     >
       <Arrow />
     </button>
