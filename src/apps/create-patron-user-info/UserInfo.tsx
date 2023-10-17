@@ -26,7 +26,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   const { mutate } = useCreateV4();
   const [patron, setPatron] = useState<PatronSettingsV3>({
     preferredPickupBranch: "",
-    receiveEmail: false,
+    receiveEmail: true,
     receivePostalMail: false,
     receiveSms: false,
     phoneNumber: "",
