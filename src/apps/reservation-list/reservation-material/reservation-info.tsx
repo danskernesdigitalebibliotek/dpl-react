@@ -13,7 +13,7 @@ import { useGetBranches } from "../../../core/utils/branches";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
-  openReservationDetailsModal: (reservation: ReservationType) => void;
+  openReservationDetailsModal?: (reservation: ReservationType) => void;
   showStatusCircleIcon?: boolean;
   showArrow?: boolean;
   reservationStatusClassNameOverride?: string;

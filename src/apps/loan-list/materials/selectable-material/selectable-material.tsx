@@ -48,7 +48,24 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   } = material || {};
 
   return (
-    <li className="arrow arrow__hover--right-small">
+    <li
+      className="arrow arrow__hover--right-small cursor-pointer"
+      // Eslint is right, this is not an interactive element. But the customer wants it to be.
+      // Therefore we assign it the role of a button and add the necessary event handlers.
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+      role="button"
+      onClick={() => {
+        if (openDetailsModal) {
+          openDetailsModal(id);
+        }
+      }}
+      onKeyUp={(e) => {
+        if (openDetailsModal && (e.key === "Enter" || e.key === "Space")) {
+          openDetailsModal(id);
+        }
+      }}
+      tabIndex={0}
+    >
       <div
         className={clsx("list-materials", {
           "list-materials--disabled": disabled
@@ -96,13 +113,12 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
                 showArrow={false}
                 showStatusCircleIcon={false}
                 reservationStatusClassNameOverride=""
-                openReservationDetailsModal={() => {}}
               />
             )}
           </div>
         </div>
         {openDetailsModal && (
-          <div className="ml-8">
+          <div className="mr-16 ml-32">
             <ArrowButton
               arrowLabelledBy="john"
               cursorPointer
