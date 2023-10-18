@@ -46,25 +46,22 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
     lang
   } = material || {};
 
+  // The reason why the handlers are used on multiple containers is because of multiple reasons:
+  // * We cannot attach them to the li or the list-materials container because it prevents the checkbox from being checked.
+  // * We cannot make a container for the rest of the content with the handlers because it breaks the flexbox layout.
+  const handleOnClick = () => {
+    if (openDetailsModal) {
+      openDetailsModal(id);
+    }
+  };
+  const handleOnKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (openDetailsModal && (e.key === "Enter" || e.key === "Space")) {
+      openDetailsModal(id);
+    }
+  };
+
   return (
-    <li
-      className="arrow arrow__hover--right-small cursor-pointer"
-      // Eslint is right, this is not an interactive element. But the customer wants it to be.
-      // Therefore we assign it the role of a button and add the necessary event handlers.
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-      role="button"
-      onClick={() => {
-        if (openDetailsModal) {
-          openDetailsModal(id);
-        }
-      }}
-      onKeyUp={(e) => {
-        if (openDetailsModal && (e.key === "Enter" || e.key === "Space")) {
-          openDetailsModal(id);
-        }
-      }}
-      tabIndex={0}
-    >
+    <li className="arrow arrow__hover--right-small">
       <div
         className={clsx("list-materials", {
           "list-materials--disabled": disabled
@@ -88,7 +85,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             {disabled && <CheckBox id={id} disabled={disabled} />}
           </div>
         )}
-        <div className="list-materials__content">
+        <div
+          className="list-materials__content cursor-pointer"
+          role="button"
+          onClick={handleOnClick}
+          onKeyUp={handleOnKeyUp}
+          tabIndex={0}
+        >
           <div className="list-materials__content-status">
             <div className="status-label status-label--outline ">
               {materialType}
@@ -101,7 +104,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             <AuthorYear author={authorsShort} year={year} />
           </p>
         </div>
-        <div className="list-materials__status pl-4">
+        <div
+          className="list-materials__status pl-4 cursor-pointer"
+          role="button"
+          onClick={handleOnClick}
+          onKeyUp={handleOnKeyUp}
+          tabIndex={0}
+        >
           {statusMessageComponentDesktop}
           <div>
             {statusBadgeComponent}
@@ -117,7 +126,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </div>
         </div>
         {openDetailsModal && (
-          <div className="mr-16 ml-32">
+          <div
+            className="mr-16 ml-32 cursor-pointer"
+            role="button"
+            onClick={handleOnClick}
+            onKeyUp={handleOnKeyUp}
+            tabIndex={0}
+          >
             <ArrowButton
               arrowLabelledBy="john"
               cursorPointer
