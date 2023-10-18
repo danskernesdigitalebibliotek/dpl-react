@@ -1,9 +1,14 @@
 import React, { FC, ReactNode } from "react";
+import clsx from "clsx";
 import { useText } from "../../../../core/utils/text";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import CheckBox from "../../../../components/checkbox/Checkbox";
 import AuthorYear from "../../../../components/author-year/authorYear";
+import ReservationInfo from "../../../reservation-list/reservation-material/reservation-info";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
+import ArrowButton from "../../../../components/Buttons/ArrowButton";
+import Arrow from "../../../../components/atoms/icons/arrow/arrow";
 
 interface SelectableMaterialProps {
   disabled?: boolean;
@@ -15,6 +20,7 @@ interface SelectableMaterialProps {
   statusMessageComponentDesktop: ReactNode;
   statusBadgeComponent: ReactNode;
   focused: boolean;
+  displayedMaterial?: ReservationType;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
@@ -27,7 +33,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   statusMessageComponentMobile,
   statusMessageComponentDesktop,
   statusBadgeComponent,
-  focused
+  focused,
+  displayedMaterial
 }) => {
   const t = useText();
 
@@ -41,11 +48,11 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   } = material || {};
 
   return (
-    <li>
+    <li className="arrow arrow__hover--right-small">
       <div
-        className={`list-materials ${
-          disabled ? "list-materials--disabled" : ""
-        }`}
+        className={clsx("list-materials", {
+          "list-materials--disabled": disabled
+        })}
       >
         {onMaterialChecked && (
           <div className="list-materials__checkbox mr-32">
@@ -83,27 +90,26 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           <div>
             {statusBadgeComponent}
             {statusMessageComponentMobile}
-            {openDetailsModal && (
-              <button
-                type="button"
-                // This is to handle focus when more items are loaded via pagination
-                // eslint-disable-next-line jsx-a11y/no-autofocus
-                autoFocus={disabled && focused}
-                className="list-reservation__note"
-                onClick={() => openDetailsModal(id)}
-                aria-label={
-                  title
-                    ? t("groupModalGoToMaterialAriaLabelText", {
-                        placeholders: { "@label": title }
-                      })
-                    : ""
-                }
-              >
-                {t("groupModalGoToMaterialText")}
-              </button>
+            {displayedMaterial && (
+              <ReservationInfo
+                reservationInfo={displayedMaterial}
+                showArrow={false}
+                showStatusCircleIcon={false}
+                reservationStatusClassNameOverride=""
+                openReservationDetailsModal={() => {}}
+              />
             )}
           </div>
         </div>
+        {openDetailsModal && (
+          <div className="ml-8">
+            <ArrowButton
+              arrowLabelledBy="john"
+              cursorPointer
+              clickEventHandler={() => openDetailsModal(id)}
+            />
+          </div>
+        )}
       </div>
     </li>
   );

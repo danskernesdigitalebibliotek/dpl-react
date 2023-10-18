@@ -132,18 +132,12 @@ const Template = () => {
       <ul className="modal-loan__list-materials">
         <SelectableMaterial
           {...selectableMaterialProps}
+          displayedMaterial={reservationMaterialProps.reservation}
           id={selectableMaterialProps.identifier}
           statusBadgeComponent={
             <StatusBadge badgeDate={loanType.dueDate} neutralText="" />
           }
-          statusMessageComponentDesktop={
-            <ReservationInfo
-              reservationInfo={reservationMaterialProps.reservation}
-              showArrow={false}
-              showStatusCircleIcon={false}
-              reservationStatusClassNameOverride=""
-            />
-          }
+          statusMessageComponentDesktop={null}
           statusMessageComponentMobile={
             <StatusMessage
               className="list-materials__status__note-mobile"
