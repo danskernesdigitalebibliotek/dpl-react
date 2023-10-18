@@ -33,6 +33,7 @@ import { formatDate } from "../../../../core/utils/helpers/date";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
+  isPossibleToChangeReservationDetails?: boolean;
 }
 
 const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
@@ -44,7 +45,8 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     dateOfReservation,
     pickupNumber,
     reservationId
-  }
+  },
+  isPossibleToChangeReservationDetails = false
 }) => {
   const config = useConfig();
   const t = useText();
@@ -139,15 +141,20 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
             changeHandler={openModal("pickup")}
             buttonAriaLabel={t("changePickupLocationText")}
             subText={pickupNumber ?? ""}
+            isPossibleToChangeReservationDetails={
+              isPossibleToChangeReservationDetails
+            }
           />
-          <PickupModal
-            branches={whitelistBranches}
-            defaultBranch={pickupBranch}
-            selectBranchHandler={setSelectedBranch}
-            saveCallback={saveChanges}
-            reservationStatus={reservationStatus}
-            setReservationStatus={setReservationStatus}
-          />
+          {!isPossibleToChangeReservationDetails && (
+            <PickupModal
+              branches={whitelistBranches}
+              defaultBranch={pickupBranch}
+              selectBranchHandler={setSelectedBranch}
+              saveCallback={saveChanges}
+              reservationStatus={reservationStatus}
+              setReservationStatus={setReservationStatus}
+            />
+          )}
         </>
       )}
       {expiryDate && (
@@ -162,14 +169,19 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
             }
             changeHandler={openModal("interestPeriod")}
             buttonAriaLabel={t("changeInterestPeriodText")}
+            isPossibleToChangeReservationDetails={
+              isPossibleToChangeReservationDetails
+            }
           />
-          <NoInterestAfterModal
-            selectedInterest={selectedInterest ?? 90}
-            setSelectedInterest={setSelectedInterest}
-            saveCallback={saveChanges}
-            reservationStatus={reservationStatus}
-            setReservationStatus={setReservationStatus}
-          />
+          {!isPossibleToChangeReservationDetails && (
+            <NoInterestAfterModal
+              selectedInterest={selectedInterest ?? 90}
+              setSelectedInterest={setSelectedInterest}
+              saveCallback={saveChanges}
+              reservationStatus={reservationStatus}
+              setReservationStatus={setReservationStatus}
+            />
+          )}
         </>
       )}
       {pickupDeadline && (

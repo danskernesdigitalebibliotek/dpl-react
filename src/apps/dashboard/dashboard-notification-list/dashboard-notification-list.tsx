@@ -325,6 +325,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           modalId={`${reservationDetails}${String(modalReservationDetailsId)}`}
         >
           <ReservationDetails
+            isPossibleToChangeReservationDetails
             openReservationDeleteModal={openReservationDeleteModal}
             faust={reservationForModal.faust}
             identifier={reservationForModal.identifier}
