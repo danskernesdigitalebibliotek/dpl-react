@@ -72,7 +72,11 @@ export const mockedManifestationData: Manifestation[] = [
         loanIsPossible: true
       }
     ],
-    shelfmark: null
+    shelfmark: null,
+    catalogueCodes: {
+      nationalBibliography: [],
+      otherCatalogues: []
+    }
   },
   {
     pid: "870970-basis:52643414",
@@ -144,7 +148,11 @@ export const mockedManifestationData: Manifestation[] = [
         loanIsPossible: true
       }
     ],
-    shelfmark: { postfix: "Postfix, 24", shelfmark: "60.7" }
+    shelfmark: { postfix: "Postfix, 24", shelfmark: "60.7" },
+    catalogueCodes: {
+      nationalBibliography: [],
+      otherCatalogues: []
+    }
   }
 ];
 
@@ -207,7 +215,11 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
         loanIsPossible: true
       }
     ],
-    shelfmark: null
+    shelfmark: null,
+    catalogueCodes: {
+      nationalBibliography: [],
+      otherCatalogues: []
+    }
   }
 ];
 

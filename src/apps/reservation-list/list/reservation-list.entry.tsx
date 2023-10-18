@@ -45,7 +45,6 @@ export interface ReservationListTextProps {
   reservationListAvailableInText: string;
   reservationDetailsExpiresTitleText: string;
   reservationDetailsOthersInQueueText: string;
-  listDetailsNothingSelectedLabelText: string;
   reservationListPauseReservationText: string;
   reservationListOnHoldAriaText: string;
   reservationListPauseReservationAriaModalText: string;

@@ -12,6 +12,7 @@ export type DisclosureSummaryProps = {
   isAvailable?: boolean;
   itemRef?: React.MutableRefObject<null>;
   className?: string;
+  dataCy?: string;
 };
 
 const DisclosureSummary: React.FunctionComponent<DisclosureSummaryProps> = ({
@@ -20,13 +21,15 @@ const DisclosureSummary: React.FunctionComponent<DisclosureSummaryProps> = ({
   mainIconPath,
   isAvailable,
   itemRef,
-  className
+  className,
+  dataCy = "disclosure-summary"
 }) => {
   const t = useText();
   return (
     <summary
       ref={itemRef}
       className={clsx("disclosure__headline text-body-large ", className)}
+      data-cy={dataCy}
     >
       {mainIconPath && (
         <div className="disclosure__icon bg-identity-tint-120">
@@ -44,7 +47,11 @@ const DisclosureSummary: React.FunctionComponent<DisclosureSummaryProps> = ({
       </Heading>
       {isAvailable !== undefined && (
         <Pagefold
-          text={isAvailable ? t("available") : t("unavailable")}
+          text={
+            isAvailable
+              ? t("availabilityAvailableText")
+              : t("availabilityUnavailableText")
+          }
           state={isAvailable ? "success" : "alert"}
         />
       )}

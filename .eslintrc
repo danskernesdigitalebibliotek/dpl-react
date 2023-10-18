@@ -61,6 +61,7 @@
           "/**/*.test.tsx",
           "vitest.config.ts",
           "webpack.config.js",
+          "webpack.helpers.js",
           "postcss.config.js",
           "orval.config.ts",
           "cypress/plugins/index.js",

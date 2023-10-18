@@ -301,6 +301,10 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "audience": {
         "generalAudience": [],
       },
+      "catalogueCodes": {
+        "nationalBibliography": [],
+        "otherCatalogues": [],
+      },
       "contributors": [],
       "creators": [
         {

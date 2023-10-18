@@ -50,10 +50,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
     titles: { full: fullTitle },
     series,
     creators,
-    manifestations: {
-      all: manifestations,
-      bestRepresentation: { shelfmark }
-    },
+    manifestations: { all: manifestations, bestRepresentation },
     workId
   },
   coverTint,
@@ -79,7 +76,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
     materialTypeFromFilters
   );
   const languageIsoCode = getManifestationLanguageIsoCode(manifestations);
-
+  const { shelfmark } = bestRepresentation;
   const { track } = useStatistics();
   // We use hasBeenVisible to determine if the search result
   // is, or has been, visible in the viewport.
@@ -163,7 +160,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
           )}
         </div>
 
-        {!materialIsFiction(item) && shelfmark && (
+        {!materialIsFiction(bestRepresentation) && shelfmark && (
           <SubjectNumber
             className="text-tags color-secondary-gray mt-8"
             shelfmark={shelfmark}

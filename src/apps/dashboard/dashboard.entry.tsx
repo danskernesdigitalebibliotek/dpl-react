@@ -11,6 +11,7 @@ import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsM
 import { GroupModalReservationsProps } from "../../core/storybook/reservationGroupModalArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
 import { AcceptFeesModalEntryTextProps } from "../../core/storybook/acceptFeesModalArgs";
+import { RenewalArgs } from "../../core/storybook/renewalArgs";
 
 export interface DashBoardProps {
   // Url
@@ -43,7 +44,6 @@ export interface DashBoardProps {
   publizonAudioBookText: string;
   publizonEbookText: string;
   publizonPodcastText: string;
-  listDetailsNothingSelectedLabelText: string;
   dashboardNumberInLineText: string;
   resultPagerStatusText: string;
   reservationDetailsOthersInQueueText: string;
@@ -60,6 +60,7 @@ const DashboardEntry: FC<
     DeleteReservationModalArgs &
     AcceptFeesModalEntryTextProps &
     GroupModalReservationsProps &
+    RenewalArgs &
     ReservationMaterialDetailsProps &
     MaterialDetailsModalProps
 > = ({ pageSizeDesktop, pageSizeMobile }) => {

@@ -1,6 +1,8 @@
 import { mapValues } from "lodash";
 import {
   FacetField,
+  FacetResult,
+  FacetValue,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../core/utils/branches";
@@ -132,8 +134,36 @@ export const getFacetFieldTranslation = (name: FacetField) => {
   }
 };
 
+type FacetMap = { [key: string]: FacetValue };
+// createFacetsMap generates a map for quick lookup and enhanced search
+// capabilities by combining facet name and term into a single string key.
+// Structure: { [facetName:termKey]: FacetValue }
+// Example Key: 'fictionalCharacters:Batman'
+export const createFacetsMap = (facets: FacetResult[]): FacetMap => {
+  return facets.reduce((acc: FacetMap, facet: FacetResult) => {
+    const newAcc = { ...acc };
+
+    facet.values.forEach((value) => {
+      const combinedKey = `${facet.name}:${value.key}`;
+      newAcc[combinedKey] = value;
+    });
+
+    return newAcc;
+  }, {});
+};
+
+export const findTermInFacetMap = (
+  facetName: string,
+  termName: string,
+  facetMap: FacetMap
+): FacetValue => {
+  const key = `${facetName}:${termName}`;
+  return facetMap[key];
+};
+
 export default {};
 
+/* ********************************* Vitest Section  ********************************* */
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 
@@ -161,6 +191,64 @@ if (import.meta.vitest) {
     }
   };
 
+  const facetsTestData: FacetResult[] = [
+    {
+      name: "materialTypesGeneral",
+      values: [
+        {
+          key: "computerspil",
+          term: "computerspil",
+          score: 26
+        }
+      ]
+    },
+    {
+      name: "mainLanguages",
+      values: [
+        {
+          key: "dan",
+          term: "Dansk",
+          score: 427
+        },
+        {
+          key: "eng",
+          term: "Engelsk",
+          score: 82
+        }
+      ]
+    },
+    {
+      name: "materialTypesGeneral",
+      values: [
+        {
+          key: "artikler",
+          term: "artikler",
+          score: 346
+        },
+        {
+          key: "bøger",
+          term: "bøger",
+          score: 74
+        },
+        {
+          key: "e-bøger",
+          term: "e-bøger",
+          score: 38
+        },
+        {
+          key: "computerspil",
+          term: "computerspil",
+          score: 26
+        },
+        {
+          key: "film",
+          term: "film",
+          score: 9
+        }
+      ]
+    }
+  ];
+
   describe("getPlaceHolderFacets", () => {
     it("should get placeholder facets", () => {
       expect(getPlaceHolderFacets(allFacetFields)).toMatchSnapshot();
@@ -177,5 +265,9 @@ if (import.meta.vitest) {
     it("should create filters", () => {
       expect(createFilters(filters, branchIdList)).toMatchSnapshot();
     });
+  });
+
+  it("createFacetsMap", () => {
+    expect(createFacetsMap(facetsTestData)).toMatchSnapshot();
   });
 }

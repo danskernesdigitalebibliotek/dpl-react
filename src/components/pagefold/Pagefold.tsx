@@ -4,11 +4,15 @@ import { FC } from "react";
 export interface PagefoldProps {
   text: string;
   state: "success" | "alert";
+  dataCy?: string;
 }
 
-const Pagefold: FC<PagefoldProps> = ({ text, state }) => {
+const Pagefold: FC<PagefoldProps> = ({ text, state, dataCy = "page-fold" }) => {
   return (
-    <div className="pagefold-parent--xsmall availability-label--unselected text-label availability-label">
+    <div
+      data-cy={dataCy}
+      className="pagefold-parent--xsmall availability-label--unselected text-label availability-label"
+    >
       <div
         className={`pagefold-triangle--xsmall pagefold-triangle--${state}`}
       />

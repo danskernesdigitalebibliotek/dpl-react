@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useEffect } from "react";
 import UserInfo from "./UserInfo";
 import { useUrls } from "../../core/utils/url";
 
@@ -8,18 +8,24 @@ interface CreatePatronProps {
 
 const CreatePatron: FC<CreatePatronProps> = ({ userToken }) => {
   const [cpr, setCpr] = useState<string | null>(null);
-  const { loginUrl } = useUrls();
+  const { userinfoUrl } = useUrls();
 
-  fetch(String(loginUrl), {
-    method: "get",
-    headers: { Authorization: `Bearer ${userToken}` }
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data?.attributes?.cpr) {
-        setCpr(data.attributes.cpr);
-      }
-    });
+  if (!userinfoUrl) {
+    throw new Error("userinfoUrl is not defined");
+  }
+
+  useEffect(() => {
+    fetch(String(userinfoUrl), {
+      method: "get",
+      headers: { Authorization: `Bearer ${userToken}` }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data?.attributes?.cpr) {
+          setCpr(data.attributes.cpr);
+        }
+      });
+  }, [userToken, userinfoUrl]);
 
   if (cpr === null) return null;
 

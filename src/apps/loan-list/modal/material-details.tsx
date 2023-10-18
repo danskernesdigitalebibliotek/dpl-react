@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import ReservationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
@@ -18,15 +18,30 @@ import ModalDetailsHeader from "../../../components/modal-details-header/modal-d
 import RenewButton from "./renew-button";
 import Link from "../../../components/atoms/links/Link";
 import { useUrls } from "../../../core/utils/url";
+import { RequestStatus } from "../../../core/utils/types/request";
+import { RenewedLoanV2 } from "../../../core/fbs/model";
+import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
 
 interface MaterialDetailsProps {
   loan: LoanType | null;
+  modalId: string;
 }
+
+export const constructMaterialDetailsModalId = (
+  loanDetails: unknown,
+  modalLoanDetailsId: unknown
+) => `${String(loanDetails)}${String(modalLoanDetailsId)}`;
 
 const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   loan,
-  material
+  material,
+  modalId
 }) => {
+  const [renewingStatus, setRenewingStatus] = useState<RequestStatus>("idle");
+  const [renewingResponse, setRenewingResponse] = useState<
+    RenewedLoanV2[] | null
+  >(null);
+
   const t = useText();
   const { ereolenMyPageUrl, feesPageUrl } = useUrls();
 
@@ -48,106 +63,143 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
     material || {};
 
   return (
-    <div className="modal-details__container">
-      <ModalDetailsHeader
-        year={year}
-        authors={authors}
-        title={title}
-        periodical={periodical}
-        series={series}
-        pid={pid}
-        description={description}
-        materialType={materialType}
-        isbnForCover={identifier || ""}
-      >
-        {dueDate && (
-          <StatusBadge
-            showBadgeWithDueDate
-            badgeDate={dueDate}
-            dangerText={t("materialDetailsOverdueText")}
-          />
-        )}
-      </ModalDetailsHeader>
-      {!isDigital(loan) && !!faust && !!loanId && (
-        <RenewButton
-          classNames="modal-details__buttons modal-details__buttons--hide-on-mobile"
-          faust={faust}
-          loanId={loanId}
-          renewable={isRenewable}
-          hideOnMobile
+    <>
+      {!["idle", "pending"].includes(renewingStatus) && (
+        <RenewalModalMessage
+          messageType={renewingStatus === "success" ? "success" : "error"}
+          renewingResponse={renewingResponse}
+          modalId={modalId as string}
+          setRenewingStatus={setRenewingStatus}
+          texts={{
+            successTitleText: t("renewMaterialLoanSuccessTitleText"),
+            successStatusText: t("renewMaterialLoanSuccessStatusText"),
+            noRenewalsPossibleErrorTitleText: t(
+              "renewMaterialLoanNoRenewalsPossibleErrorTitleText"
+            ),
+            noRenewalsPossibleErrorStatusText: t(
+              "renewMaterialLoanNoRenewalsPossibleErrorStatusText"
+            ),
+            errorTitleText: t("renewMaterialLoanErrorTitleText"),
+            errorStatusText: t("renewMaterialLoanErrorStatusText"),
+            buttonText: t("renewMaterialLoanButtonText")
+          }}
         />
       )}
-      {isDigital(loan) && (
-        <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
-          <Link
-            href={ereolenMyPageUrl}
-            className="btn-primary btn-filled btn-small arrow__hover--right-small"
+      {["idle", "pending"].includes(renewingStatus) && (
+        <div className="modal-details__container">
+          <ModalDetailsHeader
+            year={year}
+            authors={authors}
+            title={title}
+            periodical={periodical}
+            series={series}
+            pid={pid}
+            description={description}
+            materialType={materialType}
+            isbnForCover={identifier || ""}
           >
-            {t("materialDetailsGoToEreolenText")}
-            <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
-          </Link>
+            {dueDate && (
+              <StatusBadge
+                showBadgeWithDueDate
+                badgeDate={dueDate}
+                dangerText={t("materialDetailsOverdueText")}
+              />
+            )}
+          </ModalDetailsHeader>
+          {!isDigital(loan) && !!faust && !!loanId && (
+            <RenewButton
+              classNames="modal-details__buttons modal-details__buttons--hide-on-mobile"
+              loanId={loanId}
+              renewable={isRenewable}
+              hideOnMobile
+              renewingStatus={renewingStatus}
+              setRenewingStatus={setRenewingStatus}
+              setRenewingResponse={setRenewingResponse}
+            />
+          )}
+          {isDigital(loan) && (
+            <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
+              <Link
+                href={ereolenMyPageUrl}
+                className="btn-primary btn-filled btn-small arrow__hover--right-small"
+              >
+                {t("materialDetailsGoToEreolenText")}
+                <img
+                  src={ExternalLinkIcon}
+                  className="btn-icon invert"
+                  alt=""
+                />
+              </Link>
+            </div>
+          )}
+          {dueDate && materialIsOverdue(dueDate) && (
+            <div className="modal-details__warning">
+              <WarningBar
+                leftLink={feesPageUrl}
+                linkText={t("materialDetailsLinkToPageWithFeesText")}
+                overdueText={t("materialDetailsWarningLoanOverdueText")}
+              />
+            </div>
+          )}
+          <div className="modal-details__list">
+            {dueDate && !isDigital(loan) && (
+              <ListDetails
+                icon={LoansIcon}
+                labels={formatDate(dueDate)}
+                title={t("materialDetailsPhysicalDueDateLabelText")}
+              />
+            )}
+            {dueDate && isDigital(loan) && (
+              <ListDetails
+                icon={LoansIcon}
+                labels={formatDate(dueDate)}
+                title={t("materialDetailsDigitalDueDateLabelText")}
+              />
+            )}
+            {loanDate && (
+              <ListDetails
+                icon={ReservationIcon}
+                labels={formatDate(loanDate)}
+                title={t("materialDetailsLoanDateLabelText")}
+              />
+            )}
+            {materialItemNumber && (
+              <ListDetails
+                icon={EbookIcon}
+                labels={materialItemNumber}
+                title={t("materialDetailsMaterialNumberLabelText")}
+              />
+            )}
+          </div>
+          {!isDigital(loan) && !!faust && !!loanId && (
+            <RenewButton
+              classNames="modal-details__buttons__full-width"
+              loanId={loanId}
+              renewable={isRenewable}
+              hideOnMobile={false}
+              renewingStatus={renewingStatus}
+              setRenewingStatus={setRenewingStatus}
+              setRenewingResponse={setRenewingResponse}
+            />
+          )}
+          {isDigital(loan) && (
+            <div className="modal-details__buttons">
+              <Link
+                href={ereolenMyPageUrl}
+                className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
+              >
+                {t("materialDetailsGoToEreolenText")}
+                <img
+                  src={ExternalLinkIcon}
+                  className="btn-icon invert"
+                  alt=""
+                />
+              </Link>
+            </div>
+          )}
         </div>
       )}
-      {dueDate && materialIsOverdue(dueDate) && (
-        <div className="modal-details__warning">
-          <WarningBar
-            leftLink={feesPageUrl}
-            linkText={t("materialDetailsLinkToPageWithFeesText")}
-            overdueText={t("materialDetailsWarningLoanOverdueText")}
-          />
-        </div>
-      )}
-      <div className="modal-details__list">
-        {dueDate && !isDigital(loan) && (
-          <ListDetails
-            icon={LoansIcon}
-            labels={formatDate(dueDate)}
-            title={t("materialDetailsPhysicalDueDateLabelText")}
-          />
-        )}
-        {dueDate && isDigital(loan) && (
-          <ListDetails
-            icon={LoansIcon}
-            labels={formatDate(dueDate)}
-            title={t("materialDetailsDigitalDueDateLabelText")}
-          />
-        )}
-        {loanDate && (
-          <ListDetails
-            icon={ReservationIcon}
-            labels={formatDate(loanDate)}
-            title={t("materialDetailsLoanDateLabelText")}
-          />
-        )}
-        {materialItemNumber && (
-          <ListDetails
-            icon={EbookIcon}
-            labels={materialItemNumber}
-            title={t("materialDetailsMaterialNumberLabelText")}
-          />
-        )}
-      </div>
-      {!isDigital(loan) && !!faust && !!loanId && (
-        <RenewButton
-          classNames="modal-details__buttons__full-width"
-          faust={faust}
-          loanId={loanId}
-          renewable={isRenewable}
-          hideOnMobile={false}
-        />
-      )}
-      {isDigital(loan) && (
-        <div className="modal-details__buttons">
-          <Link
-            href={ereolenMyPageUrl}
-            className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
-          >
-            {t("materialDetailsGoToEreolenText")}
-            <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
-          </Link>
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 

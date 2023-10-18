@@ -11,6 +11,8 @@ import ButtonTag from "../Buttons/ButtonTag";
 import Dropdown from "../Dropdown/Dropdown";
 import {
   FacetBrowserModalId,
+  createFacetsMap,
+  findTermInFacetMap,
   getFacetFieldTranslation
 } from "../facet-browser/helper";
 
@@ -24,6 +26,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   const t = useText();
   const { open } = useModalButtonHandler();
   const { filters, addToFilter } = useFilterHandler();
+  const facetMap = createFacetsMap(facets);
 
   const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
     return values.map((value) => {
@@ -38,9 +41,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     e: React.ChangeEvent<HTMLSelectElement>,
     facet: string
   ) => {
-    const term = facets
-      .find((item) => item.name === facet)
-      ?.values.find((item) => item.key === e.target.value);
+    const term = findTermInFacetMap(facet, e.target.value, facetMap);
 
     if (!term) return;
 

@@ -44,11 +44,11 @@ export default {
 };
 
 export interface GroupModalLoansProps {
-  groupModalRenewLoanDeniedMaxRenewalsReachedText: string;
-  groupModalDueDateWarningLoanOverdueText: string;
-  groupModalRenewLoanDeniedReservedText: string;
-  groupModalRenewLoanDeniedInterLibraryLoanText: string;
-  groupModalLoansCloseModalAriaLabelText: string;
-  groupModalLoansAriaDescriptionText: string;
   groupModalButtonText: string;
+  groupModalDueDateWarningLoanOverdueText: string;
+  groupModalLoansAriaDescriptionText: string;
+  groupModalLoansCloseModalAriaLabelText: string;
+  groupModalRenewLoanDeniedInterLibraryLoanText: string;
+  groupModalRenewLoanDeniedMaxRenewalsReachedText: string;
+  groupModalRenewLoanDeniedReservedText: string;
 }

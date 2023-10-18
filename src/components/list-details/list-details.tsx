@@ -1,3 +1,5 @@
+// Todo: Merge this component with ReservationFormListItem for consistency.
+// They are very similar, and this will simplify code maintenance.
 import React, { FC, ReactNode } from "react";
 import { useText } from "../../core/utils/text";
 
@@ -22,7 +24,7 @@ const ListDetails: FC<ListDetailsProps> = ({
 }) => {
   const t = useText();
   return (
-    <div className="list-details">
+    <div className="list-details" data-cy="reservation-form-list-item">
       <div className="list-details__icon">
         <img src={icon} alt="" />
       </div>

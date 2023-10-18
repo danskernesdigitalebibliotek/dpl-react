@@ -11,6 +11,7 @@ import { pageSizeGlobal } from "../../core/utils/helpers/general";
 import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsModalArgs";
 import { ReservationMaterialDetailsProps } from "../../core/storybook/reservationMaterialDetailsArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
+import { RenewalArgs } from "../../core/storybook/renewalArgs";
 
 export interface MenuProps {
   menuViewYourProfileText: string;
@@ -43,16 +44,18 @@ export interface MenuProps {
   menuNotAuthenticatedModalDescriptionText: string;
 }
 
-const MenuEntry: FC<
-  MenuProps &
-    GlobalUrlEntryPropsInterface &
-    GroupModalProps &
-    GroupModalLoansProps &
-    DeleteReservationModalArgs &
-    GroupModalReservationsProps &
-    MaterialDetailsModalProps &
-    ReservationMaterialDetailsProps
-> = ({ pageSizeDesktop, pageSizeMobile }) => {
+export interface MenuEntryProps
+  extends MenuProps,
+    GlobalUrlEntryPropsInterface,
+    GroupModalProps,
+    GroupModalLoansProps,
+    RenewalArgs,
+    DeleteReservationModalArgs,
+    GroupModalReservationsProps,
+    MaterialDetailsModalProps,
+    ReservationMaterialDetailsProps {}
+
+const MenuEntry: FC<MenuEntryProps> = ({ pageSizeDesktop, pageSizeMobile }) => {
   const pageSize = pageSizeGlobal(
     {
       desktop: pageSizeDesktop,

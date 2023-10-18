@@ -1,5 +1,45 @@
 // Vitest Snapshot v1
 
+exports[`createFacetsMap 1`] = `
+{
+  "mainLanguages:dan": {
+    "key": "dan",
+    "score": 427,
+    "term": "Dansk",
+  },
+  "mainLanguages:eng": {
+    "key": "eng",
+    "score": 82,
+    "term": "Engelsk",
+  },
+  "materialTypesGeneral:artikler": {
+    "key": "artikler",
+    "score": 346,
+    "term": "artikler",
+  },
+  "materialTypesGeneral:bøger": {
+    "key": "bøger",
+    "score": 74,
+    "term": "bøger",
+  },
+  "materialTypesGeneral:computerspil": {
+    "key": "computerspil",
+    "score": 26,
+    "term": "computerspil",
+  },
+  "materialTypesGeneral:e-bøger": {
+    "key": "e-bøger",
+    "score": 38,
+    "term": "e-bøger",
+  },
+  "materialTypesGeneral:film": {
+    "key": "film",
+    "score": 9,
+    "term": "film",
+  },
+}
+`;
+
 exports[`createFilters > should create filters 1`] = `
 {
   "accessTypes": [

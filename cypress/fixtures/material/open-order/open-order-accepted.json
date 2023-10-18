@@ -1,0 +1,9 @@
+{
+  "data": {
+    "submitOrder": {
+      "status": "OWNED_ACCEPTED",
+      "message": "Item available at pickupAgency, order accepted",
+      "orderId": "1234"
+    }
+  }
+}

@@ -5,6 +5,7 @@ interface ReservationFormListItemProps {
   icon: string;
   title: string;
   text: string;
+  subText?: string;
   changeHandler?: () => void;
   buttonAriaLabel?: string;
 }
@@ -13,12 +14,16 @@ const ReservationFormListItem: React.FC<ReservationFormListItemProps> = ({
   icon,
   title,
   text,
+  subText,
   changeHandler,
   buttonAriaLabel
 }) => {
   const t = useText();
   return (
-    <div className="reservation-modal-list-item">
+    <div
+      className="reservation-modal-list-item"
+      data-cy="reservation-form-list-item"
+    >
       <img src={icon} alt="" />
       <div
         data-cy="reservation-modal-list-item-text"
@@ -28,6 +33,7 @@ const ReservationFormListItem: React.FC<ReservationFormListItemProps> = ({
         <p className="text-small-caption">
           {text?.length > 0 ? text : t("missingDataText")}
         </p>
+        {subText && <p className="text-small-caption">{subText}</p>}
       </div>
       {changeHandler && (
         <button

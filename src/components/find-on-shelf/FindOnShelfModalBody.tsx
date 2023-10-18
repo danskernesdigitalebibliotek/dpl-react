@@ -185,6 +185,7 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
                 key={libraryBranch[0].holding.branch.branchId}
                 open={finalData.length === 1}
                 className="disclosure--full-width"
+                dataCy="find-on-shelf-modal-body-disclosure"
                 summary={
                   <DisclosureSummary
                     title={libraryBranch[0].holding.branch.title}

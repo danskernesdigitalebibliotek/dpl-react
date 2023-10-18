@@ -1,4 +1,4 @@
-# Architecture Decision Record: Downshift
+# Downshift
 
 ## Context
 

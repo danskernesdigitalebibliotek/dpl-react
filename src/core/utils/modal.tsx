@@ -20,6 +20,9 @@ type ModalProps = {
   classNames?: string;
   dataCy?: string;
   isSlider?: boolean;
+  eventCallbacks?: {
+    close?: () => void;
+  };
 };
 
 export interface ModalIdsProps {
@@ -35,7 +38,8 @@ function Modal({
   screenReaderModalDescriptionText,
   classNames,
   isSlider,
-  dataCy = "modal"
+  dataCy = "modal",
+  eventCallbacks
 }: ModalProps) {
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -55,6 +59,9 @@ function Modal({
   }
 
   const close = () => {
+    if (eventCallbacks?.close) {
+      eventCallbacks.close();
+    }
     dispatch(closeModal({ modalId }));
   };
 

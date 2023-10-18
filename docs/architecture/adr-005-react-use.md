@@ -1,4 +1,4 @@
-# Architecture Decision Record: React Use
+# React Use
 
 ## Context
 

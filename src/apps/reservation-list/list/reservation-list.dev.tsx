@@ -231,10 +231,6 @@ export default {
       defaultValue: "Save",
       control: { type: "text" }
     },
-    listDetailsNothingSelectedLabelText: {
-      defaultValue: "Pick",
-      control: { type: "text" }
-    },
     showMoreText: {
       name: "Show more Text",
       defaultValue: "show more",

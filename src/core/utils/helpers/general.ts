@@ -20,6 +20,7 @@ import { dashboardReservedApiValueText } from "../../configuration/api-strings.j
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
 import { store } from "../../store";
+import { AddressV2 } from "../../fbs/model";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -562,11 +563,88 @@ export const getContributors = (short: boolean, creators: string[]) => {
   return creators[0];
 };
 
+export const getReservablePidsFromAnotherLibrary = (
+  manifestations: Manifestation[]
+) => {
+  const matchingManifestations = manifestations.filter(({ catalogueCodes }) =>
+    catalogueCodes?.otherCatalogues.some((code) => code.startsWith("OVE"))
+  );
+
+  return matchingManifestations.map(({ pid }) => pid);
+};
+
+export const getPatronAddress = (address: AddressV2) =>
+  `${address.street}, ${address.postalCode} ${address.city}`;
+
 export default {};
 
 /* ********************************* Vitest Section  ********************************* */
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
+
+  describe("getReservablePidsFromAnotherLibrary", () => {
+    it("should return true for isReservable and correct pids if manifestations are reservable on another library (catalogueCodes starts with 'OVE')", () => {
+      const result = getReservablePidsFromAnotherLibrary([
+        {
+          pid: "870970-basis:135721719",
+          catalogueCodes: {
+            otherCatalogues: ["OVE123"],
+            nationalBibliography: ["ABE123"]
+          }
+        },
+        {
+          pid: "870970-basis:135721719",
+          catalogueCodes: {
+            otherCatalogues: ["OVE124"],
+            nationalBibliography: ["ABE456"]
+          }
+        }
+      ] as unknown as Manifestation[]);
+
+      expect(result.length > 0).toBe(true);
+      expect(result).toEqual([
+        "870970-basis:135721719",
+        "870970-basis:135721719"
+      ]);
+    });
+
+    it("should return false for isReservable and empty pids array if no manifestations are reservable on another library", () => {
+      const result = getReservablePidsFromAnotherLibrary([
+        {
+          pid: "pid1",
+          catalogueCodes: {
+            otherCatalogues: ["ABE789"],
+            nationalBibliography: ["ABE123"]
+          }
+        }
+      ] as unknown as Manifestation[]);
+
+      expect(result.length > 0).toBe(false);
+      expect(result).toEqual([]);
+    });
+
+    it("should filter out non-reservable manifestations and return only reservable pids", () => {
+      const result = getReservablePidsFromAnotherLibrary([
+        {
+          pid: "870970-basis:135721719",
+          catalogueCodes: {
+            otherCatalogues: ["OVE123"],
+            nationalBibliography: ["ABE123"]
+          }
+        },
+        {
+          pid: "870970-basis:111111111",
+          catalogueCodes: {
+            otherCatalogues: ["ABE789"],
+            nationalBibliography: ["ABE456"]
+          }
+        }
+      ] as unknown as Manifestation[]);
+
+      expect(result.length > 0).toBe(true);
+      expect(result).toEqual(["870970-basis:135721719"]);
+    });
+  });
 
   describe("getMaterialTypes", () => {
     const manifestations = [

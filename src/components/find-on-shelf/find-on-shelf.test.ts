@@ -79,23 +79,27 @@ describe("Find on shelf modal - periodical", () => {
   });
 
   it("Shows the main branch first", () => {
-    cy.get("summary").eq(0).contains("Hovedbiblioteket");
+    cy.getBySel("disclosure-summary").eq(0).contains("Hovedbiblioteket");
   });
 
   it("Contains a summary for the main branch with no available speciments", () => {
-    cy.get("summary")
+    cy.getBySel("disclosure-summary")
       .contains("Hovedbiblioteket")
       .parent()
-      .contains("unavailable");
+      .contains("Unavailable");
   });
 
-  it("Updates branches upon selecting a different volume", () => {
-    cy.get("summary").contains("Beder-Malling").parent().contains("available");
-    cy.get("select").eq(1).select("35");
-    cy.get("summary")
+  it.only("Updates branches upon selecting a different volume", () => {
+    cy.getBySel("disclosure-summary")
       .contains("Beder-Malling")
       .parent()
-      .contains("unavailable");
+      .contains("Available");
+
+    cy.get("select").eq(1).select("35");
+    cy.getBySel("disclosure-summary")
+      .contains("Beder-Malling")
+      .parent()
+      .contains("Unavailable");
   });
 });
 

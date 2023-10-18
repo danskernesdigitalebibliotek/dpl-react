@@ -1,8 +1,10 @@
 const path = require("path");
 const glob = require("glob");
+const webpack = require("webpack");
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const { getWebPackEnvVariables } = require("./webpack.helpers");
 
 module.exports = (_env, argv) => {
   const production = argv.mode === "production";
@@ -40,6 +42,14 @@ module.exports = (_env, argv) => {
         packageFile: path.join(__dirname, "package.json")
       })
     );
+  }
+
+  // Add environment variables to webpack in development mode
+  if (!production) {
+    const variables = getWebPackEnvVariables();
+    if (variables) {
+      plugins.push(new webpack.DefinePlugin(variables));
+    }
   }
 
   return {

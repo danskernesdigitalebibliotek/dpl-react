@@ -1,7 +1,8 @@
 import React from "react";
 import {
   getAllFaustIds,
-  getManifestationType
+  getManifestationType,
+  getReservablePidsFromAnotherLibrary
 } from "../../../../core/utils/helpers/general";
 import { isBlocked } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -13,6 +14,7 @@ import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import { useText } from "../../../../core/utils/text";
 import { usePatronData } from "../../helper";
+import MaterialButtonReservableFromAnotherLibrary from "./MaterialButtonReservableFromAnotherLibrary";
 
 export interface MaterialButtonsPhysicalProps {
   manifestations: Manifestation[];
@@ -25,6 +27,8 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   size,
   dataCy = "material-buttons-physical"
 }) => {
+  const isReservableFromAnotherLibrary =
+    getReservablePidsFromAnotherLibrary(manifestations);
   const t = useText();
   const faustIds = getAllFaustIds(manifestations);
   const { reservableManifestations } = UseReservableManifestations({
@@ -43,6 +47,16 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
 
   if (isUserBlocked) {
     return <MaterialButtonUserBlocked size={size} dataCy={dataCy} />;
+  }
+
+  if (isReservableFromAnotherLibrary.length > 0) {
+    return (
+      <MaterialButtonReservableFromAnotherLibrary
+        size={size}
+        manifestationMaterialType={getManifestationType(manifestations)}
+        faustIds={faustIds}
+      />
+    );
   }
 
   // We show the reservation button if the user isn't logged in or isn't blocked.

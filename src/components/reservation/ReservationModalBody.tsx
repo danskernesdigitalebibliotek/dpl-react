@@ -6,7 +6,9 @@ import {
   getAllPids,
   getMaterialTypes,
   getManifestationType,
-  materialIsFiction
+  materialIsFiction,
+  getReservablePidsFromAnotherLibrary,
+  getPatronAddress
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -39,7 +41,9 @@ import {
   getAuthorLine,
   getManifestationsToReserve,
   getInstantLoanBranchHoldings,
-  getInstantLoanBranchHoldingsAboveThreshold
+  getInstantLoanBranchHoldingsAboveThreshold,
+  removePrefixFromBranchId,
+  translateOpenOrderStatus
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -54,6 +58,12 @@ import InstantLoan from "../instant-loan/InstantLoan";
 import { excludeBlacklistedBranches } from "../../core/utils/branches";
 import { InstantLoanConfigType } from "../../core/utils/types/instant-loan";
 import { usePatronData } from "../material/helper";
+import {
+  OpenOrderMutation,
+  useOpenOrderMutation
+} from "../../core/dbc-gateway/generated/graphql";
+import ModalMessage from "../message/modal-message/ModalMessage";
+import configuration, { getConf } from "../../core/configuration";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -68,6 +78,10 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
+  const { defaultInterestDaysForOpenOrder } = getConf(
+    "reservation",
+    configuration
+  );
   const {
     matchStrings: instantLoanMatchStrings,
     threshold: instantLoanThreshold,
@@ -95,11 +109,14 @@ export const ReservationModalBody = ({
   const queryClient = useQueryClient();
   const [reservationResponse, setReservationResponse] =
     useState<ReservationResponseV2 | null>(null);
+  const [openOrderResponse, setOpenOrderResponse] =
+    useState<OpenOrderMutation | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
   const [selectedInterest, setSelectedInterest] = useState<number | null>(null);
   const allPids = getAllPids(selectedManifestations);
   const faustIds = convertPostIdsToFaustIds(allPids);
-  const { mutate } = useAddReservationsV2();
+  const { mutate: mutateAddReservations } = useAddReservationsV2();
+  const { mutate: mutateOpenOrder } = useOpenOrderMutation();
   const userResponse = usePatronData();
   const holdingsResponse = useGetHoldings({ faustIds, config });
   const { track } = useStatistics();
@@ -128,12 +145,48 @@ export const ReservationModalBody = ({
     ? getFutureDateString(selectedInterest)
     : null;
 
+  const pidsFromAnotherLibrary = getReservablePidsFromAnotherLibrary(
+    manifestationsToReserve
+  );
+
   const saveReservation = () => {
     if (!manifestationsToReserve || manifestationsToReserve.length < 1) {
       return;
     }
+
+    if (pidsFromAnotherLibrary.length > 0 && patron) {
+      const { patronId, address, name, emailAddress } = patron;
+
+      mutateOpenOrder(
+        {
+          input: {
+            pids: [...pidsFromAnotherLibrary],
+            pickUpBranch: selectedBranch
+              ? removePrefixFromBranchId(selectedBranch)
+              : "",
+            expires:
+              selectedInterest?.toString() ||
+              defaultInterestDaysForOpenOrder.toString(),
+            userParameters: {
+              userId: patronId.toString(),
+              userAddress: address ? getPatronAddress(address) : "",
+              userName: name,
+              userMail: emailAddress
+            }
+          }
+        },
+        {
+          onSuccess: (res) => {
+            setOpenOrderResponse(res);
+          }
+        }
+      );
+
+      return;
+    }
+
     // Save reservation to FBS.
-    mutate(
+    mutateAddReservations(
       {
         data: constructReservationData({
           manifestations: manifestationsToReserve,
@@ -184,7 +237,7 @@ export const ReservationModalBody = ({
 
   return (
     <>
-      {!reservationResults && (
+      {!reservationResults && !openOrderResponse && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
             <Cover id={manifestation.pid} size="medium" animate />
@@ -265,6 +318,31 @@ export const ReservationModalBody = ({
             </div>
           </div>
         </section>
+      )}
+      {openOrderResponse?.submitOrder?.status && (
+        <ModalMessage
+          title={t("openOrderResponseTitleText")}
+          subTitle={`${manifestation.titles.main[0]} ${t(
+            "openOrderResponseIsReservedForYouText"
+          )}`}
+          ctaButton={{
+            text: t("okButtonText"),
+            modalId: reservationModalId(faustIds),
+            dataCy: "reservation-success-close-button"
+          }}
+        >
+          {openOrderResponse.submitOrder.status && (
+            <p
+              data-cy="open-oprder-response-status-text"
+              className="text-body-medium-regular pt-24"
+            >
+              {translateOpenOrderStatus(
+                openOrderResponse.submitOrder?.status,
+                t
+              )}
+            </p>
+          )}
+        </ModalMessage>
       )}
       {reservationSuccess && reservationDetails && (
         <ReservationSucces

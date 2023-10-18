@@ -25,7 +25,10 @@ const AvailabilityLabelVisual: React.FunctionComponent<
   const t = useText();
 
   const getAvailabilityText =
-    availabilityText || (isAvailable ? t("available") : t("unavailable"));
+    availabilityText ||
+    (isAvailable
+      ? t("availabilityAvailableText")
+      : t("availabilityUnavailableText"));
 
   return (
     <div

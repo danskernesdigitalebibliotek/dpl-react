@@ -18,7 +18,8 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { ModalReservationFormTextType } from "./forms/helper";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
-import { OptionsProps } from "../list-details-dropdown/list-details-dropdown";
+import { SubmitOrderStatus } from "../../core/dbc-gateway/generated/graphql";
+import { Option } from "../Dropdown/Dropdown";
 
 export const isConfigValueOne = (configValue: string | undefined | string[]) =>
   configValue === "1";
@@ -30,7 +31,7 @@ export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
 
 export const getNoInterestAfter = (
   days: number,
-  interestPeriod: OptionsProps[],
+  interestPeriod: Option[],
   t: UseTextFunction
 ) => {
   const interestPeriodFound = interestPeriod.find(
@@ -250,5 +251,41 @@ export const getInstantLoanBranchHoldingsAboveThreshold = (
   instantLoanBranchHoldings.filter(
     ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
   );
+
+export const removePrefixFromBranchId = (branchId: string) => {
+  const splitBranchId = branchId.split("-");
+  return splitBranchId[1];
+};
+
+export const translateOpenOrderStatus = (
+  status: SubmitOrderStatus,
+  t: UseTextFunction
+) => {
+  const statusTextMap = {
+    [SubmitOrderStatus.OwnedAccepted]: "openOrderStatusOwnedAcceptedText",
+    [SubmitOrderStatus.AuthenticationError]: "openOrderAuthenticationErrorText",
+    [SubmitOrderStatus.BorchkUserBlockedByAgency]:
+      "openOrderUserBlockedByAgencyText",
+    [SubmitOrderStatus.BorchkUserNotVerified]: "openOrderUserNotVerifiedText",
+    [SubmitOrderStatus.BorchkUserNoLongerExistOnAgency]:
+      "openOrderUserNoLongerExistOnAgencyText",
+    [SubmitOrderStatus.InvalidOrder]: "openOrderInvalidOrderText",
+    [SubmitOrderStatus.NotOwnedIllLoc]: "openOrderNotOwnedIllLocText",
+    [SubmitOrderStatus.NotOwnedNoIllLoc]: "openOrderNotOwnedNoIllLocText",
+    [SubmitOrderStatus.NotOwnedWrongIllMediumtype]:
+      "openOrderNotOwnedWrongIllMediumtypeText",
+    [SubmitOrderStatus.NoServicerequester]: "openOrderNoServicerequesterText",
+    [SubmitOrderStatus.OrsError]: "openOrderOrsErrorText",
+    [SubmitOrderStatus.OwnedOwnCatalogue]: "openOrderOwnedOwnCatalogueText",
+    [SubmitOrderStatus.OwnedWrongMediumtype]:
+      "openOrderOwnedWrongMediumtypeText",
+    [SubmitOrderStatus.ServiceUnavailable]: "openOrderServiceUnavailableText",
+    [SubmitOrderStatus.UnknownError]: "openOrderUnknownErrorText",
+    [SubmitOrderStatus.UnknownPickupagency]: "openOrderUnknownPickupagencyText",
+    [SubmitOrderStatus.UnknownUser]: "openOrderUnknownUserText"
+  };
+
+  return statusTextMap[status] ? t(statusTextMap[status]) : "";
+};
 
 export default {};
