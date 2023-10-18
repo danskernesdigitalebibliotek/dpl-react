@@ -92,8 +92,8 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
 
   useEffect(() => {
     if (copiedLinkToSearch) {
-      // We reset copiedLinkToSearch to show the "copy link" text again, instead
-      // of "link was copied" after 2 seconds.
+      // We reset copiedLinkToSearch to switch from "link copied" to "copy link"
+      // text again. 2 seconds timeout makes sure the user notices the change.
       setTimeout(() => {
         setCopiedLinkToSearch(false);
       }, 2000);
