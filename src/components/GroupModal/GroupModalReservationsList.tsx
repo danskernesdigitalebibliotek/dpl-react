@@ -4,7 +4,6 @@ import { useText } from "../../core/utils/text";
 import usePager from "../result-pager/use-pager";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
-import ReservationInfo from "../../apps/reservation-list/reservation-material/reservation-info";
 
 export interface GroupModalReservationsListProps {
   materials: ReservationType[];

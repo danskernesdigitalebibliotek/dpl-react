@@ -8,7 +8,6 @@ import AuthorYear from "../../../../components/author-year/authorYear";
 import ReservationInfo from "../../../reservation-list/reservation-material/reservation-info";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import ArrowButton from "../../../../components/Buttons/ArrowButton";
-import Arrow from "../../../../components/atoms/icons/arrow/arrow";
 
 interface SelectableMaterialProps {
   disabled?: boolean;
