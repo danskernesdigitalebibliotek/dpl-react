@@ -15,12 +15,14 @@ import { useConfig } from "../../../../core/utils/config";
 export interface ReservationDetailsProps {
   reservation: ReservationType;
   openReservationDeleteModal: (deleteReservation: ReservationType) => void;
+  isPossibleToChangeReservationDetails?: boolean;
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
   material,
-  openReservationDeleteModal
+  openReservationDeleteModal,
+  isPossibleToChangeReservationDetails = false
 }) => {
   const t = useText();
   const config = useConfig();
@@ -77,7 +79,14 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
           )}
           <div className="modal-details__list">
             {isDigital && <DigitalListDetails reservation={reservation} />}
-            {!isDigital && <PhysicalListDetails reservation={reservation} />}
+            {!isDigital && (
+              <PhysicalListDetails
+                reservation={reservation}
+                isPossibleToChangeReservationDetails={
+                  isPossibleToChangeReservationDetails
+                }
+              />
+            )}
           </div>
           {reservation.reservationId && allowUserRemoveReadyReservations && (
             <ReservationDetailsButton
