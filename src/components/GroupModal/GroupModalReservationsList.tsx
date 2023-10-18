@@ -68,6 +68,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
             <>
               {(identifier || reservationId || faust) && (
                 <SelectableMaterial
+                  displayedMaterial={material}
                   focused={i === firstInNewPage}
                   statusBadgeComponent={
                     faust ? (
@@ -98,14 +99,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                   faust={faust}
                   identifier={identifier}
                   statusMessageComponentMobile={null}
-                  statusMessageComponentDesktop={
-                    <ReservationInfo
-                      reservationInfo={material}
-                      showArrow={false}
-                      showStatusCircleIcon={false}
-                      reservationStatusClassNameOverride=""
-                    />
-                  }
+                  statusMessageComponentDesktop={null}
                 />
               )}
               {!identifier && null}
