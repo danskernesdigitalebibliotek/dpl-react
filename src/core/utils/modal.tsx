@@ -98,7 +98,7 @@ function Modal({
           data-cy={dataCy}
           style={{
             // same as comment above
-            zIndex: modalIds.indexOf(modalId) + 11
+            zIndex: modalIds.indexOf(modalId) + 21
           }}
         >
           <div
@@ -114,7 +114,7 @@ function Modal({
             }`}
             style={{
               // same as comment above
-              zIndex: modalIds.indexOf(modalId) + 10
+              zIndex: modalIds.indexOf(modalId) + 20
             }}
             aria-label={closeModalAriaLabelText}
             onClick={() => {
