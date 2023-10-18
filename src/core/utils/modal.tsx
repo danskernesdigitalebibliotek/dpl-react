@@ -74,11 +74,11 @@ function Modal({
         <div
           className="modal-backdrop"
           style={{
-            // some elements are designed with z-index which means they pop up over the modal
-            // so I add 10 to the z-index of the modal
-            // the index of the modalid is used, so the newest modal is always on top of
+            // Some elements are designed with z-index which means they pop up over the modal
+            // so we add 20 to the z-index of the modal (20 is the highest z-index - header).
+            // The index of the modalid is used, so the newest modal is always on top of
             // the remaining modals
-            zIndex: modalIds.indexOf(modalId) + 10
+            zIndex: modalIds.indexOf(modalId) + 20
           }}
           onClick={() => {
             close();
