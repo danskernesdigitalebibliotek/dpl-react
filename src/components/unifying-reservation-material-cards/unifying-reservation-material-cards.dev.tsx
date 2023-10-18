@@ -14,7 +14,6 @@ import { LoanType } from "../../core/utils/types/loan-type";
 import ReservationMaterial, {
   ReservationMaterialProps
 } from "../../apps/reservation-list/reservation-material/reservation-material";
-import ReservationInfo from "../../apps/reservation-list/reservation-material/reservation-info";
 
 export default {
   title: "Development / Unifying reservation material cards",
