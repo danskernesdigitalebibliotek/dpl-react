@@ -1,15 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import PromoBar from "../../components/promo-bar/PromoBar";
 
 type UseNotificationOptionsType = {
   timeout?: number;
   scrollToTop?: boolean;
 };
-type UseNotificationReturnType = [string | null, (text: string) => void];
+type UseNotificationReturnType = [React.FC, (text: string) => void];
 
 export const useNotificationMessage = ({
-  timeout,
-  scrollToTop
-}: UseNotificationOptionsType): UseNotificationReturnType => {
+  timeout = 5000,
+  scrollToTop = true
+}: UseNotificationOptionsType = {}): UseNotificationReturnType => {
   const [notificationMessage, setNotificationMessage] = useState<string | null>(
     null
   );
@@ -26,7 +27,12 @@ export const useNotificationMessage = ({
     }
   };
 
-  return [notificationMessage, handleNotificationMessage];
+  const NotificationComponent: React.FC = () => {
+    if (!notificationMessage) return null;
+    return <PromoBar text={notificationMessage} type="info" />;
+  };
+
+  return [NotificationComponent, handleNotificationMessage];
 };
 
 export default {};
