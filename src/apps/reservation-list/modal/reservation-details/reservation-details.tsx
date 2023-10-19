@@ -15,14 +15,14 @@ import { useConfig } from "../../../../core/utils/config";
 export interface ReservationDetailsProps {
   reservation: ReservationType;
   openReservationDeleteModal: (deleteReservation: ReservationType) => void;
-  isPossibleToChangeReservationDetails?: boolean;
+  isPossibleToChangeReservationDetails?: boolean | null;
 }
 
 const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   reservation,
   material,
   openReservationDeleteModal,
-  isPossibleToChangeReservationDetails = false
+  isPossibleToChangeReservationDetails
 }) => {
   const t = useText();
   const config = useConfig();

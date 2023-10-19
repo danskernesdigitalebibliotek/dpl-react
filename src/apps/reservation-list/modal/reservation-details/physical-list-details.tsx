@@ -33,7 +33,7 @@ import { formatDate } from "../../../../core/utils/helpers/date";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
-  isPossibleToChangeReservationDetails?: boolean;
+  isPossibleToChangeReservationDetails?: boolean | null;
 }
 
 const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
@@ -46,7 +46,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     pickupNumber,
     reservationId
   },
-  isPossibleToChangeReservationDetails = false
+  isPossibleToChangeReservationDetails = true
 }) => {
   const config = useConfig();
   const t = useText();
@@ -145,7 +145,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
               isPossibleToChangeReservationDetails
             }
           />
-          {!isPossibleToChangeReservationDetails && (
+          {isPossibleToChangeReservationDetails && (
             <PickupModal
               branches={whitelistBranches}
               defaultBranch={pickupBranch}
