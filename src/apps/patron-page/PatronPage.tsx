@@ -17,7 +17,6 @@ import PauseReservation from "../reservation-list/modal/pause-reservation/pause-
 import { getModalIds } from "../../core/utils/helpers/general";
 import { useUrls } from "../../core/utils/url";
 import { usePatronData } from "../../components/material/helper";
-import PromoBar from "../../components/promo-bar/PromoBar";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
 
 const PatronPage: FC = () => {
@@ -35,11 +34,8 @@ const PatronPage: FC = () => {
   const [successPinMessage, setSuccessPinMessage] = useState<string | null>(
     null
   );
-  const [notificationMessage, handleNotificationMessage] =
-    useNotificationMessage({
-      scrollToTop: true,
-      timeout: 5000
-    });
+  const [NotificationComponent, handleNotificationMessage] =
+    useNotificationMessage();
 
   useEffect(() => {
     if (patronData && patronData.patron) {
@@ -113,9 +109,7 @@ const PatronPage: FC = () => {
     <>
       <form className="dpl-patron-page" onSubmit={(e) => handleSubmit(e)}>
         <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
-        {notificationMessage && (
-          <PromoBar text={notificationMessage} type="info" />
-        )}
+        <NotificationComponent />
         {patron && <BasicDetailsSection patron={patron} />}
         <div className="patron-page-info">
           {patron && (
