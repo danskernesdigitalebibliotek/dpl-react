@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PromoBar from "../../components/promo-bar/PromoBar";
+import NotificationComponent from "../../components/notification/NotificationComponent";
 
 type UseNotificationOptionsType = {
   timeout?: number;
@@ -27,12 +27,10 @@ export const useNotificationMessage = ({
     }
   };
 
-  const NotificationComponent: React.FC = () => {
-    if (!notificationMessage) return null;
-    return <PromoBar text={notificationMessage} type="info" />;
-  };
-
-  return [NotificationComponent, handleNotificationMessage];
+  return [
+    () => <NotificationComponent notificationMessage={notificationMessage} />,
+    handleNotificationMessage
+  ];
 };
 
 export default {};
