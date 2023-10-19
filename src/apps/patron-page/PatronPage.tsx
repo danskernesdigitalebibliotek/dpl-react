@@ -89,7 +89,9 @@ const PatronPage: FC = () => {
               setSuccessPinMessage(t("patronPinSavedSuccessText"));
             }
             setDisableSubmitButton(false);
-            handleNotificationMessage(t("handleResponseInformationText"));
+            handleNotificationMessage(
+              t("patronPageHandleResponseInformationText")
+            );
           },
           // todo error handling, missing in figma
           onError: () => {
@@ -141,7 +143,7 @@ const PatronPage: FC = () => {
             disabled={disableSubmitButton}
           >
             {disableSubmitButton
-              ? t("loadingText")
+              ? t("patronPageLoadingText")
               : t("patronPageSaveButtonText")}
           </button>
 

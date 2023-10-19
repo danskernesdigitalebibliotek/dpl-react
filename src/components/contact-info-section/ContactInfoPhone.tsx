@@ -30,13 +30,13 @@ const ContactInfoPhone: FC<ContactInfoPhoneProps> = ({
         required={isRequired}
         type="tel"
         pattern="\+?[0-9]{6,15}"
-        title={t("phoneInputMessageText")}
+        title={t("patronPagePhoneInputMessageText")}
         onChange={(newPhoneNumber) =>
           changePatron(newPhoneNumber, "phoneNumber")
         }
         value={patron?.phoneNumber}
         label={t("patronContactPhoneLabelText")}
-        placeholder={t("phoneInputMessageText")}
+        placeholder={t("patronPagePhoneInputMessageText")}
       />
       {showCheckboxes && (
         <CheckBox
