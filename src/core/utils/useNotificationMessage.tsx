@@ -28,7 +28,10 @@ export const useNotificationMessage = ({
   };
 
   return [
-    () => <NotificationComponent notificationMessage={notificationMessage} />,
+    () =>
+      notificationMessage ? (
+        <NotificationComponent notificationMessage={notificationMessage} />
+      ) : null,
     handleNotificationMessage
   ];
 };
