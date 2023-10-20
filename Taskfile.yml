@@ -66,11 +66,6 @@ tasks:
     cmds:
       - yarn start:storybook:dev
 
-  dev:logs:
-    summary: Tail docker compose logs for web-pack
-    cmds:
-      - docker compose logs node --follow
-
   dev:reset:
     summary: Install development environment and clean up.
     cmds:
