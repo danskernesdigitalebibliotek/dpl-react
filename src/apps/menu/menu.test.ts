@@ -69,7 +69,22 @@ describe("Menu (authenticated))", () => {
           pickupNumber: null,
           ilBibliographicRecord: null,
           transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
-          reservationType: "normal"
+          reservationType: "parallel"
+        },
+        {
+          reservationId: 67804977,
+          recordId: "46985592",
+          state: "reserved",
+          pickupBranch: "DK-775100",
+          pickupDeadline: null,
+          expiryDate: "2022-09-21",
+          dateOfReservation: "2022-06-14T09:00:50.059",
+          numberInQueue: 1,
+          periodical: null,
+          pickupNumber: null,
+          ilBibliographicRecord: null,
+          transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+          reservationType: "parallel"
         },
         {
           reservationId: 67789642,
