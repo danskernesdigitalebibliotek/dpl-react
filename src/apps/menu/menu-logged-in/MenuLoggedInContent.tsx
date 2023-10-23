@@ -6,14 +6,10 @@ import MenuNavigationItem, {
 } from "../menu-navigation-list/MenuNavigationItem";
 import { AuthenticatedPatronV6 } from "../../../core/fbs/model";
 import { useUrls } from "../../../core/utils/url";
-import {
-  useGetLoansV2,
-  useGetReservationsV2,
-  useGetFeesV2
-} from "../../../core/fbs/fbs";
+import { useGetLoansV2, useGetFeesV2 } from "../../../core/fbs/fbs";
 import {
   mapFBSLoanToLoanType,
-  mapFBSReservationToReservationType
+  mapFBSReservationGroupToReservationType
 } from "../../../core/utils/helpers/list-mapper";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import {
@@ -27,6 +23,7 @@ import { usePatronData } from "../../../components/material/helper";
 import { getReadyForPickup } from "../../reservation-list/utils/helpers";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import DashboardNotificationList from "../../dashboard/dashboard-notification-list/dashboard-notification-list";
+import useGetReservationGroups from "../../../core/utils/useGetReservationGroups";
 
 interface MenuLoggedInContentProps {
   pageSize: number;
@@ -34,7 +31,7 @@ interface MenuLoggedInContentProps {
 
 const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
   const { data: patronData } = usePatronData();
-  const { data: patronReservations } = useGetReservationsV2();
+  const { reservations: patronReservations } = useGetReservationGroups();
   const { data: fbsData } = useGetLoansV2();
   const { data: fbsFees } = useGetFeesV2();
   const t = useText();
@@ -95,7 +92,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
   useEffect(() => {
     if (patronReservations) {
       const mappedReservations =
-        mapFBSReservationToReservationType(patronReservations);
+        mapFBSReservationGroupToReservationType(patronReservations);
       setReservations(mappedReservations);
       setReservationsReadyForPickup(
         getReadyForPickup(mappedReservations).length
