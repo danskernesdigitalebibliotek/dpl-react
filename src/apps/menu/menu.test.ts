@@ -226,7 +226,7 @@ describe("Menu (authenticated))", () => {
       ]
     }).as("fees");
 
-    cy.visit("/iframe.html?path=/story/apps-menu--menu-entry");
+    cy.visit("/iframe.html?id=apps-header--user-menu&viewMode=story");
   });
 
   it("Menu", () => {
