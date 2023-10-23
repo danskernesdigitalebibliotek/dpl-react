@@ -14,11 +14,10 @@ import {
 } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import {
-  mapFBSReservationToReservationType,
+  mapFBSReservationGroupToReservationType,
   mapPublizonReservationToReservationType
 } from "../../../core/utils/helpers/list-mapper";
 import ReservationPauseToggler from "./reservation-pause-toggler";
-import { useGetReservationsV2 } from "../../../core/fbs/fbs";
 import { PatronV5, ReservationDetailsV2 } from "../../../core/fbs/model";
 import EmptyReservations from "./EmptyReservations";
 import PauseReservation from "../modal/pause-reservation/pause-reservation";
@@ -34,6 +33,7 @@ import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { getDetailsModalId } from "../../../core/utils/helpers/modal-helpers";
 import { getFromListByKey } from "../../loan-list/utils/helpers";
 import { usePatronData } from "../../../core/utils/helpers/user";
+import useGetReservationGroups from "../../../core/utils/useGetReservationGroups";
 
 export interface ReservationListProps {
   pageSize: number;
@@ -56,7 +56,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     isSuccess: isSuccessFBS,
     data,
     isLoading: isLoadingFBS
-  } = useGetReservationsV2();
+  } = useGetReservationGroups();
 
   const {
     isSuccess: isSuccessPublizon,
@@ -119,12 +119,13 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   // "reserved"-reservations have their own list
   useEffect(() => {
     if (isSuccessFBS && data) {
-      const fbsToReservationType = mapFBSReservationToReservationType(data);
+      const fbsToReservationType =
+        mapFBSReservationGroupToReservationType(data);
       const readyForPickup = getReadyForPickup(fbsToReservationType);
       const sortedByOldest = sortByOldestPickupDeadline(readyForPickup);
       setReadyForPickupReservationsFBS(sortedByOldest);
       setReservedReservationsFBS(
-        getReservedPhysical(mapFBSReservationToReservationType(data))
+        getReservedPhysical(mapFBSReservationGroupToReservationType(data))
       );
     } else if (!isSuccessFBS) {
       setReservedReservationsFBS([]);
