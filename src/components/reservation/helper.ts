@@ -216,7 +216,7 @@ export const consolidatedHoldings = (branchHoldings: HoldingsV3[]) => {
 export const getInstantLoanBranchHoldings = (
   branchHoldings: HoldingsV3[],
   whitelist: AgencyBranch[],
-  instantLoanStrings: string[]
+  instantLoanStrings: string[] | null
 ) => {
   const whitelistBranchIds = whitelist.map(({ branchId }) => branchId);
   // 1. Filter holdings by branch on whitelist
@@ -230,7 +230,7 @@ export const getInstantLoanBranchHoldings = (
         // if a material group description contains any of the instant loan strings
         // and is available, it is an instant loan.
         return (
-          instantLoanStrings.some((instantLoanString) => {
+          (instantLoanStrings ?? []).some((instantLoanString) => {
             return materialGroup.description?.includes(instantLoanString);
           }) && available
         );
@@ -246,10 +246,11 @@ export const getInstantLoanBranchHoldings = (
 
 export const getInstantLoanBranchHoldingsAboveThreshold = (
   instantLoanBranchHoldings: HoldingsV3[],
-  instantLoanThresholdConfig: string
+  instantLoanThresholdConfig: string | null
 ) =>
   instantLoanBranchHoldings.filter(
-    ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
+    ({ materials }) =>
+      materials.length >= Number(instantLoanThresholdConfig ?? 0)
   );
 
 export const removePrefixFromBranchId = (branchId: string) => {
