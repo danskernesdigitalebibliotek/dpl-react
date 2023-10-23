@@ -1,3 +1,4 @@
+import { head, keys, values } from "lodash";
 import { LoanV2, ReservationDetailsV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
 import { GetManifestationViaMaterialByFaustQuery } from "../../dbc-gateway/generated/graphql";
@@ -7,6 +8,7 @@ import { LoanType } from "../types/loan-type";
 import { store } from "../../store";
 import { ReservationType } from "../types/reservation-type";
 import { getContributors } from "./general";
+import { ReservationGroupDetails } from "../useGetReservationGroups";
 
 function getYearFromDataString(date: string) {
   return new Date(date).getFullYear();
@@ -226,7 +228,39 @@ export const mapFBSReservationToReservationType = (
         pickupBranch,
         pickupDeadline,
         pickupNumber,
-        reservationId
+        reservationId,
+        reservationIds: [reservationId]
+      };
+    }
+  );
+};
+
+export const mapFBSReservationGroupToReservationType = (
+  list: ReservationGroupDetails[]
+): ReservationType[] => {
+  return list.map(
+    ({
+      dateOfReservation,
+      expiryDate,
+      numberInQueue,
+      state,
+      pickupBranch,
+      pickupDeadline,
+      pickupNumber,
+      periodical,
+      records
+    }) => {
+      return {
+        periodical: periodical?.displayText || "",
+        faust: head(keys(records)) as FaustId,
+        dateOfReservation,
+        expiryDate,
+        numberInQueue,
+        state: state === "readyForPickup" ? "readyForPickup" : "reserved",
+        pickupBranch,
+        pickupDeadline,
+        pickupNumber,
+        reservationIds: values(records)
       };
     }
   );
