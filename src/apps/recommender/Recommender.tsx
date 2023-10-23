@@ -1,17 +1,18 @@
 import React, { FC, useEffect, useState } from "react";
-import { useGetLoansV2, useGetReservationsV2 } from "../../core/fbs/fbs";
+import { useGetLoansV2 } from "../../core/fbs/fbs";
 import {
   sortByLoanDate,
   sortByReservationDate
 } from "../../core/utils/helpers/general";
 import {
   mapFBSLoanToLoanType,
-  mapFBSReservationToReservationType
+  mapFBSReservationGroupToReservationType
 } from "../../core/utils/helpers/list-mapper";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import InspirationRecommender from "./InspirationRecommender";
 import RecommendList from "./RecommendList";
+import useGetReservationGroups from "../../core/utils/useGetReservationGroups";
 
 const Recommender: FC = () => {
   const [loanForRecommender, setLoanForRecommender] = useState<LoanType | null>(
@@ -36,7 +37,7 @@ const Recommender: FC = () => {
     error: fbsErrorReservations,
     data: fbsReservations,
     isLoading: fbsReservationsLoading
-  } = useGetReservationsV2();
+  } = useGetReservationGroups();
 
   useEffect(() => {
     if (fbsLoans) {
@@ -50,7 +51,7 @@ const Recommender: FC = () => {
   useEffect(() => {
     if (fbsReservations) {
       setPhysicalReservations(
-        mapFBSReservationToReservationType(fbsReservations)
+        mapFBSReservationGroupToReservationType(fbsReservations)
       );
     }
     if (fbsErrorReservations && !isSuccessFbsReservations) {
