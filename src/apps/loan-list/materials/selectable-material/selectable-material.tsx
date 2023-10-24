@@ -134,7 +134,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             tabIndex={0}
           >
             <ArrowButton
-              arrowLabelledBy="john"
+              arrowLabelledBy={`${id}`}
               cursorPointer
               clickEventHandler={() => openDetailsModal(id)}
             />
