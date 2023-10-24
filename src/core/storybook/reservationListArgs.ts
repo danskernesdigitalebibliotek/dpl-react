@@ -227,22 +227,3 @@ export default {
     control: { type: "text" }
   }
 };
-
-export interface ReservationMaterialDetailsProps {
-  reservationDetailsRemoveDigitalReservationText: string;
-  reservationDetailsDateOfReservationTitleText: string;
-  reservationDetailsNumberInQueueLabelText: string;
-  reservationDetailsNoInterestAfterTitleText: string;
-  reservationDetailsChangeText: string;
-  reservationDetailsPickUpAtTitleText: string;
-  reservationDetailsButtonRemoveText: string;
-  reservationDetailsStatusTitleText: string;
-  reservationDetailsBorrowBeforeText: string;
-  reservationDetailsDigitalReservationGoToEreolenText: string;
-  reservationDetailsReadyForLoanText: string;
-  reservationDetailsPickupDeadlineTitleText: string;
-  interestPeriodsConfig: string;
-  reservationDetailAllowRemoveReadyReservationsConfig: string;
-  branchesConfig: string;
-  blacklistedPickupBranchesConfig: string;
-}
