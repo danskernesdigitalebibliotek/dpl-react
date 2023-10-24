@@ -13,7 +13,7 @@ interface ReservationStatusProps {
   label: string | string[];
   children?: ReactNode;
   showArrow?: boolean;
-  classNameOverride?: string;
+  className?: string;
 }
 
 const ReservationStatus: FC<ReservationStatusProps> = ({
@@ -26,7 +26,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   label,
   children,
   showArrow = true,
-  classNameOverride
+  className
 }) => {
   const notificationClickEventHandler = useCallback(() => {
     if (openReservationDetailsModal && reservationInfo) {
@@ -34,12 +34,8 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
     }
   }, [openReservationDetailsModal, reservationInfo]);
 
-  const className =
-    classNameOverride !== undefined
-      ? classNameOverride
-      : "list-reservation__status";
   return (
-    <div className={className}>
+    <div className={className ?? "list-reservation__status"}>
       <div className="list-reservation__counter color-secondary-gray">
         {!empty && (
           <StatusCircleIcon color={color} percent={percent}>
