@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { FC, ReactNode } from "react";
 import clsx from "clsx";
 import { useText } from "../../../../core/utils/text";
@@ -87,7 +89,6 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         )}
         <div
           className="list-materials__content cursor-pointer"
-          role="button"
           onClick={handleOnClick}
           onKeyUp={handleOnKeyUp}
           tabIndex={0}
