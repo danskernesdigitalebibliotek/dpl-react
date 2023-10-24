@@ -69,7 +69,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         openReservationDetailsModal={openReservationDetailsModal}
         empty={!showStatusCircleIcon}
         showArrow={showArrow}
-        classNameOverride={reservationStatusClassNameOverride}
+        className={reservationStatusClassNameOverride}
       >
         <div className="counter__value color-secondary-gray">
           <img src={check} alt="" />
@@ -99,7 +99,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         openReservationDetailsModal={openReservationDetailsModal}
         empty={!showStatusCircleIcon}
         showArrow={showArrow}
-        classNameOverride={reservationStatusClassNameOverride}
+        className={reservationStatusClassNameOverride}
       >
         {/* I am not using string interpolation here because of styling */}
         {/* if somehow it is possible to break text in one div into two lines */}
@@ -127,7 +127,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         openReservationDetailsModal={openReservationDetailsModal}
         empty={!showStatusCircleIcon}
         showArrow={showArrow}
-        classNameOverride={reservationStatusClassNameOverride}
+        className={reservationStatusClassNameOverride}
       >
         <span className="counter__value color-secondary-gray">
           {/* I am not using string interpolation here because of styling */}
@@ -154,7 +154,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       percent={0}
       label=""
       empty
-      classNameOverride={reservationStatusClassNameOverride}
+      className={reservationStatusClassNameOverride}
     />
   );
 };
