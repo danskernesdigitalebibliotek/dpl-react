@@ -49,21 +49,28 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     }
   }, [branches, pickupBranch, pickupDeadline, t]);
 
+  const getInfo = () => {
+    const shouldgetReservationStatusInfo =
+      (isDigital && expiryDate) || pickupDeadline;
+
+    if (!shouldgetReservationStatusInfo) {
+      return "";
+    }
+
+    return getReservationStatusInfoLabel({
+      pickupBranch: pickupBranch ?? undefined,
+      pickupDeadline: (isDigital ? expiryDate : pickupDeadline) ?? "",
+      t,
+      isDigital
+    });
+  };
+
   if (state === "readyForPickup") {
     return (
       <ReservationStatus
         color={success as string}
         percent={100}
-        info={
-          pickupDeadline
-            ? getReservationStatusInfoLabel({
-                pickupBranch: pickupBranch ?? undefined,
-                pickupDeadline,
-                t,
-                isDigital
-              })
-            : ""
-        }
+        info={getInfo()}
         label={[pickupLibrary, pickupNumber || ""]}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
