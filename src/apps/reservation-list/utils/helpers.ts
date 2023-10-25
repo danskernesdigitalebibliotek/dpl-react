@@ -1,4 +1,6 @@
 import { ReservationDetailsV2 } from "../../../core/fbs/model";
+import { formatDateDependingOnDigitalMaterial } from "../../../core/utils/helpers/date";
+import { UseTextFunction } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 
 export const sortByOldestPickupDeadline = (
@@ -34,6 +36,32 @@ export const getReservedPhysical = (list: ReservationType[]) => {
 export const getReadyForPickup = (list: ReservationType[]) => {
   return list.filter(({ state }) => {
     return state === "readyForPickup";
+  });
+};
+
+export const getReservationStatusInfoLabel = ({
+  pickupBranch,
+  pickupDeadline,
+  isDigital,
+  t
+}: {
+  pickupBranch?: string;
+  pickupDeadline: string;
+  isDigital: boolean;
+  t: UseTextFunction;
+}) => {
+  const textKey = pickupBranch
+    ? "reservationPickUpLatestText"
+    : "reservationListLoanBeforeText";
+  const date = formatDateDependingOnDigitalMaterial({
+    date: pickupDeadline,
+    materialIsDigital: isDigital
+  });
+
+  return t(textKey, {
+    placeholders: {
+      "@date": date
+    }
   });
 };
 

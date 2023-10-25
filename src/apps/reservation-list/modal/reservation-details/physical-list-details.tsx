@@ -17,7 +17,6 @@ import {
   getPreferredBranch
 } from "../../../../components/reservation/helper";
 import { AgencyBranch } from "../../../../core/fbs/model";
-import { formatDate } from "../../../loan-list/utils/helpers";
 import ListDetails from "../../../../components/list-details/list-details";
 import { useConfig } from "../../../../core/utils/config";
 import PickupModal from "../../../../components/reservation/forms/PickupModal";
@@ -30,6 +29,7 @@ import { excludeBlacklistedBranches } from "../../../../core/utils/branches";
 import ReservationFormListItem from "../../../../components/reservation/ReservationFormListItem";
 import NoInterestAfterModal from "../../../../components/reservation/forms/NoInterestAfterModal";
 import { RequestStatus } from "../../../../core/utils/types/request";
+import { formatDate } from "../../../../core/utils/helpers/date";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;

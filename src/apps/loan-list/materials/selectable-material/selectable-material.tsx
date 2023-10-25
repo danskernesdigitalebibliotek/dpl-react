@@ -12,6 +12,7 @@ import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import ArrowButton from "../../../../components/Buttons/ArrowButton";
 
 interface SelectableMaterialProps {
+  identifier?: string | null;
   disabled?: boolean;
   id?: string | null;
   onMaterialChecked?: (id: string) => void;

@@ -1,14 +1,14 @@
 import React, { FC, ReactNode } from "react";
-import {
-  formatDate,
-  isDigital,
-  materialsAreStacked
-} from "../../utils/helpers";
+import { isDigital, materialsAreStacked } from "../../utils/helpers";
 import { LoanType } from "../../../../core/utils/types/loan-type";
 import StatusCircle from "../utils/status-circle";
 import StatusBadge from "../utils/status-badge";
 import { useText } from "../../../../core/utils/text";
 import ArrowButton from "../../../../components/Buttons/ArrowButton";
+import {
+  formatDate,
+  formatDateTime
+} from "../../../../core/utils/helpers/date";
 
 interface MaterialStatusProps {
   loan: LoanType;
@@ -74,7 +74,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
           <p className="text-small-caption color-secondary-gray">
             {isDigital(loan)
               ? t("loanListToBeDeliveredDigitalMaterialText", {
-                  placeholders: { "@date": formatDate(dueDate) }
+                  placeholders: { "@date": formatDateTime(dueDate) }
                 })
               : t("loanListToBeDeliveredText", {
                   placeholders: { "@date": formatDate(dueDate) }

@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from "react";
 import ArrowButton from "../../../components/Buttons/ArrowButton";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
+import InfoLabel from "../../../components/atoms/labels/InfoLabel";
 
 interface ReservationStatusProps {
   reservationInfo?: ReservationType;
@@ -9,7 +10,7 @@ interface ReservationStatusProps {
   color?: string;
   empty?: boolean;
   percent: number;
-  infoLabel?: string;
+  info?: string;
   label: string | string[];
   children?: ReactNode;
   showArrow?: boolean;
@@ -22,7 +23,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   color,
   percent,
   empty = false,
-  infoLabel,
+  info,
   label,
   children,
   showArrow = true,
@@ -45,9 +46,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
       </div>
       <div>
         <div className="list-reservation__deadline">
-          {infoLabel && (
-            <div className="status-label status-label--info">{infoLabel}</div>
-          )}
+          {info && <InfoLabel>{info}</InfoLabel>}
           {typeof label === "string" && (
             <p className="text-small-caption">{label}</p>
           )}
