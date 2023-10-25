@@ -11,17 +11,20 @@ export interface ReservationMaterialProps {
   reservation: ReservationType;
   focused: boolean;
   openReservationDetailsModal: (reservation: ReservationType) => void;
+  identifier?: string | null;
 }
 
 const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   material,
   reservation,
   focused,
-  openReservationDetailsModal
+  openReservationDetailsModal,
+  identifier
 }) => {
   const openDetailsModal = () => {
     openReservationDetailsModal(reservation);
   };
+  const isDigital = !!identifier;
 
   return (
     <li>
@@ -51,6 +54,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
         <ReservationInfo
           reservationInfo={reservation}
           openReservationDetailsModal={openReservationDetailsModal}
+          isDigital={isDigital}
         />
       </div>
     </li>

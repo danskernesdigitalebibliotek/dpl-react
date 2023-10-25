@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { RenewedLoanV2 } from "../../../core/fbs/model/renewedLoanV2";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
@@ -10,13 +9,6 @@ export const removeLoansWithDuplicateDueDate = (
   list: LoanType[]
 ) => {
   return list.filter(({ dueDate }) => dueDate === date);
-};
-
-export const formatDate = (date: string) => {
-  return dayjs(date).format("DD-MM-YYYY");
-};
-export const formatDateTime = (date: string) => {
-  return dayjs(date).format("DD-MM-YYYY HH:mm");
 };
 export const loansAreEmpty = (list: LoanType[] | null) =>
   Array.isArray(list) && list.length === 0;

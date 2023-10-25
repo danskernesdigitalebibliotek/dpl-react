@@ -30,8 +30,7 @@ import ListHeader from "./ListHeader";
 import {
   loansAreEmpty,
   removeLoansWithDuplicateDueDate,
-  getFromListByKey,
-  formatDate
+  getFromListByKey
 } from "../utils/helpers";
 import MaterialDetails, {
   constructMaterialDetailsModalId
@@ -48,6 +47,7 @@ import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader"
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
 import StatusCircle from "../materials/utils/status-circle";
 import AcceptModal from "../../../components/accept-fees-modal/AcceptFeesModal";
+import { formatDate } from "../../../core/utils/helpers/date";
 
 interface LoanListProps {
   pageSize: number;

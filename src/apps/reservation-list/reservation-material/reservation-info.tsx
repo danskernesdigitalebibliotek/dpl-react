@@ -6,10 +6,10 @@ import {
   getColors,
   daysBetweenTodayAndDate
 } from "../../../core/utils/helpers/general";
-import { formatDate } from "../../loan-list/utils/helpers";
 import { getPreferredBranch } from "../../../components/reservation/helper";
 import ReservationStatus from "./reservation-status";
 import { useGetBranches } from "../../../core/utils/branches";
+import { getReservationStatusInfoLabel } from "../utils/helpers";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
@@ -17,6 +17,7 @@ interface ReservationInfoProps {
   showStatusCircleIcon?: boolean;
   showArrow?: boolean;
   reservationStatusClassNameOverride?: string;
+  isDigital: boolean;
 }
 
 const ReservationInfo: FC<ReservationInfoProps> = ({
@@ -24,7 +25,8 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   openReservationDetailsModal,
   showStatusCircleIcon = true,
   showArrow = true,
-  reservationStatusClassNameOverride
+  reservationStatusClassNameOverride,
+  isDigital
 }) => {
   const t = useText();
 
@@ -41,17 +43,6 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   const { success } = getColors();
   const branches = useGetBranches("blacklistedPickupBranchesConfig");
 
-  let readyForPickupLabel = "";
-  if (pickupDeadline) {
-    readyForPickupLabel = pickupBranch
-      ? t("reservationPickUpLatestText", {
-          placeholders: { "@date": formatDate(pickupDeadline) }
-        })
-      : t("reservationListLoanBeforeText", {
-          placeholders: { "@date": formatDate(pickupDeadline) }
-        });
-  }
-
   useEffect(() => {
     if (branches && pickupBranch) {
       setPickupLibrary(getPreferredBranch(pickupBranch, branches));
@@ -63,7 +54,16 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       <ReservationStatus
         color={success as string}
         percent={100}
-        infoLabel={readyForPickupLabel}
+        info={
+          pickupDeadline
+            ? getReservationStatusInfoLabel({
+                pickupBranch: pickupBranch ?? undefined,
+                pickupDeadline,
+                t,
+                isDigital
+              })
+            : ""
+        }
         label={[pickupLibrary, pickupNumber || ""]}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}

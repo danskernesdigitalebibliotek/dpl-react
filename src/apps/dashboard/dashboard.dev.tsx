@@ -152,6 +152,10 @@ export default {
       defaultValue: "and",
       control: { type: "text" }
     },
+    reservationListLoanBeforeText: {
+      defaultValue: "Borrow before @date",
+      control: { type: "text" }
+    },
     // Config
     thresholdConfig: {
       defaultValue:

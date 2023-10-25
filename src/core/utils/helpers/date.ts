@@ -6,4 +6,21 @@ export const dateHasPassed = (date: string) => {
   return dayjs().isAfter(date, "day");
 };
 
+export const formatDate = (date: string) => {
+  return dayjs(date).format("DD-MM-YYYY");
+};
+export const formatDateTime = (date: string) => {
+  return dayjs(date).format("DD-MM-YYYY HH:mm");
+};
+
+export const formatDateDependingOnDigitalMaterial = ({
+  date,
+  materialIsDigital
+}: {
+  date: string;
+  materialIsDigital: boolean;
+}) => {
+  return materialIsDigital ? formatDateTime(date) : formatDate(date);
+};
+
 export default getCurrentUnixTime;

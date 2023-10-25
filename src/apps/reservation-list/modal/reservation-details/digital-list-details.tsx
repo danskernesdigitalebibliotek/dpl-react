@@ -4,8 +4,8 @@ import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import { useText } from "../../../../core/utils/text";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
-import { formatDateTime } from "../../../loan-list/utils/helpers";
 import ListDetails from "../../../../components/list-details/list-details";
+import { formatDateTime } from "../../../../core/utils/helpers/date";
 
 export interface DigitalListDetailsProps {
   reservation: ReservationType;
