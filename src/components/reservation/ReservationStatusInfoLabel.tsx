@@ -16,13 +16,6 @@ const ReservationStatusInfoLabel: FC<ReservationStatusInfoLabelProps> = ({
   isDigital
 }) => {
   const t = useText();
-  const test = getReservationStatusInfoLabel({
-    pickupBranch,
-    pickupDeadline: expiryDate,
-    t,
-    isDigital
-  });
-
   return (
     <InfoLabel>
       {getReservationStatusInfoLabel({
