@@ -5,14 +5,14 @@ import { useText } from "../../core/utils/text";
 import { getReservationStatusInfoLabel } from "../../apps/reservation-list/utils/helpers";
 
 export interface ReservationStatusInfoLabelProps {
-  pickupBranch?: string;
-  expiryDate: string;
+  pickupBranch?: string | null;
+  date: string;
   isDigital: boolean;
 }
 
 const ReservationStatusInfoLabel: FC<ReservationStatusInfoLabelProps> = ({
   pickupBranch,
-  expiryDate,
+  date,
   isDigital
 }) => {
   const t = useText();
@@ -20,7 +20,7 @@ const ReservationStatusInfoLabel: FC<ReservationStatusInfoLabelProps> = ({
     <InfoLabel>
       {getReservationStatusInfoLabel({
         pickupBranch,
-        pickupDeadline: expiryDate,
+        date,
         t,
         isDigital
       })}

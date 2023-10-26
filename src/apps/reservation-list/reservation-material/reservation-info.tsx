@@ -57,9 +57,14 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       return "";
     }
 
+    const date = (isDigital ? expiryDate : pickupDeadline) ?? null;
+    if (!date) {
+      return "";
+    }
+
     return getReservationStatusInfoLabel({
-      pickupBranch: pickupBranch ?? undefined,
-      pickupDeadline: (isDigital ? expiryDate : pickupDeadline) ?? "",
+      pickupBranch,
+      date,
       t,
       isDigital
     });

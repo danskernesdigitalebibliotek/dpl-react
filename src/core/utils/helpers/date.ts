@@ -15,12 +15,12 @@ export const formatDateTime = (date: string) => {
 
 export const formatDateDependingOnDigitalMaterial = ({
   date,
-  materialIsDigital
+  isDigital
 }: {
   date: string;
-  materialIsDigital: boolean;
+  isDigital: boolean;
 }) => {
-  return materialIsDigital ? formatDateTime(date) : formatDate(date);
+  return isDigital ? formatDateTime(date) : formatDate(date);
 };
 
 export default getCurrentUnixTime;
