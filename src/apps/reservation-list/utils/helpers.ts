@@ -39,28 +39,32 @@ export const getReadyForPickup = (list: ReservationType[]) => {
   });
 };
 
+export const infoLabelTextType = {
+  pickUpLatest: "reservationPickUpLatestText",
+  loanBefore: "reservationListLoanBeforeText"
+} as const;
+
 export const getReservationStatusInfoLabel = ({
   pickupBranch,
-  pickupDeadline,
+  date,
   isDigital,
   t
 }: {
-  pickupBranch?: string;
-  pickupDeadline: string;
+  pickupBranch: string | null | undefined;
+  date: string;
   isDigital: boolean;
   t: UseTextFunction;
 }) => {
   const textKey = pickupBranch
-    ? "reservationPickUpLatestText"
-    : "reservationListLoanBeforeText";
-  const date = formatDateDependingOnDigitalMaterial({
-    date: pickupDeadline,
-    materialIsDigital: isDigital
-  });
+    ? infoLabelTextType.pickUpLatest
+    : infoLabelTextType.loanBefore;
 
   return t(textKey, {
     placeholders: {
-      "@date": date
+      "@date": formatDateDependingOnDigitalMaterial({
+        date,
+        isDigital
+      })
     }
   });
 };

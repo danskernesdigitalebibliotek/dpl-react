@@ -88,7 +88,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                     ) : (
                       expiryDate && (
                         <ReservationStatusInfoLabel
-                          expiryDate={expiryDate}
+                          date={expiryDate}
                           isDigital
                         />
                       )
