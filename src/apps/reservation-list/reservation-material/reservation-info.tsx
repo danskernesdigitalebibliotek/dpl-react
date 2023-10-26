@@ -50,6 +50,9 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   }, [branches, pickupBranch, pickupDeadline, t]);
 
   const getInfo = () => {
+    // If the material is digital and has an expiry date,
+    // or if the material is physical and has a pickup deadline,
+    // then we should show the info label
     const shouldgetReservationStatusInfo =
       (isDigital && expiryDate) || pickupDeadline;
 
@@ -57,6 +60,8 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       return "";
     }
 
+    // If the material is digital, then we should show the expiry date
+    // otherwise the pickup deadline.
     const date = (isDigital ? expiryDate : pickupDeadline) ?? null;
     if (!date) {
       return "";
