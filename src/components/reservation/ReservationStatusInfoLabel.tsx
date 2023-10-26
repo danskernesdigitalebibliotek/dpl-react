@@ -17,7 +17,7 @@ const ReservationStatusInfoLabel: FC<ReservationStatusInfoLabelProps> = ({
 }) => {
   const t = useText();
   return (
-    <InfoLabel>
+    <InfoLabel dataCy="reservation-status-info-label">
       {getReservationStatusInfoLabel({
         pickupBranch,
         date,
