@@ -1,0 +1,58 @@
+{
+  "id": 816,
+  "name": "Aarhus Bibliotek",
+  "isilNumber": "DK-775100",
+  "ebookLoanDurationInDays": 30,
+  "maxEbookAmountPerMonth": 300000,
+  "maxEbookAmountPerMonthNotificationThreshold": 200000,
+  "maxConcurrentEbookLoansPerBorrower": 3,
+  "maxConcurrentEbookReservationsPerBorrower": 3,
+  "maxEbookCancellationsPerMonth": 20,
+  "audioLoanDurationInDays": 30,
+  "maxAudioAmountPerMonth": 320000,
+  "maxAudioAmountPerMonthNotificationThreshold": 300000,
+  "maxConcurrentAudioLoansPerBorrower": 3,
+  "maxConcurrentAudioReservationsPerBorrower": 3,
+  "maxAudioCancellationsPerMonth": 10,
+  "testCards": [
+    {
+      "testCardNumber": "CF4BXA"
+    },
+    {
+      "testCardNumber": "HHG8WR"
+    },
+    {
+      "testCardNumber": "DPGBTB"
+    },
+    {
+      "testCardNumber": "Q9AUED"
+    },
+    {
+      "testCardNumber": "GMBSW6"
+    },
+    {
+      "testCardNumber": "28KDP8"
+    },
+    {
+      "testCardNumber": "VVP9YC"
+    },
+    {
+      "testCardNumber": "YKAACU"
+    },
+    {
+      "testCardNumber": "MDPEZJ"
+    },
+    {
+      "testCardNumber": "3E4ANE"
+    },
+    {
+      "testCardNumber": "GTF8CK"
+    },
+    {
+      "testCardNumber": "DUM2ZF"
+    },
+    {
+      "testCardNumber": "432PYP"
+    }
+  ]
+}

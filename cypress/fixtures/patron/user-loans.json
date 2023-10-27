@@ -1,0 +1,78 @@
+{
+  "loans": [
+    {
+      "orderId": "1f7b1ebf-5b26-430c-90f8-5bce1b35b163",
+      "orderNumber": "f036f15b-51de-48fb-8255-35275d87b876",
+      "orderDateUtc": "2023-10-04T11:57:11.213",
+      "loanExpireDateUtc": "2023-11-03T11:57:25.61Z",
+      "isSubscriptionLoan": false,
+      "libraryBook": {
+        "identifier": "9788775925971",
+        "identifierType": 15,
+        "title": "Luka vil sove ",
+        "publishersName": "Straarup & Co"
+      },
+      "fileExtensionType": 3
+    },
+    {
+      "orderId": "f06ef77c-bd91-468a-a12d-88e8dd9e4d32",
+      "orderNumber": "F06EF77C-BD91-468A-A12D-88E8DD9E4D32",
+      "orderDateUtc": "2023-10-05T13:05:03.38",
+      "loanExpireDateUtc": "2023-11-04T13:05:16.643Z",
+      "isSubscriptionLoan": false,
+      "libraryBook": {
+        "identifier": "9788702233834",
+        "identifierType": 15,
+        "title": "Mexicocitydigte",
+        "publishersName": "Gyldendal"
+      },
+      "fileExtensionType": 3
+    },
+    {
+      "orderId": "c89faec0-2bbe-44aa-8f40-9a379921b43f",
+      "orderNumber": "C89FAEC0-2BBE-44AA-8F40-9A379921B43F",
+      "orderDateUtc": "2023-10-13T08:54:41.733",
+      "loanExpireDateUtc": "2023-11-12T08:54:55.61Z",
+      "isSubscriptionLoan": false,
+      "libraryBook": {
+        "identifier": "9788740043945",
+        "identifierType": 15,
+        "title": "Den sorte kat i Mosul",
+        "publishersName": "JP/Politikens Forlag"
+      },
+      "fileExtensionType": 3
+    },
+    {
+      "orderId": "920a61d7-637f-4eeb-974c-c72e15b92648",
+      "orderNumber": "c06523a3-821a-4632-bf2f-109130093fdc",
+      "orderDateUtc": "2023-09-29T07:50:44.22",
+      "loanExpireDateUtc": "2023-10-29T07:50:57.77Z",
+      "isSubscriptionLoan": true,
+      "libraryBook": {
+        "identifier": "9788728018323",
+        "identifierType": 3,
+        "title": "På Stribe - Din seriemorderpodcast (Joseph Kallinger 2:3)",
+        "publishersName": "Lindhardt og Ringhof"
+      },
+      "fileExtensionType": 1
+    }
+  ],
+  "libraryData": {
+    "loanDurationDays": 30,
+    "maxConcurrentEbookLoansPerBorrower": 4,
+    "maxConcurrentAudiobookLoansPerBorrower": 3,
+    "maxAmountPerMonth": 100000
+  },
+  "userData": {
+    "totalLoans": 4,
+    "totalEbookLoans": 3,
+    "totalAudioLoans": 0,
+    "ebookLoansRemaining": 1,
+    "audiobookLoansRemaining": 3,
+    "ebookLoanAvailableUtc": "2023-10-20T12:42:06.5583423Z",
+    "audioLoanAvailableUtc": "2023-10-20T12:42:06.5583424Z",
+    "friendlyCardNumber": "6LSUBA"
+  },
+  "code": 101,
+  "message": "OK (#101)."
+}

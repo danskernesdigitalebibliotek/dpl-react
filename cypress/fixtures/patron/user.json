@@ -1,0 +1,32 @@
+{
+  "authenticateStatus": "VALID",
+  "patron": {
+    "address": {
+      "coName": null,
+      "street": null,
+      "postalCode": null,
+      "city": null,
+      "country": "DK"
+    },
+    "allowBookings": false,
+    "birthday": "1970-06-28",
+    "blockStatus": [],
+    "defaultInterestPeriod": 180,
+    "emailAddress": "lottebambi@gmail.com",
+    "name": "Testkort DDF 07/Tøstesen",
+    "notificationProtocols": [],
+    "onHold": {
+      "from": "2023-12-29",
+      "to": "2023-12-30"
+    },
+    "patronId": 32902203,
+    "phoneNumber": "20621675",
+    "preferredLanguage": null,
+    "preferredPickupBranch": "DK-775100",
+    "receiveEmail": false,
+    "receivePostalMail": false,
+    "receiveSms": true,
+    "resident": true,
+    "secondaryAddress": null
+  }
+}
