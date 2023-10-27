@@ -52,6 +52,7 @@ describe("useNotification hook", () => {
 
   it("Does shows a message if button is clicked", async () => {
     vi.spyOn(window, "scrollTo");
+    vi.spyOn(window, "setTimeout");
 
     const { getByTitle } = render(
       <ComponentWithNotificationMessage
@@ -66,6 +67,8 @@ describe("useNotification hook", () => {
 
     // We expect that the hook has scrolled to the top of the page.
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    // And the message is gone after 5 seconds.
+    expect(window.setTimeout).toHaveBeenCalledTimes(1);
     // And shows us a message.
     expect(wrapper).toMatchInlineSnapshot(`
       <div
