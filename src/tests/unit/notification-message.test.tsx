@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
@@ -51,6 +51,8 @@ describe("useNotification hook", () => {
   });
 
   it("Does shows a message if button is clicked", async () => {
+    vi.spyOn(window, "scrollTo");
+
     const { getByTitle } = render(
       <ComponentWithNotificationMessage
         wrapperTitle="test-2"
@@ -61,6 +63,10 @@ describe("useNotification hook", () => {
     const button = getByTitle("test-2-button");
 
     fireEvent.click(button);
+
+    // We expect that the hook has scrolled to the top of the page.
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    // And shows us a message.
     expect(wrapper).toMatchInlineSnapshot(`
       <div
         title="test-2"
