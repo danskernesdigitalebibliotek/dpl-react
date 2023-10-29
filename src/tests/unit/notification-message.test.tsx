@@ -35,7 +35,7 @@ describe("useNotificationMessage hook", () => {
     cleanup();
   });
 
-  it("should not display a message before the button is clicked", async () => {
+  it("should not display a message before the button is clicked", () => {
     const { getByTestId } = render(<ComponentWithNotificationMessage />);
     const wrapper = getByTestId("wrapper");
 
@@ -57,7 +57,7 @@ describe("useNotificationMessage hook", () => {
     `);
   });
 
-  it("should display a message after the button is clicked", async () => {
+  it("should display a message after the button is clicked", () => {
     vi.spyOn(window, "scrollTo");
     vi.spyOn(window, "setTimeout");
 
