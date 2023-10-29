@@ -1,22 +1,17 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
 
-const ComponentWithNotificationMessage = ({
-  wrapperTitle,
-  buttonTitle
-}: {
-  wrapperTitle: string;
-  buttonTitle: string;
-}) => {
+// Define a test component that utilizes the useNotificationMessage hook
+const ComponentWithNotificationMessage = () => {
   const [NotificationMessage, handler] = useNotificationMessage();
 
   return (
-    <div title={wrapperTitle}>
+    <div data-testid="wrapper">
       <NotificationMessage />
       <button
-        title={buttonTitle}
+        data-testid="button"
         type="button"
         onClick={() => handler("Some message")}
       >
@@ -26,22 +21,22 @@ const ComponentWithNotificationMessage = ({
   );
 };
 
-describe("useNotification hook", () => {
-  it("Does not show a message if button is not clicked", async () => {
-    const { getByTitle } = render(
-      <ComponentWithNotificationMessage
-        wrapperTitle="test-1"
-        buttonTitle="test-1-button"
-      />
-    );
-    const wrapper = getByTitle("test-1");
+describe("useNotificationMessage hook", () => {
+  afterEach(() => {
+    cleanup();
+  });
 
+  it("should not display a message before the button is clicked", async () => {
+    const { getByTestId } = render(<ComponentWithNotificationMessage />);
+    const wrapper = getByTestId("wrapper");
+
+    // Assert that the wrapper does not contain the message initially
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        title="test-1"
+        data-testid="wrapper"
       >
         <button
-          title="test-1-button"
+          data-testid="button"
           type="button"
         >
           Click me
@@ -50,29 +45,26 @@ describe("useNotification hook", () => {
     `);
   });
 
-  it("Does shows a message if button is clicked", async () => {
+  it("should display a message after the button is clicked", async () => {
     vi.spyOn(window, "scrollTo");
     vi.spyOn(window, "setTimeout");
 
-    const { getByTitle } = render(
-      <ComponentWithNotificationMessage
-        wrapperTitle="test-2"
-        buttonTitle="test-2-button"
-      />
-    );
-    const wrapper = getByTitle("test-2");
-    const button = getByTitle("test-2-button");
+    const { getByTestId } = render(<ComponentWithNotificationMessage />);
+    const wrapper = getByTestId("wrapper");
+    const button = getByTestId("button");
 
+    // Simulate button click
     fireEvent.click(button);
 
-    // We expect that the hook has scrolled to the top of the page.
-    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
-    // And the message is gone after 5 seconds.
-    expect(window.setTimeout).toHaveBeenCalledTimes(1);
-    // And shows us a message.
+    // Expectations after the button is clicked
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0); // Expect page to scroll to top
+    expect(window.setTimeout).toHaveBeenCalledTimes(1); // Expect setTimeout to be called once
+    expect(wrapper.textContent).toMatch(/Some message/); // Expect the message to be displayed
+
+    // Assert final state of the wrapper
     expect(wrapper).toMatchInlineSnapshot(`
       <div
-        title="test-2"
+        data-testid="wrapper"
       >
         <section
           class="promo-bar"
@@ -89,7 +81,7 @@ describe("useNotification hook", () => {
           </p>
         </section>
         <button
-          title="test-2-button"
+          data-testid="button"
           type="button"
         >
           Click me
