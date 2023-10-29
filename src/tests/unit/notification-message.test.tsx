@@ -1,11 +1,20 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import React from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
+import {
+  UseNotificationOptionsType,
+  useNotificationMessage
+} from "../../core/utils/useNotificationMessage";
 
 // Define a test component that utilizes the useNotificationMessage hook
-const ComponentWithNotificationMessage = () => {
-  const [NotificationMessage, handler] = useNotificationMessage();
+const ComponentWithNotificationMessage = ({
+  timeout,
+  scrollToTop
+}: UseNotificationOptionsType) => {
+  const [NotificationMessage, handler] = useNotificationMessage({
+    timeout,
+    scrollToTop
+  });
 
   return (
     <div data-testid="wrapper">
@@ -91,5 +100,37 @@ describe("useNotificationMessage hook", () => {
         </button>
       </div>
     `);
+  });
+
+  it("should keep displaying a message indefinitely if timeout is removed", () => {
+    vi.spyOn(window, "setTimeout");
+
+    const { getByTestId } = render(
+      <ComponentWithNotificationMessage timeout={0} />
+    );
+    const button = getByTestId("button");
+
+    // Simulate button click
+    fireEvent.click(button);
+
+    // Expectations
+    expect(window.setTimeout).not.toHaveBeenCalled(); // Expect setTimeout to not be called
+    expect(screen.queryByText(/Some message/)).toBeTruthy(); // Expect the message to be displayed indefinitely
+  });
+
+  it("should not scroll to top if scrollToTop is false", () => {
+    vi.spyOn(window, "scrollTo");
+
+    const { getByTestId } = render(
+      <ComponentWithNotificationMessage scrollToTop={false} />
+    );
+    const button = getByTestId("button");
+
+    // Simulate button click
+    fireEvent.click(button);
+
+    // Expectations
+    expect(window.scrollTo).not.toHaveBeenCalled(); // Expect page to not scroll to top
+    expect(screen.queryByText(/Some message/)).toBeTruthy(); // Expect the message to be displayed
   });
 });
