@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
 
 // Define a test component that utilizes the useNotificationMessage hook
@@ -29,6 +29,9 @@ describe("useNotificationMessage hook", () => {
   it("should not display a message before the button is clicked", async () => {
     const { getByTestId } = render(<ComponentWithNotificationMessage />);
     const wrapper = getByTestId("wrapper");
+
+    // Expectations before the button is clicked
+    expect(screen.queryByText(/Some message/)).toBeNull(); // Expect the message to not be displayed
 
     // Assert that the wrapper does not contain the message initially
     expect(wrapper).toMatchInlineSnapshot(`
@@ -59,7 +62,7 @@ describe("useNotificationMessage hook", () => {
     // Expectations after the button is clicked
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0); // Expect page to scroll to top
     expect(window.setTimeout).toHaveBeenCalledTimes(1); // Expect setTimeout to be called once
-    expect(wrapper.textContent).toMatch(/Some message/); // Expect the message to be displayed
+    expect(screen.queryByText(/Some message/)).toBeTruthy(); // Expect the message to be displayed
 
     // Assert final state of the wrapper
     expect(wrapper).toMatchInlineSnapshot(`
