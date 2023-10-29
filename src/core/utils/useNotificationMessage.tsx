@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NotificationComponent from "../../components/notification/NotificationComponent";
 
-type UseNotificationOptionsType = {
+export type UseNotificationOptionsType = {
   timeout?: number;
   scrollToTop?: boolean;
 };
