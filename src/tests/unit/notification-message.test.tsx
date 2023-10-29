@@ -57,7 +57,7 @@ describe("useNotificationMessage hook", () => {
     `);
   });
 
-  it("should display a message after the button is clicked", () => {
+  it("should display a message after button activation with default timeout and scrollToTop settings initialized", () => {
     vi.spyOn(window, "scrollTo");
     vi.spyOn(window, "setTimeout");
 
