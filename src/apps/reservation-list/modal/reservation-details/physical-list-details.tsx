@@ -173,7 +173,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
               isPossibleToChangeReservationDetails
             }
           />
-          {!isPossibleToChangeReservationDetails && (
+          {isPossibleToChangeReservationDetails && (
             <NoInterestAfterModal
               selectedInterest={selectedInterest ?? 90}
               setSelectedInterest={setSelectedInterest}
