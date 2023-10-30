@@ -463,6 +463,9 @@ describe("Reservation details modal test", () => {
       "DK-775120"
     );
 
+    cy.getBySel("reservation-form-button", true).click();
+    cy.getBySel("modal-cta-button", true).click();
+
     // ID 13 2.f. header "Not interested after"
     cy.getBySel("reservation-form-list-item")
       .eq(2)
@@ -475,11 +478,6 @@ describe("Reservation details modal test", () => {
       .find(".text-small-caption")
       .should("contain.text", "21-09-2022");
 
-    // ID 13 2.f.ii. the link "apply changes"
-    cy.getBySel("reservation-form-button").should("exist").click();
-
-    cy.getBySel("modal-cta-button").should("be.be.visible").click();
-
     // ID 15 2.a&b&c&d&e Dropdown with interest periods
     cy.getBySel("reservation-form-list-item")
       .eq(2)
@@ -487,15 +485,13 @@ describe("Reservation details modal test", () => {
       .should("exist")
       .click();
 
-    cy.getBySel("modal-reservation-form-select")
-      .find(".dropdown__option")
-      .should("have.text", "Choose one1 month2 months3 months6 months1 year");
+    cy.getBySel("modal-reservation-form-select").should(
+      "have.text",
+      "Choose one1 month2 months3 months6 months1 year"
+    );
 
-    // ID 15 2.g user clicks save
-    // ID 16 4. user clicks save
-    cy.getBySel("reservation-form-button").should("exist").click();
-
-    cy.getBySel("modal-cta-button").should("be.be.visible").click();
+    cy.getBySel("reservation-form-button", true).click();
+    cy.getBySel("modal-cta-button", true).click();
 
     // ID 15 2.i still on "detaljevisning"
     // ID 16 6. user clicks save
@@ -513,8 +509,7 @@ describe("Reservation details modal test", () => {
     cy.getBySel("reservation-form-list-item")
       .eq(2)
       .find("button")
-      .should("exist")
-      .click();
+      .should("exist");
 
     // ID 13 2.h. header "Date of reservation"
     cy.getBySel("reservation-form-list-item")
