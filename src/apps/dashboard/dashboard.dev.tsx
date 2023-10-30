@@ -28,10 +28,6 @@ export default {
       defaultValue: "/user/me/loans",
       control: { type: "text" }
     },
-    feesUrl: {
-      defaultValue: "/user/me/fees",
-      control: { type: "text" }
-    },
     reservationsUrl: {
       defaultValue: "/user/me/reservations",
       control: { type: "text" }
