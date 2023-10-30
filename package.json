@@ -131,7 +131,7 @@
     "stylelint-webpack-plugin": "^4.1.1",
     "svg-url-loader": "^8.0.0",
     "ts-node": "^10.7.0",
-    "typescript": "^4.6.4",
+    "typescript": "^5.2.2",
     "typescript-graphql-typed-files-modules": "^0.1.2",
     "vitest": "^0.28.5",
     "webpack": "^5.76.0",
