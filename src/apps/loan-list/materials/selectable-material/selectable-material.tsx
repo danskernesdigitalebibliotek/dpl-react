@@ -10,6 +10,7 @@ import AuthorYear from "../../../../components/author-year/authorYear";
 import ReservationInfo from "../../../reservation-list/reservation-material/reservation-info";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import ArrowButton from "../../../../components/Buttons/ArrowButton";
+import { isDigital } from "../../utils/helpers";
 
 interface SelectableMaterialProps {
   identifier?: string | null;
@@ -123,6 +124,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
                 showArrow={false}
                 showStatusCircleIcon={false}
                 reservationStatusClassNameOverride=""
+                isDigital={isDigital(displayedMaterial)}
               />
             )}
           </div>

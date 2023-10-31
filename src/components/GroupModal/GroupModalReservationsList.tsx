@@ -4,8 +4,6 @@ import { useText } from "../../core/utils/text";
 import usePager from "../result-pager/use-pager";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
-import { formatDate } from "../../core/utils/helpers/date";
-import ReservationStatusInfoLabelDigital from "../reservation/ReservationStatusInfoLabelDigital";
 
 export interface GroupModalReservationsListProps {
   materials: ReservationType[];
@@ -72,7 +70,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                   displayedMaterial={material}
                   focused={i === firstInNewPage}
                   statusBadgeComponent={
-                    faust ? (
+                    faust && (
                       <StatusBadge
                         badgeDate={expiryDate}
                         neutralText={
@@ -85,10 +83,6 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                         }
                         infoText=""
                       />
-                    ) : (
-                      expiryDate && (
-                        <ReservationStatusInfoLabelDigital date={expiryDate} />
-                      )
                     )
                   }
                   openDetailsModal={openDetailsModal}
