@@ -226,7 +226,7 @@ export const ReservationModalBody = ({
   const instantLoanBranchHoldings = getInstantLoanBranchHoldings(
     holdingsData[0].holdings,
     whitelistBranches,
-    instantLoanMatchStrings
+    instantLoanMatchStrings ?? []
   );
 
   const instantLoanBranchHoldingsAboveThreshold =
