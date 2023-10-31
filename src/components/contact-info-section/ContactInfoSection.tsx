@@ -13,13 +13,15 @@ interface ContactInfoSectionProps {
   inLine: boolean;
   changePatron: ChangePatronProps;
   showCheckboxes: boolean;
+  requiredFields?: ("email" | "phone")[];
 }
 
 const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   patron,
   inLine,
   changePatron,
-  showCheckboxes
+  showCheckboxes,
+  requiredFields = []
 }) => {
   const t = useText();
   const inputsClass = clsx("dpl-input", { input__desktop: inLine });
@@ -42,6 +44,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           className={inputsClass}
           changePatron={changePatron}
           patron={patron}
+          isRequired={requiredFields.includes("phone")}
           showCheckboxes={showCheckboxes && textNotificationsEnabledConfig}
         />
         <ContactInfoEmail
@@ -50,8 +53,8 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           })}
           changePatron={changePatron}
           patron={patron}
+          isRequired={requiredFields.includes("email")}
           showCheckboxes={showCheckboxes}
-          isRequired
         />
       </ContactInfoInputs>
     </section>

@@ -28,7 +28,7 @@ export interface MenuProps {
   menuLogOutText: string;
   loansSoonOverdueText: string;
   loansOverdueText: string;
-  menuLogOutUrl: string;
+  logoutUrl: string;
   thresholdConfig: string;
   feeListDaysText: string;
   menuLoginText: string;
