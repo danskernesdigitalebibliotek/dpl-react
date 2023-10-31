@@ -7,8 +7,7 @@ import {
   getMaterialTypes,
   getManifestationType,
   materialIsFiction,
-  getReservablePidsFromAnotherLibrary,
-  getPatronAddress
+  getReservablePidsFromAnotherLibrary
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -155,7 +154,7 @@ export const ReservationModalBody = ({
     }
 
     if (pidsFromAnotherLibrary.length > 0 && patron) {
-      const { patronId, address, name, emailAddress } = patron;
+      const { patronId, name, emailAddress, preferredPickupBranch } = patron;
 
       mutateOpenOrder(
         {
@@ -163,13 +162,12 @@ export const ReservationModalBody = ({
             pids: [...pidsFromAnotherLibrary],
             pickUpBranch: selectedBranch
               ? removePrefixFromBranchId(selectedBranch)
-              : "",
+              : removePrefixFromBranchId(preferredPickupBranch),
             expires:
               selectedInterest?.toString() ||
               defaultInterestDaysForOpenOrder.toString(),
             userParameters: {
               userId: patronId.toString(),
-              userAddress: address ? getPatronAddress(address) : "",
               userName: name,
               userMail: emailAddress
             }
