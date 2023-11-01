@@ -35,9 +35,12 @@ import MaterialHeader from "../../components/material/MaterialHeader";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import MaterialDisclosure from "./MaterialDisclosure";
-import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
+import {
+  isAnonymous,
+  isBlocked,
+  usePatronData
+} from "../../core/utils/helpers/user";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
-import { usePatronData } from "../../components/material/helper";
 
 export interface MaterialProps {
   wid: WorkId;
