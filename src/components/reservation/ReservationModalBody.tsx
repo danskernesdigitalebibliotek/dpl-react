@@ -57,13 +57,13 @@ import PromoBar from "../promo-bar/PromoBar";
 import InstantLoan from "../instant-loan/InstantLoan";
 import { excludeBlacklistedBranches } from "../../core/utils/branches";
 import { InstantLoanConfigType } from "../../core/utils/types/instant-loan";
-import { usePatronData } from "../material/helper";
 import {
   OpenOrderMutation,
   useOpenOrderMutation
 } from "../../core/dbc-gateway/generated/graphql";
 import ModalMessage from "../message/modal-message/ModalMessage";
 import configuration, { getConf } from "../../core/configuration";
+import { usePatronData } from "../../core/utils/helpers/user";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];

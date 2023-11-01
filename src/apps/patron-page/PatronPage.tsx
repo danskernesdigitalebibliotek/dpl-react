@@ -16,8 +16,8 @@ import StatusSection from "./sections/StatusSection";
 import PauseReservation from "../reservation-list/modal/pause-reservation/pause-reservation";
 import { getModalIds } from "../../core/utils/helpers/general";
 import { useUrls } from "../../core/utils/url";
-import { usePatronData } from "../../components/material/helper";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
+import { usePatronData } from "../../core/utils/helpers/user";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();

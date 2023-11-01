@@ -23,10 +23,10 @@ import {
 import { useConfig } from "../../../core/utils/config";
 import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useText } from "../../../core/utils/text";
-import { usePatronData } from "../../../components/material/helper";
 import { getReadyForPickup } from "../../reservation-list/utils/helpers";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import DashboardNotificationList from "../../dashboard/dashboard-notification-list/dashboard-notification-list";
+import { usePatronData } from "../../../core/utils/helpers/user";
 
 interface MenuLoggedInContentProps {
   pageSize: number;

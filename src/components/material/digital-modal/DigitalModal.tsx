@@ -8,8 +8,7 @@ import { Pid, WorkId } from "../../../core/utils/types/ids";
 import DigitalModalBody from "./DigitalModalBody";
 import DigitalModalFeedback from "./DigitalModalFeedback";
 import { createDigitalModalId, getResponseMessage } from "./helper";
-import { isAnonymous } from "../../../core/utils/helpers/user";
-import { usePatronData } from "../helper";
+import { isAnonymous, usePatronData } from "../../../core/utils/helpers/user";
 
 type DigitalModalProps = {
   pid: Pid;
