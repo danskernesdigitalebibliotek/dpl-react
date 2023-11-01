@@ -61,7 +61,7 @@ const CreatePatronEntry: FC<CreatePatronProps> = () => {
     return null;
   }
 
-  return <CreatePatron userToken={userToken} />;
+  return <CreatePatron />;
 };
 
 export default withConfig(withText(withUrls(CreatePatronEntry)));
