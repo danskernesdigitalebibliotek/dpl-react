@@ -12,7 +12,6 @@ import {
   useDeleteV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
 import { isFaust, isIdentifier } from "../../../dashboard/util/helpers";
-import { getModalIds } from "../../../../core/utils/helpers/general";
 
 interface DeleteReservationModalProps {
   modalId: string;
@@ -28,8 +27,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const { mutate: deletePhysicalReservation } = useDeleteReservations();
   const { mutate: deleteDigitalReservation } =
     useDeleteV1UserReservationsIdentifier();
-  const { close } = useModalButtonHandler();
-  const { reservationsQueued } = getModalIds();
+  const { closeAll: closeAllModals } = useModalButtonHandler();
 
   const removeSelectedReservations = () => {
     if (reservations.length > 0) {
@@ -67,8 +65,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
         )
       );
 
-      close(reservationsQueued as string);
-      close(modalId as string);
+      closeAllModals();
     }
   };
 

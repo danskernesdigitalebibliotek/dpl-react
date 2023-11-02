@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import clsx from "clsx";
 import FocusTrap from "focus-trap-react";
-import { closeModal, openModal } from "../modal.slice";
+import { closeAllModals, closeModal, openModal } from "../modal.slice";
 import { isAnonymous } from "./helpers/user";
 import {
   currentLocationWithParametersUrl,
@@ -146,6 +146,9 @@ export const useModalButtonHandler = () => {
     },
     close: (modalId: ModalId) => {
       return dispatch(closeModal({ modalId }));
+    },
+    closeAll: () => {
+      return dispatch(closeAllModals());
     },
     openGuarded: ({
       authUrl,
