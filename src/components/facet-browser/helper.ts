@@ -130,7 +130,7 @@ export const getFacetFieldTranslation = (name: FacetField) => {
     case FacetField.WorkTypes:
       return "facetWorkTypesText";
     default:
-      return invalidSwitchCase<string>(name);
+      return invalidSwitchCase<string>(name as never);
   }
 };
 

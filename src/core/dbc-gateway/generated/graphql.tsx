@@ -330,6 +330,7 @@ export enum FacetField {
   CanAlwaysBeLoaned = "canAlwaysBeLoaned",
   ChildrenOrAdults = "childrenOrAdults",
   Creators = "creators",
+  Dk5 = "dk5",
   FictionNonfiction = "fictionNonfiction",
   FictionalCharacters = "fictionalCharacters",
   GenreAndForm = "genreAndForm",
@@ -337,7 +338,8 @@ export enum FacetField {
   MaterialTypesGeneral = "materialTypesGeneral",
   MaterialTypesSpecific = "materialTypesSpecific",
   Subjects = "subjects",
-  WorkTypes = "workTypes"
+  WorkTypes = "workTypes",
+  Year = "year"
 }
 
 /** The result for a specific facet */
@@ -377,6 +379,32 @@ export enum FictionNonfictionCode {
   Fiction = "FICTION",
   Nonfiction = "NONFICTION",
   NotSpecified = "NOT_SPECIFIED"
+}
+
+export type GeneralMaterialType = {
+  __typename?: "GeneralMaterialType";
+  /** code for materialType # @TODO - is this a finite list ?? - and where to get it */
+  code: GeneralMaterialTypeCode;
+  /** Ths string to display */
+  display: Scalars["String"];
+};
+
+export enum GeneralMaterialTypeCode {
+  Articles = "ARTICLES",
+  AudioBooks = "AUDIO_BOOKS",
+  BoardGames = "BOARD_GAMES",
+  Books = "BOOKS",
+  Comics = "COMICS",
+  ComputerGames = "COMPUTER_GAMES",
+  Ebooks = "EBOOKS",
+  Films = "FILMS",
+  ImageMaterials = "IMAGE_MATERIALS",
+  Music = "MUSIC",
+  NewspaperJournals = "NEWSPAPER_JOURNALS",
+  Other = "OTHER",
+  Podcasts = "PODCASTS",
+  SheetMusic = "SHEET_MUSIC",
+  TvSeries = "TV_SERIES"
 }
 
 export enum HoldingsStatus {
@@ -700,9 +728,21 @@ export type Manifestations = {
 
 export type MaterialType = {
   __typename?: "MaterialType";
-  /** The general type of material of the manifestation based on a grouping of bibliotek.dk material types, e.g. bøger, lydbøger etc.  */
+  /**
+   * The general type of material of the manifestation based on a grouping of bibliotek.dk material types, e.g. bøger, lydbøger etc.
+   * @TODO - this on is deprecated pr. 1/2 '24
+   * @deprecated Use 'materialTypeGenerel' instead
+   */
   general: Scalars["String"];
-  /** The type of material of the manifestation based on bibliotek.dk types */
+  /** jed 1.1 - the general materialtype */
+  materialTypeGeneral: GeneralMaterialType;
+  /** jed 1.1 - the specific materialtType */
+  materialTypeSpecific: SpecificMaterialType;
+  /**
+   * The type of material of the manifestation based on bibliotek.dk types
+   * @TODO - this on is deprecated pr. 1/2 '24
+   * @deprecated Use 'materialtTypeSpecific' instead
+   */
   specific: Scalars["String"];
 };
 
@@ -1103,6 +1143,7 @@ export type SearchFilters = {
   childrenOrAdults?: InputMaybe<Array<Scalars["String"]>>;
   creators?: InputMaybe<Array<Scalars["String"]>>;
   department?: InputMaybe<Array<Scalars["String"]>>;
+  dk5?: InputMaybe<Array<Scalars["String"]>>;
   fictionNonfiction?: InputMaybe<Array<Scalars["String"]>>;
   fictionalCharacters?: InputMaybe<Array<Scalars["String"]>>;
   genreAndForm?: InputMaybe<Array<Scalars["String"]>>;
@@ -1114,6 +1155,7 @@ export type SearchFilters = {
   subjects?: InputMaybe<Array<Scalars["String"]>>;
   sublocation?: InputMaybe<Array<Scalars["String"]>>;
   workTypes?: InputMaybe<Array<Scalars["String"]>>;
+  year?: InputMaybe<Array<Scalars["String"]>>;
 };
 
 /** The supported fields to query */
@@ -1210,6 +1252,14 @@ export type Shelfmark = {
   postfix?: Maybe<Scalars["String"]>;
   /** The actual shelfmark - e.g. information about on which shelf in the library this manifestation can be found, e.g. 99.4 */
   shelfmark: Scalars["String"];
+};
+
+export type SpecificMaterialType = {
+  __typename?: "SpecificMaterialType";
+  /** code for materialType */
+  code: Scalars["String"];
+  /** Ths string to display */
+  display: Scalars["String"];
 };
 
 export type Subject = {
@@ -2988,6 +3038,54 @@ export type SearchWithPaginationQuery = {
   };
 };
 
+export type ComplexSearchWithPaginationQueryVariables = Exact<{
+  cql: Scalars["String"];
+  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimit"];
+  filters: ComplexSearchFilters;
+}>;
+
+export type ComplexSearchWithPaginationQuery = {
+  __typename?: "Query";
+  complexSearch: {
+    __typename?: "ComplexSearchResponse";
+    hitcount: number;
+    works: Array<{
+      __typename?: "Work";
+      workId: string;
+      manifestations: {
+        __typename?: "Manifestations";
+        all: Array<{
+          __typename?: "Manifestation";
+          pid: string;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierType;
+            value: string;
+          }>;
+          access: Array<
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
+        }>;
+      };
+    }>;
+  };
+};
+
 export type SuggestionsFromQueryStringQueryVariables = Exact<{
   q: Scalars["String"];
 }>;
@@ -3353,6 +3451,36 @@ export type ManifestationsSimpleFragment = {
   };
 };
 
+export type ManifestationsAccessFragment = {
+  __typename?: "Manifestations";
+  all: Array<{
+    __typename?: "Manifestation";
+    pid: string;
+    identifiers: Array<{
+      __typename?: "Identifier";
+      type: IdentifierType;
+      value: string;
+    }>;
+    access: Array<
+      | {
+          __typename: "AccessUrl";
+          origin: string;
+          url: string;
+          loginRequired: boolean;
+        }
+      | { __typename: "DigitalArticleService"; issn: string }
+      | {
+          __typename: "Ereol";
+          origin: string;
+          url: string;
+          canAlwaysBeLoaned: boolean;
+        }
+      | { __typename: "InfomediaService"; id: string }
+      | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+    >;
+  }>;
+};
+
 export type ManifestationsSimpleFieldsFragment = {
   __typename?: "Manifestation";
   pid: string;
@@ -3497,6 +3625,40 @@ export type SeriesSimpleFragment = {
     display: string;
     number?: Array<number> | null;
   } | null;
+};
+
+export type WorkAccessFragment = {
+  __typename?: "Work";
+  workId: string;
+  manifestations: {
+    __typename?: "Manifestations";
+    all: Array<{
+      __typename?: "Manifestation";
+      pid: string;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierType;
+        value: string;
+      }>;
+      access: Array<
+        | {
+            __typename: "AccessUrl";
+            origin: string;
+            url: string;
+            loginRequired: boolean;
+          }
+        | { __typename: "DigitalArticleService"; issn: string }
+        | {
+            __typename: "Ereol";
+            origin: string;
+            url: string;
+            canAlwaysBeLoaned: boolean;
+          }
+        | { __typename: "InfomediaService"; id: string }
+        | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      >;
+    }>;
+  };
 };
 
 export type WorkSmallFragment = {
@@ -4225,6 +4387,47 @@ export const ManifestationReviewFieldsFragmentDoc = `
   }
 }
     `;
+export const ManifestationsAccessFragmentDoc = `
+    fragment ManifestationsAccess on Manifestations {
+  all {
+    pid
+    identifiers {
+      type
+      value
+    }
+    access {
+      __typename
+      ... on AccessUrl {
+        origin
+        url
+        loginRequired
+      }
+      ... on InfomediaService {
+        id
+      }
+      ... on InterLibraryLoan {
+        loanIsPossible
+      }
+      ... on Ereol {
+        origin
+        url
+        canAlwaysBeLoaned
+      }
+      ... on DigitalArticleService {
+        issn
+      }
+    }
+  }
+}
+    `;
+export const WorkAccessFragmentDoc = `
+    fragment WorkAccess on Work {
+  workId
+  manifestations {
+    ...ManifestationsAccess
+  }
+}
+    ${ManifestationsAccessFragmentDoc}`;
 export const SeriesSimpleFragmentDoc = `
     fragment SeriesSimple on Series {
   title
@@ -4632,6 +4835,31 @@ export const useSearchWithPaginationQuery = <
       SearchWithPaginationDocument,
       variables
     ),
+    options
+  );
+export const ComplexSearchWithPaginationDocument = `
+    query complexSearchWithPagination($cql: String!, $offset: Int!, $limit: PaginationLimit!, $filters: ComplexSearchFilters!) {
+  complexSearch(cql: $cql, filters: $filters) {
+    hitcount
+    works(offset: $offset, limit: $limit) {
+      ...WorkAccess
+    }
+  }
+}
+    ${WorkAccessFragmentDoc}`;
+export const useComplexSearchWithPaginationQuery = <
+  TData = ComplexSearchWithPaginationQuery,
+  TError = unknown
+>(
+  variables: ComplexSearchWithPaginationQueryVariables,
+  options?: UseQueryOptions<ComplexSearchWithPaginationQuery, TError, TData>
+) =>
+  useQuery<ComplexSearchWithPaginationQuery, TError, TData>(
+    ["complexSearchWithPagination", variables],
+    fetcher<
+      ComplexSearchWithPaginationQuery,
+      ComplexSearchWithPaginationQueryVariables
+    >(ComplexSearchWithPaginationDocument, variables),
     options
   );
 export const SuggestionsFromQueryStringDocument = `

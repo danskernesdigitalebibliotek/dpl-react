@@ -11,3 +11,17 @@ query searchWithPagination(
     }
   }
 }
+
+query complexSearchWithPagination(
+  $cql: String!,
+  $offset: Int!,
+  $limit: PaginationLimit!,
+  $filters: ComplexSearchFilters!
+) {
+  complexSearch(cql: $cql, filters: $filters) {
+    hitcount
+    works(offset: $offset, limit: $limit) {
+      ...WorkAccess
+    }
+  }
+}
