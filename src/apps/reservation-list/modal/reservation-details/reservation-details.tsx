@@ -12,7 +12,7 @@ import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-mat
 import PhysicalListDetails from "./physical-list-details";
 import { useConfig } from "../../../../core/utils/config";
 import MaterialButtonLoading from "../../../../components/material/material-buttons/generic/MaterialButtonLoading";
-import { useComplexSearchWithPaginationQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import { useComplexSearchWithPaginationWorkAccessQuery } from "../../../../core/dbc-gateway/generated/graphql";
 import {
   findAccessManifestationByIdentifier,
   findEreolAccessLinkFromManifestations
@@ -46,7 +46,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
     state !== readyForPickupState;
 
   const { data: complexSearchData, isLoading: isLoadingComplexSearch } =
-    useComplexSearchWithPaginationQuery(
+    useComplexSearchWithPaginationWorkAccessQuery(
       { cql: `term.isbn=${identifier}`, offset: 0, limit: 100, filters: {} },
       { enabled: !!identifier }
     );

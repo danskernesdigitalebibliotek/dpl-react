@@ -11,6 +11,8 @@ interface CheckBoxProps {
   onChecked?: (value: boolean) => void;
   ariaLabel?: string;
   focused?: boolean;
+  isVisualOnly?: boolean;
+  labelledBy?: string;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
@@ -22,7 +24,9 @@ const CheckBox: FC<CheckBoxProps> = ({
   onChecked,
   disabled,
   ariaLabel,
-  focused
+  focused,
+  isVisualOnly,
+  labelledBy
 }) => {
   const checkedHandler = (checked: boolean) => {
     if (onChecked) {
@@ -36,7 +40,6 @@ const CheckBox: FC<CheckBoxProps> = ({
         // This is to handle focus when more items are loaded via pagination
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={focused}
-        id={id}
         data-cy={id}
         className="checkbox__input"
         onChange={(e) => {
@@ -44,24 +47,27 @@ const CheckBox: FC<CheckBoxProps> = ({
         }}
         checked={selected}
         type="checkbox"
-        aria-label={ariaLabel}
+        aria-label={isVisualOnly && labelledBy ? undefined : ariaLabel}
+        aria-labelledby={isVisualOnly && labelledBy ? labelledBy : undefined}
         disabled={disabled}
       />
-      <label className="checkbox__label" htmlFor={id}>
-        <span className="checkbox__icon">
+      <div className="checkbox__label" id={id}>
+        <span className="checkbox__icon" aria-labelledby={labelledBy}>
           <IconCheckbox />
         </span>
         {label && (
-          <span
+          <label
+            id={id}
+            htmlFor={id}
             data-cy="checkbox-text"
             className={`checkbox__text text-small-caption color-secondary-gray ${
               hideLabel ? "checkbox__text--hide-visually" : ""
             }`}
           >
             {label}
-          </span>
+          </label>
         )}
-      </label>
+      </div>
     </div>
   );
 };

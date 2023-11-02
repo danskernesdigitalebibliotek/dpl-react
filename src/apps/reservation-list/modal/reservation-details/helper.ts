@@ -1,7 +1,7 @@
-import { ComplexSearchWithPaginationQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import { ComplexSearchWithPaginationWorkAccessQuery } from "../../../../core/dbc-gateway/generated/graphql";
 
 type AccessManifestations =
-  ComplexSearchWithPaginationQuery["complexSearch"]["works"][0]["manifestations"]["all"];
+  ComplexSearchWithPaginationWorkAccessQuery["complexSearch"]["works"][0]["manifestations"]["all"];
 
 export const findAccessManifestationByIdentifier = (
   manifestations: AccessManifestations,

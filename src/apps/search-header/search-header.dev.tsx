@@ -56,6 +56,16 @@ export default {
       defaultValue: "/search",
       control: { type: "text" }
     },
+    advancedSearchUrl: {
+      name: "Advanced search url",
+      defaultValue: "/advanced-search",
+      control: { type: "text" }
+    },
+    searchHeaderDropdownText: {
+      name: "Search header advanced search icon label",
+      defaultValue: "Dropdown with additional search functions",
+      control: { type: "text" }
+    },
     materialUrl: {
       name: "Base material page url",
       defaultValue: "/work/:workid",
@@ -109,6 +119,11 @@ export default {
     searchNoValidCharactersErrorText: {
       name: "Search non-whitespace character error",
       defaultValue: "Input must contain at least one non-whitespace character.",
+      control: { type: "text" }
+    },
+    headerDropdownItemAdvancedSearchText: {
+      name: "Advanced search menu text",
+      defaultValue: "Advanced search",
       control: { type: "text" }
     }
   }

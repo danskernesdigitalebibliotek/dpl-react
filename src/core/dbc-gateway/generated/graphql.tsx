@@ -3038,14 +3038,14 @@ export type SearchWithPaginationQuery = {
   };
 };
 
-export type ComplexSearchWithPaginationQueryVariables = Exact<{
+export type ComplexSearchWithPaginationWorkAccessQueryVariables = Exact<{
   cql: Scalars["String"];
   offset: Scalars["Int"];
   limit: Scalars["PaginationLimit"];
   filters: ComplexSearchFilters;
 }>;
 
-export type ComplexSearchWithPaginationQuery = {
+export type ComplexSearchWithPaginationWorkAccessQuery = {
   __typename?: "Query";
   complexSearch: {
     __typename?: "ComplexSearchResponse";
@@ -3081,6 +3081,350 @@ export type ComplexSearchWithPaginationQuery = {
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
           >;
         }>;
+      };
+    }>;
+  };
+};
+
+export type ComplexSearchWithPaginationQueryVariables = Exact<{
+  cql: Scalars["String"];
+  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimit"];
+  filters: ComplexSearchFilters;
+}>;
+
+export type ComplexSearchWithPaginationQuery = {
+  __typename?: "Query";
+  complexSearch: {
+    __typename?: "ComplexSearchResponse";
+    hitcount: number;
+    works: Array<{
+      __typename?: "Work";
+      workId: string;
+      abstract?: Array<string> | null;
+      genreAndForm: Array<string>;
+      titles: {
+        __typename?: "WorkTitles";
+        full: Array<string>;
+        original?: Array<string> | null;
+      };
+      creators: Array<
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
+      >;
+      series: Array<{
+        __typename?: "Series";
+        title: string;
+        isPopular?: boolean | null;
+        readThisFirst?: boolean | null;
+        readThisWhenever?: boolean | null;
+        numberInSeries?: {
+          __typename?: "NumberInSeries";
+          display: string;
+          number?: Array<number> | null;
+        } | null;
+      }>;
+      seriesMembers: Array<{
+        __typename?: "Work";
+        workId: string;
+        titles: {
+          __typename?: "WorkTitles";
+          main: Array<string>;
+          full: Array<string>;
+          original?: Array<string> | null;
+        };
+      }>;
+      workYear?: {
+        __typename?: "PublicationYear";
+        year?: number | null;
+      } | null;
+      manifestations: {
+        __typename?: "Manifestations";
+        all: Array<{
+          __typename?: "Manifestation";
+          pid: string;
+          genreAndForm: Array<string>;
+          source: Array<string>;
+          publisher: Array<string>;
+          titles: {
+            __typename?: "ManifestationTitles";
+            main: Array<string>;
+            original?: Array<string> | null;
+          };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
+          materialTypes: Array<{
+            __typename?: "MaterialType";
+            specific: string;
+          }>;
+          creators: Array<
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
+          >;
+          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          contributors: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Person"; display: string }
+          >;
+          edition?: {
+            __typename?: "Edition";
+            summary: string;
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
+          audience?: {
+            __typename?: "Audience";
+            generalAudience: Array<string>;
+          } | null;
+          physicalDescriptions: Array<{
+            __typename?: "PhysicalDescription";
+            numberOfPages?: number | null;
+            playingTime?: string | null;
+          }>;
+          accessTypes: Array<{
+            __typename?: "AccessType";
+            code: AccessTypeCode;
+          }>;
+          access: Array<
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix?: string | null;
+            shelfmark: string;
+          } | null;
+          workYear?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
+          catalogueCodes: {
+            __typename?: "CatalogueCodes";
+            nationalBibliography: Array<string>;
+            otherCatalogues: Array<string>;
+          };
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
+          } | null;
+        }>;
+        latest: {
+          __typename?: "Manifestation";
+          pid: string;
+          genreAndForm: Array<string>;
+          source: Array<string>;
+          publisher: Array<string>;
+          titles: {
+            __typename?: "ManifestationTitles";
+            main: Array<string>;
+            original?: Array<string> | null;
+          };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
+          materialTypes: Array<{
+            __typename?: "MaterialType";
+            specific: string;
+          }>;
+          creators: Array<
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
+          >;
+          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          contributors: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Person"; display: string }
+          >;
+          edition?: {
+            __typename?: "Edition";
+            summary: string;
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
+          audience?: {
+            __typename?: "Audience";
+            generalAudience: Array<string>;
+          } | null;
+          physicalDescriptions: Array<{
+            __typename?: "PhysicalDescription";
+            numberOfPages?: number | null;
+            playingTime?: string | null;
+          }>;
+          accessTypes: Array<{
+            __typename?: "AccessType";
+            code: AccessTypeCode;
+          }>;
+          access: Array<
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix?: string | null;
+            shelfmark: string;
+          } | null;
+          workYear?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
+          catalogueCodes: {
+            __typename?: "CatalogueCodes";
+            nationalBibliography: Array<string>;
+            otherCatalogues: Array<string>;
+          };
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
+          } | null;
+        };
+        bestRepresentation: {
+          __typename?: "Manifestation";
+          pid: string;
+          genreAndForm: Array<string>;
+          source: Array<string>;
+          publisher: Array<string>;
+          titles: {
+            __typename?: "ManifestationTitles";
+            main: Array<string>;
+            original?: Array<string> | null;
+          };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
+          materialTypes: Array<{
+            __typename?: "MaterialType";
+            specific: string;
+          }>;
+          creators: Array<
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
+          >;
+          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          contributors: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Person"; display: string }
+          >;
+          edition?: {
+            __typename?: "Edition";
+            summary: string;
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
+          audience?: {
+            __typename?: "Audience";
+            generalAudience: Array<string>;
+          } | null;
+          physicalDescriptions: Array<{
+            __typename?: "PhysicalDescription";
+            numberOfPages?: number | null;
+            playingTime?: string | null;
+          }>;
+          accessTypes: Array<{
+            __typename?: "AccessType";
+            code: AccessTypeCode;
+          }>;
+          access: Array<
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix?: string | null;
+            shelfmark: string;
+          } | null;
+          workYear?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
+          catalogueCodes: {
+            __typename?: "CatalogueCodes";
+            nationalBibliography: Array<string>;
+            otherCatalogues: Array<string>;
+          };
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
+          } | null;
+        };
       };
     }>;
   };
@@ -4837,8 +5181,8 @@ export const useSearchWithPaginationQuery = <
     ),
     options
   );
-export const ComplexSearchWithPaginationDocument = `
-    query complexSearchWithPagination($cql: String!, $offset: Int!, $limit: PaginationLimit!, $filters: ComplexSearchFilters!) {
+export const ComplexSearchWithPaginationWorkAccessDocument = `
+    query complexSearchWithPaginationWorkAccess($cql: String!, $offset: Int!, $limit: PaginationLimit!, $filters: ComplexSearchFilters!) {
   complexSearch(cql: $cql, filters: $filters) {
     hitcount
     works(offset: $offset, limit: $limit) {
@@ -4847,6 +5191,35 @@ export const ComplexSearchWithPaginationDocument = `
   }
 }
     ${WorkAccessFragmentDoc}`;
+export const useComplexSearchWithPaginationWorkAccessQuery = <
+  TData = ComplexSearchWithPaginationWorkAccessQuery,
+  TError = unknown
+>(
+  variables: ComplexSearchWithPaginationWorkAccessQueryVariables,
+  options?: UseQueryOptions<
+    ComplexSearchWithPaginationWorkAccessQuery,
+    TError,
+    TData
+  >
+) =>
+  useQuery<ComplexSearchWithPaginationWorkAccessQuery, TError, TData>(
+    ["complexSearchWithPaginationWorkAccess", variables],
+    fetcher<
+      ComplexSearchWithPaginationWorkAccessQuery,
+      ComplexSearchWithPaginationWorkAccessQueryVariables
+    >(ComplexSearchWithPaginationWorkAccessDocument, variables),
+    options
+  );
+export const ComplexSearchWithPaginationDocument = `
+    query complexSearchWithPagination($cql: String!, $offset: Int!, $limit: PaginationLimit!, $filters: ComplexSearchFilters!) {
+  complexSearch(cql: $cql, filters: $filters) {
+    hitcount
+    works(offset: $offset, limit: $limit) {
+      ...WorkSmall
+    }
+  }
+}
+    ${WorkSmallFragmentDoc}`;
 export const useComplexSearchWithPaginationQuery = <
   TData = ComplexSearchWithPaginationQuery,
   TError = unknown
