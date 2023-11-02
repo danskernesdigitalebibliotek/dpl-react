@@ -256,7 +256,7 @@ const { reservationDetails } = getModalIds();
 export const ReservationListDigitalDetailsModal = Template.bind({});
 ReservationListDigitalDetailsModal.parameters = {
   query: {
-    modal: `${reservationDetails}9788740047905`
+    modal: `${reservationDetails}9788702319361`
   }
 };
 
