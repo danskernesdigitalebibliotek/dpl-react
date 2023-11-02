@@ -53,7 +53,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         </div>
         <div className="list-reservation__about">
           <button
-            onClick={openDetailsModal}
+            onClick={() => openDetailsModal()}
             type="button"
             // This is to handle focus when more items are loaded via pagination
             // eslint-disable-next-line jsx-a11y/no-autofocus

@@ -1,4 +1,4 @@
-import React, { useCallback, FC } from "react";
+import React, { FC } from "react";
 import fetchMaterial, {
   MaterialProps
 } from "../../loan-list/materials/utils/material-fetch-hoc";
@@ -11,21 +11,34 @@ export interface ReservationMaterialProps {
   reservation: ReservationType;
   focused: boolean;
   openReservationDetailsModal: (reservation: ReservationType) => void;
+  identifier?: string | null;
 }
 
 const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   material,
   reservation,
   focused,
-  openReservationDetailsModal
+  openReservationDetailsModal,
+  identifier
 }) => {
-  const openDetailsModal = useCallback(() => {
+  const openDetailsModal = () => {
     openReservationDetailsModal(reservation);
-  }, [openReservationDetailsModal, reservation]);
+  };
+  const isDigital = !!identifier;
 
   return (
     <li>
-      <div className="list-reservation my-32">
+      <div
+        className="list-reservation my-32 cursor-pointer"
+        role="button"
+        onClick={() => openDetailsModal()}
+        onKeyUp={(e) => {
+          if (e.key === "Enter" || e.key === "Space") {
+            openDetailsModal();
+          }
+        }}
+        tabIndex={0}
+      >
         {material && (
           <MaterialInfo
             arrowLabelledBy={`${
@@ -41,6 +54,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
         <ReservationInfo
           reservationInfo={reservation}
           openReservationDetailsModal={openReservationDetailsModal}
+          isDigital={isDigital}
         />
       </div>
     </li>

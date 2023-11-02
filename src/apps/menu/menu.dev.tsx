@@ -124,7 +124,7 @@ export default {
       defaultValue: "Profile links",
       control: { type: "text" }
     },
-    menuLogOutUrl: {
+    logoutUrl: {
       defaultValue: "/Logout",
       control: { type: "text" }
     },

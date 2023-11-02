@@ -11,7 +11,7 @@ export const PromoBarIcon: React.FunctionComponent<PromoBarIconProps> = ({
   type
 }) => {
   if (type === "info") {
-    return <img src={IconInfo} alt="" />;
+    return <img src={IconInfo} alt="" className="ml-4" />;
   }
   return null;
 };

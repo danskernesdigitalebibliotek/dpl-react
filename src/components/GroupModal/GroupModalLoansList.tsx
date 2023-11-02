@@ -1,11 +1,11 @@
 import React, { FC, useState, useEffect } from "react";
 import SelectableMaterial from "../../apps/loan-list/materials/selectable-material/selectable-material";
-import { formatDate } from "../../apps/loan-list/utils/helpers";
 import { useText } from "../../core/utils/text";
 import { LoanType } from "../../core/utils/types/loan-type";
 import usePager from "../result-pager/use-pager";
 import StatusMessage from "../../apps/loan-list/materials/selectable-material/StatusMessage";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
+import { formatDate } from "../../core/utils/helpers/date";
 
 export interface GroupModalLoansListProps {
   materials: LoanType[];

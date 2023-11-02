@@ -1,17 +1,20 @@
-import React, { FC, ReactNode, useCallback } from "react";
+import React, { FC, ReactNode } from "react";
 import ArrowButton from "../../../components/Buttons/ArrowButton";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
+import InfoLabel from "../../../components/atoms/labels/InfoLabel";
 
 interface ReservationStatusProps {
   reservationInfo?: ReservationType;
-  openReservationDetailsModal: (reservation: ReservationType) => void;
+  openReservationDetailsModal?: (reservation: ReservationType) => void;
   color?: string;
   empty?: boolean;
   percent: number;
-  infoLabel?: string;
+  info?: string;
   label: string | string[];
   children?: ReactNode;
+  showArrow?: boolean;
+  className?: string;
 }
 
 const ReservationStatus: FC<ReservationStatusProps> = ({
@@ -20,18 +23,20 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   color,
   percent,
   empty = false,
-  infoLabel,
+  info,
   label,
-  children
+  children,
+  showArrow = true,
+  className
 }) => {
-  const notificationClickEventHandler = useCallback(() => {
+  const notificationClickEventHandler = () => {
     if (openReservationDetailsModal && reservationInfo) {
       openReservationDetailsModal(reservationInfo);
     }
-  }, [openReservationDetailsModal, reservationInfo]);
+  };
 
   return (
-    <div className="list-reservation__status">
+    <div className={className ?? "list-reservation__status"}>
       <div className="list-reservation__counter color-secondary-gray">
         {!empty && (
           <StatusCircleIcon color={color} percent={percent}>
@@ -41,9 +46,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
       </div>
       <div>
         <div className="list-reservation__deadline">
-          {infoLabel && (
-            <div className="status-label status-label--info">{infoLabel}</div>
-          )}
+          {info && <InfoLabel>{info}</InfoLabel>}
           {typeof label === "string" && (
             <p className="text-small-caption">{label}</p>
           )}
@@ -53,13 +56,15 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
             })}
         </div>
       </div>
-      <ArrowButton
-        arrowLabelledBy={`${
-          reservationInfo?.identifier || reservationInfo?.faust
-        }-title`}
-        cursorPointer
-        clickEventHandler={notificationClickEventHandler}
-      />
+      {showArrow && (
+        <ArrowButton
+          arrowLabelledBy={`${
+            reservationInfo?.identifier || reservationInfo?.faust
+          }-title`}
+          cursorPointer
+          clickEventHandler={notificationClickEventHandler}
+        />
+      )}
     </div>
   );
 };

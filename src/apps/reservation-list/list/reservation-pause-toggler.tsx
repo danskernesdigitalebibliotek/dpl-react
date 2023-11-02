@@ -4,7 +4,7 @@ import { getModalIds } from "../../../core/utils/helpers/general";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { PatronV5 } from "../../../core/fbs/model";
-import { formatDate } from "../../loan-list/utils/helpers";
+import { formatDate } from "../../../core/utils/helpers/date";
 
 interface ReservationPauseTogglerProps {
   user: PatronV5;

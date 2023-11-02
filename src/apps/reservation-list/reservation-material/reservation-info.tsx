@@ -6,19 +6,27 @@ import {
   getColors,
   daysBetweenTodayAndDate
 } from "../../../core/utils/helpers/general";
-import { formatDate } from "../../loan-list/utils/helpers";
 import { getPreferredBranch } from "../../../components/reservation/helper";
 import ReservationStatus from "./reservation-status";
 import { useGetBranches } from "../../../core/utils/branches";
+import { getReservationStatusInfoLabel } from "../utils/helpers";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
-  openReservationDetailsModal: (reservation: ReservationType) => void;
+  openReservationDetailsModal?: (reservation: ReservationType) => void;
+  showStatusCircleIcon?: boolean;
+  showArrow?: boolean;
+  reservationStatusClassNameOverride?: string;
+  isDigital: boolean;
 }
 
 const ReservationInfo: FC<ReservationInfoProps> = ({
   reservationInfo,
-  openReservationDetailsModal
+  openReservationDetailsModal,
+  showStatusCircleIcon = true,
+  showArrow = true,
+  reservationStatusClassNameOverride,
+  isDigital
 }) => {
   const t = useText();
 
@@ -35,32 +43,50 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   const { success } = getColors();
   const branches = useGetBranches("blacklistedPickupBranchesConfig");
 
-  let readyForPickupLabel = "";
-  if (pickupDeadline) {
-    readyForPickupLabel = pickupBranch
-      ? t("reservationPickUpLatestText", {
-          placeholders: { "@date": formatDate(pickupDeadline) }
-        })
-      : t("reservationListLoanBeforeText", {
-          placeholders: { "@date": formatDate(pickupDeadline) }
-        });
-  }
-
   useEffect(() => {
     if (branches && pickupBranch) {
       setPickupLibrary(getPreferredBranch(pickupBranch, branches));
     }
   }, [branches, pickupBranch, pickupDeadline, t]);
 
+  const getInfo = () => {
+    // If the material is digital and has an expiry date,
+    // or if the material is physical and has a pickup deadline,
+    // then we should show the info label
+    const shouldgetReservationStatusInfo =
+      (isDigital && expiryDate) || pickupDeadline;
+
+    if (!shouldgetReservationStatusInfo) {
+      return "";
+    }
+
+    // If the material is digital, then we should show the expiry date
+    // otherwise the pickup deadline.
+    const date = (isDigital ? expiryDate : pickupDeadline) ?? null;
+    if (!date) {
+      return "";
+    }
+
+    return getReservationStatusInfoLabel({
+      pickupBranch,
+      date,
+      t,
+      isDigital
+    });
+  };
+
   if (state === "readyForPickup") {
     return (
       <ReservationStatus
         color={success as string}
         percent={100}
-        infoLabel={readyForPickupLabel}
+        info={getInfo()}
         label={[pickupLibrary, pickupNumber || ""]}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
+        empty={!showStatusCircleIcon}
+        showArrow={showArrow}
+        className={reservationStatusClassNameOverride}
       >
         <div className="counter__value color-secondary-gray">
           <img src={check} alt="" />
@@ -88,6 +114,9 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         label={numberInLineLabel}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
+        empty={!showStatusCircleIcon}
+        showArrow={showArrow}
+        className={reservationStatusClassNameOverride}
       >
         {/* I am not using string interpolation here because of styling */}
         {/* if somehow it is possible to break text in one div into two lines */}
@@ -113,6 +142,9 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         })}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
+        empty={!showStatusCircleIcon}
+        showArrow={showArrow}
+        className={reservationStatusClassNameOverride}
       >
         <span className="counter__value color-secondary-gray">
           {/* I am not using string interpolation here because of styling */}
@@ -139,6 +171,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       percent={0}
       label=""
       empty
+      className={reservationStatusClassNameOverride}
     />
   );
 };
