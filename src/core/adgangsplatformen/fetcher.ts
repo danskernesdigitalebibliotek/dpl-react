@@ -1,5 +1,5 @@
-import FetchFailedCriticalError from "../../../fetchers/FetchFailedCriticalError";
-import { getToken, TOKEN_USER_KEY } from "../../../token";
+import FetchFailedCriticalError from "../fetchers/FetchFailedCriticalError";
+import { getToken, TOKEN_USER_KEY } from "../token";
 import OpenIdServiceHttpError from "./OpenIdServiceHttpError";
 
 export const fetcher = async <ResponseType>({

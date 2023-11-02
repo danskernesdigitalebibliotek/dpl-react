@@ -6,7 +6,7 @@ import {
   useQuery
 } from "react-query";
 import { ErrorType, fetcher } from "./fetcher";
-import { getToken, TOKEN_USER_KEY } from "../../../token";
+import { getToken, TOKEN_USER_KEY } from "../token";
 
 type UserInfoData = {
   attributes: {

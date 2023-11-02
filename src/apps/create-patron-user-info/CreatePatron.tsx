@@ -2,9 +2,9 @@ import React, { useState, FC, useEffect } from "react";
 import UserInfo from "./UserInfo";
 import { useUrls } from "../../core/utils/url";
 import { useText } from "../../core/utils/text";
-import useUserInfo from "../../core/utils/helpers/openId/useGetUserInfo";
 import { redirectTo } from "../../core/utils/helpers/url";
 import { useConfig } from "../../core/utils/config";
+import useUserInfo from "../../core/adgangsplatformen/useGetUserInfo";
 
 const CreatePatron: FC = () => {
   const [cpr, setCpr] = useState<string | null>(null);
