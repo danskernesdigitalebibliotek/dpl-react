@@ -17,3 +17,13 @@ updates:
       timezone: Europe/Copenhagen
     labels:
       - dependencies
+    groups:
+      babel:
+        patterns:
+          - "@babel/*"
+      graphql-codegen:
+        patterns:
+          - "@graphql-codegen/*"
+      storybook:
+        patterns:
+          - "@storybook/*"

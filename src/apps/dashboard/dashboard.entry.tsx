@@ -17,7 +17,7 @@ export interface DashBoardProps {
   // Url
   loansOverdueUrl: string;
   physicalLoansUrl: string;
-  feesUrl: string;
+  feesPageUrl: string;
   reservationsUrl: string;
   // Config
   blacklistedPickupBranchesConfig: string;

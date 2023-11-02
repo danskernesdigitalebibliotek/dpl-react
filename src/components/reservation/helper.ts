@@ -246,10 +246,11 @@ export const getInstantLoanBranchHoldings = (
 
 export const getInstantLoanBranchHoldingsAboveThreshold = (
   instantLoanBranchHoldings: HoldingsV3[],
-  instantLoanThresholdConfig: string
+  instantLoanThresholdConfig: string | null
 ) =>
   instantLoanBranchHoldings.filter(
-    ({ materials }) => materials.length >= Number(instantLoanThresholdConfig)
+    ({ materials }) =>
+      materials.length >= Number(instantLoanThresholdConfig ?? 0)
   );
 
 export const removePrefixFromBranchId = (branchId: string) => {

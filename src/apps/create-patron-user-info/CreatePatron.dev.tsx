@@ -127,8 +127,10 @@ export default {
       defaultValue: "Confirm",
       control: { type: "text" }
     },
-    createPatronCancelButtonText: {
-      defaultValue: "Cancel",
+    phoneInputMessageText: {
+      name: "Phone input validation message",
+      defaultValue:
+        "The phone number must be 6 to 15 characters in length and should be comprised solely of numbers or begin with a +",
       control: { type: "text" }
     }
   }

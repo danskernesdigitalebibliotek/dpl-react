@@ -1,11 +1,19 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { FC, ReactNode } from "react";
+import clsx from "clsx";
 import { useText } from "../../../../core/utils/text";
 import fetchMaterial, { MaterialProps } from "../utils/material-fetch-hoc";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import CheckBox from "../../../../components/checkbox/Checkbox";
 import AuthorYear from "../../../../components/author-year/authorYear";
+import ReservationInfo from "../../../reservation-list/reservation-material/reservation-info";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
+import ArrowButton from "../../../../components/Buttons/ArrowButton";
+import { isDigital } from "../../utils/helpers";
 
 interface SelectableMaterialProps {
+  identifier?: string | null;
   disabled?: boolean;
   id?: string | null;
   onMaterialChecked?: (id: string) => void;
@@ -15,6 +23,7 @@ interface SelectableMaterialProps {
   statusMessageComponentDesktop: ReactNode;
   statusBadgeComponent: ReactNode;
   focused: boolean;
+  displayedMaterial?: ReservationType;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
@@ -27,7 +36,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   statusMessageComponentMobile,
   statusMessageComponentDesktop,
   statusBadgeComponent,
-  focused
+  focused,
+  displayedMaterial
 }) => {
   const t = useText();
 
@@ -40,12 +50,26 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
     lang
   } = material || {};
 
+  // The reason why the handlers are used on multiple containers is because of multiple reasons:
+  // * We cannot attach them to the li or the list-materials container because it prevents the checkbox from being checked.
+  // * We cannot make a container for the rest of the content with the handlers because it breaks the flexbox layout.
+  const handleOnClick = () => {
+    if (openDetailsModal) {
+      openDetailsModal(id);
+    }
+  };
+  const handleOnKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (openDetailsModal && (e.key === "Enter" || e.key === "Space")) {
+      openDetailsModal(id);
+    }
+  };
+
   return (
-    <li>
+    <li className="arrow arrow__hover--right-small">
       <div
-        className={`list-materials ${
-          disabled ? "list-materials--disabled" : ""
-        }`}
+        className={clsx("list-materials", {
+          "list-materials--disabled": disabled
+        })}
       >
         {onMaterialChecked && (
           <div className="list-materials__checkbox mr-32">
@@ -65,7 +89,12 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             {disabled && <CheckBox id={id} disabled={disabled} />}
           </div>
         )}
-        <div className="list-materials__content">
+        <div
+          className="list-materials__content cursor-pointer"
+          onClick={handleOnClick}
+          onKeyUp={handleOnKeyUp}
+          tabIndex={0}
+        >
           <div className="list-materials__content-status">
             <div className="status-label status-label--outline ">
               {materialType}
@@ -78,32 +107,43 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             <AuthorYear author={authorsShort} year={year} />
           </p>
         </div>
-        <div className="list-materials__status pl-4">
+        <div
+          className="list-materials__status pl-4 cursor-pointer"
+          role="button"
+          onClick={handleOnClick}
+          onKeyUp={handleOnKeyUp}
+          tabIndex={0}
+        >
           {statusMessageComponentDesktop}
           <div>
             {statusBadgeComponent}
             {statusMessageComponentMobile}
-            {openDetailsModal && (
-              <button
-                type="button"
-                // This is to handle focus when more items are loaded via pagination
-                // eslint-disable-next-line jsx-a11y/no-autofocus
-                autoFocus={disabled && focused}
-                className="list-reservation__note"
-                onClick={() => openDetailsModal(id)}
-                aria-label={
-                  title
-                    ? t("groupModalGoToMaterialAriaLabelText", {
-                        placeholders: { "@label": title }
-                      })
-                    : ""
-                }
-              >
-                {t("groupModalGoToMaterialText")}
-              </button>
+            {displayedMaterial && (
+              <ReservationInfo
+                reservationInfo={displayedMaterial}
+                showArrow={false}
+                showStatusCircleIcon={false}
+                reservationStatusClassNameOverride=""
+                isDigital={isDigital(displayedMaterial)}
+              />
             )}
           </div>
         </div>
+        {openDetailsModal && (
+          <div
+            className="mr-16 ml-32 cursor-pointer"
+            role="button"
+            onClick={handleOnClick}
+            onKeyUp={handleOnKeyUp}
+            tabIndex={0}
+          >
+            <ArrowButton
+              arrowLabelledBy={`${id}`}
+              cursorPointer
+              clickEventHandler={() => openDetailsModal(id)}
+            />
+          </div>
+        )}
       </div>
     </li>
   );

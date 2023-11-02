@@ -148,7 +148,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
                   }
                 })}
                 buttonType="none"
-                disabled={false}
+                disabled={!materialsToDelete.length}
                 collapsible={false}
                 size="small"
                 variant="filled"

@@ -10,6 +10,7 @@ import reservationMaterialDetailsProps from "../../core/storybook/reservationMat
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
 import acceptModalArgs from "../../core/storybook/acceptFeesModalArgs";
+import reservationListArgs from "../../core/storybook/reservationListArgs";
 
 export default {
   title: "Apps / Dashboard",
@@ -23,13 +24,10 @@ export default {
     ...acceptModalArgs,
     ...materialDetailsModalArgs,
     ...deleteReservationModalArgs,
+    ...reservationListArgs,
     // Urls
     physicalLoansUrl: {
       defaultValue: "/user/me/loans",
-      control: { type: "text" }
-    },
-    feesUrl: {
-      defaultValue: "/user/me/fees",
       control: { type: "text" }
     },
     reservationsUrl: {
@@ -152,6 +150,10 @@ export default {
     },
     materialAndAuthorText: {
       defaultValue: "and",
+      control: { type: "text" }
+    },
+    reservationListLoanBeforeText: {
+      defaultValue: "Borrow before @date",
       control: { type: "text" }
     },
     // Config

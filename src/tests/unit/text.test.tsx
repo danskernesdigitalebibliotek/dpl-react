@@ -25,7 +25,7 @@ const Wrapper = ({ children }: { children: ReactNode }) => (
   <Provider store={store}> {children} </Provider>
 );
 
-test("Should strings with placeholders", () => {
+test("Should handle strings with placeholders", () => {
   const { result } = renderHook(() => useText(), { wrapper: Wrapper });
   // We name it t, because that is how we normally use it in the code.
   const t = result.current;

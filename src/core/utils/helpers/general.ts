@@ -20,7 +20,6 @@ import { dashboardReservedApiValueText } from "../../configuration/api-strings.j
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
 import { store } from "../../store";
-import { AddressV2 } from "../../fbs/model";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -572,9 +571,6 @@ export const getReservablePidsFromAnotherLibrary = (
 
   return matchingManifestations.map(({ pid }) => pid);
 };
-
-export const getPatronAddress = (address: AddressV2) =>
-  `${address.street}, ${address.postalCode} ${address.city}`;
 
 export default {};
 

@@ -11,7 +11,6 @@ import { useText } from "../../../../core/utils/text";
 import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
 import PhysicalListDetails from "./physical-list-details";
 import { useConfig } from "../../../../core/utils/config";
-import { isConfigValueOne } from "../../../../components/reservation/helper";
 import MaterialButtonLoading from "../../../../components/material/material-buttons/generic/MaterialButtonLoading";
 import { useComplexSearchWithPaginationQuery } from "../../../../core/dbc-gateway/generated/graphql";
 import {
@@ -35,14 +34,15 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   const { state, identifier, numberInQueue } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
-  const allowRemoveReadyReservation = config(
-    "reservationDetailAllowRemoveReadyReservationsConfig"
-  );
+  const { allowRemoveReadyReservations } = config<{
+    allowRemoveReadyReservations: boolean;
+  }>("reservationDetailsConfig", {
+    transformer: "jsonParse"
+  });
   const isDigital = !!reservation.identifier;
   const readyForPickupState = "readyForPickup";
   const allowUserRemoveReadyReservations =
-    (state === readyForPickupState &&
-      isConfigValueOne(allowRemoveReadyReservation)) ||
+    (state === readyForPickupState && allowRemoveReadyReservations) ||
     state !== readyForPickupState;
 
   const { data: complexSearchData, isLoading: isLoadingComplexSearch } =
