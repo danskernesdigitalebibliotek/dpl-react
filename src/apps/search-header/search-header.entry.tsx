@@ -13,6 +13,7 @@ export interface SearchHeaderTextProps {
   stringSuggestionAuthorText?: string;
   stringSuggestionWorkText?: string;
   stringSuggestionTopicText?: string;
+  searchHeaderDropdownText: string;
   etAlText?: string;
   autosuggestBookCategoryText: string;
   autosuggestEbookCategoryText: string;
@@ -24,6 +25,7 @@ export interface SearchHeaderTextProps {
   inText: string;
   loadingText: string;
   searchNoValidCharactersErrorText: string;
+  headerDropdownItemAdvancedSearchText: string;
 }
 
 export interface SearchHeaderEntryProps

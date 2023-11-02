@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCombobox, UseComboboxStateChange } from "downshift";
+import { useClickAway } from "react-use";
 import {
   SuggestionsFromQueryStringQuery,
   SuggestionType,
@@ -10,6 +11,7 @@ import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { useUrls } from "../../core/utils/url";
 import {
+  constructAdvancedSearchUrl,
   constructMaterialUrl,
   constructSearchUrl,
   constructSearchUrlWithFilter,
@@ -24,6 +26,7 @@ import {
 import { findNonWorkSuggestion } from "./helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 
 const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
@@ -49,8 +52,9 @@ const SearchHeader: React.FC = () => {
     { q },
     { enabled: q.length >= minimalQueryLength }
   );
-
-  const { searchUrl, materialUrl } = useUrls();
+  const [isHeaderDropdownOpen, setIsHeaderDropdownOpen] =
+    useState<boolean>(false);
+  const { searchUrl, materialUrl, advancedSearchUrl } = useUrls();
   const t = useText();
   const autosuggestCategoryList: AutosuggestCategoryList[] = [
     {
@@ -311,8 +315,7 @@ const SearchHeader: React.FC = () => {
     highlightedIndex,
     getItemProps,
     getInputProps,
-    getLabelProps,
-    getComboboxProps
+    getLabelProps
   } = useCombobox({
     isOpen: isAutosuggestOpen,
     items: orderedData,
@@ -324,18 +327,51 @@ const SearchHeader: React.FC = () => {
     onHighlightedIndexChange: handleHighlightedIndexChange
   });
 
+  const headerDropdownRef = React.useRef<HTMLButtonElement>(null);
+
+  useClickAway(headerDropdownRef, () => {
+    // We use a timeout so that when the user clicks on the dropdown arrow as
+    // the dropdown is open, the state first needs to change through the
+    // dropdown arrow button (icon in the search bar component)
+    setTimeout(() => {
+      setIsHeaderDropdownOpen(false);
+    }, 100);
+  });
+
+  const [redirectUrl, setRedirectUrl] = useState<URL>(
+    constructSearchUrl(searchUrl, q)
+  );
+
+  useEffect(() => {
+    // We redirect to Advanced search results instead of regular search results if:
+    // - the query is wrapped in double quotes
+    // - the query is not just empty double quotes
+    if (
+      q.trim().charAt(0) === '"' &&
+      q.trim().charAt(q.length - 1) === '"' &&
+      q.trim() !== '""' &&
+      q.trim() !== '"'
+    ) {
+      setRedirectUrl(constructAdvancedSearchUrl(advancedSearchUrl, q));
+    } else {
+      setRedirectUrl(constructSearchUrl(searchUrl, q));
+    }
+  }, [q, advancedSearchUrl, searchUrl]);
+
   return (
-    <form
-      className="header__menu-second"
-      action={String(constructSearchUrl(searchUrl, qWithoutQuery))}
-    >
+    <div className="header__menu-second">
       {/* The downshift combobox uses prop spreading by design */}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <div className="header__menu-search" {...getComboboxProps()}>
+      <div className="header__menu-search">
         <SearchBar
+          q={q}
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}
+          qWithoutQuery={qWithoutQuery}
           setQWithoutQuery={setQWithoutQuery}
+          isHeaderDropdownOpen={isHeaderDropdownOpen}
+          setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
+          redirectUrl={redirectUrl}
         />
         <Autosuggest
           textData={textData}
@@ -349,8 +385,16 @@ const SearchHeader: React.FC = () => {
           autosuggestCategoryList={autosuggestCategoryList}
           isLoading={isLoading}
         />
+        {isHeaderDropdownOpen && (
+          <HeaderDropdown
+            redirectTo={redirectTo}
+            setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
+            headerDropdownRef={headerDropdownRef}
+            advancedSearchUrl={advancedSearchUrl}
+          />
+        )}
       </div>
-    </form>
+    </div>
   );
 };
 
