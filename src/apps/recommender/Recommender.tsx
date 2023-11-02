@@ -82,8 +82,7 @@ const Recommender: FC = () => {
       {loanForRecommender && loanForRecommender.faust && (
         <RecommendList
           titleKey="recommenderTitleLoansText"
-          faust={loanForRecommender.faust}
-          identifier={loanForRecommender.identifier}
+          item={loanForRecommender}
           loanOrReservationFaust={loanForRecommender.faust}
         />
       )}
@@ -92,8 +91,7 @@ const Recommender: FC = () => {
         reservationForRecommender.faust && (
           <RecommendList
             titleKey="recommenderTitleReservationsText"
-            faust={reservationForRecommender.faust}
-            identifier={reservationForRecommender.identifier}
+            item={reservationForRecommender}
             loanOrReservationFaust={reservationForRecommender.faust}
           />
         )}

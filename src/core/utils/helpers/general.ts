@@ -210,10 +210,8 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
   return Number(pageSize);
 };
 
-export const getRenewableMaterials = (list: LoanType[]) => {
-  return list
-    .filter(({ isRenewable }) => isRenewable)
-    .map(({ loanId }) => String(loanId)) as string[];
+export const getRenewableMaterials = (list: LoanType[]): ListType[] => {
+  return list.filter(({ isRenewable }) => isRenewable);
 };
 
 export const getAmountOfRenewableLoans = (list: LoanType[]) => {

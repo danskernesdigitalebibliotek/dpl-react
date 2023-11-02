@@ -1,18 +1,19 @@
 import React, { FC, useState, useEffect } from "react";
 import SelectableMaterial from "../../apps/loan-list/materials/selectable-material/selectable-material";
 import { useText } from "../../core/utils/text";
-import { LoanType } from "../../core/utils/types/loan-type";
+import { isLoanType, LoanType } from "../../core/utils/types/loan-type";
 import usePager from "../result-pager/use-pager";
 import StatusMessage from "../../apps/loan-list/materials/selectable-material/StatusMessage";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
 import { formatDate } from "../../core/utils/helpers/date";
+import { ListType } from "../../core/utils/types/list-type";
 
 export interface GroupModalLoansListProps {
   materials: LoanType[];
   pageSize: number;
-  selectedMaterials: string[];
-  selectMaterials: (materialIds: string[]) => void;
-  openDetailsModal: (modalId: string) => void;
+  selectedMaterials: ListType[];
+  selectMaterials: (materialIds: ListType[]) => void;
+  openDetailsModal: (loan: LoanType) => void;
 }
 
 const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
@@ -33,14 +34,14 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
     setDisplayedMaterials([...materials].splice(0, itemsShown));
   }, [itemsShown, materials]);
 
-  const onMaterialChecked = (id: string) => {
+  const onMaterialChecked = (item: ListType) => {
     const selectedMaterialsCopy = [...selectedMaterials];
 
-    const indexOfItemToRemove = selectedMaterials.indexOf(id);
+    const indexOfItemToRemove = selectedMaterials.indexOf(item);
     if (indexOfItemToRemove > -1) {
       selectedMaterialsCopy.splice(indexOfItemToRemove, 1);
     } else {
-      selectedMaterialsCopy.push(id);
+      selectedMaterialsCopy.push(item);
     }
     selectMaterials(selectedMaterialsCopy);
   };
@@ -77,16 +78,16 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
                 renewalStatusList={loanType.renewalStatusList}
               />
             }
-            faust={loanType.faust}
-            identifier={loanType.identifier}
-            openDetailsModal={openDetailsModal}
+            item={loanType}
+            openDetailsModal={(item: ListType) => {
+              if (isLoanType(item)) {
+                openDetailsModal(item);
+              }
+            }}
             key={loanType.faust}
-            selected={Boolean(
-              selectedMaterials?.indexOf(String(loanType.loanId) || "") > -1
-            )}
+            selected={selectedMaterials.includes(loanType)}
             onMaterialChecked={onMaterialChecked}
             disabled={!loanType.isRenewable}
-            id={String(loanType.loanId)}
           />
         ))}
       </ul>

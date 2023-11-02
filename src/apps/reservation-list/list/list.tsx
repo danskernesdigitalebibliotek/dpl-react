@@ -65,8 +65,7 @@ const List: FC<ListProps> = ({
                   focused={firstInNewPage === i}
                   openReservationDetailsModal={openReservationDetailsModal}
                   key={reservation.identifier || reservation.faust}
-                  identifier={reservation.identifier}
-                  faust={reservation.faust}
+                  item={reservation}
                   reservation={reservation}
                 />
               ))}

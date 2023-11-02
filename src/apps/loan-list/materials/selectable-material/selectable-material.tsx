@@ -11,13 +11,14 @@ import ReservationInfo from "../../../reservation-list/reservation-material/rese
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import ArrowButton from "../../../../components/Buttons/ArrowButton";
 import { isDigital } from "../../utils/helpers";
+import { listId, ListType } from "../../../../core/utils/types/list-type";
 
 interface SelectableMaterialProps {
   identifier?: string | null;
   disabled?: boolean;
-  id?: string | null;
-  onMaterialChecked?: (id: string) => void;
-  openDetailsModal?: (modalId: string) => void;
+  item?: ListType;
+  onMaterialChecked?: (listItem: ListType) => void;
+  openDetailsModal?: (item: ListType) => void;
   selected?: boolean;
   statusMessageComponentMobile: ReactNode;
   statusMessageComponentDesktop: ReactNode;
@@ -32,7 +33,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   onMaterialChecked,
   selected,
   openDetailsModal,
-  id,
+  item,
   statusMessageComponentMobile,
   statusMessageComponentDesktop,
   statusBadgeComponent,
@@ -41,7 +42,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
 }) => {
   const t = useText();
 
-  if (!id) return null;
+  if (!item) return null;
   const {
     authorsShort = "",
     materialType,
@@ -55,12 +56,12 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   // * We cannot make a container for the rest of the content with the handlers because it breaks the flexbox layout.
   const handleOnClick = () => {
     if (openDetailsModal) {
-      openDetailsModal(id);
+      openDetailsModal(item);
     }
   };
   const handleOnKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (openDetailsModal && (e.key === "Enter" || e.key === "Space")) {
-      openDetailsModal(id);
+      openDetailsModal(item);
     }
   };
 
@@ -75,8 +76,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           <div className="list-materials__checkbox mr-16">
             {!disabled && title && (
               <CheckBox
-                onChecked={() => onMaterialChecked(id)}
-                id={id}
+                onChecked={() => onMaterialChecked(item)}
+                id={listId(item)}
                 selected={selected}
                 disabled={disabled}
                 focused={focused}
@@ -86,7 +87,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
                 hideLabel
               />
             )}
-            {disabled && <CheckBox id={id} disabled={disabled} />}
+            {disabled && <CheckBox id={listId(item)} disabled={disabled} />}
           </div>
         )}
         <div
@@ -127,6 +128,25 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
                 isDigital={isDigital(displayedMaterial)}
               />
             )}
+            {openDetailsModal && (
+              <button
+                type="button"
+                // This is to handle focus when more items are loaded via pagination
+                // eslint-disable-next-line jsx-a11y/no-autofocus
+                autoFocus={disabled && focused}
+                className="list-reservation__note"
+                onClick={() => openDetailsModal(item)}
+                aria-label={
+                  title
+                    ? t("groupModalGoToMaterialAriaLabelText", {
+                        placeholders: { "@label": title }
+                      })
+                    : ""
+                }
+              >
+                {t("groupModalGoToMaterialText")}
+              </button>
+            )}
           </div>
         </div>
         {openDetailsModal && (
@@ -138,9 +158,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             tabIndex={0}
           >
             <ArrowButton
-              arrowLabelledBy={`${id}`}
+              arrowLabelledBy={listId(item)}
               cursorPointer
-              clickEventHandler={() => openDetailsModal(id)}
+              clickEventHandler={() => openDetailsModal(item)}
             />
           </div>
         )}

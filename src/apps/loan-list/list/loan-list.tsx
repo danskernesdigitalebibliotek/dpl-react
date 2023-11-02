@@ -27,7 +27,9 @@ import {
 import MaterialDetails, {
   constructMaterialDetailsModalId
 } from "../modal/material-details";
-import MaterialDetailsModal from "../modal/material-details-modal";
+import MaterialDetailsModal, {
+  loanDetailsModalId
+} from "../modal/material-details-modal";
 import {
   getDetailsModalId,
   containsDueDateModalQueryParam,
@@ -90,11 +92,10 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   }, [acceptModal, open]);
 
   const openLoanDetailsModal = useCallback(
-    (modalId: string) => {
-      setModalDetailsId(modalId);
-      open(`${loanDetails}${modalId}`);
+    (loan: LoanType) => {
+      open(loanDetailsModalId(loan));
     },
-    [loanDetails, open]
+    [open]
   );
 
   const openDueDateModal = useCallback(
@@ -204,16 +205,20 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       within the components, it is not possible to hide the loan list when a modal is present
       which is necessary to comply with WCAG (so the screen readers cannot "catch" focusable html
       elements below the modal) */}
-      <MaterialDetailsModal
-        modalId={constructMaterialDetailsModalId(loanDetails, modalDetailsId)}
-      >
-        <MaterialDetails
-          faust={modalLoan?.faust}
-          identifier={modalLoan?.identifier}
-          loan={modalLoan as LoanType}
+      {modalLoan && (
+        <MaterialDetailsModal
           modalId={constructMaterialDetailsModalId(loanDetails, modalDetailsId)}
-        />
-      </MaterialDetailsModal>
+        >
+          <MaterialDetails
+            item={modalLoan}
+            loan={modalLoan as LoanType}
+            modalId={constructMaterialDetailsModalId(
+              loanDetails,
+              modalDetailsId
+            )}
+          />
+        </MaterialDetailsModal>
+      )}
       {loansPhysical && (
         <LoansGroupModal
           accepted={accepted}

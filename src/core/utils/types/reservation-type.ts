@@ -16,3 +16,29 @@ interface Reservation extends ListType {
 }
 
 export type ReservationType = Nullable<Partial<Reservation>>;
+
+type NonNullableFields<T> = {
+  [P in keyof T]: NonNullable<T[P]>;
+};
+
+export type PhysicalReservationType = ReservationType &
+  NonNullableFields<Required<Pick<ListType, "faust" | "reservationIds">>>;
+
+export type DigitalReservationType = ReservationType &
+  NonNullableFields<Required<Pick<ListType, "identifier" | "reservationId">>>;
+
+export function isPhysicalReservation(
+  reservation: ReservationType
+): reservation is PhysicalReservationType {
+  return (
+    !!reservation.faust &&
+    !!reservation.reservationIds &&
+    reservation.reservationIds.length > 0
+  );
+}
+
+export function isDigitalReservation(
+  reservation: ReservationType
+): reservation is DigitalReservationType {
+  return !!reservation.identifier;
+}

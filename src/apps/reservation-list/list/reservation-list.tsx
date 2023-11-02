@@ -27,7 +27,7 @@ import {
   useModalButtonHandler,
   ModalIdsProps
 } from "../../../core/utils/modal";
-import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
+import MaterialDetailsModal, { reservationDetailsModalId } from "../../loan-list/modal/material-details-modal";
 import ReservationDetails from "../modal/reservation-details/reservation-details";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { getDetailsModalId } from "../../../core/utils/helpers/modal-helpers";
@@ -212,11 +212,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const openReservationDetailsModal = useCallback(
     (reservationInput: ReservationType) => {
       setReservation(reservationInput);
-      open(
-        `${reservationDetails}${
-          reservationInput.faust || reservationInput.identifier
-        }`
-      );
+      open(reservationDetailsModalId(reservationInput));
     },
     [open, reservationDetails]
   );
@@ -296,10 +292,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
           modalId={`${deleteReservation}${
             reservationToDelete.reservationId || reservationToDelete.identifier
           }`}
-          reservations={[
-            reservationToDelete.identifier ||
-              String(reservationToDelete.reservationId)
-          ]}
+          reservations={[reservationToDelete]}
         />
       )}
       {reservation && (
@@ -310,8 +303,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         >
           <ReservationDetails
             openReservationDeleteModal={openReservationDeleteModal}
-            faust={reservation.faust}
-            identifier={reservation.identifier}
+            item={reservation}
             reservation={reservation}
           />
         </MaterialDetailsModal>

@@ -14,8 +14,8 @@ import useReservations from "../../../core/utils/useReservations";
 interface ReservationGroupModalProps {
   pageSize: number;
   modalId: string;
-  setReservationsToDelete: (reservations: string[]) => void;
-  openDetailsModal: (modalId: string) => void;
+  setReservationsToDelete: (reservations: ReservationType[]) => void;
+  openDetailsModal: (reservation: ReservationType) => void;
 }
 
 const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
@@ -27,7 +27,9 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   const { fbs, publizon } = useReservations();
   const t = useText();
   const { reservationsReady, reservationsQueued } = getModalIds();
-  const [materialsToDelete, setMaterialsToDelete] = useState<string[]>([]);
+  const [materialsToDelete, setMaterialsToDelete] = useState<ReservationType[]>(
+    []
+  );
 
   let physicalReservations: ReservationType[] = [];
   let digitalReservations: ReservationType[] = [];
@@ -49,14 +51,9 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   const selectableReservations = [
     ...physicalReservations,
     ...digitalReservations
-  ]
-    .map(
-      ({ identifier, reservationId }) =>
-        identifier || String(reservationId) || ""
-    )
-    .filter((id) => id !== "");
+  ];
 
-  const selectMaterials = (materialIds: string[]) => {
+  const selectMaterials = (materialIds: ReservationType[]) => {
     setMaterialsToDelete(materialIds);
   };
 

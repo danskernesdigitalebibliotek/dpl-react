@@ -10,7 +10,10 @@ import { yesterday, soon, longer } from "../util/helpers";
 import NotificationColumn from "./NotificationColumn";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 import LoansGroupModal from "../../../components/GroupModal/LoansGroupModal";
-import MaterialDetailsModal from "../../loan-list/modal/material-details-modal";
+import MaterialDetailsModal, {
+  loanDetailsModalId,
+  reservationDetailsModalId
+} from "../../loan-list/modal/material-details-modal";
 import MaterialDetails, {
   constructMaterialDetailsModalId
 } from "../../loan-list/modal/material-details";
@@ -22,6 +25,7 @@ import Notifications from "./Notifications";
 import AcceptModal from "../../../components/accept-fees-modal/AcceptFeesModal";
 import useReservations from "../../../core/utils/useReservations";
 import useLoans from "../../../core/utils/useLoans";
+import { ReservationType } from "../../../core/utils/types/reservation-type";
 
 export interface DashboardNotificationListProps {
   pageSize: number;
@@ -53,7 +57,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     string | null
   >(null);
   const [reservationsForDeleting, setReservationsForDeleting] = useState<
-    string[]
+    ReservationType[]
   >([]);
   const [loansToDisplay, setLoansToDisplay] = useState<LoanType[] | null>(null);
   const [modalHeader, setModalHeader] = useState("");
@@ -63,7 +67,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     loanDetails,
     acceptModal,
     dueDateModal,
-    reservationDetails,
     deleteReservation,
     deleteReservations
   } = getModalIds();
@@ -88,19 +91,17 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const { physicalLoansUrl, reservationsUrl } = useUrls();
 
   const openLoanDetailsModal = useCallback(
-    (modalId: string) => {
-      setModalLoanDetailsId(modalId);
-      open(`${loanDetails}${modalId}`);
+    (loan: LoanType) => {
+      open(loanDetailsModalId(loan));
     },
-    [loanDetails, open]
+    [open]
   );
 
   const openReservationDetailsModal = useCallback(
-    (modalId: string) => {
-      setModalReservationDetailsId(modalId);
-      open(`${reservationDetails}${modalId}`);
+    (reservation: ReservationType) => {
+      open(reservationDetailsModalId(reservation));
     },
-    [open, reservationDetails]
+    [open]
   );
 
   const modalLoan = loans.find(
@@ -123,7 +124,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     }
   }, [deleteReservation, open, reservationForModal]);
 
-  const setReservationsToDelete = (resForDeleting: string[]) => {
+  const setReservationsToDelete = (resForDeleting: ReservationType[]) => {
     setReservationsForDeleting(resForDeleting);
     open(deleteReservations as string);
   };
@@ -166,7 +167,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       showNotificationDot: true,
       notificationClickEvent: () =>
         loansOverdue.length === 1
-          ? openLoanDetailsModal(String(loansOverdue[0].loanId))
+          ? openLoanDetailsModal(loansOverdue[0])
           : openDueDateModal(yesterday)
     },
     {
@@ -178,7 +179,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       showNotificationDot: true,
       notificationClickEvent: () =>
         loansSoonOverdue.length === 1
-          ? openLoanDetailsModal(String(loansSoonOverdue[0].loanId))
+          ? openLoanDetailsModal(loansSoonOverdue[0])
           : openDueDateModal(soon)
     },
     {
@@ -189,7 +190,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       showNotificationDot: false,
       notificationClickEvent: () =>
         loansFarFromOverdue.length === 1
-          ? openLoanDetailsModal(String(loansFarFromOverdue[0].loanId))
+          ? openLoanDetailsModal(loansFarFromOverdue[0])
           : openDueDateModal(longer)
     }
   ];
@@ -208,9 +209,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       color: "info",
       notificationClickEvent: () =>
         reservationsReadyToLoan.length === 1
-          ? openReservationDetailsModal(
-              String(reservationsReadyToLoan[0].faust)
-            )
+          ? openReservationDetailsModal(reservationsReadyToLoan[0])
           : openModalHandler(reservationsReadyID as string)
     },
     {
@@ -221,11 +220,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       showNotificationDot: false,
       notificationClickEvent: () =>
         reservationsQueued.length === 1
-          ? openReservationDetailsModal(
-              String(
-                reservationsQueued[0].identifier || reservationsQueued[0].faust
-              )
-            )
+          ? openReservationDetailsModal(reservationsQueued[0])
           : openModalHandler(reservationsQueueID as string)
     }
   ];
@@ -265,22 +260,23 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
         />
       )}
 
-      <MaterialDetailsModal
-        modalId={constructMaterialDetailsModalId(
-          loanDetails,
-          modalLoanDetailsId
-        )}
-      >
-        <MaterialDetails
-          faust={modalLoan?.faust}
-          identifier={modalLoan?.identifier}
-          loan={modalLoan as LoanType}
+      {modalLoan && (
+        <MaterialDetailsModal
           modalId={constructMaterialDetailsModalId(
             loanDetails,
             modalLoanDetailsId
           )}
-        />
-      </MaterialDetailsModal>
+        >
+          <MaterialDetails
+            item={modalLoan}
+            loan={modalLoan as LoanType}
+            modalId={constructMaterialDetailsModalId(
+              loanDetails,
+              modalLoanDetailsId
+            )}
+          />
+        </MaterialDetailsModal>
+      )}
       {dueDate && loans && loansToDisplay && (
         <LoansGroupModal
           accepted={accepted}
@@ -307,11 +303,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           modalId={`${deleteReservation}${
             reservationForModal.reservationId || reservationForModal.identifier
           }`}
-          reservations={[
-            String(reservationForModal.reservationId) ||
-              reservationForModal.identifier ||
-              ""
-          ]}
+          reservations={[reservationForModal]}
         />
       )}
       {reservationsForDeleting && (
@@ -322,12 +314,11 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       )}
       {reservationForModal && (
         <MaterialDetailsModal
-          modalId={`${reservationDetails}${String(modalReservationDetailsId)}`}
+          modalId={reservationDetailsModalId(reservationForModal)}
         >
           <ReservationDetails
             openReservationDeleteModal={openReservationDeleteModal}
-            faust={reservationForModal.faust}
-            identifier={reservationForModal.identifier}
+            item={reservationForModal}
             reservation={reservationForModal}
           />
         </MaterialDetailsModal>

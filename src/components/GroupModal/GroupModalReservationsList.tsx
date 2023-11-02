@@ -4,15 +4,16 @@ import { useText } from "../../core/utils/text";
 import usePager from "../result-pager/use-pager";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
+import { ListType } from "../../core/utils/types/list-type";
 
 export interface GroupModalReservationsListProps {
   materials: ReservationType[];
   pageSize: number;
-  selectedMaterials: string[];
+  selectedMaterials: ReservationType[];
   header: string;
-  selectMaterials: (materialIds: string[]) => void;
+  selectMaterials: (materialIds: ListType[]) => void;
   marginBottonPager: boolean;
-  openDetailsModal: (modalId: string) => void;
+  openDetailsModal: (reservation: ReservationType) => void;
 }
 
 const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
@@ -37,14 +38,14 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
     setDisplayedMaterials([...materials].splice(0, itemsShown));
   }, [itemsShown, materials]);
 
-  const onMaterialChecked = (id: string) => {
+  const onMaterialChecked = (item: ListType) => {
     const selectedMaterialsCopy = [...selectedMaterials];
 
-    const indexOfItemToRemove = selectedMaterials.indexOf(id);
+    const indexOfItemToRemove = selectedMaterials.indexOf(item);
     if (indexOfItemToRemove > -1) {
       selectedMaterialsCopy.splice(indexOfItemToRemove, 1);
     } else {
-      selectedMaterialsCopy.push(id);
+      selectedMaterialsCopy.push(item);
     }
     selectMaterials(selectedMaterialsCopy);
   };
@@ -67,6 +68,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
             <>
               {(identifier || reservationId || faust) && (
                 <SelectableMaterial
+                  item={material}
                   displayedMaterial={material}
                   focused={i === firstInNewPage}
                   statusBadgeComponent={
@@ -87,16 +89,9 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                   }
                   openDetailsModal={openDetailsModal}
                   key={faust || identifier}
-                  selected={Boolean(
-                    selectedMaterials?.indexOf(
-                      identifier || String(reservationId) || ""
-                    ) > -1
-                  )}
+                  selected={selectedMaterials?.includes(material)}
                   onMaterialChecked={onMaterialChecked}
                   disabled={false}
-                  id={identifier || String(reservationId)}
-                  faust={faust}
-                  identifier={identifier}
                   statusMessageComponentMobile={null}
                   statusMessageComponentDesktop={null}
                 />
