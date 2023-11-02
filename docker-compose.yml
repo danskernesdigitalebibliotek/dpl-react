@@ -16,7 +16,7 @@ services:
       VIRTUAL_PORT: 9000
 
   wiremock-fbs:
-    image: wiremock/wiremock:2.32.0-alpine
+    image: wiremock/wiremock:2.32.0
     command: "--enable-stub-cors  --global-response-templating" # Enable automatic sending of cross-origin (CORS) response headers.
     ports:
       - "8080"
@@ -27,7 +27,7 @@ services:
       VIRTUAL_PORT: 8080
 
   wiremock-publizon:
-    image: wiremock/wiremock:2.32.0-alpine
+    image: wiremock/wiremock:2.32.0
     command: "--enable-stub-cors  --global-response-templating" # Enable automatic sending of cross-origin (CORS) response headers.
     ports:
       - "8080"
