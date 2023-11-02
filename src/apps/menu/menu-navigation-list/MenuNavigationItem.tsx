@@ -45,7 +45,9 @@ const MenuNavigationItem: FC<MenuNavigationItemProps> = ({
           {name}
         </a>
         {dataMap[dataId] !== 0 && (
-          <span className="link-filters__counter">{dataMap[dataId]}</span>
+          <span className="link-filters__counter" aria-hidden="true">
+            {dataMap[dataId]}
+          </span>
         )}
       </div>
     </li>
