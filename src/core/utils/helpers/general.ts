@@ -325,7 +325,7 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
+export const getQueuedReservations = (list: ReservationType[]) => {
   return [...list].filter(
     ({ state }) => state === dashboardReservedApiValueText
   );
