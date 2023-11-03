@@ -233,12 +233,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     setAccepted(false);
   };
 
-  const isReservationNotReadyForLoan =
-    reservationForModal &&
-    readyToLoanReservations.some(
-      ({ faust }) => faust !== reservationForModal.faust
-    );
-
   return (
     <>
       <div className="status-userprofile">
@@ -331,7 +325,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           modalId={`${reservationDetails}${String(modalReservationDetailsId)}`}
         >
           <ReservationDetails
-            isPossibleToChangeReservationDetails={isReservationNotReadyForLoan}
             openReservationDeleteModal={openReservationDeleteModal}
             faust={reservationForModal.faust}
             identifier={reservationForModal.identifier}

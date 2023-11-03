@@ -30,13 +30,14 @@ import ReservationFormListItem from "../../../../components/reservation/Reservat
 import NoInterestAfterModal from "../../../../components/reservation/forms/NoInterestAfterModal";
 import { RequestStatus } from "../../../../core/utils/types/request";
 import { formatDate } from "../../../../core/utils/helpers/date";
+import { getReadyForPickup } from "../../utils/helpers";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
-  isPossibleToChangeReservationDetails?: boolean | null;
 }
 
 const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
+  reservation,
   reservation: {
     numberInQueue,
     pickupBranch,
@@ -45,8 +46,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     dateOfReservation,
     pickupNumber,
     reservationId
-  },
-  isPossibleToChangeReservationDetails = true
+  }
 }) => {
   const config = useConfig();
   const t = useText();
@@ -77,6 +77,8 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     branches,
     blacklistBranches
   );
+
+  const isReadyForPickup = getReadyForPickup([reservation]).length > 0;
 
   const saveChanges = () => {
     setReservationStatus("pending");
@@ -141,11 +143,9 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
             changeHandler={openModal("pickup")}
             buttonAriaLabel={t("changePickupLocationText")}
             subText={pickupNumber ?? ""}
-            isPossibleToChangeReservationDetails={
-              isPossibleToChangeReservationDetails
-            }
+            isPossibleToChangeReservationDetails={!isReadyForPickup}
           />
-          {isPossibleToChangeReservationDetails && (
+          {!isReadyForPickup && (
             <PickupModal
               branches={whitelistBranches}
               defaultBranch={pickupBranch}
@@ -169,11 +169,9 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
             }
             changeHandler={openModal("interestPeriod")}
             buttonAriaLabel={t("changeInterestPeriodText")}
-            isPossibleToChangeReservationDetails={
-              isPossibleToChangeReservationDetails
-            }
+            isPossibleToChangeReservationDetails={!isReadyForPickup}
           />
-          {isPossibleToChangeReservationDetails && (
+          {!isReadyForPickup && (
             <NoInterestAfterModal
               selectedInterest={selectedInterest ?? 90}
               setSelectedInterest={setSelectedInterest}
