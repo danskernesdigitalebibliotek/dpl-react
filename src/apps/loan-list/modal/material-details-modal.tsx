@@ -2,11 +2,11 @@ import React, { FC, ReactNode } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
+import { LoanType } from "../../../core/utils/types/loan-type";
 import {
   constructModalId,
   getModalIds
-} from "../../../core/utils/helpers/general";
-import { LoanType } from "../../../core/utils/types/loan-type";
+} from "../../../core/utils/helpers/modal-helpers";
 
 interface MaterialDetailsModalProps {
   modalId?: string;

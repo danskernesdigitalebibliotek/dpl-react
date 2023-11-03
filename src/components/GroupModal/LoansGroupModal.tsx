@@ -4,7 +4,6 @@ import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import GroupModalContent from "./GroupModalContent";
 import {
-  getModalIds,
   getAmountOfRenewableLoans,
   getRenewableMaterials,
   loansOverdue,
@@ -19,6 +18,7 @@ import { RenewedLoanV2 } from "../../core/fbs/model/renewedLoanV2";
 import RenewalModalMessage from "../renewal/RenewalModalMessage";
 import { succeededRenewalCount } from "../../core/utils/helpers/renewal";
 import { ListType } from "../../core/utils/types/list-type";
+import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 
 interface LoansGroupModalProps {
   dueDate?: string | null;

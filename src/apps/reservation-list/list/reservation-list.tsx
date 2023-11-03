@@ -8,10 +8,7 @@ import {
   getReservedPhysical,
   getReadyForPickup
 } from "../utils/helpers";
-import {
-  getModalIds,
-  getScrollClass
-} from "../../../core/utils/helpers/general";
+import { getScrollClass } from "../../../core/utils/helpers/general";
 import { useGetV1UserReservations } from "../../../core/publizon/publizon";
 import {
   mapFBSReservationGroupToReservationType,
@@ -30,7 +27,10 @@ import {
 import MaterialDetailsModal, { reservationDetailsModalId } from "../../loan-list/modal/material-details-modal";
 import ReservationDetails from "../modal/reservation-details/reservation-details";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
-import { getDetailsModalId } from "../../../core/utils/helpers/modal-helpers";
+import {
+  getDetailsModalId,
+  getModalIds
+} from "../../../core/utils/helpers/modal-helpers";
 import { getFromListByKey } from "../../loan-list/utils/helpers";
 import { usePatronData } from "../../../core/utils/helpers/user";
 import useGetReservationGroups from "../../../core/utils/useGetReservationGroups";

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import StackableMaterial from "../materials/stackable-material/stackable-material";
 import { ListView } from "../../../core/utils/types/list-view";
-import { LoanType } from "../../../core/utils/types/loan-type";
+import { loanId, LoanType } from "../../../core/utils/types/loan-type";
 import { useText } from "../../../core/utils/text";
 
 interface LoanListItemProps {
@@ -74,7 +74,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
               openLoanDetailsModal={openLoanDetailsModal}
               item={loan}
               loanId={loan.loanId}
-              key={loan.faust || loan.identifier}
+              key={loanId(loan)}
               loan={loan}
               // Zero, as it is not stacked
               additionalMaterials={0}

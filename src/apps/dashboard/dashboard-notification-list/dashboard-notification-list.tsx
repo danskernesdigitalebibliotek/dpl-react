@@ -1,8 +1,4 @@
 import React, { FC, useState, useCallback } from "react";
-import {
-  getModalIds,
-  constructModalId
-} from "../../../core/utils/helpers/general";
 import { useText } from "../../../core/utils/text";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { useUrls } from "../../../core/utils/url";
@@ -26,6 +22,10 @@ import AcceptModal from "../../../components/accept-fees-modal/AcceptFeesModal";
 import useReservations from "../../../core/utils/useReservations";
 import useLoans from "../../../core/utils/useLoans";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
+import {
+  constructModalId,
+  getModalIds
+} from "../../../core/utils/helpers/modal-helpers";
 
 export interface DashboardNotificationListProps {
   pageSize: number;

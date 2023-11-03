@@ -2,11 +2,11 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import ReservationList from "./reservation-list.entry";
-import { getModalIds } from "../../../core/utils/helpers/general";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import blockedArgs from "../../../core/storybook/blockedArgs";
 import reservationMaterialDetailsProps from "../../../core/storybook/reservationMaterialDetailsArgs";
 import deleteReservationModalArgs from "../../../core/storybook/deleteReservationModalArgs";
+import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
 export default {
   title: "Apps / Reservation list",
