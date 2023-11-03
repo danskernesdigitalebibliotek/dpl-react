@@ -8,7 +8,7 @@ interface ReservationFormListItemProps {
   subText?: string;
   changeHandler?: () => void;
   buttonAriaLabel?: string;
-  isPossibleToChangeReservationDetails?: boolean | null;
+  isPossibleToChangeReservationDetails?: boolean;
 }
 
 const ReservationFormListItem: React.FC<ReservationFormListItemProps> = ({
