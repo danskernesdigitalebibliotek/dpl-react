@@ -66,7 +66,12 @@ function Modal({
   };
 
   return (
-    <FocusTrap>
+    <FocusTrap
+      focusTrapOptions={{
+        // set fallbackFocus when running vitest to avoid focus trap errors
+        fallbackFocus: process.env.VITEST ? "body" : undefined
+      }}
+    >
       <div>
         {/* The backdrop doesn't have a role or keyboard listener because it barely duplicates
           the close button's functionality which possesses both. */}
