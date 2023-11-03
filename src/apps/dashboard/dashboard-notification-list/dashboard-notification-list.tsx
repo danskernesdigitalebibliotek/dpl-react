@@ -100,7 +100,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const reservationForModal = allReservations.find(
     ({ faust, reservationId }) =>
       String(modalReservationDetailsId) === String(faust) ||
-      String(reservationId)
+      String(modalReservationDetailsId) === String(reservationId)
   );
 
   const openReservationDeleteModal = useCallback(() => {
