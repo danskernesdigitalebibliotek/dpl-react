@@ -1,6 +1,6 @@
 import { useGetReservationsV2 } from "../fbs/fbs";
 import { useGetV1UserReservations } from "../publizon/publizon";
-import { getPhysicalQueuedReservations } from "./helpers/general";
+import { getQueuedReservations } from "./helpers/general";
 import {
   mapFBSReservationToReservationType,
   mapPublizonReservationToReservationType
@@ -36,10 +36,8 @@ const useReservations = () => {
   ];
 
   // Combine "still in queue" reservations from both FBS and Publizon
-  const queuedFBSReservations = getPhysicalQueuedReservations(
-    mappedReservationsFbs
-  );
-  const queuedPublizonReservations = getPhysicalQueuedReservations(
+  const queuedFBSReservations = getQueuedReservations(mappedReservationsFbs);
+  const queuedPublizonReservations = getQueuedReservations(
     mappedReservationsPublizon
   );
   const allQueuedReservations = [
