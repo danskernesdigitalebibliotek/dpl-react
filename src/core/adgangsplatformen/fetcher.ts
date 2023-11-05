@@ -58,12 +58,6 @@ export const fetcher = async <ResponseType>({
     const message = error instanceof Error ? error.message : "Unknown error";
     throw new FetchFailedCriticalError(message, url);
   }
-
-  // Do nothing. Some of our responses are intentionally empty and thus
-  // cannot be converted to JSON. Fetch API and TypeScript has no clean
-  // way for us to identify empty responses, so instead we swallow
-  // syntax errors during decoding.
-  return null;
 };
 
 export default {};
