@@ -4,17 +4,14 @@ import { useUrls } from "../../core/utils/url";
 import { useText } from "../../core/utils/text";
 import { redirectTo } from "../../core/utils/helpers/url";
 import { useConfig } from "../../core/utils/config";
-import useUserInfo from "../../core/adgangsplatformen/useGetUserInfo";
+import useUserInfo from "../../core/adgangsplatformen/useUserInfo";
 
 const CreatePatron: FC = () => {
   const [cpr, setCpr] = useState<string | null>(null);
   const config = useConfig();
   const t = useText();
-  const { userinfoUrl, dashboardUrl } = useUrls();
+  const { dashboardUrl } = useUrls();
 
-  if (!userinfoUrl) {
-    throw new Error("userinfoUrl is not defined");
-  }
   const { id: agencyId } = config<{
     id: `${number}`;
   }>("agencyConfig", {
@@ -22,7 +19,7 @@ const CreatePatron: FC = () => {
   });
 
   // Fetch user info data.
-  const { data: userInfo, isLoading } = useUserInfo(String(userinfoUrl));
+  const { data: userInfo, isLoading } = useUserInfo();
 
   useEffect(() => {
     if (isLoading || !userInfo) {

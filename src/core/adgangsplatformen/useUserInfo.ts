@@ -7,6 +7,7 @@ import {
 } from "react-query";
 import { ErrorType, fetcher } from "./fetcher";
 import { getToken, TOKEN_USER_KEY } from "../token";
+import { useUrls } from "../utils/url";
 
 type UserInfoData = {
   attributes: {
@@ -23,14 +24,6 @@ type UserInfoData = {
   };
 };
 
-const getUserInfo = (url: string, signal?: AbortSignal) => {
-  return fetcher<UserInfoData>({
-    url,
-    method: "get",
-    signal
-  });
-};
-
 const getUserInfoQueryKey = (url: string) => {
   const userToken = getToken(TOKEN_USER_KEY);
   if (!userToken) {
@@ -40,27 +33,42 @@ const getUserInfoQueryKey = (url: string) => {
   return `${url}:${userToken}`;
 };
 
+type UserInfoFunction = () => Promise<UserInfoData | null | undefined>;
+
 const useUserInfo = <
-  TData = Awaited<ReturnType<typeof getUserInfo>>,
+  TData = Awaited<ReturnType<UserInfoFunction>>,
   TError = ErrorType<void>
 >(
-  url: string,
   queryOptions?: UseQueryOptions<
-    Awaited<ReturnType<typeof getUserInfo>>,
+    Awaited<ReturnType<UserInfoFunction>>,
     TError,
     TData
   >
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { userinfoUrl } = useUrls();
+  if (!userinfoUrl) {
+    throw new Error("userinfoUrl is not defined");
+  }
+
+  const url = String(userinfoUrl);
   const queryKey = queryOptions?.queryKey ?? getUserInfoQueryKey(url);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getUserInfo>>> = () =>
+  const getUserInfo = (infoUrl: string, signal?: AbortSignal) => {
+    return fetcher<UserInfoData>({
+      url: infoUrl,
+      method: "get",
+      signal
+    });
+  };
+
+  const queryFn: QueryFunction<Awaited<ReturnType<UserInfoFunction>>> = () =>
     getUserInfo(url);
 
-  const query = useQuery<
-    Awaited<ReturnType<typeof getUserInfo>>,
-    TError,
-    TData
-  >(queryKey, queryFn, queryOptions);
+  const query = useQuery<Awaited<ReturnType<UserInfoFunction>>, TError, TData>(
+    queryKey,
+    queryFn,
+    queryOptions
+  );
 
   return {
     queryKey,
