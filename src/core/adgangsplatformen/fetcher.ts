@@ -1,6 +1,6 @@
 import FetchFailedCriticalError from "../fetchers/FetchFailedCriticalError";
 import { getToken, TOKEN_USER_KEY } from "../token";
-import OpenIdServiceHttpError from "./OpenIdServiceHttpError";
+import AdgangsPlatformenServiceHttpError from "./AdgangsPlatformenServiceHttpError";
 
 export const fetcher = async <ResponseType>({
   url,
@@ -36,7 +36,7 @@ export const fetcher = async <ResponseType>({
     });
 
     if (!response.ok) {
-      throw new OpenIdServiceHttpError(
+      throw new AdgangsPlatformenServiceHttpError(
         response.status,
         response.statusText,
         url
@@ -51,13 +51,15 @@ export const fetcher = async <ResponseType>({
       }
     }
   } catch (error: unknown) {
-    if (error instanceof OpenIdServiceHttpError) {
+    if (error instanceof AdgangsPlatformenServiceHttpError) {
       throw error;
     }
 
     const message = error instanceof Error ? error.message : "Unknown error";
     throw new FetchFailedCriticalError(message, url);
   }
+
+  return null;
 };
 
 export default {};
