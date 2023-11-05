@@ -313,7 +313,7 @@ describe("Fee list", () => {
       .should("have.text", "I accept the Terms of trade*");
 
     // pay button
-    cy.get(".modal-loan__buttons")
+    cy.get(".button-box")
       .find("button")
       .should("exist")
       .should("have.text", "Pay");
