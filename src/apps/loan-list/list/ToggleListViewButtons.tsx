@@ -5,6 +5,7 @@ import IconStack from "../../../components/icon-stack/icon-stack";
 import { ListView } from "../../../core/utils/types/list-view";
 import { LoanType } from "../../../core/utils/types/loan-type";
 import { setQueryParametersInUrl } from "../../../core/utils/helpers/url";
+import { Button } from "../../../components/Buttons/Button";
 
 export interface ToggleListViewButtonsProps {
   setView: (view: ListView) => void;
@@ -83,6 +84,19 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
           >
             {t("loanListRenewMultipleButtonText")}
           </button>
+        </div>
+        <div className="hide-on-desktop button-box button-box--sticky-bottom">
+          <Button
+            label={t("loanListRenewMultipleButtonText")}
+            buttonType="none"
+            disabled={false}
+            collapsible={false}
+            size="small"
+            variant="filled"
+            onClick={() => {
+              openRenewLoansModal();
+            }}
+          />
         </div>
       </div>
     </div>
