@@ -54,13 +54,13 @@ const GroupModalContent: FC<GroupModalContentProps> = ({
 
   return (
     <>
-      <div className="modal-loan__buttons" ref={intersectionRef}>
+      <div className="button-box" ref={intersectionRef}>
         {checkBoxComponent}
         {buttonComponent}
       </div>
       <div className="modal-loan__list">{children}</div>
       {!intersection?.isIntersecting && (
-        <div className="modal-loan__buttons modal-loan__buttons--bottom">
+        <div className="button-box button-box--sticky-bottom">
           {checkBoxComponent}
           {buttonComponent}
         </div>
