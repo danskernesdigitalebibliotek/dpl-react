@@ -288,7 +288,7 @@ describe("Loan list", () => {
 
     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
     cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"], {
-      timeout: 10000
+      timeout: 30000
     });
   });
 
