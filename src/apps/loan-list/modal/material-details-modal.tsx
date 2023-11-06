@@ -18,13 +18,17 @@ export function reservationDetailsModalId(
 ): string {
   const prefix = String(getModalIds().reservationDetails);
   const fragment = String(reservation.identifier || reservation.faust);
-  return constructModalId(prefix, [fragment]);
+  // TODO: Use constructModalId() instead of string concatenation.
+  // This should done once we get around the manually added suffix in
+  // src/core/configuration/modal-ids.json.
+  return `${prefix}${fragment}`;
 }
 
-export function loanDetailsModalId(loan: LoanType) {
+export function loanDetailsModalId(loan: LoanType): string {
   const prefix = String(getModalIds().loanDetails);
   const fragment = String(loan.loanId);
-  return constructModalId(prefix, [fragment]);
+  // TODO: Use constructModalId() instead of string concatenation.
+  return `${prefix}${fragment}`;
 }
 
 const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
