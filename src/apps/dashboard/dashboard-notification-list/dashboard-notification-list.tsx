@@ -40,8 +40,14 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       queued: reservationsQueued
     }
   } = useReservations();
-  const { loans, loansOverdue, loansSoonOverdue, loansFarFromOverdue } =
-    useLoans();
+  const {
+    all: {
+      loans,
+      overdue: loansOverdue,
+      soonOverdue: loansSoonOverdue,
+      farFromOverdue: loansFarFromOverdue
+    }
+  } = useLoans();
   const [accepted, setAccepted] = useState<boolean>(false);
   const [modalReservationDetailsId, setModalReservationDetailsId] = useState<
     string | null

@@ -12,9 +12,30 @@ import {
   mapFBSLoanToLoanType,
   mapPublizonLoanToLoanType
 } from "./helpers/list-mapper";
+import { LoanType } from "./types/loan-type";
 import { ThresholdType } from "./types/threshold-type";
 
-const useLoans = () => {
+type Loans = {
+  overdue: LoanType[];
+  soonOverdue: LoanType[];
+  farFromOverdue: LoanType[];
+  isLoading: boolean;
+  isError: boolean;
+  sortedByDate?: LoanType[];
+  stackedMaterialsDueDates?: string[];
+};
+
+type UseLoansType = {
+  all: Loans & {
+    loans: LoanType[];
+  };
+  fbs: Loans;
+  publizon: Loans;
+};
+
+type UseLoans = () => UseLoansType;
+
+const useLoans: UseLoans = () => {
   const config = useConfig();
   const {
     data: loansFbs,
@@ -86,15 +107,31 @@ const useLoans = () => {
   // list of all due dates used for the stacked materials
   const stackedMaterialsDueDatesFbs = getDueDatesLoan(mappedLoansFbs);
   return {
-    loans,
-    loansSortedByDateFbs,
-    loansSortedByDatePublizon,
-    loansOverdue,
-    loansSoonOverdue,
-    loansFarFromOverdue,
-    stackedMaterialsDueDatesFbs,
-    loansIsLoading,
-    loansIsError
+    all: {
+      loans,
+      overdue: loansOverdue,
+      soonOverdue: loansSoonOverdue,
+      farFromOverdue: loansFarFromOverdue,
+      isLoading: loansIsLoading,
+      isError: loansIsError
+    },
+    fbs: {
+      overdue: loansOverdueFBS,
+      soonOverdue: loansSoonOverdueFBS,
+      farFromOverdue: loansFarFromOverdueFBS,
+      sortedByDate: loansSortedByDateFbs,
+      stackedMaterialsDueDates: stackedMaterialsDueDatesFbs,
+      isLoading: isLoadingFbs,
+      isError: isErrorFbs
+    },
+    publizon: {
+      overdue: LoansOverduePublizon,
+      soonOverdue: loansSoonOverduePublizon,
+      farFromOverdue: loansFarFromOverduePublizon,
+      sortedByDate: loansSortedByDatePublizon,
+      isLoading: isLoadingPublizon,
+      isError: isErrorPublizon
+    }
   };
 };
 
