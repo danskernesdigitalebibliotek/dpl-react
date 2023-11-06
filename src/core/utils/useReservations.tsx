@@ -20,39 +20,39 @@ const useReservations = () => {
     : [];
 
   // Combine all reservations from both FBS and Publizon
-  const allReservations = [
+  const reservations = [
     ...mappedReservationsFbs,
     ...mappedReservationsPublizon
   ];
 
   // Combine "ready to loan" reservations from both FBS and Publizon
-  const readyToLoanReservationsFBS = getReadyForPickup(mappedReservationsFbs);
-  const readyToLoanReservationsPublizon = getReadyForPickup(
+  const reservationsReadyToLoanFBS = getReadyForPickup(mappedReservationsFbs);
+  const reservationsReadyToLoanPublizon = getReadyForPickup(
     mappedReservationsPublizon
   );
-  const allReadyToLoanReservations = [
-    ...readyToLoanReservationsFBS,
-    ...readyToLoanReservationsPublizon
+  const reservationsReadyToLoan = [
+    ...reservationsReadyToLoanFBS,
+    ...reservationsReadyToLoanPublizon
   ];
 
   // Combine "still in queue" reservations from both FBS and Publizon
-  const queuedFBSReservations = getQueuedReservations(mappedReservationsFbs);
-  const queuedPublizonReservations = getQueuedReservations(
+  const reservationsQueuedFBS = getQueuedReservations(mappedReservationsFbs);
+  const reservationsQueuedPublizon = getQueuedReservations(
     mappedReservationsPublizon
   );
-  const allQueuedReservations = [
-    ...queuedFBSReservations,
-    ...queuedPublizonReservations
+  const reservationsQueued = [
+    ...reservationsQueuedFBS,
+    ...reservationsQueuedPublizon
   ];
 
   return {
-    allReservations,
-    readyToLoanReservationsFBS,
-    readyToLoanReservationsPublizon,
-    allReadyToLoanReservations,
-    allQueuedReservations,
-    queuedFBSReservations,
-    queuedPublizonReservations
+    reservations,
+    reservationsReadyToLoanFBS,
+    reservationsReadyToLoanPublizon,
+    reservationsReadyToLoan,
+    reservationsQueued,
+    reservationsQueuedFBS,
+    reservationsQueuedPublizon
   };
 };
 

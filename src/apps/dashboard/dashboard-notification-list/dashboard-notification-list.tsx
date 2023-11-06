@@ -33,7 +33,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   columns
 }) => {
   const t = useText();
-  const { allReservations, allReadyToLoanReservations, allQueuedReservations } =
+  const { reservations, reservationsReadyToLoan, reservationsQueued } =
     useReservations();
   const {
     allLoans,
@@ -74,7 +74,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     [open]
   );
 
-  const { reservationsReady, reservationsQueued } = getModalIds();
+  const {
+    reservationsReady: reservationsReadyID,
+    reservationsQueued: reservationsQueueID
+  } = getModalIds();
   const { physicalLoansUrl, reservationsUrl } = useUrls();
 
   const openLoanDetailsModal = useCallback(
@@ -97,7 +100,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     ({ loanId }) => String(loanId) === modalLoanDetailsId
   );
 
-  const reservationForModal = allReservations.find(
+  const reservationForModal = reservations.find(
     ({ faust, reservationId }) =>
       String(modalReservationDetailsId) === String(faust) ||
       String(modalReservationDetailsId) === String(reservationId)
@@ -197,34 +200,33 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
   const dashboardNotificationsReservations = [
     {
-      listLength: allReadyToLoanReservations.length,
+      listLength: reservationsReadyToLoan.length,
       header: t("reservationsReadyText"),
       badge: t("readyForLoanText"),
       dataCy: "reservations-ready",
       showNotificationDot: true,
       color: "info",
       notificationClickEvent: () =>
-        allReadyToLoanReservations.length === 1
+        reservationsReadyToLoan.length === 1
           ? openReservationDetailsModal(
-              String(allReadyToLoanReservations[0].faust)
+              String(reservationsReadyToLoan[0].faust)
             )
-          : openModalHandler(reservationsReady as string)
+          : openModalHandler(reservationsReadyID as string)
     },
     {
-      listLength: allQueuedReservations.length,
+      listLength: reservationsQueued.length,
       header: t("reservationsStillInQueueForText"),
       dataCy: "reservations-queued",
       color: "neutral",
       showNotificationDot: false,
       notificationClickEvent: () =>
-        allQueuedReservations.length === 1
+        reservationsQueued.length === 1
           ? openReservationDetailsModal(
               String(
-                allQueuedReservations[0].identifier ||
-                  allQueuedReservations[0].faust
+                reservationsQueued[0].identifier || reservationsQueued[0].faust
               )
             )
-          : openModalHandler(reservationsQueued as string)
+          : openModalHandler(reservationsQueueID as string)
     }
   ];
   const resetAccepted = () => {
@@ -245,7 +247,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             />
             <NotificationColumn
               materials={dashboardNotificationsReservations}
-              materialsCount={allReservations.length}
+              materialsCount={reservations.length}
               headerUrl={reservationsUrl}
               header={t("reservationsText")}
               emptyListText={t("noReservationsText")}
@@ -292,7 +294,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           <SimpleModalHeader header={modalHeader} />
         </LoansGroupModal>
       )}
-      {allReservations && (
+      {reservations && (
         <ReservationGroupModal
           openDetailsModal={openReservationDetailsModal}
           modalId={reservationModalId}

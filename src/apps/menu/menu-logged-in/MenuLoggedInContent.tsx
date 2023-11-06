@@ -19,7 +19,7 @@ interface MenuLoggedInContentProps {
 }
 
 const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
-  const { allReservations } = useReservations();
+  const { reservations } = useReservations();
   const { allLoans, allOverdueLoans, allSoonOverdueLoans } = useLoans();
   const { data: patronData } = usePatronData();
   const { data: fbsFees } = useGetFeesV2();
@@ -54,7 +54,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
   const showNotifications =
     allOverdueLoans.length !== 0 ||
     allSoonOverdueLoans.length !== 0 ||
-    allReservations.length !== 0;
+    reservations.length !== 0;
 
   return (
     <div className="modal-login modal-login--authenticated">
@@ -92,7 +92,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
               <MenuNavigationItem
                 menuNavigationItem={menuNavigationItem}
                 loansCount={allLoans.length}
-                reservationCount={allReservations.length}
+                reservationCount={reservations.length}
                 feeCount={feeCount}
               />
             ))}

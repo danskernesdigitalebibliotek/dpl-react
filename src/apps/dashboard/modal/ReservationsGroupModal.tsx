@@ -25,10 +25,10 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   openDetailsModal
 }) => {
   const {
-    readyToLoanReservationsFBS,
-    readyToLoanReservationsPublizon,
-    queuedFBSReservations,
-    queuedPublizonReservations
+    reservationsReadyToLoanFBS,
+    reservationsReadyToLoanPublizon,
+    reservationsQueuedFBS,
+    reservationsQueuedPublizon
   } = useReservations();
   const t = useText();
   const { reservationsReady, reservationsQueued } = getModalIds();
@@ -38,13 +38,13 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   let digitalReservations: ReservationType[] = [];
 
   if (modalId === reservationsReady) {
-    physicalReservations = readyToLoanReservationsFBS;
-    digitalReservations = readyToLoanReservationsPublizon;
+    physicalReservations = reservationsReadyToLoanFBS;
+    digitalReservations = reservationsReadyToLoanPublizon;
   }
 
   if (modalId === reservationsQueued) {
-    physicalReservations = queuedFBSReservations;
-    digitalReservations = queuedPublizonReservations;
+    physicalReservations = reservationsQueuedFBS;
+    digitalReservations = reservationsQueuedPublizon;
   }
 
   useEffect(() => {
