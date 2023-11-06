@@ -22,7 +22,9 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
   const {
     all: { reservations }
   } = useReservations();
-  const { loans, loansOverdue, loansSoonOverdue } = useLoans();
+  const {
+    all: { loans, overdue: loansOverdue, soonOverdue: loansSoonOverdue }
+  } = useLoans();
   const { data: patronData } = usePatronData();
   const { data: fbsFees } = useGetFeesV2();
   const t = useText();

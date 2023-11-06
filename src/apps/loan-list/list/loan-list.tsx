@@ -57,9 +57,11 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const [accepted, setAccepted] = useState<boolean>(false);
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const {
-    loansSortedByDateFbs,
-    loansSortedByDatePublizon,
-    stackedMaterialsDueDatesFbs
+    fbs: {
+      sortedByDate: loansSortedByDateFbs,
+      stackedMaterialsDueDates: stackedMaterialsDueDatesFbs
+    },
+    publizon: { sortedByDate: loansSortedByDatePublizon }
   } = useLoans();
   useEffect(() => {
     // If modalLoan is already set it should not be set again, because it will cause an infinite loop
@@ -201,7 +203,9 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
           </>
         )}
 
-        {loansAreEmpty(loansSortedByDateFbs) &&
+        {loansSortedByDateFbs &&
+          loansSortedByDatePublizon &&
+          loansAreEmpty(loansSortedByDateFbs) &&
           loansAreEmpty(loansSortedByDatePublizon) && (
             <EmptyList
               classNames="mt-24"
