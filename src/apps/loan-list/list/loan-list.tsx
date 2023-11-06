@@ -57,8 +57,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const [accepted, setAccepted] = useState<boolean>(false);
   const [modalDetailsId, setModalDetailsId] = useState<string | null>(null);
   const {
-    sortedByLoanDateFbs,
-    sortedByLoanDatePublizon,
+    loansSortedByDateFbs,
+    loansSortedByDatePublizon,
     stackedMaterialsDueDatesFbs
   } = useLoans();
   useEffect(() => {
@@ -67,20 +67,20 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       return;
     }
     let loanForModal = null;
-    if (sortedByLoanDateFbs && modalDetailsId) {
+    if (loansSortedByDateFbs && modalDetailsId) {
       loanForModal = getFromListByKey(
-        sortedByLoanDateFbs,
+        loansSortedByDateFbs,
         "loanId",
         modalDetailsId
       );
     }
     if (
       loanForModal?.length === 0 &&
-      sortedByLoanDatePublizon &&
+      loansSortedByDatePublizon &&
       modalDetailsId
     ) {
       loanForModal = getFromListByKey(
-        sortedByLoanDatePublizon,
+        loansSortedByDatePublizon,
         "identifier",
         modalDetailsId
       );
@@ -91,8 +91,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   }, [
     modalDetailsId,
     modalLoan,
-    sortedByLoanDateFbs,
-    sortedByLoanDatePublizon
+    loansSortedByDateFbs,
+    loansSortedByDatePublizon
   ]);
 
   const openAcceptModal = useCallback(() => {
@@ -142,9 +142,9 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   }, [allLoansId, loanDetails, openDueDateModal]);
 
   const listContainsLoans =
-    (Array.isArray(sortedByLoanDateFbs) && sortedByLoanDateFbs.length > 0) ||
-    (Array.isArray(sortedByLoanDatePublizon) &&
-      sortedByLoanDatePublizon.length > 0);
+    (Array.isArray(loansSortedByDateFbs) && loansSortedByDateFbs.length > 0) ||
+    (Array.isArray(loansSortedByDatePublizon) &&
+      loansSortedByDatePublizon.length > 0);
 
   const resetAccepted = () => {
     setAccepted(false);
@@ -156,11 +156,11 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
         {listContainsLoans && (
           <>
-            {sortedByLoanDateFbs && (
+            {loansSortedByDateFbs && (
               <List
                 pageSize={pageSize}
                 emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
-                loans={sortedByLoanDateFbs}
+                loans={loansSortedByDateFbs}
                 dueDates={stackedMaterialsDueDatesFbs}
                 view={view}
                 openLoanDetailsModal={openLoanDetailsModal}
@@ -168,41 +168,41 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
               >
                 <ListHeader
                   header={t("loanListPhysicalLoansTitleText")}
-                  amount={sortedByLoanDateFbs.length}
+                  amount={loansSortedByDateFbs.length}
                 >
                   <ToggleListViewButtons
                     disableRenewLoansButton={
-                      getAmountOfRenewableLoans(sortedByLoanDateFbs) === 0
+                      getAmountOfRenewableLoans(loansSortedByDateFbs) === 0
                     }
                     view={view}
                     setView={setView}
-                    loans={sortedByLoanDateFbs}
+                    loans={loansSortedByDateFbs}
                     pageSize={pageSize}
                     openRenewLoansModal={openRenewLoansModal}
                   />
                 </ListHeader>
               </List>
             )}
-            {sortedByLoanDatePublizon && (
+            {loansSortedByDatePublizon && (
               <List
                 pageSize={pageSize}
                 emptyListLabel={t("loanListDigitalLoansEmptyListText")}
-                loans={sortedByLoanDatePublizon}
+                loans={loansSortedByDatePublizon}
                 view="list"
                 openLoanDetailsModal={openLoanDetailsModal}
                 openDueDateModal={openDueDateModal}
               >
                 <ListHeader
                   header={t("loanListDigitalLoansTitleText")}
-                  amount={sortedByLoanDatePublizon.length}
+                  amount={loansSortedByDatePublizon.length}
                 />
               </List>
             )}
           </>
         )}
 
-        {loansAreEmpty(sortedByLoanDateFbs) &&
-          loansAreEmpty(sortedByLoanDatePublizon) && (
+        {loansAreEmpty(loansSortedByDateFbs) &&
+          loansAreEmpty(loansSortedByDatePublizon) && (
             <EmptyList
               classNames="mt-24"
               emptyListText={t("loanListDigitalPhysicalLoansEmptyListText")}
@@ -223,7 +223,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
           modalId={constructMaterialDetailsModalId(loanDetails, modalDetailsId)}
         />
       </MaterialDetailsModal>
-      {sortedByLoanDateFbs && (
+      {loansSortedByDateFbs && (
         <LoansGroupModal
           accepted={accepted}
           resetAccepted={() => resetAccepted()}
@@ -233,8 +233,8 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
           openAcceptModal={openAcceptModal}
           loansModal={
             dueDate
-              ? removeLoansWithDuplicateDueDate(dueDate, sortedByLoanDateFbs)
-              : sortedByLoanDateFbs
+              ? removeLoansWithDuplicateDueDate(dueDate, loansSortedByDateFbs)
+              : loansSortedByDateFbs
           }
         >
           {dueDate && (

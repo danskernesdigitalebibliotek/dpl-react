@@ -34,53 +34,53 @@ const useLoans = () => {
     : [];
 
   // Combine all loans from both FBS and Publizon
-  const allLoans = sortByDueDate([...mappedLoansFbs, ...mappedLoansPublizon]);
+  const loans = sortByDueDate([...mappedLoansFbs, ...mappedLoansPublizon]);
 
   // Combine "overdue loans" from both FBS and Publizon
-  const overdueLoansFBS = filterLoansOverdue(mappedLoansFbs);
-  const overdueLoansPublizon = filterLoansOverdue(mappedLoansPublizon);
-  const allOverdueLoans = sortByDueDate([
-    ...overdueLoansFBS,
-    ...overdueLoansPublizon
+  const loansOverdueFBS = filterLoansOverdue(mappedLoansFbs);
+  const LoansOverduePublizon = filterLoansOverdue(mappedLoansPublizon);
+  const loansOverdue = sortByDueDate([
+    ...loansOverdueFBS,
+    ...LoansOverduePublizon
   ]);
 
   // combine "soon overdue" loans from both FBS and Publizon
-  const soonOverdueLoansFBS = filterLoansSoonOverdue(mappedLoansFbs, warning);
-  const soonOverdueLoansPublizon = filterLoansSoonOverdue(
+  const loansSoonOverdueFBS = filterLoansSoonOverdue(mappedLoansFbs, warning);
+  const loansSoonOverduePublizon = filterLoansSoonOverdue(
     mappedLoansPublizon,
     warning
   );
-  const allSoonOverdueLoans = sortByDueDate([
-    ...soonOverdueLoansFBS,
-    ...soonOverdueLoansPublizon
+  const loansSoonOverdue = sortByDueDate([
+    ...loansSoonOverdueFBS,
+    ...loansSoonOverduePublizon
   ]);
 
   // combine "far from overdue" loans from both FBS and Publizon
-  const farFromOverdueFBS = filterLoansNotOverdue(mappedLoansFbs, warning);
-  const farFromOverduePublizon = filterLoansNotOverdue(
+  const loansFarFromOverdueFBS = filterLoansNotOverdue(mappedLoansFbs, warning);
+  const loansFarFromOverduePublizon = filterLoansNotOverdue(
     mappedLoansPublizon,
     warning
   );
-  const allFarFromOverdueLoans = sortByDueDate([
-    ...farFromOverdueFBS,
-    ...farFromOverduePublizon
+  const loansFarFromOverdue = sortByDueDate([
+    ...loansFarFromOverdueFBS,
+    ...loansFarFromOverduePublizon
   ]);
 
   // The due dates are used for the stacked materials
   // The stacked materials view shows materials stacked by
   // due date, and for this we need a unique list of due dates
-  const sortedByLoanDateFbs = sortByDueDate(mappedLoansFbs);
-  const sortedByLoanDatePublizon = sortByDueDate(mappedLoansPublizon);
+  const loansSortedByDateFbs = sortByDueDate(mappedLoansFbs);
+  const loansSortedByDatePublizon = sortByDueDate(mappedLoansPublizon);
 
   // list of all due dates used for the stacked materials
   const stackedMaterialsDueDatesFbs = getDueDatesLoan(mappedLoansFbs);
   return {
-    allLoans,
-    sortedByLoanDateFbs,
-    sortedByLoanDatePublizon,
-    allOverdueLoans,
-    allSoonOverdueLoans,
-    allFarFromOverdueLoans,
+    loans,
+    loansSortedByDateFbs,
+    loansSortedByDatePublizon,
+    loansOverdue,
+    loansSoonOverdue,
+    loansFarFromOverdue,
     stackedMaterialsDueDatesFbs
   };
 };
