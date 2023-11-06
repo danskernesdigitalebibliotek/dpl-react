@@ -8,8 +8,19 @@ import {
 import { getReadyForPickup } from "../../apps/reservation-list/utils/helpers";
 
 const useReservations = () => {
-  const { data: reservationsFbs } = useGetReservationsV2();
-  const { data: reservationsPublizon } = useGetV1UserReservations();
+  const {
+    data: reservationsFbs,
+    isLoading: isLoadingFbs,
+    isError: isErrorFbs
+  } = useGetReservationsV2();
+  const {
+    data: reservationsPublizon,
+    isLoading: isLoadingPublizon,
+    isError: isErrorPublizon
+  } = useGetV1UserReservations();
+
+  const reservationsIsLoading = isLoadingFbs || isLoadingPublizon;
+  const reservationsIsError = isErrorFbs || isErrorPublizon;
 
   // map reservations to same type
   const mappedReservationsFbs = reservationsFbs
@@ -52,7 +63,9 @@ const useReservations = () => {
     reservationsReadyToLoan,
     reservationsQueued,
     reservationsQueuedFBS,
-    reservationsQueuedPublizon
+    reservationsQueuedPublizon,
+    reservationsIsLoading,
+    reservationsIsError
   };
 };
 
