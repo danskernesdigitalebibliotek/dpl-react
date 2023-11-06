@@ -33,8 +33,13 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   columns
 }) => {
   const t = useText();
-  const { reservations, reservationsReadyToLoan, reservationsQueued } =
-    useReservations();
+  const {
+    all: {
+      reservations,
+      readyToLoan: reservationsReadyToLoan,
+      queued: reservationsQueued
+    }
+  } = useReservations();
   const { loans, loansOverdue, loansSoonOverdue, loansFarFromOverdue } =
     useLoans();
   const [accepted, setAccepted] = useState<boolean>(false);

@@ -19,7 +19,9 @@ interface MenuLoggedInContentProps {
 }
 
 const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
-  const { reservations } = useReservations();
+  const {
+    all: { reservations }
+  } = useReservations();
   const { loans, loansOverdue, loansSoonOverdue } = useLoans();
   const { data: patronData } = usePatronData();
   const { data: fbsFees } = useGetFeesV2();

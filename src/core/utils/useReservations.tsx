@@ -6,8 +6,26 @@ import {
   mapPublizonReservationToReservationType
 } from "./helpers/list-mapper";
 import { getReadyForPickup } from "../../apps/reservation-list/utils/helpers";
+import { ReservationType } from "./types/reservation-type";
 
-const useReservations = () => {
+type Reservations = {
+  readyToLoan: ReservationType[];
+  queued: ReservationType[];
+  isLoading: boolean;
+  isError: boolean;
+};
+
+type UseReservationsType = {
+  all: Reservations & {
+    reservations: ReservationType[];
+  };
+  fbs: Reservations;
+  publizon: Reservations;
+};
+
+type UseReservations = () => UseReservationsType;
+
+const useReservations: UseReservations = () => {
   const {
     data: reservationsFbs,
     isLoading: isLoadingFbs,
@@ -57,15 +75,25 @@ const useReservations = () => {
   ];
 
   return {
-    reservations,
-    reservationsReadyToLoanFBS,
-    reservationsReadyToLoanPublizon,
-    reservationsReadyToLoan,
-    reservationsQueued,
-    reservationsQueuedFBS,
-    reservationsQueuedPublizon,
-    reservationsIsLoading,
-    reservationsIsError
+    all: {
+      reservations,
+      readyToLoan: reservationsReadyToLoan,
+      queued: reservationsQueued,
+      isLoading: reservationsIsLoading,
+      isError: reservationsIsError
+    },
+    fbs: {
+      readyToLoan: reservationsReadyToLoanFBS,
+      queued: reservationsQueuedFBS,
+      isLoading: isLoadingFbs,
+      isError: isErrorFbs
+    },
+    publizon: {
+      readyToLoan: reservationsReadyToLoanPublizon,
+      queued: reservationsQueuedPublizon,
+      isLoading: isLoadingPublizon,
+      isError: isErrorPublizon
+    }
   };
 };
 
