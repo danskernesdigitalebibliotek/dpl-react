@@ -33,6 +33,7 @@ export interface ReservationListTextProps {
   etAlText: string;
   reservationListNumberInQueueText: string;
   reservationListFirstInQueueText: string;
+  reservationListDigitalPickupText: string;
   expiresSoonText: string;
   reservationListInQueueText: string;
   reservationPickUpLatestText: string;
