@@ -89,7 +89,7 @@ describe("Find on shelf modal - periodical", () => {
       .contains("Unavailable");
   });
 
-  it.only("Updates branches upon selecting a different volume", () => {
+  it("Updates branches upon selecting a different volume", () => {
     cy.getBySel("disclosure-summary")
       .contains("Beder-Malling")
       .parent()

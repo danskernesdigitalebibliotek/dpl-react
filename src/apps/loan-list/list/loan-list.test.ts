@@ -705,7 +705,7 @@ describe("Loan list", () => {
       .should("have.length", 2);
   });
 
-  it.only("Can go trough renewal flow of a single loan from the loan list", () => {
+  it("Can go trough renewal flow of a single loan from the loan list", () => {
     // Spy on the loan request.
     cy.intercept(
       "**/external/agencyid/patrons/patronid/loans/v2**",
