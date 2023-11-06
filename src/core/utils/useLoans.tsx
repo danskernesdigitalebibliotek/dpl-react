@@ -16,13 +16,24 @@ import { ThresholdType } from "./types/threshold-type";
 
 const useLoans = () => {
   const config = useConfig();
-  const { data: loansFbs } = useGetLoansV2();
-  const { data: loansPublizon } = useGetV1UserLoans();
+  const {
+    data: loansFbs,
+    isLoading: isLoadingFbs,
+    isError: isErrorFbs
+  } = useGetLoansV2();
+  const {
+    data: loansPublizon,
+    isLoading: isLoadingPublizon,
+    isError: isErrorPublizon
+  } = useGetV1UserLoans();
   const {
     colorThresholds: { warning }
   } = config<ThresholdType>("thresholdConfig", {
     transformer: "jsonParse"
   });
+
+  const loansIsLoading = isLoadingFbs || isLoadingPublizon;
+  const loansIsError = isErrorFbs || isErrorPublizon;
 
   // map loans to same type
   const mappedLoansFbs = loansFbs ? mapFBSLoanToLoanType(loansFbs) : [];
@@ -81,7 +92,9 @@ const useLoans = () => {
     loansOverdue,
     loansSoonOverdue,
     loansFarFromOverdue,
-    stackedMaterialsDueDatesFbs
+    stackedMaterialsDueDatesFbs,
+    loansIsLoading,
+    loansIsError
   };
 };
 
