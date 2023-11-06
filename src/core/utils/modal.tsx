@@ -68,7 +68,7 @@ function Modal({
   return (
     <FocusTrap
       focusTrapOptions={{
-        // set fallbackFocus when running vitest to avoid focus trap errors
+        // Set fallbackFocus when running vitest to avoid focus trap errors.
         fallbackFocus: process.env.VITEST ? "body" : undefined
       }}
     >
