@@ -1,12 +1,18 @@
 import { useGetReservationsV2 } from "../fbs/fbs";
 import { useGetV1UserReservations } from "../publizon/publizon";
-import { getQueuedReservations } from "./helpers/general";
 import {
   mapFBSReservationToReservationType,
   mapPublizonReservationToReservationType
 } from "./helpers/list-mapper";
 import { getReadyForPickup } from "../../apps/reservation-list/utils/helpers";
 import { ReservationType } from "./types/reservation-type";
+import { dashboardReservedApiValueText } from "../configuration/api-strings.json";
+
+const getQueuedReservations = (list: ReservationType[]) => {
+  return [...list].filter(
+    ({ state }) => state === dashboardReservedApiValueText
+  );
+};
 
 type Reservations = {
   readyToLoan: ReservationType[];
