@@ -1,19 +1,60 @@
 import { useGetLoansV2 } from "../fbs/fbs";
 import { useGetV1UserLoans } from "../publizon/publizon";
 import { useConfig } from "./config";
-import {
-  filterLoansNotOverdue,
-  filterLoansOverdue,
-  filterLoansSoonOverdue,
-  getDueDatesLoan,
-  sortByDueDate
-} from "./helpers/general";
+import { daysBetweenTodayAndDate, materialIsOverdue } from "./helpers/general";
 import {
   mapFBSLoanToLoanType,
   mapPublizonLoanToLoanType
 } from "./helpers/list-mapper";
 import { LoanType } from "./types/loan-type";
 import { ThresholdType } from "./types/threshold-type";
+
+// Loans with more than warning-threshold days until due
+const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
+  return loans.filter(({ dueDate }) => {
+    const due: string = dueDate || "";
+    const daysUntilExpiration = daysBetweenTodayAndDate(due);
+    return daysUntilExpiration - warning > 0;
+  });
+};
+// Loans overdue
+const filterLoansOverdue = (loans: LoanType[]) => {
+  return loans.filter(({ dueDate }) => {
+    return materialIsOverdue(dueDate);
+  });
+};
+//
+const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
+  return loans.filter(({ dueDate }) => {
+    const due: string = dueDate || "";
+    const daysUntilExpiration = daysBetweenTodayAndDate(due);
+    return (
+      daysUntilExpiration - warning <= 0 &&
+      daysUntilExpiration - warning >= -warning
+    );
+  });
+};
+//
+const getDueDatesLoan = (list: LoanType[]) => {
+  return Array.from(
+    new Set(
+      list
+        .filter(({ dueDate }) => dueDate !== (undefined || null))
+        .map(({ dueDate }) => dueDate)
+        .sort()
+    )
+  ) as string[];
+};
+
+const sortByDueDate = (list: LoanType[]) => {
+  // Todo figure out what to do if loan does not have loan date
+  // For now, its at the bottom of the list
+  return list.sort(
+    (a, b) =>
+      new Date(a.dueDate || new Date()).getTime() -
+      new Date(b.dueDate || new Date()).getTime()
+  );
+};
 
 type Loans = {
   overdue: LoanType[];
