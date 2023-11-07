@@ -229,7 +229,7 @@ describe("Reservation details modal test", () => {
 
     cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
 
-    cy.get(".modal").should("not.be.visible");
+    cy.get(".modal").should("not.exist");
   });
 
   it("It shows digital reservation details modal, material queued", () => {
