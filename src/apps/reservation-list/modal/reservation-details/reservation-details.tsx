@@ -96,7 +96,9 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             />
           )}
           {isDigital && reservation.identifier && isLoadingComplexSearch && (
-            <MaterialButtonLoading classNames="modal-details__buttons--hide-on-mobile" />
+            <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
+              <MaterialButtonLoading classNames="modal-details__buttons--hide-on-mobile" />
+            </div>
           )}
           {isDigital &&
             reservation.identifier &&
