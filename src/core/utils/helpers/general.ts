@@ -16,7 +16,6 @@ import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import { FeeV2 } from "../../fbs/model/feeV2";
-import { dashboardReservedApiValueText } from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
 import { store } from "../../store";
@@ -303,12 +302,6 @@ export const pageSizeGlobal = (
 
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
-
-export const getQueuedReservations = (list: ReservationType[]) => {
-  return [...list].filter(
-    ({ state }) => state === dashboardReservedApiValueText
-  );
-};
 
 export const loansOverdue = (loans: LoanType[]): boolean => {
   return loans.every((loan) => materialIsOverdue(loan.dueDate));
