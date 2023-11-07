@@ -35,6 +35,7 @@ const ReservationDetailsRedirect: FC<
         {t("reservationDetailsRemoveDigitalReservationText")}
       </button>
       <LinkButton
+        dataCy="go-to-ereolen-button"
         size="small"
         url={externalLink}
         variant="filled"
