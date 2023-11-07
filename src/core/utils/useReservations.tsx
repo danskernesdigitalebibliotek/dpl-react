@@ -15,6 +15,7 @@ const getQueuedReservations = (list: ReservationType[]) => {
 };
 
 type Reservations = {
+  reservations: ReservationType[];
   readyToLoan: ReservationType[];
   queued: ReservationType[];
   isLoading: boolean;
@@ -22,9 +23,7 @@ type Reservations = {
 };
 
 type UseReservationsType = {
-  all: Reservations & {
-    reservations: ReservationType[];
-  };
+  all: Reservations;
   fbs: Reservations;
   publizon: Reservations;
 };
@@ -89,12 +88,14 @@ const useReservations: UseReservations = () => {
       isError: reservationsIsError
     },
     fbs: {
+      reservations: mappedReservationsFbs,
       readyToLoan: reservationsReadyToLoanFBS,
       queued: reservationsQueuedFBS,
       isLoading: isLoadingFbs,
       isError: isErrorFbs
     },
     publizon: {
+      reservations: mappedReservationsPublizon,
       readyToLoan: reservationsReadyToLoanPublizon,
       queued: reservationsQueuedPublizon,
       isLoading: isLoadingPublizon,

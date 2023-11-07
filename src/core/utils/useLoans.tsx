@@ -57,19 +57,17 @@ const sortByDueDate = (list: LoanType[]) => {
 };
 
 type Loans = {
+  loans: LoanType[];
   overdue: LoanType[];
   soonOverdue: LoanType[];
   farFromOverdue: LoanType[];
   isLoading: boolean;
   isError: boolean;
-  sortedByDate?: LoanType[];
   stackedMaterialsDueDates?: string[];
 };
 
 type UseLoansType = {
-  all: Loans & {
-    loans: LoanType[];
-  };
+  all: Loans;
   fbs: Loans;
   publizon: Loans;
 };
@@ -157,19 +155,19 @@ const useLoans: UseLoans = () => {
       isError: loansIsError
     },
     fbs: {
+      loans: loansSortedByDateFbs,
       overdue: loansOverdueFBS,
       soonOverdue: loansSoonOverdueFBS,
       farFromOverdue: loansFarFromOverdueFBS,
-      sortedByDate: loansSortedByDateFbs,
       stackedMaterialsDueDates: stackedMaterialsDueDatesFbs,
       isLoading: isLoadingFbs,
       isError: isErrorFbs
     },
     publizon: {
+      loans: loansSortedByDatePublizon,
       overdue: LoansOverduePublizon,
       soonOverdue: loansSoonOverduePublizon,
       farFromOverdue: loansFarFromOverduePublizon,
-      sortedByDate: loansSortedByDatePublizon,
       isLoading: isLoadingPublizon,
       isError: isErrorPublizon
     }
