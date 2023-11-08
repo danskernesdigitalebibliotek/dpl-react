@@ -4,43 +4,43 @@ import List from "./list";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import { sortByOldestPickupDeadline } from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
+import useReservations from "../../../core/utils/useReservations";
 
 export interface DisplayedReservationsProps {
-  readyForPickupReservationsFBS: ReservationType[] | null;
-  readyForPickupReservationsPublizon: ReservationType[] | null;
-  reservedReservationsFBS: ReservationType[] | null;
-  reservedReservationsPublizon: ReservationType[] | null;
   pageSize: number;
   openReservationDetailsModal: (reservation: ReservationType) => void;
 }
 
 const DisplayedReservations: FC<DisplayedReservationsProps> = ({
-  readyForPickupReservationsFBS,
-  readyForPickupReservationsPublizon,
-  reservedReservationsFBS,
-  reservedReservationsPublizon,
   pageSize,
   openReservationDetailsModal
 }) => {
   const t = useText();
+  const {
+    all: { readyToLoan: readyToLoanReservations },
+    fbs: {
+      queued: reservedReservationsFBS
+    },
+    publizon: {
+      queued: reservedReservationsPublizon
+    }
+  } = useReservations();
   return (
     <>
-      {readyForPickupReservationsFBS !== null &&
-        readyForPickupReservationsPublizon !== null && (
-          <List
-            openReservationDetailsModal={openReservationDetailsModal}
-            pageSize={pageSize}
-            header={t("reservationListReadyForPickupTitleText")}
-            reservations={
-              sortByOldestPickupDeadline([
-                ...readyForPickupReservationsFBS,
-                ...readyForPickupReservationsPublizon
-              ]) as []
-            }
-            emptyListDataCy="reservation-list-ready-for-pickup-empty-list"
-            emptyListLabel={t("reservationListReadyForPickupEmptyText")}
-          />
-        )}
+      {readyToLoanReservations.length > 0 && (
+        <List
+          openReservationDetailsModal={openReservationDetailsModal}
+          pageSize={pageSize}
+          header={t("reservationListReadyForPickupTitleText")}
+          reservations={
+            sortByOldestPickupDeadline(
+              readyToLoanReservations
+            ) as ReservationType[]
+          }
+          emptyListDataCy="reservation-list-ready-for-pickup-empty-list"
+          emptyListLabel={t("reservationListReadyForPickupEmptyText")}
+        />
+      )}
       {reservedReservationsFBS !== null && (
         <List
           openReservationDetailsModal={openReservationDetailsModal}

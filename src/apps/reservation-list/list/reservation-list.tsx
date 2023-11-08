@@ -276,12 +276,6 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         {!allListsEmpty && (
           <DisplayedReservations
             openReservationDetailsModal={openReservationDetailsModal}
-            readyForPickupReservationsFBS={readyForPickupReservationsFBS as []}
-            readyForPickupReservationsPublizon={
-              readyForPickupReservationsPublizon as []
-            }
-            reservedReservationsFBS={reservedReservationsFBS}
-            reservedReservationsPublizon={reservedReservationsPublizon}
             pageSize={pageSize}
           />
         )}
