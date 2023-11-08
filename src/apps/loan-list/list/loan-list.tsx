@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import {
   getAmountOfRenewableLoans,
-  getScrollClass,
+  getScrollClass
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
@@ -97,11 +97,10 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
         loanDetailsString
       );
       if (loanIdFromModalId && loansPhysical) {
-        const loans = getFromListByKey(
-          loansPhysical,
-          "loanId",
-          loanIdFromModalId
-        );
+        const loans = [
+          ...getFromListByKey(loansPhysical, "loanId", loanIdFromModalId),
+          ...getFromListByKey(loansDigital, "identifier", loanIdFromModalId)
+        ];
         const loan = loans.filter(isLoanType).at(0);
         if (loan) {
           setModalLoan(loan);
