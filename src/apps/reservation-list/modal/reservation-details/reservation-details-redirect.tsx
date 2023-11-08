@@ -9,7 +9,6 @@ import { ReservationType } from "../../../../core/utils/types/reservation-type";
 export interface ReservationDetailsRedirectProps {
   reservation: ReservationType;
   openReservationDeleteModal: (deleteReservation: ReservationType) => void;
-  reservationId: string;
   className?: string;
   linkClassNames?: string;
 }
