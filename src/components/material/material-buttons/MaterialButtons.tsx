@@ -1,7 +1,11 @@
 import * as React from "react";
 import { FC } from "react";
 import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
-import { getAllFaustIds } from "../../../core/utils/helpers/general";
+import {
+  getAllFaustIds,
+  getManifestationType,
+  getReservablePidsFromAnotherLibrary
+} from "../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../core/utils/types/button";
 import { Manifestation } from "../../../core/utils/types/entities";
 import { hasCorrectAccess, hasCorrectAccessType, isArticle } from "./helper";
@@ -9,6 +13,7 @@ import { WorkId } from "../../../core/utils/types/ids";
 import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
 import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
+import MaterialButtonReservableFromAnotherLibrary from "./physical/MaterialButtonReservableFromAnotherLibrary";
 
 export interface MaterialButtonsProps {
   manifestations: Manifestation[];
@@ -29,6 +34,20 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   // We don't want to show physical buttons/find on shelf for articles because
   // articles appear as a part of journal/periodical publications and can't be
   // physically loaned for themseleves.
+
+  const isReservableFromAnotherLibrary =
+    getReservablePidsFromAnotherLibrary(manifestations).length > 0;
+
+  if (isReservableFromAnotherLibrary) {
+    return (
+      <MaterialButtonReservableFromAnotherLibrary
+        size={size}
+        manifestationMaterialType={getManifestationType(manifestations)}
+        faustIds={faustIds}
+      />
+    );
+  }
+
   return (
     <>
       {hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
