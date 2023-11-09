@@ -1,13 +1,12 @@
 import { useGetLoansV2 } from "../fbs/fbs";
 import { useGetV1UserLoans } from "../publizon/publizon";
-import { useConfig } from "./config";
 import { daysBetweenTodayAndDate, materialIsOverdue } from "./helpers/general";
 import {
   mapFBSLoanToLoanType,
   mapPublizonLoanToLoanType
 } from "./helpers/list-mapper";
 import { LoanType } from "./types/loan-type";
-import { ThresholdType } from "./types/threshold-type";
+import useLoanThresholds from "./useLoanThresholds";
 
 // Loans with more than warning-threshold days until due
 const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
@@ -75,7 +74,6 @@ type UseLoansType = {
 type UseLoans = () => UseLoansType;
 
 const useLoans: UseLoans = () => {
-  const config = useConfig();
   const {
     data: loansFbs,
     isLoading: isLoadingFbs,
@@ -86,12 +84,8 @@ const useLoans: UseLoans = () => {
     isLoading: isLoadingPublizon,
     isError: isErrorPublizon
   } = useGetV1UserLoans();
-  const {
-    colorThresholds: { warning }
-  } = config<ThresholdType>("thresholdConfig", {
-    transformer: "jsonParse"
-  });
 
+  const threshold = useLoanThresholds();
   const loansIsLoading = isLoadingFbs || isLoadingPublizon;
   const loansIsError = isErrorFbs || isErrorPublizon;
 
@@ -116,10 +110,13 @@ const useLoans: UseLoans = () => {
   ]);
 
   // combine "soon overdue" loans from both FBS and Publizon
-  const loansSoonOverdueFBS = filterLoansSoonOverdue(mappedLoansFbs, warning);
+  const loansSoonOverdueFBS = filterLoansSoonOverdue(
+    mappedLoansFbs,
+    threshold.warning
+  );
   const loansSoonOverduePublizon = filterLoansSoonOverdue(
     mappedLoansPublizon,
-    warning
+    threshold.warning
   );
   const loansSoonOverdue = sortByDueDate([
     ...loansSoonOverdueFBS,
@@ -127,10 +124,13 @@ const useLoans: UseLoans = () => {
   ]);
 
   // combine "far from overdue" loans from both FBS and Publizon
-  const loansFarFromOverdueFBS = filterLoansNotOverdue(mappedLoansFbs, warning);
+  const loansFarFromOverdueFBS = filterLoansNotOverdue(
+    mappedLoansFbs,
+    threshold.warning
+  );
   const loansFarFromOverduePublizon = filterLoansNotOverdue(
     mappedLoansPublizon,
-    warning
+    threshold.warning
   );
   const loansFarFromOverdue = sortByDueDate([
     ...loansFarFromOverdueFBS,

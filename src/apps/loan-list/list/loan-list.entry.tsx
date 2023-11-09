@@ -14,11 +14,11 @@ import { MaterialDetailsModalProps } from "../../../core/storybook/materialDetai
 import { AcceptFeesModalEntryTextProps } from "../../../core/storybook/acceptFeesModalArgs";
 
 export interface LoanListEntryConfigProps {
-  thresholdConfig: string;
+  expirationWarningDaysBeforeConfig: string;
 }
 export interface LoanListEntryUrlProps {
   materialOverdueUrl: string;
-  thresholdConfig: string;
+  expirationWarningDaysBeforeConfig: string;
 }
 
 interface LoanListEntryTextProps {

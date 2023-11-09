@@ -156,10 +156,8 @@ export default {
       defaultValue: "Borrow before @date",
       control: { type: "text" }
     },
-    // Config
-    thresholdConfig: {
-      defaultValue:
-        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+    expirationWarningDaysBeforeConfig: {
+      defaultValue: "6",
       control: { type: "text" }
     }
   },
