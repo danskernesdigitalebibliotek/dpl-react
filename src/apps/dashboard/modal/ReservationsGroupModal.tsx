@@ -100,6 +100,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
                 size="small"
                 variant="filled"
                 onClick={() => deleteMaterialsModal()}
+                dataCy="remove-reservations-button"
               />
             }
             amountOfSelectableMaterials={selectableReservations.length}

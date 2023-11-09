@@ -41,7 +41,6 @@ const CheckBox: FC<CheckBoxProps> = ({
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={focused}
         id={id}
-        data-cy={id}
         className="checkbox__input"
         onChange={(e) => {
           checkedHandler(e.target.checked);
@@ -52,7 +51,7 @@ const CheckBox: FC<CheckBoxProps> = ({
         aria-labelledby={isVisualOnly && labelledBy ? labelledBy : undefined}
         disabled={disabled}
       />
-      <label className="checkbox__label" htmlFor={id}>
+      <label className="checkbox__label" htmlFor={id} data-cy={id}>
         <span className="checkbox__icon" aria-labelledby={labelledBy}>
           <IconCheckbox />
         </span>
