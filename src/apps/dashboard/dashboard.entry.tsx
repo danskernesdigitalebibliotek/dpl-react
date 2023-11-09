@@ -22,7 +22,7 @@ export interface DashBoardProps {
   // Config
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
-  thresholdConfig: string;
+  expirationWarningDaysBeforeConfig: string;
   // Texts
   yourProfileText: string;
   feesText: string;

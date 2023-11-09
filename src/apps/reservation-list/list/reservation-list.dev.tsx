@@ -22,9 +22,8 @@ export default {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
     },
-    thresholdConfig: {
-      defaultValue:
-        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+    expirationWarningDaysBeforeConfig: {
+      defaultValue: "6",
       control: { type: "text" }
     },
     pauseReservationStartDateConfig: {

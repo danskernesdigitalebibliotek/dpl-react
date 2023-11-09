@@ -11,13 +11,13 @@ import { ReservationMaterialDetailsProps } from "../../../core/storybook/reserva
 import { DeleteReservationModalArgs } from "../../../core/storybook/deleteReservationModalArgs";
 
 export interface ReservationListUrlProps {
-  thresholdConfig: string;
+  expirationWarningDaysBeforeConfig: string;
   ereolenMyPageUrl: string;
   pauseReservationInfoUrl: string;
 }
 
 export interface ReservationListConfigProps {
-  thresholdConfig: string;
+  expirationWarningDaysBeforeConfig: string;
   pauseReservationStartDateConfig: string;
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;

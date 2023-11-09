@@ -17,6 +17,9 @@ function config(
     transformer: "stringToArray";
   }
 ): string[];
+
+function config<T>(key: string): T;
+
 function config<T>(): T | string | string[] {
   return [];
 }
