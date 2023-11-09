@@ -40,6 +40,7 @@ const CheckBox: FC<CheckBoxProps> = ({
         // This is to handle focus when more items are loaded via pagination
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={focused}
+        id={id}
         data-cy={id}
         className="checkbox__input"
         onChange={(e) => {
@@ -51,23 +52,22 @@ const CheckBox: FC<CheckBoxProps> = ({
         aria-labelledby={isVisualOnly && labelledBy ? labelledBy : undefined}
         disabled={disabled}
       />
-      <div className="checkbox__label" id={id}>
+      <label className="checkbox__label" htmlFor={id}>
         <span className="checkbox__icon" aria-labelledby={labelledBy}>
           <IconCheckbox />
         </span>
         {label && (
-          <label
+          <span
             id={id}
-            htmlFor={id}
             data-cy="checkbox-text"
             className={`checkbox__text text-small-caption color-secondary-gray ${
               hideLabel ? "checkbox__text--hide-visually" : ""
             }`}
           >
             {label}
-          </label>
+          </span>
         )}
-      </div>
+      </label>
     </div>
   );
 };
