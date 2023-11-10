@@ -18,7 +18,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
     if (initialCql.trim() !== "") {
       setCql(initialCql);
     }
-  });
+  }, [initialCql, setCql]);
 
   return (
     <>
