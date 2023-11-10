@@ -2,7 +2,10 @@ import React, { FC, useState, useEffect } from "react";
 import EmptyList from "../../../components/empty-list/empty-list";
 import usePager from "../../../components/result-pager/use-pager";
 import { getListItems } from "../../../core/utils/helpers/general";
-import { reservationId, ReservationType } from "../../../core/utils/types/reservation-type";
+import {
+  reservationId,
+  ReservationType
+} from "../../../core/utils/types/reservation-type";
 import ReservationMaterial from "../reservation-material/reservation-material";
 
 interface ListProps {
