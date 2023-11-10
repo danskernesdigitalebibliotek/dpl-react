@@ -153,7 +153,7 @@ describe("Delete reservation modal test", () => {
           reservationType: "normal"
         }
       ]
-    });
+    }).as("get-reservations");
 
     cy.intercept("POST", "**/next/**", {
       statusCode: 200,
@@ -177,7 +177,7 @@ describe("Delete reservation modal test", () => {
           }
         }
       }
-    });
+    }).as("get-manifestation");
 
     cy.intercept(
       "DELETE",
@@ -191,6 +191,9 @@ describe("Delete reservation modal test", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
+
+    cy.wait(["@get-reservations"]);
+    cy.wait(["@get-manifestation"]);
 
     cy.get(".list-reservation__about").find("button").click();
     cy.get(".modal-details__buttons").eq(0).find("button").click();
