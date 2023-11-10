@@ -1,12 +1,12 @@
-import { useGetReservationsV2 } from "../fbs/fbs";
 import { useGetV1UserReservations } from "../publizon/publizon";
 import {
-  mapFBSReservationToReservationType,
+  mapFBSReservationGroupToReservationType,
   mapPublizonReservationToReservationType
 } from "./helpers/list-mapper";
 import { getReadyForPickup } from "../../apps/reservation-list/utils/helpers";
 import { ReservationType } from "./types/reservation-type";
 import { dashboardReservedApiValueText } from "../configuration/api-strings.json";
+import useGetReservationGroups from "./useGetReservationGroups";
 
 const getQueuedReservations = (list: ReservationType[]) => {
   return [...list].filter(
@@ -35,7 +35,7 @@ const useReservations: UseReservations = () => {
     data: reservationsFbs,
     isLoading: isLoadingFbs,
     isError: isErrorFbs
-  } = useGetReservationsV2();
+  } = useGetReservationGroups();
   const {
     data: reservationsPublizon,
     isLoading: isLoadingPublizon,
@@ -47,7 +47,7 @@ const useReservations: UseReservations = () => {
 
   // map reservations to same type
   const mappedReservationsFbs = reservationsFbs
-    ? mapFBSReservationToReservationType(reservationsFbs)
+    ? mapFBSReservationGroupToReservationType(reservationsFbs)
     : [];
   const mappedReservationsPublizon = reservationsPublizon?.reservations
     ? mapPublizonReservationToReservationType(reservationsPublizon.reservations)

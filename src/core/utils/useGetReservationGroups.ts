@@ -64,6 +64,7 @@ function groupReservations(data: ReservationDetailsV2[]) {
 const useGetReservationGroups = (): {
   isLoading: boolean;
   isSuccess: boolean;
+  isError: boolean;
   error: Error | null;
   data: ReservationGroupDetails[] | null;
 } => {
@@ -89,7 +90,7 @@ const useGetReservationGroups = (): {
       });
   }, [setLoading, setError, setReservations]);
 
-  return { isLoading: loading, isSuccess: success, error, data: reservations };
+  return { isLoading: loading, isSuccess: success, isError: !!error, error, data: reservations };
 };
 
 export default useGetReservationGroups;
