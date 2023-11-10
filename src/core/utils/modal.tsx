@@ -9,6 +9,7 @@ import {
   currentLocationWithParametersUrl,
   redirectToLoginAndBack
 } from "./helpers/url";
+import { isVitestEnvironment } from "./helpers/vitest";
 
 type ModalId = string;
 
@@ -69,7 +70,7 @@ function Modal({
     <FocusTrap
       focusTrapOptions={{
         // Set fallbackFocus when running vitest to avoid focus trap errors.
-        fallbackFocus: process.env.VITEST ? "body" : undefined
+        fallbackFocus: isVitestEnvironment ? "body" : undefined
       }}
     >
       <div>
