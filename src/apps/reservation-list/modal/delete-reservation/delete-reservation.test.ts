@@ -1,6 +1,6 @@
 import { TOKEN_LIBRARY_KEY } from "../../../../core/token";
 
-describe("Delete reservation modal test", () => {
+describe("Delete reservation modal", () => {
   beforeEach(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
@@ -133,7 +133,7 @@ describe("Delete reservation modal test", () => {
     cy.get(".modal.modal-cta").should("not.exist");
   });
 
-  it("It shows delete physical material modal", () => {
+  it("It supports deleting physical reservations", () => {
     cy.intercept("GET", "**/v1/agencyid/patrons/patronid/reservations/**", {
       statusCode: 200,
       body: [
