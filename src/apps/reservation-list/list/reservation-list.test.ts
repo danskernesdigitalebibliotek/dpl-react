@@ -331,6 +331,8 @@ describe("Reservation list", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
+    cy.wait("@user");
+
     // ID 11 Systemet viser reserveringsoversigten med
     // ID 11 2.a. The function: Pause physical reservations
     cy.get(".dpl-pause-reservation-component")
@@ -343,6 +345,8 @@ describe("Reservation list", () => {
       .find(".btn-primary")
       .should("exist");
 
+    cy.wait(["@physical_reservations", "@digital_reservations"]);
+
     // ID 11 2.b. The list "Ready for pickup"
     cy.get(".reservation-list-page");
     // ID 11 2.b.i. The header "Ready for pickup" and the number of reservations
@@ -350,12 +354,17 @@ describe("Reservation list", () => {
       .eq(0)
       .should("have.text", "Ready for pickup3");
 
+    cy.wait(["@work", "@product"]);
+
     // ID 11 2.b.ii. list is sorted by oldest pickup date at the top
     cy.getBySel("list-reservation-container")
+      .eq(0)
       .find(".list-reservation")
       .eq(0)
       .find(".status-label--info")
       .should("exist");
+
+    cy.wait(["@cover"]);
 
     // ID 11 2.b.iii.1. Every reservation ready for pickup is shown with
     // ID 42 2.a. Material cover
