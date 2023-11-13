@@ -2,7 +2,10 @@ import * as React from "react";
 import { FC } from "react";
 import List from "./list";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
-import { sortByOldestPickupDeadline } from "../utils/helpers";
+import {
+  sortByNumberInQueue,
+  sortByOldestPickupDeadline
+} from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
 import useReservations from "../../../core/utils/useReservations";
 
@@ -39,7 +42,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
         openReservationDetailsModal={openReservationDetailsModal}
         pageSize={pageSize}
         header={t("reservationListPhysicalReservationsHeaderText")}
-        reservations={reservedReservationsFBS}
+        reservations={sortByNumberInQueue(reservedReservationsFBS)}
         emptyListDataCy="reservation-list-physical-reservations-empty-list"
         emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
       />
@@ -48,7 +51,11 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
         pageSize={pageSize}
         header={t("reservationListDigitalReservationsHeaderText")}
         emptyListDataCy="reservation-list-digital-reservations-empty-list"
-        reservations={reservedReservationsPublizon}
+        reservations={
+          sortByOldestPickupDeadline(
+            reservedReservationsPublizon
+          ) as ReservationType[]
+        }
         emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
       />
     </>
