@@ -18,49 +18,39 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
   const t = useText();
   const {
     all: { readyToLoan: readyToLoanReservations },
-    fbs: {
-      queued: reservedReservationsFBS
-    },
-    publizon: {
-      queued: reservedReservationsPublizon
-    }
+    fbs: { queued: reservedReservationsFBS },
+    publizon: { queued: reservedReservationsPublizon }
   } = useReservations();
   return (
     <>
-      {readyToLoanReservations.length > 0 && (
-        <List
-          openReservationDetailsModal={openReservationDetailsModal}
-          pageSize={pageSize}
-          header={t("reservationListReadyForPickupTitleText")}
-          reservations={
-            sortByOldestPickupDeadline(
-              readyToLoanReservations
-            ) as ReservationType[]
-          }
-          emptyListDataCy="reservation-list-ready-for-pickup-empty-list"
-          emptyListLabel={t("reservationListReadyForPickupEmptyText")}
-        />
-      )}
-      {reservedReservationsFBS !== null && (
-        <List
-          openReservationDetailsModal={openReservationDetailsModal}
-          pageSize={pageSize}
-          header={t("reservationListPhysicalReservationsHeaderText")}
-          reservations={reservedReservationsFBS}
-          emptyListDataCy="reservation-list-physical-reservations-empty-list"
-          emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
-        />
-      )}
-      {reservedReservationsPublizon !== null && (
-        <List
-          openReservationDetailsModal={openReservationDetailsModal}
-          pageSize={pageSize}
-          header={t("reservationListDigitalReservationsHeaderText")}
-          emptyListDataCy="reservation-list-digital-reservations-empty-list"
-          reservations={reservedReservationsPublizon}
-          emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
-        />
-      )}
+      <List
+        openReservationDetailsModal={openReservationDetailsModal}
+        pageSize={pageSize}
+        header={t("reservationListReadyForPickupTitleText")}
+        reservations={
+          sortByOldestPickupDeadline(
+            readyToLoanReservations
+          ) as ReservationType[]
+        }
+        emptyListDataCy="reservation-list-ready-for-pickup-empty-list"
+        emptyListLabel={t("reservationListReadyForPickupEmptyText")}
+      />
+      <List
+        openReservationDetailsModal={openReservationDetailsModal}
+        pageSize={pageSize}
+        header={t("reservationListPhysicalReservationsHeaderText")}
+        reservations={reservedReservationsFBS}
+        emptyListDataCy="reservation-list-physical-reservations-empty-list"
+        emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
+      />
+      <List
+        openReservationDetailsModal={openReservationDetailsModal}
+        pageSize={pageSize}
+        header={t("reservationListDigitalReservationsHeaderText")}
+        emptyListDataCy="reservation-list-digital-reservations-empty-list"
+        reservations={reservedReservationsPublizon}
+        emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
+      />
     </>
   );
 };
