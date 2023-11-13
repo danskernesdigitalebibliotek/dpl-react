@@ -482,7 +482,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 24-10-2022");
+      .should("have.text", "Due date 24-10-2022 08:32");
 
     // 2.c.ii. Loans have...
     // ID 42 2.a. Material cover
