@@ -1384,7 +1384,7 @@ describe("Dashboard", () => {
     cy.getBySel("warning-bar-right-link")
       .should("have.text", "Pay")
       .should("have.attr", "href")
-      .should("include", "https://unsplash.com/photos/wd6YQy0PJt8");
+      .should("include", "/user/me/fees");
 
     // Header "Loans" with link to loans page
     cy.getBySel("dashboard-loans-header")
