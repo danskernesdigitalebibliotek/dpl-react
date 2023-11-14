@@ -551,21 +551,21 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 24-10-2022");
+      .should("have.text", "Due date 24-10-2022 08:32");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(2)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 28-10-2022");
+      .should("have.text", "Due date 28-10-2022 08:32");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(2)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 28-10-2022");
+      .should("have.text", "Due date 28-10-2022 08:32");
   });
 
   it("It opens loans group modal (physical)", () => {
