@@ -45,7 +45,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     pickupDeadline,
     dateOfReservation,
     pickupNumber,
-    reservationId
+    reservationIds
   }
 }) => {
   const config = useConfig();
@@ -82,7 +82,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
 
   const saveChanges = () => {
     setReservationStatus("pending");
-    if (!reservationId || !selectedBranch) {
+    if (!reservationIds || reservationIds.length === 0 || !selectedBranch) {
       console.error("Missing reservationId or selectedBranch"); // eslint-disable-line no-console
       setReservationStatus("error");
       return;
@@ -94,16 +94,18 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       selectedExpiryDate = getFutureDateString(selectedInterest);
     }
 
+    const reservationsChanges = reservationIds.map((reservationId) => {
+      return {
+        expiryDate: selectedExpiryDate,
+        pickupBranch: selectedBranch,
+        reservationId
+      };
+    });
+
     mutate(
       {
         data: {
-          reservations: [
-            {
-              expiryDate: selectedExpiryDate,
-              pickupBranch: selectedBranch,
-              reservationId
-            }
-          ]
+          reservations: reservationsChanges
         }
       },
       {
