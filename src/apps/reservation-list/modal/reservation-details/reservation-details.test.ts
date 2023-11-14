@@ -7,9 +7,11 @@ describe("Reservation details modal", () => {
     });
 
     // Intercept covers.
-    cy.fixture("cover.json").then((result) => {
-      cy.intercept("GET", "**/covers**", result);
-    });
+    cy.fixture("cover.json")
+      .then((result) => {
+        cy.intercept("GET", "**/covers**", result);
+      })
+      .as("cover");
 
     const clockDate = new Date(
       "Wed Feb 08 2023 20:10:25 GMT+0200 (Central European Summer Time)"
@@ -79,7 +81,7 @@ describe("Reservation details modal", () => {
           reservationType: "normal"
         }
       ]
-    });
+    }).as("physical_reservations");
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
       body: {
@@ -97,7 +99,7 @@ describe("Reservation details modal", () => {
         code: 101,
         message: "OK"
       }
-    });
+    }).as("digital_reservations");
 
     cy.intercept("GET", "**v1/products/**", {
       product: {
@@ -147,7 +149,7 @@ describe("Reservation details modal", () => {
       },
       code: 101,
       message: "OK"
-    });
+    }).as("products");
 
     cy.intercept("DELETE", "**/v1/user/reservations/**", {
       code: 101,
@@ -352,7 +354,7 @@ describe("Reservation details modal", () => {
           reservationType: "normal"
         }
       ]
-    });
+    }).as("physical_reservations");
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
       body: {
@@ -385,6 +387,13 @@ describe("Reservation details modal", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
     );
+
+    cy.wait([
+      "@physical_reservations",
+      "@digital_reservations",
+      "@work",
+      "@cover"
+    ]);
 
     // ID 43 2.a. Material cover (coverservice)
     cy.get(".modal")
