@@ -1,5 +1,6 @@
-import React, { useEffect, useState, FC } from "react";
+import React, { useState, FC } from "react";
 import { useSelector } from "react-redux";
+import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../../core/utils/text";
 import {
   reservationId,
@@ -63,7 +64,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     open(reservationDetailsModalId(reservationForModal));
   };
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const modalUrlParam = getUrlQueryParam("modal");
     // If there is a reservation details query param, loan details modal should be opened
     const resDetails = reservationDetails as string;

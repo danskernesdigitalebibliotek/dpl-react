@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState } from "react";
+import { useDeepCompareEffect } from "react-use";
 import EmptyList from "../../../components/empty-list/empty-list";
 import usePager from "../../../components/result-pager/use-pager";
 import { getListItems } from "../../../core/utils/helpers/general";
@@ -33,7 +34,7 @@ const List: FC<ListProps> = ({
     pageSize
   });
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (reservations) {
       setDisplayedReservations(
         getListItems(reservations, itemsShown) as ReservationType[]

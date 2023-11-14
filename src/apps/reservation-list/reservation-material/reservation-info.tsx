@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
+import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
@@ -43,7 +44,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   const { success } = getColors();
   const branches = useGetBranches("blacklistedPickupBranchesConfig");
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (branches && pickupBranch) {
       setPickupLibrary(getPreferredBranch(pickupBranch, branches));
     }
