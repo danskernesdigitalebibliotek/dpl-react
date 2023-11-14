@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import { groupBy, map, min, reduce } from "lodash";
-import { getReservationsV2 } from "../fbs/fbs";
+import { useGetReservationsV2 } from "../fbs/fbs";
 import { ReservationDetailsV2 } from "../fbs/model";
 
 /**
@@ -61,36 +60,19 @@ function groupReservations(data: ReservationDetailsV2[]) {
  * Custom version of the generated useGetReservations hook which returns our
  * custom reservation details type.
  */
-const useGetReservationGroups = (): {
-  isLoading: boolean;
-  isSuccess: boolean;
-  isError: boolean;
-  error: Error | null;
+type UseGetReservationGroupsResult = Omit<
+  ReturnType<typeof useGetReservationsV2>,
+  "data"
+> & {
   data: ReservationGroupDetails[] | null;
-} => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [success, setSuccess] = useState<boolean>(false);
-  const [error, setError] = useState<Error | null>(null);
-  const [reservations, setReservations] = useState<
-    ReservationGroupDetails[] | null
-  >(null);
-
-  useEffect(() => {
-    getReservationsV2()
-      .then((data) => {
-        if (data) {
-          setReservations(groupReservations(data));
-          setLoading(false);
-          setSuccess(true);
-        }
-      })
-      .catch((errorResponse) => {
-        setError(errorResponse);
-        setLoading(false);
-      });
-  }, [setLoading, setError, setReservations]);
-
-  return { isLoading: loading, isSuccess: success, isError: !!error, error, data: reservations };
+};
+const useGetReservationGroups = (): UseGetReservationGroupsResult => {
+  const result = useGetReservationsV2();
+  const resultWithGroups = {
+    ...result,
+    data: result.data ? groupReservations(result.data) : null
+  };
+  return resultWithGroups;
 };
 
 export default useGetReservationGroups;
