@@ -353,6 +353,14 @@ describe("Reservation details modal", () => {
         }
       ]
     });
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        reservations: [],
+        code: 101,
+        message: "OK"
+      }
+    }).as("digital_reservations");
     cy.interceptRest({
       aliasName: "work",
       httpMethod: "POST",
