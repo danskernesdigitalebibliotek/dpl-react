@@ -213,6 +213,18 @@ describe("Search Result", () => {
     cy.getBySel("card-list-item").should("have.length", 2);
   });
 
+  it.only("Updates search string after initial search is executed", () => {
+    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("preview-section").first().should("contain", "'Harry'");
+    cy.getBySel("search-button").click();
+    cy.wait("@complexSearchWithPagination GraphQL operation");
+    cy.getBySel("search-result-list").should("exist");
+    cy.getBySel("advanced-search-header-row").eq(1).click().type("Potter");
+    cy.getBySel("preview-section")
+      .first()
+      .should("contain", "'Harry' AND 'Potter'");
+  });
+
   beforeEach(() => {
     cy.visit(
       "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
