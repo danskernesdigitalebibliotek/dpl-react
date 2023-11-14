@@ -47,7 +47,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     if (branches && pickupBranch) {
       setPickupLibrary(getPreferredBranch(pickupBranch, branches));
     }
-  }, [branches, pickupBranch, pickupDeadline, t]);
+  }, [branches, pickupBranch]);
 
   const getInfo = () => {
     // If the material is digital and has an expiry date,
