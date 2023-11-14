@@ -13,7 +13,8 @@ import {
 } from "../../../../core/publizon/publizon";
 import {
   isDigitalReservation,
-  isPhysicalReservation, reservationId,
+  isPhysicalReservation,
+  reservationId,
   ReservationType
 } from "../../../../core/utils/types/reservation-type";
 import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
