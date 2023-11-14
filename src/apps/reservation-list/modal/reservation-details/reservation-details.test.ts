@@ -483,6 +483,23 @@ describe("Reservation details modal", () => {
     cy.getBySel("reservation-form-button", true).click();
     cy.getBySel("modal-cta-button", true).click();
 
+    cy.wait("@put-library-branch-and-expiry-date").should(({ request }) => {
+      expect(JSON.stringify(request.body)).to.equal(
+        JSON.stringify({
+          reservations: [
+            {
+              expiryDate: "2022-09-21",
+              // TODO: This should be DK-775120 as this is what the user
+              //  selected in previous steps but that does not seem to work
+              //  right now.
+              pickupBranch: "DK-775160",
+              reservationId: 4698559133
+            }
+          ]
+        })
+      );
+    });
+
     // ID 13 2.f. header "Not interested after"
     cy.getBySel("reservation-form-list-item")
       .eq(2)
@@ -509,6 +526,21 @@ describe("Reservation details modal", () => {
 
     cy.getBySel("reservation-form-button", true).click();
     cy.getBySel("modal-cta-button", true).click();
+
+    cy.wait("@put-library-branch-and-expiry-date").should(({ request }) => {
+      expect(JSON.stringify(request.body)).to.equal(
+        JSON.stringify({
+          reservations: [
+            {
+              // TODO This should be updated to reflect the new interest date
+              expiryDate: "2022-09-21",
+              pickupBranch: "DK-775120",
+              reservationId: 4698559133
+            }
+          ]
+        })
+      );
+    });
 
     // ID 15 2.i still on "detaljevisning"
     // ID 16 6. user clicks save
