@@ -6,13 +6,14 @@ type AccessManifestations =
 export const findAccessManifestationByIdentifier = (
   manifestations: AccessManifestations,
   identifier: string
-) => {
-  return manifestations.filter((manifestation) =>
+) =>
+  manifestations.filter((manifestation) =>
     manifestation.identifiers.find(
+      // We are comparing ISBNs here, which can have different formats -
+      // with spaces/dashes, so we remove all non-digits before comparing.
       (id) => id.value.replace(/\D/g, "") === identifier.replace(/\D/g, "")
     )
   );
-};
 
 export const findEreolAccessLinkFromManifestations = (
   manifestations: AccessManifestations
