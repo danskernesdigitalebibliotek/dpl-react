@@ -46,9 +46,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
   const { data: userData } = usePatronData();
 
   const {
-    all: { reservations: allReservations, isLoading },
-    fbs: { reservations: physicalReservations },
-    publizon: { reservations: digitalReservations }
+    all: { reservations: allReservations, isLoading }
   } = useReservations();
 
   const allListsEmpty = allReservations.length === 0 && isLoading;
@@ -97,7 +95,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         }
       }
     }
-  }, [allReservations, reservationDetails, reservationDetails]);
+  }, [allReservations, reservationDetails, deleteReservation]);
 
   return (
     <>
