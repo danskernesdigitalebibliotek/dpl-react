@@ -25,19 +25,18 @@ export type PhysicalReservationType = ReservationType &
   NonNullableFields<Required<Pick<ListType, "faust" | "reservationIds">>>;
 
 export type DigitalReservationType = ReservationType &
-  NonNullableFields<Required<Pick<ListType, "identifier" | "reservationId">>>;
+  NonNullableFields<Required<Pick<ListType, "identifier">>>;
 
 export function reservationId(reservation: ReservationType): string {
   if (reservation?.reservationIds && reservation.reservationIds.length > 0) {
     return String(reservation.reservationIds.at(0));
   }
-  return String(reservation.reservationId || reservation.identifier);
+  return String(reservation.identifier);
 }
 
 export function isReservationType(item: ListType): item is ReservationType {
   return (
     !!item.identifier ||
-    !!item.reservationId ||
     (!!item.reservationIds && item.reservationIds.length > 0)
   );
 }

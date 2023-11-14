@@ -62,11 +62,11 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
             faust,
             identifier,
             numberInQueue,
-            reservationId
+            reservationIds
           } = material;
           return (
             <>
-              {(identifier || reservationId || faust) && (
+              {(identifier || reservationIds || faust) && (
                 <SelectableMaterial
                   item={material}
                   displayedMaterial={material}

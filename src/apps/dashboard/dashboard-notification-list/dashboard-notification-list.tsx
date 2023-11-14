@@ -14,7 +14,9 @@ import MaterialDetails from "../../loan-list/modal/material-details";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
 import ReservationGroupModal from "../modal/ReservationsGroupModal";
 import ReservationDetails from "../../reservation-list/modal/reservation-details/reservation-details";
-import DeleteReservationModal from "../../reservation-list/modal/delete-reservation/delete-reservation-modal";
+import DeleteReservationModal, {
+  deleteReservationModalId
+} from "../../reservation-list/modal/delete-reservation/delete-reservation-modal";
 import Notifications from "./Notifications";
 import AcceptModal from "../../../components/accept-fees-modal/AcceptFeesModal";
 import useReservations from "../../../core/utils/useReservations";
@@ -59,8 +61,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const [modalHeader, setModalHeader] = useState("");
 
   const { open } = useModalButtonHandler();
-  const { acceptModal, dueDateModal, deleteReservation, deleteReservations } =
-    getModalIds();
+  const { acceptModal, dueDateModal, deleteReservations } = getModalIds();
   const [dueDate, setDueDate] = useState<string | null>(null);
   const [modalLoan, setModalLoan] = useState<LoanType | null>(null);
   const [reservationForModal, setReservationForModal] =
@@ -99,13 +100,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
 
   const openReservationDeleteModal = useCallback(() => {
     if (reservationForModal) {
-      open(
-        `${deleteReservation}${
-          reservationForModal.reservationId || reservationForModal.identifier
-        }`
-      );
+      open(deleteReservationModalId(reservationForModal));
     }
-  }, [deleteReservation, open, reservationForModal]);
+  }, [open, reservationForModal]);
 
   const setReservationsToDelete = (resForDeleting: ReservationType[]) => {
     setReservationsForDeleting(resForDeleting);
@@ -275,9 +272,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       )}
       {reservationForModal && (
         <DeleteReservationModal
-          modalId={`${deleteReservation}${
-            reservationForModal.reservationId || reservationForModal.identifier
-          }`}
+          modalId={deleteReservationModalId(reservationForModal)}
           reservations={[reservationForModal]}
         />
       )}

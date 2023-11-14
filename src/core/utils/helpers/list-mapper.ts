@@ -228,7 +228,6 @@ export const mapFBSReservationToReservationType = (
         pickupBranch,
         pickupDeadline,
         pickupNumber,
-        reservationId,
         reservationIds: [reservationId]
       };
     }
