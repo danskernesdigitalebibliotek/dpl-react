@@ -113,7 +113,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       const dateFromQueryParam = dateFromDueDateModalQueryParam(modalUrlParam);
       setDueDate(dateFromQueryParam);
     }
-  }, [loansPhysical, loanDetails, openDueDateModal]);
+  }, [loansPhysical, loansDigital, loanDetails, openDueDateModal]);
 
   const listContainsLoans =
     (Array.isArray(loansPhysical) && loansPhysical.length > 0) ||
