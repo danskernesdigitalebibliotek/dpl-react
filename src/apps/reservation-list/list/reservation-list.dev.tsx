@@ -185,6 +185,10 @@ export default {
       defaultValue: "Pause your reservations",
       control: { type: "text" }
     },
+    reservationListPauseReservationOnHoldText: {
+      defaultValue: "Your reservations are paused",
+      control: { type: "text" }
+    },
     reservationListOnHoldAriaText: {
       defaultValue:
         "Reservations have been paused in the following time span: ",
@@ -192,7 +196,11 @@ export default {
     },
     reservationListPauseReservationAriaModalText: {
       defaultValue:
-        "This button opens a modal that covers the entire page and contains the possibility to pause physical reservations",
+        "Opens a modal that covers the entire page where it is possible to pause physical reservations",
+      control: { type: "text" }
+    },
+    reservationListPauseReservationButtonText: {
+      defaultValue: "Settings",
       control: { type: "text" }
     },
     pauseReservationModalAriaDescriptionText: {
@@ -232,6 +240,10 @@ export default {
     },
     pauseReservationModalSaveButtonLabelText: {
       defaultValue: "Save",
+      control: { type: "text" }
+    },
+    pauseReservationModalCancelButtonLabelText: {
+      defaultValue: "Cancel pause",
       control: { type: "text" }
     },
     showMoreText: {
