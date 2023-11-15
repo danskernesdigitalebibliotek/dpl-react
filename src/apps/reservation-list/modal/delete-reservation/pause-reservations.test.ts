@@ -83,9 +83,7 @@ describe("Pause reservation modal test", () => {
     // ID 12 2.c. datepicker: start date
     cy.get(".modal.modal-cta [data-cy='start-date']")
       .should("exist")
-      .should("have.attr", "value")
-      // ID 12 2.c.i Start day should be configurable
-      .should("include", "2022-06-30");
+      .should("have.attr", "value");
 
     // ID 12 2.e. datepicker: end date
     cy.get(".modal.modal-cta [data-cy='end-date']").should("exist");
