@@ -60,6 +60,49 @@ describe("Multiselect", () => {
       .and("have.attr", "aria-selected", "false");
   });
 
+  it("Allows to remove an item", () => {
+    cy.getBySel("multiselect").should("contain", "All").click();
+    cy.get("[role=option]").eq(1).should("contain", "First item").click();
+    cy.get("[role=option]").eq(2).should("contain", "2. item").click();
+    cy.get("[role=option]")
+      .eq(1)
+      .should("contain", "First item")
+      .and("have.attr", "aria-selected", "true");
+    cy.get("[role=option]")
+      .eq(2)
+      .should("contain", "2. item")
+      .and("have.attr", "aria-selected", "true");
+    cy.get("[role=option]")
+      .eq(3)
+      .should("contain", "III")
+      .and("have.attr", "aria-selected", "false");
+    // Now we click the first item to deselect it..
+    cy.get("[role=option]").eq(1).should("contain", "First item").click();
+    // ..and the only selected one should be the second item.
+    cy.get("[role=option]")
+      .eq(1)
+      .should("contain", "First item")
+      .and("have.attr", "aria-selected", "false");
+    cy.get("[role=option]")
+      .eq(2)
+      .should("contain", "2. item")
+      .and("have.attr", "aria-selected", "true");
+  });
+
+  it("Doesn't allow to remove an item if it's the only selected", () => {
+    cy.getBySel("multiselect").should("contain", "All").click();
+    cy.get("[role=option]").eq(1).should("contain", "First item").click();
+    cy.get("[role=option]")
+      .eq(1)
+      .should("contain", "First item")
+      .and("have.attr", "aria-selected", "true");
+    cy.get("[role=option]").eq(1).should("contain", "First item").click();
+    cy.get("[role=option]")
+      .eq(1)
+      .should("contain", "First item")
+      .and("have.attr", "aria-selected", "true");
+  });
+
   it("Selects the all option if all values are selected", () => {
     cy.get("button:visible").click();
     cy.get("[role=option]").click({ multiple: true });

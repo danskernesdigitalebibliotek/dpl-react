@@ -11,6 +11,7 @@ import {
   deselectMultiselectAllOption,
   selectMultiselectAllOption,
   selectMultiselectOption,
+  setMultiselectOptions,
   useGetMultiselectDownshiftProps
 } from "./helper";
 
@@ -53,11 +54,20 @@ const Multiselect: FC<MultiselectProps> = ({
   const { getDropdownProps, setSelectedItems, selectedItems } =
     useMultipleSelection({ initialSelectedItems: initialSelectedOptions });
 
-  const addNewSelectedItem = (
+  const handleSelectedItems = (
     allCurrentlySelected: MultiselectOption[],
-    newSelected: MultiselectOption,
+    newSelected: MultiselectOption | null,
     allPossibleOptions: number
   ) => {
+    // If newSelected doesn't exist, then we instead are removing an item
+    if (!newSelected) {
+      return setMultiselectOptions(
+        allCurrentlySelected,
+        updateState,
+        updateExternalState,
+        setSelectedItems
+      );
+    }
     // If new selection is not "all" we make sure "all" is deselected
     if (
       allCurrentlySelected.find((item) => item.value === allValue) &&
@@ -111,7 +121,7 @@ const Multiselect: FC<MultiselectProps> = ({
       allOptions,
       selectedItems,
       setSelectedItems,
-      addNewSelectedItem
+      handleSelectedItems
     );
 
   return (
