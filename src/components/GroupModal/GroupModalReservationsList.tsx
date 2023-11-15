@@ -3,7 +3,10 @@ import { isEqual } from "lodash";
 import SelectableMaterial from "../../apps/loan-list/materials/selectable-material/selectable-material";
 import { useText } from "../../core/utils/text";
 import usePager from "../result-pager/use-pager";
-import { ReservationType } from "../../core/utils/types/reservation-type";
+import {
+  reservationId,
+  ReservationType
+} from "../../core/utils/types/reservation-type";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
 import { ListType } from "../../core/utils/types/list-type";
 
@@ -92,7 +95,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                     )
                   }
                   openDetailsModal={openDetailsModal}
-                  key={faust || identifier}
+                  key={reservationId(material)}
                   selected={selected}
                   onMaterialChecked={onMaterialChecked}
                   disabled={false}
