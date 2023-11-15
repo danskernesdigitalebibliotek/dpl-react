@@ -30,12 +30,14 @@ import ReservationFormListItem from "../../../../components/reservation/Reservat
 import NoInterestAfterModal from "../../../../components/reservation/forms/NoInterestAfterModal";
 import { RequestStatus } from "../../../../core/utils/types/request";
 import { formatDate } from "../../../../core/utils/helpers/date";
+import { getReadyForPickup } from "../../utils/helpers";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
 }
 
 const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
+  reservation,
   reservation: {
     numberInQueue,
     pickupBranch,
@@ -75,6 +77,8 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
     branches,
     blacklistBranches
   );
+
+  const isReadyForPickup = getReadyForPickup([reservation]).length > 0;
 
   const saveChanges = () => {
     setReservationStatus("pending");
@@ -139,15 +143,18 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
             changeHandler={openModal("pickup")}
             buttonAriaLabel={t("changePickupLocationText")}
             subText={pickupNumber ?? ""}
+            isPossibleToChangeReservationDetails={!isReadyForPickup}
           />
-          <PickupModal
-            branches={whitelistBranches}
-            defaultBranch={pickupBranch}
-            selectBranchHandler={setSelectedBranch}
-            saveCallback={saveChanges}
-            reservationStatus={reservationStatus}
-            setReservationStatus={setReservationStatus}
-          />
+          {!isReadyForPickup && (
+            <PickupModal
+              branches={whitelistBranches}
+              defaultBranch={pickupBranch}
+              selectBranchHandler={setSelectedBranch}
+              saveCallback={saveChanges}
+              reservationStatus={reservationStatus}
+              setReservationStatus={setReservationStatus}
+            />
+          )}
         </>
       )}
       {expiryDate && (
@@ -162,14 +169,17 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
             }
             changeHandler={openModal("interestPeriod")}
             buttonAriaLabel={t("changeInterestPeriodText")}
+            isPossibleToChangeReservationDetails={!isReadyForPickup}
           />
-          <NoInterestAfterModal
-            selectedInterest={selectedInterest ?? 90}
-            setSelectedInterest={setSelectedInterest}
-            saveCallback={saveChanges}
-            reservationStatus={reservationStatus}
-            setReservationStatus={setReservationStatus}
-          />
+          {!isReadyForPickup && (
+            <NoInterestAfterModal
+              selectedInterest={selectedInterest ?? 90}
+              setSelectedInterest={setSelectedInterest}
+              saveCallback={saveChanges}
+              reservationStatus={reservationStatus}
+              setReservationStatus={setReservationStatus}
+            />
+          )}
         </>
       )}
       {pickupDeadline && (

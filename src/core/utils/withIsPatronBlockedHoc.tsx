@@ -8,7 +8,7 @@ import { setHasBeenVisible } from "../blockedModal.slice";
 import { RootState, useSelector } from "../store";
 import BlockedTypes from "./types/BlockedTypes";
 import { redirectTo } from "./helpers/url";
-import { usePatronData } from "../../components/material/helper";
+import { usePatronData } from "./helpers/user";
 
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;

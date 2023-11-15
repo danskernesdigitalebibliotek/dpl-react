@@ -31,6 +31,14 @@ export default {
       defaultValue: "/Logout",
       control: { type: "text" }
     },
+    dashboardUrl: {
+      defaultValue: "/user/me/dashboard",
+      control: { type: "text" }
+    },
+    agencyConfig: {
+      defaultValue: '{ "id": "999999" }',
+      control: { type: "text" }
+    },
     textNotificationsEnabledConfig: {
       defaultValue: "1",
       control: { type: "text" }

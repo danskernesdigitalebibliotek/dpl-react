@@ -1,33 +1,55 @@
 import React, { useState, FC, useEffect } from "react";
 import UserInfo from "./UserInfo";
 import { useUrls } from "../../core/utils/url";
+import { useText } from "../../core/utils/text";
+import { redirectTo } from "../../core/utils/helpers/url";
+import { useConfig } from "../../core/utils/config";
+import useUserInfo from "../../core/adgangsplatformen/useUserInfo";
 
-interface CreatePatronProps {
-  userToken: string;
-}
-
-const CreatePatron: FC<CreatePatronProps> = ({ userToken }) => {
+const CreatePatron: FC = () => {
   const [cpr, setCpr] = useState<string | null>(null);
-  const { userinfoUrl } = useUrls();
+  const config = useConfig();
+  const t = useText();
+  const { dashboardUrl } = useUrls();
 
-  if (!userinfoUrl) {
-    throw new Error("userinfoUrl is not defined");
-  }
+  const { id: agencyId } = config<{
+    id: `${number}`;
+  }>("agencyConfig", {
+    transformer: "jsonParse"
+  });
+
+  // Fetch user info data.
+  const { data: userInfo, isLoading } = useUserInfo();
 
   useEffect(() => {
-    fetch(String(userinfoUrl), {
-      method: "get",
-      headers: { Authorization: `Bearer ${userToken}` }
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data?.attributes?.cpr) {
-          setCpr(data.attributes.cpr);
-        }
-      });
-  }, [userToken, userinfoUrl]);
+    if (isLoading || !userInfo) {
+      return;
+    }
 
-  if (cpr === null) return null;
+    const {
+      attributes: { agencies, cpr: userCpr }
+    } = userInfo;
+
+    const userWasAlreadyCreated = agencies.some(
+      (agency) => agency.agencyId === agencyId
+    );
+
+    // If the user was already created, redirect to the dashboard.
+    if (userWasAlreadyCreated) {
+      redirectTo(dashboardUrl);
+    }
+
+    // Otherwise set the cpr so we can show the create patron form.
+    setCpr(String(userCpr));
+  }, [agencyId, dashboardUrl, isLoading, userInfo]);
+
+  if (isLoading) {
+    return <div>{t("loadingText")}</div>;
+  }
+
+  if (!cpr) {
+    return null;
+  }
 
   return <UserInfo cpr={cpr} />;
 };

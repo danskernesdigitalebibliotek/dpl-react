@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { ThresholdType } from "../../../../core/utils/types/threshold-type";
-import { useConfig } from "../../../../core/utils/config";
 import { daysBetweenTodayAndDate } from "../../../../core/utils/helpers/general";
+import useLoanThresholds from "../../../../core/utils/useLoanThresholds";
 
 interface StatusBadgeProps {
   badgeDate?: string | null;
@@ -20,26 +19,18 @@ const StatusBadge: FC<StatusBadgeProps> = ({
   infoText,
   neutralText
 }) => {
-  const config = useConfig();
+  const threshold = useLoanThresholds();
+  const daysBetweenTodayAndDue = badgeDate
+    ? daysBetweenTodayAndDate(badgeDate)
+    : 0;
 
-  const {
-    colorThresholds: { danger, warning }
-  } = config<ThresholdType>("thresholdConfig", {
-    transformer: "jsonParse"
-  });
-
-  let daysBetweenTodayAndDue = 0;
-  if (badgeDate) {
-    daysBetweenTodayAndDue = daysBetweenTodayAndDate(badgeDate);
-  }
-
-  if (daysBetweenTodayAndDue < Number(danger) && dangerText) {
+  if (daysBetweenTodayAndDue < threshold.danger && dangerText) {
     return (
       <div className="status-label status-label--danger">{dangerText}</div>
     );
   }
 
-  if (daysBetweenTodayAndDue <= Number(warning) && warningText) {
+  if (daysBetweenTodayAndDue <= threshold.warning && warningText) {
     return (
       <div className="status-label status-label--warning">{warningText}</div>
     );

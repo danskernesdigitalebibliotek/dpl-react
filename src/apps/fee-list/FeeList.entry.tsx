@@ -8,7 +8,7 @@ import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-prop
 import { withConfig } from "../../core/utils/config";
 
 export interface IntermedateListEntryConfigProps {
-  thresholdConfig: string;
+  expirationWarningDaysBeforeConfig: string;
 }
 
 export interface FeeListProps {

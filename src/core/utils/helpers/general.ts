@@ -16,7 +16,6 @@ import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import { FeeV2 } from "../../fbs/model/feeV2";
-import { dashboardReservedApiValueText } from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
 import { store } from "../../store";
@@ -178,16 +177,6 @@ export const getParams = (props: Record<string, string | undefined>) =>
     {}
   );
 
-export const sortByDueDate = (list: LoanType[]) => {
-  // Todo figure out what to do if loan does not have loan date
-  // For now, its at the bottom of the list
-  return list.sort(
-    (a, b) =>
-      new Date(a.dueDate || new Date()).getTime() -
-      new Date(b.dueDate || new Date()).getTime()
-  );
-};
-
 export const sortByLoanDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
@@ -204,17 +193,6 @@ export const sortByReservationDate = (list: ReservationType[]) => {
       new Date(objA.dateOfReservation || new Date()).getTime() -
       new Date(objB.dateOfReservation || new Date()).getTime()
   );
-};
-
-export const getDueDatesLoan = (list: LoanType[]) => {
-  return Array.from(
-    new Set(
-      list
-        .filter(({ dueDate }) => dueDate !== (undefined || null))
-        .map(({ dueDate }) => dueDate)
-        .sort()
-    )
-  ) as string[];
 };
 
 export const getDueDatesForModal = (list: LoanType[], date: string) => {
@@ -325,12 +303,6 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
-  return [...list].filter(
-    ({ state }) => state === dashboardReservedApiValueText
-  );
-};
-
 export const loansOverdue = (loans: LoanType[]): boolean => {
   return loans.every((loan) => materialIsOverdue(loan.dueDate));
 };
@@ -343,24 +315,6 @@ export const tallyUpFees = (fees: FeeV2[]) => {
   return fees
     .reduce((total, { amount }) => total + amount, 0)
     .toLocaleString("da-DA");
-};
-
-// Loans overdue
-export const filterLoansOverdue = (loans: LoanType[]) => {
-  return loans.filter(({ dueDate }) => {
-    return materialIsOverdue(dueDate);
-  });
-};
-
-export const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
-  return loans.filter(({ dueDate }) => {
-    const due: string = dueDate || "";
-    const daysUntilExpiration = daysBetweenTodayAndDate(due);
-    return (
-      daysUntilExpiration - warning <= 0 &&
-      daysUntilExpiration - warning >= -warning
-    );
-  });
 };
 
 export const getMaterialTypes = (
@@ -404,14 +358,6 @@ export const getAllFaustIds = (manifestations: Manifestation[]) => {
 
 export const getScrollClass = (modalIds: string[]) => {
   return modalIds.length > 0 ? "scroll-lock-background" : "";
-};
-// Loans with more than warning-threshold days until due
-export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
-  return loans.filter(({ dueDate }) => {
-    const due: string = dueDate || "";
-    const daysUntilExpiration = daysBetweenTodayAndDate(due);
-    return daysUntilExpiration - warning > 0;
-  });
 };
 
 function getDateFromCpr(cprInput: string) {

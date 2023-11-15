@@ -92,10 +92,18 @@ const modalSlice = createSlice({
         removeModalIdFromUrl(state);
         returnFocusElement();
       }
+    },
+    closeAllModals(state: StateProps) {
+      // Enables background scrolling to use when Modal is closed
+      document.body.style.overflow = "";
+      state.modalIds = [];
+      removeModalIdFromUrl(state);
+      returnFocusElement();
     }
   }
 });
 
-export const { openModal, closeModal, closeLastModal } = modalSlice.actions;
+export const { openModal, closeModal, closeLastModal, closeAllModals } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;

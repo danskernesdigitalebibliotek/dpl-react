@@ -103,7 +103,11 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   return (
     <>
       {!showContentOnly && <div className="advanced-search__divider" />}
-      <h2 className="text-header-h2 advanced-search__title capitalize-first">
+      <h2
+        className="text-header-h2 advanced-search__title capitalize-first"
+        /* ID is used to scroll to the results upon hitting the search button. */
+        id="advanced-search-result"
+      >
         {isLoading && t("loadingResultsText")}
         {shouldShowResultHeadline &&
           t("showingMaterialsText", {

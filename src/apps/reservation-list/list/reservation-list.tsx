@@ -33,7 +33,7 @@ import ReservationDetails from "../modal/reservation-details/reservation-details
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { getDetailsModalId } from "../../../core/utils/helpers/modal-helpers";
 import { getFromListByKey } from "../../loan-list/utils/helpers";
-import { usePatronData } from "../../../components/material/helper";
+import { usePatronData } from "../../../core/utils/helpers/user";
 
 export interface ReservationListProps {
   pageSize: number;

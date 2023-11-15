@@ -80,24 +80,39 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     setSearchObject(structuredClone(initialAdvancedSearchQuery));
   };
 
-  useEffect(() => {
-    if (searchQuery && !searchObject) {
-      setIsFormMode(false);
+  const scrollToResults = () => {
+    const element = document.getElementById("advanced-search-result");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }, [searchObject, searchQuery]);
+  };
 
   const handleSearchButtonClick = () => {
     if (rawCql.trim() !== "" && !isFormMode) {
       setSearchQuery(rawCql);
+      // Half a second makes sure search result is rendered before scrolling to it.
+      setTimeout(() => {
+        scrollToResults();
+      }, 500);
       return;
     }
     setSearchObject(internalSearchObject);
+    // Half a second makes sure search result is rendered before scrolling to it.
+    setTimeout(() => {
+      scrollToResults();
+    }, 500);
   };
 
   const [isSearchButtonDisabled, setIsSearchButtonDisabled] =
     useState<boolean>(true);
 
   const translatedCql = previewCql || searchQuery || "";
+
+  useEffect(() => {
+    if (searchQuery && !searchObject) {
+      setIsFormMode(false);
+    }
+  }, [searchObject, searchQuery]);
 
   useEffect(() => {
     setIsSearchButtonDisabled(

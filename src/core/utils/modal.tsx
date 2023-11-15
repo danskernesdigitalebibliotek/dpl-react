@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import clsx from "clsx";
 import FocusTrap from "focus-trap-react";
-import { closeModal, openModal } from "../modal.slice";
+import { closeAllModals, closeModal, openModal } from "../modal.slice";
 import { isAnonymous } from "./helpers/user";
 import {
   currentLocationWithParametersUrl,
   redirectToLoginAndBack
 } from "./helpers/url";
+import { isVitestEnvironment } from "./helpers/vitest";
 
 type ModalId = string;
 
@@ -66,7 +67,12 @@ function Modal({
   };
 
   return (
-    <FocusTrap>
+    <FocusTrap
+      focusTrapOptions={{
+        // Set fallbackFocus when running vitest to avoid focus trap errors.
+        fallbackFocus: isVitestEnvironment ? "body" : undefined
+      }}
+    >
       <div>
         {/* The backdrop doesn't have a role or keyboard listener because it barely duplicates
           the close button's functionality which possesses both. */}
@@ -146,6 +152,9 @@ export const useModalButtonHandler = () => {
     },
     close: (modalId: ModalId) => {
       return dispatch(closeModal({ modalId }));
+    },
+    closeAll: () => {
+      return dispatch(closeAllModals());
     },
     openGuarded: ({
       authUrl,

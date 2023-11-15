@@ -17,7 +17,8 @@ type InputProps = {
 
 const fetchMaterial =
   <P extends object>(
-    Component: ComponentType<P & MaterialProps>
+    Component: ComponentType<P & MaterialProps>,
+    FallbackComponent?: ComponentType
   ): FC<P & InputProps> =>
   ({ identifier, faust, ...props }: InputProps) => {
     // If this is a digital book, another HOC fetches the data and this
@@ -48,7 +49,11 @@ const fetchMaterial =
         }
       }, [isSuccessManifestation, data]);
 
-      if (!material) return null;
+      // in cases where the material is not found we return null, else we would load forever
+      if (data && data.manifestation === null) return null;
+
+      // if the fallback component is provided we can show it while the data is loading
+      if (!material) return FallbackComponent ? <FallbackComponent /> : null;
 
       return (
         <Component

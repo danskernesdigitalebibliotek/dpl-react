@@ -27,7 +27,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const { mutate: deletePhysicalReservation } = useDeleteReservations();
   const { mutate: deleteDigitalReservation } =
     useDeleteV1UserReservationsIdentifier();
-  const { close } = useModalButtonHandler();
+  const { closeAll: closeAllModals } = useModalButtonHandler();
 
   const removeSelectedReservations = () => {
     if (reservations.length > 0) {
@@ -65,7 +65,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
         )
       );
 
-      close(modalId as string);
+      closeAllModals();
     }
   };
 

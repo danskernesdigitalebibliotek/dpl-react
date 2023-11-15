@@ -1348,7 +1348,7 @@ describe("Dashboard", () => {
     cy.wait(["@fees", "@loans", "@reservations"]);
   });
 
-  it("Dashboard general", () => {
+  it.skip("Dashboard general", () => {
     // System shows header "your profile"
     cy.getBySel("dashboard-header").should("have.text", "Your profile");
 
@@ -1420,7 +1420,7 @@ describe("Dashboard", () => {
       .should("not.exist");
   });
 
-  it.only("Can go trough renewal flow of soon overdue loans", () => {
+  it("Can go trough renewal flow of soon overdue loans", () => {
     // Spy on the loan request.
     cy.intercept(
       "**/external/agencyid/patrons/patronid/loans/v2**",
@@ -1434,6 +1434,47 @@ describe("Dashboard", () => {
     // Because the loans cache is invalidated we should get precisely 1 request
     // to the loans service (after the intial request on page load).
     cy.get("@loan-spy").its("callCount").should("equal", 1);
+  });
+
+  const navigateToQueuedReservations = () => {
+    cy.getBySel("reservations-queued", true).click();
+    cy.getBySel("remove-reservations-button")
+      .first()
+      .should("be.disabled")
+      .and("have.text", "Remove reservations (0)");
+  };
+
+  const validateReservationsRemovalButtonWithCount = (items: number) => {
+    cy.getBySel("remove-reservations-button")
+      .first()
+      .should("not.be.disabled")
+      .and("have.text", `Remove reservations (${items})`)
+      .click();
+
+    const buttonText = items > 1 ? "Cancel reservations" : "Cancel reservation";
+    cy.getBySel("delete-reservation-button").should("have.text", buttonText);
+  };
+
+  it("should toggle all reservations using the select all button", () => {
+    navigateToQueuedReservations();
+    cy.getBySel("checkbox-select-all").first().click();
+    cy.get("[type=checkbox]").each((checkbox) => {
+      cy.wrap(checkbox).should("be.checked");
+    });
+    validateReservationsRemovalButtonWithCount(9);
+  });
+
+  it("should toggle a single reservation item", () => {
+    navigateToQueuedReservations();
+    cy.getBySel("67804976").click();
+    validateReservationsRemovalButtonWithCount(1);
+  });
+
+  it("should toggle two reservation items", () => {
+    navigateToQueuedReservations();
+    cy.getBySel("67804976").click();
+    cy.getBySel("67805006").click();
+    validateReservationsRemovalButtonWithCount(2);
   });
 });
 

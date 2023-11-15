@@ -6,6 +6,7 @@ import CreatePatron from "./CreatePatron";
 import { getToken, hasToken } from "../../core/token";
 
 interface CreatePatronConfigProps {
+  agencyConfig: string;
   pincodeLengthMinConfig: string;
   pincodeLengthMaxConfig: string;
   blacklistedPickupBranchesConfig: string;
@@ -17,6 +18,7 @@ interface CreatePatronUrlProps {
   redirectOnUserCreatedUrl: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;
+  dashboardUrl: string;
 }
 
 interface CreatePatronTextProps {
@@ -59,7 +61,7 @@ const CreatePatronEntry: FC<CreatePatronProps> = () => {
     return null;
   }
 
-  return <CreatePatron userToken={userToken} />;
+  return <CreatePatron />;
 };
 
 export default withConfig(withText(withUrls(CreatePatronEntry)));

@@ -20,6 +20,20 @@ export const deselectMultiselectAllOption = (
   return newValue;
 };
 
+export const setMultiselectOptions = (
+  newSelected: MultiselectOption[],
+  updateState: (
+    updateKey: string | undefined,
+    value: MultiselectOption[]
+  ) => void,
+  updateExternalState: MultiselectExternalUpdate | undefined,
+  setSelectedItems: (items: MultiselectOption[]) => void
+) => {
+  updateState(updateExternalState?.key, newSelected);
+  setSelectedItems(newSelected);
+  return newSelected;
+};
+
 export const selectMultiselectAllOption = (
   updateState: (
     updateKey: string | undefined,
@@ -54,9 +68,9 @@ export const useGetMultiselectDownshiftProps = (
   allOptions: MultiselectOption[],
   selectedItems: MultiselectOption[],
   setSelectedItems: (items: MultiselectOption[]) => void,
-  addNewSelectedItem: (
+  handleSelectedItems: (
     allCurrentlySelected: MultiselectOption[],
-    newSelected: MultiselectOption,
+    newSelected: MultiselectOption | null,
     allPossibleOptions: number
   ) => MultiselectOption[]
 ) => {
@@ -90,7 +104,7 @@ export const useGetMultiselectDownshiftProps = (
             !selectedItems.find((item) => item.value === newSelectedItem.value)
           ) {
             setSelectedItems(
-              addNewSelectedItem(
+              handleSelectedItems(
                 selectedItems,
                 newSelectedItem,
                 allOptions.length
@@ -110,7 +124,9 @@ export const useGetMultiselectDownshiftProps = (
             const newSelectedItems = selectedItems.filter((item) => {
               return item.value !== newSelectedItem.value;
             });
-            setSelectedItems(newSelectedItems);
+            setSelectedItems(
+              handleSelectedItems(newSelectedItems, null, allOptions.length)
+            );
           }
           break;
         default:

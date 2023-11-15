@@ -4,7 +4,7 @@ import {
   getManifestationType,
   getReservablePidsFromAnotherLibrary
 } from "../../../../core/utils/helpers/general";
-import { isBlocked } from "../../../../core/utils/helpers/user";
+import { isBlocked, usePatronData } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import UseReservableManifestations from "../../../../core/utils/UseReservableManifestations";
@@ -13,7 +13,6 @@ import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import { useText } from "../../../../core/utils/text";
-import { usePatronData } from "../../helper";
 import MaterialButtonReservableFromAnotherLibrary from "./MaterialButtonReservableFromAnotherLibrary";
 
 export interface MaterialButtonsPhysicalProps {

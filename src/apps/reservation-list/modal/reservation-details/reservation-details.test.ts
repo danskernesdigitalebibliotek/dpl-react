@@ -189,15 +189,6 @@ describe("Reservation details modal test", () => {
     // ID 43 2.b. Material types including accessibility of material
     // ID 17 2.b.ii "Ready for loan" if the reservation is ready for loan, or else it will not be shown
 
-    // ID 17 2.c. the link "Remove your reservation"
-    cy.get(".modal")
-      .find("button.link-tag")
-      .eq(0)
-      .should("have.text", "Remove your reservation")
-      .click();
-
-    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
-
     // ID 17 2.d. button: go to ereolen
     cy.get(".modal")
       .find("[data-cy='go-to-ereolen-button']")
@@ -235,6 +226,16 @@ describe("Reservation details modal test", () => {
       .eq(1)
       .find(".text-small-caption")
       .should("have.text", "16-08-2022 12:52");
+
+    cy.get(".modal")
+      .find("button.link-tag")
+      .eq(0)
+      .should("have.text", "Remove your reservation")
+      .click();
+
+    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
+
+    cy.get(".modal").should("not.exist");
   });
 
   it("It shows digital reservation details modal, material queued", () => {
@@ -423,16 +424,6 @@ describe("Reservation details modal test", () => {
       .find(".text-body-medium-regular")
       .should("have.text", "Others are queueing for this material");
 
-    // ID 13 button: “Remove you reservation”
-    cy.get(".modal")
-      .find(".modal-details__buttons")
-      .eq(0)
-      .find("button")
-      .should("have.text", "Remove your reservation")
-      .click();
-
-    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
-
     // ID 13 2.d. header "status"
     cy.getBySel("reservation-form-list-item")
       .eq(0)
@@ -478,6 +469,9 @@ describe("Reservation details modal test", () => {
       "DK-775120"
     );
 
+    cy.getBySel("reservation-form-button", true).click();
+    cy.getBySel("modal-cta-button", true).click();
+
     // ID 13 2.f. header "Not interested after"
     cy.getBySel("reservation-form-list-item")
       .eq(2)
@@ -490,11 +484,6 @@ describe("Reservation details modal test", () => {
       .find(".text-small-caption")
       .should("contain.text", "21-09-2022");
 
-    // ID 13 2.f.ii. the link "apply changes"
-    cy.getBySel("reservation-form-button").should("exist").click();
-
-    cy.getBySel("modal-cta-button").should("be.be.visible").click();
-
     // ID 15 2.a&b&c&d&e Dropdown with interest periods
     cy.getBySel("reservation-form-list-item")
       .eq(2)
@@ -502,15 +491,13 @@ describe("Reservation details modal test", () => {
       .should("exist")
       .click();
 
-    cy.getBySel("modal-reservation-form-select")
-      .find(".dropdown__option")
-      .should("have.text", "Choose one1 month2 months3 months6 months1 year");
+    cy.getBySel("modal-reservation-form-select").should(
+      "have.text",
+      "Choose one1 month2 months3 months6 months1 year"
+    );
 
-    // ID 15 2.g user clicks save
-    // ID 16 4. user clicks save
-    cy.getBySel("reservation-form-button").should("exist").click();
-
-    cy.getBySel("modal-cta-button").should("be.be.visible").click();
+    cy.getBySel("reservation-form-button", true).click();
+    cy.getBySel("modal-cta-button", true).click();
 
     // ID 15 2.i still on "detaljevisning"
     // ID 16 6. user clicks save
@@ -528,8 +515,7 @@ describe("Reservation details modal test", () => {
     cy.getBySel("reservation-form-list-item")
       .eq(2)
       .find("button")
-      .should("exist")
-      .click();
+      .should("exist");
 
     // ID 13 2.h. header "Date of reservation"
     cy.getBySel("reservation-form-list-item")
