@@ -244,7 +244,6 @@ describe("Reservation list", () => {
           emailAddress: "test@test.dk",
           name: "Testkort ITK CMS Merkur",
           notificationProtocols: ["DIGITAL_POST"],
-          onHold: { from: "some date", to: "some date" },
           patronId: 10101010,
           phoneNumber: null,
           preferredLanguage: "da",
