@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
+import { isEqual } from "lodash";
 import SelectableMaterial from "../../apps/loan-list/materials/selectable-material/selectable-material";
 import { useText } from "../../core/utils/text";
 import usePager from "../result-pager/use-pager";
@@ -64,6 +65,9 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
             numberInQueue,
             reservationIds
           } = material;
+          const selected = selectedMaterials?.some((selectedMaterial) =>
+            isEqual(selectedMaterial, material)
+          );
           return (
             <>
               {(identifier || reservationIds || faust) && (
@@ -89,7 +93,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                   }
                   openDetailsModal={openDetailsModal}
                   key={faust || identifier}
-                  selected={selectedMaterials?.includes(material)}
+                  selected={selected}
                   onMaterialChecked={onMaterialChecked}
                   disabled={false}
                   statusMessageComponentMobile={null}
