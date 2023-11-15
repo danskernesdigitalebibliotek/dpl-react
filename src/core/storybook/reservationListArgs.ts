@@ -211,6 +211,10 @@ export default {
     defaultValue: "Save",
     control: { type: "text" }
   },
+  pauseReservationModalCancelButtonLabelText: {
+    defaultValue: "Cancel pause",
+    control: { type: "text" }
+  },
   listDetailsNothingSelectedLabelText: {
     defaultValue: "Pick",
     control: { type: "text" }
