@@ -48,7 +48,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
 
   const { data: complexSearchData, isLoading: isLoadingComplexSearch } =
     useComplexSearchWithPaginationWorkAccessQuery(
-      { cql: `term.isbn=${identifier}`, offset: 0, limit: 100, filters: {} },
+      { cql: `term.isbn=${identifier}`, offset: 0, limit: 1, filters: {} },
       { enabled: !!identifier }
     );
   const { ereolenHomepageUrl } = useUrls();
