@@ -53,8 +53,8 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
     ...digitalReservations
   ];
 
-  const selectMaterials = (materialIds: ReservationType[]) => {
-    setMaterialsToDelete(materialIds);
+  const selectMaterials = (materials: ReservationType[]) => {
+    setMaterialsToDelete(materials);
   };
 
   const deleteMaterialsModal = () => {
