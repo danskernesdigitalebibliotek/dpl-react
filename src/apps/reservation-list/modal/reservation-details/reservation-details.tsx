@@ -17,6 +17,7 @@ import {
   findAccessManifestationByIdentifier,
   findEreolAccessLinkFromManifestations
 } from "./helper";
+import { useUrls } from "../../../../core/utils/url";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
@@ -50,6 +51,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
       { cql: `term.isbn=${identifier}`, offset: 0, limit: 100, filters: {} },
       { enabled: !!identifier }
     );
+  const { ereolenHomepageUrl } = useUrls();
 
   useEffect(() => {
     if (!complexSearchData || complexSearchData.complexSearch.hitcount === 0) {
@@ -62,10 +64,10 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
     setExternalUrl(
       new URL(
         findEreolAccessLinkFromManifestations(matchingManifestations) ||
-          "https://ereolen.dk"
+          ereolenHomepageUrl
       )
     );
-  }, [complexSearchData, identifier]);
+  }, [complexSearchData, identifier, ereolenHomepageUrl]);
 
   return (
     <div className="modal-details__container">

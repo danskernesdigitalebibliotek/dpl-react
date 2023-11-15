@@ -46,6 +46,10 @@ export default {
         "https://images.unsplash.com/photo-1560888126-5c13ad3f9345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80", // A goat.
       control: { type: "text" }
     },
+    ereolenHomepageUrl: {
+      defaultValue: "https://ereolen.dk/",
+      control: { type: "text" }
+    },
     // Texts
     patronPageHeaderText: {
       defaultValue: "Patron profile page",

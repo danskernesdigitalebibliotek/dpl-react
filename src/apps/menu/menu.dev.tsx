@@ -144,6 +144,10 @@ export default {
       defaultValue: "/Signup",
       control: { type: "text" }
     },
+    ereolenHomepageUrl: {
+      defaultValue: "https://ereolen.dk/",
+      control: { type: "text" }
+    },
     thresholdConfig: {
       defaultValue:
         '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
