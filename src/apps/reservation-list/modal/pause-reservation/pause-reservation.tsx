@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useState, useEffect, useId } from "react";
+import dayjs from "dayjs";
 import { useQueryClient } from "react-query";
 import Link from "../../../../components/atoms/links/Link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
@@ -9,7 +10,6 @@ import {
 } from "../../../../core/fbs/fbs";
 import { Patron, PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
-import { useConfig } from "../../../../core/utils/config";
 import DateInputs from "../../../../components/date-inputs/date-inputs";
 import { useUrls } from "../../../../core/utils/url";
 
@@ -27,10 +27,8 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const { pauseReservation } = getModalIds();
   const saveFormId = useId();
 
-  const config = useConfig();
-  const [startDate, setStartDate] = useState<string>(
-    config("pauseReservationStartDateConfig")
-  );
+  const currentDate = dayjs().format("YYYY-MM-DD");
+  const [startDate, setStartDate] = useState<string>(currentDate);
   const [endDate, setEndDate] = useState<string>("");
   const pauseActive = user?.onHold?.from && user?.onHold?.to;
 
@@ -73,10 +71,10 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   );
 
   const resetPauseDates = useCallback(() => {
-    setStartDate(config("pauseReservationStartDateConfig"));
+    setStartDate(currentDate);
     setEndDate("");
     save();
-  }, [config, save]);
+  }, [currentDate, save]);
 
   useEffect(() => {
     if (user?.onHold?.from) {
