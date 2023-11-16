@@ -717,7 +717,7 @@ describe("Reservation details modal", () => {
       aliasName: "work",
       httpMethod: "POST",
       url: "**/next/**",
-      fixtureFilePath: "reservation-list/work.json"
+      fixtureFilePath: "reservation-list/work-bestrepresentation.json"
     });
 
     cy.intercept(

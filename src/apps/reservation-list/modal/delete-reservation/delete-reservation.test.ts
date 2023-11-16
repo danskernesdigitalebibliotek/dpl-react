@@ -269,29 +269,12 @@ describe("Delete reservation modal", () => {
       ]
     }).as("get-reservations");
 
-    cy.intercept("POST", "**/next/**", {
-      statusCode: 200,
-      body: {
-        data: {
-          manifestation: {
-            pid: "870970-basis:27215815",
-            titles: { full: ["Dummy Some Title"] },
-            abstract: ["Dummy Some abstract ..."],
-            edition: {
-              summary: "3. udgave, 1. oplag (2019)",
-              publicationYear: {
-                display: "2006"
-              }
-            },
-            materialTypes: [{ specific: "Dummy bog" }],
-            creators: [
-              { display: "Dummy Jens Jensen" },
-              { display: "Dummy Some Corporation" }
-            ]
-          }
-        }
-      }
-    }).as("get-manifestation");
+    cy.interceptRest({
+      aliasName: "get-manifestation",
+      httpMethod: "POST",
+      url: "**/next/**",
+      fixtureFilePath: "reservation-list/work-bestrepresentation.json"
+    });
 
     cy.intercept(
       "DELETE",

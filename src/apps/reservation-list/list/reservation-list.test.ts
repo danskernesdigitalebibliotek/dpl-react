@@ -219,22 +219,7 @@ describe("Reservation list", () => {
             pickupNumber: null,
             ilBibliographicRecord: null,
             transactionId: "cae4db22-e267-4087-bdaa-d880bef19b52",
-            reservationType: "parallel"
-          },
-          {
-            reservationId: 67843847,
-            recordId: "62485125",
-            state: "reserved",
-            pickupBranch: "DK-775100",
-            pickupDeadline: null,
-            expiryDate: "2022-12-12",
-            dateOfReservation: "2022-06-15T11:41:24.075",
-            numberInQueue: 206,
-            periodical: null,
-            pickupNumber: null,
-            ilBibliographicRecord: null,
-            transactionId: "cae4db22-e267-4087-bdaa-d880bef19b52",
-            reservationType: "parallel"
+            reservationType: "normal"
           }
         ]
       }
