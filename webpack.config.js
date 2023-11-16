@@ -4,6 +4,8 @@ const webpack = require("webpack");
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const { resolveToEsbuildTarget } = require("esbuild-plugin-browserslist");
+const browserslist = require("browserslist");
 const { getWebPackEnvVariables } = require("./webpack.helpers");
 
 module.exports = (_env, argv) => {
@@ -79,7 +81,7 @@ module.exports = (_env, argv) => {
           test: /\.(js|jsx|ts|tsx)$/,
           loader: "esbuild-loader",
           options: {
-            target: "esnext"
+            target: resolveToEsbuildTarget(browserslist())
           }
         },
         // We consume svg files from dpl-design-system package
