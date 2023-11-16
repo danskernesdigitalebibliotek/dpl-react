@@ -78,9 +78,17 @@ module.exports = (_env, argv) => {
     module: {
       rules: [
         {
-          test: /\.(js|jsx|ts|tsx)$/,
+          test: /\.(jsx|ts|tsx)$/,
           loader: "esbuild-loader",
           options: {
+            target: resolveToEsbuildTarget(browserslist())
+          }
+        },
+        {
+          test: /\.js$/,
+          loader: "esbuild-loader",
+          options: {
+            loader: "jsx",
             target: resolveToEsbuildTarget(browserslist())
           }
         },
