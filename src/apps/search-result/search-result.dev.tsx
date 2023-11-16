@@ -116,6 +116,11 @@ export default {
       defaultValue: "Access types",
       control: { type: "text" }
     },
+    facetCanAlwaysBeLoanedText: {
+      name: "Can always be loaned text",
+      defaultValue: "Can always be loaned",
+      control: { type: "text" }
+    },
     facetChildrenOrAdultsText: {
       name: "Children or adults text",
       defaultValue: "Children or adults",
@@ -124,6 +129,11 @@ export default {
     facetCreatorsText: {
       name: "Creators text",
       defaultValue: "Creators",
+      control: { type: "text" }
+    },
+    facetFictionalCharactersText: {
+      name: "Fictional characters text",
+      defaultValue: "Fictional characters",
       control: { type: "text" }
     },
     facetFictionNonfictionText: {
@@ -141,26 +151,6 @@ export default {
       defaultValue: "Main languages",
       control: { type: "text" }
     },
-    facetSubjectsText: {
-      name: "Subjects text",
-      defaultValue: "Subjects",
-      control: { type: "text" }
-    },
-    facetWorkTypesText: {
-      name: "Work types text",
-      defaultValue: "Work types",
-      control: { type: "text" }
-    },
-    facetCanAlwaysBeLoanedText: {
-      name: "Can always be loaned text",
-      defaultValue: "Can always be loaned",
-      control: { type: "text" }
-    },
-    facetFictionalCharactersText: {
-      name: "Fictional characters text",
-      defaultValue: "Fictional characters",
-      control: { type: "text" }
-    },
     facetMaterialTypesGeneralText: {
       name: "Material types general text",
       defaultValue: "Material types general",
@@ -169,6 +159,16 @@ export default {
     facetMaterialTypesSpecificText: {
       name: "Material types specific text",
       defaultValue: "Material types specific",
+      control: { type: "text" }
+    },
+    facetSubjectsText: {
+      name: "Subjects text",
+      defaultValue: "Subjects",
+      control: { type: "text" }
+    },
+    facetWorkTypesText: {
+      name: "Work types text",
+      defaultValue: "Work types",
       control: { type: "text" }
     },
     showResultsText: {
