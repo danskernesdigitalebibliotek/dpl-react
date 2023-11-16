@@ -131,6 +131,11 @@ export default {
       defaultValue: "Creators",
       control: { type: "text" }
     },
+    facetDk5Text: {
+      name: "Dk5 text",
+      defaultValue: "Dk5",
+      control: { type: "text" }
+    },
     facetFictionalCharactersText: {
       name: "Fictional characters text",
       defaultValue: "Fictional characters",
@@ -169,6 +174,11 @@ export default {
     facetWorkTypesText: {
       name: "Work types text",
       defaultValue: "Work types",
+      control: { type: "text" }
+    },
+    facetYearText: {
+      name: "Year text",
+      defaultValue: "Year",
       control: { type: "text" }
     },
     showResultsText: {
