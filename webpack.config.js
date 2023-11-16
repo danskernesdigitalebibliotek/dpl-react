@@ -77,8 +77,10 @@ module.exports = (_env, argv) => {
       rules: [
         {
           test: /\.(js|jsx|ts|tsx)$/,
-          exclude: /node_modules/,
-          use: ["babel-loader"]
+          loader: "esbuild-loader",
+          options: {
+            target: "esnext"
+          }
         },
         // We consume svg files from dpl-design-system package
         {
