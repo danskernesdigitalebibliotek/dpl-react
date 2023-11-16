@@ -1,7 +1,7 @@
 import { head, keys, values } from "lodash";
 import { LoanV2, ReservationDetailsV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
-import { GetManifestationViaMaterialByFaustQuery } from "../../dbc-gateway/generated/graphql";
+import { ManifestationBasicDetailsFragment } from "../../dbc-gateway/generated/graphql";
 import { BasicDetailsType } from "../types/basic-details-type";
 import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
@@ -122,7 +122,7 @@ export const mapProductToBasicDetailsType = (material: Product) => {
 // so digital/physical loans/reservations can use the same components,
 // as their UI is often quite similar
 export const mapManifestationToBasicDetailsType = (
-  material: GetManifestationViaMaterialByFaustQuery
+  material: ManifestationBasicDetailsFragment
 ) => {
   const {
     edition,
@@ -133,7 +133,7 @@ export const mapManifestationToBasicDetailsType = (
     creators,
     series,
     languages
-  } = material?.manifestation || {};
+  } = material;
   const isoCode = languages?.main?.[0]?.isoCode ?? "";
   const description = abstract ? abstract[0] : "";
   const {

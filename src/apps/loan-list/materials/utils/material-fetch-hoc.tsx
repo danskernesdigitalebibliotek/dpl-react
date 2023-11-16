@@ -1,5 +1,9 @@
 import React, { useEffect, useState, ComponentType, FC } from "react";
-import { useGetManifestationViaMaterialByFaustQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import {
+  ManifestationBasicDetailsFragment,
+  useGetManifestationViaBestRepresentationByFaustQuery,
+  useGetManifestationViaMaterialByFaustQuery
+} from "../../../../core/dbc-gateway/generated/graphql";
 import { Product } from "../../../../core/publizon/model";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
 import { mapManifestationToBasicDetailsType } from "../../../../core/utils/helpers/list-mapper";
@@ -35,21 +39,33 @@ const fetchMaterial =
     if (item?.faust) {
       const [material, setMaterial] = useState<BasicDetailsType>();
 
-      const { isSuccess: isSuccessManifestation, data } =
-        useGetManifestationViaMaterialByFaustQuery({
+      let manifestation: ManifestationBasicDetailsFragment | null = null;
+      if (item.reservationIds && item.reservationIds.length > 1) {
+        const { isSuccess, data } =
+          useGetManifestationViaBestRepresentationByFaustQuery({
+            faust: item.faust
+          });
+        if (isSuccess && data?.manifestation) {
+          manifestation =
+            data.manifestation.ownerWork.manifestations.bestRepresentation;
+        }
+      } else {
+        const { isSuccess, data } = useGetManifestationViaMaterialByFaustQuery({
           faust: item.faust
         });
+        if (isSuccess && data?.manifestation) {
+          manifestation = data.manifestation;
+        }
+      }
 
       useEffect(() => {
-        if (data && isSuccessManifestation && data.manifestation) {
-          setMaterial(mapManifestationToBasicDetailsType(data));
-        } else {
-          // todo error handling, missing in figma
+        if (manifestation) {
+          setMaterial(mapManifestationToBasicDetailsType(manifestation));
         }
-      }, [isSuccessManifestation, data]);
+      }, [manifestation]);
 
       // in cases where the material is not found we return null, else we would load forever
-      if (data && data.manifestation === null) return null;
+      if (manifestation === null) return null;
 
       // if the fallback component is provided we can show it while the data is loading
       if (!material) return FallbackComponent ? <FallbackComponent /> : null;
