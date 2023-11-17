@@ -9,6 +9,9 @@
     "plugin:prettier/recommended",
     "plugin:cypress/recommended"
   ],
+  "plugins": [
+    "no-only-tests"
+  ],
   "settings": {
     "react": {
       "version": "16.11.0"
@@ -81,7 +84,8 @@
       {
         "additionalHooks": "useDeepCompareEffect"
       }
-    ]
+    ],
+    "no-only-tests/no-only-tests": "warn"
   },
   "overrides": [
     {
