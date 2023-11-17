@@ -26,18 +26,16 @@ npm login --registry=https://npm.pkg.github.com
 
 ### Howto
 
-1. Run `task dev:start`
-2. Access Storybook at <http://dpl-react.docker>
-
-#### Alternative without Docker
-
-1. Add `127.0.0.1 dpl-react.docker` to your `/etc/hosts` file
-2. Ensure that your node version matches what is specified in `package.json`.
-3. Install dependencies: `yarn install`
-4. Start storybook `sudo yarn start:storybook:dev`
-5. If you need to log in through Adgangsplatformen, you need to change
-   your url to <http://dpl-react.docker/> instead of <http://localhost>. This
-   avoids getting log in errors
+1. Ensure that your Node version matches what is specified in `.nvmrc`.
+2. Run `task dev:start`
+   - Storybook will open automatically in a browser
+   - The console will contain build and lint information
+3. If you need to log in through Adgangsplatformen:
+   - Add `127.0.0.1 dpl-react.docker` to your `/etc/hosts` file
+   - [Ensure that Node can bind to port 80](https://gist.github.com/guifromrio/6389682)
+   - Use <http://dpl-react.docker/> instead of <http://localhost:[port]>
+4. If you want to use Wiremock instead of production systems run
+   `task dev:mocks:start`
 
 #### Step Debugging in Visual Studio Code (no docker)
 
