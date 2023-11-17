@@ -82,8 +82,6 @@ const modalSlice = createSlice({
         returnFocusElement();
       }
       // Enables background scrolling to use when last modal is closed
-      // console.log(getConf("modalIds", configuration));
-      // console.log(state.modalIds.length);
       if (state.modalIds.length === 0) {
         document.body.style.overflow = "";
       }
