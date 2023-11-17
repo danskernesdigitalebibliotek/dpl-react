@@ -16,7 +16,8 @@ import StatusSection from "./sections/StatusSection";
 import PauseReservation from "../reservation-list/modal/pause-reservation/pause-reservation";
 import { getModalIds } from "../../core/utils/helpers/general";
 import { useUrls } from "../../core/utils/url";
-import { usePatronData } from "../../components/material/helper";
+import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
+import { usePatronData } from "../../core/utils/helpers/user";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
@@ -33,6 +34,8 @@ const PatronPage: FC = () => {
   const [successPinMessage, setSuccessPinMessage] = useState<string | null>(
     null
   );
+  const [NotificationComponent, handleNotificationMessage] =
+    useNotificationMessage();
 
   useEffect(() => {
     if (patronData && patronData.patron) {
@@ -86,6 +89,9 @@ const PatronPage: FC = () => {
               setSuccessPinMessage(t("patronPinSavedSuccessText"));
             }
             setDisableSubmitButton(false);
+            handleNotificationMessage(
+              t("patronPageHandleResponseInformationText")
+            );
           },
           // todo error handling, missing in figma
           onError: () => {
@@ -105,6 +111,7 @@ const PatronPage: FC = () => {
     <>
       <form className="dpl-patron-page" onSubmit={(e) => handleSubmit(e)}>
         <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
+        <NotificationComponent />
         {patron && <BasicDetailsSection patron={patron} />}
         <div className="patron-page-info">
           {patron && (
@@ -124,7 +131,7 @@ const PatronPage: FC = () => {
           )}
           {patron && <PincodeSection changePincode={setPin} required={false} />}
           {successPinMessage && (
-            <p className="text-body-small-regular mb-8 mt-8">
+            <p className="text-body-small-regular mb-8 mt-8" role="alert">
               {successPinMessage}
             </p>
           )}
@@ -135,7 +142,9 @@ const PatronPage: FC = () => {
             type="submit"
             disabled={disableSubmitButton}
           >
-            {t("patronPageSaveButtonText")}
+            {disableSubmitButton
+              ? t("patronPageLoadingText")
+              : t("patronPageSaveButtonText")}
           </button>
 
           <div className="text-body-small-regular mt-32">

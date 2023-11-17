@@ -709,8 +709,14 @@ export type MaterialType = {
 export type Mutation = {
   __typename?: "Mutation";
   elba: ElbaServices;
+  submitOrder?: Maybe<SubmitOrder>;
   /** @deprecated Use 'Elba.placeCopyRequest' instead */
   submitPeriodicaArticleOrder: PeriodicaArticleOrderResponse;
+};
+
+export type MutationSubmitOrderArgs = {
+  dryRun?: InputMaybe<Scalars["Boolean"]>;
+  input: SubmitOrderInput;
 };
 
 export type MutationSubmitPeriodicaArticleOrderArgs = {
@@ -751,6 +757,15 @@ export type NumberInSeries = {
   /** The number in the series as integer */
   number?: Maybe<Array<Scalars["Int"]>>;
 };
+
+export enum OrderType {
+  Estimate = "ESTIMATE",
+  Hold = "HOLD",
+  Loan = "LOAN",
+  NonReturnableCopy = "NON_RETURNABLE_COPY",
+  Normal = "NORMAL",
+  StackRetrieval = "STACK_RETRIEVAL"
+}
 
 export type PeriodicaArticleOrder = {
   authorOfComponent?: InputMaybe<Scalars["String"]>;
@@ -1241,6 +1256,84 @@ export enum SubjectType {
   Topic = "TOPIC"
 }
 
+export type SubmitOrder = {
+  __typename?: "SubmitOrder";
+  deleted?: Maybe<Scalars["Boolean"]>;
+  message?: Maybe<Scalars["String"]>;
+  /** if order was submitted successfully */
+  ok?: Maybe<Scalars["Boolean"]>;
+  orderId?: Maybe<Scalars["String"]>;
+  orsId?: Maybe<Scalars["String"]>;
+  status: SubmitOrderStatus;
+};
+
+export type SubmitOrderInput = {
+  author?: InputMaybe<Scalars["String"]>;
+  authorOfComponent?: InputMaybe<Scalars["String"]>;
+  exactEdition?: InputMaybe<Scalars["Boolean"]>;
+  expires?: InputMaybe<Scalars["String"]>;
+  orderType?: InputMaybe<OrderType>;
+  pagination?: InputMaybe<Scalars["String"]>;
+  pickUpBranch: Scalars["String"];
+  pids: Array<Scalars["String"]>;
+  publicationDate?: InputMaybe<Scalars["String"]>;
+  publicationDateOfComponent?: InputMaybe<Scalars["String"]>;
+  title?: InputMaybe<Scalars["String"]>;
+  titleOfComponent?: InputMaybe<Scalars["String"]>;
+  userParameters: SubmitOrderUserParameters;
+  volume?: InputMaybe<Scalars["String"]>;
+};
+
+export enum SubmitOrderStatus {
+  /** Authentication error */
+  AuthenticationError = "AUTHENTICATION_ERROR",
+  /** Borchk: User is blocked by agency */
+  BorchkUserBlockedByAgency = "BORCHK_USER_BLOCKED_BY_AGENCY",
+  /** Borchk: User could not be verified */
+  BorchkUserNotVerified = "BORCHK_USER_NOT_VERIFIED",
+  /** Borchk: User is no longer loaner at the provided pickupbranch */
+  BorchkUserNoLongerExistOnAgency = "BORCHK_USER_NO_LONGER_EXIST_ON_AGENCY",
+  /** Order does not validate */
+  InvalidOrder = "INVALID_ORDER",
+  /** Item not available at pickupAgency, item localised for ILL */
+  NotOwnedIllLoc = "NOT_OWNED_ILL_LOC",
+  /** Item not available at pickupAgency, item not localised for ILL */
+  NotOwnedNoIllLoc = "NOT_OWNED_NO_ILL_LOC",
+  /** Item not available at pickupAgency, ILL of mediumType not accepted */
+  NotOwnedWrongIllMediumtype = "NOT_OWNED_WRONG_ILL_MEDIUMTYPE",
+  /** ServiceRequester is obligatory */
+  NoServicerequester = "NO_SERVICEREQUESTER",
+  /** Error sending order to ORS */
+  OrsError = "ORS_ERROR",
+  /** Item available at pickupAgency, order accepted */
+  OwnedAccepted = "OWNED_ACCEPTED",
+  /** Item available at pickupAgency, item may be ordered through the library's catalogue */
+  OwnedOwnCatalogue = "OWNED_OWN_CATALOGUE",
+  /** Item available at pickupAgency, order of mediumType not accepted */
+  OwnedWrongMediumtype = "OWNED_WRONG_MEDIUMTYPE",
+  /** Service unavailable */
+  ServiceUnavailable = "SERVICE_UNAVAILABLE",
+  /** Unknown error occured, status is unknown */
+  UnknownError = "UNKNOWN_ERROR",
+  /** PickupAgency not found */
+  UnknownPickupagency = "UNKNOWN_PICKUPAGENCY",
+  /** User not found */
+  UnknownUser = "UNKNOWN_USER"
+}
+
+export type SubmitOrderUserParameters = {
+  barcode?: InputMaybe<Scalars["String"]>;
+  cardno?: InputMaybe<Scalars["String"]>;
+  cpr?: InputMaybe<Scalars["String"]>;
+  customId?: InputMaybe<Scalars["String"]>;
+  userAddress?: InputMaybe<Scalars["String"]>;
+  userDateOfBirth?: InputMaybe<Scalars["String"]>;
+  userId?: InputMaybe<Scalars["String"]>;
+  userMail?: InputMaybe<Scalars["String"]>;
+  userName?: InputMaybe<Scalars["String"]>;
+  userTelephone?: InputMaybe<Scalars["String"]>;
+};
+
 export type SuggestResponse = {
   __typename?: "SuggestResponse";
   result: Array<Suggestion>;
@@ -1523,6 +1616,11 @@ export type GetSmallWorkQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -1607,6 +1705,11 @@ export type GetSmallWorkQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -1691,6 +1794,11 @@ export type GetSmallWorkQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -1906,6 +2014,11 @@ export type GetMaterialQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -1990,6 +2103,11 @@ export type GetMaterialQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -2074,6 +2192,11 @@ export type GetMaterialQuery = {
           __typename?: "PublicationYear";
           year?: number | null;
         } | null;
+        catalogueCodes: {
+          __typename?: "CatalogueCodes";
+          nationalBibliography: Array<string>;
+          otherCatalogues: Array<string>;
+        };
         languages?: {
           __typename?: "Languages";
           main?: Array<{
@@ -2161,6 +2284,20 @@ export type GetReviewManifestationsQuery = {
       } | null> | null;
     } | null;
   } | null>;
+};
+
+export type OpenOrderMutationVariables = Exact<{
+  input: SubmitOrderInput;
+}>;
+
+export type OpenOrderMutation = {
+  __typename?: "Mutation";
+  submitOrder?: {
+    __typename?: "SubmitOrder";
+    status: SubmitOrderStatus;
+    message?: string | null;
+    orderId?: string | null;
+  } | null;
 };
 
 export type RecommendFromFaustQueryVariables = Exact<{
@@ -2297,6 +2434,11 @@ export type RecommendFromFaustQuery = {
               __typename?: "PublicationYear";
               year?: number | null;
             } | null;
+            catalogueCodes: {
+              __typename?: "CatalogueCodes";
+              nationalBibliography: Array<string>;
+              otherCatalogues: Array<string>;
+            };
             languages?: {
               __typename?: "Languages";
               main?: Array<{
@@ -2387,6 +2529,11 @@ export type RecommendFromFaustQuery = {
               __typename?: "PublicationYear";
               year?: number | null;
             } | null;
+            catalogueCodes: {
+              __typename?: "CatalogueCodes";
+              nationalBibliography: Array<string>;
+              otherCatalogues: Array<string>;
+            };
             languages?: {
               __typename?: "Languages";
               main?: Array<{
@@ -2477,6 +2624,11 @@ export type RecommendFromFaustQuery = {
               __typename?: "PublicationYear";
               year?: number | null;
             } | null;
+            catalogueCodes: {
+              __typename?: "CatalogueCodes";
+              nationalBibliography: Array<string>;
+              otherCatalogues: Array<string>;
+            };
             languages?: {
               __typename?: "Languages";
               main?: Array<{
@@ -2503,6 +2655,350 @@ export type SearchWithPaginationQuery = {
   __typename?: "Query";
   search: {
     __typename?: "SearchResponse";
+    hitcount: number;
+    works: Array<{
+      __typename?: "Work";
+      workId: string;
+      abstract?: Array<string> | null;
+      genreAndForm: Array<string>;
+      titles: {
+        __typename?: "WorkTitles";
+        full: Array<string>;
+        original?: Array<string> | null;
+      };
+      creators: Array<
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
+      >;
+      series: Array<{
+        __typename?: "Series";
+        title: string;
+        isPopular?: boolean | null;
+        readThisFirst?: boolean | null;
+        readThisWhenever?: boolean | null;
+        numberInSeries?: {
+          __typename?: "NumberInSeries";
+          display: string;
+          number?: Array<number> | null;
+        } | null;
+      }>;
+      seriesMembers: Array<{
+        __typename?: "Work";
+        workId: string;
+        titles: {
+          __typename?: "WorkTitles";
+          main: Array<string>;
+          full: Array<string>;
+          original?: Array<string> | null;
+        };
+      }>;
+      workYear?: {
+        __typename?: "PublicationYear";
+        year?: number | null;
+      } | null;
+      manifestations: {
+        __typename?: "Manifestations";
+        all: Array<{
+          __typename?: "Manifestation";
+          pid: string;
+          genreAndForm: Array<string>;
+          source: Array<string>;
+          publisher: Array<string>;
+          titles: {
+            __typename?: "ManifestationTitles";
+            main: Array<string>;
+            original?: Array<string> | null;
+          };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
+          materialTypes: Array<{
+            __typename?: "MaterialType";
+            specific: string;
+          }>;
+          creators: Array<
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
+          >;
+          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          contributors: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Person"; display: string }
+          >;
+          edition?: {
+            __typename?: "Edition";
+            summary: string;
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
+          audience?: {
+            __typename?: "Audience";
+            generalAudience: Array<string>;
+          } | null;
+          physicalDescriptions: Array<{
+            __typename?: "PhysicalDescription";
+            numberOfPages?: number | null;
+            playingTime?: string | null;
+          }>;
+          accessTypes: Array<{
+            __typename?: "AccessType";
+            code: AccessTypeCode;
+          }>;
+          access: Array<
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix?: string | null;
+            shelfmark: string;
+          } | null;
+          workYear?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
+          catalogueCodes: {
+            __typename?: "CatalogueCodes";
+            nationalBibliography: Array<string>;
+            otherCatalogues: Array<string>;
+          };
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
+          } | null;
+        }>;
+        latest: {
+          __typename?: "Manifestation";
+          pid: string;
+          genreAndForm: Array<string>;
+          source: Array<string>;
+          publisher: Array<string>;
+          titles: {
+            __typename?: "ManifestationTitles";
+            main: Array<string>;
+            original?: Array<string> | null;
+          };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
+          materialTypes: Array<{
+            __typename?: "MaterialType";
+            specific: string;
+          }>;
+          creators: Array<
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
+          >;
+          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          contributors: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Person"; display: string }
+          >;
+          edition?: {
+            __typename?: "Edition";
+            summary: string;
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
+          audience?: {
+            __typename?: "Audience";
+            generalAudience: Array<string>;
+          } | null;
+          physicalDescriptions: Array<{
+            __typename?: "PhysicalDescription";
+            numberOfPages?: number | null;
+            playingTime?: string | null;
+          }>;
+          accessTypes: Array<{
+            __typename?: "AccessType";
+            code: AccessTypeCode;
+          }>;
+          access: Array<
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix?: string | null;
+            shelfmark: string;
+          } | null;
+          workYear?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
+          catalogueCodes: {
+            __typename?: "CatalogueCodes";
+            nationalBibliography: Array<string>;
+            otherCatalogues: Array<string>;
+          };
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
+          } | null;
+        };
+        bestRepresentation: {
+          __typename?: "Manifestation";
+          pid: string;
+          genreAndForm: Array<string>;
+          source: Array<string>;
+          publisher: Array<string>;
+          titles: {
+            __typename?: "ManifestationTitles";
+            main: Array<string>;
+            original?: Array<string> | null;
+          };
+          fictionNonfiction?: {
+            __typename?: "FictionNonfiction";
+            display: string;
+            code: FictionNonfictionCode;
+          } | null;
+          materialTypes: Array<{
+            __typename?: "MaterialType";
+            specific: string;
+          }>;
+          creators: Array<
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
+          >;
+          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          contributors: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Person"; display: string }
+          >;
+          edition?: {
+            __typename?: "Edition";
+            summary: string;
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
+          dateFirstEdition?: {
+            __typename?: "PublicationYear";
+            display: string;
+            year?: number | null;
+          } | null;
+          audience?: {
+            __typename?: "Audience";
+            generalAudience: Array<string>;
+          } | null;
+          physicalDescriptions: Array<{
+            __typename?: "PhysicalDescription";
+            numberOfPages?: number | null;
+            playingTime?: string | null;
+          }>;
+          accessTypes: Array<{
+            __typename?: "AccessType";
+            code: AccessTypeCode;
+          }>;
+          access: Array<
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
+          shelfmark?: {
+            __typename?: "Shelfmark";
+            postfix?: string | null;
+            shelfmark: string;
+          } | null;
+          workYear?: {
+            __typename?: "PublicationYear";
+            year?: number | null;
+          } | null;
+          catalogueCodes: {
+            __typename?: "CatalogueCodes";
+            nationalBibliography: Array<string>;
+            otherCatalogues: Array<string>;
+          };
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
+          } | null;
+        };
+      };
+    }>;
+  };
+};
+
+export type ComplexSearchWithPaginationQueryVariables = Exact<{
+  cql: Scalars["String"];
+  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimit"];
+  filters: ComplexSearchFilters;
+}>;
+
+export type ComplexSearchWithPaginationQuery = {
+  __typename?: "Query";
+  complexSearch: {
+    __typename?: "ComplexSearchResponse";
     hitcount: number;
     works: Array<{
       __typename?: "Work";
@@ -2998,6 +3494,11 @@ export type ManifestationsSimpleFragment = {
       shelfmark: string;
     } | null;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    catalogueCodes: {
+      __typename?: "CatalogueCodes";
+      nationalBibliography: Array<string>;
+      otherCatalogues: Array<string>;
+    };
     languages?: {
       __typename?: "Languages";
       main?: Array<{
@@ -3079,6 +3580,11 @@ export type ManifestationsSimpleFragment = {
       shelfmark: string;
     } | null;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    catalogueCodes: {
+      __typename?: "CatalogueCodes";
+      nationalBibliography: Array<string>;
+      otherCatalogues: Array<string>;
+    };
     languages?: {
       __typename?: "Languages";
       main?: Array<{
@@ -3160,6 +3666,11 @@ export type ManifestationsSimpleFragment = {
       shelfmark: string;
     } | null;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+    catalogueCodes: {
+      __typename?: "CatalogueCodes";
+      nationalBibliography: Array<string>;
+      otherCatalogues: Array<string>;
+    };
     languages?: {
       __typename?: "Languages";
       main?: Array<{
@@ -3240,6 +3751,11 @@ export type ManifestationsSimpleFieldsFragment = {
     shelfmark: string;
   } | null;
   workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
+  catalogueCodes: {
+    __typename?: "CatalogueCodes";
+    nationalBibliography: Array<string>;
+    otherCatalogues: Array<string>;
+  };
   languages?: {
     __typename?: "Languages";
     main?: Array<{
@@ -3426,6 +3942,11 @@ export type WorkSmallFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3510,6 +4031,11 @@ export type WorkSmallFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3594,6 +4120,11 @@ export type WorkSmallFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3760,6 +4291,11 @@ export type WorkMediumFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3844,6 +4380,11 @@ export type WorkMediumFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -3928,6 +4469,11 @@ export type WorkMediumFragment = {
         __typename?: "PublicationYear";
         year?: number | null;
       } | null;
+      catalogueCodes: {
+        __typename?: "CatalogueCodes";
+        nationalBibliography: Array<string>;
+        otherCatalogues: Array<string>;
+      };
       languages?: {
         __typename?: "Languages";
         main?: Array<{
@@ -4109,6 +4655,10 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   workYear {
     year
+  }
+  catalogueCodes {
+    nationalBibliography
+    otherCatalogues
   }
 }
     ${WithLanguagesFragmentDoc}`;
@@ -4336,6 +4886,32 @@ export const useGetReviewManifestationsQuery = <
     >(GetReviewManifestationsDocument, variables),
     options
   );
+export const OpenOrderDocument = `
+    mutation openOrder($input: SubmitOrderInput!) {
+  submitOrder(input: $input, dryRun: false) {
+    status
+    message
+    orderId
+  }
+}
+    `;
+export const useOpenOrderMutation = <TError = unknown, TContext = unknown>(
+  options?: UseMutationOptions<
+    OpenOrderMutation,
+    TError,
+    OpenOrderMutationVariables,
+    TContext
+  >
+) =>
+  useMutation<OpenOrderMutation, TError, OpenOrderMutationVariables, TContext>(
+    ["openOrder"],
+    (variables?: OpenOrderMutationVariables) =>
+      fetcher<OpenOrderMutation, OpenOrderMutationVariables>(
+        OpenOrderDocument,
+        variables
+      )(),
+    options
+  );
 export const RecommendFromFaustDocument = `
     query recommendFromFaust($faust: String!, $limit: Int!) {
   recommend(faust: $faust, limit: $limit) {
@@ -4385,6 +4961,31 @@ export const useSearchWithPaginationQuery = <
       SearchWithPaginationDocument,
       variables
     ),
+    options
+  );
+export const ComplexSearchWithPaginationDocument = `
+    query complexSearchWithPagination($cql: String!, $offset: Int!, $limit: PaginationLimit!, $filters: ComplexSearchFilters!) {
+  complexSearch(cql: $cql, filters: $filters) {
+    hitcount
+    works(offset: $offset, limit: $limit) {
+      ...WorkSmall
+    }
+  }
+}
+    ${WorkSmallFragmentDoc}`;
+export const useComplexSearchWithPaginationQuery = <
+  TData = ComplexSearchWithPaginationQuery,
+  TError = unknown
+>(
+  variables: ComplexSearchWithPaginationQueryVariables,
+  options?: UseQueryOptions<ComplexSearchWithPaginationQuery, TError, TData>
+) =>
+  useQuery<ComplexSearchWithPaginationQuery, TError, TData>(
+    ["complexSearchWithPagination", variables],
+    fetcher<
+      ComplexSearchWithPaginationQuery,
+      ComplexSearchWithPaginationQueryVariables
+    >(ComplexSearchWithPaginationDocument, variables),
     options
   );
 export const SuggestionsFromQueryStringDocument = `

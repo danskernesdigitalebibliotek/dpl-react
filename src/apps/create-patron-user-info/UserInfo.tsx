@@ -17,6 +17,7 @@ export interface UserInfoProps {
 
 const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   const t = useText();
+  const { logoutUrl } = useUrls();
   const config = useConfig();
   const formRef = useRef<HTMLFormElement>(null);
   const { redirectOnUserCreatedUrl } = useUrls();
@@ -26,7 +27,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   const { mutate } = useCreateV4();
   const [patron, setPatron] = useState<PatronSettingsV3>({
     preferredPickupBranch: "",
-    receiveEmail: false,
+    receiveEmail: true,
     receivePostalMail: false,
     receiveSms: false,
     phoneNumber: "",
@@ -75,18 +76,19 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
             inLine
             changePatron={changePatron}
             patron={patron}
+            requiredFields={["email"]}
           />
+          <PincodeSection required changePincode={setPin} />
           {t("createPatronChangePickupHeaderText") && (
-            <h2 className="text-body-small-regular mt-32 mb-16">
+            <h2 className="text-subtitle mt-32 mb-16">
               {t("createPatronChangePickupHeaderText")}
             </h2>
           )}
           {t("createPatronChangePickupBodyText") && (
-            <p className="text-subtitle my-32">
+            <p className="text-body-small-regular my-32">
               {t("createPatronChangePickupBodyText")}
             </p>
           )}
-          <PincodeSection required changePincode={setPin} />
           <div className="mt-32">
             <BranchesDropdown
               classNames="dropdow dropdown__desktop"
@@ -103,8 +105,9 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
             <button
               type="button"
               className="link-tag mx-16"
-              // todo, click cancel, what then?
-              onClick={() => {}}
+              onClick={() => {
+                redirectTo(logoutUrl);
+              }}
             >
               {t("createPatronCancelButtonText")}
             </button>

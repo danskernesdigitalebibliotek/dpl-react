@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
-import AvailabilitySkeleton from "./AvailabilitySkeleton";
+import TextLineSkeleton from "../skeletons/TextLineSkeleton";
 
 type Props = {
   selected?: boolean;
@@ -54,7 +54,7 @@ const AvailabilityLabelInside: React.FunctionComponent<Props> = ({
         } mr-8`}
         data-cy="availability-label-status"
       >
-        {isLoading ? <AvailabilitySkeleton /> : availabilityText}
+        {isLoading ? <TextLineSkeleton width={40} /> : availabilityText}
       </p>
       {quantity && (
         <>

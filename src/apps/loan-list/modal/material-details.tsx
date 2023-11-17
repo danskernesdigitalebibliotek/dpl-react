@@ -4,7 +4,7 @@ import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
 import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
 import { useText } from "../../../core/utils/text";
-import { formatDate, isDigital } from "../utils/helpers";
+import { isDigital } from "../utils/helpers";
 import { materialIsOverdue } from "../../../core/utils/helpers/general";
 import StatusBadge from "../materials/utils/status-badge";
 import WarningBar from "../materials/utils/warning-bar";
@@ -21,6 +21,7 @@ import { useUrls } from "../../../core/utils/url";
 import { RequestStatus } from "../../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
+import { formatDate } from "../../../core/utils/helpers/date";
 
 interface MaterialDetailsProps {
   loan: LoanType | null;

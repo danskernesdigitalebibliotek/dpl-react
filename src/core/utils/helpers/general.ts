@@ -16,7 +16,6 @@ import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
 import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import { FeeV2 } from "../../fbs/model/feeV2";
-import { dashboardReservedApiValueText } from "../../configuration/api-strings.json";
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
 import { store } from "../../store";
@@ -178,16 +177,6 @@ export const getParams = (props: Record<string, string | undefined>) =>
     {}
   );
 
-export const sortByDueDate = (list: LoanType[]) => {
-  // Todo figure out what to do if loan does not have loan date
-  // For now, its at the bottom of the list
-  return list.sort(
-    (a, b) =>
-      new Date(a.dueDate || new Date()).getTime() -
-      new Date(b.dueDate || new Date()).getTime()
-  );
-};
-
 export const sortByLoanDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
@@ -204,17 +193,6 @@ export const sortByReservationDate = (list: ReservationType[]) => {
       new Date(objA.dateOfReservation || new Date()).getTime() -
       new Date(objB.dateOfReservation || new Date()).getTime()
   );
-};
-
-export const getDueDatesLoan = (list: LoanType[]) => {
-  return Array.from(
-    new Set(
-      list
-        .filter(({ dueDate }) => dueDate !== (undefined || null))
-        .map(({ dueDate }) => dueDate)
-        .sort()
-    )
-  ) as string[];
 };
 
 export const getDueDatesForModal = (list: LoanType[], date: string) => {
@@ -325,12 +303,6 @@ export const pageSizeGlobal = (
 export const materialIsOverdue = (date: string | undefined | null) =>
   dayjs().isAfter(dayjs(date), "day");
 
-export const getPhysicalQueuedReservations = (list: ReservationType[]) => {
-  return [...list].filter(
-    ({ state }) => state === dashboardReservedApiValueText
-  );
-};
-
 export const loansOverdue = (loans: LoanType[]): boolean => {
   return loans.every((loan) => materialIsOverdue(loan.dueDate));
 };
@@ -343,24 +315,6 @@ export const tallyUpFees = (fees: FeeV2[]) => {
   return fees
     .reduce((total, { amount }) => total + amount, 0)
     .toLocaleString("da-DA");
-};
-
-// Loans overdue
-export const filterLoansOverdue = (loans: LoanType[]) => {
-  return loans.filter(({ dueDate }) => {
-    return materialIsOverdue(dueDate);
-  });
-};
-
-export const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
-  return loans.filter(({ dueDate }) => {
-    const due: string = dueDate || "";
-    const daysUntilExpiration = daysBetweenTodayAndDate(due);
-    return (
-      daysUntilExpiration - warning <= 0 &&
-      daysUntilExpiration - warning >= -warning
-    );
-  });
 };
 
 export const getMaterialTypes = (
@@ -404,14 +358,6 @@ export const getAllFaustIds = (manifestations: Manifestation[]) => {
 
 export const getScrollClass = (modalIds: string[]) => {
   return modalIds.length > 0 ? "scroll-lock-background" : "";
-};
-// Loans with more than warning-threshold days until due
-export const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
-  return loans.filter(({ dueDate }) => {
-    const due: string = dueDate || "";
-    const daysUntilExpiration = daysBetweenTodayAndDate(due);
-    return daysUntilExpiration - warning > 0;
-  });
 };
 
 function getDateFromCpr(cprInput: string) {
@@ -562,11 +508,85 @@ export const getContributors = (short: boolean, creators: string[]) => {
   return creators[0];
 };
 
+export const getReservablePidsFromAnotherLibrary = (
+  manifestations: Manifestation[]
+) => {
+  const matchingManifestations = manifestations.filter(({ catalogueCodes }) =>
+    catalogueCodes?.otherCatalogues.some((code) => code.startsWith("OVE"))
+  );
+
+  return matchingManifestations.map(({ pid }) => pid);
+};
+
 export default {};
 
 /* ********************************* Vitest Section  ********************************* */
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
+
+  describe("getReservablePidsFromAnotherLibrary", () => {
+    it("should return true for isReservable and correct pids if manifestations are reservable on another library (catalogueCodes starts with 'OVE')", () => {
+      const result = getReservablePidsFromAnotherLibrary([
+        {
+          pid: "870970-basis:135721719",
+          catalogueCodes: {
+            otherCatalogues: ["OVE123"],
+            nationalBibliography: ["ABE123"]
+          }
+        },
+        {
+          pid: "870970-basis:135721719",
+          catalogueCodes: {
+            otherCatalogues: ["OVE124"],
+            nationalBibliography: ["ABE456"]
+          }
+        }
+      ] as unknown as Manifestation[]);
+
+      expect(result.length > 0).toBe(true);
+      expect(result).toEqual([
+        "870970-basis:135721719",
+        "870970-basis:135721719"
+      ]);
+    });
+
+    it("should return false for isReservable and empty pids array if no manifestations are reservable on another library", () => {
+      const result = getReservablePidsFromAnotherLibrary([
+        {
+          pid: "pid1",
+          catalogueCodes: {
+            otherCatalogues: ["ABE789"],
+            nationalBibliography: ["ABE123"]
+          }
+        }
+      ] as unknown as Manifestation[]);
+
+      expect(result.length > 0).toBe(false);
+      expect(result).toEqual([]);
+    });
+
+    it("should filter out non-reservable manifestations and return only reservable pids", () => {
+      const result = getReservablePidsFromAnotherLibrary([
+        {
+          pid: "870970-basis:135721719",
+          catalogueCodes: {
+            otherCatalogues: ["OVE123"],
+            nationalBibliography: ["ABE123"]
+          }
+        },
+        {
+          pid: "870970-basis:111111111",
+          catalogueCodes: {
+            otherCatalogues: ["ABE789"],
+            nationalBibliography: ["ABE456"]
+          }
+        }
+      ] as unknown as Manifestation[]);
+
+      expect(result.length > 0).toBe(true);
+      expect(result).toEqual(["870970-basis:135721719"]);
+    });
+  });
 
   describe("getMaterialTypes", () => {
     const manifestations = [

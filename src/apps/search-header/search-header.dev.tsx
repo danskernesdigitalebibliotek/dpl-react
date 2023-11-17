@@ -7,7 +7,7 @@ import SearchHeaderEntry, {
 } from "./search-header.entry";
 
 export default {
-  title: "Apps / Search Header",
+  title: "Apps / Header",
   component: SearchHeaderEntry,
   argTypes: {
     ...serviceUrlArgs,
@@ -54,6 +54,16 @@ export default {
     searchUrl: {
       name: "Base search url",
       defaultValue: "/search",
+      control: { type: "text" }
+    },
+    advancedSearchUrl: {
+      name: "Advanced search url",
+      defaultValue: "/advanced-search",
+      control: { type: "text" }
+    },
+    searchHeaderDropdownText: {
+      name: "Search header advanced search icon label",
+      defaultValue: "Dropdown with additional search functions",
       control: { type: "text" }
     },
     materialUrl: {
@@ -110,17 +120,20 @@ export default {
       name: "Search non-whitespace character error",
       defaultValue: "Input must contain at least one non-whitespace character.",
       control: { type: "text" }
+    },
+    headerDropdownItemAdvancedSearchText: {
+      name: "Advanced search menu text",
+      defaultValue: "Advanced search",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchHeaderEntry>;
 
-export const Default: ComponentStory<typeof SearchHeaderEntry> = (
+export const Search: ComponentStory<typeof SearchHeaderEntry> = (
   args: SearchHeaderEntryProps
 ) => (
   // We use the Header component as context to the search bar.
   // It is the Header that creates the Search bar's design -
   // - without it, the Search bar loses its shape.
-  <StoryHeader>
-    <SearchHeaderEntry {...args} />
-  </StoryHeader>
+  <StoryHeader search={<SearchHeaderEntry {...args} />} />
 );

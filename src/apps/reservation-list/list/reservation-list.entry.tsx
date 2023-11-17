@@ -11,13 +11,13 @@ import { ReservationMaterialDetailsProps } from "../../../core/storybook/reserva
 import { DeleteReservationModalArgs } from "../../../core/storybook/deleteReservationModalArgs";
 
 export interface ReservationListUrlProps {
-  thresholdConfig: string;
+  expirationWarningDaysBeforeConfig: string;
   ereolenMyPageUrl: string;
   pauseReservationInfoUrl: string;
 }
 
 export interface ReservationListConfigProps {
-  thresholdConfig: string;
+  expirationWarningDaysBeforeConfig: string;
   pauseReservationStartDateConfig: string;
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
@@ -33,6 +33,7 @@ export interface ReservationListTextProps {
   etAlText: string;
   reservationListNumberInQueueText: string;
   reservationListFirstInQueueText: string;
+  reservationListDigitalPickupText: string;
   expiresSoonText: string;
   reservationListInQueueText: string;
   reservationPickUpLatestText: string;
@@ -45,8 +46,9 @@ export interface ReservationListTextProps {
   reservationListAvailableInText: string;
   reservationDetailsExpiresTitleText: string;
   reservationDetailsOthersInQueueText: string;
-  listDetailsNothingSelectedLabelText: string;
+  reservationListPauseReservationButtonText: string;
   reservationListPauseReservationText: string;
+  reservationListPauseReservationOnHoldText: string;
   reservationListOnHoldAriaText: string;
   reservationListPauseReservationAriaModalText: string;
   pauseReservationModalAriaDescriptionText: string;
@@ -58,6 +60,7 @@ export interface ReservationListTextProps {
   pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
+  pauseReservationModalCancelButtonLabelText: string;
   reservationListReadyForPickupTitleText: string;
   reservationListReadyForPickupEmptyText: string;
   reservationListPhysicalReservationsEmptyText: string;

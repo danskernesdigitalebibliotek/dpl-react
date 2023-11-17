@@ -28,8 +28,8 @@ export interface MenuProps {
   menuLogOutText: string;
   loansSoonOverdueText: string;
   loansOverdueText: string;
-  menuLogOutUrl: string;
-  thresholdConfig: string;
+  logoutUrl: string;
+  expirationWarningDaysBeforeConfig: string;
   feeListDaysText: string;
   menuLoginText: string;
   menuLoginUrl: string;
@@ -44,17 +44,18 @@ export interface MenuProps {
   menuNotAuthenticatedModalDescriptionText: string;
 }
 
-const MenuEntry: FC<
-  MenuProps &
-    GlobalUrlEntryPropsInterface &
-    GroupModalProps &
-    GroupModalLoansProps &
-    RenewalArgs &
-    DeleteReservationModalArgs &
-    GroupModalReservationsProps &
-    MaterialDetailsModalProps &
-    ReservationMaterialDetailsProps
-> = ({ pageSizeDesktop, pageSizeMobile }) => {
+export interface MenuEntryProps
+  extends MenuProps,
+    GlobalUrlEntryPropsInterface,
+    GroupModalProps,
+    GroupModalLoansProps,
+    RenewalArgs,
+    DeleteReservationModalArgs,
+    GroupModalReservationsProps,
+    MaterialDetailsModalProps,
+    ReservationMaterialDetailsProps {}
+
+const MenuEntry: FC<MenuEntryProps> = ({ pageSizeDesktop, pageSizeMobile }) => {
   const pageSize = pageSizeGlobal(
     {
       desktop: pageSizeDesktop,

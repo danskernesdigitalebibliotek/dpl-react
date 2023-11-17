@@ -1,88 +1,33 @@
 import React, { FC } from "react";
 import clsx from "clsx";
 import { PatronV5, PatronSettingsV3 } from "../../core/fbs/model";
-import TextInput from "../atoms/input/TextInput";
-import CheckBox from "../checkbox/Checkbox";
 import { useText } from "../../core/utils/text";
 import { useConfig } from "../../core/utils/config";
-
-export interface ChangePatronProps {
-  (newValue: string | boolean, key: string): void;
-}
+import ContactInfoInputs from "./ContactInfoInputs";
+import ContactInfoPhone from "./ContactInfoPhone";
+import ContactInfoEmail from "./ContactInfoEmail";
+import { ChangePatronProps } from "./types";
 
 interface ContactInfoSectionProps {
   patron: PatronV5 | PatronSettingsV3 | null;
   inLine: boolean;
   changePatron: ChangePatronProps;
   showCheckboxes: boolean;
+  requiredFields?: ("email" | "phone")[];
 }
 
 const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   patron,
   inLine,
   changePatron,
-  showCheckboxes
+  showCheckboxes,
+  requiredFields = []
 }) => {
   const t = useText();
   const inputsClass = clsx("dpl-input", { input__desktop: inLine });
   const config = useConfig();
-  const textNotificationsEnabled =
+  const textNotificationsEnabledConfig =
     config("textNotificationsEnabledConfig") === "1";
-
-  const phoneNode = (
-    <>
-      <TextInput
-        className={inputsClass}
-        id="phone-input"
-        required
-        type="number"
-        onChange={(newPhoneNumber) =>
-          changePatron(newPhoneNumber, "phoneNumber")
-        }
-        value={patron?.phoneNumber}
-        label={t("patronContactPhoneLabelText")}
-      />
-      {showCheckboxes && textNotificationsEnabled && (
-        <CheckBox
-          className="mt-8 mb-16"
-          onChecked={(newReceiveSms: boolean) =>
-            changePatron(newReceiveSms, "receiveSms")
-          }
-          id="phone-messages"
-          selected={patron?.receiveSms}
-          disabled={false}
-          label={t("patronContactPhoneCheckboxText")}
-        />
-      )}
-    </>
-  );
-  const emailNode = (
-    <>
-      <TextInput
-        className={clsx(inputsClass, {
-          "mt-32": !textNotificationsEnabled && !inLine
-        })}
-        id="email-address-input"
-        type="email"
-        required
-        onChange={(newEmail) => changePatron(newEmail, "emailAddress")}
-        value={patron?.emailAddress}
-        label={t("patronContactEmailLabelText")}
-      />
-      {showCheckboxes && (
-        <CheckBox
-          className="mt-8 mb-16"
-          onChecked={(newReceiveEmail: boolean) =>
-            changePatron(newReceiveEmail, "receiveEmail")
-          }
-          id="email-messages"
-          selected={patron?.receiveEmail}
-          disabled={false}
-          label={t("patronContactEmailCheckboxText")}
-        />
-      )}
-    </>
-  );
 
   return (
     <section data-cy="patron-page-contact-info">
@@ -94,17 +39,24 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           {t("patronContactInfoBodyText")}
         </p>
       )}
-      {inLine && (
-        <div className={`${inLine ? "contact-info-flex" : ""}`}>
-          <div className="patron__input--desktop mr-16">{phoneNode}</div>
-          <div className="patron__input--desktop">{emailNode}</div>
-        </div>
-      )}
-      {!inLine && (
-        <>
-          {phoneNode} {emailNode}
-        </>
-      )}
+      <ContactInfoInputs isInline={inLine}>
+        <ContactInfoPhone
+          className={inputsClass}
+          changePatron={changePatron}
+          patron={patron}
+          isRequired={requiredFields.includes("phone")}
+          showCheckboxes={showCheckboxes && textNotificationsEnabledConfig}
+        />
+        <ContactInfoEmail
+          className={clsx(inputsClass, {
+            "mt-32": !textNotificationsEnabledConfig && !inLine
+          })}
+          changePatron={changePatron}
+          patron={patron}
+          isRequired={requiredFields.includes("email")}
+          showCheckboxes={showCheckboxes}
+        />
+      </ContactInfoInputs>
     </section>
   );
 };

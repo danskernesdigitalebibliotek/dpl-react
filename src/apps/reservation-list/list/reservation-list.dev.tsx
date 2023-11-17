@@ -22,9 +22,8 @@ export default {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
     },
-    thresholdConfig: {
-      defaultValue:
-        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+    expirationWarningDaysBeforeConfig: {
+      defaultValue: "6",
       control: { type: "text" }
     },
     pauseReservationStartDateConfig: {
@@ -118,6 +117,10 @@ export default {
       defaultValue: "You are at the front of the queue",
       control: { type: "text" }
     },
+    reservationListDigitalPickupText: {
+      defaultValue: "Online access",
+      control: { type: "text" }
+    },
     reservationListInQueueText: {
       defaultValue: "queued",
       control: { type: "text" }
@@ -182,6 +185,10 @@ export default {
       defaultValue: "Pause your reservations",
       control: { type: "text" }
     },
+    reservationListPauseReservationOnHoldText: {
+      defaultValue: "Your reservations are paused",
+      control: { type: "text" }
+    },
     reservationListOnHoldAriaText: {
       defaultValue:
         "Reservations have been paused in the following time span: ",
@@ -189,7 +196,11 @@ export default {
     },
     reservationListPauseReservationAriaModalText: {
       defaultValue:
-        "This button opens a modal that covers the entire page and contains the possibility to pause physical reservations",
+        "Opens a modal that covers the entire page where it is possible to pause physical reservations",
+      control: { type: "text" }
+    },
+    reservationListPauseReservationButtonText: {
+      defaultValue: "Settings",
       control: { type: "text" }
     },
     pauseReservationModalAriaDescriptionText: {
@@ -231,8 +242,8 @@ export default {
       defaultValue: "Save",
       control: { type: "text" }
     },
-    listDetailsNothingSelectedLabelText: {
-      defaultValue: "Pick",
+    pauseReservationModalCancelButtonLabelText: {
+      defaultValue: "Cancel pause",
       control: { type: "text" }
     },
     showMoreText: {

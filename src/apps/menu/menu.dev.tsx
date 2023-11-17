@@ -9,9 +9,10 @@ import reservationGroupModalArgs from "../../core/storybook/reservationGroupModa
 import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
+import StoryHeader from "../../components/search-bar/story-header.dev.inc";
 
 export default {
-  title: "Apps / Menu",
+  title: "Apps / Header",
   component: Menu,
   argTypes: {
     ...serviceUrlArgs,
@@ -123,7 +124,7 @@ export default {
       defaultValue: "Profile links",
       control: { type: "text" }
     },
-    menuLogOutUrl: {
+    logoutUrl: {
       defaultValue: "/Logout",
       control: { type: "text" }
     },
@@ -143,14 +144,21 @@ export default {
       defaultValue: "/Signup",
       control: { type: "text" }
     },
-    thresholdConfig: {
-      defaultValue:
-        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+    expirationWarningDaysBeforeConfig: {
+      defaultValue: "6",
       control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof Menu>;
 
-const Template: ComponentStory<typeof Menu> = (props) => <Menu {...props} />;
-export const MenuEntry = Template.bind({});
-MenuEntry.args = {};
+export const UserMenu: ComponentStory<typeof Menu> = (args) => {
+  const menuEntryProps = args;
+  const menu = <Menu {...menuEntryProps} />;
+
+  return (
+    // We use the Header component as context to the search bar.
+    // It is the Header that creates the Search bar's design -
+    // - without it, the Search bar loses its shape.
+    <StoryHeader userProfile={menu} />
+  );
+};

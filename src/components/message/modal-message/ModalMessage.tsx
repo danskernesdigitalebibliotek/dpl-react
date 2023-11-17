@@ -11,6 +11,7 @@ interface ModalMessageProps extends MessageProps {
     modalId: string;
     text: string;
     callback?: () => void;
+    dataCy?: string;
   };
 }
 
@@ -23,8 +24,8 @@ const ModalMessage: FC<ModalMessageProps> = (props) => {
       <div className="modal-cta__buttons mt-48">
         {ctaButton && (
           <Button
-            dataCy="reservation-success-close-button"
-            classNames="reservation-modal__confirm-button"
+            dataCy={ctaButton.dataCy ?? "modal-cta-button"}
+            classNames="modal-message__confirm-button"
             label={ctaButton.text}
             buttonType="none"
             disabled={false}

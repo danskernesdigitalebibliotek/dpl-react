@@ -22,7 +22,7 @@ describe("Loan list", () => {
       statusCode: 200,
       body: [
         {
-          isRenewable: false,
+          isRenewable: true,
           renewalStatusList: ["deniedOtherReason"],
           isLongtermLoan: false,
           loanDetails: {
@@ -42,7 +42,7 @@ describe("Loan list", () => {
           }
         },
         {
-          isRenewable: false,
+          isRenewable: true,
           renewalStatusList: ["deniedOtherReason"],
           isLongtermLoan: false,
           loanDetails: {
@@ -67,7 +67,7 @@ describe("Loan list", () => {
           }
         },
         {
-          isRenewable: false,
+          isRenewable: true,
           isLongtermLoan: false,
           loanDetails: {
             loanId: 956250509,
@@ -87,7 +87,7 @@ describe("Loan list", () => {
           }
         },
         {
-          isRenewable: false,
+          isRenewable: true,
           isLongtermLoan: false,
           loanDetails: {
             loanId: 956250509,
@@ -242,8 +242,54 @@ describe("Loan list", () => {
       message: "OK"
     }).as("product");
 
+    cy.intercept(
+      "POST",
+      "**/external/agencyid/patrons/patronid/loans/renew/v2",
+      {
+        statusCode: 200,
+        body: [
+          {
+            renewalStatus: ["deniedMaterialIsNotLoanable"],
+            loanDetails: {
+              loanId: 956250508,
+              materialItemNumber: "3846990827",
+              recordId: "28847238",
+              periodical: null,
+              loanDate: "2022-06-13T16:43:25.325",
+              dueDate: "2023-10-12",
+              loanType: "loan",
+              ilBibliographicRecord: null,
+              materialGroup: {
+                name: "fon2",
+                description: "Flere CD-plader"
+              }
+            }
+          },
+          {
+            renewalStatus: ["deniedReserved"],
+            loanDetails: {
+              loanId: 956250508,
+              materialItemNumber: "3846990827",
+              recordId: "53667546",
+              periodical: null,
+              loanDate: "2022-06-13T16:43:25.325",
+              dueDate: "2023-10-12",
+              loanType: "loan",
+              ilBibliographicRecord: null,
+              materialGroup: {
+                name: "fon2",
+                description: "Flere CD-plader"
+              }
+            }
+          }
+        ]
+      }
+    ).as("renew");
+
     cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-    cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"]);
+    cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"], {
+      timeout: 10000
+    });
   });
 
   it("Loan list basics (physical loans)", () => {
@@ -526,7 +572,7 @@ describe("Loan list", () => {
       statusCode: 200,
       body: [
         {
-          isRenewable: false,
+          isRenewable: true,
           renewalStatusList: ["deniedOtherReason"],
           isLongtermLoan: false,
           loanDetails: {
@@ -546,7 +592,7 @@ describe("Loan list", () => {
           }
         },
         {
-          isRenewable: false,
+          isRenewable: true,
           renewalStatusList: ["deniedOtherReason"],
           isLongtermLoan: false,
           loanDetails: {
@@ -657,6 +703,29 @@ describe("Loan list", () => {
       .eq(1)
       .find(".list-reservation")
       .should("have.length", 2);
+  });
+
+  it.only("Can go trough renewal flow of a single loan from the loan list", () => {
+    // Spy on the loan request.
+    cy.intercept(
+      "**/external/agencyid/patrons/patronid/loans/v2**",
+      cy.spy().as("loan-spy")
+    );
+    cy.getBySel("loan-list-items")
+      .find(".list-reservation")
+      .eq(1)
+      .find("button")
+      .first()
+      .click();
+    cy.getBySel("modal-loan-details-956442399-close-button").should("exist");
+    cy.getBySel("material-renew-button").first().click();
+    cy.getBySel("modal-cta-button").first().click();
+    cy.getBySel("modal-loan-details-956442399-close-button").should(
+      "not.exist"
+    );
+    // Because the loans cache is invalidated we should get precisely 1 request
+    // to the loans service (after the intial request on page load).
+    cy.get("@loan-spy").its("callCount").should("equal", 1);
   });
 });
 

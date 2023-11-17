@@ -92,6 +92,11 @@ export default {
       defaultValue: "Reserve",
       control: { type: "text" }
     },
+    reservableFromAnotherLibraryText: {
+      name: "Reservable on another library",
+      defaultValue: "Reservable on another library",
+      control: { type: "text" }
+    },
     findOnBookshelfText: {
       name: "Find on bookshelf",
       defaultValue: "Find on shelf",
@@ -344,7 +349,7 @@ export default {
       defaultValue: "Change",
       control: { type: "text" }
     },
-    pickupLocationText: {
+    reservationDetailsPickUpAtTitleText: {
       name: "Pick up at",
       defaultValue: "Pick up at",
       control: { type: "text" }
@@ -359,7 +364,7 @@ export default {
       defaultValue: "You will receive an email when the material is ready",
       control: { type: "text" }
     },
-    haveNoInterestAfterText: {
+    reservationDetailsNoInterestAfterTitleText: {
       name: "Have no interest after",
       defaultValue: "Have no interest after",
       control: { type: "text" }
@@ -806,6 +811,101 @@ export default {
       defaultValue:
         '[\n   {\n      "value":"30",\n      "label":"1 month"\n   },\n   {\n      "value":"60",\n      "label":"2 months"\n   },\n   {\n      "value":"90",\n      "label":"3 months"\n   },\n   {\n      "value":"180",\n      "label":"6 months"\n   },\n   {\n      "value":"360",\n      "label":"1 year"\n   }\n]',
       control: { type: "text" }
+    },
+    openOrderResponseTitleText: {
+      name: "Reservation Success title",
+      defaultValue: "Order from another library:",
+      control: { type: "text" }
+    },
+    openOrderResponseIsReservedForYouText: {
+      name: "Reservation Success Title",
+      defaultValue: "is ordered to your library",
+      control: { type: "text" }
+    },
+    openOrderAuthenticationErrorText: {
+      name: "Open order authentication error text",
+      defaultValue: "Authentication error occurred",
+      control: { type: "text" }
+    },
+    openOrderUserBlockedByAgencyText: {
+      name: "Open order user blocked by agency text",
+      defaultValue: "You are blocked by the agency",
+      control: { type: "text" }
+    },
+    openOrderUserNotVerifiedText: {
+      name: "Open order user not verified text",
+      defaultValue: "User could not be verified",
+      control: { type: "text" }
+    },
+    openOrderUserNoLongerExistOnAgencyText: {
+      name: "Open order user no longer exists on agency text",
+      defaultValue: "User no longer exists at the specified agency",
+      control: { type: "text" }
+    },
+    openOrderInvalidOrderText: {
+      name: "Open order invalid order text",
+      defaultValue: "Your order is invalid",
+      control: { type: "text" }
+    },
+    openOrderNotOwnedIllLocText: {
+      name: "Open order item localized for ILL text",
+      defaultValue: "Item not available at pickup agency but localized for ILL",
+      control: { type: "text" }
+    },
+    openOrderNotOwnedNoIllLocText: {
+      name: "Open order item not localized for ILL text",
+      defaultValue: "Item not available and not localized for ILL",
+      control: { type: "text" }
+    },
+    openOrderNotOwnedWrongIllMediumtypeText: {
+      name: "Open order wrong ILL medium type text",
+      defaultValue: "Item not available, ILL of this medium type not accepted",
+      control: { type: "text" }
+    },
+    openOrderNoServicerequesterText: {
+      name: "Open order no service requester text",
+      defaultValue: "Service requester is obligatory",
+      control: { type: "text" }
+    },
+    openOrderOrsErrorText: {
+      name: "Open order ORS error text",
+      defaultValue: "Error occurred while sending order to ORS",
+      control: { type: "text" }
+    },
+    openOrderStatusOwnedAcceptedText: {
+      name: "Open order status owned accepted text",
+      defaultValue: "Your order is accepted",
+      control: { type: "text" }
+    },
+    openOrderOwnedOwnCatalogueText: {
+      name: "Open order available in own catalogue text",
+      defaultValue: "Item available, order through the library's catalogue",
+      control: { type: "text" }
+    },
+    openOrderOwnedWrongMediumtypeText: {
+      name: "Open order wrong medium type for available item text",
+      defaultValue: "Item available but medium type not accepted",
+      control: { type: "text" }
+    },
+    openOrderServiceUnavailableText: {
+      name: "Open order service unavailable text",
+      defaultValue: "Service is currently unavailable",
+      control: { type: "text" }
+    },
+    openOrderUnknownErrorText: {
+      name: "Open order unknown error text",
+      defaultValue: "An unknown error occurred",
+      control: { type: "text" }
+    },
+    openOrderUnknownPickupagencyText: {
+      name: "Open order unknown pickup agency text",
+      defaultValue: "Specified pickup agency not found",
+      control: { type: "text" }
+    },
+    openOrderUnknownUserText: {
+      name: "Open order unknown user text",
+      defaultValue: "User not found",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
@@ -871,4 +971,9 @@ Dinosaurierfedern.args = {
 export const Underverden = Template.bind({});
 Underverden.args = {
   wid: "work-of:870970-basis:52886619"
+};
+
+export const overbygningsMatriale = Template.bind({});
+overbygningsMatriale.args = {
+  wid: "work-of:870970-basis:135721719"
 };

@@ -6,7 +6,7 @@ import { Pid } from "../../../core/utils/types/ids";
 import InfomediaModalBody from "./InfomediaModalBody";
 import { Manifestation } from "../../../core/utils/types/entities";
 import InfomediaSkeleton from "./InfomediaSkeleton";
-import { usePatronData } from "../helper";
+import { usePatronData } from "../../../core/utils/helpers/user";
 
 export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 

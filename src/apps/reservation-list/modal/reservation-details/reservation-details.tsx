@@ -10,9 +10,7 @@ import ReservationDetailsRedirect from "./reservation-details-redirect";
 import { useText } from "../../../../core/utils/text";
 import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-material-fetch-hoc";
 import PhysicalListDetails from "./physical-list-details";
-import { useGetBranches } from "../../../../core/utils/branches";
 import { useConfig } from "../../../../core/utils/config";
-import { isConfigValueOne } from "../../../../components/reservation/helper";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
@@ -29,15 +27,15 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   const { state, identifier, numberInQueue } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
-  const branches = useGetBranches("blacklistedPickupBranchesConfig");
-  const allowRemoveReadyReservation = config(
-    "reservationDetailAllowRemoveReadyReservationsConfig"
-  );
+  const { allowRemoveReadyReservations } = config<{
+    allowRemoveReadyReservations: boolean;
+  }>("reservationDetailsConfig", {
+    transformer: "jsonParse"
+  });
   const isDigital = !!reservation.identifier;
   const readyForPickupState = "readyForPickup";
   const allowUserRemoveReadyReservations =
-    (state === readyForPickupState &&
-      isConfigValueOne(allowRemoveReadyReservation)) ||
+    (state === readyForPickupState && allowRemoveReadyReservations) ||
     state !== readyForPickupState;
 
   return (
@@ -79,12 +77,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
           )}
           <div className="modal-details__list">
             {isDigital && <DigitalListDetails reservation={reservation} />}
-            {!isDigital && (
-              <PhysicalListDetails
-                branches={branches}
-                reservation={reservation}
-              />
-            )}
+            {!isDigital && <PhysicalListDetails reservation={reservation} />}
           </div>
           {reservation.reservationId && allowUserRemoveReadyReservations && (
             <ReservationDetailsButton

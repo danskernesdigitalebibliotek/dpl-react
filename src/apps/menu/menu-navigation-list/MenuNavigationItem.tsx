@@ -37,11 +37,17 @@ const MenuNavigationItem: FC<MenuNavigationItemProps> = ({
   return (
     <li className="link-filters mb-16">
       <div className="link-filters__tag-wrapper">
-        <a href={link} className="link-tag link-tag link-filters__tag">
+        <a
+          href={link}
+          className="link-tag link-tag link-filters__tag"
+          aria-label={`${name} ${dataMap[dataId] || ""}`}
+        >
           {name}
         </a>
         {dataMap[dataId] !== 0 && (
-          <span className="link-filters__counter">{dataMap[dataId]}</span>
+          <span className="link-filters__counter" aria-hidden="true">
+            {dataMap[dataId]}
+          </span>
         )}
       </div>
     </li>

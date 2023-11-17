@@ -10,6 +10,7 @@ import reservationMaterialDetailsProps from "../../core/storybook/reservationMat
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
 import acceptModalArgs from "../../core/storybook/acceptFeesModalArgs";
+import reservationListArgs from "../../core/storybook/reservationListArgs";
 
 export default {
   title: "Apps / Dashboard",
@@ -23,13 +24,10 @@ export default {
     ...acceptModalArgs,
     ...materialDetailsModalArgs,
     ...deleteReservationModalArgs,
+    ...reservationListArgs,
     // Urls
     physicalLoansUrl: {
       defaultValue: "/user/me/loans",
-      control: { type: "text" }
-    },
-    feesUrl: {
-      defaultValue: "/user/me/fees",
       control: { type: "text" }
     },
     reservationsUrl: {
@@ -124,10 +122,6 @@ export default {
       },
       defaultValue: "Podcast"
     },
-    listDetailsNothingSelectedLabelText: {
-      defaultValue: "Pick",
-      control: { type: "text" }
-    },
     dashboardNumberInLineText: {
       control: {
         type: "text"
@@ -158,10 +152,12 @@ export default {
       defaultValue: "and",
       control: { type: "text" }
     },
-    // Config
-    thresholdConfig: {
-      defaultValue:
-        '{\n      "colorThresholds":{\n      "danger":"0",\n      "warning":"6"\n   }\n   }',
+    reservationListLoanBeforeText: {
+      defaultValue: "Borrow before @date",
+      control: { type: "text" }
+    },
+    expirationWarningDaysBeforeConfig: {
+      defaultValue: "6",
       control: { type: "text" }
     }
   },

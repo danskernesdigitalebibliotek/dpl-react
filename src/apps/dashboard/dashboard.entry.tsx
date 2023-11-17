@@ -17,12 +17,12 @@ export interface DashBoardProps {
   // Url
   loansOverdueUrl: string;
   physicalLoansUrl: string;
-  feesUrl: string;
+  feesPageUrl: string;
   reservationsUrl: string;
   // Config
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
-  thresholdConfig: string;
+  expirationWarningDaysBeforeConfig: string;
   // Texts
   yourProfileText: string;
   feesText: string;
@@ -44,7 +44,6 @@ export interface DashBoardProps {
   publizonAudioBookText: string;
   publizonEbookText: string;
   publizonPodcastText: string;
-  listDetailsNothingSelectedLabelText: string;
   dashboardNumberInLineText: string;
   resultPagerStatusText: string;
   reservationDetailsOthersInQueueText: string;

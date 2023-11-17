@@ -143,9 +143,9 @@ describe("Pause reservation modal test", () => {
       .find(".dpl-pause-reservation-component__flex__badge")
       .should("exist");
 
-    cy.get(".reservation-list-page")
-      .find(".dpl-toggle-button--active")
-      .should("exist");
+    cy.get(".dpl-pause-reservation-component")
+      .find(".dpl-pause-reservation-component__flex__text")
+      .should("have.text", "Your reservations are paused");
   });
 });
 

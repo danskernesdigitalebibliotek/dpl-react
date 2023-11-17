@@ -85,6 +85,10 @@ export default {
       defaultValue: "Save",
       control: { type: "text" }
     },
+    pauseReservationModalCancelButtonLabelText: {
+      defaultValue: "Cancel pause",
+      control: { type: "text" }
+    },
     patronPageBasicDetailsHeaderText: {
       defaultValue: "Basic details",
       control: { type: "text" }
@@ -238,6 +242,21 @@ export default {
     },
     patronPageStatusSectionOutOfAriaLabelEbooksText: {
       defaultValue: "You used @this ebooks out of you quota of @that ebooks",
+      control: { type: "text" }
+    },
+    patronPagePhoneInputMessageText: {
+      name: "Phone input validation message",
+      defaultValue:
+        "The phone number must be 6 to 15 characters in length and should be comprised solely of numbers or begin with a +",
+      control: { type: "text" }
+    },
+    patronPageHandleResponseInformationText: {
+      defaultValue: "Your changes are saved.",
+      control: { type: "text" }
+    },
+    patronPageLoadingText: {
+      name: "Loading",
+      defaultValue: "Loading..",
       control: { type: "text" }
     }
   }

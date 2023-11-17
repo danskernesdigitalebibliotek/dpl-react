@@ -7,8 +7,7 @@ import {
   daysBetweenDates
 } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
-import { useConfig } from "../../../../core/utils/config";
-import { ThresholdType } from "../../../../core/utils/types/threshold-type";
+import useLoanThresholds from "../../../../core/utils/useLoanThresholds";
 
 interface StatusCircleProps {
   dueDate?: string | null;
@@ -17,13 +16,9 @@ interface StatusCircleProps {
 
 const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const t = useText();
-  const config = useConfig();
   const colors = getColors();
-  const {
-    colorThresholds: { danger, warning }
-  } = config<ThresholdType>("thresholdConfig", {
-    transformer: "jsonParse"
-  });
+  const threshold = useLoanThresholds();
+
   let color = colors.default;
   let percent = 100;
   let daysBetweenTodayAndDue = null;
@@ -36,9 +31,9 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
     if (percent < 0) {
       percent = 100;
     }
-    if (daysBetweenTodayAndDue < danger) {
+    if (daysBetweenTodayAndDue < threshold.danger) {
       color = colors.danger;
-    } else if (daysBetweenTodayAndDue <= warning) {
+    } else if (daysBetweenTodayAndDue <= threshold.warning) {
       color = colors.warning;
     }
   } else {

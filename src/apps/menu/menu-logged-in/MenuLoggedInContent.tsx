@@ -6,44 +6,29 @@ import MenuNavigationItem, {
 } from "../menu-navigation-list/MenuNavigationItem";
 import { AuthenticatedPatronV6 } from "../../../core/fbs/model";
 import { useUrls } from "../../../core/utils/url";
-import {
-  useGetLoansV2,
-  useGetReservationsV2,
-  useGetFeesV2
-} from "../../../core/fbs/fbs";
-import {
-  mapFBSLoanToLoanType,
-  mapFBSReservationToReservationType
-} from "../../../core/utils/helpers/list-mapper";
-import { LoanType } from "../../../core/utils/types/loan-type";
-import {
-  filterLoansOverdue,
-  filterLoansSoonOverdue
-} from "../../../core/utils/helpers/general";
+import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { useConfig } from "../../../core/utils/config";
-import { ThresholdType } from "../../../core/utils/types/threshold-type";
 import { useText } from "../../../core/utils/text";
-import { usePatronData } from "../../../components/material/helper";
-import { getReadyForPickup } from "../../reservation-list/utils/helpers";
-import { ReservationType } from "../../../core/utils/types/reservation-type";
+import { usePatronData } from "../../../core/utils/helpers/user";
 import DashboardNotificationList from "../../dashboard/dashboard-notification-list/dashboard-notification-list";
+import useReservations from "../../../core/utils/useReservations";
+import useLoans from "../../../core/utils/useLoans";
 
 interface MenuLoggedInContentProps {
   pageSize: number;
 }
 
 const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
+  const {
+    all: { reservations }
+  } = useReservations();
+  const {
+    all: { loans, overdue: loansOverdue, soonOverdue: loansSoonOverdue }
+  } = useLoans();
   const { data: patronData } = usePatronData();
-  const { data: patronReservations } = useGetReservationsV2();
-  const { data: fbsData } = useGetLoansV2();
   const { data: fbsFees } = useGetFeesV2();
   const t = useText();
   const config = useConfig();
-  const {
-    colorThresholds: { warning }
-  } = config<ThresholdType>("thresholdConfig", {
-    transformer: "jsonParse"
-  });
 
   // Get menu navigation data from config.
   const menuNavigationData = config<MenuNavigationDataType[]>(
@@ -55,59 +40,13 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
   const [userData, setUserData] = useState<
     AuthenticatedPatronV6 | null | undefined
   >();
-  const [loans, setLoans] = useState<LoanType[]>([]);
-  const [reservations, setReservations] = useState<ReservationType[]>([]);
-  const [loansCount, setLoansCount] = useState<number>(0);
-  const [reservationCount, setReservationCount] = useState<number>(0);
   const [feeCount, setFeeCount] = useState<number>(0);
-  const [loansOverdue, setLoansOverdue] = useState<number>(0);
-  const [loansSoonOverdue, setLoansSoonOverdue] = useState<number>(0);
-  const [reservationsReadyForPickup, setReservationsReadyForPickup] =
-    useState<number>(0);
-  const { menuViewYourProfileTextUrl, menuLogOutUrl } = useUrls();
+  const { menuViewYourProfileTextUrl, logoutUrl } = useUrls();
 
   // Set user data
   useEffect(() => {
     setUserData(patronData);
   }, [patronData]);
-
-  // Merge digital and physical loans, for easier filtration down the line.
-  useEffect(() => {
-    if (fbsData) {
-      const mappedFbsLoans = mapFBSLoanToLoanType(fbsData);
-      setLoans(mappedFbsLoans);
-    }
-  }, [fbsData]);
-
-  // Set count of loans overdue.
-  useEffect(() => {
-    setLoansOverdue(filterLoansOverdue(loans).length);
-  }, [loans]);
-
-  // Set count of loans soon to be overdue.
-  useEffect(() => {
-    if (warning) {
-      setLoansSoonOverdue(filterLoansSoonOverdue(loans, warning).length);
-    }
-  }, [loans, warning]);
-
-  // Set count of reservations- and ready-for-pickup.
-  useEffect(() => {
-    if (patronReservations) {
-      const mappedReservations =
-        mapFBSReservationToReservationType(patronReservations);
-      setReservations(mappedReservations);
-      setReservationsReadyForPickup(
-        getReadyForPickup(mappedReservations).length
-      );
-      setReservationCount(mappedReservations.length);
-    }
-  }, [patronReservations]);
-
-  // Set count of loans.
-  useEffect(() => {
-    setLoansCount(loans.length);
-  }, [loans]);
 
   // Set count of fees.
   useEffect(() => {
@@ -117,9 +56,9 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
   }, [fbsFees]);
 
   const showNotifications =
-    loansOverdue !== 0 ||
-    loansSoonOverdue !== 0 ||
-    reservationsReadyForPickup !== 0;
+    loansOverdue.length !== 0 ||
+    loansSoonOverdue.length !== 0 ||
+    reservations.length !== 0;
 
   return (
     <div className="modal-login modal-login--authenticated">
@@ -145,12 +84,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
         </div>
         {showNotifications && (
           <div className="modal-profile__container">
-            <DashboardNotificationList
-              reservations={reservations}
-              loans={loans}
-              pageSize={pageSize}
-              columns={false}
-            />
+            <DashboardNotificationList pageSize={pageSize} columns={false} />
           </div>
         )}
         <nav
@@ -161,8 +95,8 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
             {menuNavigationData.map((menuNavigationItem) => (
               <MenuNavigationItem
                 menuNavigationItem={menuNavigationItem}
-                loansCount={loansCount}
-                reservationCount={reservationCount}
+                loansCount={loans.length}
+                reservationCount={reservations.length}
                 feeCount={feeCount}
               />
             ))}
@@ -171,7 +105,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
         <div className="modal-profile__btn-logout mx-32">
           <Link
             className="btn-primary btn-filled btn-large arrow__hover--right-small"
-            href={menuLogOutUrl}
+            href={logoutUrl}
           >
             {t("menuLogOutText")}
           </Link>

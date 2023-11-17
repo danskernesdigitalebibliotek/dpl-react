@@ -1,6 +1,7 @@
 interface GlobalUrlEntryPropsInterface {
   materialUrl: string;
   searchUrl: string;
+  advancedSearchUrl: string;
   fbsBaseUrl: string;
   loanListEreolenUrl: string;
   materialOverdueUrl: string;

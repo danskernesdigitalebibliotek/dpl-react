@@ -52,6 +52,11 @@ describe("Reservation details modal test", () => {
         }
       }
     }).as("user");
+
+    cy.interceptGraphql({
+      operationName: "getManifestationViaMaterialByFaust",
+      fixtureFilePath: "reservation-details/fbi-api.json"
+    });
   });
 
   it("It shows digital reservation details modal", () => {
@@ -178,15 +183,6 @@ describe("Reservation details modal test", () => {
     // ID 43 2.b. Material types including accessibility of material
     // ID 17 2.b.ii "Ready for loan" if the reservation is ready for loan, or else it will not be shown
 
-    // ID 17 2.c. the link "Remove your reservation"
-    cy.get(".modal")
-      .find("button.link-tag")
-      .eq(0)
-      .should("have.text", "Remove your reservation")
-      .click();
-
-    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
-
     // ID 17 2.d. button: go to ereolen
     cy.get(".modal")
       .find("[data-cy='go-to-ereolen-button']")
@@ -202,32 +198,38 @@ describe("Reservation details modal test", () => {
       .should("have.text", "Ready for pickup");
 
     // ID 17 2.e. header "status"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-header-h5")
       .should("have.text", "Status");
 
     // ID 2.e.i.2 the text "Your reservation expires {ExpireUtc}" when the state from publizon is 2
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Your reservation expires 27-01-2023 22:37!");
+      .should("have.text", "Your reservation expires 27-01-2023 23:37!");
 
     // ID 17 2.f. header "date of reservation"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(1)
       .find(".text-header-h5")
       .should("have.text", "Date of reservation");
 
     // ID 2.e.i.2 the text "{createdutc}"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(1)
       .find(".text-small-caption")
-      .should("have.text", "16-08-2022 10:52");
+      .should("have.text", "16-08-2022 12:52");
+
+    cy.get(".modal")
+      .find("button.link-tag")
+      .eq(0)
+      .should("have.text", "Remove your reservation")
+      .click();
+
+    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
+
+    cy.get(".modal").should("not.exist");
   });
 
   it("It shows digital reservation details modal, material queued", () => {
@@ -324,11 +326,10 @@ describe("Reservation details modal test", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-digital-details-modal"
     );
     // ID 2.e.i.2 the text "Borrow before {ExpectedRedeemDateTimeUtc}" when the state from publizon is 1
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Borrow before 27-01-2023 22:37");
+      .should("have.text", "Borrow before 27-01-2023 23:37");
   });
 
   it("It shows physical reservation details modal", () => {
@@ -363,6 +364,15 @@ describe("Reservation details modal test", () => {
       code: 101,
       message: "OK"
     });
+
+    cy.intercept(
+      "PUT",
+      "**/external/v1/agencyid/patrons/patronid/reservations",
+      {
+        statusCode: 201,
+        body: { code: 101, message: "OK" }
+      }
+    ).as("put-library-branch-and-expiry-date");
 
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
@@ -408,120 +418,80 @@ describe("Reservation details modal test", () => {
       .find(".text-body-medium-regular")
       .should("have.text", "Others are queueing for this material");
 
-    // ID 13 button: “Remove you reservation”
-    cy.get(".modal")
-      .find(".modal-details__buttons")
-      .eq(0)
-      .find("button")
-      .should("have.text", "Remove your reservation")
-      .click();
-
-    cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
-
     // ID 13 2.d. header "status"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-header-h5")
       .should("have.text", "Status");
 
     // ID 13 2.d.i. the text "{numberInQueue} number in queue"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-small-caption")
       .should("have.text", "1 queued");
 
     // ID 13 2.e. header "pickup branch"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(1)
       .find(".text-header-h5")
       .should("have.text", "Pickup branch");
 
     // ID 13 2.e.i. text "{pickupBranch}"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(1)
       .find(".text-small-caption")
-      .should("have.text", "Risskov");
+      .should("contain.text", "Risskov");
 
     // ID 13 2.e.iii. the link "apply changes"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(1)
       .find("button")
       .should("exist")
       .click();
 
     // ID 16 2. Dropdown with pickup libraries
-    cy.get(".modal-details__list")
-      .find(".list-details")
-      .eq(1)
-      .find(".dropdown__select")
-      .find(".dropdown__option")
-      .should(
-        "have.text",
-        "PickHøjbjergBeder-MallingGellerupLystrupHarlevSkødstrupArrestenHasleSolbjergITKSabroTranbjergRisskovHjortshøjÅbyStadsarkivetFælles undervejsFællessekretariatetBavnehøjHovedbiblioteketTrigeTilstVibyEgå"
-      );
+    cy.getBySel("modal-reservation-form-select").should(
+      "have.text",
+      "Choose oneHøjbjergBeder-MallingGellerupLystrupHarlevSkødstrupArrestenHasleSolbjergITKSabroTranbjergRisskovHjortshøjÅbyStadsarkivetFælles undervejsFællessekretariatetBavnehøjHovedbiblioteketTrigeTilstVibyEgå"
+    );
 
     // ID 16 3. user selects library
-    cy.get(".modal-details__list")
-      .find(".list-details")
-      .eq(1)
-      .find(".dropdown__select")
-      .select("DK-775120");
+    cy.getBySel("modal-reservation-form-select").select("DK-775120");
 
-    cy.get(".modal-details__list")
-      .find(".list-details")
-      .eq(1)
-      .find(".dropdown__select")
-      .should("have.value", "DK-775120");
+    cy.getBySel("modal-reservation-form-select").should(
+      "have.value",
+      "DK-775120"
+    );
+
+    cy.getBySel("reservation-form-button", true).click();
+    cy.getBySel("modal-cta-button", true).click();
 
     // ID 13 2.f. header "Not interested after"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(2)
       .find(".text-header-h5")
       .should("have.text", "Not interested after");
 
     // ID 13 2.f.i. text "{expiryDate}"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(2)
       .find(".text-small-caption")
-      .should("have.text", "21-09-2022");
+      .should("contain.text", "21-09-2022");
 
-    // ID 13 2.f.ii. the link "apply changes"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    // ID 15 2.a&b&c&d&e Dropdown with interest periods
+    cy.getBySel("reservation-form-list-item")
       .eq(2)
       .find("button")
       .should("exist")
       .click();
 
-    // ID 15 2.a&b&c&d&e Dropdown with interest periods
-    cy.get(".modal-details__list")
-      .find(".list-details")
-      .eq(2)
-      .find(".dropdown__select")
-      .find(".dropdown__option")
-      .should("have.text", "Pick1 month2 months3 months6 months1 year");
+    cy.getBySel("modal-reservation-form-select").should(
+      "have.text",
+      "Choose one1 month2 months3 months6 months1 year"
+    );
 
-    cy.intercept(
-      "PUT",
-      "**/external/v1/agencyid/patrons/patronid/reservations**",
-      {
-        statusCode: 201,
-        body: { code: 101, message: "OK" }
-      }
-    ).as("put-library-branch-and-expiry-date");
-
-    // ID 15 2.g user clicks save
-    // ID 16 4. user clicks save
-    cy.get(".modal-details__list")
-      .find("[data-cy='save-physical-details']")
-      .click();
+    cy.getBySel("reservation-form-button", true).click();
+    cy.getBySel("modal-cta-button", true).click();
 
     // ID 15 2.i still on "detaljevisning"
     // ID 16 6. user clicks save
@@ -529,31 +499,26 @@ describe("Reservation details modal test", () => {
 
     // ID 16 6.b user clicks save
     // ID 15 2.i.b pick up library change link
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(1)
       .find("button")
       .should("exist");
 
     // ID 16 6.c user clicks save
     // ID 15 2.i.c expiry date change link
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(2)
       .find("button")
-      .should("exist")
-      .click();
+      .should("exist");
 
     // ID 13 2.h. header "Date of reservation"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(3)
       .find(".text-header-h5")
       .should("have.text", "Date of reservation");
 
     // ID 13 2.h.i. text "{dateOfReservation}"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(3)
       .find(".text-small-caption")
       .should("have.text", "14-06-2022");
@@ -635,23 +600,20 @@ describe("Reservation details modal test", () => {
       .should("not.exist");
 
     // ID 13 2.e.ii. text "{pickupNumber}" if reservation is ready for pickup
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-small-caption")
       .eq(1)
       .should("have.text", "Reserveringshylde 74");
 
     // ID 13 2.h. header "Pickup deadline"
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(2)
       .find(".text-header-h5")
       .should("have.text", "Pickup deadline");
 
     // ID 13 2.h.i. text "{pickupDeadline}" if reservation is ready for pickup
-    cy.get(".modal-details__list")
-      .find(".list-details")
+    cy.getBySel("reservation-form-list-item")
       .eq(2)
       .find(".text-small-caption")
       .should("have.text", "21-06-2022");

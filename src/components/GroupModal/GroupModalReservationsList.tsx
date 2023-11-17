@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
 import SelectableMaterial from "../../apps/loan-list/materials/selectable-material/selectable-material";
-import { formatDate } from "../../apps/loan-list/utils/helpers";
 import { useText } from "../../core/utils/text";
 import usePager from "../result-pager/use-pager";
 import { ReservationType } from "../../core/utils/types/reservation-type";
@@ -56,17 +55,22 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
     <>
       <h3 className="text-body-medium-regular">{header}</h3>
       <ul className="modal-loan__list-materials">
-        {displayedMaterials.map(
-          (
-            { expiryDate, faust, identifier, numberInQueue, reservationId },
-            i
-          ) => (
+        {displayedMaterials.map((material, i) => {
+          const {
+            expiryDate,
+            faust,
+            identifier,
+            numberInQueue,
+            reservationId
+          } = material;
+          return (
             <>
               {(identifier || reservationId || faust) && (
                 <SelectableMaterial
+                  displayedMaterial={material}
                   focused={i === firstInNewPage}
                   statusBadgeComponent={
-                    faust ? (
+                    faust && (
                       <StatusBadge
                         badgeDate={expiryDate}
                         neutralText={
@@ -77,17 +81,9 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                               })
                             : ""
                         }
-                        infoText={
-                          expiryDate
-                            ? t("pickUpLatestText", {
-                                placeholders: {
-                                  "@date": formatDate(expiryDate)
-                                }
-                              })
-                            : ""
-                        }
+                        infoText=""
                       />
-                    ) : null
+                    )
                   }
                   openDetailsModal={openDetailsModal}
                   key={faust || identifier}
@@ -107,8 +103,8 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
               )}
               {!identifier && null}
             </>
-          )
-        )}
+          );
+        })}
       </ul>
       <PagerComponent
         classNames={marginBottonPager ? "result-pager--margin-bottom" : ""}

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 export interface TextInputProps {
   label: string;
-  type: "text" | "password" | "number" | "email";
+  type: "text" | "password" | "number" | "email" | "tel";
   id: string;
   required?: boolean;
   description?: string;
@@ -12,6 +12,8 @@ export interface TextInputProps {
   className?: string;
   pattern?: string;
   inputmode?: "numeric";
+  title?: string;
+  placeholder?: string;
 }
 
 const TextInput: FC<TextInputProps> = ({
@@ -25,7 +27,9 @@ const TextInput: FC<TextInputProps> = ({
   className,
   pattern,
   inputmode,
-  required
+  required,
+  title,
+  placeholder
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
@@ -44,6 +48,8 @@ const TextInput: FC<TextInputProps> = ({
         onChange={handleChange}
         value={value}
         aria-labelledby={validation ? `validation-${id}` : ""}
+        title={title}
+        placeholder={placeholder}
       />
       {description && (
         <div className="dpl-input__description" id={`description-${id}`}>
@@ -51,7 +57,11 @@ const TextInput: FC<TextInputProps> = ({
         </div>
       )}
       {validation && (
-        <div id={`validation-${id}`} className="dpl-input__validation">
+        <div
+          id={`validation-${id}`}
+          className="dpl-input__validation"
+          role="alert"
+        >
           {validation}
         </div>
       )}

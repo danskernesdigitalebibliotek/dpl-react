@@ -102,6 +102,11 @@ export const constructSearchUrl = (searchUrl: URL, q: string) =>
     q
   });
 
+export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>
+  appendQueryParametersToUrl(advancedSearchUrl, {
+    advancedSearchCql: q
+  });
+
 export const constructSearchUrlWithFilter = (args: {
   searchUrl: URL;
   selectedItemString: string;

@@ -27,26 +27,30 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const { mutate: deletePhysicalReservation } = useDeleteReservations();
   const { mutate: deleteDigitalReservation } =
     useDeleteV1UserReservationsIdentifier();
-  const { close } = useModalButtonHandler();
+  const { closeAll: closeAllModals } = useModalButtonHandler();
 
   const removeSelectedReservations = () => {
     if (reservations.length > 0) {
       const reservationsToDelete = reservations
         .map((id) => Number(isFaust(id)))
         .filter((id) => id !== 0);
+
       const digitalMaterialsToDelete = reservations
         .map((id) => isIdentifier(id))
         .filter((id) => id !== null);
-      deletePhysicalReservation(
-        {
-          params: { reservationid: reservationsToDelete }
-        },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries(getGetReservationsV2QueryKey());
+
+      if (reservationsToDelete.length > 0) {
+        deletePhysicalReservation(
+          {
+            params: { reservationid: reservationsToDelete }
+          },
+          {
+            onSuccess: () => {
+              queryClient.invalidateQueries(getGetReservationsV2QueryKey());
+            }
           }
-        }
-      );
+        );
+      }
 
       digitalMaterialsToDelete.forEach((id) =>
         deleteDigitalReservation(
@@ -60,7 +64,8 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
           }
         )
       );
-      close(modalId as string);
+
+      closeAllModals();
     }
   };
 

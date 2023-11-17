@@ -89,6 +89,10 @@ fragment ManifestationsSimpleFields on Manifestation {
   workYear {
     year
   }
+  catalogueCodes {
+    nationalBibliography
+    otherCatalogues
+  }
 }
 
 fragment ManifestationReviewFields on Manifestation {
