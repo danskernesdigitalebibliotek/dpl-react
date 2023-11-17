@@ -59,7 +59,7 @@ const List: FC<ListProps> = ({
             </h2>
           </div>
           <div data-cy="list-reservation-container">
-            <ul className="list-reservation-container m-32">
+            <ul className="list-reservation-container">
               {displayedReservations.map((reservation, i) => (
                 <ReservationMaterial
                   focused={firstInNewPage === i}
@@ -84,7 +84,7 @@ const List: FC<ListProps> = ({
               </>
             </h2>
           </div>
-          <div className="list-reservation-container m-32">
+          <div className="list-reservation-container">
             <EmptyList
               classNames="mt-24"
               dataCy={emptyListDataCy}

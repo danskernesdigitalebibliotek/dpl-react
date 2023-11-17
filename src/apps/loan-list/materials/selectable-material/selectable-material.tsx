@@ -72,7 +72,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         })}
       >
         {onMaterialChecked && (
-          <div className="list-materials__checkbox mr-32">
+          <div className="list-materials__checkbox mr-16">
             {!disabled && title && (
               <CheckBox
                 onChecked={() => onMaterialChecked(id)}
@@ -131,7 +131,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
         </div>
         {openDetailsModal && (
           <div
-            className="mr-16 ml-32 cursor-pointer"
+            className="list-materials__arrow"
             role="button"
             onClick={handleOnClick}
             onKeyUp={handleOnKeyUp}
