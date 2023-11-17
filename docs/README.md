@@ -8,6 +8,8 @@ Danish public libraries.
 ### Requirements
 
 - [go-task](https://github.com/go-task/task)
+- [nvm](https://github.com/nvm-sh/nvm)
+- [yarn 1.x](https://classic.yarnpkg.com/lang/en/)
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Dory](https://github.com/FreedomBen/dory)
 
