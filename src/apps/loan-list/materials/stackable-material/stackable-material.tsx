@@ -44,7 +44,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         "list-reservation--stacked": additionalMaterials > 0
       })}
       role="button"
-      onClick={() => openLoanDetailsModalHandler()}
+      onClick={() => openDueDateModal && dueDate && openDueDateModal(dueDate)}
       onKeyUp={(e) => {
         if (e.key === "Enter" || e.key === "Space") {
           openLoanDetailsModalHandler();
