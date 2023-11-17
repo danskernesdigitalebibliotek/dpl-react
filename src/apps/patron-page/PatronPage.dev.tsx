@@ -85,6 +85,10 @@ export default {
       defaultValue: "Save",
       control: { type: "text" }
     },
+    pauseReservationModalCancelButtonLabelText: {
+      defaultValue: "Cancel pause",
+      control: { type: "text" }
+    },
     patronPageBasicDetailsHeaderText: {
       defaultValue: "Basic details",
       control: { type: "text" }

@@ -34,6 +34,7 @@ interface PatronPageTextProps {
   pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
+  pauseReservationModalCancelButtonLabelText: string;
   patronPageBasicDetailsHeaderText: string;
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
