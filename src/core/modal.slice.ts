@@ -70,8 +70,6 @@ const modalSlice = createSlice({
       }
     },
     closeModal(state: StateProps, action: PayloadProps) {
-      // Enables background scrolling to use when Modal is closed
-      document.body.style.overflow = "";
       const modalId = state.modalIds.pop();
       if (state.modalIds.indexOf(action.payload.modalId) > -1) {
         state.modalIds.splice(
@@ -82,6 +80,12 @@ const modalSlice = createSlice({
       if (modalId) {
         removeModalIdFromUrl(state);
         returnFocusElement();
+      }
+      // Enables background scrolling to use when last modal is closed
+      // console.log(getConf("modalIds", configuration));
+      // console.log(state.modalIds.length);
+      if (state.modalIds.length === 0) {
+        document.body.style.overflow = "";
       }
     },
     closeLastModal(state: StateProps) {
