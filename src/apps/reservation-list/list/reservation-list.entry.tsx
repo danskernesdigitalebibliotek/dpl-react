@@ -46,7 +46,9 @@ export interface ReservationListTextProps {
   reservationListAvailableInText: string;
   reservationDetailsExpiresTitleText: string;
   reservationDetailsOthersInQueueText: string;
+  reservationListPauseReservationButtonText: string;
   reservationListPauseReservationText: string;
+  reservationListPauseReservationOnHoldText: string;
   reservationListOnHoldAriaText: string;
   reservationListPauseReservationAriaModalText: string;
   pauseReservationModalAriaDescriptionText: string;
@@ -58,6 +60,7 @@ export interface ReservationListTextProps {
   pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
+  pauseReservationModalCancelButtonLabelText: string;
   reservationListReadyForPickupTitleText: string;
   reservationListReadyForPickupEmptyText: string;
   reservationListPhysicalReservationsEmptyText: string;

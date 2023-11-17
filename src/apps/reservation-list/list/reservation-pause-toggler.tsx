@@ -40,7 +40,9 @@ const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
           <img src={ReservationsIcon} alt="" />
         </div>
         <div className="dpl-pause-reservation-component__flex__text">
-          {t("reservationListPauseReservationText")}
+          {onHoldDates
+            ? t("reservationListPauseReservationOnHoldText")
+            : t("reservationListPauseReservationText")}
         </div>
         {onHoldDates && (
           <span
@@ -55,10 +57,10 @@ const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
             aria-label={t("reservationListPauseReservationAriaModalText")}
             type="button"
             onClick={openPauseReservationModal}
-            className={`dpl-toggle-button dpl-toggle-button--${
-              !onHoldDates ? "in" : ""
-            }active`}
-          />
+            className="btn-primary btn-filled btn-small"
+          >
+            {t("reservationListPauseReservationButtonText")}
+          </button>
         </div>
       </div>
     </div>
