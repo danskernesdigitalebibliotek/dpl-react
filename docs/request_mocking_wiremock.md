@@ -12,7 +12,7 @@ reduce the usefulness of this state. Development may change it once a
 reservation is deleted. Time affects where a loan is current or overdue.
 
 With all this in mind it is useful for us to be able to recreate specific
-states. We do so using [Wiremock](https://https://wiremock.org/). Wiremock
+states. We do so using [Wiremock](https://wiremock.org/). Wiremock
 is a system which allows us to mock external APIs. It can be configured or
 instrumented to return predefined responses given predefined requests.
 
