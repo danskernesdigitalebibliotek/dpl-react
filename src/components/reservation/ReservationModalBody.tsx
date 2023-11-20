@@ -6,8 +6,7 @@ import {
   getAllPids,
   getMaterialTypes,
   getManifestationType,
-  materialIsFiction,
-  getReservablePidsFromAnotherLibrary
+  materialIsFiction
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -63,6 +62,7 @@ import {
 import ModalMessage from "../message/modal-message/ModalMessage";
 import configuration, { getConf } from "../../core/configuration";
 import { usePatronData } from "../../core/utils/helpers/user";
+import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromAnotherLibrary";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -123,15 +123,19 @@ export const ReservationModalBody = ({
     work,
     allPids
   );
+  const manifestationsToReserve = getManifestationsToReserve(
+    reservableManifestations ?? [],
+    !!selectedPeriodical
+  );
+
+  const { reservablePidsFromAnotherLibrary } = useReservableFromAnotherLibrary(
+    manifestationsToReserve
+  );
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
     return null;
   }
-  const manifestationsToReserve = getManifestationsToReserve(
-    reservableManifestations ?? [],
-    !!selectedPeriodical
-  );
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordV3[];
@@ -144,22 +148,18 @@ export const ReservationModalBody = ({
     ? getFutureDateString(selectedInterest)
     : null;
 
-  const pidsFromAnotherLibrary = getReservablePidsFromAnotherLibrary(
-    manifestationsToReserve
-  );
-
   const saveReservation = () => {
     if (!manifestationsToReserve || manifestationsToReserve.length < 1) {
       return;
     }
 
-    if (pidsFromAnotherLibrary.length > 0 && patron) {
+    if (reservablePidsFromAnotherLibrary.length > 0 && patron) {
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
 
       mutateOpenOrder(
         {
           input: {
-            pids: [...pidsFromAnotherLibrary],
+            pids: [...reservablePidsFromAnotherLibrary],
             pickUpBranch: selectedBranch
               ? removePrefixFromBranchId(selectedBranch)
               : removePrefixFromBranchId(preferredPickupBranch),
