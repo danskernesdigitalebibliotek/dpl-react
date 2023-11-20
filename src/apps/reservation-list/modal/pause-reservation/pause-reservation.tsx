@@ -1,4 +1,5 @@
-import React, { FC, useCallback, useState, useEffect, FormEvent } from "react";
+import React, { FC, useCallback, useState, useEffect, useId } from "react";
+import dayjs from "dayjs";
 import { useQueryClient } from "react-query";
 import Link from "../../../../components/atoms/links/Link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
@@ -9,7 +10,6 @@ import {
 } from "../../../../core/fbs/fbs";
 import { Patron, PatronV5 } from "../../../../core/fbs/model";
 import { getModalIds } from "../../../../core/utils/helpers/general";
-import { useConfig } from "../../../../core/utils/config";
 import DateInputs from "../../../../components/date-inputs/date-inputs";
 import { useUrls } from "../../../../core/utils/url";
 
@@ -25,15 +25,15 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const { mutate } = useUpdateV5();
   const { close } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
-  const config = useConfig();
-  const [startDate, setStartDate] = useState<string>(
-    config("pauseReservationStartDateConfig")
-  );
+  const saveFormId = useId();
+
+  const currentDate = dayjs().format("YYYY-MM-DD");
+  const [startDate, setStartDate] = useState<string>(currentDate);
   const [endDate, setEndDate] = useState<string>("");
+  const pauseActive = user?.onHold?.from && user?.onHold?.to;
 
   const save = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+    (localStartDate?: string, localEndDate?: string) => {
       if (!user) {
         return;
       }
@@ -46,12 +46,10 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         receiveSms: user.receiveSms
       } as Patron;
 
-      if (startDate || endDate) {
-        saveData.onHold = {
-          from: startDate === "" ? undefined : startDate,
-          to: endDate === "" ? undefined : endDate
-        };
-      }
+      saveData.onHold = {
+        from: localStartDate === "" ? undefined : localStartDate,
+        to: localEndDate === "" ? undefined : localEndDate
+      };
 
       mutate(
         {
@@ -69,8 +67,14 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         }
       );
     },
-    [close, endDate, mutate, pauseReservation, queryClient, startDate, user]
+    [close, mutate, pauseReservation, queryClient, user]
   );
+
+  const resetPauseDates = useCallback(() => {
+    setStartDate(currentDate);
+    setEndDate("");
+    save();
+  }, [currentDate, save]);
 
   useEffect(() => {
     if (user?.onHold?.from) {
@@ -90,7 +94,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         "pauseReservationModalAriaDescriptionText"
       )}
     >
-      <form onSubmit={(e) => save(e)} className="modal-pause__container">
+      <div className="modal-pause__container">
         <h2 className="text-header-h3">
           {t("pauseReservationModalHeaderText")}
         </h2>
@@ -99,12 +103,20 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
             {t("pauseReservationModalBodyText")}
           </p>
         </div>
-        <DateInputs
-          setStartDate={setStartDate}
-          setEndDate={setEndDate}
-          startDate={startDate}
-          endDate={endDate}
-        />
+        <form
+          id={saveFormId}
+          onSubmit={(e) => {
+            e.preventDefault();
+            save(startDate, endDate);
+          }}
+        >
+          <DateInputs
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
+            startDate={startDate}
+            endDate={endDate}
+          />
+        </form>
         <div className="modal-pause__text-link mt-24 color-secondary-gray">
           <p className="text-body-small-regular">
             {t("pauseReservationModalBelowInputsTextText")}
@@ -120,12 +132,22 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         <div className="modal-pause__button mt-48">
           <button
             type="submit"
-            className="btn-primary btn-filled btn-small arrow__hover--right-small"
+            form={saveFormId}
+            className="btn-primary btn-filled btn-small"
           >
             {t("pauseReservationModalSaveButtonLabelText")}
           </button>
+          {pauseActive && (
+            <button
+              type="button"
+              onClick={resetPauseDates}
+              className="btn-primary btn-small mt-16"
+            >
+              {t("pauseReservationModalCancelButtonLabelText")}
+            </button>
+          )}
         </div>
-      </form>
+      </div>
     </Modal>
   );
 };

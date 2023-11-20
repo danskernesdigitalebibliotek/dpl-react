@@ -81,10 +81,11 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         color={success as string}
         percent={100}
         info={getInfo()}
-        label={[
-          pickupLibrary,
-          pickupNumber || t("reservationListDigitalPickupText")
-        ]}
+        label={
+          isDigital
+            ? [t("reservationListDigitalPickupText")]
+            : [pickupLibrary, pickupNumber || ""]
+        }
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
         empty={!showStatusCircleIcon}
