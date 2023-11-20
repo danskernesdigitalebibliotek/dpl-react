@@ -38,16 +38,22 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
     }
   };
 
+  const handleOpenDueDateModal = () => {
+    if (openDueDateModal && dueDate) {
+      openDueDateModal(dueDate);
+    }
+  };
+
   return (
     <div
       className={clsx("list-reservation my-32 cursor-pointer", {
         "list-reservation--stacked": additionalMaterials > 0
       })}
       role="button"
-      onClick={() => openDueDateModal && dueDate && openDueDateModal(dueDate)}
+      onClick={() => handleOpenDueDateModal()}
       onKeyUp={(e) => {
         if (e.key === "Enter" || e.key === "Space") {
-          openLoanDetailsModalHandler();
+          handleOpenDueDateModal();
         }
       }}
       tabIndex={0}
@@ -63,9 +69,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         >
           <AdditionalMaterialsButton
             showOn="desktop"
-            openDueDateModal={() =>
-              openDueDateModal && dueDate && openDueDateModal(dueDate)
-            }
+            openDueDateModal={() => handleOpenDueDateModal()}
             additionalMaterials={additionalMaterials}
           />
           <MaterialOverdueLink showOn="desktop" dueDate={dueDate} />
@@ -75,16 +79,12 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         arrowLabelledBy={`${loanId || identifier}-title`}
         loan={loan}
         openDetailsModal={openLoanDetailsModal}
-        openDueDateModal={() =>
-          openDueDateModal && dueDate && openDueDateModal(dueDate)
-        }
+        openDueDateModal={() => handleOpenDueDateModal()}
         additionalMaterials={additionalMaterials}
       >
         <AdditionalMaterialsButton
           showOn="mobile"
-          openDueDateModal={() =>
-            openDueDateModal && dueDate && openDueDateModal(dueDate)
-          }
+          openDueDateModal={() => handleOpenDueDateModal()}
           additionalMaterials={additionalMaterials}
         />
         <MaterialOverdueLink showOn="mobile" dueDate={dueDate} />
