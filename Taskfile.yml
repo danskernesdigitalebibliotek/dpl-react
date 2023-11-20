@@ -21,13 +21,14 @@ tasks:
   dev:install:
     summary: Install packages
     cmds:
-      - task dev:cli -- yarn install
+      - yarn install
 
   dev:start:
     summary: Install and run docker compose
     cmds:
       - task dev:install
       - docker compose {{ .DOCKER_COMPOSE_FILES }} up --detach
+      - yarn dev
 
   dev:stop:
     summary: Stop docker compose environment
@@ -63,34 +64,24 @@ tasks:
   dev:storybook:
     summary: Run storybook in development mode
     cmds:
-      - task dev:cli -- yarn start:storybook:dev
-
-  dev:logs:
-    summary: Tail docker compose logs for web-pack
-    cmds:
-      - docker compose logs node --follow
+      - yarn start:storybook:dev
 
   dev:reset:
     summary: Install development environment and clean up.
     cmds:
       - task dev:down
-      - task dev:cli -- yarn clean
+      - yarn clean
       - rm -rf node_modules
       - task dev:up
 
   dev:test:
     summary: Run tests
     cmds:
-      - docker compose exec node yarn test
+      - yarn test
 
   dev:lint:
     summary: Run linters
     cmds:
-      - task dev:cli -- yarn lint:js
-      - task dev:cli -- yarn lint:scss
-      - task dev:cli -- yarn lint:markdown
-
-  dev:cli:
-    summary: Performs command inside container. Expects parameter(s).
-    cmds:
-      - docker compose {{ .DOCKER_COMPOSE_FILES }} run --rm node {{.CLI_ARGS}}
+      - yarn lint:js
+      - yarn lint:scss
+      - yarn lint:markdown
