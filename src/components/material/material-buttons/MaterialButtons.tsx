@@ -3,8 +3,7 @@ import { FC } from "react";
 import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
 import {
   getAllFaustIds,
-  getManifestationType,
-  getReservablePidsFromAnotherLibrary
+  getManifestationType
 } from "../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../core/utils/types/button";
 import { Manifestation } from "../../../core/utils/types/entities";
@@ -14,6 +13,7 @@ import MaterialButtonsOnline from "./online/MaterialButtonsOnline";
 import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
 import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
 import MaterialButtonReservableFromAnotherLibrary from "./physical/MaterialButtonReservableFromAnotherLibrary";
+import useReservableFromAnotherLibrary from "../../../core/utils/useReservableFromAnotherLibrary";
 
 export interface MaterialButtonsProps {
   manifestations: Manifestation[];
@@ -35,10 +35,10 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   // articles appear as a part of journal/periodical publications and can't be
   // physically loaned for themseleves.
 
-  const isReservableFromAnotherLibrary =
-    getReservablePidsFromAnotherLibrary(manifestations).length > 0;
+  const { reservablePidsFromAnotherLibrary } =
+    useReservableFromAnotherLibrary(manifestations);
 
-  if (isReservableFromAnotherLibrary) {
+  if (reservablePidsFromAnotherLibrary.length > 0) {
     return (
       <MaterialButtonReservableFromAnotherLibrary
         size={size}
