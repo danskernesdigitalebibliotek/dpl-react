@@ -50,7 +50,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         "list-reservation--stacked": additionalMaterials > 0
       })}
       role="button"
-      onClick={() => handleOpenDueDateModal()}
+      onClick={handleOpenDueDateModal}
       onKeyUp={(e) => {
         if (e.key === "Enter" || e.key === "Space") {
           handleOpenDueDateModal();
@@ -69,7 +69,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         >
           <AdditionalMaterialsButton
             showOn="desktop"
-            openDueDateModal={() => handleOpenDueDateModal()}
+            openDueDateModal={handleOpenDueDateModal}
             additionalMaterials={additionalMaterials}
           />
           <MaterialOverdueLink showOn="desktop" dueDate={dueDate} />
@@ -79,12 +79,12 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         arrowLabelledBy={`${loanId || identifier}-title`}
         loan={loan}
         openDetailsModal={openLoanDetailsModal}
-        openDueDateModal={() => handleOpenDueDateModal()}
+        openDueDateModal={handleOpenDueDateModal}
         additionalMaterials={additionalMaterials}
       >
         <AdditionalMaterialsButton
           showOn="mobile"
-          openDueDateModal={() => handleOpenDueDateModal()}
+          openDueDateModal={handleOpenDueDateModal}
           additionalMaterials={additionalMaterials}
         />
         <MaterialOverdueLink showOn="mobile" dueDate={dueDate} />
