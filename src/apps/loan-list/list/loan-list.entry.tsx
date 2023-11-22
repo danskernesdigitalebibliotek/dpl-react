@@ -22,6 +22,7 @@ export interface LoanListEntryUrlProps {
 }
 
 interface LoanListEntryTextProps {
+  groupModalGoToMaterialAriaLabelText: string;
   loanListAriaLabelListButtonText: string;
   loanListAriaLabelStackButtonText: string;
   loanListDigitalLoansEmptyListText: string;

@@ -46,6 +46,16 @@ export default {
       defaultValue: "/work/:workid",
       control: { type: "text" }
     },
+    availabilityAvailableText: {
+      name: "Availability: available text",
+      defaultValue: "Available",
+      control: { type: "text" }
+    },
+    availabilityUnavailableText: {
+      name: "Availability: unavailable text",
+      defaultValue: "Unavailable",
+      control: { type: "text" }
+    },
     favoritesListMaterialsText: {
       defaultValue: "@count materials",
       control: { type: "text" }
