@@ -90,7 +90,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   return (
     <Modal
       modalId={modalId}
-      classNames="modal-cta"
+      classNames="modal-cta modal-padding"
       closeModalAriaLabelText={t("deleteReservationModalCloseModalText")}
       screenReaderModalDescriptionText={t(
         "deleteReservationModalAriaDescriptionText"
