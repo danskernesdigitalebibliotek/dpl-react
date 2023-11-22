@@ -309,9 +309,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             reservationForModal.reservationId || reservationForModal.identifier
           }`}
           reservations={[
-            String(reservationForModal.reservationId) ||
-              reservationForModal.identifier ||
-              ""
+            String(
+              reservationForModal.reservationId ||
+                reservationForModal.identifier
+            )
           ]}
         />
       )}
