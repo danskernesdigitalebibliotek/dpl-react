@@ -25,6 +25,11 @@ export interface DashBoardProps {
   expirationWarningDaysBeforeConfig: string;
   // Texts
   dashboardNumberInLineText: string;
+  deleteReservationModalButtonText: string;
+  deleteReservationModalErrorsStatusText: string;
+  deleteReservationModalErrorsTitleText: string;
+  deleteReservationModalSuccessStatusText: string;
+  deleteReservationModalSuccessTitleText: string;
   etAlText: string;
   feesText: string;
   loanListMaterialDaysText: string;
