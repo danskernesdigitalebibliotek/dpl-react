@@ -11,39 +11,51 @@ export const useRequestsWithStatus = <TOperation, TOperationResult>({
 }: {
   requests: Record<string, unknown>[];
   operation: TOperation;
-  onSuccess?: (result: TOperationResult) => void;
-  onError?: (error: unknown) => void;
+  onSuccess?: (results: TOperationResult[]) => void;
+  onError?: (errors: unknown[]) => void;
 }) => {
   const [requestStatus, setRequestStatus] = useState<RequestStatus>("idle");
 
   const handler = useCallback(() => {
     setRequestStatus("pending");
 
+    const operations: Promise<TOperationResult>[] = [];
+
     requests.forEach((action) => {
       if (typeof operation !== "function") {
         throw new Error("Operation must be a function.");
       }
 
-      operation(action, {
-        onSuccess: (result: TOperationResult) => {
-          // If any of the requests fail,
-          // the whole operation is considered a failure.
-          if (result && requestStatus !== "error") {
-            setRequestStatus("success");
-          }
-          if (onSuccess) {
-            onSuccess(result);
-          }
-        },
-        onError: (error: unknown) => {
-          setRequestStatus("error");
-          if (onError) {
-            onError(error);
-          }
+      operations.push(
+        new Promise((resolve, reject) => {
+          operation(action, {
+            onSuccess: (result: TOperationResult) => {
+              resolve(result);
+            },
+            onError: (error: unknown) => {
+              reject(error);
+            }
+          });
+        })
+      );
+    });
+
+    // Make sure that all operations are completed
+    // before setting the status and invoke callbacks.
+    Promise.all(operations)
+      .then((allResults) => {
+        setRequestStatus("success");
+        if (onSuccess) {
+          onSuccess(allResults);
+        }
+      })
+      .catch((error) => {
+        setRequestStatus("error");
+        if (onError) {
+          onError(error);
         }
       });
-    });
-  }, [requests, operation, requestStatus, onSuccess, onError]);
+  }, [requests, operation, onSuccess, onError]);
 
   return { handler, requestStatus, setRequestStatus };
 };
@@ -64,8 +76,10 @@ export const useRequestWithStatus = <TOperation, TOperationResult>({
   useRequestsWithStatus({
     requests: [request],
     operation,
-    onError: onError ?? undefined,
-    onSuccess: onSuccess ?? undefined
+    onError: onError ? (errors: unknown[]) => onError(errors[0]) : undefined,
+    onSuccess: onSuccess
+      ? (results: TOperationResult[]) => onSuccess(results[0])
+      : undefined
   });
 
 export default {};
