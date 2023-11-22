@@ -7,6 +7,7 @@ import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import blockedArgs from "../../../core/storybook/blockedArgs";
 import reservationMaterialDetailsProps from "../../../core/storybook/reservationMaterialDetailsArgs";
 import deleteReservationModalArgs from "../../../core/storybook/deleteReservationModalArgs";
+import reservationListArgs from "../../../core/storybook/reservationListArgs";
 
 export default {
   title: "Apps / Reservation list",
@@ -17,6 +18,7 @@ export default {
     ...deleteReservationModalArgs,
     ...reservationMaterialDetailsProps,
     ...blockedArgs,
+    ...reservationListArgs,
     blacklistedSearchBranchesConfig: {
       name: "Blacklisted branches",
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",

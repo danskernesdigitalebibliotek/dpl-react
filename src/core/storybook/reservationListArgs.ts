@@ -263,11 +263,6 @@ export default {
     defaultValue: "Ok",
     control: { type: "text" }
   },
-  deleteReservationModalDeleteButtonText: {
-    name: "Delete reservation modal delete button text",
-    defaultValue: "Delete",
-    control: { type: "text" }
-  },
   deleteReservationModalDeleteProcessingText: {
     name: "Delete reservation modal delete processing text",
     defaultValue: "Processing...",

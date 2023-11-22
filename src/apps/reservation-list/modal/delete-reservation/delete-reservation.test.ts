@@ -223,6 +223,15 @@ describe("Delete reservation modal test", () => {
       .click();
 
     // ID 18 4 system closes modal
+    cy.get(".modal.modal-cta")
+      .getBySel("message-title")
+      .should("have.text", "Reservations deleted");
+
+    // Close confirmation modal.
+    cy.get(".modal.modal-cta")
+      .getBySel("modal-cta-button")
+      .should("have.text", "Ok")
+      .click();
     cy.get(".modal.modal-cta").should("not.exist");
   });
 });

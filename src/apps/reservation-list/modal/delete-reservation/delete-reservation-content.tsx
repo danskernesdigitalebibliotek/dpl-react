@@ -45,7 +45,7 @@ const DeleteReservationContent: FC<
       </div>
       <div className="modal-pause__button mt-48">
         <Button
-          data-cy="delete-reservation-button"
+          dataCy="delete-reservation-button"
           label={buttonLabel}
           buttonType="none"
           variant="filled"
