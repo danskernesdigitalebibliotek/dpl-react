@@ -6,14 +6,21 @@ import Message, { MessageProps } from "./Message";
 import { Button } from "../../Buttons/Button";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 
+interface RequiredModalId {
+  modalId: string;
+  closeAllModals?: never;
+}
+interface RequireCloseAllModals {
+  modalId?: never;
+  closeAllModals: boolean;
+}
+
 interface ModalMessageProps extends MessageProps {
   ctaButton?: {
-    closeAllModals?: boolean;
-    modalId?: string;
     text: string;
     callback?: () => void;
     dataCy?: string;
-  };
+  } & (RequiredModalId | RequireCloseAllModals);
 }
 
 const ModalMessage: FC<ModalMessageProps> = (props) => {
