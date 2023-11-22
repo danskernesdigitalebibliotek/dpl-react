@@ -12,9 +12,9 @@ import {
   useDeleteV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
 import {
-  useRequestWithStatus,
-  useRequestsWithStatus
-} from "../../../../core/utils/useRequestWithStatus";
+  useSingleRequestWithStatus,
+  useMultipleRequestsWithStatus
+} from "../../../../core/utils/useRequestsWithStatus";
 import { getDeleteReservationStatus, getReservationsToDelete } from "./helper";
 import ModalMessage from "../../../../components/message/modal-message/ModalMessage";
 
@@ -40,21 +40,26 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
     handler: removePhysicalReservationsHandler,
     requestStatus: statusRemovingPhysicalReservations,
     setRequestStatus: setStatusRemovingPhysicalReservations
-  } = useRequestWithStatus<typeof deletePhysicalReservation, void | null>({
-    operation: deletePhysicalReservation,
-    request: {
-      params: { reservationid: reservationsPhysical }
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(getGetReservationsV2QueryKey());
+  } = useSingleRequestWithStatus<typeof deletePhysicalReservation, void | null>(
+    {
+      operation: deletePhysicalReservation,
+      request: {
+        params: { reservationid: reservationsPhysical }
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries(getGetReservationsV2QueryKey());
+      }
     }
-  });
+  );
 
   const {
     handler: removeDigitallReservationsHandler,
     requestStatus: statusRemovingDigitallReservations,
     setRequestStatus: setStatusRemovingDigitalReservations
-  } = useRequestsWithStatus<typeof deleteDigitalReservation, void | null>({
+  } = useMultipleRequestsWithStatus<
+    typeof deleteDigitalReservation,
+    void | null
+  >({
     operation: deleteDigitalReservation,
     requests: reservationsDigital
       ? reservationsDigital.map((id) => ({

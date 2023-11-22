@@ -3,7 +3,7 @@ import { RequestStatus } from "./types/request";
 
 // This is a hook for use cases where several requests are performed
 // and the status of the request is needed.
-export const useRequestsWithStatus = <TOperation, TOperationResult>({
+export const useMultipleRequestsWithStatus = <TOperation, TOperationResult>({
   requests,
   operation,
   onError,
@@ -62,7 +62,7 @@ export const useRequestsWithStatus = <TOperation, TOperationResult>({
 
 // This is a hook for use cases where one request is performed
 // and the status of the request is needed.
-export const useRequestWithStatus = <TOperation, TOperationResult>({
+export const useSingleRequestWithStatus = <TOperation, TOperationResult>({
   request,
   operation,
   onError,
@@ -73,7 +73,7 @@ export const useRequestWithStatus = <TOperation, TOperationResult>({
   onSuccess?: (result: TOperationResult) => void;
   onError?: (error: unknown) => void;
 }) =>
-  useRequestsWithStatus({
+  useMultipleRequestsWithStatus({
     requests: [request],
     operation,
     onError: onError ? (errors: unknown[]) => onError(errors[0]) : undefined,

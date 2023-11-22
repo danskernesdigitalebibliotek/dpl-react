@@ -17,7 +17,7 @@ import LoansGroupModalButton from "./LoansGroupModalButton";
 import { RenewedLoanV2 } from "../../core/fbs/model/renewedLoanV2";
 import RenewalModalMessage from "../renewal/RenewalModalMessage";
 import { succeededRenewalCount } from "../../core/utils/helpers/renewal";
-import { useRequestWithStatus } from "../../core/utils/useRequestWithStatus";
+import { useSingleRequestWithStatus } from "../../core/utils/useRequestsWithStatus";
 
 interface LoansGroupModalProps {
   dueDate?: string | null;
@@ -57,7 +57,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
     handler: renew,
     requestStatus: renewingStatus,
     setRequestStatus: setRenewingStatus
-  } = useRequestWithStatus<typeof mutate, RenewedLoanV2[] | null>({
+  } = useSingleRequestWithStatus<typeof mutate, RenewedLoanV2[] | null>({
     request: {
       data: materialsToRenew.map((id) => Number(id))
     },
