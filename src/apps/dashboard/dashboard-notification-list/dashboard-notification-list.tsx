@@ -108,8 +108,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   );
 
   const reservationForModal = reservations.find(
-    ({ faust, reservationId }) =>
+    ({ faust, identifier, reservationId }) =>
       String(modalReservationDetailsId) === String(faust) ||
+      String(modalReservationDetailsId) === String(identifier) ||
       String(modalReservationDetailsId) === String(reservationId)
   );
 
