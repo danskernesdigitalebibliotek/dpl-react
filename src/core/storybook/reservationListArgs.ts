@@ -236,5 +236,41 @@ export default {
     name: "Result pager status text",
     defaultValue: "Showing @itemsShown out of @hitcount results",
     control: { type: "text" }
+  },
+  deleteReservationModalSuccessTitleText: {
+    name: "Delete reservation modal success title text",
+    defaultValue: "Reservations deleted",
+    control: { type: "text" }
+  },
+  deleteReservationModalSuccessStatusText: {
+    name: "Delete reservation modal success status text",
+    defaultValue: "One or more reservations were deleted.",
+    control: { type: "text" }
+  },
+  deleteReservationModalErrorsTitleText: {
+    name: "Delete reservation modal errors title text",
+    defaultValue: "An error occurred",
+    control: { type: "text" }
+  },
+  deleteReservationModalErrorsStatusText: {
+    name: "Delete reservation modal errors status text",
+    defaultValue:
+      "One or more reservations could not be deleted, please try again.",
+    control: { type: "text" }
+  },
+  deleteReservationModalButtonText: {
+    name: "Delete reservation modal delete button text",
+    defaultValue: "Ok",
+    control: { type: "text" }
+  },
+  deleteReservationModalDeleteButtonText: {
+    name: "Delete reservation modal delete button text",
+    defaultValue: "Delete",
+    control: { type: "text" }
+  },
+  deleteReservationModalDeleteProcessingText: {
+    name: "Delete reservation modal delete processing text",
+    defaultValue: "Processing...",
+    control: { type: "text" }
   }
 };
