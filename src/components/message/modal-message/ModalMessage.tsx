@@ -8,7 +8,8 @@ import { useModalButtonHandler } from "../../../core/utils/modal";
 
 interface ModalMessageProps extends MessageProps {
   ctaButton?: {
-    modalId: string;
+    closeAllModals?: boolean;
+    modalId?: string;
     text: string;
     callback?: () => void;
     dataCy?: string;
@@ -16,7 +17,7 @@ interface ModalMessageProps extends MessageProps {
 }
 
 const ModalMessage: FC<ModalMessageProps> = (props) => {
-  const { close } = useModalButtonHandler();
+  const { close, closeAll } = useModalButtonHandler();
   const { ctaButton, ...messageProps } = props;
   return (
     <div className="modal-cta__container">
@@ -36,7 +37,12 @@ const ModalMessage: FC<ModalMessageProps> = (props) => {
               if (ctaButton.callback) {
                 ctaButton.callback();
               }
-              close(ctaButton.modalId);
+              if (ctaButton.modalId) {
+                close(ctaButton.modalId);
+              }
+              if (ctaButton.closeAllModals) {
+                closeAll();
+              }
             }}
           />
         )}
