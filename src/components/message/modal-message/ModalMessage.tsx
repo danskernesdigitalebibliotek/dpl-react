@@ -23,7 +23,7 @@ interface ModalMessageProps extends MessageProps {
   } & (RequiredModalId | RequireCloseAllModals);
 }
 
-const ModalMessage: FC<ModalMessageProps> = (props) => {
+const ModalMessage: FC<ModalMessageProps> = React.forwardRef((props) => {
   const { close, closeAll } = useModalButtonHandler();
   const { ctaButton, ...messageProps } = props;
   return (
@@ -56,6 +56,6 @@ const ModalMessage: FC<ModalMessageProps> = (props) => {
       </div>
     </div>
   );
-};
+});
 
 export default withFocusTrap(ModalMessage);
