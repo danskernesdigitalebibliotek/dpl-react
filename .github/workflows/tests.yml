@@ -12,14 +12,6 @@ jobs:
       options: --user 1001
     env:
       TZ: Europe/Copenhagen
-    strategy:
-      # When one test fails, DO NOT cancel the other containers, because this
-      # will kill Cypress processes leaving Cypress Cloud hanging.
-      # https://github.com/cypress-io/github-action/issues/48
-      fail-fast: false
-      matrix:
-        # Run 3 copies of the current job in parallel
-        containers: [1, 2, 3]
     steps:
       - uses: actions/checkout@master
       - name: Setup Node
@@ -36,16 +28,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          install: false
           start: yarn start:storybook:test
           wait-on: "http://localhost:57021"
           browser: chrome
-          group: "Integration tests"
-          parallel: true
-          record: true
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
         if: failure()

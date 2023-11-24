@@ -1,12 +1,14 @@
+import { head, keys, values } from "lodash";
 import { LoanV2, ReservationDetailsV2 } from "../../fbs/model";
 import { FaustId } from "../types/ids";
-import { GetManifestationViaMaterialByFaustQuery } from "../../dbc-gateway/generated/graphql";
+import { ManifestationBasicDetailsFragment } from "../../dbc-gateway/generated/graphql";
 import { BasicDetailsType } from "../types/basic-details-type";
 import { Product, Loan, Reservation } from "../../publizon/model";
 import { LoanType } from "../types/loan-type";
 import { store } from "../../store";
 import { ReservationType } from "../types/reservation-type";
 import { getContributors } from "./general";
+import { ReservationGroupDetails } from "../useGetReservationGroups";
 
 function getYearFromDataString(date: string) {
   return new Date(date).getFullYear();
@@ -120,7 +122,7 @@ export const mapProductToBasicDetailsType = (material: Product) => {
 // so digital/physical loans/reservations can use the same components,
 // as their UI is often quite similar
 export const mapManifestationToBasicDetailsType = (
-  material: GetManifestationViaMaterialByFaustQuery
+  material: ManifestationBasicDetailsFragment
 ) => {
   const {
     edition,
@@ -131,7 +133,7 @@ export const mapManifestationToBasicDetailsType = (
     creators,
     series,
     languages
-  } = material?.manifestation || {};
+  } = material;
   const isoCode = languages?.main?.[0]?.isoCode ?? "";
   const description = abstract ? abstract[0] : "";
   const {
@@ -226,7 +228,38 @@ export const mapFBSReservationToReservationType = (
         pickupBranch,
         pickupDeadline,
         pickupNumber,
-        reservationId
+        reservationIds: [reservationId]
+      };
+    }
+  );
+};
+
+export const mapFBSReservationGroupToReservationType = (
+  list: ReservationGroupDetails[]
+): ReservationType[] => {
+  return list.map(
+    ({
+      dateOfReservation,
+      expiryDate,
+      numberInQueue,
+      state,
+      pickupBranch,
+      pickupDeadline,
+      pickupNumber,
+      periodical,
+      records
+    }) => {
+      return {
+        periodical: periodical?.displayText || "",
+        faust: head(keys(records)) as FaustId,
+        dateOfReservation,
+        expiryDate,
+        numberInQueue,
+        state: state === "readyForPickup" ? "readyForPickup" : "reserved",
+        pickupBranch,
+        pickupDeadline,
+        pickupNumber,
+        reservationIds: values(records)
       };
     }
   );

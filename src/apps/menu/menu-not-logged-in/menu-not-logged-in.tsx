@@ -3,7 +3,8 @@ import { useUrls } from "../../../core/utils/url";
 import { useText } from "../../../core/utils/text";
 import Link from "../../../components/atoms/links/Link";
 import Modal from "../../../core/utils/modal";
-import { getModalIds } from "../../../core/utils/helpers/general";
+
+import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
 const MenuNotLoggedInContent: FC = () => {
   const t = useText();

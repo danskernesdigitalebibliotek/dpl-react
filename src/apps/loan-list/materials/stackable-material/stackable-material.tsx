@@ -12,7 +12,7 @@ import { LoanId } from "../../../../core/utils/types/ids";
 export interface StackableMaterialProps {
   loan: LoanType;
   additionalMaterials: number;
-  openLoanDetailsModal: (modalId: string) => void;
+  openLoanDetailsModal: (loan: LoanType) => void;
   openDueDateModal?: (dueDate: string) => void;
   focused: boolean;
   loanId?: LoanId | null;
@@ -30,12 +30,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const { dueDate, identifier, periodical } = loan;
 
   const openLoanDetailsModalHandler = () => {
-    if (loanId) {
-      openLoanDetailsModal(String(loanId));
-    }
-    if (identifier) {
-      openLoanDetailsModal(identifier);
-    }
+    openLoanDetailsModal(loan);
   };
 
   const handleOpenDueDateModal = () => {

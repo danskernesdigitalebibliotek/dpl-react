@@ -5,9 +5,9 @@ import { vi } from "vitest";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
 import configuration, {
+  ConfScope,
   getConf,
-  getDeviceConf,
-  ConfScope
+  getDeviceConf
 } from "../../configuration";
 import { Manifestation, Work } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
@@ -19,6 +19,7 @@ import { FeeV2 } from "../../fbs/model/feeV2";
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
 import { store } from "../../store";
+import { constructModalId } from "./modal-helpers";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -117,10 +118,6 @@ export const getRecommenderMaterialLimits = () => {
   return getConf("recommenderMaterialLimits", configuration);
 };
 
-export const getModalIds = () => {
-  return getConf("modalIds", configuration);
-};
-
 export const daysBetweenTodayAndDate = (date: string) => {
   const inputDate = dayjs(new Date(date));
   const today = dayjs(new Date());
@@ -210,10 +207,8 @@ export const getPageSizeFromConfiguration = (pageSizeConf: ConfScope) => {
   return Number(pageSize);
 };
 
-export const getRenewableMaterials = (list: LoanType[]) => {
-  return list
-    .filter(({ isRenewable }) => isRenewable)
-    .map(({ loanId }) => String(loanId)) as string[];
+export const getRenewableMaterials = (list: LoanType[]): ListType[] => {
+  return list.filter(({ isRenewable }) => isRenewable);
 };
 
 export const getAmountOfRenewableLoans = (list: LoanType[]) => {
@@ -389,9 +384,6 @@ export const patronAgeValid = (cpr: string, minAge: number) => {
   const age = dayjs().diff(dayjs(cprDate), "year");
   return age > minAge;
 };
-
-export const constructModalId = (prefix: string, fragments: string[]) =>
-  [prefix, ...fragments].join("-");
 
 // Create a string of authors with commas and a conjunction
 export const getAuthorNames = (

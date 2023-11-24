@@ -28,11 +28,6 @@ interface MaterialDetailsProps {
   modalId: string;
 }
 
-export const constructMaterialDetailsModalId = (
-  loanDetails: unknown,
-  modalLoanDetailsId: unknown
-) => `${String(loanDetails)}${String(modalLoanDetailsId)}`;
-
 const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   loan,
   material,

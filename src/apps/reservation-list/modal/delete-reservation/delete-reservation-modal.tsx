@@ -11,11 +11,24 @@ import {
   getGetV1UserReservationsQueryKey,
   useDeleteV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
-import { isFaust, isIdentifier } from "../../../dashboard/util/helpers";
+import {
+  isDigitalReservation,
+  isPhysicalReservation,
+  reservationId,
+  ReservationType
+} from "../../../../core/utils/types/reservation-type";
+import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
 
 interface DeleteReservationModalProps {
   modalId: string;
-  reservations: string[];
+  reservations: ReservationType[];
+}
+
+export function deleteReservationModalId(reservation: ReservationType): string {
+  const prefix = String(getModalIds().reservationDelete);
+  const fragment = reservationId(reservation);
+  // TODO: Use constructModalId() instead of string concatenation.
+  return `${prefix}${fragment}`;
 }
 
 const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
@@ -32,12 +45,13 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const removeSelectedReservations = () => {
     if (reservations.length > 0) {
       const reservationsToDelete = reservations
-        .map((id) => Number(isFaust(id)))
-        .filter((id) => id !== 0);
+        .filter(isPhysicalReservation)
+        .map(({ reservationIds }) => reservationIds)
+        .flat();
 
       const digitalMaterialsToDelete = reservations
-        .map((id) => isIdentifier(id))
-        .filter((id) => id !== null);
+        .filter(isDigitalReservation)
+        .map(({ identifier }) => identifier);
 
       if (reservationsToDelete.length > 0) {
         deletePhysicalReservation(
@@ -55,7 +69,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
       digitalMaterialsToDelete.forEach((id) =>
         deleteDigitalReservation(
           {
-            identifier: String(id)
+            identifier: id
           },
           {
             onSuccess: () => {

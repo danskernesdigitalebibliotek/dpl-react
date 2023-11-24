@@ -14,10 +14,10 @@ import ReservationDetailsSection from "./sections/ReservationDetailsSection";
 import PincodeSection from "./sections/PincodeSection";
 import StatusSection from "./sections/StatusSection";
 import PauseReservation from "../reservation-list/modal/pause-reservation/pause-reservation";
-import { getModalIds } from "../../core/utils/helpers/general";
 import { useUrls } from "../../core/utils/url";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
 import { usePatronData } from "../../core/utils/helpers/user";
+import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();

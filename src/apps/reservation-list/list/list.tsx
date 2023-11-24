@@ -1,8 +1,12 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState } from "react";
+import { useDeepCompareEffect } from "react-use";
 import EmptyList from "../../../components/empty-list/empty-list";
 import usePager from "../../../components/result-pager/use-pager";
 import { getListItems } from "../../../core/utils/helpers/general";
-import { ReservationType } from "../../../core/utils/types/reservation-type";
+import {
+  reservationId,
+  ReservationType
+} from "../../../core/utils/types/reservation-type";
 import ReservationMaterial from "../reservation-material/reservation-material";
 
 interface ListProps {
@@ -30,7 +34,7 @@ const List: FC<ListProps> = ({
     pageSize
   });
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (reservations) {
       setDisplayedReservations(
         getListItems(reservations, itemsShown) as ReservationType[]
@@ -64,9 +68,8 @@ const List: FC<ListProps> = ({
                 <ReservationMaterial
                   focused={firstInNewPage === i}
                   openReservationDetailsModal={openReservationDetailsModal}
-                  key={reservation.identifier || reservation.faust}
-                  identifier={reservation.identifier}
-                  faust={reservation.faust}
+                  key={reservationId(reservation)}
+                  item={reservation}
                   reservation={reservation}
                 />
               ))}

@@ -1,5 +1,9 @@
 import React, { FC } from "react";
-import { ReservationType } from "../../../../core/utils/types/reservation-type";
+import {
+  isDigitalReservation,
+  isPhysicalReservation,
+  ReservationType
+} from "../../../../core/utils/types/reservation-type";
 import fetchMaterial, {
   MaterialProps
 } from "../../../loan-list/materials/utils/material-fetch-hoc";
@@ -32,7 +36,6 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   }>("reservationDetailsConfig", {
     transformer: "jsonParse"
   });
-  const isDigital = !!reservation.identifier;
   const readyForPickupState = "readyForPickup";
   const allowUserRemoveReadyReservations =
     (state === readyForPickupState && allowRemoveReadyReservations) ||
@@ -58,39 +61,43 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
               </div>
             )}
           </ModalDetailsHeader>
-          {reservation.reservationId && allowUserRemoveReadyReservations && (
-            <ReservationDetailsButton
-              classNames="modal-details__buttons--hide-on-mobile"
-              openReservationDeleteModal={openReservationDeleteModal}
-              reservation={reservation}
-              numberInQueue={numberInQueue}
-            />
-          )}
-          {isDigital && reservation.identifier && (
+          {isPhysicalReservation(reservation) &&
+            allowUserRemoveReadyReservations && (
+              <ReservationDetailsButton
+                classNames="modal-details__buttons--hide-on-mobile"
+                openReservationDeleteModal={openReservationDeleteModal}
+                reservation={reservation}
+                numberInQueue={numberInQueue}
+              />
+            )}
+          {isDigitalReservation(reservation) && (
             <ReservationDetailsRedirect
               openReservationDeleteModal={openReservationDeleteModal}
               reservation={reservation}
-              reservationId={reservation.identifier}
               className="modal-details__buttons--hide-on-mobile"
               linkClassNames="mx-16"
             />
           )}
           <div className="modal-details__list">
-            {isDigital && <DigitalListDetails reservation={reservation} />}
-            {!isDigital && <PhysicalListDetails reservation={reservation} />}
+            {isDigitalReservation(reservation) && (
+              <DigitalListDetails reservation={reservation} />
+            )}
+            {isPhysicalReservation(reservation) && (
+              <PhysicalListDetails reservation={reservation} />
+            )}
           </div>
-          {reservation.reservationId && allowUserRemoveReadyReservations && (
-            <ReservationDetailsButton
-              buttonClassNames="modal-details__buttons__full-width"
-              openReservationDeleteModal={openReservationDeleteModal}
-              numberInQueue={numberInQueue}
-              reservation={reservation}
-            />
-          )}
-          {isDigital && reservation.identifier && (
+          {isPhysicalReservation(reservation) &&
+            allowUserRemoveReadyReservations && (
+              <ReservationDetailsButton
+                buttonClassNames="modal-details__buttons__full-width"
+                openReservationDeleteModal={openReservationDeleteModal}
+                numberInQueue={numberInQueue}
+                reservation={reservation}
+              />
+            )}
+          {isDigitalReservation(reservation) && (
             <ReservationDetailsRedirect
               openReservationDeleteModal={openReservationDeleteModal}
-              reservationId={reservation.identifier}
               linkClassNames="my-16"
               reservation={reservation}
             />
