@@ -80,7 +80,11 @@ module.exports = (_env, argv) => {
           exclude: /node_modules/,
           use: ["babel-loader"]
         },
-        // We consume svg files from dpl-design-system package
+        // We consume css and svg files from dpl-design-system package
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"]
+        },
         {
           test: /\.svg$/,
           use: [
