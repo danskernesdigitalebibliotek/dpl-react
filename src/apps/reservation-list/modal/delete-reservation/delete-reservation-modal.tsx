@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { UseMutateFunction, useQueryClient } from "react-query";
 import Modal from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
@@ -46,6 +46,9 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const { mutate: deletePhysicalReservation } = useDeleteReservations();
   const { mutate: deleteDigitalReservation } =
     useDeleteV1UserReservationsIdentifier();
+  const [deletedReservations, setDeletedReservations] = useState<number | null>(
+    null
+  );
 
   const { requests, reservationsPhysical, reservationsDigital } = useMemo(
     () =>
@@ -69,7 +72,15 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
     ApiResult | void | null
   >({
     requests,
-    onSuccess: () => {
+    onSuccess: (result) => {
+      const deletedNum = result.reduce((acc, curr) => {
+        // Apparently code 101 is returned when a reservation is deleted.
+        if (curr && curr.code === 101) {
+          return acc + 1;
+        }
+        return acc;
+      }, 0);
+      setDeletedReservations(deletedNum);
       queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
     }
   });
@@ -87,6 +98,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
     closeAllModals: true,
     callback: () => {
       setRequestStatus("idle");
+      setDeletedReservations(null);
     }
   };
 
@@ -109,7 +121,9 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
       {requestStatus === "success" && (
         <ModalMessage
           title={t("deleteReservationModalSuccessTitleText")}
-          subTitle={t("deleteReservationModalSuccessStatusText")}
+          subTitle={t("deleteReservationModalSuccessStatusText", {
+            count: deletedReservations ?? 0
+          })}
           ctaButton={ctaButtonParams}
         />
       )}

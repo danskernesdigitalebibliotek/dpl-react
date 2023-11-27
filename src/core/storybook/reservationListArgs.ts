@@ -244,7 +244,8 @@ export default {
   },
   deleteReservationModalSuccessStatusText: {
     name: "Delete reservation modal success status text",
-    defaultValue: "One or more reservations were deleted.",
+    defaultValue:
+      '{"type":"plural","text":["One reservation was deleted","@count reservations were deleted"]}',
     control: { type: "text" }
   },
   deleteReservationModalErrorsTitleText: {
