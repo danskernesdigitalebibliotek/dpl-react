@@ -84,15 +84,10 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
     ApiResult | void | null
   >({
     requests,
-    onSuccess: (result) => {
-      const deletedNum = result.reduce((acc, curr) => {
-        // Apparently code 101 is returned when a reservation is deleted.
-        if (curr && curr.code === 101) {
-          return acc + 1;
-        }
-        return acc;
-      }, 0);
-      setDeletedReservations(deletedNum);
+    onSuccess: () => {
+      // Since we got success, we can assume that all reservations
+      // were successfully deleted.
+      setDeletedReservations(reservations.length);
       queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
     }
   });
