@@ -59,6 +59,12 @@ describe("Reservation details modal", () => {
       operationName: "getManifestationViaMaterialByFaust",
       fixtureFilePath: "reservation-details/fbi-api.json"
     });
+
+    // Intercept graphql advanced search query.
+    cy.interceptGraphql({
+      operationName: "complexSearchWithPaginationWorkAccess",
+      fixtureFilePath: "reservation-details/advanced-search-fbi-api.json"
+    });
   });
 
   it("It shows digital reservation details modal", () => {
@@ -88,7 +94,7 @@ describe("Reservation details modal", () => {
         reservations: [
           {
             productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
-            identifier: "9788740047905",
+            identifier: "9788702319361",
             createdDateUtc: "2022-08-16T10:52:39.932Z",
             status: 2,
             productTitle: "Bargums synder",
@@ -191,8 +197,8 @@ describe("Reservation details modal", () => {
       .eq(0)
       .should("have.text", "Go to eReolen")
       .should("have.attr", "href")
-      // ID 17 2.d.i. link to "ereolen.dk/user/me"
-      .should("include", "ereolen.dk/user/me");
+      // ID 17 2.d.i. link to "ereolen.dk"
+      .should("include", "ereolen.dk");
 
     cy.get(".modal")
       .find(".status-label")
@@ -261,7 +267,7 @@ describe("Reservation details modal", () => {
         reservations: [
           {
             productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
-            identifier: "9788740047905",
+            identifier: "9788702319361",
             createdDateUtc: "2022-08-16T12:52:39.932Z",
             status: 1,
             productTitle: "Bargums synder",

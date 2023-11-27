@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
-import Link from "../../../../components/atoms/links/Link";
 import { useText } from "../../../../core/utils/text";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
-import { useUrls } from "../../../../core/utils/url";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
+import LinkButton from "../../../../components/Buttons/LinkButton";
 
 export interface ReservationDetailsRedirectProps {
   reservation: ReservationType;
   openReservationDeleteModal: (deleteReservation: ReservationType) => void;
   className?: string;
   linkClassNames?: string;
+  externalLink: URL;
 }
 
 const ReservationDetailsRedirect: FC<
@@ -19,28 +19,30 @@ const ReservationDetailsRedirect: FC<
   reservation,
   openReservationDeleteModal,
   className,
-  linkClassNames
+  linkClassNames,
+  externalLink
 }) => {
   const t = useText();
-  const { ereolenMyPageUrl } = useUrls();
 
   return (
     <div className={`modal-details__buttons ${className}`}>
       <button
         type="button"
         onClick={() => openReservationDeleteModal(reservation)}
-        className={`link-tag ${linkClassNames}`}
+        className={`link-tag cursor-pointer ${linkClassNames}`}
       >
         {t("reservationDetailsRemoveDigitalReservationText")}
       </button>
-      <Link
-        href={new URL(ereolenMyPageUrl)}
-        className="btn-primary btn-filled btn-small arrow__hover--right-small"
+      <LinkButton
+        dataCy="go-to-ereolen-button"
+        size="small"
+        url={externalLink}
+        variant="filled"
         id="go-to-ereolen-button"
       >
         {t("reservationDetailsDigitalReservationGoToEreolenText")}
         <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
-      </Link>
+      </LinkButton>
     </div>
   );
 };

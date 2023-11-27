@@ -3128,6 +3128,54 @@ export type SearchWithPaginationQuery = {
   };
 };
 
+export type ComplexSearchWithPaginationWorkAccessQueryVariables = Exact<{
+  cql: Scalars["String"];
+  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimit"];
+  filters: ComplexSearchFilters;
+}>;
+
+export type ComplexSearchWithPaginationWorkAccessQuery = {
+  __typename?: "Query";
+  complexSearch: {
+    __typename?: "ComplexSearchResponse";
+    hitcount: number;
+    works: Array<{
+      __typename?: "Work";
+      workId: string;
+      manifestations: {
+        __typename?: "Manifestations";
+        all: Array<{
+          __typename?: "Manifestation";
+          pid: string;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierType;
+            value: string;
+          }>;
+          access: Array<
+            | {
+                __typename: "AccessUrl";
+                origin: string;
+                url: string;
+                loginRequired: boolean;
+              }
+            | { __typename: "DigitalArticleService"; issn: string }
+            | {
+                __typename: "Ereol";
+                origin: string;
+                url: string;
+                canAlwaysBeLoaned: boolean;
+              }
+            | { __typename: "InfomediaService"; id: string }
+            | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          >;
+        }>;
+      };
+    }>;
+  };
+};
+
 export type ComplexSearchWithPaginationQueryVariables = Exact<{
   cql: Scalars["String"];
   offset: Scalars["Int"];
@@ -3837,6 +3885,36 @@ export type ManifestationsSimpleFragment = {
   };
 };
 
+export type ManifestationsAccessFragment = {
+  __typename?: "Manifestations";
+  all: Array<{
+    __typename?: "Manifestation";
+    pid: string;
+    identifiers: Array<{
+      __typename?: "Identifier";
+      type: IdentifierType;
+      value: string;
+    }>;
+    access: Array<
+      | {
+          __typename: "AccessUrl";
+          origin: string;
+          url: string;
+          loginRequired: boolean;
+        }
+      | { __typename: "DigitalArticleService"; issn: string }
+      | {
+          __typename: "Ereol";
+          origin: string;
+          url: string;
+          canAlwaysBeLoaned: boolean;
+        }
+      | { __typename: "InfomediaService"; id: string }
+      | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+    >;
+  }>;
+};
+
 export type ManifestationsSimpleFieldsFragment = {
   __typename?: "Manifestation";
   pid: string;
@@ -3981,6 +4059,40 @@ export type SeriesSimpleFragment = {
     display: string;
     number?: Array<number> | null;
   } | null;
+};
+
+export type WorkAccessFragment = {
+  __typename?: "Work";
+  workId: string;
+  manifestations: {
+    __typename?: "Manifestations";
+    all: Array<{
+      __typename?: "Manifestation";
+      pid: string;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierType;
+        value: string;
+      }>;
+      access: Array<
+        | {
+            __typename: "AccessUrl";
+            origin: string;
+            url: string;
+            loginRequired: boolean;
+          }
+        | { __typename: "DigitalArticleService"; issn: string }
+        | {
+            __typename: "Ereol";
+            origin: string;
+            url: string;
+            canAlwaysBeLoaned: boolean;
+          }
+        | { __typename: "InfomediaService"; id: string }
+        | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      >;
+    }>;
+  };
 };
 
 export type WorkSmallFragment = {
@@ -4746,6 +4858,47 @@ export const ManifestationReviewFieldsFragmentDoc = `
   }
 }
     `;
+export const ManifestationsAccessFragmentDoc = `
+    fragment ManifestationsAccess on Manifestations {
+  all {
+    pid
+    identifiers {
+      type
+      value
+    }
+    access {
+      __typename
+      ... on AccessUrl {
+        origin
+        url
+        loginRequired
+      }
+      ... on InfomediaService {
+        id
+      }
+      ... on InterLibraryLoan {
+        loanIsPossible
+      }
+      ... on Ereol {
+        origin
+        url
+        canAlwaysBeLoaned
+      }
+      ... on DigitalArticleService {
+        issn
+      }
+    }
+  }
+}
+    `;
+export const WorkAccessFragmentDoc = `
+    fragment WorkAccess on Work {
+  workId
+  manifestations {
+    ...ManifestationsAccess
+  }
+}
+    ${ManifestationsAccessFragmentDoc}`;
 export const SeriesSimpleFragmentDoc = `
     fragment SeriesSimple on Series {
   title
@@ -5153,6 +5306,35 @@ export const useSearchWithPaginationQuery = <
       SearchWithPaginationDocument,
       variables
     ),
+    options
+  );
+export const ComplexSearchWithPaginationWorkAccessDocument = `
+    query complexSearchWithPaginationWorkAccess($cql: String!, $offset: Int!, $limit: PaginationLimit!, $filters: ComplexSearchFilters!) {
+  complexSearch(cql: $cql, filters: $filters) {
+    hitcount
+    works(offset: $offset, limit: $limit) {
+      ...WorkAccess
+    }
+  }
+}
+    ${WorkAccessFragmentDoc}`;
+export const useComplexSearchWithPaginationWorkAccessQuery = <
+  TData = ComplexSearchWithPaginationWorkAccessQuery,
+  TError = unknown
+>(
+  variables: ComplexSearchWithPaginationWorkAccessQueryVariables,
+  options?: UseQueryOptions<
+    ComplexSearchWithPaginationWorkAccessQuery,
+    TError,
+    TData
+  >
+) =>
+  useQuery<ComplexSearchWithPaginationWorkAccessQuery, TError, TData>(
+    ["complexSearchWithPaginationWorkAccess", variables],
+    fetcher<
+      ComplexSearchWithPaginationWorkAccessQuery,
+      ComplexSearchWithPaginationWorkAccessQueryVariables
+    >(ComplexSearchWithPaginationWorkAccessDocument, variables),
     options
   );
 export const ComplexSearchWithPaginationDocument = `

@@ -12,6 +12,7 @@ interface GlobalUrlEntryPropsInterface {
   materialBaseUrl: string;
   fbiBaseUrl: string;
   authUrl: string;
+  ereolenHomepageUrl: string;
 }
 
 export default GlobalUrlEntryPropsInterface;

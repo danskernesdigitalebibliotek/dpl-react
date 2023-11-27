@@ -144,6 +144,10 @@ export default {
       defaultValue: "/Signup",
       control: { type: "text" }
     },
+    ereolenHomepageUrl: {
+      defaultValue: "https://ereolen.dk/",
+      control: { type: "text" }
+    },
     expirationWarningDaysBeforeConfig: {
       defaultValue: "6",
       control: { type: "text" }

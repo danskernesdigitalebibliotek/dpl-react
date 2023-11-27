@@ -60,6 +60,10 @@ export default {
         "https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80",
       control: { type: "text" }
     },
+    ereolenHomepageUrl: {
+      defaultValue: "https://ereolen.dk/",
+      control: { type: "text" }
+    },
     // Texts
     reservationListHeaderText: {
       defaultValue: "Your reservations",
@@ -271,7 +275,7 @@ const { reservationDetails } = getModalIds();
 export const ReservationListDigitalDetailsModal = Template.bind({});
 ReservationListDigitalDetailsModal.parameters = {
   query: {
-    modal: `${reservationDetails}9788740047905`
+    modal: `${reservationDetails}9788702319361`
   }
 };
 
