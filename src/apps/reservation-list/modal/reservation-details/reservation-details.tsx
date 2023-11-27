@@ -117,21 +117,6 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
                 externalLink={externalUrl}
               />
             )}
-
-          {isDigitalReservation(reservation) &&
-            reservation.identifier &&
-            !isLoadingComplexSearch &&
-            externalUrl && (
-              <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
-                <ReservationDetailsRedirect
-                  openReservationDeleteModal={openReservationDeleteModal}
-                  reservation={reservation}
-                  className="modal-details__buttons--hide-on-mobile"
-                  linkClassNames="mx-16"
-                  externalLink={externalUrl}
-                />
-              </div>
-            )}
           <div className="modal-details__list">
             {isDigitalReservation(reservation) && (
               <DigitalListDetails reservation={reservation} />
