@@ -1,27 +1,41 @@
-import React, { FC } from "react";
-import { useQueryClient } from "react-query";
+import React, { FC, useMemo } from "react";
+import { UseMutateFunction, useQueryClient } from "react-query";
 import Modal from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import DeleteReservationContent from "./delete-reservation-content";
-import {
-  useDeleteReservations,
-  getGetReservationsV2QueryKey
-} from "../../../../core/fbs/fbs";
+import { useDeleteReservations } from "../../../../core/fbs/fbs";
 import {
   getGetV1UserReservationsQueryKey,
   useDeleteV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
-import {
-  useSingleRequestWithStatus,
-  useMultipleRequestsWithStatus
-} from "../../../../core/utils/useRequestsWithStatus";
-import { getDeleteReservationStatus, getReservationsToDelete } from "./helper";
+import { useMultipleRequestsWithStatus } from "../../../../core/utils/useRequestsWithStatus";
+import { requestsAndReservations } from "./helper";
 import ModalMessage from "../../../../components/message/modal-message/ModalMessage";
+import { DeleteReservationsParams } from "../../../../core/fbs/model";
+import { ApiResult } from "../../../../core/publizon/model";
 
 interface DeleteReservationModalProps {
   modalId: string;
   reservations: string[];
 }
+type ParamsDigital = {
+  identifier: string;
+};
+type ParamsPhysical = {
+  params?: DeleteReservationsParams;
+};
+type OperationDigital = UseMutateFunction<
+  ApiResult | null,
+  unknown,
+  ParamsDigital,
+  unknown
+>;
+type OperationPhysical = UseMutateFunction<
+  void | null,
+  unknown,
+  ParamsPhysical,
+  unknown
+>;
 
 const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   modalId,
@@ -33,57 +47,38 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const { mutate: deleteDigitalReservation } =
     useDeleteV1UserReservationsIdentifier();
 
-  const { physical: reservationsPhysical, digital: reservationsDigital } =
-    getReservationsToDelete(reservations);
-
-  const {
-    handler: removePhysicalReservationsHandler,
-    requestStatus: statusRemovingPhysicalReservations,
-    setRequestStatus: setStatusRemovingPhysicalReservations
-  } = useSingleRequestWithStatus<typeof deletePhysicalReservation, void | null>(
-    {
-      operation: deletePhysicalReservation,
-      request: {
-        params: { reservationid: reservationsPhysical }
-      },
-      onSuccess: () => {
-        queryClient.invalidateQueries(getGetReservationsV2QueryKey());
-      }
-    }
+  const { requests, reservationsPhysical, reservationsDigital } = useMemo(
+    () =>
+      requestsAndReservations<OperationPhysical, OperationDigital>({
+        operations: {
+          digital: deleteDigitalReservation,
+          physical: deletePhysicalReservation
+        },
+        reservations
+      }),
+    [deleteDigitalReservation, deletePhysicalReservation, reservations]
   );
 
   const {
-    handler: removeDigitallReservationsHandler,
-    requestStatus: statusRemovingDigitallReservations,
-    setRequestStatus: setStatusRemovingDigitalReservations
+    handler: removeReservationsHandler,
+    requestStatus,
+    setRequestStatus
   } = useMultipleRequestsWithStatus<
-    typeof deleteDigitalReservation,
-    void | null
+    OperationPhysical | OperationDigital,
+    ParamsPhysical | ParamsDigital,
+    ApiResult | void | null
   >({
-    operation: deleteDigitalReservation,
-    requests: reservationsDigital
-      ? reservationsDigital.map((id) => ({
-          identifier: String(id)
-        }))
-      : [],
+    requests,
     onSuccess: () => {
       queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
     }
   });
 
   const removeSelectedReservationsHandler = () => {
-    if (reservationsPhysical.length) {
-      removePhysicalReservationsHandler();
-    }
-    if (reservationsDigital.length) {
-      removeDigitallReservationsHandler();
+    if (reservationsPhysical.length || reservationsDigital.length) {
+      removeReservationsHandler();
     }
   };
-
-  const deletionStatus = getDeleteReservationStatus({
-    physical: statusRemovingPhysicalReservations,
-    digital: statusRemovingDigitallReservations
-  });
 
   if (!reservations) return null;
 
@@ -96,14 +91,14 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
         "deleteReservationModalAriaDescriptionText"
       )}
     >
-      {["idle", "pending"].includes(deletionStatus) && (
+      {["idle", "pending"].includes(requestStatus) && (
         <DeleteReservationContent
           deleteReservation={() => removeSelectedReservationsHandler()}
           reservationsCount={reservations.length}
-          deletionStatus={deletionStatus}
+          deletionStatus={requestStatus}
         />
       )}
-      {deletionStatus === "success" && (
+      {requestStatus === "success" && (
         <ModalMessage
           title={t("deleteReservationModalSuccessTitleText")}
           subTitle={t("deleteReservationModalSuccessStatusText")}
@@ -111,14 +106,13 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
             text: t("deleteReservationModalButtonText"),
             closeAllModals: true,
             callback: () => {
-              setStatusRemovingPhysicalReservations("idle");
-              setStatusRemovingDigitalReservations("idle");
+              setRequestStatus("idle");
             }
           }}
         />
       )}
 
-      {deletionStatus === "error" && (
+      {requestStatus === "error" && (
         <ModalMessage
           title={t("deleteReservationModalErrorsTitleText")}
           subTitle={t("deleteReservationModalErrorsStatusText")}
@@ -126,8 +120,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
             text: t("deleteReservationModalButtonText"),
             closeAllModals: true,
             callback: () => {
-              setStatusRemovingPhysicalReservations("idle");
-              setStatusRemovingDigitalReservations("idle");
+              setRequestStatus("idle");
             }
           }}
         />

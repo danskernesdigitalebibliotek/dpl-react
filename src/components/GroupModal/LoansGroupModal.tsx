@@ -57,15 +57,21 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
     handler: renew,
     requestStatus: renewingStatus,
     setRequestStatus: setRenewingStatus
-  } = useSingleRequestWithStatus<typeof mutate, RenewedLoanV2[] | null>({
-    request: {
-      data: materialsToRenew.map((id) => Number(id))
+  } = useSingleRequestWithStatus<
+    typeof mutate,
+    {
+      data: number[];
     },
-    operation: mutate,
+    RenewedLoanV2[] | null
+  >({
+    request: {
+      params: { data: materialsToRenew.map((id) => Number(id)) },
+      operation: mutate
+    },
     onError: () => {
       setRenewingResponse(null);
     },
-    onSuccess: (result: typeof renewingResponse) => {
+    onSuccess: (result) => {
       // Make sure the loans list is updated after renewal.
       queryClient.invalidateQueries(getGetLoansV2QueryKey());
       if (result) {

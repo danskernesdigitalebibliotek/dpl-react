@@ -43,8 +43,16 @@ describe("useMultipleRequestsWithStatus", () => {
   it("should handle multiple requests", async () => {
     const { result, waitForNextUpdate } = renderHook(() =>
       useMultipleRequestsWithStatus({
-        requests: [{ message: "Hello" }, { message: "World" }],
-        operation: createRequest({ throwError: false }),
+        requests: [
+          {
+            params: { message: "Hello" },
+            operation: createRequest({ throwError: false })
+          },
+          {
+            params: { message: "World" },
+            operation: createRequest({ throwError: false })
+          }
+        ],
         onError: () => {
           expect(result.current.requestStatus).toBe("error");
         },
@@ -70,8 +78,16 @@ describe("useMultipleRequestsWithStatus", () => {
   it("should handle erroneous requests", async () => {
     const { result, waitForNextUpdate } = renderHook(() =>
       useMultipleRequestsWithStatus({
-        requests: [{ message: "Hello" }, { message: "World" }],
-        operation: createRequest({ throwError: true }),
+        requests: [
+          {
+            params: { message: "Hello" },
+            operation: createRequest({ throwError: false })
+          },
+          {
+            params: { message: "World" },
+            operation: createRequest({ throwError: true })
+          }
+        ],
         onError: () => {
           expect(result.current.requestStatus).toBe("error");
         },

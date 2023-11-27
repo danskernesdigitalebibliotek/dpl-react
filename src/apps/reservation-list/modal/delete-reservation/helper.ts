@@ -58,4 +58,33 @@ export const getDeleteButtonLabel = ({
   });
 };
 
+export const requestsAndReservations = <TOperationPhysical, TOperationDigital>({
+  reservations,
+  operations
+}: {
+  reservations: string[];
+  operations: { physical: TOperationPhysical; digital: TOperationDigital };
+}) => {
+  const { physical: reservationsPhysical, digital: reservationsDigital } =
+    getReservationsToDelete(reservations);
+
+  const requests = [];
+  if (reservationsPhysical.length) {
+    requests.push({
+      params: { params: { reservationid: reservationsPhysical } },
+      operation: operations.physical
+    });
+  }
+  if (reservationsDigital.length) {
+    reservationsDigital.forEach((id) => {
+      requests.push({
+        params: { identifier: String(id) },
+        operation: operations.digital
+      });
+    });
+  }
+
+  return { requests, reservationsPhysical, reservationsDigital };
+};
+
 export default {};
