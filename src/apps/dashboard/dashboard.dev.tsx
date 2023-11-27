@@ -34,6 +34,10 @@ export default {
       defaultValue: "/user/me/reservations",
       control: { type: "text" }
     },
+    ereolenHomepageUrl: {
+      defaultValue: "https://ereolen.dk/",
+      control: { type: "text" }
+    },
     yourProfileText: {
       defaultValue: "Your profile",
       control: { type: "text" }

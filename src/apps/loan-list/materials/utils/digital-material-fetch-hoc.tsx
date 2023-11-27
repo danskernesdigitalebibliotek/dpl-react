@@ -1,38 +1,37 @@
 import React, { useEffect, useState, ComponentType, FC } from "react";
-import { FaustId } from "../../../../core/utils/types/ids";
 import { useGetV1ProductsIdentifier } from "../../../../core/publizon/publizon";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
 import { MaterialProps } from "./material-fetch-hoc";
 import { mapProductToBasicDetailsType } from "../../../../core/utils/helpers/list-mapper";
+import { ListType } from "../../../../core/utils/types/list-type";
 
 type InputProps = {
-  faust?: FaustId | null;
-  identifier?: string | null;
+  item: ListType;
 };
 
 const fetchDigitalMaterial =
   <P extends object>(
     Component: ComponentType<P & MaterialProps>
   ): FC<P & InputProps> =>
-  ({ faust, identifier, ...props }: InputProps) => {
+  ({ item, ...props }: InputProps) => {
     // If this is a physical book, another HOC fetches the data and this
     // HOC just returns the component
-    if (faust) {
+    if (item.faust) {
       return (
         <Component
           /* eslint-disable-next-line react/jsx-props-no-spreading */
           {...(props as P)}
-          faust={faust}
+          item={item}
         />
       );
     }
 
-    if (identifier) {
+    if (item.identifier) {
       const [digitalMaterial, setDigitalMaterial] =
         useState<BasicDetailsType>();
 
       const { data: productsData, isSuccess: isSuccessDigital } =
-        useGetV1ProductsIdentifier(identifier);
+        useGetV1ProductsIdentifier(item.identifier);
 
       useEffect(() => {
         if (productsData && isSuccessDigital && productsData.product) {
@@ -50,7 +49,7 @@ const fetchDigitalMaterial =
         <Component
           /* eslint-disable-next-line react/jsx-props-no-spreading */
           {...(props as P)}
-          identifier={identifier}
+          item={item}
           material={digitalMaterial}
         />
       );

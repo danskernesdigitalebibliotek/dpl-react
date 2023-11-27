@@ -1,5 +1,5 @@
 mutation openOrder($input: SubmitOrderInput!) {
-  submitOrder(input: $input, dryRun: false) { 
+  submitOrder(input: $input, dryRun: false) {
     status
     message
     orderId

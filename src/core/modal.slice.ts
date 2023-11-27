@@ -1,4 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  appendQueryParametersToUrl,
+  getCurrentLocation
+} from "./utils/helpers/url";
 
 export type ModalId = string;
 
@@ -57,9 +61,9 @@ const modalSlice = createSlice({
           window.history.pushState(
             "",
             "",
-            `?modal=${alreadyOpenModals === null ? "" : alreadyOpenModals}${
-              action.payload.modalId
-            }`
+            appendQueryParametersToUrl(new URL(getCurrentLocation()), {
+              modal: `${alreadyOpenModals ?? ""}${action.payload.modalId}`
+            })
           );
         }
       }

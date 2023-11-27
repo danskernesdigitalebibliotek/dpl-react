@@ -1,7 +1,6 @@
 import { compact, groupBy, uniqBy, uniq, head } from "lodash";
 import { UseQueryOptions } from "react-query";
 import {
-  constructModalId,
   getManifestationType,
   orderManifestationsByYear,
   flattenCreators
@@ -31,6 +30,7 @@ import {
   useGetHoldingsV3
 } from "../../core/fbs/fbs";
 import vitestData from "./__vitest_data__/helper";
+import { constructModalId } from "../../core/utils/helpers/modal-helpers";
 
 export const getWorkManifestation = (
   work: Work,

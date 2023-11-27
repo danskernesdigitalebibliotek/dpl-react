@@ -4,7 +4,6 @@ import Modal from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import GroupModalContent from "./GroupModalContent";
 import {
-  getModalIds,
   getAmountOfRenewableLoans,
   getRenewableMaterials,
   loansOverdue,
@@ -18,13 +17,15 @@ import { RenewedLoanV2 } from "../../core/fbs/model/renewedLoanV2";
 import RenewalModalMessage from "../renewal/RenewalModalMessage";
 import { succeededRenewalCount } from "../../core/utils/helpers/renewal";
 import { useSingleRequestWithStatus } from "../../core/utils/useRequestsWithStatus";
+import { ListType } from "../../core/utils/types/list-type";
+import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 
 interface LoansGroupModalProps {
   dueDate?: string | null;
   loansModal: LoanType[];
   pageSize: number;
   accepted: boolean;
-  openDetailsModal: (modalId: string) => void;
+  openDetailsModal: (loan: LoanType) => void;
   openAcceptModal: () => void;
   children: ReactNode;
   resetAccepted: () => void;
@@ -48,7 +49,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   const queryClient = useQueryClient();
   const modalIdUsed = dueDate ? `${dueDateModal}-${dueDate}` : allLoansId;
   const renewableMaterials = getAmountOfRenewableLoans(loansModal);
-  const [materialsToRenew, setMaterialsToRenew] = useState<string[]>([]);
+  const [materialsToRenew, setMaterialsToRenew] = useState<ListType[]>([]);
   const [renewingResponse, setRenewingResponse] = useState<
     RenewedLoanV2[] | null
   >(null);
@@ -82,7 +83,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
 
   const renewSelected = useCallback(() => {
     const selectedLoansLoanDate = loansModal
-      .filter(({ loanId }) => materialsToRenew.includes(String(loanId) || ""))
+      .filter((loan) => materialsToRenew.includes(loan))
       .map(({ loanDate: localLoanDate }) => localLoanDate)
       .filter((item) => item !== undefined && item !== null);
     const acceptModal =
@@ -107,7 +108,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
     }
   }, [accepted, resetAccepted]);
 
-  const selectMaterials = (materialIds: string[]) => {
+  const selectMaterials = (materialIds: ListType[]) => {
     setMaterialsToRenew(materialIds);
   };
 

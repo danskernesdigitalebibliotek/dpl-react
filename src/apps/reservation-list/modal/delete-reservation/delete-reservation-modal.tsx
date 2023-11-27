@@ -13,11 +13,12 @@ import { requestsAndReservations } from "./helper";
 import ModalMessage from "../../../../components/message/modal-message/ModalMessage";
 import { DeleteReservationsParams } from "../../../../core/fbs/model";
 import { ApiResult } from "../../../../core/publizon/model";
+import {
+  reservationId,
+  ReservationType
+} from "../../../../core/utils/types/reservation-type";
+import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
 
-interface DeleteReservationModalProps {
-  modalId: string;
-  reservations: string[];
-}
 type ParamsDigital = {
   identifier: string;
 };
@@ -36,6 +37,17 @@ type OperationPhysical = UseMutateFunction<
   ParamsPhysical,
   unknown
 >;
+interface DeleteReservationModalProps {
+  modalId: string;
+  reservations: ReservationType[];
+}
+
+export function deleteReservationModalId(reservation: ReservationType): string {
+  const prefix = String(getModalIds().reservationDelete);
+  const fragment = reservationId(reservation);
+  // TODO: Use constructModalId() instead of string concatenation.
+  return `${prefix}${fragment}`;
+}
 
 const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   modalId,

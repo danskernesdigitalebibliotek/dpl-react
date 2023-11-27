@@ -33,11 +33,11 @@ export default {
       defaultValue: "By",
       control: { type: "text" }
     },
-    menuViewYourProfileText: {
+    menuUserProfileUrlText: {
       defaultValue: "My Account",
       control: { type: "text" }
     },
-    menuViewYourProfileTextUrl: {
+    userProfileUrl: {
       defaultValue: "/YourProfile",
       control: { type: "text" }
     },
@@ -142,6 +142,10 @@ export default {
     },
     menuSignUpUrl: {
       defaultValue: "/Signup",
+      control: { type: "text" }
+    },
+    ereolenHomepageUrl: {
+      defaultValue: "https://ereolen.dk/",
       control: { type: "text" }
     },
     expirationWarningDaysBeforeConfig: {

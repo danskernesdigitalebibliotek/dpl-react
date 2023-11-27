@@ -13,24 +13,12 @@ export const sortByOldestPickupDeadline = (
   );
 };
 
-export const getReservedDigital = (list: ReservationType[]) => {
-  // Sorts by pickupDeadline, then title
-  return list
-    .filter(({ state }) => state === "reserved")
-    .sort(
-      (objA, objB) =>
-        new Date(objA.pickupDeadline || new Date()).getTime() -
-          new Date(objB.pickupDeadline || new Date()).getTime() ||
-        (objA.title || "").localeCompare(objB.title || "")
-    );
-};
-
-export const getReservedPhysical = (list: ReservationType[]) => {
-  return list
-    .filter(({ state }) => state === "reserved")
-    .sort(
-      (objA, objB) => (objA.numberInQueue || 0) - (objB.numberInQueue || 0)
-    );
+export const sortByNumberInQueue = (
+  reservations: ReservationType[]
+): ReservationType[] => {
+  return [...reservations].sort(
+    (a, b) => (a.numberInQueue || 0) - (b.numberInQueue || 0)
+  );
 };
 
 export const getReadyForPickup = (list: ReservationType[]) => {
@@ -163,18 +151,17 @@ if (import.meta.vitest) {
     });
   });
 
-  describe("getReservedPhysical function", () => {
-    it("should filter out non-reserved items and sort by numberInQueue", () => {
+  describe("sortByNumberInQueue function", () => {
+    it("should sort items by numberInQueue", () => {
       // Define a mock array of reservation types
       const reservations: ReservationType[] = [
         { state: "reserved", numberInQueue: 2 },
-        { state: "available", numberInQueue: 1 },
         { state: "reserved", numberInQueue: 3 },
         { state: "reserved", numberInQueue: 1 }
       ];
 
       // Call the function with the mock data
-      const result = getReservedPhysical(reservations);
+      const result = sortByNumberInQueue(reservations);
 
       // Define what we expect the result to be
       const expectedResult: ReservationType[] = [

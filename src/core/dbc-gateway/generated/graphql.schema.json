@@ -2043,6 +2043,12 @@
             "deprecationReason": null
           },
           {
+            "name": "dk5",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "fictionNonfiction",
             "description": null,
             "isDeprecated": false,
@@ -2086,6 +2092,12 @@
           },
           {
             "name": "workTypes",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -2296,6 +2308,150 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GeneralMaterialType",
+        "description": null,
+        "fields": [
+          {
+            "name": "code",
+            "description": "code for materialType # @TODO - is this a finite list ?? - and where to get it",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "GeneralMaterialTypeCode",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "display",
+            "description": "Ths string to display",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "GeneralMaterialTypeCode",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "ARTICLES",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "AUDIO_BOOKS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "BOARD_GAMES",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "BOOKS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "COMICS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "COMPUTER_GAMES",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EBOOKS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "FILMS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "IMAGE_MATERIALS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "MUSIC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NEWSPAPER_JOURNALS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "OTHER",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PODCASTS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SHEET_MUSIC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TV_SERIES",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -2804,7 +2960,7 @@
             "deprecationReason": null
           },
           {
-            "name": "NO_MUNICIPALITY",
+            "name": "NO_AGENCYID",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4654,7 +4810,7 @@
         "fields": [
           {
             "name": "general",
-            "description": "The general type of material of the manifestation based on a grouping of bibliotek.dk material types, e.g. bøger, lydbøger etc. ",
+            "description": "The general type of material of the manifestation based on a grouping of bibliotek.dk material types, e.g. bøger, lydbøger etc. \n@TODO - this on is deprecated pr. 1/2 '24",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -4662,6 +4818,38 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use 'materialTypeGenerel' instead"
+          },
+          {
+            "name": "materialTypeGeneral",
+            "description": "jed 1.1 - the general materialtype",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "GeneralMaterialType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "materialTypeSpecific",
+            "description": "jed 1.1 - the specific materialtType",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "SpecificMaterialType",
                 "ofType": null
               }
             },
@@ -4670,7 +4858,7 @@
           },
           {
             "name": "specific",
-            "description": "The type of material of the manifestation based on bibliotek.dk types",
+            "description": "The type of material of the manifestation based on bibliotek.dk types\n@TODO - this on is deprecated pr. 1/2 '24",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -4681,8 +4869,8 @@
                 "ofType": null
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'materialtTypeSpecific' instead"
           }
         ],
         "inputFields": null,
@@ -7722,6 +7910,26 @@
             "deprecationReason": null
           },
           {
+            "name": "dk5",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "fictionNonfiction",
             "description": null,
             "type": {
@@ -7923,6 +8131,26 @@
           },
           {
             "name": "workTypes",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -8474,6 +8702,49 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "SpecificMaterialType",
+        "description": null,
+        "fields": [
+          {
+            "name": "code",
+            "description": "code for materialType",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "display",
+            "description": "Ths string to display",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "SCALAR",
         "name": "String",
         "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
@@ -8935,6 +9206,18 @@
           },
           {
             "name": "expires",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "key",
             "description": null,
             "type": {
               "kind": "SCALAR",

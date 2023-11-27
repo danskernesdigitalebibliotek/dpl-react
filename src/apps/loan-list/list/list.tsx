@@ -13,7 +13,7 @@ export interface ListProps {
   view: ListView;
   emptyListLabel: string;
   pageSize: number;
-  openLoanDetailsModal: (modalId: string) => void;
+  openLoanDetailsModal: (loan: LoanType) => void;
   openDueDateModal: (dueDate: string) => void;
   children?: ReactNode;
 }

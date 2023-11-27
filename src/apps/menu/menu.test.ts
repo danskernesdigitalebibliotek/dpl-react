@@ -1,7 +1,6 @@
 import { TOKEN_LIBRARY_KEY } from "../../core/token";
 
-// todo will be readded in a future pr
-describe.skip("Menu (authenticated))", () => {
+describe("Menu (authenticated))", () => {
   beforeEach(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
@@ -70,7 +69,22 @@ describe.skip("Menu (authenticated))", () => {
           pickupNumber: null,
           ilBibliographicRecord: null,
           transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
-          reservationType: "normal"
+          reservationType: "parallel"
+        },
+        {
+          reservationId: 67804977,
+          recordId: "46985592",
+          state: "reserved",
+          pickupBranch: "DK-775100",
+          pickupDeadline: null,
+          expiryDate: "2022-09-21",
+          dateOfReservation: "2022-06-14T09:00:50.059",
+          numberInQueue: 1,
+          periodical: null,
+          pickupNumber: null,
+          ilBibliographicRecord: null,
+          transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+          reservationType: "parallel"
         },
         {
           reservationId: 67789642,
@@ -227,7 +241,7 @@ describe.skip("Menu (authenticated))", () => {
       ]
     }).as("fees");
 
-    cy.visit("/iframe.html?path=/story/apps-menu--menu-entry");
+    cy.visit("/iframe.html?id=apps-header--user-menu&viewMode=story");
   });
 
   it("Menu", () => {

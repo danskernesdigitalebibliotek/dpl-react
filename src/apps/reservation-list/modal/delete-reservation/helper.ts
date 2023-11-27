@@ -1,19 +1,23 @@
 import { UseTextFunction } from "../../../../core/utils/text";
 import { RequestStatus } from "../../../../core/utils/types/request";
-import { isFaust, isIdentifier } from "../../../dashboard/util/helpers";
+import {
+  ReservationType,
+  isDigitalReservation,
+  isPhysicalReservation
+} from "../../../../core/utils/types/reservation-type";
 
-export const getReservationsToDelete = (reservations: string[]) => {
-  if (!reservations) {
+export const getReservationsToDelete = (reservations: ReservationType[]) => {
+  if (!reservations.length) {
     return { physical: [], digital: [] };
   }
-
   const physical = reservations
-    .map((id) => Number(isFaust(id)))
-    .filter((id) => id !== 0);
+    .filter(isPhysicalReservation)
+    .map(({ reservationIds }) => reservationIds)
+    .flat();
 
   const digital = reservations
-    .map((id) => isIdentifier(id))
-    .filter((id) => id !== null);
+    .filter(isDigitalReservation)
+    .map(({ identifier }) => identifier);
 
   return { physical, digital };
 };
@@ -62,7 +66,7 @@ export const requestsAndReservations = <TOperationPhysical, TOperationDigital>({
   reservations,
   operations
 }: {
-  reservations: string[];
+  reservations: ReservationType[];
   operations: { physical: TOperationPhysical; digital: TOperationDigital };
 }) => {
   const { physical: reservationsPhysical, digital: reservationsDigital } =

@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import BlockedModal from "../../components/blocked-patron/blocked-modal/BlockedModal";
 import { AuthenticatedPatronV6 } from "../fbs/model";
 import { useModalButtonHandler } from "./modal";
-import { getModalIds } from "./helpers/general";
 import { setHasBeenVisible } from "../blockedModal.slice";
 import { RootState, useSelector } from "../store";
 import BlockedTypes from "./types/BlockedTypes";
 import { redirectTo } from "./helpers/url";
 import { usePatronData } from "./helpers/user";
+import { getModalIds } from "./helpers/modal-helpers";
 
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;

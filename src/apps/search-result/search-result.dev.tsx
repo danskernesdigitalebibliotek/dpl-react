@@ -116,6 +116,11 @@ export default {
       defaultValue: "Access types",
       control: { type: "text" }
     },
+    facetCanAlwaysBeLoanedText: {
+      name: "Can always be loaned text",
+      defaultValue: "Can always be loaned",
+      control: { type: "text" }
+    },
     facetChildrenOrAdultsText: {
       name: "Children or adults text",
       defaultValue: "Children or adults",
@@ -124,6 +129,16 @@ export default {
     facetCreatorsText: {
       name: "Creators text",
       defaultValue: "Creators",
+      control: { type: "text" }
+    },
+    facetDk5Text: {
+      name: "Dk5 text",
+      defaultValue: "Dk5",
+      control: { type: "text" }
+    },
+    facetFictionalCharactersText: {
+      name: "Fictional characters text",
+      defaultValue: "Fictional characters",
       control: { type: "text" }
     },
     facetFictionNonfictionText: {
@@ -141,6 +156,16 @@ export default {
       defaultValue: "Main languages",
       control: { type: "text" }
     },
+    facetMaterialTypesGeneralText: {
+      name: "Material types general text",
+      defaultValue: "Material types general",
+      control: { type: "text" }
+    },
+    facetMaterialTypesSpecificText: {
+      name: "Material types specific text",
+      defaultValue: "Material types specific",
+      control: { type: "text" }
+    },
     facetSubjectsText: {
       name: "Subjects text",
       defaultValue: "Subjects",
@@ -151,24 +176,9 @@ export default {
       defaultValue: "Work types",
       control: { type: "text" }
     },
-    facetCanAlwaysBeLoanedText: {
-      name: "Can always be loaned text",
-      defaultValue: "Can always be loaned",
-      control: { type: "text" }
-    },
-    facetFictionalCharactersText: {
-      name: "Fictional characters text",
-      defaultValue: "Fictional characters",
-      control: { type: "text" }
-    },
-    facetMaterialTypesGeneralText: {
-      name: "Material types general text",
-      defaultValue: "Material types general",
-      control: { type: "text" }
-    },
-    facetMaterialTypesSpecificText: {
-      name: "Material types specific text",
-      defaultValue: "Material types specific",
+    facetYearText: {
+      name: "Year text",
+      defaultValue: "Year",
       control: { type: "text" }
     },
     showResultsText: {

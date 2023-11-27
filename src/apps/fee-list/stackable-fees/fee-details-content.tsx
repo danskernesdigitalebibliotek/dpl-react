@@ -89,7 +89,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
         <StackableFeesList
           materials={materials}
           key={recordId}
-          faust={`${recordId}` as FaustId}
+          item={{ faust: `${recordId}` as FaustId }}
           creationDateFormatted={creationDateFormatted}
         />
       ))}

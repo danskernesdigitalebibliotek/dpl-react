@@ -29,6 +29,7 @@ const List: FC<ListProps> = ({
           {fees.map((itemData) => (
             <StackableFees
               amountOfMaterialsWithDueDate={itemData.materials.length}
+              item={{ faust: itemData.materials[0].recordId as FaustId }}
               faust={itemData.materials[0].recordId as FaustId}
               materialItemNumber={itemData.materials[0].materialItemNumber}
               feeData={itemData}

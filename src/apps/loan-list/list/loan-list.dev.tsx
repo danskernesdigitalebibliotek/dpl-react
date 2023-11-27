@@ -3,13 +3,13 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import blockedArgs from "../../../core/storybook/blockedArgs";
-import { getModalIds } from "../../../core/utils/helpers/general";
 import LoanList from "./loan-list.entry";
 import groupModalArgs from "../../../core/storybook/groupModalArgs";
 import loanGroupModalArgs from "../../../core/storybook/loanGroupModalArgs";
 import acceptModalArgs from "../../../core/storybook/acceptFeesModalArgs";
 import materialDetailsModalArgs from "../../../core/storybook/materialDetailsModalArgs";
 import renewalArgs from "../../../core/storybook/renewalArgs";
+import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
 export default {
   title: "Apps / Loan list",

@@ -2,12 +2,12 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import ReservationList from "./reservation-list.entry";
-import { getModalIds } from "../../../core/utils/helpers/general";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import blockedArgs from "../../../core/storybook/blockedArgs";
 import reservationMaterialDetailsProps from "../../../core/storybook/reservationMaterialDetailsArgs";
 import deleteReservationModalArgs from "../../../core/storybook/deleteReservationModalArgs";
 import reservationListArgs from "../../../core/storybook/reservationListArgs";
+import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
 export default {
   title: "Apps / Reservation list",
@@ -60,6 +60,10 @@ export default {
     pauseReservationInfoUrl: {
       defaultValue:
         "https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80",
+      control: { type: "text" }
+    },
+    ereolenHomepageUrl: {
+      defaultValue: "https://ereolen.dk/",
       control: { type: "text" }
     },
     // Texts
@@ -273,7 +277,7 @@ const { reservationDetails } = getModalIds();
 export const ReservationListDigitalDetailsModal = Template.bind({});
 ReservationListDigitalDetailsModal.parameters = {
   query: {
-    modal: `${reservationDetails}9788740047905`
+    modal: `${reservationDetails}9788702319361`
   }
 };
 
