@@ -237,7 +237,12 @@ describe("Reservation details modal", () => {
 
     cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
 
-    cy.get(".modal").should("not.exist");
+    // Close confirmation modal.
+    cy.get(".modal.modal-cta")
+      .getBySel("modal-cta-button")
+      .should("have.text", "Ok")
+      .click();
+    cy.get(".modal.modal-cta").should("not.exist");
   });
 
   it("It shows digital reservation details modal, material queued", () => {

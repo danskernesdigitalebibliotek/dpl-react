@@ -13,10 +13,10 @@ import { LoanType } from "../../core/utils/types/loan-type";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../core/fbs/fbs";
 import GroupModalLoansList from "./GroupModalLoansList";
 import LoansGroupModalButton from "./LoansGroupModalButton";
-import { RequestStatus } from "../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../core/fbs/model/renewedLoanV2";
 import RenewalModalMessage from "../renewal/RenewalModalMessage";
 import { succeededRenewalCount } from "../../core/utils/helpers/renewal";
+import { useSingleRequestWithStatus } from "../../core/utils/useRequestsWithStatus";
 import { ListType } from "../../core/utils/types/list-type";
 import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 
@@ -50,35 +50,36 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   const modalIdUsed = dueDate ? `${dueDateModal}-${dueDate}` : allLoansId;
   const renewableMaterials = getAmountOfRenewableLoans(loansModal);
   const [materialsToRenew, setMaterialsToRenew] = useState<ListType[]>([]);
-  const [renewingStatus, setRenewingStatus] = useState<RequestStatus>("idle");
   const [renewingResponse, setRenewingResponse] = useState<
     RenewedLoanV2[] | null
   >(null);
 
-  const renew = useCallback(() => {
-    const ids = materialsToRenew.map((id) => Number(id));
-
-    setRenewingStatus("pending");
-    mutate(
-      {
-        data: ids
-      },
-      {
-        onSuccess: (result) => {
-          // Make sure the loans list is updated after renewal.
-          queryClient.invalidateQueries(getGetLoansV2QueryKey());
-          if (result) {
-            setRenewingStatus("success");
-            setRenewingResponse(result);
-          }
-        },
-        onError: () => {
-          setRenewingStatus("error");
-          setRenewingResponse(null);
-        }
+  const {
+    handler: renew,
+    requestStatus: renewingStatus,
+    setRequestStatus: setRenewingStatus
+  } = useSingleRequestWithStatus<
+    typeof mutate,
+    {
+      data: number[];
+    },
+    RenewedLoanV2[] | null
+  >({
+    request: {
+      params: { data: materialsToRenew.map((id) => Number(id)) },
+      operation: mutate
+    },
+    onError: () => {
+      setRenewingResponse(null);
+    },
+    onSuccess: (result) => {
+      // Make sure the loans list is updated after renewal.
+      queryClient.invalidateQueries(getGetLoansV2QueryKey());
+      if (result) {
+        setRenewingResponse(result);
       }
-    );
-  }, [materialsToRenew, mutate, queryClient]);
+    }
+  });
 
   const renewSelected = useCallback(() => {
     const selectedLoansLoanDate = loansModal
