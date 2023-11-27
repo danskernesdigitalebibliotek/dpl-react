@@ -110,6 +110,12 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
       screenReaderModalDescriptionText={t(
         "deleteReservationModalAriaDescriptionText"
       )}
+      eventCallbacks={{
+        close: () => {
+          setRequestStatus("idle");
+          setDeletedReservations(null);
+        }
+      }}
     >
       {["idle", "pending"].includes(requestStatus) && (
         <DeleteReservationContent
