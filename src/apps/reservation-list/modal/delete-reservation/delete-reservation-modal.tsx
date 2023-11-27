@@ -82,6 +82,14 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
 
   if (!reservations) return null;
 
+  const ctaButtonParams = {
+    text: t("deleteReservationModalButtonText"),
+    closeAllModals: true,
+    callback: () => {
+      setRequestStatus("idle");
+    }
+  };
+
   return (
     <Modal
       modalId={modalId}
@@ -102,13 +110,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
         <ModalMessage
           title={t("deleteReservationModalSuccessTitleText")}
           subTitle={t("deleteReservationModalSuccessStatusText")}
-          ctaButton={{
-            text: t("deleteReservationModalButtonText"),
-            closeAllModals: true,
-            callback: () => {
-              setRequestStatus("idle");
-            }
-          }}
+          ctaButton={ctaButtonParams}
         />
       )}
 
@@ -116,13 +118,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
         <ModalMessage
           title={t("deleteReservationModalErrorsTitleText")}
           subTitle={t("deleteReservationModalErrorsStatusText")}
-          ctaButton={{
-            text: t("deleteReservationModalButtonText"),
-            closeAllModals: true,
-            callback: () => {
-              setRequestStatus("idle");
-            }
-          }}
+          ctaButton={ctaButtonParams}
         />
       )}
     </Modal>
