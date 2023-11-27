@@ -487,7 +487,7 @@ export enum InfomediaError {
   ErrorInRequest = "ERROR_IN_REQUEST",
   InternalServerError = "INTERNAL_SERVER_ERROR",
   LibraryNotFound = "LIBRARY_NOT_FOUND",
-  NoMunicipality = "NO_MUNICIPALITY",
+  NoAgencyid = "NO_AGENCYID",
   ServiceNotLicensed = "SERVICE_NOT_LICENSED",
   ServiceUnavailable = "SERVICE_UNAVAILABLE"
 }
@@ -1322,6 +1322,7 @@ export type SubmitOrderInput = {
   authorOfComponent?: InputMaybe<Scalars["String"]>;
   exactEdition?: InputMaybe<Scalars["Boolean"]>;
   expires?: InputMaybe<Scalars["String"]>;
+  key?: InputMaybe<Scalars["String"]>;
   orderType?: InputMaybe<OrderType>;
   pagination?: InputMaybe<Scalars["String"]>;
   pickUpBranch: Scalars["String"];
@@ -1862,6 +1863,41 @@ export type GetSmallWorkQuery = {
   } | null;
 };
 
+export type ManifestationBasicDetailsFragment = {
+  __typename?: "Manifestation";
+  pid: string;
+  abstract: Array<string>;
+  titles: { __typename?: "ManifestationTitles"; full: Array<string> };
+  materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+  creators: Array<
+    | { __typename?: "Corporation"; display: string }
+    | { __typename?: "Person"; display: string }
+  >;
+  edition?: {
+    __typename?: "Edition";
+    publicationYear?: {
+      __typename?: "PublicationYear";
+      display: string;
+    } | null;
+  } | null;
+  series: Array<{
+    __typename?: "Series";
+    title: string;
+    numberInSeries?: {
+      __typename?: "NumberInSeries";
+      number?: Array<number> | null;
+    } | null;
+  }>;
+  languages?: {
+    __typename?: "Languages";
+    main?: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }> | null;
+  } | null;
+};
+
 export type GetManifestationViaMaterialByFaustQueryVariables = Exact<{
   faust: Scalars["String"];
 }>;
@@ -1901,6 +1937,60 @@ export type GetManifestationViaMaterialByFaustQuery = {
         isoCode: string;
       }> | null;
     } | null;
+  } | null;
+};
+
+export type GetManifestationViaBestRepresentationByFaustQueryVariables = Exact<{
+  faust: Scalars["String"];
+}>;
+
+export type GetManifestationViaBestRepresentationByFaustQuery = {
+  __typename?: "Query";
+  manifestation?: {
+    __typename?: "Manifestation";
+    ownerWork: {
+      __typename?: "Work";
+      manifestations: {
+        __typename?: "Manifestations";
+        bestRepresentation: {
+          __typename?: "Manifestation";
+          pid: string;
+          abstract: Array<string>;
+          titles: { __typename?: "ManifestationTitles"; full: Array<string> };
+          materialTypes: Array<{
+            __typename?: "MaterialType";
+            specific: string;
+          }>;
+          creators: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Person"; display: string }
+          >;
+          edition?: {
+            __typename?: "Edition";
+            publicationYear?: {
+              __typename?: "PublicationYear";
+              display: string;
+            } | null;
+          } | null;
+          series: Array<{
+            __typename?: "Series";
+            title: string;
+            numberInSeries?: {
+              __typename?: "NumberInSeries";
+              number?: Array<number> | null;
+            } | null;
+          }>;
+          languages?: {
+            __typename?: "Languages";
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
+          } | null;
+        };
+      };
+    };
   } | null;
 };
 
@@ -4675,6 +4765,43 @@ export type WithLanguagesFragment = {
   } | null;
 };
 
+export const WithLanguagesFragmentDoc = `
+    fragment WithLanguages on Manifestation {
+  languages {
+    main {
+      display
+      isoCode
+    }
+  }
+}
+    `;
+export const ManifestationBasicDetailsFragmentDoc = `
+    fragment ManifestationBasicDetails on Manifestation {
+  ...WithLanguages
+  pid
+  titles {
+    full
+  }
+  abstract
+  materialTypes {
+    specific
+  }
+  creators {
+    display
+  }
+  edition {
+    publicationYear {
+      display
+    }
+  }
+  series {
+    title
+    numberInSeries {
+      number
+    }
+  }
+}
+    ${WithLanguagesFragmentDoc}`;
 export const ManifestationReviewFieldsFragmentDoc = `
     fragment ManifestationReviewFields on Manifestation {
   pid
@@ -4782,16 +4909,6 @@ export const SeriesSimpleFragmentDoc = `
   }
   readThisFirst
   readThisWhenever
-}
-    `;
-export const WithLanguagesFragmentDoc = `
-    fragment WithLanguages on Manifestation {
-  languages {
-    main {
-      display
-      isoCode
-    }
-  }
 }
     `;
 export const ManifestationsSimpleFieldsFragmentDoc = `
@@ -4992,32 +5109,10 @@ export const useGetSmallWorkQuery = <
 export const GetManifestationViaMaterialByFaustDocument = `
     query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
-    ...WithLanguages
-    pid
-    titles {
-      full
-    }
-    abstract
-    materialTypes {
-      specific
-    }
-    creators {
-      display
-    }
-    edition {
-      publicationYear {
-        display
-      }
-    }
-    series {
-      title
-      numberInSeries {
-        number
-      }
-    }
+    ...ManifestationBasicDetails
   }
 }
-    ${WithLanguagesFragmentDoc}`;
+    ${ManifestationBasicDetailsFragmentDoc}`;
 export const useGetManifestationViaMaterialByFaustQuery = <
   TData = GetManifestationViaMaterialByFaustQuery,
   TError = unknown
@@ -5035,6 +5130,38 @@ export const useGetManifestationViaMaterialByFaustQuery = <
       GetManifestationViaMaterialByFaustQuery,
       GetManifestationViaMaterialByFaustQueryVariables
     >(GetManifestationViaMaterialByFaustDocument, variables),
+    options
+  );
+export const GetManifestationViaBestRepresentationByFaustDocument = `
+    query getManifestationViaBestRepresentationByFaust($faust: String!) {
+  manifestation(faust: $faust) {
+    ownerWork {
+      manifestations {
+        bestRepresentation {
+          ...ManifestationBasicDetails
+        }
+      }
+    }
+  }
+}
+    ${ManifestationBasicDetailsFragmentDoc}`;
+export const useGetManifestationViaBestRepresentationByFaustQuery = <
+  TData = GetManifestationViaBestRepresentationByFaustQuery,
+  TError = unknown
+>(
+  variables: GetManifestationViaBestRepresentationByFaustQueryVariables,
+  options?: UseQueryOptions<
+    GetManifestationViaBestRepresentationByFaustQuery,
+    TError,
+    TData
+  >
+) =>
+  useQuery<GetManifestationViaBestRepresentationByFaustQuery, TError, TData>(
+    ["getManifestationViaBestRepresentationByFaust", variables],
+    fetcher<
+      GetManifestationViaBestRepresentationByFaustQuery,
+      GetManifestationViaBestRepresentationByFaustQueryVariables
+    >(GetManifestationViaBestRepresentationByFaustDocument, variables),
     options
   );
 export const GetMaterialDocument = `

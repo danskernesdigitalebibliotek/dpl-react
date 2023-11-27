@@ -14,7 +14,7 @@ interface MaterialStatusProps {
   loan: LoanType;
   children: ReactNode;
   additionalMaterials: number;
-  openDetailsModal: (modalId: string) => void;
+  openDetailsModal: (loan: LoanType) => void;
   openDueDateModal?: (dueDate: string) => void;
   arrowLabelledBy: string;
 }
@@ -28,18 +28,15 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
   arrowLabelledBy
 }) => {
   const t = useText();
-  const { dueDate, loanDate, loanId, identifier } = loan;
+  const { dueDate, loanDate } = loan;
   const isStacked = materialsAreStacked(additionalMaterials);
 
   const notificationClickEventHandler = () => {
     if (isStacked && openDueDateModal && dueDate) {
       openDueDateModal(dueDate);
     }
-    if (!isStacked && loanId) {
-      openDetailsModal(String(loanId));
-    }
-    if (!isStacked && identifier) {
-      openDetailsModal(identifier);
+    if (!isStacked) {
+      openDetailsModal(loan);
     }
   };
 

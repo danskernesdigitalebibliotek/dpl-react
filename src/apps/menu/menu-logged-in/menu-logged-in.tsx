@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { getModalIds } from "../../../core/utils/helpers/general";
 import { useText } from "../../../core/utils/text";
 import Modal from "../../../core/utils/modal";
 import MenuLoggedInContent from "./MenuLoggedInContent";
+import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
 interface MenuLoggedInProps {
   pageSize: number;

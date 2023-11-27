@@ -33,11 +33,11 @@ export default {
       defaultValue: "By",
       control: { type: "text" }
     },
-    menuViewYourProfileText: {
+    menuUserProfileUrlText: {
       defaultValue: "My Account",
       control: { type: "text" }
     },
-    menuViewYourProfileTextUrl: {
+    userProfileUrl: {
       defaultValue: "/YourProfile",
       control: { type: "text" }
     },

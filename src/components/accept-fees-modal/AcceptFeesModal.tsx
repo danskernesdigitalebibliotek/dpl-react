@@ -1,9 +1,9 @@
 import * as React from "react";
 import { FC } from "react";
-import { getModalIds } from "../../core/utils/helpers/general";
 import Modal, { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
+import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 
 export interface AcceptModalProps {
   accept: () => void;

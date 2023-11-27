@@ -8,7 +8,6 @@ import LinkButton from "../../../../components/Buttons/LinkButton";
 export interface ReservationDetailsRedirectProps {
   reservation: ReservationType;
   openReservationDeleteModal: (deleteReservation: ReservationType) => void;
-  reservationId: string;
   className?: string;
   linkClassNames?: string;
   externalLink: URL;

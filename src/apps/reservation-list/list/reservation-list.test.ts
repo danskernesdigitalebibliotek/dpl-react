@@ -316,6 +316,8 @@ describe("Reservation list", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
+    cy.wait("@user");
+
     // ID 11 Systemet viser reserveringsoversigten med
     // ID 11 2.a. The function: Pause physical reservations
     cy.get(".dpl-pause-reservation-component")
@@ -328,6 +330,8 @@ describe("Reservation list", () => {
       .find(".btn-primary")
       .should("exist");
 
+    cy.wait(["@physical_reservations", "@digital_reservations"]);
+
     // ID 11 2.b. The list "Ready for pickup"
     cy.get(".reservation-list-page");
     // ID 11 2.b.i. The header "Ready for pickup" and the number of reservations
@@ -335,12 +339,17 @@ describe("Reservation list", () => {
       .eq(0)
       .should("have.text", "Ready for pickup3");
 
+    cy.wait(["@work", "@product"]);
+
     // ID 11 2.b.ii. list is sorted by oldest pickup date at the top
     cy.getBySel("list-reservation-container")
+      .eq(0)
       .find(".list-reservation")
       .eq(0)
       .find(".status-label--info")
       .should("exist");
+
+    cy.wait(["@cover"]);
 
     // ID 11 2.b.iii.1. Every reservation ready for pickup is shown with
     // ID 42 2.a. Material cover
@@ -780,6 +789,89 @@ describe("Reservation list", () => {
     cy.get(".dpl-list-empty")
       .should("exist")
       .should("have.text", "At the moment you have 0 reservations");
+  });
+
+  it("Reservations list shows parallel reservation", () => {
+    cy.intercept(
+      "GET",
+      "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
+      {
+        statusCode: 200,
+        body: [
+          {
+            reservationId: 67804976,
+            recordId: "46985591",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-09-21",
+            dateOfReservation: "2022-06-14T09:00:50.059",
+            numberInQueue: 1,
+            periodical: null,
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            // We have two reservations with the same transactionId which makes
+            // it a parallel reservation.
+            transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+            reservationType: "parallel"
+          },
+          {
+            reservationId: 67804977,
+            recordId: "46985592",
+            state: "reserved",
+            pickupBranch: "DK-775100",
+            pickupDeadline: null,
+            expiryDate: "2022-09-21",
+            dateOfReservation: "2022-06-14T09:00:50.059",
+            numberInQueue: 1,
+            periodical: null,
+            pickupNumber: null,
+            ilBibliographicRecord: null,
+            transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+            reservationType: "parallel"
+          }
+        ]
+      }
+    ).as("physical_reservations");
+
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        reservations: [],
+        code: 101,
+        message: "OK"
+      }
+    }).as("digital_reservations");
+
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
+    );
+
+    cy.interceptRest({
+      aliasName: "work-bestrepresentation",
+      httpMethod: "POST",
+      url: "**/next/**",
+      fixtureFilePath: "reservation-list/work-bestrepresentation.json"
+    });
+
+    cy.getBySel("list-reservation-container")
+      .find(".list-reservation")
+      // Even though we return multiple reservations they are parallel and
+      // should be represented as one.
+      .should("have.length", 1)
+      .get(".list-reservation__header")
+      // The title should be the one returned by the best representation
+      // fixture.
+      .should("contain", "Best representation of dummy title")
+      // Open the modal to see the details.
+      .click();
+
+    cy.getBySel("modal")
+      // Modal should be open.
+      .should("exist")
+      .find(".modal-details__title")
+      // Details should also contain the best representation title.
+      .should("contain", "Best representation of dummy title");
   });
 });
 

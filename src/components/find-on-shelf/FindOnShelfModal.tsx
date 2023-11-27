@@ -1,15 +1,13 @@
 import * as React from "react";
 import { FC } from "react";
-import {
-  constructModalId,
-  getAllFaustIds
-} from "../../core/utils/helpers/general";
+import { getAllFaustIds } from "../../core/utils/helpers/general";
 import Modal from "../../core/utils/modal";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import FindOnShelfModalBody from "./FindOnShelfModalBody";
 import { useText } from "../../core/utils/text";
+import { constructModalId } from "../../core/utils/helpers/modal-helpers";
 
 export const findOnShelfModalId = (faustIds: FaustId[]) => {
   return constructModalId("find-on-shelf-modal", faustIds.sort());

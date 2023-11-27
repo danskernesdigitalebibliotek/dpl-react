@@ -3,13 +3,14 @@ import { useIntersection } from "react-use";
 import CheckBox from "../checkbox/Checkbox";
 import { useText } from "../../core/utils/text";
 import { getRenewableMaterials } from "../../core/utils/helpers/general";
+import { ListType } from "../../core/utils/types/list-type";
 
 interface GroupModalContentProps {
   amountOfSelectableMaterials: number;
-  selectableMaterials?: string[];
-  selectedMaterials?: string[];
+  selectableMaterials?: ListType[];
+  selectedMaterials?: ListType[];
   buttonComponent: ReactNode;
-  selectMaterials?: (materialIds: string[]) => void;
+  selectMaterials?: (materialIds: ListType[]) => void;
   children: ReactNode;
 }
 
