@@ -42,7 +42,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     all: {
       reservations,
       readyToLoan: reservationsReadyToLoan,
-      queued: reservationsQueuedAll
+      queued: reservationsQueued
     }
   } = useReservations();
   const {
@@ -67,13 +67,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const [reservationForModal, setReservationForModal] =
     useState<ListType | null>(null);
   const [reservationModalId, setReservationModalId] = useState<string>("");
-
-  //filter digital reservations
-  const reservationsQueued = reservationsQueuedAll
-    .filter((reservation) => !reservation.faust)
-    .slice(0, 1);
-
-  console.log("reservationsQueued", reservationsQueued);
 
   const openModalHandler = useCallback(
     (modalId: string) => {
