@@ -45,28 +45,6 @@ export const getReservationsToDelete = (reservations: ReservationType[]) => {
   return { physical, digital };
 };
 
-export const getDeleteReservationStatus = ({
-  physical,
-  digital
-}: {
-  physical: RequestStatus;
-  digital: RequestStatus;
-}) => {
-  if (physical === "pending" || digital === "pending") {
-    return "pending";
-  }
-
-  if (physical === "error" || digital === "error") {
-    return "error";
-  }
-
-  if (physical === "success" || digital === "success") {
-    return "success";
-  }
-
-  return "idle";
-};
-
 export const getDeleteButtonLabel = ({
   reservationsCount,
   deletionStatus,
