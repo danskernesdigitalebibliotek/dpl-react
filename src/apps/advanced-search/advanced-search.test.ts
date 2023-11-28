@@ -213,7 +213,7 @@ describe("Search Result", () => {
     cy.getBySel("card-list-item").should("have.length", 2);
   });
 
-  it.only("Updates search string after initial search is executed", () => {
+  it("Updates search string after initial search is executed", () => {
     cy.getBySel("advanced-search-header-row").first().click().type("Harry");
     cy.getBySel("preview-section").first().should("contain", "'Harry'");
     cy.getBySel("search-button").click();
