@@ -1,3 +1,5 @@
+import { UseMutateFunction } from "react-query";
+import { DeleteReservationsParams } from "../../../../core/fbs/model";
 import { UseTextFunction } from "../../../../core/utils/text";
 import { RequestStatus } from "../../../../core/utils/types/request";
 import {
@@ -5,6 +7,30 @@ import {
   isDigitalReservation,
   isPhysicalReservation
 } from "../../../../core/utils/types/reservation-type";
+import { ApiResult } from "../../../../core/publizon/model";
+
+export type ParamsDigital = {
+  identifier: string;
+};
+export type ParamsPhysical = {
+  params?: DeleteReservationsParams;
+};
+export type OperationDigital = UseMutateFunction<
+  ApiResult | null,
+  unknown,
+  ParamsDigital,
+  unknown
+>;
+export type OperationPhysical = UseMutateFunction<
+  void | null,
+  unknown,
+  ParamsPhysical,
+  unknown
+>;
+type Request = {
+  params: { params: { reservationid: number[] } } | { identifier: string };
+  operation: OperationPhysical | OperationDigital;
+};
 
 export const getReservationsToDelete = (reservations: ReservationType[]) => {
   if (!reservations.length) {
@@ -62,13 +88,17 @@ export const getDeleteButtonLabel = ({
   });
 };
 
-export const requestsAndReservations = <TOperationPhysical, TOperationDigital>({
+export const requestsAndReservations = ({
   reservations,
   operations
 }: {
   reservations: ReservationType[];
-  operations: { physical: TOperationPhysical; digital: TOperationDigital };
-}) => {
+  operations: { physical: OperationPhysical; digital: OperationDigital };
+}): {
+  requests: Request[];
+  reservationsPhysical: number[];
+  reservationsDigital: string[];
+} => {
   const { physical: reservationsPhysical, digital: reservationsDigital } =
     getReservationsToDelete(reservations);
 
