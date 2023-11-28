@@ -17,7 +17,6 @@ export interface LoanListEntryConfigProps {
   expirationWarningDaysBeforeConfig: string;
 }
 export interface LoanListEntryUrlProps {
-  materialOverdueUrl: string;
   expirationWarningDaysBeforeConfig: string;
 }
 

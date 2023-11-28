@@ -23,10 +23,6 @@ export default {
     ...materialDetailsModalArgs,
     ...blockedArgs,
     // Config
-    materialOverdueUrl: {
-      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
-      control: { type: "text" }
-    },
     pageSizeDesktop: {
       defaultValue: 10,
       control: { type: "number" }

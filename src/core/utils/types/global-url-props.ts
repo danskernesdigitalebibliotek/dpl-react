@@ -4,7 +4,6 @@ interface GlobalUrlEntryPropsInterface {
   advancedSearchUrl: string;
   fbsBaseUrl: string;
   loanListEreolenUrl: string;
-  materialOverdueUrl: string;
   feesPageUrl: string;
   publizonBaseUrl: string;
   dplCmsBaseUrl: string;
