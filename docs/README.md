@@ -33,7 +33,7 @@ npm login --registry=https://npm.pkg.github.com
 3. If you need to log in through Adgangsplatformen:
    - Add `127.0.0.1 dpl-react.docker` to your `/etc/hosts` file
    - [Ensure that Node can bind to port 80](https://gist.github.com/guifromrio/6389682)
-   - Use <http://dpl-react.docker/> instead of <http://localhost:[port]>
+   - Use <http://dpl-react.docker/> instead of e.g. <http://localhost:8080>
 4. If you want to use Wiremock instead of production systems run
    `task dev:mocks:start`
 
