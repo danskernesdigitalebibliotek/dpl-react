@@ -39,7 +39,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   >(null);
 
   const t = useText();
-  const { ereolenMyPageUrl, feesPageUrl } = useUrls();
+  const { ereolenMyPageUrl, viewFeesAndCompensationRatesUrl } = useUrls();
 
   if (!loan) {
     return null;
@@ -131,7 +131,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           {dueDate && materialIsOverdue(dueDate) && (
             <div className="modal-details__warning">
               <WarningBar
-                leftLink={feesPageUrl}
+                leftLink={viewFeesAndCompensationRatesUrl}
                 linkText={t("materialDetailsLinkToPageWithFeesText")}
                 overdueText={t("materialDetailsWarningLoanOverdueText")}
               />
