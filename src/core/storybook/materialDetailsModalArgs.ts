@@ -66,11 +66,7 @@ export default {
     defaultValue: "Renew your loan"
   },
   feesPageUrl: {
-    defaultValue: "/user/me/fees",
-    control: { type: "text" }
-  },
-  viewFeesAndCompensationRatesUrl: {
-    defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
+    defaultValue: "/user/me/fees", // open source image of a red panda
     control: { type: "text" }
   },
   ereolenMyPageUrl: {
