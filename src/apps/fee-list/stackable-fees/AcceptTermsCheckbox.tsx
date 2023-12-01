@@ -13,7 +13,8 @@ const AcceptTermsCheckbox: FC<AcceptTermsCheckboxProps> = ({
   handleAcceptedTerms
 }) => {
   const t = useText();
-  const { termsOfTradeUrl } = useUrls();
+  const u = useUrls();
+  const termsOfTradeUrl = u("termsOfTradeUrl");
 
   return (
     <CheckBox

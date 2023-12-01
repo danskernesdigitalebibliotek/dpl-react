@@ -29,6 +29,12 @@ import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 
 const SearchHeader: React.FC = () => {
+  const t = useText();
+  const u = useUrls();
+  const searchUrl = u("searchUrl");
+  const materialUrl = u("materialUrl");
+  const advancedSearchUrl = u("advancedSearchUrl");
+
   const [q, setQ] = useState<string>("");
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<
@@ -40,6 +46,7 @@ const SearchHeader: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
+
   const {
     data,
     isLoading,
@@ -54,8 +61,6 @@ const SearchHeader: React.FC = () => {
   );
   const [isHeaderDropdownOpen, setIsHeaderDropdownOpen] =
     useState<boolean>(false);
-  const { searchUrl, materialUrl, advancedSearchUrl } = useUrls();
-  const t = useText();
   const autosuggestCategoryList: AutosuggestCategoryList[] = [
     {
       render: t("autosuggestBookCategoryText"),

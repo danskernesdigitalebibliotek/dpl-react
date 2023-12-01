@@ -18,7 +18,8 @@ const StatusCircleModalHeader: FC<StatusCircleModalHeaderProps> = ({
   statusCircleComponent
 }) => {
   const t = useText();
-  const { feesPageUrl } = useUrls();
+  const u = useUrls();
+  const feesPageUrl = u("feesPageUrl");
 
   return (
     <>

@@ -21,8 +21,10 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   dataCy = "material-button-physical"
 }) => {
   const t = useText();
+  const u = useUrls();
+  const authUrl = u("authUrl");
+
   const { openGuarded } = useModalButtonHandler();
-  const { authUrl } = useUrls();
 
   const onClick = () => {
     openGuarded({

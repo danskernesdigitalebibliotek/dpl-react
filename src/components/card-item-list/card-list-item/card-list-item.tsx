@@ -59,7 +59,10 @@ const CardListItem: React.FC<CardListItemProps> = ({
 }) => {
   const searchTitleId = useId();
   const t = useText();
-  const { materialUrl, searchUrl } = useUrls();
+  const u = useUrls();
+  const searchUrl = u("searchUrl");
+  const materialUrl = u("materialUrl");
+
   const { filters } = useFilterHandler();
   const materialTypeFromFilters = getFirstMaterialTypeFromFilters(
     filters,

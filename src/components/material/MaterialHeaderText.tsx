@@ -18,7 +18,9 @@ const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
   materialTitleId
 }) => {
   const t = useText();
-  const { searchUrl } = useUrls();
+  const u = useUrls();
+  const searchUrl = u("searchUrl");
+
   return (
     <>
       <h1

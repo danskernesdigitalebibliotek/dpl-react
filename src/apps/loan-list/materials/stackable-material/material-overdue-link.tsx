@@ -13,8 +13,10 @@ const MaterialOverdueLink: FC<MaterialOverdueLinkProps> = ({
   dueDate,
   showOn
 }) => {
-  const { viewFeesAndCompensationRatesUrl } = useUrls();
   const t = useText();
+  const u = useUrls();
+  const viewFeesAndCompensationRatesUrl = u("viewFeesAndCompensationRatesUrl");
+
   if (!dueDate || (dueDate && !materialIsOverdue(dueDate))) return null;
 
   return (

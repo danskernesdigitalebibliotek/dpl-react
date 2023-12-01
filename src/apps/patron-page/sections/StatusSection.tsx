@@ -10,7 +10,9 @@ import Link from "../../../components/atoms/links/Link";
 
 const StatusSection: FC = () => {
   const t = useText();
-  const { alwaysAvailableEreolenUrl } = useUrls();
+  const u = useUrls();
+  const alwaysAvailableEreolenUrl = u("alwaysAvailableEreolenUrl");
+
   const { data: libraryProfileFetched } = useGetV1LibraryProfile();
   const { isSuccess, data } = useGetV1UserLoans();
   const [libraryProfile, setLibraryProfile] = useState<LibraryProfile | null>(

@@ -30,7 +30,8 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
   setSelectedManifestations,
   cursorPointer = false
 }) => {
-  const { materialUrl } = useUrls();
+  const u = useUrls();
+  const materialUrl = u("materialUrl");
   const allMaterialTypes = getMaterialTypes(manifestations);
   const manifestationsByMaterialType =
     divideManifestationsByMaterialType(manifestations);

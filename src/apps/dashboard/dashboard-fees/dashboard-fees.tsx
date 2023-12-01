@@ -8,7 +8,9 @@ import WarningBar from "../../loan-list/materials/utils/warning-bar";
 
 const DashboardFees: FC = () => {
   const t = useText();
-  const { feesPageUrl } = useUrls();
+  const u = useUrls();
+
+  const feesPageUrl = u("feesPageUrl");
   const { data: fbsFees } = useGetFeesV2();
   const [feeCount, setFeeCount] = useState<number>();
   const [totalFeeAmount, setTotalFeeAmount] = useState<string>("0");

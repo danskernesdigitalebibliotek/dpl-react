@@ -34,6 +34,9 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   openReservationDeleteModal
 }) => {
   const t = useText();
+  const u = useUrls();
+  const ereolenHomepageUrl = u("ereolenHomepageUrl");
+
   const config = useConfig();
   const [externalUrl, setExternalUrl] = useState<URL | null>(null);
   const { state, identifier, numberInQueue } = reservation;
@@ -54,7 +57,6 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
       { cql: `term.isbn=${identifier}`, offset: 0, limit: 1, filters: {} },
       { enabled: !!identifier }
     );
-  const { ereolenHomepageUrl } = useUrls();
 
   useEffect(() => {
     if (!complexSearchData || complexSearchData.complexSearch.hitcount === 0) {
