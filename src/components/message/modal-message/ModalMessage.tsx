@@ -6,17 +6,25 @@ import Message, { MessageProps } from "./Message";
 import { Button } from "../../Buttons/Button";
 import { useModalButtonHandler } from "../../../core/utils/modal";
 
+interface RequiredModalId {
+  modalId: string;
+  closeAllModals?: never;
+}
+interface RequireCloseAllModals {
+  modalId?: never;
+  closeAllModals: boolean;
+}
+
 interface ModalMessageProps extends MessageProps {
   ctaButton?: {
-    modalId: string;
     text: string;
     callback?: () => void;
     dataCy?: string;
-  };
+  } & (RequiredModalId | RequireCloseAllModals);
 }
 
-const ModalMessage: FC<ModalMessageProps> = (props) => {
-  const { close } = useModalButtonHandler();
+const ModalMessage: FC<ModalMessageProps> = React.forwardRef((props) => {
+  const { close, closeAll } = useModalButtonHandler();
   const { ctaButton, ...messageProps } = props;
   return (
     <div className="modal-cta__container">
@@ -36,13 +44,18 @@ const ModalMessage: FC<ModalMessageProps> = (props) => {
               if (ctaButton.callback) {
                 ctaButton.callback();
               }
-              close(ctaButton.modalId);
+              if (ctaButton.modalId) {
+                close(ctaButton.modalId);
+              }
+              if (ctaButton.closeAllModals) {
+                closeAll();
+              }
             }}
           />
         )}
       </div>
     </div>
   );
-};
+});
 
 export default withFocusTrap(ModalMessage);

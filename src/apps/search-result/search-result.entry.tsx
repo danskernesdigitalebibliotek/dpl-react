@@ -20,6 +20,7 @@ interface SearchResultEntryTextProps {
   facetCanAlwaysBeLoanedText: string;
   facetChildrenOrAdultsText: string;
   facetCreatorsText: string;
+  facetDk5Text: string;
   facetFictionalCharactersText: string;
   facetFictionNonfictionText: string;
   facetGenreAndFormText: string;
@@ -28,6 +29,7 @@ interface SearchResultEntryTextProps {
   facetMaterialTypesSpecificText: string;
   facetSubjectsText: string;
   facetWorkTypesText: string;
+  facetYearText: string;
   filterListText: string;
   inSeriesText: string;
   loadingText: string;

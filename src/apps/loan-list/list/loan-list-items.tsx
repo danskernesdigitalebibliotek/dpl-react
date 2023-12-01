@@ -2,14 +2,14 @@ import React, { FC } from "react";
 import { removeLoansWithDuplicateDueDate } from "../utils/helpers";
 import StackableMaterial from "../materials/stackable-material/stackable-material";
 import { ListView } from "../../../core/utils/types/list-view";
-import { LoanType } from "../../../core/utils/types/loan-type";
+import { loanId, LoanType } from "../../../core/utils/types/loan-type";
 import { useText } from "../../../core/utils/text";
 
 interface LoanListItemProps {
   loans: LoanType[];
   view: ListView;
   dueDates?: string[];
-  openLoanDetailsModal: (modalId: string) => void;
+  openLoanDetailsModal: (loan: LoanType) => void;
   openDueDateModal: (dueDate: string) => void;
   indexOfFocus: number | null;
   dataCy?: string;
@@ -56,8 +56,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
                   openDueDateModal={openDueDateModal}
                   openLoanDetailsModal={openLoanDetailsModal}
                   loan={loan}
-                  identifier={loan.identifier}
-                  faust={loan.faust}
+                  item={loan}
                   loanId={loan.loanId}
                   key={loan.faust || loan.identifier}
                   // -1 because it is _additional_ to the one displayed...
@@ -73,10 +72,9 @@ const LoanListItems: FC<LoanListItemProps> = ({
             <StackableMaterial
               focused={i === indexOfFocus}
               openLoanDetailsModal={openLoanDetailsModal}
-              identifier={loan.identifier}
-              faust={loan.faust}
+              item={loan}
               loanId={loan.loanId}
-              key={loan.faust || loan.identifier}
+              key={loanId(loan)}
               loan={loan}
               // Zero, as it is not stacked
               additionalMaterials={0}

@@ -103,6 +103,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-no-only-tests": "^3.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -132,7 +133,6 @@
     "svg-url-loader": "^8.0.0",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.4",
-    "typescript-graphql-typed-files-modules": "^0.1.2",
     "vitest": "^0.28.5",
     "webpack": "^5.89.0",
     "webpack-cli": "^4.9.2",
@@ -143,7 +143,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-a88798519f8e7eac8b03350aa3f1f75299697b32",
+    "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-35495a0c14b38577e4fba78e88bfe0e1911790b5",
     "@reach/alert": "^0.17.0",
     "@reach/dialog": "^0.18.0",
     "@reduxjs/toolkit": "^1.9.7",

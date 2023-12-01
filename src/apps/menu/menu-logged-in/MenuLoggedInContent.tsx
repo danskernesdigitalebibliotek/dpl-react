@@ -41,7 +41,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
     AuthenticatedPatronV6 | null | undefined
   >();
   const [feeCount, setFeeCount] = useState<number>(0);
-  const { menuViewYourProfileTextUrl, logoutUrl } = useUrls();
+  const { userProfileUrl, logoutUrl } = useUrls();
 
   // Set user data
   useEffect(() => {
@@ -76,10 +76,10 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
             {userData?.patron?.name}
           </div>
           <Link
-            href={menuViewYourProfileTextUrl}
+            href={userProfileUrl}
             className="link-tag modal-header__link color-secondary-gray"
           >
-            {t("menuViewYourProfileText")}
+            {t("menuUserProfileUrlText")}
           </Link>
         </div>
         {showNotifications && (

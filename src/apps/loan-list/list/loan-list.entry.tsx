@@ -17,11 +17,11 @@ export interface LoanListEntryConfigProps {
   expirationWarningDaysBeforeConfig: string;
 }
 export interface LoanListEntryUrlProps {
-  materialOverdueUrl: string;
   expirationWarningDaysBeforeConfig: string;
 }
 
 interface LoanListEntryTextProps {
+  groupModalGoToMaterialAriaLabelText: string;
   loanListAriaLabelListButtonText: string;
   loanListAriaLabelStackButtonText: string;
   loanListDigitalLoansEmptyListText: string;

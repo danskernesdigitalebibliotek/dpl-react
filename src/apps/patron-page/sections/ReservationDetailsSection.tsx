@@ -3,8 +3,8 @@ import { PatronV5 } from "../../../core/fbs/model";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import BranchesDropdown from "../util/BranchesDropdown";
 import { useText } from "../../../core/utils/text";
-import { getModalIds } from "../../../core/utils/helpers/general";
 import { useModalButtonHandler } from "../../../core/utils/modal";
+import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
 export interface ChangePatronProps {
   (newValue: string | boolean, key: string): void;

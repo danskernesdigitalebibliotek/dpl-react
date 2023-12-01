@@ -4,9 +4,10 @@ import { Button } from "../Buttons/Button";
 import { useText } from "../../core/utils/text";
 import { RequestStatus } from "../../core/utils/types/request";
 import { getRenewButtonLabel } from "../../core/utils/helpers/renewal";
+import { ListType } from "../../core/utils/types/list-type";
 
 export interface LoansGroupModalButtonProps {
-  materialsToRenew: string[];
+  materialsToRenew: ListType[];
   renewableMaterials: number;
   renewSelected: () => void;
   renewingStatus: RequestStatus;

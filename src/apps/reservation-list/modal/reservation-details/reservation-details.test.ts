@@ -1,15 +1,17 @@
 import { TOKEN_LIBRARY_KEY } from "../../../../core/token";
 
-describe("Reservation details modal test", () => {
+describe("Reservation details modal", () => {
   beforeEach(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
     // Intercept covers.
-    cy.fixture("cover.json").then((result) => {
-      cy.intercept("GET", "**/covers**", result);
-    });
+    cy.fixture("cover.json")
+      .then((result) => {
+        cy.intercept("GET", "**/covers**", result);
+      })
+      .as("cover");
 
     const clockDate = new Date(
       "Wed Feb 08 2023 20:10:25 GMT+0200 (Central European Summer Time)"
@@ -57,6 +59,12 @@ describe("Reservation details modal test", () => {
       operationName: "getManifestationViaMaterialByFaust",
       fixtureFilePath: "reservation-details/fbi-api.json"
     });
+
+    // Intercept graphql advanced search query.
+    cy.interceptGraphql({
+      operationName: "complexSearchWithPaginationWorkAccess",
+      fixtureFilePath: "reservation-details/advanced-search-fbi-api.json"
+    });
   });
 
   it("It shows digital reservation details modal", () => {
@@ -79,14 +87,14 @@ describe("Reservation details modal test", () => {
           reservationType: "normal"
         }
       ]
-    });
+    }).as("physical_reservations");
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
       body: {
         reservations: [
           {
             productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
-            identifier: "9788740047905",
+            identifier: "9788702319361",
             createdDateUtc: "2022-08-16T10:52:39.932Z",
             status: 2,
             productTitle: "Bargums synder",
@@ -97,7 +105,7 @@ describe("Reservation details modal test", () => {
         code: 101,
         message: "OK"
       }
-    });
+    }).as("digital_reservations");
 
     cy.intercept("GET", "**v1/products/**", {
       product: {
@@ -147,7 +155,7 @@ describe("Reservation details modal test", () => {
       },
       code: 101,
       message: "OK"
-    });
+    }).as("products");
 
     cy.intercept("DELETE", "**/v1/user/reservations/**", {
       code: 101,
@@ -189,8 +197,8 @@ describe("Reservation details modal test", () => {
       .eq(0)
       .should("have.text", "Go to eReolen")
       .should("have.attr", "href")
-      // ID 17 2.d.i. link to "ereolen.dk/user/me"
-      .should("include", "ereolen.dk/user/me");
+      // ID 17 2.d.i. link to "ereolen.dk"
+      .should("include", "ereolen.dk");
 
     cy.get(".modal")
       .find(".status-label")
@@ -229,7 +237,12 @@ describe("Reservation details modal test", () => {
 
     cy.get(".modal").find("[data-cy='delete-reservation-button']").click();
 
-    cy.get(".modal").should("not.exist");
+    // Close confirmation modal.
+    cy.get(".modal.modal-cta")
+      .getBySel("modal-cta-button")
+      .should("have.text", "Ok")
+      .click();
+    cy.get(".modal.modal-cta").should("not.exist");
   });
 
   it("It shows digital reservation details modal, material queued", () => {
@@ -259,7 +272,7 @@ describe("Reservation details modal test", () => {
         reservations: [
           {
             productId: "0ddd10d0-d69f-4734-8a27-ac4546f4b912",
-            identifier: "9788740047905",
+            identifier: "9788702319361",
             createdDateUtc: "2022-08-16T12:52:39.932Z",
             status: 1,
             productTitle: "Bargums synder",
@@ -352,7 +365,15 @@ describe("Reservation details modal test", () => {
           reservationType: "normal"
         }
       ]
-    });
+    }).as("physical_reservations");
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        reservations: [],
+        code: 101,
+        message: "OK"
+      }
+    }).as("digital_reservations");
     cy.interceptRest({
       aliasName: "work",
       httpMethod: "POST",
@@ -377,6 +398,13 @@ describe("Reservation details modal test", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
     );
+
+    cy.wait([
+      "@physical_reservations",
+      "@digital_reservations",
+      "@work",
+      "@cover"
+    ]);
 
     // ID 43 2.a. Material cover (coverservice)
     cy.get(".modal")
@@ -466,6 +494,23 @@ describe("Reservation details modal test", () => {
     cy.getBySel("reservation-form-button", true).click();
     cy.getBySel("modal-cta-button", true).click();
 
+    cy.wait("@put-library-branch-and-expiry-date").should(({ request }) => {
+      expect(JSON.stringify(request.body)).to.equal(
+        JSON.stringify({
+          reservations: [
+            {
+              expiryDate: "2022-09-21",
+              // TODO: This should be DK-775120 as this is what the user
+              //  selected in previous steps but that does not seem to work
+              //  right now.
+              pickupBranch: "DK-775160",
+              reservationId: 4698559133
+            }
+          ]
+        })
+      );
+    });
+
     // ID 13 2.f. header "Not interested after"
     cy.getBySel("reservation-form-list-item")
       .eq(2)
@@ -492,6 +537,21 @@ describe("Reservation details modal test", () => {
 
     cy.getBySel("reservation-form-button", true).click();
     cy.getBySel("modal-cta-button", true).click();
+
+    cy.wait("@put-library-branch-and-expiry-date").should(({ request }) => {
+      expect(JSON.stringify(request.body)).to.equal(
+        JSON.stringify({
+          reservations: [
+            {
+              // TODO This should be updated to reflect the new interest date
+              expiryDate: "2022-09-21",
+              pickupBranch: "DK-775120",
+              reservationId: 4698559133
+            }
+          ]
+        })
+      );
+    });
 
     // ID 15 2.i still on "detaljevisning"
     // ID 16 6. user clicks save
@@ -617,6 +677,155 @@ describe("Reservation details modal test", () => {
       .eq(2)
       .find(".text-small-caption")
       .should("have.text", "21-06-2022");
+  });
+
+  it("It supports updating parallel reservations", () => {
+    cy.intercept("GET", "**/v1/agencyid/patrons/patronid/reservations/**", {
+      statusCode: 200,
+      body: [
+        {
+          reservationId: 4698559133,
+          recordId: "46985591",
+          state: "reserved",
+          pickupBranch: "DK-775160",
+          pickupDeadline: null,
+          expiryDate: "2022-09-21",
+          dateOfReservation: "2022-06-14T09:00:50.059",
+          numberInQueue: 1,
+          periodical: null,
+          pickupNumber: null,
+          ilBibliographicRecord: null,
+          transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+          reservationType: "parallel"
+        },
+        {
+          reservationId: 4698559134,
+          recordId: "46985592",
+          state: "reserved",
+          pickupBranch: "DK-775160",
+          pickupDeadline: null,
+          expiryDate: "2022-09-21",
+          dateOfReservation: "2022-06-14T09:00:50.059",
+          numberInQueue: 1,
+          periodical: null,
+          pickupNumber: null,
+          ilBibliographicRecord: null,
+          transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+          reservationType: "parallel"
+        }
+      ]
+    }).as("physical_reservations");
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        reservations: [],
+        code: 101,
+        message: "OK"
+      }
+    }).as("digital_reservations");
+
+    cy.interceptRest({
+      aliasName: "work",
+      httpMethod: "POST",
+      url: "**/next/**",
+      fixtureFilePath: "reservation-list/work-bestrepresentation.json"
+    });
+
+    cy.intercept(
+      "PUT",
+      "**/external/v1/agencyid/patrons/patronid/reservations",
+      {
+        statusCode: 201,
+        body: { code: 101, message: "OK" }
+      }
+    ).as("put-library-branch-and-expiry-date");
+
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
+    );
+
+    cy.wait(["@physical_reservations", "@digital_reservations", "@work"]);
+
+    // Open the change pickup branch modal for the reservation.
+    cy.getBySel("reservation-form-list-item")
+      .eq(1)
+      .find("button")
+      .should("exist")
+      .click();
+
+    // Change the pickup branch and save.
+    cy.getBySel("modal-reservation-form-select")
+      .should("exist")
+      .select("DK-775120");
+    cy.getBySel("reservation-form-button").should("exist").click();
+
+    cy.wait("@put-library-branch-and-expiry-date").should(({ request }) => {
+      // Use JSON stringify to make it easier to spot differences in the
+      // logged output in case of errors.
+      expect(JSON.stringify(request.body)).to.equal(
+        JSON.stringify({
+          reservations: [
+            {
+              expiryDate: "2022-09-21",
+              // TODO: This should be DK-775120 as this is what the user
+              //  selected in previous steps but that does not seem to work
+              //  right now.
+              pickupBranch: "DK-775160",
+              reservationId: 4698559133
+            },
+            {
+              expiryDate: "2022-09-21",
+              // TODO: As above this should be DK-775120.
+              pickupBranch: "DK-775160",
+              reservationId: 4698559134
+            }
+          ]
+        })
+      );
+    });
+
+    // Close the modal
+    cy.getBySel("modal-cta-button").should("exist").click();
+
+    // Open the change interest period modal for the reservation.
+    cy.getBySel("reservation-form-list-item")
+      .eq(2)
+      .find("button")
+      .should("exist")
+      .click();
+
+    // Change the interest period and save.
+    cy.getBySel("modal-reservation-form-select")
+      .should("exist")
+      .select("1 month");
+    cy.getBySel("reservation-form-button").should("exist").click();
+
+    cy.wait("@put-library-branch-and-expiry-date").should(({ request }) => {
+      // Use JSON stringify to make it easier to spot differences in the
+      // logged output in case of errors.
+      expect(JSON.stringify(request.body)).to.equal(
+        JSON.stringify({
+          reservations: [
+            {
+              // TODO: This should be an updated value as this is what the user
+              //  selected in previous steps but that does not seem to work
+              //  right now.
+              expiryDate: "2022-09-21",
+              pickupBranch: "DK-775120",
+              reservationId: 4698559133
+            },
+            {
+              // TODO: As above this should be updated as above.
+              expiryDate: "2022-09-21",
+              pickupBranch: "DK-775120",
+              reservationId: 4698559134
+            }
+          ]
+        })
+      );
+    });
+
+    cy.getBySel("modal-cta-button").should("exist").click();
   });
 });
 

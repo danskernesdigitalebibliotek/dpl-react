@@ -1,17 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
-import { useGetLoansV2, useGetReservationsV2 } from "../../core/fbs/fbs";
 import {
   sortByLoanDate,
   sortByReservationDate
 } from "../../core/utils/helpers/general";
-import {
-  mapFBSLoanToLoanType,
-  mapFBSReservationToReservationType
-} from "../../core/utils/helpers/list-mapper";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { ReservationType } from "../../core/utils/types/reservation-type";
 import InspirationRecommender from "./InspirationRecommender";
 import RecommendList from "./RecommendList";
+import useReservations from "../../core/utils/useReservations";
+import useLoans from "../../core/utils/useLoans";
 
 const Recommender: FC = () => {
   const [loanForRecommender, setLoanForRecommender] = useState<LoanType | null>(
@@ -19,44 +16,17 @@ const Recommender: FC = () => {
   );
   const [reservationForRecommender, setReservationForRecommender] =
     useState<ReservationType | null>(null);
-  const [physicalLoans, setPhysicalLoans] = useState<LoanType[] | null>(null);
-  const [physicalReservations, setPhysicalReservations] = useState<
-    ReservationType[] | null
-  >(null);
 
   const {
-    isSuccess: isSuccessFbsLoans,
-    error: fbsErrorLoans,
-    data: fbsLoans,
-    isLoading: fbsLoansLoading
-  } = useGetLoansV2();
+    fbs: { loans: physicalLoans, isLoading: fbsLoansLoading }
+  } = useLoans();
 
   const {
-    isSuccess: isSuccessFbsReservations,
-    error: fbsErrorReservations,
-    data: fbsReservations,
-    isLoading: fbsReservationsLoading
-  } = useGetReservationsV2();
-
-  useEffect(() => {
-    if (fbsLoans) {
-      setPhysicalLoans(mapFBSLoanToLoanType(fbsLoans));
+    fbs: {
+      reservations: physicalReservations,
+      isLoading: fbsReservationsLoading
     }
-    if (fbsErrorLoans && !isSuccessFbsLoans) {
-      setPhysicalLoans([]);
-    }
-  }, [fbsLoans, fbsErrorLoans, isSuccessFbsLoans]);
-
-  useEffect(() => {
-    if (fbsReservations) {
-      setPhysicalReservations(
-        mapFBSReservationToReservationType(fbsReservations)
-      );
-    }
-    if (fbsErrorReservations && !isSuccessFbsReservations) {
-      setPhysicalReservations([]);
-    }
-  }, [fbsErrorReservations, fbsReservations, isSuccessFbsReservations]);
+  } = useReservations();
 
   useEffect(() => {
     if (physicalLoans !== null) {
@@ -81,8 +51,7 @@ const Recommender: FC = () => {
       {loanForRecommender && loanForRecommender.faust && (
         <RecommendList
           titleKey="recommenderTitleLoansText"
-          faust={loanForRecommender.faust}
-          identifier={loanForRecommender.identifier}
+          item={loanForRecommender}
           loanOrReservationFaust={loanForRecommender.faust}
         />
       )}
@@ -91,8 +60,7 @@ const Recommender: FC = () => {
         reservationForRecommender.faust && (
           <RecommendList
             titleKey="recommenderTitleReservationsText"
-            faust={reservationForRecommender.faust}
-            identifier={reservationForRecommender.identifier}
+            item={reservationForRecommender}
             loanOrReservationFaust={reservationForRecommender.faust}
           />
         )}

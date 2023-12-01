@@ -5,8 +5,8 @@ import { isAnonymous, usePatronData } from "../../core/utils/helpers/user";
 import MenuLoggedIn from "./menu-logged-in/menu-logged-in";
 import { useText } from "../../core/utils/text";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import { getModalIds } from "../../core/utils/helpers/general";
 import TextLineSkeleton from "../../components/skeletons/TextLineSkeleton";
+import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 
 interface MenuProps {
   pageSize: number;

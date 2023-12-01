@@ -1,9 +1,13 @@
 import React, { useEffect, useState, ComponentType, FC } from "react";
-import { useGetManifestationViaMaterialByFaustQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import {
+  ManifestationBasicDetailsFragment,
+  useGetManifestationViaBestRepresentationByFaustQuery,
+  useGetManifestationViaMaterialByFaustQuery
+} from "../../../../core/dbc-gateway/generated/graphql";
 import { Product } from "../../../../core/publizon/model";
-import { FaustId } from "../../../../core/utils/types/ids";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
 import { mapManifestationToBasicDetailsType } from "../../../../core/utils/helpers/list-mapper";
+import { ListType } from "../../../../core/utils/types/list-type";
 
 export interface MaterialProps {
   material?: BasicDetailsType | null;
@@ -11,8 +15,7 @@ export interface MaterialProps {
 
 type InputProps = {
   digitalMaterial?: Product | null;
-  faust?: FaustId | null;
-  identifier?: string | null;
+  item?: ListType;
 };
 
 const fetchMaterial =
@@ -20,37 +23,49 @@ const fetchMaterial =
     Component: ComponentType<P & MaterialProps>,
     FallbackComponent?: ComponentType
   ): FC<P & InputProps> =>
-  ({ identifier, faust, ...props }: InputProps) => {
+  ({ item, ...props }: InputProps) => {
     // If this is a digital book, another HOC fetches the data and this
     // HOC just returns the component
-    if (identifier) {
+    if (item?.identifier) {
       return (
         <Component
           /* eslint-disable-next-line react/jsx-props-no-spreading */
           {...(props as P)}
-          identifier={identifier}
+          item={item}
         />
       );
     }
 
-    if (faust) {
+    if (item?.faust) {
       const [material, setMaterial] = useState<BasicDetailsType>();
 
-      const { isSuccess: isSuccessManifestation, data } =
-        useGetManifestationViaMaterialByFaustQuery({
-          faust
+      let manifestation: ManifestationBasicDetailsFragment | null = null;
+      if (item.reservationIds && item.reservationIds.length > 1) {
+        const { isSuccess, data } =
+          useGetManifestationViaBestRepresentationByFaustQuery({
+            faust: item.faust
+          });
+        if (isSuccess && data?.manifestation) {
+          manifestation =
+            data.manifestation.ownerWork.manifestations.bestRepresentation;
+        }
+      } else {
+        const { isSuccess, data } = useGetManifestationViaMaterialByFaustQuery({
+          faust: item.faust
         });
+        if (isSuccess && data?.manifestation) {
+          manifestation = data.manifestation;
+        }
+      }
 
       useEffect(() => {
-        if (data && isSuccessManifestation && data.manifestation) {
-          setMaterial(mapManifestationToBasicDetailsType(data));
-        } else {
-          // todo error handling, missing in figma
+        if (manifestation) {
+          setMaterial(mapManifestationToBasicDetailsType(manifestation));
         }
-      }, [isSuccessManifestation, data]);
+      }, [manifestation]);
 
       // in cases where the material is not found we return null, else we would load forever
-      if (data && data.manifestation === null) return null;
+      if (manifestation === null) return null;
 
       // if the fallback component is provided we can show it while the data is loading
       if (!material) return FallbackComponent ? <FallbackComponent /> : null;
@@ -59,8 +74,8 @@ const fetchMaterial =
         <Component
           /* eslint-disable-next-line react/jsx-props-no-spreading */
           {...(props as P)}
+          item={item}
           material={material}
-          faust={faust}
         />
       );
     }
