@@ -3,7 +3,13 @@ import { RequestStatus } from "./types/request";
 
 // This is a hook for use cases where several requests are performed
 // and the status of the request is needed.
-export const useMultipleRequestsWithStatus = <TRequest, TParams, TResponse>({
+export const useMultipleRequestsWithStatus = <
+  // We deliberately use Function because any function shape goes here.
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  TRequest extends Function,
+  TParams,
+  TResponse
+>({
   requests,
   onError,
   onSuccess
@@ -60,7 +66,13 @@ export const useMultipleRequestsWithStatus = <TRequest, TParams, TResponse>({
 
 // This is a hook for use cases where one request is performed
 // and the status of the request is needed.
-export const useSingleRequestWithStatus = <TRequest, TParams, TResponse>({
+export const useSingleRequestWithStatus = <
+  // We deliberately use Function because any function shape goes here.
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  TRequest extends Function,
+  TParams,
+  TResponse
+>({
   request,
   onError,
   onSuccess
