@@ -144,7 +144,7 @@
   },
   "dependencies": {
     "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-35495a0c14b38577e4fba78e88bfe0e1911790b5",
-    "@reach/alert": "^0.17.0",
+    "@reach/alert": "^0.18.0",
     "@reach/dialog": "^0.18.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/lodash": "^4.14.202",
