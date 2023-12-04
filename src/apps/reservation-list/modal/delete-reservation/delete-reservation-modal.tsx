@@ -3,7 +3,10 @@ import { UseMutateFunction, useQueryClient } from "react-query";
 import Modal from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import DeleteReservationContent from "./delete-reservation-content";
-import { useDeleteReservations } from "../../../../core/fbs/fbs";
+import {
+  getGetReservationsV2QueryKey,
+  useDeleteReservations
+} from "../../../../core/fbs/fbs";
 import {
   getGetV1UserReservationsQueryKey,
   useDeleteV1UserReservationsIdentifier
@@ -88,7 +91,9 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
       // Since we got success, we can assume that all reservations
       // were successfully deleted.
       setDeletedReservations(reservations.length);
+      // Invalidate queries to update the UI.
       queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
+      queryClient.invalidateQueries(getGetReservationsV2QueryKey());
     }
   });
 
