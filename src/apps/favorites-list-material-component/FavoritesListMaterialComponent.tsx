@@ -9,7 +9,11 @@ import { useUrls } from "../../core/utils/url";
 const FavoritesListMaterialComponent: FC = () => {
   const t = useText();
   const [materials, setMaterials] = useState<Pid[]>([]);
-  const { favoritesListMaterialComponentGoToListUrl } = useUrls();
+  const u = useUrls();
+  const favoritesListMaterialComponentGoToListUrl = u(
+    "favoritesListMaterialComponentGoToListUrl"
+  );
+
   const { data } = useGetList("default");
   const { collections } = (data as { collections: Pid[] }) || [];
 

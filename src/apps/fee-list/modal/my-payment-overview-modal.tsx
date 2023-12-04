@@ -7,8 +7,10 @@ import { useUrls } from "../../../core/utils/url";
 
 const MyPaymentOverviewModal: FC = () => {
   const t = useText();
+  const u = useUrls();
+  const paymentOverviewUrl = u("paymentOverviewUrl");
   const { close } = useModalButtonHandler();
-  const { paymentOverviewUrl } = useUrls();
+
   const handleClick = () => {
     close("intermediate-payment-modal");
   };

@@ -23,8 +23,10 @@ const MaterialButtonReservableFromAnotherLibrary: FC<
   dataCy = "material-button-reservable-on-another-library"
 }) => {
   const t = useText();
+  const u = useUrls();
+  const authUrl = u("authUrl");
+
   const { openGuarded } = useModalButtonHandler();
-  const { authUrl } = useUrls();
 
   const onClick = () => {
     openGuarded({

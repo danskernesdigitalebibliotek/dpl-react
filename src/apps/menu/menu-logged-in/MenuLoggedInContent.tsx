@@ -19,6 +19,12 @@ interface MenuLoggedInContentProps {
 }
 
 const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
+  const t = useText();
+  const u = useUrls();
+  const userProfileUrl = u("userProfileUrl");
+  const logoutUrl = u("logoutUrl");
+  const config = useConfig();
+
   const {
     all: { reservations }
   } = useReservations();
@@ -27,8 +33,6 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
   } = useLoans();
   const { data: patronData } = usePatronData();
   const { data: fbsFees } = useGetFeesV2();
-  const t = useText();
-  const config = useConfig();
 
   // Get menu navigation data from config.
   const menuNavigationData = config<MenuNavigationDataType[]>(
@@ -41,7 +45,6 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
     AuthenticatedPatronV6 | null | undefined
   >();
   const [feeCount, setFeeCount] = useState<number>(0);
-  const { userProfileUrl, logoutUrl } = useUrls();
 
   // Set user data
   useEffect(() => {

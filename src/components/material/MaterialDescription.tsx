@@ -24,7 +24,9 @@ export interface MaterialDescriptionProps {
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
-  const { searchUrl, materialUrl } = useUrls();
+  const u = useUrls();
+  const searchUrl = u("searchUrl");
+  const materialUrl = u("materialUrl");
   const {
     fictionNonfiction,
     series,

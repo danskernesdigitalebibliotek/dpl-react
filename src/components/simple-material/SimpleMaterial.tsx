@@ -33,8 +33,10 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
   },
   app
 }) => {
+  const u = useUrls();
+  const materialUrl = u("materialUrl");
+
   const dispatch = useDispatch<TypedDispatch>();
-  const { materialUrl } = useUrls();
   const materialFullUrl = constructMaterialUrl(materialUrl, workId);
 
   // Create authors string

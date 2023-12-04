@@ -19,8 +19,9 @@ export interface FeeDetailsContentProps {
 
 const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
   const t = useText();
+  const u = useUrls();
+  const paymentOverviewUrl = u("paymentOverviewUrl");
   const [check, setCheck] = useState(false);
-  const { paymentOverviewUrl } = useUrls();
   const handleAcceptedTerms = () => {
     setCheck(!check);
   };
