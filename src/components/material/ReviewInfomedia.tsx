@@ -39,6 +39,10 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   },
   dataCy = "review-infomedia"
 }) => {
+  const t = useText();
+  const u = useUrls();
+  const authUrl = u("authUrl");
+
   const date = getReviewRelease(dateFirstEdition, workYear, edition);
   const authors = getAuthorNames(creators);
   const publication = getPublicationName(hostPublication);
@@ -49,8 +53,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   const { data, error } = useGetInfomediaQuery({
     id: infomediaId
   });
-  const t = useText();
-  const { authUrl } = useUrls();
+
   const onClick = (reviewId: string) => {
     const returnUrl = currentLocationWithParametersUrl({
       disclosure: "disclosure-reviews"

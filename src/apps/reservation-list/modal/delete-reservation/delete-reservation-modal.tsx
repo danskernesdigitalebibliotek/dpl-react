@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useState } from "react";
-import { UseMutateFunction, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import Modal from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import DeleteReservationContent from "./delete-reservation-content";
@@ -12,9 +12,14 @@ import {
   useDeleteV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
 import { useMultipleRequestsWithStatus } from "../../../../core/utils/useRequestsWithStatus";
-import { requestsAndReservations } from "./helper";
+import {
+  OperationDigital,
+  OperationPhysical,
+  ParamsDigital,
+  ParamsPhysical,
+  requestsAndReservations
+} from "./helper";
 import ModalMessage from "../../../../components/message/modal-message/ModalMessage";
-import { DeleteReservationsParams } from "../../../../core/fbs/model";
 import { ApiResult } from "../../../../core/publizon/model";
 import {
   reservationId,
@@ -22,24 +27,6 @@ import {
 } from "../../../../core/utils/types/reservation-type";
 import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
 
-type ParamsDigital = {
-  identifier: string;
-};
-type ParamsPhysical = {
-  params?: DeleteReservationsParams;
-};
-type OperationDigital = UseMutateFunction<
-  ApiResult | null,
-  unknown,
-  ParamsDigital,
-  unknown
->;
-type OperationPhysical = UseMutateFunction<
-  void | null,
-  unknown,
-  ParamsPhysical,
-  unknown
->;
 interface DeleteReservationModalProps {
   modalId: string;
   reservations: ReservationType[];
@@ -67,7 +54,7 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
 
   const { requests, reservationsPhysical, reservationsDigital } = useMemo(
     () =>
-      requestsAndReservations<OperationPhysical, OperationDigital>({
+      requestsAndReservations({
         operations: {
           digital: deleteDigitalReservation,
           physical: deletePhysicalReservation

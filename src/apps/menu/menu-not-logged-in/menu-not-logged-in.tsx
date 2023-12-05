@@ -8,7 +8,10 @@ import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
 const MenuNotLoggedInContent: FC = () => {
   const t = useText();
-  const { menuLoginUrl, menuSignUpUrl } = useUrls();
+  const u = useUrls();
+  const menuLoginUrl = u("menuLoginUrl");
+  const menuSignUpUrl = u("menuSignUpUrl");
+
   const { userMenuAnonymous: userMenuAnonymousModalId } = getModalIds();
 
   return (

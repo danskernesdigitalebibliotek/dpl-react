@@ -10,7 +10,8 @@ const CreatePatron: FC = () => {
   const [cpr, setCpr] = useState<string | null>(null);
   const config = useConfig();
   const t = useText();
-  const { dashboardUrl } = useUrls();
+  const u = useUrls();
+  const dashboardUrl = u("dashboardUrl");
 
   const { id: agencyId } = config<{
     id: `${number}`;

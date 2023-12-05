@@ -26,9 +26,11 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   dataCy = "material-button-online-infomedia-article"
 }) => {
   const t = useText();
+  const u = useUrls();
+  const authUrl = u("authUrl");
+
   const { isLoading, data: userData } = usePatronData();
   const { openGuarded } = useModalButtonHandler();
-  const { authUrl } = useUrls();
   const isUserResident =
     userData && userData?.patron ? isResident(userData.patron) : null;
 

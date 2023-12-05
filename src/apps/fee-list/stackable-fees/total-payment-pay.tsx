@@ -17,8 +17,10 @@ const TotalPaymentPay: FC<TotalPaymentPayProps> = ({
   totalText,
   hideCheckbox
 }) => {
-  const { availablePaymentTypesUrl } = useUrls();
   const t = useText();
+  const u = useUrls();
+  const availablePaymentTypesUrl = u("availablePaymentTypesUrl");
+
   const { open } = useModalButtonHandler();
 
   const [check, setCheck] = useState(hideCheckbox);

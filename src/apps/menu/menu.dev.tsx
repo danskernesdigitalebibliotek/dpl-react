@@ -128,6 +128,14 @@ export default {
       defaultValue: "/Logout",
       control: { type: "text" }
     },
+    physicalLoansUrl: {
+      defaultValue: "/user/me/loans",
+      control: { type: "text" }
+    },
+    reservationsUrl: {
+      defaultValue: "/user/me/reservations",
+      control: { type: "text" }
+    },
     menuLoginText: {
       defaultValue: "Log in",
       control: { type: "text" }

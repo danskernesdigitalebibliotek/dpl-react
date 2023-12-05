@@ -38,6 +38,10 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   columns
 }) => {
   const t = useText();
+  const u = useUrls();
+  const physicalLoansUrl = u("physicalLoansUrl");
+  const reservationsUrl = u("reservationsUrl");
+
   const {
     all: {
       reservations,
@@ -80,7 +84,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     reservationsReady: reservationsReadyID,
     reservationsQueued: reservationsQueueID
   } = getModalIds();
-  const { physicalLoansUrl, reservationsUrl } = useUrls();
 
   const openLoanDetailsModal = useCallback(
     (loan: LoanType) => {

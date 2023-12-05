@@ -20,11 +20,13 @@ export interface MaterialButtonOnlineDigitalArticleProps {
 const MaterialButtonOnlineDigitalArticle: FC<
   MaterialButtonOnlineDigitalArticleProps
 > = ({ pid, size, dataCy = "material-button-online-digital-article" }) => {
+  const t = useText();
+  const u = useUrls();
+  const authUrl = u("authUrl");
+
   const [isUserResident, setIsUserResident] = useState<null | boolean>(null);
   const { isLoading, data: userData } = usePatronData();
   const { openGuarded } = useModalButtonHandler();
-  const t = useText();
-  const { authUrl } = useUrls();
 
   useDeepCompareEffect(() => {
     if (!userData || !userData.patron) {

@@ -45,10 +45,8 @@ const useUserInfo = <
     TData
   >
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const { userinfoUrl } = useUrls();
-  if (!userinfoUrl) {
-    throw new Error("userinfoUrl is not defined");
-  }
+  const u = useUrls();
+  const userinfoUrl = u("userinfoUrl");
 
   const url = String(userinfoUrl);
   const queryKey = queryOptions?.queryKey ?? getUserInfoQueryKey(url);

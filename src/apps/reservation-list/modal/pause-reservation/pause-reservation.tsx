@@ -20,7 +20,9 @@ interface PauseReservationProps {
 
 const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const t = useText();
-  const { pauseReservationInfoUrl } = useUrls();
+  const u = useUrls();
+  const pauseReservationInfoUrl = u("pauseReservationInfoUrl");
+
   const queryClient = useQueryClient();
   const { mutate } = useUpdateV5();
   const { close } = useModalButtonHandler();

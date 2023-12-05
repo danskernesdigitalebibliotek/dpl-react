@@ -17,10 +17,11 @@ export interface UserInfoProps {
 
 const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   const t = useText();
-  const { logoutUrl } = useUrls();
+  const u = useUrls();
+  const logoutUrl = u("logoutUrl");
+  const redirectOnUserCreatedUrl = u("redirectOnUserCreatedUrl");
   const config = useConfig();
   const formRef = useRef<HTMLFormElement>(null);
-  const { redirectOnUserCreatedUrl } = useUrls();
   const [pin, setPin] = useState<string | null>(null);
   const minAge = parseInt(config("minAgeConfig"), 10);
   const [validCpr] = useState<boolean>(patronAgeValid(cpr, minAge));
