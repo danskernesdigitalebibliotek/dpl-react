@@ -1,6 +1,6 @@
 import { TOKEN_LIBRARY_KEY } from "../../../../core/token";
 
-describe("Delete reservation modal test", () => {
+describe("Delete reservation modal", () => {
   beforeEach(() => {
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
@@ -133,7 +133,7 @@ describe("Delete reservation modal test", () => {
     cy.get(".modal.modal-cta").should("not.exist");
   });
 
-  it("It shows delete physical material modal", () => {
+  it("It supports deleting physical reservations", () => {
     cy.intercept("GET", "**/v1/agencyid/patrons/patronid/reservations/**", {
       statusCode: 200,
       body: [
@@ -153,7 +153,7 @@ describe("Delete reservation modal test", () => {
           reservationType: "normal"
         }
       ]
-    });
+    }).as("get-reservations");
 
     cy.intercept("POST", "**/next/**", {
       statusCode: 200,
@@ -177,7 +177,7 @@ describe("Delete reservation modal test", () => {
           }
         }
       }
-    });
+    }).as("get-manifestation");
 
     cy.intercept(
       "DELETE",
@@ -191,6 +191,9 @@ describe("Delete reservation modal test", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
+
+    cy.wait(["@get-reservations"]);
+    cy.wait(["@get-manifestation"]);
 
     cy.get(".list-reservation__about").find("button").click();
     cy.get(".modal-details__buttons").eq(0).find("button").click();
@@ -223,7 +226,92 @@ describe("Delete reservation modal test", () => {
       .click();
 
     // ID 18 4 system closes modal
+    cy.get(".modal.modal-cta")
+      .getBySel("message-title")
+      .should("have.text", "Reservations deleted");
+
+    // Close confirmation modal.
+    cy.get(".modal.modal-cta")
+      .getBySel("modal-cta-button")
+      .should("have.text", "Ok")
+      .click();
     cy.get(".modal.modal-cta").should("not.exist");
+  });
+
+  it("It supports deleting parallel physical reservations", () => {
+    cy.intercept("GET", "**/v1/agencyid/patrons/patronid/reservations/**", {
+      statusCode: 200,
+      body: [
+        {
+          reservationId: 46985591,
+          recordId: "46985591",
+          state: "reserved",
+          pickupBranch: "DK-775160",
+          pickupDeadline: null,
+          expiryDate: "2022-09-21",
+          dateOfReservation: "2022-06-14T09:00:50.059",
+          numberInQueue: 1,
+          periodical: null,
+          pickupNumber: null,
+          ilBibliographicRecord: null,
+          // The reservations have different ids but use the same transaction id
+          // (and have the type parallel) to signal that they are part of
+          // parallel reservation.
+          transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+          reservationType: "parallel"
+        },
+        {
+          reservationId: 46985592,
+          recordId: "46985592",
+          state: "reserved",
+          pickupBranch: "DK-775160",
+          pickupDeadline: null,
+          expiryDate: "2022-09-21",
+          dateOfReservation: "2022-06-14T09:00:50.059",
+          numberInQueue: 1,
+          periodical: null,
+          pickupNumber: null,
+          ilBibliographicRecord: null,
+          transactionId: "c6742151-f4a7-4655-a94f-7bd6a0009431",
+          reservationType: "parallel"
+        }
+      ]
+    }).as("get-reservations");
+
+    cy.interceptRest({
+      aliasName: "get-manifestation",
+      httpMethod: "POST",
+      url: "**/next/**",
+      fixtureFilePath: "reservation-list/work-bestrepresentation.json"
+    });
+
+    cy.intercept(
+      "DELETE",
+      // It is important that the path contains both reservation ids to ensure
+      // that all parts of the parallel reservation are deleted.
+      "**/external/v1/agencyid/patrons/patronid/reservations?reservationid=46985591&reservationid=46985592",
+      {
+        code: 101,
+        message: "OK"
+      }
+    ).as("delete-parallel-reservation");
+
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
+    );
+
+    // Ensure that the UI has loaded and the reservations are visible.
+    cy.wait(["@get-reservations"]);
+    cy.wait(["@get-manifestation"]);
+
+    // Click on the only reservation in the list to open the details modal.
+    cy.get(".list-reservation__about").find("button").click();
+    // The first button in the modal is the delete button.
+    cy.get(".modal-details__buttons").eq(0).find("button").click();
+    // Confirm the deletion.
+    cy.getBySel("delete-reservation-button").click();
+    // Ensure that call to delete the parallel reservation has been issued.
+    cy.wait("@delete-parallel-reservation");
   });
 });
 

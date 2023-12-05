@@ -19,38 +19,46 @@ export interface DashBoardProps {
   physicalLoansUrl: string;
   feesPageUrl: string;
   reservationsUrl: string;
+  ereolenHomepageUrl: string;
   // Config
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
   expirationWarningDaysBeforeConfig: string;
   // Texts
-  yourProfileText: string;
+  dashboardNumberInLineText: string;
+  deleteReservationModalButtonText: string;
+  deleteReservationModalDeleteButtonText: string;
+  deleteReservationModalDeleteProcessingText: string;
+  deleteReservationModalErrorsStatusText: string;
+  deleteReservationModalErrorsTitleText: string;
+  deleteReservationModalSuccessStatusText: string;
+  deleteReservationModalSuccessTitleText: string;
+  etAlText: string;
   feesText: string;
-  totalOwedText: string;
-  payOwedText: string;
-  totalAmountFeeText: string;
-  physicalLoansText: string;
+  loanListMaterialDaysText: string;
+  loansNotOverdueText: string;
   loansOverdueText: string;
   loansSoonOverdueText: string;
-  loansNotOverdueText: string;
-  reservationsText: string;
-  queuedReservationsText: string;
-  reservationsReadyText: string;
-  reservationsStillInQueueForText: string;
+  materialAndAuthorText: string;
+  materialByAuthorText: string;
   noPhysicalLoansText: string;
   noReservationsText: string;
-  statusBadgeWarningText: string;
-  readyForLoanText: string;
+  payOwedText: string;
+  physicalLoansText: string;
   publizonAudioBookText: string;
   publizonEbookText: string;
   publizonPodcastText: string;
-  dashboardNumberInLineText: string;
-  resultPagerStatusText: string;
+  queuedReservationsText: string;
+  readyForLoanText: string;
   reservationDetailsOthersInQueueText: string;
-  loanListMaterialDaysText: string;
-  etAlText: string;
-  materialByAuthorText: string;
-  materialAndAuthorText: string;
+  reservationsReadyText: string;
+  reservationsStillInQueueForText: string;
+  reservationsText: string;
+  resultPagerStatusText: string;
+  statusBadgeWarningText: string;
+  totalAmountFeeText: string;
+  totalOwedText: string;
+  yourProfileText: string;
 }
 
 const DashboardEntry: FC<

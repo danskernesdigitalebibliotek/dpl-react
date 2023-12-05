@@ -1,20 +1,30 @@
 import React, { FC, useCallback } from "react";
 import { useText } from "../../../../core/utils/text";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
+import { RequestStatus } from "../../../../core/utils/types/request";
+import { getDeleteButtonLabel } from "./helper";
+import { Button } from "../../../../components/Buttons/Button";
 
 export interface DeleteReservationContentProps {
   deleteReservation: () => void;
   reservationsCount: number;
+  deletionStatus: RequestStatus;
 }
 
 const DeleteReservationContent: FC<
   DeleteReservationContentProps & MaterialProps
-> = ({ deleteReservation, reservationsCount }) => {
+> = ({ deleteReservation, reservationsCount, deletionStatus }) => {
   const t = useText();
 
   const deleteReservationCallback = useCallback(() => {
     deleteReservation();
   }, [deleteReservation]);
+
+  const buttonLabel = getDeleteButtonLabel({
+    t,
+    reservationsCount,
+    deletionStatus
+  });
 
   return (
     <>
@@ -34,16 +44,16 @@ const DeleteReservationContent: FC<
         </p>
       </div>
       <div className="modal-pause__button mt-48">
-        <button
-          type="button"
-          data-cy="delete-reservation-button"
+        <Button
+          dataCy="delete-reservation-button"
+          label={buttonLabel}
+          buttonType="none"
+          variant="filled"
+          disabled={deletionStatus === "pending"}
+          collapsible={false}
           onClick={deleteReservationCallback}
-          className="btn-primary btn-filled btn-large arrow__hover--right-small"
-        >
-          {t("deleteReservationModalDeleteButtonText", {
-            count: reservationsCount
-          })}
-        </button>
+          size="small"
+        />
       </div>
     </>
   );

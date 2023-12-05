@@ -13,13 +13,15 @@ const MaterialOverdueLink: FC<MaterialOverdueLinkProps> = ({
   dueDate,
   showOn
 }) => {
-  const { materialOverdueUrl } = useUrls();
   const t = useText();
+  const u = useUrls();
+  const viewFeesAndCompensationRatesUrl = u("viewFeesAndCompensationRatesUrl");
+
   if (!dueDate || (dueDate && !materialIsOverdue(dueDate))) return null;
 
   return (
     <Link
-      href={materialOverdueUrl}
+      href={viewFeesAndCompensationRatesUrl}
       className={`list-reservation__note list-reservation__note--${showOn} color-signal-alert`}
     >
       {t("loanListMaterialLateFeeText")}

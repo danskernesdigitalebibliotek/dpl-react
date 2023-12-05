@@ -19,8 +19,9 @@ export interface FeeDetailsContentProps {
 
 const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
   const t = useText();
+  const u = useUrls();
+  const paymentOverviewUrl = u("paymentOverviewUrl");
   const [check, setCheck] = useState(false);
-  const { paymentOverviewUrl } = useUrls();
   const handleAcceptedTerms = () => {
     setCheck(!check);
   };
@@ -89,7 +90,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
         <StackableFeesList
           materials={materials}
           key={recordId}
-          faust={`${recordId}` as FaustId}
+          item={{ faust: `${recordId}` as FaustId }}
           creationDateFormatted={creationDateFormatted}
         />
       ))}

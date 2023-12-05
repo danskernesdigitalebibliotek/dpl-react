@@ -20,6 +20,9 @@ import EmptyList from "../../components/empty-list/empty-list";
 
 const FeeList: FC = () => {
   const t = useText();
+  const u = useUrls();
+  const viewFeesAndCompensationRatesUrl = u("viewFeesAndCompensationRatesUrl");
+
   const [feeDetailsModalId, setFeeDetailsModalId] = useState("");
   const { open } = useModalButtonHandler();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
@@ -34,7 +37,6 @@ const FeeList: FC = () => {
   >(null);
   const [totalFeePostPaymentChange, setTotalFeePostPaymentChange] =
     useState<number>(0);
-  const { viewFeesAndCompensationRatesUrl } = useUrls();
   const [feeDetailsData, setFeeDetailsData] = useState<FeeV2[]>();
 
   const openDetailsModalClickEvent = useCallback(

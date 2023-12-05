@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { getModalIds } from "../../../core/utils/helpers/general";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import BlockedTypes from "../../../core/utils/types/BlockedTypes";
 import { useUrls } from "../../../core/utils/url";
 import Link from "../../atoms/links/Link";
+import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
 interface BlockedModalProps {
   blockedStatus: string;
@@ -12,7 +12,9 @@ interface BlockedModalProps {
 
 const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
   const t = useText();
-  const { blockedPatronELinkUrl } = useUrls();
+  const u = useUrls();
+  const blockedPatronELinkUrl = u("blockedPatronELinkUrl");
+
   const { blockedModal } = getModalIds();
 
   return (

@@ -113,6 +113,8 @@ export const getFacetFieldTranslation = (name: FacetField) => {
       return "facetChildrenOrAdultsText";
     case FacetField.Creators:
       return "facetCreatorsText";
+    case FacetField.Dk5:
+      return "facetDk5Text";
     case FacetField.FictionNonfiction:
       return "facetFictionNonfictionText";
     case FacetField.FictionalCharacters:
@@ -129,8 +131,10 @@ export const getFacetFieldTranslation = (name: FacetField) => {
       return "facetSubjectsText";
     case FacetField.WorkTypes:
       return "facetWorkTypesText";
+    case FacetField.Year:
+      return "facetYearText";
     default:
-      return invalidSwitchCase<string>(name);
+      return invalidSwitchCase<string>(name as never);
   }
 };
 

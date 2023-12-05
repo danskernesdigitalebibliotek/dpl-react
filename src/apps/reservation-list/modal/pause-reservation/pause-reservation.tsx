@@ -9,9 +9,9 @@ import {
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../../../core/fbs/fbs";
 import { Patron, PatronV5 } from "../../../../core/fbs/model";
-import { getModalIds } from "../../../../core/utils/helpers/general";
 import DateInputs from "../../../../components/date-inputs/date-inputs";
 import { useUrls } from "../../../../core/utils/url";
+import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
 
 interface PauseReservationProps {
   id: string;
@@ -20,7 +20,9 @@ interface PauseReservationProps {
 
 const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const t = useText();
-  const { pauseReservationInfoUrl } = useUrls();
+  const u = useUrls();
+  const pauseReservationInfoUrl = u("pauseReservationInfoUrl");
+
   const queryClient = useQueryClient();
   const { mutate } = useUpdateV5();
   const { close } = useModalButtonHandler();

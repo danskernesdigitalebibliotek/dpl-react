@@ -33,11 +33,11 @@ export default {
       defaultValue: "By",
       control: { type: "text" }
     },
-    menuViewYourProfileText: {
+    menuUserProfileUrlText: {
       defaultValue: "My Account",
       control: { type: "text" }
     },
-    menuViewYourProfileTextUrl: {
+    userProfileUrl: {
       defaultValue: "/YourProfile",
       control: { type: "text" }
     },
@@ -128,6 +128,14 @@ export default {
       defaultValue: "/Logout",
       control: { type: "text" }
     },
+    physicalLoansUrl: {
+      defaultValue: "/user/me/loans",
+      control: { type: "text" }
+    },
+    reservationsUrl: {
+      defaultValue: "/user/me/reservations",
+      control: { type: "text" }
+    },
     menuLoginText: {
       defaultValue: "Log in",
       control: { type: "text" }
@@ -142,6 +150,10 @@ export default {
     },
     menuSignUpUrl: {
       defaultValue: "/Signup",
+      control: { type: "text" }
+    },
+    ereolenHomepageUrl: {
+      defaultValue: "https://ereolen.dk/",
       control: { type: "text" }
     },
     expirationWarningDaysBeforeConfig: {

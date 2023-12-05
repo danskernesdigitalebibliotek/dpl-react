@@ -4,7 +4,6 @@ interface GlobalUrlEntryPropsInterface {
   advancedSearchUrl: string;
   fbsBaseUrl: string;
   loanListEreolenUrl: string;
-  materialOverdueUrl: string;
   feesPageUrl: string;
   publizonBaseUrl: string;
   dplCmsBaseUrl: string;
@@ -12,6 +11,7 @@ interface GlobalUrlEntryPropsInterface {
   materialBaseUrl: string;
   fbiBaseUrl: string;
   authUrl: string;
+  ereolenHomepageUrl: string;
 }
 
 export default GlobalUrlEntryPropsInterface;

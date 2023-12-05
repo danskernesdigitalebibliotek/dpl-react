@@ -3,8 +3,8 @@ import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import blockedArgs from "../../core/storybook/blockedArgs";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-import { getModalIds } from "../../core/utils/helpers/general";
 import FeeList from "./FeeList.entry";
+import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 
 export default {
   title: "Apps / Fee list",

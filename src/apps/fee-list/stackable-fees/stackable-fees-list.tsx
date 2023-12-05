@@ -32,8 +32,7 @@ const StackableFeeList: FC<StackableFeeListProps & MaterialProps> = ({
               })}
             />
           }
-          id={recordId}
-          faust={recordId as FaustId}
+          item={{ faust: recordId as FaustId }}
           key={recordId}
           statusMessageComponentMobile={
             <div className="list-materials__status__note-mobile">

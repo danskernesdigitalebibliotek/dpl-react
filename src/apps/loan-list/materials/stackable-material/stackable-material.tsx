@@ -12,7 +12,7 @@ import { LoanId } from "../../../../core/utils/types/ids";
 export interface StackableMaterialProps {
   loan: LoanType;
   additionalMaterials: number;
-  openLoanDetailsModal: (modalId: string) => void;
+  openLoanDetailsModal: (loan: LoanType) => void;
   openDueDateModal?: (dueDate: string) => void;
   focused: boolean;
   loanId?: LoanId | null;
@@ -30,11 +30,12 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const { dueDate, identifier, periodical } = loan;
 
   const openLoanDetailsModalHandler = () => {
-    if (loanId) {
-      openLoanDetailsModal(String(loanId));
-    }
-    if (identifier) {
-      openLoanDetailsModal(identifier);
+    openLoanDetailsModal(loan);
+  };
+
+  const handleOpenDueDateModal = () => {
+    if (openDueDateModal && dueDate) {
+      openDueDateModal(dueDate);
     }
   };
 
@@ -44,10 +45,10 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         "list-reservation--stacked": additionalMaterials > 0
       })}
       role="button"
-      onClick={() => openLoanDetailsModalHandler()}
+      onClick={handleOpenDueDateModal}
       onKeyUp={(e) => {
         if (e.key === "Enter" || e.key === "Space") {
-          openLoanDetailsModalHandler();
+          handleOpenDueDateModal();
         }
       }}
       tabIndex={0}
@@ -63,9 +64,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         >
           <AdditionalMaterialsButton
             showOn="desktop"
-            openDueDateModal={() =>
-              openDueDateModal && dueDate && openDueDateModal(dueDate)
-            }
+            openDueDateModal={handleOpenDueDateModal}
             additionalMaterials={additionalMaterials}
           />
           <MaterialOverdueLink showOn="desktop" dueDate={dueDate} />
@@ -75,16 +74,12 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         arrowLabelledBy={`${loanId || identifier}-title`}
         loan={loan}
         openDetailsModal={openLoanDetailsModal}
-        openDueDateModal={() =>
-          openDueDateModal && dueDate && openDueDateModal(dueDate)
-        }
+        openDueDateModal={handleOpenDueDateModal}
         additionalMaterials={additionalMaterials}
       >
         <AdditionalMaterialsButton
           showOn="mobile"
-          openDueDateModal={() =>
-            openDueDateModal && dueDate && openDueDateModal(dueDate)
-          }
+          openDueDateModal={handleOpenDueDateModal}
           additionalMaterials={additionalMaterials}
         />
         <MaterialOverdueLink showOn="mobile" dueDate={dueDate} />

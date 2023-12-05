@@ -28,11 +28,6 @@ interface MaterialDetailsProps {
   modalId: string;
 }
 
-export const constructMaterialDetailsModalId = (
-  loanDetails: unknown,
-  modalLoanDetailsId: unknown
-) => `${String(loanDetails)}${String(modalLoanDetailsId)}`;
-
 const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   loan,
   material,
@@ -44,7 +39,9 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   >(null);
 
   const t = useText();
-  const { ereolenMyPageUrl, feesPageUrl } = useUrls();
+  const u = useUrls();
+  const ereolenMyPageUrl = u("ereolenMyPageUrl");
+  const viewFeesAndCompensationRatesUrl = u("viewFeesAndCompensationRatesUrl");
 
   if (!loan) {
     return null;
@@ -136,7 +133,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
           {dueDate && materialIsOverdue(dueDate) && (
             <div className="modal-details__warning">
               <WarningBar
-                leftLink={feesPageUrl}
+                leftLink={viewFeesAndCompensationRatesUrl}
                 linkText={t("materialDetailsLinkToPageWithFeesText")}
                 overdueText={t("materialDetailsWarningLoanOverdueText")}
               />

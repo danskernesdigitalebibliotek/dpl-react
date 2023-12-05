@@ -10,6 +10,38 @@ fragment ManifestationsSimple on Manifestations {
   }
 }
 
+fragment ManifestationsAccess on Manifestations {
+  all {
+    pid,
+    identifiers {
+      type
+      value
+    }
+    access {
+      __typename
+      ... on AccessUrl {
+        origin
+        url
+        loginRequired
+      }
+      ... on InfomediaService {
+        id
+      }
+      ... on InterLibraryLoan {
+        loanIsPossible
+      }
+      ... on Ereol {
+        origin
+        url
+        canAlwaysBeLoaned
+      }
+      ... on DigitalArticleService {
+        issn
+      }
+    }
+  }
+}
+
 fragment ManifestationsSimpleFields on Manifestation {
   pid
   genreAndForm
@@ -159,6 +191,13 @@ fragment SeriesSimple on Series {
   }
   readThisFirst
   readThisWhenever
+}
+
+fragment WorkAccess on Work {
+  workId
+  manifestations {
+    ...ManifestationsAccess
+  }
 }
 
 fragment WorkSmall on Work {

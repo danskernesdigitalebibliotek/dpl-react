@@ -1,4 +1,11 @@
-import { getModalIds } from "./general";
+import configuration, { getConf } from "../../configuration";
+
+export const constructModalId = (prefix: string, fragments: string[]) =>
+  [prefix, ...fragments].join("-");
+
+export const getModalIds = () => {
+  return getConf("modalIds", configuration);
+};
 
 export const containsDueDateModalQueryParam = (queryParam: string) => {
   const { dueDateModal } = getModalIds();

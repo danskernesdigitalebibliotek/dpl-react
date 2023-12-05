@@ -14,8 +14,8 @@ import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservati
 import { RenewalArgs } from "../../core/storybook/renewalArgs";
 
 export interface MenuProps {
-  menuViewYourProfileText: string;
-  menuViewYourProfileTextUrl: string;
+  menuUserProfileUrlText: string;
+  userProfileUrl: string;
   menuNavigationDataConfig: string;
   menuNotificationLoansExpiredText: string;
   menuNotificationLoansExpiredUrl: string;
@@ -42,6 +42,8 @@ export interface MenuProps {
   menuAuthenticatedCloseButtonText: string;
   menuAuthenticatedModalDescriptionText: string;
   menuNotAuthenticatedModalDescriptionText: string;
+  physicalLoansUrl: string;
+  reservationsUrl: string;
 }
 
 export interface MenuEntryProps

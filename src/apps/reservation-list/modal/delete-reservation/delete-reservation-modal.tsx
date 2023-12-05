@@ -1,21 +1,39 @@
-import React, { FC } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { useQueryClient } from "react-query";
-import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
+import Modal from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import DeleteReservationContent from "./delete-reservation-content";
-import {
-  useDeleteReservations,
-  getGetReservationsV2QueryKey
-} from "../../../../core/fbs/fbs";
+import { useDeleteReservations } from "../../../../core/fbs/fbs";
 import {
   getGetV1UserReservationsQueryKey,
   useDeleteV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
-import { isFaust, isIdentifier } from "../../../dashboard/util/helpers";
+import { useMultipleRequestsWithStatus } from "../../../../core/utils/useRequestsWithStatus";
+import {
+  OperationDigital,
+  OperationPhysical,
+  ParamsDigital,
+  ParamsPhysical,
+  requestsAndReservations
+} from "./helper";
+import ModalMessage from "../../../../components/message/modal-message/ModalMessage";
+import { ApiResult } from "../../../../core/publizon/model";
+import {
+  reservationId,
+  ReservationType
+} from "../../../../core/utils/types/reservation-type";
+import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
 
 interface DeleteReservationModalProps {
   modalId: string;
-  reservations: string[];
+  reservations: ReservationType[];
+}
+
+export function deleteReservationModalId(reservation: ReservationType): string {
+  const prefix = String(getModalIds().reservationDelete);
+  const fragment = reservationId(reservation);
+  // TODO: Use constructModalId() instead of string concatenation.
+  return `${prefix}${fragment}`;
 }
 
 const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
@@ -27,63 +45,96 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
   const { mutate: deletePhysicalReservation } = useDeleteReservations();
   const { mutate: deleteDigitalReservation } =
     useDeleteV1UserReservationsIdentifier();
-  const { closeAll: closeAllModals } = useModalButtonHandler();
+  const [deletedReservations, setDeletedReservations] = useState<number | null>(
+    null
+  );
 
-  const removeSelectedReservations = () => {
-    if (reservations.length > 0) {
-      const reservationsToDelete = reservations
-        .map((id) => Number(isFaust(id)))
-        .filter((id) => id !== 0);
+  const { requests, reservationsPhysical, reservationsDigital } = useMemo(
+    () =>
+      requestsAndReservations({
+        operations: {
+          digital: deleteDigitalReservation,
+          physical: deletePhysicalReservation
+        },
+        reservations
+      }),
+    [deleteDigitalReservation, deletePhysicalReservation, reservations]
+  );
 
-      const digitalMaterialsToDelete = reservations
-        .map((id) => isIdentifier(id))
-        .filter((id) => id !== null);
+  const {
+    handler: removeReservationsHandler,
+    requestStatus,
+    setRequestStatus
+  } = useMultipleRequestsWithStatus<
+    OperationPhysical | OperationDigital,
+    ParamsPhysical | ParamsDigital,
+    ApiResult | void | null
+  >({
+    requests,
+    onSuccess: () => {
+      // Since we got success, we can assume that all reservations
+      // were successfully deleted.
+      setDeletedReservations(reservations.length);
+      queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
+    }
+  });
 
-      if (reservationsToDelete.length > 0) {
-        deletePhysicalReservation(
-          {
-            params: { reservationid: reservationsToDelete }
-          },
-          {
-            onSuccess: () => {
-              queryClient.invalidateQueries(getGetReservationsV2QueryKey());
-            }
-          }
-        );
-      }
-
-      digitalMaterialsToDelete.forEach((id) =>
-        deleteDigitalReservation(
-          {
-            identifier: String(id)
-          },
-          {
-            onSuccess: () => {
-              queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
-            }
-          }
-        )
-      );
-
-      closeAllModals();
+  const removeSelectedReservationsHandler = () => {
+    if (reservationsPhysical.length || reservationsDigital.length) {
+      removeReservationsHandler();
     }
   };
 
   if (!reservations) return null;
 
+  const ctaButtonParams = {
+    text: t("deleteReservationModalButtonText"),
+    closeAllModals: true,
+    callback: () => {
+      setRequestStatus("idle");
+      setDeletedReservations(null);
+    }
+  };
+
   return (
     <Modal
       modalId={modalId}
-      classNames="modal-cta"
+      classNames="modal-cta modal-padding"
       closeModalAriaLabelText={t("deleteReservationModalCloseModalText")}
       screenReaderModalDescriptionText={t(
         "deleteReservationModalAriaDescriptionText"
       )}
+      eventCallbacks={{
+        close: () => {
+          setRequestStatus("idle");
+          setDeletedReservations(null);
+        }
+      }}
     >
-      <DeleteReservationContent
-        deleteReservation={() => removeSelectedReservations()}
-        reservationsCount={reservations.length}
-      />
+      {["idle", "pending"].includes(requestStatus) && (
+        <DeleteReservationContent
+          deleteReservation={() => removeSelectedReservationsHandler()}
+          reservationsCount={reservations.length}
+          deletionStatus={requestStatus}
+        />
+      )}
+      {requestStatus === "success" && (
+        <ModalMessage
+          title={t("deleteReservationModalSuccessTitleText")}
+          subTitle={t("deleteReservationModalSuccessStatusText", {
+            count: deletedReservations ?? 0
+          })}
+          ctaButton={ctaButtonParams}
+        />
+      )}
+
+      {requestStatus === "error" && (
+        <ModalMessage
+          title={t("deleteReservationModalErrorsTitleText")}
+          subTitle={t("deleteReservationModalErrorsStatusText")}
+          ctaButton={ctaButtonParams}
+        />
+      )}
     </Modal>
   );
 };

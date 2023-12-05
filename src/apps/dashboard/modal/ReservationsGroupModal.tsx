@@ -4,18 +4,18 @@ import { useText } from "../../../core/utils/text";
 import GroupModalContent from "../../../components/GroupModal/GroupModalContent";
 import { Button } from "../../../components/Buttons/Button";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
-import { getModalIds } from "../../../core/utils/helpers/general";
 import GroupModalReservationsList from "../../../components/GroupModal/GroupModalReservationsList";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
 import StatusCircle from "../../loan-list/materials/utils/status-circle";
 import useReservations from "../../../core/utils/useReservations";
+import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
 interface ReservationGroupModalProps {
   pageSize: number;
   modalId: string;
-  setReservationsToDelete: (reservations: string[]) => void;
-  openDetailsModal: (modalId: string) => void;
+  setReservationsToDelete: (reservations: ReservationType[]) => void;
+  openDetailsModal: (reservation: ReservationType) => void;
 }
 
 const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
@@ -27,7 +27,9 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   const { fbs, publizon } = useReservations();
   const t = useText();
   const { reservationsReady, reservationsQueued } = getModalIds();
-  const [materialsToDelete, setMaterialsToDelete] = useState<string[]>([]);
+  const [materialsToDelete, setMaterialsToDelete] = useState<ReservationType[]>(
+    []
+  );
 
   let physicalReservations: ReservationType[] = [];
   let digitalReservations: ReservationType[] = [];
@@ -49,15 +51,10 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
   const selectableReservations = [
     ...physicalReservations,
     ...digitalReservations
-  ]
-    .map(
-      ({ identifier, reservationId }) =>
-        identifier || String(reservationId) || ""
-    )
-    .filter((id) => id !== "");
+  ];
 
-  const selectMaterials = (materialIds: string[]) => {
-    setMaterialsToDelete(materialIds);
+  const selectMaterials = (materials: ReservationType[]) => {
+    setMaterialsToDelete(materials);
   };
 
   const deleteMaterialsModal = () => {

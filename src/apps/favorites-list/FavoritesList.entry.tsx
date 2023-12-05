@@ -11,6 +11,8 @@ interface FavoritesListConfigEntryProps {
   fbsBaseUrlConfig: string;
 }
 interface FavoritesListTextEntryProps {
+  availabilityAvailableText: string;
+  availabilityUnavailableText: string;
   favoritesListMaterialsText: string;
   favoritesListHeaderText: string;
   byAuthorText: string;

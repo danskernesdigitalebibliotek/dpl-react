@@ -6,9 +6,13 @@ import { Button } from "../../../Buttons/Button";
 
 export interface MaterialButtonLoadingProps {
   size?: ButtonSize;
+  classNames?: string;
 }
 
-const MaterialButtonLoading: FC<MaterialButtonLoadingProps> = ({ size }) => {
+const MaterialButtonLoading: FC<MaterialButtonLoadingProps> = ({
+  size,
+  classNames
+}) => {
   const t = useText();
 
   return (
@@ -19,6 +23,7 @@ const MaterialButtonLoading: FC<MaterialButtonLoadingProps> = ({ size }) => {
       disabled
       collapsible={false}
       size={size || "large"}
+      classNames={classNames || ""}
     />
   );
 };
