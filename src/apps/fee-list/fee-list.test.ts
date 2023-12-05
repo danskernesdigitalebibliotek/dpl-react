@@ -121,8 +121,7 @@ describe("Fee list", () => {
       .should("have.text", "Fees & Replacement costs");
 
     // 2.b text "Overdue fees and replacement costs that were created before dd/mm/åååå can still be paid on this page. See our fees and replacement costs"
-    cy.get(".fee-list-page")
-      .find("[data-cy='fee-list-body']")
+    cy.getBySel("fee-list-body")
       .should("exist")
       .should(
         "have.text",
