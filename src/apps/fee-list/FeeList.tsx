@@ -131,7 +131,6 @@ const FeeList: FC = () => {
           listHeader={t("unpaidFeesFirstHeadlineText")}
           openDetailsModalClickEvent={openDetailsModalClickEvent}
           fees={itemsPrePaymentChange}
-          hideCheckbox={false}
           totalText={t("totalText", {
             placeholders: { "@total": totalFeePrePaymentChange }
           })}
@@ -140,7 +139,6 @@ const FeeList: FC = () => {
           listHeader={t("unpaidFeesSecondHeadlineText")}
           dataCy="fee-list-after"
           openDetailsModalClickEvent={openDetailsModalClickEvent}
-          hideCheckbox
           fees={itemsPostPaymentChange}
           totalText={t("totalText", {
             placeholders: { "@total": totalFeePostPaymentChange }

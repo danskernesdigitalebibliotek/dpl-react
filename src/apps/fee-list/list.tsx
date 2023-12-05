@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import ListHeader from "../../components/list-header/list-header";
 import { FeeV2 } from "../../core/fbs/model";
-import TotalPaymentPay from "./stackable-fees/total-payment-pay";
 import StackableFees from "./stackable-fees/stackable-fees";
 import { FaustId } from "../../core/utils/types/ids";
 
@@ -10,7 +9,6 @@ interface ListProps {
   fees: FeeV2[] | null;
   dataCy: string;
   listHeader: ReactNode;
-  hideCheckbox: boolean;
   totalText: string;
 }
 const List: FC<ListProps> = ({
@@ -18,8 +16,7 @@ const List: FC<ListProps> = ({
   fees,
   listHeader,
   dataCy,
-  totalText,
-  hideCheckbox
+  totalText
 }) => {
   return (
     <div>
@@ -36,11 +33,12 @@ const List: FC<ListProps> = ({
               openDetailsModalClickEvent={openDetailsModalClickEvent}
             />
           ))}
-          <TotalPaymentPay
-            hideCheckbox={hideCheckbox}
-            prePaymentTypeChange={!hideCheckbox}
-            totalText={totalText}
-          />
+          <div className="fee-list-bottom">
+            <div className="fee-list-bottom__paymenttypes" />
+            <div className="fee-list-bottom__actions">
+              <p className="text-body-small-medium">{totalText}</p>
+            </div>
+          </div>
         </div>
       )}
     </div>
