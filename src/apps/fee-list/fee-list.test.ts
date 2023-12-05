@@ -15,7 +15,7 @@ describe("Fee list", () => {
         patron: {
           blockStatus: null
         }
-      });
+      }).as("patronInfo");
     });
 
     cy.intercept("GET", "**/external/agencyid/patron/patronid/fees/v2**", {
@@ -110,6 +110,7 @@ describe("Fee list", () => {
 
     cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
     cy.wait(["@fees"]);
+    cy.wait("@patronInfo");
   });
 
   it("Fee list basics (physical loans)", () => {
@@ -121,18 +122,13 @@ describe("Fee list", () => {
       .should("have.text", "Fees & Replacement costs");
 
     // 2.b text "Overdue fees and replacement costs that were created before dd/mm/åååå can still be paid on this page. See our fees and replacement costs"
-    cy.getBySel("fee-list-body")
-      .should("exist")
-      .should(
-        "have.text",
-        "Overdue fees and replacement costs that were created before 27/10/2020 can still be paid on this page. See our fees and replacement costs"
-      );
+    cy.getBySel("fee-list-body").should(
+      "have.text",
+      "Overdue fees and replacement costs that were created before 27/10/2020 can still be paid on this page. See our fees and replacement costs"
+    );
 
     // 2.c // 2.e subheadline "Unsettled debt 1"
-    cy.getBySel("list-header")
-      .first()
-      .should("exist")
-      .should("contain.text", "Unsettled debt");
+    cy.getBySel("list-header").should("contain.text", "Unsettled debt");
 
     // 2.d link “See our fees and replacement costs”
     cy.get(".fee-list-page")
