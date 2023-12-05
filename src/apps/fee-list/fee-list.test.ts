@@ -110,7 +110,6 @@ describe("Fee list", () => {
 
     cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
     cy.wait(["@fees"]);
-    cy.wait("@patronInfo");
   });
 
   it("Fee list basics (physical loans)", () => {
