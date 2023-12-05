@@ -129,8 +129,8 @@ describe("Fee list", () => {
         "Overdue fees and replacement costs that were created before 27/10/2020 can still be paid on this page. See our fees and replacement costs"
       );
 
-    // 2.c // 2.e subheadline "Unsettled debt - BEFORE 27/10 2020"
-    cy.get(".dpl-list-buttons__header")
+    // 2.c // 2.e subheadline "Unsettled debt 1"
+    cy.getBySel("list-header")
       .first()
       .should("exist")
       .should("contain.text", "Unsettled debt");
