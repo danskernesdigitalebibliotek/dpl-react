@@ -128,29 +128,17 @@ const FeeList: FC = () => {
         )}
         <List
           dataCy="fee-list-before"
-          listHeader={
-            <>
-              {t("unpaidFeesText")} -<span>&nbsp;</span>
-              <b>{t("prePaymentTypeChangeDateText")}</b>
-            </>
-          }
+          listHeader={t("unpaidFeesFirstHeadlineText")}
           openDetailsModalClickEvent={openDetailsModalClickEvent}
           fees={itemsPrePaymentChange}
-          hideCheckbox={false}
           totalText={t("totalText", {
             placeholders: { "@total": totalFeePrePaymentChange }
           })}
         />
         <List
-          listHeader={
-            <>
-              {t("unpaidFeesText")} -<span>&nbsp;</span>
-              <b>{t("postPaymentTypeChangeDateText")}</b>
-            </>
-          }
+          listHeader={t("unpaidFeesSecondHeadlineText")}
           dataCy="fee-list-after"
           openDetailsModalClickEvent={openDetailsModalClickEvent}
-          hideCheckbox
           fees={itemsPostPaymentChange}
           totalText={t("totalText", {
             placeholders: { "@total": totalFeePostPaymentChange }
