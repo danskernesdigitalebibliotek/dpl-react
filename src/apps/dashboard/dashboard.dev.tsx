@@ -50,8 +50,12 @@ export default {
       defaultValue: "You owe in total",
       control: { type: "text" }
     },
-    payOwedText: {
-      defaultValue: "Pay",
+    seeMoreText: {
+      defaultValue: "See more",
+      control: { type: "text" }
+    },
+    seeMoreAriaLabelText: {
+      defaultValue: "See your fees and how to pay",
       control: { type: "text" }
     },
     totalAmountFeeText: {

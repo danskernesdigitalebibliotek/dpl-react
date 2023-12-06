@@ -45,7 +45,8 @@ const DashboardFees: FC = () => {
                 placeholders: { "@total": totalFeeAmount }
               })}
               overdueText={t("totalOwedText")}
-              rightButtonText={t("payOwedText")}
+              rightButtonText={t("seeMoreText")}
+              rightButtonAriaLabelText={t("seeMoreAriaLabelText")}
               rightLink={feesPageUrl}
             />
           </div>
