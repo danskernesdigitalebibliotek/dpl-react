@@ -59,7 +59,7 @@ const WarningBar: FC<WarningBarProps> = ({
             <Link
               dataCy="warning-bar-right-link"
               href={rightLink}
-              className="btn-primary btn-filled btn-small arrow__hover--right-small hide-linkstyle"
+              className="btn-primary btn-filled btn-small arrow__hover--right-small"
               ariaLabelledBy={labelId}
             >
               {rightButtonText}
