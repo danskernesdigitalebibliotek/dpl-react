@@ -25,7 +25,6 @@ const FeeList: FC = () => {
 
   const [feeDetailsModalId, setFeeDetailsModalId] = useState("");
   const { open } = useModalButtonHandler();
-  const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
   const { data: fbsFees = [] } = useGetFeesV2<FeeV2[]>();
   const [itemsPrePaymentChange, setItemsPrePaymentChange] = useState<
     FeeV2[] | null
