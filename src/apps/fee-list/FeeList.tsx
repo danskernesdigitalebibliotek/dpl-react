@@ -104,10 +104,7 @@ const FeeList: FC = () => {
 
   return (
     <>
-      <div
-        style={modalIds.length > 0 ? { display: "none" } : {}}
-        className="fee-list-page"
-      >
+      <div className="fee-list-page">
         <h1 data-cy="fee-list-headline" className="text-header-h1 my-32">
           {t("feeListHeadlineText")}
         </h1>
