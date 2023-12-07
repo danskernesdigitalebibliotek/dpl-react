@@ -53,7 +53,16 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         </div>
         <div className="list-reservation__about">
           <button
-            onClick={() => openDetailsModal()}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+              e.stopPropagation();
+              openDetailsModal();
+            }}
+            onKeyUp={(e) => {
+              if (e.key === "Enter" || e.key === "Space") {
+                e.stopPropagation();
+                openDetailsModal();
+              }
+            }}
             type="button"
             // This is to handle focus when more items are loaded via pagination
             // eslint-disable-next-line jsx-a11y/no-autofocus
