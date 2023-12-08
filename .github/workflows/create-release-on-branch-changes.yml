@@ -26,7 +26,6 @@ jobs:
           echo "RELEASE_SHA=$RELEASE_SHA" >> "$GITHUB_ENV"
           echo "TAG_NAME=$TAG_NAME" >> "$GITHUB_ENV"
           echo "BUILD_VERSION=${RELEASE_BRANCH}-${RELEASE_SHA}" >> "$GITHUB_ENV"
-          echo "NPM_VERSION=0.0.0-${RELEASE_SHA}" >> "$GITHUB_ENV"
           echo "DIST_FILENAME=dist-$RELEASE_BRANCH.zip" >> "$GITHUB_ENV"
 
       # Checkout the HEAD of the PR branch to get the latest commit message.
