@@ -532,7 +532,7 @@ describe("Reservation details modal", () => {
 
     cy.getBySel("modal-reservation-form-select").should(
       "have.text",
-      "Choose one1 month2 months3 months6 months1 year"
+      "Choose one14 days1 month2 months3 months6 months1 year"
     );
 
     cy.getBySel("reservation-form-button", true).click();
