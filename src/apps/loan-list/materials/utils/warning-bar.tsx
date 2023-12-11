@@ -36,7 +36,7 @@ const WarningBar: FC<WarningBarProps> = ({
             {leftLink && (
               <Link
                 href={leftLink}
-                className="link-tag color-secondary-gray ml-8 hide-linkstyle"
+                className="link-tag color-secondary-gray ml-8"
               >
                 {linkText}
               </Link>
