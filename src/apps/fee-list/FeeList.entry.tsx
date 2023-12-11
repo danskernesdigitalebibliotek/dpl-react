@@ -27,9 +27,8 @@ export interface FeeListProps {
   viewFeesAndCompensationRatesText: string;
   etAlText: string;
   viewFeesAndCompensationRatesUrl: string;
-  unpaidFeesText: string;
-  prePaymentTypeChangeDateText: string;
-  postPaymentTypeChangeDateText: string;
+  unpaidFeesFirstHeadlineText: string;
+  unpaidFeesSecondHeadlineText: string;
   alreadyPaidText: string;
   feePaymentModalHeaderText: string;
   feePaymentModalBodyText: string;

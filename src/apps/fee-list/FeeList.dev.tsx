@@ -83,16 +83,12 @@ export default {
       defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
       control: { type: "text" }
     },
-    unpaidFeesText: {
-      defaultValue: "Unsettled debt",
+    unpaidFeesFirstHeadlineText: {
+      defaultValue: "Unsettled debt 1",
       control: { type: "text" }
     },
-    prePaymentTypeChangeDateText: {
-      defaultValue: "BEFORE 27/10 2020",
-      control: { type: "text" }
-    },
-    postPaymentTypeChangeDateText: {
-      defaultValue: "AFTER 27/10 2020",
+    unpaidFeesSecondHeadlineText: {
+      defaultValue: "Unsettled debt 2",
       control: { type: "text" }
     },
     alreadyPaidText: {

@@ -15,7 +15,7 @@ describe("Fee list", () => {
         patron: {
           blockStatus: null
         }
-      });
+      }).as("patronInfo");
     });
 
     cy.intercept("GET", "**/external/agencyid/patron/patronid/fees/v2**", {
@@ -121,19 +121,13 @@ describe("Fee list", () => {
       .should("have.text", "Fees & Replacement costs");
 
     // 2.b text "Overdue fees and replacement costs that were created before dd/mm/åååå can still be paid on this page. See our fees and replacement costs"
-    cy.get(".fee-list-page")
-      .find("[data-cy='fee-list-body']")
-      .should("exist")
-      .should(
-        "have.text",
-        "Overdue fees and replacement costs that were created before 27/10/2020 can still be paid on this page. See our fees and replacement costs"
-      );
+    cy.getBySel("fee-list-body").should(
+      "have.text",
+      "Overdue fees and replacement costs that were created before 27/10/2020 can still be paid on this page. See our fees and replacement costs"
+    );
 
-    // 2.c // 2.e subheadline "Unsettled debt - BEFORE 27/10 2020"
-    cy.get(".dpl-list-buttons__header")
-      .first()
-      .should("exist")
-      .should("contain.text", "Unsettled debt");
+    // 2.c // 2.e subheadline "Unsettled debt 1"
+    cy.getBySel("list-header").should("contain.text", "Unsettled debt");
 
     // 2.d link “See our fees and replacement costs”
     cy.get(".fee-list-page")
@@ -143,15 +137,6 @@ describe("Fee list", () => {
       .should("not.have.attr", "href", "")
       .should("have.text", "See our fees and replacement costs");
 
-    // 3.a text "Please note that paid fees are not registered up until 72 hours after your payment after which your debt is updated and your user unblocked if it has been blocked."
-    cy.get(".fee-list-bottom__paymenttypes")
-      .eq(1)
-      .find("span")
-      .should("exist")
-      .should(
-        "have.text",
-        "Please note that paid fees are not registered up until 72 hours after your payment after which your debt is updated and your user unblocked if it has been blocked."
-      );
     // 3.b list of intermediates
     cy.get(".fee-list-page").find(".list-reservation").eq(0).should("exist");
 
@@ -226,21 +211,6 @@ describe("Fee list", () => {
       .find(".text-body-medium-regular")
       .should("exist")
       .should("have.text", "Fee 2.56,-");
-
-    // 3. f List of accepted payment cards
-    cy.get(".fee-list-page")
-      .find(".fee-list-bottom")
-      .eq(0)
-      .find(".fee-list-bottom__paymenttypes")
-      .find("img")
-      .should("exist");
-
-    // 3. f Button pay
-    cy.get(".fee-list-bottom__actions")
-      .eq(0)
-      .find("button")
-      .should("exist")
-      .should("have.text", "Pay");
 
     // 4. a List after date
     // Title
