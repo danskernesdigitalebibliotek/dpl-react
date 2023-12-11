@@ -22,7 +22,7 @@ import {
 } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
-import { Option } from "../Dropdown/Dropdown";
+import { InterestPeriods } from "./types";
 
 export interface UserListItemsProps {
   patron: PatronV5;
@@ -51,7 +51,7 @@ const UserListItems: FC<UserListItemsProps> = ({
 }) => {
   const t = useText();
   const config = useConfig();
-  const interstPeriods = config<Option[]>("interestPeriodsConfig", {
+  const interstPeriods = config<InterestPeriods>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
 
@@ -62,7 +62,11 @@ const UserListItems: FC<UserListItemsProps> = ({
 
   const interestPeriod = selectedInterest
     ? getNoInterestAfter(selectedInterest, interstPeriods, t)
-    : getNoInterestAfter(defaultInterestPeriod, interstPeriods, t);
+    : getNoInterestAfter(
+        Number(interstPeriods.defaultInterestPeriod.value),
+        interstPeriods,
+        t
+      );
 
   const pickupBranch = selectedBranch
     ? getPreferredBranch(selectedBranch, branches)

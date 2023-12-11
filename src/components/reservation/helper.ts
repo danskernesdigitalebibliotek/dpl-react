@@ -19,7 +19,7 @@ import { PeriodicalEdition } from "../material/periodical/helper";
 import { ModalReservationFormTextType } from "./forms/helper";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 import { SubmitOrderStatus } from "../../core/dbc-gateway/generated/graphql";
-import { Option } from "../Dropdown/Dropdown";
+import { InterestPeriods } from "./types";
 
 export const isConfigValueOne = (configValue: string | undefined | string[]) =>
   configValue === "1";
@@ -31,10 +31,10 @@ export const getPreferredBranch = (id: string, array: AgencyBranch[]) => {
 
 export const getNoInterestAfter = (
   days: number,
-  interestPeriod: Option[],
+  interestPeriod: InterestPeriods,
   t: UseTextFunction
 ) => {
-  const interestPeriodFound = interestPeriod.find(
+  const interestPeriodFound = interestPeriod.interestPeriods.find(
     ({ value }) => value === String(days)
   );
 
