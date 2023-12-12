@@ -22,7 +22,7 @@ import {
 } from "./helper";
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
-import { InterestPeriods } from "./types";
+import { Periods } from "./types";
 
 export interface UserListItemsProps {
   patron: PatronV5;
@@ -51,7 +51,7 @@ const UserListItems: FC<UserListItemsProps> = ({
 }) => {
   const t = useText();
   const config = useConfig();
-  const interestPeriods = config<InterestPeriods>("interestPeriodsConfig", {
+  const interestPeriods = config<Periods>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
 

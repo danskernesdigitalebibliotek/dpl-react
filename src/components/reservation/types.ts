@@ -1,6 +1,6 @@
 import { Option } from "../Dropdown/Dropdown";
 
-export type InterestPeriods = {
+export type Periods = {
   interestPeriods: Option[];
   defaultInterestPeriod: Option;
 };

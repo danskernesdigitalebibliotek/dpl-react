@@ -3,7 +3,7 @@ import { useText } from "../../../core/utils/text";
 import ModalReservationFormSelect from "./ModalReservationFormSelect";
 import { useConfig } from "../../../core/utils/config";
 import { RequestStatus } from "../../../core/utils/types/request";
-import { InterestPeriods } from "../types";
+import { Periods } from "../types";
 
 export interface PickupModalProps {
   selectedInterest: number;
@@ -22,7 +22,7 @@ const NoInterestAfterModal = ({
 }: PickupModalProps) => {
   const t = useText();
   const config = useConfig();
-  const interstPeriods = config<InterestPeriods>("interestPeriodsConfig", {
+  const interstPeriods = config<Periods>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
 
