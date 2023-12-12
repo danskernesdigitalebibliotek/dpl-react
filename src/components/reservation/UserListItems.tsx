@@ -51,7 +51,7 @@ const UserListItems: FC<UserListItemsProps> = ({
 }) => {
   const t = useText();
   const config = useConfig();
-  const interstPeriods = config<InterestPeriods>("interestPeriodsConfig", {
+  const interestPeriods = config<InterestPeriods>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
 
@@ -61,10 +61,10 @@ const UserListItems: FC<UserListItemsProps> = ({
   };
 
   const interestPeriod = selectedInterest
-    ? getNoInterestAfter(selectedInterest, interstPeriods, t)
+    ? getNoInterestAfter(selectedInterest, interestPeriods, t)
     : getNoInterestAfter(
-        Number(interstPeriods.defaultInterestPeriod.value),
-        interstPeriods,
+        Number(interestPeriods.defaultInterestPeriod.value),
+        interestPeriods,
         t
       );
 
