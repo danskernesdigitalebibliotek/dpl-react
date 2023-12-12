@@ -1,6 +1,7 @@
 import React, { FC, useId } from "react";
 import IconWarning from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import Link from "../../../../components/atoms/links/Link";
+import LinkButton from "../../../../components/Buttons/LinkButton";
 
 interface WarningBarProps {
   linkText?: string;
@@ -56,14 +57,15 @@ const WarningBar: FC<WarningBarProps> = ({
             {rightButtonAriaLabelText}
           </span>
           {rightLink && (
-            <Link
+            <LinkButton
               dataCy="warning-bar-right-link"
-              href={rightLink}
-              className="btn-primary btn-filled btn-small arrow__hover--right-small"
+              url={rightLink}
+              size="small"
+              variant="filled"
               ariaLabelledBy={labelId}
             >
               {rightButtonText}
-            </Link>
+            </LinkButton>
           )}
         </div>
       )}
