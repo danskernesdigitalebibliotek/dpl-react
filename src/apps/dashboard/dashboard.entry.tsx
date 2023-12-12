@@ -43,7 +43,8 @@ export interface DashBoardProps {
   materialByAuthorText: string;
   noPhysicalLoansText: string;
   noReservationsText: string;
-  payOwedText: string;
+  dashboardSeeMoreFeesText: string;
+  dashboardSeeMoreFeesAriaLabelText: string;
   physicalLoansText: string;
   publizonAudioBookText: string;
   publizonEbookText: string;
