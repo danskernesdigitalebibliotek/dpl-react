@@ -52,7 +52,9 @@ To set up a mocked response for a new request to FBS do the following:
 2. Click "FBS" to manage the Wiremock instance for FBS
 3. Click "Stubs" to see a list of existing requests/responses
 4. Click "New" to create a new request/response set and provide a name
-5. Provide the HTTP method, path and other parts of the request to match
+5. Provide the HTTP method, path and other parts of the request to match (note:
+make sure to check "advanced" option out, and match either path, or path AND the
+query.)
 6. Provide the response HTTP status code and body to return
 7. Click "Save"
 8. See that the stub has been persisted as a new file in

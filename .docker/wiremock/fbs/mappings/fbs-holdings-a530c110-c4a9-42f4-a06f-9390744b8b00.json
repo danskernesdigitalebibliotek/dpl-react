@@ -1,0 +1,18 @@
+{
+  "id" : "a530c110-c4a9-42f4-a06f-9390744b8b00",
+  "name" : "FBS holdings",
+  "request" : {
+    "urlPath" : "/external/agencyid/catalog/holdings/v3",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "[\n  {\n    \"recordId\": \"52557240\",\n    \"reservable\": false,\n    \"reservations\": 0,\n    \"holdings\": []\n  },\n  {\n    \"recordId\": \"52643414\",\n    \"reservable\": false,\n    \"reservations\": 0,\n    \"holdings\": []\n  }\n]\n",
+    "headers" : { }
+  },
+  "uuid" : "a530c110-c4a9-42f4-a06f-9390744b8b00",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 16,
+  "postServeActions" : [ ]
+}
