@@ -1420,10 +1420,10 @@
     through2 "^2.0.0"
     watchify "^4.0.0"
 
-"@cypress/code-coverage@^3.12.12":
-  version "3.12.12"
-  resolved "https://registry.yarnpkg.com/@cypress/code-coverage/-/code-coverage-3.12.12.tgz#c10806466a8fcd200f5636319ad681a8adca8482"
-  integrity sha512-V/fWyg6E1xdf/HHHUAg9cfGGU4hzsBgXYCm0ouXW2lOQHeo2/730R+CdXnbhPvDdl6GrndZtXW8K9FZhFNZJbQ==
+"@cypress/code-coverage@^3.12.13":
+  version "3.12.13"
+  resolved "https://registry.yarnpkg.com/@cypress/code-coverage/-/code-coverage-3.12.13.tgz#6e0482387eb0f8e5a2f0fe5ae52e2f703824caf1"
+  integrity sha512-T89OymsdSTcVKtdEqkKjHAKpDR0JCWxIgRBlldEcCAtDYW4Bo8QM+gkE75I18iixcPVCQbnZ9m6fx8Rl6ddc+w==
   dependencies:
     "@cypress/webpack-preprocessor" "^6.0.0"
     chalk "4.1.2"
@@ -1431,7 +1431,7 @@
     debug "4.3.4"
     execa "4.1.0"
     globby "11.1.0"
-    istanbul-lib-coverage "3.0.0"
+    istanbul-lib-coverage "^3.0.0"
     js-yaml "4.1.0"
     nyc "15.1.0"
 
@@ -12347,11 +12347,6 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/isstream/-/isstream-0.1.2.tgz"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
-
-istanbul-lib-coverage@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/istanbul-lib-coverage/-/istanbul-lib-coverage-3.0.0.tgz"
-  integrity sha512-UiUIqxMgRDET6eR+o5HbfRYP1l0hqkWOs7vNxC/mggutCMUIhWMm8gAHb8tHlyfD3/l6rlgNA5cKdDzEAf6hEg==
 
 istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.0.0-alpha.1, istanbul-lib-coverage@^3.2.0, istanbul-lib-coverage@^3.2.2:
   version "3.2.2"
