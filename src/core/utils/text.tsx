@@ -108,8 +108,14 @@ export const useText = (): UseTextFunction => {
   const { data } = useSelector((state: RootState) => state.text);
 
   return (key: string, { placeholders, count } = { count: 0 }) => {
+    if (!data) {
+      throw new Error(`The translation store is broken.`);
+    }
+    if (!data[key]) {
+      throw new Error(`The translation for ${key} is not defined.`);
+    }
     const textDefinition = constructTextDefinitionFromRawTextTextEntry(
-      data?.[key] ?? key
+      data[key]
     );
 
     const textPlaceholders = { ...(placeholders ?? {}) };

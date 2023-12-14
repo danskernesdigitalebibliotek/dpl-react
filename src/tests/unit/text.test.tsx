@@ -76,3 +76,15 @@ test("Should handle plural text definitions", () => {
     );
   });
 });
+
+test("Should throw an error if the text definition is not found", () => {
+  const { result } = renderHook(() => useText(), { wrapper: Wrapper });
+  // We name it t, because that is how we normally use it in the code.
+  const t = result.current;
+
+  act(() => {
+    expect(() => t("nonExistingText")).toThrowError(
+      "The translation for nonExistingText is not defined."
+    );
+  });
+});
