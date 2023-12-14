@@ -27,6 +27,13 @@ updates:
           - "@graphql-typed-document-node/core"
           - "replace-in-file"
           - "typescript-graphql-typed-files-modules"
+      redux:
+        patterns:
+          - "@reduxjs/toolkit"
+          - "@types/react-redux"
+          - "react-redux"
+          - "redux"
+          - "redux-persist"
       storybook:
         patterns:
           - "@storybook/*"
