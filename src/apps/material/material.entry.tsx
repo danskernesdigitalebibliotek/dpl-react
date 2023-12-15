@@ -6,6 +6,7 @@ import { WorkId } from "../../core/utils/types/ids";
 import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface MaterialEntryTextProps {
   addToFavoritesAriaLabelText: string;
@@ -187,6 +188,7 @@ interface MaterialEntryConfigProps {
 export interface MaterialEntryProps
   extends GlobalUrlEntryPropsInterface,
     MaterialEntryTextProps,
+    GlobalEntryTextProps,
     MaterialEntryConfigProps {
   wid: WorkId;
 }

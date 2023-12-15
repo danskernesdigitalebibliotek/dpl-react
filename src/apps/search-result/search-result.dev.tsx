@@ -4,12 +4,14 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SearchResultEntry, {
   SearchResultEntryProps
 } from "./search-result.entry";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Search Result",
   component: SearchResultEntry,
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     q: {
       name: "Search string",
       defaultValue: "harry",

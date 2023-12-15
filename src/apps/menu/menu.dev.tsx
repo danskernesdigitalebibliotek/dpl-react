@@ -10,6 +10,7 @@ import reservationMaterialDetailsProps from "../../core/storybook/reservationMat
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Header",
@@ -23,6 +24,7 @@ export default {
     ...reservationGroupModalArgs,
     ...deleteReservationModalArgs,
     ...materialDetailsModalArgs,
+    ...globalTextArgs,
     materialAndAuthorText: {
       control: {
         type: "text"

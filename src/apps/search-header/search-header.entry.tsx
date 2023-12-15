@@ -3,6 +3,7 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import SearchHeader from "./search-header";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface SearchHeaderTextProps {
   alertErrorCloseText: string;
@@ -30,6 +31,7 @@ export interface SearchHeaderTextProps {
 
 export interface SearchHeaderEntryProps
   extends SearchHeaderTextProps,
+    GlobalEntryTextProps,
     GlobalUrlEntryPropsInterface {}
 
 const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = () => {

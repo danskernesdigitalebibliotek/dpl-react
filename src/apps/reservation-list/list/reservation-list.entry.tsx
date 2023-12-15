@@ -9,6 +9,7 @@ import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs
 import GlobalUrlEntryPropsInterface from "../../../core/utils/types/global-url-props";
 import { ReservationMaterialDetailsProps } from "../../../core/storybook/reservationMaterialDetailsArgs";
 import { DeleteReservationModalArgs } from "../../../core/storybook/deleteReservationModalArgs";
+import { GlobalEntryTextProps } from "../../../core/storybook/globalTextArgs";
 
 export interface ReservationListUrlProps {
   expirationWarningDaysBeforeConfig: string;
@@ -77,6 +78,7 @@ export interface ReservationListEntryWithPageSizeProps
     ReservationListUrlProps,
     DeleteReservationModalArgs,
     ReservationMaterialDetailsProps,
+    GlobalEntryTextProps,
     GlobalUrlEntryPropsInterface {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;

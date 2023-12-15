@@ -4,6 +4,7 @@ import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
 import { FaustId } from "../../core/utils/types/ids";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface SomethingSimilarProps {
   fbsBaseUrl: string;
@@ -24,7 +25,9 @@ export interface SomethingSimilarProps {
   faust: FaustId;
 }
 
-const SomethingSimilarEntry: FC<SomethingSimilarProps> = ({ faust }) => {
+const SomethingSimilarEntry: FC<
+  SomethingSimilarProps & GlobalEntryTextProps
+> = ({ faust }) => {
   return <SomethingSimilar faust={faust} />;
 };
 

@@ -17,6 +17,10 @@ const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
 
   const { blockedModal } = getModalIds();
 
+  if (!blockedStatus || blockedStatus === "") {
+    return null;
+  }
+
   return (
     <Modal
       modalId={blockedModal as string}

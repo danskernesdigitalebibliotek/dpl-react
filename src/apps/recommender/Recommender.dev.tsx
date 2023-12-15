@@ -2,12 +2,14 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import Recommender from "./Recommender.entry";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Recommender",
   component: Recommender,
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     emptyRecommenderSearchConfig: {
       defaultValue: "Mimbo jimbo",
       control: { type: "text" }

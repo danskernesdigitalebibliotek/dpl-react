@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Multiselect from "./Multiselect";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 const options = [
   {
@@ -20,6 +21,7 @@ export default {
   title: "Components / Multiselect",
   component: Multiselect,
   argTypes: {
+    ...globalTextArgs,
     caption: {
       name: "Caption",
       control: { type: "text" }

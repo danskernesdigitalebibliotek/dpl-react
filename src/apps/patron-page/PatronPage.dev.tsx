@@ -4,6 +4,7 @@ import PatronPage from "./PatronPage.entry";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import pincodeArgs from "../../core/storybook/pincodeArgs";
 import blockedArgs from "../../core/storybook/blockedArgs";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Patron page",
@@ -12,6 +13,7 @@ export default {
     ...serviceUrlArgs,
     ...pincodeArgs,
     ...blockedArgs,
+    ...globalTextArgs,
     // Config
     pauseReservationStartDateConfig: {
       defaultValue: "2022-06-30",

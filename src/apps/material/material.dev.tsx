@@ -2,12 +2,14 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import MaterialEntry, { MaterialEntryProps } from "./material.entry";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Material",
   component: MaterialEntry,
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     searchUrl: {
       name: "Path to the search result page",
       defaultValue: "/search",

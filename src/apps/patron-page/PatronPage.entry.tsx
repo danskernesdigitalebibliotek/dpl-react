@@ -6,6 +6,7 @@ import PatronPage from "./PatronPage";
 import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import withIsPatronBlockedHoc from "../../core/utils/withIsPatronBlockedHoc";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface PatronPageConfigProps {
   blacklistedPickupBranchesConfig: string;
@@ -81,6 +82,7 @@ export interface PatronPageProps
     BlockedPatronEntryTextProps,
     PatronPageTextProps,
     PatronPageUrlProps,
+    GlobalEntryTextProps,
     GlobalUrlEntryPropsInterface {}
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;

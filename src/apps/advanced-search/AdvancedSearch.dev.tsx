@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 import AdvancedSearchEntry, {
   AdvancedSearchEntryProps
 } from "./AdvancedSearch.entry";
@@ -10,6 +11,7 @@ export default {
   component: AdvancedSearchEntry,
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     pageSizeDesktop: {
       name: "Number of search result items on desktop",
       defaultValue: 50,

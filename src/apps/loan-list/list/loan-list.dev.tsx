@@ -3,6 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import blockedArgs from "../../../core/storybook/blockedArgs";
+import globalTextArgs from "../../../core/storybook/globalTextArgs";
 import LoanList from "./loan-list.entry";
 import groupModalArgs from "../../../core/storybook/groupModalArgs";
 import loanGroupModalArgs from "../../../core/storybook/loanGroupModalArgs";
@@ -17,6 +18,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...groupModalArgs,
+    ...globalTextArgs,
     ...loanGroupModalArgs,
     ...renewalArgs,
     ...acceptModalArgs,

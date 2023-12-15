@@ -12,6 +12,7 @@ import {
   mockedManifestationData,
   mockedPeriodicalManifestationData
 } from "./mocked-data";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Components / Find On Shelf Modal",
@@ -21,6 +22,7 @@ export default {
     // Spread material app argTypes so that we get access to system strings.
     // -> t() function strings in this story.
     ...materialDev.argTypes,
+    ...globalTextArgs,
     manifestations: {
       name: "Manifestations",
       defaultValue: mockedManifestationData,

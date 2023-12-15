@@ -3,7 +3,7 @@ import FavoritesListMaterialComponent from "./FavoritesListMaterialComponent";
 import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
-import { FaustId } from "../../core/utils/types/ids";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface FavoritesListMaterialComponentProps {
   fbsBaseUrl: string;
@@ -23,7 +23,9 @@ export interface FavoritesListMaterialComponentProps {
   removeFromFavoritesAriaLabelText: string;
 }
 
-const SomethingSimilarEntry: FC<FavoritesListMaterialComponentProps> = () => {
+const SomethingSimilarEntry: FC<
+  FavoritesListMaterialComponentProps & GlobalEntryTextProps
+> = () => {
   return <FavoritesListMaterialComponent />;
 };
 

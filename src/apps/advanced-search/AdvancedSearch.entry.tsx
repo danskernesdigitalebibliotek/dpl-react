@@ -6,6 +6,7 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import AdvancedSearch from "./AdvancedSearch";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface AdvancedSearchEntryTextProps {
   addToFavoritesAriaLabelText: string;
@@ -79,6 +80,7 @@ interface AdvancedSearchEntryConfigProps {
 
 export interface AdvancedSearchEntryProps
   extends GlobalUrlEntryPropsInterface,
+    GlobalEntryTextProps,
     AdvancedSearchEntryConfigProps,
     AdvancedSearchEntryTextProps {
   pageSizeDesktop?: number;
