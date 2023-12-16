@@ -6,8 +6,6 @@ import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-prop
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface SearchHeaderTextProps {
-  alertErrorCloseText: string;
-  alertErrorMessageText: string;
   searchHeaderIconAltText?: string;
   searchHeaderInputLabelText?: string;
   inputPlaceholderText?: string;

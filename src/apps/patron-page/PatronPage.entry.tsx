@@ -32,7 +32,6 @@ interface PatronPageTextProps {
   patronPinSavedSuccessText: string;
   dateInputsStartDateLabelText: string;
   dateInputsEndDateLabelText: string;
-  pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
   pauseReservationModalCancelButtonLabelText: string;
@@ -40,7 +39,6 @@ interface PatronPageTextProps {
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
   patronContactInfoHeaderText: string;
-  patronContactInfoBodyText: string;
   patronContactPhoneLabelText: string;
   patronContactPhoneCheckboxText: string;
   patronContactEmailLabelText: string;

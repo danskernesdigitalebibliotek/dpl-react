@@ -24,12 +24,6 @@ export default {
     },
     defaultValue: "Material Item Number"
   },
-  materialDetailsCloseModalAriaLabelText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Close material details modal"
-  },
   materialDetailsLinkToPageWithFeesText: {
     control: {
       type: "text"
@@ -41,13 +35,6 @@ export default {
       type: "text"
     },
     defaultValue: "Expired"
-  },
-  materialDetailsModalAriaDescriptionText: {
-    control: {
-      type: "text"
-    },
-    defaultValue:
-      "This modal shows material details, and makes it possible to renew a material, of that material is renewable"
   },
   materialDetailsGoToEreolenText: {
     defaultValue: "Go to eReolen",
@@ -84,12 +71,10 @@ export interface MaterialDetailsModalProps {
   materialDetailsPhysicalDueDateLabelText: string;
   materialDetailsLoanDateLabelText: string;
   materialDetailsMaterialNumberLabelText: string;
-  materialDetailsCloseModalAriaLabelText: string;
   materialDetailsLinkToPageWithFeesText: string;
   materialDetailsOverdueText: string;
   feesPageUrl: string;
   ereolenMyPageUrl: string;
-  materialDetailsModalAriaDescriptionText: string;
   materialDetailsGoToEreolenText: string;
   materialDetailsDigitalDueDateLabelText: string;
   materialDetailsRenewLoanButtonText: string;

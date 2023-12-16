@@ -11,8 +11,6 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
   addToFavoritesAriaLabelText: string;
-  alertErrorCloseText: string;
-  alertErrorMessageText: string;
   byAuthorText: string;
   etAlText: string;
   facetAccessTypesText: string;

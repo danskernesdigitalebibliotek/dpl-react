@@ -78,10 +78,6 @@ export default {
       defaultValue: "End date",
       control: { type: "text" }
     },
-    pauseReservationModalBelowInputsTextText: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
     pauseReservationModalLinkText: {
       defaultValue:
         "Read more about pausing reservertions and what that means here",
@@ -109,10 +105,6 @@ export default {
     },
     patronContactInfoHeaderText: {
       defaultValue: "Contact information",
-      control: { type: "text" }
-    },
-    patronContactInfoBodyText: {
-      defaultValue: "",
       control: { type: "text" }
     },
     patronContactPhoneLabelText: {

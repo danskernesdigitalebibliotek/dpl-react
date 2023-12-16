@@ -110,16 +110,6 @@ export default {
       },
       defaultValue: "Remove @title from favorites list"
     },
-    alertErrorCloseText: {
-      name: "Alert error close text",
-      defaultValue: "close",
-      control: { type: "text" }
-    },
-    alertErrorMessageText: {
-      name: "Alert error message text",
-      defaultValue: "An error occurred",
-      control: { type: "text" }
-    },
     loadingText: {
       name: "Loading",
       defaultValue: "Loading",
@@ -358,11 +348,6 @@ export default {
     advancedSearchFilterNonFictionText: {
       name: "Advanced search filter - non-fiction",
       defaultValue: "Non-fiction",
-      control: { type: "text" }
-    },
-    multiselectAllOptionText: {
-      name: "Multiselect - all option",
-      defaultValue: "All",
       control: { type: "text" }
     }
   }

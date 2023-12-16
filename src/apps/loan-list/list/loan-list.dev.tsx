@@ -209,10 +209,6 @@ export default {
     resultPagerStatusText: {
       defaultValue: "Showing @itemsShown out of @hitcount loans",
       control: { type: "text" }
-    },
-    groupModalGoToMaterialAriaLabelText: {
-      defaultValue: "Go to @label material details",
-      control: { type: "text" }
     }
   },
   decorators: [withQuery]

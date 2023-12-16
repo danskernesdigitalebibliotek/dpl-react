@@ -87,10 +87,6 @@ export default {
       defaultValue: "Phone number",
       control: { type: "text" }
     },
-    patronContactInfoBodyText: {
-      defaultValue: "Please enter contact information below",
-      control: { type: "text" }
-    },
     patronContactInfoHeaderText: {
       defaultValue: "Contact information",
       control: { type: "text" }

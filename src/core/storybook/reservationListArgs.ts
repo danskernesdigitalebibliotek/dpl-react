@@ -206,10 +206,6 @@ export default {
     defaultValue: "End date",
     control: { type: "text" }
   },
-  pauseReservationModalBelowInputsTextText: {
-    defaultValue: "",
-    control: { type: "text" }
-  },
   pauseReservationModalLinkText: {
     defaultValue:
       "Read more about pausing reservertions and what that means here",

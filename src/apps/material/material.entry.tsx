@@ -10,12 +10,8 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface MaterialEntryTextProps {
   addToFavoritesAriaLabelText: string;
-  alertErrorCloseText: string;
-  alertErrorMessageText: string;
   alreadyReservedText: string;
   approveReservationText: string;
-  availabilityAvailableText: string;
-  availabilityUnavailableText: string;
   blockedButtonText: string;
   cantReserveText: string;
   cantViewReviewText: string;
@@ -55,7 +51,6 @@ interface MaterialEntryTextProps {
   fictionNonfictionText: string;
   filmAdaptationsText: string;
   findOnBookshelfText: string;
-  findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
   findOnShelfModalListFindOnShelfText: string;
   findOnShelfModalListItemCountText: string;

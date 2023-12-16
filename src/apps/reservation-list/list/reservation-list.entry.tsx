@@ -58,7 +58,6 @@ export interface ReservationListTextProps {
   pauseReservationModalCloseModalText: string;
   dateInputsStartDateLabelText: string;
   dateInputsEndDateLabelText: string;
-  pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
   pauseReservationModalCancelButtonLabelText: string;

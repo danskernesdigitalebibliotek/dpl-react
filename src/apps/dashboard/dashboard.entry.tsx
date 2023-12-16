@@ -37,7 +37,6 @@ export interface DashBoardProps {
   etAlText: string;
   feesText: string;
   loanListMaterialDaysText: string;
-  loansNotOverdueText: string;
   loansOverdueText: string;
   loansSoonOverdueText: string;
   materialAndAuthorText: string;
@@ -53,7 +52,6 @@ export interface DashBoardProps {
   readyForLoanText: string;
   reservationDetailsOthersInQueueText: string;
   reservationsReadyText: string;
-  reservationsStillInQueueForText: string;
   reservationsText: string;
   resultPagerStatusText: string;
   statusBadgeWarningText: string;

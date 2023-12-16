@@ -33,7 +33,6 @@ interface CreatePatronTextProps {
   createPatronInvalidSSNHeaderText: string;
   patronContactEmailCheckboxText: string;
   patronContactEmailLabelText: string;
-  patronContactInfoBodyText: string;
   patronContactInfoHeaderText: string;
   patronContactNameLabelText: string;
   patronContactPhoneCheckboxText: string;

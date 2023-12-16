@@ -10,8 +10,6 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface AdvancedSearchEntryTextProps {
   addToFavoritesAriaLabelText: string;
-  alertErrorCloseText: string;
-  alertErrorMessageText: string;
   byAuthorText: string;
   etAlText: string;
   inSeriesText: string;
@@ -68,7 +66,6 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterOnlineText: string;
   advancedSearchFilterFictionText: string;
   advancedSearchFilterNonFictionText: string;
-  multiselectAllOptionText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {

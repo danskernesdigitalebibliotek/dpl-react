@@ -72,10 +72,6 @@ export default {
       defaultValue: "To be returned soon",
       control: { type: "text" }
     },
-    loansNotOverdueText: {
-      defaultValue: "Longer return time",
-      control: { type: "text" }
-    },
     reservationsText: {
       defaultValue: "Reservations",
       control: { type: "text" }
@@ -86,10 +82,6 @@ export default {
     },
     reservationsReadyText: {
       defaultValue: "Ready for you",
-      control: { type: "text" }
-    },
-    reservationsStillInQueueForText: {
-      defaultValue: "Still in queue",
       control: { type: "text" }
     },
     noPhysicalLoansText: {
