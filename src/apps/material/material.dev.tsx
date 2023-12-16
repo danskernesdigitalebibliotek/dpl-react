@@ -670,6 +670,31 @@ export default {
       defaultValue: "Close",
       control: { type: "text" }
     },
+    orderDigitalCopyFeedbackBorchkUserBlockedByAgencyText: {
+      name: "Borchk user blocked by agency text",
+      defaultValue: "Borchk user blocked by agency",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackBorchkUserNotVerifiedText: {
+      name: "Borchk user not verified text",
+      defaultValue: "Borchk user not verified",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackBorchkUserNoLongerExistOnAgencyText: {
+      name: "Borchk user no longer exists on agency text",
+      defaultValue: "Borchk user no longer exists on agency",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorMunicipalityagencyidNotFoundText: {
+      name: "Error municipality agency ID not found text",
+      defaultValue: "Error municipality agency ID not found",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackUnknownUserText: {
+      name: "Unknown user text",
+      defaultValue: "Unknown user",
+      control: { type: "text" }
+    },
     orderDigitalCopyEmailLabelText: {
       name: "Order digital copy error email text",
       defaultValue: "Email",

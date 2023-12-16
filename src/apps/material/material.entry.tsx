@@ -141,6 +141,11 @@ interface MaterialEntryTextProps {
   orderDigitalCopyFeedbackErrorUnauthenticatedUserText: string;
   orderDigitalCopyFeedbackOkText: string;
   orderDigitalCopyFeedbackTitleText: string;
+  orderDigitalCopyFeedbackBorchkUserBlockedByAgencyText: string;
+  orderDigitalCopyFeedbackBorchkUserNotVerifiedText: string;
+  orderDigitalCopyFeedbackBorchkUserNoLongerExistOnAgencyText: string;
+  orderDigitalCopyFeedbackErrorMunicipalityagencyidNotFoundText: string;
+  orderDigitalCopyFeedbackUnknownUserText: string;
   orderDigitalCopyModalCloseModalAriaLabelText: string;
   orderDigitalCopyModalScreenReaderModalDescriptionText: string;
   orderDigitalCopyTitleText: string;
