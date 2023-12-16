@@ -155,7 +155,7 @@ export default {
       control: { type: "text" }
     },
     patronPageChangePickupBodyText: {
-      defaultValue: "",
+      defaultValue: "Change pickup body text",
       control: { type: "text" }
     },
     pickupBranchesDropdownLabelText: {
@@ -171,7 +171,7 @@ export default {
       control: { type: "text" }
     },
     patronPagePauseReservationsBodyText: {
-      defaultValue: "",
+      defaultValue: "Patron page pause reservations body text",
       control: { type: "text" }
     },
     patronPageOpenPauseReservationsSectionText: {

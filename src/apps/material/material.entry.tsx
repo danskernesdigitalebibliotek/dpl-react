@@ -17,14 +17,8 @@ interface MaterialEntryTextProps {
   cantViewReviewText: string;
   cantViewText: string;
   changeEmailText: string;
-  changeInterestPeriodText: string;
-  changePickupLocationText: string;
   changeSmsNumberText: string;
   chooseOneText: string;
-  closeModalAriaLabelEmailText: string;
-  closeModalAriaLabelInterestPeriodText: string;
-  closeModalAriaLabelPickupText: string;
-  closeModalAriaLabelSmsText: string;
   closeText: string;
   daysText: string;
   descriptionHeadlineText: string;
@@ -89,12 +83,8 @@ interface MaterialEntryTextProps {
   modalReservationFormEmailHeaderTitleText: string;
   modalReservationFormEmailInputFieldDescriptionText: string;
   modalReservationFormEmailInputFieldLabelText: string;
-  modalReservationFormNoInterestAfterHeaderDescriptionText: string;
-  modalReservationFormNoInterestAfterHeaderTitleText: string;
-  modalReservationFormNoInterestAfterLabelText: string;
   modalReservationFormPickupHeaderDescriptionText: string;
   modalReservationFormPickupHeaderTitleText: string;
-  modalReservationFormPickupLabelText: string;
   modalReservationFormSmsHeaderDescriptionText: string;
   modalReservationFormSmsHeaderTitleText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
@@ -166,10 +156,6 @@ interface MaterialEntryTextProps {
   reserveText: string;
   reviewsText: string;
   saveButtonText: string;
-  screenReaderModalDescriptionEmailText: string;
-  screenReaderModalDescriptionInterestPeriodText: string;
-  screenReaderModalDescriptionPickupText: string;
-  screenReaderModalDescriptionSmsText: string;
   seeOnlineText: string;
   shiftText: string;
   subjectNumberText: string;

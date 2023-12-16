@@ -255,11 +255,6 @@ export default {
       "One or more reservations could not be deleted, please try again.",
     control: { type: "text" }
   },
-  deleteReservationModalButtonText: {
-    name: "Delete reservation modal delete button text",
-    defaultValue: "Ok",
-    control: { type: "text" }
-  },
   deleteReservationModalDeleteProcessingText: {
     name: "Delete reservation modal delete processing text",
     defaultValue: "Processing...",

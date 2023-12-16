@@ -158,6 +158,11 @@ export default {
       defaultValue: "Main languages",
       control: { type: "text" }
     },
+    facetMaterialTypesText: {
+      name: "Material types text",
+      defaultValue: "Material types",
+      control: { type: "text" }
+    },
     facetMaterialTypesGeneralText: {
       name: "Material types general text",
       defaultValue: "Material types general",

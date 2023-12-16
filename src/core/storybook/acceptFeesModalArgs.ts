@@ -23,10 +23,6 @@ export default {
   acceptModalAriaDescriptionText: {
     defaultValue: "accept modal aria description text",
     control: { type: "text" }
-  },
-  acceptModalAriaLabelText: {
-    defaultValue: "accept modal aria label text",
-    control: { type: "text" }
   }
 };
 
@@ -37,5 +33,4 @@ export interface AcceptFeesModalEntryTextProps {
   acceptModalCancelButtonText: string;
   acceptModalAcceptButtonText: string;
   acceptModalAriaDescriptionText: string;
-  acceptModalAriaLabelText: string;
 }

@@ -11,10 +11,16 @@ import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalA
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import { withText } from "../../core/utils/text";
+import { withUrls } from "../../core/utils/url";
+import { withConfig } from "../../core/utils/config";
+
+const WrappedMenu = withText(withUrls(withConfig(Menu)));
+const WrappedStoryHeader = withText(withUrls(withConfig(StoryHeader)));
 
 export default {
   title: "Apps / Header",
-  component: Menu,
+  component: WrappedMenu,
   argTypes: {
     ...serviceUrlArgs,
     ...groupModalArgs,
@@ -163,16 +169,15 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof Menu>;
+} as ComponentMeta<typeof WrappedMenu>;
 
-export const UserMenu: ComponentStory<typeof Menu> = (args) => {
-  const menuEntryProps = args;
-  const menu = <Menu {...menuEntryProps} />;
+export const UserMenu: ComponentStory<typeof WrappedMenu> = (args) => {
+  const menu = <WrappedMenu {...args} />;
 
   return (
     // We use the Header component as context to the search bar.
     // It is the Header that creates the Search bar's design -
     // - without it, the Search bar loses its shape.
-    <StoryHeader userProfile={menu} />
+    <WrappedStoryHeader userProfile={menu} />
   );
 };

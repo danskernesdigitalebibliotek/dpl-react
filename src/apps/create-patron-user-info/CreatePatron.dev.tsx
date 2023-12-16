@@ -106,11 +106,11 @@ export default {
       control: { type: "text" }
     },
     createPatronChangePickupHeaderText: {
-      defaultValue: "",
+      defaultValue: "Create patron change pickup header text",
       control: { type: "text" }
     },
     createPatronChangePickupBodyText: {
-      defaultValue: "",
+      defaultValue: "Create patron change pickup body text",
       control: { type: "text" }
     },
     createPatronHeaderText: {

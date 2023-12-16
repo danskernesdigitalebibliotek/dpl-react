@@ -24,6 +24,7 @@ interface SearchResultEntryTextProps {
   facetFictionNonfictionText: string;
   facetGenreAndFormText: string;
   facetMainLanguagesText: string;
+  facetMaterialTypesText: string;
   facetMaterialTypesGeneralText: string;
   facetMaterialTypesSpecificText: string;
   facetSubjectsText: string;

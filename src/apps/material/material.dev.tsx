@@ -536,31 +536,9 @@ export default {
         "If you wish to change the pick-up location for your reservation, you can do it here.",
       control: { type: "text" }
     },
-    modalReservationFormPickupLabelText: {
-      name: "Modal reservation form pickup branch input label",
-      defaultValue: "Change pickup location for your reservation.",
-      control: { type: "text" }
-    },
     chooseOneText: {
       name: "Choose one text",
       defaultValue: "Choose one",
-      control: { type: "text" }
-    },
-    modalReservationFormNoInterestAfterHeaderTitleText: {
-      name: "Modal reservation form no interest after header title",
-      defaultValue: "Change date of interest",
-      control: { type: "text" }
-    },
-    modalReservationFormNoInterestAfterHeaderDescriptionText: {
-      name: "Modal reservation form no interest after header description",
-      defaultValue:
-        "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
-      control: { type: "text" }
-    },
-    modalReservationFormNoInterestAfterLabelText: {
-      name: "Modal reservation form no interest after input label",
-      defaultValue:
-        "Change the amount of time after which you're no longer interested in this material.",
       control: { type: "text" }
     },
     infomediaModalScreenReaderModalDescriptionText: {
@@ -728,16 +706,6 @@ export default {
       defaultValue: "Expand more",
       control: { type: "text" }
     },
-    changeInterestPeriodText: {
-      name: "Change interest period text",
-      defaultValue: "Change interest period",
-      control: { type: "text" }
-    },
-    changePickupLocationText: {
-      name: "Change pickup location text",
-      defaultValue: "Change pickup location",
-      control: { type: "text" }
-    },
     changeSmsNumberText: {
       name: "Change sms number text",
       defaultValue: "Change sms number",
@@ -746,46 +714,6 @@ export default {
     changeEmailText: {
       name: "Change email text",
       defaultValue: "Change email",
-      control: { type: "text" }
-    },
-    screenReaderModalDescriptionInterestPeriodText: {
-      name: "Screen reader modal description for interest period",
-      defaultValue: "Change interest period modal",
-      control: { type: "text" }
-    },
-    closeModalAriaLabelInterestPeriodText: {
-      name: "Close modal aria-label interest period ",
-      defaultValue: "Close interest period modal",
-      control: { type: "text" }
-    },
-    screenReaderModalDescriptionPickupText: {
-      name: "Screen reader modal description for pickup",
-      defaultValue: "Change pickup location modal",
-      control: { type: "text" }
-    },
-    closeModalAriaLabelPickupText: {
-      name: "Close modal aria-label pickup",
-      defaultValue: "Close pickup location modal",
-      control: { type: "text" }
-    },
-    screenReaderModalDescriptionSmsText: {
-      name: "Screen reader modal description for sms",
-      defaultValue: "Change mobile number modal",
-      control: { type: "text" }
-    },
-    closeModalAriaLabelSmsText: {
-      name: "Close modal aria-label sms",
-      defaultValue: "Close change mobile number modal",
-      control: { type: "text" }
-    },
-    screenReaderModalDescriptionEmailText: {
-      name: "Screen reader modal description for email",
-      defaultValue: "Change email modal",
-      control: { type: "text" }
-    },
-    closeModalAriaLabelEmailText: {
-      name: "Close modal aria-label email",
-      defaultValue: "Close change email modal",
       control: { type: "text" }
     },
     instantLoanTitleText: {
