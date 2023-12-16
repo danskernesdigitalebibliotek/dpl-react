@@ -13,9 +13,9 @@ describe("Multiselect", () => {
     cy.get("button:visible").should("contain", "All").click();
     cy.get("[role=option]")
       .should("contain", "All")
-      .should("contain", "First item")
-      .should("contain", "2. item")
-      .should("contain", "III");
+      .should("contain", "An error occurred")
+      .should("contain", "Available")
+      .should("contain", "Unavailable");
     cy.get("[type=checkbox]").should("have.length", 4);
   });
 
@@ -31,10 +31,10 @@ describe("Multiselect", () => {
 
   it("Allows selection of single value", () => {
     cy.get("button:visible").click();
-    cy.get("[role=option]").contains("First item").click();
+    cy.get("[role=option]").contains("An error occurred").click();
     cy.get("[role=option]")
       .eq(1)
-      .should("contain", "First item")
+      .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
       .eq(0)
@@ -47,12 +47,12 @@ describe("Multiselect", () => {
     cy.get("[role=option]")
       .eq(1)
       .click()
-      .should("contain", "First item")
+      .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
       .eq(2)
       .click()
-      .should("contain", "2. item")
+      .should("contain", "Available")
       .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
       .eq(0)
@@ -62,44 +62,56 @@ describe("Multiselect", () => {
 
   it("Allows to remove an item", () => {
     cy.getBySel("multiselect").should("contain", "All").click();
-    cy.get("[role=option]").eq(1).should("contain", "First item").click();
-    cy.get("[role=option]").eq(2).should("contain", "2. item").click();
     cy.get("[role=option]")
       .eq(1)
-      .should("contain", "First item")
+      .should("contain", "An error occurred")
+      .click();
+    cy.get("[role=option]").eq(2).should("contain", "Available").click();
+    cy.get("[role=option]")
+      .eq(1)
+      .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
       .eq(2)
-      .should("contain", "2. item")
+      .should("contain", "Available")
       .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
       .eq(3)
-      .should("contain", "III")
+      .should("contain", "Unavailable")
       .and("have.attr", "aria-selected", "false");
-    // Now we click the first item to deselect it..
-    cy.get("[role=option]").eq(1).should("contain", "First item").click();
+    // Now we click the An error occurred to deselect it..
+    cy.get("[role=option]")
+      .eq(1)
+      .should("contain", "An error occurred")
+      .click();
     // ..and the only selected one should be the second item.
     cy.get("[role=option]")
       .eq(1)
-      .should("contain", "First item")
+      .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "false");
     cy.get("[role=option]")
       .eq(2)
-      .should("contain", "2. item")
+      .should("contain", "Available")
       .and("have.attr", "aria-selected", "true");
   });
 
   it("Doesn't allow to remove an item if it's the only selected", () => {
     cy.getBySel("multiselect").should("contain", "All").click();
-    cy.get("[role=option]").eq(1).should("contain", "First item").click();
     cy.get("[role=option]")
       .eq(1)
-      .should("contain", "First item")
+      .should("contain", "An error occurred")
+      .click();
+    cy.get("[role=option]")
+      .eq(1)
+      .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "true");
-    cy.get("[role=option]").eq(1).should("contain", "First item").click();
     cy.get("[role=option]")
       .eq(1)
-      .should("contain", "First item")
+      .should("contain", "An error occurred")
+      .click();
+    cy.get("[role=option]")
+      .eq(1)
+      .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "true");
   });
 
@@ -114,27 +126,27 @@ describe("Multiselect", () => {
 
   it("Supports single default value preselected", () => {
     cy.visit("/iframe.html?args=&id=components-multiselect--single-selected");
-    cy.contains("First item");
+    cy.contains("An error occurred");
     cy.get("button:visible").click();
     cy.get("[role=option]")
       .eq(1)
       .click()
-      .should("contain", "First item")
+      .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "true");
   });
 
   it("Supports multiple default values preselected", () => {
     cy.visit("/iframe.html?args=&id=components-multiselect--multiple-selected");
-    cy.contains("First item");
-    cy.contains("2. item");
+    cy.contains("An error occurred");
+    cy.contains("Available");
     cy.get("button:visible").click();
     cy.get("[role=option]")
       .eq(1)
-      .should("contain", "First item")
+      .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
       .eq(2)
-      .should("contain", "2. item")
+      .should("contain", "Available")
       .and("have.attr", "aria-selected", "true");
   });
 });
