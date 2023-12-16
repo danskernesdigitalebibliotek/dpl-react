@@ -20,12 +20,10 @@ describe("Multiselect", () => {
   });
 
   it("Has the all option selected by default", () => {
-    cy.get("button:visible")
-      .should("contain", "multiselectAllOptionText")
-      .click();
+    cy.get("button:visible").should("contain", "All").click();
     cy.get("[role=option]")
       .eq(0)
-      .should("contain", "multiselectAllOptionText")
+      .should("contain", "All")
       .and("have.attr", "aria-selected", "true");
   });
 
@@ -38,7 +36,7 @@ describe("Multiselect", () => {
       .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
       .eq(0)
-      .should("contain", "multiselectAllOptionText")
+      .should("contain", "All")
       .and("have.attr", "aria-selected", "false");
   });
 
@@ -56,7 +54,7 @@ describe("Multiselect", () => {
       .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
       .eq(0)
-      .should("contain", "multiselectAllOptionText")
+      .should("contain", "All")
       .and("have.attr", "aria-selected", "false");
   });
 
@@ -120,7 +118,7 @@ describe("Multiselect", () => {
     cy.get("[role=option]").click({ multiple: true });
     cy.get("[role=option]")
       .eq(0)
-      .should("contain", "multiselectAllOptionText")
+      .should("contain", "All")
       .and("have.attr", "aria-selected", "true");
   });
 
