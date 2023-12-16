@@ -2,6 +2,9 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Multiselect from "./Multiselect";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import { withText } from "../../core/utils/text";
+
+const WrappedMultiselect = withText(Multiselect);
 
 const options = [
   {
@@ -19,7 +22,7 @@ const options = [
 ];
 export default {
   title: "Components / Multiselect",
-  component: Multiselect,
+  component: WrappedMultiselect,
   argTypes: {
     ...globalTextArgs,
     caption: {
@@ -31,13 +34,14 @@ export default {
     }
   },
   args: {
+    ...globalTextArgs,
     caption: "Title",
     options
   }
-} as ComponentMeta<typeof Multiselect>;
+} as ComponentMeta<typeof WrappedMultiselect>;
 
-const Template: ComponentStory<typeof Multiselect> = (args) => (
-  <Multiselect {...args} />
+const Template: ComponentStory<typeof WrappedMultiselect> = (args) => (
+  <WrappedMultiselect {...args} />
 );
 
 export const Default = Template.bind({});
