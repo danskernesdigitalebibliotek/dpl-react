@@ -50,18 +50,6 @@ export default {
       },
       defaultValue: "For your inspiration"
     },
-    addToFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Add @title to favorites list"
-    },
-    removeFromFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Remove @title from favorites list"
-    },
     materialUrl: {
       defaultValue: "/work/:workid",
       control: { type: "text" }

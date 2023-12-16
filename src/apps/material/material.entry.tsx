@@ -9,7 +9,6 @@ import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-prop
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface MaterialEntryTextProps {
-  addToFavoritesAriaLabelText: string;
   alreadyReservedText: string;
   approveReservationText: string;
   blockedButtonText: string;
@@ -143,7 +142,6 @@ interface MaterialEntryTextProps {
   readArticleText: string;
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
-  removeFromFavoritesAriaLabelText: string;
   reservableFromAnotherLibraryText: string;
   reservationErrorsDescriptionText: string;
   reservationErrorsTitleText: string;

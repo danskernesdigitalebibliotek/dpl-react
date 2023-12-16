@@ -180,11 +180,6 @@ export default {
     defaultValue: "Settings",
     control: { type: "text" }
   },
-  pauseReservationModalAriaDescriptionText: {
-    defaultValue:
-      "This modal makes it possible to pause your physical reservations",
-    control: { type: "text" }
-  },
   pauseReservationModalHeaderText: {
     defaultValue: "Pause reservations on physical items",
     control: { type: "text" }

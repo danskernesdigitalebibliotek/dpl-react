@@ -20,8 +20,6 @@ export interface SomethingSimilarProps {
   etAlText: string;
   somethingSimilarByTheSameAuthorText: string;
   somethingSimilarSomethingSimilarAuthorText: string;
-  addToFavoritesAriaLabelText: string;
-  removeFromFavoritesAriaLabelText: string;
   faust: FaustId;
 }
 

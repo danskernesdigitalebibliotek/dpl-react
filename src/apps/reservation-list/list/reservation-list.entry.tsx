@@ -52,7 +52,6 @@ export interface ReservationListTextProps {
   reservationListPauseReservationOnHoldText: string;
   reservationListOnHoldAriaText: string;
   reservationListPauseReservationAriaModalText: string;
-  pauseReservationModalAriaDescriptionText: string;
   pauseReservationModalHeaderText: string;
   pauseReservationModalBodyText: string;
   pauseReservationModalCloseModalText: string;

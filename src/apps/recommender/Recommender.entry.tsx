@@ -15,8 +15,6 @@ export interface RecommenderProps {
   materialAndAuthorText: string;
   etAlText: string;
   recommenderTitleInspirationText: string;
-  addToFavoritesAriaLabelText: string;
-  removeFromFavoritesAriaLabelText: string;
 }
 
 export interface ReccommenderPropsInterface

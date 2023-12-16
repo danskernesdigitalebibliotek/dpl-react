@@ -9,7 +9,6 @@ import reservationGroupModalArgs from "../../core/storybook/reservationGroupModa
 import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
-import acceptModalArgs from "../../core/storybook/acceptFeesModalArgs";
 import reservationListArgs from "../../core/storybook/reservationListArgs";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 
@@ -22,7 +21,6 @@ export default {
     ...renewalArgs,
     ...reservationGroupModalArgs,
     ...reservationMaterialDetailsProps,
-    ...acceptModalArgs,
     ...materialDetailsModalArgs,
     ...deleteReservationModalArgs,
     ...reservationListArgs,

@@ -10,7 +10,6 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
-  addToFavoritesAriaLabelText: string;
   byAuthorText: string;
   etAlText: string;
   facetAccessTypesText: string;
@@ -34,7 +33,6 @@ interface SearchResultEntryTextProps {
   inSeriesText: string;
   loadingText: string;
   numberDescriptionText: string;
-  removeFromFavoritesAriaLabelText: string;
   resultPagerStatusText: string;
   showingResultsForText: string;
   noSearchResultText: string;

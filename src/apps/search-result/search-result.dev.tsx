@@ -203,18 +203,6 @@ export default {
       defaultValue: "+ more filters",
       control: { type: "text" }
     },
-    addToFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Add @title to favorites list"
-    },
-    removeFromFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Remove @title from favorites list"
-    },
     loadingText: {
       name: "Loading",
       defaultValue: "Loading",

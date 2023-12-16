@@ -9,13 +9,11 @@ import AdvancedSearch from "./AdvancedSearch";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface AdvancedSearchEntryTextProps {
-  addToFavoritesAriaLabelText: string;
   byAuthorText: string;
   etAlText: string;
   inSeriesText: string;
   loadingText: string;
   numberDescriptionText: string;
-  removeFromFavoritesAriaLabelText: string;
   resultPagerStatusText: string;
   noSearchResultText: string;
   showMoreText: string;

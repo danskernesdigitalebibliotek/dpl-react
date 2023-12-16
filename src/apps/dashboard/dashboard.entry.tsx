@@ -10,7 +10,6 @@ import { ReservationMaterialDetailsProps } from "../../core/storybook/reservatio
 import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsModalArgs";
 import { GroupModalReservationsProps } from "../../core/storybook/reservationGroupModalArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
-import { AcceptFeesModalEntryTextProps } from "../../core/storybook/acceptFeesModalArgs";
 import { RenewalArgs } from "../../core/storybook/renewalArgs";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
@@ -64,7 +63,6 @@ const DashboardEntry: FC<
     GroupModalProps &
     GroupModalLoansProps &
     DeleteReservationModalArgs &
-    AcceptFeesModalEntryTextProps &
     GroupModalReservationsProps &
     RenewalArgs &
     ReservationMaterialDetailsProps &

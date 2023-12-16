@@ -7,7 +7,6 @@ import globalTextArgs from "../../../core/storybook/globalTextArgs";
 import LoanList from "./loan-list.entry";
 import groupModalArgs from "../../../core/storybook/groupModalArgs";
 import loanGroupModalArgs from "../../../core/storybook/loanGroupModalArgs";
-import acceptModalArgs from "../../../core/storybook/acceptFeesModalArgs";
 import materialDetailsModalArgs from "../../../core/storybook/materialDetailsModalArgs";
 import renewalArgs from "../../../core/storybook/renewalArgs";
 import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
@@ -21,7 +20,6 @@ export default {
     ...globalTextArgs,
     ...loanGroupModalArgs,
     ...renewalArgs,
-    ...acceptModalArgs,
     ...materialDetailsModalArgs,
     ...blockedArgs,
     // Config

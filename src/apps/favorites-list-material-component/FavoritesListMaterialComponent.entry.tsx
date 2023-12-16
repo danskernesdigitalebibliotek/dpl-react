@@ -19,8 +19,6 @@ export interface FavoritesListMaterialComponentProps {
   etAlText: string;
   favoritesListMaterialComponentGoToListText: string;
   favoritesListMaterialComponentGoToListUrl: string;
-  addToFavoritesAriaLabelText: string;
-  removeFromFavoritesAriaLabelText: string;
 }
 
 const SomethingSimilarEntry: FC<

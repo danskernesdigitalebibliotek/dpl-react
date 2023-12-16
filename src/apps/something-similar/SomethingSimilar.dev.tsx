@@ -57,18 +57,6 @@ export default {
         type: "text"
       },
       defaultValue: "Something similar"
-    },
-    addToFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Add @title to favorites list"
-    },
-    removeFromFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Remove @title from favorites list"
     }
   }
 } as ComponentMeta<typeof SomethingSimilar>;

@@ -11,7 +11,6 @@ import { GroupModalProps } from "../../../core/storybook/groupModalArgs";
 import { GroupModalLoansProps } from "../../../core/storybook/loanGroupModalArgs";
 import { RenewalArgs } from "../../../core/storybook/renewalArgs";
 import { MaterialDetailsModalProps } from "../../../core/storybook/materialDetailsModalArgs";
-import { AcceptFeesModalEntryTextProps } from "../../../core/storybook/acceptFeesModalArgs";
 import { GlobalEntryTextProps } from "../../../core/storybook/globalTextArgs";
 
 export interface LoanListEntryConfigProps {
@@ -64,7 +63,6 @@ export interface LoanListEntryWithPageSizeProps
     RenewalArgs,
     LoanListEntryUrlProps,
     MaterialDetailsModalProps,
-    AcceptFeesModalEntryTextProps,
     GlobalUrlEntryPropsInterface {}
 
 const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
