@@ -1,0 +1,18 @@
+{
+  "id" : "31ef8b31-c7f7-4463-89e9-1b1f9875864b",
+  "name" : "FBS availability",
+  "request" : {
+    "urlPath" : "/external/agencyid/catalog/availability/v3",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "[\n  {\n    \"available\": true,\n    \"recordId\": \"52557240\",\n    \"reservable\": true,\n    \"reservations\": 2\n  },\n  {\n    \"available\": true,\n    \"recordId\": \"52643414\",\n    \"reservable\": true,\n    \"reservations\": 2\n  }\n]",
+    "headers" : { }
+  },
+  "uuid" : "31ef8b31-c7f7-4463-89e9-1b1f9875864b",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 2,
+  "postServeActions" : [ ]
+}
