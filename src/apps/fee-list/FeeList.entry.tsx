@@ -44,6 +44,7 @@ export interface FeeListProps {
   availablePaymentTypesUrl: string;
   paymentOverviewUrl: string;
   feeListAlreadyPaidInfoText: string;
+  feeLitsMaterialNumberText: string;
 }
 
 const FeeListEntry: FC<

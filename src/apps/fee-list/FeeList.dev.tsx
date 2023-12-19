@@ -169,6 +169,10 @@ export default {
       defaultValue:
         "Already paid? It can take up to 72 hours register the transaction.",
       control: { type: "text" }
+    },
+    feeLitsMaterialNumberText: {
+      defaultValue: "#",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]
