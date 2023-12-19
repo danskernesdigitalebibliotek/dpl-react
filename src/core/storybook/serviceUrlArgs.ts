@@ -31,5 +31,15 @@ export default {
     name: "Base url for the FBI API",
     defaultValue: "https://fbi-api.dbc.dk/next/graphql",
     control: { type: "text" }
+  },
+  [serviceUrlKeys.fbiSearch]: {
+    name: "Base url for the FBI API (search)",
+    defaultValue: "https://fbi-api.dbc.dk/next/graphql",
+    control: { type: "text" }
+  },
+  [serviceUrlKeys.fbiMaterial]: {
+    name: "Base url for the FBI API (material)",
+    defaultValue: "https://fbi-api.dbc.dk/next/graphql",
+    control: { type: "text" }
   }
 };
