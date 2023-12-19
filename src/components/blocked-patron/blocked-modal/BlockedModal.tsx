@@ -17,6 +17,7 @@ const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
 
   const { blockedModal } = getModalIds();
 
+  // If the user isn't actually blocked, don't render the modal.
   if (!blockedStatus || blockedStatus === "") {
     return null;
   }
