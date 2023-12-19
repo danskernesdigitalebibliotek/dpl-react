@@ -3,6 +3,7 @@ import AuthorYear from "../../../components/author-year/authorYear";
 import { Cover } from "../../../components/cover/cover";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 import { Pid } from "../../../core/utils/types/ids";
+import { useText } from "../../../core/utils/text";
 
 interface FeeInfoProps {
   material: BasicDetailsType;
@@ -23,7 +24,7 @@ const FeeInfo: FC<FeeInfoProps> = ({
     pid,
     series = ""
   } = material;
-
+  const t = useText();
   return (
     <div className="list-reservation__material">
       <div>
@@ -50,7 +51,7 @@ const FeeInfo: FC<FeeInfoProps> = ({
         </div>
         <div />
         <p className="text-small-caption color-secondary-gray">
-          {materialItemNumber}
+          {`${t("feeLitsMaterialNumberText")} ${materialItemNumber}`}
         </p>
         {children}
       </div>
