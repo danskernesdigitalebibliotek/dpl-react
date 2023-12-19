@@ -1,11 +1,19 @@
 import dayjs from "dayjs";
 import { FeeV2 } from "../../../core/fbs/model";
+import configuration, { getConf } from "../../../core/configuration";
+
+const paymentConf = getConf("payment", configuration);
+const {
+  paymentChangeDate
+}: // paymentChangeDate should never be undefined, but the config system requires
+// us to handle that case
+{ paymentChangeDate?: `${number}-${number}-${number}` } = paymentConf;
 
 export const getFeesInRelationToPaymentChangeDate = (
   feeObj: FeeV2[],
   beforePaymentChangeDate: boolean
 ) => {
-  const paymentMethodChangeDate = dayjs("2020-10-27"); // The Date fee-payment-method changed
+  const paymentMethodChangeDate = dayjs(paymentChangeDate); // The Date fee-payment-method changed
   return feeObj.filter((fee) => {
     const { dueDate } = fee;
     if (dueDate) {
