@@ -164,6 +164,11 @@ export default {
     paymentOverviewUrl: {
       defaultValue: "https://unsplash.com/photos/yjI3ozta2Zk", // Open source image of a fluffy floofer
       control: { type: "text" }
+    },
+    feeListAlreadyPaidInfoText: {
+      defaultValue:
+        "Already paid? It can take up to 72 hours register the transaction.",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]
