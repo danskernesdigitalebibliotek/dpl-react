@@ -187,7 +187,7 @@ describe("Fee list", () => {
       .find(".list-reservation__deadline")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "Fees charged 18. 10. 2019");
+      .should("have.text", "Fees charged 06. 04. 2022");
 
     // 3. e Label: reason
     cy.get(".fee-list-page")
