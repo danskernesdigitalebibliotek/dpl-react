@@ -54,7 +54,7 @@ const FeeList: FC = () => {
 
   return (
     <>
-      <div className="fee-list-page">
+      <div className="fee-list-page" data-cy="fee-list-page">
         <h1 data-cy="fee-list-headline" className="text-header-h1 my-32">
           {t("feeListHeadlineText")}
         </h1>
@@ -77,7 +77,7 @@ const FeeList: FC = () => {
           </>
         )}
         <List
-          dataCy="fee-list-before"
+          dataCy="fee-list"
           listHeader={t("unpaidFeesFirstHeadlineText")}
           openDetailsModalClickEvent={openDetailsModalClickEvent}
           fees={fbsFees}
