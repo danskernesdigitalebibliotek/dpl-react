@@ -18,7 +18,9 @@ const ListHeader: FC<ListHeaderProps> = ({
       <h2 data-cy={dataCy} className="dpl-list-buttons__header">
         {header}
         {amount !== null && (
-          <div className="dpl-list-buttons__power">{amount}</div>
+          <span role="text" className="dpl-list-buttons__power">
+            {amount}
+          </span>
         )}
       </h2>
       <div className="dpl-list-buttons__buttons">{children}</div>
