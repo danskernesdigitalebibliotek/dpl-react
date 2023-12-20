@@ -2,11 +2,13 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import * as React from "react";
 import SearchBar, { SearchBarProps } from "./search-bar";
 import StorySearchBar from "./search-bar.dev.inc";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Components / Search Bar",
   component: SearchBar,
   argTypes: {
+    ...globalTextArgs,
     altText: {
       name: "Alt text for search button image",
       defaultValue: "søgeikon",

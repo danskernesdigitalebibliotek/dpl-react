@@ -4,11 +4,13 @@ import { Cover } from "./cover";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import { withUrls } from "../../core/utils/url";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Components / Cover",
   component: Cover,
   argTypes: {
+    ...globalTextArgs,
     size: {
       name: "Image size",
       control: { type: "radio" }

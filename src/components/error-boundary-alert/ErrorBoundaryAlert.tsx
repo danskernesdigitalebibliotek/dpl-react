@@ -28,7 +28,7 @@ const ErrorBoundaryAlert: FC<ErrorBoundaryAlertProps> = ({
         {t("alertErrorMessageText")}
         <button
           type="button"
-          aria-label={t("closeErrorWindow")}
+          aria-label={t("alertErrorMessageText")}
           onClick={resetErrorBoundary}
         >
           ({t("alertErrorCloseText")})

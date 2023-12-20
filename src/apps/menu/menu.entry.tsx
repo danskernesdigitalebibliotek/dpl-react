@@ -12,6 +12,7 @@ import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsM
 import { ReservationMaterialDetailsProps } from "../../core/storybook/reservationMaterialDetailsArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
 import { RenewalArgs } from "../../core/storybook/renewalArgs";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface MenuProps {
   menuUserProfileUrlText: string;
@@ -55,6 +56,7 @@ export interface MenuEntryProps
     DeleteReservationModalArgs,
     GroupModalReservationsProps,
     MaterialDetailsModalProps,
+    GlobalEntryTextProps,
     ReservationMaterialDetailsProps {}
 
 const MenuEntry: FC<MenuEntryProps> = ({ pageSizeDesktop, pageSizeMobile }) => {

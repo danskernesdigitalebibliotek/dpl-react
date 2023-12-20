@@ -3,6 +3,7 @@ import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import FavoritesListMaterialComponent from "./FavoritesListMaterialComponent.entry";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Favorites list material component",
@@ -10,6 +11,7 @@ export default {
   decorators: [withQuery],
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     favoritesListMaterialComponentTitleText: {
       control: {
         type: "text"
@@ -49,18 +51,6 @@ export default {
         type: "text"
       },
       defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8" // open source image of a red panda
-    },
-    addToFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Add @title to favorites list"
-    },
-    removeFromFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Remove @title from favorites list"
     }
   }
 } as ComponentMeta<typeof FavoritesListMaterialComponent>;

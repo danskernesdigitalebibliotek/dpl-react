@@ -8,6 +8,7 @@ import reservationMaterialDetailsProps from "../../../core/storybook/reservation
 import deleteReservationModalArgs from "../../../core/storybook/deleteReservationModalArgs";
 import reservationListArgs from "../../../core/storybook/reservationListArgs";
 import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
+import globalTextArgs from "../../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Reservation list",
@@ -19,6 +20,7 @@ export default {
     ...reservationMaterialDetailsProps,
     ...blockedArgs,
     ...reservationListArgs,
+    ...globalTextArgs,
     blacklistedSearchBranchesConfig: {
       name: "Blacklisted branches",
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
@@ -209,11 +211,6 @@ export default {
       defaultValue: "Settings",
       control: { type: "text" }
     },
-    pauseReservationModalAriaDescriptionText: {
-      defaultValue:
-        "This modal makes it possible to pause your physical reservations",
-      control: { type: "text" }
-    },
     pauseReservationModalHeaderText: {
       defaultValue: "Pause reservations on physical items",
       control: { type: "text" }
@@ -233,10 +230,6 @@ export default {
     },
     dateInputsEndDateLabelText: {
       defaultValue: "End date",
-      control: { type: "text" }
-    },
-    pauseReservationModalBelowInputsTextText: {
-      defaultValue: "",
       control: { type: "text" }
     },
     pauseReservationModalLinkText: {

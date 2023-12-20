@@ -5,6 +5,7 @@ import blockedArgs from "../../core/storybook/blockedArgs";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import FeeList from "./FeeList.entry";
 import { getModalIds } from "../../core/utils/helpers/modal-helpers";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Fee list",
@@ -12,6 +13,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...blockedArgs,
+    ...globalTextArgs,
     feeListHeadlineText: {
       defaultValue: "Fees & Replacement costs",
       control: { type: "text" }

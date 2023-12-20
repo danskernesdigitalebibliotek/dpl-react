@@ -12,15 +12,24 @@ import {
   mockedManifestationData,
   mockedPeriodicalManifestationData
 } from "./mocked-data";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
+
+const WrappedFindOnShelfModal = withText(
+  withUrls(withConfig(FindOnShelfModal))
+);
+const WrappedMaterialButtonsFindOnShelf = withText(
+  withUrls(withConfig(MaterialButtonsFindOnShelf))
+);
 
 export default {
   title: "Components / Find On Shelf Modal",
-  component: FindOnShelfModal,
+  component: WrappedFindOnShelfModal,
   argTypes: {
     ...serviceUrlArgs,
     // Spread material app argTypes so that we get access to system strings.
     // -> t() function strings in this story.
     ...materialDev.argTypes,
+    ...globalTextArgs,
     manifestations: {
       name: "Manifestations",
       defaultValue: mockedManifestationData,
@@ -56,9 +65,9 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof FindOnShelfModal>;
+} as ComponentMeta<typeof WrappedFindOnShelfModal>;
 
-const Template: ComponentStory<typeof FindOnShelfModal> = (
+const Template: ComponentStory<typeof WrappedFindOnShelfModal> = (
   args: FindOnShelfModalProps
 ) => {
   const [storySelectedPeriodical, setStorySelectedPeriodical] = useState({
@@ -77,16 +86,15 @@ const Template: ComponentStory<typeof FindOnShelfModal> = (
   const {
     manifestations: [{ pid }]
   } = args;
-  const FindOnShelfModalWithConfigAndText = withUrls(
-    withConfig(withText(FindOnShelfModal))
-  );
+
   return (
     <>
-      <MaterialButtonsFindOnShelf
+      <WrappedMaterialButtonsFindOnShelf
+        {...args}
         size="small"
         faustIds={[convertPostIdToFaustId(pid)]}
       />
-      <FindOnShelfModalWithConfigAndText {...args} />
+      <WrappedFindOnShelfModal {...args} />
     </>
   );
 };
