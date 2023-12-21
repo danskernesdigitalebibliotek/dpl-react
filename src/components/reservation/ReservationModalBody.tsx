@@ -128,7 +128,7 @@ export const ReservationModalBody = ({
     !!selectedPeriodical
   );
 
-  const { reservablePidsFromAnotherLibrary } = useReservableFromAnotherLibrary(
+  const reservablePidsFromAnotherLibrary = useReservableFromAnotherLibrary(
     manifestationsToReserve
   );
 

@@ -35,7 +35,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   // articles appear as a part of journal/periodical publications and can't be
   // physically loaned for themseleves.
 
-  const { reservablePidsFromAnotherLibrary } =
+  const reservablePidsFromAnotherLibrary =
     useReservableFromAnotherLibrary(manifestations);
 
   if (reservablePidsFromAnotherLibrary.length > 0) {
