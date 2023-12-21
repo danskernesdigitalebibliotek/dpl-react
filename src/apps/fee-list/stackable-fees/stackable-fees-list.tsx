@@ -36,12 +36,16 @@ const StackableFeeList: FC<StackableFeeListProps & MaterialProps> = ({
           key={recordId}
           statusMessageComponentMobile={
             <div className="list-materials__status__note-mobile">
-              {materialItemNumber}
+              {t("materialNumberText", {
+                placeholders: { "@materialNumber": materialItemNumber }
+              })}
             </div>
           }
           statusMessageComponentDesktop={
             <div className="list-materials__status__note-desktop">
-              {materialItemNumber}
+              {t("materialNumberText", {
+                placeholders: { "@materialNumber": materialItemNumber }
+              })}
             </div>
           }
         />
