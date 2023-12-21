@@ -14,7 +14,12 @@ export interface FeeDetailsContentProps {
 
 const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
   const t = useText();
-  const { amount = 0, creationDate = "", materials = [] } = feeDetailsData;
+  const {
+    amount = 0,
+    creationDate = "",
+    materials = [],
+    reasonMessage
+  } = feeDetailsData;
   const creationDateFormatted = dayjs(creationDate).format(dateFormatCustom);
 
   return (
@@ -44,10 +49,10 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
       </GroupModalContent>
       {materials.map(({ recordId }) => (
         <StackableFeesList
+          reasonForFee={reasonMessage}
           materials={materials}
           key={recordId}
           item={{ faust: `${recordId}` as FaustId }}
-          creationDateFormatted={creationDateFormatted}
         />
       ))}
     </div>
