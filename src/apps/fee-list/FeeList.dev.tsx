@@ -63,10 +63,6 @@ export default {
       defaultValue: "Total @total,-",
       control: { type: "text" }
     },
-    amountText: {
-      defaultValue: "@amount,-",
-      control: { type: "text" }
-    },
     expirationWarningDaysBeforeConfig: {
       defaultValue: "6",
       control: { type: "text" }
@@ -163,6 +159,10 @@ export default {
     },
     paymentOverviewUrl: {
       defaultValue: "https://unsplash.com/photos/yjI3ozta2Zk", // Open source image of a fluffy floofer
+      control: { type: "text" }
+    },
+    materialNumberText: {
+      defaultValue: "# @materialNumber",
       control: { type: "text" }
     }
   },
