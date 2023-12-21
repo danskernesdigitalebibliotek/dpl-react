@@ -975,5 +975,5 @@ Underverden.args = {
 
 export const overbygningsMatriale = Template.bind({});
 overbygningsMatriale.args = {
-  wid: "work-of:870970-basis:135721719"
+  wid: "work-of:870970-basis:44926407"
 };
