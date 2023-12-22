@@ -129,7 +129,7 @@ export const ReservationModalBody = ({
   );
 
   const reservablePidsFromAnotherLibrary = useReservableFromAnotherLibrary(
-    manifestationsToReserve
+    selectedManifestations
   );
 
   // If we don't have all data for displaying the view render nothing.
@@ -149,13 +149,37 @@ export const ReservationModalBody = ({
     : null;
 
   const saveReservation = () => {
-    if (!manifestationsToReserve || manifestationsToReserve.length < 1) {
-      return;
+    if (manifestationsToReserve?.length) {
+      // Save reservation to FBS.
+      mutateAddReservations(
+        {
+          data: constructReservationData({
+            manifestations: manifestationsToReserve,
+            selectedBranch,
+            expiryDate,
+            periodical: selectedPeriodical
+          })
+        },
+        {
+          onSuccess: (res) => {
+            // Track only if the reservation has been successfully saved.
+            track("click", {
+              id: statistics.reservation.id,
+              name: statistics.reservation.name,
+              trackedData: work.workId
+            });
+            // This state is used to show the success or error modal.
+            setReservationResponse(res);
+            // Because after a successful reservation the holdings (reservations) are updated.
+            queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
+          }
+        }
+      );
     }
 
-    if (reservablePidsFromAnotherLibrary.length > 0 && patron) {
+    if (reservablePidsFromAnotherLibrary?.length && patron) {
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
-
+      // Save reservation to open order.
       mutateOpenOrder(
         {
           input: {
@@ -179,35 +203,7 @@ export const ReservationModalBody = ({
           }
         }
       );
-
-      return;
     }
-
-    // Save reservation to FBS.
-    mutateAddReservations(
-      {
-        data: constructReservationData({
-          manifestations: manifestationsToReserve,
-          selectedBranch,
-          expiryDate,
-          periodical: selectedPeriodical
-        })
-      },
-      {
-        onSuccess: (res) => {
-          // Track only if the reservation has been successfully saved.
-          track("click", {
-            id: statistics.reservation.id,
-            name: statistics.reservation.name,
-            trackedData: work.workId
-          });
-          // This state is used to show the success or error modal.
-          setReservationResponse(res);
-          // Because after a successful reservation the holdings (reservations) are updated.
-          queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
-        }
-      }
-    );
   };
 
   const reservationSuccess = reservationResponse?.success || false;
