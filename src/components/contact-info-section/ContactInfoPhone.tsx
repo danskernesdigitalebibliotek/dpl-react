@@ -36,7 +36,6 @@ const ContactInfoPhone: FC<ContactInfoPhoneProps> = ({
         }
         value={patron?.phoneNumber}
         label={t("patronContactPhoneLabelText")}
-        placeholder={t("patronPagePhoneInputMessageText")}
       />
       {showCheckboxes && (
         <CheckBox
