@@ -33,6 +33,10 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
     lang
   } = material || {};
   const coverId = pid || isbnForCover;
+  const handleDetailsModal = (event: React.SyntheticEvent) => {
+    event.stopPropagation();
+    openDetailsModal();
+  };
 
   return (
     <div className="list-reservation__material">
@@ -54,13 +58,11 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         <div className="list-reservation__about">
           <button
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-              e.stopPropagation();
-              openDetailsModal();
+              handleDetailsModal(e);
             }}
             onKeyUp={(e) => {
               if (e.key === "Enter" || e.key === "Space") {
-                e.stopPropagation();
-                openDetailsModal();
+                handleDetailsModal(e);
               }
             }}
             type="button"
