@@ -36,12 +36,7 @@ export interface UserListItemsProps {
 
 const UserListItems: FC<UserListItemsProps> = ({
   patron,
-  patron: {
-    defaultInterestPeriod,
-    preferredPickupBranch,
-    phoneNumber,
-    emailAddress
-  },
+  patron: { preferredPickupBranch, phoneNumber, emailAddress },
   branches,
   selectedBranch,
   selectBranchHandler,
@@ -74,7 +69,7 @@ const UserListItems: FC<UserListItemsProps> = ({
 
   return (
     <>
-      {defaultInterestPeriod && (
+      {interestPeriods && (
         <>
           <ReservationFormListItem
             icon={LoanHistoryIcon}
@@ -84,7 +79,10 @@ const UserListItems: FC<UserListItemsProps> = ({
             buttonAriaLabel={t("changeInterestPeriodText")}
           />
           <NoInterestAfterModal
-            selectedInterest={selectedInterest ?? defaultInterestPeriod}
+            selectedInterest={
+              selectedInterest ??
+              Number(interestPeriods.defaultInterestPeriod.value)
+            }
             setSelectedInterest={setSelectedInterest}
           />
         </>
