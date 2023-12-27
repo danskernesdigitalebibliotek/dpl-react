@@ -1,31 +1,31 @@
 {
   "data": {
     "work": {
-      "workId": "work-of:870970-basis:135721719",
+      "workId": "work-of:870970-basis:44926407",
       "titles": {
         "full": [
-          "Restyle & restitch for little ones : 30 simple projects from preloved clothes"
+          "Duchess of Death : the unauthorized biography of Agatha Christie"
         ],
         "original": []
       },
       "abstract": [
-        "30 sewing projects for creating stylish baby clothes, from newborns to two-year-olds, including trousers, dresses, sweaters, mittens, rompers and socks. The projects are accompanied by colourful, full-size patterns to help you make the most of your repurposed clothing."
+        "Summary: Utilizing over 5,000 previously unpublished letters, notes, and documents, the author tells how Christie's life was \"as full of romance, travel, wealth, and scandal as any mystery Christie ever crafted.\" -- from publisher description."
       ],
       "creators": [
         {
-          "display": "Linnea Larsson",
+          "display": "Richard Hack",
           "__typename": "Person"
         }
       ],
       "series": [],
       "seriesMembers": [],
       "workYear": null,
-      "genreAndForm": ["snitmønstre", "vejledninger"],
+      "genreAndForm": ["biografier", "bibliografier"],
       "manifestations": {
         "all": [
           {
-            "pid": "870970-basis:135721719",
-            "genreAndForm": ["snitmønstre", "vejledninger"],
+            "pid": "870970-basis:44926407",
+            "genreAndForm": ["biografier"],
             "source": ["Bibliotekskatalog"],
             "languages": {
               "main": [
@@ -36,7 +36,7 @@
               ]
             },
             "titles": {
-              "main": ["Restyle & restitch for little ones"],
+              "main": ["Duchess of Death"],
               "original": []
             },
             "fictionNonfiction": {
@@ -50,21 +50,21 @@
             ],
             "creators": [
               {
-                "display": "Linnea Larsson",
+                "display": "Richard Hack",
                 "__typename": "Person"
               }
             ],
-            "publisher": ["Search"],
+            "publisher": ["JR Books"],
             "identifiers": [
               {
-                "value": "9781800921191"
+                "value": "9781906779832"
               }
             ],
             "contributors": [],
             "edition": {
-              "summary": "2023",
+              "summary": "1. edition, 2010",
               "publicationYear": {
-                "display": "2023"
+                "display": "2010"
               }
             },
             "dateFirstEdition": null,
@@ -73,7 +73,7 @@
             },
             "physicalDescriptions": [
               {
-                "numberOfPages": 124,
+                "numberOfPages": 325,
                 "playingTime": null
               }
             ],
@@ -89,19 +89,19 @@
               }
             ],
             "shelfmark": {
-              "postfix": "Larsson",
-              "shelfmark": "64.62"
+              "postfix": "Hack",
+              "shelfmark": "99.4 Christie, Agatha"
             },
             "workYear": null,
             "catalogueCodes": {
               "nationalBibliography": [],
-              "otherCatalogues": ["OVE202314"]
+              "otherCatalogues": ["OVE999999"]
             }
           }
         ],
         "latest": {
-          "pid": "870970-basis:135721719",
-          "genreAndForm": ["snitmønstre", "vejledninger"],
+          "pid": "870970-basis:44926407",
+          "genreAndForm": ["biografier"],
           "source": ["Bibliotekskatalog"],
           "languages": {
             "main": [
@@ -112,7 +112,7 @@
             ]
           },
           "titles": {
-            "main": ["Restyle & restitch for little ones"],
+            "main": ["Duchess of Death"],
             "original": []
           },
           "fictionNonfiction": {
@@ -126,21 +126,21 @@
           ],
           "creators": [
             {
-              "display": "Linnea Larsson",
+              "display": "Richard Hack",
               "__typename": "Person"
             }
           ],
-          "publisher": ["Search"],
+          "publisher": ["JR Books"],
           "identifiers": [
             {
-              "value": "9781800921191"
+              "value": "9781906779832"
             }
           ],
           "contributors": [],
           "edition": {
-            "summary": "2023",
+            "summary": "1. edition, 2010",
             "publicationYear": {
-              "display": "2023"
+              "display": "2010"
             }
           },
           "dateFirstEdition": null,
@@ -149,7 +149,7 @@
           },
           "physicalDescriptions": [
             {
-              "numberOfPages": 124,
+              "numberOfPages": 325,
               "playingTime": null
             }
           ],
@@ -165,18 +165,18 @@
             }
           ],
           "shelfmark": {
-            "postfix": "Larsson",
-            "shelfmark": "64.62"
+            "postfix": "Hack",
+            "shelfmark": "99.4 Christie, Agatha"
           },
           "workYear": null,
           "catalogueCodes": {
             "nationalBibliography": [],
-            "otherCatalogues": ["OVE202314"]
+            "otherCatalogues": ["OVE999999"]
           }
         },
         "bestRepresentation": {
-          "pid": "870970-basis:135721719",
-          "genreAndForm": ["snitmønstre", "vejledninger"],
+          "pid": "870970-basis:44926407",
+          "genreAndForm": ["biografier"],
           "source": ["Bibliotekskatalog"],
           "languages": {
             "main": [
@@ -187,7 +187,7 @@
             ]
           },
           "titles": {
-            "main": ["Restyle & restitch for little ones"],
+            "main": ["Duchess of Death"],
             "original": []
           },
           "fictionNonfiction": {
@@ -201,21 +201,21 @@
           ],
           "creators": [
             {
-              "display": "Linnea Larsson",
+              "display": "Richard Hack",
               "__typename": "Person"
             }
           ],
-          "publisher": ["Search"],
+          "publisher": ["JR Books"],
           "identifiers": [
             {
-              "value": "9781800921191"
+              "value": "9781906779832"
             }
           ],
           "contributors": [],
           "edition": {
-            "summary": "2023",
+            "summary": "1. edition, 2010",
             "publicationYear": {
-              "display": "2023"
+              "display": "2010"
             }
           },
           "dateFirstEdition": null,
@@ -224,7 +224,7 @@
           },
           "physicalDescriptions": [
             {
-              "numberOfPages": 124,
+              "numberOfPages": 325,
               "playingTime": null
             }
           ],
@@ -240,13 +240,13 @@
             }
           ],
           "shelfmark": {
-            "postfix": "Larsson",
-            "shelfmark": "64.62"
+            "postfix": "Hack",
+            "shelfmark": "99.4 Christie, Agatha"
           },
           "workYear": null,
           "catalogueCodes": {
             "nationalBibliography": [],
-            "otherCatalogues": ["OVE202314"]
+            "otherCatalogues": ["OVE999999"]
           }
         }
       },
@@ -264,42 +264,45 @@
       "subjects": {
         "all": [
           {
-            "display": "syning"
+            "display": "forfattere"
           },
           {
-            "display": "børnetøj"
+            "display": "kriminalforfattere"
           },
           {
-            "display": "genbrug"
+            "display": "England"
           },
           {
-            "display": "genbrugstøj"
+            "display": "Authors, English -- 20th century -- Biography"
           },
           {
-            "display": "tekstiler"
+            "display": "Detective and mystery stories -- Authorship"
           },
           {
-            "display": "upcycling"
+            "display": "Agatha Christie (1890-1976)"
+          },
+          {
+            "display": "Agatha Christie"
+          },
+          {
+            "display": "1900-tallet"
           }
         ],
         "dbcVerified": [
           {
-            "display": "syning"
+            "display": "forfattere"
           },
           {
-            "display": "børnetøj"
+            "display": "kriminalforfattere"
           },
           {
-            "display": "genbrug"
+            "display": "England"
           },
           {
-            "display": "genbrugstøj"
+            "display": "Agatha Christie"
           },
           {
-            "display": "tekstiler"
-          },
-          {
-            "display": "upcycling"
+            "display": "1900-tallet"
           }
         ]
       },
@@ -308,7 +311,7 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "64.62 Syning af børnetøj"
+        "display": "99.4 Christie, Agatha"
       },
       "relations": {
         "hasReview": [],
