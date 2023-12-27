@@ -167,11 +167,11 @@ export default {
     },
     feeListAlreadyPaidInfoText: {
       defaultValue:
-        "Already paid? It can take up to 72 hours register the transaction.",
+        "Already paid? It can take up to 72 hours to register the transaction.",
       control: { type: "text" }
     },
     feeLitsMaterialNumberText: {
-      defaultValue: "#",
+      defaultValue: "# @materialNumber",
       control: { type: "text" }
     }
   },

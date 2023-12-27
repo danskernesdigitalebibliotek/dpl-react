@@ -51,7 +51,9 @@ const FeeInfo: FC<FeeInfoProps> = ({
         </div>
         <div />
         <p className="text-small-caption color-secondary-gray">
-          {`${t("feeLitsMaterialNumberText")} ${materialItemNumber}`}
+          {t("feeLitsMaterialNumberText", {
+            placeholders: { "@materialNumber": materialItemNumber }
+          })}
         </p>
         {children}
       </div>
