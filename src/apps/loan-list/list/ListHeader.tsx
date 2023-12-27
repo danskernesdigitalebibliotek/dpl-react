@@ -11,9 +11,7 @@ const ListHeader: FC<ListHeaderProps> = ({ header, amount, children }) => {
     <div className="dpl-list-buttons">
       <h2 className="dpl-list-buttons__header">
         {header}
-        <span role="text" className="dpl-list-buttons__power">
-          {amount}
-        </span>
+        <span className="dpl-list-buttons__power">{amount}</span>
       </h2>
       <div className="dpl-list-buttons__buttons">{children}</div>
     </div>
