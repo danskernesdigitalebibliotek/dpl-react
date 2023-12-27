@@ -157,7 +157,7 @@ describe("Fee list", () => {
       .should("have.text", "Dummy bog");
 
     // 3.c.b title
-    cy.get("[data-cy='fee-list']")
+    cy.getBySel("fee-list")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
