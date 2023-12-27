@@ -316,9 +316,7 @@ export const ReservationModalBody = ({
       {openOrderResponse?.submitOrder?.status && (
         <ModalMessage
           title={t("openOrderResponseTitleText")}
-          subTitle={`${manifestation.titles.main[0]} ${t(
-            "openOrderResponseIsReservedForYouText"
-          )}`}
+          subTitle={manifestation.titles.main[0]}
           ctaButton={{
             text: t("okButtonText"),
             modalId: reservationModalId(faustIds),
