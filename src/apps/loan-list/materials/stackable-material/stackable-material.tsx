@@ -36,7 +36,9 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   const handleOpenDueDateModal = () => {
     if (openDueDateModal && dueDate) {
       openDueDateModal(dueDate);
+      return;
     }
+    openLoanDetailsModal(loan);
   };
 
   return (

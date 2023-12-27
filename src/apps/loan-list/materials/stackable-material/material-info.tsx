@@ -33,6 +33,10 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
     lang
   } = material || {};
   const coverId = pid || isbnForCover;
+  const handleDetailsModal = (event: React.SyntheticEvent) => {
+    event.stopPropagation();
+    openDetailsModal();
+  };
 
   return (
     <div className="list-reservation__material">
@@ -53,7 +57,14 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         </div>
         <div className="list-reservation__about">
           <button
-            onClick={() => openDetailsModal()}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+              handleDetailsModal(e);
+            }}
+            onKeyUp={(e) => {
+              if (e.key === "Enter" || e.key === "Space") {
+                handleDetailsModal(e);
+              }
+            }}
             type="button"
             // This is to handle focus when more items are loaded via pagination
             // eslint-disable-next-line jsx-a11y/no-autofocus
