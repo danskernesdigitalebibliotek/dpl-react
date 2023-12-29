@@ -29,10 +29,6 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 }) => {
   const { dueDate, identifier, periodical } = loan;
 
-  const openLoanDetailsModalHandler = () => {
-    openLoanDetailsModal(loan);
-  };
-
   const handleOpenDueDateModal = () => {
     if (openDueDateModal && dueDate) {
       openDueDateModal(dueDate);
@@ -58,7 +54,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       {material && (
         <MaterialInfo
           arrowLabelledBy={`${loanId || identifier}-title`}
-          openDetailsModal={openLoanDetailsModalHandler}
+          openDetailsModal={handleOpenDueDateModal}
           periodical={periodical}
           material={material}
           focused={focused}
