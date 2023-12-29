@@ -31,7 +31,7 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
       onClick={notificationClickEvent}
       className="mb-16"
     >
-      <div className="list-dashboard shadow-medium-hover arrow__hover--right-small">
+      <div className="list-dashboard shadow-medium-hover arrow arrow__hover--right-small">
         <div
           className={`color-secondary-gray number number--${notificationColor}`}
         >
