@@ -90,7 +90,7 @@
     "caniuse-lite": "^1.0.30001571",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.2",
-    "core-js": "^3.34.0",
+    "core-js": "^3.35.0",
     "css-loader": "^6.8.1",
     "cssnano": "^6.0.2",
     "cypress": "^9.6.1",
