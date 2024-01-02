@@ -15,7 +15,8 @@ const store = configureStore({
       data: {
         simpleText: "This is a @simple test",
         placeholdersText: `{"type":"simple","text":["This is a text with a @placeholder embedded. Does it work? @result it does!"]}`,
-        pluralText: `{"type":"plural","text":["You have 1 material on the waiting list","You have @count materials on the waiting list"]}`
+        pluralText: `{"type":"plural","text":["You have 1 material on the waiting list","You have @count materials on the waiting list"]}`,
+        emptyStringText: ""
       }
     }
   }
@@ -86,5 +87,17 @@ test("Should throw an error if the text definition is not found", () => {
     expect(() => t("nonExistingText")).toThrowError(
       "The translation for nonExistingText is not defined."
     );
+  });
+});
+
+test("Shouldn't throw an error if the text is an empty string", () => {
+  const { result } = renderHook(() => useText(), { wrapper: Wrapper });
+  // We name it t, because that is how we normally use it in the code.
+  const t = result.current;
+
+  act(() => {
+    // This test would be failing if an error was thrown for empty strings.
+    // That's why we don't need to define anything else here to know that it works.
+    t("emptyStringText");
   });
 });
