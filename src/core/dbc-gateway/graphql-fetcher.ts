@@ -1,17 +1,16 @@
-import { QueryFunctionContext } from "react-query";
 import FetchFailedCriticalError from "../fetchers/FetchFailedCriticalError";
 import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../token";
+import {
+  getServiceBaseUrl,
+  serviceUrlKeys
+} from "../utils/reduxMiddleware/extractServiceBaseUrls";
 import DbcGateWayHttpError from "./DbcGateWayHttpError";
-import { getQueryUrlFromContext } from "./helper";
 
 export const fetcher = <TData, TVariables>(
   query: string,
   variables?: TVariables
 ) => {
-  return (context?: QueryFunctionContext): Promise<TData> => {
-    // Resolve the url based on the query name if present.
-    const url = getQueryUrlFromContext(context);
-
+  return (): Promise<TData> => {
     // The whole concept of agency id, profile and and bearer token needs to be refined.
     // First version is with a library token.
     const token = getToken(TOKEN_USER_KEY) || getToken(TOKEN_LIBRARY_KEY);
@@ -23,7 +22,7 @@ export const fetcher = <TData, TVariables>(
       ? ({ Authorization: `Bearer ${token}` } as object)
       : {};
 
-    return fetch(url, {
+    return fetch(getServiceBaseUrl(serviceUrlKeys.fbi), {
       method: "POST",
       ...{
         headers: {

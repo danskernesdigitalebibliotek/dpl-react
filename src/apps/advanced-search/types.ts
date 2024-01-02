@@ -2,40 +2,36 @@ import { MultiselectOption } from "../../components/multiselect/types";
 
 export const advancedSearchIndexes = [
   "all",
-  "creator",
-  "subject",
-  "genre",
-  "language",
-  "date",
-  "mainCreator",
-  "mainTitle",
-  "source",
-  "dateFirstEdition",
-  "decimaldk5",
-  "type",
-  "audience",
-  "publisher",
-  "identifier",
-  "acSource"
+  "term.creatorcontributor",
+  "term.subject",
+  "term.genreandform",
+  "term.mainlanguage",
+  "datefirstedition",
+  "term.creator",
+  "term.title",
+  "term.source",
+  "dk5",
+  "term.specificmaterialtype",
+  "term.childrenoradults",
+  "term.publisher",
+  "term.isbn"
 ] as const;
 
 export const advancedSearchIndexTranslations = {
   all: "advancedSearchAllIndexesText",
-  creator: "advancedSearchCreatorText",
-  subject: "advancedSearchSubjectText",
-  genre: "advancedSearchGenreText",
-  language: "advancedSearchLanguageText",
-  date: "advancedSearchDateText",
-  mainCreator: "advancedSearchMainCreatorText",
-  mainTitle: "advancedSearchMainTitleText",
-  source: "advancedSearchSourceText",
-  dateFirstEdition: "advancedSearchDateFirstEditionText",
-  decimaldk5: "advancedSearchDecimalDk5Text",
-  type: "advancedSearchTypeText",
-  audience: "advancedSearchAudienceText",
-  publisher: "advancedSearchPublisherText",
-  identifier: "advancedSearchIdentifierText",
-  acSource: "advancedSearchAcSourceText"
+  "term.creatorcontributor": "advancedSearchCreatorText",
+  "term.subject": "advancedSearchSubjectText",
+  "term.genreandform": "advancedSearchGenreText",
+  "term.mainlanguage": "advancedSearchLanguageText",
+  datefirstedition: "advancedSearchDateText",
+  "term.creator": "advancedSearchMainCreatorText",
+  "term.title": "advancedSearchMainTitleText",
+  "term.source": "advancedSearchSourceText",
+  dk5: "advancedSearchDecimalDk5Text",
+  "term.specificmaterialtype": "advancedSearchTypeText",
+  "term.childrenoradults": "advancedSearchAudienceText",
+  "term.publisher": "advancedSearchPublisherText",
+  "term.isbn": "advancedSearchIdentifierText"
 } as const;
 
 export type AdvancedSearchIndex = typeof advancedSearchIndexes[number];
@@ -106,7 +102,7 @@ export const advancedSearchFiction: MultiselectOption[] = [
 ];
 
 export const advancedSearchFilters = {
-  materialTypes: "generalmaterialtype",
-  fiction: "fictionnonfiction",
-  accessibility: "accesstype"
+  materialTypes: "term.generalmaterialtype",
+  fiction: "term.fictionnonfiction",
+  accessibility: "term.accesstype"
 };

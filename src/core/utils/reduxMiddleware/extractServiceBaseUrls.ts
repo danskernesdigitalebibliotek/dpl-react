@@ -1,23 +1,8 @@
 import { EnhancedStore } from "@reduxjs/toolkit";
 import { Middleware } from "redux";
 
-type Api =
-  | "publizon"
-  | "fbs"
-  | "dplCms"
-  | "cover"
-  | "materialList"
-  | "fbi"
-  | "fbiSearch"
-  | "fbiMaterial";
-
+type Api = "publizon" | "fbs" | "dplCms" | "cover" | "materialList" | "fbi";
 export type ApiBaseUrlKey = `${Api}BaseUrl`;
-
-export type ServiceBaseUrls =
-  | Record<Api, ApiBaseUrlKey>
-  | Record<string, never>;
-
-type ServiceBaseUrlKey = keyof ServiceBaseUrls;
 
 export const serviceUrlKeys: Record<Api, ApiBaseUrlKey> = {
   fbs: "fbsBaseUrl",
@@ -25,10 +10,11 @@ export const serviceUrlKeys: Record<Api, ApiBaseUrlKey> = {
   dplCms: "dplCmsBaseUrl",
   cover: "coverBaseUrl",
   materialList: "materialListBaseUrl",
-  fbi: "fbiBaseUrl",
-  fbiSearch: "fbiSearchBaseUrl",
-  fbiMaterial: "fbiMaterialBaseUrl"
+  fbi: "fbiBaseUrl"
 } as const;
+
+type ServiceBaseUrls = Record<Api, ApiBaseUrlKey> | Record<string, never>;
+type ServiceBaseUrlKey = keyof typeof serviceBaseUrls;
 
 // ServiceBaseUrls "store". We use this to store the base urls for the different services.
 let serviceBaseUrls: ServiceBaseUrls = {};

@@ -122,11 +122,11 @@ export default {
       defaultValue: "You have 0 unpaid fees or replacement costs",
       control: { type: "text" }
     },
-    FeeDetailsModalCloseModalAriaLabelText: {
+    feeDetailsModalCloseModalAriaLabelText: {
       defaultValue: "Close fee details modal",
       control: { type: "text" }
     },
-    FeeDetailsModalDescriptionText: {
+    feeDetailsModalDescriptionText: {
       defaultValue:
         "Modal containing information about this element or group of elements fees",
       control: { type: "text" }

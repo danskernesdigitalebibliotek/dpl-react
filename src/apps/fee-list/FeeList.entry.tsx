@@ -13,39 +13,40 @@ export interface IntermedateListEntryConfigProps {
 }
 
 export interface FeeListProps {
-  totalFeeAmountText: string;
-  otherMaterialsText: string;
-  materialByAuthorText: string;
-  materialAndAuthorText: string;
+  alreadyPaidText: string;
+  availablePaymentTypesUrl: string;
+  emptyFeeListText: string;
+  etAlText: string;
+  feeCreatedText: string;
+  feeDetailsModalScreenReaderText: string;
+  feeDetailsModalCloseModalAriaLabelText: string;
+  feeDetailsModalDescriptionText: string;
+  feeListBodyText: string;
   feeListDaysText: string;
-  payText: string;
-  totalText: string;
+  feeListHeadlineText: string;
+  feePaymentModalBodyText: string;
+  feePaymentModalCancelText: string;
+  feePaymentModalGotoText: string;
+  feePaymentModalHeaderText: string;
+  feePaymentModalNoticeText: string;
   iAcceptText: string;
+  itemFeeAmountText: string;
+  materialAndAuthorText: string;
+  materialByAuthorText: string;
+  materialNumberText: string;
+  otherMaterialsText: string;
+  paymentOverviewUrl: string;
+  payText: string;
+  plusXOtherMaterialsText: string;
   termsOfTradeText: string;
   termsOfTradeUrl: string;
-  feeListHeadlineText: string;
-  feeListBodyText: string;
-  viewFeesAndCompensationRatesText: string;
-  etAlText: string;
-  viewFeesAndCompensationRatesUrl: string;
+  totalFeeAmountText: string;
+  totalText: string;
+  turnedInText: string;
   unpaidFeesFirstHeadlineText: string;
   unpaidFeesSecondHeadlineText: string;
-  alreadyPaidText: string;
-  feePaymentModalHeaderText: string;
-  feePaymentModalBodyText: string;
-  feePaymentModalNoticeText: string;
-  feePaymentModalGotoText: string;
-  feePaymentModalCancelText: string;
-  feeDetailsModalScreenReaderText: string;
-  emptyFeeListText: string;
-  turnedInText: string;
-  plusXOtherMaterialsText: string;
-  itemFeeAmountText: string;
-  feeCreatedText: string;
-  availablePaymentTypesUrl: string;
-  paymentOverviewUrl: string;
-  feeListAlreadyPaidInfoText: string;
-  feeListMaterialNumberText: string;
+  viewFeesAndCompensationRatesText: string;
+  viewFeesAndCompensationRatesUrl: string;
 }
 
 const FeeListEntry: FC<
