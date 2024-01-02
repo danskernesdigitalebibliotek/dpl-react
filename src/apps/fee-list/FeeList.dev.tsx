@@ -169,10 +169,8 @@ export default {
       control: { type: "text" }
     },
     feeListMaterialNumberText: {
-      materialNumberText: {
-        defaultValue: "# @materialNumber",
-        control: { type: "text" }
-      }
+      defaultValue: "# @materialNumber",
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]
