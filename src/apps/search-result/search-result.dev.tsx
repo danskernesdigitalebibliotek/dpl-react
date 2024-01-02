@@ -4,12 +4,14 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SearchResultEntry, {
   SearchResultEntryProps
 } from "./search-result.entry";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Search Result",
   component: SearchResultEntry,
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     q: {
       name: "Search string",
       defaultValue: "harry",
@@ -156,6 +158,11 @@ export default {
       defaultValue: "Main languages",
       control: { type: "text" }
     },
+    facetMaterialTypesText: {
+      name: "Material types text",
+      defaultValue: "Material types",
+      control: { type: "text" }
+    },
     facetMaterialTypesGeneralText: {
       name: "Material types general text",
       defaultValue: "Material types general",
@@ -194,28 +201,6 @@ export default {
     addMoreFiltersText: {
       name: "Add more filters text",
       defaultValue: "+ more filters",
-      control: { type: "text" }
-    },
-    addToFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Add @title to favorites list"
-    },
-    removeFromFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Remove @title from favorites list"
-    },
-    alertErrorCloseText: {
-      name: "Alert error close text",
-      defaultValue: "close",
-      control: { type: "text" }
-    },
-    alertErrorMessageText: {
-      name: "Alert error message text",
-      defaultValue: "An error occurred",
       control: { type: "text" }
     },
     loadingText: {

@@ -1,6 +1,7 @@
 import React from "react";
 import { withText } from "../../core/utils/text";
 import DemoModal from "./demo-modal";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface DemoModalEntryProps {
   ariaLabelModalOneText: string;
@@ -8,7 +9,7 @@ export interface DemoModalEntryProps {
   screenReaderModalDescriptionText: string;
 }
 
-const DemoModalEntry: React.FC<DemoModalEntryProps> = (
+const DemoModalEntry: React.FC<DemoModalEntryProps & GlobalEntryTextProps> = (
   props: DemoModalEntryProps
 ) => <DemoModal />;
 

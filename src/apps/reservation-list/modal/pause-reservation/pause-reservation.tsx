@@ -121,7 +121,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         </form>
         <div className="modal-pause__text-link mt-24 color-secondary-gray">
           <p className="text-body-small-regular">
-            {t("pauseReservationModalBelowInputsTextText")}
+            {t("pauseReservationModalBelowInputsText")}
             <Link
               id="pause-reservation-info-link"
               href={pauseReservationInfoUrl}

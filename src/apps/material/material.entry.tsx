@@ -6,28 +6,18 @@ import { WorkId } from "../../core/utils/types/ids";
 import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface MaterialEntryTextProps {
-  addToFavoritesAriaLabelText: string;
-  alertErrorCloseText: string;
-  alertErrorMessageText: string;
   alreadyReservedText: string;
   approveReservationText: string;
-  availabilityAvailableText: string;
-  availabilityUnavailableText: string;
   blockedButtonText: string;
   cantReserveText: string;
   cantViewReviewText: string;
   cantViewText: string;
   changeEmailText: string;
-  changeInterestPeriodText: string;
-  changePickupLocationText: string;
   changeSmsNumberText: string;
   chooseOneText: string;
-  closeModalAriaLabelEmailText: string;
-  closeModalAriaLabelInterestPeriodText: string;
-  closeModalAriaLabelPickupText: string;
-  closeModalAriaLabelSmsText: string;
   closeText: string;
   daysText: string;
   descriptionHeadlineText: string;
@@ -54,7 +44,6 @@ interface MaterialEntryTextProps {
   fictionNonfictionText: string;
   filmAdaptationsText: string;
   findOnBookshelfText: string;
-  findOnShelfExpandButtonExplanationText: string;
   findOnShelfModalCloseModalAriaLabelText: string;
   findOnShelfModalListFindOnShelfText: string;
   findOnShelfModalListItemCountText: string;
@@ -93,12 +82,8 @@ interface MaterialEntryTextProps {
   modalReservationFormEmailHeaderTitleText: string;
   modalReservationFormEmailInputFieldDescriptionText: string;
   modalReservationFormEmailInputFieldLabelText: string;
-  modalReservationFormNoInterestAfterHeaderDescriptionText: string;
-  modalReservationFormNoInterestAfterHeaderTitleText: string;
-  modalReservationFormNoInterestAfterLabelText: string;
   modalReservationFormPickupHeaderDescriptionText: string;
   modalReservationFormPickupHeaderTitleText: string;
-  modalReservationFormPickupLabelText: string;
   modalReservationFormSmsHeaderDescriptionText: string;
   modalReservationFormSmsHeaderTitleText: string;
   modalReservationFormSmsInputFieldDescriptionText: string;
@@ -140,6 +125,11 @@ interface MaterialEntryTextProps {
   orderDigitalCopyFeedbackErrorUnauthenticatedUserText: string;
   orderDigitalCopyFeedbackOkText: string;
   orderDigitalCopyFeedbackTitleText: string;
+  orderDigitalCopyFeedbackBorchkUserBlockedByAgencyText: string;
+  orderDigitalCopyFeedbackBorchkUserNotVerifiedText: string;
+  orderDigitalCopyFeedbackBorchkUserNoLongerExistOnAgencyText: string;
+  orderDigitalCopyFeedbackErrorMunicipalityagencyidNotFoundText: string;
+  orderDigitalCopyFeedbackUnknownUserText: string;
   orderDigitalCopyModalCloseModalAriaLabelText: string;
   orderDigitalCopyModalScreenReaderModalDescriptionText: string;
   orderDigitalCopyTitleText: string;
@@ -152,7 +142,6 @@ interface MaterialEntryTextProps {
   readArticleText: string;
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
-  removeFromFavoritesAriaLabelText: string;
   reservableFromAnotherLibraryText: string;
   reservationErrorsDescriptionText: string;
   reservationErrorsTitleText: string;
@@ -165,10 +154,6 @@ interface MaterialEntryTextProps {
   reserveText: string;
   reviewsText: string;
   saveButtonText: string;
-  screenReaderModalDescriptionEmailText: string;
-  screenReaderModalDescriptionInterestPeriodText: string;
-  screenReaderModalDescriptionPickupText: string;
-  screenReaderModalDescriptionSmsText: string;
   seeOnlineText: string;
   shiftText: string;
   subjectNumberText: string;
@@ -187,6 +172,7 @@ interface MaterialEntryConfigProps {
 export interface MaterialEntryProps
   extends GlobalUrlEntryPropsInterface,
     MaterialEntryTextProps,
+    GlobalEntryTextProps,
     MaterialEntryConfigProps {
   wid: WorkId;
 }

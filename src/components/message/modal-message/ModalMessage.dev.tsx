@@ -2,10 +2,12 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useEffect } from "react";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import ModalMessage from "./ModalMessage";
+import globalTextArgs from "../../../core/storybook/globalTextArgs";
 
 export default {
   title: "Components / Message / Modal Message",
   argTypes: {
+    ...globalTextArgs,
     title: {
       defaultValue: "This is a title",
       control: { type: "text" }
