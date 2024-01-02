@@ -80,8 +80,7 @@ const UserListItems: FC<UserListItemsProps> = ({
           />
           <NoInterestAfterModal
             selectedInterest={
-              selectedInterest ??
-              Number(interestPeriods.defaultInterestPeriod.value)
+              selectedInterest ?? interestPeriods.defaultInterestPeriod.value
             }
             setSelectedInterest={setSelectedInterest}
           />
