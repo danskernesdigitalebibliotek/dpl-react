@@ -5,6 +5,7 @@ import { withConfig } from "../../core/utils/config";
 import { withUrls } from "../../core/utils/url";
 import GuardedApp from "../../components/guarded-app";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface RecommenderProps {
   emptyRecommenderSearchConfig: string;
@@ -14,12 +15,11 @@ export interface RecommenderProps {
   materialAndAuthorText: string;
   etAlText: string;
   recommenderTitleInspirationText: string;
-  addToFavoritesAriaLabelText: string;
-  removeFromFavoritesAriaLabelText: string;
 }
 
 export interface ReccommenderPropsInterface
   extends GlobalUrlEntryPropsInterface,
+    GlobalEntryTextProps,
     RecommenderProps {
   q?: string;
   pageSizeDesktop?: number;

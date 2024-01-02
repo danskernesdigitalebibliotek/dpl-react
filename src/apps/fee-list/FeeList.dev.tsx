@@ -5,6 +5,7 @@ import blockedArgs from "../../core/storybook/blockedArgs";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import FeeList from "./FeeList.entry";
 import { getModalIds } from "../../core/utils/helpers/modal-helpers";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Fee list",
@@ -12,6 +13,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...blockedArgs,
+    ...globalTextArgs,
     feeListHeadlineText: {
       defaultValue: "Fees & Replacement costs",
       control: { type: "text" }
@@ -61,10 +63,6 @@ export default {
     },
     totalText: {
       defaultValue: "Total @total,-",
-      control: { type: "text" }
-    },
-    amountText: {
-      defaultValue: "@amount,-",
       control: { type: "text" }
     },
     expirationWarningDaysBeforeConfig: {
@@ -170,9 +168,11 @@ export default {
         "Already paid? It can take up to 72 hours to register the transaction.",
       control: { type: "text" }
     },
-    feeLitsMaterialNumberText: {
-      defaultValue: "# @materialNumber",
-      control: { type: "text" }
+    feeListMaterialNumberText: {
+      materialNumberText: {
+        defaultValue: "# @materialNumber",
+        control: { type: "text" }
+      }
     }
   },
   decorators: [withQuery]

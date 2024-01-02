@@ -6,12 +6,10 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import SearchResult from "./search-result";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
-  addToFavoritesAriaLabelText: string;
-  alertErrorCloseText: string;
-  alertErrorMessageText: string;
   byAuthorText: string;
   etAlText: string;
   facetAccessTypesText: string;
@@ -25,6 +23,7 @@ interface SearchResultEntryTextProps {
   facetFictionNonfictionText: string;
   facetGenreAndFormText: string;
   facetMainLanguagesText: string;
+  facetMaterialTypesText: string;
   facetMaterialTypesGeneralText: string;
   facetMaterialTypesSpecificText: string;
   facetSubjectsText: string;
@@ -34,7 +33,6 @@ interface SearchResultEntryTextProps {
   inSeriesText: string;
   loadingText: string;
   numberDescriptionText: string;
-  removeFromFavoritesAriaLabelText: string;
   resultPagerStatusText: string;
   showingResultsForText: string;
   noSearchResultText: string;
@@ -52,6 +50,7 @@ interface SearchResultEntryConfigProps {
 export interface SearchResultEntryProps
   extends GlobalUrlEntryPropsInterface,
     SearchResultEntryConfigProps,
+    GlobalEntryTextProps,
     SearchResultEntryTextProps {
   q?: string;
   pageSizeDesktop?: number;

@@ -4,6 +4,7 @@ import PatronPage from "./PatronPage.entry";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import pincodeArgs from "../../core/storybook/pincodeArgs";
 import blockedArgs from "../../core/storybook/blockedArgs";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Patron page",
@@ -12,6 +13,7 @@ export default {
     ...serviceUrlArgs,
     ...pincodeArgs,
     ...blockedArgs,
+    ...globalTextArgs,
     // Config
     pauseReservationStartDateConfig: {
       defaultValue: "2022-06-30",
@@ -76,10 +78,6 @@ export default {
       defaultValue: "End date",
       control: { type: "text" }
     },
-    pauseReservationModalBelowInputsTextText: {
-      defaultValue: "",
-      control: { type: "text" }
-    },
     pauseReservationModalLinkText: {
       defaultValue:
         "Read more about pausing reservertions and what that means here",
@@ -107,10 +105,6 @@ export default {
     },
     patronContactInfoHeaderText: {
       defaultValue: "Contact information",
-      control: { type: "text" }
-    },
-    patronContactInfoBodyText: {
-      defaultValue: "",
       control: { type: "text" }
     },
     patronContactPhoneLabelText: {
@@ -161,7 +155,7 @@ export default {
       control: { type: "text" }
     },
     patronPageChangePickupBodyText: {
-      defaultValue: "",
+      defaultValue: "Change pickup body text",
       control: { type: "text" }
     },
     pickupBranchesDropdownLabelText: {
@@ -177,7 +171,7 @@ export default {
       control: { type: "text" }
     },
     patronPagePauseReservationsBodyText: {
-      defaultValue: "",
+      defaultValue: "Patron page pause reservations body text",
       control: { type: "text" }
     },
     patronPageOpenPauseReservationsSectionText: {

@@ -5,12 +5,14 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import FavoritesListEntry, {
   FavoritesListEntryProps
 } from "./FavoritesList.entry";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Favorite list",
   component: FavoritesListEntry,
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     pageSizeDesktop: {
       name: "Number of favorite items on desktop",
       defaultValue: 50,
@@ -44,16 +46,6 @@ export default {
     materialUrl: {
       name: "Path to the material page",
       defaultValue: "/work/:workid",
-      control: { type: "text" }
-    },
-    availabilityAvailableText: {
-      name: "Availability: available text",
-      defaultValue: "Available",
-      control: { type: "text" }
-    },
-    availabilityUnavailableText: {
-      name: "Availability: unavailable text",
-      defaultValue: "Unavailable",
       control: { type: "text" }
     },
     favoritesListMaterialsText: {

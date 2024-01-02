@@ -6,17 +6,14 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import AdvancedSearch from "./AdvancedSearch";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface AdvancedSearchEntryTextProps {
-  addToFavoritesAriaLabelText: string;
-  alertErrorCloseText: string;
-  alertErrorMessageText: string;
   byAuthorText: string;
   etAlText: string;
   inSeriesText: string;
   loadingText: string;
   numberDescriptionText: string;
-  removeFromFavoritesAriaLabelText: string;
   resultPagerStatusText: string;
   noSearchResultText: string;
   showMoreText: string;
@@ -67,7 +64,6 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterOnlineText: string;
   advancedSearchFilterFictionText: string;
   advancedSearchFilterNonFictionText: string;
-  multiselectAllOptionText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
@@ -79,6 +75,7 @@ interface AdvancedSearchEntryConfigProps {
 
 export interface AdvancedSearchEntryProps
   extends GlobalUrlEntryPropsInterface,
+    GlobalEntryTextProps,
     AdvancedSearchEntryConfigProps,
     AdvancedSearchEntryTextProps {
   pageSizeDesktop?: number;

@@ -1,7 +1,5 @@
 import React from "react";
-
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-
 import ButtonFavourite, {
   ButtonFavouriteId,
   ButtonFavouriteProps
@@ -9,6 +7,7 @@ import ButtonFavourite, {
 import { withUrls } from "../../core/utils/url";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withText } from "../../core/utils/text";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 const WrappedButtonFavourite = withText(withUrls(ButtonFavourite));
 
@@ -18,21 +17,10 @@ export default {
 
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     id: {
       control: "text",
       defaultValue: "work-of:870970-basis:45234401"
-    },
-    addToFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Add @title to favorites list"
-    },
-    removeFromFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Remove @title from favorites list"
     },
     title: {
       control: {

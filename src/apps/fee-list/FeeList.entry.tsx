@@ -6,6 +6,7 @@ import { withUrls } from "../../core/utils/url";
 import FeeList from "./FeeList";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { withConfig } from "../../core/utils/config";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface IntermedateListEntryConfigProps {
   expirationWarningDaysBeforeConfig: string;
@@ -44,13 +45,14 @@ export interface FeeListProps {
   availablePaymentTypesUrl: string;
   paymentOverviewUrl: string;
   feeListAlreadyPaidInfoText: string;
-  feeLitsMaterialNumberText: string;
+  feeListMaterialNumberText: string;
 }
 
 const FeeListEntry: FC<
   FeeListProps &
     BlockedPatronEntryTextProps &
     IntermedateListEntryConfigProps &
+    GlobalEntryTextProps &
     GlobalUrlEntryPropsInterface
 > = () => <FeeList />;
 

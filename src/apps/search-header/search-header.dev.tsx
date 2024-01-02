@@ -5,22 +5,14 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SearchHeaderEntry, {
   SearchHeaderEntryProps
 } from "./search-header.entry";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Header",
   component: SearchHeaderEntry,
   argTypes: {
     ...serviceUrlArgs,
-    alertErrorCloseText: {
-      name: "Alert error close text",
-      defaultValue: "close",
-      control: { type: "text" }
-    },
-    alertErrorMessageText: {
-      name: "Alert error message text",
-      defaultValue: "An error occurred",
-      control: { type: "text" }
-    },
+    ...globalTextArgs,
     searchHeaderIconAltText: {
       name: "Alt text for search button image",
       defaultValue: "search icon",
