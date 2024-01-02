@@ -10,8 +10,6 @@ interface GlobalUrlEntryPropsInterface {
   coverBaseUrl: string;
   materialBaseUrl: string;
   fbiBaseUrl: string;
-  fbiSearchBaseUrl: string;
-  fbiMaterialBaseUrl: string;
   authUrl: string;
   ereolenHomepageUrl: string;
 }
