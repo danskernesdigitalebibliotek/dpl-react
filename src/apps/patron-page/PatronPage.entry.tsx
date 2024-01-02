@@ -6,6 +6,7 @@ import PatronPage from "./PatronPage";
 import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import withIsPatronBlockedHoc from "../../core/utils/withIsPatronBlockedHoc";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface PatronPageConfigProps {
   blacklistedPickupBranchesConfig: string;
@@ -31,7 +32,6 @@ interface PatronPageTextProps {
   patronPinSavedSuccessText: string;
   dateInputsStartDateLabelText: string;
   dateInputsEndDateLabelText: string;
-  pauseReservationModalBelowInputsTextText: string;
   pauseReservationModalLinkText: string;
   pauseReservationModalSaveButtonLabelText: string;
   pauseReservationModalCancelButtonLabelText: string;
@@ -39,7 +39,6 @@ interface PatronPageTextProps {
   patronPageBasicDetailsNameLabelText: string;
   patronPageBasicDetailsAddressLabelText: string;
   patronContactInfoHeaderText: string;
-  patronContactInfoBodyText: string;
   patronContactPhoneLabelText: string;
   patronContactPhoneCheckboxText: string;
   patronContactEmailLabelText: string;
@@ -81,6 +80,7 @@ export interface PatronPageProps
     BlockedPatronEntryTextProps,
     PatronPageTextProps,
     PatronPageUrlProps,
+    GlobalEntryTextProps,
     GlobalUrlEntryPropsInterface {}
 
 const PatronPageEntry: FC<PatronPageProps> = () => <PatronPage />;

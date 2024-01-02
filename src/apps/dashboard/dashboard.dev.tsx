@@ -9,8 +9,8 @@ import reservationGroupModalArgs from "../../core/storybook/reservationGroupModa
 import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
-import acceptModalArgs from "../../core/storybook/acceptFeesModalArgs";
 import reservationListArgs from "../../core/storybook/reservationListArgs";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Dashboard",
@@ -21,10 +21,10 @@ export default {
     ...renewalArgs,
     ...reservationGroupModalArgs,
     ...reservationMaterialDetailsProps,
-    ...acceptModalArgs,
     ...materialDetailsModalArgs,
     ...deleteReservationModalArgs,
     ...reservationListArgs,
+    ...globalTextArgs,
     // Urls
     physicalLoansUrl: {
       defaultValue: "/user/me/loans",
@@ -74,10 +74,6 @@ export default {
       defaultValue: "To be returned soon",
       control: { type: "text" }
     },
-    loansNotOverdueText: {
-      defaultValue: "Longer return time",
-      control: { type: "text" }
-    },
     reservationsText: {
       defaultValue: "Reservations",
       control: { type: "text" }
@@ -88,10 +84,6 @@ export default {
     },
     reservationsReadyText: {
       defaultValue: "Ready for you",
-      control: { type: "text" }
-    },
-    reservationsStillInQueueForText: {
-      defaultValue: "Still in queue",
       control: { type: "text" }
     },
     noPhysicalLoansText: {

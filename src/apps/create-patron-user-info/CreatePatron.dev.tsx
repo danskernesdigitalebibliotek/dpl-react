@@ -3,6 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import CreatePatron from "./CreatePatron.entry";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import pincodeArgs from "../../core/storybook/pincodeArgs";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Create patron",
@@ -10,6 +11,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...pincodeArgs,
+    ...globalTextArgs,
     blacklistedPickupBranchesConfig: {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
@@ -85,10 +87,6 @@ export default {
       defaultValue: "Phone number",
       control: { type: "text" }
     },
-    patronContactInfoBodyText: {
-      defaultValue: "Please enter contact information below",
-      control: { type: "text" }
-    },
     patronContactInfoHeaderText: {
       defaultValue: "Contact information",
       control: { type: "text" }
@@ -108,11 +106,11 @@ export default {
       control: { type: "text" }
     },
     createPatronChangePickupHeaderText: {
-      defaultValue: "",
+      defaultValue: "Create patron change pickup header text",
       control: { type: "text" }
     },
     createPatronChangePickupBodyText: {
-      defaultValue: "",
+      defaultValue: "Create patron change pickup body text",
       control: { type: "text" }
     },
     createPatronHeaderText: {

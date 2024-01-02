@@ -80,9 +80,9 @@ export const initialAdvancedSearchQuery: AdvancedSearchQuery = {
     { term: "", searchIndex: "all", clause: advancedSearchClauses[0], id: 1 }
   ],
   filters: {
-    materialTypes: [{ item: "All", value: "all" }],
-    fiction: [{ item: "All", value: "all" }],
-    accessibility: [{ item: "All", value: "all" }]
+    materialTypes: [{ item: "multiselectAllOptionText", value: "all" }],
+    fiction: [{ item: "multiselectAllOptionText", value: "all" }],
+    accessibility: [{ item: "multiselectAllOptionText", value: "all" }]
   }
 };
 
