@@ -44,7 +44,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   return (
     <div
       className={clsx(
-        "list-reservation my-32 cursor-pointer arrow arrow__hover--right-small",
+        "list-reservation my-32 cursor-pointer arrow__hover--right-small",
         {
           "list-reservation--stacked": additionalMaterials > 0
         }
