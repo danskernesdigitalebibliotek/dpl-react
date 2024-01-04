@@ -37,7 +37,7 @@ describe("Search header app", () => {
     cy.getBySel("search-header-input").focus().type("ha");
     cy.getBySel("autosuggest").should("not.be.visible");
     cy.getBySel("search-header-input").focus().type("r");
-    cy.getBySel("autosuggest").should("be.visible");
+    cy.getBySel("autosuggest-text-item").should("be.visible");
   });
 
   it("Allows use of arrow keys to navigate autosuggest", () => {

@@ -71,7 +71,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
               value={value}
               className={classes.option}
               disabled={disabled}
-              selected={value === defaultValue}
+              selected={value.toString() === defaultValue?.toString()}
             >
               {optionsLabel}
             </option>

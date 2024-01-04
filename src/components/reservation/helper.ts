@@ -34,9 +34,9 @@ export const getNoInterestAfter = (
   interestPeriod: Periods,
   t: UseTextFunction
 ) => {
-  const interestPeriodFound = interestPeriod.interestPeriods.find(
-    ({ value }) => value === String(days)
-  );
+  const interestPeriodFound = interestPeriod.interestPeriods.find((period) => {
+    return period.value.toString() === days.toString();
+  });
 
   if (interestPeriodFound) {
     return interestPeriodFound.label;
