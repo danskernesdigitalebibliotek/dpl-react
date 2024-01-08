@@ -29,21 +29,22 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
 }) => {
   const { dueDate, identifier, periodical } = loan;
 
-  const openLoanDetailsModalHandler = () => {
-    openLoanDetailsModal(loan);
-  };
-
   const handleOpenDueDateModal = () => {
     if (openDueDateModal && dueDate) {
       openDueDateModal(dueDate);
+      return;
     }
+    openLoanDetailsModal(loan);
   };
 
   return (
     <div
-      className={clsx("list-reservation my-32 cursor-pointer", {
-        "list-reservation--stacked": additionalMaterials > 0
-      })}
+      className={clsx(
+        "list-reservation my-32 cursor-pointer arrow__hover--right-small",
+        {
+          "list-reservation--stacked": additionalMaterials > 0
+        }
+      )}
       role="button"
       onClick={handleOpenDueDateModal}
       onKeyUp={(e) => {
@@ -56,7 +57,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
       {material && (
         <MaterialInfo
           arrowLabelledBy={`${loanId || identifier}-title`}
-          openDetailsModal={openLoanDetailsModalHandler}
+          openDetailsModal={handleOpenDueDateModal}
           periodical={periodical}
           material={material}
           focused={focused}

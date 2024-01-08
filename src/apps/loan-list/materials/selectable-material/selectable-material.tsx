@@ -66,7 +66,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   };
 
   return (
-    <li className="arrow arrow__hover--right-small">
+    <li className="arrow__hover--right-small">
       <div
         className={clsx("list-materials", {
           "list-materials--disabled": disabled

@@ -31,12 +31,17 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   const { amount = 0, creationDate = "", reasonMessage = "" } = feeData;
   const stackSize = amountOfMaterialsWithDueDate - 1;
   const listReservationClass = clsx(["list-reservation", "my-32"], {
-    "list-reservation--stacked": stackSize > 1
+    "list-reservation--stacked": stackSize > 0
   });
   return (
     <button
       type="button"
       onClick={() => openDetailsModalClickEvent(faust)}
+      onKeyUp={(e) => {
+        if (e.key === "Enter" || e.key === "Space") {
+          openDetailsModalClickEvent(faust);
+        }
+      }}
       className={listReservationClass}
     >
       {feeData && (

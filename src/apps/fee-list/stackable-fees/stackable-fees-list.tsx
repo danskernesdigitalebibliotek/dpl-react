@@ -9,13 +9,13 @@ import StatusBadge from "../../loan-list/materials/utils/status-badge";
 import { FaustId } from "../../../core/utils/types/ids";
 
 interface StackableFeeListProps {
-  creationDateFormatted: string;
   materials: FeeMaterialV2[];
+  reasonForFee: string;
 }
 
 const StackableFeeList: FC<StackableFeeListProps & MaterialProps> = ({
   materials,
-  creationDateFormatted
+  reasonForFee
 }) => {
   const t = useText();
 
@@ -25,23 +25,21 @@ const StackableFeeList: FC<StackableFeeListProps & MaterialProps> = ({
         <SelectableMaterial
           focused={false}
           disabled
-          statusBadgeComponent={
-            <StatusBadge
-              dangerText={t("turnedInText", {
-                placeholders: { "@date": creationDateFormatted }
-              })}
-            />
-          }
+          statusBadgeComponent={<StatusBadge dangerText={reasonForFee} />}
           item={{ faust: recordId as FaustId }}
           key={recordId}
           statusMessageComponentMobile={
             <div className="list-materials__status__note-mobile">
-              {materialItemNumber}
+              {t("materialNumberText", {
+                placeholders: { "@materialNumber": materialItemNumber }
+              })}
             </div>
           }
           statusMessageComponentDesktop={
             <div className="list-materials__status__note-desktop">
-              {materialItemNumber}
+              {t("materialNumberText", {
+                placeholders: { "@materialNumber": materialItemNumber }
+              })}
             </div>
           }
         />

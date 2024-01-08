@@ -15,8 +15,8 @@ const FeeDetailsModal: FC<FeeDetailsModalProps> = ({ modalId, children }) => {
     <Modal
       modalId={modalId || ""}
       classNames="modal-details"
-      closeModalAriaLabelText={t("FeeDetailsModalCloseModalAriaLabelText")}
-      screenReaderModalDescriptionText={t("FeeDetailsModalDescriptionText")}
+      closeModalAriaLabelText={t("feeDetailsModalCloseModalAriaLabelText")}
+      screenReaderModalDescriptionText={t("feeDetailsModalDescriptionText")}
     >
       {children}
     </Modal>

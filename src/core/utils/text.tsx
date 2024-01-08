@@ -105,13 +105,15 @@ const processTexts = (texts: string[], placeholders: Placeholders) =>
   );
 
 export const useText = (): UseTextFunction => {
-  const { data } = useSelector((state: RootState) => state.text);
+  const { data } = useSelector<{ data: Record<string, string> }>(
+    (state: RootState) => state.text
+  );
 
   return (key: string, { placeholders, count } = { count: 0 }) => {
     if (!data) {
       throw new Error(`The translation store is broken.`);
     }
-    if (!data[key]) {
+    if (data[key] === undefined) {
       throw new Error(`The translation for ${key} is not defined.`);
     }
     const textDefinition = constructTextDefinitionFromRawTextTextEntry(

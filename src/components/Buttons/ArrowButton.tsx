@@ -18,6 +18,7 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
   return (
     <button
       aria-labelledby={arrowLabelledBy}
+      className="arrow-button"
       style={pointer}
       type="button"
       onClick={(e) => {

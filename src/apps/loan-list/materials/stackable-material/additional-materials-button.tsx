@@ -27,6 +27,11 @@ const AdditionalMaterialsButton: FC<AdditionalMaterialsButtonProps> = ({
     <button
       type="button"
       onClick={(e) => openDueDateModalCallBack(e)}
+      onKeyUp={(e) => {
+        if (e.key === "Enter" || e.key === "Space") {
+          openDueDateModalCallBack(e as unknown as MouseEvent);
+        }
+      }}
       // in loan-list-items.tsx
       aria-describedby="materials-modal-text"
       className={`list-reservation__note list-reservation__note--${showOn}`}

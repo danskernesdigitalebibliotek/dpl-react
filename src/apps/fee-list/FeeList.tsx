@@ -63,7 +63,7 @@ const FeeList: FC = () => {
       }
       const feesPostPaymentChange = getFeesInRelationToPaymentChangeDate(
         fbsFees,
-        true
+        false
       ).length;
       if (feesPostPaymentChange > 0) {
         setItemsPostPaymentChange(

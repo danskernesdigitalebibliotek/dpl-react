@@ -6,7 +6,7 @@ import { RequestStatus } from "../../../core/utils/types/request";
 import { Periods } from "../types";
 
 export interface PickupModalProps {
-  selectedInterest: number;
+  selectedInterest: number | string;
   setSelectedInterest: (value: number) => void;
   saveCallback?: () => void;
   reservationStatus?: RequestStatus;

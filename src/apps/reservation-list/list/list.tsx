@@ -83,7 +83,7 @@ const List: FC<ListProps> = ({
             <h2 className="dpl-list-buttons__header">
               <>
                 {header}
-                <div className="dpl-list-buttons__power">0</div>
+                <span className="dpl-list-buttons__power">0</span>
               </>
             </h2>
           </div>
