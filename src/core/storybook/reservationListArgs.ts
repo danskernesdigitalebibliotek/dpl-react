@@ -180,11 +180,6 @@ export default {
     defaultValue: "Settings",
     control: { type: "text" }
   },
-  pauseReservationModalAriaDescriptionText: {
-    defaultValue:
-      "This modal makes it possible to pause your physical reservations",
-    control: { type: "text" }
-  },
   pauseReservationModalHeaderText: {
     defaultValue: "Pause reservations on physical items",
     control: { type: "text" }
@@ -204,10 +199,6 @@ export default {
   },
   dateInputsEndDateLabelText: {
     defaultValue: "End date",
-    control: { type: "text" }
-  },
-  pauseReservationModalBelowInputsTextText: {
-    defaultValue: "",
     control: { type: "text" }
   },
   pauseReservationModalLinkText: {
@@ -257,11 +248,6 @@ export default {
     name: "Delete reservation modal errors status text",
     defaultValue:
       "One or more reservations could not be deleted, please try again.",
-    control: { type: "text" }
-  },
-  deleteReservationModalButtonText: {
-    name: "Delete reservation modal delete button text",
-    defaultValue: "Ok",
     control: { type: "text" }
   },
   deleteReservationModalDeleteProcessingText: {

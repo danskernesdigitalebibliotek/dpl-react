@@ -45,7 +45,7 @@ describe("Search Result", () => {
     cy.getBySel("advanced-search-material-types").first().click();
     cy.getBySel("preview-section", true).should(
       "contain",
-      "'Harry' AND 'Prince' AND generalmaterialtype='bøger'"
+      "'Harry' AND 'Prince' AND term.generalmaterialtype='bøger'"
     );
   });
 
@@ -170,7 +170,7 @@ describe("Search Result", () => {
       .eq(1)
       .within(() => {
         cy.get("input").should("have.value", "Rowling");
-        cy.get("select").should("have.value", "creator");
+        cy.get("select").should("have.value", "term.creatorcontributor");
       });
     // We currently have no good way to identify selected options in the
     // multiselect so checking the text of the button is the best we can do.

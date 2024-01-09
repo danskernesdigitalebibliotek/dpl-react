@@ -2,12 +2,14 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import MaterialEntry, { MaterialEntryProps } from "./material.entry";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Material",
   component: MaterialEntry,
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     searchUrl: {
       name: "Path to the search result page",
       defaultValue: "/search",
@@ -50,16 +52,6 @@ export default {
       name: "Branches",
       defaultValue:
         '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
-      control: { type: "text" }
-    },
-    availabilityAvailableText: {
-      name: "Availability: available text",
-      defaultValue: "Available",
-      control: { type: "text" }
-    },
-    availabilityUnavailableText: {
-      name: "Availability: unavailable text",
-      defaultValue: "Unavailable",
       control: { type: "text" }
     },
     materialHeaderAllEditionsText: {
@@ -305,11 +297,6 @@ export default {
       defaultValue: "Material is loaned out",
       control: { type: "text" }
     },
-    findOnShelfExpandButtonExplanationText: {
-      name: "Find on shelf expand button explanation text",
-      defaultValue: "This button opens a modal",
-      control: { type: "text" }
-    },
     materialIsIncludedText: {
       name: "Material is included",
       defaultValue: "This material doesn't count towards your loan quota",
@@ -549,31 +536,9 @@ export default {
         "If you wish to change the pick-up location for your reservation, you can do it here.",
       control: { type: "text" }
     },
-    modalReservationFormPickupLabelText: {
-      name: "Modal reservation form pickup branch input label",
-      defaultValue: "Change pickup location for your reservation.",
-      control: { type: "text" }
-    },
     chooseOneText: {
       name: "Choose one text",
       defaultValue: "Choose one",
-      control: { type: "text" }
-    },
-    modalReservationFormNoInterestAfterHeaderTitleText: {
-      name: "Modal reservation form no interest after header title",
-      defaultValue: "Change date of interest",
-      control: { type: "text" }
-    },
-    modalReservationFormNoInterestAfterHeaderDescriptionText: {
-      name: "Modal reservation form no interest after header description",
-      defaultValue:
-        "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
-      control: { type: "text" }
-    },
-    modalReservationFormNoInterestAfterLabelText: {
-      name: "Modal reservation form no interest after input label",
-      defaultValue:
-        "Change the amount of time after which you're no longer interested in this material.",
       control: { type: "text" }
     },
     infomediaModalScreenReaderModalDescriptionText: {
@@ -668,6 +633,31 @@ export default {
       defaultValue: "Close",
       control: { type: "text" }
     },
+    orderDigitalCopyFeedbackBorchkUserBlockedByAgencyText: {
+      name: "Borchk user blocked by agency text",
+      defaultValue: "Borchk user blocked by agency",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackBorchkUserNotVerifiedText: {
+      name: "Borchk user not verified text",
+      defaultValue: "Borchk user not verified",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackBorchkUserNoLongerExistOnAgencyText: {
+      name: "Borchk user no longer exists on agency text",
+      defaultValue: "Borchk user no longer exists on agency",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackErrorMunicipalityagencyidNotFoundText: {
+      name: "Error municipality agency ID not found text",
+      defaultValue: "Error municipality agency ID not found",
+      control: { type: "text" }
+    },
+    orderDigitalCopyFeedbackUnknownUserText: {
+      name: "Unknown user text",
+      defaultValue: "Unknown user",
+      control: { type: "text" }
+    },
     orderDigitalCopyEmailLabelText: {
       name: "Order digital copy error email text",
       defaultValue: "Email",
@@ -689,18 +679,6 @@ export default {
       defaultValue: "Unknown",
       control: { type: "text" }
     },
-    addToFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Add @title to favorites list"
-    },
-    removeFromFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Remove @title from favorites list"
-    },
     firstAvailableEditionText: {
       name: "First available edition",
       defaultValue: "First available edition",
@@ -711,29 +689,9 @@ export default {
       defaultValue: "Film adaptations",
       control: { type: "text" }
     },
-    alertErrorCloseText: {
-      name: "Alert error close text",
-      defaultValue: "close",
-      control: { type: "text" }
-    },
-    alertErrorMessageText: {
-      name: "Alert error message text",
-      defaultValue: "An error occurred",
-      control: { type: "text" }
-    },
     expandMoreText: {
       name: "Expand more text",
       defaultValue: "Expand more",
-      control: { type: "text" }
-    },
-    changeInterestPeriodText: {
-      name: "Change interest period text",
-      defaultValue: "Change interest period",
-      control: { type: "text" }
-    },
-    changePickupLocationText: {
-      name: "Change pickup location text",
-      defaultValue: "Change pickup location",
       control: { type: "text" }
     },
     changeSmsNumberText: {
@@ -744,46 +702,6 @@ export default {
     changeEmailText: {
       name: "Change email text",
       defaultValue: "Change email",
-      control: { type: "text" }
-    },
-    screenReaderModalDescriptionInterestPeriodText: {
-      name: "Screen reader modal description for interest period",
-      defaultValue: "Change interest period modal",
-      control: { type: "text" }
-    },
-    closeModalAriaLabelInterestPeriodText: {
-      name: "Close modal aria-label interest period ",
-      defaultValue: "Close interest period modal",
-      control: { type: "text" }
-    },
-    screenReaderModalDescriptionPickupText: {
-      name: "Screen reader modal description for pickup",
-      defaultValue: "Change pickup location modal",
-      control: { type: "text" }
-    },
-    closeModalAriaLabelPickupText: {
-      name: "Close modal aria-label pickup",
-      defaultValue: "Close pickup location modal",
-      control: { type: "text" }
-    },
-    screenReaderModalDescriptionSmsText: {
-      name: "Screen reader modal description for sms",
-      defaultValue: "Change mobile number modal",
-      control: { type: "text" }
-    },
-    closeModalAriaLabelSmsText: {
-      name: "Close modal aria-label sms",
-      defaultValue: "Close change mobile number modal",
-      control: { type: "text" }
-    },
-    screenReaderModalDescriptionEmailText: {
-      name: "Screen reader modal description for email",
-      defaultValue: "Change email modal",
-      control: { type: "text" }
-    },
-    closeModalAriaLabelEmailText: {
-      name: "Close modal aria-label email",
-      defaultValue: "Close change email modal",
       control: { type: "text" }
     },
     instantLoanTitleText: {

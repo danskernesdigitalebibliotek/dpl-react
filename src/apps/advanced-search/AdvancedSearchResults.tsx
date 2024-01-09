@@ -88,7 +88,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   }, [data, page]);
 
   const shouldShowSearchResults = isLoading || (!isLoading && hitcount > 0);
-  const shouldShowResultHeadline = hitcount && !isLoading;
+  const shouldShowResultHeadline = !!(hitcount && !isLoading);
 
   useEffect(() => {
     if (copiedLinkToSearch) {
@@ -108,11 +108,14 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
         /* ID is used to scroll to the results upon hitting the search button. */
         id="advanced-search-result"
       >
-        {isLoading && t("loadingResultsText")}
-        {shouldShowResultHeadline &&
-          t("showingMaterialsText", {
-            placeholders: { "@hitcount": hitcount }
-          })}
+        {isLoading && <>{t("loadingResultsText")}</>}
+        {shouldShowResultHeadline && (
+          <>
+            {t("showingMaterialsText", {
+              placeholders: { "@hitcount": hitcount }
+            })}
+          </>
+        )}
       </h2>
       {!showContentOnly && (
         <button

@@ -5,6 +5,7 @@ import blockedArgs from "../../core/storybook/blockedArgs";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import FeeList from "./FeeList.entry";
 import { getModalIds } from "../../core/utils/helpers/modal-helpers";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Fee list",
@@ -12,6 +13,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...blockedArgs,
+    ...globalTextArgs,
     feeListHeadlineText: {
       defaultValue: "Fees & Replacement costs",
       control: { type: "text" }
@@ -61,10 +63,6 @@ export default {
     },
     totalText: {
       defaultValue: "Total @total,-",
-      control: { type: "text" }
-    },
-    amountText: {
-      defaultValue: "@amount,-",
       control: { type: "text" }
     },
     expirationWarningDaysBeforeConfig: {
@@ -124,11 +122,11 @@ export default {
       defaultValue: "You have 0 unpaid fees or replacement costs",
       control: { type: "text" }
     },
-    FeeDetailsModalCloseModalAriaLabelText: {
+    feeDetailsModalCloseModalAriaLabelText: {
       defaultValue: "Close fee details modal",
       control: { type: "text" }
     },
-    FeeDetailsModalDescriptionText: {
+    feeDetailsModalDescriptionText: {
       defaultValue:
         "Modal containing information about this element or group of elements fees",
       control: { type: "text" }
@@ -163,6 +161,10 @@ export default {
     },
     paymentOverviewUrl: {
       defaultValue: "https://unsplash.com/photos/yjI3ozta2Zk", // Open source image of a fluffy floofer
+      control: { type: "text" }
+    },
+    materialNumberText: {
+      defaultValue: "# @materialNumber",
       control: { type: "text" }
     }
   },

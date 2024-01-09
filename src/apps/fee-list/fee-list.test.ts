@@ -253,40 +253,12 @@ describe("Fee list", () => {
       .click();
 
     // 5. modal
-    // counter number
-    cy.get("div.modal-loan__header")
-      .find("div")
-      .find(".counter")
-      .find(".counter__value")
-      .should("have.text", "32");
-
-    // counter text
-    cy.get("div.modal-loan__header")
-      .find("div")
-      .find(".counter")
-      .find(".counter__label")
-      .should("exist")
-      .should("have.text", "Days");
-
     // header
     cy.get("div.modal-loan__header")
       .find("div")
       .find(".modal-loan__title")
       .should("exist")
       .should("have.text", "Turned in 6. April 2022");
-
-    // "i accept the Terms of trade*"
-    cy.getBySel("checkbox_id__fee_details").should("exist");
-
-    cy.get(".modal")
-      .find(".checkbox__label")
-      .should("have.text", "I accept the Terms of trade*");
-
-    // pay button
-    cy.get(".button-box")
-      .find("button")
-      .should("exist")
-      .should("have.text", "Pay");
 
     // book list
     cy.get(".modal-loan__list-materials")

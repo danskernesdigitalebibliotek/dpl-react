@@ -122,7 +122,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
     <article
       ref={itemRef}
       data-cy={dataCy}
-      className="card-list-item arrow arrow__hover--right-small"
+      className="card-list-item arrow__hover--right-small"
       onClick={() => {
         handleClick();
       }}

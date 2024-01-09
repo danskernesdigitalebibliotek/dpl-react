@@ -30,7 +30,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   return (
     <li>
       <div
-        className="list-reservation my-32 cursor-pointer"
+        className="list-reservation my-32 cursor-pointer arrow__hover--right-small"
         role="button"
         onClick={() => openDetailsModal()}
         onKeyUp={(e) => {

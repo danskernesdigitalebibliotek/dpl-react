@@ -4,6 +4,7 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import CreatePatron from "./CreatePatron";
 import { getToken, hasToken } from "../../core/token";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface CreatePatronConfigProps {
   agencyConfig: string;
@@ -32,7 +33,6 @@ interface CreatePatronTextProps {
   createPatronInvalidSSNHeaderText: string;
   patronContactEmailCheckboxText: string;
   patronContactEmailLabelText: string;
-  patronContactInfoBodyText: string;
   patronContactInfoHeaderText: string;
   patronContactNameLabelText: string;
   patronContactPhoneCheckboxText: string;
@@ -49,6 +49,7 @@ interface CreatePatronTextProps {
 
 export interface CreatePatronProps
   extends CreatePatronConfigProps,
+    GlobalEntryTextProps,
     CreatePatronUrlProps,
     CreatePatronTextProps {}
 

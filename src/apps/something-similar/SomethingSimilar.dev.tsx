@@ -3,6 +3,7 @@ import React from "react";
 import { withQuery } from "@storybook/addon-queryparams";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SomethingSimilar from "./SomethingSimilar.entry";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
 
 export default {
   title: "Apps / Something similar",
@@ -10,6 +11,7 @@ export default {
   decorators: [withQuery],
   argTypes: {
     ...serviceUrlArgs,
+    ...globalTextArgs,
     somethingSimilarTitleText: {
       control: {
         type: "text"
@@ -55,18 +57,6 @@ export default {
         type: "text"
       },
       defaultValue: "Something similar"
-    },
-    addToFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Add @title to favorites list"
-    },
-    removeFromFavoritesAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Remove @title from favorites list"
     }
   }
 } as ComponentMeta<typeof SomethingSimilar>;

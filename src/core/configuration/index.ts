@@ -7,6 +7,7 @@ import coverTints from "./cover-tints.json";
 import colors from "./colors.json";
 import modalIds from "./modal-ids.json";
 import reservation from "./reservation.json";
+import payment from "./payment.json";
 
 export type ConfScope =
   | "pageSize"
@@ -16,7 +17,8 @@ export type ConfScope =
   | "recommenderMaterialLimits"
   | "colors"
   | "modalIds"
-  | "reservation";
+  | "reservation"
+  | "payment";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;
@@ -54,5 +56,6 @@ export default {
   colors,
   recommenderMaterialLimits,
   modalIds,
-  reservation
+  reservation,
+  payment
 } as Configuration;

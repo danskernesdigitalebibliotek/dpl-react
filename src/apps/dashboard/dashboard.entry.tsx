@@ -10,8 +10,8 @@ import { ReservationMaterialDetailsProps } from "../../core/storybook/reservatio
 import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsModalArgs";
 import { GroupModalReservationsProps } from "../../core/storybook/reservationGroupModalArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
-import { AcceptFeesModalEntryTextProps } from "../../core/storybook/acceptFeesModalArgs";
 import { RenewalArgs } from "../../core/storybook/renewalArgs";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface DashBoardProps {
   // Url
@@ -26,7 +26,6 @@ export interface DashBoardProps {
   expirationWarningDaysBeforeConfig: string;
   // Texts
   dashboardNumberInLineText: string;
-  deleteReservationModalButtonText: string;
   deleteReservationModalDeleteButtonText: string;
   deleteReservationModalDeleteProcessingText: string;
   deleteReservationModalErrorsStatusText: string;
@@ -36,7 +35,6 @@ export interface DashBoardProps {
   etAlText: string;
   feesText: string;
   loanListMaterialDaysText: string;
-  loansNotOverdueText: string;
   loansOverdueText: string;
   loansSoonOverdueText: string;
   materialAndAuthorText: string;
@@ -53,7 +51,6 @@ export interface DashBoardProps {
   readyForLoanText: string;
   reservationDetailsOthersInQueueText: string;
   reservationsReadyText: string;
-  reservationsStillInQueueForText: string;
   reservationsText: string;
   resultPagerStatusText: string;
   statusBadgeWarningText: string;
@@ -67,11 +64,11 @@ const DashboardEntry: FC<
     GroupModalProps &
     GroupModalLoansProps &
     DeleteReservationModalArgs &
-    AcceptFeesModalEntryTextProps &
     GroupModalReservationsProps &
     RenewalArgs &
     ReservationMaterialDetailsProps &
-    MaterialDetailsModalProps
+    MaterialDetailsModalProps &
+    GlobalEntryTextProps
 > = ({ pageSizeDesktop, pageSizeMobile }) => {
   const pageSize = pageSizeGlobal(
     {
