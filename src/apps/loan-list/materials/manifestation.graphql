@@ -6,7 +6,9 @@ fragment ManifestationBasicDetails on Manifestation {
   }
   abstract
   materialTypes {
-    specific
+    materialTypeSpecific {
+      display
+    }
   }
   creators {
     display
