@@ -97,7 +97,7 @@ export const getManifestationPublisher = (manifestation: Manifestation) => {
 };
 
 export const getManifestationMaterialTypes = (manifestation: Manifestation) => {
-  return manifestation.materialTypes?.[0].specific ?? "";
+  return manifestation.materialTypes?.[0].materialTypeSpecific?.display ?? "";
 };
 
 export const getManifestationNumberOfPages = (manifestation: Manifestation) => {
@@ -313,7 +313,7 @@ export const divideManifestationsByMaterialType = (
     (result, manifestation) => {
       if (
         !manifestation.materialTypes.length ||
-        !manifestation.materialTypes[0].specific
+        !manifestation.materialTypes[0].materialTypeSpecific?.display
       ) {
         return result;
       }
@@ -321,8 +321,7 @@ export const divideManifestationsByMaterialType = (
       // For some reason we sometimes have multiple material types
       // we only want the first one.
       // TODO: Double check with DDF that this is a viable solution.
-      const type = manifestation.materialTypes[0].specific;
-
+      const type = manifestation.materialTypes[0].materialTypeSpecific.display;
       return { ...result, [type]: [...(result[type] ?? []), manifestation] };
     },
     {}
