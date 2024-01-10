@@ -95,6 +95,7 @@ interface MaterialEntryTextProps {
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
   openOrderAuthenticationErrorText: string;
+  openOrderErrorMissingPincodeText: string;
   openOrderInvalidOrderText: string;
   openOrderNoServicerequesterText: string;
   openOrderNotOwnedIllLocText: string;

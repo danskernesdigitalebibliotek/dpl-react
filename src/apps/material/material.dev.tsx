@@ -824,6 +824,11 @@ export default {
       name: "Open order unknown user text",
       defaultValue: "User not found",
       control: { type: "text" }
+    },
+    openOrderErrorMissingPincodeText: {
+      name: "Open order error missing pincode text",
+      defaultValue: "Missing pincode",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof MaterialEntry>;
