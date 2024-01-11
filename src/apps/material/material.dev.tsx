@@ -735,11 +735,6 @@ export default {
       defaultValue: "Order from another library:",
       control: { type: "text" }
     },
-    openOrderResponseIsReservedForYouText: {
-      name: "Reservation Success Title",
-      defaultValue: "is ordered to your library",
-      control: { type: "text" }
-    },
     openOrderAuthenticationErrorText: {
       name: "Open order authentication error text",
       defaultValue: "Authentication error occurred",
@@ -893,5 +888,5 @@ Underverden.args = {
 
 export const overbygningsMatriale = Template.bind({});
 overbygningsMatriale.args = {
-  wid: "work-of:870970-basis:135721719"
+  wid: "work-of:870970-basis:44926407"
 };

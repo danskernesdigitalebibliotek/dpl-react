@@ -6,8 +6,7 @@ import {
   getAllPids,
   getMaterialTypes,
   getManifestationType,
-  materialIsFiction,
-  getReservablePidsFromAnotherLibrary
+  materialIsFiction
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
@@ -63,6 +62,7 @@ import {
 import ModalMessage from "../message/modal-message/ModalMessage";
 import configuration, { getConf } from "../../core/configuration";
 import { usePatronData } from "../../core/utils/helpers/user";
+import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromAnotherLibrary";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -123,15 +123,19 @@ export const ReservationModalBody = ({
     work,
     allPids
   );
+  const manifestationsToReserve = getManifestationsToReserve(
+    reservableManifestations ?? [],
+    !!selectedPeriodical
+  );
+
+  const reservablePidsFromAnotherLibrary = useReservableFromAnotherLibrary(
+    selectedManifestations
+  );
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
     return null;
   }
-  const manifestationsToReserve = getManifestationsToReserve(
-    reservableManifestations ?? [],
-    !!selectedPeriodical
-  );
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordV3[];
@@ -144,22 +148,42 @@ export const ReservationModalBody = ({
     ? getFutureDateString(selectedInterest)
     : null;
 
-  const pidsFromAnotherLibrary = getReservablePidsFromAnotherLibrary(
-    manifestationsToReserve
-  );
-
   const saveReservation = () => {
-    if (!manifestationsToReserve || manifestationsToReserve.length < 1) {
-      return;
+    if (manifestationsToReserve?.length) {
+      // Save reservation to FBS.
+      mutateAddReservations(
+        {
+          data: constructReservationData({
+            manifestations: manifestationsToReserve,
+            selectedBranch,
+            expiryDate,
+            periodical: selectedPeriodical
+          })
+        },
+        {
+          onSuccess: (res) => {
+            // Track only if the reservation has been successfully saved.
+            track("click", {
+              id: statistics.reservation.id,
+              name: statistics.reservation.name,
+              trackedData: work.workId
+            });
+            // This state is used to show the success or error modal.
+            setReservationResponse(res);
+            // Because after a successful reservation the holdings (reservations) are updated.
+            queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
+          }
+        }
+      );
     }
 
-    if (pidsFromAnotherLibrary.length > 0 && patron) {
+    if (reservablePidsFromAnotherLibrary?.length && patron) {
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
-
+      // Save reservation to open order.
       mutateOpenOrder(
         {
           input: {
-            pids: [...pidsFromAnotherLibrary],
+            pids: [...reservablePidsFromAnotherLibrary],
             pickUpBranch: selectedBranch
               ? removePrefixFromBranchId(selectedBranch)
               : removePrefixFromBranchId(preferredPickupBranch),
@@ -179,35 +203,7 @@ export const ReservationModalBody = ({
           }
         }
       );
-
-      return;
     }
-
-    // Save reservation to FBS.
-    mutateAddReservations(
-      {
-        data: constructReservationData({
-          manifestations: manifestationsToReserve,
-          selectedBranch,
-          expiryDate,
-          periodical: selectedPeriodical
-        })
-      },
-      {
-        onSuccess: (res) => {
-          // Track only if the reservation has been successfully saved.
-          track("click", {
-            id: statistics.reservation.id,
-            name: statistics.reservation.name,
-            trackedData: work.workId
-          });
-          // This state is used to show the success or error modal.
-          setReservationResponse(res);
-          // Because after a successful reservation the holdings (reservations) are updated.
-          queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
-        }
-      }
-    );
   };
 
   const reservationSuccess = reservationResponse?.success || false;
@@ -320,9 +316,7 @@ export const ReservationModalBody = ({
       {openOrderResponse?.submitOrder?.status && (
         <ModalMessage
           title={t("openOrderResponseTitleText")}
-          subTitle={`${manifestation.titles.main[0]} ${t(
-            "openOrderResponseIsReservedForYouText"
-          )}`}
+          subTitle={manifestation.titles.main[0]}
           ctaButton={{
             text: t("okButtonText"),
             modalId: reservationModalId(faustIds),
