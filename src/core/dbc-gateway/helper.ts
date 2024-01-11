@@ -10,11 +10,16 @@ const map = {
   default: serviceUrlKeys.fbi
 } as const;
 
-const resolveBaseUrl = (query: string | null) => {
+type Baseurl = typeof map[keyof typeof map];
+
+export const resolveBaseUrl = (query?: string) => {
   if (!query) {
-    return getServiceBaseUrl(map.default);
+    return getServiceBaseUrl(map.default) as Baseurl;
   }
-  return getServiceBaseUrl(map[query as keyof typeof map] || map.default);
+
+  return getServiceBaseUrl(
+    map[query as keyof typeof map] || map.default
+  ) as Baseurl;
 };
 
 export const getQueryUrlFromContext = (
@@ -22,7 +27,7 @@ export const getQueryUrlFromContext = (
 ) => {
   // Get the default base url if no context.
   if (!context) {
-    return resolveBaseUrl(null);
+    return resolveBaseUrl();
   }
 
   const { queryKey } = context;

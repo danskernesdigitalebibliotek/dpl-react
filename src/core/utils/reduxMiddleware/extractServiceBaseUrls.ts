@@ -19,7 +19,7 @@ export type ServiceBaseUrls =
 
 type ServiceBaseUrlKey = keyof ServiceBaseUrls;
 
-export const serviceUrlKeys: Record<Api, ApiBaseUrlKey> = {
+export const serviceUrlKeys = {
   fbs: "fbsBaseUrl",
   publizon: "publizonBaseUrl",
   dplCms: "dplCmsBaseUrl",
