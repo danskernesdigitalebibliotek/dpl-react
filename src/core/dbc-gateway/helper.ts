@@ -6,8 +6,23 @@ import {
 } from "../utils/reduxMiddleware/extractServiceBaseUrls";
 
 const map = {
+  // Search requests.
+  complexSearchWithPagination: serviceUrlKeys.fbiSearch,
+  complexSearchWithPaginationWorkAccess: serviceUrlKeys.fbiSearch,
+  intelligentFacets: serviceUrlKeys.fbiSearch,
+  recommendFromFaust: serviceUrlKeys.fbiSearch,
+  searchFacet: serviceUrlKeys.fbiSearch,
   searchWithPagination: serviceUrlKeys.fbiSearch,
+  suggestionsFromQueryString: serviceUrlKeys.fbiSearch,
+  // Material requests.
+  getInfomedia: serviceUrlKeys.fbiMaterial,
+  getManifestationViaBestRepresentationByFaust: serviceUrlKeys.fbiMaterial,
+  getManifestationViaMaterialByFaust: serviceUrlKeys.fbiMaterial,
   getMaterial: serviceUrlKeys.fbiMaterial,
+  getReviewManifestations: serviceUrlKeys.fbiMaterial,
+  getSmallWork: serviceUrlKeys.fbiMaterial,
+  openOrder: serviceUrlKeys.fbiMaterial,
+  // All other requests.
   default: serviceUrlKeys.fbi
 } as const;
 
@@ -65,15 +80,42 @@ if (import.meta.vitest) {
     });
 
     it("should resolve baseurl based on query name", () => {
+      expect(resolveBaseUrl("complexSearchWithPagination")).toEqual(
+        "i-am-fbi-search-url"
+      );
+      expect(resolveBaseUrl("complexSearchWithPaginationWorkAccess")).toEqual(
+        "i-am-fbi-search-url"
+      );
+      expect(resolveBaseUrl("intelligentFacets")).toEqual(
+        "i-am-fbi-search-url"
+      );
+      expect(resolveBaseUrl("recommendFromFaust")).toEqual(
+        "i-am-fbi-search-url"
+      );
+      expect(resolveBaseUrl("searchFacet")).toEqual("i-am-fbi-search-url");
       expect(resolveBaseUrl("searchWithPagination")).toEqual(
         "i-am-fbi-search-url"
       );
+      expect(resolveBaseUrl("suggestionsFromQueryString")).toEqual(
+        "i-am-fbi-search-url"
+      );
+      expect(resolveBaseUrl("getInfomedia")).toEqual("i-am-fbi-material-url");
+      expect(
+        resolveBaseUrl("getManifestationViaBestRepresentationByFaust")
+      ).toEqual("i-am-fbi-material-url");
+      expect(resolveBaseUrl("getManifestationViaMaterialByFaust")).toEqual(
+        "i-am-fbi-material-url"
+      );
       expect(resolveBaseUrl("getMaterial")).toEqual("i-am-fbi-material-url");
+      expect(resolveBaseUrl("getReviewManifestations")).toEqual(
+        "i-am-fbi-material-url"
+      );
+      expect(resolveBaseUrl("getSmallWork")).toEqual("i-am-fbi-material-url");
+      expect(resolveBaseUrl("openOrder")).toEqual("i-am-fbi-material-url");
     });
 
     it("should resolve default to the fbi base url if the query is unknown", () => {
       expect(resolveBaseUrl("someUnknownQuery")).toEqual("i-am-fbi-url");
-      expect(resolveBaseUrl()).toEqual("i-am-fbi-url");
     });
 
     it("should resolve default to the fbi base url if no query has been specified", () => {
