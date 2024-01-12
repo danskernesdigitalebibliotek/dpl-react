@@ -36,21 +36,21 @@ if (import.meta.vitest) {
 
   describe("DBC Gateway Requests", () => {
     beforeAll(() => {
-      vi.mock("../utils/reduxMiddleware/extractServiceBaseUrls", () => {
+      vi.mock("../utils/reduxMiddleware/extractServiceBaseUrls", async () => {
         const urls = {
           fbiBaseUrl: "i-am-fbi-url",
           fbiSearchBaseUrl: "i-am-fbi-search-url",
           fbiMaterialBaseUrl: "i-am-fbi-material-url"
         } as const;
 
+        const actual = await vi.importActual(
+          "../utils/reduxMiddleware/extractServiceBaseUrls"
+        );
+
         return {
+          ...(typeof actual === "object" ? actual : {}),
           getServiceBaseUrl: (apiBaseUrlKey: keyof typeof urls) => {
             return urls[apiBaseUrlKey] ?? urls.fbiBaseUrl;
-          },
-          serviceUrlKeys: {
-            fbi: "fbiBaseUrl",
-            fbiSearch: "fbiSearchBaseUrl",
-            fbiMaterial: "fbiMaterialBaseUrl"
           }
         };
       });
