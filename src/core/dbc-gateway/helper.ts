@@ -1,40 +1,17 @@
 import { QueryFunctionContext } from "react-query";
 import { beforeAll, vi } from "vitest";
-import {
-  getServiceBaseUrl,
-  serviceUrlKeys
-} from "../utils/reduxMiddleware/extractServiceBaseUrls";
+import { getServiceBaseUrl } from "../utils/reduxMiddleware/extractServiceBaseUrls";
+import queryMap from "./queryMap";
 
-const map = {
-  // Search requests.
-  complexSearchWithPagination: serviceUrlKeys.fbiSearch,
-  complexSearchWithPaginationWorkAccess: serviceUrlKeys.fbiSearch,
-  intelligentFacets: serviceUrlKeys.fbiSearch,
-  recommendFromFaust: serviceUrlKeys.fbiSearch,
-  searchFacet: serviceUrlKeys.fbiSearch,
-  searchWithPagination: serviceUrlKeys.fbiSearch,
-  suggestionsFromQueryString: serviceUrlKeys.fbiSearch,
-  // Material requests.
-  getInfomedia: serviceUrlKeys.fbiMaterial,
-  getManifestationViaBestRepresentationByFaust: serviceUrlKeys.fbiMaterial,
-  getManifestationViaMaterialByFaust: serviceUrlKeys.fbiMaterial,
-  getMaterial: serviceUrlKeys.fbiMaterial,
-  getReviewManifestations: serviceUrlKeys.fbiMaterial,
-  getSmallWork: serviceUrlKeys.fbiMaterial,
-  openOrder: serviceUrlKeys.fbiMaterial,
-  // All other requests.
-  default: serviceUrlKeys.fbi
-} as const;
-
-type Baseurl = typeof map[keyof typeof map];
+type Baseurl = typeof queryMap[keyof typeof queryMap];
 
 export const resolveBaseUrl = (query?: string) => {
   if (!query) {
-    return getServiceBaseUrl(map.default) as Baseurl;
+    return getServiceBaseUrl(queryMap.default) as Baseurl;
   }
 
   return getServiceBaseUrl(
-    map[query as keyof typeof map] || map.default
+    queryMap[query as keyof typeof queryMap] || queryMap.default
   ) as Baseurl;
 };
 
