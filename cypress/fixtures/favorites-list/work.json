@@ -26,7 +26,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "billedbog" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "billedbog" } }
+            ],
             "creators": [
               { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
@@ -62,7 +64,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "lydbog (online)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "lydbog (online)" } }
+            ],
             "creators": [
               { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
@@ -112,7 +116,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "lydbog (cd)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+            ],
             "creators": [
               { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
@@ -148,7 +154,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "billedbog" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "billedbog" } }
+            ],
             "creators": [
               { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
@@ -184,7 +192,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "billedbog (online)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "billedbog (online)" } }
+            ],
             "creators": [
               { "display": "Jakob Martin Strid", "__typename": "Person" }
             ],
@@ -235,7 +245,9 @@
             "display": "skønlitteratur",
             "code": "FICTION"
           },
-          "materialTypes": [{ "specific": "billedbog (online)" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "billedbog (online)" } }
+          ],
           "creators": [
             { "display": "Jakob Martin Strid", "__typename": "Person" }
           ],
@@ -285,7 +297,9 @@
             "display": "skønlitteratur",
             "code": "FICTION"
           },
-          "materialTypes": [{ "specific": "billedbog" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "billedbog" } }
+          ],
           "creators": [
             { "display": "Jakob Martin Strid", "__typename": "Person" }
           ],
@@ -310,10 +324,10 @@
         }
       },
       "materialTypes": [
-        { "specific": "lydbog (cd)" },
-        { "specific": "billedbog" },
-        { "specific": "billedbog (online)" },
-        { "specific": "lydbog (online)" }
+        { "materialTypeSpecific": { "display": "lydbog (cd)" } },
+        { "materialTypeSpecific": { "display": "billedbog" } },
+        { "materialTypeSpecific": { "display": "billedbog (online)" } },
+        { "materialTypeSpecific": { "display": "lydbog (online)" } }
       ],
       "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": {

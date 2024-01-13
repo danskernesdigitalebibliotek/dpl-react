@@ -18,7 +18,7 @@
       ],
       "materialTypes": [
         {
-          "specific": "bog"
+          "materialTypeSpecific": { "display": "bog" }
         }
       ],
       "creators": [],

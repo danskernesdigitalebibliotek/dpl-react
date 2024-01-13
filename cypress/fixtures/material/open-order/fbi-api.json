@@ -45,7 +45,7 @@
             },
             "materialTypes": [
               {
-                "specific": "bog"
+                "materialTypeSpecific": { "display": "bog" }
               }
             ],
             "creators": [
@@ -121,7 +121,7 @@
           },
           "materialTypes": [
             {
-              "specific": "bog"
+              "materialTypeSpecific": { "display": "bog" }
             }
           ],
           "creators": [
@@ -196,7 +196,7 @@
           },
           "materialTypes": [
             {
-              "specific": "bog"
+              "materialTypeSpecific": { "display": "bog" }
             }
           ],
           "creators": [
@@ -252,7 +252,7 @@
       },
       "materialTypes": [
         {
-          "specific": "bog"
+          "materialTypeSpecific": { "display": "bog" }
         }
       ],
       "mainLanguages": [

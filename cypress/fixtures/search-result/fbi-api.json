@@ -34,7 +34,9 @@
                   "display": "faglitteratur",
                   "code": "NONFICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Angela Levin", "__typename": "Person" }
                 ],
@@ -80,7 +82,9 @@
                   "display": "faglitteratur",
                   "code": "NONFICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Angela Levin", "__typename": "Person" }
                 ],
@@ -118,7 +122,9 @@
                   "display": "faglitteratur",
                   "code": "NONFICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Angela Levin", "__typename": "Person" }
                 ],
@@ -167,7 +173,9 @@
                   "display": "faglitteratur",
                   "code": "NONFICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Angela Levin", "__typename": "Person" }
                 ],
@@ -209,7 +217,9 @@
                 "display": "faglitteratur",
                 "code": "NONFICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+              ],
               "creators": [
                 { "display": "Angela Levin", "__typename": "Person" }
               ],
@@ -247,7 +257,9 @@
                 "display": "faglitteratur",
                 "code": "NONFICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Angela Levin", "__typename": "Person" }
               ],
@@ -383,7 +395,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -430,7 +444,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -468,7 +484,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Mikkel Schou", "__typename": "Person" }
@@ -507,7 +525,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "diskette" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "diskette" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -548,7 +568,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -586,7 +608,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "punktskrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "punktskrift" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -630,7 +654,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -671,7 +697,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -713,7 +741,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -754,7 +784,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -792,7 +824,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -830,7 +864,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -868,7 +904,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -907,7 +945,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -954,7 +994,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],

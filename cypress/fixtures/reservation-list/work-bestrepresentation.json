@@ -6,13 +6,9 @@
           "bestRepresentation": {
             "pid": "870970-basis:22629344",
             "titles": {
-              "full": [
-                "Best representation of dummy title"
-              ]
+              "full": ["Best representation of dummy title"]
             },
-            "abstract": [
-              "Dummy Some abstract ..."
-            ],
+            "abstract": ["Dummy Some abstract ..."],
             "edition": {
               "summary": "3. udgave, 1. oplag (2019)",
               "publicationYear": {
@@ -21,15 +17,13 @@
             },
             "materialTypes": [
               {
-                "specific": "Dummy bog"
+                "materialTypeSpecific": { "display": "Dummy bog" }
               }
             ],
             "series": [
               {
                 "numberInSeries": {
-                  "number": [
-                    1
-                  ]
+                  "number": [1]
                 },
                 "title": "Detektivbureau Nr. 2"
               }

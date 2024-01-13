@@ -141,7 +141,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770073851" }],
@@ -174,7 +176,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770073844" }],
@@ -207,7 +211,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770071529" }],
@@ -240,7 +246,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770071987" }],
@@ -274,7 +282,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [{ "value": "9788770071710" }],
@@ -310,7 +320,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [{ "value": "9788770071703" }],
@@ -346,7 +358,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [{ "value": "9788703090955" }],
@@ -379,7 +393,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770071697" }],
@@ -414,7 +430,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770073844" }],
@@ -447,7 +465,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770073851" }],
@@ -608,7 +628,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771467321" }],
@@ -641,7 +663,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771468007" }],
@@ -675,7 +699,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [{ "value": "9788771467819" }],
@@ -711,7 +737,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771467826" }],
@@ -745,7 +773,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [{ "value": "9788771467802" }],
@@ -781,7 +811,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [{ "value": "9788703079837" }],
@@ -814,7 +846,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770070102" }],
@@ -847,7 +881,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770070096" }],
@@ -881,7 +917,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770070096" }],
@@ -914,7 +952,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770070096" }],
@@ -1081,7 +1121,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "87-7394-602-8" }],
@@ -1117,7 +1159,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Den grimme Ælling"],
                 "identifiers": [],
@@ -1153,7 +1197,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Jo Nesbø", "__typename": "Person" },
                   { "display": "Kim Westi", "__typename": "Person" }
@@ -1192,7 +1238,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Den grimme Ælling"],
                 "identifiers": [],
@@ -1228,7 +1276,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770530507" }],
@@ -1264,7 +1314,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770531849" }],
@@ -1300,7 +1352,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533362" }],
@@ -1336,7 +1390,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533966" }],
@@ -1373,7 +1429,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537919" }],
@@ -1405,7 +1463,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770539517" }],
@@ -1444,7 +1504,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533461" }],
@@ -1483,7 +1545,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771465754" }],
@@ -1520,7 +1584,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465754" }],
@@ -1556,7 +1622,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465754" }],
@@ -1720,7 +1788,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770539791" }],
@@ -1756,7 +1826,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771460353" }],
@@ -1795,7 +1867,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771460360" }],
@@ -1834,7 +1908,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771460346" }],
@@ -1868,7 +1944,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770539715" }],
@@ -1905,7 +1983,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [{ "value": "9788703061207" }],
@@ -1941,7 +2021,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771461305" }],
@@ -1977,7 +2059,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [
@@ -2014,7 +2098,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [
@@ -2050,7 +2136,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [
@@ -2214,7 +2302,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770530934" }],
@@ -2247,7 +2337,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Den grimme Ælling"],
                 "identifiers": [],
@@ -2280,7 +2372,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770531665" }],
@@ -2316,7 +2410,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770531917" }],
@@ -2349,7 +2445,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770531900" }],
@@ -2385,7 +2483,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533522" }],
@@ -2421,7 +2521,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770534024" }],
@@ -2453,7 +2555,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537988" }],
@@ -2482,7 +2586,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771465815" }],
@@ -2515,7 +2621,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771468250" }],
@@ -2549,7 +2657,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771468250" }],
@@ -2582,7 +2692,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771468250" }],
@@ -2743,7 +2855,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770077231" }],
@@ -2776,7 +2890,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "87-7394-693-1" }],
@@ -2809,7 +2925,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Jo Nesbø", "__typename": "Person" },
                   { "display": "Per Lykke Hansen", "__typename": "Person" }
@@ -2845,7 +2963,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788773948958" }],
@@ -2878,7 +2998,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Den grimme Ælling"],
                 "identifiers": [],
@@ -2911,7 +3033,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "for Dansk Supermarked"],
                 "identifiers": [{ "value": "9788770740968" }],
@@ -2944,7 +3068,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770531863" }],
@@ -2977,7 +3103,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533386" }],
@@ -3010,7 +3138,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533980" }],
@@ -3042,7 +3172,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537933" }],
@@ -3076,7 +3208,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533485" }],
@@ -3112,7 +3246,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771465778" }],
@@ -3146,7 +3282,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770077231" }],
@@ -3179,7 +3317,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770077231" }],
@@ -3276,7 +3416,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -3314,7 +3456,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -3355,7 +3499,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -3401,7 +3547,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -3456,7 +3604,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -3495,7 +3645,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -3533,7 +3685,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -3699,7 +3853,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "87-7394-659-1" }],
@@ -3735,7 +3891,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Den grimme Ælling"],
                 "identifiers": [],
@@ -3771,7 +3929,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Jo Nesbø", "__typename": "Person" },
                   { "display": "Per Lykke Hansen", "__typename": "Person" }
@@ -3810,7 +3970,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Den grimme Ælling"],
                 "identifiers": [],
@@ -3846,7 +4008,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770530514" }],
@@ -3882,7 +4046,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770531856" }],
@@ -3918,7 +4084,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533379" }],
@@ -3954,7 +4122,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533973" }],
@@ -3991,7 +4161,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537926" }],
@@ -4023,7 +4195,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770539524" }],
@@ -4062,7 +4236,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533478" }],
@@ -4101,7 +4277,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771465761" }],
@@ -4138,7 +4316,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465761" }],
@@ -4174,7 +4354,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465761" }],
@@ -4341,7 +4523,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533188" }],
@@ -4377,7 +4561,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533652" }],
@@ -4416,7 +4602,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [{ "value": "9788703039664" }],
@@ -4452,7 +4640,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770535984" }],
@@ -4488,7 +4678,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770534031" }],
@@ -4525,7 +4717,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537995" }],
@@ -4557,7 +4751,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533539" }],
@@ -4596,7 +4792,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770535977" }],
@@ -4632,7 +4830,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771465822" }],
@@ -4669,7 +4869,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465822" }],
@@ -4705,7 +4907,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465822" }],
@@ -4866,7 +5070,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770536516" }],
@@ -4899,7 +5105,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537032" }],
@@ -4935,7 +5143,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [{ "value": "9788703051918" }],
@@ -4968,7 +5178,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537865" }],
@@ -5002,7 +5214,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770538015" }],
@@ -5038,7 +5252,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770539876" }],
@@ -5074,7 +5290,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770536530" }],
@@ -5110,7 +5328,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771460162" }],
@@ -5143,7 +5363,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771465839" }],
@@ -5177,7 +5399,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465839" }],
@@ -5210,7 +5434,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465839" }],
@@ -5377,7 +5603,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [
@@ -5416,7 +5644,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Den grimme Ælling"],
                 "identifiers": [],
@@ -5452,7 +5682,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
@@ -5491,7 +5723,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770530682" }],
@@ -5527,7 +5761,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770531894" }],
@@ -5563,7 +5799,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770534017" }],
@@ -5598,7 +5836,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537971" }],
@@ -5630,7 +5870,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533515" }],
@@ -5669,7 +5911,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771465808" }],
@@ -5706,7 +5950,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465808" }],
@@ -5742,7 +5988,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465808" }],
@@ -5906,7 +6154,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "87-7394-893-4" }],
@@ -5942,7 +6192,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [{ "value": "87-03-00815-0" }],
@@ -5978,7 +6230,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Den grimme Ælling"],
                 "identifiers": [],
@@ -6014,7 +6268,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Jo Nesbø", "__typename": "Person" },
                   { "display": "Bent Otto Hansen", "__typename": "Person" }
@@ -6053,7 +6309,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Danmarks Blindebibliotek"],
                 "identifiers": [{ "value": "Masternr. 705114" }],
@@ -6098,7 +6356,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "punktskrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "punktskrift" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Danmarks Blindebibliotek"],
                 "identifiers": [{ "value": "Best.nr. 105039" }],
@@ -6140,7 +6400,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [
@@ -6179,7 +6441,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770531887" }],
@@ -6215,7 +6479,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533409" }],
@@ -6251,7 +6517,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770534000" }],
@@ -6286,7 +6554,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537964" }],
@@ -6318,7 +6588,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533508" }],
@@ -6357,7 +6629,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771465792" }],
@@ -6394,7 +6668,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465792" }],
@@ -6430,7 +6706,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465792" }],
@@ -6631,7 +6909,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -6680,7 +6960,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -6721,7 +7003,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -6759,7 +7043,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -6806,7 +7092,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -6847,7 +7135,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -7016,7 +7306,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "87-7394-805-5" }],
@@ -7052,7 +7344,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "diskette" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "diskette" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Danmarks Blindebibliotek"],
                 "identifiers": [
@@ -7091,7 +7385,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
@@ -7130,7 +7426,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Den grimme Ælling"],
                 "identifiers": [],
@@ -7166,7 +7464,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Jo Nesbø", "__typename": "Person" },
                   { "display": "Bent Otto Hansen", "__typename": "Person" }
@@ -7205,7 +7505,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [
@@ -7244,7 +7546,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "for Dansk Supermarked"],
                 "identifiers": [{ "value": "9788770740975" }],
@@ -7280,7 +7584,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770531870" }],
@@ -7316,7 +7622,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533393" }],
@@ -7352,7 +7660,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533997" }],
@@ -7387,7 +7697,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537940" }],
@@ -7419,7 +7731,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533492" }],
@@ -7458,7 +7772,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771465785" }],
@@ -7495,7 +7811,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465785" }],
@@ -7531,7 +7849,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771465785" }],
@@ -7732,7 +8052,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -7770,7 +8092,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -7808,7 +8132,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -7854,7 +8180,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -7895,7 +8223,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -7936,7 +8266,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -7986,7 +8318,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -8024,7 +8358,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -8224,7 +8560,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8270,7 +8608,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8308,7 +8648,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8349,7 +8691,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8390,7 +8734,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8428,7 +8774,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8475,7 +8823,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -8510,7 +8860,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -8713,7 +9065,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8751,7 +9105,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8789,7 +9145,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8827,7 +9185,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8868,7 +9228,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -8918,7 +9280,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (online)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (online)" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -8967,7 +9331,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -9063,7 +9429,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9109,7 +9477,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9147,7 +9517,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9196,7 +9568,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9238,7 +9612,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -9279,7 +9655,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -9479,7 +9857,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9517,7 +9897,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9563,7 +9945,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9604,7 +9988,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9645,7 +10031,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9694,7 +10082,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -9733,7 +10123,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -9771,7 +10163,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -9971,7 +10365,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -10009,7 +10405,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -10050,7 +10448,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -10091,7 +10491,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -10137,7 +10539,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -10184,7 +10588,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "e-bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "e-bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -10227,7 +10633,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -10283,7 +10691,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Dion Beebe", "__typename": "Person" },
                   {
@@ -10337,7 +10747,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Dion Beebe", "__typename": "Person" },
                   {
@@ -10389,7 +10801,9 @@
               },
               "titles": { "main": ["The snowman"], "original": [] },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (blu-ray)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+              ],
               "creators": [
                 { "display": "Dion Beebe", "__typename": "Person" },
                 {
@@ -10440,7 +10854,9 @@
               },
               "titles": { "main": ["The snowman"], "original": [] },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (blu-ray)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+              ],
               "creators": [
                 { "display": "Dion Beebe", "__typename": "Person" },
                 {
@@ -10659,7 +11075,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -10697,7 +11115,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -10735,7 +11155,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -10774,7 +11196,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -10812,7 +11236,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -11012,7 +11438,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11050,7 +11478,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11088,7 +11518,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11127,7 +11559,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -11165,7 +11599,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -11368,7 +11804,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11406,7 +11844,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11444,7 +11884,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" },
                   { "display": "Jesper Bøllehuus", "__typename": "Person" }
@@ -11483,7 +11925,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11521,7 +11965,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11571,7 +12017,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (online)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (online)" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -11620,7 +12068,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -11823,7 +12273,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11861,7 +12313,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11899,7 +12353,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11937,7 +12393,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -11975,7 +12433,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" },
                   { "display": "Rebekka Owe", "__typename": "Person" },
@@ -12015,7 +12475,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12053,7 +12515,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12103,7 +12567,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (online)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (online)" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -12152,7 +12618,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -12355,7 +12823,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12393,7 +12863,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12431,7 +12903,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12470,7 +12944,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -12508,7 +12984,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -12708,7 +13186,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12746,7 +13226,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12787,7 +13269,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12828,7 +13312,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12877,7 +13363,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -12921,7 +13409,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "e-bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "e-bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -12964,7 +13454,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -13020,7 +13512,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Bruce Surtees", "__typename": "Person" },
                   { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13068,7 +13562,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Bruce Surtees", "__typename": "Person" },
                   { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13116,7 +13612,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Bruce Surtees", "__typename": "Person" },
                   { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13164,7 +13662,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (online)" } }
+                ],
                 "creators": [
                   { "display": "Bruce Surtees", "__typename": "Person" },
                   { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13210,7 +13710,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Bruce Surtees", "__typename": "Person" },
                   { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13258,7 +13760,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Bruce Surtees", "__typename": "Person" },
                   { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13306,7 +13810,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Bruce Surtees", "__typename": "Person" },
                   { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13354,7 +13860,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Bruce Surtees", "__typename": "Person" },
                   { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13400,7 +13908,9 @@
               },
               "titles": { "main": ["Dirty Harry"], "original": [] },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (blu-ray)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+              ],
               "creators": [
                 { "display": "Bruce Surtees", "__typename": "Person" },
                 { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13445,7 +13955,9 @@
               },
               "titles": { "main": ["Dirty Harry"], "original": [] },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (blu-ray)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+              ],
               "creators": [
                 { "display": "Bruce Surtees", "__typename": "Person" },
                 { "display": "Harry Julian Fink", "__typename": "Person" },
@@ -13515,7 +14027,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Daniel Barber", "__typename": "Person" },
                   {
@@ -13567,7 +14081,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Daniel Barber", "__typename": "Person" },
                   {
@@ -13619,7 +14135,9 @@
               },
               "titles": { "main": ["Harry Brown"], "original": [] },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (blu-ray)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+              ],
               "creators": [
                 { "display": "Daniel Barber", "__typename": "Person" },
                 {
@@ -13670,7 +14188,9 @@
               },
               "titles": { "main": ["Harry Brown"], "original": [] },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (blu-ray)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+              ],
               "creators": [
                 { "display": "Daniel Barber", "__typename": "Person" },
                 {
@@ -13765,7 +14285,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -13803,7 +14325,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -13839,7 +14363,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (cd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -13877,7 +14403,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -13964,7 +14492,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
@@ -14007,7 +14537,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
@@ -14050,7 +14582,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
@@ -14102,7 +14636,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
@@ -14158,7 +14694,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (online)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (online)" } }
+              ],
               "creators": [
                 { "display": "Jim Butcher", "__typename": "Person" }
               ],
@@ -14213,7 +14751,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Jim Butcher", "__typename": "Person" }
               ],
@@ -14285,7 +14825,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -14329,7 +14871,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -14367,7 +14911,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -14408,7 +14954,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -14450,7 +14998,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -14491,7 +15041,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -14546,7 +15098,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -14585,7 +15139,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -14623,7 +15179,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -14703,7 +15261,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -14738,7 +15298,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -14777,7 +15339,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (cd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -14815,7 +15379,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -14871,7 +15437,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog stor skrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771460377" }],
@@ -14908,7 +15476,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771460377" }],
@@ -14944,7 +15514,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771460377" }],
@@ -15000,7 +15572,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Raymond Chandler", "__typename": "Person" },
                   { "display": "Harry Fonnest", "__typename": "Person" }
@@ -15039,7 +15613,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
@@ -15077,7 +15653,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
@@ -15115,7 +15693,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
@@ -15153,7 +15733,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
@@ -15191,7 +15773,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
@@ -15229,7 +15813,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
@@ -15267,7 +15853,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
@@ -15308,7 +15896,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
@@ -15343,7 +15933,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "e-bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "e-bog" } }
+              ],
               "creators": [
                 { "display": "Raymond Chandler", "__typename": "Person" }
               ],
@@ -15377,7 +15969,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Raymond Chandler", "__typename": "Person" }
               ],
@@ -15436,7 +16030,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog stor skrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771467697" }],
@@ -15473,7 +16069,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771467697" }],
@@ -15509,7 +16107,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771467697" }],
@@ -15565,7 +16165,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog stor skrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771466096" }],
@@ -15602,7 +16204,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771466096" }],
@@ -15638,7 +16242,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771466096" }],
@@ -15689,7 +16295,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Stieg Trenter", "__typename": "Person" }
                 ],
@@ -15727,7 +16335,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Stieg Trenter", "__typename": "Person" }
                 ],
@@ -15765,7 +16375,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Stieg Trenter", "__typename": "Person" }
                 ],
@@ -15803,7 +16415,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Stieg Trenter", "__typename": "Person" }
                 ],
@@ -15847,7 +16461,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Stieg Trenter", "__typename": "Person" }
                 ],
@@ -15897,7 +16513,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (online)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (online)" } }
+              ],
               "creators": [
                 { "display": "Stieg Trenter", "__typename": "Person" }
               ],
@@ -15946,7 +16564,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Stieg Trenter", "__typename": "Person" }
               ],
@@ -16002,7 +16622,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog stor skrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770533737" }],
@@ -16039,7 +16661,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770533737" }],
@@ -16075,7 +16699,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770533737" }],
@@ -16244,7 +16870,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Jim Butcher", "__typename": "Person" },
                   { "display": "James Marsters", "__typename": "Person" }
@@ -16303,7 +16931,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
@@ -16338,7 +16968,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
@@ -16373,7 +17005,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
@@ -16408,7 +17042,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
@@ -16444,7 +17080,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Jim Butcher", "__typename": "Person" }
               ],
@@ -16479,7 +17117,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Jim Butcher", "__typename": "Person" }
               ],
@@ -16532,7 +17172,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog stor skrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770537247" }],
@@ -16569,7 +17211,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770537247" }],
@@ -16605,7 +17249,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770537247" }],
@@ -16729,7 +17375,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Alfred Hitchcock", "__typename": "Person" },
                   { "display": "John Michael Hayes", "__typename": "Person" },
@@ -16776,7 +17424,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Alfred Hitchcock", "__typename": "Person" },
                   { "display": "John Michael Hayes", "__typename": "Person" },
@@ -16826,7 +17476,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Alfred Hitchcock", "__typename": "Person" },
                   { "display": "John Michael Hayes", "__typename": "Person" },
@@ -16874,7 +17526,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Alfred Hitchcock", "__typename": "Person" },
                   { "display": "John Michael Hayes", "__typename": "Person" },
@@ -16927,7 +17581,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Alfred Hitchcock", "__typename": "Person" },
                   { "display": "John Michael Hayes", "__typename": "Person" },
@@ -16975,7 +17631,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Alfred Hitchcock", "__typename": "Person" },
                   { "display": "John Michael Hayes", "__typename": "Person" },
@@ -17024,7 +17682,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray 4K)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+                ],
                 "creators": [
                   { "display": "Alfred Hitchcock", "__typename": "Person" },
                   { "display": "John Michael Hayes", "__typename": "Person" },
@@ -17066,7 +17726,9 @@
               },
               "titles": { "main": ["The trouble with Harry"], "original": [] },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (blu-ray 4K)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+              ],
               "creators": [
                 { "display": "Alfred Hitchcock", "__typename": "Person" },
                 { "display": "John Michael Hayes", "__typename": "Person" },
@@ -17107,7 +17769,9 @@
               },
               "titles": { "main": ["The trouble with Harry"], "original": [] },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (blu-ray 4K)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+              ],
               "creators": [
                 { "display": "Alfred Hitchcock", "__typename": "Person" },
                 { "display": "John Michael Hayes", "__typename": "Person" },
@@ -17168,7 +17832,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" },
                   { "display": "Len Cariou", "__typename": "Person" }
@@ -17234,7 +17900,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -17269,7 +17937,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -17304,7 +17974,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" },
                   { "display": "David Soul", "__typename": "Person" }
@@ -17343,7 +18015,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -17378,7 +18052,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -17413,7 +18089,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -17454,7 +18132,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -17489,7 +18169,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -17525,7 +18207,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -17560,7 +18244,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -17616,7 +18302,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog stor skrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788771466119" }],
@@ -17653,7 +18341,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771466119" }],
@@ -17689,7 +18379,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788771466119" }],
@@ -17735,7 +18427,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Aschehoug"],
                 "identifiers": [{ "value": "9788203361661" }],
@@ -17769,7 +18463,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Aschehoug"],
               "identifiers": [{ "value": "9788203361661" }],
@@ -17802,7 +18498,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Aschehoug"],
               "identifiers": [{ "value": "9788203361661" }],
@@ -17889,7 +18587,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog stor skrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770532303" }],
@@ -17926,7 +18626,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770532303" }],
@@ -17962,7 +18664,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770532303" }],
@@ -18049,7 +18753,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog stor skrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [{ "value": "9788770532303" }],
@@ -18086,7 +18792,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770532303" }],
@@ -18122,7 +18830,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog stor skrift" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog stor skrift" } }
+              ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [{ "value": "9788770532303" }],
@@ -18172,7 +18882,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "lydbog (online)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" },
                   { "display": "Titus Welliver", "__typename": "Person" }
@@ -18231,7 +18943,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -18270,7 +18984,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
@@ -18306,7 +19022,9 @@
                 "display": "vides ikke",
                 "code": "NOT_SPECIFIED"
               },
-              "materialTypes": [{ "specific": "lydbog (online)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (online)" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" },
                 { "display": "Titus Welliver", "__typename": "Person" }
@@ -18365,7 +19083,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
@@ -18982,7 +19702,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "tv-serie (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "tv-serie (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Jon Bokenkamp", "__typename": "Person" }
                 ],
@@ -19033,7 +19755,11 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "tv-serie (blu-ray)" }],
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": { "display": "tv-serie (blu-ray)" }
+                  }
+                ],
                 "creators": [
                   { "display": "Jon Bokenkamp", "__typename": "Person" }
                 ],
@@ -19082,7 +19808,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "tv-serie (blu-ray)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "tv-serie (blu-ray)" } }
+              ],
               "creators": [
                 { "display": "Jon Bokenkamp", "__typename": "Person" }
               ],
@@ -19130,7 +19858,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "tv-serie (blu-ray)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "tv-serie (blu-ray)" } }
+              ],
               "creators": [
                 { "display": "Jon Bokenkamp", "__typename": "Person" }
               ],

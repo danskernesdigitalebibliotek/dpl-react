@@ -67,7 +67,7 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Kim Faber", "__typename": "Person" },
               { "display": "Janni Pedersen (f. 1968)", "__typename": "Person" }
@@ -101,7 +101,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "lydbog (online)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "lydbog (online)" } }
+            ],
             "creators": [
               { "display": "Kim Faber", "__typename": "Person" },
               { "display": "Janni Pedersen (f. 1968)", "__typename": "Person" }
@@ -133,7 +135,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "e-bog" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "e-bog" } }
+            ],
             "creators": [
               { "display": "Kim Faber", "__typename": "Person" },
               { "display": "Janni Pedersen (f. 1968)", "__typename": "Person" }
@@ -166,7 +170,9 @@
             "display": "skønlitteratur",
             "code": "FICTION"
           },
-          "materialTypes": [{ "specific": "lydbog (online)" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "lydbog (online)" } }
+          ],
           "creators": [
             { "display": "Kim Faber", "__typename": "Person" },
             { "display": "Janni Pedersen (f. 1968)", "__typename": "Person" }
@@ -198,7 +204,7 @@
             "display": "skønlitteratur",
             "code": "FICTION"
           },
-          "materialTypes": [{ "specific": "bog" }],
+          "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
           "creators": [
             { "display": "Kim Faber", "__typename": "Person" },
             { "display": "Janni Pedersen (f. 1968)", "__typename": "Person" }
@@ -224,9 +230,9 @@
         }
       },
       "materialTypes": [
-        { "specific": "bog" },
-        { "specific": "lydbog (online)" },
-        { "specific": "e-bog" }
+        { "materialTypeSpecific": { "display": "bog" } },
+        { "materialTypeSpecific": { "display": "lydbog (online)" } },
+        { "materialTypeSpecific": { "display": "e-bog" } }
       ],
       "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": {

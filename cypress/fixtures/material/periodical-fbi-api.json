@@ -21,7 +21,9 @@
               "display": "nonfiktion",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "tidsskrift" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "tidsskrift" } }
+            ],
             "creators": [],
             "publisher": ["Egmont Magasiner"],
             "identifiers": [{ "value": "0002-6506" }],
@@ -52,7 +54,9 @@
             "display": "nonfiktion",
             "code": "NONFICTION"
           },
-          "materialTypes": [{ "specific": "tidsskrift" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "tidsskrift" } }
+          ],
           "creators": [],
           "publisher": ["Egmont Magasiner"],
           "identifiers": [{ "value": "0002-6506" }],
@@ -82,7 +86,9 @@
             "display": "nonfiktion",
             "code": "NONFICTION"
           },
-          "materialTypes": [{ "specific": "tidsskrift" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "tidsskrift" } }
+          ],
           "creators": [],
           "publisher": ["Egmont Magasiner"],
           "identifiers": [{ "value": "0002-6506" }],
@@ -103,7 +109,9 @@
           "workYear": null
         }
       },
-      "materialTypes": [{ "specific": "tidsskrift" }],
+      "materialTypes": [
+        { "materialTypeSpecific": { "display": "tidsskrift" } }
+      ],
       "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": { "all": [], "dbcVerified": [] },
       "fictionNonfiction": { "display": "nonfiktion", "code": "NONFICTION" },
