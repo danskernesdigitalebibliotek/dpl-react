@@ -36,7 +36,8 @@ export const hasCorrectMaterialType = (
   return manifestations.some((manifestation) => {
     return manifestation.materialTypes.some(
       (type) =>
-        type.specific.toLowerCase() === desiredMaterialType.toLowerCase()
+        type.materialTypeSpecific.display.toLowerCase() ===
+        desiredMaterialType.toLowerCase()
     );
   });
 };

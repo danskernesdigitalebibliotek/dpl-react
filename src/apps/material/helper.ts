@@ -45,7 +45,7 @@ export const getManifestationsOrderByTypeAndYear = (
   const materialsMappedBytype = groupBy(
     orderedByYear,
     // all manifestations that not have a material type will be grouped under "unknown"
-    (m) => m?.materialTypes[0]?.specific ?? "unknown"
+    (m) => m?.materialTypes[0]?.materialTypeSpecific.display ?? "unknown"
   );
 
   return (
@@ -347,7 +347,8 @@ export const isABook = (manifestations: Manifestation[]) => {
   return manifestations.some((manifestation) => {
     return manifestation.materialTypes.some(
       (materialType) =>
-        materialType.specific.toLowerCase() === ManifestationMaterialType.book
+        materialType.materialTypeSpecific.display.toLowerCase() ===
+        ManifestationMaterialType.book
     );
   });
 };
@@ -358,7 +359,7 @@ export const getBestMaterialTypeForManifestation = (
   if (isABook([manifestation])) {
     return ManifestationMaterialType.book;
   }
-  return manifestation.materialTypes[0].specific;
+  return manifestation.materialTypes[0].materialTypeSpecific.display;
 };
 
 export const getBestMaterialTypeForWork = (work: Work) => {
@@ -377,7 +378,7 @@ export const getBestMaterialTypeForWork = (work: Work) => {
     return ManifestationMaterialType.book;
   }
   return getManifestationsWithMaterialType(work.manifestations.all)[0]
-    .materialTypes[0].specific;
+    .materialTypes[0].materialTypeSpecific.display;
 };
 
 export const reservationModalId = (faustIds: FaustId[]) => {
