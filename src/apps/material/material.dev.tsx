@@ -663,6 +663,11 @@ export default {
       defaultValue: "Email",
       control: { type: "text" }
     },
+    orderDigitalCopyFeedbackErrorMissingMunicipalityagencyidText: {
+      name: "Error missing municipality agency ID text",
+      defaultValue: "Error missing municipality agency ID",
+      control: { type: "text" }
+    },
     authUrl: {
       name: "Url where user can authenticate",
       defaultValue: "",
