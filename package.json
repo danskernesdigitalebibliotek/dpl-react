@@ -115,7 +115,7 @@
     "mutationobserver-shim": "^0.3.7",
     "nyc": "^15.1.0",
     "orval": "^6.8.1",
-    "postcss": "^8.4.32",
+    "postcss": "^8.4.33",
     "postcss-cli": "^11.0.0",
     "postcss-loader": "^7.3.3",
     "postcss-scss": "^4.0.9",
@@ -169,6 +169,6 @@
     "unfetch": "^4.2.0"
   },
   "peerDependencies": {
-    "postcss": "^8.4.32"
+    "postcss": "^8.4.33"
   }
 }
