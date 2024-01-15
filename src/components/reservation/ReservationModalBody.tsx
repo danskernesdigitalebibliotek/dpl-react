@@ -251,10 +251,14 @@ export const ReservationModalBody = ({
           <div>
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
-                <StockAndReservationInfo
-                  stockCount={holdings}
-                  reservationCount={reservations}
-                />
+                {reservablePidsFromAnotherLibrary?.length ? (
+                  t("reservableFromAnotherLibraryText")
+                ) : (
+                  <StockAndReservationInfo
+                    stockCount={holdings}
+                    reservationCount={reservations}
+                  />
+                )}
               </MaterialAvailabilityTextParagraph>
               <Button
                 dataCy="reservation-modal-submit-button"
