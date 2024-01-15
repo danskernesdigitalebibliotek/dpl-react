@@ -81,12 +81,12 @@ export default {
       defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
       control: { type: "text" }
     },
-    unpaidFeesFirstHeadlineText: {
-      defaultValue: "Unsettled debt 1",
+    unpaidFeesPayableByClientHeadlineText: {
+      defaultValue: "Unsettled debt - paid on site",
       control: { type: "text" }
     },
-    unpaidFeesSecondHeadlineText: {
-      defaultValue: "Unsettled debt 2",
+    unpaidFeesNotPayableByClientHeadlineText: {
+      defaultValue: "Unsettled debt - paid externally",
       control: { type: "text" }
     },
     alreadyPaidText: {
