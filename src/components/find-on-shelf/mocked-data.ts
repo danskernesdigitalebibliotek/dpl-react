@@ -19,7 +19,10 @@ export const mockedManifestationData: Manifestation[] = [
     },
     materialTypes: [
       {
-        specific: "bog"
+        materialTypeSpecific: {
+          display: "bog"
+        },
+        specific: "this-will-be-deprecated"
       }
     ],
     creators: [
@@ -92,7 +95,10 @@ export const mockedManifestationData: Manifestation[] = [
     },
     materialTypes: [
       {
-        specific: "lydbog (cd-mp3)"
+        materialTypeSpecific: {
+          display: "lydbog (cd-mp3)"
+        },
+        specific: "this-will-be-deprecated"
       }
     ],
     creators: [
@@ -171,7 +177,10 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
     },
     materialTypes: [
       {
-        specific: "tidsskrift"
+        materialTypeSpecific: {
+          display: "tidsskrift"
+        },
+        specific: "this-will-be-deprecated"
       }
     ],
     creators: [],

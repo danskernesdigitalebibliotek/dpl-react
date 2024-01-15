@@ -15,7 +15,7 @@ const InstantLoan: React.FunctionComponent<InstantLoanProps> = ({
   instantLoanBranchHoldings
 }) => {
   const { pid, materialTypes } = manifestation;
-  const materialType = materialTypes[0].specific;
+  const materialType = materialTypes[0].materialTypeSpecific.display;
 
   return (
     <DisclosureControllable

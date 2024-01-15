@@ -95,6 +95,7 @@ interface MaterialEntryTextProps {
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
   openOrderAuthenticationErrorText: string;
+  openOrderErrorMissingPincodeText: string;
   openOrderInvalidOrderText: string;
   openOrderNoServicerequesterText: string;
   openOrderNotOwnedIllLocText: string;
@@ -132,6 +133,7 @@ interface MaterialEntryTextProps {
   orderDigitalCopyFeedbackUnknownUserText: string;
   orderDigitalCopyModalCloseModalAriaLabelText: string;
   orderDigitalCopyModalScreenReaderModalDescriptionText: string;
+  orderDigitalCopyFeedbackErrorMissingMunicipalityagencyidText: string;
   orderDigitalCopyTitleText: string;
   outOfText: string;
   periodicalSelectEditionText: string;

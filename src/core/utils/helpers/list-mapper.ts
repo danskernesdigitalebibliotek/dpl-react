@@ -155,7 +155,9 @@ export const mapManifestationToBasicDetailsType = (
     year,
     description,
     series: series && series.length > 0 ? getSeriesString(series) : "",
-    materialType: materialTypes ? materialTypes[0].specific : undefined
+    materialType: materialTypes
+      ? materialTypes[0].materialTypeSpecific.display
+      : undefined
   } as BasicDetailsType;
 };
 

@@ -663,6 +663,11 @@ export default {
       defaultValue: "Email",
       control: { type: "text" }
     },
+    orderDigitalCopyFeedbackErrorMissingMunicipalityagencyidText: {
+      name: "Error missing municipality agency ID text",
+      defaultValue: "Error missing municipality agency ID",
+      control: { type: "text" }
+    },
     authUrl: {
       name: "Url where user can authenticate",
       defaultValue: "",
@@ -823,6 +828,11 @@ export default {
     openOrderUnknownUserText: {
       name: "Open order unknown user text",
       defaultValue: "User not found",
+      control: { type: "text" }
+    },
+    openOrderErrorMissingPincodeText: {
+      name: "Open order error missing pincode text",
+      defaultValue: "Missing pincode",
       control: { type: "text" }
     }
   }

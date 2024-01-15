@@ -302,7 +302,7 @@ describe("Reservation list pagination", () => {
                 display: "2006"
               }
             },
-            materialTypes: [{ specific: "Dummy bog" }],
+            materialTypes: [{ materialTypeSpecific: { display: "Dummy bog" } }],
             creators: [
               { display: "Dummy Jens Jensen" },
               { display: "Dummy Some Corporation" }

@@ -24,7 +24,9 @@
             "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": { "main": ["Underverden"], "original": [] },
             "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-            "materialTypes": [{ "specific": "film (blu-ray 4K)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+            ],
             "creators": [
               { "display": "Fenar Ahmad", "__typename": "Person" },
               { "display": "Adam August", "__typename": "Person" },
@@ -69,7 +71,9 @@
             "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": { "main": ["Underverden"], "original": [] },
             "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-            "materialTypes": [{ "specific": "film (dvd)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "film (dvd)" } }
+            ],
             "creators": [
               { "display": "Fenar Ahmad", "__typename": "Person" },
               { "display": "Adam August", "__typename": "Person" },
@@ -111,7 +115,9 @@
             "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": { "main": ["Underverden"], "original": [] },
             "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-            "materialTypes": [{ "specific": "film (blu-ray)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+            ],
             "creators": [
               { "display": "Fenar Ahmad", "__typename": "Person" },
               { "display": "Adam August", "__typename": "Person" },
@@ -153,7 +159,9 @@
             "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
             "titles": { "main": ["Underverden"], "original": [] },
             "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-            "materialTypes": [{ "specific": "film (online)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "film (online)" } }
+            ],
             "creators": [
               { "display": "Fenar Ahmad", "__typename": "Person" },
               { "display": "Adam August", "__typename": "Person" },
@@ -201,7 +209,9 @@
           "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
           "titles": { "main": ["Underverden"], "original": [] },
           "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-          "materialTypes": [{ "specific": "film (blu-ray 4K)" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+          ],
           "creators": [
             { "display": "Fenar Ahmad", "__typename": "Person" },
             { "display": "Adam August", "__typename": "Person" },
@@ -246,7 +256,9 @@
           "languages": { "main": [{ "display": "dansk", "isoCode": "dan" }] },
           "titles": { "main": ["Underverden"], "original": [] },
           "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-          "materialTypes": [{ "specific": "film (blu-ray 4K)" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+          ],
           "creators": [
             { "display": "Fenar Ahmad", "__typename": "Person" },
             { "display": "Adam August", "__typename": "Person" },
@@ -286,10 +298,10 @@
         }
       },
       "materialTypes": [
-        { "specific": "film (blu-ray 4K)" },
-        { "specific": "film (online)" },
-        { "specific": "film (dvd)" },
-        { "specific": "film (blu-ray)" }
+        { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } },
+        { "materialTypeSpecific": { "display": "film (online)" } },
+        { "materialTypeSpecific": { "display": "film (dvd)" } },
+        { "materialTypeSpecific": { "display": "film (blu-ray)" } }
       ],
       "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": {
