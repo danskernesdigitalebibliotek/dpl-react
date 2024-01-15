@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { FeeV2 } from "../../../core/fbs/model";
 
 export const getFeeObjectByFaustId = (feeObj: FeeV2[], faustId: string) => {
@@ -7,11 +6,11 @@ export const getFeeObjectByFaustId = (feeObj: FeeV2[], faustId: string) => {
   });
 };
 
-export const isDateBeforePaymentChangeDate = (date: string) => {
-  const thisDate = dayjs(date);
-  const paymentMethodChangeDate = dayjs("2020-10-27"); // The Date fee-payment-method changed
-  if (thisDate < paymentMethodChangeDate) {
-    return true;
-  }
-  return false;
+export const getFeesBasedOnPayableByClient = (
+  fees: FeeV2[],
+  payableByClient: boolean
+) => {
+  return fees.filter((fee) => {
+    return fee.payableByClient === payableByClient;
+  });
 };
