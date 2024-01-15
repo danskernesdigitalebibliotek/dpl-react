@@ -25,7 +25,7 @@ const List: FC<ListProps> = ({
     <div>
       {fees && (
         <div data-cy={dataCy}>
-          <ListHeader header={listHeader} amount={null} />
+          <ListHeader header={listHeader} amount={fees.length} />
           {fees.map((itemData) => (
             <StackableFees
               amountOfMaterialsWithDueDate={itemData.materials.length}
