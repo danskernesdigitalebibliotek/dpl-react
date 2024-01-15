@@ -10,7 +10,10 @@ import FeeDetailsModal from "./modal/fee-details-modal";
 import MyPaymentOverviewModal from "./modal/my-payment-overview-modal";
 import FeeDetailsContent from "./stackable-fees/fee-details-content";
 import modalIdsConf from "../../core/configuration/modal-ids.json";
-import { getFeeObjectByFaustId } from "./utils/helper";
+import {
+  getFeeObjectByFaustId,
+  getFeesBasedOnPayableByClient
+} from "./utils/helper";
 import ListHeader from "../../components/list-header/list-header";
 import EmptyList from "../../components/empty-list/empty-list";
 
@@ -24,7 +27,12 @@ const FeeList: FC = () => {
     includepaid: false,
     includenonpayable: true
   });
-  const [totalFeeAmount, setTotalFeeAmount] = useState<number>(0);
+  const [totalFeeAmountPayableByClient, setTotalFeeAmountPayableByClient] =
+    useState<number>(0);
+  const [
+    totalFeeAmountNotPayableByClient,
+    setTotalFeeAmountNotPayableByClient
+  ] = useState<number>(0);
   const [feeDetailsData, setFeeDetailsData] = useState<FeeV2[]>();
   const openDetailsModalClickEvent = useCallback(
     (faustId: string) => {
@@ -40,17 +48,30 @@ const FeeList: FC = () => {
   );
 
   useEffect(() => {
-    if (totalFeeAmount > 0 || !fbsFees.length) {
+    if (totalFeeAmountPayableByClient > 0 || !fbsFees.length) {
       return;
     }
-    const totalFee = fbsFees.reduce(
-      (accumulator, { amount }) => accumulator + amount,
-      0
-    );
-    if (totalFee) {
-      setTotalFeeAmount(totalFee);
+    const totalFeePayableByClient = getFeesBasedOnPayableByClient(
+      fbsFees,
+      true
+    ).reduce((accumulator, { amount }) => accumulator + amount, 0);
+    if (totalFeePayableByClient) {
+      setTotalFeeAmountPayableByClient(totalFeePayableByClient);
     }
-  }, [fbsFees, totalFeeAmount]);
+  }, [fbsFees, totalFeeAmountPayableByClient]);
+
+  useEffect(() => {
+    if (totalFeeAmountNotPayableByClient > 0 || !fbsFees.length) {
+      return;
+    }
+    const totalFeeNotPayableByClient = getFeesBasedOnPayableByClient(
+      fbsFees,
+      true
+    ).reduce((accumulator, { amount }) => accumulator + amount, 0);
+    if (totalFeeNotPayableByClient) {
+      setTotalFeeAmountNotPayableByClient(totalFeeNotPayableByClient);
+    }
+  }, [fbsFees, totalFeeAmountNotPayableByClient]);
 
   return (
     <>
@@ -67,7 +88,7 @@ const FeeList: FC = () => {
         {!fbsFees.length && (
           <>
             <ListHeader
-              header={<>{t("unpaidFeesFirstHeadlineText")}</>}
+              header={<>{t("unpaidFeesPayableByClientHeadlineText")}</>}
               amount={0}
             />
             <EmptyList
@@ -76,15 +97,32 @@ const FeeList: FC = () => {
             />
           </>
         )}
-        <List
-          dataCy="fee-list"
-          listHeader={t("unpaidFeesFirstHeadlineText")}
-          openDetailsModalClickEvent={openDetailsModalClickEvent}
-          fees={fbsFees}
-          totalText={t("totalText", {
-            placeholders: { "@total": totalFeeAmount.toString() }
-          })}
-        />
+        {getFeesBasedOnPayableByClient(fbsFees, true).length > 0 && (
+          <List
+            dataCy="fee-list"
+            listHeader={t("unpaidFeesPayableByClientHeadlineText")}
+            openDetailsModalClickEvent={openDetailsModalClickEvent}
+            fees={getFeesBasedOnPayableByClient(fbsFees, true)}
+            totalText={t("totalText", {
+              placeholders: {
+                "@total": totalFeeAmountPayableByClient.toString()
+              }
+            })}
+          />
+        )}
+        {getFeesBasedOnPayableByClient(fbsFees, false).length > 0 && (
+          <List
+            dataCy="fee-list"
+            listHeader={t("unpaidFeesNotPayableByClientHeadlineText")}
+            openDetailsModalClickEvent={openDetailsModalClickEvent}
+            fees={getFeesBasedOnPayableByClient(fbsFees, false)}
+            totalText={t("totalText", {
+              placeholders: {
+                "@total": totalFeeAmountNotPayableByClient.toString()
+              }
+            })}
+          />
+        )}
       </div>
       <FeeDetailsModal modalId={feeDetailsModalId} material={{}}>
         {feeDetailsData && (
