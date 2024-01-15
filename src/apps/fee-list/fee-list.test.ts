@@ -115,7 +115,7 @@ describe("Fee list", () => {
   it("Fee list basics (physical loans)", () => {
     // 2. System shows:
     // 2.a. Headline "Fees & Replacement costs"
-    cy.get(".fee-list-page")
+    cy.getBySel("fee-list-page")
       .getBySel("fee-list-headline")
       .should("exist")
       .should("have.text", "Fees & Replacement costs");
@@ -130,7 +130,7 @@ describe("Fee list", () => {
     cy.getBySel("list-header").should("contain.text", "Unsettled debt");
 
     // 2.d link “See our fees and replacement costs”
-    cy.get(".fee-list-page")
+    cy.getBySel("fee-list-page")
       .find("[data-cy='fee-list-body']")
       .find(".link-tag")
       .should("exist")
@@ -138,11 +138,14 @@ describe("Fee list", () => {
       .should("have.text", "See our fees and replacement costs");
 
     // 3.b list of intermediates
-    cy.get(".fee-list-page").find(".list-reservation").eq(0).should("exist");
+    cy.getBySel("fee-list-page")
+      .find(".list-reservation")
+      .eq(0)
+      .should("exist");
 
     // 3.c metadata
     // 3.c.a material type
-    cy.get(".fee-list-page")
+    cy.getBySel("fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -154,7 +157,7 @@ describe("Fee list", () => {
       .should("have.text", "Dummy bog");
 
     // 3.c.b title
-    cy.get("[data-cy='fee-list-before']")
+    cy.getBySel("fee-list")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -163,7 +166,7 @@ describe("Fee list", () => {
       .should("have.text", "Dummy Some Title");
 
     // 3.c.c author
-    cy.get(".fee-list-page")
+    cy.getBySel("fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -178,7 +181,7 @@ describe("Fee list", () => {
       );
 
     // 3. d fees charged dd.mm.yyyy
-    cy.get(".fee-list-page")
+    cy.getBySel("fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -187,10 +190,10 @@ describe("Fee list", () => {
       .find(".list-reservation__deadline")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "Fees charged 18. 10. 2019");
+      .should("have.text", "Fees charged 06. 04. 2022");
 
     // 3. e Label: reason
-    cy.get(".fee-list-page")
+    cy.getBySel("fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -202,7 +205,7 @@ describe("Fee list", () => {
       .should("have.text", "Gebyr (for sent)");
 
     // 3. e Label: fee amount
-    cy.get(".fee-list-page")
+    cy.getBySel("fee-list-page")
       .find(".list-reservation")
       .eq(0)
       .should("exist")
@@ -210,35 +213,10 @@ describe("Fee list", () => {
       .find(".list-reservation__fee")
       .find(".text-body-medium-regular")
       .should("exist")
-      .should("have.text", "Fee 2.56,-");
-
-    // 4. a List after date
-    // Title
-    cy.get("[data-cy='fee-list-after']")
-      .find(".list-reservation")
-      .eq(0)
-      .should("exist")
-      .find(".text-header-h4")
-      .should("exist")
-      .should("have.text", "Dummy Some Title");
-
-    // Author && year
-    cy.get(".fee-list-page")
-      .find(".list-reservation")
-      .eq(1)
-      .should("exist")
-      .find(".list-reservation__material")
-      .find(".list-reservation__information")
-      .find(".list-reservation__about")
-      .find(".text-small-caption")
-      .should("exist")
-      .should(
-        "have.text",
-        "By Dummy Jens Jensen and Dummy Some Corporation (2006)"
-      );
+      .should("have.text", "Fee 70,-");
 
     // 4.b +x other materials
-    cy.get(".fee-list-page")
+    cy.getBySel("fee-list-page")
       .find(".list-reservation")
       .eq(1)
       .should("exist")
@@ -246,7 +224,7 @@ describe("Fee list", () => {
       .should("exist")
       .should("have.text", "+ 2 other materials");
 
-    cy.get(".fee-list-page")
+    cy.getBySel("fee-list-page")
       .find(".list-reservation")
       .eq(1)
       .should("exist")
@@ -258,7 +236,7 @@ describe("Fee list", () => {
       .find("div")
       .find(".modal-loan__title")
       .should("exist")
-      .should("have.text", "Turned in 6. April 2022");
+      .should("have.text", "Turned in 18. October 2019");
 
     // book list
     cy.get(".modal-loan__list-materials")

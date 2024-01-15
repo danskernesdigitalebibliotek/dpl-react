@@ -163,7 +163,12 @@ export default {
       defaultValue: "https://unsplash.com/photos/yjI3ozta2Zk", // Open source image of a fluffy floofer
       control: { type: "text" }
     },
-    materialNumberText: {
+    feeListAlreadyPaidInfoText: {
+      defaultValue:
+        "Already paid? It can take up to 72 hours to register the transaction.",
+      control: { type: "text" }
+    },
+    feeListMaterialNumberText: {
       defaultValue: "# @materialNumber",
       control: { type: "text" }
     }

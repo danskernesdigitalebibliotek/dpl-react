@@ -10,10 +10,7 @@ import FeeDetailsModal from "./modal/fee-details-modal";
 import MyPaymentOverviewModal from "./modal/my-payment-overview-modal";
 import FeeDetailsContent from "./stackable-fees/fee-details-content";
 import modalIdsConf from "../../core/configuration/modal-ids.json";
-import {
-  getFeeObjectByFaustId,
-  getFeesInRelationToPaymentChangeDate
-} from "./utils/helper";
+import { getFeeObjectByFaustId } from "./utils/helper";
 import ListHeader from "../../components/list-header/list-header";
 import EmptyList from "../../components/empty-list/empty-list";
 
@@ -21,22 +18,14 @@ const FeeList: FC = () => {
   const t = useText();
   const u = useUrls();
   const viewFeesAndCompensationRatesUrl = u("viewFeesAndCompensationRatesUrl");
-
   const [feeDetailsModalId, setFeeDetailsModalId] = useState("");
   const { open } = useModalButtonHandler();
-  const { data: fbsFees = [] } = useGetFeesV2<FeeV2[]>();
-  const [itemsPrePaymentChange, setItemsPrePaymentChange] = useState<
-    FeeV2[] | null
-  >(null);
-  const [totalFeePrePaymentChange, setTotalFeePrePaymentChange] =
-    useState<number>(0);
-  const [itemsPostPaymentChange, setItemsPostPaymentChange] = useState<
-    FeeV2[] | null
-  >(null);
-  const [totalFeePostPaymentChange, setTotalFeePostPaymentChange] =
-    useState<number>(0);
+  const { data: fbsFees = [] } = useGetFeesV2<FeeV2[]>({
+    includepaid: false,
+    includenonpayable: true
+  });
+  const [totalFeeAmount, setTotalFeeAmount] = useState<number>(0);
   const [feeDetailsData, setFeeDetailsData] = useState<FeeV2[]>();
-
   const openDetailsModalClickEvent = useCallback(
     (faustId: string) => {
       if (faustId) {
@@ -51,58 +40,21 @@ const FeeList: FC = () => {
   );
 
   useEffect(() => {
-    if (fbsFees) {
-      const feesPrePaymentChange = getFeesInRelationToPaymentChangeDate(
-        fbsFees,
-        true
-      ).length;
-      if (feesPrePaymentChange > 0) {
-        setItemsPrePaymentChange(
-          getFeesInRelationToPaymentChangeDate(fbsFees, true)
-        );
-      }
-      const feesPostPaymentChange = getFeesInRelationToPaymentChangeDate(
-        fbsFees,
-        false
-      ).length;
-      if (feesPostPaymentChange > 0) {
-        setItemsPostPaymentChange(
-          getFeesInRelationToPaymentChangeDate(fbsFees, false)
-        );
-      }
-    }
-  }, [fbsFees]);
-
-  useEffect(() => {
-    if (totalFeePrePaymentChange > 0) {
+    if (totalFeeAmount > 0 || !fbsFees.length) {
       return;
     }
-    const totalFee = itemsPrePaymentChange?.reduce(
+    const totalFee = fbsFees.reduce(
       (accumulator, { amount }) => accumulator + amount,
       0
     );
     if (totalFee) {
-      setTotalFeePrePaymentChange(totalFee);
+      setTotalFeeAmount(totalFee);
     }
-  }, [itemsPrePaymentChange, totalFeePrePaymentChange]);
-
-  useEffect(() => {
-    if (totalFeePostPaymentChange > 0) {
-      return;
-    }
-    const totalFee = itemsPostPaymentChange?.reduce(
-      (accumulator, { amount }) => accumulator + amount,
-      0
-    );
-
-    if (totalFee) {
-      setTotalFeePostPaymentChange(totalFee);
-    }
-  }, [itemsPostPaymentChange, totalFeePostPaymentChange]);
+  }, [fbsFees, totalFeeAmount]);
 
   return (
     <>
-      <div className="fee-list-page">
+      <div className="fee-list-page" data-cy="fee-list-page">
         <h1 data-cy="fee-list-headline" className="text-header-h1 my-32">
           {t("feeListHeadlineText")}
         </h1>
@@ -112,7 +64,7 @@ const FeeList: FC = () => {
             {t("viewFeesAndCompensationRatesText")}
           </Link>
         </span>
-        {!itemsPrePaymentChange && !itemsPostPaymentChange && (
+        {!fbsFees.length && (
           <>
             <ListHeader
               header={<>{t("unpaidFeesFirstHeadlineText")}</>}
@@ -125,21 +77,12 @@ const FeeList: FC = () => {
           </>
         )}
         <List
-          dataCy="fee-list-before"
+          dataCy="fee-list"
           listHeader={t("unpaidFeesFirstHeadlineText")}
           openDetailsModalClickEvent={openDetailsModalClickEvent}
-          fees={itemsPrePaymentChange}
+          fees={fbsFees}
           totalText={t("totalText", {
-            placeholders: { "@total": totalFeePrePaymentChange }
-          })}
-        />
-        <List
-          listHeader={t("unpaidFeesSecondHeadlineText")}
-          dataCy="fee-list-after"
-          openDetailsModalClickEvent={openDetailsModalClickEvent}
-          fees={itemsPostPaymentChange}
-          totalText={t("totalText", {
-            placeholders: { "@total": totalFeePostPaymentChange }
+            placeholders: { "@total": totalFeeAmount.toString() }
           })}
         />
       </div>
