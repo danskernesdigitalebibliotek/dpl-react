@@ -86,7 +86,7 @@ export default {
     },
     reservableFromAnotherLibraryText: {
       name: "Reservable on another library",
-      defaultValue: "Reservable on another library",
+      defaultValue: "Ordered from another library.",
       control: { type: "text" }
     },
     findOnBookshelfText: {
