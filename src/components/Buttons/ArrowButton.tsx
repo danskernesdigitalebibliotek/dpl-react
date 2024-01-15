@@ -4,12 +4,14 @@ import Arrow from "../atoms/icons/arrow/arrow";
 export interface ArrowButtonProps {
   cursorPointer: boolean;
   clickEventHandler?: () => void;
+  keyUpEventHandler?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
   arrowLabelledBy: string;
 }
 
 const ArrowButton: React.FC<ArrowButtonProps> = ({
   cursorPointer = false,
   clickEventHandler,
+  keyUpEventHandler,
   arrowLabelledBy
 }) => {
   const pointer = (cursorPointer && { cursor: "pointer" }) || {
@@ -25,6 +27,12 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
         if (clickEventHandler) {
           e.stopPropagation();
           clickEventHandler();
+        }
+      }}
+      onKeyUp={(e) => {
+        if (keyUpEventHandler) {
+          e.stopPropagation();
+          keyUpEventHandler(e);
         }
       }}
     >
