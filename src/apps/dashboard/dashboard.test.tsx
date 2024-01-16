@@ -1276,7 +1276,7 @@ describe("Dashboard", () => {
       }
     ).as("reservations");
 
-    cy.intercept("POST", "**/next/**", {
+    cy.intercept("POST", "**/next*/**", {
       statusCode: 200,
       body: {
         data: {

@@ -168,7 +168,7 @@ describe("Loan list", () => {
       })
       .as("cover");
 
-    cy.intercept("POST", "**/next/**", {
+    cy.intercept("POST", "**/next*/**", {
       statusCode: 200,
       body: {
         data: {
