@@ -767,7 +767,7 @@ export default {
     },
     openOrderNotOwnedIllLocText: {
       name: "Open order item localized for ILL text",
-      defaultValue: "Item not available at pickup agency but localized for ILL",
+      defaultValue: "Your material has been ordered from another library",
       control: { type: "text" }
     },
     openOrderNotOwnedNoIllLocText: {
