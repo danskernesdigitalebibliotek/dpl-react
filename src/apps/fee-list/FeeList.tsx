@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 import Link from "../../components/atoms/links/Link";
 import { useGetFeesV2 } from "../../core/fbs/fbs";
 import { FeeV2 } from "../../core/fbs/model";
@@ -10,7 +10,11 @@ import FeeDetailsModal from "./modal/fee-details-modal";
 import MyPaymentOverviewModal from "./modal/my-payment-overview-modal";
 import FeeDetailsContent from "./stackable-fees/fee-details-content";
 import modalIdsConf from "../../core/configuration/modal-ids.json";
-import { getFeeObjectByFaustId } from "./utils/helper";
+import {
+  calculateFeeAmount,
+  getFeeObjectByFaustId,
+  getFeesBasedOnPayableByClient
+} from "./utils/helper";
 import ListHeader from "../../components/list-header/list-header";
 import EmptyList from "../../components/empty-list/empty-list";
 
@@ -24,7 +28,6 @@ const FeeList: FC = () => {
     includepaid: false,
     includenonpayable: true
   });
-  const [totalFeeAmount, setTotalFeeAmount] = useState<number>(0);
   const [feeDetailsData, setFeeDetailsData] = useState<FeeV2[]>();
   const openDetailsModalClickEvent = useCallback(
     (faustId: string) => {
@@ -39,18 +42,12 @@ const FeeList: FC = () => {
     [fbsFees, open]
   );
 
-  useEffect(() => {
-    if (totalFeeAmount > 0 || !fbsFees.length) {
-      return;
-    }
-    const totalFee = fbsFees.reduce(
-      (accumulator, { amount }) => accumulator + amount,
-      0
-    );
-    if (totalFee) {
-      setTotalFeeAmount(totalFee);
-    }
-  }, [fbsFees, totalFeeAmount]);
+  const totalFeeAmountPayableByClient = useMemo(() => {
+    return calculateFeeAmount(fbsFees, true);
+  }, [fbsFees]);
+  const totalFeeAmountNotPayableByClient = useMemo(() => {
+    return calculateFeeAmount(fbsFees, false);
+  }, [fbsFees]);
 
   return (
     <>
@@ -67,7 +64,7 @@ const FeeList: FC = () => {
         {!fbsFees.length && (
           <>
             <ListHeader
-              header={<>{t("unpaidFeesFirstHeadlineText")}</>}
+              header={<>{t("unpaidFeesPayableByClientHeadlineText")}</>}
               amount={0}
             />
             <EmptyList
@@ -76,15 +73,34 @@ const FeeList: FC = () => {
             />
           </>
         )}
-        <List
-          dataCy="fee-list"
-          listHeader={t("unpaidFeesFirstHeadlineText")}
-          openDetailsModalClickEvent={openDetailsModalClickEvent}
-          fees={fbsFees}
-          totalText={t("totalText", {
-            placeholders: { "@total": totalFeeAmount.toString() }
-          })}
-        />
+        {/* List of fees that can be paid by the user */}
+        {getFeesBasedOnPayableByClient(fbsFees, true).length > 0 && (
+          <List
+            dataCy="fee-list"
+            listHeader={t("unpaidFeesPayableByClientHeadlineText")}
+            openDetailsModalClickEvent={openDetailsModalClickEvent}
+            fees={getFeesBasedOnPayableByClient(fbsFees, true)}
+            totalText={t("totalText", {
+              placeholders: {
+                "@total": totalFeeAmountPayableByClient()
+              }
+            })}
+          />
+        )}
+        {/* List of fees that can only be paid by the user externally */}
+        {getFeesBasedOnPayableByClient(fbsFees, false).length > 0 && (
+          <List
+            dataCy="fee-list"
+            listHeader={t("unpaidFeesNotPayableByClientHeadlineText")}
+            openDetailsModalClickEvent={openDetailsModalClickEvent}
+            fees={getFeesBasedOnPayableByClient(fbsFees, false)}
+            totalText={t("totalText", {
+              placeholders: {
+                "@total": totalFeeAmountNotPayableByClient()
+              }
+            })}
+          />
+        )}
       </div>
       <FeeDetailsModal modalId={feeDetailsModalId} material={{}}>
         {feeDetailsData && (
