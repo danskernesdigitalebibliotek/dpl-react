@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
 import SubtitlesIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Subtitles.svg";
 import MessageIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Message.svg";
@@ -55,49 +55,52 @@ const UserListItems: FC<UserListItemsProps> = ({
     open(modalReservationFormId(type));
   };
 
-  const interestPeriod = selectedInterest
-    ? getNoInterestAfter(selectedInterest, interestPeriods, t)
-    : getNoInterestAfter(
-        Number(interestPeriods.defaultInterestPeriod.value),
-        interestPeriods,
-        t
-      );
-
-  const pickupBranch = selectedBranch
-    ? getPreferredBranch(selectedBranch, branches)
-    : getPreferredBranch(preferredPickupBranch, branches);
+  // Set default values for interest period and pickup branch
+  useEffect(() => {
+    if (!selectedInterest) {
+      setSelectedInterest(Number(interestPeriods.defaultInterestPeriod.value));
+    }
+    if (!selectedBranch) {
+      selectBranchHandler(preferredPickupBranch);
+    }
+  }, [
+    interestPeriods,
+    preferredPickupBranch,
+    selectBranchHandler,
+    selectedBranch,
+    selectedInterest,
+    setSelectedInterest
+  ]);
 
   return (
     <>
-      {interestPeriods && (
+      {interestPeriods && selectedInterest && (
         <>
           <ReservationFormListItem
             icon={LoanHistoryIcon}
             title={t("reservationDetailsNoInterestAfterTitleText")}
-            text={interestPeriod}
+            text={getNoInterestAfter(selectedInterest, interestPeriods, t)}
             changeHandler={openModal("interestPeriod")}
             buttonAriaLabel={t("changeInterestPeriodText")}
           />
           <NoInterestAfterModal
-            selectedInterest={
-              selectedInterest ?? interestPeriods.defaultInterestPeriod.value
-            }
+            selectedInterest={selectedInterest}
             setSelectedInterest={setSelectedInterest}
           />
         </>
       )}
-      {preferredPickupBranch && whitelistBranches && (
+      {preferredPickupBranch && whitelistBranches && selectedBranch && (
         <>
           <ReservationFormListItem
             icon={LocationIcon}
             title={t("reservationDetailsPickUpAtTitleText")}
-            text={pickupBranch}
+            text={getPreferredBranch(selectedBranch, branches)}
             changeHandler={openModal("pickup")}
             buttonAriaLabel={t("changePickupLocationText")}
           />
           <PickupModal
             branches={whitelistBranches}
-            defaultBranch={selectedBranch ?? preferredPickupBranch}
+            defaultBranch={getPreferredBranch(selectedBranch, branches)}
             selectBranchHandler={selectBranchHandler}
           />
         </>
