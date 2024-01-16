@@ -73,6 +73,7 @@ const FeeList: FC = () => {
             />
           </>
         )}
+        {/* List of fees that can be paid by the user */}
         {getFeesBasedOnPayableByClient(fbsFees, true).length > 0 && (
           <List
             dataCy="fee-list"
@@ -86,6 +87,7 @@ const FeeList: FC = () => {
             })}
           />
         )}
+        {/* List of fees that can only be paid by the user externally */}
         {getFeesBasedOnPayableByClient(fbsFees, false).length > 0 && (
           <List
             dataCy="fee-list"
