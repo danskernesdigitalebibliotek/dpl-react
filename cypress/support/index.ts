@@ -50,7 +50,7 @@ Cypress.Commands.add(
     fixtureFilePath,
     statusCode = 200
   }: InterceptGraphqlParams) => {
-    cy.intercept("POST", "**/next/graphql", (req) => {
+    cy.intercept("POST", "**/next*/graphql", (req) => {
       if (hasOperationName(req, operationName)) {
         if (fixtureFilePath) {
           req.reply({ fixture: fixtureFilePath, statusCode });
