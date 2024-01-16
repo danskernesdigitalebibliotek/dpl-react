@@ -11,6 +11,7 @@ import MyPaymentOverviewModal from "./modal/my-payment-overview-modal";
 import FeeDetailsContent from "./stackable-fees/fee-details-content";
 import modalIdsConf from "../../core/configuration/modal-ids.json";
 import {
+  calculateFeeAmount,
   getFeeObjectByFaustId,
   getFeesBasedOnPayableByClient
 } from "./utils/helper";
@@ -40,13 +41,7 @@ const FeeList: FC = () => {
     },
     [fbsFees, open]
   );
-  const calculateFeeAmount =
-    (fees: FeeV2[], payableByClient: boolean) => () => {
-      return getFeesBasedOnPayableByClient(fees, payableByClient).reduce(
-        (accumulator, { amount }) => accumulator + amount,
-        0
-      );
-    };
+
   const totalFeeAmountPayableByClient = useMemo(() => {
     return calculateFeeAmount(fbsFees, true);
   }, [fbsFees]);

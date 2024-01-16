@@ -14,3 +14,11 @@ export const getFeesBasedOnPayableByClient = (
     return fee.payableByClient === payableByClient;
   });
 };
+
+export const calculateFeeAmount =
+  (fees: FeeV2[], payableByClient: boolean) => () => {
+    return getFeesBasedOnPayableByClient(fees, payableByClient).reduce(
+      (accumulator, { amount }) => accumulator + amount,
+      0
+    );
+  };
