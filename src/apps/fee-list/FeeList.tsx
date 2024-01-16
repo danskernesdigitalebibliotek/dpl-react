@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 import Link from "../../components/atoms/links/Link";
 import { useGetFeesV2 } from "../../core/fbs/fbs";
 import { FeeV2 } from "../../core/fbs/model";
@@ -27,12 +27,6 @@ const FeeList: FC = () => {
     includepaid: false,
     includenonpayable: true
   });
-  const [totalFeeAmountPayableByClient, setTotalFeeAmountPayableByClient] =
-    useState<number>(0);
-  const [
-    totalFeeAmountNotPayableByClient,
-    setTotalFeeAmountNotPayableByClient
-  ] = useState<number>(0);
   const [feeDetailsData, setFeeDetailsData] = useState<FeeV2[]>();
   const openDetailsModalClickEvent = useCallback(
     (faustId: string) => {
@@ -46,32 +40,19 @@ const FeeList: FC = () => {
     },
     [fbsFees, open]
   );
-
-  useEffect(() => {
-    if (totalFeeAmountPayableByClient > 0 || !fbsFees.length) {
-      return;
-    }
-    const totalFeePayableByClient = getFeesBasedOnPayableByClient(
-      fbsFees,
-      true
-    ).reduce((accumulator, { amount }) => accumulator + amount, 0);
-    if (totalFeePayableByClient) {
-      setTotalFeeAmountPayableByClient(totalFeePayableByClient);
-    }
-  }, [fbsFees, totalFeeAmountPayableByClient]);
-
-  useEffect(() => {
-    if (totalFeeAmountNotPayableByClient > 0 || !fbsFees.length) {
-      return;
-    }
-    const totalFeeNotPayableByClient = getFeesBasedOnPayableByClient(
-      fbsFees,
-      true
-    ).reduce((accumulator, { amount }) => accumulator + amount, 0);
-    if (totalFeeNotPayableByClient) {
-      setTotalFeeAmountNotPayableByClient(totalFeeNotPayableByClient);
-    }
-  }, [fbsFees, totalFeeAmountNotPayableByClient]);
+  const calculateFeeAmount =
+    (fees: FeeV2[], payableByClient: boolean) => () => {
+      return getFeesBasedOnPayableByClient(fees, payableByClient).reduce(
+        (accumulator, { amount }) => accumulator + amount,
+        0
+      );
+    };
+  const totalFeeAmountPayableByClient = useMemo(() => {
+    return calculateFeeAmount(fbsFees, true);
+  }, [fbsFees]);
+  const totalFeeAmountNotPayableByClient = useMemo(() => {
+    return calculateFeeAmount(fbsFees, false);
+  }, [fbsFees]);
 
   return (
     <>
@@ -105,7 +86,7 @@ const FeeList: FC = () => {
             fees={getFeesBasedOnPayableByClient(fbsFees, true)}
             totalText={t("totalText", {
               placeholders: {
-                "@total": totalFeeAmountPayableByClient.toString()
+                "@total": totalFeeAmountPayableByClient()
               }
             })}
           />
@@ -118,7 +99,7 @@ const FeeList: FC = () => {
             fees={getFeesBasedOnPayableByClient(fbsFees, false)}
             totalText={t("totalText", {
               placeholders: {
-                "@total": totalFeeAmountNotPayableByClient.toString()
+                "@total": totalFeeAmountNotPayableByClient()
               }
             })}
           />
