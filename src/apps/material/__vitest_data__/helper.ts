@@ -27,14 +27,12 @@ export default {
           {
             materialTypeSpecific: {
               display: "lydoptagelse (cd)"
-            },
-            specific: "this-will-be-deprecated"
+            }
           },
           {
             materialTypeSpecific: {
               display: "bog"
-            },
-            specific: "this-will-be-deprecated"
+            }
           }
         ],
         creators: [
@@ -123,8 +121,7 @@ export default {
           {
             materialTypeSpecific: {
               display: "e-bog"
-            },
-            specific: "this-will-be-deprecated"
+            }
           }
         ],
         creators: [
@@ -219,8 +216,7 @@ export default {
           {
             materialTypeSpecific: {
               display: "lydbog (online)"
-            },
-            specific: "this-will-be-deprecated"
+            }
           }
         ],
         creators: [
@@ -317,8 +313,7 @@ export default {
           {
             materialTypeSpecific: {
               display: "bog"
-            },
-            specific: "this-will-be-deprecated"
+            }
           }
         ],
         creators: [
