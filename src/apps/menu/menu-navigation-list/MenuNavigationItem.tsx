@@ -11,13 +11,15 @@ interface MenuNavigationItemProps {
   reservationCount: number;
   feeCount: number;
   menuNavigationItem: MenuNavigationDataType;
+  dataCy?: string;
 }
 
 const MenuNavigationItem: FC<MenuNavigationItemProps> = ({
   loansCount,
   reservationCount,
   feeCount,
-  menuNavigationItem
+  menuNavigationItem,
+  dataCy = "menu-navigation-item"
 }) => {
   /*
   TODO: elaborate mapping of menu content and data-sources.
@@ -35,7 +37,10 @@ const MenuNavigationItem: FC<MenuNavigationItemProps> = ({
   const { link, name, dataId } = menuNavigationItem;
 
   return (
-    <li className="link-filters mb-16">
+    <li
+      data-cy={`${dataCy}-${name.toLowerCase()}`}
+      className="link-filters mb-16"
+    >
       <div className="link-filters__tag-wrapper">
         <a
           href={link}
