@@ -288,7 +288,7 @@ describe("Reservation list pagination", () => {
       }
     }).as("digital_reservations");
 
-    cy.intercept("POST", "**/next/**", {
+    cy.intercept("POST", "**/next*/**", {
       statusCode: 200,
       body: {
         data: {
@@ -302,7 +302,7 @@ describe("Reservation list pagination", () => {
                 display: "2006"
               }
             },
-            materialTypes: [{ specific: "Dummy bog" }],
+            materialTypes: [{ materialTypeSpecific: { display: "Dummy bog" } }],
             creators: [
               { display: "Dummy Jens Jensen" },
               { display: "Dummy Some Corporation" }

@@ -57,7 +57,7 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   const title = workTitles.join(", ");
   const isPeriodical = manifestations.some((manifestation) => {
     return manifestation.materialTypes.some((materialType) => {
-      return materialType.specific.includes("tidsskrift");
+      return materialType.materialTypeSpecific.display === "tidsskrift";
     });
   });
 

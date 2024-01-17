@@ -322,7 +322,7 @@ export const getMaterialTypes = (
       manifestations
         .map((manifest) =>
           manifest.materialTypes.map((type, i) =>
-            i === 0 ? type.specific : null
+            i === 0 ? type.materialTypeSpecific.display : null
           )
         )
         .flat()
@@ -333,7 +333,11 @@ export const getMaterialTypes = (
   // In this case we aggreate all types even if a manifestation has multiple types.
   return uniq(
     manifestations
-      .map((manifest) => manifest.materialTypes.map((type) => type.specific))
+      .map((manifest) =>
+        manifest.materialTypes.map((type) => {
+          return type.materialTypeSpecific?.display;
+        })
+      )
       .flat()
   ) as ManifestationMaterialType[];
 };
@@ -585,10 +589,14 @@ if (import.meta.vitest) {
       {
         materialTypes: [
           {
-            specific: "artikel"
+            materialTypeSpecific: {
+              display: "artikel"
+            }
           },
           {
-            specific: "artikel (online)"
+            materialTypeSpecific: {
+              display: "artikel (online)"
+            }
           }
         ]
       }

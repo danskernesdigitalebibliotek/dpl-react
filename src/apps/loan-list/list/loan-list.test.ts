@@ -168,7 +168,7 @@ describe("Loan list", () => {
       })
       .as("cover");
 
-    cy.intercept("POST", "**/next/**", {
+    cy.intercept("POST", "**/next*/**", {
       statusCode: 200,
       body: {
         data: {
@@ -182,7 +182,7 @@ describe("Loan list", () => {
                 display: "2006"
               }
             },
-            materialTypes: [{ specific: "Dummy bog" }],
+            materialTypes: [{ materialTypeSpecific: { display: "Dummy bog" } }],
             creators: [
               { display: "Dummy Jens Jensen" },
               { display: "Dummy Some Corporation" }

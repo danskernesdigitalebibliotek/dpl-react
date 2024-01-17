@@ -172,6 +172,7 @@ export type ComplexSearchResponse = {
 export type ComplexSearchResponseWorksArgs = {
   limit: Scalars["PaginationLimit"];
   offset: Scalars["Int"];
+  sort?: InputMaybe<Array<Sort>>;
 };
 
 export type CopyRequestInput = {
@@ -204,6 +205,7 @@ export enum CopyRequestStatus {
   ErrorAgencyNotSubscribed = "ERROR_AGENCY_NOT_SUBSCRIBED",
   ErrorInvalidPickupBranch = "ERROR_INVALID_PICKUP_BRANCH",
   ErrorMissingClientConfiguration = "ERROR_MISSING_CLIENT_CONFIGURATION",
+  ErrorMissingMunicipalityagencyid = "ERROR_MISSING_MUNICIPALITYAGENCYID",
   ErrorMunicipalityagencyidNotFound = "ERROR_MUNICIPALITYAGENCYID_NOT_FOUND",
   ErrorPidNotReservable = "ERROR_PID_NOT_RESERVABLE",
   ErrorUnauthenticatedUser = "ERROR_UNAUTHENTICATED_USER",
@@ -327,13 +329,18 @@ export type Ereol = {
 /** The supported facet fields */
 export enum FacetField {
   AccessTypes = "accessTypes",
+  Age = "age",
   CanAlwaysBeLoaned = "canAlwaysBeLoaned",
   ChildrenOrAdults = "childrenOrAdults",
   Creators = "creators",
   Dk5 = "dk5",
   FictionNonfiction = "fictionNonfiction",
   FictionalCharacters = "fictionalCharacters",
+  GeneralAudience = "generalAudience",
   GenreAndForm = "genreAndForm",
+  Let = "let",
+  LibraryRecommendation = "libraryRecommendation",
+  Lix = "lix",
   MainLanguages = "mainLanguages",
   MaterialTypesGeneral = "materialTypesGeneral",
   MaterialTypesSpecific = "materialTypesSpecific",
@@ -640,8 +647,13 @@ export type Manifestation = {
   tableOfContents?: Maybe<TableOfContent>;
   /** Different kinds of titles for this work */
   titles: ManifestationTitles;
-  /** Universe for this manifestation */
+  /**
+   * Universe for this manifestation
+   * @deprecated Use 'universes' instead
+   */
   universe?: Maybe<Universe>;
+  /** Universes for this manifestation */
+  universes: Array<Universe>;
   /** Information about on which volume this manifestation is in multi volume work */
   volume?: Maybe<Scalars["String"]>;
   /** Worktypes for this manifestations work */
@@ -746,6 +758,14 @@ export type MaterialType = {
   specific: Scalars["String"];
 };
 
+export type Mood = Subject & {
+  __typename?: "Mood";
+  display: Scalars["String"];
+  language?: Maybe<Language>;
+  local?: Maybe<Scalars["Boolean"]>;
+  type: SubjectType;
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   elba: ElbaServices;
@@ -762,6 +782,14 @@ export type MutationSubmitOrderArgs = {
 export type MutationSubmitPeriodicaArticleOrderArgs = {
   dryRun?: InputMaybe<Scalars["Boolean"]>;
   input: PeriodicaArticleOrder;
+};
+
+export type NarrativeTechnique = Subject & {
+  __typename?: "NarrativeTechnique";
+  display: Scalars["String"];
+  language?: Maybe<Language>;
+  local?: Maybe<Scalars["Boolean"]>;
+  type: SubjectType;
 };
 
 export type Note = {
@@ -960,7 +988,7 @@ export type QueryRecommendArgs = {
 };
 
 export type QueryRefWorksArgs = {
-  pid: Scalars["String"];
+  pids: Array<Scalars["String"]>;
 };
 
 export type QueryRelatedSubjectsArgs = {
@@ -969,7 +997,7 @@ export type QueryRelatedSubjectsArgs = {
 };
 
 export type QueryRisArgs = {
-  pid: Scalars["String"];
+  pids: Array<Scalars["String"]>;
 };
 
 export type QuerySearchArgs = {
@@ -1138,6 +1166,8 @@ export enum SchoolUseCode {
 /** Search Filters */
 export type SearchFilters = {
   accessTypes?: InputMaybe<Array<Scalars["String"]>>;
+  age?: InputMaybe<Array<Scalars["String"]>>;
+  ageRange?: InputMaybe<Array<Scalars["String"]>>;
   branchId?: InputMaybe<Array<Scalars["String"]>>;
   canAlwaysBeLoaned?: InputMaybe<Array<Scalars["String"]>>;
   childrenOrAdults?: InputMaybe<Array<Scalars["String"]>>;
@@ -1146,7 +1176,11 @@ export type SearchFilters = {
   dk5?: InputMaybe<Array<Scalars["String"]>>;
   fictionNonfiction?: InputMaybe<Array<Scalars["String"]>>;
   fictionalCharacters?: InputMaybe<Array<Scalars["String"]>>;
+  generalAudience?: InputMaybe<Array<Scalars["String"]>>;
   genreAndForm?: InputMaybe<Array<Scalars["String"]>>;
+  letRange?: InputMaybe<Array<Scalars["String"]>>;
+  libraryRecommendation?: InputMaybe<Array<Scalars["String"]>>;
+  lixRange?: InputMaybe<Array<Scalars["String"]>>;
   location?: InputMaybe<Array<Scalars["String"]>>;
   mainLanguages?: InputMaybe<Array<Scalars["String"]>>;
   materialTypesGeneral?: InputMaybe<Array<Scalars["String"]>>;
@@ -1232,9 +1266,14 @@ export type Series = {
   description?: Maybe<Scalars["String"]>;
   /** Whether this is a popular series or general series */
   isPopular?: Maybe<Scalars["Boolean"]>;
+  /** MainLanguages of the series */
+  mainLanguages: Array<Scalars["String"]>;
   /** Members of this serie.  */
   members: Array<SerieWork>;
-  /** The number in the series as text qoutation and a number */
+  /**
+   * The number in the series as text qoutation and a number
+   * @deprecated field 'NumberInSeries.number' is removed and only String value of 'NumberInSeries.display' is returned
+   */
   numberInSeries?: Maybe<NumberInSeries>;
   /** A parallel title to the main 'title' of the series, in a different language */
   parallelTitles: Array<Scalars["String"]>;
@@ -1244,6 +1283,21 @@ export type Series = {
   readThisWhenever?: Maybe<Scalars["Boolean"]>;
   /** The title of the series */
   title: Scalars["String"];
+  /** WorkTypes for the series */
+  workTypes: Array<Scalars["String"]>;
+};
+
+export type SeriesMembersArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+};
+
+export type Setting = Subject & {
+  __typename?: "Setting";
+  display: Scalars["String"];
+  language?: Maybe<Language>;
+  local?: Maybe<Scalars["Boolean"]>;
+  type: SubjectType;
 };
 
 export type Shelfmark = {
@@ -1253,6 +1307,16 @@ export type Shelfmark = {
   /** The actual shelfmark - e.g. information about on which shelf in the library this manifestation can be found, e.g. 99.4 */
   shelfmark: Scalars["String"];
 };
+
+export type Sort = {
+  index: Scalars["String"];
+  order: SortOrder;
+};
+
+export enum SortOrder {
+  Asc = "asc",
+  Desc = "desc"
+}
 
 export type SpecificMaterialType = {
   __typename?: "SpecificMaterialType";
@@ -1289,18 +1353,24 @@ export type SubjectText = Subject & {
 
 export enum SubjectType {
   Corporation = "CORPORATION",
+  Environment = "ENVIRONMENT",
   FictionalCharacter = "FICTIONAL_CHARACTER",
   FilmNationality = "FILM_NATIONALITY",
   Laesekompasset = "LAESEKOMPASSET",
   LibraryOfCongressSubjectHeading = "LIBRARY_OF_CONGRESS_SUBJECT_HEADING",
   Location = "LOCATION",
   MedicalSubjectHeading = "MEDICAL_SUBJECT_HEADING",
+  Mood = "MOOD",
   MusicalInstrumentation = "MUSICAL_INSTRUMENTATION",
   MusicCountryOfOrigin = "MUSIC_COUNTRY_OF_ORIGIN",
   MusicTimePeriod = "MUSIC_TIME_PERIOD",
   NationalAgriculturalLibrary = "NATIONAL_AGRICULTURAL_LIBRARY",
   /** added for manifestation.parts.creators/person - they get a type from small-rye */
   Person = "PERSON",
+  Perspective = "PERSPECTIVE",
+  Reality = "REALITY",
+  Style = "STYLE",
+  Tempo = "TEMPO",
   TimePeriod = "TIME_PERIOD",
   Title = "TITLE",
   Topic = "TOPIC"
@@ -1344,6 +1414,8 @@ export enum SubmitOrderStatus {
   BorchkUserNotVerified = "BORCHK_USER_NOT_VERIFIED",
   /** Borchk: User is no longer loaner at the provided pickupbranch */
   BorchkUserNoLongerExistOnAgency = "BORCHK_USER_NO_LONGER_EXIST_ON_AGENCY",
+  /** Pincode was not found in arguments */
+  ErrorMissingPincode = "ERROR_MISSING_PINCODE",
   /** Order does not validate */
   InvalidOrder = "INVALID_ORDER",
   /** Item not available at pickupAgency, item localised for ILL */
@@ -1377,6 +1449,7 @@ export type SubmitOrderUserParameters = {
   cardno?: InputMaybe<Scalars["String"]>;
   cpr?: InputMaybe<Scalars["String"]>;
   customId?: InputMaybe<Scalars["String"]>;
+  pincode?: InputMaybe<Scalars["String"]>;
   userAddress?: InputMaybe<Scalars["String"]>;
   userDateOfBirth?: InputMaybe<Scalars["String"]>;
   userId?: InputMaybe<Scalars["String"]>;
@@ -1459,8 +1532,24 @@ export type Universe = {
   __typename?: "Universe";
   /** A alternative title to the main 'title' of the universe */
   alternativeTitles: Array<Scalars["String"]>;
+  /** Description of the universe */
+  description?: Maybe<Scalars["String"]>;
+  /** All series within the universe */
+  series: Array<Series>;
   /** Literary/movie universe this work is part of e.g. Wizarding World, Marvel Cinematic Universe */
   title: Scalars["String"];
+  /** All works within the universe but not in any series */
+  works: Array<Work>;
+};
+
+export type UniverseSeriesArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+};
+
+export type UniverseWorksArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
 };
 
 export type Work = {
@@ -1493,8 +1582,13 @@ export type Work = {
   /** Subjects for this work */
   subjects: SubjectContainer;
   titles: WorkTitles;
-  /** Literary/movie universe this work is part of, e.g. Wizarding World, Marvel Universe */
+  /**
+   * Literary/movie universe this work is part of, e.g. Wizarding World, Marvel Universe
+   * @deprecated Use 'universes' instead
+   */
   universe?: Maybe<Universe>;
+  /** Literary/movie universes this work is part of, e.g. Wizarding World, Marvel Universe */
+  universes: Array<Universe>;
   /** Unique identification of the work based on work-presentation id e.g work-of:870970-basis:54029519 */
   workId: Scalars["String"];
   /** Worktypes for this work - 'none' replaced by 'other' */
@@ -1608,7 +1702,14 @@ export type GetSmallWorkQuery = {
           display: string;
           code: FictionNonfictionCode;
         } | null;
-        materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+        materialTypes: Array<{
+          __typename?: "MaterialType";
+          specific: string;
+          materialTypeSpecific: {
+            __typename?: "SpecificMaterialType";
+            display: string;
+          };
+        }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
@@ -1697,7 +1798,14 @@ export type GetSmallWorkQuery = {
           display: string;
           code: FictionNonfictionCode;
         } | null;
-        materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+        materialTypes: Array<{
+          __typename?: "MaterialType";
+          specific: string;
+          materialTypeSpecific: {
+            __typename?: "SpecificMaterialType";
+            display: string;
+          };
+        }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
@@ -1786,7 +1894,14 @@ export type GetSmallWorkQuery = {
           display: string;
           code: FictionNonfictionCode;
         } | null;
-        materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+        materialTypes: Array<{
+          __typename?: "MaterialType";
+          specific: string;
+          materialTypeSpecific: {
+            __typename?: "SpecificMaterialType";
+            display: string;
+          };
+        }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
@@ -1868,7 +1983,13 @@ export type ManifestationBasicDetailsFragment = {
   pid: string;
   abstract: Array<string>;
   titles: { __typename?: "ManifestationTitles"; full: Array<string> };
-  materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+  materialTypes: Array<{
+    __typename?: "MaterialType";
+    materialTypeSpecific: {
+      __typename?: "SpecificMaterialType";
+      display: string;
+    };
+  }>;
   creators: Array<
     | { __typename?: "Corporation"; display: string }
     | { __typename?: "Person"; display: string }
@@ -1909,7 +2030,13 @@ export type GetManifestationViaMaterialByFaustQuery = {
     pid: string;
     abstract: Array<string>;
     titles: { __typename?: "ManifestationTitles"; full: Array<string> };
-    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     creators: Array<
       | { __typename?: "Corporation"; display: string }
       | { __typename?: "Person"; display: string }
@@ -1959,7 +2086,10 @@ export type GetManifestationViaBestRepresentationByFaustQuery = {
           titles: { __typename?: "ManifestationTitles"; full: Array<string> };
           materialTypes: Array<{
             __typename?: "MaterialType";
-            specific: string;
+            materialTypeSpecific: {
+              __typename?: "SpecificMaterialType";
+              display: string;
+            };
           }>;
           creators: Array<
             | { __typename?: "Corporation"; display: string }
@@ -2015,13 +2145,19 @@ export type GetMaterialQuery = {
       __typename?: "SubjectContainer";
       all: Array<
         | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Mood"; display: string }
+        | { __typename?: "NarrativeTechnique"; display: string }
         | { __typename?: "Person"; display: string }
+        | { __typename?: "Setting"; display: string }
         | { __typename?: "SubjectText"; display: string }
         | { __typename?: "TimePeriod"; display: string }
       >;
       dbcVerified: Array<
         | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Mood"; display: string }
+        | { __typename?: "NarrativeTechnique"; display: string }
         | { __typename?: "Person"; display: string }
+        | { __typename?: "Setting"; display: string }
         | { __typename?: "SubjectText"; display: string }
         | { __typename?: "TimePeriod"; display: string }
       >;
@@ -2095,7 +2231,14 @@ export type GetMaterialQuery = {
           display: string;
           code: FictionNonfictionCode;
         } | null;
-        materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+        materialTypes: Array<{
+          __typename?: "MaterialType";
+          specific: string;
+          materialTypeSpecific: {
+            __typename?: "SpecificMaterialType";
+            display: string;
+          };
+        }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
@@ -2184,7 +2327,14 @@ export type GetMaterialQuery = {
           display: string;
           code: FictionNonfictionCode;
         } | null;
-        materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+        materialTypes: Array<{
+          __typename?: "MaterialType";
+          specific: string;
+          materialTypeSpecific: {
+            __typename?: "SpecificMaterialType";
+            display: string;
+          };
+        }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
@@ -2273,7 +2423,14 @@ export type GetMaterialQuery = {
           display: string;
           code: FictionNonfictionCode;
         } | null;
-        materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+        materialTypes: Array<{
+          __typename?: "MaterialType";
+          specific: string;
+          materialTypeSpecific: {
+            __typename?: "SpecificMaterialType";
+            display: string;
+          };
+        }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
@@ -2512,6 +2669,10 @@ export type RecommendFromFaustQuery = {
             materialTypes: Array<{
               __typename?: "MaterialType";
               specific: string;
+              materialTypeSpecific: {
+                __typename?: "SpecificMaterialType";
+                display: string;
+              };
             }>;
             creators: Array<
               | { __typename: "Corporation"; display: string }
@@ -2607,6 +2768,10 @@ export type RecommendFromFaustQuery = {
             materialTypes: Array<{
               __typename?: "MaterialType";
               specific: string;
+              materialTypeSpecific: {
+                __typename?: "SpecificMaterialType";
+                display: string;
+              };
             }>;
             creators: Array<
               | { __typename: "Corporation"; display: string }
@@ -2702,6 +2867,10 @@ export type RecommendFromFaustQuery = {
             materialTypes: Array<{
               __typename?: "MaterialType";
               specific: string;
+              materialTypeSpecific: {
+                __typename?: "SpecificMaterialType";
+                display: string;
+              };
             }>;
             creators: Array<
               | { __typename: "Corporation"; display: string }
@@ -2857,6 +3026,10 @@ export type SearchWithPaginationQuery = {
           materialTypes: Array<{
             __typename?: "MaterialType";
             specific: string;
+            materialTypeSpecific: {
+              __typename?: "SpecificMaterialType";
+              display: string;
+            };
           }>;
           creators: Array<
             | { __typename: "Corporation"; display: string }
@@ -2952,6 +3125,10 @@ export type SearchWithPaginationQuery = {
           materialTypes: Array<{
             __typename?: "MaterialType";
             specific: string;
+            materialTypeSpecific: {
+              __typename?: "SpecificMaterialType";
+              display: string;
+            };
           }>;
           creators: Array<
             | { __typename: "Corporation"; display: string }
@@ -3047,6 +3224,10 @@ export type SearchWithPaginationQuery = {
           materialTypes: Array<{
             __typename?: "MaterialType";
             specific: string;
+            materialTypeSpecific: {
+              __typename?: "SpecificMaterialType";
+              display: string;
+            };
           }>;
           creators: Array<
             | { __typename: "Corporation"; display: string }
@@ -3249,6 +3430,10 @@ export type ComplexSearchWithPaginationQuery = {
           materialTypes: Array<{
             __typename?: "MaterialType";
             specific: string;
+            materialTypeSpecific: {
+              __typename?: "SpecificMaterialType";
+              display: string;
+            };
           }>;
           creators: Array<
             | { __typename: "Corporation"; display: string }
@@ -3344,6 +3529,10 @@ export type ComplexSearchWithPaginationQuery = {
           materialTypes: Array<{
             __typename?: "MaterialType";
             specific: string;
+            materialTypeSpecific: {
+              __typename?: "SpecificMaterialType";
+              display: string;
+            };
           }>;
           creators: Array<
             | { __typename: "Corporation"; display: string }
@@ -3439,6 +3628,10 @@ export type ComplexSearchWithPaginationQuery = {
           materialTypes: Array<{
             __typename?: "MaterialType";
             specific: string;
+            materialTypeSpecific: {
+              __typename?: "SpecificMaterialType";
+              display: string;
+            };
           }>;
           creators: Array<
             | { __typename: "Corporation"; display: string }
@@ -3641,7 +3834,14 @@ export type ManifestationsSimpleFragment = {
       display: string;
       code: FictionNonfictionCode;
     } | null;
-    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      specific: string;
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
@@ -3727,7 +3927,14 @@ export type ManifestationsSimpleFragment = {
       display: string;
       code: FictionNonfictionCode;
     } | null;
-    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      specific: string;
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
@@ -3813,7 +4020,14 @@ export type ManifestationsSimpleFragment = {
       display: string;
       code: FictionNonfictionCode;
     } | null;
-    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      specific: string;
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
@@ -3931,7 +4145,14 @@ export type ManifestationsSimpleFieldsFragment = {
     display: string;
     code: FictionNonfictionCode;
   } | null;
-  materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+  materialTypes: Array<{
+    __typename?: "MaterialType";
+    specific: string;
+    materialTypeSpecific: {
+      __typename?: "SpecificMaterialType";
+      display: string;
+    };
+  }>;
   creators: Array<
     | { __typename: "Corporation"; display: string }
     | { __typename: "Person"; display: string }
@@ -4150,7 +4371,14 @@ export type WorkSmallFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+      materialTypes: Array<{
+        __typename?: "MaterialType";
+        specific: string;
+        materialTypeSpecific: {
+          __typename?: "SpecificMaterialType";
+          display: string;
+        };
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -4239,7 +4467,14 @@ export type WorkSmallFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+      materialTypes: Array<{
+        __typename?: "MaterialType";
+        specific: string;
+        materialTypeSpecific: {
+          __typename?: "SpecificMaterialType";
+          display: string;
+        };
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -4328,7 +4563,14 @@ export type WorkSmallFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+      materialTypes: Array<{
+        __typename?: "MaterialType";
+        specific: string;
+        materialTypeSpecific: {
+          __typename?: "SpecificMaterialType";
+          display: string;
+        };
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -4419,13 +4661,19 @@ export type WorkMediumFragment = {
     __typename?: "SubjectContainer";
     all: Array<
       | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Mood"; display: string }
+      | { __typename?: "NarrativeTechnique"; display: string }
       | { __typename?: "Person"; display: string }
+      | { __typename?: "Setting"; display: string }
       | { __typename?: "SubjectText"; display: string }
       | { __typename?: "TimePeriod"; display: string }
     >;
     dbcVerified: Array<
       | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Mood"; display: string }
+      | { __typename?: "NarrativeTechnique"; display: string }
       | { __typename?: "Person"; display: string }
+      | { __typename?: "Setting"; display: string }
       | { __typename?: "SubjectText"; display: string }
       | { __typename?: "TimePeriod"; display: string }
     >;
@@ -4499,7 +4747,14 @@ export type WorkMediumFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+      materialTypes: Array<{
+        __typename?: "MaterialType";
+        specific: string;
+        materialTypeSpecific: {
+          __typename?: "SpecificMaterialType";
+          display: string;
+        };
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -4588,7 +4843,14 @@ export type WorkMediumFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+      materialTypes: Array<{
+        __typename?: "MaterialType";
+        specific: string;
+        materialTypeSpecific: {
+          __typename?: "SpecificMaterialType";
+          display: string;
+        };
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -4677,7 +4939,14 @@ export type WorkMediumFragment = {
         display: string;
         code: FictionNonfictionCode;
       } | null;
-      materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+      materialTypes: Array<{
+        __typename?: "MaterialType";
+        specific: string;
+        materialTypeSpecific: {
+          __typename?: "SpecificMaterialType";
+          display: string;
+        };
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -4784,7 +5053,9 @@ export const ManifestationBasicDetailsFragmentDoc = `
   }
   abstract
   materialTypes {
-    specific
+    materialTypeSpecific {
+      display
+    }
   }
   creators {
     display
@@ -4926,7 +5197,9 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     code
   }
   materialTypes {
-    specific
+    materialTypeSpecific {
+      display
+    }
   }
   creators {
     display

@@ -30,8 +30,8 @@
               "code": "NONFICTION"
             },
             "materialTypes": [
-              { "specific": "artikel" },
-              { "specific": "artikel (online)" }
+              { "materialTypeSpecific": { "display": "artikel" } },
+              { "materialTypeSpecific": { "display": "artikel (online)" } }
             ],
             "creators": [
               { "display": "Jakob Nielsen", "__typename": "Person" },
@@ -72,8 +72,8 @@
             "code": "NONFICTION"
           },
           "materialTypes": [
-            { "specific": "artikel" },
-            { "specific": "artikel (online)" }
+            { "materialTypeSpecific": { "display": "artikel" } },
+            { "materialTypeSpecific": { "display": "artikel (online)" } }
           ],
           "creators": [
             { "display": "Jakob Nielsen", "__typename": "Person" },
@@ -111,8 +111,8 @@
             "code": "NONFICTION"
           },
           "materialTypes": [
-            { "specific": "artikel" },
-            { "specific": "artikel (online)" }
+            { "materialTypeSpecific": { "display": "artikel" } },
+            { "materialTypeSpecific": { "display": "artikel (online)" } }
           ],
           "creators": [
             { "display": "Jakob Nielsen", "__typename": "Person" },
@@ -141,8 +141,8 @@
         }
       },
       "materialTypes": [
-        { "specific": "artikel" },
-        { "specific": "artikel (online)" }
+        { "materialTypeSpecific": { "display": "artikel" } },
+        { "materialTypeSpecific": { "display": "artikel (online)" } }
       ],
       "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": {

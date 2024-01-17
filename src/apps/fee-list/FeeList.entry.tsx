@@ -43,8 +43,8 @@ export interface FeeListProps {
   totalFeeAmountText: string;
   totalText: string;
   turnedInText: string;
-  unpaidFeesFirstHeadlineText: string;
-  unpaidFeesSecondHeadlineText: string;
+  unpaidFeesPayableByClientHeadlineText: string;
+  unpaidFeesNotPayableByClientHeadlineText: string;
   viewFeesAndCompensationRatesText: string;
   viewFeesAndCompensationRatesUrl: string;
 }

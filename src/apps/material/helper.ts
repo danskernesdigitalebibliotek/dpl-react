@@ -45,7 +45,7 @@ export const getManifestationsOrderByTypeAndYear = (
   const materialsMappedBytype = groupBy(
     orderedByYear,
     // all manifestations that not have a material type will be grouped under "unknown"
-    (m) => m?.materialTypes[0]?.specific ?? "unknown"
+    (m) => m?.materialTypes[0]?.materialTypeSpecific.display ?? "unknown"
   );
 
   return (
@@ -97,7 +97,7 @@ export const getManifestationPublisher = (manifestation: Manifestation) => {
 };
 
 export const getManifestationMaterialTypes = (manifestation: Manifestation) => {
-  return manifestation.materialTypes?.[0].specific ?? "";
+  return manifestation.materialTypes?.[0].materialTypeSpecific?.display ?? "";
 };
 
 export const getManifestationNumberOfPages = (manifestation: Manifestation) => {
@@ -313,7 +313,7 @@ export const divideManifestationsByMaterialType = (
     (result, manifestation) => {
       if (
         !manifestation.materialTypes.length ||
-        !manifestation.materialTypes[0].specific
+        !manifestation.materialTypes[0].materialTypeSpecific?.display
       ) {
         return result;
       }
@@ -321,8 +321,7 @@ export const divideManifestationsByMaterialType = (
       // For some reason we sometimes have multiple material types
       // we only want the first one.
       // TODO: Double check with DDF that this is a viable solution.
-      const type = manifestation.materialTypes[0].specific;
-
+      const type = manifestation.materialTypes[0].materialTypeSpecific.display;
       return { ...result, [type]: [...(result[type] ?? []), manifestation] };
     },
     {}
@@ -348,7 +347,8 @@ export const isABook = (manifestations: Manifestation[]) => {
   return manifestations.some((manifestation) => {
     return manifestation.materialTypes.some(
       (materialType) =>
-        materialType.specific.toLowerCase() === ManifestationMaterialType.book
+        materialType.materialTypeSpecific.display.toLowerCase() ===
+        ManifestationMaterialType.book
     );
   });
 };
@@ -359,7 +359,7 @@ export const getBestMaterialTypeForManifestation = (
   if (isABook([manifestation])) {
     return ManifestationMaterialType.book;
   }
-  return manifestation.materialTypes[0].specific;
+  return manifestation.materialTypes[0].materialTypeSpecific.display;
 };
 
 export const getBestMaterialTypeForWork = (work: Work) => {
@@ -378,7 +378,7 @@ export const getBestMaterialTypeForWork = (work: Work) => {
     return ManifestationMaterialType.book;
   }
   return getManifestationsWithMaterialType(work.manifestations.all)[0]
-    .materialTypes[0].specific;
+    .materialTypes[0].materialTypeSpecific.display;
 };
 
 export const reservationModalId = (faustIds: FaustId[]) => {

@@ -23,7 +23,7 @@ export interface MaterialButtonOnlineExternalProps {
 
 export const getOnlineMaterialType = (
   sourceName: AccessUrl["origin"],
-  materialTypes: MaterialType["specific"][]
+  materialTypes: MaterialType["materialTypeSpecific"]["display"][]
 ) => {
   if (sourceName.toLowerCase().includes("ereol")) {
     return "ebook";
@@ -77,7 +77,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
 
   const label = (
     sourceName: AccessUrl["origin"],
-    materialTypes: MaterialType["specific"][]
+    materialTypes: MaterialType["materialTypeSpecific"]["display"][]
   ) => {
     const onlineMaterialType = getOnlineMaterialType(sourceName, materialTypes);
     switch (onlineMaterialType) {

@@ -59,7 +59,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
       openDetailsModal(item);
     }
   };
-  const handleOnKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOnKeyUp = (
+    e: React.KeyboardEvent<HTMLDivElement | HTMLButtonElement>
+  ) => {
     if (openDetailsModal && (e.key === "Enter" || e.key === "Space")) {
       openDetailsModal(item);
     }
@@ -150,17 +152,12 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </div>
         </div>
         {openDetailsModal && (
-          <div
-            className="list-materials__arrow"
-            role="button"
-            onClick={handleOnClick}
-            onKeyUp={handleOnKeyUp}
-            tabIndex={0}
-          >
+          <div className="list-materials__arrow">
             <ArrowButton
               arrowLabelledBy={listId(item)}
               cursorPointer
-              clickEventHandler={() => openDetailsModal(item)}
+              clickEventHandler={handleOnClick}
+              keyUpEventHandler={handleOnKeyUp}
             />
           </div>
         )}

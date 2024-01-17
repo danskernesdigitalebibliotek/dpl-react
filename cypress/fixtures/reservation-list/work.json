@@ -10,7 +10,7 @@
           "display": "2006"
         }
       },
-      "materialTypes": [{ "specific": "Dummy bog" }],
+      "materialTypes": [{ "materialTypeSpecific": { "display": "Dummy bog" } }],
       "series": [
         { "numberInSeries": { "number": [1] }, "title": "Detektivbureau Nr. 2" }
       ],

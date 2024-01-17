@@ -115,7 +115,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -153,7 +155,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -191,7 +195,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -229,7 +235,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -270,7 +278,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "punktskrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "punktskrift" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -314,7 +324,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Henrik Emmer", "__typename": "Person" }
@@ -353,7 +365,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -391,7 +405,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "diskette" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "diskette" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -432,7 +448,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "diskette" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "diskette" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -476,7 +494,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -520,7 +540,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -562,7 +584,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -600,7 +624,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -643,7 +669,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -681,7 +709,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -719,7 +749,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -765,7 +797,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -803,7 +837,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -841,7 +877,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -882,7 +920,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -921,7 +961,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -967,7 +1009,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -1111,7 +1155,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1158,7 +1204,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1196,7 +1244,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Mikkel Schou", "__typename": "Person" }
@@ -1235,7 +1285,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "diskette" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "diskette" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1276,7 +1328,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1314,7 +1368,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "punktskrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "punktskrift" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1358,7 +1414,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1399,7 +1457,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -1441,7 +1501,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1482,7 +1544,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1520,7 +1584,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1558,7 +1624,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1596,7 +1664,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1635,7 +1705,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -1682,7 +1754,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -1822,7 +1896,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -1864,7 +1940,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1902,7 +1980,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "e-bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "e-bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1949,7 +2029,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "punktskrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "punktskrift" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -1993,7 +2075,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Janek Lesniak", "__typename": "Person" }
@@ -2032,7 +2116,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2070,7 +2156,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2111,7 +2199,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2149,7 +2239,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2187,7 +2279,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2225,7 +2319,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2264,7 +2360,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -2302,7 +2400,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -2439,7 +2539,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2477,7 +2579,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2520,7 +2624,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2558,7 +2664,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2596,7 +2704,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "punktskrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "punktskrift" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2640,7 +2750,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "diskette" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "diskette" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2681,7 +2793,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Ole Boesen", "__typename": "Person" }
@@ -2720,7 +2834,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2760,7 +2876,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -2802,7 +2920,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2845,7 +2965,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2883,7 +3005,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2921,7 +3045,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -2961,7 +3087,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3002,7 +3130,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3042,7 +3172,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3086,7 +3218,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -3129,7 +3263,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -3263,7 +3399,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3301,7 +3439,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -3343,7 +3483,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3381,7 +3523,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3419,7 +3563,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3457,7 +3603,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3495,7 +3643,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3534,7 +3684,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -3572,7 +3724,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -3708,7 +3862,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3746,7 +3902,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3784,7 +3942,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3825,7 +3985,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "punktskrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "punktskrift" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3869,7 +4031,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "diskette" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "diskette" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3910,7 +4074,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -3950,7 +4116,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Thomas Gulstad", "__typename": "Person" }
@@ -3989,7 +4157,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4027,7 +4197,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4070,7 +4242,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -4114,7 +4288,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4152,7 +4328,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4190,7 +4368,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4228,7 +4408,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4269,7 +4451,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4308,7 +4492,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -4346,7 +4532,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -4482,7 +4670,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4520,7 +4710,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Peter Krag", "__typename": "Person" }
@@ -4559,7 +4751,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "punktskrift" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "punktskrift" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4603,7 +4797,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "diskette" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "diskette" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4644,7 +4840,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4682,7 +4880,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4723,7 +4923,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4761,7 +4963,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4802,7 +5006,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -4844,7 +5050,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4882,7 +5090,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4920,7 +5130,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4961,7 +5173,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -4999,7 +5213,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -5038,7 +5254,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -5079,7 +5297,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -5215,7 +5435,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "John Tiffany", "__typename": "Person" },
@@ -5259,7 +5481,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
                 { "display": "John Tiffany", "__typename": "Person" },
@@ -5302,7 +5526,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
                 { "display": "John Tiffany", "__typename": "Person" },
@@ -5525,7 +5751,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -5563,7 +5791,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -5601,7 +5831,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -5640,7 +5872,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -5679,7 +5913,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -5717,7 +5953,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -5758,7 +5996,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -5797,7 +6037,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -5836,7 +6078,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -5877,7 +6121,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -5915,7 +6161,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -5953,7 +6201,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -5996,7 +6246,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -6039,7 +6291,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6077,7 +6331,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6117,7 +6373,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -6160,7 +6418,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6198,7 +6458,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6241,7 +6503,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6280,7 +6544,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -6318,7 +6584,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -6536,7 +6804,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -6575,7 +6845,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -6614,7 +6886,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6652,7 +6926,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6698,7 +6974,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6739,7 +7017,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Jim Dale", "__typename": "Person" }
@@ -6780,7 +7060,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -6821,7 +7103,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -6860,7 +7144,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6898,7 +7184,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6939,7 +7227,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -6982,7 +7272,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -7021,7 +7313,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7063,7 +7357,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7103,7 +7399,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7147,7 +7445,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7185,7 +7485,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7223,7 +7525,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7264,7 +7568,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7305,7 +7611,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7345,7 +7653,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7384,7 +7694,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -7422,7 +7734,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -7641,7 +7955,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -7680,7 +7996,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -7719,7 +8037,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7761,7 +8081,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7802,7 +8124,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7844,7 +8168,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -7885,7 +8211,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -7924,7 +8252,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -7963,7 +8293,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -8001,7 +8333,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -8050,7 +8384,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -8089,7 +8425,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -8130,7 +8468,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -8171,7 +8511,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Jim Dale", "__typename": "Person" }
@@ -8212,7 +8554,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -8250,7 +8594,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -8288,7 +8634,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -8326,7 +8674,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -8364,7 +8714,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -8407,7 +8759,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -8450,7 +8804,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -8491,7 +8847,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -8531,7 +8889,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -8673,7 +9033,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "David Yates", "__typename": "Person" },
                   { "display": "Michael Goldenberg", "__typename": "Person" },
@@ -8724,7 +9086,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "David Yates", "__typename": "Person" },
                   { "display": "Michael Goldenberg", "__typename": "Person" },
@@ -8775,7 +9139,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "David Yates", "__typename": "Person" },
                   { "display": "Michael Goldenberg", "__typename": "Person" },
@@ -8826,7 +9192,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "David Yates", "__typename": "Person" },
                   { "display": "Michael Goldenberg", "__typename": "Person" },
@@ -8875,7 +9243,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 { "display": "David Yates", "__typename": "Person" },
                 { "display": "Michael Goldenberg", "__typename": "Person" },
@@ -8923,7 +9293,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 { "display": "David Yates", "__typename": "Person" },
                 { "display": "Michael Goldenberg", "__typename": "Person" },
@@ -9078,7 +9450,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "David Yates", "__typename": "Person" },
                   { "display": "Bruno Delbonnel", "__typename": "Person" },
@@ -9131,7 +9505,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "David Yates", "__typename": "Person" },
                   { "display": "Bruno Delbonnel", "__typename": "Person" },
@@ -9182,7 +9558,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 { "display": "David Yates", "__typename": "Person" },
                 { "display": "Bruno Delbonnel", "__typename": "Person" },
@@ -9232,7 +9610,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 { "display": "David Yates", "__typename": "Person" },
                 { "display": "Bruno Delbonnel", "__typename": "Person" },
@@ -9465,7 +9845,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -9503,7 +9885,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -9542,7 +9926,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -9583,7 +9969,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -9624,7 +10012,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -9662,7 +10052,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -9701,7 +10093,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -9742,7 +10136,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -9781,7 +10177,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -9824,7 +10222,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -9865,7 +10265,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -9905,7 +10307,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -9944,7 +10348,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -9982,7 +10388,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -10022,7 +10430,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Jim Dale", "__typename": "Person" }
@@ -10065,7 +10475,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -10105,7 +10517,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -10145,7 +10559,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -10187,7 +10603,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -10225,7 +10643,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -10263,7 +10683,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -10304,7 +10726,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -10347,7 +10771,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -10388,7 +10814,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -10428,7 +10856,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -10522,7 +10952,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (videobånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (videobånd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -10576,7 +11008,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (videobånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (videobånd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -10632,7 +11066,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (videobånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (videobånd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -10686,7 +11122,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -10744,7 +11182,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -10800,7 +11240,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -10856,7 +11298,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -10910,7 +11354,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 {
                   "display": "Chris Columbus (f. 1958)",
@@ -10963,7 +11409,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 {
                   "display": "Chris Columbus (f. 1958)",
@@ -11203,7 +11651,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Jim Kay", "__typename": "Person" }
@@ -11242,7 +11692,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11280,7 +11732,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -11319,7 +11773,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -11358,7 +11814,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -11397,7 +11855,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11435,7 +11895,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11473,7 +11935,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11511,7 +11975,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11549,7 +12015,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11587,7 +12055,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -11628,7 +12098,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -11670,7 +12142,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11708,7 +12182,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11746,7 +12222,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11784,7 +12262,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11825,7 +12305,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11870,7 +12352,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -11911,7 +12395,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
                 { "display": "Jim Kay", "__typename": "Person" }
@@ -11952,7 +12438,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
                 { "display": "Jim Kay", "__typename": "Person" }
@@ -12095,7 +12583,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Mike Newell", "__typename": "Person" },
                   { "display": "Steve Kloves", "__typename": "Person" },
@@ -12148,7 +12638,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Mike Newell", "__typename": "Person" },
                   { "display": "Steve Kloves", "__typename": "Person" },
@@ -12201,7 +12693,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Mike Newell", "__typename": "Person" },
                   { "display": "Steve Kloves", "__typename": "Person" },
@@ -12254,7 +12748,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Mike Newell", "__typename": "Person" },
                   { "display": "Steve Kloves", "__typename": "Person" },
@@ -12305,7 +12801,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (blu-ray)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+              ],
               "creators": [
                 { "display": "Mike Newell", "__typename": "Person" },
                 { "display": "Steve Kloves", "__typename": "Person" },
@@ -12355,7 +12853,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 { "display": "Mike Newell", "__typename": "Person" },
                 { "display": "Steve Kloves", "__typename": "Person" },
@@ -12512,7 +13012,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (videobånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (videobånd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -12567,7 +13069,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -12622,7 +13126,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -12677,7 +13183,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -12732,7 +13240,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   {
                     "display": "Chris Columbus (f. 1958)",
@@ -12785,7 +13295,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 {
                   "display": "Chris Columbus (f. 1958)",
@@ -12837,7 +13349,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 {
                   "display": "Chris Columbus (f. 1958)",
@@ -12996,7 +13510,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Steve Kloves", "__typename": "Person" },
                   { "display": "Alfonso Cuarón", "__typename": "Person" },
@@ -13049,7 +13565,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (videobånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (videobånd)" } }
+                ],
                 "creators": [
                   { "display": "Steve Kloves", "__typename": "Person" },
                   { "display": "Alfonso Cuarón", "__typename": "Person" },
@@ -13102,7 +13620,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Steve Kloves", "__typename": "Person" },
                   { "display": "Alfonso Cuarón", "__typename": "Person" },
@@ -13155,7 +13675,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (blu-ray)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
                 "creators": [
                   { "display": "Steve Kloves", "__typename": "Person" },
                   { "display": "Alfonso Cuarón", "__typename": "Person" },
@@ -13208,7 +13730,9 @@
                   "display": "fiktion",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "film (dvd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
                 "creators": [
                   { "display": "Steve Kloves", "__typename": "Person" },
                   { "display": "Alfonso Cuarón", "__typename": "Person" },
@@ -13259,7 +13783,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 { "display": "Steve Kloves", "__typename": "Person" },
                 { "display": "Alfonso Cuarón", "__typename": "Person" },
@@ -13309,7 +13835,9 @@
                 "original": []
               },
               "fictionNonfiction": { "display": "fiktion", "code": "FICTION" },
-              "materialTypes": [{ "specific": "film (dvd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "film (dvd)" } }
+              ],
               "creators": [
                 { "display": "Steve Kloves", "__typename": "Person" },
                 { "display": "Alfonso Cuarón", "__typename": "Person" },
@@ -13399,7 +13927,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -13437,7 +13967,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -13476,7 +14008,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -13514,7 +14048,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -13553,7 +14089,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Stephen Fry", "__typename": "Person" }
@@ -13592,7 +14130,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -13630,7 +14170,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -13668,7 +14210,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -13711,7 +14255,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -13756,7 +14302,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -13795,7 +14343,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -13836,7 +14386,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -14052,7 +14604,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14092,7 +14646,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14136,7 +14692,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14174,7 +14732,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14212,7 +14772,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14250,7 +14812,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14288,7 +14852,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14329,7 +14895,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14370,7 +14938,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14415,7 +14985,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -14454,7 +15026,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -14495,7 +15069,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -14713,7 +15289,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Jack Thorne", "__typename": "Person" },
@@ -14754,7 +15332,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
                 { "display": "Jack Thorne", "__typename": "Person" },
@@ -14794,7 +15374,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
                 { "display": "Jack Thorne", "__typename": "Person" },
@@ -15013,7 +15595,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15054,7 +15638,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15096,7 +15682,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15136,7 +15724,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15174,7 +15764,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15219,7 +15811,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -15263,7 +15857,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -15410,7 +16006,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15450,7 +16048,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15490,7 +16090,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Rufus Beck", "__typename": "Person" }
@@ -15529,7 +16131,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15569,7 +16173,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15612,7 +16218,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15656,7 +16264,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -15699,7 +16309,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -15762,7 +16374,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "playstation 3" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "playstation 3" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Electronic Arts", "__typename": "Corporation" }
@@ -15811,7 +16425,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "computerspil" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "computerspil" } }
+                ],
                 "creators": [],
                 "publisher": ["EA"],
                 "identifiers": [],
@@ -15855,7 +16471,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "nintendo ds" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "nintendo ds" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15895,7 +16513,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "xbox 360" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "xbox 360" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15941,7 +16561,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "wii" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "wii" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -15986,7 +16608,9 @@
                 "display": "vides ikke",
                 "code": "NOT_SPECIFIED"
               },
-              "materialTypes": [{ "specific": "wii" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "wii" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -16030,7 +16654,9 @@
                 "display": "vides ikke",
                 "code": "NOT_SPECIFIED"
               },
-              "materialTypes": [{ "specific": "wii" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "wii" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -16095,7 +16721,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "xbox 360" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "xbox 360" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -16135,7 +16763,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "playstation 3" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "playstation 3" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Electronic Arts", "__typename": "Corporation" }
@@ -16182,7 +16812,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "wii" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "wii" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -16228,7 +16860,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "nintendo ds" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "nintendo ds" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -16275,7 +16909,9 @@
                 "display": "vides ikke",
                 "code": "NOT_SPECIFIED"
               },
-              "materialTypes": [{ "specific": "nintendo ds" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "nintendo ds" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -16321,7 +16957,9 @@
                 "display": "vides ikke",
                 "code": "NOT_SPECIFIED"
               },
-              "materialTypes": [{ "specific": "nintendo ds" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "nintendo ds" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -16383,7 +17021,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
@@ -16424,7 +17064,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (cd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
                 {
@@ -16464,7 +17106,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (cd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
                 {
@@ -16607,7 +17251,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -16647,7 +17293,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -16687,7 +17335,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Rufus Beck", "__typename": "Person" }
@@ -16726,7 +17376,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -16766,7 +17418,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -16810,7 +17464,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -16851,7 +17507,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -16992,7 +17650,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -17030,7 +17690,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -17068,7 +17730,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -17107,7 +17771,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -17145,7 +17811,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -17286,7 +17954,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -17324,7 +17994,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -17362,7 +18034,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -17401,7 +18075,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -17439,7 +18115,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -17546,7 +18224,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -17587,7 +18267,9 @@
                   "display": "vides ikke",
                   "code": "NOT_SPECIFIED"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -17627,7 +18309,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -17668,7 +18352,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -17725,8 +18411,8 @@
                   "code": "NONFICTION"
                 },
                 "materialTypes": [
-                  { "specific": "artikel" },
-                  { "specific": "artikel (online)" }
+                  { "materialTypeSpecific": { "display": "artikel" } },
+                  { "materialTypeSpecific": { "display": "artikel (online)" } }
                 ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
@@ -17769,8 +18455,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
@@ -17812,8 +18498,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
@@ -17877,8 +18563,8 @@
                   "code": "NONFICTION"
                 },
                 "materialTypes": [
-                  { "specific": "artikel" },
-                  { "specific": "artikel (online)" }
+                  { "materialTypeSpecific": { "display": "artikel" } },
+                  { "materialTypeSpecific": { "display": "artikel (online)" } }
                 ],
                 "creators": [
                   { "display": "Jeremy Paxman", "__typename": "Person" },
@@ -17924,8 +18610,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Jeremy Paxman", "__typename": "Person" },
@@ -17970,8 +18656,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Jeremy Paxman", "__typename": "Person" },
@@ -18084,7 +18770,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -18123,7 +18811,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -18161,7 +18851,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -18301,7 +18993,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -18339,7 +19033,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "lydbog (bånd)" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
                   { "display": "Lý Lan", "__typename": "Person" }
@@ -18379,7 +19075,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "lydbog (bånd)" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
                 { "display": "Lý Lan", "__typename": "Person" }
@@ -18418,7 +19116,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -18525,7 +19225,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -18564,7 +19266,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -18602,7 +19306,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -18709,7 +19415,9 @@
                   "display": "skønlitteratur",
                   "code": "FICTION"
                 },
-                "materialTypes": [{ "specific": "bog" }],
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
@@ -18748,7 +19456,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -18786,7 +19496,9 @@
                 "display": "skønlitteratur",
                 "code": "FICTION"
               },
-              "materialTypes": [{ "specific": "bog" }],
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
@@ -18841,8 +19553,8 @@
                   "code": "NONFICTION"
                 },
                 "materialTypes": [
-                  { "specific": "artikel" },
-                  { "specific": "artikel (online)" }
+                  { "materialTypeSpecific": { "display": "artikel" } },
+                  { "materialTypeSpecific": { "display": "artikel (online)" } }
                 ],
                 "creators": [
                   { "display": "Søren Kassebeer", "__typename": "Person" },
@@ -18888,8 +19600,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Søren Kassebeer", "__typename": "Person" },
@@ -18934,8 +19646,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Søren Kassebeer", "__typename": "Person" },
@@ -18999,8 +19711,8 @@
                   "code": "NONFICTION"
                 },
                 "materialTypes": [
-                  { "specific": "artikel" },
-                  { "specific": "artikel (online)" }
+                  { "materialTypeSpecific": { "display": "artikel" } },
+                  { "materialTypeSpecific": { "display": "artikel (online)" } }
                 ],
                 "creators": [
                   { "display": "Nils Gunder Hansen", "__typename": "Person" },
@@ -19046,8 +19758,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Nils Gunder Hansen", "__typename": "Person" },
@@ -19092,8 +19804,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Nils Gunder Hansen", "__typename": "Person" },
@@ -19160,8 +19872,8 @@
                   "code": "NONFICTION"
                 },
                 "materialTypes": [
-                  { "specific": "artikel" },
-                  { "specific": "artikel (online)" }
+                  { "materialTypeSpecific": { "display": "artikel" } },
+                  { "materialTypeSpecific": { "display": "artikel (online)" } }
                 ],
                 "creators": [
                   { "display": "Marianne Juhl", "__typename": "Person" },
@@ -19208,8 +19920,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Marianne Juhl", "__typename": "Person" },
@@ -19255,8 +19967,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Marianne Juhl", "__typename": "Person" },
@@ -19324,8 +20036,8 @@
                   "code": "NONFICTION"
                 },
                 "materialTypes": [
-                  { "specific": "artikel" },
-                  { "specific": "artikel (online)" }
+                  { "materialTypeSpecific": { "display": "artikel" } },
+                  { "materialTypeSpecific": { "display": "artikel (online)" } }
                 ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
@@ -19372,8 +20084,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
@@ -19419,8 +20131,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
@@ -19495,8 +20207,8 @@
                   "code": "NONFICTION"
                 },
                 "materialTypes": [
-                  { "specific": "artikel" },
-                  { "specific": "artikel (online)" }
+                  { "materialTypeSpecific": { "display": "artikel" } },
+                  { "materialTypeSpecific": { "display": "artikel (online)" } }
                 ],
                 "creators": [
                   { "display": "Joanne K. Rowling", "__typename": "Person" },
@@ -19548,8 +20260,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },
@@ -19600,8 +20312,8 @@
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "specific": "artikel" },
-                { "specific": "artikel (online)" }
+                { "materialTypeSpecific": { "display": "artikel" } },
+                { "materialTypeSpecific": { "display": "artikel (online)" } }
               ],
               "creators": [
                 { "display": "Joanne K. Rowling", "__typename": "Person" },

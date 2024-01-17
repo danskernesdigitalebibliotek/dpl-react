@@ -39,7 +39,7 @@ describe("Modals", () => {
       ]
     }).as("loans");
 
-    cy.intercept("POST", "**/next/**", {
+    cy.intercept("POST", "**/next*/**", {
       statusCode: 200,
       body: {
         data: {
@@ -53,7 +53,7 @@ describe("Modals", () => {
                 display: "2006"
               }
             },
-            materialTypes: [{ specific: "Dummy bog" }],
+            materialTypes: [{ materialTypeSpecific: { display: "Dummy bog" } }],
             creators: [
               { display: "Dummy Jens Jensen" },
               { display: "Dummy Some Corporation" }

@@ -56,7 +56,9 @@ fragment ManifestationsSimpleFields on Manifestation {
     code
   }
   materialTypes {
-    specific
+    materialTypeSpecific {
+      display
+    }
   }
   creators {
     display

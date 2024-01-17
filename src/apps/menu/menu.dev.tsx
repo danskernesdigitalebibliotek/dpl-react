@@ -51,7 +51,7 @@ export default {
     },
     menuNavigationDataConfig: {
       defaultValue:
-        '[{"name": "Loans","link": "","dataId": "1"},{"name": "Reservations","link": "","dataId": "2"},{"name": "My list","link": "","dataId": "3"},{"name": "Fees & Replacement costs","link": "","dataId": "4"},{"name": "My account","link": "","dataId": "5"}]',
+        '[{"name":"Dashboard","link":"/user/me/dashboard","dataId":"40"},{"name":"Loans","link":"/user/me/loans","dataId":"1"},{"name":"Reservations","link":"/user/me/reservations","dataId":"2"},{"name":"My list","link":"/user/me/favorites","dataId":"20"},{"name":"Fees & Replacement costs","link":"/user/me/fees","dataId":"4"}]',
       control: { type: "text" }
     },
     menuNotificationLoansExpiredText: {

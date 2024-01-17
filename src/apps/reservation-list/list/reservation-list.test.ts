@@ -13,7 +13,7 @@ describe("Reservation list", () => {
     cy.interceptRest({
       aliasName: "work",
       httpMethod: "POST",
-      url: "**/next/**",
+      url: "**/next*/**",
       fixtureFilePath: "reservation-list/work.json"
     });
 
@@ -850,7 +850,7 @@ describe("Reservation list", () => {
     cy.interceptRest({
       aliasName: "work-bestrepresentation",
       httpMethod: "POST",
-      url: "**/next/**",
+      url: "**/next*/**",
       fixtureFilePath: "reservation-list/work-bestrepresentation.json"
     });
 

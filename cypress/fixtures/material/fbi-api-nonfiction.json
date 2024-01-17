@@ -23,7 +23,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -56,7 +56,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -89,7 +89,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -122,7 +122,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -155,7 +155,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -188,7 +188,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -224,7 +224,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -257,7 +257,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -295,7 +295,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -332,7 +332,9 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "lydbog (online)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "lydbog (online)" } }
+            ],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -363,7 +365,9 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "e-bog" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "e-bog" } }
+            ],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -396,7 +400,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -429,7 +433,9 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "e-bog" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "e-bog" } }
+            ],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -460,7 +466,9 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "e-bog" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "e-bog" } }
+            ],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -493,7 +501,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -526,7 +534,9 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "e-bog" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "e-bog" } }
+            ],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -562,7 +572,7 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -603,7 +613,9 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "lydbog (online)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "lydbog (online)" } }
+            ],
             "creators": [
               { "display": "Alfredo Tesio", "__typename": "Person" }
             ],
@@ -638,7 +650,9 @@
             "display": "faglitteratur",
             "code": "NONFICTION"
           },
-          "materialTypes": [{ "specific": "lydbog (online)" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "lydbog (online)" } }
+          ],
           "creators": [{ "display": "Alfredo Tesio", "__typename": "Person" }],
           "publisher": ["Politiken"],
           "identifiers": [{ "value": "9788740067163" }],
@@ -670,7 +684,7 @@
             "display": "faglitteratur",
             "code": "NONFICTION"
           },
-          "materialTypes": [{ "specific": "bog" }],
+          "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
           "creators": [{ "display": "Alfredo Tesio", "__typename": "Person" }],
           "publisher": ["Politiken"],
           "identifiers": [{ "value": "9788740063585" }],
@@ -701,9 +715,9 @@
         }
       },
       "materialTypes": [
-        { "specific": "bog" },
-        { "specific": "lydbog (online)" },
-        { "specific": "e-bog" }
+        { "materialTypeSpecific": { "display": "bog" } },
+        { "materialTypeSpecific": { "display": "lydbog (online)" } },
+        { "materialTypeSpecific": { "display": "e-bog" } }
       ],
       "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": {

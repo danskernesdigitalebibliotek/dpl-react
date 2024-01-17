@@ -155,7 +155,7 @@ describe("Delete reservation modal", () => {
       ]
     }).as("get-reservations");
 
-    cy.intercept("POST", "**/next/**", {
+    cy.intercept("POST", "**/next*/**", {
       statusCode: 200,
       body: {
         data: {
@@ -169,7 +169,7 @@ describe("Delete reservation modal", () => {
                 display: "2006"
               }
             },
-            materialTypes: [{ specific: "Dummy bog" }],
+            materialTypes: [{ materialTypeSpecific: { display: "Dummy bog" } }],
             creators: [
               { display: "Dummy Jens Jensen" },
               { display: "Dummy Some Corporation" }
@@ -281,7 +281,7 @@ describe("Delete reservation modal", () => {
     cy.interceptRest({
       aliasName: "get-manifestation",
       httpMethod: "POST",
-      url: "**/next/**",
+      url: "**/next*/**",
       fixtureFilePath: "reservation-list/work-bestrepresentation.json"
     });
 

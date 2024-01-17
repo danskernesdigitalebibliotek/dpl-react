@@ -102,7 +102,7 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Lucinda Riley", "__typename": "Person" }
             ],
@@ -138,7 +138,7 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Lucinda Riley", "__typename": "Person" }
             ],
@@ -174,7 +174,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "e-bog" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "e-bog" } }
+            ],
             "creators": [
               { "display": "Lucinda Riley", "__typename": "Person" }
             ],
@@ -216,7 +218,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "lydbog (cd-mp3)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+            ],
             "creators": [
               { "display": "Lucinda Riley", "__typename": "Person" }
             ],
@@ -255,7 +259,9 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "lydbog (online)" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "lydbog (online)" } }
+            ],
             "creators": [
               { "display": "Lucinda Riley", "__typename": "Person" }
             ],
@@ -292,7 +298,7 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Lucinda Riley", "__typename": "Person" }
             ],
@@ -328,7 +334,7 @@
               "display": "skønlitteratur",
               "code": "FICTION"
             },
-            "materialTypes": [{ "specific": "bog" }],
+            "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
             "creators": [
               { "display": "Lucinda Riley", "__typename": "Person" }
             ],
@@ -365,7 +371,7 @@
             "display": "skønlitteratur",
             "code": "FICTION"
           },
-          "materialTypes": [{ "specific": "bog" }],
+          "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
           "creators": [{ "display": "Lucinda Riley", "__typename": "Person" }],
           "publisher": ["Cicero"],
           "identifiers": [{ "value": "9788763863285" }],
@@ -399,7 +405,7 @@
             "display": "skønlitteratur",
             "code": "FICTION"
           },
-          "materialTypes": [{ "specific": "bog" }],
+          "materialTypes": [{ "materialTypeSpecific": { "display": "bog" } }],
           "creators": [{ "display": "Lucinda Riley", "__typename": "Person" }],
           "publisher": ["Cicero"],
           "identifiers": [{ "value": "9788763863285" }],
@@ -422,10 +428,10 @@
         }
       },
       "materialTypes": [
-        { "specific": "bog" },
-        { "specific": "lydbog (online)" },
-        { "specific": "lydbog (cd-mp3)" },
-        { "specific": "e-bog" }
+        { "materialTypeSpecific": { "display": "bog" } },
+        { "materialTypeSpecific": { "display": "lydbog (online)" } },
+        { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } },
+        { "materialTypeSpecific": { "display": "e-bog" } }
       ],
       "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": {

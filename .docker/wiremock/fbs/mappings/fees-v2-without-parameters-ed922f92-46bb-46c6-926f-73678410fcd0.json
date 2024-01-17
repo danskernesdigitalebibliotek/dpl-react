@@ -1,8 +1,8 @@
 {
-  "id" : "bd783b91-b464-4137-9575-b093008866df",
-  "name" : "Fees (v2)",
+  "id" : "ed922f92-46bb-46c6-926f-73678410fcd0",
+  "name" : "Fees (v2) (without parameters)",
   "request" : {
-    "url" : "/external/agencyid/patron/patronid/fees/v2?includepaid=false&includenonpayable=true",
+    "urlPath" : "/external/agencyid/patron/patronid/fees/v2",
     "method" : "GET"
   },
   "response" : {
@@ -15,9 +15,9 @@
     },
     "transformers" : [ "response-template" ]
   },
-  "uuid" : "bd783b91-b464-4137-9575-b093008866df",
+  "uuid" : "ed922f92-46bb-46c6-926f-73678410fcd0",
   "persistent" : true,
-  "priority" : 5,
-  "insertionIndex" : 18,
+  "priority" : 4,
+  "insertionIndex" : 19,
   "postServeActions" : [ ]
 }

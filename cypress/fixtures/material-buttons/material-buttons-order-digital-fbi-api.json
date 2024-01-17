@@ -74,7 +74,9 @@
               "display": "faglitteratur",
               "code": "NONFICTION"
             },
-            "materialTypes": [{ "specific": "artikel" }],
+            "materialTypes": [
+              { "materialTypeSpecific": { "display": "artikel" } }
+            ],
             "creators": [
               { "display": "Leif Becker Jensen", "__typename": "Person" }
             ],
@@ -112,7 +114,9 @@
             "display": "faglitteratur",
             "code": "NONFICTION"
           },
-          "materialTypes": [{ "specific": "artikel" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "artikel" } }
+          ],
           "creators": [
             { "display": "Leif Becker Jensen", "__typename": "Person" }
           ],
@@ -147,7 +151,9 @@
             "display": "faglitteratur",
             "code": "NONFICTION"
           },
-          "materialTypes": [{ "specific": "artikel" }],
+          "materialTypes": [
+            { "materialTypeSpecific": { "display": "artikel" } }
+          ],
           "creators": [
             { "display": "Leif Becker Jensen", "__typename": "Person" }
           ],
@@ -170,7 +176,7 @@
           "workYear": null
         }
       },
-      "materialTypes": [{ "specific": "artikel" }],
+      "materialTypes": [{ "materialTypeSpecific": { "display": "artikel" } }],
       "mainLanguages": [{ "display": "dansk", "isoCode": "dan" }],
       "subjects": {
         "all": [

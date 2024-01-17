@@ -283,7 +283,8 @@ export const translateOpenOrderStatus = (
     [SubmitOrderStatus.ServiceUnavailable]: "openOrderServiceUnavailableText",
     [SubmitOrderStatus.UnknownError]: "openOrderUnknownErrorText",
     [SubmitOrderStatus.UnknownPickupagency]: "openOrderUnknownPickupagencyText",
-    [SubmitOrderStatus.UnknownUser]: "openOrderUnknownUserText"
+    [SubmitOrderStatus.UnknownUser]: "openOrderUnknownUserText",
+    [SubmitOrderStatus.ErrorMissingPincode]: "openOrderErrorMissingPincodeText"
   };
 
   return statusTextMap[status] ? t(statusTextMap[status]) : "";

@@ -111,7 +111,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     <div className="material-manifestation-item">
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
-          manifestText={materialTypes[0]?.specific}
+          manifestText={materialTypes[0]?.materialTypeSpecific.display}
           faustIds={[faustId]}
           isbns={identifiers.map((identifier) => identifier.value)}
           accessTypes={accessTypesCodes}
