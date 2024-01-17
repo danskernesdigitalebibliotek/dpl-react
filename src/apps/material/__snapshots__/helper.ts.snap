@@ -57,7 +57,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           "materialTypeSpecific": {
             "display": "bog",
           },
-          "specific": "this-will-be-deprecated",
         },
       ],
       "physicalDescriptions": [
@@ -164,7 +163,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           "materialTypeSpecific": {
             "display": "e-bog",
           },
-          "specific": "this-will-be-deprecated",
         },
       ],
       "physicalDescriptions": [
@@ -268,7 +266,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           "materialTypeSpecific": {
             "display": "lydbog (online)",
           },
-          "specific": "this-will-be-deprecated",
         },
       ],
       "physicalDescriptions": [
@@ -363,13 +360,11 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           "materialTypeSpecific": {
             "display": "lydoptagelse (cd)",
           },
-          "specific": "this-will-be-deprecated",
         },
         {
           "materialTypeSpecific": {
             "display": "bog",
           },
-          "specific": "this-will-be-deprecated",
         },
       ],
       "physicalDescriptions": [
