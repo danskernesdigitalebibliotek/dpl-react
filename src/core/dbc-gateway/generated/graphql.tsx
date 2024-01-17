@@ -1532,24 +1532,46 @@ export type Universe = {
   __typename?: "Universe";
   /** A alternative title to the main 'title' of the universe */
   alternativeTitles: Array<Scalars["String"]>;
+  /** both series and works in a list */
+  content: UniverseContentResult;
   /** Description of the universe */
   description?: Maybe<Scalars["String"]>;
+  /** A key that identifies a universe. */
+  key: Scalars["String"];
   /** All series within the universe */
   series: Array<Series>;
   /** Literary/movie universe this work is part of e.g. Wizarding World, Marvel Cinematic Universe */
   title: Scalars["String"];
+  /** work types that are in this universe */
+  workTypes: Array<WorkType>;
   /** All works within the universe but not in any series */
   works: Array<Work>;
+};
+
+export type UniverseContentArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  workType?: InputMaybe<WorkType>;
 };
 
 export type UniverseSeriesArgs = {
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
+  workType?: InputMaybe<WorkType>;
 };
 
 export type UniverseWorksArgs = {
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
+  workType?: InputMaybe<WorkType>;
+};
+
+export type UniverseContent = Series | Work;
+
+export type UniverseContentResult = {
+  __typename?: "UniverseContentResult";
+  entries: Array<UniverseContent>;
+  hitcount: Scalars["Int"];
 };
 
 export type Work = {
@@ -1704,7 +1726,6 @@ export type GetSmallWorkQuery = {
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
-          specific: string;
           materialTypeSpecific: {
             __typename?: "SpecificMaterialType";
             display: string;
@@ -1800,7 +1821,6 @@ export type GetSmallWorkQuery = {
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
-          specific: string;
           materialTypeSpecific: {
             __typename?: "SpecificMaterialType";
             display: string;
@@ -1896,7 +1916,6 @@ export type GetSmallWorkQuery = {
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
-          specific: string;
           materialTypeSpecific: {
             __typename?: "SpecificMaterialType";
             display: string;
@@ -2135,7 +2154,13 @@ export type GetMaterialQuery = {
     workId: string;
     abstract?: Array<string> | null;
     genreAndForm: Array<string>;
-    materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     mainLanguages: Array<{
       __typename?: "Language";
       display: string;
@@ -2233,7 +2258,6 @@ export type GetMaterialQuery = {
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
-          specific: string;
           materialTypeSpecific: {
             __typename?: "SpecificMaterialType";
             display: string;
@@ -2329,7 +2353,6 @@ export type GetMaterialQuery = {
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
-          specific: string;
           materialTypeSpecific: {
             __typename?: "SpecificMaterialType";
             display: string;
@@ -2425,7 +2448,6 @@ export type GetMaterialQuery = {
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
-          specific: string;
           materialTypeSpecific: {
             __typename?: "SpecificMaterialType";
             display: string;
@@ -2668,7 +2690,6 @@ export type RecommendFromFaustQuery = {
             } | null;
             materialTypes: Array<{
               __typename?: "MaterialType";
-              specific: string;
               materialTypeSpecific: {
                 __typename?: "SpecificMaterialType";
                 display: string;
@@ -2767,7 +2788,6 @@ export type RecommendFromFaustQuery = {
             } | null;
             materialTypes: Array<{
               __typename?: "MaterialType";
-              specific: string;
               materialTypeSpecific: {
                 __typename?: "SpecificMaterialType";
                 display: string;
@@ -2866,7 +2886,6 @@ export type RecommendFromFaustQuery = {
             } | null;
             materialTypes: Array<{
               __typename?: "MaterialType";
-              specific: string;
               materialTypeSpecific: {
                 __typename?: "SpecificMaterialType";
                 display: string;
@@ -3025,7 +3044,6 @@ export type SearchWithPaginationQuery = {
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
-            specific: string;
             materialTypeSpecific: {
               __typename?: "SpecificMaterialType";
               display: string;
@@ -3124,7 +3142,6 @@ export type SearchWithPaginationQuery = {
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
-            specific: string;
             materialTypeSpecific: {
               __typename?: "SpecificMaterialType";
               display: string;
@@ -3223,7 +3240,6 @@ export type SearchWithPaginationQuery = {
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
-            specific: string;
             materialTypeSpecific: {
               __typename?: "SpecificMaterialType";
               display: string;
@@ -3429,7 +3445,6 @@ export type ComplexSearchWithPaginationQuery = {
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
-            specific: string;
             materialTypeSpecific: {
               __typename?: "SpecificMaterialType";
               display: string;
@@ -3528,7 +3543,6 @@ export type ComplexSearchWithPaginationQuery = {
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
-            specific: string;
             materialTypeSpecific: {
               __typename?: "SpecificMaterialType";
               display: string;
@@ -3627,7 +3641,6 @@ export type ComplexSearchWithPaginationQuery = {
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
-            specific: string;
             materialTypeSpecific: {
               __typename?: "SpecificMaterialType";
               display: string;
@@ -3836,7 +3849,6 @@ export type ManifestationsSimpleFragment = {
     } | null;
     materialTypes: Array<{
       __typename?: "MaterialType";
-      specific: string;
       materialTypeSpecific: {
         __typename?: "SpecificMaterialType";
         display: string;
@@ -3929,7 +3941,6 @@ export type ManifestationsSimpleFragment = {
     } | null;
     materialTypes: Array<{
       __typename?: "MaterialType";
-      specific: string;
       materialTypeSpecific: {
         __typename?: "SpecificMaterialType";
         display: string;
@@ -4022,7 +4033,6 @@ export type ManifestationsSimpleFragment = {
     } | null;
     materialTypes: Array<{
       __typename?: "MaterialType";
-      specific: string;
       materialTypeSpecific: {
         __typename?: "SpecificMaterialType";
         display: string;
@@ -4147,7 +4157,6 @@ export type ManifestationsSimpleFieldsFragment = {
   } | null;
   materialTypes: Array<{
     __typename?: "MaterialType";
-    specific: string;
     materialTypeSpecific: {
       __typename?: "SpecificMaterialType";
       display: string;
@@ -4373,7 +4382,6 @@ export type WorkSmallFragment = {
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
-        specific: string;
         materialTypeSpecific: {
           __typename?: "SpecificMaterialType";
           display: string;
@@ -4469,7 +4477,6 @@ export type WorkSmallFragment = {
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
-        specific: string;
         materialTypeSpecific: {
           __typename?: "SpecificMaterialType";
           display: string;
@@ -4565,7 +4572,6 @@ export type WorkSmallFragment = {
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
-        specific: string;
         materialTypeSpecific: {
           __typename?: "SpecificMaterialType";
           display: string;
@@ -4651,7 +4657,13 @@ export type WorkMediumFragment = {
   workId: string;
   abstract?: Array<string> | null;
   genreAndForm: Array<string>;
-  materialTypes: Array<{ __typename?: "MaterialType"; specific: string }>;
+  materialTypes: Array<{
+    __typename?: "MaterialType";
+    materialTypeSpecific: {
+      __typename?: "SpecificMaterialType";
+      display: string;
+    };
+  }>;
   mainLanguages: Array<{
     __typename?: "Language";
     display: string;
@@ -4749,7 +4761,6 @@ export type WorkMediumFragment = {
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
-        specific: string;
         materialTypeSpecific: {
           __typename?: "SpecificMaterialType";
           display: string;
@@ -4845,7 +4856,6 @@ export type WorkMediumFragment = {
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
-        specific: string;
         materialTypeSpecific: {
           __typename?: "SpecificMaterialType";
           display: string;
@@ -4941,7 +4951,6 @@ export type WorkMediumFragment = {
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
-        specific: string;
         materialTypeSpecific: {
           __typename?: "SpecificMaterialType";
           display: string;
@@ -5229,9 +5238,6 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
     numberOfPages
     playingTime
   }
-  materialTypes {
-    specific
-  }
   accessTypes {
     code
   }
@@ -5320,7 +5326,9 @@ export const WorkMediumFragmentDoc = `
     fragment WorkMedium on Work {
   ...WorkSmall
   materialTypes {
-    specific
+    materialTypeSpecific {
+      display
+    }
   }
   mainLanguages {
     display

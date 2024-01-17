@@ -88,9 +88,6 @@ fragment ManifestationsSimpleFields on Manifestation {
     numberOfPages
     playingTime
   }
-  materialTypes {
-    specific
-  }
   accessTypes {
     code
   }
@@ -236,7 +233,9 @@ fragment WorkSmall on Work {
 fragment WorkMedium on Work {
   ...WorkSmall
   materialTypes {
-    specific
+    materialTypeSpecific {
+      display
+    }
   }
   mainLanguages {
     display
