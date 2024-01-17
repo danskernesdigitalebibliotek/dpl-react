@@ -36,6 +36,7 @@ const ReservationDetailsRedirect: FC<
         disabled={false}
         onClick={() => openReservationDeleteModal(reservation)}
         classNames={linkClassNames}
+        dataCy="remove-digital-reservation-button"
       />
       <LinkButton
         dataCy="go-to-ereolen-button"
