@@ -4,6 +4,7 @@ import { useText } from "../../../../core/utils/text";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import LinkButton from "../../../../components/Buttons/LinkButton";
+import { Button } from "../../../../components/Buttons/Button";
 
 export interface ReservationDetailsRedirectProps {
   reservation: ReservationType;
@@ -26,13 +27,17 @@ const ReservationDetailsRedirect: FC<
 
   return (
     <div className={`modal-details__buttons ${className}`}>
-      <button
-        type="button"
+      <Button
+        buttonType="none"
+        label={t("reservationDetailsRemoveDigitalReservationText")}
+        size="small"
+        variant="outline"
+        collapsible={false}
+        disabled={false}
         onClick={() => openReservationDeleteModal(reservation)}
-        className={`link-tag cursor-pointer ${linkClassNames}`}
-      >
-        {t("reservationDetailsRemoveDigitalReservationText")}
-      </button>
+        classNames={linkClassNames}
+        dataCy="remove-digital-reservation-button"
+      />
       <LinkButton
         dataCy="go-to-ereolen-button"
         size="small"
