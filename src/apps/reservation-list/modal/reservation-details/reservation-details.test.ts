@@ -229,8 +229,7 @@ describe("Reservation details modal", () => {
       .find(".text-small-caption")
       .should("have.text", "16-08-2022 12:52");
 
-    cy.get(".modal")
-      .find("button.link-tag")
+    cy.getBySel("remove-digital-reservation-button")
       .eq(0)
       .should("have.text", "Remove your reservation")
       .click();
