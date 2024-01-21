@@ -2,7 +2,7 @@
   "id" : "ed922f92-46bb-46c6-926f-73678410fcd0",
   "name" : "Fees (v2) (without parameters)",
   "request" : {
-    "urlPath" : "/external/agencyid/patron/patronid/fees/v2",
+    "urlPattern" : "/external/agencyid/patron/patronid/fees/v2$",
     "method" : "GET"
   },
   "response" : {
