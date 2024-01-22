@@ -172,12 +172,12 @@ export default {
       defaultValue: "# @materialNumber",
       control: { type: "text" }
     },
-    paymentSiteUrl: {
+    feeListPaymentSiteUrl: {
       defaultValue: "https://google.com",
       control: { type: "text" }
     },
     feeListConfig: {
-      defaultValue: '{ "paymentSiteUrlText": "Go to payment page" }',
+      defaultValue: '{ "feeListPaymentSiteUrlText": "Go to payment page" }',
       control: { type: "text" }
     }
   },
