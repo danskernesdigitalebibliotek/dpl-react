@@ -4,7 +4,6 @@ import { FeeV2 } from "../../core/fbs/model";
 import StackableFees from "./stackable-fees/stackable-fees";
 import { FaustId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
-import FeePaymentButton from "./FeePaymentButton";
 
 interface ListProps {
   openDetailsModalClickEvent: (faustId: string) => void;
@@ -12,25 +11,23 @@ interface ListProps {
   dataCy: string;
   listHeader: ReactNode;
   totalText: string;
+  className?: string;
 }
 const List: FC<ListProps> = ({
   openDetailsModalClickEvent,
   fees,
   listHeader,
   dataCy,
-  totalText
+  totalText,
+  className
 }) => {
   const t = useText();
 
   return (
     <div>
       {fees && (
-        <div data-cy={dataCy}>
-          <ListHeader
-            header={listHeader}
-            amount={fees.length}
-            buttons={<FeePaymentButton />}
-          />
+        <div className={className} data-cy={dataCy}>
+          <ListHeader header={listHeader} amount={fees.length} />
           {fees.map((itemData) => (
             <StackableFees
               amountOfMaterialsWithDueDate={itemData.materials.length}
