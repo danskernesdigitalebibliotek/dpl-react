@@ -104,7 +104,6 @@ interface MaterialEntryTextProps {
   openOrderOrsErrorText: string;
   openOrderOwnedOwnCatalogueText: string;
   openOrderOwnedWrongMediumtypeText: string;
-  openOrderResponseIsReservedForYouText: string;
   openOrderResponseTitleText: string;
   openOrderServiceUnavailableText: string;
   openOrderStatusOwnedAcceptedText: string;
