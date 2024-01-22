@@ -14,12 +14,12 @@ const FeePaymentButton: FC<FeePaymentButtonProps> = ({
   const config = useConfig();
   const u = useUrls();
 
-  const { paymentSiteUrlText } = config<{
-    paymentSiteUrlText: string;
+  const { feeListPaymentSiteUrlText } = config<{
+    feeListPaymentSiteUrlText: string;
   }>("feeListConfig", {
     transformer: "jsonParse"
   });
-  const url = u("paymentSiteUrl", true);
+  const url = u("feeListPaymentSiteUrl", true);
 
   if (!url) return null;
 
@@ -31,7 +31,7 @@ const FeePaymentButton: FC<FeePaymentButtonProps> = ({
       size="small"
       variant="outline"
     >
-      {paymentSiteUrlText}
+      {feeListPaymentSiteUrlText}
     </LinkButton>
   );
 };
