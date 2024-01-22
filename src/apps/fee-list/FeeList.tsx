@@ -17,6 +17,7 @@ import {
 } from "./utils/helper";
 import ListHeader from "../../components/list-header/list-header";
 import EmptyList from "../../components/empty-list/empty-list";
+import FeePaymentButton from "./FeePaymentButton";
 
 const FeeList: FC = () => {
   const t = useText();
@@ -66,6 +67,7 @@ const FeeList: FC = () => {
             <ListHeader
               header={<>{t("unpaidFeesPayableByClientHeadlineText")}</>}
               amount={0}
+              buttons={<FeePaymentButton />}
             />
             <EmptyList
               classNames="mt-24"
