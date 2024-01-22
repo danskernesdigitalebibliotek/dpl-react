@@ -5,7 +5,6 @@ import BlockedTypes from "../../../core/utils/types/BlockedTypes";
 import { useUrls } from "../../../core/utils/url";
 import Link from "../../atoms/links/Link";
 import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
-import { getCurrentLocation } from "../../../core/utils/helpers/url";
 
 interface BlockedModalProps {
   blockedStatus: string;
