@@ -4,6 +4,7 @@ import { FeeV2 } from "../../core/fbs/model";
 import StackableFees from "./stackable-fees/stackable-fees";
 import { FaustId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
+import FeePaymentButton from "./FeePaymentButton";
 
 interface ListProps {
   openDetailsModalClickEvent: (faustId: string) => void;
@@ -25,7 +26,11 @@ const List: FC<ListProps> = ({
     <div>
       {fees && (
         <div data-cy={dataCy}>
-          <ListHeader header={listHeader} amount={fees.length} />
+          <ListHeader
+            header={listHeader}
+            amount={fees.length}
+            buttons={<FeePaymentButton />}
+          />
           {fees.map((itemData) => (
             <StackableFees
               amountOfMaterialsWithDueDate={itemData.materials.length}

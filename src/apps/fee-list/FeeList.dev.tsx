@@ -171,6 +171,14 @@ export default {
     feeListMaterialNumberText: {
       defaultValue: "# @materialNumber",
       control: { type: "text" }
+    },
+    paymentSiteUrl: {
+      defaultValue: "https://google.com",
+      control: { type: "text" }
+    },
+    feeListConfig: {
+      defaultValue: '{ "paymentSiteUrlText": "Go to payment page" }',
+      control: { type: "text" }
     }
   },
   decorators: [withQuery]
