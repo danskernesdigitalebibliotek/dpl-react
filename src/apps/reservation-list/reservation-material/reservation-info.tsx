@@ -176,6 +176,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       percent={0}
       label=""
       empty
+      showArrow={showArrow}
       className={reservationStatusClassNameOverride}
     />
   );
