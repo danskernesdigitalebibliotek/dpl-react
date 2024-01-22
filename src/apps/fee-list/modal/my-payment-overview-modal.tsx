@@ -8,7 +8,10 @@ import { useUrls } from "../../../core/utils/url";
 const MyPaymentOverviewModal: FC = () => {
   const t = useText();
   const u = useUrls();
-  const paymentOverviewUrl = u("paymentOverviewUrl");
+  // This whole component seems deprecated.
+  // TODO: Investigate if it should be removed.
+  const feeListPaymentSiteUrl = u("feeListPaymentSiteUrl", true);
+
   const { close } = useModalButtonHandler();
 
   const handleClick = () => {
@@ -33,14 +36,16 @@ const MyPaymentOverviewModal: FC = () => {
           </p>
         </div>
         <div className="modal-cta__buttons mt-48">
-          <Link
-            className="btn-primary btn-filled btn-large arrow__hover--right-small"
-            href={paymentOverviewUrl}
-            isNewTab
-          >
-            {t("feePaymentModalGotoText")}{" "}
-            <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
-          </Link>
+          {feeListPaymentSiteUrl && (
+            <Link
+              className="btn-primary btn-filled btn-large arrow__hover--right-small"
+              href={feeListPaymentSiteUrl}
+              isNewTab
+            >
+              {t("feePaymentModalGotoText")}{" "}
+              <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
+            </Link>
+          )}
           <div className="modal-cta__link">
             <button
               className="link-tag color-secondary-gray ml-8"

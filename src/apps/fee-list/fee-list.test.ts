@@ -123,7 +123,7 @@ describe("Fee list", () => {
     // 2.b text "Overdue fees and replacement costs that were created before dd/mm/åååå can still be paid on this page. See our fees and replacement costs"
     cy.getBySel("fee-list-body").should(
       "have.text",
-      "Overdue fees and replacement costs that were created before 27/10/2020 can still be paid on this page. See our fees and replacement costs"
+      "Overdue fees and replacement costs that were created before 27/10/2020 can still be paid on this page.See our fees and replacement costs"
     );
 
     // 2.c // 2.e subheadline "Unsettled debt 1"

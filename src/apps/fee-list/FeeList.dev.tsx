@@ -159,10 +159,6 @@ export default {
       defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
       control: { type: "text" }
     },
-    paymentOverviewUrl: {
-      defaultValue: "https://unsplash.com/photos/yjI3ozta2Zk", // Open source image of a fluffy floofer
-      control: { type: "text" }
-    },
     feeListAlreadyPaidInfoText: {
       defaultValue:
         "Already paid? It can take up to 72 hours to register the transaction.",
@@ -170,6 +166,14 @@ export default {
     },
     feeListMaterialNumberText: {
       defaultValue: "# @materialNumber",
+      control: { type: "text" }
+    },
+    feeListPaymentSiteUrl: {
+      defaultValue: "https://google.com",
+      control: { type: "text" }
+    },
+    feeListConfig: {
+      defaultValue: '{ "paymentSiteButtonLabel": "Go to payment page" }',
       control: { type: "text" }
     }
   },

@@ -18,12 +18,14 @@ export interface FeeListProps {
   emptyFeeListText: string;
   etAlText: string;
   feeCreatedText: string;
-  feeDetailsModalScreenReaderText: string;
   feeDetailsModalCloseModalAriaLabelText: string;
   feeDetailsModalDescriptionText: string;
+  feeDetailsModalScreenReaderText: string;
   feeListBodyText: string;
+  feeListConfig: string;
   feeListDaysText: string;
   feeListHeadlineText: string;
+  feeListPaymentSiteUrl: string;
   feePaymentModalBodyText: string;
   feePaymentModalCancelText: string;
   feePaymentModalGotoText: string;
@@ -43,8 +45,8 @@ export interface FeeListProps {
   totalFeeAmountText: string;
   totalText: string;
   turnedInText: string;
-  unpaidFeesPayableByClientHeadlineText: string;
   unpaidFeesNotPayableByClientHeadlineText: string;
+  unpaidFeesPayableByClientHeadlineText: string;
   viewFeesAndCompensationRatesText: string;
   viewFeesAndCompensationRatesUrl: string;
 }

@@ -17,6 +17,7 @@ import {
 } from "./utils/helper";
 import ListHeader from "../../components/list-header/list-header";
 import EmptyList from "../../components/empty-list/empty-list";
+import FeePaymentButton from "./FeePaymentButton";
 
 const FeeList: FC = () => {
   const t = useText();
@@ -55,12 +56,17 @@ const FeeList: FC = () => {
         <h1 data-cy="fee-list-headline" className="text-header-h1 my-32">
           {t("feeListHeadlineText")}
         </h1>
-        <span data-cy="fee-list-body">
-          {t("feeListBodyText")}{" "}
-          <Link className="link-tag" href={viewFeesAndCompensationRatesUrl}>
-            {t("viewFeesAndCompensationRatesText")}
-          </Link>
-        </span>
+        <div data-cy="fee-list-body">
+          <div className="fee-list-body__text">{t("feeListBodyText")}</div>
+          <div className="fee-list-body__payment-info-link">
+            <Link className="link-tag" href={viewFeesAndCompensationRatesUrl}>
+              {t("viewFeesAndCompensationRatesText")}
+            </Link>
+          </div>
+        </div>
+        <div className="fee-list-body__payment-button">
+          <FeePaymentButton />
+        </div>
         {!fbsFees.length && (
           <>
             <ListHeader
@@ -77,6 +83,7 @@ const FeeList: FC = () => {
         {getFeesBasedOnPayableByClient(fbsFees, true).length > 0 && (
           <List
             dataCy="fee-list"
+            className="fee-list"
             listHeader={t("unpaidFeesPayableByClientHeadlineText")}
             openDetailsModalClickEvent={openDetailsModalClickEvent}
             fees={getFeesBasedOnPayableByClient(fbsFees, true)}
@@ -91,6 +98,7 @@ const FeeList: FC = () => {
         {getFeesBasedOnPayableByClient(fbsFees, false).length > 0 && (
           <List
             dataCy="fee-list"
+            className="fee-list"
             listHeader={t("unpaidFeesNotPayableByClientHeadlineText")}
             openDetailsModalClickEvent={openDetailsModalClickEvent}
             fees={getFeesBasedOnPayableByClient(fbsFees, false)}

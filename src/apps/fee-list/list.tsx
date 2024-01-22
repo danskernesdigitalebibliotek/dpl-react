@@ -11,20 +11,22 @@ interface ListProps {
   dataCy: string;
   listHeader: ReactNode;
   totalText: string;
+  className?: string;
 }
 const List: FC<ListProps> = ({
   openDetailsModalClickEvent,
   fees,
   listHeader,
   dataCy,
-  totalText
+  totalText,
+  className
 }) => {
   const t = useText();
 
   return (
     <div>
       {fees && (
-        <div data-cy={dataCy}>
+        <div className={className} data-cy={dataCy}>
           <ListHeader header={listHeader} amount={fees.length} />
           {fees.map((itemData) => (
             <StackableFees

@@ -3,14 +3,14 @@ import React, { FC, ReactNode } from "react";
 export interface ListHeaderProps {
   header: string | ReactNode;
   amount: number | null;
-  children?: ReactNode;
+  buttons?: ReactNode;
   dataCy?: string;
 }
 
 const ListHeader: FC<ListHeaderProps> = ({
   header,
   amount,
-  children,
+  buttons,
   dataCy = "list-header"
 }) => {
   return (
@@ -21,7 +21,7 @@ const ListHeader: FC<ListHeaderProps> = ({
           <span className="dpl-list-buttons__power">{amount}</span>
         )}
       </h2>
-      <div className="dpl-list-buttons__buttons">{children}</div>
+      {buttons && <div className="dpl-list-buttons__buttons">{buttons}</div>}
     </div>
   );
 };
