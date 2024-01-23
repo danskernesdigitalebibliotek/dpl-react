@@ -92,6 +92,7 @@ const FeeList: FC = () => {
                 "@total": totalFeeAmountPayableByClient()
               }
             })}
+            alreadyPaidText={t("feeListAlreadyPaidInfoText")}
           />
         )}
         {/* List of fees that can only be paid by the user externally */}
@@ -107,6 +108,7 @@ const FeeList: FC = () => {
                 "@total": totalFeeAmountNotPayableByClient()
               }
             })}
+            alreadyPaidText={t("feeListAlreadyPaidSecondInfoText")}
           />
         )}
       </div>
