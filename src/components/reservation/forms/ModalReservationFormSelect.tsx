@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
+import clsx from "clsx";
 import Dropdown from "../../Dropdown/Dropdown";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
@@ -78,6 +79,12 @@ const ModalReservationFormSelect = ({
           if (setReservationStatus) setReservationStatus("idle");
         }
       }}
+      classNames={clsx([
+        {
+          "modal-cta modal-padding":
+            reservationStatus === "success" || reservationStatus === "error"
+        }
+      ])}
     >
       {reservationStatus === "success" && (
         <ModalMessage
