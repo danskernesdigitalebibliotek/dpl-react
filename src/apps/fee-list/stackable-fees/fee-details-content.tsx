@@ -3,7 +3,6 @@ import * as React from "react";
 import { FC } from "react";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
-import { FaustId } from "../../../core/utils/types/ids";
 import { dateFormatCustom } from "../../../core/configuration/date-format.json";
 import StackableFeesList from "./stackable-fees-list";
 import GroupModalContent from "../../../components/GroupModal/GroupModalContent";
@@ -47,14 +46,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
       >
         <div />
       </GroupModalContent>
-      {materials.map(({ recordId }) => (
-        <StackableFeesList
-          reasonForFee={reasonMessage}
-          materials={materials}
-          key={recordId}
-          item={{ faust: `${recordId}` as FaustId }}
-        />
-      ))}
+      <StackableFeesList reasonForFee={reasonMessage} materials={materials} />
     </div>
   );
 };
