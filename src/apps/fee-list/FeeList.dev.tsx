@@ -62,7 +62,7 @@ export default {
       control: { type: "text" }
     },
     totalText: {
-      defaultValue: "Total @total,-",
+      defaultValue: "Total @total DKK",
       control: { type: "text" }
     },
     expirationWarningDaysBeforeConfig: {
@@ -147,7 +147,7 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Fee @fee,-"
+      defaultValue: "Fee @fee DKK"
     },
     feeCreatedText: {
       control: {

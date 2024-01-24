@@ -89,7 +89,8 @@ const FeeList: FC = () => {
             fees={getFeesBasedOnPayableByClient(fbsFees, true)}
             totalText={t("totalText", {
               placeholders: {
-                "@total": totalFeeAmountPayableByClient()
+                "@total":
+                  totalFeeAmountPayableByClient().toLocaleString("da-DK")
               }
             })}
           />
@@ -104,7 +105,8 @@ const FeeList: FC = () => {
             fees={getFeesBasedOnPayableByClient(fbsFees, false)}
             totalText={t("totalText", {
               placeholders: {
-                "@total": totalFeeAmountNotPayableByClient()
+                "@total":
+                  totalFeeAmountNotPayableByClient().toLocaleString("da-DK")
               }
             })}
           />
