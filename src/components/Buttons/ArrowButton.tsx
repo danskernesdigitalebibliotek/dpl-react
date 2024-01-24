@@ -6,13 +6,15 @@ export interface ArrowButtonProps {
   clickEventHandler?: () => void;
   keyUpEventHandler?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
   arrowLabelledBy: string;
+  classNames?: string;
 }
 
 const ArrowButton: React.FC<ArrowButtonProps> = ({
   cursorPointer = false,
   clickEventHandler,
   keyUpEventHandler,
-  arrowLabelledBy
+  arrowLabelledBy,
+  classNames = ""
 }) => {
   const pointer = (cursorPointer && { cursor: "pointer" }) || {
     cursor: "inherit"
@@ -20,7 +22,7 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
   return (
     <button
       aria-labelledby={arrowLabelledBy}
-      className="arrow-button"
+      className={`${classNames} arrow-button`}
       style={pointer}
       type="button"
       onClick={(e) => {

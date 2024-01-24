@@ -152,14 +152,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </div>
         </div>
         {openDetailsModal && (
-          <div className="list-materials__arrow">
-            <ArrowButton
-              arrowLabelledBy={listId(item)}
-              cursorPointer
-              clickEventHandler={handleOnClick}
-              keyUpEventHandler={handleOnKeyUp}
-            />
-          </div>
+          <ArrowButton
+            arrowLabelledBy={listId(item)}
+            cursorPointer
+            clickEventHandler={handleOnClick}
+            keyUpEventHandler={handleOnKeyUp}
+            classNames="list-materials__arrow"
+          />
         )}
       </div>
     </li>
