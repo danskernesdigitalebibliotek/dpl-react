@@ -93,6 +93,7 @@ const FeeList: FC = () => {
                   totalFeeAmountPayableByClient().toLocaleString("da-DK")
               }
             })}
+            alreadyPaidText={t("feeListAlreadyPaidInfoText")}
           />
         )}
         {/* List of fees that can only be paid by the user externally */}
@@ -109,6 +110,7 @@ const FeeList: FC = () => {
                   totalFeeAmountNotPayableByClient().toLocaleString("da-DK")
               }
             })}
+            alreadyPaidText={t("feeListAlreadyPaidSecondInfoText")}
           />
         )}
       </div>

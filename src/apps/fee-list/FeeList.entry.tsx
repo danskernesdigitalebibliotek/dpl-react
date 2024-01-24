@@ -49,6 +49,8 @@ export interface FeeListProps {
   unpaidFeesPayableByClientHeadlineText: string;
   viewFeesAndCompensationRatesText: string;
   viewFeesAndCompensationRatesUrl: string;
+  feeListAlreadyPaidInfoText: string;
+  feeListAlreadyPaidSecondInfoText: string;
 }
 
 const FeeListEntry: FC<
