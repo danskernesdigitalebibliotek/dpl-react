@@ -2,23 +2,34 @@ import React, { useState, ChangeEvent } from "react";
 import Dropdown from "../../Dropdown/Dropdown";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
-import { modalReservationFormId, ModalReservationFormTextType } from "./helper";
+import {
+  modalReservationFormId,
+  modalReservationFormSelectTypeIsInterestPeriod,
+  ModalReservationFormTextType
+} from "./helper";
 import ReservationForm from "./ReservationForm";
 import { getReservationModalTypeTranslation } from "../helper";
 import { RequestStatus } from "../../../core/utils/types/request";
 import ModalMessage from "../../message/modal-message/ModalMessage";
+import { FormSelectValue } from "./types";
 
-export interface ModalReservationFormSelectProps {
+export interface ModalReservationFormSelectProps<
+  TValue extends FormSelectValue
+> {
   type: ModalReservationFormTextType;
   header: {
     title: string;
     description: string[];
   };
-  items: { label: string; value: string }[];
-  defaultSelectedItem: string;
-  selectHandler: (value: string) => void;
+  items: { label: string; value: TValue }[];
+  defaultSelectedItem: TValue;
+  selectHandler: <TSelectValue extends FormSelectValue>(
+    value: TSelectValue
+  ) => void;
   ariaLabel: string;
-  saveCallback?: () => void;
+  saveCallback?: <TSaveValue extends FormSelectValue>(
+    value: TSaveValue
+  ) => void;
   reservationStatus?: RequestStatus;
   setReservationStatus?: (status: RequestStatus) => void;
 }
@@ -36,7 +47,7 @@ const modalProps = (
   )
 });
 
-const ModalReservationFormSelect = ({
+const ModalReservationFormSelect = <TValue extends FormSelectValue>({
   type,
   header,
   items,
@@ -46,20 +57,23 @@ const ModalReservationFormSelect = ({
   saveCallback,
   reservationStatus,
   setReservationStatus
-}: ModalReservationFormSelectProps) => {
+}: ModalReservationFormSelectProps<TValue>) => {
   const { close } = useModalButtonHandler();
   const t = useText();
-  const [selectedItem, setSelectedItem] = useState<string>(defaultSelectedItem);
+  const [selectedItem, setSelectedItem] = useState<TValue>(defaultSelectedItem);
 
   const selectChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.target;
-    setSelectedItem(value);
+    const typedValue = modalReservationFormSelectTypeIsInterestPeriod(type)
+      ? Number(value)
+      : value;
+    setSelectedItem(typedValue as TValue);
   };
 
   const onSubmit = () => {
     selectHandler(selectedItem);
     if (saveCallback) {
-      saveCallback();
+      saveCallback(selectedItem);
     } else {
       close(modalReservationFormId(type));
     }
@@ -112,7 +126,7 @@ const ModalReservationFormSelect = ({
             reservationStatus === "pending" ? t("loadingText") : undefined
           }
         >
-          <Dropdown
+          <Dropdown<TValue>
             options={items.map(({ label, value }) => ({
               label,
               value
