@@ -14,7 +14,7 @@ export type CoverProps = {
   description?: string;
   url?: URL;
   idType?: GetCoverCollectionType;
-  shadow?: boolean;
+  shadow?: "small" | "medium";
   linkAriaLabelledBy?: string;
 };
 
