@@ -33,7 +33,7 @@ const FeeInfo: FC<FeeInfoProps> = ({
           idType="pid"
           size="small"
           animate={false}
-          description={description || ""}
+          alt={description || ""}
         />
       </div>
       <div className="list-reservation__information">

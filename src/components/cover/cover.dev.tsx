@@ -31,8 +31,8 @@ export default {
       name: "URL",
       control: { type: "string" }
     },
-    description: {
-      name: "Description",
+    alt: {
+      name: "Alt text",
       control: { type: "text" }
     }
   },
@@ -43,7 +43,7 @@ export default {
     animate: true,
     tint: "120",
     url: new URL("/", getCurrentLocation()),
-    description: "description"
+    alt: "alt text for the image"
   }
 } as ComponentMeta<typeof Cover>;
 

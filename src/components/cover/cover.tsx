@@ -11,7 +11,7 @@ export type CoverProps = {
   size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
   id: Pid | string;
-  description?: string;
+  alt?: string;
   url?: URL;
   idType?: GetCoverCollectionType;
   shadow?: "small" | "medium";
@@ -20,7 +20,7 @@ export type CoverProps = {
 
 export const Cover = ({
   url,
-  description,
+  alt,
   size,
   animate,
   tint,
@@ -81,7 +81,7 @@ export const Cover = ({
           <CoverImage
             setImageLoaded={handleSetImageLoaded}
             src={coverSrc}
-            altText={description}
+            altText={alt}
             animate={animate}
             shadow={shadow}
           />
@@ -96,7 +96,7 @@ export const Cover = ({
         <CoverImage
           setImageLoaded={handleSetImageLoaded}
           src={coverSrc}
-          altText={description}
+          altText={alt}
           animate={animate}
           shadow={shadow}
         />
