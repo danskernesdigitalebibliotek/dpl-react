@@ -16,7 +16,7 @@ export default {
   },
   interestPeriodsConfig: {
     defaultValue:
-      '{ "interestPeriods":[ { "value":14, "label":"14 days" }, { "value":30, "label":"1 month" }, { "value":60, "label":"2 months" }, { "value":90, "label":"3 months" }, { "value":180, "label":"6 months" }, { "value":365, "label":"1 year" } ], "defaultInterestPeriod":{ "value":"14", "label":"14 days" } }',
+      '{ "interestPeriods":[ { "value":14, "label":"14 days" }, { "value":30, "label":"1 month" }, { "value":60, "label":"2 months" }, { "value":90, "label":"3 months" }, { "value":180, "label":"6 months" }, { "value":365, "label":"1 year" } ], "defaultInterestPeriod":{ "value":14, "label":"14 days" } }',
     control: { type: "text" }
   },
   reservationDetailsRemoveDigitalReservationText: {
