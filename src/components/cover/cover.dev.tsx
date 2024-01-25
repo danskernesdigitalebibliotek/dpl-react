@@ -10,6 +10,7 @@ export default {
   title: "Components / Cover",
   component: Cover,
   argTypes: {
+    ...serviceUrlArgs,
     ...globalTextArgs,
     size: {
       name: "Image size",
@@ -37,7 +38,6 @@ export default {
     }
   },
   args: {
-    ...serviceUrlArgs,
     id: "870970-basis:45234401",
     size: "small",
     animate: true,
