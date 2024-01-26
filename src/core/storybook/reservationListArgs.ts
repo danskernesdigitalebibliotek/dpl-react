@@ -189,6 +189,10 @@ export default {
       "Pause your reservations early, since reservations that are already being processed, will not be paused.",
     control: { type: "text" }
   },
+  pauseReservationModalDateRangeLabelText: {
+    defaultValue: "Pause period",
+    control: { type: "text" }
+  },
   pauseReservationModalCloseModalText: {
     defaultValue: "Close pause reservations modal",
     control: { type: "text" }

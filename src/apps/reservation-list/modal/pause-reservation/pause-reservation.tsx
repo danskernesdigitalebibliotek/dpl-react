@@ -9,9 +9,9 @@ import {
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../../../core/fbs/fbs";
 import { Patron, PatronV5 } from "../../../../core/fbs/model";
-import DateInputs from "../../../../components/date-inputs/date-inputs";
 import { useUrls } from "../../../../core/utils/url";
 import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
+import DateRangeInput from "../../../../components/date-inputs/DateRangeInput";
 
 interface PauseReservationProps {
   id: string;
@@ -109,14 +109,17 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           id={saveFormId}
           onSubmit={(e) => {
             e.preventDefault();
-            save(startDate, endDate);
+            if (startDate && endDate) {
+              save(startDate, endDate);
+            }
           }}
         >
-          <DateInputs
+          <DateRangeInput
             setStartDate={setStartDate}
             setEndDate={setEndDate}
             startDate={startDate}
             endDate={endDate}
+            label={t("pauseReservationModalDateRangeLabelText")}
           />
         </form>
         <div className="modal-pause__text-link mt-24 color-secondary-gray">
