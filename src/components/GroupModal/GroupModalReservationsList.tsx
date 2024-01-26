@@ -45,7 +45,16 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
   const onMaterialChecked = (item: ListType) => {
     const selectedMaterialsCopy = [...selectedMaterials];
 
-    const indexOfItemToRemove = selectedMaterials.indexOf(item);
+    const indexOfItemToRemove = selectedMaterials.findIndex((obj) => {
+      if (item.faust !== null) {
+        return obj.faust === item.faust;
+      }
+      if (item.identifier !== undefined) {
+        return obj.identifier === item.identifier;
+      }
+      return -1;
+    });
+
     if (indexOfItemToRemove > -1) {
       selectedMaterialsCopy.splice(indexOfItemToRemove, 1);
     } else {
