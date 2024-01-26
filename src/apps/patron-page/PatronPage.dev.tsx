@@ -74,14 +74,6 @@ export default {
       defaultValue: "Pause period",
       control: { type: "text" }
     },
-    dateInputsStartDateLabelText: {
-      defaultValue: "Start date",
-      control: { type: "text" }
-    },
-    dateInputsEndDateLabelText: {
-      defaultValue: "End date",
-      control: { type: "text" }
-    },
     pauseReservationModalLinkText: {
       defaultValue:
         "Read more about pausing reservertions and what that means here",
