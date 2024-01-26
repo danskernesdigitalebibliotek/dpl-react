@@ -25,7 +25,7 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
   startDate,
   endDate,
   label,
-  className = "datepickers"
+  className = "date-range"
 }) => {
   const refBelowInputField = React.useRef<HTMLDivElement | null>(null);
 
@@ -39,7 +39,7 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
   return (
     <>
       <div className={className}>
-        <div className="datepicker">
+        <div className="date-range__input">
           <label htmlFor="date-range" className="text-body-medium-regular">
             {label}
           </label>
