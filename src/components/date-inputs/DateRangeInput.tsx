@@ -17,6 +17,7 @@ export interface DateRangeInputProps {
   endDate: string;
   label: string;
   className?: string;
+  dataCy?: string;
 }
 
 const DateRangeInput: FC<DateRangeInputProps> = ({
@@ -25,7 +26,8 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
   startDate,
   endDate,
   label,
-  className = "date-range"
+  className = "date-range",
+  dataCy = "date-range"
 }) => {
   const refBelowInputField = React.useRef<HTMLDivElement | null>(null);
 
@@ -38,7 +40,7 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
 
   return (
     <>
-      <div className={className}>
+      <div data-cy={dataCy} className={className}>
         <div className="date-range__input">
           <label htmlFor="date-range" className="text-body-medium-regular">
             {label}

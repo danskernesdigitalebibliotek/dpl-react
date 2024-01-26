@@ -70,6 +70,10 @@ export default {
       defaultValue: "Close pause reservations modal",
       control: { type: "text" }
     },
+    pauseReservationModalDateRangeLabelText: {
+      defaultValue: "Pause period",
+      control: { type: "text" }
+    },
     dateInputsStartDateLabelText: {
       defaultValue: "Start date",
       control: { type: "text" }
