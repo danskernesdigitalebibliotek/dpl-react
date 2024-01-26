@@ -47,7 +47,7 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
       <div>
         <div className="list-reservation__deadline">
           {info && <InfoLabel>{info}</InfoLabel>}
-          {typeof label === "string" && reservationInfo?.faust == null && (
+          {typeof label === "string" && (
             <p className="text-small-caption">{label}</p>
           )}
           {typeof label !== "string" &&
