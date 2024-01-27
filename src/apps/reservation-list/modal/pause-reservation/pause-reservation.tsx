@@ -128,16 +128,17 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         <div className="modal-pause__text-link">
           <p className="text-body-small-regular">
             {t("pauseReservationModalBelowInputsText")}
-            &nbsp;
-            <Link
-              id="pause-reservation-info-link"
-              href={pauseReservationInfoUrl}
-              className="link-tag"
-            >
-              {t("pauseReservationModalLinkText")}
-            </Link>
           </p>
         </div>
+        <p className="text-body-small-regular">
+          <Link
+            id="pause-reservation-info-link"
+            href={pauseReservationInfoUrl}
+            className="link-tag"
+          >
+            {t("pauseReservationModalLinkText")}
+          </Link>
+        </p>
         <div className="modal-pause__button mt-48">
           <button
             type="submit"
