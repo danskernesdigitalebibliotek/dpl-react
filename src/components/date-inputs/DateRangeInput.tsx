@@ -29,7 +29,11 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
   className = "date-range",
   dataCy = "date-range"
 }) => {
-  const refBelowInputField = React.useRef<HTMLDivElement | null>(null);
+  const refLabel = React.useRef<HTMLLabelElement | null>(null);
+
+  const scrollCalendarIntoView = () => {
+    refLabel.current?.scrollIntoView();
+  };
 
   // We only create a default date if both start and end date are set
   // Because it is about defing a range.
@@ -39,37 +43,39 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
       : undefined;
 
   return (
-    <>
-      <div data-cy={dataCy} className={className}>
-        <div className="date-range__input">
-          <label htmlFor="date-range" className="text-body-medium-regular">
-            {label}
-          </label>
-          <Flatpickr
-            id="date-range"
-            value={value}
-            options={{
-              altInput: true,
-              minDate: dayjs().toDate(),
-              locale: Danish,
-              dateFormat: "d-m-Y",
-              static: true,
-              mode: "range",
-              onReady: (selectedDates, dateStr, instance) => {
-                instance.altInput?.setAttribute("aria-label", label);
-              }
-            }}
-            onChange={([start, end]) => {
-              if (start && end) {
-                setStartDate(dayjs(start).format("YYYY-MM-DD"));
-                setEndDate(dayjs(end).format("YYYY-MM-DD"));
-              }
-            }}
-          />
-        </div>
+    <div data-cy={dataCy} className={className}>
+      <div className="date-range__input">
+        <label
+          ref={refLabel}
+          htmlFor="date-range"
+          className="text-body-medium-regular"
+        >
+          {label}
+        </label>
+        <Flatpickr
+          id="date-range"
+          value={value}
+          options={{
+            altInput: true,
+            minDate: dayjs().toDate(),
+            locale: Danish,
+            dateFormat: "d-m-Y",
+            static: true,
+            mode: "range",
+            onOpen: scrollCalendarIntoView,
+            onReady: (dates, currentDateStr, self) => {
+              self.altInput?.setAttribute("aria-label", label);
+            }
+          }}
+          onChange={([start, end]) => {
+            if (start && end) {
+              setStartDate(dayjs(start).format("YYYY-MM-DD"));
+              setEndDate(dayjs(end).format("YYYY-MM-DD"));
+            }
+          }}
+        />
       </div>
-      <div ref={refBelowInputField}>&nbsp;</div>
-    </>
+    </div>
   );
 };
 export default DateRangeInput;
