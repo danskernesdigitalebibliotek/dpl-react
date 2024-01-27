@@ -59,7 +59,7 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
                 instance.altInput?.setAttribute("aria-label", label);
               }
             }}
-            onValueUpdate={([start, end]) => {
+            onChange={([start, end]) => {
               if (start && end) {
                 setStartDate(dayjs(start).format("YYYY-MM-DD"));
                 setEndDate(dayjs(end).format("YYYY-MM-DD"));
