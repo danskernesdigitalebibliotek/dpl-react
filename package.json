@@ -63,7 +63,7 @@
     "@graphql-codegen/typescript-react-query": "^3.5.12",
     "@graphql-typed-document-node/core": "^3.1.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
-    "@namics/stylelint-bem": "^9.0.0",
+    "@namics/stylelint-bem": "^10.0.0",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/addon-queryparams": "^6.2.9",
