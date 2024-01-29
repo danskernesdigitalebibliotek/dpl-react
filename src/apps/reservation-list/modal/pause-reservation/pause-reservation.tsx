@@ -9,9 +9,9 @@ import {
   getGetPatronInformationByPatronIdV2QueryKey
 } from "../../../../core/fbs/fbs";
 import { Patron, PatronV5 } from "../../../../core/fbs/model";
-import DateInputs from "../../../../components/date-inputs/date-inputs";
 import { useUrls } from "../../../../core/utils/url";
 import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
+import DateRangeInput from "../../../../components/date-inputs/DateRangeInput";
 
 interface PauseReservationProps {
   id: string;
@@ -100,8 +100,8 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         <h2 className="text-header-h3">
           {t("pauseReservationModalHeaderText")}
         </h2>
-        <div className="mt-48 color-secondary-gray">
-          <p className="text-body-medium-regular mb-32">
+        <div className="modal-pause__subtitle">
+          <p className="text-body-medium-regular">
             {t("pauseReservationModalBodyText")}
           </p>
         </div>
@@ -109,28 +109,37 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           id={saveFormId}
           onSubmit={(e) => {
             e.preventDefault();
-            save(startDate, endDate);
+            if (startDate && endDate) {
+              save(startDate, endDate);
+            }
           }}
         >
-          <DateInputs
-            setStartDate={setStartDate}
-            setEndDate={setEndDate}
-            startDate={startDate}
-            endDate={endDate}
-          />
+          <div className="modal-pause__date-range">
+            <DateRangeInput
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+              startDate={startDate}
+              endDate={endDate}
+              label={t("pauseReservationModalDateRangeLabelText")}
+              placeholder={t("pauseReservationModalDateRangePlaceholderText")}
+            />
+          </div>
         </form>
-        <div className="modal-pause__text-link mt-24 color-secondary-gray">
+
+        <div className="modal-pause__text-link">
           <p className="text-body-small-regular">
             {t("pauseReservationModalBelowInputsText")}
-            <Link
-              id="pause-reservation-info-link"
-              href={pauseReservationInfoUrl}
-              className="link-tag"
-            >
-              {t("pauseReservationModalLinkText")}
-            </Link>
           </p>
         </div>
+        <p className="text-body-small-regular">
+          <Link
+            id="pause-reservation-info-link"
+            href={pauseReservationInfoUrl}
+            className="link-tag"
+          >
+            {t("pauseReservationModalLinkText")}
+          </Link>
+        </p>
         <div className="modal-pause__button mt-48">
           <button
             type="submit"
