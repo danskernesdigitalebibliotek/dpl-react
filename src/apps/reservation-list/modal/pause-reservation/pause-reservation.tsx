@@ -121,6 +121,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
               startDate={startDate}
               endDate={endDate}
               label={t("pauseReservationModalDateRangeLabelText")}
+              placeholder={t("pauseReservationModalDateRangePlaceholderText")}
             />
           </div>
         </form>

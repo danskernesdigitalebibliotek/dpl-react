@@ -16,6 +16,7 @@ export interface DateRangeInputProps {
   startDate: string;
   endDate: string;
   label: string;
+  placeholder?: string;
   className?: string;
   dataCy?: string;
 }
@@ -26,6 +27,7 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
   startDate,
   endDate,
   label,
+  placeholder,
   className = "date-range",
   dataCy = "date-range"
 }) => {
@@ -65,6 +67,26 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
             onOpen: scrollCalendarIntoView,
             onReady: (dates, currentDateStr, self) => {
               self.altInput?.setAttribute("aria-label", label);
+              const classes =
+                self.altInput?.getAttribute("class")?.split(" ") || [];
+
+              // Set placeholder if no dates are chosen and a placeholder is given.
+              if (!dates.length && placeholder) {
+                self.altInput?.setAttribute("placeholder", placeholder);
+              }
+              // Set empty-date-range class if no dates are chosen.
+              if (!dates.length && !classes.includes("empty-date-range")) {
+                classes.push("empty-date-range");
+                self.altInput?.setAttribute("class", classes.join(" "));
+              }
+            },
+            onValueUpdate: (dates, currentDateStr, self) => {
+              const classes =
+                self.altInput?.getAttribute("class")?.split(" ") || [];
+              if (dates.length && classes.includes("empty-date-range")) {
+                classes.splice(classes.indexOf("empty-date-range"), 1);
+                self.altInput?.setAttribute("class", classes.join(" "));
+              }
             }
           }}
           onChange={([start, end]) => {

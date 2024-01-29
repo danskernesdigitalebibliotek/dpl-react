@@ -193,6 +193,10 @@ export default {
     defaultValue: "Pause period",
     control: { type: "text" }
   },
+  pauseReservationModalDateRangePlaceholderText: {
+    defaultValue: "Choose pause period",
+    control: { type: "text" }
+  },
   pauseReservationModalCloseModalText: {
     defaultValue: "Close pause reservations modal",
     control: { type: "text" }

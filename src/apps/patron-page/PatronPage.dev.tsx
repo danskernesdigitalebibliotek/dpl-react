@@ -74,6 +74,10 @@ export default {
       defaultValue: "Pause period",
       control: { type: "text" }
     },
+    pauseReservationModalDateRangePlaceholderText: {
+      defaultValue: "Choose pause period",
+      control: { type: "text" }
+    },
     pauseReservationModalLinkText: {
       defaultValue:
         "Read more about pausing reservertions and what that means here",
