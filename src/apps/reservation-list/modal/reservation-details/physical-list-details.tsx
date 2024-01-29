@@ -33,6 +33,7 @@ import { formatDate } from "../../../../core/utils/helpers/date";
 import { getReadyForPickup } from "../../utils/helpers";
 import { Periods } from "../../../../components/reservation/types";
 import { FormSelectValue } from "../../../../components/reservation/forms/types";
+import { getReservationsForSaving } from "./helper";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
@@ -86,21 +87,14 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       setReservationStatus("error");
       return;
     }
-    let selectedExpiryDate: null | string = null;
-    let selectedPickupBranch: null | string = null;
-    if (typeof formSelectValue === "number") {
-      selectedExpiryDate = getFutureDateString(formSelectValue);
-    }
-    if (typeof formSelectValue === "string") {
-      selectedPickupBranch = formSelectValue;
-    }
-    const reservationsChanges = reservationIds.map((reservationId) => {
-      return {
-        expiryDate: selectedExpiryDate ?? expiryDate ?? "",
-        pickupBranch: selectedPickupBranch ?? selectedBranch,
-        reservationId
-      };
+
+    const reservationsChanges = getReservationsForSaving({
+      formSelectValue,
+      reservationIds,
+      expiryDate,
+      selectedBranch
     });
+
     mutate(
       {
         data: {
