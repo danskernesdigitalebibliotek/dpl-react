@@ -116,7 +116,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         // The decision regarding this is, that if the user is number 4
         // in the queue for a material, the "percent-wheel-thing" should be 1/4 full.
         percent={(1 / numberInQueue) * 100}
-        label={numberInLineLabel}
+        label={showStatusCircleIcon ? numberInLineLabel : ""}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
         empty={!showStatusCircleIcon}
@@ -176,6 +176,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       percent={0}
       label=""
       empty
+      showArrow={showArrow}
       className={reservationStatusClassNameOverride}
     />
   );
