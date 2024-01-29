@@ -1,3 +1,5 @@
+import { FormSelectValue } from "../../../../components/reservation/forms/types";
+import { getFutureDateString } from "../../../../components/reservation/helper";
 import { ComplexSearchWithPaginationWorkAccessQuery } from "../../../../core/dbc-gateway/generated/graphql";
 
 type AccessManifestations =
@@ -30,6 +32,31 @@ export const findEreolAccessLinkFromManifestations = (
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore-next-line
   return ereolAccess?.url;
+};
+
+export const getReservationsForSaving = ({
+  formSelectValue,
+  reservationIds,
+  expiryDate,
+  selectedBranch
+}: {
+  formSelectValue: FormSelectValue;
+  reservationIds: number[];
+  expiryDate?: string | null;
+  selectedBranch: string;
+}) => {
+  const getSelectedExpiryDate = (value: FormSelectValue) =>
+    typeof value === "number" ? getFutureDateString(value) : expiryDate ?? "";
+  const getSelectedPickupBranch = (value: FormSelectValue) =>
+    typeof value === "string" ? value : selectedBranch;
+
+  return reservationIds.map((reservationId) => {
+    return {
+      expiryDate: getSelectedExpiryDate(formSelectValue),
+      pickupBranch: getSelectedPickupBranch(formSelectValue),
+      reservationId
+    };
+  });
 };
 
 export default {};
