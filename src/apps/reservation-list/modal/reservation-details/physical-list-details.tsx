@@ -31,6 +31,9 @@ import NoInterestAfterModal from "../../../../components/reservation/forms/NoInt
 import { RequestStatus } from "../../../../core/utils/types/request";
 import { formatDate } from "../../../../core/utils/helpers/date";
 import { getReadyForPickup } from "../../utils/helpers";
+import { Periods } from "../../../../components/reservation/types";
+import { FormSelectValue } from "../../../../components/reservation/forms/types";
+import { getReservationsForSaving } from "./helper";
 
 interface PhysicalListDetailsProps {
   reservation: ReservationType;
@@ -53,34 +56,31 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   const { open } = useModalButtonHandler();
   const queryClient = useQueryClient();
   const { mutate } = useUpdateReservations();
-
+  const interestPeriods = config<Periods>("interestPeriodsConfig", {
+    transformer: "jsonParse"
+  });
   const [selectedInterest, setSelectedInterest] = useState<number | null>(null);
   const [selectedBranch, setSelectedBranch] = useState<
     string | undefined | null
   >(pickupBranch);
   const [reservationStatus, setReservationStatus] =
     useState<RequestStatus>("idle");
-
   const openModal = (type: ModalReservationFormTextType) => () => {
     open(modalReservationFormId(type));
   };
-
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
-
   const blacklistBranches = config("blacklistedPickupBranchesConfig", {
     transformer: "stringToArray"
   });
-
   const whitelistBranches = excludeBlacklistedBranches(
     branches,
     blacklistBranches
   );
-
   const isReadyForPickup = getReadyForPickup([reservation]).length > 0;
 
-  const saveChanges = () => {
+  const saveChanges = (formSelectValue: FormSelectValue) => {
     setReservationStatus("pending");
     if (!reservationIds || reservationIds.length === 0 || !selectedBranch) {
       console.error("Missing reservationId or selectedBranch"); // eslint-disable-line no-console
@@ -88,18 +88,11 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
       return;
     }
 
-    let selectedExpiryDate = expiryDate || "";
-
-    if (selectedInterest) {
-      selectedExpiryDate = getFutureDateString(selectedInterest);
-    }
-
-    const reservationsChanges = reservationIds.map((reservationId) => {
-      return {
-        expiryDate: selectedExpiryDate,
-        pickupBranch: selectedBranch,
-        reservationId
-      };
+    const reservationsChanges = getReservationsForSaving({
+      formSelectValue,
+      reservationIds,
+      expiryDate,
+      selectedBranch
     });
 
     mutate(
@@ -175,7 +168,10 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
           />
           {!isReadyForPickup && (
             <NoInterestAfterModal
-              selectedInterest={selectedInterest ?? 90}
+              selectedInterest={
+                selectedInterest ??
+                Number(interestPeriods.defaultInterestPeriod.value)
+              }
               setSelectedInterest={setSelectedInterest}
               saveCallback={saveChanges}
               reservationStatus={reservationStatus}
