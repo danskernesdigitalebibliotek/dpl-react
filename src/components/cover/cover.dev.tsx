@@ -10,6 +10,7 @@ export default {
   title: "Components / Cover",
   component: Cover,
   argTypes: {
+    ...serviceUrlArgs,
     ...globalTextArgs,
     size: {
       name: "Image size",
@@ -31,19 +32,18 @@ export default {
       name: "URL",
       control: { type: "string" }
     },
-    description: {
-      name: "Description",
+    alt: {
+      name: "Alt text",
       control: { type: "text" }
     }
   },
   args: {
-    ...serviceUrlArgs,
     id: "870970-basis:45234401",
     size: "small",
     animate: true,
     tint: "120",
     url: new URL("/", getCurrentLocation()),
-    description: "description"
+    alt: "alt text for the image"
   }
 } as ComponentMeta<typeof Cover>;
 

@@ -46,7 +46,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
           idType={pid ? "pid" : "isbn"}
           size="small"
           animate={false}
-          description={description || ""}
+          alt={description || ""}
         />
       </div>
       <div className="list-reservation__information">

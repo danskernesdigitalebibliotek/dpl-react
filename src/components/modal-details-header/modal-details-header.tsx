@@ -39,7 +39,7 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
               idType={pid ? "pid" : "isbn"}
               size="large"
               animate={false}
-              description={description || ""}
+              alt={description || ""}
             />
           </span>
         </div>
