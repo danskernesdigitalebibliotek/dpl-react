@@ -87,11 +87,15 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
           let statusText = "";
 
           if (identifier && state === "reserved") {
-            statusText = t("reservationListAvailableInText", {
-              placeholders: {
-                "@count": daysBetweenTodayAndDate(pickupDeadline ?? "")
-              }
-            });
+            if (pickupDeadline === null || pickupDeadline === "") {
+              statusText = t("reservationQueueText");
+            } else {
+              statusText = t("reservationListAvailableInText", {
+                placeholders: {
+                  "@count": daysBetweenTodayAndDate(pickupDeadline ?? "")
+                }
+              });
+            }
           } else if (faust && numberInQueue) {
             statusText = t("dashboardNumberInLineText", {
               count: numberInQueue,

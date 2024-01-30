@@ -153,6 +153,10 @@ export default {
       defaultValue: "Borrow before @date",
       control: { type: "text" }
     },
+    reservationQueueText: {
+      defaultValue: "You are in the reservation queue",
+      control: { type: "text" }
+    },
     reservationListAvailableInText: {
       defaultValue: "Available in @count days",
       control: { type: "text" }
