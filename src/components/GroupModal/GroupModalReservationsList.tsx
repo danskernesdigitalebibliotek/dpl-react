@@ -88,7 +88,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
 
           if (identifier && state === "reserved") {
             if (pickupDeadline === null || pickupDeadline === "") {
-              statusText = t("reservationQueueText");
+              statusText = t("reservationListYouAreInQueueText");
             } else {
               statusText = t("reservationListAvailableInText", {
                 placeholders: {

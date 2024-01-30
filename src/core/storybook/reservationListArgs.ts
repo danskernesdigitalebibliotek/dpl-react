@@ -123,7 +123,7 @@ export default {
     defaultValue: "Borrow before @date",
     control: { type: "text" }
   },
-  reservationQueueText: {
+  reservationListYouAreInQueueText: {
     defaultValue: "You are in the reservation queue",
     control: { type: "text" }
   },
