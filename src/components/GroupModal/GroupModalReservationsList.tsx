@@ -81,39 +81,36 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
             isEqual(selectedMaterial, material)
           );
           return (
-            <>
-              {(identifier || reservationIds || faust) && (
-                <SelectableMaterial
-                  item={material}
-                  displayedMaterial={material}
-                  focused={i === firstInNewPage}
-                  statusBadgeComponent={
-                    faust && (
-                      <StatusBadge
-                        badgeDate={expiryDate}
-                        neutralText={
-                          numberInQueue
-                            ? t("dashboardNumberInLineText", {
-                                count: numberInQueue,
-                                placeholders: { "@count": numberInQueue }
-                              })
-                            : ""
-                        }
-                        infoText=""
-                      />
-                    )
-                  }
-                  openDetailsModal={openDetailsModal}
-                  key={reservationId(material)}
-                  selected={selected}
-                  onMaterialChecked={onMaterialChecked}
-                  disabled={false}
-                  statusMessageComponentMobile={null}
-                  statusMessageComponentDesktop={null}
-                />
-              )}
-              {!identifier && null}
-            </>
+            (identifier || reservationIds || faust) && (
+              <SelectableMaterial
+                item={material}
+                displayedMaterial={material}
+                focused={i === firstInNewPage}
+                statusBadgeComponent={
+                  faust && (
+                    <StatusBadge
+                      badgeDate={expiryDate}
+                      neutralText={
+                        numberInQueue
+                          ? t("dashboardNumberInLineText", {
+                              count: numberInQueue,
+                              placeholders: { "@count": numberInQueue }
+                            })
+                          : ""
+                      }
+                      infoText=""
+                    />
+                  )
+                }
+                openDetailsModal={openDetailsModal}
+                key={reservationId(material)}
+                selected={selected}
+                onMaterialChecked={onMaterialChecked}
+                disabled={false}
+                statusMessageComponentMobile={null}
+                statusMessageComponentDesktop={null}
+              />
+            )
           );
         })}
       </ul>
