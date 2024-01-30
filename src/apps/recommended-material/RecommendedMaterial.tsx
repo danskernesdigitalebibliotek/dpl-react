@@ -74,8 +74,18 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({ wid }) => {
         shadow="medium"
       />
       <div className="recommended-material__texts">
-        <p className="recommended-material__description">{fullTitle}</p>
-        <p className="recommended-material__author">{author} </p>
+        <p
+          className="recommended-material__description"
+          data-cy="recommended-description"
+        >
+          {fullTitle}
+        </p>
+        <p
+          className="recommended-material__author"
+          data-cy="recommended-author"
+        >
+          {author}{" "}
+        </p>
       </div>
     </div>
   );
