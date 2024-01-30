@@ -9,6 +9,7 @@ import {
 } from "../../core/utils/types/reservation-type";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
 import { ListType } from "../../core/utils/types/list-type";
+import { daysBetweenTodayAndDate } from "../../core/utils/helpers/general";
 
 export interface GroupModalReservationsListProps {
   materials: ReservationType[];
@@ -75,33 +76,43 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
             faust,
             identifier,
             numberInQueue,
+            pickupDeadline,
             reservationIds
           } = material;
           const selected = selectedMaterials?.some((selectedMaterial) =>
             isEqual(selectedMaterial, material)
           );
+
+          let statusText = "";
+
+          if (identifier) {
+            statusText = t("reservationListAvailableInText", {
+              placeholders: {
+                "@count": daysBetweenTodayAndDate(pickupDeadline ?? "")
+              }
+            });
+          } else if (faust && numberInQueue) {
+            statusText = t("dashboardNumberInLineText", {
+              count: numberInQueue,
+              placeholders: { "@count": numberInQueue }
+            });
+          }
+
+          const statusBadgeComponent = statusText ? (
+            <StatusBadge
+              badgeDate={expiryDate}
+              neutralText={statusText}
+              infoText=""
+            />
+          ) : null;
+
           return (
             (identifier || reservationIds || faust) && (
               <SelectableMaterial
                 item={material}
                 displayedMaterial={material}
                 focused={i === firstInNewPage}
-                statusBadgeComponent={
-                  faust && (
-                    <StatusBadge
-                      badgeDate={expiryDate}
-                      neutralText={
-                        numberInQueue
-                          ? t("dashboardNumberInLineText", {
-                              count: numberInQueue,
-                              placeholders: { "@count": numberInQueue }
-                            })
-                          : ""
-                      }
-                      infoText=""
-                    />
-                  )
-                }
+                statusBadgeComponent={statusBadgeComponent}
                 openDetailsModal={openDetailsModal}
                 key={reservationId(material)}
                 selected={selected}
