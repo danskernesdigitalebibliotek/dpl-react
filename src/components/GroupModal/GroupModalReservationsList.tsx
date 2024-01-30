@@ -77,7 +77,8 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
             identifier,
             numberInQueue,
             pickupDeadline,
-            reservationIds
+            reservationIds,
+            state
           } = material;
           const selected = selectedMaterials?.some((selectedMaterial) =>
             isEqual(selectedMaterial, material)
@@ -85,7 +86,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
 
           let statusText = "";
 
-          if (identifier) {
+          if (identifier && state === "reserved") {
             statusText = t("reservationListAvailableInText", {
               placeholders: {
                 "@count": daysBetweenTodayAndDate(pickupDeadline ?? "")
