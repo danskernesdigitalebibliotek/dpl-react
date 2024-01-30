@@ -18,7 +18,6 @@ import DeleteReservationModal, {
   deleteReservationModalId
 } from "../../reservation-list/modal/delete-reservation/delete-reservation-modal";
 import Notifications from "./Notifications";
-import AcceptModal from "../../../components/accept-fees-modal/AcceptFeesModal";
 import useReservations from "../../../core/utils/useReservations";
 import useLoans from "../../../core/utils/useLoans";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
@@ -57,7 +56,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       farFromOverdue: loansFarFromOverdue
     }
   } = useLoans();
-  const [accepted, setAccepted] = useState<boolean>(false);
   const [reservationsForDeleting, setReservationsForDeleting] = useState<
     ReservationType[]
   >([]);
@@ -65,7 +63,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   const [modalHeader, setModalHeader] = useState("");
 
   const { open } = useModalButtonHandler();
-  const { acceptModal, dueDateModal, deleteReservations } = getModalIds();
+  const { dueDateModal, deleteReservations } = getModalIds();
   const [dueDate, setDueDate] = useState<string | null>(null);
   const [modalLoan, setModalLoan] = useState<LoanType | null>(null);
   const [reservationForModal, setReservationForModal] =
@@ -178,10 +176,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     }
   ];
 
-  const openAcceptModal = useCallback(() => {
-    open(`${acceptModal}`);
-  }, [acceptModal, open]);
-
   const dashboardNotificationsReservations = [
     {
       listLength: reservationsReadyToLoan.length,
@@ -207,9 +201,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           : openModalHandler(reservationsQueueID as string)
     }
   ];
-  const resetAccepted = () => {
-    setAccepted(false);
-  };
 
   return (
     <>
@@ -254,9 +245,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       )}
       {dueDate && loans && loansToDisplay && (
         <LoansGroupModal
-          accepted={accepted}
-          resetAccepted={() => resetAccepted()}
-          openAcceptModal={openAcceptModal}
           pageSize={pageSize}
           openDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
@@ -296,7 +284,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           />
         </MaterialDetailsModal>
       )}
-      <AcceptModal accept={() => setAccepted(true)} />
     </>
   );
 };

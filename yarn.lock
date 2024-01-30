@@ -1469,10 +1469,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@danskernesdigitalebibliotek/dpl-design-system@^2024.4.0-174d424951b2cc03e92bd2522b707f59226e8f12":
-  version "2024.4.0-174d424951b2cc03e92bd2522b707f59226e8f12"
-  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/2024.4.0-174d424951b2cc03e92bd2522b707f59226e8f12/d41e0060d22bbef5d949bfadf1c8313df43748ea#d41e0060d22bbef5d949bfadf1c8313df43748ea"
-  integrity sha512-2X6JeQLeIlwmf+qMvr1i9LEudtehJSi8mwa98kqyBC0D9DU/N3XZ1rw3z/BRXjycC0MvVcuj5k1jkLli7RbJ+w==
+"@danskernesdigitalebibliotek/dpl-design-system@^2024.5.0-d17ec00d0db46973e99a8643a92b11e4eeb183d0":
+  version "2024.5.0-d17ec00d0db46973e99a8643a92b11e4eeb183d0"
+  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/2024.5.0-d17ec00d0db46973e99a8643a92b11e4eeb183d0/c05ae7ea3496406123ad8aec95d64d8d405655c3#c05ae7ea3496406123ad8aec95d64d8d405655c3"
+  integrity sha512-5SdeviV9nGYnkFt/TR6wTH/HAKtJJw9GhTsb6dPCrHZAKZDMMkeepjK9uKE8nQP4KEGQm6bw4qY3TVcommzaVw==
 
 "@discoveryjs/json-ext@^0.5.0", "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
@@ -4645,6 +4645,14 @@
   integrity sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==
   dependencies:
     "@types/react" "*"
+
+"@types/react-flatpickr@^3.8.11":
+  version "3.8.11"
+  resolved "https://registry.yarnpkg.com/@types/react-flatpickr/-/react-flatpickr-3.8.11.tgz#cec7d9afa535bff0631842b286e149f47fbeadfb"
+  integrity sha512-wXGyGRpUjiGknioxWzWJdNvF2XxKw5lAI7H64Iv7w4iL+1iT7QvAzrigz5FkW4lTg9IJOww6t7g21FzsrmRV6A==
+  dependencies:
+    "@types/react" "*"
+    flatpickr "^4.0.6"
 
 "@types/react-redux@^7.1.24":
   version "7.1.24"
@@ -10140,6 +10148,11 @@ flat-cache@^3.1.1:
     flatted "^3.2.9"
     keyv "^4.5.3"
     rimraf "^3.0.2"
+
+flatpickr@^4.0.6, flatpickr@^4.6.2:
+  version "4.6.13"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.13.tgz#8a029548187fd6e0d670908471e43abe9ad18d94"
+  integrity sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==
 
 flatted@^3.1.0:
   version "3.2.5"
@@ -15798,7 +15811,7 @@ prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.0.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -16083,6 +16096,14 @@ react-fast-compare@^3.0.1:
   version "3.2.0"
   resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-3.2.0.tgz"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
+
+react-flatpickr@^3.10.13:
+  version "3.10.13"
+  resolved "https://registry.yarnpkg.com/react-flatpickr/-/react-flatpickr-3.10.13.tgz#5b9d8f35f84e43f342fb0f0334b78a8dcd7d67c4"
+  integrity sha512-4m+K1K8jhvRFI8J/AHmQfA5hLALzhebEtEK8mLevXjX24MV3u502crzBn+EGFIBOfNUtrL5PId9FsGwgtuz/og==
+  dependencies:
+    flatpickr "^4.6.2"
+    prop-types "^15.5.10"
 
 react-focus-lock@2.5.2:
   version "2.5.2"

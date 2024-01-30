@@ -4,11 +4,12 @@ import ModalReservationFormSelect from "./ModalReservationFormSelect";
 import { useConfig } from "../../../core/utils/config";
 import { RequestStatus } from "../../../core/utils/types/request";
 import { Periods } from "../types";
+import { FormSelectValue } from "./types";
 
-export interface PickupModalProps {
-  selectedInterest: number | string;
+interface NoInterestAfterModalProps {
+  selectedInterest: number;
   setSelectedInterest: (value: number) => void;
-  saveCallback?: () => void;
+  saveCallback?: <TValue extends FormSelectValue>(value: TValue) => void;
   reservationStatus?: RequestStatus;
   setReservationStatus?: (status: RequestStatus) => void;
 }
@@ -19,7 +20,7 @@ const NoInterestAfterModal = ({
   saveCallback,
   reservationStatus,
   setReservationStatus
-}: PickupModalProps) => {
+}: NoInterestAfterModalProps) => {
   const t = useText();
   const config = useConfig();
   const interstPeriods = config<Periods>("interestPeriodsConfig", {
@@ -27,7 +28,7 @@ const NoInterestAfterModal = ({
   });
 
   return (
-    <ModalReservationFormSelect
+    <ModalReservationFormSelect<number>
       type="interestPeriod"
       header={{
         title: t("modalReservationFormNoInterestAfterHeaderTitleText"),
@@ -36,8 +37,10 @@ const NoInterestAfterModal = ({
         ]
       }}
       items={interstPeriods.interestPeriods}
-      defaultSelectedItem={String(selectedInterest)}
-      selectHandler={(value: string) => setSelectedInterest(Number(value))}
+      defaultSelectedItem={selectedInterest}
+      selectHandler={(value: FormSelectValue) => {
+        setSelectedInterest(Number(value));
+      }}
       ariaLabel={t("modalReservationFormNoInterestAfterLabelText")}
       saveCallback={saveCallback}
       reservationStatus={reservationStatus}

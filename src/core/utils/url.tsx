@@ -8,7 +8,11 @@ export const useUrls = () => {
   const { data } = useSelector((state: RootState) => state.url);
   const urls = useMemo(() => turnUrlStringsIntoObjects(data), [data]);
 
-  return (name: string) => {
+  return (name: string, returnFalseIfUndefined = false) => {
+    if (returnFalseIfUndefined) {
+      return urls[name] || false;
+    }
+
     if (!urls[name]) {
       throw new Error(`The url ${name} is not defined`);
     }

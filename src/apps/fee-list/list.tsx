@@ -3,7 +3,6 @@ import ListHeader from "../../components/list-header/list-header";
 import { FeeV2 } from "../../core/fbs/model";
 import StackableFees from "./stackable-fees/stackable-fees";
 import { FaustId } from "../../core/utils/types/ids";
-import { useText } from "../../core/utils/text";
 
 interface ListProps {
   openDetailsModalClickEvent: (faustId: string) => void;
@@ -11,20 +10,22 @@ interface ListProps {
   dataCy: string;
   listHeader: ReactNode;
   totalText: string;
+  className?: string;
+  alreadyPaidText: string;
 }
 const List: FC<ListProps> = ({
   openDetailsModalClickEvent,
   fees,
   listHeader,
   dataCy,
-  totalText
+  totalText,
+  className,
+  alreadyPaidText
 }) => {
-  const t = useText();
-
   return (
     <div>
       {fees && (
-        <div data-cy={dataCy}>
+        <div className={className} data-cy={dataCy}>
           <ListHeader header={listHeader} amount={fees.length} />
           {fees.map((itemData) => (
             <StackableFees
@@ -40,7 +41,7 @@ const List: FC<ListProps> = ({
             <div className="fee-list-bottom__paymenttypes" />
             <div className="fee-list-bottom__actions">
               <p className="text-small-caption color-secondary-gray">
-                {t("feeListAlreadyPaidInfoText")}
+                {alreadyPaidText}
               </p>
               <p className="text-body-small-medium mt-16">{totalText}</p>
             </div>

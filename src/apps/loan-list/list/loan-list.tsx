@@ -37,7 +37,6 @@ import LoansGroupModal from "../../../components/GroupModal/LoansGroupModal";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
 import StatusCircle from "../materials/utils/status-circle";
-import AcceptModal from "../../../components/accept-fees-modal/AcceptFeesModal";
 import { formatDate } from "../../../core/utils/helpers/date";
 import useLoans from "../../../core/utils/useLoans";
 
@@ -48,11 +47,10 @@ interface LoanListProps {
 const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
   const { open } = useModalButtonHandler();
-  const { loanDetails, allLoansId, dueDateModal, acceptModal } = getModalIds();
+  const { loanDetails, allLoansId, dueDateModal } = getModalIds();
   const t = useText();
   const [view, setView] = useState<ListView>("list");
   const [dueDate, setDueDate] = useState<string | null>(null);
-  const [accepted, setAccepted] = useState<boolean>(false);
   const [modalLoan, setModalLoan] = useState<LoanType | null>(null);
   const {
     fbs: {
@@ -61,11 +59,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     },
     publizon: { loans: loansDigital }
   } = useLoans();
-
-  const openAcceptModal = useCallback(() => {
-    open(`${acceptModal}`);
-  }, [acceptModal, open]);
-
   const openLoanDetailsModal = useCallback(
     (loan: LoanType) => {
       setModalLoan(loan);
@@ -118,10 +111,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const listContainsLoans =
     (Array.isArray(loansPhysical) && loansPhysical.length > 0) ||
     (Array.isArray(loansDigital) && loansDigital.length > 0);
-
-  const resetAccepted = () => {
-    setAccepted(false);
-  };
 
   return (
     <>
@@ -199,12 +188,9 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
       )}
       {loansPhysical && (
         <LoansGroupModal
-          accepted={accepted}
-          resetAccepted={() => resetAccepted()}
           pageSize={pageSize}
           openDetailsModal={openLoanDetailsModal}
           dueDate={dueDate}
-          openAcceptModal={openAcceptModal}
           loansModal={
             dueDate
               ? removeLoansWithDuplicateDueDate(dueDate, loansPhysical)
@@ -231,7 +217,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
           {!dueDate && <SimpleModalHeader header={t("groupModalHeaderText")} />}
         </LoansGroupModal>
       )}
-      <AcceptModal accept={() => setAccepted(true)} />
     </>
   );
 };

@@ -13,8 +13,7 @@ interface BlockedModalProps {
 const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
   const t = useText();
   const u = useUrls();
-  const blockedPatronELinkUrl = u("blockedPatronELinkUrl");
-
+  const blockedPatronELinkUrl = u("blockedPatronELinkUrl", true);
   const { blockedModal } = getModalIds();
 
   // If the user isn't actually blocked, don't render the modal.
@@ -38,7 +37,7 @@ const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
         <p className="mt-48 mb-48 text-body-large">
           {t(`blockedPatron${blockedStatus}BodyText`)}
         </p>
-        {blockedStatus === BlockedTypes.fee && (
+        {blockedStatus === BlockedTypes.fee && blockedPatronELinkUrl && (
           <Link href={blockedPatronELinkUrl}>
             {t(`blockedPatronELinkText`)}
           </Link>

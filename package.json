@@ -78,6 +78,7 @@
     "@types/node": "^20.11.5",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
+    "@types/react-flatpickr": "^3.8.11",
     "@types/react-redux": "^7.1.24",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^6.19.0",
@@ -143,7 +144,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.4.0-174d424951b2cc03e92bd2522b707f59226e8f12",
+    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.5.0-d17ec00d0db46973e99a8643a92b11e4eeb183d0",
     "@reach/alert": "^0.17.0",
     "@reach/dialog": "^0.18.0",
     "@reduxjs/toolkit": "^1.9.7",
@@ -161,6 +162,7 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^3.1.4",
+    "react-flatpickr": "^3.10.13",
     "react-query": "^3.39.3",
     "react-redux": "^8.1.3",
     "react-use": "^17.4.3",

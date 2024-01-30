@@ -1,4 +1,3 @@
-import "./dev-fonts.scss";
 import "../src/components/components.scss";
 import "@danskernesdigitalebibliotek/dpl-design-system/build/css/base.css";
 import {

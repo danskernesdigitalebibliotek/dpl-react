@@ -3,12 +3,13 @@ import { AgencyBranch } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
 import ModalReservationFormSelect from "./ModalReservationFormSelect";
 import { RequestStatus } from "../../../core/utils/types/request";
+import { FormSelectValue } from "./types";
 
 export interface PickupModalProps {
   branches: AgencyBranch[];
   defaultBranch: string;
   selectBranchHandler: (value: string) => void;
-  saveCallback?: () => void;
+  saveCallback?: <TValue extends FormSelectValue>(value: TValue) => void;
   reservationStatus?: RequestStatus;
   setReservationStatus?: (status: RequestStatus) => void;
 }
@@ -29,7 +30,7 @@ const PickupModal = ({
   }));
 
   return (
-    <ModalReservationFormSelect
+    <ModalReservationFormSelect<string>
       type="pickup"
       header={{
         title: t("modalReservationFormPickupHeaderTitleText"),
@@ -37,7 +38,9 @@ const PickupModal = ({
       }}
       items={formatBranches}
       defaultSelectedItem={defaultBranch}
-      selectHandler={selectBranchHandler}
+      selectHandler={(value: FormSelectValue) => {
+        selectBranchHandler(String(value));
+      }}
       ariaLabel={t("modalReservationFormPickupLabelText")}
       saveCallback={saveCallback}
       reservationStatus={reservationStatus}

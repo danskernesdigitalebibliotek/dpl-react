@@ -62,7 +62,7 @@ export default {
       control: { type: "text" }
     },
     totalText: {
-      defaultValue: "Total @total,-",
+      defaultValue: "Total @total DKK",
       control: { type: "text" }
     },
     expirationWarningDaysBeforeConfig: {
@@ -147,7 +147,7 @@ export default {
       control: {
         type: "text"
       },
-      defaultValue: "Fee @fee,-"
+      defaultValue: "Fee @fee DKK"
     },
     feeCreatedText: {
       control: {
@@ -159,17 +159,26 @@ export default {
       defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
       control: { type: "text" }
     },
-    paymentOverviewUrl: {
-      defaultValue: "https://unsplash.com/photos/yjI3ozta2Zk", // Open source image of a fluffy floofer
-      control: { type: "text" }
-    },
     feeListAlreadyPaidInfoText: {
       defaultValue:
         "Already paid? It can take up to 72 hours to register the transaction.",
       control: { type: "text" }
     },
+    feeListAlreadyPaidSecondInfoText: {
+      defaultValue:
+        "Already paid? It can take up to 72 hours to register the transaction. (not payable by user)",
+      control: { type: "text" }
+    },
     feeListMaterialNumberText: {
       defaultValue: "# @materialNumber",
+      control: { type: "text" }
+    },
+    feeListPaymentSiteUrl: {
+      defaultValue: "https://google.com",
+      control: { type: "text" }
+    },
+    feeListConfig: {
+      defaultValue: '{ "paymentSiteButtonLabel": "Go to payment page" }',
       control: { type: "text" }
     }
   },
