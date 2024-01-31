@@ -53,7 +53,6 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
             {notificationColor === "info" && <StatusBadge infoText={badge} />}
           </>
         )}
-
         {showNotificationDot && <div className="list-dashboard__dot" />}
         <div className="list-dashboard__arrow">
           <Arrow />
