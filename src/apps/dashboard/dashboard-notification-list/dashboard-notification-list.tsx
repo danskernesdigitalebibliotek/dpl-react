@@ -227,6 +227,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       {!columns && (
         <Notifications
           showOnlyNotifications
+          showStatusLabel={false}
           materials={[
             ...dashboardNotificationsLoan,
             ...dashboardNotificationsReservations
