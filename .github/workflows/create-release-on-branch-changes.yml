@@ -82,7 +82,6 @@ jobs:
         id: create-release
         uses: softprops/action-gh-release@v1
         with:
-          prerelease: true
           target_commitish: ${{ env.RELEASE_SHA }}
           tag_name: ${{ env.TAG_NAME }}
           body: ${{ env.RELEASE_DESCRIPTION }}
