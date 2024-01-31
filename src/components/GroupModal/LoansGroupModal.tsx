@@ -56,7 +56,9 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
     RenewedLoanV2[] | null
   >({
     request: {
-      params: { data: materialsToRenew.map((id) => Number(id)) },
+      params: {
+        data: materialsToRenew.map((material) => material.loanId ?? 0)
+      },
       operation: mutate
     },
     onError: () => {
