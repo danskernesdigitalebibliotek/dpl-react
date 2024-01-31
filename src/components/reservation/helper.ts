@@ -230,9 +230,10 @@ export const getInstantLoanBranchHoldings = (
         // if a material group description contains any of the instant loan strings
         // and is available, it is an instant loan.
         return (
-          instantLoanStrings.some((instantLoanString) => {
-            return materialGroup.description?.includes(instantLoanString);
-          }) && available
+          instantLoanStrings.some(
+            (instantLoanString) =>
+              instantLoanString === materialGroup.description
+          ) && available
         );
       });
 

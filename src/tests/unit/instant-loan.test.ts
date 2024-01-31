@@ -43,16 +43,15 @@ test("getInstantLoanBranchHoldings should return materials grouped by branches f
     "I am supposed to be matched"
   );
 
-  // Hasle is matched with 2 materials out of 3.
+  // Hasle is matched with 2 materials out of 2.
   // The materials are matched because they both are available
-  // and contain the strings "I am supposed to be matched, seriously!"
-  // (which is a substring of "I am supposed to be matched")
+  // and contain the strings "I am supposed to be matched"
   // and "I am also supposed to be matched".
   expect(result[2].branch.title).toBe("Hasle");
   expect(result[2].materials).toHaveLength(2);
   expect(result[2].materials[0].available).toBe(true);
   expect(result[2].materials[0].materialGroup.description).toBe(
-    "I am supposed to be matched, seriously!"
+    "I am supposed to be matched"
   );
   expect(result[2].materials[1].available).toBe(true);
   expect(result[2].materials[1].materialGroup.description).toBe(
