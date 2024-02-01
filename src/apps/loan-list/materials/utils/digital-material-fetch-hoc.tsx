@@ -31,8 +31,11 @@ const fetchDigitalMaterial =
       const [digitalMaterial, setDigitalMaterial] =
         useState<BasicDetailsType>();
 
-      const { data: productsData, isSuccess: isSuccessDigital } =
-        useGetV1ProductsIdentifier(item.identifier);
+      const {
+        data: productsData,
+        isSuccess: isSuccessDigital,
+        isLoading
+      } = useGetV1ProductsIdentifier(item.identifier);
 
       useEffect(() => {
         if (productsData && isSuccessDigital && productsData.product) {
@@ -43,6 +46,9 @@ const fetchDigitalMaterial =
           // todo error handling, missing in figma
         }
       }, [productsData, isSuccessDigital]);
+
+      // if the fallback component is provided we can show it while the data is loading
+      if (isLoading) return FallbackComponent ? <FallbackComponent /> : null;
 
       if (!digitalMaterial) return null;
 
