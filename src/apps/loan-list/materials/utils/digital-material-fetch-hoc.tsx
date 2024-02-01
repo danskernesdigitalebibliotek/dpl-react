@@ -11,7 +11,8 @@ type InputProps = {
 
 const fetchDigitalMaterial =
   <P extends object>(
-    Component: ComponentType<P & MaterialProps>
+    Component: ComponentType<P & MaterialProps>,
+    FallbackComponent?: ComponentType
   ): FC<P & InputProps> =>
   ({ item, ...props }: InputProps) => {
     // If this is a physical book, another HOC fetches the data and this
