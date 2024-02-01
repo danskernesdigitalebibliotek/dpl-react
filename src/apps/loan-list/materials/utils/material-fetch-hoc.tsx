@@ -38,21 +38,24 @@ const fetchMaterial =
 
     if (item?.faust) {
       const [material, setMaterial] = useState<BasicDetailsType>();
-
+      let isLoadingAnything = false;
       let manifestation: ManifestationBasicDetailsFragment | null = null;
       if (item.reservationIds && item.reservationIds.length > 1) {
-        const { isSuccess, data } =
+        const { isSuccess, data, isLoading } =
           useGetManifestationViaBestRepresentationByFaustQuery({
             faust: item.faust
           });
+        isLoadingAnything = isLoading;
         if (isSuccess && data?.manifestation) {
           manifestation =
             data.manifestation.ownerWork.manifestations.bestRepresentation;
         }
       } else {
-        const { isSuccess, data } = useGetManifestationViaMaterialByFaustQuery({
-          faust: item.faust
-        });
+        const { isSuccess, data, isLoading } =
+          useGetManifestationViaMaterialByFaustQuery({
+            faust: item.faust
+          });
+        isLoadingAnything = isLoading;
         if (isSuccess && data?.manifestation) {
           manifestation = data.manifestation;
         }
@@ -64,11 +67,13 @@ const fetchMaterial =
         }
       }, [manifestation]);
 
+      // if the fallback component is provided we can show it while the data is loading
+      if (isLoadingAnything) {
+        return FallbackComponent ? <FallbackComponent /> : null;
+      }
+
       // in cases where the material is not found we return null, else we would load forever
       if (manifestation === null) return null;
-
-      // if the fallback component is provided we can show it while the data is loading
-      if (!material) return FallbackComponent ? <FallbackComponent /> : null;
 
       return (
         <Component
