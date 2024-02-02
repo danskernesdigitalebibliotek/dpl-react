@@ -13,8 +13,8 @@ export interface NotificationMaterialsList {
 
 export interface NotificationsProps {
   materials: NotificationMaterialsList[];
-  showOnlyNotifications: boolean;
-  showStatusLabel: boolean;
+  showOnlyNotifications?: boolean;
+  showStatusLabel?: boolean;
 }
 
 const Notifications: FC<NotificationsProps> = ({

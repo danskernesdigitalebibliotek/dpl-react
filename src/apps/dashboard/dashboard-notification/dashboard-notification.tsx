@@ -5,7 +5,7 @@ import StatusBadge from "../../loan-list/materials/utils/status-badge";
 interface DashboardNotificationProps {
   notificationNumber: number;
   showNotificationDot: boolean;
-  showStatusLabel: boolean;
+  showStatusLabel?: boolean;
   notificationText: string;
   dataCy: string;
   notificationColor: string;
