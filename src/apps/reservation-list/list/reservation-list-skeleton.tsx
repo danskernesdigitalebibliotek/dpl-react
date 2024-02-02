@@ -4,15 +4,15 @@ import ReservationMaterialSkeleton from "../reservation-material/reservation-mat
 const ReservationListSkeleton: React.FC = () => {
   return (
     <>
-      <ul>
+      <ul className="ssc">
         <div className="ssc-head-line w-10 mx-32 mt-48" />
         <ReservationMaterialSkeleton />
       </ul>
-      <ul>
+      <ul className="ssc">
         <div className="ssc-head-line w-10 mx-32 mt-80" />
         <ReservationMaterialSkeleton />
       </ul>
-      <ul>
+      <ul className="ssc">
         <div className="ssc-head-line w-10 mx-32 mt-80" />
         <ReservationMaterialSkeleton />
       </ul>
