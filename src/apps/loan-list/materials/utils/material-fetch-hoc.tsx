@@ -73,7 +73,7 @@ const fetchMaterial =
       }
 
       // in cases where the material is not found we return null, else we would load forever
-      if (manifestation === null) return null;
+      if (!manifestation) return null;
 
       return (
         <Component
