@@ -43,7 +43,6 @@ export interface ReservationListTextProps {
   publizonPodcastText: string;
   reservationDetailsExpiresText: string;
   reservationDetailsExpiresTitleText: string;
-  reservationDetailsOthersInQueueText: string;
   reservationListAllEmptyText: string;
   reservationListAvailableInText: string;
   reservationListDaysText: string;
