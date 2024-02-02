@@ -13,6 +13,7 @@ export interface ReservationMaterialProps {
   focused: boolean;
   openReservationDetailsModal: (reservation: ReservationType) => void;
   identifier?: string | null;
+  dataCy?: string;
 }
 
 const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
@@ -20,7 +21,8 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   reservation,
   focused,
   openReservationDetailsModal,
-  identifier
+  identifier,
+  dataCy = "reservation-material"
 }) => {
   const openDetailsModal = () => {
     openReservationDetailsModal(reservation);
@@ -30,6 +32,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   return (
     <li>
       <div
+        data-cy={dataCy}
         className="list-reservation my-32 cursor-pointer arrow__hover--right-small"
         role="button"
         onClick={() => openDetailsModal()}
