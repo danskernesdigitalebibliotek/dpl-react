@@ -9,7 +9,7 @@ import {
 } from "../../core/utils/types/reservation-type";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
 import { ListType } from "../../core/utils/types/list-type";
-import { daysBetweenTodayAndDate } from "../../core/utils/helpers/general";
+import { getStatusText } from "../../apps/reservation-list/utils/helpers";
 
 export interface GroupModalReservationsListProps {
   materials: ReservationType[];
@@ -71,37 +71,12 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
       <h3 className="text-body-medium-regular">{header}</h3>
       <ul className="modal-loan__list-materials">
         {displayedMaterials.map((material, i) => {
-          const {
-            expiryDate,
-            faust,
-            identifier,
-            numberInQueue,
-            pickupDeadline,
-            reservationIds,
-            state
-          } = material;
+          const { expiryDate, faust, identifier, reservationIds } = material;
           const selected = selectedMaterials?.some((selectedMaterial) =>
             isEqual(selectedMaterial, material)
           );
 
-          let statusText = "";
-
-          if (identifier && state === "reserved") {
-            if (pickupDeadline === null || pickupDeadline === "") {
-              statusText = t("reservationListYouAreInQueueText");
-            } else {
-              statusText = t("reservationListAvailableInText", {
-                placeholders: {
-                  "@count": daysBetweenTodayAndDate(pickupDeadline ?? "")
-                }
-              });
-            }
-          } else if (faust && numberInQueue) {
-            statusText = t("dashboardNumberInLineText", {
-              count: numberInQueue,
-              placeholders: { "@count": numberInQueue }
-            });
-          }
+          const statusText: string = getStatusText(material, t);
 
           const statusBadgeComponent = statusText ? (
             <StatusBadge

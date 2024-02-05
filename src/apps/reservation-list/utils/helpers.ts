@@ -1,5 +1,6 @@
 import { ReservationDetailsV2 } from "../../../core/fbs/model";
 import { formatDateDependingOnDigitalMaterial } from "../../../core/utils/helpers/date";
+import { daysBetweenTodayAndDate } from "../../../core/utils/helpers/general";
 import { UseTextFunction } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 
@@ -55,6 +56,35 @@ export const getReservationStatusInfoLabel = ({
       })
     }
   });
+};
+
+/**
+ * Generates a status text based on reservation details.
+ */
+export const getStatusText = (
+  { identifier, state, pickupDeadline, faust, numberInQueue }: ReservationType,
+  t: UseTextFunction
+): string => {
+  if (identifier && state === "reserved") {
+    if (!pickupDeadline) {
+      return t("reservationListYouAreInQueueText");
+    }
+
+    return t("reservationListAvailableInText", {
+      placeholders: {
+        "@count": daysBetweenTodayAndDate(pickupDeadline)
+      }
+    });
+  }
+
+  if (faust && numberInQueue) {
+    return t("dashboardNumberInLineText", {
+      count: numberInQueue,
+      placeholders: { "@count": numberInQueue }
+    });
+  }
+
+  return "";
 };
 
 export default {};
