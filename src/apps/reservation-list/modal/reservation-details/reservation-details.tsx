@@ -39,7 +39,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
 
   const config = useConfig();
   const [externalUrl, setExternalUrl] = useState<URL | null>(null);
-  const { state, identifier, numberInQueue } = reservation;
+  const { state, identifier } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
   const { allowRemoveReadyReservations } = config<{
@@ -100,7 +100,6 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
                 classNames="modal-details__buttons--hide-on-mobile"
                 openReservationDeleteModal={openReservationDeleteModal}
                 reservation={reservation}
-                numberInQueue={numberInQueue}
               />
             )}
           {isDigitalReservation(reservation) && isLoadingComplexSearch && (
@@ -132,7 +131,6 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
               <ReservationDetailsButton
                 buttonClassNames="modal-details__buttons__full-width"
                 openReservationDeleteModal={openReservationDeleteModal}
-                numberInQueue={numberInQueue}
                 reservation={reservation}
               />
             )}
