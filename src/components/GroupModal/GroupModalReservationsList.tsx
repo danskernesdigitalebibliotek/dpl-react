@@ -9,6 +9,7 @@ import {
 } from "../../core/utils/types/reservation-type";
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
 import { ListType } from "../../core/utils/types/list-type";
+import { getStatusText } from "../../apps/reservation-list/utils/helpers";
 
 export interface GroupModalReservationsListProps {
   materials: ReservationType[];
@@ -70,50 +71,37 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
       <h3 className="text-body-medium-regular">{header}</h3>
       <ul className="modal-loan__list-materials">
         {displayedMaterials.map((material, i) => {
-          const {
-            expiryDate,
-            faust,
-            identifier,
-            numberInQueue,
-            reservationIds
-          } = material;
+          const { expiryDate, faust, identifier, reservationIds } = material;
           const selected = selectedMaterials?.some((selectedMaterial) =>
             isEqual(selectedMaterial, material)
           );
+
+          const statusText: string = getStatusText(material, t);
+
+          const statusBadgeComponent = statusText ? (
+            <StatusBadge
+              badgeDate={expiryDate}
+              neutralText={statusText}
+              infoText=""
+            />
+          ) : null;
+
           return (
-            <>
-              {(identifier || reservationIds || faust) && (
-                <SelectableMaterial
-                  item={material}
-                  displayedMaterial={material}
-                  focused={i === firstInNewPage}
-                  statusBadgeComponent={
-                    faust && (
-                      <StatusBadge
-                        badgeDate={expiryDate}
-                        neutralText={
-                          numberInQueue
-                            ? t("dashboardNumberInLineText", {
-                                count: numberInQueue,
-                                placeholders: { "@count": numberInQueue }
-                              })
-                            : ""
-                        }
-                        infoText=""
-                      />
-                    )
-                  }
-                  openDetailsModal={openDetailsModal}
-                  key={reservationId(material)}
-                  selected={selected}
-                  onMaterialChecked={onMaterialChecked}
-                  disabled={false}
-                  statusMessageComponentMobile={null}
-                  statusMessageComponentDesktop={null}
-                />
-              )}
-              {!identifier && null}
-            </>
+            (identifier || reservationIds || faust) && (
+              <SelectableMaterial
+                item={material}
+                displayedMaterial={material}
+                focused={i === firstInNewPage}
+                statusBadgeComponent={statusBadgeComponent}
+                openDetailsModal={openDetailsModal}
+                key={reservationId(material)}
+                selected={selected}
+                onMaterialChecked={onMaterialChecked}
+                disabled={false}
+                statusMessageComponentMobile={null}
+                statusMessageComponentDesktop={null}
+              />
+            )
           );
         })}
       </ul>

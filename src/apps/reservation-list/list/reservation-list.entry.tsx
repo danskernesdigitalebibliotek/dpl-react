@@ -44,6 +44,7 @@ export interface ReservationListTextProps {
   reservationDetailsExpiresText: string;
   reservationDetailsExpiresTitleText: string;
   reservationListAllEmptyText: string;
+  reservationListYouAreInQueueText: string;
   reservationListAvailableInText: string;
   reservationListDaysText: string;
   reservationListDayText: string;

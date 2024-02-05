@@ -130,25 +130,6 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
                 isDigital={isDigital(displayedMaterial)}
               />
             )}
-            {openDetailsModal && (
-              <button
-                type="button"
-                // This is to handle focus when more items are loaded via pagination
-                // eslint-disable-next-line jsx-a11y/no-autofocus
-                autoFocus={disabled && focused}
-                className="list-reservation__note"
-                onClick={() => openDetailsModal(item)}
-                aria-label={
-                  title
-                    ? t("groupModalGoToMaterialAriaLabelText", {
-                        placeholders: { "@label": title }
-                      })
-                    : ""
-                }
-              >
-                {t("groupModalGoToMaterialText")}
-              </button>
-            )}
           </div>
         </div>
         {openDetailsModal && (
