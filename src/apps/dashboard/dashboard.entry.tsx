@@ -49,7 +49,6 @@ export interface DashBoardProps {
   publizonPodcastText: string;
   queuedReservationsText: string;
   readyForLoanText: string;
-  reservationDetailsOthersInQueueText: string;
   reservationsReadyText: string;
   reservationsText: string;
   resultPagerStatusText: string;

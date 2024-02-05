@@ -165,10 +165,6 @@ export default {
       defaultValue: "day",
       control: { type: "text" }
     },
-    reservationDetailsOthersInQueueText: {
-      defaultValue: "Others are queueing for this material",
-      control: { type: "text" }
-    },
     reservationDetailsExpiresTitleText: {
       defaultValue: "Pickup deadline",
       control: { type: "text" }
