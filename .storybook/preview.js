@@ -62,3 +62,7 @@ const App = ({ story }) => <Store>{WrappedStory(story)}</Store>;
 export const decorators = [
   Story => <><App story={Story} /></>
 ];
+
+export const parameters = {
+  layout: "fullscreen"
+};
