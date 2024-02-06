@@ -38,7 +38,7 @@ describe("Cover", () => {
       "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1605727140/bogportalen.dk/9781848485532.jpg"
     );
   });
-  it("Shows an alt text if there is a description", () => {
+  it("Shows an alt text if there is an alt text for the image", () => {
     cy.intercept("GET", "**/api/v2/covers?**", {
       statusCode: 200,
       body: [
@@ -55,10 +55,8 @@ describe("Cover", () => {
         }
       ]
     });
-    cy.visit(
-      "/iframe.html?args=description:description&id=components-cover--item&viewMode=story"
-    );
-    cy.get("img").should("have.attr", "alt", "description");
+    cy.visit(`/iframe.html?args=&id=components-cover--item&viewMode=story`);
+    cy.get("img").should("have.attr", "alt", "alt text for the image");
   });
 
   it("Use <a> if there is an url", () => {

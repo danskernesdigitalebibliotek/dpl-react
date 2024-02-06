@@ -70,7 +70,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                   animate
                   size="xsmall"
                   id={item.work.manifestations.bestRepresentation.pid}
-                  shadow
+                  shadow="small"
                 />
               )}
               <div className="autosuggest__info">
