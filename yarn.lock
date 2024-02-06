@@ -1370,14 +1370,14 @@
   resolved "https://registry.yarnpkg.com/@csstools/media-query-list-parser/-/media-query-list-parser-2.1.5.tgz#94bc8b3c3fd7112a40b7bf0b483e91eba0654a0f"
   integrity sha512-IxVBdYzR8pYe89JiyXQuYk4aVVoCPhMJkz6ElRwlVysjwURTsTk/bmY/z4FfeRE+CRBMlykPwXEVUg8lThv7AQ==
 
-"@csstools/postcss-sass@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@csstools/postcss-sass/-/postcss-sass-5.0.1.tgz#d5e67b4c81f1b634d722148fbe0e871b71b762a5"
-  integrity sha512-GgQAOe6KfABEIHGh9KFqn/7sX2Dmx554PElvyhRFNADo2QV2N/CzlS+QHrrJmVJzaBn829f4JFcOd67mmYb5Eg==
+"@csstools/postcss-sass@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@csstools/postcss-sass/-/postcss-sass-5.1.1.tgz#135921df13bc56bee50c7470a66e4e9f3d5c89ae"
+  integrity sha512-La7bgTcM6YwPBLqlaXg7lMLry82iLv1a+S1RmgvHq2mH2Zd57L2anjZvJC8ACUHWc4M9fXws93dq6gaK0kZyAw==
   dependencies:
     "@csstools/sass-import-resolve" "^1.0.0"
-    sass "^1.49.7"
-    source-map "~0.7.3"
+    sass "^1.69.5"
+    source-map "~0.7.4"
 
 "@csstools/sass-import-resolve@^1.0.0":
   version "1.0.0"
@@ -17048,7 +17048,7 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sass@^1.49.7, sass@^1.70.0:
+sass@^1.69.5, sass@^1.70.0:
   version "1.70.0"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.70.0.tgz#761197419d97b5358cb25f9dd38c176a8a270a75"
   integrity sha512-uUxNQ3zAHeAx5nRFskBnrWzDUJrrvpCPD5FNAoRvTi0WwremlheES3tg+56PaVtCs5QDRX5CBLxxKMDJMEa1WQ==
@@ -17577,7 +17577,7 @@ source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-source-map@^0.7.3, source-map@~0.7.2, source-map@~0.7.3:
+source-map@^0.7.3, source-map@~0.7.2, source-map@~0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.4.tgz#a9bbe705c9d8846f4e08ff6765acf0f1b0898656"
   integrity sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==
