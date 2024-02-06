@@ -12,7 +12,7 @@ type InputProps = {
 const fetchDigitalMaterial =
   <P extends object>(
     Component: ComponentType<P & MaterialProps>,
-    FallbackComponent?: ComponentType
+    LoadingComponent?: ComponentType
   ): FC<P & InputProps> =>
   ({ item, ...props }: InputProps) => {
     // If this is a physical book, another HOC fetches the data and this
@@ -48,7 +48,7 @@ const fetchDigitalMaterial =
       }, [productsData, isSuccessDigital]);
 
       // if the fallback component is provided we can show it while the data is loading
-      if (isLoading) return FallbackComponent ? <FallbackComponent /> : null;
+      if (isLoading) return LoadingComponent ? <LoadingComponent /> : null;
 
       if (!digitalMaterial) return null;
 
