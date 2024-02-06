@@ -1,6 +1,6 @@
 import React from "react";
 
-const ReservationMaterialSkeleton: React.FC = () => {
+const ListMaterialSkeleton: React.FC = () => {
   return (
     <li>
       <div className="list-reservation my-32 ssc">
@@ -30,4 +30,4 @@ const ReservationMaterialSkeleton: React.FC = () => {
   );
 };
 
-export default ReservationMaterialSkeleton;
+export default ListMaterialSkeleton;
