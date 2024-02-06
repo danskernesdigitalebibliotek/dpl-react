@@ -70,12 +70,12 @@ export default {
       defaultValue: "Close pause reservations modal",
       control: { type: "text" }
     },
-    dateInputsStartDateLabelText: {
-      defaultValue: "Start date",
+    pauseReservationModalDateRangeLabelText: {
+      defaultValue: "Pause period",
       control: { type: "text" }
     },
-    dateInputsEndDateLabelText: {
-      defaultValue: "End date",
+    pauseReservationModalDateRangePlaceholderText: {
+      defaultValue: "Choose pause period",
       control: { type: "text" }
     },
     pauseReservationModalLinkText: {

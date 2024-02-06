@@ -397,13 +397,9 @@ describe("Reservation details modal", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
     );
-
-    cy.wait([
-      "@physical_reservations",
-      "@digital_reservations",
-      "@work",
-      "@cover"
-    ]);
+    // These two cy.wait are split up because of the proceedance of the requests
+    cy.wait(["@physical_reservations", "@digital_reservations"]);
+    cy.wait(["@work"]);
 
     // ID 43 2.a. Material cover (coverservice)
     cy.get(".modal")
@@ -499,10 +495,7 @@ describe("Reservation details modal", () => {
           reservations: [
             {
               expiryDate: "2022-09-21",
-              // TODO: This should be DK-775120 as this is what the user
-              //  selected in previous steps but that does not seem to work
-              //  right now.
-              pickupBranch: "DK-775160",
+              pickupBranch: "DK-775120",
               reservationId: 4698559133
             }
           ]
@@ -542,8 +535,7 @@ describe("Reservation details modal", () => {
         JSON.stringify({
           reservations: [
             {
-              // TODO This should be updated to reflect the new interest date
-              expiryDate: "2022-09-21",
+              expiryDate: "2023-02-22",
               pickupBranch: "DK-775120",
               reservationId: 4698559133
             }
@@ -742,8 +734,9 @@ describe("Reservation details modal", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
     );
-
-    cy.wait(["@physical_reservations", "@digital_reservations", "@work"]);
+    // These two cy.wait are split up because of the proceedance of the requests
+    cy.wait(["@physical_reservations", "@digital_reservations"]);
+    cy.wait(["@work"]);
 
     // Open the change pickup branch modal for the reservation.
     cy.getBySel("reservation-form-list-item")
@@ -766,16 +759,12 @@ describe("Reservation details modal", () => {
           reservations: [
             {
               expiryDate: "2022-09-21",
-              // TODO: This should be DK-775120 as this is what the user
-              //  selected in previous steps but that does not seem to work
-              //  right now.
-              pickupBranch: "DK-775160",
+              pickupBranch: "DK-775120",
               reservationId: 4698559133
             },
             {
               expiryDate: "2022-09-21",
-              // TODO: As above this should be DK-775120.
-              pickupBranch: "DK-775160",
+              pickupBranch: "DK-775120",
               reservationId: 4698559134
             }
           ]
@@ -809,13 +798,13 @@ describe("Reservation details modal", () => {
               // TODO: This should be an updated value as this is what the user
               //  selected in previous steps but that does not seem to work
               //  right now.
-              expiryDate: "2022-09-21",
+              expiryDate: "2023-03-10",
               pickupBranch: "DK-775120",
               reservationId: 4698559133
             },
             {
               // TODO: As above this should be updated as above.
-              expiryDate: "2022-09-21",
+              expiryDate: "2023-03-10",
               pickupBranch: "DK-775120",
               reservationId: 4698559134
             }

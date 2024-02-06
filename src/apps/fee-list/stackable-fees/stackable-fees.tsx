@@ -63,7 +63,7 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
         <div className="list-reservation__fee">
           <p className="text-body-medium-regular">
             {t("itemFeeAmountText", {
-              placeholders: { "@fee": amount }
+              placeholders: { "@fee": amount.toLocaleString("da-DK") }
             })}
           </p>
         </div>

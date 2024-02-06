@@ -122,4 +122,10 @@ export const saveText = ({
   });
 };
 
+export function modalReservationFormSelectTypeIsInterestPeriod(
+  type: ModalReservationFormTextType
+): type is "interestPeriod" {
+  return type === "interestPeriod";
+}
+
 export default {};

@@ -61,7 +61,10 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
               handleDetailsModal(e);
             }}
             onKeyUp={(e) => {
-              if (e.key === "Enter" || e.key === "Space") {
+              // `!focused` prevents opening material details modal after clicking
+              // enter on pager. Pager gives focus to the next stackable material too
+              // quickly while still registering the enter key press.
+              if ((e.key === "Enter" || e.key === "Space") && !focused) {
                 handleDetailsModal(e);
               }
             }}

@@ -5,9 +5,7 @@ import { useText } from "../../core/utils/text";
 import GroupModalContent from "./GroupModalContent";
 import {
   getAmountOfRenewableLoans,
-  getRenewableMaterials,
-  loansOverdue,
-  sameLoanDate
+  getRenewableMaterials
 } from "../../core/utils/helpers/general";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { useRenewLoansV2, getGetLoansV2QueryKey } from "../../core/fbs/fbs";
@@ -24,27 +22,19 @@ interface LoansGroupModalProps {
   dueDate?: string | null;
   loansModal: LoanType[];
   pageSize: number;
-  accepted: boolean;
   openDetailsModal: (loan: LoanType) => void;
-  openAcceptModal: () => void;
   children: ReactNode;
-  resetAccepted: () => void;
 }
 
 const LoansGroupModal: FC<LoansGroupModalProps> = ({
   dueDate,
   loansModal,
   openDetailsModal,
-  openAcceptModal,
   pageSize,
-  accepted,
-  resetAccepted,
   children
 }) => {
   const t = useText();
   const { mutate } = useRenewLoansV2();
-  const [acceptedButtonPressed, setAcceptedButtonPressed] =
-    useState<boolean>(accepted);
   const { dueDateModal, allLoansId } = getModalIds();
   const queryClient = useQueryClient();
   const modalIdUsed = dueDate ? `${dueDateModal}-${dueDate}` : allLoansId;
@@ -66,7 +56,9 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
     RenewedLoanV2[] | null
   >({
     request: {
-      params: { data: materialsToRenew.map((id) => Number(id)) },
+      params: {
+        data: materialsToRenew.map((material) => material.loanId ?? 0)
+      },
       operation: mutate
     },
     onError: () => {
@@ -82,43 +74,16 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   });
 
   const renewSelected = useCallback(() => {
-    const selectedLoansLoanDate = loansModal
-      .filter((loan) => materialsToRenew.includes(loan))
-      .map(({ loanDate: localLoanDate }) => localLoanDate)
-      .filter((item) => item !== undefined && item !== null);
-    const acceptModal =
-      loansOverdue(loansModal) &&
-      sameLoanDate(selectedLoansLoanDate as string[]);
-
-    if (acceptModal) {
-      openAcceptModal();
-    } else if (!acceptModal) {
-      renew();
-    }
-  }, [loansModal, materialsToRenew, openAcceptModal, renew]);
+    renew();
+  }, [renew]);
 
   useEffect(() => {
     setMaterialsToRenew(getRenewableMaterials(loansModal));
   }, [loansModal]);
 
-  useEffect(() => {
-    if (accepted) {
-      setAcceptedButtonPressed(accepted);
-      resetAccepted();
-    }
-  }, [accepted, resetAccepted]);
-
   const selectMaterials = (materialIds: ListType[]) => {
     setMaterialsToRenew(materialIds);
   };
-
-  useEffect(() => {
-    if (acceptedButtonPressed) {
-      renew();
-      setAcceptedButtonPressed(false);
-    }
-  }, [acceptedButtonPressed, renew]);
-
   const showSuccessMessage = renewingStatus === "success";
   const countRenewed = succeededRenewalCount(renewingResponse);
 

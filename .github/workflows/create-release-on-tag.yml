@@ -30,8 +30,14 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           always-auth: true
           scope: '@danskernesdigitalebibliotek'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - run: yarn install --frozen-lockfile
+      - uses: Wandalen/wretry.action@v1.3.0
+        with:
+          command: yarn install --frozen-lockfile
+          attempt_limit: 3
+          attempt_delay: 2000
 
       - name: Build artifacts
         run: yarn build

@@ -89,10 +89,10 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
           <Button
             label={t("loanListRenewMultipleButtonText")}
             buttonType="none"
-            disabled={false}
+            disabled={disableRenewLoansButton}
             collapsible={false}
             size="small"
-            variant="filled"
+            variant={disableRenewLoansButton ? "outline" : "filled"}
             onClick={() => {
               openRenewLoansModal();
             }}

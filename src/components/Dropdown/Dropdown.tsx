@@ -1,15 +1,16 @@
 import clsx from "clsx";
 import React from "react";
 import DropdownIcon from "./DropdownIcon";
+import { FormSelectValue } from "../reservation/forms/types";
 
-export type Option = {
+export type Option<TValue extends FormSelectValue = string> = {
   label: string;
   disabled?: boolean;
-  value: string;
+  value: TValue;
 };
 
-type DropdownProps = {
-  options: Option[];
+type DropdownProps<TValueType extends FormSelectValue> = {
+  options: Option<TValueType>[];
   label?: string;
   id?: string;
   ariaLabel: string;
@@ -20,10 +21,10 @@ type DropdownProps = {
   handleOnChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   placeholder?: Option;
   cyData?: string;
-  defaultValue?: string;
+  defaultValue?: TValueType;
 };
 
-const Dropdown: React.FunctionComponent<DropdownProps> = ({
+const Dropdown = <TValueType extends FormSelectValue>({
   arrowIcon,
   ariaLabel,
   options,
@@ -36,7 +37,7 @@ const Dropdown: React.FunctionComponent<DropdownProps> = ({
   id,
   labelledBy,
   defaultValue
-}) => {
+}: DropdownProps<TValueType>) => {
   const classes = {
     root: clsx("dropdown", classNames),
     select: clsx("dropdown__select", innerClassNames?.select),

@@ -59,7 +59,7 @@ export default {
       control: { type: "text" }
     },
     totalAmountFeeText: {
-      defaultValue: "@total,-",
+      defaultValue: "@total DKK",
       control: { type: "text" }
     },
     physicalLoansText: {

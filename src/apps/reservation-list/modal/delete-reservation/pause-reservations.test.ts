@@ -80,13 +80,9 @@ describe("Pause reservation modal test", () => {
         "have.text",
         "Pause your reservations early, since reservations that are already being processed, will not be paused."
       );
-    // ID 12 2.c. datepicker: start date
-    cy.get(".modal.modal-cta [data-cy='start-date']")
-      .should("exist")
-      .should("have.attr", "value");
 
-    // ID 12 2.e. datepicker: end date
-    cy.get(".modal.modal-cta [data-cy='end-date']").should("exist");
+    // There should be a date range component for choosing a pause period.
+    cy.getBySel("date-range").should("exist");
 
     // ID 12 2.b. text: link "read more"
     cy.get(".modal")
