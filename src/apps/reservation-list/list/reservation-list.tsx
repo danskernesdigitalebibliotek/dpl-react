@@ -105,6 +105,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         <h1 className="text-header-h1 m-32">
           {t("reservationListHeaderText")}
         </h1>
+        {/* Loading skeleton version of <ReservationPauseToggler /> */}
         {isLoadingUserData && (
           <div className="ssc">
             <div className="ssc-square w-90 ml-32 my-32" />
