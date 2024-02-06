@@ -116,52 +116,54 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
         {isLoadingFbs && isLoadingPublizon && <LoanListSkeleton />}
 
-        {!isLoadingFbs && !isLoadingPublizon && (
-          <>
-            {loansPhysical && (
-              <List
-                pageSize={pageSize}
-                emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
-                loans={loansPhysical}
-                dueDates={stackedMaterialsDueDatesFbs}
-                view={view}
-                openLoanDetailsModal={openLoanDetailsModal}
-                openDueDateModal={openDueDateModal}
-              >
-                <ListHeader
-                  header={t("loanListPhysicalLoansTitleText")}
-                  amount={loansPhysical.length}
+        {!isLoadingFbs &&
+          !isLoadingPublizon &&
+          (!loansAreEmpty(loansPhysical) || !loansAreEmpty(loansDigital)) && (
+            <>
+              {loansPhysical && (
+                <List
+                  pageSize={pageSize}
+                  emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
+                  loans={loansPhysical}
+                  dueDates={stackedMaterialsDueDatesFbs}
+                  view={view}
+                  openLoanDetailsModal={openLoanDetailsModal}
+                  openDueDateModal={openDueDateModal}
                 >
-                  <ToggleListViewButtons
-                    disableRenewLoansButton={
-                      getAmountOfRenewableLoans(loansPhysical) === 0
-                    }
-                    view={view}
-                    setView={setView}
-                    loans={loansPhysical}
-                    pageSize={pageSize}
-                    openRenewLoansModal={openRenewLoansModal}
+                  <ListHeader
+                    header={t("loanListPhysicalLoansTitleText")}
+                    amount={loansPhysical.length}
+                  >
+                    <ToggleListViewButtons
+                      disableRenewLoansButton={
+                        getAmountOfRenewableLoans(loansPhysical) === 0
+                      }
+                      view={view}
+                      setView={setView}
+                      loans={loansPhysical}
+                      pageSize={pageSize}
+                      openRenewLoansModal={openRenewLoansModal}
+                    />
+                  </ListHeader>
+                </List>
+              )}
+              {loansDigital && (
+                <List
+                  pageSize={pageSize}
+                  emptyListLabel={t("loanListDigitalLoansEmptyListText")}
+                  loans={loansDigital}
+                  view="list"
+                  openLoanDetailsModal={openLoanDetailsModal}
+                  openDueDateModal={openDueDateModal}
+                >
+                  <ListHeader
+                    header={t("loanListDigitalLoansTitleText")}
+                    amount={loansDigital.length}
                   />
-                </ListHeader>
-              </List>
-            )}
-            {loansDigital && (
-              <List
-                pageSize={pageSize}
-                emptyListLabel={t("loanListDigitalLoansEmptyListText")}
-                loans={loansDigital}
-                view="list"
-                openLoanDetailsModal={openLoanDetailsModal}
-                openDueDateModal={openDueDateModal}
-              >
-                <ListHeader
-                  header={t("loanListDigitalLoansTitleText")}
-                  amount={loansDigital.length}
-                />
-              </List>
-            )}
-          </>
-        )}
+                </List>
+              )}
+            </>
+          )}
 
         {!isLoadingFbs &&
           !isLoadingPublizon &&
