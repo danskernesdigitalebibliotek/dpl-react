@@ -97,12 +97,6 @@ export default {
       type: "text"
     },
     defaultValue: "Cannot be renewed"
-  },
-  renewNoMaterialsCanBeRenewedText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "No materials can be renewed"
   }
 };
 
@@ -123,5 +117,4 @@ export interface RenewalArgs {
   renewMaterialLoanSuccessTitleText: string;
   renewProcessingText: string;
   renewCannotBeRenewedText: string;
-  renewNoMaterialsCanBeRenewedText: string;
 }

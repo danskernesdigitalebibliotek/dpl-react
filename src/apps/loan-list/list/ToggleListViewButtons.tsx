@@ -35,7 +35,7 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
   );
 
   const renewLoansButtonText = disableRenewLoansButton
-    ? t("renewNoMaterialsCanBeRenewedText")
+    ? t("loanListNoItemsCanBeRenewedText")
     : t("loanListRenewMultipleButtonText");
 
   return (
