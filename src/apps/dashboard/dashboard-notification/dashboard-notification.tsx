@@ -21,7 +21,7 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationColor,
   notificationClickEvent,
   showNotificationDot,
-  showStatusLabel,
+  showStatusLabel = false,
   badge
 }) => {
   if (notificationNumber === 0) return null;

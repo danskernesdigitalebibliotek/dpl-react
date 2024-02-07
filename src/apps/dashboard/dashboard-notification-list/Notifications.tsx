@@ -19,8 +19,8 @@ export interface NotificationsProps {
 
 const Notifications: FC<NotificationsProps> = ({
   materials,
-  showOnlyNotifications,
-  showStatusLabel
+  showOnlyNotifications = false,
+  showStatusLabel = false
 }) => {
   const displayedNotifications = showOnlyNotifications
     ? materials.filter(({ showNotificationDot }) => showNotificationDot)
