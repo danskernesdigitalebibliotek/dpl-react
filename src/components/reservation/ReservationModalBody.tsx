@@ -60,6 +60,7 @@ import {
   useOpenOrderMutation
 } from "../../core/dbc-gateway/generated/graphql";
 import ModalMessage from "../message/modal-message/ModalMessage";
+import configuration, { getConf } from "../../core/configuration";
 import { usePatronData } from "../../core/utils/helpers/user";
 import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromAnotherLibrary";
 
@@ -76,6 +77,10 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
+  const { defaultInterestDaysForOpenOrder } = getConf(
+    "reservation",
+    configuration
+  );
   const {
     matchStrings: instantLoanMatchStrings,
     threshold: instantLoanThreshold,
@@ -172,20 +177,19 @@ export const ReservationModalBody = ({
       );
     }
 
-    if (
-      reservablePidsFromAnotherLibrary?.length &&
-      patron &&
-      selectedBranch &&
-      selectedInterest
-    ) {
-      const { patronId, name, emailAddress } = patron;
+    if (reservablePidsFromAnotherLibrary?.length && patron) {
+      const { patronId, name, emailAddress, preferredPickupBranch } = patron;
       // Save reservation to open order.
       mutateOpenOrder(
         {
           input: {
             pids: [...reservablePidsFromAnotherLibrary],
-            pickUpBranch: removePrefixFromBranchId(selectedBranch),
-            expires: selectedInterest.toString(),
+            pickUpBranch: selectedBranch
+              ? removePrefixFromBranchId(selectedBranch)
+              : removePrefixFromBranchId(preferredPickupBranch),
+            expires:
+              selectedInterest?.toString() ||
+              defaultInterestDaysForOpenOrder.toString(),
             userParameters: {
               userId: patronId.toString(),
               userName: name,
