@@ -68,7 +68,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   };
 
   return (
-    <li className="arrow__hover--right-small">
+    <li className={clsx({ "arrow__hover--right-small": openDetailsModal })}>
       <div
         className={clsx("list-materials", {
           "list-materials--disabled": disabled
@@ -93,7 +93,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </div>
         )}
         <div
-          className="list-materials__content cursor-pointer"
+          className={clsx("list-materials__content", {
+            "cursor-pointer": openDetailsModal
+          })}
           onClick={handleOnClick}
           onKeyUp={handleOnKeyUp}
           tabIndex={0}
@@ -111,7 +113,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </p>
         </div>
         <div
-          className="list-materials__status pl-4 cursor-pointer"
+          className={clsx("list-materials__status pl-4", {
+            "cursor-pointer": openDetailsModal
+          })}
           role="button"
           onClick={handleOnClick}
           onKeyUp={handleOnKeyUp}
