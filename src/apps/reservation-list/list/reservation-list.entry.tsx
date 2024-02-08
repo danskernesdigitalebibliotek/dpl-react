@@ -65,8 +65,6 @@ export interface ReservationListTextProps {
   reservationListPhysicalReservationsHeaderText: string;
   reservationListReadyForPickupEmptyText: string;
   reservationListReadyForPickupTitleText: string;
-  reservationListReadyText: string;
-  reservationPickUpLatestText: string;
 }
 
 export interface ReservationListEntryWithPageSizeProps
