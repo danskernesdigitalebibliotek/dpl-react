@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import Link from "../../../components/atoms/links/Link";
 import EmptyList from "../../../components/empty-list/empty-list";
 import Notifications, { NotificationMaterialsList } from "./Notifications";
+import NotificationSkeleton from "../dashboard-notification/notification-skeleton";
 
 export interface NotificationColumnProps {
   materials: NotificationMaterialsList[];
@@ -9,6 +10,7 @@ export interface NotificationColumnProps {
   headerUrl: URL;
   header: string;
   emptyListText: string;
+  isLoading?: boolean;
 }
 
 const NotificationColumn: FC<NotificationColumnProps> = ({
@@ -16,7 +18,8 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
   materialsCount,
   headerUrl,
   emptyListText,
-  header
+  header,
+  isLoading = false
 }) => {
   return (
     <div className="status-userprofile__column my-32">
@@ -33,7 +36,12 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
           </h2>
         </div>
       </div>
-      {materialsCount === 0 && <EmptyList emptyListText={emptyListText} />}
+      {/* We don't want to keep loading for all the data because we don't use */}
+      {/* the full extent - knowing at least the materialCount is enough */}
+      {isLoading && materialsCount === 0 && <NotificationSkeleton />}
+      {!isLoading && materialsCount === 0 && (
+        <EmptyList emptyListText={emptyListText} />
+      )}
       {materialsCount !== 0 && (
         <Notifications materials={materials} showStatusLabel />
       )}
