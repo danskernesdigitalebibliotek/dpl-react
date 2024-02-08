@@ -12,6 +12,7 @@ import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import ArrowButton from "../../../../components/Buttons/ArrowButton";
 import { isDigital } from "../../utils/helpers";
 import { listId, ListType } from "../../../../core/utils/types/list-type";
+import SelectableMaterialSkeleton from "./selectable-material-skeleton";
 
 interface SelectableMaterialProps {
   identifier?: string | null;
@@ -146,4 +147,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   );
 };
 
-export default fetchDigitalMaterial(fetchMaterial(SelectableMaterial));
+export default fetchDigitalMaterial(
+  fetchMaterial(SelectableMaterial, SelectableMaterialSkeleton),
+  SelectableMaterialSkeleton
+);
