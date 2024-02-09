@@ -116,4 +116,5 @@ export interface RenewalArgs {
   renewMaterialLoanSuccessStatusText: string;
   renewMaterialLoanSuccessTitleText: string;
   renewProcessingText: string;
+  renewCannotBeRenewedText: string;
 }
