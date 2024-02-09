@@ -40,6 +40,7 @@ const StackableFeeList: FC<StackableFeeListProps & MaterialProps> = ({
               })}
             </div>
           }
+          noHoverEffect
         />
       ))}
     </ul>
