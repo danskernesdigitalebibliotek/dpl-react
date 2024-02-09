@@ -34,6 +34,10 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
     [setView]
   );
 
+  const renewLoansButtonText = disableRenewLoansButton
+    ? t("loanListNoItemsCanBeRenewedText")
+    : t("loanListRenewMultipleButtonText");
+
   return (
     <div className="dpl-list-buttons__buttons">
       <div
@@ -83,12 +87,12 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
           id="test-renew-button"
           aria-describedby="renew-multiple-modal"
         >
-          {t("loanListRenewMultipleButtonText")}
+          {renewLoansButtonText}
         </button>
       </div>
       <div className="hide-on-desktop button-box button-box--sticky-bottom">
         <Button
-          label={t("loanListRenewMultipleButtonText")}
+          label={renewLoansButtonText}
           buttonType="none"
           disabled={disableRenewLoansButton}
           collapsible={false}

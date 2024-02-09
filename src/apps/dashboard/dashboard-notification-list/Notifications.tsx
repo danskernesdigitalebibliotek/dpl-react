@@ -13,12 +13,14 @@ export interface NotificationMaterialsList {
 
 export interface NotificationsProps {
   materials: NotificationMaterialsList[];
-  showOnlyNotifications: boolean;
+  showOnlyNotifications?: boolean;
+  showStatusLabel?: boolean;
 }
 
 const Notifications: FC<NotificationsProps> = ({
   materials,
-  showOnlyNotifications
+  showOnlyNotifications = false,
+  showStatusLabel = false
 }) => {
   const displayedNotifications = showOnlyNotifications
     ? materials.filter(({ showNotificationDot }) => showNotificationDot)
@@ -45,6 +47,7 @@ const Notifications: FC<NotificationsProps> = ({
             key={headerNotification}
             notificationColor={color}
             notificationClickEvent={notificationClickEvent}
+            showStatusLabel={showStatusLabel}
           />
         )
       )}
