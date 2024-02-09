@@ -31,7 +31,7 @@ const Notifications: FC<NotificationsProps> = ({
 
   // We don't want to keep loading for all the data because we don't use
   // the full extent - knowing there are any notifications is enough
-  if (isLoading && displayedNotifications.length !== 0) {
+  if (isLoading && displayedNotifications.length === 0) {
     return (
       <>
         {[0, 1].map(() => {
