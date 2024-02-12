@@ -185,6 +185,10 @@ export default {
   acceptModalCancelButtonText: {
     defaultValue: "Annuller fornyelse",
     control: { type: "text" }
+  },
+  isLoadingHeartText: {
+    defaultValue: "Indlæser",
+    control: { type: "text" }
   }
 };
 
@@ -227,4 +231,5 @@ export interface GlobalEntryTextProps {
   acceptModalBodyText: string;
   acceptModalCancelButtonText: string;
   acceptModalAcceptButtonText: string;
+  isLoadingHeartText: string;
 }
