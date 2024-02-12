@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
+import LoadIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reload.svg";
 import { IconFavourite } from "../icon-favourite/icon-favourite";
 import {
   getGetListQueryKey,
@@ -25,10 +26,14 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
 }) => {
   const queryClient = useQueryClient();
   const [fillState, setFillState] = useState<boolean>(false);
+  const [isLoadingHeart, setIsLoadingHeart] = useState<boolean>(true);
   const t = useText();
   const { mutate } = useHasItem();
 
   useEffect(() => {
+    // The heart icon needs to change into a loading icon while the material
+    // is being removed from the favorite list
+    setIsLoadingHeart(true);
     mutate(
       {
         listId: "default",
@@ -37,12 +42,14 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
       {
         onSuccess: () => {
           setFillState(true);
+          setIsLoadingHeart(false);
         },
         // The material list service will return response code 404 when a
         // material is not on the patrons list. This is interpreted as an
         // error by our client. Consequently we set
         onError: () => {
           setFillState(false);
+          setIsLoadingHeart(false);
         }
       }
     );
@@ -80,7 +87,10 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
       onClick={handleClick}
       className="button-favourite"
     >
-      <IconFavourite darkBackground={darkBackground} fill={fillState} />
+      {isLoadingHeart && <img src={LoadIcon} alt={t("isLoadingHeartText")} />}
+      {!isLoadingHeart && (
+        <IconFavourite darkBackground={darkBackground} fill={fillState} />
+      )}
     </button>
   );
 };
