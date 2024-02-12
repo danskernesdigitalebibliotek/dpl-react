@@ -25,6 +25,7 @@ interface SelectableMaterialProps {
   statusBadgeComponent: ReactNode;
   focused: boolean;
   displayedMaterial?: ReservationType;
+  noHoverEffect?: boolean;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
@@ -38,7 +39,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   statusMessageComponentDesktop,
   statusBadgeComponent,
   focused,
-  displayedMaterial
+  displayedMaterial,
+  noHoverEffect = false
 }) => {
   const t = useText();
 
@@ -70,9 +72,12 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   return (
     <li className={clsx({ "arrow__hover--right-small": openDetailsModal })}>
       <div
-        className={clsx("list-materials", {
-          "list-materials--disabled": disabled
-        })}
+        className={clsx("list-materials", [
+          {
+            "list-materials--disabled": disabled
+          },
+          { "list-materials--no-hover": noHoverEffect }
+        ])}
       >
         {onMaterialChecked && (
           <div className="list-materials__checkbox mr-16">
