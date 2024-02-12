@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useQueryClient } from "react-query";
 import EmptyList from "../../components/empty-list/empty-list";
 import usePager from "../../components/result-pager/use-pager";
-import { useGetList } from "../../core/material-list-api/material-list";
+import {
+  getGetListQueryKey,
+  useGetList
+} from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 import CardListItemAdapter from "../../components/card-item-list/card-list-item/card-list-item-adapter";
@@ -13,6 +17,8 @@ export interface FavoritesListProps {
 
 const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   const t = useText();
+  const queryClient = useQueryClient();
+  queryClient.invalidateQueries(getGetListQueryKey("default"));
   const { data } = useGetList("default");
   const [displayedMaterials, setDisplayedMaterials] = useState<Pid[]>([]);
   const [materials, setMaterials] = useState<Pid[]>([]);
