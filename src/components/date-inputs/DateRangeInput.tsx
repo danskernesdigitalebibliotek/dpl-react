@@ -59,6 +59,7 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
           value={value}
           options={{
             altInput: true,
+            altFormat: "j. F Y",
             minDate: dayjs().toDate(),
             locale: Danish,
             dateFormat: "d-m-Y",
