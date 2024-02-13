@@ -1,9 +1,11 @@
 import React, { FC } from "react";
+import withIsPatronBlockedHoc from "../../core/utils/withIsPatronBlockedHoc";
 import { withConfig } from "../../core/utils/config";
 import { pageSizeGlobal } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import DashBoard from "./dashboard";
+import { BlockedPatronEntryTextProps } from "../../core/storybook/blockedArgs";
 import { GroupModalProps } from "../../core/storybook/groupModalArgs";
 import { GroupModalLoansProps } from "../../core/storybook/loanGroupModalArgs";
 import { ReservationMaterialDetailsProps } from "../../core/storybook/reservationMaterialDetailsArgs";
@@ -60,6 +62,7 @@ export interface DashBoardProps {
 
 const DashboardEntry: FC<
   DashBoardProps &
+    BlockedPatronEntryTextProps &
     GroupModalProps &
     GroupModalLoansProps &
     DeleteReservationModalArgs &
@@ -80,4 +83,6 @@ const DashboardEntry: FC<
   return <DashBoard pageSize={pageSize} />;
 };
 
-export default withConfig(withUrls(withText(DashboardEntry)));
+export default withConfig(
+  withUrls(withText(withIsPatronBlockedHoc(DashboardEntry)))
+);
