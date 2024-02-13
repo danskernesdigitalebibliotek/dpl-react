@@ -6,7 +6,7 @@ import { ReservationType } from "../../../core/utils/types/reservation-type";
 import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-material-fetch-hoc";
 import MaterialInfo from "../../loan-list/materials/stackable-material/material-info";
 import ReservationInfo from "./reservation-info";
-import ReservationMaterialSkeleton from "./reservation-material-skeleton";
+import ListMaterialSkeleton from "./list-material-skeleton";
 
 export interface ReservationMaterialProps {
   reservation: ReservationType;
@@ -66,6 +66,6 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
 };
 
 export default fetchDigitalMaterial(
-  fetchMaterial(ReservationMaterial, ReservationMaterialSkeleton),
-  ReservationMaterialSkeleton
+  fetchMaterial(ReservationMaterial, ListMaterialSkeleton),
+  ListMaterialSkeleton
 );

@@ -8,6 +8,7 @@ import { LoanType } from "../../../../core/utils/types/loan-type";
 import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import MaterialStatus from "./material-status";
 import { LoanId } from "../../../../core/utils/types/ids";
+import ListMaterialSkeleton from "../../../reservation-list/reservation-material/list-material-skeleton";
 
 export interface StackableMaterialProps {
   loan: LoanType;
@@ -92,4 +93,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
   );
 };
 
-export default fetchDigitalMaterial(fetchMaterial(StackableMaterial));
+export default fetchDigitalMaterial(
+  fetchMaterial(StackableMaterial, ListMaterialSkeleton),
+  ListMaterialSkeleton
+);
