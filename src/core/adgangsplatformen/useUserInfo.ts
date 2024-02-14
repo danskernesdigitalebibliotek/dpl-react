@@ -6,8 +6,8 @@ import {
   useQuery
 } from "react-query";
 import { ErrorType, fetcher } from "./fetcher";
-import { getToken, TOKEN_USER_KEY } from "../token";
 import { useUrls } from "../utils/url";
+import { getUserToken } from "../utils/helpers/user";
 
 type UserInfoData = {
   attributes: {
@@ -25,7 +25,7 @@ type UserInfoData = {
 };
 
 const getUserInfoQueryKey = (url: string) => {
-  const userToken = getToken(TOKEN_USER_KEY);
+  const userToken = getUserToken();
   if (!userToken) {
     throw new Error("User token is missing");
   }

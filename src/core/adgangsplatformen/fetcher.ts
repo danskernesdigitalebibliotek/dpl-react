@@ -1,5 +1,5 @@
 import FetchFailedCriticalError from "../fetchers/FetchFailedCriticalError";
-import { getToken, TOKEN_USER_KEY } from "../token";
+import { getUserToken } from "../utils/helpers/user";
 import AdgangsPlatformenServiceHttpError from "./AdgangsPlatformenServiceHttpError";
 
 export const fetcher = async <ResponseType>({
@@ -14,7 +14,7 @@ export const fetcher = async <ResponseType>({
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  const userToken = getToken(TOKEN_USER_KEY);
+  const userToken = getUserToken();
   if (!userToken) {
     throw new Error("User token is missing");
   }
