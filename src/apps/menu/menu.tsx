@@ -1,17 +1,14 @@
 import React, { FC } from "react";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
 import MenuNotLoggedInContent from "./menu-not-logged-in/menu-not-logged-in";
-import {
-  isAnonymous,
-  isUnregistered,
-  usePatronData
-} from "../../core/utils/helpers/user";
+import { isAnonymous, isUnregistered } from "../../core/utils/helpers/user";
 import MenuLoggedIn from "./menu-logged-in/menu-logged-in";
 import { useText } from "../../core/utils/text";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import TextLineSkeleton from "../../components/skeletons/TextLineSkeleton";
 import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 import MenuUserUnregistered from "./menu-user-unregistered/menu-user-unregistered";
+import { usePatronData } from "../../core/utils/helpers/usePatronData";
 
 interface MenuProps {
   pageSize: number;

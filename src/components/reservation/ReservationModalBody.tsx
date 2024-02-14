@@ -61,8 +61,8 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import ModalMessage from "../message/modal-message/ModalMessage";
 import configuration, { getConf } from "../../core/configuration";
-import { usePatronData } from "../../core/utils/helpers/user";
 import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromAnotherLibrary";
+import { usePatronData } from "../../core/utils/helpers/usePatronData";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];

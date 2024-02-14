@@ -1,12 +1,8 @@
 import React, { useState, FC, useEffect } from "react";
-import { is } from "cypress/types/bluebird";
 import UserInfo from "./UserInfo";
-import { useUrls } from "../../core/utils/url";
 import { useText } from "../../core/utils/text";
-import { redirectTo } from "../../core/utils/helpers/url";
 import { useConfig } from "../../core/utils/config";
 import useUserInfo from "../../core/adgangsplatformen/useUserInfo";
-import { isUnregistered } from "../../core/utils/helpers/user";
 
 const CreatePatron: FC = () => {
   const [cpr, setCpr] = useState<string | null>(null);

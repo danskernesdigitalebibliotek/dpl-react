@@ -6,7 +6,6 @@ import {
   TOKEN_USER_KEY,
   hasToken
 } from "../../token";
-import { useGetPatronInformationByPatronIdV2 } from "../../fbs/fbs";
 
 export const isAnonymous = () => {
   return !hasToken("user");
@@ -23,11 +22,6 @@ export const isBlocked = (patron: Patron) => {
 export const isResident = (patron: Patron) => {
   return patron.resident;
 };
-
-export const usePatronData = () =>
-  useGetPatronInformationByPatronIdV2({
-    enabled: !isAnonymous()
-  });
 
 export const getUserToken = () => {
   if (isUnregistered()) {

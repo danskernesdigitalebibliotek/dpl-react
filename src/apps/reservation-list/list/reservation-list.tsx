@@ -27,9 +27,9 @@ import {
   getDetailsModalId,
   getModalIds
 } from "../../../core/utils/helpers/modal-helpers";
-import { usePatronData } from "../../../core/utils/helpers/user";
 import useReservations from "../../../core/utils/useReservations";
 import ReservationListSkeleton from "./reservation-list-skeleton";
+import { usePatronData } from "../../../core/utils/helpers/usePatronData";
 
 export interface ReservationListProps {
   pageSize: number;
