@@ -22,7 +22,7 @@ const branchHoldings: HoldingsV3[] = [
         periodical: undefined,
         materialGroup: {
           name: "standard",
-          description: "I NOT supposed to be matched"
+          description: "I am supposed to be matched" // But am not available
         }
       },
       {
