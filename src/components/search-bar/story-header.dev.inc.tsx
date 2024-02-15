@@ -35,12 +35,19 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
           </a>
         </div>
         <div className="header__menu">
-          <nav className="header__menu-first">
+          <nav
+            className="header__menu-first"
+            aria-label="Primary site navigation"
+          >
             <div>
               <div className="header__menu-navigation-mobile">
                 <div
                   className="pagefold-parent--small header__menu-navigation-button header__button"
-                  id="header__menu--open"
+                  id="header-sidebar-nav__toggle"
+                  aria-controls="sidebarNav"
+                  aria-expanded="false"
+                  role="button"
+                  tabIndex={0}
                 >
                   <div className="pagefold-triangle--small" />
                   <img src={menuIcon} alt="List of bookmarks" />
@@ -142,53 +149,64 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
           </div>
         </div>
       </header>
-      <div id="header__overlay">
-        <div className="header__overlay-main">
-          <img id="header__menu--close" src={crossIcon} alt="close" />
-          <ul className="header__overlay-menu">
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Det sker
-              </a>
-            </li>
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Biblioteker &amp; åbningstider
-              </a>
-            </li>
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Digitale tilbud
-              </a>
-            </li>
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Litteratur
-              </a>
-            </li>
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Børn &amp; forældre
-              </a>
-            </li>
-          </ul>
+      <div className="header-sidebar-nav" data-open="closed">
+        <div className="header-sidebar-nav__background-wrapper">
+          <div className="header-sidebar-nav__menu-wrapper">
+            <div
+              className="header-sidebar-nav__close-menu-button"
+              id="js-header-sidebar-nav__close-menu-button"
+              tabIndex={0}
+              role="button"
+              aria-label="Close menu"
+            >
+              <img src={crossIcon} alt="Close menu" />
+            </div>
+            <nav aria-label="Sidebar site navigation">
+              <ul className="header__menu-navigation">
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Det sker
+                  </a>
+                </li>
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Biblioteker &amp; åbningstider
+                  </a>
+                </li>
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Digitale tilbud
+                  </a>
+                </li>
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Litteratur
+                  </a>
+                </li>
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Børn &amp; forældre
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-        <div className="header__overlay-backdrop" />
       </div>
     </div>
   );
