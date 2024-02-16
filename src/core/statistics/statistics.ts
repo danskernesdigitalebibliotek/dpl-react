@@ -5,6 +5,7 @@
 type Statistics = Record<string, { id: number; name: string }>;
 
 export const statistics: Statistics = {
+  // Search flow
   searchQuery: { id: 10, name: "OSS" },
   searchResultCount: { id: 11, name: "OSS Results" },
   searchFacets: { id: 20, name: "Søgning Facet" },
@@ -21,7 +22,12 @@ export const statistics: Statistics = {
   reservation: { id: 50, name: "Reserver" },
   onlineReservation: { id: 51, name: "Se online" },
   autosuggestClick: { id: 54, name: "Autosuggest - klik" },
-  campaignShown: { id: 62, name: "KampagnePlus Titel" }
+  campaignShown: { id: 62, name: "KampagnePlus Titel" },
+
+  // Loaner status, user profile
+  renewSelectedMaterials: { id: 55, name: "Forny valgte materialer" },
+  renewAllMaterials: { id: 56, name: "Forny alle materialer" },
+  addToFavorites: { id: 55, name: "Tilføj til liste" }
 };
 
 export default {};
