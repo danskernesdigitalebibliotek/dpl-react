@@ -31,8 +31,8 @@ interface CreatePatronTextProps {
   createPatronChangePickupHeaderText: string;
   createPatronConfirmButtonText: string;
   createPatronHeaderText: string;
-  createPatronInvalidSSNBodyText: string;
-  createPatronInvalidSSNHeaderText: string;
+  createPatronInvalidSsnBodyText: string;
+  createPatronInvalidSsnHeaderText: string;
   patronContactEmailCheckboxText: string;
   patronContactEmailLabelText: string;
   patronContactInfoHeaderText: string;
