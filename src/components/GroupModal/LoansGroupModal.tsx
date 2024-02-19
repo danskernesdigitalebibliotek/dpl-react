@@ -117,7 +117,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
       classNames={showSuccessMessage ? "modal-cta modal-padding" : ""}
     >
       {["idle", "pending"].includes(renewingStatus) && (
-        <div className="modal-loan">
+        <div className="modal-loan modal-loan__container">
           {children}
           <GroupModalContent
             selectMaterials={selectMaterials}
