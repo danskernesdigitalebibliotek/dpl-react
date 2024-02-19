@@ -8,6 +8,8 @@ import {
 } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
 import { Pid, WorkId } from "../../core/utils/types/ids";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 export type ButtonFavouriteId = WorkId | Pid;
 export interface ButtonFavouriteProps {
@@ -27,6 +29,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   const [fillState, setFillState] = useState<boolean>(false);
   const t = useText();
   const { mutate } = useHasItem();
+  const { track } = useStatistics();
 
   useEffect(() => {
     mutate(
@@ -55,6 +58,11 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
         queryClient.invalidateQueries(getGetListQueryKey("default"));
         setFillState(false);
       } else {
+        track("click", {
+          id: statistics.addToFavorites.id,
+          name: statistics.addToFavorites.name,
+          trackedData: id
+        });
         addToListRequest(id);
         setFillState(true);
       }
@@ -62,7 +70,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
       // this wont interfere with their click handler.
       e.stopPropagation();
     },
-    [addToListRequest, fillState, id, queryClient]
+    [addToListRequest, fillState, id, queryClient, track]
   );
 
   return (
