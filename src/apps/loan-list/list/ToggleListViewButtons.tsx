@@ -73,35 +73,35 @@ const ToggleListViewButtons: FC<ToggleListViewButtonsProps> = ({
         >
           <IconStack />
         </button>
-        <div className="dpl-list-buttons__buttons__button dpl-list-buttons__buttons__button--hide-on-mobile">
-          <button
-            type="button"
-            onClick={() => {
-              openRenewLoansModal();
-            }}
-            disabled={disableRenewLoansButton}
-            className={`btn-primary btn-filled btn-small arrow__hover--right-small ${
-              disableRenewLoansButton ? "btn-outline" : ""
-            }`}
-            id="test-renew-button"
-            aria-describedby="renew-multiple-modal"
-          >
-            {renewLoansButtonText}
-          </button>
-        </div>
-        <div className="hide-on-desktop button-box button-box--sticky-bottom">
-          <Button
-            label={renewLoansButtonText}
-            buttonType="none"
-            disabled={disableRenewLoansButton}
-            collapsible={false}
-            size="small"
-            variant={disableRenewLoansButton ? "outline" : "filled"}
-            onClick={() => {
-              openRenewLoansModal();
-            }}
-          />
-        </div>
+      </div>
+      <div className="dpl-list-buttons__buttons__button dpl-list-buttons__buttons__button--hide-on-mobile">
+        <button
+          type="button"
+          onClick={() => {
+            openRenewLoansModal();
+          }}
+          disabled={disableRenewLoansButton}
+          className={`btn-primary btn-filled btn-small arrow__hover--right-small ${
+            disableRenewLoansButton ? "btn-outline" : ""
+          }`}
+          id="test-renew-button"
+          aria-describedby="renew-multiple-modal"
+        >
+          {renewLoansButtonText}
+        </button>
+      </div>
+      <div className="hide-on-desktop button-box button-box--sticky-bottom">
+        <Button
+          label={renewLoansButtonText}
+          buttonType="none"
+          disabled={disableRenewLoansButton}
+          collapsible={false}
+          size="small"
+          variant={disableRenewLoansButton ? "outline" : "filled"}
+          onClick={() => {
+            openRenewLoansModal();
+          }}
+        />
       </div>
     </div>
   );

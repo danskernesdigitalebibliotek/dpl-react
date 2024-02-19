@@ -101,10 +101,6 @@ export default {
       defaultValue: "At the moment you have 0 reservations on digital items",
       control: { type: "text" }
     },
-    reservationListReadyText: {
-      defaultValue: "Ready",
-      control: { type: "text" }
-    },
     materialByAuthorText: {
       defaultValue: "By",
       control: { type: "text" }
@@ -131,10 +127,6 @@ export default {
     },
     reservationListInQueueText: {
       defaultValue: "queued",
-      control: { type: "text" }
-    },
-    reservationPickUpLatestText: {
-      defaultValue: "Pick up before @date",
       control: { type: "text" }
     },
     publizonEbookText: {

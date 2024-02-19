@@ -230,7 +230,8 @@ export default {
   },
   deleteReservationModalSuccessTitleText: {
     name: "Delete reservation modal success title text",
-    defaultValue: "Reservations deleted",
+    defaultValue:
+      '{"type":"plural","text":["Reservation deleted","Reservations deleted"]}',
     control: { type: "text" }
   },
   deleteReservationModalSuccessStatusText: {
