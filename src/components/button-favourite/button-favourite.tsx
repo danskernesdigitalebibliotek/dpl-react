@@ -3,7 +3,6 @@ import { useQueryClient } from "react-query";
 import LoadIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reload.svg";
 import { IconFavourite } from "../icon-favourite/icon-favourite";
 import {
-  getGetListQueryKey,
   removeItem,
   useHasItem
 } from "../../core/material-list-api/material-list";
@@ -61,8 +60,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       if (fillState) {
-        removeItem("default", id);
-        queryClient.invalidateQueries(getGetListQueryKey("default"));
+        removeItem("default", id, queryClient);
         setFillState(false);
       } else {
         track("click", {

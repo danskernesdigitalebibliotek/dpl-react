@@ -17,8 +17,6 @@ export interface FavoritesListProps {
 
 const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   const t = useText();
-  const queryClient = useQueryClient();
-  queryClient.invalidateQueries(getGetListQueryKey("default"));
   const { data } = useGetList("default");
   const [displayedMaterials, setDisplayedMaterials] = useState<Pid[]>([]);
   const [materials, setMaterials] = useState<Pid[]>([]);
