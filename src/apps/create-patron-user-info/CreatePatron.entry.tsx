@@ -59,6 +59,7 @@ const CreatePatronEntry: FC<CreatePatronProps> = () => {
   const u = useUrls();
   const dashboardUrl = u("dashboardUrl");
 
+  // TODO: Do we need to wrap the redirect in a useEffect?
   useEffect(() => {
     // If the user has already been registered, redirect to the dashboard.
     if (!isUnregistered()) {
