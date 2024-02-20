@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useQueryClient } from "react-query";
 import EmptyList from "../../components/empty-list/empty-list";
 import usePager from "../../components/result-pager/use-pager";
-import {
-  getGetListQueryKey,
-  useGetList
-} from "../../core/material-list-api/material-list";
+import { useGetList } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
 import { Pid } from "../../core/utils/types/ids";
 import CardListItemAdapter from "../../components/card-item-list/card-list-item/card-list-item-adapter";
