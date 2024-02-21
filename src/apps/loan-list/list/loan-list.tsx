@@ -110,14 +110,19 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     }
   }, [loansPhysical, loansDigital, loanDetails, openDueDateModal]);
 
+  const shouldShowSkeletons =
+    isLoadingFbs &&
+    isLoadingPublizon &&
+    loansPhysical.length === 0 &&
+    loansDigital.length === 0;
+
   return (
     <>
       <div className={`loan-list-page ${getScrollClass(modalIds)}`}>
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
-        {isLoadingFbs && isLoadingPublizon && <LoanListSkeleton />}
+        {shouldShowSkeletons && <LoanListSkeleton />}
 
-        {!isLoadingFbs &&
-          !isLoadingPublizon &&
+        {!shouldShowSkeletons &&
           (!loansAreEmpty(loansPhysical) || !loansAreEmpty(loansDigital)) && (
             <>
               {loansPhysical && (
