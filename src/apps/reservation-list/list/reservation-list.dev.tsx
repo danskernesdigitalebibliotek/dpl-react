@@ -121,10 +121,6 @@ export default {
       defaultValue: "You are at the front of the queue",
       control: { type: "text" }
     },
-    reservationListDigitalPickupText: {
-      defaultValue: "Online access",
-      control: { type: "text" }
-    },
     reservationListInQueueText: {
       defaultValue: "queued",
       control: { type: "text" }

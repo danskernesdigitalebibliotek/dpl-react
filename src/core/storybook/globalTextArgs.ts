@@ -192,6 +192,10 @@ export default {
   reservationListReadyText: {
     defaultValue: "Ready",
     control: { type: "text" }
+  },
+  reservationListDigitalPickupText: {
+    defaultValue: "Online access",
+    control: { type: "text" }
   }
 };
 
@@ -236,4 +240,5 @@ export interface GlobalEntryTextProps {
   acceptModalAcceptButtonText: string;
   reservationPickUpLatestText: string;
   reservationListReadyText: string;
+  reservationListDigitalPickupText: string;
 }
