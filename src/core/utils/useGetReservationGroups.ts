@@ -70,7 +70,10 @@ const useGetReservationGroups = (): UseGetReservationGroupsResult => {
   const result = useGetReservationsV2();
   const resultWithGroups = {
     ...result,
-    data: result.data ? groupReservations(result.data) : null
+    data:
+      result.data && Array.isArray(result.data)
+        ? groupReservations(result.data)
+        : null
   };
   return resultWithGroups;
 };

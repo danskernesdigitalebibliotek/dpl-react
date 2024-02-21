@@ -15,7 +15,7 @@ import PincodeSection from "./sections/PincodeSection";
 import StatusSection from "./sections/StatusSection";
 import { useUrls } from "../../core/utils/url";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
-import { usePatronData } from "../../core/utils/helpers/user";
+import { usePatronData } from "../../core/utils/helpers/usePatronData";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
