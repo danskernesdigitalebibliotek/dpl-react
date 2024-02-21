@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Multiselect from "./Multiselect";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 
@@ -26,6 +27,7 @@ export default {
   component: WrappedMultiselect,
   argTypes: {
     ...globalTextArgs,
+    ...globalConfigArgs,
     caption: {
       name: "Caption",
       control: { type: "text" }

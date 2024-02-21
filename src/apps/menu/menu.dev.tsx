@@ -11,6 +11,7 @@ import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalA
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import { withConfig } from "../../core/utils/config";
@@ -31,6 +32,7 @@ export default {
     ...deleteReservationModalArgs,
     ...materialDetailsModalArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     materialAndAuthorText: {
       control: {
         type: "text"

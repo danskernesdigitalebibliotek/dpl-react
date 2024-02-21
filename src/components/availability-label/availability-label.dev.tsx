@@ -10,6 +10,7 @@ import {
   AvailabilityLabel
 } from "./availability-label";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 // The configuration below addresses the different variables,
 // their default values, and how they translate into storybook
@@ -20,6 +21,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     faustIds: {
       name: "Faust Ids",
       control: { type: "array" }
