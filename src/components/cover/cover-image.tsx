@@ -6,7 +6,7 @@ type CoverImageType = {
   altText?: string;
   animate: boolean;
   setImageLoaded: () => void;
-  shadow?: boolean;
+  shadow?: "small" | "medium";
 };
 
 const CoverImage: FC<CoverImageType> = ({
@@ -23,7 +23,10 @@ const CoverImage: FC<CoverImageType> = ({
       {
         "cover__img--animate": animate
       },
-      { "cover__img--shadow": shadow }
+      {
+        "cover__img--shadow-small": shadow === "small",
+        "cover__img--shadow-medium": shadow === "medium"
+      }
     )}
     src={src}
     alt={altText || ""}
