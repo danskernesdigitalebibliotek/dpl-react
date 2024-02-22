@@ -12,6 +12,8 @@ export type GuardedAppId =
   | "favorites-list-mc"
   | "inspiration-recommender"
   | "recommended-material"
-  | "recommendation";
+  | "recommendation"
+  | "material-grid-automatic";
+
 export type IssnId = DigitalArticleService["issn"];
 export type LoanId = number;
