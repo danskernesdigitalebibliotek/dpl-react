@@ -43,12 +43,11 @@ export interface ReservationListTextProps {
   publizonPodcastText: string;
   reservationDetailsExpiresText: string;
   reservationDetailsExpiresTitleText: string;
-  reservationDetailsOthersInQueueText: string;
   reservationListAllEmptyText: string;
+  reservationListYouAreInQueueText: string;
   reservationListAvailableInText: string;
   reservationListDaysText: string;
   reservationListDayText: string;
-  reservationListDigitalPickupText: string;
   reservationListDigitalReservationsEmptyText: string;
   reservationListDigitalReservationsHeaderText: string;
   reservationListFirstInQueueText: string;
@@ -65,8 +64,6 @@ export interface ReservationListTextProps {
   reservationListPhysicalReservationsHeaderText: string;
   reservationListReadyForPickupEmptyText: string;
   reservationListReadyForPickupTitleText: string;
-  reservationListReadyText: string;
-  reservationPickUpLatestText: string;
 }
 
 export interface ReservationListEntryWithPageSizeProps

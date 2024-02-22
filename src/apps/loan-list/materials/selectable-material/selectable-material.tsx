@@ -12,6 +12,7 @@ import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import ArrowButton from "../../../../components/Buttons/ArrowButton";
 import { isDigital } from "../../utils/helpers";
 import { listId, ListType } from "../../../../core/utils/types/list-type";
+import SelectableMaterialSkeleton from "./selectable-material-skeleton";
 
 interface SelectableMaterialProps {
   identifier?: string | null;
@@ -25,6 +26,7 @@ interface SelectableMaterialProps {
   statusBadgeComponent: ReactNode;
   focused: boolean;
   displayedMaterial?: ReservationType;
+  noHoverEffect?: boolean;
 }
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
@@ -38,7 +40,8 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   statusMessageComponentDesktop,
   statusBadgeComponent,
   focused,
-  displayedMaterial
+  displayedMaterial,
+  noHoverEffect = false
 }) => {
   const t = useText();
 
@@ -68,11 +71,14 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   };
 
   return (
-    <li className="arrow__hover--right-small">
+    <li className={clsx({ "arrow__hover--right-small": openDetailsModal })}>
       <div
-        className={clsx("list-materials", {
-          "list-materials--disabled": disabled
-        })}
+        className={clsx("list-materials", [
+          {
+            "list-materials--disabled": disabled
+          },
+          { "list-materials--no-hover": noHoverEffect }
+        ])}
       >
         {onMaterialChecked && (
           <div className="list-materials__checkbox mr-16">
@@ -93,7 +99,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </div>
         )}
         <div
-          className="list-materials__content cursor-pointer"
+          className={clsx("list-materials__content", {
+            "cursor-pointer": openDetailsModal
+          })}
           onClick={handleOnClick}
           onKeyUp={handleOnKeyUp}
           tabIndex={0}
@@ -111,7 +119,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </p>
         </div>
         <div
-          className="list-materials__status pl-4 cursor-pointer"
+          className={clsx("list-materials__status pl-4", {
+            "cursor-pointer": openDetailsModal
+          })}
           role="button"
           onClick={handleOnClick}
           onKeyUp={handleOnKeyUp}
@@ -130,25 +140,6 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
                 isDigital={isDigital(displayedMaterial)}
               />
             )}
-            {openDetailsModal && (
-              <button
-                type="button"
-                // This is to handle focus when more items are loaded via pagination
-                // eslint-disable-next-line jsx-a11y/no-autofocus
-                autoFocus={disabled && focused}
-                className="list-reservation__note"
-                onClick={() => openDetailsModal(item)}
-                aria-label={
-                  title
-                    ? t("groupModalGoToMaterialAriaLabelText", {
-                        placeholders: { "@label": title }
-                      })
-                    : ""
-                }
-              >
-                {t("groupModalGoToMaterialText")}
-              </button>
-            )}
           </div>
         </div>
         {openDetailsModal && (
@@ -165,4 +156,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   );
 };
 
-export default fetchDigitalMaterial(fetchMaterial(SelectableMaterial));
+export default fetchDigitalMaterial(
+  fetchMaterial(SelectableMaterial, SelectableMaterialSkeleton),
+  SelectableMaterialSkeleton
+);

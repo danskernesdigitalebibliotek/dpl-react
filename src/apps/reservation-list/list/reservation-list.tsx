@@ -27,8 +27,9 @@ import {
   getDetailsModalId,
   getModalIds
 } from "../../../core/utils/helpers/modal-helpers";
-import { usePatronData } from "../../../core/utils/helpers/user";
 import useReservations from "../../../core/utils/useReservations";
+import ReservationListSkeleton from "./reservation-list-skeleton";
+import { usePatronData } from "../../../core/utils/helpers/usePatronData";
 
 export interface ReservationListProps {
   pageSize: number;
@@ -44,13 +45,13 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     useState<ReservationType | null>(null);
   const [reservationToDelete, setReservationToDelete] =
     useState<ReservationType | null>(null);
-  const { data: userData } = usePatronData();
+  const { data: userData, isLoading: isLoadingUserData } = usePatronData();
 
   const {
     all: { reservations: allReservations, isLoading }
   } = useReservations();
 
-  const allListsEmpty = allReservations.length === 0 && isLoading;
+  const allListsEmpty = allReservations.length === 0 && !isLoading;
 
   const openReservationDeleteModal = (reservationForModal: ReservationType) => {
     setReservationToDelete(reservationForModal);
@@ -104,8 +105,21 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
         <h1 className="text-header-h1 m-32">
           {t("reservationListHeaderText")}
         </h1>
+        {/* Loading skeleton version of <ReservationPauseToggler /> */}
+        {isLoadingUserData && (
+          <div className="ssc">
+            <div className="ssc-square w-90 ml-32 my-32" />
+          </div>
+        )}
+
         {userData?.patron && <ReservationPauseToggler user={userData.patron} />}
+
+        {isLoading && allReservations.length === 0 && (
+          <ReservationListSkeleton />
+        )}
+
         {allListsEmpty && <EmptyReservations />}
+
         {!allListsEmpty && (
           <DisplayedReservations
             openReservationDetailsModal={openReservationDetailsModal}
@@ -113,6 +127,8 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
           />
         )}
       </div>
+
+      {/* Modals */}
       {userData?.patron && (
         <PauseReservation
           user={userData?.patron}

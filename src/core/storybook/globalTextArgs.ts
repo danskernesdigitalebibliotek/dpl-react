@@ -164,7 +164,6 @@ export default {
     defaultValue: "accept modal aria description text",
     control: { type: "text" }
   },
-
   acceptModalHeaderText: {
     defaultValue: "Hov, dit gebyr forhøjes!",
     control: { type: "text" }
@@ -184,6 +183,22 @@ export default {
   },
   acceptModalCancelButtonText: {
     defaultValue: "Annuller fornyelse",
+    control: { type: "text" }
+  },
+  isLoadingHeartText: {
+    defaultValue: "Indlæser",
+    control: { type: "text" }
+  },
+  reservationPickUpLatestText: {
+    defaultValue: "Pick up before @date",
+    control: { type: "text" }
+  },
+  reservationListReadyText: {
+    defaultValue: "Ready",
+    control: { type: "text" }
+  },
+  reservationListDigitalPickupText: {
+    defaultValue: "Online access",
     control: { type: "text" }
   }
 };
@@ -227,4 +242,8 @@ export interface GlobalEntryTextProps {
   acceptModalBodyText: string;
   acceptModalCancelButtonText: string;
   acceptModalAcceptButtonText: string;
+  isLoadingHeartText: string;
+  reservationPickUpLatestText: string;
+  reservationListReadyText: string;
+  reservationListDigitalPickupText: string;
 }

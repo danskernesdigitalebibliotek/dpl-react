@@ -12,11 +12,11 @@ const DashboardFees: FC = () => {
 
   const feesPageUrl = u("feesPageUrl");
   const { data: fbsFees } = useGetFeesV2();
-  const [feeCount, setFeeCount] = useState<number>();
+  const [feeCount, setFeeCount] = useState<number>(0);
   const [totalFeeAmount, setTotalFeeAmount] = useState<string>("0");
 
   useEffect(() => {
-    if (fbsFees) {
+    if (fbsFees && Array.isArray(fbsFees)) {
       setFeeCount(fbsFees.length);
       setTotalFeeAmount(tallyUpFees(fbsFees));
     }

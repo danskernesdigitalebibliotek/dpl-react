@@ -139,12 +139,16 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
 
   if (state === "reserved" && !pickupBranch && pickupDeadline) {
     const daysBetweenTodayAndPickup = daysBetweenTodayAndDate(pickupDeadline);
+    const reservationAvailableLabel = showStatusCircleIcon
+      ? t("reservationListAvailableInText", {
+          placeholders: { "@count": daysBetweenTodayAndDate(pickupDeadline) }
+        })
+      : "";
+
     return (
       <ReservationStatus
         percent={daysBetweenTodayAndDate(pickupDeadline) / 100}
-        label={t("reservationListAvailableInText", {
-          placeholders: { "@count": daysBetweenTodayAndDate(pickupDeadline) }
-        })}
+        label={reservationAvailableLabel}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
         empty={!showStatusCircleIcon}

@@ -43,11 +43,12 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
-          registry-url: 'https://npm.pkg.github.com'
-          always-auth: true
-          scope: '@danskernesdigitalebibliotek'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create NPMRC
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+          echo "[@danskernesdigitalebibliotek]:registry=https://npm.pkg.github.com" >> ~/.npmrc
+          echo 'registry "https://registry.yarnpkg.com"' >> ~/.yarnrc
 
       - uses: Wandalen/wretry.action@v1.4.4
         with:
@@ -82,7 +83,6 @@ jobs:
         id: create-release
         uses: softprops/action-gh-release@v1
         with:
-          prerelease: true
           target_commitish: ${{ env.RELEASE_SHA }}
           tag_name: ${{ env.TAG_NAME }}
           body: ${{ env.RELEASE_DESCRIPTION }}

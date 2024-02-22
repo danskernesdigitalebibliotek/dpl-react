@@ -3,7 +3,7 @@ import {
   getAllFaustIds,
   getManifestationType
 } from "../../../../core/utils/helpers/general";
-import { isBlocked, usePatronData } from "../../../../core/utils/helpers/user";
+import { isBlocked } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import UseReservableManifestations from "../../../../core/utils/UseReservableManifestations";
@@ -12,6 +12,7 @@ import MaterialButtonReservePhysical from "./MaterialButtonPhysical";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import { useText } from "../../../../core/utils/text";
+import { usePatronData } from "../../../../core/utils/helpers/usePatronData";
 
 export interface MaterialButtonsPhysicalProps {
   manifestations: Manifestation[];

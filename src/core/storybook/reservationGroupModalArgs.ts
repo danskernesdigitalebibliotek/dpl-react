@@ -16,7 +16,8 @@ export default {
     control: { type: "text" }
   },
   removeAllReservationsText: {
-    defaultValue: "Remove reservations (@amount)",
+    defaultValue:
+      '{"type":"plural","text":["Remove reservation (@amount)","Remove reservations (@amount)"]}',
     control: { type: "text" }
   },
   pickUpLatestText: {

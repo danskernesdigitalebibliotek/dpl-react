@@ -9,7 +9,8 @@ import { Button } from "../../../Buttons/Button";
 import { createDigitalModalId } from "../../digital-modal/helper";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
-import { isResident, usePatronData } from "../../../../core/utils/helpers/user";
+import { isResident } from "../../../../core/utils/helpers/user";
+import { usePatronData } from "../../../../core/utils/helpers/usePatronData";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
   pid: Pid;

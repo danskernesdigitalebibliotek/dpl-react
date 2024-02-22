@@ -101,10 +101,6 @@ export default {
       defaultValue: "At the moment you have 0 reservations on digital items",
       control: { type: "text" }
     },
-    reservationListReadyText: {
-      defaultValue: "Ready",
-      control: { type: "text" }
-    },
     materialByAuthorText: {
       defaultValue: "By",
       control: { type: "text" }
@@ -125,16 +121,8 @@ export default {
       defaultValue: "You are at the front of the queue",
       control: { type: "text" }
     },
-    reservationListDigitalPickupText: {
-      defaultValue: "Online access",
-      control: { type: "text" }
-    },
     reservationListInQueueText: {
       defaultValue: "queued",
-      control: { type: "text" }
-    },
-    reservationPickUpLatestText: {
-      defaultValue: "Pick up before @date",
       control: { type: "text" }
     },
     publizonEbookText: {
@@ -153,6 +141,10 @@ export default {
       defaultValue: "Borrow before @date",
       control: { type: "text" }
     },
+    reservationListYouAreInQueueText: {
+      defaultValue: "You are in the reservation queue",
+      control: { type: "text" }
+    },
     reservationListAvailableInText: {
       defaultValue: "Available in @count days",
       control: { type: "text" }
@@ -163,10 +155,6 @@ export default {
     },
     reservationListDayText: {
       defaultValue: "day",
-      control: { type: "text" }
-    },
-    reservationDetailsOthersInQueueText: {
-      defaultValue: "Others are queueing for this material",
       control: { type: "text" }
     },
     reservationDetailsExpiresTitleText: {

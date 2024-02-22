@@ -49,7 +49,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
           );
           const loan = loansUniqueDueDate[0] || {};
           return (
-            <div>
+            <ul>
               {loan && (
                 <StackableMaterial
                   focused={i === indexOfFocus}
@@ -63,24 +63,27 @@ const LoanListItems: FC<LoanListItemProps> = ({
                   additionalMaterials={loansUniqueDueDate.length - 1}
                 />
               )}
-            </div>
+            </ul>
           );
         })}
-      {view === "list" &&
-        loans.map((loan, i) => {
-          return (
-            <StackableMaterial
-              focused={i === indexOfFocus}
-              openLoanDetailsModal={openLoanDetailsModal}
-              item={loan}
-              loanId={loan.loanId}
-              key={loanId(loan)}
-              loan={loan}
-              // Zero, as it is not stacked
-              additionalMaterials={0}
-            />
-          );
-        })}
+      {view === "list" && (
+        <ul>
+          {loans.map((loan, i) => {
+            return (
+              <StackableMaterial
+                focused={i === indexOfFocus}
+                openLoanDetailsModal={openLoanDetailsModal}
+                item={loan}
+                loanId={loan.loanId}
+                key={loanId(loan)}
+                loan={loan}
+                // Zero, as it is not stacked
+                additionalMaterials={0}
+              />
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };
