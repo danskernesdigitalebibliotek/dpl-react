@@ -114,7 +114,9 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
 
         {userData?.patron && <ReservationPauseToggler user={userData.patron} />}
 
-        {isLoading && <ReservationListSkeleton />}
+        {isLoading && allReservations.length === 0 && (
+          <ReservationListSkeleton />
+        )}
 
         {allListsEmpty && <EmptyReservations />}
 
