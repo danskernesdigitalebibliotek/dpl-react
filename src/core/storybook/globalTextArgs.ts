@@ -185,6 +185,10 @@ export default {
     defaultValue: "Annuller fornyelse",
     control: { type: "text" }
   },
+  isLoadingHeartText: {
+    defaultValue: "Indlæser",
+    control: { type: "text" }
+  },
   reservationPickUpLatestText: {
     defaultValue: "Pick up before @date",
     control: { type: "text" }
@@ -238,6 +242,7 @@ export interface GlobalEntryTextProps {
   acceptModalBodyText: string;
   acceptModalCancelButtonText: string;
   acceptModalAcceptButtonText: string;
+  isLoadingHeartText: string;
   reservationPickUpLatestText: string;
   reservationListReadyText: string;
   reservationListDigitalPickupText: string;
