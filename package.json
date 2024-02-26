@@ -93,7 +93,7 @@
     "concurrently": "^8.2.2",
     "core-js": "^3.36.0",
     "css-loader": "^6.9.1",
-    "cssnano": "^6.0.3",
+    "cssnano": "^6.0.5",
     "cypress": "^9.6.1",
     "dotenv": "^16.4.4",
     "eslint": "^8.56.0",
