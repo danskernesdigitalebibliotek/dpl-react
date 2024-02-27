@@ -434,13 +434,6 @@ describe("Reservation details modal", () => {
       .eq(0)
       .should("have.text", "Dummy bog");
 
-    // ID 13 2.b. Text: “Others in queue” if numberInQueue > 0
-    cy.get(".modal")
-      .find(".modal-details__buttons")
-      .eq(0)
-      .find(".text-body-medium-regular")
-      .should("have.text", "Others are queueing for this material");
-
     // ID 13 2.d. header "status"
     cy.getBySel("reservation-form-list-item")
       .eq(0)

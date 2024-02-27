@@ -1,6 +1,7 @@
 import FetchFailedCriticalError from "../../fetchers/FetchFailedCriticalError";
 import { getServiceUrlWithParams } from "../../fetchers/helpers";
-import { getToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../../token";
+import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
+import { getUserToken } from "../../utils/helpers/user";
 import {
   getServiceBaseUrl,
   serviceUrlKeys
@@ -21,7 +22,7 @@ export const fetcher = async <ResponseType>({
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  const token = getToken(TOKEN_USER_KEY) ?? getToken(TOKEN_LIBRARY_KEY);
+  const token = getUserToken() ?? getToken(TOKEN_LIBRARY_KEY);
   const baseUrl = getServiceBaseUrl(serviceUrlKeys.fbs);
 
   const authHeaders = token

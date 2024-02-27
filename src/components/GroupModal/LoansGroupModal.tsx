@@ -17,6 +17,8 @@ import { succeededRenewalCount } from "../../core/utils/helpers/renewal";
 import { useSingleRequestWithStatus } from "../../core/utils/useRequestsWithStatus";
 import { ListType } from "../../core/utils/types/list-type";
 import { getModalIds } from "../../core/utils/helpers/modal-helpers";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 interface LoansGroupModalProps {
   dueDate?: string | null;
@@ -43,7 +45,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   const [renewingResponse, setRenewingResponse] = useState<
     RenewedLoanV2[] | null
   >(null);
-
+  const { track } = useStatistics();
   const {
     handler: renew,
     requestStatus: renewingStatus,
@@ -74,7 +76,24 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   });
 
   const renewSelected = useCallback(() => {
+    // We track either renewSelectedMaterials or renewAllMaterials depending on
+    // whether the user is renewing some or all of their loans.
+    const renewWhatMaterials =
+      renewableMaterials === materialsToRenew.length
+        ? "renewAllMaterials"
+        : "renewSelectedMaterials";
+    const trackedData =
+      renewableMaterials === materialsToRenew.length
+        ? `Forny_alle_materialer ${`(${materialsToRenew.length})`}`
+        : `Forny_valgte_materialer ${`(${materialsToRenew.length})`}`;
+    track("click", {
+      id: statistics[renewWhatMaterials].id,
+      name: statistics[renewWhatMaterials].name,
+      trackedData
+    });
     renew();
+    // We only want to track if the user actually renews any loans.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [renew]);
 
   useEffect(() => {

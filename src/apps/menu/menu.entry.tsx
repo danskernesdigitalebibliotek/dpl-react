@@ -20,7 +20,6 @@ export interface MenuProps {
   menuNavigationDataConfig: string;
   menuNotificationLoansExpiredText: string;
   menuNotificationLoansExpiredUrl: string;
-  reservationDetailsOthersInQueueText: string;
   readyForLoanText: string;
   menuNotificationLoansExpiringSoonText: string;
   menuNotificationLoansExpiringSoonUrl: string;

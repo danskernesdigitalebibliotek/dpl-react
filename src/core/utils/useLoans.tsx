@@ -90,7 +90,8 @@ const useLoans: UseLoans = () => {
   const loansIsError = isErrorFbs || isErrorPublizon;
 
   // map loans to same type
-  const mappedLoansFbs = loansFbs ? mapFBSLoanToLoanType(loansFbs) : [];
+  const mappedLoansFbs =
+    loansFbs && Array.isArray(loansFbs) ? mapFBSLoanToLoanType(loansFbs) : [];
   const mappedLoansPublizon = loansPublizon?.loans
     ? mapPublizonLoanToLoanType(loansPublizon.loans)
         // TODO: is it necessary to filter out loans without dueDate?

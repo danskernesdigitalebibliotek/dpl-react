@@ -125,6 +125,12 @@ export default {
       },
       defaultValue: "Renew several"
     },
+    loanListNoItemsCanBeRenewedText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "No materials can be renewed"
+    },
     loanListStatusBadgeDangerText: {
       control: {
         type: "text"

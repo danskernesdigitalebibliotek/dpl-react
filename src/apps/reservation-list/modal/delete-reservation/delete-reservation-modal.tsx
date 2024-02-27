@@ -125,7 +125,9 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
       )}
       {requestStatus === "success" && (
         <ModalMessage
-          title={t("deleteReservationModalSuccessTitleText")}
+          title={t("deleteReservationModalSuccessTitleText", {
+            count: deletedReservations ?? 1
+          })}
           subTitle={t("deleteReservationModalSuccessStatusText", {
             count: deletedReservations ?? 0
           })}

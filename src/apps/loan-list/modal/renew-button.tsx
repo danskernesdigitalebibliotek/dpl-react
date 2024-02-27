@@ -7,6 +7,8 @@ import { Button } from "../../../components/Buttons/Button";
 import { RequestStatus } from "../../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import { getRenewButtonLabel } from "../../../core/utils/helpers/renewal";
+import { useStatistics } from "../../../core/statistics/useStatistics";
+import { statistics } from "../../../core/statistics/statistics";
 
 interface RenewButtonProps {
   loanId: LoanId;
@@ -28,6 +30,7 @@ const RenewButton: FC<RenewButtonProps> = ({
   setRenewingResponse
 }) => {
   const t = useText();
+  const { track } = useStatistics();
   const queryClient = useQueryClient();
   const { mutate } = useRenewLoansV2();
   const label = getRenewButtonLabel({
@@ -35,7 +38,13 @@ const RenewButton: FC<RenewButtonProps> = ({
     renewingStatus,
     t
   });
-
+  const trackRenewal = () => {
+    track("click", {
+      id: statistics.renewSelectedMaterials.id,
+      name: statistics.renewSelectedMaterials.name,
+      trackedData: "Forny_valgte_materialer"
+    });
+  };
   const renew = useCallback(
     (renewId: number) => {
       setRenewingStatus("pending");
@@ -72,7 +81,10 @@ const RenewButton: FC<RenewButtonProps> = ({
         size="small"
         variant="filled"
         disabled={!renewable || renewingStatus === "pending"}
-        onClick={() => renew(loanId)}
+        onClick={() => {
+          trackRenewal();
+          renew(loanId);
+        }}
         classNames={classNames}
         label={label}
         buttonType="none"

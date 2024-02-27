@@ -45,7 +45,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     all: {
       reservations,
       readyToLoan: reservationsReadyToLoan,
-      queued: reservationsQueued
+      queued: reservationsQueued,
+      isLoading: isLoadingReservations
     }
   } = useReservations();
   const {
@@ -53,7 +54,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       loans,
       overdue: loansOverdue,
       soonOverdue: loansSoonOverdue,
-      farFromOverdue: loansFarFromOverdue
+      farFromOverdue: loansFarFromOverdue,
+      isLoading: isLoadingLoans
     }
   } = useLoans();
   const [reservationsForDeleting, setReservationsForDeleting] = useState<
@@ -213,6 +215,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
               headerUrl={physicalLoansUrl}
               header={t("physicalLoansText")}
               emptyListText={t("noPhysicalLoansText")}
+              isLoading={isLoadingLoans}
             />
             <NotificationColumn
               materials={dashboardNotificationsReservations}
@@ -220,6 +223,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
               headerUrl={reservationsUrl}
               header={t("reservationsText")}
               emptyListText={t("noReservationsText")}
+              isLoading={isLoadingReservations}
             />
           </>
         )}
@@ -231,6 +235,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             ...dashboardNotificationsLoan,
             ...dashboardNotificationsReservations
           ]}
+          isLoading={isLoadingLoans || isLoadingReservations}
         />
       )}
 

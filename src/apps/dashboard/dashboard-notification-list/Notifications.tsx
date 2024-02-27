@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import DashboardNotification from "../dashboard-notification/dashboard-notification";
+import NotificationSkeleton from "../dashboard-notification/notification-skeleton";
 
 export interface NotificationMaterialsList {
   listLength: number;
@@ -13,16 +14,32 @@ export interface NotificationMaterialsList {
 
 export interface NotificationsProps {
   materials: NotificationMaterialsList[];
-  showOnlyNotifications: boolean;
+  showOnlyNotifications?: boolean;
+  showStatusLabel?: boolean;
+  isLoading?: boolean;
 }
 
 const Notifications: FC<NotificationsProps> = ({
   materials,
-  showOnlyNotifications
+  showOnlyNotifications = false,
+  showStatusLabel = false,
+  isLoading = false
 }) => {
   const displayedNotifications = showOnlyNotifications
     ? materials.filter(({ showNotificationDot }) => showNotificationDot)
     : materials;
+
+  // We don't want to keep loading for all the data because we don't use
+  // the full extent - knowing there are any notifications is enough
+  if (isLoading && displayedNotifications.length === 0) {
+    return (
+      <>
+        {[0, 1].map(() => {
+          return <NotificationSkeleton />;
+        })}
+      </>
+    );
+  }
 
   return (
     <>
@@ -45,6 +62,7 @@ const Notifications: FC<NotificationsProps> = ({
             key={headerNotification}
             notificationColor={color}
             notificationClickEvent={notificationClickEvent}
+            showStatusLabel={showStatusLabel}
           />
         )
       )}

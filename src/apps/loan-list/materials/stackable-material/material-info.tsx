@@ -50,11 +50,13 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         />
       </div>
       <div className="list-reservation__information">
-        <div>
-          <div className="status-label status-label--outline">
-            {materialType}
+        {materialType && (
+          <div>
+            <div className="status-label status-label--outline">
+              {materialType}
+            </div>
           </div>
-        </div>
+        )}
         <div className="list-reservation__about">
           <button
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

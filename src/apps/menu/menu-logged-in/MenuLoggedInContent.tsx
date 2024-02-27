@@ -9,10 +9,10 @@ import { useUrls } from "../../../core/utils/url";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { useConfig } from "../../../core/utils/config";
 import { useText } from "../../../core/utils/text";
-import { usePatronData } from "../../../core/utils/helpers/user";
 import DashboardNotificationList from "../../dashboard/dashboard-notification-list/dashboard-notification-list";
 import useReservations from "../../../core/utils/useReservations";
 import useLoans from "../../../core/utils/useLoans";
+import { usePatronData } from "../../../core/utils/helpers/usePatronData";
 
 interface MenuLoggedInContentProps {
   pageSize: number;

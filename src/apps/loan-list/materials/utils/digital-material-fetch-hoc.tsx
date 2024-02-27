@@ -11,7 +11,8 @@ type InputProps = {
 
 const fetchDigitalMaterial =
   <P extends object>(
-    Component: ComponentType<P & MaterialProps>
+    Component: ComponentType<P & MaterialProps>,
+    LoadingComponent?: ComponentType
   ): FC<P & InputProps> =>
   ({ item, ...props }: InputProps) => {
     // If this is a physical book, another HOC fetches the data and this
@@ -30,8 +31,11 @@ const fetchDigitalMaterial =
       const [digitalMaterial, setDigitalMaterial] =
         useState<BasicDetailsType>();
 
-      const { data: productsData, isSuccess: isSuccessDigital } =
-        useGetV1ProductsIdentifier(item.identifier);
+      const {
+        data: productsData,
+        isSuccess: isSuccessDigital,
+        isLoading
+      } = useGetV1ProductsIdentifier(item.identifier);
 
       useEffect(() => {
         if (productsData && isSuccessDigital && productsData.product) {
@@ -42,6 +46,9 @@ const fetchDigitalMaterial =
           // todo error handling, missing in figma
         }
       }, [productsData, isSuccessDigital]);
+
+      // if the fallback component is provided we can show it while the data is loading
+      if (isLoading) return LoadingComponent ? <LoadingComponent /> : null;
 
       if (!digitalMaterial) return null;
 

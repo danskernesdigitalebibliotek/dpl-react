@@ -47,22 +47,20 @@ const List: FC<ListProps> = ({
 
   return (
     <div>
-      {displayedReservations.length > 0 ? (
-        <>
-          <div className="dpl-list-buttons m-32">
-            <h2
-              data-cy="reservation-list-header"
-              className="dpl-list-buttons__header"
-            >
-              <>
-                {header}
-                <div className="dpl-list-buttons__power">
-                  {reservations.length}
-                </div>
-              </>
-            </h2>
-          </div>
-          <div data-cy="list-reservation-container">
+      <div className="dpl-list-buttons m-32">
+        <h2
+          data-cy="reservation-list-header"
+          className="dpl-list-buttons__header"
+        >
+          <>
+            {header}
+            <div className="dpl-list-buttons__power">{reservations.length}</div>
+          </>
+        </h2>
+      </div>
+      <div data-cy="list-reservation-container">
+        {dataReady && (
+          <>
             <ul className="list-reservation-container">
               {displayedReservations.map((reservation, i) => (
                 <ReservationMaterial
@@ -75,27 +73,16 @@ const List: FC<ListProps> = ({
               ))}
             </ul>
             <PagerComponent />
-          </div>
-        </>
-      ) : (
-        <div>
-          <div className="dpl-list-buttons m-32">
-            <h2 className="dpl-list-buttons__header">
-              <>
-                {header}
-                <span className="dpl-list-buttons__power">0</span>
-              </>
-            </h2>
-          </div>
-          <div className="list-reservation-container">
-            <EmptyList
-              classNames="mt-24"
-              dataCy={emptyListDataCy}
-              emptyListText={emptyListLabel}
-            />
-          </div>
-        </div>
-      )}
+          </>
+        )}
+        {!displayedReservations.length && (
+          <EmptyList
+            classNames="mt-24"
+            dataCy={emptyListDataCy}
+            emptyListText={emptyListLabel}
+          />
+        )}
+      </div>
     </div>
   );
 };
