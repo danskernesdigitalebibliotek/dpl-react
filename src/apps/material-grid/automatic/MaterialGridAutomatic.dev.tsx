@@ -11,11 +11,12 @@ import MaterialGridAutomatic, {
 } from "./MaterialGridAutomatic.entry";
 
 export default {
-  title: "Apps / Material Grid Automatic",
+  title: "Apps / Material Grid / Automatic",
   component: MaterialGridAutomatic,
   argTypes: {
     title: {
       name: "Title",
+
       defaultValue: "Recommended materials",
       control: { type: "text" }
     },
