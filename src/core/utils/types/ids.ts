@@ -13,7 +13,7 @@ export type GuardedAppId =
   | "inspiration-recommender"
   | "recommended-material"
   | "recommendation"
-  | "material-grid-automatic";
-
+  | "material-grid-automatic"
+  | "material-grid-manual";
 export type IssnId = DigitalArticleService["issn"];
 export type LoanId = number;
