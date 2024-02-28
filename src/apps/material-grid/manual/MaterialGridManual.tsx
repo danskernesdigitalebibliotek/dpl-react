@@ -30,7 +30,7 @@ const MaterialGridManual: React.FC<MaterialGridManualProps> = ({
   );
 
   if (!parsedMaterialIds.length || typeof parsedMaterialIds === "string") {
-    return <MaterialGridAutomaticSkeleton />;
+    return <MaterialGridSkeleton />;
   }
 
   return (
