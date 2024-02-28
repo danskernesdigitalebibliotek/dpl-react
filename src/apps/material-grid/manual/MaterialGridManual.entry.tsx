@@ -17,17 +17,22 @@ interface MaterialGridManualEntryConfigProps {
 export interface MaterialGridManualEntryProps
   extends GlobalEntryTextProps,
     MaterialGridManualEntryConfigProps {
-  materialIds: WorkId[];
+  materialIds: string;
   title: string;
 }
 
 const MaterialGridManualEntry: React.FC<MaterialGridManualEntryProps> = ({
   materialIds,
   title
-}) => (
-  <GuardedApp app="material-grid-manual">
-    <MaterialGridManual materialIds={materialIds} title={title} />
-  </GuardedApp>
-);
+}) => {
+  const parsedMaterialIdString: WorkId[] = JSON.parse(materialIds);
+  const parsedMaterialIds = parsedMaterialIdString.map((id) => id);
+
+  return (
+    <GuardedApp app="material-grid-manual">
+      <MaterialGridManual materialIds={parsedMaterialIds} title={title} />
+    </GuardedApp>
+  );
+};
 
 export default withConfig(withUrls(withText(MaterialGridManualEntry)));
