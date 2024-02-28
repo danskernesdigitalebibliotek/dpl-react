@@ -38,7 +38,7 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   return (
     <MaterialGrid
       title={title}
-      materialIDs={materialIDs}
+      materialIds={materialIDs}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
     />
   );

@@ -10,12 +10,12 @@ import {
 } from "./materiel-grid-util";
 
 export type MaterialGridProps = {
-  materialIDs: WorkId[];
+  materialIds: WorkId[];
   title: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
 };
 const MaterialGrid: React.FC<MaterialGridProps> = ({
-  materialIDs,
+  materialIds,
   title,
   selectedAmountOfMaterialsForDisplay
 }) => {
@@ -23,7 +23,7 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
 
   const initialMaximumDisplay = MaterialGridValidIncrements[0];
   const maximumCalculatedDisplay = calculateAmountToDisplay(
-    materialIDs.length,
+    materialIds.length,
     selectedAmountOfMaterialsForDisplay
   );
   const moreMaterialsThanInitialMaximum =
@@ -45,7 +45,7 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
     <div className="material-grid">
       <h2 className="material-grid__title">{title}</h2>
       <ul className="material-grid__items">
-        {materialIDs
+        {materialIds
           .slice(0, currentAmountOfDisplayedMaterials)
           .map((materialId) => (
             <li key={materialId}>
