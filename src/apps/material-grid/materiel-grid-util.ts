@@ -5,16 +5,19 @@ export const MaterialGridValidIncrements: ValidSelectedIncrements[] = [
 ];
 
 export function calculateAmountToDisplay(
-  fetchedCount: number,
-  selectedAmount: ValidSelectedIncrements
+  availableAmount: number,
+  selectedAmount?: ValidSelectedIncrements
 ): ValidSelectedIncrements {
-  if (fetchedCount >= selectedAmount) {
+  // If selectedAmount is defined and less than or equal to availableAmount, return it
+  if (selectedAmount && availableAmount >= selectedAmount) {
     return selectedAmount;
   }
 
-  const suitableIncrement = MaterialGridValidIncrements.reverse().find(
-    (increment) => increment <= fetchedCount
-  );
+  // Find the largest increment that does not exceed availableAmount
+  const suitableIncrement = [...MaterialGridValidIncrements]
+    .reverse()
+    .find((increment) => increment <= availableAmount);
 
+  // Return the found increment, or the smallest increment if none are suitable
   return suitableIncrement || MaterialGridValidIncrements[0];
 }
