@@ -44,18 +44,15 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
   return (
     <div className="material-grid">
       <h2 className="material-grid__title">{title}</h2>
-      {materialIDs?.length && (
-        <ul className="material-grid__items">
-          {materialIDs
-            .slice(0, currentAmountOfDisplayedMaterials)
-            .map((materialID) => (
-              <li key={materialID}>
-                <RecommendedMaterial wid={materialID} partOfGrid />
-              </li>
-            ))}
-        </ul>
-      )}
-
+      <ul className="material-grid__items">
+        {materialIDs
+          .slice(0, currentAmountOfDisplayedMaterials)
+          .map((materialId) => (
+            <li key={materialId}>
+              <RecommendedMaterial wid={materialId} partOfGrid />
+            </li>
+          ))}
+      </ul>
       {moreMaterialsThanInitialMaximum && !showAllMaterials && (
         <button
           className="material-grid__show-more btn-primary btn-outline btn-medium"
