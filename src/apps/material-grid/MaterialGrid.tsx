@@ -50,7 +50,7 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
             .slice(0, currentAmountOfDisplayedMaterials)
             .map((materialID) => (
               <li key={materialID}>
-                <RecommendedMaterial wid={materialID} />
+                <RecommendedMaterial wid={materialID} partOfGrid />
               </li>
             ))}
         </ul>

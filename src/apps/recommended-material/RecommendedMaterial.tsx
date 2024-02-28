@@ -19,9 +19,13 @@ import RecommendedMaterialSkeleton from "./RecommendedMaterialSkeleton";
 
 export type RecommendedMaterialProps = {
   wid: WorkId;
+  partOfGrid?: boolean;
 };
 
-const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({ wid }) => {
+const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
+  wid,
+  partOfGrid = false
+}) => {
   const t = useText();
   const u = useUrls();
   const materialUrl = u("materialUrl");
@@ -57,7 +61,11 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({ wid }) => {
   };
 
   return (
-    <div className="recommended-material">
+    <div
+      className={`recommended-material ${
+        partOfGrid && "recommended-material--in-grid "
+      }`}
+    >
       <div className="recommended-material__icon">
         <ButtonFavourite
           title={String(fullTitle)}
