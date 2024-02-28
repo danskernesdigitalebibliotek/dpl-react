@@ -6,39 +6,61 @@ import globalTextArgs, {
 } from "../../../core/storybook/globalTextArgs";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 
-import MaterialGridAutomatic, {
-  MaterialGridAutomaticEntryProps
-} from "./MaterialGridAutomatic.entry";
+import MaterialGridManual, {
+  MaterialGridManualEntryProps
+} from "./MaterialGridManual.entry";
 
 export default {
-  title: "Apps / Material Grid / Automatic",
-  component: MaterialGridAutomatic,
+  title: "Apps / Material Grid / Manual",
+  component: MaterialGridManual,
   argTypes: {
     title: {
       name: "Title",
-
       defaultValue: "Recommended materials",
       control: { type: "text" }
-    },
-    cql: {
-      name: "CQL Search String",
-      defaultValue: "'heste' OR 'PIPPI'",
-      control: { type: "text" },
-      description:
-        "CQL search string to use for the material grid, search for a result and copy the CQL string from an advanced search"
-    },
-    selectedAmountOfMaterialsForDisplay: {
-      name: "Amount of materials to show",
-      defaultValue: 12,
-      control: {
-        type: "select",
-        options: [4, 8, 12, 16, 20, 24, 28, 32]
-      }
     },
     buttonText: {
       name: "Button text",
       defaultValue: "Show all",
       control: { type: "text" }
+    },
+    materialIds: {
+      name: "Material IDs",
+      defaultValue: JSON.stringify([
+        "work-of:870970-basis:25660722",
+        "work-of:870970-basis:52646251",
+        "work-of:870970-basis:25932625",
+        "work-of:870970-basis:26264340",
+        "work-of:870970-basis:52646251",
+        "work-of:870970-basis:26856353",
+        "work-of:870970-basis:27275745",
+        "work-of:870970-basis:45363899",
+        "work-of:870970-basis:29788596",
+        "work-of:870970-basis:52646251",
+        "work-of:870970-basis:50689360",
+        "work-of:870970-basis:53045650",
+        "work-of:870970-basis:46510534",
+        "work-of:870970-basis:134877804",
+        "work-of:870970-basis:54129807",
+        "work-of:870970-basis:52646251",
+        "work-of:870970-basis:25660722",
+        "work-of:870970-basis:52646251",
+        "work-of:870970-basis:25932625",
+        "work-of:870970-basis:26264340",
+        "work-of:870970-basis:52646251",
+        "work-of:870970-basis:26856353",
+        "work-of:870970-basis:27275745",
+        "work-of:870970-basis:45363899",
+        "work-of:870970-basis:29788596",
+        "work-of:870970-basis:52646251",
+        "work-of:870970-basis:50689360",
+        "work-of:870970-basis:53045650",
+        "work-of:870970-basis:46510534",
+        "work-of:870970-basis:134877804",
+        "work-of:870970-basis:54129807",
+        "work-of:870970-basis:52646251"
+      ]),
+      control: { type: "array" }
     },
     materialUrl: {
       name: "Path to the material page",
@@ -74,8 +96,8 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof MaterialGridAutomatic>;
+} as ComponentMeta<typeof MaterialGridManual>;
 
-export const App: ComponentStory<typeof MaterialGridAutomatic> = (
-  args: MaterialGridAutomaticEntryProps & GlobalEntryTextProps
-) => <MaterialGridAutomatic {...args} />;
+export const App: ComponentStory<typeof MaterialGridManual> = (
+  args: MaterialGridManualEntryProps & GlobalEntryTextProps
+) => <MaterialGridManual {...args} />;

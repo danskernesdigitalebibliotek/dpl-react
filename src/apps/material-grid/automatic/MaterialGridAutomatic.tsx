@@ -3,7 +3,7 @@ import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/g
 import useGetCleanBranches from "../../../core/utils/branches";
 import { Work } from "../../../core/utils/types/entities";
 import MaterialGrid from "../MaterialGrid";
-import MaterialGridAutomaticSkeleton from "../MaterialGridSkeleton";
+import MaterialGridSkeleton from "../MaterialGridSkeleton";
 import { ValidSelectedIncrements } from "../materiel-grid-util";
 
 export type MaterialGridAutomaticProps = {
@@ -29,7 +29,7 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   });
 
   if (isLoading || !data) {
-    return <MaterialGridAutomaticSkeleton />;
+    return <MaterialGridSkeleton />;
   }
 
   const resultWorks: Work[] = data.complexSearch.works as Work[];
@@ -38,7 +38,7 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   return (
     <MaterialGrid
       title={title}
-      materialIDs={materialIDs}
+      materialIds={materialIDs}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
     />
   );
