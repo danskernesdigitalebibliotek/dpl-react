@@ -13,11 +13,9 @@ import ContactInfoSection from "../../components/contact-info-section/ContactInf
 import ReservationDetailsSection from "./sections/ReservationDetailsSection";
 import PincodeSection from "./sections/PincodeSection";
 import StatusSection from "./sections/StatusSection";
-import PauseReservation from "../reservation-list/modal/pause-reservation/pause-reservation";
 import { useUrls } from "../../core/utils/url";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
-import { usePatronData } from "../../core/utils/helpers/user";
-import { getModalIds } from "../../core/utils/helpers/modal-helpers";
+import { usePatronData } from "../../core/utils/helpers/usePatronData";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
@@ -26,7 +24,6 @@ const PatronPage: FC = () => {
   const deletePatronUrl = u("deletePatronUrl");
 
   const { mutate } = useUpdateV5();
-  const { pauseReservation } = getModalIds();
 
   const { data: patronData } = usePatronData();
 
@@ -110,61 +107,56 @@ const PatronPage: FC = () => {
   };
 
   return (
-    <>
-      <form className="dpl-patron-page" onSubmit={(e) => handleSubmit(e)}>
-        <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
-        <NotificationComponent />
-        {patron && <BasicDetailsSection patron={patron} />}
-        <div className="patron-page-info">
-          {patron && (
-            <ContactInfoSection
-              changePatron={changePatron}
-              patron={patron}
-              inLine={false}
-              showCheckboxes
-            />
-          )}
-          <StatusSection />
-          {patron && (
-            <ReservationDetailsSection
-              changePatron={changePatron}
-              patron={patron}
-            />
-          )}
-          {patron && <PincodeSection changePincode={setPin} required={false} />}
-          {successPinMessage && (
-            <p className="text-body-small-regular mb-8 mt-8" role="alert">
-              {successPinMessage}
-            </p>
-          )}
+    <form className="dpl-patron-page" onSubmit={(e) => handleSubmit(e)}>
+      <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
+      <NotificationComponent />
+      {patron && <BasicDetailsSection patron={patron} />}
+      <div className="patron-page-info">
+        {patron && (
+          <ContactInfoSection
+            changePatron={changePatron}
+            patron={patron}
+            inLine={false}
+            showCheckboxes
+          />
+        )}
+        <StatusSection />
+        {patron && (
+          <ReservationDetailsSection
+            changePatron={changePatron}
+            patron={patron}
+          />
+        )}
+        {patron && <PincodeSection changePincode={setPin} required={false} />}
+        {successPinMessage && (
+          <p className="text-body-small-regular mb-8 mt-8" role="alert">
+            {successPinMessage}
+          </p>
+        )}
 
-          <button
-            data-cy="save-user-patron"
-            className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
-            type="submit"
-            disabled={disableSubmitButton}
+        <button
+          data-cy="save-user-patron"
+          className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
+          type="submit"
+          disabled={disableSubmitButton}
+        >
+          {disableSubmitButton
+            ? t("patronPageLoadingText")
+            : t("patronPageSaveButtonText")}
+        </button>
+
+        <div className="text-body-small-regular mt-32">
+          {t("patronPageDeleteProfileText")}{" "}
+          <Link
+            id="delete-patron-link"
+            href={deletePatronUrl}
+            className="link-tag"
           >
-            {disableSubmitButton
-              ? t("patronPageLoadingText")
-              : t("patronPageSaveButtonText")}
-          </button>
-
-          <div className="text-body-small-regular mt-32">
-            {t("patronPageDeleteProfileText")}{" "}
-            <Link
-              id="delete-patron-link"
-              href={deletePatronUrl}
-              className="link-tag"
-            >
-              {t("patronPageDeleteProfileLinkText")}
-            </Link>
-          </div>
+            {t("patronPageDeleteProfileLinkText")}
+          </Link>
         </div>
-      </form>
-      {patron && (
-        <PauseReservation user={patron} id={pauseReservation as string} />
-      )}
-    </>
+      </div>
+    </form>
   );
 };
 

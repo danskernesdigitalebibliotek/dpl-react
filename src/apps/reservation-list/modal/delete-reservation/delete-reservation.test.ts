@@ -228,7 +228,7 @@ describe("Delete reservation modal", () => {
     // ID 18 4 system closes modal
     cy.get(".modal.modal-cta")
       .getBySel("message-title")
-      .should("have.text", "Reservations deleted");
+      .should("have.text", "Reservation deleted");
 
     // Close confirmation modal.
     cy.get(".modal.modal-cta")

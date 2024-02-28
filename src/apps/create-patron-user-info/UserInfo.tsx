@@ -118,9 +118,9 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
       {!validCpr && (
         <div className="dpl-patron-page">
           <h1 className="text-header-h1 mb-48">
-            {t("createPatronInvalidSSNHeaderText")}
+            {t("createPatronInvalidSsnHeaderText")}
           </h1>
-          <p>{t("createPatronInvalidSSNBodyText")}</p>
+          <p>{t("createPatronInvalidSsnBodyText")}</p>
         </div>
       )}
     </>

@@ -39,6 +39,7 @@ import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircle
 import StatusCircle from "../materials/utils/status-circle";
 import { formatDate } from "../../../core/utils/helpers/date";
 import useLoans from "../../../core/utils/useLoans";
+import LoanListSkeleton from "./loan-list-skeleton";
 
 interface LoanListProps {
   pageSize: number;
@@ -55,9 +56,10 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const {
     fbs: {
       loans: loansPhysical,
-      stackedMaterialsDueDates: stackedMaterialsDueDatesFbs
+      stackedMaterialsDueDates: stackedMaterialsDueDatesFbs,
+      isLoading: isLoadingFbs
     },
-    publizon: { loans: loansDigital }
+    publizon: { loans: loansDigital, isLoading: isLoadingPublizon }
   } = useLoans();
   const openLoanDetailsModal = useCallback(
     (loan: LoanType) => {
@@ -108,63 +110,68 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
     }
   }, [loansPhysical, loansDigital, loanDetails, openDueDateModal]);
 
-  const listContainsLoans =
-    (Array.isArray(loansPhysical) && loansPhysical.length > 0) ||
-    (Array.isArray(loansDigital) && loansDigital.length > 0);
+  const shouldShowSkeletons =
+    isLoadingFbs &&
+    isLoadingPublizon &&
+    loansPhysical.length === 0 &&
+    loansDigital.length === 0;
 
   return (
     <>
       <div className={`loan-list-page ${getScrollClass(modalIds)}`}>
         <h1 className="text-header-h1 my-32">{t("loanListTitleText")}</h1>
-        {listContainsLoans && (
-          <>
-            {loansPhysical && (
-              <List
-                pageSize={pageSize}
-                emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
-                loans={loansPhysical}
-                dueDates={stackedMaterialsDueDatesFbs}
-                view={view}
-                openLoanDetailsModal={openLoanDetailsModal}
-                openDueDateModal={openDueDateModal}
-              >
-                <ListHeader
-                  header={t("loanListPhysicalLoansTitleText")}
-                  amount={loansPhysical.length}
-                >
-                  <ToggleListViewButtons
-                    disableRenewLoansButton={
-                      getAmountOfRenewableLoans(loansPhysical) === 0
-                    }
-                    view={view}
-                    setView={setView}
-                    loans={loansPhysical}
-                    pageSize={pageSize}
-                    openRenewLoansModal={openRenewLoansModal}
-                  />
-                </ListHeader>
-              </List>
-            )}
-            {loansDigital && (
-              <List
-                pageSize={pageSize}
-                emptyListLabel={t("loanListDigitalLoansEmptyListText")}
-                loans={loansDigital}
-                view="list"
-                openLoanDetailsModal={openLoanDetailsModal}
-                openDueDateModal={openDueDateModal}
-              >
-                <ListHeader
-                  header={t("loanListDigitalLoansTitleText")}
-                  amount={loansDigital.length}
-                />
-              </List>
-            )}
-          </>
-        )}
+        {shouldShowSkeletons && <LoanListSkeleton />}
 
-        {loansPhysical &&
-          loansDigital &&
+        {!shouldShowSkeletons &&
+          (!loansAreEmpty(loansPhysical) || !loansAreEmpty(loansDigital)) && (
+            <>
+              {loansPhysical && (
+                <List
+                  pageSize={pageSize}
+                  emptyListLabel={t("loanListPhysicalLoansEmptyListText")}
+                  loans={loansPhysical}
+                  dueDates={stackedMaterialsDueDatesFbs}
+                  view={view}
+                  openLoanDetailsModal={openLoanDetailsModal}
+                  openDueDateModal={openDueDateModal}
+                >
+                  <ListHeader
+                    header={t("loanListPhysicalLoansTitleText")}
+                    amount={loansPhysical.length}
+                  >
+                    <ToggleListViewButtons
+                      disableRenewLoansButton={
+                        getAmountOfRenewableLoans(loansPhysical) === 0
+                      }
+                      view={view}
+                      setView={setView}
+                      loans={loansPhysical}
+                      pageSize={pageSize}
+                      openRenewLoansModal={openRenewLoansModal}
+                    />
+                  </ListHeader>
+                </List>
+              )}
+              {loansDigital && (
+                <List
+                  pageSize={pageSize}
+                  emptyListLabel={t("loanListDigitalLoansEmptyListText")}
+                  loans={loansDigital}
+                  view="list"
+                  openLoanDetailsModal={openLoanDetailsModal}
+                  openDueDateModal={openDueDateModal}
+                >
+                  <ListHeader
+                    header={t("loanListDigitalLoansTitleText")}
+                    amount={loansDigital.length}
+                  />
+                </List>
+              )}
+            </>
+          )}
+
+        {!isLoadingFbs &&
+          !isLoadingPublizon &&
           loansAreEmpty(loansPhysical) &&
           loansAreEmpty(loansDigital) && (
             <EmptyList

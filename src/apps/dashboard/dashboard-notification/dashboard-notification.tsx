@@ -5,6 +5,7 @@ import StatusBadge from "../../loan-list/materials/utils/status-badge";
 interface DashboardNotificationProps {
   notificationNumber: number;
   showNotificationDot: boolean;
+  showStatusLabel?: boolean;
   notificationText: string;
   dataCy: string;
   notificationColor: string;
@@ -20,6 +21,7 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
   notificationColor,
   notificationClickEvent,
   showNotificationDot,
+  showStatusLabel = false,
   badge
 }) => {
   if (notificationNumber === 0) return null;
@@ -40,9 +42,17 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
         <span className="list-dashboard__title text-header-h4 color-secondary-gray">
           {notificationText}
         </span>
-        {notificationColor === "danger" && <StatusBadge dangerText={badge} />}
-        {notificationColor === "warning" && <StatusBadge warningText={badge} />}
-        {notificationColor === "info" && <StatusBadge infoText={badge} />}
+        {showStatusLabel && (
+          <>
+            {notificationColor === "danger" && (
+              <StatusBadge dangerText={badge} />
+            )}
+            {notificationColor === "warning" && (
+              <StatusBadge warningText={badge} />
+            )}
+            {notificationColor === "info" && <StatusBadge infoText={badge} />}
+          </>
+        )}
         {showNotificationDot && <div className="list-dashboard__dot" />}
         <div className="list-dashboard__arrow">
           <Arrow />

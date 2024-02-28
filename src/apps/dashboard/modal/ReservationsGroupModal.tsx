@@ -87,6 +87,7 @@ const ReservationGroupModal: FC<ReservationGroupModalProps> = ({
             buttonComponent={
               <Button
                 label={t("removeAllReservationsText", {
+                  count: materialsToDelete.length,
                   placeholders: {
                     "@amount": materialsToDelete.length
                   }

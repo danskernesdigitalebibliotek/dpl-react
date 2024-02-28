@@ -40,7 +40,7 @@ const GroupModalContent: FC<GroupModalContentProps> = ({
   };
 
   const checkBoxComponent =
-    selectMaterials !== undefined ? (
+    selectMaterials !== undefined && amountOfSelectableMaterials > 0 ? (
       <CheckBox
         selected={
           amountOfSelectableMaterials !== 0 &&

@@ -6,13 +6,14 @@ import { ReservationType } from "../../../core/utils/types/reservation-type";
 import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-material-fetch-hoc";
 import MaterialInfo from "../../loan-list/materials/stackable-material/material-info";
 import ReservationInfo from "./reservation-info";
-import CardListItemSkeleton from "../../../components/card-item-list/card-list-item/card-list-item-skeleton";
+import ListMaterialSkeleton from "./list-material-skeleton";
 
 export interface ReservationMaterialProps {
   reservation: ReservationType;
   focused: boolean;
   openReservationDetailsModal: (reservation: ReservationType) => void;
   identifier?: string | null;
+  dataCy?: string;
 }
 
 const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
@@ -20,7 +21,8 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   reservation,
   focused,
   openReservationDetailsModal,
-  identifier
+  identifier,
+  dataCy = "reservation-material"
 }) => {
   const openDetailsModal = () => {
     openReservationDetailsModal(reservation);
@@ -30,6 +32,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   return (
     <li>
       <div
+        data-cy={dataCy}
         className="list-reservation my-32 cursor-pointer arrow__hover--right-small"
         role="button"
         onClick={() => openDetailsModal()}
@@ -62,16 +65,7 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
   );
 };
 
-const ReservationMaterialSkeleton: FC = () => {
-  return (
-    <li>
-      <div className="my-32">
-        <CardListItemSkeleton />
-      </div>
-    </li>
-  );
-};
-
 export default fetchDigitalMaterial(
-  fetchMaterial(ReservationMaterial, ReservationMaterialSkeleton)
+  fetchMaterial(ReservationMaterial, ListMaterialSkeleton),
+  ListMaterialSkeleton
 );

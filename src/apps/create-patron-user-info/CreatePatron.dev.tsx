@@ -117,11 +117,11 @@ export default {
       defaultValue: "Register as patron",
       control: { type: "text" }
     },
-    createPatronInvalidSSNHeaderText: {
+    createPatronInvalidSsnHeaderText: {
       defaultValue: "Invalid SSN",
       control: { type: "text" }
     },
-    createPatronInvalidSSNBodyText: {
+    createPatronInvalidSsnBodyText: {
       defaultValue: "This SSN is invalid",
       control: { type: "text" }
     },

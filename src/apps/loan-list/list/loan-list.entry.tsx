@@ -36,6 +36,7 @@ interface LoanListEntryTextProps {
   loanListPhysicalLoansTitleText: string;
   loanListRenewMultipleButtonExplanationText: string;
   loanListRenewMultipleButtonText: string;
+  loanListNoItemsCanBeRenewedText: string;
   loanListStatusBadgeDangerText: string;
   loanListStatusBadgeWarningText: string;
   loanListTitleText: string;

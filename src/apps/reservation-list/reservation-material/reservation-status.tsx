@@ -35,6 +35,9 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
     }
   };
 
+  const shouldRenderReservationDeadline =
+    info || (Array.isArray(label) ? label.length > 0 : !!label);
+
   return (
     <div className={className ?? "list-reservation__status"}>
       <div className="list-reservation__counter color-secondary-gray">
@@ -44,18 +47,22 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
           </StatusCircleIcon>
         )}
       </div>
-      <div>
-        <div className="list-reservation__deadline">
-          {info && <InfoLabel>{info}</InfoLabel>}
-          {typeof label === "string" && (
-            <p className="text-small-caption">{label}</p>
-          )}
-          {typeof label !== "string" &&
-            label.map((localLabel) => {
-              return <p className="text-small-caption">{localLabel}</p>;
-            })}
+
+      {shouldRenderReservationDeadline && (
+        <div>
+          <div className="list-reservation__deadline">
+            {info && <InfoLabel>{info}</InfoLabel>}
+            {typeof label === "string" && (
+              <p className="text-small-caption">{label}</p>
+            )}
+            {Array.isArray(label) &&
+              label.map((localLabel) => (
+                <p className="text-small-caption">{localLabel}</p>
+              ))}
+          </div>
         </div>
-      </div>
+      )}
+
       {showArrow && (
         <ArrowButton
           arrowLabelledBy={`${

@@ -6,9 +6,10 @@ import { Manifestation } from "../../../../core/utils/types/entities";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { infomediaModalId } from "../../infomedia/InfomediaModal";
-import { isResident, usePatronData } from "../../../../core/utils/helpers/user";
+import { isResident } from "../../../../core/utils/helpers/user";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
+import { usePatronData } from "../../../../core/utils/helpers/usePatronData";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;

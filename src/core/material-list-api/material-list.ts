@@ -12,7 +12,9 @@ import {
   QueryFunction,
   MutationFunction,
   UseQueryResult,
-  QueryKey
+  QueryKey,
+  useQueryClient,
+  QueryClient
 } from "react-query";
 import type { List, GetListParams } from "./model";
 import { fetcher, ErrorType } from "./mutator/fetcher";
@@ -174,8 +176,15 @@ export const useAddItem = <
 /**
  * Delete collection from list.
  */
-export const removeItem = (listId: string, itemId: string) => {
-  return fetcher<void>({ url: `/list/${listId}/${itemId}`, method: "delete" });
+export const removeItem = (
+  listId: string,
+  itemId: string,
+  queryClient: QueryClient
+) => {
+  return fetcher<void>({
+    url: `/list/${listId}/${itemId}`,
+    method: "delete"
+  }).then(() => queryClient.invalidateQueries(getGetListQueryKey("default")));
 };
 
 export type RemoveItemMutationResult = NonNullable<
@@ -184,6 +193,8 @@ export type RemoveItemMutationResult = NonNullable<
 
 export type RemoveItemMutationError = ErrorType<unknown>;
 
+// TODO: I probably had greatness and prosperity in mind when creating this function,
+// but I'm not sure how it functions. Find out or delete.
 export const useRemoveItem = <
   TError = ErrorType<unknown>,
   TContext = unknown
@@ -195,6 +206,7 @@ export const useRemoveItem = <
     TContext
   >;
 }) => {
+  const queryClient = useQueryClient();
   const { mutation: mutationOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
@@ -203,7 +215,7 @@ export const useRemoveItem = <
   > = (props) => {
     const { listId, itemId } = props ?? {};
 
-    return removeItem(listId, itemId);
+    return removeItem(listId, itemId, queryClient);
   };
 
   return useMutation<

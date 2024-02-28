@@ -1,13 +1,16 @@
 const tokens = {};
 
+export const TOKEN_UNREGISTERED_USER_KEY = `unregistered-user`;
 export const TOKEN_USER_KEY = `user`;
 export const TOKEN_LIBRARY_KEY = `library`;
 
 /**
- * @typedef {"user" | "library"} TokenType
+ * @typedef {"user" | "unregistered-user" | "library"} TokenType
  *
  * - library: The token represents the current library organisation. The library
  *   may also be referred to as the agency.
+ * - unregistered-user: The token that has been issued to an unregistered user
+ *   after authentication at Adgangsplatformen.
  * - user: The token represents the current library user. The user may also
  *   be referred to as the patron.
  *   A user token will provide at least the same access as a library token for

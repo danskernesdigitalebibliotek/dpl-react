@@ -11,6 +11,12 @@ export default {
     },
     defaultValue: "To be returned @date"
   },
+  groupModalDueDateDigitalMaterialText: {
+    control: {
+      type: "text"
+    },
+    defaultValue: "Expires @date"
+  },
   groupModalGoToMaterialText: {
     defaultValue: "Go to material details",
     control: { type: "text" }
@@ -61,6 +67,7 @@ export interface GroupModalProps {
   groupModalDueDateLinkToPageWithFeesText: string;
   showMoreText: string;
   groupModalDueDateMaterialText: string;
+  groupModalDueDateDigitalMaterialText: string;
   groupModalGoToMaterialText: string;
   groupModalDueDateHeaderText: string;
   groupModalReturnLibraryText: string;

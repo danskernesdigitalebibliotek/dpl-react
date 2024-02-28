@@ -344,9 +344,9 @@ describe("Reservation list", () => {
     // ID 11 2.b.ii. list is sorted by oldest pickup date at the top
     cy.getBySel("list-reservation-container")
       .eq(0)
-      .find(".list-reservation")
+      .getBySel("reservation-material")
       .eq(0)
-      .find(".status-label--info")
+      .find(".status-label")
       .should("exist");
 
     cy.wait(["@cover"]);

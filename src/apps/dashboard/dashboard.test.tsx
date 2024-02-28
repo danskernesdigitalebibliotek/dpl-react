@@ -1445,10 +1445,14 @@ describe("Dashboard", () => {
   };
 
   const validateReservationsRemovalButtonWithCount = (items: number) => {
+    const deleteButtonText =
+      items > 1
+        ? `Remove reservations (${items})`
+        : `Remove reservation (${items})`;
     cy.getBySel("remove-reservations-button")
       .first()
       .should("not.be.disabled")
-      .and("have.text", `Remove reservations (${items})`)
+      .and("have.text", deleteButtonText)
       .click();
 
     const buttonText = items > 1 ? "Cancel reservations" : "Cancel reservation";

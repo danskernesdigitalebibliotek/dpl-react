@@ -1,10 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
-import { withUrls } from "../../core/utils/url";
+import { useUrls, withUrls } from "../../core/utils/url";
 import CreatePatron from "./CreatePatron";
 import { getToken, hasToken } from "../../core/token";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { isUnregistered } from "../../core/utils/helpers/user";
+import { redirectTo } from "../../core/utils/helpers/url";
 
 interface CreatePatronConfigProps {
   agencyConfig: string;
@@ -29,8 +31,8 @@ interface CreatePatronTextProps {
   createPatronChangePickupHeaderText: string;
   createPatronConfirmButtonText: string;
   createPatronHeaderText: string;
-  createPatronInvalidSSNBodyText: string;
-  createPatronInvalidSSNHeaderText: string;
+  createPatronInvalidSsnBodyText: string;
+  createPatronInvalidSsnHeaderText: string;
   patronContactEmailCheckboxText: string;
   patronContactEmailLabelText: string;
   patronContactInfoHeaderText: string;
@@ -54,15 +56,18 @@ export interface CreatePatronProps
     CreatePatronTextProps {}
 
 const CreatePatronEntry: FC<CreatePatronProps> = () => {
-  const userToken = hasToken("user") ? getToken("user") : null;
+  const u = useUrls();
+  const dashboardUrl = u("dashboardUrl");
 
-  // The application using this app should handle the case where the user is not logged in.
-  // Eg by returning 403 Forbidden or redirecting to the login page.
-  if (!userToken) {
-    return null;
-  }
+  // TODO: Investigate wether we need to wrap the redirect in a useEffect.
+  useEffect(() => {
+    // If the user has already been registered, redirect to the dashboard.
+    if (!isUnregistered()) {
+      redirectTo(dashboardUrl);
+    }
+  }, [dashboardUrl]);
 
-  return <CreatePatron />;
+  return isUnregistered() ? <CreatePatron /> : null;
 };
 
 export default withConfig(withText(withUrls(CreatePatronEntry)));
