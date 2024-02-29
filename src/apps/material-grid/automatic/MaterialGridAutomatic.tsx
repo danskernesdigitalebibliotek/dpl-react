@@ -8,7 +8,7 @@ import { ValidSelectedIncrements } from "../materiel-grid-util";
 
 export type MaterialGridAutomaticProps = {
   cql: string;
-  title: string;
+  title?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
   buttonText: string;
 };

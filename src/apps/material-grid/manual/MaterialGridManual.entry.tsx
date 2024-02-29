@@ -18,7 +18,7 @@ export interface MaterialGridManualEntryProps
   extends GlobalEntryTextProps,
     MaterialGridManualEntryConfigProps {
   materialIds: string;
-  title: string;
+  title?: string;
 }
 
 const MaterialGridManualEntry: React.FC<MaterialGridManualEntryProps> = ({

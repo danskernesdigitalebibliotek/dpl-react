@@ -18,7 +18,7 @@ export interface MaterialGridAutomaticEntryProps
   extends GlobalEntryTextProps,
     MaterialGridAutomaticEntryConfigProps {
   cql: string;
-  title: string;
+  title?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
   buttonText: string;
 }

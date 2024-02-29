@@ -11,7 +11,7 @@ import {
 
 export type MaterialGridProps = {
   materialIds: WorkId[];
-  title: string;
+  title?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
 };
 const MaterialGrid: React.FC<MaterialGridProps> = ({
@@ -43,7 +43,7 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
 
   return (
     <div className="material-grid">
-      <h2 className="material-grid__title">{title}</h2>
+      {title && <h2 className="material-grid__title">{title}</h2>}
       <ul className="material-grid__items">
         {materialIds
           .slice(0, currentAmountOfDisplayedMaterials)

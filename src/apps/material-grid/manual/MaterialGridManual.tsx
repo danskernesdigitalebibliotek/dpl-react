@@ -5,7 +5,7 @@ import { calculateAmountToDisplay } from "../materiel-grid-util";
 
 export type MaterialGridManualProps = {
   materialIds: WorkId[];
-  title: string;
+  title?: string;
 };
 
 const MaterialGridManual: React.FC<MaterialGridManualProps> = ({
