@@ -18,6 +18,7 @@ import {
 import ListHeader from "../../components/list-header/list-header";
 import EmptyList from "../../components/empty-list/empty-list";
 import FeePaymentButton from "./FeePaymentButton";
+import { formatCurrency } from "../../core/utils/helpers/currency";
 
 const FeeList: FC = () => {
   const t = useText();
@@ -89,8 +90,7 @@ const FeeList: FC = () => {
             fees={getFeesBasedOnPayableByClient(fbsFees, true)}
             totalText={t("totalText", {
               placeholders: {
-                "@total":
-                  totalFeeAmountPayableByClient().toLocaleString("da-DK")
+                "@total": formatCurrency(totalFeeAmountPayableByClient())
               }
             })}
             alreadyPaidText={t("feeListAlreadyPaidInfoText")}
@@ -106,8 +106,7 @@ const FeeList: FC = () => {
             fees={getFeesBasedOnPayableByClient(fbsFees, false)}
             totalText={t("totalText", {
               placeholders: {
-                "@total":
-                  totalFeeAmountNotPayableByClient().toLocaleString("da-DK")
+                "@total": formatCurrency(totalFeeAmountNotPayableByClient())
               }
             })}
             alreadyPaidText={t("feeListAlreadyPaidSecondInfoText")}
