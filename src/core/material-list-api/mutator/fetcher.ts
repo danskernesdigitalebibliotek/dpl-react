@@ -53,12 +53,11 @@ export const fetcher = async <ResponseType>({
         serviceUrl
       );
     }
-
-    try {
-      return (await response.json()) as ResponseType;
-    } catch (e) {
-      if (!(e instanceof SyntaxError)) {
-        throw e;
+    if (method === "get") {
+      try {
+        return (await response.json()) as ResponseType;
+      } catch (error) {
+        throw new Error("The response body contains invalid JSON");
       }
     }
   } catch (error) {
