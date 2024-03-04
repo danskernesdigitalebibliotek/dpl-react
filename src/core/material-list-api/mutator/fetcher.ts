@@ -53,6 +53,8 @@ export const fetcher = async <ResponseType>({
         serviceUrl
       );
     }
+
+    // Return the response body in JSON format if the method is GET.
     if (method === "get") {
       try {
         return (await response.json()) as ResponseType;
