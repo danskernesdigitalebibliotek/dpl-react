@@ -6,6 +6,7 @@ import SearchHeaderEntry, {
   SearchHeaderEntryProps
 } from "./search-header.entry";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 export default {
   title: "Apps / Header",
@@ -13,6 +14,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     searchHeaderIconAltText: {
       name: "Alt text for search button image",
       defaultValue: "search icon",

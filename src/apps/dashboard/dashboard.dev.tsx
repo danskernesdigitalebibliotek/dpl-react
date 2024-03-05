@@ -11,6 +11,7 @@ import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalA
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
 import reservationListArgs from "../../core/storybook/reservationListArgs";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 export default {
   title: "Apps / Dashboard",
@@ -25,6 +26,7 @@ export default {
     ...deleteReservationModalArgs,
     ...reservationListArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     // Urls
     physicalLoansUrl: {
       defaultValue: "/user/me/loans",

@@ -15,6 +15,7 @@ const DashBoard: FC<DashboardProps> = ({ pageSize }) => {
       <h1 className="text-header-h1 my-32" data-cy="dashboard-header">
         {t("yourProfileText")}
       </h1>
+
       <DashboardFees />
       <DashboardNotificationList columns pageSize={pageSize} />
     </div>

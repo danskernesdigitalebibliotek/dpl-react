@@ -8,6 +8,7 @@ import { withUrls } from "../../core/utils/url";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withText } from "../../core/utils/text";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 const WrappedButtonFavourite = withText(withUrls(ButtonFavourite));
 
@@ -18,6 +19,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     id: {
       control: "text",
       defaultValue: "work-of:870970-basis:45234401"
