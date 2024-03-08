@@ -53,8 +53,8 @@ jobs:
       - uses: Wandalen/wretry.action@v1.4.5
         with:
           command: yarn install --frozen-lockfile
-          attempt_limit: 3
-          attempt_delay: 360000
+          attempt_limit: 30
+          attempt_delay: 60000
 
       - name: Build artifacts
         run: yarn build
