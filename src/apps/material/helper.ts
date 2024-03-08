@@ -1,4 +1,4 @@
-import { compact, groupBy, uniqBy, uniq, head } from "lodash";
+import { compact, groupBy, uniqBy, uniq, head, first } from "lodash";
 import { UseQueryOptions } from "react-query";
 import {
   getManifestationType,
@@ -14,7 +14,10 @@ import {
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
-import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import {
+  DisplayMaterialType,
+  ManifestationMaterialType
+} from "../../core/utils/types/material-type";
 import {
   AccessTypeCode,
   WorkType
@@ -454,6 +457,36 @@ export const useGetHoldings = ({
   return { data, isLoading, isError };
 };
 
+export const getManifestationBasedOnType = (
+  work: Work,
+  materialType: DisplayMaterialType
+): Manifestation => {
+  const { bestRepresentation, all } = work.manifestations;
+
+  const bestRepresentationMaterialType =
+    getManifestationMaterialTypes(bestRepresentation);
+
+  if (materialType === bestRepresentationMaterialType) {
+    return bestRepresentation;
+  }
+
+  // Filters and sorts the manifestations if the best representation does not match.
+  const filteredAndSortedManifestations = filterManifestationsByType(
+    materialType,
+    all
+  );
+  const newestFilteredAndSortedManifestation = first(
+    filteredAndSortedManifestations
+  );
+
+  if (newestFilteredAndSortedManifestation) {
+    return newestFilteredAndSortedManifestation;
+  }
+  // Fallback returning best representation.
+  return bestRepresentation;
+};
+
+// ************** VITEST ***************
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 
