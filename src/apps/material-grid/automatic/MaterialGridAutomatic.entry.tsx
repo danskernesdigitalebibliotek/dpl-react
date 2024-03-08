@@ -28,19 +28,15 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   title,
   selectedAmountOfMaterialsForDisplay,
   buttonText
-}) => {
-  return (
-    <GuardedApp app="material-grid-automatic">
-      <MaterialGridAutomatic
-        cql={cql}
-        title={title}
-        selectedAmountOfMaterialsForDisplay={
-          selectedAmountOfMaterialsForDisplay
-        }
-        buttonText={buttonText}
-      />
-    </GuardedApp>
-  );
-};
+}) => (
+  <GuardedApp app="material-grid-automatic">
+    <MaterialGridAutomatic
+      cql={cql}
+      title={title}
+      selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
+      buttonText={buttonText}
+    />
+  </GuardedApp>
+);
 
 export default withConfig(withUrls(withText(MaterialGridAutomaticEntry)));
