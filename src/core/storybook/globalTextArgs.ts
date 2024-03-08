@@ -200,6 +200,10 @@ export default {
   reservationListDigitalPickupText: {
     defaultValue: "Online access",
     control: { type: "text" }
+  },
+  errorBoundaryAlertBodyButtonAriaText: {
+    defaultValue: "Close error message",
+    control: { type: "text" }
   }
 };
 

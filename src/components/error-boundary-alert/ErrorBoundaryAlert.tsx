@@ -1,13 +1,10 @@
 import React, { FC } from "react";
-import ReachAlert from "@reach/alert";
 import ReactDOM from "react-dom";
 import { useText } from "../../core/utils/text";
 import { useConfig } from "../../core/utils/config";
+import ErrorBoundaryAlertBody from "./ErrorBoundaryAlertBody";
 
 interface ErrorBoundaryAlertProps {
-  className?: string;
-  type?: "assertive" | "polite";
-  variant?: "info" | "success" | "warning" | "blank";
   resetErrorBoundary: () => void;
 }
 
@@ -15,9 +12,6 @@ interface ErrorBoundaryAlertProps {
  * A simple alert that serves as the foundation of all alerts.
  */
 const ErrorBoundaryAlert: FC<ErrorBoundaryAlertProps> = ({
-  className,
-  type,
-  variant,
   resetErrorBoundary
 }) => {
   const t = useText();
@@ -56,21 +50,10 @@ const ErrorBoundaryAlert: FC<ErrorBoundaryAlertProps> = ({
   }
 
   return ReactDOM.createPortal(
-    <ReachAlert
-      className={`dpl-alert dpl-alert--${variant} ${className}`}
-      type={type}
-    >
-      <>
-        {t("alertErrorMessageText")}
-        <button
-          type="button"
-          aria-label={t("alertErrorMessageText")}
-          onClick={resetErrorBoundary}
-        >
-          ({t("alertErrorCloseText")})
-        </button>
-      </>
-    </ReachAlert>,
+    <ErrorBoundaryAlertBody
+      message={t("alertErrorMessageText")}
+      resetErrorBoundary={resetErrorBoundary}
+    />,
     container
   );
 };
