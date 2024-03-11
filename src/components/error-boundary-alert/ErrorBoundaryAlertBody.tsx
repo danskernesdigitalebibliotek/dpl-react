@@ -6,6 +6,7 @@ import IconWarning from "../icon-warning/icon-warning";
 export interface ErrorBoundaryAlertBodyProps {
   message: string;
   resetErrorBoundary: () => void;
+  showCloseButton?: boolean;
 }
 
 /**
@@ -13,7 +14,8 @@ export interface ErrorBoundaryAlertBodyProps {
  */
 const ErrorBoundaryAlertBody: FC<ErrorBoundaryAlertBodyProps> = ({
   message,
-  resetErrorBoundary
+  resetErrorBoundary,
+  showCloseButton
 }) => {
   const t = useText();
 
@@ -23,17 +25,19 @@ const ErrorBoundaryAlertBody: FC<ErrorBoundaryAlertBodyProps> = ({
         <IconWarning />
       </div>
       <div className="error-message__description">{message}</div>
-      <button
-        type="button"
-        className="error-message__btn-close"
-        aria-label={t("errorBoundaryAlertBodyButtonAriaText")}
-        onClick={resetErrorBoundary}
-      >
-        <img
-          src={iconCloaseLarge}
-          alt={t("errorBoundaryAlertBodyButtonAriaText")}
-        />
-      </button>
+      {showCloseButton && (
+        <button
+          type="button"
+          className="error-message__btn-close"
+          aria-label={t("errorBoundaryAlertBodyButtonAriaText")}
+          onClick={resetErrorBoundary}
+        >
+          <img
+            src={iconCloaseLarge}
+            alt={t("errorBoundaryAlertBodyButtonAriaText")}
+          />
+        </button>
+      )}
     </div>
   );
 };

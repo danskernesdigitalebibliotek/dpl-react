@@ -17,7 +17,12 @@ export default {
     message: {
       name: "Error Message",
       defaultValue: "Something went wrong, try again later.",
-      control: { type: "string" }
+      control: { type: "text" }
+    },
+    showCloseButton: {
+      name: "Show Close Button",
+      defaultValue: true,
+      control: { type: "boolean" }
     }
   }
 } as ComponentMeta<typeof ErrorBoundaryAlertBody>;

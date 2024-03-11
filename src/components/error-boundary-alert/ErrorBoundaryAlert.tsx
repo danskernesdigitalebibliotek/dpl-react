@@ -19,6 +19,7 @@ const ErrorBoundaryAlert: FC<ErrorBoundaryAlertProps> = ({
   const errorMessagesConfig = config<{
     containerId: string;
     shouldOnlyShowOneError?: boolean;
+    showCloseButton?: boolean;
   }>("errorMessagesConfig", {
     transformer: "jsonParse"
   });
@@ -53,6 +54,7 @@ const ErrorBoundaryAlert: FC<ErrorBoundaryAlertProps> = ({
     <ErrorBoundaryAlertBody
       message={t("alertErrorMessageText")}
       resetErrorBoundary={resetErrorBoundary}
+      showCloseButton={errorMessagesConfig?.showCloseButton ?? false}
     />,
     container
   );
