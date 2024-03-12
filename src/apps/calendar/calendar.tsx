@@ -21,12 +21,27 @@ const Calendar: React.FC = () => {
     const calendarApi = selectInfo.view.calendar;
 
     if (title) {
+      // Checks if the selected end date is different from the start day; if so, sets the end date to be the same as the start day and the end time to 00:00:00
+      const startDay = new Date(selectInfo.startStr);
+      let endDay = new Date(selectInfo.endStr);
+
+      if (
+        endDay.getDate() !== startDay.getDate() ||
+        endDay.getMonth() !== startDay.getMonth() ||
+        endDay.getFullYear() !== startDay.getFullYear()
+      ) {
+        endDay = new Date(startDay);
+        // Adds one day to the end day and sets the time to 00:00:00ß
+        endDay.setDate(endDay.getDate() + 1);
+        endDay.setHours(0, 0, 0);
+      }
+
       setEvents([
         ...events,
         {
           title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
+          start: startDay.toISOString(),
+          end: endDay.toISOString(),
           allDay: selectInfo.allDay,
           color: "green"
         }
