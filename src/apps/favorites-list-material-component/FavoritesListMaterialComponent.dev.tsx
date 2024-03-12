@@ -4,6 +4,7 @@ import { withQuery } from "@storybook/addon-queryparams";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import FavoritesListMaterialComponent from "./FavoritesListMaterialComponent.entry";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 export default {
   title: "Apps / Favorites list material component",
@@ -12,6 +13,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     favoritesListMaterialComponentTitleText: {
       control: {
         type: "text"

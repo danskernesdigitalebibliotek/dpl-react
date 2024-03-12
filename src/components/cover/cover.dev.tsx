@@ -5,6 +5,7 @@ import { getCurrentLocation } from "../../core/utils/helpers/url";
 import { withUrls } from "../../core/utils/url";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 export default {
   title: "Components / Cover",
@@ -12,6 +13,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     size: {
       name: "Image size",
       control: { type: "radio" }

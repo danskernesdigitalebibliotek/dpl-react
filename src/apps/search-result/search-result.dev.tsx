@@ -5,6 +5,7 @@ import SearchResultEntry, {
   SearchResultEntryProps
 } from "./search-result.entry";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 export default {
   title: "Apps / Search Result",
@@ -12,6 +13,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     q: {
       name: "Search string",
       defaultValue: "harry",

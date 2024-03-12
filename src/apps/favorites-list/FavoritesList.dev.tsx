@@ -6,6 +6,7 @@ import FavoritesListEntry, {
   FavoritesListEntryProps
 } from "./FavoritesList.entry";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 export default {
   title: "Apps / Favorite list",
@@ -13,6 +14,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     pageSizeDesktop: {
       name: "Number of favorite items on desktop",
       defaultValue: 50,

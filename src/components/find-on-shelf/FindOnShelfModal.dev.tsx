@@ -13,6 +13,7 @@ import {
   mockedPeriodicalManifestationData
 } from "./mocked-data";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 const WrappedFindOnShelfModal = withText(
   withUrls(withConfig(FindOnShelfModal))
@@ -30,6 +31,7 @@ export default {
     // -> t() function strings in this story.
     ...materialDev.argTypes,
     ...globalTextArgs,
+    ...globalConfigArgs,
     manifestations: {
       name: "Manifestations",
       defaultValue: mockedManifestationData,

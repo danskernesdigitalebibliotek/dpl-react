@@ -3,6 +3,7 @@ import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import Recommender from "./Recommender.entry";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 export default {
   title: "Apps / Recommender",
@@ -10,6 +11,7 @@ export default {
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     emptyRecommenderSearchConfig: {
       defaultValue: "Mimbo jimbo",
       control: { type: "text" }
