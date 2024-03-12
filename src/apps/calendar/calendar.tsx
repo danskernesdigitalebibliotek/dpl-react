@@ -11,6 +11,7 @@ const Calendar: React.FC = () => {
       title: "My Event",
       start: "2024-03-14T10:00:00",
       end: "2024-03-14T15:00:00",
+      allDay: false,
       color: "blue"
     }
   ]);
