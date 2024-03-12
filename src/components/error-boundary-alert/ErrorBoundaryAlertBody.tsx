@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import iconCloaseLarge from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
+import iconCloseLarge from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import { useText } from "../../core/utils/text";
 import IconWarning from "../icon-warning/icon-warning";
 
@@ -33,7 +33,7 @@ const ErrorBoundaryAlertBody: FC<ErrorBoundaryAlertBodyProps> = ({
           onClick={resetErrorBoundary}
         >
           <img
-            src={iconCloaseLarge}
+            src={iconCloseLarge}
             alt={t("errorBoundaryAlertBodyButtonAriaText")}
           />
         </button>
