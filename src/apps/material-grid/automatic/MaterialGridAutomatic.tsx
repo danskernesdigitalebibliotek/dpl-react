@@ -33,12 +33,16 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   }
 
   const resultWorks: Work[] = data.complexSearch.works as Work[];
-  const materialIDs = resultWorks.map((work) => work.workId);
+  const materials = resultWorks.map((work) => {
+    return {
+      wid: work.workId
+    };
+  });
 
   return (
     <MaterialGrid
       title={title}
-      materialIds={materialIDs}
+      materials={materials}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
     />
   );

@@ -8,14 +8,19 @@ import RecommendedMaterial, {
   RecommendedMaterialEntryProps
 } from "./RecommendedMaterial.entry";
 import RecommendedMaterialSkeleton from "./RecommendedMaterialSkeleton";
+import DisplayMaterialTypeOptions from "./recommendedMaterialDisplayTypeData";
 
 export default {
   title: "Apps / Recommended Material",
   component: RecommendedMaterial,
   argTypes: {
     wid: {
-      defaultValue: "work-of:870970-basis:136336282",
+      defaultValue: "work-of:870970-basis:22383590",
       control: { type: "text" }
+    },
+    materialType: {
+      defaultValue: "bog",
+      control: { type: "select", options: DisplayMaterialTypeOptions }
     },
     materialUrl: {
       defaultValue: "/work/:workid",
@@ -35,9 +40,16 @@ export const Default: ComponentStory<typeof RecommendedMaterial> = (
   args: RecommendedMaterialEntryProps & GlobalEntryTextProps
 ) => <RecommendedMaterial {...args} />;
 
+export const materialWithoutType = Default.bind({});
+
+materialWithoutType.args = {
+  materialType: undefined
+};
+
 const SkeletonTemplate: ComponentStory<
   typeof RecommendedMaterialSkeleton
 > = () => {
   return <RecommendedMaterialSkeleton />;
 };
+
 export const Skeleton = SkeletonTemplate.bind({});

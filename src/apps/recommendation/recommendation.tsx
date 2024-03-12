@@ -5,20 +5,24 @@ import Link from "../../components/atoms/links/Link";
 import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
+import { DisplayMaterialType } from "../../core/utils/types/material-type";
 import { useUrls } from "../../core/utils/url";
 import RecommendedMaterial from "../recommended-material/RecommendedMaterial";
 import RecommendationMaterialSkeleton from "./RecommendationSkeleton";
 
 export type RecommendationProps = {
-  positionImageRight?: boolean;
   wid: WorkId;
+  materialType?: DisplayMaterialType;
+  positionImageRight?: boolean;
 };
 
 const Recommendation: React.FC<RecommendationProps> = ({
-  positionImageRight,
-  wid
+  wid,
+  materialType,
+  positionImageRight
 }) => {
   const u = useUrls();
+
   const materialUrl = u("materialUrl");
 
   const { data, isLoading } = useGetMaterialQuery({
@@ -36,7 +40,7 @@ const Recommendation: React.FC<RecommendationProps> = ({
     }
   } = data;
 
-  const materialFullUrl = constructMaterialUrl(materialUrl, wid);
+  const materialFullUrl = constructMaterialUrl(materialUrl, wid, materialType);
   const materialDescription = abstract?.[0];
 
   return (
@@ -47,7 +51,7 @@ const Recommendation: React.FC<RecommendationProps> = ({
       )}
       data-cy="recommendation"
     >
-      <RecommendedMaterial wid={wid} />
+      <RecommendedMaterial wid={wid} materialType={materialType} />
       <Link
         href={materialFullUrl}
         className="recommendation__texts arrow__hover--right-small"
