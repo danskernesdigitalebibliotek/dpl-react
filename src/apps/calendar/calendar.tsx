@@ -37,16 +37,16 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <div>
-      <FullCalendar
-        plugins={[timeGridPlugin, interactionPlugin]}
-        initialView="timeGridWeek"
-        locale={da}
-        selectable
-        select={handleDateSelect}
-        events={events}
-      />
-    </div>
+    <FullCalendar
+      plugins={[timeGridPlugin, interactionPlugin]}
+      initialView="timeGridWeek"
+      locale={da}
+      selectable
+      select={handleDateSelect}
+      events={events}
+      height="100vh"
+      stickyHeaderDates
+    />
   );
 };
 
