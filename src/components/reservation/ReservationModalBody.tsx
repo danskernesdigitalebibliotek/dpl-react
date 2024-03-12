@@ -179,7 +179,13 @@ export const ReservationModalBody = ({
 
     if (reservablePidsFromAnotherLibrary?.length && patron) {
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
+      console.log("🚀 ~ saveReservation ~ selectedInterest:", selectedInterest);
+      console.log(
+        "🚀 ~ saveReservation ~ defaultInterestDaysForOpenOrder:",
+        defaultInterestDaysForOpenOrder
+      );
       // Save reservation to open order.
+
       mutateOpenOrder(
         {
           input: {
@@ -187,9 +193,9 @@ export const ReservationModalBody = ({
             pickUpBranch: selectedBranch
               ? removePrefixFromBranchId(selectedBranch)
               : removePrefixFromBranchId(preferredPickupBranch),
-            expires:
-              selectedInterest?.toString() ||
-              defaultInterestDaysForOpenOrder.toString(),
+            expires: getFutureDateString(
+              Number(selectedInterest ?? defaultInterestDaysForOpenOrder)
+            ),
             userParameters: {
               userId: patronId.toString(),
               userName: name,
@@ -251,10 +257,14 @@ export const ReservationModalBody = ({
           <div>
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
-                <StockAndReservationInfo
-                  stockCount={holdings}
-                  reservationCount={reservations}
-                />
+                {reservablePidsFromAnotherLibrary?.length ? (
+                  t("reservableFromAnotherLibraryText")
+                ) : (
+                  <StockAndReservationInfo
+                    stockCount={holdings}
+                    reservationCount={reservations}
+                  />
+                )}
               </MaterialAvailabilityTextParagraph>
               <Button
                 dataCy="reservation-modal-submit-button"
