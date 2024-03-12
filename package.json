@@ -145,6 +145,10 @@
   },
   "dependencies": {
     "@danskernesdigitalebibliotek/dpl-design-system": "^0.0.0-b807dae9a38d9b7811b36f4b3f3063eec78f4f1f",
+    "@fullcalendar/core": "^6.1.11",
+    "@fullcalendar/interaction": "^6.1.11",
+    "@fullcalendar/react": "^6.1.11",
+    "@fullcalendar/timegrid": "^6.1.11",
     "@reach/alert": "^0.17.0",
     "@reach/dialog": "^0.18.0",
     "@reduxjs/toolkit": "^1.9.7",
