@@ -1469,10 +1469,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@danskernesdigitalebibliotek/dpl-design-system@0.0.0-0638636fea0c184c403bafc5704f4feed078f107":
-  version "0.0.0-0638636fea0c184c403bafc5704f4feed078f107"
-  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/0.0.0-0638636fea0c184c403bafc5704f4feed078f107/285ffd16498b9269877e91426902b3f3cf9ef680#285ffd16498b9269877e91426902b3f3cf9ef680"
-  integrity sha512-iMdmjmPl5yfxElQQ2yzLVn4PGsrPkqpbspB1spXONZzqXw6Q8ut53HwX0nUTUsf3M+h/WvcHQtPDOa/gb0Na5g==
+"@danskernesdigitalebibliotek/dpl-design-system@^2024.11.0-20df4b7c9e623101a57ce78e373273b226234bf9":
+  version "2024.11.0-20df4b7c9e623101a57ce78e373273b226234bf9"
+  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/2024.11.0-20df4b7c9e623101a57ce78e373273b226234bf9/b621042dd255dbb446783ab79715d8fdbd43c98f#b621042dd255dbb446783ab79715d8fdbd43c98f"
+  integrity sha512-C/YsQJkRXy3Ij2JckdxiSkQ3Ntc1PKCkUZWF2d4KxfejnY90CAzRIdJA8NAI7JqYo8gmu97y7Q8Qo9ttH58fQA==
 
 "@discoveryjs/json-ext@^0.5.0", "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
