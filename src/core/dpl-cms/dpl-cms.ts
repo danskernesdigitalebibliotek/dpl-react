@@ -19,6 +19,12 @@ import type {
   CampaignMatchPOST200,
   CampaignMatchPOSTBodyItem,
   CampaignMatchPOSTParams,
+  DplOpeningHoursListGET200Item,
+  DplOpeningHoursListGETParams,
+  EventPATCHBody,
+  EventPATCHParams,
+  EventsGET200Item,
+  EventsGETParams,
   ProxyUrlGET200,
   ProxyUrlGETParams
 } from "./model";
@@ -29,7 +35,7 @@ type AwaitedInput<T> = PromiseLike<T> | T;
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
 
 /**
- * @summary Get campaign matching search result facets
+ * @summary Hent kampagne som matcher facetter fra søgeresultatet
  */
 export const campaignMatchPOST = (
   campaignMatchPOSTBodyItem: CampaignMatchPOSTBodyItem[],
@@ -92,7 +98,173 @@ export const useCampaignMatchPOST = <
 };
 
 /**
- * @summary Generate proxy url
+ * @summary List all opening hours
+ */
+export const dplOpeningHoursListGET = (
+  params?: DplOpeningHoursListGETParams,
+  signal?: AbortSignal
+) => {
+  return fetcher<DplOpeningHoursListGET200Item[]>({
+    url: `/dpl_opening_hours`,
+    method: "get",
+    signal,
+    params
+  });
+};
+
+export const getDplOpeningHoursListGETQueryKey = (
+  params?: DplOpeningHoursListGETParams
+) => [`/dpl_opening_hours`, ...(params ? [params] : [])];
+
+export type DplOpeningHoursListGETQueryResult = NonNullable<
+  Awaited<ReturnType<typeof dplOpeningHoursListGET>>
+>;
+export type DplOpeningHoursListGETQueryError = ErrorType<void>;
+
+export const useDplOpeningHoursListGET = <
+  TData = Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
+  TError = ErrorType<void>
+>(
+  params?: DplOpeningHoursListGETParams,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
+      TError,
+      TData
+    >;
+  }
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
+
+  const queryKey =
+    queryOptions?.queryKey ?? getDplOpeningHoursListGETQueryKey(params);
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof dplOpeningHoursListGET>>
+  > = ({ signal }) => dplOpeningHoursListGET(params, signal);
+
+  const query = useQuery<
+    Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
+    TError,
+    TData
+  >(queryKey, queryFn, queryOptions);
+
+  return {
+    queryKey,
+    ...query
+  };
+};
+
+/**
+ * @summary Update single events
+ */
+export const eventPATCH = (
+  uuid: string,
+  eventPATCHBody: BodyType<EventPATCHBody>,
+  params?: EventPATCHParams
+) => {
+  return fetcher<void>({
+    url: `/dpl_event/${uuid}`,
+    method: "patch",
+    headers: { "Content-Type": "application/json" },
+    data: eventPATCHBody,
+    params
+  });
+};
+
+export type EventPATCHMutationResult = NonNullable<
+  Awaited<ReturnType<typeof eventPATCH>>
+>;
+export type EventPATCHMutationBody = BodyType<EventPATCHBody>;
+export type EventPATCHMutationError = ErrorType<unknown>;
+
+export const useEventPATCH = <
+  TError = ErrorType<unknown>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof eventPATCH>>,
+    TError,
+    { uuid: string; data: BodyType<EventPATCHBody>; params?: EventPATCHParams },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof eventPATCH>>,
+    { uuid: string; data: BodyType<EventPATCHBody>; params?: EventPATCHParams }
+  > = (props) => {
+    const { uuid, data, params } = props ?? {};
+
+    return eventPATCH(uuid, data, params);
+  };
+
+  return useMutation<
+    Awaited<ReturnType<typeof eventPATCH>>,
+    TError,
+    { uuid: string; data: BodyType<EventPATCHBody>; params?: EventPATCHParams },
+    TContext
+  >(mutationFn, mutationOptions);
+};
+
+/**
+ * @summary Retrieve all events
+ */
+export const eventsGET = (params?: EventsGETParams, signal?: AbortSignal) => {
+  return fetcher<EventsGET200Item[]>({
+    url: `/dpl_event`,
+    method: "get",
+    signal,
+    params
+  });
+};
+
+export const getEventsGETQueryKey = (params?: EventsGETParams) => [
+  `/dpl_event`,
+  ...(params ? [params] : [])
+];
+
+export type EventsGETQueryResult = NonNullable<
+  Awaited<ReturnType<typeof eventsGET>>
+>;
+export type EventsGETQueryError = ErrorType<void>;
+
+export const useEventsGET = <
+  TData = Awaited<ReturnType<typeof eventsGET>>,
+  TError = ErrorType<void>
+>(
+  params?: EventsGETParams,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof eventsGET>>,
+      TError,
+      TData
+    >;
+  }
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const { query: queryOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getEventsGETQueryKey(params);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof eventsGET>>> = ({
+    signal
+  }) => eventsGET(params, signal);
+
+  const query = useQuery<Awaited<ReturnType<typeof eventsGET>>, TError, TData>(
+    queryKey,
+    queryFn,
+    queryOptions
+  );
+
+  return {
+    queryKey,
+    ...query
+  };
+};
+
+/**
+ * @summary Generate proxy URL / Generer proxy URL
  */
 export const proxyUrlGET = (
   params?: ProxyUrlGETParams,
