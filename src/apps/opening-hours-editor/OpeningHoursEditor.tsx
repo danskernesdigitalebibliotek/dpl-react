@@ -20,6 +20,8 @@ const OpeningHoursEditor: React.FC = () => {
   }, [openingHoursData]);
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
+    // Todo: Replace prompt with a modal
+    // eslint-disable-next-line no-alert
     const title = prompt("Please enter a new title for your event");
     const calendarApi = selectInfo.view.calendar;
 
