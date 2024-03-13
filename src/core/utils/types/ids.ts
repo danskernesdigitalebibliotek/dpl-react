@@ -15,6 +15,6 @@ export type GuardedAppId =
   | "recommendation"
   | "material-grid-automatic"
   | "material-grid-manual"
-  | "calendar";
+  | "opening-hours-editor";
 export type IssnId = DigitalArticleService["issn"];
 export type LoanId = number;

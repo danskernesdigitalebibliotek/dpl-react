@@ -8,7 +8,7 @@ import { DateSelectArg, EventInput } from "@fullcalendar/core";
 import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
 import formatCmsEventsToFullCalendar from "./helper";
 
-const Calendar: React.FC = () => {
+const OpeningHoursEditor: React.FC = () => {
   const { data: openingHoursData } = useDplOpeningHoursListGET();
   const [events, setEvents] = useState<EventInput[]>([]);
 
@@ -73,4 +73,4 @@ const Calendar: React.FC = () => {
   );
 };
 
-export default Calendar;
+export default OpeningHoursEditor;
