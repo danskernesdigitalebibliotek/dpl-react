@@ -61,11 +61,11 @@ function Modal({
         `${window.location.pathname}?${searchParams || ""}`
       );
       document.body.style.overflow = "";
+    }
 
-      // Deep link stuff: if the id is in the url, open the modal
-      if (searchParams.get("modal")?.includes(modalId)) {
-        dispatch(openModal({ modalId }));
-      }
+    // Deep link stuff: if the id is in the url, open the modal
+    if (searchParams.get("modal")?.includes(modalId)) {
+      dispatch(openModal({ modalId }));
     }
   }, [modalId, dispatch]);
 
