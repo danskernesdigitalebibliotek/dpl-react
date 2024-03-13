@@ -68,7 +68,6 @@ const Calendar: React.FC = () => {
       selectable
       select={handleDateSelect}
       events={events}
-      height="100vh"
       stickyHeaderDates
     />
   );
