@@ -41,10 +41,9 @@ const DashboardFees: FC = () => {
               </div>
             </div>
             <WarningBar
-              rightText={t("totalAmountFeeText", {
+              overdueText={`${t("totalOwedText")} ${t("totalAmountFeeText", {
                 placeholders: { "@total": totalFeeAmount }
-              })}
-              overdueText={t("totalOwedText")}
+              })}`}
               rightButtonText={t("dashboardSeeMoreFeesText")}
               rightButtonAriaLabelText={t("dashboardSeeMoreFeesAriaLabelText")}
               rightLink={feesPageUrl}
