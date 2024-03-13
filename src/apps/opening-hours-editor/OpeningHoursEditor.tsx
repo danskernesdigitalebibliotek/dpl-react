@@ -71,6 +71,7 @@ const OpeningHoursEditor: React.FC = () => {
       select={handleDateSelect}
       events={events}
       stickyHeaderDates
+      height="auto"
     />
   );
 };
