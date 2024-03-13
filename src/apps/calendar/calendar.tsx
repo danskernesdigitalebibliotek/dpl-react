@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import da from "@fullcalendar/core/locales/da";
 import { DateSelectArg, EventInput } from "@fullcalendar/core";
@@ -56,7 +57,12 @@ const Calendar: React.FC = () => {
 
   return (
     <FullCalendar
-      plugins={[timeGridPlugin, interactionPlugin]}
+      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+      headerToolbar={{
+        left: "title",
+        center: "prev,next today",
+        right: "dayGridMonth,timeGridWeek"
+      }}
       initialView="timeGridWeek"
       locale={da}
       selectable
