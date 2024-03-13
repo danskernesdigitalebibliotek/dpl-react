@@ -4,9 +4,10 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import da from "@fullcalendar/core/locales/da";
-import { DateSelectArg, EventInput } from "@fullcalendar/core";
+import { DateSelectArg, EventClickArg, EventInput } from "@fullcalendar/core";
 import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
-import formatCmsEventsToFullCalendar from "./helper";
+import { createCmsEventId, formatCmsEventsToFullCalendar } from "./helper";
+import renderOpeningHoursEditorEventContent from "./OpeningHoursEditorEventContent";
 
 const OpeningHoursEditor: React.FC = () => {
   const { data: openingHoursData } = useDplOpeningHoursListGET();
@@ -48,13 +49,30 @@ const OpeningHoursEditor: React.FC = () => {
           start: startDay.toISOString(),
           end: endDay.toISOString(),
           allDay: selectInfo.allDay,
-          color: "green"
+          color: "green",
+          id: createCmsEventId(title, startDay)
         }
       ]);
     }
 
     // clear date selection
     calendarApi.unselect();
+  };
+
+  const handleEventClick = (clickInfo: EventClickArg) => {
+    // eslint-disable-next-line no-alert
+    const newTitle = prompt(
+      "Enter a new title for this event",
+      clickInfo.event.title
+    );
+
+    if (newTitle) {
+      clickInfo.event.setProp("title", newTitle);
+    }
+  };
+
+  const handleEventRemove = (eventToRemove: EventInput) => {
+    setEvents(events.filter((event) => event.id !== eventToRemove.id));
   };
 
   return (
@@ -69,7 +87,14 @@ const OpeningHoursEditor: React.FC = () => {
       locale={da}
       selectable
       select={handleDateSelect}
+      eventClick={handleEventClick}
       events={events}
+      eventContent={(eventInput) =>
+        renderOpeningHoursEditorEventContent({
+          eventInput,
+          handleEventRemove
+        })
+      }
       stickyHeaderDates
       height="auto"
     />
