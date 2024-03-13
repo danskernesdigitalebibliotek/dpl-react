@@ -213,7 +213,7 @@ describe("Fee list", () => {
       .find(".list-reservation__fee")
       .find(".text-body-medium-regular")
       .should("exist")
-      .should("have.text", "Fee 70 DKK");
+      .should("have.text", "Fee 70,00\u00A0kr.");
 
     // 4.b +x other materials
     cy.getBySel("fee-list-page")

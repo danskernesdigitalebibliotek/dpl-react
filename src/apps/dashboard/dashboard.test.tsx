@@ -1363,7 +1363,7 @@ describe("Dashboard", () => {
     cy.getBySel("warning-bar-text").should("have.text", "You owe in total");
 
     // The amount the patron ows
-    cy.getBySel("warning-bar-right-text").should("have.text", "265,06 DKK");
+    cy.getBySel("warning-bar-right-text").should("have.text", "265,06 Kr.");
 
     // A pay button that links to fees page
     cy.getBySel("warning-bar-right-link")
