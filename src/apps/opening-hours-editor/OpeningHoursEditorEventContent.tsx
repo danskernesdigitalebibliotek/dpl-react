@@ -13,24 +13,34 @@ const OpeningHoursEditorEventContent: React.FC<
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "space-between",
         padding: "5px 10px",
         cursor: "pointer",
-        height: "100%"
+        width: "100%"
       }}
     >
       <b>{event.title}</b>
-      <span
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") handleEventRemove(event);
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between"
         }}
-        onClick={() => handleEventRemove(event)}
       >
-        ❌
-      </span>
+        <span>
+          {event.start?.toLocaleTimeString()} -{" "}
+          {event.end?.toLocaleTimeString()}
+        </span>
+
+        <span
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleEventRemove(event);
+          }}
+          onClick={() => handleEventRemove(event)}
+        >
+          ❌
+        </span>
+      </div>
     </div>
   );
 };

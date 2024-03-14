@@ -50,6 +50,7 @@ const OpeningHoursEditor: React.FC = () => {
       events={events}
       stickyHeaderDates
       height="auto"
+      selectMirror
     />
   );
 };
