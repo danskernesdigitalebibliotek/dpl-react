@@ -44,7 +44,7 @@ const OpeningHoursEditor: React.FC = () => {
         renderOpeningHoursEditorEventContent({
           eventInput,
           handleEventRemove: (eventToRemove) =>
-            handleEventRemove(eventToRemove, events, setEvents)
+            handleEventRemove({ eventToRemove, events, setEvents })
         })
       }
       events={events}

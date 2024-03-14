@@ -31,17 +31,17 @@ const isSameDay = (startDay: Date, endDay: Date) => {
 
 //  handler functions for the calendar
 
-interface HandleDateSelectParams {
+type HandleDateSelectType = {
   selectInfo: DateSelectArg;
   events: EventInput[];
   setEvents: React.Dispatch<React.SetStateAction<EventInput[]>>;
-}
+};
 
 export const handleDateSelect = ({
   selectInfo,
   events,
   setEvents
-}: HandleDateSelectParams) => {
+}: HandleDateSelectType) => {
   // Todo: Replace prompt with a modal
   // eslint-disable-next-line no-alert
   const title = prompt("Please enter a new title for your event");
@@ -88,10 +88,16 @@ export const handleEventClick = (clickInfo: EventClickArg) => {
   }
 };
 
-export const handleEventRemove = (
-  eventToRemove: EventInput,
-  events: EventInput[],
-  setEvents: React.Dispatch<React.SetStateAction<EventInput[]>>
-) => {
+type HandleEventRemoveType = {
+  eventToRemove: EventInput;
+  events: EventInput[];
+  setEvents: React.Dispatch<React.SetStateAction<EventInput[]>>;
+};
+
+export const handleEventRemove = ({
+  eventToRemove,
+  events,
+  setEvents
+}: HandleEventRemoveType) => {
   setEvents(events.filter((event) => event.id !== eventToRemove.id));
 };
