@@ -1,25 +1,24 @@
 import * as React from "react";
-import { WorkId } from "../../../core/utils/types/ids";
-import MaterialGrid from "../MaterialGrid";
+import MaterialGrid, { MaterialGridItemProps } from "../MaterialGrid";
 import { calculateAmountToDisplay } from "../materiel-grid-util";
 
 export type MaterialGridManualProps = {
-  materialIds: WorkId[];
+  materials: MaterialGridItemProps[];
   title?: string;
 };
 
 const MaterialGridManual: React.FC<MaterialGridManualProps> = ({
-  materialIds,
+  materials,
   title
 }) => {
   const selectedAmountOfMaterialsForDisplay = calculateAmountToDisplay(
-    materialIds.length
+    materials.length
   );
 
   return (
     <MaterialGrid
       title={title}
-      materialIds={materialIds}
+      materials={materials}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
     />
   );

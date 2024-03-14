@@ -50,11 +50,11 @@ jobs:
           echo "[@danskernesdigitalebibliotek]:registry=https://npm.pkg.github.com" >> ~/.npmrc
           echo 'registry "https://registry.yarnpkg.com"' >> ~/.yarnrc
 
-      - uses: Wandalen/wretry.action@v1.4.5
+      - uses: Wandalen/wretry.action@v1.4.8
         with:
           command: yarn install --frozen-lockfile
-          attempt_limit: 3
-          attempt_delay: 2000
+          attempt_limit: 30
+          attempt_delay: 60000
 
       - name: Build artifacts
         run: yarn build

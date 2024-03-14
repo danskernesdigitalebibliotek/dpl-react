@@ -1,23 +1,30 @@
 import React from "react";
-import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
-import { withText } from "../../core/utils/text";
-import Recommendation from "./recommendation";
-import { withConfig } from "../../core/utils/config";
-import { withUrls } from "../../core/utils/url";
-import { WorkId } from "../../core/utils/types/ids";
 import GuardedApp from "../../components/guarded-app";
+import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { withConfig } from "../../core/utils/config";
+import { withText } from "../../core/utils/text";
+import { WorkId } from "../../core/utils/types/ids";
+import { DisplayMaterialType } from "../../core/utils/types/material-type";
+import { withUrls } from "../../core/utils/url";
+import Recommendation from "./recommendation";
 
 export interface RecommendationEntryProps extends GlobalEntryTextProps {
   wid: WorkId;
+  materialType?: DisplayMaterialType;
   positionImageRight?: boolean;
 }
 
 const RecommendationEntry: React.FC<RecommendationEntryProps> = ({
   wid,
+  materialType,
   positionImageRight
 }) => (
   <GuardedApp app="recommendation">
-    <Recommendation wid={wid} positionImageRight={positionImageRight} />
+    <Recommendation
+      wid={wid}
+      materialType={materialType}
+      positionImageRight={positionImageRight}
+    />
   </GuardedApp>
 );
 
