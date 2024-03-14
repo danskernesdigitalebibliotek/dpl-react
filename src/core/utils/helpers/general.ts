@@ -20,6 +20,7 @@ import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
 import { store } from "../../store";
 import { constructModalId } from "./modal-helpers";
+import { formatCurrency } from "./currency";
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -307,9 +308,7 @@ export const sameLoanDate = (loans: string[]): boolean => {
 };
 
 export const tallyUpFees = (fees: FeeV2[]) => {
-  return fees
-    .reduce((total, { amount }) => total + amount, 0)
-    .toLocaleString("da-DA");
+  return formatCurrency(fees.reduce((total, { amount }) => total + amount, 0));
 };
 
 export const getMaterialTypes = (

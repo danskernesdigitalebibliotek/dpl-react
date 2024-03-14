@@ -4,7 +4,7 @@ import Link from "../../../components/atoms/links/Link";
 import MenuNavigationItem, {
   MenuNavigationDataType
 } from "../menu-navigation-list/MenuNavigationItem";
-import { AuthenticatedPatronV6 } from "../../../core/fbs/model";
+import { AuthenticatedPatronV6, FeeV2 } from "../../../core/fbs/model";
 import { useUrls } from "../../../core/utils/url";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { useConfig } from "../../../core/utils/config";
@@ -32,7 +32,10 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
     all: { loans, overdue: loansOverdue, soonOverdue: loansSoonOverdue }
   } = useLoans();
   const { data: patronData } = usePatronData();
-  const { data: fbsFees } = useGetFeesV2();
+  const { data: fbsFees = [] } = useGetFeesV2<FeeV2[]>({
+    includepaid: false,
+    includenonpayable: true
+  });
 
   // Get menu navigation data from config.
   const menuNavigationData = config<MenuNavigationDataType[]>(
