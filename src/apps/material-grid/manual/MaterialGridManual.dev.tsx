@@ -10,6 +10,41 @@ import MaterialGridManual, {
   MaterialGridManualEntryProps
 } from "./MaterialGridManual.entry";
 
+// 31 materials. Intentionally not using 32 in order to demonstrate the
+// logic for only displaying intervals of 4 materials.
+const materials = [
+  { wid: "work-of:870970-basis:25660722", materialType: "bog" },
+  { wid: "work-of:870970-basis:22383590", materialType: "e-bog" },
+  { wid: "work-of:870970-basis:25932625", materialType: "film" },
+  { wid: "work-of:870970-basis:26264340", materialType: "musik (online)" },
+  { wid: "work-of:870970-basis:52646251", materialType: "lydbog" },
+  { wid: "work-of:870970-basis:26856353", materialType: "artikel" },
+  { wid: "work-of:870970-basis:27275745", materialType: "tegneserie (online)" },
+  { wid: "work-of:870970-basis:22383590", materialType: "tidsskrift" },
+  { wid: "work-of:870970-basis:29788596", materialType: "cd" },
+  { wid: "work-of:870970-basis:52646251", materialType: "podcast" },
+  { wid: "work-of:870970-basis:50689360", materialType: "film (online)" },
+  { wid: "work-of:870970-basis:22383590", materialType: "lydbog (cd-mp3)" },
+  { wid: "work-of:870970-basis:46510534", materialType: "artikel (online)" },
+  { wid: "work-of:870970-basis:134877804", materialType: "tegneserie" },
+  { wid: "work-of:870970-basis:54129807", materialType: "tidsskrift (online)" },
+  { wid: "work-of:870970-basis:52646251", materialType: "billedbog" },
+  { wid: "work-of:870970-basis:25660722", materialType: "billedbog (online)" },
+  { wid: "work-of:870970-basis:25932625", materialType: "lydbog (online)" },
+  { wid: "work-of:870970-basis:26264340", materialType: "musik (online)" },
+  { wid: "work-of:870970-basis:22383590", materialType: "artikel" },
+  { wid: "work-of:870970-basis:26856353", materialType: "film" },
+  { wid: "work-of:870970-basis:27275745", materialType: "e-bog" },
+  { wid: "work-of:870970-basis:45363899", materialType: "cd" },
+  { wid: "work-of:870970-basis:29788596", materialType: "podcast" },
+  { wid: "work-of:870970-basis:52646251", materialType: "film (online)" },
+  { wid: "work-of:870970-basis:50689360", materialType: "lydbog" },
+  { wid: "work-of:870970-basis:53045650", materialType: "tegneserie (online)" },
+  { wid: "work-of:870970-basis:46510534", materialType: "tidsskrift" },
+  { wid: "work-of:870970-basis:134877804", materialType: "cd" },
+  { wid: "work-of:870970-basis:54129807", materialType: "podcast" },
+  { wid: "work-of:870970-basis:52646251", materialType: "film (online)" }
+];
 export default {
   title: "Apps / Material Grid / Manual",
   component: MaterialGridManual,
@@ -24,42 +59,9 @@ export default {
       defaultValue: "Show all",
       control: { type: "text" }
     },
-    materialIds: {
-      name: "Material IDs",
-      defaultValue: JSON.stringify([
-        "work-of:870970-basis:25660722",
-        "work-of:870970-basis:52646251",
-        "work-of:870970-basis:25932625",
-        "work-of:870970-basis:26264340",
-        "work-of:870970-basis:52646251",
-        "work-of:870970-basis:26856353",
-        "work-of:870970-basis:27275745",
-        "work-of:870970-basis:45363899",
-        "work-of:870970-basis:29788596",
-        "work-of:870970-basis:52646251",
-        "work-of:870970-basis:50689360",
-        "work-of:870970-basis:53045650",
-        "work-of:870970-basis:46510534",
-        "work-of:870970-basis:134877804",
-        "work-of:870970-basis:54129807",
-        "work-of:870970-basis:52646251",
-        "work-of:870970-basis:25660722",
-        "work-of:870970-basis:52646251",
-        "work-of:870970-basis:25932625",
-        "work-of:870970-basis:26264340",
-        "work-of:870970-basis:52646251",
-        "work-of:870970-basis:26856353",
-        "work-of:870970-basis:27275745",
-        "work-of:870970-basis:45363899",
-        "work-of:870970-basis:29788596",
-        "work-of:870970-basis:52646251",
-        "work-of:870970-basis:50689360",
-        "work-of:870970-basis:53045650",
-        "work-of:870970-basis:46510534",
-        "work-of:870970-basis:134877804",
-        "work-of:870970-basis:54129807",
-        "work-of:870970-basis:52646251"
-      ]),
+    materials: {
+      name: "Materials",
+      defaultValue: JSON.stringify(materials),
       control: { type: "array" }
     },
     materialUrl: {

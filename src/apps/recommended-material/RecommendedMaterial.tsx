@@ -13,23 +13,30 @@ import {
 } from "../../core/utils/helpers/general";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
+import { Work } from "../../core/utils/types/entities";
+
 import { WorkId } from "../../core/utils/types/ids";
+import { DisplayMaterialType } from "../../core/utils/types/material-type";
 import { useUrls } from "../../core/utils/url";
+import { getManifestationBasedOnType } from "../material/helper";
 import RecommendedMaterialSkeleton from "./RecommendedMaterialSkeleton";
 
 export type RecommendedMaterialProps = {
   wid: WorkId;
+  materialType?: DisplayMaterialType;
   partOfGrid?: boolean;
 };
 
 const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
   wid,
+  materialType,
   partOfGrid = false
 }) => {
   const t = useText();
   const u = useUrls();
   const materialUrl = u("materialUrl");
   const dispatch = useDispatch<TypedDispatch>();
+
   const { data, isLoading } = useGetMaterialQuery({
     wid
   });
@@ -41,15 +48,22 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
   const {
     work: {
       titles: { full: fullTitle },
-      manifestations: { bestRepresentation: manifestations },
+      manifestations: { bestRepresentation },
       creators
     }
   } = data;
 
-  const { pid } = manifestations;
+  const work = data.work as Work;
+
+  const materialManifestationForDisplay = materialType
+    ? getManifestationBasedOnType(work, materialType)
+    : bestRepresentation;
+
+  const { pid } = materialManifestationForDisplay;
 
   const author = creatorsToString(flattenCreators(creators), t);
-  const materialFullUrl = constructMaterialUrl(materialUrl, wid);
+
+  const materialFullUrl = constructMaterialUrl(materialUrl, wid, materialType);
   const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
       guardedRequest({

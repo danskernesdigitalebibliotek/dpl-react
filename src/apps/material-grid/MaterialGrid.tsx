@@ -8,14 +8,20 @@ import {
   ValidSelectedIncrements,
   calculateAmountToDisplay
 } from "./materiel-grid-util";
+import { DisplayMaterialType } from "../../core/utils/types/material-type";
+
+export type MaterialGridItemProps = {
+  wid: WorkId;
+  materialType?: DisplayMaterialType;
+};
 
 export type MaterialGridProps = {
-  materialIds: WorkId[];
+  materials: MaterialGridItemProps[];
   title?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
 };
 const MaterialGrid: React.FC<MaterialGridProps> = ({
-  materialIds,
+  materials,
   title,
   selectedAmountOfMaterialsForDisplay
 }) => {
@@ -23,7 +29,7 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
 
   const initialMaximumDisplay = MaterialGridValidIncrements[0];
   const maximumCalculatedDisplay = calculateAmountToDisplay(
-    materialIds.length,
+    materials.length,
     selectedAmountOfMaterialsForDisplay
   );
   const moreMaterialsThanInitialMaximum =
@@ -45,13 +51,20 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
     <div className="material-grid">
       {title && <h2 className="material-grid__title">{title}</h2>}
       <ul className="material-grid__items">
-        {materialIds
+        {materials
           .slice(0, currentAmountOfDisplayedMaterials)
-          .map((materialId) => (
-            <li key={materialId}>
-              <RecommendedMaterial wid={materialId} partOfGrid />
-            </li>
-          ))}
+          .map((material) => {
+            const { wid, materialType } = material;
+            return (
+              <li key={wid}>
+                <RecommendedMaterial
+                  partOfGrid
+                  wid={wid}
+                  materialType={materialType}
+                />
+              </li>
+            );
+          })}
       </ul>
       {moreMaterialsThanInitialMaximum && !showAllMaterials && (
         <button

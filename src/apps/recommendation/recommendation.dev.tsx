@@ -1,21 +1,27 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import Recommendation, {
-  RecommendationEntryProps
-} from "./recommendation.entry";
 import globalTextArgs, {
   GlobalEntryTextProps
 } from "../../core/storybook/globalTextArgs";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+
+import DisplayMaterialTypeOptions from "../recommended-material/recommendedMaterialDisplayTypeData";
 import RecommendationSkeleton from "./RecommendationSkeleton";
+import Recommendation, {
+  RecommendationEntryProps
+} from "./recommendation.entry";
 
 export default {
   title: "Apps / Recommendation",
   component: Recommendation,
   argTypes: {
     wid: {
-      defaultValue: "work-of:870970-basis:136336282",
+      defaultValue: "work-of:870970-basis:22383590",
       control: { type: "text" }
+    },
+    materialType: {
+      defaultValue: "bog",
+      control: { type: "select", options: DisplayMaterialTypeOptions }
     },
     positionImageRight: {
       defaultValue: false,
