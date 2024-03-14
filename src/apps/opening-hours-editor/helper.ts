@@ -1,13 +1,13 @@
 import { DateSelectArg, EventClickArg, EventInput } from "@fullcalendar/core";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
 
-function formatDateTimeString(date: string, time: string) {
+const formatDateTimeString = (date: string, time: string): string => {
   return `${date}T${time}:00`;
-}
+};
 
-export function createCmsEventId(title: string, startDay: Date) {
+export const createCmsEventId = (title: string, startDay: Date) => {
   return `${title}-${startDay.toISOString()}`;
-}
+};
 
 export const formatCmsEventsToFullCalendar = (
   data: DplOpeningHoursListGET200Item[]
