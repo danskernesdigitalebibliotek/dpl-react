@@ -6,10 +6,9 @@ type OpeningHoursEditorEventContentProps = {
   handleEventRemove: (event: EventInput) => void;
 };
 
-export default function OpeningHoursEditorEventContent({
-  eventInput,
-  handleEventRemove
-}: OpeningHoursEditorEventContentProps): JSX.Element {
+const OpeningHoursEditorEventContent: React.FC<
+  OpeningHoursEditorEventContentProps
+> = ({ eventInput, handleEventRemove }) => {
   const { event } = eventInput;
   return (
     <div
@@ -34,4 +33,6 @@ export default function OpeningHoursEditorEventContent({
       </span>
     </div>
   );
-}
+};
+
+export default OpeningHoursEditorEventContent;

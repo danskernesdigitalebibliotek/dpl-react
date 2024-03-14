@@ -12,7 +12,7 @@ import {
   handleEventClick,
   handleEventRemove
 } from "./helper";
-import renderOpeningHoursEditorEventContent from "./OpeningHoursEditorEventContent";
+import OpeningHoursEditorEventContent from "./OpeningHoursEditorEventContent";
 
 const OpeningHoursEditor: React.FC = () => {
   const { data: openingHoursData } = useDplOpeningHoursListGET();
@@ -41,7 +41,7 @@ const OpeningHoursEditor: React.FC = () => {
       }
       eventClick={handleEventClick}
       eventContent={(eventInput) =>
-        renderOpeningHoursEditorEventContent({
+        OpeningHoursEditorEventContent({
           eventInput,
           handleEventRemove: (eventToRemove) =>
             handleEventRemove({ eventToRemove, events, setEvents })
