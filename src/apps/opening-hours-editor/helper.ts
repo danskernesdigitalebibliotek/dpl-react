@@ -25,6 +25,10 @@ export const formatCmsEventsToFullCalendar = (
   });
 };
 
+const isSameDay = (startDay: Date, endDay: Date) => {
+  return startDay.toDateString() === endDay.toDateString();
+};
+
 //  handler functions for the calendar
 
 interface HandleDateSelectParams {
@@ -48,11 +52,7 @@ export const handleDateSelect = ({
     const startDay = new Date(selectInfo.startStr);
     let endDay = new Date(selectInfo.endStr);
 
-    if (
-      endDay.getDate() !== startDay.getDate() ||
-      endDay.getMonth() !== startDay.getMonth() ||
-      endDay.getFullYear() !== startDay.getFullYear()
-    ) {
+    if (!isSameDay(startDay, endDay)) {
       endDay = new Date(startDay);
       // Adds one day to the end day and sets the time to 00:00:00ß
       endDay.setDate(endDay.getDate() + 1);
