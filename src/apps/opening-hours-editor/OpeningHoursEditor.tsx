@@ -39,7 +39,7 @@ const OpeningHoursEditor: React.FC = () => {
       select={(selectInfo) =>
         handleDateSelect({ selectInfo, events, setEvents })
       }
-      eventClick={(clickInfo) => handleEventClick(clickInfo)}
+      eventClick={handleEventClick}
       eventContent={(eventInput) =>
         renderOpeningHoursEditorEventContent({
           eventInput,
