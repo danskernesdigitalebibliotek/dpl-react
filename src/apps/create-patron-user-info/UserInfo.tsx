@@ -101,10 +101,18 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
             />
           </div>
           <div className="patron-buttons">
-            <button type="submit" className="btn-primary btn-filled btn-small">
+            <button
+              type="submit"
+              className="btn-primary btn-filled btn-small"
+              data-cy="complete-user-registration"
+            >
               {t("createPatronConfirmButtonText")}
             </button>
-            <Link href={logoutUrl} className="link-tag mx-16 mt-8">
+            <Link
+              href={logoutUrl}
+              className="link-tag mx-16 mt-8"
+              dataCy="cancel-user-registration"
+            >
               {t("createPatronCancelButtonText")}
             </Link>
           </div>
