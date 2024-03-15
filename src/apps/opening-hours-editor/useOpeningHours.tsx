@@ -5,19 +5,18 @@ import {
   formatCmsEventsToFullCalendar,
   isSameDay
 } from "./helper";
-import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
 
-const useOpeningHours = (
-  initialData: DplOpeningHoursListGET200Item[] | null | undefined
-) => {
+const useOpeningHours = () => {
+  const { data: openingHoursData } = useDplOpeningHoursListGET();
   const [events, setEvents] = useState<EventInput[]>([]);
 
   useEffect(() => {
-    if (initialData) {
-      const formattedEvents = formatCmsEventsToFullCalendar(initialData);
+    if (openingHoursData) {
+      const formattedEvents = formatCmsEventsToFullCalendar(openingHoursData);
       setEvents(formattedEvents);
     }
-  }, [initialData]);
+  }, [openingHoursData]);
 
   const handleEventSelect = (selectInfo: DateSelectArg) => {
     // Todo: Replace prompt with a modal

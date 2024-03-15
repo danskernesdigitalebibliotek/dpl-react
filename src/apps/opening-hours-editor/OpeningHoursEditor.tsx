@@ -4,14 +4,12 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import da from "@fullcalendar/core/locales/da";
-import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
 import OpeningHoursEditorEventContent from "./OpeningHoursEditorEventContent";
 import useOpeningHours from "./useOpeningHours";
 
 const OpeningHoursEditor: React.FC = () => {
-  const { data: openingHoursData } = useDplOpeningHoursListGET();
   const { events, handleEventSelect, handleEventClick, handleEventRemove } =
-    useOpeningHours(openingHoursData);
+    useOpeningHours();
 
   return (
     <FullCalendar
