@@ -31,10 +31,6 @@ export default {
     defaultValue: "Showing @itemsShown out of @hitcount elements",
     control: { type: "text" }
   },
-  groupModalReturnLibraryText: {
-    defaultValue: "Can be returned to all branches of Samsøs libraries",
-    control: { type: "text" }
-  },
   groupModalCheckboxText: {
     control: {
       type: "text"
@@ -70,7 +66,6 @@ export interface GroupModalProps {
   groupModalDueDateDigitalMaterialText: string;
   groupModalGoToMaterialText: string;
   groupModalDueDateHeaderText: string;
-  groupModalReturnLibraryText: string;
   groupModalCheckboxText: string;
   groupModalHiddenLabelCheckboxOnMaterialText: string;
   resultPagerStatusText: string;
