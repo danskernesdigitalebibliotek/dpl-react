@@ -53,7 +53,7 @@ function Modal({
     }
     // If modal parameter exists, but modal ID doesn't exist - remove it
     // from the URL and re-enable scrolling (disabled in modal.slice)
-    // to to prevent trying to open uninitialized modals
+    // to prevent trying to open uninitialized modals
     if (
       searchParams.get("modal") &&
       !searchParams.get("modal")?.includes(modalId)
