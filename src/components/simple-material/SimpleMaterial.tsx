@@ -1,6 +1,7 @@
 import * as React from "react";
 import { FC } from "react";
 import { useDispatch } from "react-redux";
+import { useQueryClient } from "react-query";
 import ButtonFavourite, {
   ButtonFavouriteId
 } from "../button-favourite/button-favourite";
@@ -37,6 +38,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
   const materialUrl = u("materialUrl");
 
   const dispatch = useDispatch<TypedDispatch>();
+  const queryClient = useQueryClient();
   const materialFullUrl = constructMaterialUrl(materialUrl, workId);
 
   // Create authors string
@@ -53,7 +55,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
     dispatch(
       guardedRequest({
         type: "addFavorite",
-        args: { id },
+        args: { id, queryClient },
         app
       })
     );
