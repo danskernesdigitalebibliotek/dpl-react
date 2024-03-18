@@ -104,14 +104,14 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
             <button
               type="submit"
               className="btn-primary btn-filled btn-small"
-              data-cy="complete-user-registration"
+              data-cy="complete-user-registration-button"
             >
               {t("createPatronConfirmButtonText")}
             </button>
             <Link
               href={logoutUrl}
               className="link-tag mx-16 mt-8"
-              dataCy="cancel-user-registration"
+              dataCy="cancel-user-registration-button"
             >
               {t("createPatronCancelButtonText")}
             </Link>
