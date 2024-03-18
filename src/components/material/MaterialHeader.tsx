@@ -1,6 +1,7 @@
 import React, { useId } from "react";
 import { useDispatch } from "react-redux";
 import { useDeepCompareEffect } from "react-use";
+import { useQueryClient } from "react-query";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
@@ -59,11 +60,12 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
+  const queryClient = useQueryClient();
   const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
       guardedRequest({
         type: "addFavorite",
-        args: { id },
+        args: { id, queryClient },
         app: "material"
       })
     );

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
+import { useQueryClient } from "react-query";
 import ButtonFavourite, {
   ButtonFavouriteId
 } from "../../components/button-favourite/button-favourite";
@@ -36,6 +37,7 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
   const u = useUrls();
   const materialUrl = u("materialUrl");
   const dispatch = useDispatch<TypedDispatch>();
+  const queryClient = useQueryClient();
 
   const { data, isLoading } = useGetMaterialQuery({
     wid
@@ -68,7 +70,7 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
     dispatch(
       guardedRequest({
         type: "addFavorite",
-        args: { id },
+        args: { id, queryClient },
         app: "material"
       })
     );
