@@ -1,5 +1,6 @@
 import React, { useCallback, useId } from "react";
 import { useDispatch } from "react-redux";
+import { useQueryClient } from "react-query";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
 import Arrow from "../../atoms/icons/arrow/arrow";
@@ -70,6 +71,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
   );
 
   const dispatch = useDispatch<TypedDispatch>();
+  const queryClient = useQueryClient();
   const author = creatorsToString(flattenCreators(creators), t);
   const manifestationPid = getManifestationPid(manifestations);
   const firstItemInSeries = getNumberedSeries(series).shift();
@@ -101,7 +103,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
     dispatch(
       guardedRequest({
         type: "addFavorite",
-        args: { id },
+        args: { id, queryClient },
         app: "search-result"
       })
     );
