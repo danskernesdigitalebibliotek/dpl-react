@@ -45,14 +45,16 @@ const WarningBar: FC<WarningBarProps> = ({
           </p>
         </div>
       </div>
-      {rightText && (
+      {(rightText || rightLink) && (
         <div className="warning-bar__right">
-          <p
-            className="text-body-medium-medium warning-bar__owes"
-            data-cy="warning-bar-right-text"
-          >
-            {rightText}
-          </p>
+          {rightText && (
+            <p
+              className="text-body-medium-medium warning-bar__owes"
+              data-cy="warning-bar-right-text"
+            >
+              {rightText}
+            </p>
+          )}{" "}
           <span className="hide-visually" id={labelId}>
             {rightButtonAriaLabelText}
           </span>
