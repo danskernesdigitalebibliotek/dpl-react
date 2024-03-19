@@ -20,10 +20,11 @@ import {
 import { WorkId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
 import {
-  AutosuggestCategoryList,
-  AutosuggestCategory
-} from "../../core/utils/types/material-type";
-import { findNonWorkSuggestion } from "./helpers";
+  determineSuggestionTerm,
+  findNonWorkSuggestion,
+  getAutosuggestCategoryList,
+  isDisplayedAsWorkSuggestion
+} from "./helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
@@ -34,7 +35,6 @@ const SearchHeader: React.FC = () => {
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
-
   const [q, setQ] = useState<string>("");
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<
@@ -61,43 +61,6 @@ const SearchHeader: React.FC = () => {
   );
   const [isHeaderDropdownOpen, setIsHeaderDropdownOpen] =
     useState<boolean>(false);
-  const autosuggestCategoryList: AutosuggestCategoryList[] = [
-    {
-      render: t("autosuggestBookCategoryText"),
-      term: AutosuggestCategory.book,
-      facet: "materialTypes"
-    },
-    {
-      render: t("autosuggestEbookCategoryText"),
-      term: AutosuggestCategory.ebook,
-      facet: "materialTypes"
-    },
-    {
-      render: t("autosuggestFilmCategoryText"),
-      term: AutosuggestCategory.movie,
-      facet: "workTypes"
-    },
-    {
-      render: t("autosuggestAudioBookCategoryText"),
-      term: AutosuggestCategory.audioBook,
-      facet: "materialTypes"
-    },
-    {
-      render: t("autosuggestMusicCategoryText"),
-      term: AutosuggestCategory.music,
-      facet: "workTypes"
-    },
-    {
-      render: t("autosuggestGameCategoryText"),
-      term: AutosuggestCategory.game,
-      facet: "workTypes"
-    },
-    {
-      render: t("autosuggestAnimatedSeriesCategoryText"),
-      term: AutosuggestCategory.animatedSeries,
-      facet: "materialTypes"
-    }
-  ];
   // Once we register the item select event the original highlighted index is
   // already set to -1 by Downshift.
   const [highlightedIndexAfterClick, setHighlightedIndexAfterClick] = useState<
@@ -113,7 +76,7 @@ const SearchHeader: React.FC = () => {
     }
   }, [data]);
 
-  const originalData = suggestItems;
+  const originalData: Suggestion[] = suggestItems;
   const textData: Suggestion[] = [];
   const materialData: Suggestion[] = [];
   const categoryData: Suggestion[] = [];
@@ -141,7 +104,7 @@ const SearchHeader: React.FC = () => {
     orderedData = textData.concat(materialData);
 
     if (nonWorkSuggestion) {
-      autosuggestCategoryList.forEach(() => {
+      getAutosuggestCategoryList(t).forEach(() => {
         categoryData.push(nonWorkSuggestion as Suggestion);
       });
       orderedData = orderedData.concat(categoryData);
@@ -150,29 +113,21 @@ const SearchHeader: React.FC = () => {
 
   // Autosuggest opening and closing based on input text length.
   useEffect(() => {
-    if (data) {
+    if (data && data.suggest.result.length > 0) {
       setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
   }, [data]);
 
-  function determineSuggestionTerm(suggestion: Suggestion): string {
-    if (suggestion.type === SuggestionType.Composit) {
-      return suggestion.work?.titles.main[0] || "incomplete data";
+  useEffect(() => {
+    if (qWithoutQuery.length > 2) {
+      setIsAutosuggestOpen(true);
+    } else {
+      setIsAutosuggestOpen(false);
     }
-    return suggestion.term;
-  }
+  }, [qWithoutQuery]);
 
-  function isDisplayedAsWorkSuggestion(
-    selectedItem: Suggestion["work"],
-    currentMaterialData: Suggestion[]
-  ) {
-    const dataWithWorkId = currentMaterialData.filter(
-      (item) => item.work?.workId === selectedItem?.workId
-    );
-    return Boolean(dataWithWorkId.length);
-  }
 
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
@@ -290,7 +245,7 @@ const SearchHeader: React.FC = () => {
         trackedData: selectedItemString
       }).then(() => {
         const { term, facet } =
-          autosuggestCategoryList[highlightedCategoryIndex];
+          getAutosuggestCategoryList(t)[highlightedCategoryIndex];
 
         redirectTo(
           constructSearchUrlWithFilter({
@@ -387,7 +342,6 @@ const SearchHeader: React.FC = () => {
           highlightedIndex={highlightedIndex}
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
-          autosuggestCategoryList={autosuggestCategoryList}
           isLoading={isLoading}
         />
         {isHeaderDropdownOpen && (
