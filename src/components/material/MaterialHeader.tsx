@@ -40,6 +40,7 @@ interface MaterialHeaderProps {
   selectedPeriodical: PeriodicalEdition | null;
   selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
   children: React.ReactNode;
+  showAvailabilityLabels: boolean;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -54,7 +55,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   setSelectedManifestations,
   selectedPeriodical,
   selectPeriodicalHandler,
-  children
+  children,
+  showAvailabilityLabels = true
 }) => {
   const materialTitleId = useId();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
@@ -130,7 +132,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           materialTitleId={materialTitleId}
         />
         <div ref={itemRef} className="material-header__availability-label">
-          {showItem && (
+          {showAvailabilityLabels && showItem && (
             <AvailabilityLabels
               cursorPointer
               workId={wid}
