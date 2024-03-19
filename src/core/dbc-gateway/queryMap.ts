@@ -10,11 +10,12 @@ export default {
   searchFacet: serviceUrlKeys.fbiSearch,
   searchWithPagination: serviceUrlKeys.fbiSearch,
   suggestionsFromQueryString: serviceUrlKeys.fbiSearch,
+  getMaterial: serviceUrlKeys.fbiSearch,
   // Material requests.
+  getMaterialGlobally: serviceUrlKeys.fbiMaterial,
   getInfomedia: serviceUrlKeys.fbiMaterial,
   getManifestationViaBestRepresentationByFaust: serviceUrlKeys.fbiMaterial,
   getManifestationViaMaterialByFaust: serviceUrlKeys.fbiMaterial,
-  getMaterial: serviceUrlKeys.fbiMaterial,
   getReviewManifestations: serviceUrlKeys.fbiMaterial,
   getSmallWork: serviceUrlKeys.fbiMaterial,
   openOrder: serviceUrlKeys.fbiMaterial,
