@@ -128,7 +128,6 @@ const SearchHeader: React.FC = () => {
     }
   }, [qWithoutQuery]);
 
-
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
   ) {
