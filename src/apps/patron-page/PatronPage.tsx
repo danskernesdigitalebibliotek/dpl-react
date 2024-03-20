@@ -120,7 +120,7 @@ const PatronPage: FC = () => {
             showCheckboxes
           />
         )}
-        <StatusSection />
+        {patron?.resident && <StatusSection />}
         {patron && (
           <ReservationDetailsSection
             changePatron={changePatron}
