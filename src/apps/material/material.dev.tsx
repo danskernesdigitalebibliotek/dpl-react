@@ -902,3 +902,8 @@ export const overbygningsMatriale = Template.bind({});
 overbygningsMatriale.args = {
   wid: "work-of:870970-basis:44926407"
 };
+
+export const globalMaterial = Template.bind({});
+globalMaterial.args = {
+  wid: "work-of:870970-basis:07185995"
+};
