@@ -48,6 +48,7 @@ const useOpeningHours = () => {
     calendarApi.unselect();
   };
 
+  // This will probably be replaced with handleEventEditing
   const handleEventClick = (clickInfo: EventClickArg) => {
     // eslint-disable-next-line no-alert
     const newTitle = prompt(
@@ -60,6 +61,11 @@ const useOpeningHours = () => {
     }
   };
 
+  const handleEventEditing = (string: string) => {
+    // eslint-disable-next-line no-alert
+    alert(string);
+  };
+
   const handleEventRemove = (eventToRemove: EventInput) => {
     setEvents(events.filter((event) => event.id !== eventToRemove.id));
   };
@@ -68,7 +74,8 @@ const useOpeningHours = () => {
     events,
     handleEventSelect,
     handleEventClick,
-    handleEventRemove
+    handleEventRemove,
+    handleEventEditing
   };
 };
 
