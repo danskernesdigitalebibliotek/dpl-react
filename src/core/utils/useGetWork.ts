@@ -38,9 +38,12 @@ export const useGetWork = (
   const localWork = useGetMaterialQuery({
     wid
   });
-  const globalWork = useGetMaterialGloballyQuery({
-    wid
-  });
+  const globalWork = useGetMaterialGloballyQuery(
+    {
+      wid
+    },
+    { enabled: localWork.isSuccess && !localWork.data.work }
+  );
 
   const localWorkData = getData(localWork, "local");
   if (localWorkData) {
