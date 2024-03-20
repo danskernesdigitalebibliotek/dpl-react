@@ -157,7 +157,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         setSelectedManifestations={setSelectedManifestations}
         selectedPeriodical={selectedPeriodical}
         selectPeriodicalHandler={setSelectedPeriodical}
-        showAvailabilityLabels={workType === "local"}
+        isGlobalMaterial={workType === "global"}
       >
         {manifestations.map((manifestation) => (
           <ReservationFindOnShelfModals
