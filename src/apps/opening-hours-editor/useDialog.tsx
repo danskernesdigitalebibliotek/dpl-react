@@ -1,5 +1,12 @@
 import { useRef, useState } from "react";
 
+declare global {
+  interface HTMLDialogElement {
+    showModal(): void;
+    close(): void;
+  }
+}
+
 const useDialog = () => {
   const [dialogContent, setDialogContent] = useState<React.ReactNode>(null);
 
