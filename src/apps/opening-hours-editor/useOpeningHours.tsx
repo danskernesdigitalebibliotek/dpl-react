@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { EventInput, DateSelectArg, EventClickArg } from "@fullcalendar/core";
+import { EventInput, DateSelectArg } from "@fullcalendar/core";
+import { EventImpl } from "@fullcalendar/core/internal";
 import {
   createCmsEventId,
   formatCmsEventsToFullCalendar,
@@ -48,22 +49,9 @@ const useOpeningHours = () => {
     calendarApi.unselect();
   };
 
-  // This will probably be replaced with handleEventEditing
-  const handleEventClick = (clickInfo: EventClickArg) => {
+  const handleEventEditing = (eventInfo: EventImpl) => {
     // eslint-disable-next-line no-alert
-    const newTitle = prompt(
-      "Enter a new title for this event",
-      clickInfo.event.title
-    );
-
-    if (newTitle) {
-      clickInfo.event.setProp("title", newTitle);
-    }
-  };
-
-  const handleEventEditing = (string: string) => {
-    // eslint-disable-next-line no-alert
-    alert(string);
+    alert(JSON.stringify(eventInfo, null, 2));
   };
 
   const handleEventRemove = (eventToRemove: EventInput) => {
@@ -73,7 +61,6 @@ const useOpeningHours = () => {
   return {
     events,
     handleEventSelect,
-    handleEventClick,
     handleEventRemove,
     handleEventEditing
   };
