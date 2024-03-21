@@ -9,6 +9,7 @@ import { RenewedLoanV2 } from "../../../core/fbs/model";
 import { getRenewButtonLabel } from "../../../core/utils/helpers/renewal";
 import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
+import StatusMessage from "../materials/selectable-material/StatusMessage";
 
 interface RenewButtonProps {
   loanId: LoanId;
@@ -17,6 +18,8 @@ interface RenewButtonProps {
   hideOnMobile: boolean;
   setRenewingStatus: (status: RequestStatus) => void;
   renewingStatus: RequestStatus;
+  renewalStatusList: string[];
+  loanType: string;
   setRenewingResponse: (response: RenewedLoanV2[] | null) => void;
 }
 
@@ -27,6 +30,8 @@ const RenewButton: FC<RenewButtonProps> = ({
   hideOnMobile,
   setRenewingStatus,
   renewingStatus,
+  renewalStatusList,
+  loanType,
   setRenewingResponse
 }) => {
   const t = useText();
@@ -76,6 +81,11 @@ const RenewButton: FC<RenewButtonProps> = ({
         hideOnMobile && `modal-details__buttons--hide-on-mobile`
       } modal-details__buttons`}
     >
+      <StatusMessage
+        className="list-materials__status__note-desktop mt-48 mr-16"
+        loanType={loanType}
+        renewalStatusList={renewalStatusList}
+      />
       <Button
         dataCy="material-renew-button"
         size="small"
@@ -89,6 +99,11 @@ const RenewButton: FC<RenewButtonProps> = ({
         label={label}
         buttonType="none"
         collapsible={false}
+      />
+      <StatusMessage
+        className="list-materials__status__note-mobile mt-8"
+        loanType={loanType}
+        renewalStatusList={renewalStatusList}
       />
     </div>
   );

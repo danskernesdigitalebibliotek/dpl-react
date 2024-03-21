@@ -55,7 +55,9 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
     isRenewable,
     materialItemNumber,
     loanDate,
-    periodical
+    loanType,
+    periodical,
+    renewalStatusList
   } = loan;
   const { authors, materialType, year, title, pid, description, series } =
     material || {};
@@ -111,8 +113,10 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewable={isRenewable}
               hideOnMobile
               renewingStatus={renewingStatus}
+              loanType={loanType || ""}
               setRenewingStatus={setRenewingStatus}
               setRenewingResponse={setRenewingResponse}
+              renewalStatusList={renewalStatusList}
             />
           )}
           {isDigital(loan) && (
@@ -175,9 +179,11 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               loanId={loanId}
               renewable={isRenewable}
               hideOnMobile={false}
+              loanType={loanType || ""}
               renewingStatus={renewingStatus}
               setRenewingStatus={setRenewingStatus}
               setRenewingResponse={setRenewingResponse}
+              renewalStatusList={renewalStatusList}
             />
           )}
           {isDigital(loan) && (
