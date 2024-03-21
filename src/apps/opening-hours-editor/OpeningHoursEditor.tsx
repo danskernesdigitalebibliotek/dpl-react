@@ -37,7 +37,7 @@ const OpeningHoursEditor: React.FC = () => {
         eventClick={(clickInfo) =>
           openDialogWithContent(
             <DialogFomular
-              evnetInfo={clickInfo.event}
+              eventInfo={clickInfo.event}
               handleEventEditing={handleEventEditing}
             />
           )
