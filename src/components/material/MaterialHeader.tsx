@@ -142,7 +142,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
             />
           )}
         </div>
-
+        {/* The CTA nuttons apperently only makes sense on a global work */}
         {!isGlobalMaterial && showItem && (
           <>
             {isPeriodical && (

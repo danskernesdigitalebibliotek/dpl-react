@@ -193,6 +193,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
+      {/* Since we cannot trust the editions for global manifestations */}
+      {/* we limit them to only occur if the loaded work is global */}
       {workType === "local" && (
         <MaterialDisclosure
           title={`${t("editionsText")} (${manifestations.length})`}
