@@ -12,7 +12,7 @@ import FeeDetailsContent from "./stackable-fees/fee-details-content";
 import modalIdsConf from "../../core/configuration/modal-ids.json";
 import {
   calculateFeeAmount,
-  getFeeObjectByFaustId,
+  getFeeObjectByFeeId,
   getFeesBasedOnPayableByClient
 } from "./utils/helper";
 import ListHeader from "../../components/list-header/list-header";
@@ -32,13 +32,13 @@ const FeeList: FC = () => {
   });
   const [feeDetailsData, setFeeDetailsData] = useState<FeeV2[]>();
   const openDetailsModalClickEvent = useCallback(
-    (faustId: string) => {
-      if (faustId) {
+    (feeId: number) => {
+      if (feeId) {
         if (fbsFees.length > 0) {
-          setFeeDetailsData(getFeeObjectByFaustId(fbsFees, faustId));
+          setFeeDetailsData(getFeeObjectByFeeId(fbsFees, feeId));
         }
-        setFeeDetailsModalId(modalIdsConf.feeDetails + faustId);
-        open(modalIdsConf.feeDetails + faustId || "");
+        setFeeDetailsModalId(modalIdsConf.feeDetails + feeId);
+        open(modalIdsConf.feeDetails + feeId || "");
       }
     },
     [fbsFees, open]

@@ -1,8 +1,8 @@
 import { FeeV2 } from "../../../core/fbs/model";
 
-export const getFeeObjectByFaustId = (feeObj: FeeV2[], faustId: string) => {
+export const getFeeObjectByFeeId = (feeObj: FeeV2[], feeId: number) => {
   return feeObj.filter((item) => {
-    return item.materials[0].recordId === faustId;
+    return item.feeId === feeId;
   });
 };
 

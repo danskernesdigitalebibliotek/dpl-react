@@ -8,21 +8,18 @@ import fetchMaterial, {
 import FeeStatus from "./fee-status";
 import { useText } from "../../../core/utils/text";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
-import { FaustId } from "../../../core/utils/types/ids";
 import { formatCurrency } from "../../../core/utils/helpers/currency";
 
 export interface StackableFeeProps {
   amountOfMaterialsWithDueDate: number;
   material?: BasicDetailsType;
-  faust: FaustId;
   feeData: FeeV2;
   materialItemNumber: string;
-  openDetailsModalClickEvent: (faustId: FaustId) => void;
+  openDetailsModalClickEvent: (feeId: number) => void;
 }
 
 const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   amountOfMaterialsWithDueDate,
-  faust,
   material = {},
   feeData,
   materialItemNumber,
@@ -34,31 +31,34 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   const listReservationClass = clsx(["list-reservation", "my-32"], {
     "list-reservation--stacked": stackSize > 0
   });
+
+  if (!feeData) {
+    return null;
+  }
+
   return (
     <button
       type="button"
-      onClick={() => openDetailsModalClickEvent(faust)}
+      onClick={() => openDetailsModalClickEvent(feeData.feeId)}
       onKeyUp={(e) => {
         if (e.key === "Enter" || e.key === "Space") {
-          openDetailsModalClickEvent(faust);
+          openDetailsModalClickEvent(feeData.feeId);
         }
       }}
       className={listReservationClass}
     >
-      {feeData && (
-        <FeeInfo materialItemNumber={materialItemNumber} material={material}>
-          {stackSize > 0 && (
-            <p
-              className="text-small-caption color-secondary-gray mt-8"
-              data-cy="stack-size"
-            >
-              {t("plusXOtherMaterialsText", {
-                placeholders: { "@amount": stackSize }
-              })}
-            </p>
-          )}
-        </FeeInfo>
-      )}
+      <FeeInfo materialItemNumber={materialItemNumber} material={material}>
+        {stackSize > 0 && (
+          <p
+            className="text-small-caption color-secondary-gray mt-8"
+            data-cy="stack-size"
+          >
+            {t("plusXOtherMaterialsText", {
+              placeholders: { "@amount": stackSize }
+            })}
+          </p>
+        )}
+      </FeeInfo>
       <div className="list-reservation__status">
         <FeeStatus dueDate={creationDate} reasonMessage={reasonMessage} />
         <div className="list-reservation__fee">
