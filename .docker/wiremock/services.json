@@ -9,5 +9,10 @@
     "name" : "publizon",
     "port" : 8110,
     "rootDir" : "publizon"
+  }, {
+    "id" : "9d646",
+    "name" : "cms",
+    "port" : 8120,
+    "rootDir" : "cms"
   } ]
 }
