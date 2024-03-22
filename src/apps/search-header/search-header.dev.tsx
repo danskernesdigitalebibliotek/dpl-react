@@ -15,6 +15,11 @@ export default {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    etAlText: {
+      name: "Et al. Text",
+      defaultValue: "et al.",
+      control: { type: "text" }
+    },
     searchHeaderIconAltText: {
       name: "Alt text for search button image",
       defaultValue: "search icon",

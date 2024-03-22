@@ -15,7 +15,7 @@ const StorySearchBar: React.FC<StorySearchBarProps> = ({ storybookArgs }) => {
   // but in this story it's by design, as an autosuggest dropdown isn't present
   const searchHeaderUrl = "https://bibliotek.dk/search";
   const [q, setQ] = useState<string | undefined>("");
-  const { getInputProps, getComboboxProps } = useCombobox({
+  const { getInputProps } = useCombobox({
     items: ["Item 1", "Item 2"],
     inputValue: q,
     defaultIsOpen: false,
@@ -26,11 +26,7 @@ const StorySearchBar: React.FC<StorySearchBarProps> = ({ storybookArgs }) => {
 
   return (
     <div className="header__menu-second">
-      <form
-        action={searchHeaderUrl}
-        className="header__menu-search"
-        {...getComboboxProps()}
-      >
+      <form action={searchHeaderUrl} className="header__menu-search">
         <SearchBar {...storybookArgs} getInputProps={getInputProps} />
       </form>
     </div>

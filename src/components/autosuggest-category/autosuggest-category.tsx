@@ -5,14 +5,13 @@ import { FC } from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { Suggestion } from "../../core/utils/types/autosuggest";
-import { AutosuggestCategoryList } from "../../core/utils/types/material-type";
+import { getAutosuggestCategoryList } from "../../apps/search-header/helpers";
 
 export interface AutosuggestCategoryProps {
   categoryData: SuggestionsFromQueryStringQuery["suggest"]["result"];
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   highlightedIndex: number;
   textAndMaterialDataLength: number;
-  autosuggestCategoryList: AutosuggestCategoryList[];
   dataCy?: string;
 }
 
@@ -21,7 +20,6 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
   getItemProps,
   highlightedIndex,
   textAndMaterialDataLength,
-  autosuggestCategoryList,
   dataCy = "autosuggest-category-item"
 }) => {
   const t = useText();
@@ -50,7 +48,7 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
               {`${item.term} ${t("inText")}`}
             </p>
             <div className="boxed-text text-tags noselect ml-8">
-              {autosuggestCategoryList[incorrectIndex].render}
+              {getAutosuggestCategoryList(t)[incorrectIndex].render}
             </div>
           </li>
         );
