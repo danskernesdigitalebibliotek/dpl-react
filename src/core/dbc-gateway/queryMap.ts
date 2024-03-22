@@ -5,6 +5,7 @@ export default {
   // Search requests.
   complexSearchWithPagination: serviceUrlKeys.fbiSearch,
   complexSearchWithPaginationWorkAccess: serviceUrlKeys.fbiSearch,
+  getMaterial: serviceUrlKeys.fbiSearch,
   intelligentFacets: serviceUrlKeys.fbiSearch,
   recommendFromFaust: serviceUrlKeys.fbiSearch,
   searchFacet: serviceUrlKeys.fbiSearch,
@@ -14,7 +15,7 @@ export default {
   getInfomedia: serviceUrlKeys.fbiMaterial,
   getManifestationViaBestRepresentationByFaust: serviceUrlKeys.fbiMaterial,
   getManifestationViaMaterialByFaust: serviceUrlKeys.fbiMaterial,
-  getMaterial: serviceUrlKeys.fbiMaterial,
+  getMaterialGlobally: serviceUrlKeys.fbiMaterial,
   getReviewManifestations: serviceUrlKeys.fbiMaterial,
   getSmallWork: serviceUrlKeys.fbiMaterial,
   openOrder: serviceUrlKeys.fbiMaterial,

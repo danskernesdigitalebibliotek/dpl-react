@@ -83,7 +83,10 @@ if (import.meta.vitest) {
       expect(resolveBaseUrl("getManifestationViaMaterialByFaust")).toEqual(
         "i-am-fbi-material-url"
       );
-      expect(resolveBaseUrl("getMaterial")).toEqual("i-am-fbi-material-url");
+      expect(resolveBaseUrl("getMaterial")).toEqual("i-am-fbi-search-url");
+      expect(resolveBaseUrl("getMaterialGlobally")).toEqual(
+        "i-am-fbi-material-url"
+      );
       expect(resolveBaseUrl("getReviewManifestations")).toEqual(
         "i-am-fbi-material-url"
       );
