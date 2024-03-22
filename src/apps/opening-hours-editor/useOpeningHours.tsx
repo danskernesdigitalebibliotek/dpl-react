@@ -3,7 +3,7 @@ import { EventInput, DateSelectArg, EventClickArg } from "@fullcalendar/core";
 import {
   createCmsEventId,
   formatCmsEventsToFullCalendar,
-  isSameDay
+  adjustEndDateToStartDay
 } from "./helper";
 import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
 
@@ -29,12 +29,7 @@ const useOpeningHours = () => {
       const startDay = new Date(selectInfo.startStr);
       let endDay = new Date(selectInfo.endStr);
 
-      if (!isSameDay(startDay, endDay)) {
-        endDay = new Date(startDay);
-        // Adds one day to the end day and sets the time to 00:00:00ß
-        endDay.setDate(endDay.getDate() + 1);
-        endDay.setHours(0, 0, 0);
-      }
+      endDay = adjustEndDateToStartDay(startDay, endDay);
 
       setEvents([
         ...events,
