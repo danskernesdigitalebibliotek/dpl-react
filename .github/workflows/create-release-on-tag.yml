@@ -33,7 +33,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - uses: Wandalen/wretry.action@v1.4.10
+      - uses: Wandalen/wretry.action@v2.1.0
         with:
           command: yarn install --frozen-lockfile
           attempt_limit: 3
