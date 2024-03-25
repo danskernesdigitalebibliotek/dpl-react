@@ -76,7 +76,7 @@
     "@testing-library/react-hooks": "^8.0.1",
     "@tsconfig/create-react-app": "^1.0.2",
     "@types/node": "^20.11.30",
-    "@types/react": "^18.2.61",
+    "@types/react": "^18.2.69",
     "@types/react-dom": "^18.2.22",
     "@types/react-flatpickr": "^3.8.11",
     "@types/react-redux": "^7.1.24",
