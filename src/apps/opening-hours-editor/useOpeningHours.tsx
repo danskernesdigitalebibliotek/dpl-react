@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { EventInput, DateSelectArg } from "@fullcalendar/core";
 import { EventImpl } from "@fullcalendar/core/internal";
-import {
-  createCmsEventId,
-  formatCmsEventsToFullCalendar,
-  adjustEndDateToStartDay
-} from "./helper";
+import { createCmsEventId, formatCmsEventsToFullCalendar } from "./helper";
 import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
+
+export type ExtendedDateSelectArgType = DateSelectArg & { title: string };
 
 const useOpeningHours = () => {
   const { data: openingHoursData } = useDplOpeningHoursListGET();
@@ -19,37 +17,26 @@ const useOpeningHours = () => {
     }
   }, [openingHoursData]);
 
-  const handleEventSelect = (selectInfo: DateSelectArg) => {
-    // Todo: Replace prompt with a modal
+  const handleEventSelect = (selectInfo: ExtendedDateSelectArgType) => {
+    // This is just for demonstration purposes
+    // and should be replaced with a call to the API
+    const newEvent = {
+      title: selectInfo.title,
+      start: selectInfo.startStr,
+      end: selectInfo.endStr,
+      allDay: selectInfo.allDay,
+      color: "green",
+      id: createCmsEventId(selectInfo.title, selectInfo.start)
+    };
+    setEvents([...events, newEvent]);
+
     // eslint-disable-next-line no-alert
-    const title = prompt("Please enter a new title for your event");
-    const calendarApi = selectInfo.view.calendar;
-
-    if (title) {
-      // Checks if the selected end date is different from the start day; if so, sets the end date to be the same as the start day and the end time to 00:00:00
-      const startDay = new Date(selectInfo.startStr);
-      let endDay = new Date(selectInfo.endStr);
-
-      endDay = adjustEndDateToStartDay(startDay, endDay);
-
-      setEvents([
-        ...events,
-        {
-          title,
-          start: startDay.toISOString(),
-          end: endDay.toISOString(),
-          allDay: selectInfo.allDay,
-          color: "green",
-          id: createCmsEventId(title, startDay)
-        }
-      ]);
-    }
-
-    // clear date selection
-    calendarApi.unselect();
+    alert(JSON.stringify(newEvent, null, 2));
   };
 
   const handleEventEditing = (eventInfo: EventImpl) => {
+    // This is just for demonstration purposes
+    // and should be replaced with a call to the API
     // eslint-disable-next-line no-alert
     alert(JSON.stringify(eventInfo, null, 2));
   };

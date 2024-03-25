@@ -6,9 +6,10 @@ import interactionPlugin from "@fullcalendar/interaction";
 import da from "@fullcalendar/core/locales/da";
 import OpeningHoursEditorEventContent from "./OpeningHoursEditorEventContent";
 import useOpeningHours from "./useOpeningHours";
-import DialogFomular from "./DialogFomular";
+import DialogFomularEdit from "./DialogFomularEdit";
 import Dialog from "./Dialog";
 import useDialog from "./useDialog";
+import DialogFomularAdd from "./DialogFomularAdd";
 
 const OpeningHoursEditor: React.FC = () => {
   const { events, handleEventSelect, handleEventEditing, handleEventRemove } =
@@ -33,12 +34,21 @@ const OpeningHoursEditor: React.FC = () => {
         initialView="timeGridWeek"
         locale={da}
         selectable
-        select={handleEventSelect}
+        select={(selectedEventInfo) =>
+          openDialogWithContent(
+            <DialogFomularAdd
+              selectedEventInfo={selectedEventInfo}
+              handleEventSelect={handleEventSelect}
+              closeDialog={closeDialog}
+            />
+          )
+        }
         eventClick={(clickInfo) =>
           openDialogWithContent(
-            <DialogFomular
+            <DialogFomularEdit
               eventInfo={clickInfo.event}
               handleEventEditing={handleEventEditing}
+              closeDialog={closeDialog}
             />
           )
         }
