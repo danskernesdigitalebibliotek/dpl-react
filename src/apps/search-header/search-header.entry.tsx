@@ -4,6 +4,7 @@ import { withUrls } from "../../core/utils/url";
 import SearchHeader from "./search-header";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { GlobalConfigProps } from "../../core/storybook/globalConfigArgs";
 
 export interface SearchHeaderTextProps {
   searchHeaderIconAltText?: string;
@@ -30,6 +31,7 @@ export interface SearchHeaderTextProps {
 export interface SearchHeaderEntryProps
   extends SearchHeaderTextProps,
     GlobalEntryTextProps,
+    GlobalConfigProps,
     GlobalUrlEntryPropsInterface {}
 
 const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = () => {
