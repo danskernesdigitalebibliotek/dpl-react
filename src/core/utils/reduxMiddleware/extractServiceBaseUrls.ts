@@ -8,8 +8,8 @@ type Api =
   | "cover"
   | "materialList"
   | "fbi"
-  | "fbiSearch"
-  | "fbiMaterial";
+  | "fbiLocal"
+  | "fbiGlobal";
 
 export type ApiBaseUrlKey = `${Api}BaseUrl`;
 
@@ -26,8 +26,8 @@ export const serviceUrlKeys = {
   cover: "coverBaseUrl",
   materialList: "materialListBaseUrl",
   fbi: "fbiBaseUrl",
-  fbiSearch: "fbiSearchBaseUrl",
-  fbiMaterial: "fbiMaterialBaseUrl"
+  fbiLocal: "fbiLocalBaseUrl",
+  fbiGlobal: "fbiGlobalBaseUrl"
 } as const;
 
 // ServiceBaseUrls "store". We use this to store the base urls for the different services.
