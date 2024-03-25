@@ -7,7 +7,7 @@
   },
   "response" : {
     "status" : 200,
-    "body" : "[\n  {\n    \"category\": {\n      \"title\": \"Open\"\n    },\n    \"date\": \"2024-03-22\",\n    \"start_time\": \"09:00\",\n    \"end_time\": \"17:00\"\n  },\n    {\n    \"category\": {\n      \"title\": \"Open\"\n    },\n    \"date\": \"2024-03-23\",\n    \"start_time\": \"09:00\",\n    \"end_time\": \"17:00\"\n  }\n]",
+    "body" : "[\n   {\n  \"id\": 0,\n  \"category\": {\n    \"title\": \"Open\",\n    \"color\": \"#ff0099\"\n  },\n  \"date\": \"2024-03-26\",\n  \"start_time\": \"09:00\",\n  \"end_time\": \"17:00\",\n  \"branch_id\": 1\n},   {\n  \"id\": 1,\n  \"category\": {\n    \"title\": \"Open\",\n    \"color\": \"#ff0099\"\n  },\n  \"date\": \"2024-03-27\",\n  \"start_time\": \"09:00\",\n  \"end_time\": \"17:00\",\n  \"branch_id\": 1\n}\n]",
     "headers" : { }
   },
   "uuid" : "479e26d6-5197-4d8f-a2dd-fefe64aabc14",
