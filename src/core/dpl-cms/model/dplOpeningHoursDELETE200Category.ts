@@ -6,7 +6,7 @@
  * OpenAPI spec version: Versioning not supported
  */
 
-export type DplOpeningHoursListGET200ItemCategory = {
+export type DplOpeningHoursDELETE200Category = {
   title: string;
   /** A CSS compatible color code which can be used to represent the category */
   color: string;

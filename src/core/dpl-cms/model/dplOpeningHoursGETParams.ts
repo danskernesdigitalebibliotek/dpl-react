@@ -5,9 +5,6 @@
  * The REST API provide by the core REST module.
  * OpenAPI spec version: Versioning not supported
  */
+import type { DplOpeningHoursGETFormat } from "./dplOpeningHoursGETFormat";
 
-export type DplOpeningHoursListGET200ItemCategory = {
-  title: string;
-  /** A CSS compatible color code which can be used to represent the category */
-  color: string;
-};
+export type DplOpeningHoursGETParams = { _format?: DplOpeningHoursGETFormat };

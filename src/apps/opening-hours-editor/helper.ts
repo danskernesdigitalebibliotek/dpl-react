@@ -1,3 +1,4 @@
+import { EventInput } from "@fullcalendar/core";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
 
 const formatDateTimeString = (date: string, time: string): string => {
@@ -10,16 +11,14 @@ export const createCmsEventId = (title: string, startDay: Date) => {
 
 export const formatCmsEventsToFullCalendar = (
   data: DplOpeningHoursListGET200Item[]
-) => {
-  return data.map(({ category, date, start_time, end_time }) => {
-    const startDateTime = new Date(formatDateTimeString(date, start_time));
+): EventInput[] => {
+  return data.map(({ category, date, start_time, end_time, id }) => {
     return {
-      id: createCmsEventId(category.title, startDateTime),
+      id: id.toString(),
       title: category.title,
       start: formatDateTimeString(date, start_time),
       end: formatDateTimeString(date, end_time),
-      allDay: false,
-      color: "blue"
+      color: category.color
     };
   });
 };
