@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { forwardRef } from "react";
+import iconCross from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross.svg";
 
 type DialogType = {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ const Dialog = forwardRef<HTMLDialogElement, DialogType>(
   ({ children, closeDialog }, ref) => {
     return (
       <dialog
+        className="dialog"
         ref={ref}
         // Close dialog when clicking outside of it (::backdrop pseudo-element)
         onClick={({ currentTarget, target }) => {
@@ -23,13 +25,9 @@ const Dialog = forwardRef<HTMLDialogElement, DialogType>(
         <button
           type="button"
           onClick={closeDialog}
-          style={{
-            border: "1px solid black",
-            padding: "5px",
-            background: "grey"
-          }}
+          className="dialog__close-button"
         >
-          Close
+          <img src={iconCross} alt="close icon" />
         </button>
         {children}
       </dialog>

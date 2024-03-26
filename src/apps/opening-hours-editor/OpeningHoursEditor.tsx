@@ -7,8 +7,8 @@ import da from "@fullcalendar/core/locales/da";
 import OpeningHoursEditorEventContent from "./OpeningHoursEditorEventContent";
 import useOpeningHours from "./useOpeningHours";
 import DialogFomularEdit from "./DialogFomularEdit";
-import Dialog from "./Dialog";
-import useDialog from "./useDialog";
+import Dialog from "../../components/dialog/Dialog";
+import useDialog from "../../components/dialog/useDialog";
 import DialogFomularAdd from "./DialogFomularAdd";
 
 const OpeningHoursEditor: React.FC = () => {
