@@ -37,16 +37,14 @@ export const adjustEndDateToStartDay = (startDay: Date, endDay: Date) => {
   return adjustedEndDay;
 };
 
-export const extractTime = (dateStr: string) => {
-  const date = new Date(dateStr);
+export const extractTime = (date: Date) => {
   const hours = date.getHours().toString().padStart(2, "0");
   const minutes = date.getMinutes().toString().padStart(2, "0");
   return `${hours}:${minutes}`;
 };
 
-export const updateEventTime = (dateStr: string, timeStr: string) => {
+export const updateEventTime = (date: Date, timeStr: string) => {
   const [hours, minutes] = timeStr.split(":").map(Number);
-  const date = new Date(dateStr);
   date.setHours(hours, minutes);
   return date;
 };

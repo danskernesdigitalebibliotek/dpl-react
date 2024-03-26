@@ -22,8 +22,8 @@ const DialogFomularAdd: React.FC<DialogFomularAddProps> = ({
   const calendarApi = selectedEventInfo.view.calendar;
 
   const handleSubmit: EventFormOnSubmitType = (title, startTime, endTime) => {
-    const startDate = updateEventTime(selectedEventInfo.startStr, startTime);
-    let endDate = updateEventTime(selectedEventInfo.endStr, endTime);
+    const startDate = updateEventTime(selectedEventInfo.start, startTime);
+    let endDate = updateEventTime(selectedEventInfo.end, endTime);
 
     endDate = adjustEndDateToStartDay(startDate, endDate);
 
@@ -42,8 +42,8 @@ const DialogFomularAdd: React.FC<DialogFomularAddProps> = ({
   return (
     <EventForm
       initialTitle=""
-      initialStartTime={extractTime(selectedEventInfo.startStr)}
-      initialEndTime={extractTime(selectedEventInfo.endStr)}
+      initialStartTime={extractTime(selectedEventInfo.start)}
+      initialEndTime={extractTime(selectedEventInfo.end)}
       onSubmit={handleSubmit}
     />
   );
