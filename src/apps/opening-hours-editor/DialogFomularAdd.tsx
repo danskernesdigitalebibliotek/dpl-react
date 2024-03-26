@@ -31,7 +31,8 @@ const DialogFomularAdd: React.FC<DialogFomularAddProps> = ({
       ...selectedEventInfo,
       startStr: startDate.toISOString(),
       endStr: endDate.toISOString(),
-      title
+      title,
+      allDay: false
     };
 
     handleEventSelect(newEventInfo);
