@@ -1,0 +1,696 @@
+[
+  {
+    "id": 21,
+    "category": {
+      "title": "Åbent",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-11",
+    "start_time": "08:00",
+    "end_time": "12:00",
+    "branch_id": 1
+  },
+  {
+    "id": 22,
+    "category": {
+      "title": "Selvbetjening",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-11",
+    "start_time": "13:00",
+    "end_time": "17:00",
+    "branch_id": 1
+  },
+  {
+    "id": 23,
+    "category": {
+      "title": "Med betjening",
+      "color": "#008000"
+    },
+    "date": "2024-03-11",
+    "start_time": "18:00",
+    "end_time": "20:00",
+    "branch_id": 1
+  },
+  {
+    "id": 24,
+    "category": {
+      "title": "Telefontid",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-12",
+    "start_time": "09:00",
+    "end_time": "11:00",
+    "branch_id": 1
+  },
+  {
+    "id": 25,
+    "category": {
+      "title": "Borgerservice",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-12",
+    "start_time": "12:00",
+    "end_time": "14:00",
+    "branch_id": 1
+  },
+  {
+    "id": 26,
+    "category": {
+      "title": "Børneetagen",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-12",
+    "start_time": "15:00",
+    "end_time": "18:00",
+    "branch_id": 1
+  },
+  {
+    "id": 27,
+    "category": {
+      "title": "Makerlab",
+      "color": "#008000"
+    },
+    "date": "2024-03-13",
+    "start_time": "08:00",
+    "end_time": "11:00",
+    "branch_id": 1
+  },
+  {
+    "id": 28,
+    "category": {
+      "title": "Åbent",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-13",
+    "start_time": "12:00",
+    "end_time": "16:00",
+    "branch_id": 1
+  },
+  {
+    "id": 29,
+    "category": {
+      "title": "Selvbetjening",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-13",
+    "start_time": "17:00",
+    "end_time": "20:00",
+    "branch_id": 1
+  },
+  {
+    "id": 30,
+    "category": {
+      "title": "Med betjening",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-14",
+    "start_time": "09:00",
+    "end_time": "13:00",
+    "branch_id": 1
+  },
+  {
+    "id": 31,
+    "category": {
+      "title": "Telefontid",
+      "color": "#008000"
+    },
+    "date": "2024-03-14",
+    "start_time": "14:00",
+    "end_time": "17:00",
+    "branch_id": 1
+  },
+  {
+    "id": 32,
+    "category": {
+      "title": "Borgerservice",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-14",
+    "start_time": "18:00",
+    "end_time": "20:00",
+    "branch_id": 1
+  },
+  {
+    "id": 33,
+    "category": {
+      "title": "Børneetagen",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-15",
+    "start_time": "08:00",
+    "end_time": "12:00",
+    "branch_id": 1
+  },
+  {
+    "id": 34,
+    "category": {
+      "title": "Makerlab",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-15",
+    "start_time": "13:00",
+    "end_time": "16:00",
+    "branch_id": 1
+  },
+  {
+    "id": 35,
+    "category": {
+      "title": "Åbent",
+      "color": "#008000"
+    },
+    "date": "2024-03-15",
+    "start_time": "17:00",
+    "end_time": "19:00",
+    "branch_id": 1
+  },
+  {
+    "id": 36,
+    "category": {
+      "title": "Selvbetjening",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-16",
+    "start_time": "09:00",
+    "end_time": "12:00",
+    "branch_id": 1
+  },
+  {
+    "id": 37,
+    "category": {
+      "title": "Med betjening",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-16",
+    "start_time": "12:30",
+    "end_time": "15:30",
+    "branch_id": 1
+  },
+  {
+    "id": 38,
+    "category": {
+      "title": "Telefontid",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-16",
+    "start_time": "16:00",
+    "end_time": "18:00",
+    "branch_id": 1
+  },
+  {
+    "id": 39,
+    "category": {
+      "title": "Borgerservice",
+      "color": "#008000"
+    },
+    "date": "2024-03-17",
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "branch_id": 1
+  },
+  {
+    "id": 40,
+    "category": {
+      "title": "Børneetagen",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-17",
+    "start_time": "14:00",
+    "end_time": "17:00",
+    "branch_id": 1
+  },
+  {
+    "id": 41,
+    "category": {
+      "title": "Makerlab",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-17",
+    "start_time": "18:00",
+    "end_time": "20:00",
+    "branch_id": 1
+  },
+  {
+    "id": 0,
+    "category": {
+      "title": "Åbent",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-18",
+    "start_time": "09:00",
+    "end_time": "12:00",
+    "branch_id": 1
+  },
+  {
+    "id": 1,
+    "category": {
+      "title": "Selvbetjening",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-18",
+    "start_time": "13:00",
+    "end_time": "16:00",
+    "branch_id": 1
+  },
+  {
+    "id": 2,
+    "category": {
+      "title": "Med betjening",
+      "color": "#008000"
+    },
+    "date": "2024-03-18",
+    "start_time": "17:00",
+    "end_time": "19:00",
+    "branch_id": 1
+  },
+  {
+    "id": 3,
+    "category": {
+      "title": "Telefontid",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-19",
+    "start_time": "08:00",
+    "end_time": "10:00",
+    "branch_id": 1
+  },
+  {
+    "id": 4,
+    "category": {
+      "title": "Borgerservice",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-19",
+    "start_time": "11:00",
+    "end_time": "13:00",
+    "branch_id": 1
+  },
+  {
+    "id": 5,
+    "category": {
+      "title": "Børneetagen",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-19",
+    "start_time": "14:00",
+    "end_time": "17:00",
+    "branch_id": 1
+  },
+  {
+    "id": 6,
+    "category": {
+      "title": "Makerlab",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-20",
+    "start_time": "09:00",
+    "end_time": "12:00",
+    "branch_id": 1
+  },
+  {
+    "id": 7,
+    "category": {
+      "title": "Åbent",
+      "color": "#008000"
+    },
+    "date": "2024-03-20",
+    "start_time": "13:00",
+    "end_time": "15:00",
+    "branch_id": 1
+  },
+  {
+    "id": 8,
+    "category": {
+      "title": "Selvbetjening",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-20",
+    "start_time": "16:00",
+    "end_time": "19:00",
+    "branch_id": 1
+  },
+  {
+    "id": 9,
+    "category": {
+      "title": "Med betjening",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-21",
+    "start_time": "09:00",
+    "end_time": "11:00",
+    "branch_id": 1
+  },
+  {
+    "id": 10,
+    "category": {
+      "title": "Telefontid",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-21",
+    "start_time": "12:00",
+    "end_time": "14:00",
+    "branch_id": 1
+  },
+  {
+    "id": 11,
+    "category": {
+      "title": "Borgerservice",
+      "color": "#008000"
+    },
+    "date": "2024-03-21",
+    "start_time": "15:00",
+    "end_time": "18:00",
+    "branch_id": 1
+  },
+  {
+    "id": 12,
+    "category": {
+      "title": "Børneetagen",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-22",
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "branch_id": 1
+  },
+  {
+    "id": 13,
+    "category": {
+      "title": "Makerlab",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-22",
+    "start_time": "14:00",
+    "end_time": "17:00",
+    "branch_id": 1
+  },
+  {
+    "id": 14,
+    "category": {
+      "title": "Åbent",
+      "color": "#008000"
+    },
+    "date": "2024-03-22",
+    "start_time": "18:00",
+    "end_time": "20:00",
+    "branch_id": 1
+  },
+  {
+    "id": 15,
+    "category": {
+      "title": "Selvbetjening",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-23",
+    "start_time": "09:00",
+    "end_time": "11:00",
+    "branch_id": 1
+  },
+  {
+    "id": 16,
+    "category": {
+      "title": "Med betjening",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-23",
+    "start_time": "12:00",
+    "end_time": "16:00",
+    "branch_id": 2
+  },
+  {
+    "id": 17,
+    "category": {
+      "title": "Telefontid",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-23",
+    "start_time": "17:00",
+    "end_time": "19:00",
+    "branch_id": 1
+  },
+  {
+    "id": 18,
+    "category": {
+      "title": "Borgerservice",
+      "color": "#008000"
+    },
+    "date": "2024-03-24",
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "branch_id": 1
+  },
+  {
+    "id": 19,
+    "category": {
+      "title": "Børneetagen",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-24",
+    "start_time": "14:00",
+    "end_time": "18:00",
+    "branch_id": 1
+  },
+  {
+    "id": 20,
+    "category": {
+      "title": "Makerlab",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-24",
+    "start_time": "19:00",
+    "end_time": "21:00",
+    "branch_id": 1
+  },
+
+  {
+    "id": 42,
+    "category": {
+      "title": "Åbent",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-25",
+    "start_time": "08:00",
+    "end_time": "12:00",
+    "branch_id": 1
+  },
+  {
+    "id": 43,
+    "category": {
+      "title": "Selvbetjening",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-25",
+    "start_time": "13:00",
+    "end_time": "17:00",
+    "branch_id": 1
+  },
+  {
+    "id": 44,
+    "category": {
+      "title": "Med betjening",
+      "color": "#008000"
+    },
+    "date": "2024-03-25",
+    "start_time": "18:00",
+    "end_time": "20:00",
+    "branch_id": 1
+  },
+  {
+    "id": 45,
+    "category": {
+      "title": "Telefontid",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-26",
+    "start_time": "09:00",
+    "end_time": "11:00",
+    "branch_id": 1
+  },
+  {
+    "id": 46,
+    "category": {
+      "title": "Borgerservice",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-26",
+    "start_time": "12:00",
+    "end_time": "14:00",
+    "branch_id": 1
+  },
+  {
+    "id": 47,
+    "category": {
+      "title": "Børneetagen",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-26",
+    "start_time": "15:00",
+    "end_time": "18:00",
+    "branch_id": 1
+  },
+  {
+    "id": 48,
+    "category": {
+      "title": "Makerlab",
+      "color": "#008000"
+    },
+    "date": "2024-03-27",
+    "start_time": "08:00",
+    "end_time": "11:00",
+    "branch_id": 1
+  },
+  {
+    "id": 49,
+    "category": {
+      "title": "Åbent",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-27",
+    "start_time": "12:00",
+    "end_time": "16:00",
+    "branch_id": 1
+  },
+  {
+    "id": 50,
+    "category": {
+      "title": "Selvbetjening",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-27",
+    "start_time": "17:00",
+    "end_time": "20:00",
+    "branch_id": 1
+  },
+  {
+    "id": 51,
+    "category": {
+      "title": "Med betjening",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-28",
+    "start_time": "09:00",
+    "end_time": "13:00",
+    "branch_id": 1
+  },
+  {
+    "id": 52,
+    "category": {
+      "title": "Telefontid",
+      "color": "#008000"
+    },
+    "date": "2024-03-28",
+    "start_time": "14:00",
+    "end_time": "17:00",
+    "branch_id": 1
+  },
+  {
+    "id": 53,
+    "category": {
+      "title": "Borgerservice",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-28",
+    "start_time": "18:00",
+    "end_time": "20:00",
+    "branch_id": 1
+  },
+  {
+    "id": 54,
+    "category": {
+      "title": "Børneetagen",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-29",
+    "start_time": "08:00",
+    "end_time": "12:00",
+    "branch_id": 1
+  },
+  {
+    "id": 55,
+    "category": {
+      "title": "Makerlab",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-29",
+    "start_time": "13:00",
+    "end_time": "16:00",
+    "branch_id": 1
+  },
+  {
+    "id": 56,
+    "category": {
+      "title": "Åbent",
+      "color": "#008000"
+    },
+    "date": "2024-03-29",
+    "start_time": "17:00",
+    "end_time": "19:00",
+    "branch_id": 1
+  },
+  {
+    "id": 57,
+    "category": {
+      "title": "Selvbetjening",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-30",
+    "start_time": "09:00",
+    "end_time": "12:00",
+    "branch_id": 1
+  },
+  {
+    "id": 58,
+    "category": {
+      "title": "Med betjening",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-30",
+    "start_time": "12:30",
+    "end_time": "15:30",
+    "branch_id": 1
+  },
+  {
+    "id": 59,
+    "category": {
+      "title": "Telefontid",
+      "color": "#FF0000"
+    },
+    "date": "2024-03-30",
+    "start_time": "16:00",
+    "end_time": "18:00",
+    "branch_id": 1
+  },
+  {
+    "id": 60,
+    "category": {
+      "title": "Borgerservice",
+      "color": "#008000"
+    },
+    "date": "2024-03-31",
+    "start_time": "10:00",
+    "end_time": "13:00",
+    "branch_id": 1
+  },
+  {
+    "id": 61,
+    "category": {
+      "title": "Børneetagen",
+      "color": "#FFFF00"
+    },
+    "date": "2024-03-31",
+    "start_time": "14:00",
+    "end_time": "17:00",
+    "branch_id": 1
+  },
+  {
+    "id": 62,
+    "category": {
+      "title": "Makerlab",
+      "color": "#0000FF"
+    },
+    "date": "2024-03-31",
+    "start_time": "18:00",
+    "end_time": "20:00",
+    "branch_id": 1
+  }
+]
