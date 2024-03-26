@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
 import { EventInput, DateSelectArg } from "@fullcalendar/core";
 import { EventImpl } from "@fullcalendar/core/internal";
+import { useQueryClient } from "react-query";
 import { createCmsEventId, formatCmsEventsToFullCalendar } from "./helper";
-import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
+import {
+  getDplOpeningHoursListGETQueryKey,
+  useDplOpeningHoursDeleteDELETE,
+  useDplOpeningHoursListGET
+} from "../../core/dpl-cms/dpl-cms";
 
 export type ExtendedDateSelectArgType = DateSelectArg & { title: string };
 
 const useOpeningHours = () => {
+  const queryClient = useQueryClient();
   const { data: openingHoursData } = useDplOpeningHoursListGET();
+  const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
   const [events, setEvents] = useState<EventInput[]>([]);
 
   useEffect(() => {
@@ -42,7 +49,16 @@ const useOpeningHours = () => {
   };
 
   const handleEventRemove = (eventToRemove: EventImpl) => {
-    setEvents(events.filter((event) => event.id !== eventToRemove.id));
+    if (eventToRemove.id) {
+      removeOpeningHours(
+        { id: eventToRemove.id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries(getDplOpeningHoursListGETQueryKey());
+          }
+        }
+      );
+    }
   };
 
   return {

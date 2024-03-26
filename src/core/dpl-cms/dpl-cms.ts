@@ -19,17 +19,15 @@ import type {
   CampaignMatchPOST200,
   CampaignMatchPOSTBodyItem,
   CampaignMatchPOSTParams,
-  DplOpeningHoursGET200,
-  DplOpeningHoursGETOpeningHoursInstanceBody,
-  DplOpeningHoursGETParams,
-  DplOpeningHoursDELETE200,
-  DplOpeningHoursDELETEParams,
-  DplOpeningHoursPATCH200,
-  DplOpeningHoursPATCHParams,
-  DplOpeningHoursPOST200,
-  DplOpeningHoursPOSTParams,
+  DplOpeningHoursCreatePOST200,
+  DplOpeningHoursCreatePOSTBody,
+  DplOpeningHoursCreatePOSTParams,
   DplOpeningHoursListGET200Item,
   DplOpeningHoursListGETParams,
+  DplOpeningHoursDeleteDELETEParams,
+  DplOpeningHoursUpdatePATCH200,
+  DplOpeningHoursUpdatePATCHBody,
+  DplOpeningHoursUpdatePATCHParams,
   EventPATCHBody,
   EventPATCHParams,
   EventsGET200Item,
@@ -107,250 +105,38 @@ export const useCampaignMatchPOST = <
 };
 
 /**
- * @summary Manage individual opening hours
+ * @summary Create individual opening hours
  */
-export const dplOpeningHoursGET = (
-  id: string,
-  dplOpeningHoursGETOpeningHoursInstanceBody: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>,
-  params?: DplOpeningHoursGETParams,
-  signal?: AbortSignal
+export const dplOpeningHoursCreatePOST = (
+  dplOpeningHoursCreatePOSTBody: BodyType<DplOpeningHoursCreatePOSTBody>,
+  params?: DplOpeningHoursCreatePOSTParams
 ) => {
-  return fetcher<DplOpeningHoursGET200 | void>({
-    url: `/dpl_opening_hours/${id}`,
-    method: "get",
-    signal,
-    headers: { "Content-Type": "application/json" },
-    params
-  });
-};
-
-export const getDplOpeningHoursGETQueryKey = (
-  id: string,
-  dplOpeningHoursGETOpeningHoursInstanceBody: DplOpeningHoursGETOpeningHoursInstanceBody,
-  params?: DplOpeningHoursGETParams
-) => [
-  `/dpl_opening_hours/${id}`,
-  ...(params ? [params] : []),
-  dplOpeningHoursGETOpeningHoursInstanceBody
-];
-
-export type DplOpeningHoursGETQueryResult = NonNullable<
-  Awaited<ReturnType<typeof dplOpeningHoursGET>>
->;
-export type DplOpeningHoursGETQueryError = ErrorType<unknown>;
-
-export const useDplOpeningHoursGET = <
-  TData = Awaited<ReturnType<typeof dplOpeningHoursGET>>,
-  TError = ErrorType<unknown>
->(
-  id: string,
-  dplOpeningHoursGETOpeningHoursInstanceBody: DplOpeningHoursGETOpeningHoursInstanceBody,
-  params?: DplOpeningHoursGETParams,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof dplOpeningHoursGET>>,
-      TError,
-      TData
-    >;
-  }
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const { query: queryOptions } = options ?? {};
-
-  const queryKey =
-    queryOptions?.queryKey ??
-    getDplOpeningHoursGETQueryKey(
-      id,
-      dplOpeningHoursGETOpeningHoursInstanceBody,
-      params
-    );
-
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof dplOpeningHoursGET>>
-  > = ({ signal }) =>
-    dplOpeningHoursGET(
-      id,
-      dplOpeningHoursGETOpeningHoursInstanceBody,
-      params,
-      signal
-    );
-
-  const query = useQuery<
-    Awaited<ReturnType<typeof dplOpeningHoursGET>>,
-    TError,
-    TData
-  >(queryKey, queryFn, { enabled: !!id, ...queryOptions });
-
-  return {
-    queryKey,
-    ...query
-  };
-};
-
-/**
- * @summary Manage individual opening hours
- */
-export const dplOpeningHoursDELETE = (
-  id: string,
-  dplOpeningHoursGETOpeningHoursInstanceBody: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>,
-  params?: DplOpeningHoursDELETEParams
-) => {
-  return fetcher<DplOpeningHoursDELETE200 | void>({
-    url: `/dpl_opening_hours/${id}`,
-    method: "delete",
-    headers: { "Content-Type": "application/json" },
-    data: dplOpeningHoursGETOpeningHoursInstanceBody,
-    params
-  });
-};
-
-export type DplOpeningHoursDELETEMutationResult = NonNullable<
-  Awaited<ReturnType<typeof dplOpeningHoursDELETE>>
->;
-export type DplOpeningHoursDELETEMutationBody =
-  BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-export type DplOpeningHoursDELETEMutationError = ErrorType<unknown>;
-
-export const useDplOpeningHoursDELETE = <
-  TError = ErrorType<unknown>,
-  TContext = unknown
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof dplOpeningHoursDELETE>>,
-    TError,
-    {
-      id: string;
-      data: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-      params?: DplOpeningHoursDELETEParams;
-    },
-    TContext
-  >;
-}) => {
-  const { mutation: mutationOptions } = options ?? {};
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof dplOpeningHoursDELETE>>,
-    {
-      id: string;
-      data: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-      params?: DplOpeningHoursDELETEParams;
-    }
-  > = (props) => {
-    const { id, data, params } = props ?? {};
-
-    return dplOpeningHoursDELETE(id, data, params);
-  };
-
-  return useMutation<
-    Awaited<ReturnType<typeof dplOpeningHoursDELETE>>,
-    TError,
-    {
-      id: string;
-      data: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-      params?: DplOpeningHoursDELETEParams;
-    },
-    TContext
-  >(mutationFn, mutationOptions);
-};
-
-/**
- * @summary Manage individual opening hours
- */
-export const dplOpeningHoursPATCH = (
-  id: string,
-  dplOpeningHoursGETOpeningHoursInstanceBody: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>,
-  params?: DplOpeningHoursPATCHParams
-) => {
-  return fetcher<DplOpeningHoursPATCH200 | void>({
-    url: `/dpl_opening_hours/${id}`,
-    method: "patch",
-    headers: { "Content-Type": "application/json" },
-    data: dplOpeningHoursGETOpeningHoursInstanceBody,
-    params
-  });
-};
-
-export type DplOpeningHoursPATCHMutationResult = NonNullable<
-  Awaited<ReturnType<typeof dplOpeningHoursPATCH>>
->;
-export type DplOpeningHoursPATCHMutationBody =
-  BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-export type DplOpeningHoursPATCHMutationError = ErrorType<unknown>;
-
-export const useDplOpeningHoursPATCH = <
-  TError = ErrorType<unknown>,
-  TContext = unknown
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof dplOpeningHoursPATCH>>,
-    TError,
-    {
-      id: string;
-      data: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-      params?: DplOpeningHoursPATCHParams;
-    },
-    TContext
-  >;
-}) => {
-  const { mutation: mutationOptions } = options ?? {};
-
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof dplOpeningHoursPATCH>>,
-    {
-      id: string;
-      data: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-      params?: DplOpeningHoursPATCHParams;
-    }
-  > = (props) => {
-    const { id, data, params } = props ?? {};
-
-    return dplOpeningHoursPATCH(id, data, params);
-  };
-
-  return useMutation<
-    Awaited<ReturnType<typeof dplOpeningHoursPATCH>>,
-    TError,
-    {
-      id: string;
-      data: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-      params?: DplOpeningHoursPATCHParams;
-    },
-    TContext
-  >(mutationFn, mutationOptions);
-};
-
-/**
- * @summary Manage individual opening hours
- */
-export const dplOpeningHoursPOST = (
-  dplOpeningHoursGETOpeningHoursInstanceBody: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>,
-  params?: DplOpeningHoursPOSTParams
-) => {
-  return fetcher<DplOpeningHoursPOST200 | void>({
+  return fetcher<DplOpeningHoursCreatePOST200>({
     url: `/dpl_opening_hours`,
     method: "post",
     headers: { "Content-Type": "application/json" },
-    data: dplOpeningHoursGETOpeningHoursInstanceBody,
+    data: dplOpeningHoursCreatePOSTBody,
     params
   });
 };
 
-export type DplOpeningHoursPOSTMutationResult = NonNullable<
-  Awaited<ReturnType<typeof dplOpeningHoursPOST>>
+export type DplOpeningHoursCreatePOSTMutationResult = NonNullable<
+  Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>
 >;
-export type DplOpeningHoursPOSTMutationBody =
-  BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-export type DplOpeningHoursPOSTMutationError = ErrorType<unknown>;
+export type DplOpeningHoursCreatePOSTMutationBody =
+  BodyType<DplOpeningHoursCreatePOSTBody>;
+export type DplOpeningHoursCreatePOSTMutationError = ErrorType<void>;
 
-export const useDplOpeningHoursPOST = <
-  TError = ErrorType<unknown>,
+export const useDplOpeningHoursCreatePOST = <
+  TError = ErrorType<void>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof dplOpeningHoursPOST>>,
+    Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>,
     TError,
     {
-      data: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-      params?: DplOpeningHoursPOSTParams;
+      data: BodyType<DplOpeningHoursCreatePOSTBody>;
+      params?: DplOpeningHoursCreatePOSTParams;
     },
     TContext
   >;
@@ -358,23 +144,23 @@ export const useDplOpeningHoursPOST = <
   const { mutation: mutationOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof dplOpeningHoursPOST>>,
+    Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>,
     {
-      data: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-      params?: DplOpeningHoursPOSTParams;
+      data: BodyType<DplOpeningHoursCreatePOSTBody>;
+      params?: DplOpeningHoursCreatePOSTParams;
     }
   > = (props) => {
     const { data, params } = props ?? {};
 
-    return dplOpeningHoursPOST(data, params);
+    return dplOpeningHoursCreatePOST(data, params);
   };
 
   return useMutation<
-    Awaited<ReturnType<typeof dplOpeningHoursPOST>>,
+    Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>,
     TError,
     {
-      data: BodyType<DplOpeningHoursGETOpeningHoursInstanceBody>;
-      params?: DplOpeningHoursPOSTParams;
+      data: BodyType<DplOpeningHoursCreatePOSTBody>;
+      params?: DplOpeningHoursCreatePOSTParams;
     },
     TContext
   >(mutationFn, mutationOptions);
@@ -436,6 +222,122 @@ export const useDplOpeningHoursListGET = <
     queryKey,
     ...query
   };
+};
+
+/**
+ * @summary Delete individual opening hours
+ */
+export const dplOpeningHoursDeleteDELETE = (
+  id: string,
+  params?: DplOpeningHoursDeleteDELETEParams
+) => {
+  return fetcher<void>({
+    url: `/dpl_opening_hours/${id}`,
+    method: "delete",
+    params
+  });
+};
+
+export type DplOpeningHoursDeleteDELETEMutationResult = NonNullable<
+  Awaited<ReturnType<typeof dplOpeningHoursDeleteDELETE>>
+>;
+
+export type DplOpeningHoursDeleteDELETEMutationError = ErrorType<unknown>;
+
+export const useDplOpeningHoursDeleteDELETE = <
+  TError = ErrorType<unknown>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof dplOpeningHoursDeleteDELETE>>,
+    TError,
+    { id: string; params?: DplOpeningHoursDeleteDELETEParams },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof dplOpeningHoursDeleteDELETE>>,
+    { id: string; params?: DplOpeningHoursDeleteDELETEParams }
+  > = (props) => {
+    const { id, params } = props ?? {};
+
+    return dplOpeningHoursDeleteDELETE(id, params);
+  };
+
+  return useMutation<
+    Awaited<ReturnType<typeof dplOpeningHoursDeleteDELETE>>,
+    TError,
+    { id: string; params?: DplOpeningHoursDeleteDELETEParams },
+    TContext
+  >(mutationFn, mutationOptions);
+};
+
+/**
+ * @summary Update individual opening hours
+ */
+export const dplOpeningHoursUpdatePATCH = (
+  id: string,
+  dplOpeningHoursUpdatePATCHBody: BodyType<DplOpeningHoursUpdatePATCHBody>,
+  params?: DplOpeningHoursUpdatePATCHParams
+) => {
+  return fetcher<DplOpeningHoursUpdatePATCH200>({
+    url: `/dpl_opening_hours/${id}`,
+    method: "patch",
+    headers: { "Content-Type": "application/json" },
+    data: dplOpeningHoursUpdatePATCHBody,
+    params
+  });
+};
+
+export type DplOpeningHoursUpdatePATCHMutationResult = NonNullable<
+  Awaited<ReturnType<typeof dplOpeningHoursUpdatePATCH>>
+>;
+export type DplOpeningHoursUpdatePATCHMutationBody =
+  BodyType<DplOpeningHoursUpdatePATCHBody>;
+export type DplOpeningHoursUpdatePATCHMutationError = ErrorType<void>;
+
+export const useDplOpeningHoursUpdatePATCH = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof dplOpeningHoursUpdatePATCH>>,
+    TError,
+    {
+      id: string;
+      data: BodyType<DplOpeningHoursUpdatePATCHBody>;
+      params?: DplOpeningHoursUpdatePATCHParams;
+    },
+    TContext
+  >;
+}) => {
+  const { mutation: mutationOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof dplOpeningHoursUpdatePATCH>>,
+    {
+      id: string;
+      data: BodyType<DplOpeningHoursUpdatePATCHBody>;
+      params?: DplOpeningHoursUpdatePATCHParams;
+    }
+  > = (props) => {
+    const { id, data, params } = props ?? {};
+
+    return dplOpeningHoursUpdatePATCH(id, data, params);
+  };
+
+  return useMutation<
+    Awaited<ReturnType<typeof dplOpeningHoursUpdatePATCH>>,
+    TError,
+    {
+      id: string;
+      data: BodyType<DplOpeningHoursUpdatePATCHBody>;
+      params?: DplOpeningHoursUpdatePATCHParams;
+    },
+    TContext
+  >(mutationFn, mutationOptions);
 };
 
 /**
