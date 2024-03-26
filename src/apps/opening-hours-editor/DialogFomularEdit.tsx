@@ -15,21 +15,27 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
   closeDialog
 }) => {
   const handleSubmit: EventFormOnSubmitType = (title, startTime, endTime) => {
-    eventInfo.setProp("title", title);
-    const startDate = updateEventTime(eventInfo.startStr, startTime);
+    if (eventInfo.start && eventInfo.end) {
+      eventInfo.setProp("title", title);
+      const startDate = updateEventTime(eventInfo.start, startTime);
 
-    const endDate = updateEventTime(eventInfo.endStr, endTime);
-    eventInfo.setDates(startDate, endDate);
+      const endDate = updateEventTime(eventInfo.end, endTime);
+      eventInfo.setDates(startDate, endDate);
 
-    handleEventEditing(eventInfo);
-    closeDialog();
+      handleEventEditing(eventInfo);
+      closeDialog();
+    }
   };
+
+  if (!eventInfo.start || !eventInfo.end) {
+    return null;
+  }
 
   return (
     <EventForm
       initialTitle={eventInfo.title}
-      initialStartTime={extractTime(eventInfo.startStr)}
-      initialEndTime={extractTime(eventInfo.endStr)}
+      initialStartTime={extractTime(eventInfo.start)}
+      initialEndTime={extractTime(eventInfo.end)}
       onSubmit={handleSubmit}
     />
   );
