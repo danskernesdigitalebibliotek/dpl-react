@@ -62,6 +62,7 @@ const OpeningHoursEditor: React.FC = () => {
         stickyHeaderDates
         height="auto"
         selectMirror
+        allDaySlot={false}
       />
     </>
   );
