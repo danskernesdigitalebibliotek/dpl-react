@@ -5,10 +5,6 @@ const formatDateTimeString = (date: string, time: string): string => {
   return `${date}T${time}:00`;
 };
 
-export const createCmsEventId = (title: string, startDay: Date) => {
-  return `${title}-${startDay.toISOString()}`;
-};
-
 export const formatCmsEventsToFullCalendar = (
   data: DplOpeningHoursListGET200Item[]
 ): EventInput[] => {
@@ -21,6 +17,25 @@ export const formatCmsEventsToFullCalendar = (
       color: category.color
     };
   });
+};
+
+export const formatFullCalendarEventToCmsEvent = (
+  event: EventInput
+): DplOpeningHoursListGET200Item => {
+  if (!event.title) {
+    throw new Error("Invalid event format");
+  }
+  return {
+    id: Number(event.id),
+    category: {
+      title: event.title,
+      color: event.color || ""
+    },
+    date: event.startStr.split("T")[0],
+    start_time: event.startStr.split("T")[1].slice(0, 5),
+    end_time: event.endStr.split("T")[1].slice(0, 5),
+    branch_id: 0
+  };
 };
 
 export const adjustEndDateToStartDay = (startDay: Date, endDay: Date) => {

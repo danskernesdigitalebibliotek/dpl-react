@@ -3,46 +3,56 @@ import { DateSelectArg } from "@fullcalendar/core";
 import {
   adjustEndDateToStartDay,
   extractTime,
+  formatFullCalendarEventToCmsEvent,
   updateEventTime
 } from "./helper";
-import { ExtendedDateSelectArgType } from "./useOpeningHours";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
+import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+import { OpeningHoursCategoriesType } from "./types";
 
 type DialogFomularAddProps = {
   selectedEventInfo: DateSelectArg;
-  handleEventSelect: (selectedEventInfo: ExtendedDateSelectArgType) => void;
+  handleEventAdd: (selectedEventInfo: DplOpeningHoursListGET200Item) => void;
   closeDialog: () => void;
+  openingHoursCategories: OpeningHoursCategoriesType[];
 };
 
 const DialogFomularAdd: React.FC<DialogFomularAddProps> = ({
   selectedEventInfo,
-  handleEventSelect,
-  closeDialog
+  handleEventAdd,
+  closeDialog,
+  openingHoursCategories
 }) => {
   const calendarApi = selectedEventInfo.view.calendar;
 
-  const handleSubmit: EventFormOnSubmitType = (title, startTime, endTime) => {
+  const handleSubmit: EventFormOnSubmitType = (
+    category,
+    startTime,
+    endTime
+  ) => {
     const startDate = updateEventTime(selectedEventInfo.start, startTime);
     let endDate = updateEventTime(selectedEventInfo.end, endTime);
-
     endDate = adjustEndDateToStartDay(startDate, endDate);
 
     const newEventInfo = {
       ...selectedEventInfo,
-      startStr: startDate.toISOString(),
-      endStr: endDate.toISOString(),
-      title,
+      start: startDate,
+      end: endDate,
+      title: category.title,
+      color: category.color,
       allDay: false
     };
 
-    handleEventSelect(newEventInfo);
+    calendarApi.addEvent(newEventInfo);
     calendarApi.unselect();
+
+    handleEventAdd(formatFullCalendarEventToCmsEvent(newEventInfo));
     closeDialog();
   };
 
   return (
     <EventForm
-      initialTitle=""
+      openingHoursCategories={openingHoursCategories}
       initialStartTime={extractTime(selectedEventInfo.start)}
       initialEndTime={extractTime(selectedEventInfo.end)}
       onSubmit={handleSubmit}

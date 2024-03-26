@@ -2,42 +2,49 @@
 // as the label is associated with the input field. I will disable it for now.
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
+import { OpeningHoursCategoriesType } from "./types";
 
 export type EventFormOnSubmitType = (
-  title: string,
+  category: OpeningHoursCategoriesType,
   startTime: string,
   endTime: string
 ) => void;
 
 type EventFormProps = {
-  initialTitle: string;
+  initialTitle?: string;
   initialStartTime: string;
   initialEndTime: string;
   onSubmit: EventFormOnSubmitType;
+  openingHoursCategories: OpeningHoursCategoriesType[];
 };
 
 const EventForm: React.FC<EventFormProps> = ({
   initialTitle,
   initialStartTime,
   initialEndTime,
-  onSubmit
+  onSubmit,
+  openingHoursCategories
 }) => {
-  const [title, setTitle] = useState(initialTitle);
+  const initialCategory = initialTitle
+    ? openingHoursCategories.find((category) => category.title === initialTitle)
+    : openingHoursCategories[0];
+
   const [startTime, setStartTime] = useState(initialStartTime);
   const [endTime, setEndTime] = useState(initialEndTime);
+  const [category, setCategory] = useState(initialCategory);
 
   // Reset the form when the initial values change
   // This is necessary because EventForm are reused
   useEffect(() => {
-    setTitle(initialTitle);
+    setCategory(initialCategory);
     setStartTime(initialStartTime);
     setEndTime(initialEndTime);
-  }, [initialTitle, initialStartTime, initialEndTime]);
+  }, [initialCategory, initialEndTime, initialStartTime]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (title !== "") {
-      onSubmit(title, startTime, endTime);
+    if (category) {
+      onSubmit(category, startTime, endTime);
     }
   };
 
@@ -47,12 +54,21 @@ const EventForm: React.FC<EventFormProps> = ({
       style={{ display: "grid", marginTop: "20px" }}
     >
       <label htmlFor="event-form-title">Title:</label>
-      <input
+      <select
         id="event-form-title"
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+        value={category?.title}
+        onChange={(e) => {
+          setCategory(
+            openingHoursCategories.find((item) => item.title === e.target.value)
+          );
+        }}
+      >
+        {openingHoursCategories.map((categoryItem) => (
+          <option key={categoryItem.title} value={categoryItem.title}>
+            {categoryItem.title}
+          </option>
+        ))}
+      </select>
       <label htmlFor="event-form-start-time">Start Time:</label>
       <input
         id="event-form-start-time"

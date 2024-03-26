@@ -3,35 +3,48 @@ import { EventImpl } from "@fullcalendar/core/internal";
 import { extractTime, updateEventTime } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { useText } from "../../core/utils/text";
+import { OpeningHoursCategoriesType } from "./types";
 
 type DialogFomularEditProps = {
   eventInfo: EventImpl;
   handleEventEditing: (eventInfo: EventImpl) => void;
   closeDialog: () => void;
-  handleEventRemove: (eventToRemove: EventImpl) => void;
+  handleEventRemove: (eventId: string) => void;
+  openingHoursCategories: OpeningHoursCategoriesType[];
 };
 
 const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
   eventInfo,
   handleEventEditing,
   closeDialog,
-  handleEventRemove
+  handleEventRemove,
+  openingHoursCategories
 }) => {
   const t = useText();
-  const handleSubmit: EventFormOnSubmitType = (title, startTime, endTime) => {
-    if (eventInfo.start && eventInfo.end) {
-      eventInfo.setProp("title", title);
-      const startDate = updateEventTime(eventInfo.start, startTime);
-
-      const endDate = updateEventTime(eventInfo.end, endTime);
-      eventInfo.setDates(startDate, endDate);
-
-      handleEventEditing(eventInfo);
-      closeDialog();
+  const handleSubmit: EventFormOnSubmitType = (
+    category,
+    startTime,
+    endTime
+  ) => {
+    if (!eventInfo.start || !eventInfo.end) {
+      // eslint-disable-next-line no-alert
+      alert("Invalid event");
+      return;
     }
+    const startDate = updateEventTime(eventInfo.start, startTime);
+    const endDate = updateEventTime(eventInfo.end, endTime);
+
+    eventInfo.setProp("title", category.title);
+    eventInfo.setProp("color", category.color);
+    eventInfo.setDates(startDate, endDate);
+
+    handleEventEditing(eventInfo);
+    closeDialog();
   };
 
   if (!eventInfo.start || !eventInfo.end) {
+    // eslint-disable-next-line no-alert
+    alert("Invalid event");
     return null;
   }
 
@@ -42,6 +55,7 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
         initialStartTime={extractTime(eventInfo.start)}
         initialEndTime={extractTime(eventInfo.end)}
         onSubmit={handleSubmit}
+        openingHoursCategories={openingHoursCategories}
       />
       <button
         className="opening-hours-remove-event-button"
@@ -49,12 +63,14 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            handleEventRemove(eventInfo);
+            eventInfo.remove();
+            handleEventRemove(eventInfo.id);
             closeDialog();
           }
         }}
         onClick={() => {
-          handleEventRemove(eventInfo);
+          eventInfo.remove();
+          handleEventRemove(eventInfo.id);
           closeDialog();
         }}
       >

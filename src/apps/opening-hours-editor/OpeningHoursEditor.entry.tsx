@@ -2,17 +2,22 @@ import React from "react";
 import GuardedApp from "../../components/guarded-app";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
-import OpeningHoursEditor from "./OpeningHoursEditor";
+import OpeningHoursEditor, {
+  OpeningHoursEditorType
+} from "./OpeningHoursEditor";
 
 interface OpeningHoursEditorEntryTextProps {
   openingHoursRemoveEventButtonText: string;
 }
 
 const OpeningHoursEditorEntry: React.FC<
-  OpeningHoursEditorEntryTextProps
-> = () => (
+  OpeningHoursEditorEntryTextProps & OpeningHoursEditorType
+> = ({ openingHoursCategories, openingHoursBranchId }) => (
   <GuardedApp app="opening-hours-editor">
-    <OpeningHoursEditor />
+    <OpeningHoursEditor
+      openingHoursCategories={openingHoursCategories}
+      openingHoursBranchId={openingHoursBranchId}
+    />
   </GuardedApp>
 );
 

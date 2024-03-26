@@ -12,6 +12,45 @@ export default {
       name: "Opening hours remove event button",
       defaultValue: "Remove event",
       control: { type: "text" }
+    },
+    openingHoursCategories: {
+      name: "Opening hours categories",
+      defaultValue: [
+        {
+          title: "Åbent",
+          color: "blue"
+        },
+        {
+          title: "Selvbetjening",
+          color: "yellow"
+        },
+        {
+          title: "Med betjening",
+          color: "green"
+        },
+        {
+          title: "Telefontid",
+          color: "grey"
+        },
+        {
+          title: "Borgerservice",
+          color: "orange"
+        },
+        {
+          title: "Børneetagen",
+          color: "lightblue"
+        },
+        {
+          title: "Makerlab",
+          color: "purple"
+        }
+      ],
+      control: { type: "object" }
+    },
+    openingHoursBranchId: {
+      name: "Opening hours branch id",
+      defaultValue: 1,
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof OpeningHoursEditor>;

@@ -10,10 +10,19 @@ import DialogFomularEdit from "./DialogFomularEdit";
 import Dialog from "../../components/dialog/Dialog";
 import useDialog from "../../components/dialog/useDialog";
 import DialogFomularAdd from "./DialogFomularAdd";
+import { OpeningHoursCategoriesType } from "./types";
 
-const OpeningHoursEditor: React.FC = () => {
-  const { events, handleEventSelect, handleEventEditing, handleEventRemove } =
-    useOpeningHours();
+export type OpeningHoursEditorType = {
+  openingHoursCategories: OpeningHoursCategoriesType[];
+  openingHoursBranchId: number;
+};
+
+const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
+  openingHoursCategories,
+  openingHoursBranchId
+}) => {
+  const { events, handleEventAdd, handleEventEditing, handleEventRemove } =
+    useOpeningHours(openingHoursBranchId);
 
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
     useDialog();
@@ -38,8 +47,9 @@ const OpeningHoursEditor: React.FC = () => {
           openDialogWithContent(
             <DialogFomularAdd
               selectedEventInfo={selectedEventInfo}
-              handleEventSelect={handleEventSelect}
+              handleEventAdd={handleEventAdd}
               closeDialog={closeDialog}
+              openingHoursCategories={openingHoursCategories}
             />
           )
         }
@@ -50,6 +60,7 @@ const OpeningHoursEditor: React.FC = () => {
               handleEventEditing={handleEventEditing}
               closeDialog={closeDialog}
               handleEventRemove={handleEventRemove}
+              openingHoursCategories={openingHoursCategories}
             />
           )
         }

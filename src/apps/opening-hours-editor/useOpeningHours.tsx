@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
-import { EventInput, DateSelectArg } from "@fullcalendar/core";
+import { EventInput } from "@fullcalendar/core";
 import { EventImpl } from "@fullcalendar/core/internal";
 import { useQueryClient } from "react-query";
-import { createCmsEventId, formatCmsEventsToFullCalendar } from "./helper";
+import { formatCmsEventsToFullCalendar } from "./helper";
 import {
   getDplOpeningHoursListGETQueryKey,
+  useDplOpeningHoursCreatePOST,
   useDplOpeningHoursDeleteDELETE,
   useDplOpeningHoursListGET
 } from "../../core/dpl-cms/dpl-cms";
+import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
 
-export type ExtendedDateSelectArgType = DateSelectArg & { title: string };
-
-const useOpeningHours = () => {
+const useOpeningHours = (openingHoursBranchId: number) => {
   const queryClient = useQueryClient();
-  const { data: openingHoursData } = useDplOpeningHoursListGET();
+  const { data: openingHoursData } = useDplOpeningHoursListGET({
+    branch_id: openingHoursBranchId
+  });
   const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
+  const { mutate: createOpeningHours } = useDplOpeningHoursCreatePOST();
   const [events, setEvents] = useState<EventInput[]>([]);
 
   useEffect(() => {
@@ -24,21 +27,23 @@ const useOpeningHours = () => {
     }
   }, [openingHoursData]);
 
-  const handleEventSelect = (selectInfo: ExtendedDateSelectArgType) => {
-    // This is just for demonstration purposes
-    // and should be replaced with a call to the API
-    const newEvent = {
-      title: selectInfo.title,
-      start: selectInfo.startStr,
-      end: selectInfo.endStr,
-      allDay: selectInfo.allDay,
-      color: "green",
-      id: createCmsEventId(selectInfo.title, selectInfo.start)
-    };
-    setEvents([...events, newEvent]);
-
-    // eslint-disable-next-line no-alert
-    alert(JSON.stringify(newEvent, null, 2));
+  const handleEventAdd = (event: DplOpeningHoursListGET200Item) => {
+    createOpeningHours(
+      {
+        data: event
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(getDplOpeningHoursListGETQueryKey());
+        },
+        onError: () => {
+          // eslint-disable-next-line no-alert
+          alert("Failed to create opening hours");
+          // reload page
+          window.location.reload();
+        }
+      }
+    );
   };
 
   const handleEventEditing = (eventInfo: EventImpl) => {
@@ -48,22 +53,32 @@ const useOpeningHours = () => {
     alert(JSON.stringify(eventInfo, null, 2));
   };
 
-  const handleEventRemove = (eventToRemove: EventImpl) => {
-    if (eventToRemove.id) {
-      removeOpeningHours(
-        { id: eventToRemove.id },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries(getDplOpeningHoursListGETQueryKey());
-          }
-        }
-      );
+  const handleEventRemove = (eventId: string) => {
+    if (!eventId) {
+      // eslint-disable-next-line no-alert
+      alert("Invalid event id");
+      return;
     }
+
+    removeOpeningHours(
+      { id: eventId },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries(getDplOpeningHoursListGETQueryKey());
+        },
+        onError: () => {
+          // eslint-disable-next-line no-alert
+          alert("Failed to remove opening hours");
+          // reload page
+          window.location.reload();
+        }
+      }
+    );
   };
 
   return {
     events,
-    handleEventSelect,
+    handleEventAdd,
     handleEventRemove,
     handleEventEditing
   };
