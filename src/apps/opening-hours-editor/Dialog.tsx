@@ -13,7 +13,7 @@ const Dialog = forwardRef<HTMLDialogElement, DialogType>(
     return (
       <dialog
         ref={ref}
-        // close dialog when clicking outside of it (::backdrop pseudo-element)
+        // Close dialog when clicking outside of it (::backdrop pseudo-element)
         onClick={({ currentTarget, target }) => {
           if (currentTarget === target) {
             closeDialog();
