@@ -41,7 +41,7 @@ const useOpeningHours = () => {
     alert(JSON.stringify(eventInfo, null, 2));
   };
 
-  const handleEventRemove = (eventToRemove: EventInput) => {
+  const handleEventRemove = (eventToRemove: EventImpl) => {
     setEvents(events.filter((event) => event.id !== eventToRemove.id));
   };
 

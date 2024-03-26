@@ -4,10 +4,16 @@ import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import OpeningHoursEditor from "./OpeningHoursEditor";
 
-const CalendarEntry: React.FC = () => (
+interface OpeningHoursEditorEntryTextProps {
+  openingHoursRemoveEventButtonText: string;
+}
+
+const OpeningHoursEditorEntry: React.FC<
+  OpeningHoursEditorEntryTextProps
+> = () => (
   <GuardedApp app="opening-hours-editor">
     <OpeningHoursEditor />
   </GuardedApp>
 );
 
-export default withUrls(withText(CalendarEntry));
+export default withUrls(withText(OpeningHoursEditorEntry));

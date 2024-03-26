@@ -7,7 +7,12 @@ export default {
   title: "Apps / OpeningHoursEditor",
   component: OpeningHoursEditor,
   argTypes: {
-    ...serviceUrlArgs
+    ...serviceUrlArgs,
+    openingHoursRemoveEventButtonText: {
+      name: "Opening hours remove event button",
+      defaultValue: "Remove event",
+      control: { type: "text" }
+    }
   }
 } as ComponentMeta<typeof OpeningHoursEditor>;
 

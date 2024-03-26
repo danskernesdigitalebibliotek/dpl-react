@@ -49,13 +49,13 @@ const OpeningHoursEditor: React.FC = () => {
               eventInfo={clickInfo.event}
               handleEventEditing={handleEventEditing}
               closeDialog={closeDialog}
+              handleEventRemove={handleEventRemove}
             />
           )
         }
         eventContent={(eventInput) =>
           OpeningHoursEditorEventContent({
-            eventInput,
-            handleEventRemove
+            eventInput
           })
         }
         events={events}

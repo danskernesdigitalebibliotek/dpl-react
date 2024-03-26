@@ -3,12 +3,11 @@ import { EventInput } from "@fullcalendar/core";
 
 type OpeningHoursEditorEventContentProps = {
   eventInput: EventInput;
-  handleEventRemove: (event: EventInput) => void;
 };
 
 const OpeningHoursEditorEventContent: React.FC<
   OpeningHoursEditorEventContentProps
-> = ({ eventInput, handleEventRemove }) => {
+> = ({ eventInput }) => {
   const { event } = eventInput;
   return (
     <div
@@ -28,17 +27,6 @@ const OpeningHoursEditorEventContent: React.FC<
         <span>
           {event.start?.toLocaleTimeString()} -{" "}
           {event.end?.toLocaleTimeString()}
-        </span>
-
-        <span
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleEventRemove(event);
-          }}
-          onClick={() => handleEventRemove(event)}
-        >
-          ❌
         </span>
       </div>
     </div>
