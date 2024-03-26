@@ -6,35 +6,64 @@ import interactionPlugin from "@fullcalendar/interaction";
 import da from "@fullcalendar/core/locales/da";
 import OpeningHoursEditorEventContent from "./OpeningHoursEditorEventContent";
 import useOpeningHours from "./useOpeningHours";
+import DialogFomularEdit from "./DialogFomularEdit";
+import Dialog from "./Dialog";
+import useDialog from "./useDialog";
+import DialogFomularAdd from "./DialogFomularAdd";
 
 const OpeningHoursEditor: React.FC = () => {
-  const { events, handleEventSelect, handleEventClick, handleEventRemove } =
+  const { events, handleEventSelect, handleEventEditing, handleEventRemove } =
     useOpeningHours();
 
+  const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
+    useDialog();
+
   return (
-    <FullCalendar
-      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-      headerToolbar={{
-        left: "title",
-        center: "prev,next today",
-        right: "dayGridMonth,timeGridWeek"
-      }}
-      initialView="timeGridWeek"
-      locale={da}
-      selectable
-      select={handleEventSelect}
-      eventClick={handleEventClick}
-      eventContent={(eventInput) =>
-        OpeningHoursEditorEventContent({
-          eventInput,
-          handleEventRemove
-        })
-      }
-      events={events}
-      stickyHeaderDates
-      height="auto"
-      selectMirror
-    />
+    <>
+      <Dialog closeDialog={closeDialog} ref={dialogRef}>
+        {dialogContent}
+      </Dialog>
+
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        headerToolbar={{
+          left: "title",
+          center: "prev,next today",
+          right: "dayGridMonth,timeGridWeek"
+        }}
+        initialView="timeGridWeek"
+        locale={da}
+        selectable
+        select={(selectedEventInfo) =>
+          openDialogWithContent(
+            <DialogFomularAdd
+              selectedEventInfo={selectedEventInfo}
+              handleEventSelect={handleEventSelect}
+              closeDialog={closeDialog}
+            />
+          )
+        }
+        eventClick={(clickInfo) =>
+          openDialogWithContent(
+            <DialogFomularEdit
+              eventInfo={clickInfo.event}
+              handleEventEditing={handleEventEditing}
+              closeDialog={closeDialog}
+            />
+          )
+        }
+        eventContent={(eventInput) =>
+          OpeningHoursEditorEventContent({
+            eventInput,
+            handleEventRemove
+          })
+        }
+        events={events}
+        stickyHeaderDates
+        height="auto"
+        selectMirror
+      />
+    </>
   );
 };
 

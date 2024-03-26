@@ -5,12 +5,12 @@
  * The REST API provide by the core REST module.
  * OpenAPI spec version: Versioning not supported
  */
-import type { DplOpeningHoursListGET200ItemCategory } from "./dplOpeningHoursListGET200ItemCategory";
+import type { DplOpeningHoursPOST200Category } from "./dplOpeningHoursPOST200Category";
 
-export type DplOpeningHoursListGET200Item = {
+export type DplOpeningHoursPOST200 = {
   /** An serial unique id of the opening hours instance. */
   id: number;
-  category: DplOpeningHoursListGET200ItemCategory;
+  category: DplOpeningHoursPOST200Category;
   /** The date which the opening hours applies to. In ISO 8601 format. */
   date: string;
   /** When the opening hours start. In format HH:MM */

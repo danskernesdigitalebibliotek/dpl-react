@@ -9,4 +9,7 @@ import type { DplOpeningHoursListGETFormat } from "./dplOpeningHoursListGETForma
 
 export type DplOpeningHoursListGETParams = {
   _format?: DplOpeningHoursListGETFormat;
+  branch_id?: number;
+  from_date?: string;
+  to_date?: string;
 };
