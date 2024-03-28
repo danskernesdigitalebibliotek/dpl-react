@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { EventInput } from "@fullcalendar/core";
-import { EventImpl } from "@fullcalendar/core/internal";
 import { useQueryClient } from "react-query";
 import { formatCmsEventsToFullCalendar } from "./helper";
 import {
   getDplOpeningHoursListGETQueryKey,
   useDplOpeningHoursCreatePOST,
   useDplOpeningHoursDeleteDELETE,
-  useDplOpeningHoursListGET
+  useDplOpeningHoursListGET,
+  useDplOpeningHoursUpdatePATCH
 } from "../../core/dpl-cms/dpl-cms";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
 
@@ -18,6 +18,7 @@ const useOpeningHours = (openingHoursBranchId: number) => {
   });
   const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
   const { mutate: createOpeningHours } = useDplOpeningHoursCreatePOST();
+  const { mutate: updateOpeningHours } = useDplOpeningHoursUpdatePATCH();
   const [events, setEvents] = useState<EventInput[]>([]);
 
   useEffect(() => {
@@ -27,6 +28,17 @@ const useOpeningHours = (openingHoursBranchId: number) => {
     }
   }, [openingHoursData]);
 
+  const onSuccess = () => {
+    queryClient.invalidateQueries(getDplOpeningHoursListGETQueryKey());
+  };
+
+  const onError = (message: string) => {
+    // eslint-disable-next-line no-alert
+    alert(message);
+    // reload page to get the latest data
+    window.location.reload();
+  };
+
   const handleEventAdd = (event: DplOpeningHoursListGET200Item) => {
     createOpeningHours(
       {
@@ -34,43 +46,41 @@ const useOpeningHours = (openingHoursBranchId: number) => {
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries(getDplOpeningHoursListGETQueryKey());
+          onSuccess();
         },
         onError: () => {
-          // eslint-disable-next-line no-alert
-          alert("Failed to create opening hours");
-          // reload page
-          window.location.reload();
+          onError("Failed to create opening hours");
         }
       }
     );
   };
 
-  const handleEventEditing = (eventInfo: EventImpl) => {
-    // This is just for demonstration purposes
-    // and should be replaced with a call to the API
-    // eslint-disable-next-line no-alert
-    alert(JSON.stringify(eventInfo, null, 2));
+  const handleEventEditing = (event: DplOpeningHoursListGET200Item) => {
+    updateOpeningHours(
+      {
+        id: event.id.toString(),
+        data: event
+      },
+      {
+        onSuccess: () => {
+          onSuccess();
+        },
+        onError: () => {
+          onError("Failed to update opening hours");
+        }
+      }
+    );
   };
 
   const handleEventRemove = (eventId: string) => {
-    if (!eventId) {
-      // eslint-disable-next-line no-alert
-      alert("Invalid event id");
-      return;
-    }
-
     removeOpeningHours(
       { id: eventId },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries(getDplOpeningHoursListGETQueryKey());
+          onSuccess();
         },
         onError: () => {
-          // eslint-disable-next-line no-alert
-          alert("Failed to remove opening hours");
-          // reload page
-          window.location.reload();
+          onError("Failed to remove opening hours");
         }
       }
     );

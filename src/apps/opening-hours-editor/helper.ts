@@ -1,4 +1,5 @@
 import { EventInput } from "@fullcalendar/core";
+import { EventImpl } from "@fullcalendar/core/internal";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
 
 const formatDateTimeString = (date: string, time: string): string => {
@@ -20,16 +21,19 @@ export const formatCmsEventsToFullCalendar = (
 };
 
 export const formatFullCalendarEventToCmsEvent = (
-  event: EventInput
+  event: EventInput | EventImpl
 ): DplOpeningHoursListGET200Item => {
-  if (!event.title) {
+  const isEventInput = "color" in event; // Check if it's EventInput type
+  const color = isEventInput ? event.color : event.backgroundColor;
+
+  if (!event.title || !color) {
     throw new Error("Invalid event format");
   }
   return {
     id: Number(event.id),
     category: {
       title: event.title,
-      color: event.color || ""
+      color
     },
     date: event.startStr.split("T")[0],
     start_time: event.startStr.split("T")[1].slice(0, 5),

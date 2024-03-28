@@ -1,13 +1,18 @@
 import React from "react";
 import { EventImpl } from "@fullcalendar/core/internal";
-import { extractTime, updateEventTime } from "./helper";
+import {
+  extractTime,
+  formatFullCalendarEventToCmsEvent,
+  updateEventTime
+} from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { useText } from "../../core/utils/text";
 import { OpeningHoursCategoriesType } from "./types";
+import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
 
 type DialogFomularEditProps = {
   eventInfo: EventImpl;
-  handleEventEditing: (eventInfo: EventImpl) => void;
+  handleEventEditing: (event: DplOpeningHoursListGET200Item) => void;
   closeDialog: () => void;
   handleEventRemove: (eventId: string) => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
@@ -38,7 +43,7 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
     eventInfo.setProp("color", category.color);
     eventInfo.setDates(startDate, endDate);
 
-    handleEventEditing(eventInfo);
+    handleEventEditing(formatFullCalendarEventToCmsEvent(eventInfo));
     closeDialog();
   };
 
