@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { EventInput } from "@fullcalendar/core";
 import { EventImpl } from "@fullcalendar/core/internal";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
@@ -29,41 +30,83 @@ export const formatFullCalendarEventToCmsEvent = (
   if (!event.title || !color) {
     throw new Error("Invalid event format");
   }
+
+  const startDate = dayjs(event.startStr);
+  const endDate = dayjs(event.endStr);
+
   return {
     id: Number(event.id),
     category: {
       title: event.title,
       color
     },
-    date: event.startStr.split("T")[0],
-    start_time: event.startStr.split("T")[1].slice(0, 5),
-    end_time: event.endStr.split("T")[1].slice(0, 5),
+    date: startDate.format("YYYY-MM-DD"),
+    start_time: startDate.format("HH:mm"),
+    end_time: endDate.format("HH:mm"),
     branch_id: 0
   };
 };
 
-export const adjustEndDateToStartDay = (startDay: Date, endDay: Date) => {
-  // If startDay and endDay are the same, no adjustment needed
-  if (startDay.toDateString() === endDay.toDateString()) {
+export const formatDateStr = (date: Date) => {
+  return dayjs(date).format("YYYY-MM-DDTHH:mm:ssZ");
+};
+
+export const adjustEndDateBasedOnStartDate = (startDay: Date, endDay: Date) => {
+  const start = dayjs(startDay);
+  const end = dayjs(endDay);
+
+  // Check if the start and end dates are on the same day no adjustment is needed
+  if (start.isSame(end, "day")) {
     return endDay;
   }
 
-  // If startDay and endDay are different, create a new date as adjustedEndDay
-  // Set it to startDay, but with the day advanced by one and the time reset to midnight
-  const adjustedEndDay = new Date(startDay);
-  adjustedEndDay.setDate(adjustedEndDay.getDate() + 1);
-  adjustedEndDay.setHours(0, 0, 0);
-  return adjustedEndDay;
+  // Adjust the end day to the same day as the start day but with the same time
+  return start
+    .hour(end.hour())
+    .minute(end.minute())
+    .second(end.second())
+    .toDate();
+};
+
+export const adjustEndDateToStartDayTimeGridWeek = (
+  startDay: Date,
+  endDay: Date
+) => {
+  let adjustedEndDay;
+  const start = dayjs(startDay);
+  const end = dayjs(endDay);
+
+  // If startDay and endDay are the same, no adjustment is needed
+  if (start.isSame(end, "day")) {
+    adjustedEndDay = end;
+  } else {
+    // If startDay and endDay are different, set adjustedEndDay to the next day at midnight
+    adjustedEndDay = start.add(1, "day").startOf("day");
+  }
+
+  return {
+    end: adjustedEndDay.toDate(),
+    endStr: formatDateStr(adjustedEndDay.toDate())
+  };
+};
+
+export const adjustEndDateToStartDayGridMonth = (
+  startDay: Date,
+  endDay: Date
+) => {
+  const adjustedEndDay = adjustEndDateBasedOnStartDate(startDay, endDay);
+
+  return {
+    end: adjustedEndDay,
+    endStr: formatDateStr(adjustedEndDay)
+  };
 };
 
 export const extractTime = (date: Date) => {
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-  return `${hours}:${minutes}`;
+  return dayjs(date).format("HH:mm");
 };
 
-export const updateEventTime = (date: Date, timeStr: string) => {
+export const updateDateTime = (date: Date, timeStr: string) => {
   const [hours, minutes] = timeStr.split(":").map(Number);
-  date.setHours(hours, minutes);
-  return date;
+  return dayjs(date).hour(hours).minute(minutes).toDate();
 };

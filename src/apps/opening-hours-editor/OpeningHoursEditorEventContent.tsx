@@ -1,5 +1,6 @@
 import React from "react";
 import { EventInput } from "@fullcalendar/core";
+import { extractTime } from "./helper";
 
 type OpeningHoursEditorEventContentProps = {
   eventInput: EventInput;
@@ -25,8 +26,7 @@ const OpeningHoursEditorEventContent: React.FC<
         }}
       >
         <span>
-          {event.start?.toLocaleTimeString()} -{" "}
-          {event.end?.toLocaleTimeString()}
+          {extractTime(event.start)} - {extractTime(event.end)}
         </span>
       </div>
     </div>

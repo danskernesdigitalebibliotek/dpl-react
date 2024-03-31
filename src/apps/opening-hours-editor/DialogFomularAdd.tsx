@@ -1,10 +1,12 @@
 import React from "react";
 import { DateSelectArg } from "@fullcalendar/core";
 import {
-  adjustEndDateToStartDay,
+  adjustEndDateToStartDayGridMonth,
+  adjustEndDateToStartDayTimeGridWeek,
   extractTime,
+  formatDateStr,
   formatFullCalendarEventToCmsEvent,
-  updateEventTime
+  updateDateTime
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
@@ -24,20 +26,37 @@ const DialogFomularAdd: React.FC<DialogFomularAddProps> = ({
   openingHoursCategories
 }) => {
   const calendarApi = selectedEventInfo.view.calendar;
+  const isDayGridMonth = selectedEventInfo.view.type === "dayGridMonth";
+  const isTimeGridWeek = selectedEventInfo.view.type === "timeGridWeek";
 
   const handleSubmit: EventFormOnSubmitType = (
     category,
     startTime,
     endTime
   ) => {
-    const startDate = updateEventTime(selectedEventInfo.start, startTime);
-    let endDate = updateEventTime(selectedEventInfo.end, endTime);
-    endDate = adjustEndDateToStartDay(startDate, endDate);
+    const start = updateDateTime(selectedEventInfo.start, startTime);
+    const startStr = formatDateStr(start);
+    let end = updateDateTime(selectedEventInfo.end, endTime);
+    let { endStr } = selectedEventInfo;
+
+    if (isTimeGridWeek) {
+      const adjustedEnd = adjustEndDateToStartDayTimeGridWeek(start, end);
+      end = adjustedEnd.end;
+      endStr = adjustedEnd.endStr;
+    }
+
+    if (isDayGridMonth) {
+      const adjustedEnd = adjustEndDateToStartDayGridMonth(start, end);
+      end = adjustedEnd.end;
+      endStr = adjustedEnd.endStr;
+    }
 
     const newEventInfo = {
       ...selectedEventInfo,
-      start: startDate,
-      end: endDate,
+      start,
+      startStr,
+      end,
+      endStr,
       title: category.title,
       color: category.color,
       allDay: false
@@ -45,7 +64,6 @@ const DialogFomularAdd: React.FC<DialogFomularAddProps> = ({
 
     calendarApi.addEvent(newEventInfo);
     calendarApi.unselect();
-
     handleEventAdd(formatFullCalendarEventToCmsEvent(newEventInfo));
     closeDialog();
   };

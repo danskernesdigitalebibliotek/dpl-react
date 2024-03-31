@@ -1,9 +1,10 @@
 import React from "react";
 import { EventImpl } from "@fullcalendar/core/internal";
 import {
+  adjustEndDateBasedOnStartDate,
   extractTime,
   formatFullCalendarEventToCmsEvent,
-  updateEventTime
+  updateDateTime
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { useText } from "../../core/utils/text";
@@ -26,6 +27,7 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
   openingHoursCategories
 }) => {
   const t = useText();
+
   const handleSubmit: EventFormOnSubmitType = (
     category,
     startTime,
@@ -36,8 +38,10 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
       alert("Invalid event");
       return;
     }
-    const startDate = updateEventTime(eventInfo.start, startTime);
-    const endDate = updateEventTime(eventInfo.end, endTime);
+    const startDate = updateDateTime(eventInfo.start, startTime);
+    let endDate = updateDateTime(eventInfo.end, endTime);
+
+    endDate = adjustEndDateBasedOnStartDate(startDate, endDate);
 
     eventInfo.setProp("title", category.title);
     eventInfo.setProp("color", category.color);
