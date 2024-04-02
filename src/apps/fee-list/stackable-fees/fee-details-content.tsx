@@ -6,6 +6,7 @@ import { useText } from "../../../core/utils/text";
 import { dateFormatCustom } from "../../../core/configuration/date-format.json";
 import StackableFeesList from "./stackable-fees-list";
 import GroupModalContent from "../../../components/GroupModal/GroupModalContent";
+import { formatCurrency } from "../../../core/utils/helpers/currency";
 
 export interface FeeDetailsContentProps {
   feeDetailsData: FeeV2;
@@ -38,7 +39,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
           <div>
             <p className="text-body-small-medium">
               {t("totalText", {
-                placeholders: { "@total": amount }
+                placeholders: { "@total": formatCurrency(amount) }
               })}
             </p>
           </div>

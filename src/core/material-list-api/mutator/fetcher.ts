@@ -54,11 +54,12 @@ export const fetcher = async <ResponseType>({
       );
     }
 
-    try {
-      return (await response.json()) as ResponseType;
-    } catch (e) {
-      if (!(e instanceof SyntaxError)) {
-        throw e;
+    // Return the response body in JSON format if the method is GET.
+    if (method === "get") {
+      try {
+        return (await response.json()) as ResponseType;
+      } catch (error) {
+        throw new Error("The response body contains invalid JSON");
       }
     }
   } catch (error) {

@@ -5,13 +5,18 @@ import Link from "../../../components/atoms/links/Link";
 import { useText } from "../../../core/utils/text";
 import { useUrls } from "../../../core/utils/url";
 import WarningBar from "../../loan-list/materials/utils/warning-bar";
+import { FeeV2 } from "../../../core/fbs/model/feeV2";
 
 const DashboardFees: FC = () => {
   const t = useText();
   const u = useUrls();
 
   const feesPageUrl = u("feesPageUrl");
-  const { data: fbsFees } = useGetFeesV2();
+  const { data: fbsFees = [] } = useGetFeesV2<FeeV2[]>({
+    includepaid: false,
+    includenonpayable: true
+  });
+
   const [feeCount, setFeeCount] = useState<number>(0);
   const [totalFeeAmount, setTotalFeeAmount] = useState<string>("0");
 
