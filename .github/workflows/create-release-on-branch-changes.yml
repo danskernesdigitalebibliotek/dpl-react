@@ -43,18 +43,12 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
+          registry-url: 'https://npm.pkg.github.com'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create NPMRC
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
-          echo "[@danskernesdigitalebibliotek]:registry=https://npm.pkg.github.com" >> ~/.npmrc
-          echo 'registry "https://registry.yarnpkg.com"' >> ~/.yarnrc
-
-      - uses: Wandalen/wretry.action@v1.4.10
-        with:
-          command: yarn install --frozen-lockfile
-          attempt_limit: 30
-          attempt_delay: 60000
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
 
       - name: Build artifacts
         run: yarn build
