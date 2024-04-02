@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { forwardRef } from "react";
 import iconCross from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross.svg";
+import useEscapeKey from "./useEscapeKey";
 
 type DialogType = {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ type DialogType = {
 
 const Dialog = forwardRef<HTMLDialogElement, DialogType>(
   ({ children, closeDialog }, ref) => {
+    useEscapeKey({ closeDialog });
     return (
       <dialog
         className="dialog"

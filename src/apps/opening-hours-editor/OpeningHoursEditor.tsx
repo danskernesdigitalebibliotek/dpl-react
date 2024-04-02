@@ -24,8 +24,15 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
   const { events, handleEventAdd, handleEventEditing, handleEventRemove } =
     useOpeningHours(openingHoursBranchId);
 
+  const fullCalendarRef = React.useRef<FullCalendar>(null);
+  const fullCalendarApi = fullCalendarRef.current?.getApi();
+
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
-    useDialog();
+    useDialog({
+      onClose: () => {
+        if (fullCalendarApi) fullCalendarApi.unselect();
+      }
+    });
 
   return (
     <>
@@ -34,6 +41,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
       </Dialog>
 
       <FullCalendar
+        ref={fullCalendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
           left: "title",
@@ -53,6 +61,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
             />
           )
         }
+        unselectAuto={false}
         eventClick={(clickInfo) =>
           openDialogWithContent(
             <DialogFomularEdit
