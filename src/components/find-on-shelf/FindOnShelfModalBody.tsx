@@ -145,7 +145,7 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
         }
       )
     );
-  // "00" is the ending of beanchIds for branches that are considered main & should
+  // "00" is the ending of branchIds for branches that are considered main & should
   // be shown first independent of whether they're available.
   const finalDataMainBranchFirst = finalDataAlphabetical.sort(
     (manifestationHolding: ManifestationHoldings) => {
