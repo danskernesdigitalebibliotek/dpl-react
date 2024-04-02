@@ -5,7 +5,7 @@ import StackableFees from "./stackable-fees/stackable-fees";
 import { FaustId } from "../../core/utils/types/ids";
 
 interface ListProps {
-  openDetailsModalClickEvent: (faustId: string) => void;
+  openDetailsModalClickEvent: (feeId: number) => void;
   fees: FeeV2[] | null;
   dataCy: string;
   listHeader: ReactNode;
@@ -31,7 +31,6 @@ const List: FC<ListProps> = ({
             <StackableFees
               amountOfMaterialsWithDueDate={itemData.materials.length}
               item={{ faust: itemData.materials[0].recordId as FaustId }}
-              faust={itemData.materials[0].recordId as FaustId}
               materialItemNumber={itemData.materials[0].materialItemNumber}
               feeData={itemData}
               openDetailsModalClickEvent={openDetailsModalClickEvent}
