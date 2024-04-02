@@ -16,6 +16,7 @@ type EventFormProps = {
   initialEndTime: string;
   onSubmit: EventFormOnSubmitType;
   openingHoursCategories: OpeningHoursCategoriesType[];
+  children?: React.ReactNode;
 };
 
 const EventForm: React.FC<EventFormProps> = ({
@@ -23,7 +24,8 @@ const EventForm: React.FC<EventFormProps> = ({
   initialStartTime,
   initialEndTime,
   onSubmit,
-  openingHoursCategories
+  openingHoursCategories,
+  children
 }) => {
   const initialCategory = initialTitle
     ? openingHoursCategories.find((category) => category.title === initialTitle)
@@ -49,12 +51,15 @@ const EventForm: React.FC<EventFormProps> = ({
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ display: "grid", marginTop: "20px" }}
-    >
-      <label htmlFor="event-form-title">Title:</label>
+    <form onSubmit={handleSubmit} className="opening-hours-editor-form">
+      <label
+        className="opening-hours-editor-form__label"
+        htmlFor="event-form-title"
+      >
+        Title:
+      </label>
       <select
+        className="opening-hours-editor-form__select"
         id="event-form-title"
         value={category?.title}
         onChange={(e) => {
@@ -69,15 +74,27 @@ const EventForm: React.FC<EventFormProps> = ({
           </option>
         ))}
       </select>
-      <label htmlFor="event-form-start-time">Start Time:</label>
+      <label
+        className="opening-hours-editor-form__label"
+        htmlFor="event-form-start-time"
+      >
+        Start Time:
+      </label>
       <input
+        className="opening-hours-editor-form__time-input"
         id="event-form-start-time"
         type="time"
         value={startTime}
         onChange={(e) => setStartTime(e.target.value)}
       />
-      <label htmlFor="event-form-end-time">End Time:</label>
+      <label
+        className="opening-hours-editor-form__label"
+        htmlFor="event-form-end-time"
+      >
+        End Time:
+      </label>
       <input
+        className="opening-hours-editor-form__time-input"
         id="event-form-end-time"
         type="time"
         value={endTime}
@@ -85,10 +102,8 @@ const EventForm: React.FC<EventFormProps> = ({
         min={startTime}
         max="00:00"
       />
-      <button
-        type="submit"
-        style={{ backgroundColor: "green", marginTop: "20px" }}
-      >
+      {children}
+      <button type="submit" className="opening-hours-editor-form__submit">
         Submit
       </button>
     </form>

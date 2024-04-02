@@ -58,16 +58,15 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
   }
 
   return (
-    <>
-      <EventForm
-        initialTitle={eventInfo.title}
-        initialStartTime={extractTime(eventInfo.start)}
-        initialEndTime={extractTime(eventInfo.end)}
-        onSubmit={handleSubmit}
-        openingHoursCategories={openingHoursCategories}
-      />
+    <EventForm
+      initialTitle={eventInfo.title}
+      initialStartTime={extractTime(eventInfo.start)}
+      initialEndTime={extractTime(eventInfo.end)}
+      onSubmit={handleSubmit}
+      openingHoursCategories={openingHoursCategories}
+    >
       <button
-        className="opening-hours-remove-event-button"
+        className="opening-hours-editor-form__remove"
         type="button"
         tabIndex={0}
         onKeyDown={(e) => {
@@ -85,7 +84,7 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
       >
         {t("openingHoursRemoveEventButtonText")}
       </button>
-    </>
+    </EventForm>
   );
 };
 
