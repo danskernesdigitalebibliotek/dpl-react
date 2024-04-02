@@ -21,11 +21,11 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
   openingHoursCategories,
   openingHoursBranchId
 }) => {
-  const { events, handleEventAdd, handleEventEditing, handleEventRemove } =
-    useOpeningHours(openingHoursBranchId);
-
   const fullCalendarRef = React.useRef<FullCalendar>(null);
   const fullCalendarApi = fullCalendarRef.current?.getApi();
+
+  const { events, handleEventAdd, handleEventEditing, handleEventRemove } =
+    useOpeningHours(openingHoursBranchId);
 
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
     useDialog({
@@ -56,8 +56,8 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
             <DialogFomularAdd
               selectedEventInfo={selectedEventInfo}
               handleEventAdd={handleEventAdd}
-              closeDialog={closeDialog}
               openingHoursCategories={openingHoursCategories}
+              closeDialog={closeDialog}
             />
           )
         }
@@ -67,9 +67,9 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
             <DialogFomularEdit
               eventInfo={clickInfo.event}
               handleEventEditing={handleEventEditing}
-              closeDialog={closeDialog}
               handleEventRemove={handleEventRemove}
               openingHoursCategories={openingHoursCategories}
+              closeDialog={closeDialog}
             />
           )
         }
