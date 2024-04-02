@@ -51,6 +51,7 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   );
   const { data, isLoading } = useGetHoldings({
     faustIds: faustIdArray,
+    useAvailabilityBlacklist: true,
     config
   });
   const author = creatorsToString(flattenCreators(authors), t);
@@ -154,7 +155,24 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
         : 1;
     }
   );
-  const finalDataToShow: ManifestationHoldings[] = finalDataMainBranchFirst;
+  // Due to the way the data is structured and that we need to assemble it from
+  // two different sources, we need to filter out branches that are blacklisted
+  // even though this already happened once when fetching one half of the data.
+  const finalDataFilterOutBlacklistedBranches = finalDataMainBranchFirst.filter(
+    (libraryBranch: ManifestationHoldings) => {
+      const blacklistedBranches = config(
+        "blacklistedAvailabilityBranchesConfig",
+        {
+          transformer: "stringToArray"
+        }
+      );
+      return !blacklistedBranches.includes(
+        libraryBranch[0].holding.branch.branchId
+      );
+    }
+  );
+  const finalDataToShow: ManifestationHoldings[] =
+    finalDataFilterOutBlacklistedBranches;
 
   return (
     <>
