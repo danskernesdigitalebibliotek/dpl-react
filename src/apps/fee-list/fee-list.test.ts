@@ -113,6 +113,9 @@ describe("Fee list", () => {
   });
 
   it("Fee list basics (physical loans)", () => {
+    // Wait for the full page to load, ensuring we don't test on the skeleton screen, by waiting for an element that isn't present in the skeleton.
+    cy.getBySel("list-reservation__about").should("be.visible");
+
     // 2. System shows:
     // 2.a. Headline "Fees & Replacement costs"
     cy.getBySel("fee-list-page")
