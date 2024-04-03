@@ -109,11 +109,13 @@ describe("Fee list", () => {
     }).as("work");
 
     cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
-    cy.wait(["@work"]);
-    cy.wait(["@work"]);
+    cy.wait(["@fees"]);
   });
 
   it("Fee list basics (physical loans)", () => {
+    // Wait for element not in skeleton screen to prevent testing prematurely.
+    cy.get(".status-label").should("be.visible");
+
     // 2. System shows:
     // 2.a. Headline "Fees & Replacement costs"
     cy.getBySel("fee-list-page")
