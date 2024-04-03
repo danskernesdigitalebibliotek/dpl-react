@@ -10,8 +10,13 @@ import {
   useDplOpeningHoursUpdatePATCH
 } from "../../core/dpl-cms/dpl-cms";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+import { useConfig } from "../../core/utils/config";
 
-const useOpeningHours = (openingHoursBranchId: number) => {
+const useOpeningHours = () => {
+  const config = useConfig();
+  const openingHoursBranchId = config("openingHoursBranchIdConfig", {
+    transformer: "stringToNumber"
+  });
   const queryClient = useQueryClient();
   const { data: openingHoursData } = useDplOpeningHoursListGET({
     branch_id: openingHoursBranchId

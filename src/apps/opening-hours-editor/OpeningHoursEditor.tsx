@@ -11,21 +11,27 @@ import Dialog from "../../components/dialog/Dialog";
 import useDialog from "../../components/dialog/useDialog";
 import DialogFomularAdd from "./DialogFomularAdd";
 import { OpeningHoursCategoriesType } from "./types";
+import { useConfig } from "../../core/utils/config";
 
 export type OpeningHoursEditorType = {
-  openingHoursCategories: OpeningHoursCategoriesType[];
-  openingHoursBranchId: number;
+  useWireMockStartDate?: boolean;
 };
 
 const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
-  openingHoursCategories,
-  openingHoursBranchId
+  useWireMockStartDate
 }) => {
+  const config = useConfig();
+  const openingHoursCategories = config<OpeningHoursCategoriesType[]>(
+    "openingHoursEditorCategoriesConfig",
+    {
+      transformer: "jsonParse"
+    }
+  );
   const fullCalendarRef = React.useRef<FullCalendar>(null);
   const fullCalendarApi = fullCalendarRef.current?.getApi();
 
   const { events, handleEventAdd, handleEventEditing, handleEventRemove } =
-    useOpeningHours(openingHoursBranchId);
+    useOpeningHours();
 
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
     useDialog({
@@ -41,6 +47,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
       </Dialog>
 
       <FullCalendar
+        initialDate={useWireMockStartDate ? "2024-03-25" : undefined}
         ref={fullCalendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{

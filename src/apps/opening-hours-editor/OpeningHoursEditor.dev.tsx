@@ -13,44 +13,21 @@ export default {
       defaultValue: "Remove event",
       control: { type: "text" }
     },
-    openingHoursCategories: {
+    openingHoursEditorCategoriesConfig: {
       name: "Opening hours categories",
-      defaultValue: [
-        {
-          title: "Åbent",
-          color: "blue"
-        },
-        {
-          title: "Selvbetjening",
-          color: "yellow"
-        },
-        {
-          title: "Med betjening",
-          color: "green"
-        },
-        {
-          title: "Telefontid",
-          color: "grey"
-        },
-        {
-          title: "Borgerservice",
-          color: "orange"
-        },
-        {
-          title: "Børneetagen",
-          color: "lightblue"
-        },
-        {
-          title: "Makerlab",
-          color: "purple"
-        }
-      ],
-      control: { type: "object" }
-    },
-    openingHoursBranchId: {
-      name: "Opening hours branch id",
-      defaultValue: 1,
+      defaultValue:
+        '[{"title":"\\u00c5bent","color":"#B3DC6C"},{"title":"Telefontid","color":"#FBE983"}]',
       control: { type: "text" }
+    },
+    openingHoursBranchIdConfig: {
+      name: "Opening hours branch id",
+      defaultValue: "12",
+      control: { type: "text" }
+    },
+    useWireMockStartDate: {
+      name: "Starting date for wiremock purposes",
+      defaultValue: true,
+      control: { type: "boolean" }
     }
   }
 } as ComponentMeta<typeof OpeningHoursEditor>;
