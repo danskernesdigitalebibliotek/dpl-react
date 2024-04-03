@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   wiremock:
@@ -9,6 +9,8 @@ services:
       - "8100"
       # Publizon
       - "8110"
+      # CMS
+      - "8120"
     volumes:
       - wiremock_data:/home/wiremock
     environment:
@@ -37,11 +39,27 @@ services:
       VIRTUAL_HOST: publizon-mock.docker
       VIRTUAL_PORT: 8080
 
+  wiremock-cms:
+    image: wiremock/wiremock:2.32.0
+    command: "--enable-stub-cors  --global-response-templating" # Enable automatic sending of cross-origin (CORS) response headers.
+    ports:
+      - "8080"
+    volumes:
+      - wiremock_cms_data:/home/wiremock
+    environment:
+      VIRTUAL_HOST: cms-mock.docker
+      VIRTUAL_PORT: 8080
+
 volumes:
   root:
     driver_opts:
       type: none
       device: $PWD
+      o: bind
+  wiremock_cms_data:
+    driver_opts:
+      type: none
+      device: $PWD/.docker/wiremock/cms
       o: bind
   wiremock_data:
     driver_opts:
