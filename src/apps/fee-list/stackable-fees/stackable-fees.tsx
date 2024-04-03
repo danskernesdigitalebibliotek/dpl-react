@@ -9,6 +9,7 @@ import FeeStatus from "./fee-status";
 import { useText } from "../../../core/utils/text";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 import { formatCurrency } from "../../../core/utils/helpers/currency";
+import FeeListItemSkeleton from "../FeeListItemSkeleton";
 
 export interface StackableFeeProps {
   amountOfMaterialsWithDueDate: number;
@@ -75,4 +76,4 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   );
 };
 
-export default fetchMaterial(StackableFees);
+export default fetchMaterial(StackableFees, FeeListItemSkeleton);
