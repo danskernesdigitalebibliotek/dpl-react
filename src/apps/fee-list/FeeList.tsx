@@ -19,6 +19,7 @@ import ListHeader from "../../components/list-header/list-header";
 import EmptyList from "../../components/empty-list/empty-list";
 import FeePaymentButton from "./FeePaymentButton";
 import { formatCurrency } from "../../core/utils/helpers/currency";
+import FeeListSkeleton from "./FeeListSkeleton";
 
 const FeeList: FC = () => {
   const t = useText();
@@ -26,7 +27,7 @@ const FeeList: FC = () => {
   const viewFeesAndCompensationRatesUrl = u("viewFeesAndCompensationRatesUrl");
   const [feeDetailsModalId, setFeeDetailsModalId] = useState("");
   const { open } = useModalButtonHandler();
-  const { data: fbsFees = [] } = useGetFeesV2<FeeV2[]>({
+  const { data: fbsFees = [], isLoading } = useGetFeesV2<FeeV2[]>({
     includepaid: false,
     includenonpayable: true
   });
@@ -68,7 +69,10 @@ const FeeList: FC = () => {
         <div className="fee-list-body__payment-button">
           <FeePaymentButton />
         </div>
-        {!fbsFees.length && (
+
+        {isLoading && <FeeListSkeleton />}
+
+        {!isLoading && !fbsFees.length && (
           <>
             <ListHeader
               header={<>{t("unpaidFeesPayableByClientHeadlineText")}</>}
