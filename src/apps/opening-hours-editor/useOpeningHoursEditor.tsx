@@ -12,7 +12,7 @@ import {
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
 import { useConfig } from "../../core/utils/config";
 
-const useOpeningHours = () => {
+const useOpeningHoursEditor = () => {
   const config = useConfig();
   const openingHoursBranchId = config("openingHoursBranchIdConfig", {
     transformer: "stringToNumber"
@@ -118,4 +118,4 @@ const useOpeningHours = () => {
   };
 };
 
-export default useOpeningHours;
+export default useOpeningHoursEditor;

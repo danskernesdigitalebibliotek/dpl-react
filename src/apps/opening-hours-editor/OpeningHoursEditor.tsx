@@ -5,7 +5,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import da from "@fullcalendar/core/locales/da";
 import OpeningHoursEditorEventContent from "./OpeningHoursEditorEventContent";
-import useOpeningHours from "./useOpeningHours";
+import useOpeningHoursEditor from "./useOpeningHoursEditor";
 import DialogFomularEdit from "./DialogFomularEdit";
 import Dialog from "../../components/dialog/Dialog";
 import useDialog from "../../components/dialog/useDialog";
@@ -31,7 +31,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
   const fullCalendarApi = fullCalendarRef.current?.getApi();
 
   const { events, handleEventAdd, handleEventEditing, handleEventRemove } =
-    useOpeningHours();
+    useOpeningHoursEditor();
 
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
     useDialog({
