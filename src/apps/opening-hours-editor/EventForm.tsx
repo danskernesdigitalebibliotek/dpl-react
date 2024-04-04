@@ -34,6 +34,7 @@ const EventForm: React.FC<EventFormProps> = ({
   const [startTime, setStartTime] = useState(initialStartTime);
   const [endTime, setEndTime] = useState(initialEndTime);
   const [category, setCategory] = useState(initialCategory);
+  const isSameTime = startTime === endTime;
 
   // Reset the form when the initial values change
   // This is necessary because EventForm are reused
@@ -103,7 +104,11 @@ const EventForm: React.FC<EventFormProps> = ({
         max="00:00"
       />
       {children}
-      <button type="submit" className="opening-hours-editor-form__submit">
+      <button
+        type="submit"
+        className="opening-hours-editor-form__submit"
+        disabled={isSameTime}
+      >
         Submit
       </button>
     </form>
