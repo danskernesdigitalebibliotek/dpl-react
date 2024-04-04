@@ -34,7 +34,9 @@ const useOpeningHours = () => {
   }, [openingHoursData]);
 
   const onSuccess = () => {
-    queryClient.invalidateQueries(getDplOpeningHoursListGETQueryKey());
+    queryClient.invalidateQueries(
+      getDplOpeningHoursListGETQueryKey({ branch_id: openingHoursBranchId })
+    );
   };
 
   const onError = (message: string) => {
@@ -47,7 +49,13 @@ const useOpeningHours = () => {
   const handleEventAdd = (event: DplOpeningHoursListGET200Item) => {
     createOpeningHours(
       {
-        data: event
+        data: {
+          ...event,
+          branch_id: openingHoursBranchId
+        },
+        params: {
+          _format: "json"
+        }
       },
       {
         onSuccess: () => {
@@ -64,7 +72,13 @@ const useOpeningHours = () => {
     updateOpeningHours(
       {
         id: event.id.toString(),
-        data: event
+        data: {
+          ...event,
+          branch_id: openingHoursBranchId
+        },
+        params: {
+          _format: "json"
+        }
       },
       {
         onSuccess: () => {
@@ -79,7 +93,12 @@ const useOpeningHours = () => {
 
   const handleEventRemove = (eventId: string) => {
     removeOpeningHours(
-      { id: eventId },
+      {
+        id: eventId,
+        params: {
+          _format: "json"
+        }
+      },
       {
         onSuccess: () => {
           onSuccess();
