@@ -11,23 +11,10 @@ const OpeningHoursEditorEventContent: React.FC<
 > = ({ eventInput }) => {
   const { event } = eventInput;
   return (
-    <div
-      style={{
-        padding: "5px 10px",
-        cursor: "pointer",
-        width: "100%"
-      }}
-    >
+    <div className="opening-hours-editor-event-content">
       <b>{event.title}</b>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between"
-        }}
-      >
-        <span>
-          {extractTime(event.start)} - {extractTime(event.end)}
-        </span>
+      <div>
+        {extractTime(event.start)} - {extractTime(event.end)}
       </div>
     </div>
   );
