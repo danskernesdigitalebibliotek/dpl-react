@@ -10,6 +10,7 @@ import { patronAgeValid } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
 import { redirectTo } from "../../core/utils/helpers/url";
 import { useUrls } from "../../core/utils/url";
+import Link from "../../components/atoms/links/Link";
 
 export interface UserInfoProps {
   cpr: string;
@@ -103,15 +104,9 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
             <button type="submit" className="btn-primary btn-filled btn-small">
               {t("createPatronConfirmButtonText")}
             </button>
-            <button
-              type="button"
-              className="link-tag mx-16"
-              onClick={() => {
-                redirectTo(logoutUrl);
-              }}
-            >
+            <Link href={logoutUrl} className="link-tag mx-16 mt-8">
               {t("createPatronCancelButtonText")}
-            </button>
+            </Link>
           </div>
         </form>
       )}

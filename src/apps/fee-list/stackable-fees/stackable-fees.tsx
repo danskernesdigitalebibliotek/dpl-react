@@ -9,6 +9,7 @@ import FeeStatus from "./fee-status";
 import { useText } from "../../../core/utils/text";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 import { FaustId } from "../../../core/utils/types/ids";
+import { formatCurrency } from "../../../core/utils/helpers/currency";
 
 export interface StackableFeeProps {
   amountOfMaterialsWithDueDate: number;
@@ -63,7 +64,9 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
         <div className="list-reservation__fee">
           <p className="text-body-medium-regular">
             {t("itemFeeAmountText", {
-              placeholders: { "@fee": amount.toLocaleString("da-DK") }
+              placeholders: {
+                "@fee": formatCurrency(amount)
+              }
             })}
           </p>
         </div>

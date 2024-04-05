@@ -24,7 +24,7 @@ const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
   return (
     <Modal
       modalId={blockedModal as string}
-      classNames="modal-loan"
+      classNames="modal-cta modal-padding"
       closeModalAriaLabelText={t(`blockedPatronCloseModalAriaLabelText`)}
       screenReaderModalDescriptionText={t(
         `blockedPatronModalAriaDescriptionText`
