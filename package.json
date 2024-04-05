@@ -161,7 +161,7 @@
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",
-    "orval": "^6.8.1",
+    "orval": "^6.26.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",

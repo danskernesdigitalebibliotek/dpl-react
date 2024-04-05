@@ -1,45 +1,20 @@
 import React from "react";
 import { EventInput } from "@fullcalendar/core";
+import { extractTime } from "./helper";
 
 type OpeningHoursEditorEventContentProps = {
   eventInput: EventInput;
-  handleEventRemove: (event: EventInput) => void;
 };
 
 const OpeningHoursEditorEventContent: React.FC<
   OpeningHoursEditorEventContentProps
-> = ({ eventInput, handleEventRemove }) => {
+> = ({ eventInput }) => {
   const { event } = eventInput;
   return (
-    <div
-      style={{
-        padding: "5px 10px",
-        cursor: "pointer",
-        width: "100%"
-      }}
-    >
+    <div className="opening-hours-editor-event-content">
       <b>{event.title}</b>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between"
-        }}
-      >
-        <span>
-          {event.start?.toLocaleTimeString()} -{" "}
-          {event.end?.toLocaleTimeString()}
-        </span>
-
-        <span
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleEventRemove(event);
-          }}
-          onClick={() => handleEventRemove(event)}
-        >
-          ❌
-        </span>
+      <div>
+        {extractTime(event.start)} - {extractTime(event.end)}
       </div>
     </div>
   );
