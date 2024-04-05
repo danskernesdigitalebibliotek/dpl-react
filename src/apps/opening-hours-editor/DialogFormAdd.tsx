@@ -12,14 +12,14 @@ import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
 import { OpeningHoursCategoriesType } from "./types";
 
-type DialogFomularAddProps = {
+type DialogFormAddProps = {
   selectedEventInfo: DateSelectArg;
   handleEventAdd: (selectedEventInfo: DplOpeningHoursListGET200Item) => void;
   closeDialog: () => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
 };
 
-const DialogFomularAdd: React.FC<DialogFomularAddProps> = ({
+const DialogFormAdd: React.FC<DialogFormAddProps> = ({
   selectedEventInfo,
   handleEventAdd,
   closeDialog,
@@ -78,4 +78,4 @@ const DialogFomularAdd: React.FC<DialogFomularAddProps> = ({
   );
 };
 
-export default DialogFomularAdd;
+export default DialogFormAdd;

@@ -43,6 +43,8 @@ export const formatFullCalendarEventToCmsEvent = (
     date: startDate.format("YYYY-MM-DD"),
     start_time: startDate.format("HH:mm"),
     end_time: endDate.format("HH:mm"),
+    // set to id 0 to because the API requires a branch_id.
+    // This will be overwritten when the event is added or edited in the useOpeningHoursEditor hook
     branch_id: 0
   };
 };

@@ -6,15 +6,15 @@ import interactionPlugin from "@fullcalendar/interaction";
 import da from "@fullcalendar/core/locales/da";
 import OpeningHoursEditorEventContent from "./OpeningHoursEditorEventContent";
 import useOpeningHoursEditor from "./useOpeningHoursEditor";
-import DialogFomularEdit from "./DialogFomularEdit";
+import DialogFormEdit from "./DialogFormEdit";
 import Dialog from "../../components/dialog/Dialog";
 import useDialog from "../../components/dialog/useDialog";
-import DialogFomularAdd from "./DialogFomularAdd";
+import DialogFormAdd from "./DialogFormAdd";
 import { OpeningHoursCategoriesType } from "./types";
 import { useConfig } from "../../core/utils/config";
 
 export type OpeningHoursEditorType = {
-  useWireMockStartDate?: boolean;
+  useWireMockStartDate?: string;
 };
 
 const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
@@ -47,7 +47,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
       </Dialog>
 
       <FullCalendar
-        initialDate={useWireMockStartDate ? "2024-03-25" : undefined}
+        initialDate={useWireMockStartDate ?? undefined}
         ref={fullCalendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
@@ -60,7 +60,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         selectable
         select={(selectedEventInfo) =>
           openDialogWithContent(
-            <DialogFomularAdd
+            <DialogFormAdd
               selectedEventInfo={selectedEventInfo}
               handleEventAdd={handleEventAdd}
               openingHoursCategories={openingHoursCategories}
@@ -71,7 +71,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         unselectAuto={false}
         eventClick={(clickInfo) =>
           openDialogWithContent(
-            <DialogFomularEdit
+            <DialogFormEdit
               eventInfo={clickInfo.event}
               handleEventEditing={handleEventEditing}
               handleEventRemove={handleEventRemove}

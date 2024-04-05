@@ -8,6 +8,11 @@ import { withConfig } from "../../core/utils/config";
 
 interface OpeningHoursEditorEntryTextProps {
   openingHoursRemoveEventButtonText: string;
+  openingHoursInvalidEventText: string;
+  openingHoursEventFormTitleText: string;
+  openingHoursEventFormStartTimeText: string;
+  openingHoursEventFormEndTimeText: string;
+  openingHoursEventFormSubmitText: string;
 }
 
 interface OpeningHoursEditorEntryConfigProps {

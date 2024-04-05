@@ -11,7 +11,7 @@ import { useText } from "../../core/utils/text";
 import { OpeningHoursCategoriesType } from "./types";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
 
-type DialogFomularEditProps = {
+type DialogFormEditProps = {
   eventInfo: EventImpl;
   handleEventEditing: (event: DplOpeningHoursListGET200Item) => void;
   closeDialog: () => void;
@@ -19,7 +19,7 @@ type DialogFomularEditProps = {
   openingHoursCategories: OpeningHoursCategoriesType[];
 };
 
-const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
+const DialogFormEdit: React.FC<DialogFormEditProps> = ({
   eventInfo,
   handleEventEditing,
   closeDialog,
@@ -35,7 +35,7 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
   ) => {
     if (!eventInfo.start || !eventInfo.end) {
       // eslint-disable-next-line no-alert
-      alert("Invalid event");
+      alert(t("openingHoursInvalidEventText"));
       return;
     }
     const startDate = updateDateTime(eventInfo.start, startTime);
@@ -88,4 +88,4 @@ const DialogFomularEdit: React.FC<DialogFomularEditProps> = ({
   );
 };
 
-export default DialogFomularEdit;
+export default DialogFormEdit;

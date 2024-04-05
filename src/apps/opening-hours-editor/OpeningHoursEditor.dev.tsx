@@ -13,6 +13,11 @@ export default {
       defaultValue: "Remove event",
       control: { type: "text" }
     },
+    openingHoursInvalidEventText: {
+      name: "Opening hours invalid event text",
+      defaultValue: "Invalid event. No start or end time",
+      control: { type: "text" }
+    },
     openingHoursEditorCategoriesConfig: {
       name: "Opening hours categories",
       defaultValue:
@@ -24,10 +29,31 @@ export default {
       defaultValue: "12",
       control: { type: "text" }
     },
+    // This date are aligned with the wiremock data
     useWireMockStartDate: {
       name: "Starting date for wiremock purposes",
-      defaultValue: true,
-      control: { type: "boolean" }
+      defaultValue: "2024-03-25",
+      control: { type: "text" }
+    },
+    openingHoursEventFormTitleText: {
+      name: "Opening hours event form title",
+      defaultValue: "Title",
+      control: { type: "text" }
+    },
+    openingHoursEventFormStartTimeText: {
+      name: "Opening hours event form start time",
+      defaultValue: "Start time",
+      control: { type: "text" }
+    },
+    openingHoursEventFormEndTimeText: {
+      name: "Opening hours event form end time",
+      defaultValue: "End time",
+      control: { type: "text" }
+    },
+    openingHoursEventFormSubmitText: {
+      name: "Opening hours event form submit",
+      defaultValue: "Submit",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof OpeningHoursEditor>;

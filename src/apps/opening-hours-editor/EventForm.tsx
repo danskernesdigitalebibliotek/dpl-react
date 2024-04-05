@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
 import { OpeningHoursCategoriesType } from "./types";
+import { useText } from "../../core/utils/text";
 
 export type EventFormOnSubmitType = (
   category: OpeningHoursCategoriesType,
@@ -27,6 +28,7 @@ const EventForm: React.FC<EventFormProps> = ({
   openingHoursCategories,
   children
 }) => {
+  const t = useText();
   const initialCategory = initialTitle
     ? openingHoursCategories.find((category) => category.title === initialTitle)
     : openingHoursCategories[0];
@@ -57,7 +59,7 @@ const EventForm: React.FC<EventFormProps> = ({
         className="opening-hours-editor-form__label"
         htmlFor="event-form-title"
       >
-        Title:
+        {t("openingHoursEventFormTitleText")}
       </label>
       <select
         className="opening-hours-editor-form__select"
@@ -79,7 +81,7 @@ const EventForm: React.FC<EventFormProps> = ({
         className="opening-hours-editor-form__label"
         htmlFor="event-form-start-time"
       >
-        Start Time:
+        {t("openingHoursEventFormStartTimeText")}
       </label>
       <input
         className="opening-hours-editor-form__time-input"
@@ -92,7 +94,7 @@ const EventForm: React.FC<EventFormProps> = ({
         className="opening-hours-editor-form__label"
         htmlFor="event-form-end-time"
       >
-        End Time:
+        {t("openingHoursEventFormEndTimeText")}
       </label>
       <input
         className="opening-hours-editor-form__time-input"
@@ -109,7 +111,7 @@ const EventForm: React.FC<EventFormProps> = ({
         className="opening-hours-editor-form__submit"
         disabled={isSameTime}
       >
-        Submit
+        {t("openingHoursEventFormSubmitText")}
       </button>
     </form>
   );
