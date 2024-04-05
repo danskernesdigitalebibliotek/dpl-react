@@ -236,7 +236,7 @@ describe("Fee list", () => {
       .find("div")
       .find(".modal-loan__title")
       .should("exist")
-      .should("have.text", "Turned in 18. October 2019");
+      .should("have.text", "Turned in 18. oktober 2019");
 
     // book list
     cy.get(".modal-loan__list-materials")
