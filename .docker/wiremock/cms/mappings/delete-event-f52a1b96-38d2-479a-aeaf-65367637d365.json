@@ -6,8 +6,8 @@
     "method": "DELETE"
   },
   "response": {
-    "status": 200,
-    "body": "Event deletet",
+    "status": 204,
+    "body": "",
     "headers": {}
   },
   "uuid": "f52a1b96-38d2-479a-aeaf-65367637d365",
