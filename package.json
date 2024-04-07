@@ -41,7 +41,7 @@
     "codegen:client:fbs": "orval --project fbsAdapter",
     "codegen:client:cover": "orval --project coverService",
     "codegen:client:publizon": "orval --project publizonAdapter",
-    "codegen:client:dpl-cms": "orval --project dplCms",
+    "codegen:client:dpl-cms": "rm -rf src/core/dpl-cms/model/*.* && orval --project dplCms",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
   "devDependencies": {
@@ -115,7 +115,7 @@
     "markdownlint-cli2": "^0.4.0",
     "mutationobserver-shim": "^0.3.7",
     "nyc": "^15.1.0",
-    "orval": "^6.8.1",
+    "orval": "^6.26.0",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
     "postcss-loader": "^8.1.1",
@@ -144,7 +144,12 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-9af1a132615fdfb4295cbeca88275310a71b88da",
+    "@danskernesdigitalebibliotek/dpl-design-system": "^0.0.0-b807dae9a38d9b7811b36f4b3f3063eec78f4f1f",
+    "@fullcalendar/core": "^6.1.11",
+    "@fullcalendar/daygrid": "^6.1.11",
+    "@fullcalendar/interaction": "^6.1.11",
+    "@fullcalendar/react": "^6.1.11",
+    "@fullcalendar/timegrid": "^6.1.11",
     "@reach/alert": "^0.17.0",
     "@reach/dialog": "^0.18.0",
     "@reduxjs/toolkit": "^1.9.7",
@@ -156,7 +161,6 @@
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",
-    "orval": "^6.8.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",

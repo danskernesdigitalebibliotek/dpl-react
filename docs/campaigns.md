@@ -53,7 +53,10 @@ look something like this:
     if (campaignFacets) {
       mutate(
         {
-          data: campaignFacets as CampaignMatchPOSTBodyItem[]
+          data: campaignFacets as CampaignMatchPOSTBodyItem[],
+           params: {
+            _format: "json"
+          }
         },
         {
           onSuccess: (campaign) => {

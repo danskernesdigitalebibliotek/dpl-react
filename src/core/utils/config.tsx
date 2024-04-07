@@ -18,6 +18,13 @@ function config(
   }
 ): string[];
 
+function config(
+  key: string,
+  options: {
+    transformer: "stringToNumber";
+  }
+): number;
+
 function config<T>(key: string): T;
 
 function config<T>(): T | string | string[] {
@@ -32,7 +39,7 @@ export const useConfig = (): UseConfigFunction => {
   return (
     key: string,
     options?: {
-      transformer?: "jsonParse" | "stringToArray";
+      transformer?: "jsonParse" | "stringToArray" | "stringToNumber";
     }
   ) => {
     if (typeof data[key] !== "string") {
@@ -43,6 +50,9 @@ export const useConfig = (): UseConfigFunction => {
     }
     if (options?.transformer === "stringToArray") {
       return data[key].split(",");
+    }
+    if (options?.transformer === "stringToNumber") {
+      return Number(data[key]);
     }
     return data?.[key];
   };

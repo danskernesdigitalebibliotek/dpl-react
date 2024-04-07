@@ -56,11 +56,6 @@ volumes:
       type: none
       device: $PWD
       o: bind
-  wiremock_cms_data:
-    driver_opts:
-      type: none
-      device: $PWD/.docker/wiremock/cms
-      o: bind
   wiremock_data:
     driver_opts:
       type: none
@@ -75,4 +70,9 @@ volumes:
     driver_opts:
       type: none
       device: $PWD/.docker/wiremock/publizon
+      o: bind
+  wiremock_cms_data:
+    driver_opts:
+      type: none
+      device: $PWD/.docker/wiremock/cms
       o: bind
