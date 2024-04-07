@@ -41,7 +41,7 @@
     "codegen:client:fbs": "orval --project fbsAdapter",
     "codegen:client:cover": "orval --project coverService",
     "codegen:client:publizon": "orval --project publizonAdapter",
-    "codegen:client:dpl-cms": "orval --project dplCms",
+    "codegen:client:dpl-cms": "rm -rf src/core/dpl-cms/model/*.* && orval --project dplCms",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
   "devDependencies": {
