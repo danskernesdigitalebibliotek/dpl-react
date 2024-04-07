@@ -29,11 +29,11 @@ export default {
       defaultValue: "12",
       control: { type: "text" }
     },
-    // This date are aligned with the wiremock data
-    useWireMockStartDate: {
-      name: "Starting date for wiremock purposes",
-      defaultValue: "2024-03-25",
-      control: { type: "text" }
+    initialDate: {
+      name: "Initial date to show",
+      // This date is aligned with the wiremock data
+      defaultValue: new Date("2024-03-25"),
+      control: { type: "date" }
     },
     openingHoursEventFormTitleText: {
       name: "Opening hours event form title",

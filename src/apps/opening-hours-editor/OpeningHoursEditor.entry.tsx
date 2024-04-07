@@ -24,8 +24,8 @@ const OpeningHoursEditorEntry: React.FC<
   OpeningHoursEditorEntryTextProps &
     OpeningHoursEditorType &
     OpeningHoursEditorEntryConfigProps
-> = ({ useWireMockStartDate }) => (
-  <OpeningHoursEditor useWireMockStartDate={useWireMockStartDate} />
-);
+> = ({ initialDate = new Date() }) => {
+  return <OpeningHoursEditor initialDate={initialDate} />;
+};
 
 export default withConfig(withUrls(withText(OpeningHoursEditorEntry)));

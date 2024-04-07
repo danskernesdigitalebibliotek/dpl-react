@@ -14,11 +14,11 @@ import { OpeningHoursCategoriesType } from "./types";
 import { useConfig } from "../../core/utils/config";
 
 export type OpeningHoursEditorType = {
-  useWireMockStartDate?: string;
+  initialDate?: Date;
 };
 
 const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
-  useWireMockStartDate
+  initialDate
 }) => {
   const config = useConfig();
   const openingHoursCategories = config<OpeningHoursCategoriesType[]>(
@@ -27,6 +27,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
       transformer: "jsonParse"
     }
   );
+
   const fullCalendarRef = React.useRef<FullCalendar>(null);
   const fullCalendarApi = fullCalendarRef.current?.getApi();
 
@@ -47,7 +48,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
       </Dialog>
 
       <FullCalendar
-        initialDate={useWireMockStartDate ?? undefined}
+        initialDate={initialDate ?? undefined}
         ref={fullCalendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
