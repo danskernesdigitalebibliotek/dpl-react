@@ -411,7 +411,7 @@ export const isParallelReservation = (manifestations: Manifestation[]) =>
   hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
   !isArticle(manifestations);
 
-// Because we  need to exclude the branches that are blacklisted, we need to
+// Because we need to exclude the branches that are blacklisted, we need to
 // use a custom hook to prevent duplicate code
 export const getBlacklistedQueryArgs = (
   faustIds: FaustId[],
