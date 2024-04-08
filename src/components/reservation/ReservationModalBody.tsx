@@ -129,9 +129,10 @@ export const ReservationModalBody = ({
     !!selectedPeriodical
   );
 
-  const reservablePidsFromAnotherLibrary = useReservableFromAnotherLibrary(
-    selectedManifestations
-  );
+  const {
+    reservablePidsFromAnotherLibrary,
+    materialIsReservableFromAnotherLibrary
+  } = useReservableFromAnotherLibrary(selectedManifestations);
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
@@ -178,14 +179,14 @@ export const ReservationModalBody = ({
       );
     }
 
-    if (reservablePidsFromAnotherLibrary?.length > 0 && patron) {
+    if (materialIsReservableFromAnotherLibrary && patron) {
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
 
       // Save reservation to open order.
       mutateOpenOrder(
         {
           input: {
-            pids: [...reservablePidsFromAnotherLibrary],
+            pids: reservablePidsFromAnotherLibrary,
             pickUpBranch: selectedBranch
               ? removePrefixFromBranchId(selectedBranch)
               : removePrefixFromBranchId(preferredPickupBranch),
@@ -253,7 +254,7 @@ export const ReservationModalBody = ({
           <div>
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
-                {reservablePidsFromAnotherLibrary?.length > 0 ? (
+                {materialIsReservableFromAnotherLibrary ? (
                   t("reservableFromAnotherLibraryText")
                 ) : (
                   <StockAndReservationInfo
@@ -302,7 +303,7 @@ export const ReservationModalBody = ({
                   selectedBranch={selectedBranch}
                   selectBranchHandler={setSelectedBranch}
                   selectedInterest={
-                    reservablePidsFromAnotherLibrary?.length > 0 &&
+                    materialIsReservableFromAnotherLibrary &&
                     selectedInterest === null
                       ? Number(defaultInterestDaysForOpenOrder)
                       : selectedInterest

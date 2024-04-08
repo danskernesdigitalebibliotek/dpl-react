@@ -22,12 +22,12 @@ const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
   const t = useText();
   const materialType = head(getMaterialTypes(manifestations));
   const isbns = getAllIdentifiers(manifestations);
-  const reservablePidsFromAnotherLibrary =
+  const { materialIsReservableFromAnotherLibrary } =
     useReservableFromAnotherLibrary(manifestations);
 
   if (hasCorrectAccessType(AccessTypeCode.Physical, manifestations)) {
     const pids = getAllPids(manifestations);
-    if (reservablePidsFromAnotherLibrary.length) {
+    if (materialIsReservableFromAnotherLibrary) {
       return (
         <MaterialAvailabilityTextParagraph>
           {t("reservableFromAnotherLibraryText")}
