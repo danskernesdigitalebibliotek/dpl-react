@@ -113,6 +113,9 @@ describe("Fee list", () => {
   });
 
   it("Fee list basics (physical loans)", () => {
+    // Wait for element not in skeleton screen to prevent testing prematurely.
+    cy.get(".status-label").should("be.visible");
+
     // 2. System shows:
     // 2.a. Headline "Fees & Replacement costs"
     cy.getBySel("fee-list-page")

@@ -1,6 +1,7 @@
 import React, { useId } from "react";
 import { useDispatch } from "react-redux";
 import { useDeepCompareEffect } from "react-use";
+import { useQueryClient } from "react-query";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
@@ -39,6 +40,7 @@ interface MaterialHeaderProps {
   selectedPeriodical: PeriodicalEdition | null;
   selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
   children: React.ReactNode;
+  isGlobalMaterial: boolean;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -53,17 +55,19 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   setSelectedManifestations,
   selectedPeriodical,
   selectPeriodicalHandler,
-  children
+  children,
+  isGlobalMaterial = false
 }) => {
   const materialTitleId = useId();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
+  const queryClient = useQueryClient();
   const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
       guardedRequest({
         type: "addFavorite",
-        args: { id },
+        args: { id, queryClient },
         app: "material"
       })
     );
@@ -128,7 +132,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           materialTitleId={materialTitleId}
         />
         <div ref={itemRef} className="material-header__availability-label">
-          {showItem && (
+          {!isGlobalMaterial && showItem && (
             <AvailabilityLabels
               cursorPointer
               workId={wid}
@@ -138,8 +142,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
             />
           )}
         </div>
-
-        {showItem && (
+        {/* The CTA nuttons apperently only makes sense on a global work */}
+        {!isGlobalMaterial && showItem && (
           <>
             {isPeriodical && (
               <MaterialPeriodical

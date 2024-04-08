@@ -133,8 +133,15 @@ export const useHasItem = <
 /**
  * Add collection to the the list.
  */
-export const addItem = (listId: string, itemId: string) => {
-  return fetcher<void>({ url: `/list/${listId}/${itemId}`, method: "put" });
+export const addItem = (
+  listId: string,
+  itemId: string,
+  queryClient: QueryClient
+): Promise<void> => {
+  return fetcher<void>({
+    url: `/list/${listId}/${itemId}`,
+    method: "put"
+  }).then(() => queryClient.invalidateQueries(getGetListQueryKey(listId)));
 };
 
 export type AddItemMutationResult = NonNullable<
@@ -154,6 +161,7 @@ export const useAddItem = <
     TContext
   >;
 }) => {
+  const queryClient = useQueryClient();
   const { mutation: mutationOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
@@ -162,7 +170,7 @@ export const useAddItem = <
   > = (props) => {
     const { listId, itemId } = props ?? {};
 
-    return addItem(listId, itemId);
+    return addItem(listId, itemId, queryClient);
   };
 
   return useMutation<
@@ -180,11 +188,11 @@ export const removeItem = (
   listId: string,
   itemId: string,
   queryClient: QueryClient
-) => {
+): Promise<void> => {
   return fetcher<void>({
     url: `/list/${listId}/${itemId}`,
     method: "delete"
-  }).then(() => queryClient.invalidateQueries(getGetListQueryKey("default")));
+  }).then(() => queryClient.invalidateQueries(getGetListQueryKey(listId)));
 };
 
 export type RemoveItemMutationResult = NonNullable<

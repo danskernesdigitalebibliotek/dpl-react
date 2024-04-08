@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 // eslint-disable-next-line import/no-cycle
+import { QueryClient } from "react-query";
 import { addItem } from "./material-list-api/material-list";
 // TODO: Fix dependency cycle problem
 // There is not an obvious solution but we need access to the persistor
@@ -25,8 +26,8 @@ interface Callback<T1, T2 = void> {
 const requestCallbacks: {
   [key: string]: Callback<Record<string, unknown>>;
 } = {
-  addFavorite: ({ id }) => {
-    return addItem("default", id as string);
+  addFavorite: ({ id, queryClient }) => {
+    return addItem("default", id as string, queryClient as QueryClient);
   }
 };
 

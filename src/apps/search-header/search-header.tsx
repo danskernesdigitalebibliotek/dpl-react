@@ -65,12 +65,12 @@ const SearchHeader: React.FC = () => {
     {
       render: t("autosuggestBookCategoryText"),
       term: AutosuggestCategory.book,
-      facet: "materialTypes"
+      facet: "materialTypesSpecific"
     },
     {
       render: t("autosuggestEbookCategoryText"),
       term: AutosuggestCategory.ebook,
-      facet: "materialTypes"
+      facet: "materialTypesSpecific"
     },
     {
       render: t("autosuggestFilmCategoryText"),
@@ -80,7 +80,7 @@ const SearchHeader: React.FC = () => {
     {
       render: t("autosuggestAudioBookCategoryText"),
       term: AutosuggestCategory.audioBook,
-      facet: "materialTypes"
+      facet: "materialTypesSpecific"
     },
     {
       render: t("autosuggestMusicCategoryText"),
@@ -95,7 +95,7 @@ const SearchHeader: React.FC = () => {
     {
       render: t("autosuggestAnimatedSeriesCategoryText"),
       term: AutosuggestCategory.animatedSeries,
-      facet: "materialTypes"
+      facet: "materialTypesSpecific"
     }
   ];
   // Once we register the item select event the original highlighted index is

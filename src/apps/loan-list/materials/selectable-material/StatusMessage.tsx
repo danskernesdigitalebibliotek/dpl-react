@@ -18,9 +18,12 @@ const StatusMessage: FC<StatusMessageProps> = ({
   return (
     <>
       {renewalStatusList &&
-        renewalStatusList.map((text) => (
-          <span className={className}>{getStatusText(text, t)}</span>
-        ))}
+        renewalStatusList.map((text) => {
+          if (text !== "deniedOtherReason") {
+            return <span className={className}>{getStatusText(text, t)}</span>;
+          }
+          return null;
+        })}
       {loanType === "interLibraryLoan" && (
         <span className={className}>
           {t("groupModalRenewLoanDeniedInterLibraryLoanText")}

@@ -93,9 +93,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   useEffect(() => {
     addFilterFromUrlParamListener(FacetField.MaterialTypesSpecific);
     addFilterFromUrlParamListener(FacetField.WorkTypes);
-    // We only want to do this once, so we need the dependency array empty
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [addFilterFromUrlParamListener]);
 
   const { data, isLoading } = useSearchWithPaginationQuery({
     q: { all: q },
