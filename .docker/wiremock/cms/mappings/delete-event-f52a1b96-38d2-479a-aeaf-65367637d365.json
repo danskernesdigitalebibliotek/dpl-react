@@ -1,0 +1,18 @@
+{
+  "id": "f52a1b96-38d2-479a-aeaf-65367637d365",
+  "name": "Delete event",
+  "request": {
+    "urlPathPattern": "/dpl_opening_hours/[0-9]+",
+    "method": "DELETE"
+  },
+  "response": {
+    "status": 204,
+    "body": "",
+    "headers": {}
+  },
+  "uuid": "f52a1b96-38d2-479a-aeaf-65367637d365",
+  "persistent": true,
+  "priority": 5,
+  "insertionIndex": 1,
+  "postServeActions": []
+}

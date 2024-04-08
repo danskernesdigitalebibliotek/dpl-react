@@ -73,7 +73,10 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (campaignFacets) {
       mutate(
         {
-          data: campaignFacets as CampaignMatchPOSTBodyItem[]
+          data: campaignFacets as CampaignMatchPOSTBodyItem[],
+          params: {
+            _format: "json"
+          }
         },
         {
           onSuccess: (campaign) => {
