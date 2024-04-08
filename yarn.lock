@@ -1526,10 +1526,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@danskernesdigitalebibliotek/dpl-design-system@^0.0.0-b807dae9a38d9b7811b36f4b3f3063eec78f4f1f":
-  version "0.0.0-fff402ba1614ff85d3a187e176cb7810b6be190f"
-  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/0.0.0-fff402ba1614ff85d3a187e176cb7810b6be190f/0ffad3b0063964e34fb2b67fb1fa7efa34a6354a#0ffad3b0063964e34fb2b67fb1fa7efa34a6354a"
-  integrity sha512-oeSeqxsHYQQbgpz8zQWHAXijmk5flqpuPFjn7ZWhcqlFfypDhGmZa9suvfukwt/KzTfvNI3mzXP2xaLk7NOMlw==
+"@danskernesdigitalebibliotek/dpl-design-system@^2024.15.0-25f5debbe4757dda1a1324bdd773fa6d9381bd27":
+  version "2024.15.0-25f5debbe4757dda1a1324bdd773fa6d9381bd27"
+  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/2024.15.0-25f5debbe4757dda1a1324bdd773fa6d9381bd27/1802b993ce833348f9273e9761076793f14b6940#1802b993ce833348f9273e9761076793f14b6940"
+  integrity sha512-UiwnqUMQrW551x/WuwBFpEe5RekHt1wmPc+hCLIF9I1ieVZBSnsYLs+Q993QfUhCvZzTjV73Lo9ljUhZuU/DqA==
 
 "@discoveryjs/json-ext@^0.5.0", "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"
@@ -7966,11 +7966,6 @@ crypto-browserify@^3.0.0, crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
-
-crypto-random-string@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/crypto-random-string/-/crypto-random-string-2.0.0.tgz"
-  integrity sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==
 
 css-declaration-sorter@^7.2.0:
   version "7.2.0"
