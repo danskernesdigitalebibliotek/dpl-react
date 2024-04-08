@@ -212,7 +212,6 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
                 placeholders: { "@date": formatDate(dueDate) }
               })}
               dueDate={dueDate}
-              subHeader={t("groupModalReturnLibraryText")}
               statusCircleComponent={
                 <StatusCircle
                   loanDate={dayjs().subtract(1, "month").format("YYYY-MM-DD")}

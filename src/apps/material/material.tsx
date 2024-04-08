@@ -3,7 +3,6 @@ import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
 import { useDeepCompareEffect } from "react-use";
-import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
 import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
@@ -38,6 +37,7 @@ import MaterialDisclosure from "./MaterialDisclosure";
 import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
+import { useGetWork } from "../../core/utils/useGetWork";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -50,9 +50,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   >(null);
   const [selectedPeriodical, setSelectedPeriodical] =
     useState<PeriodicalEdition | null>(null);
-  const { data, isLoading } = useGetMaterialQuery({
-    wid
-  });
+  const { data, isLoading, workType } = useGetWork(wid);
   const { data: userData } = usePatronData();
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
   const { track } = useStatistics();
@@ -159,6 +157,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         setSelectedManifestations={setSelectedManifestations}
         selectedPeriodical={selectedPeriodical}
         selectPeriodicalHandler={setSelectedPeriodical}
+        isGlobalMaterial={workType === "global"}
       >
         {manifestations.map((manifestation) => (
           <ReservationFindOnShelfModals
@@ -194,25 +193,29 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
-      <MaterialDisclosure
-        title={`${t("editionsText")} (${manifestations.length})`}
-        icon={VariousIcon}
-        dataCy="material-editions-disclosure"
-      >
-        <>
-          {getManifestationsOrderByTypeAndYear(manifestations).map(
-            (manifestation: Manifestation) => {
-              return (
-                <MaterialMainfestationItem
-                  key={manifestation.pid}
-                  manifestation={manifestation}
-                  workId={wid}
-                />
-              );
-            }
-          )}
-        </>
-      </MaterialDisclosure>
+      {/* Since we cannot trust the editions for global manifestations */}
+      {/* we limit them to only occur if the loaded work is global */}
+      {workType === "local" && (
+        <MaterialDisclosure
+          title={`${t("editionsText")} (${manifestations.length})`}
+          icon={VariousIcon}
+          dataCy="material-editions-disclosure"
+        >
+          <>
+            {getManifestationsOrderByTypeAndYear(manifestations).map(
+              (manifestation: Manifestation) => {
+                return (
+                  <MaterialMainfestationItem
+                    key={manifestation.pid}
+                    manifestation={manifestation}
+                    workId={wid}
+                  />
+                );
+              }
+            )}
+          </>
+        </MaterialDisclosure>
+      )}
       <MaterialDisclosure
         dataCy="material-details-disclosure"
         title={t("detailsText")}

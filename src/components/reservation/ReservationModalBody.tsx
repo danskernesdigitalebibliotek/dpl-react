@@ -92,12 +92,18 @@ export const ReservationModalBody = ({
   const branches = config<AgencyBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
-  const blacklistBranches = config("blacklistedInstantLoanBranchesConfig", {
+  const blacklistBranchesInstantLoan = config(
+    "blacklistedInstantLoanBranchesConfig",
+    {
+      transformer: "stringToArray"
+    }
+  );
+  const blacklistPickupBranches = config("blacklistedPickupBranchesConfig", {
     transformer: "stringToArray"
   });
   const whitelistBranches = excludeBlacklistedBranches(
     branches,
-    blacklistBranches
+    blacklistBranchesInstantLoan.concat(blacklistPickupBranches)
   );
 
   const mainManifestationType = getManifestationType(selectedManifestations);
