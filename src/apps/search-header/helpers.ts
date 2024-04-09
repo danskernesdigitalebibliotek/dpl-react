@@ -11,12 +11,12 @@ export const getAutosuggestCategoryList = (t: UseTextFunction) => {
     {
       render: t("autosuggestBookCategoryText"),
       term: AutosuggestCategory.book,
-      facet: "materialTypes"
+      facet: "materialTypesSpecific"
     },
     {
       render: t("autosuggestEbookCategoryText"),
       term: AutosuggestCategory.ebook,
-      facet: "materialTypes"
+      facet: "materialTypesSpecific"
     },
     {
       render: t("autosuggestFilmCategoryText"),
@@ -26,7 +26,7 @@ export const getAutosuggestCategoryList = (t: UseTextFunction) => {
     {
       render: t("autosuggestAudioBookCategoryText"),
       term: AutosuggestCategory.audioBook,
-      facet: "materialTypes"
+      facet: "materialTypesSpecific"
     },
     {
       render: t("autosuggestMusicCategoryText"),
@@ -41,7 +41,7 @@ export const getAutosuggestCategoryList = (t: UseTextFunction) => {
     {
       render: t("autosuggestAnimatedSeriesCategoryText"),
       term: AutosuggestCategory.animatedSeries,
-      facet: "materialTypes"
+      facet: "materialTypesSpecific"
     }
   ];
   return autosuggestCategoryList;

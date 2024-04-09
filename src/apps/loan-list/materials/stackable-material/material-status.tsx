@@ -9,6 +9,7 @@ import {
   formatDate,
   formatDateTime
 } from "../../../../core/utils/helpers/date";
+import StatusMessage from "../selectable-material/StatusMessage";
 
 interface MaterialStatusProps {
   loan: LoanType;
@@ -77,6 +78,16 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
                   placeholders: { "@date": formatDate(dueDate) }
                 })}
           </p>
+          {!isDigital(loan) && (
+            <p className="text-small-caption color-secondary-gray mt-4">
+              <StatusMessage
+                className="mr-4"
+                loanType={loan.loanType}
+                renewalStatusList={loan.renewalStatusList}
+              />
+            </p>
+          )}
+
           {children}
         </div>
       </div>

@@ -46,6 +46,9 @@ describe("Favorites list", () => {
   });
 
   it("Favorites list basics", () => {
+    // Wait for element not in skeleton screen to prevent testing prematurely.
+    cy.get(".cover").should("be.visible");
+
     // 2.a. Header "Favorites"
     cy.get(".card-list-page").find("h1").should("have.text", "Favorites");
     // Number of materials on list

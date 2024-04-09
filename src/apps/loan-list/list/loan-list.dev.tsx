@@ -10,6 +10,7 @@ import loanGroupModalArgs from "../../../core/storybook/loanGroupModalArgs";
 import materialDetailsModalArgs from "../../../core/storybook/materialDetailsModalArgs";
 import renewalArgs from "../../../core/storybook/renewalArgs";
 import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
+import globalConfigArgs from "../../../core/storybook/globalConfigArgs";
 
 export default {
   title: "Apps / Loan list",
@@ -18,6 +19,7 @@ export default {
     ...serviceUrlArgs,
     ...groupModalArgs,
     ...globalTextArgs,
+    ...globalConfigArgs,
     ...loanGroupModalArgs,
     ...renewalArgs,
     ...materialDetailsModalArgs,
