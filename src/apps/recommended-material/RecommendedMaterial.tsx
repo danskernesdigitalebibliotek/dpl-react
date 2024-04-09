@@ -21,6 +21,7 @@ import { DisplayMaterialType } from "../../core/utils/types/material-type";
 import { useUrls } from "../../core/utils/url";
 import { getManifestationBasedOnType } from "../material/helper";
 import RecommendedMaterialSkeleton from "./RecommendedMaterialSkeleton";
+import Link from "../../components/atoms/links/Link";
 
 export type RecommendedMaterialProps = {
   wid: WorkId;
@@ -98,18 +99,20 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
         shadow="medium"
       />
       <div className="recommended-material__texts">
-        <p
+        <Link
+          href={materialFullUrl}
           className="recommended-material__description"
-          data-cy="recommended-description"
+          dataCy="recommended-description"
         >
           {fullTitle}
-        </p>
-        <p
+        </Link>
+        <Link
+          href={materialFullUrl}
           className="recommended-material__author"
-          data-cy="recommended-author"
+          dataCy="recommended-author"
         >
-          {author}{" "}
-        </p>
+          {author}
+        </Link>
       </div>
     </div>
   );
