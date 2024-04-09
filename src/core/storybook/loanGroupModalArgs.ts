@@ -3,7 +3,7 @@ export default {
     control: {
       type: "text"
     },
-    defaultValue: "The item cannot be renewed further "
+    defaultValue: "Can't be renewed further"
   },
   groupModalDueDateWarningLoanOverdueText: {
     control: {
@@ -16,11 +16,10 @@ export default {
     control: {
       type: "text"
     },
-    defaultValue: "The item is reserved by another patron"
+    defaultValue: "Reserved by another patron"
   },
   groupModalRenewLoanDeniedInterLibraryLoanText: {
-    defaultValue:
-      "The item has been lent to you by another library and renewal is therefore conditional of the acceptance by that library",
+    defaultValue: "Lent by another library",
     control: { type: "text" }
   },
   groupModalLoansCloseModalAriaLabelText: {
