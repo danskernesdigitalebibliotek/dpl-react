@@ -24,6 +24,7 @@ interface SelectableMaterialProps {
   statusMessageComponentMobile: ReactNode;
   statusMessageComponentDesktop: ReactNode;
   statusBadgeComponent: ReactNode;
+  statusBadgeComponentMobile?: ReactNode;
   focused: boolean;
   displayedMaterial?: ReservationType;
   noHoverEffect?: boolean;
@@ -39,6 +40,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   statusMessageComponentMobile,
   statusMessageComponentDesktop,
   statusBadgeComponent,
+  statusBadgeComponentMobile,
   focused,
   displayedMaterial,
   noHoverEffect = false
@@ -111,36 +113,29 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               {materialType}
             </div>
           </div>
+          {statusBadgeComponentMobile || ""}
           <p className="list-materials__content__header mt-8" lang={lang || ""}>
             {title}
           </p>
           <p className="text-small-caption">
             <AuthorYear author={authorsShort} year={year} />
           </p>
-        </div>
-        <div
-          className={clsx("list-materials__status pl-4", {
-            "cursor-pointer": openDetailsModal
-          })}
-          role="button"
-          onClick={handleOnClick}
-          onKeyUp={handleOnKeyUp}
-          tabIndex={0}
-        >
-          {statusMessageComponentDesktop}
-          <div>
-            {statusBadgeComponent}
+          <div className="list-materials__status list-materials__status--mobile">
             {statusMessageComponentMobile}
-            {displayedMaterial && (
-              <ReservationInfo
-                reservationInfo={displayedMaterial}
-                showArrow={false}
-                showStatusCircleIcon={false}
-                reservationStatusClassNameOverride=""
-                isDigital={isDigital(displayedMaterial)}
-              />
-            )}
           </div>
+        </div>
+        <div className="list-materials__status list-materials__status--desktop">
+          {statusBadgeComponent}
+          {displayedMaterial && (
+            <ReservationInfo
+              reservationInfo={displayedMaterial}
+              showArrow={false}
+              showStatusCircleIcon={false}
+              reservationStatusClassNameOverride=""
+              isDigital={isDigital(displayedMaterial)}
+            />
+          )}
+          {statusMessageComponentDesktop}
         </div>
         {openDetailsModal && (
           <ArrowButton
@@ -148,7 +143,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
             cursorPointer
             clickEventHandler={handleOnClick}
             keyUpEventHandler={handleOnKeyUp}
-            classNames="list-materials__arrow"
+            classNames="list-materials__arrow arrow-button"
           />
         )}
       </div>
