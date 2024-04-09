@@ -177,7 +177,9 @@ export const ReservationModalBody = ({
             // This state is used to show the success or error modal.
             setReservationResponse(res);
             // Because after a successful reservation the holdings (reservations) are updated.
-            queryClient.invalidateQueries(getGetHoldingsV3QueryKey());
+            queryClient.invalidateQueries(
+              getGetHoldingsV3QueryKey({ recordid: faustIds })
+            );
           }
         }
       );
