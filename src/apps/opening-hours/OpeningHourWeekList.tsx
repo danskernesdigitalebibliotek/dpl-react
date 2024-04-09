@@ -1,12 +1,13 @@
 import dayjs from "dayjs";
 import "dayjs/locale/da";
 import React from "react";
+import { useText } from "../../core/utils/text";
+import OpeningHourWeekListSkeleton from "./OpeningHourWeekListSkeleton";
 import OpeningHoursDayEntry from "./OpeningHoursDayEntry";
 import {
   GroupedOpeningHours,
   formatDateToWeekday
 } from "./OpeningHoursHelpers";
-import OpeningHourWeekListSkeleton from "./OpeningHourWeekListSkeleton";
 
 interface OpeningHoursWeekListProps {
   data: GroupedOpeningHours;
@@ -17,6 +18,8 @@ const OpeningHoursWeekList: React.FC<OpeningHoursWeekListProps> = ({
   data,
   isLoading
 }) => {
+  const t = useText();
+
   return isLoading ? (
     <OpeningHourWeekListSkeleton />
   ) : (
@@ -39,9 +42,7 @@ const OpeningHoursWeekList: React.FC<OpeningHoursWeekListProps> = ({
                 ))}
               </ul>
             ) : (
-              <p>
-                Biblioteket er <strong>lukket</strong> denne dag.
-              </p>
+              <p>{t("libraryIsClosedText")}</p>
             )}
           </li>
         );
