@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import clsx from "clsx";
 import { daysBetweenTodayAndDate } from "../../../../core/utils/helpers/general";
 import useLoanThresholds from "../../../../core/utils/useLoanThresholds";
+import StatusBadgeContent from "./status-badge-content";
 
 interface StatusBadgeProps {
   badgeDate?: string | null;
@@ -29,61 +29,51 @@ const StatusBadge: FC<StatusBadgeProps> = ({
 
   if (daysBetweenTodayAndDue < threshold.danger && dangerText) {
     return (
-      <div
-        className={clsx("status-label status-label--danger", [
-          { "hide-on-desktop ml-16": mobileVersion }
-        ])}
-      >
-        {dangerText}
-      </div>
+      <StatusBadgeContent
+        mobileVersion={mobileVersion}
+        text={dangerText}
+        statusLabelType="danger"
+      />
     );
   }
 
   if (daysBetweenTodayAndDue <= threshold.warning && warningText) {
     return (
-      <div
-        className={clsx("status-label status-label--warning", [
-          { "hide-on-desktop ml-16": mobileVersion }
-        ])}
-      >
-        {warningText}
-      </div>
+      <StatusBadgeContent
+        mobileVersion={mobileVersion}
+        text={warningText}
+        statusLabelType="warning"
+      />
     );
   }
 
   if (neutralText && !showBadgeWithDueDate) {
     return (
-      <div
-        className={clsx("status-label status-label--neutral", [
-          { "hide-on-desktop ml-16": mobileVersion }
-        ])}
-      >
-        {neutralText}
-      </div>
+      <StatusBadgeContent
+        mobileVersion={mobileVersion}
+        text={neutralText}
+        statusLabelType="neutral"
+      />
     );
   }
 
   if (infoText && !showBadgeWithDueDate) {
     return (
-      <div
-        className={clsx("status-label status-label--info", [
-          { "hide-on-desktop ml-16": mobileVersion }
-        ])}
-      >
-        {infoText}
-      </div>
+      <StatusBadgeContent
+        mobileVersion={mobileVersion}
+        text={infoText}
+        statusLabelType="info"
+      />
     );
   }
 
   if (dangerText && !showBadgeWithDueDate) {
     return (
-      <div
-        className={clsx("status-label status-label--danger", [
-          { "hide-on-desktop ml-16": mobileVersion }
-        ])}
-      >
-        {dangerText}
-      </div>
+      <StatusBadgeContent
+        mobileVersion={mobileVersion}
+        text={dangerText}
+        statusLabelType="danger"
+      />
     );
   }
 
