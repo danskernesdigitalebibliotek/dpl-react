@@ -54,7 +54,11 @@ const EventForm: React.FC<EventFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="opening-hours-editor-form">
+    <form
+      onSubmit={handleSubmit}
+      className="opening-hours-editor-form"
+      data-cy="opening-hours-editor-form"
+    >
       <label
         className="opening-hours-editor-form__label"
         htmlFor="event-form-title"
@@ -62,6 +66,7 @@ const EventForm: React.FC<EventFormProps> = ({
         {t("openingHoursEventFormTitleText")}
       </label>
       <select
+        data-cy="opening-hours-editor-form-select"
         className="opening-hours-editor-form__select"
         id="event-form-title"
         value={category?.title}
@@ -84,6 +89,7 @@ const EventForm: React.FC<EventFormProps> = ({
         {t("openingHoursEventFormStartTimeText")}
       </label>
       <input
+        data-cy="opening-hours-editor-form-start-time"
         className="opening-hours-editor-form__time-input"
         id="event-form-start-time"
         type="time"
@@ -97,6 +103,7 @@ const EventForm: React.FC<EventFormProps> = ({
         {t("openingHoursEventFormEndTimeText")}
       </label>
       <input
+        data-cy="opening-hours-editor-form-end-time"
         className="opening-hours-editor-form__time-input"
         id="event-form-end-time"
         type="time"
@@ -107,6 +114,7 @@ const EventForm: React.FC<EventFormProps> = ({
       />
       {children}
       <button
+        data-cy="opening-hours-editor-form-submit"
         type="submit"
         className="opening-hours-editor-form__submit"
         disabled={isSameTime}
