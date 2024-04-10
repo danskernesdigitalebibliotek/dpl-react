@@ -11,7 +11,10 @@ const OpeningHoursEditorEventContent: React.FC<
 > = ({ eventInput }) => {
   const { event } = eventInput;
   return (
-    <div className="opening-hours-editor-event-content">
+    <div
+      className="opening-hours-editor-event-content"
+      data-cy="opening-hours-editor-event-content"
+    >
       <b>{event.title}</b>
       <div>
         {extractTime(event.start)} - {extractTime(event.end)}

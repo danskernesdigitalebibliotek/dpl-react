@@ -66,6 +66,7 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
       openingHoursCategories={openingHoursCategories}
     >
       <button
+        data-cy="opening-hours-editor-form__remove"
         className="opening-hours-editor-form__remove"
         type="button"
         tabIndex={0}
