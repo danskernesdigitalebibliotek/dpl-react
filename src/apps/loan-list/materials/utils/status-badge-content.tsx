@@ -14,12 +14,9 @@ const StatusBadgeContent: FC<StatusBadgeContentProps> = ({
 }) => {
   return (
     <div
-      className={clsx(
-        `status-label status-label--${{
-          statusLabelType
-        }}`,
-        [{ "hide-on-desktop ml-16": mobileVersion }]
-      )}
+      className={clsx(`status-label status-label--${statusLabelType}`, [
+        { "hide-on-desktop ml-16": mobileVersion }
+      ])}
     >
       {text}
     </div>
