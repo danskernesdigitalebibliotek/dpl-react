@@ -13,6 +13,8 @@ import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import { useText } from "../../../../core/utils/text";
 import { usePatronData } from "../../../../core/utils/helpers/usePatronData";
+import useGetAvailability from "../../../../core/utils/useGetAvailability";
+import { useConfig } from "../../../../core/utils/config";
 
 export interface MaterialButtonsPhysicalProps {
   manifestations: Manifestation[];
@@ -26,14 +28,23 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   dataCy = "material-buttons-physical"
 }) => {
   const t = useText();
+  const config = useConfig();
   const faustIds = getAllFaustIds(manifestations);
+  // We extract loading of Availability here, as it isn't possible within
+  // UseReservableManifestations. React query uses cached version of the data
+  // so we can determine if the request inside UseReservableManifestations is
+  // loading this way.
+  const { isLoading: isLoadingAvailability } = useGetAvailability({
+    faustIds,
+    config
+  });
   const { reservableManifestations } = UseReservableManifestations({
     manifestations
   });
   const { data: userData, isLoading } = usePatronData();
   const isUserBlocked = !!(userData?.patron && isBlocked(userData?.patron));
 
-  if (isLoading) {
+  if (isLoading || isLoadingAvailability) {
     return <MaterialButtonLoading />;
   }
 
