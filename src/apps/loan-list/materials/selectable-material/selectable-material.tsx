@@ -113,7 +113,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               {materialType}
             </div>
           </div>
-          {statusBadgeComponentMobile || ""}
+          {statusBadgeComponentMobile || null}
           <p className="list-materials__content__header mt-8" lang={lang || ""}>
             {title}
           </p>
