@@ -16,6 +16,7 @@ import StatusSection from "./sections/StatusSection";
 import { useUrls } from "../../core/utils/url";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
+import PatronPageSkeleton from "./PatronPageSkeleton";
 
 const PatronPage: FC = () => {
   const queryClient = useQueryClient();
@@ -25,7 +26,7 @@ const PatronPage: FC = () => {
 
   const { mutate } = useUpdateV5();
 
-  const { data: patronData } = usePatronData();
+  const { data: patronData, isLoading } = usePatronData();
 
   const [patron, setPatron] = useState<PatronV5 | null>(null);
   const [pin, setPin] = useState<string | null>(null);
@@ -41,6 +42,10 @@ const PatronPage: FC = () => {
       setPatron(patronData.patron);
     }
   }, [patronData]);
+
+  if (isLoading || !patron) {
+    return <PatronPageSkeleton />;
+  }
 
   // Changes the patron object by key.
   // So using the paramters 123 and "phoneNumber" would change the phoneNumber to 123.
