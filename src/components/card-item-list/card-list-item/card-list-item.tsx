@@ -13,7 +13,7 @@ import Link from "../../atoms/links/Link";
 import {
   creatorsToString,
   flattenCreators,
-  getManifestationPid,
+  getWorkPid,
   getReleaseYearSearchResult,
   materialIsFiction
 } from "../../../core/utils/helpers/general";
@@ -73,7 +73,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
   const dispatch = useDispatch<TypedDispatch>();
   const queryClient = useQueryClient();
   const author = creatorsToString(flattenCreators(creators), t);
-  const manifestationPid = getManifestationPid(manifestations);
+  const manifestationPid = getWorkPid(item);
   const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(
     materialUrl,

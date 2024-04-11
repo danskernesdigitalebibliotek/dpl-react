@@ -7,10 +7,7 @@ import ButtonFavourite, {
 } from "../button-favourite/button-favourite";
 import { Cover } from "../cover/cover";
 import { Work } from "../../core/utils/types/entities";
-import {
-  getContributors,
-  getManifestationPid
-} from "../../core/utils/helpers/general";
+import { getContributors, getWorkPid } from "../../core/utils/helpers/general";
 import { TypedDispatch } from "../../core/store";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
@@ -29,9 +26,9 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
   work: {
     titles: { full: fullTitle },
     creators,
-    workId,
-    manifestations: { all: manifestations }
+    workId
   },
+  work,
   app
 }) => {
   const u = useUrls();
@@ -49,7 +46,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
   }
 
   // For retrieving cover
-  const manifestationPid = getManifestationPid(manifestations);
+  const manifestationPid = getWorkPid(work);
 
   const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(

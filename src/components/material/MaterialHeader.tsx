@@ -9,7 +9,7 @@ import {
   creatorsToString,
   flattenCreators,
   getMaterialTypes,
-  getManifestationPid
+  getWorkPid
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
@@ -51,6 +51,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     mainLanguages,
     workId: wid
   },
+  work,
   selectedManifestations,
   setSelectedManifestations,
   selectedPeriodical,
@@ -84,7 +85,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     .map((language) => language.display)
     .join(", ");
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
-  const pid = getManifestationPid(manifestations);
+  const pid = getWorkPid(work);
   const { track } = useStatistics();
   // This is used to track whether the user is changing between material types or just clicking the same button over
   const manifestationMaterialTypes = getMaterialTypes(selectedManifestations);
