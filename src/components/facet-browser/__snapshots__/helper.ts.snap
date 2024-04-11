@@ -71,25 +71,7 @@ exports[`formatFacetTerms > should format facet terms 1`] = `
 exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
 [
   {
-    "name": "mainLanguages",
-    "values": [
-      {
-        "key": "",
-        "term": "",
-      },
-    ],
-  },
-  {
-    "name": "accessTypes",
-    "values": [
-      {
-        "key": "",
-        "term": "",
-      },
-    ],
-  },
-  {
-    "name": "childrenOrAdults",
+    "name": "workTypes",
     "values": [
       {
         "key": "",
@@ -107,6 +89,15 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
+    "name": "subjects",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
     "name": "fictionNonfiction",
     "values": [
       {
@@ -116,7 +107,25 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "fictionalCharacters",
+    "name": "childrenOrAdults",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "accessTypes",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "mainLanguages",
     "values": [
       {
         "key": "",
@@ -143,16 +152,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "subjects",
-    "values": [
-      {
-        "key": "",
-        "term": "",
-      },
-    ],
-  },
-  {
-    "name": "workTypes",
+    "name": "fictionalCharacters",
     "values": [
       {
         "key": "",
