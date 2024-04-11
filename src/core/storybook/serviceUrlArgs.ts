@@ -14,7 +14,7 @@ export default {
   },
   [serviceUrlKeys.dplCms]: {
     name: "Base url for the DPL CMS API",
-    defaultValue: "https://dpl-cms.docker",
+    defaultValue: process.env.CMS_BASEURL ?? "https://dpl-cms.docker",
     control: { type: "text" }
   },
   [serviceUrlKeys.cover]: {
