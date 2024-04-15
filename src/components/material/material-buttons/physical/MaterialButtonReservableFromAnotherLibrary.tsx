@@ -41,7 +41,9 @@ const MaterialButtonReservableFromAnotherLibrary: FC<
       label={
         size === "small"
           ? t("reserveText")
-          : `${t("reserveText")} ${manifestationMaterialType}`
+          : `${t("reserveWithMaterialTypeText", {
+              placeholders: { "@materialType": manifestationMaterialType }
+            })}`
       }
       buttonType="none"
       variant="filled"
