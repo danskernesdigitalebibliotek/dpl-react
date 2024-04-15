@@ -3,7 +3,7 @@ import { Cover, CoverProps } from "../../cover/cover";
 
 type CardListItemCoverProps = Omit<CoverProps, "animate" | "size">;
 const CardListItemCover: React.FC<CardListItemCoverProps> = ({
-  id,
+  ids,
   alt,
   url,
   tint,
@@ -12,7 +12,7 @@ const CardListItemCover: React.FC<CardListItemCoverProps> = ({
   return (
     <Cover
       animate
-      id={id}
+      ids={ids}
       size="small"
       alt={String(alt)}
       url={url}

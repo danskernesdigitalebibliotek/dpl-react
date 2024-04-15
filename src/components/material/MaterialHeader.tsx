@@ -8,6 +8,7 @@ import {
   convertPostIdToFaustId,
   creatorsToString,
   flattenCreators,
+  getManifestationsPids,
   getMaterialTypes,
   getWorkPid
 } from "../../core/utils/helpers/general";
@@ -86,6 +87,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     .join(", ");
   const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
   const pid = getWorkPid(work);
+  const coverPids = getManifestationsPids(selectedManifestations);
   const { track } = useStatistics();
   // This is used to track whether the user is changing between material types or just clicking the same button over
   const manifestationMaterialTypes = getMaterialTypes(selectedManifestations);
@@ -115,7 +117,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   return (
     <header className="material-header">
       <div className="material-header__cover">
-        <Cover id={pid} size="xlarge" animate shadow="small" />
+        <Cover ids={coverPids} size="xlarge" animate shadow="small" />
       </div>
       <div
         data-cy="material-header-content"

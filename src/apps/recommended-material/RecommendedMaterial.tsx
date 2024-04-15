@@ -90,7 +90,7 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
         />
       </div>
       <Cover
-        id={pid}
+        ids={[pid]}
         url={materialFullUrl}
         size="large"
         animate

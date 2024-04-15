@@ -6,10 +6,12 @@ import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { Cover } from "../cover/cover";
 import {
   creatorsToString,
-  flattenCreators
+  flattenCreators,
+  getManifestationsPids
 } from "../../core/utils/helpers/general";
 import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
+import { Manifestation } from "../../core/utils/types/entities";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -50,6 +52,9 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           getManifestationLanguageIsoCode([
             item.work.manifestations.bestRepresentation
           ]);
+        const coverPids = getManifestationsPids(
+          (item.work?.manifestations.all ?? []) as Manifestation[]
+        );
 
         return (
           <li
@@ -66,12 +71,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
             {/* eslint-enable react/jsx-props-no-spreading */}
             <div className="autosuggest__material-card">
               {item.work && (
-                <Cover
-                  animate
-                  size="xsmall"
-                  id={item.work.manifestations.bestRepresentation.pid}
-                  shadow="small"
-                />
+                <Cover animate size="xsmall" ids={coverPids} shadow="small" />
               )}
               <div className="autosuggest__info">
                 <div

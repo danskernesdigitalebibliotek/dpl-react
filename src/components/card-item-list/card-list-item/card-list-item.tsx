@@ -13,9 +13,9 @@ import Link from "../../atoms/links/Link";
 import {
   creatorsToString,
   flattenCreators,
-  getWorkPid,
   getReleaseYearSearchResult,
-  materialIsFiction
+  materialIsFiction,
+  getManifestationsPids
 } from "../../../core/utils/helpers/general";
 import CardListItemCover from "./card-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
@@ -73,7 +73,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
   const dispatch = useDispatch<TypedDispatch>();
   const queryClient = useQueryClient();
   const author = creatorsToString(flattenCreators(creators), t);
-  const manifestationPid = getWorkPid(item);
+  const manifestationPids = getManifestationsPids(manifestations);
   const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(
     materialUrl,
@@ -133,7 +133,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
       <div className="card-list-item__cover">
         {showItem && (
           <CardListItemCover
-            id={manifestationPid}
+            ids={manifestationPids}
             url={materialFullUrl}
             tint={coverTint}
             linkAriaLabelledBy={searchTitleId}

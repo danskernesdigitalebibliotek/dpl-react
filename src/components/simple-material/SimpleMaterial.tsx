@@ -65,7 +65,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
       className={`simple-material ${bright ? " simple-material--bright" : ""}`}
     >
       <div className="simple-material__cover-container">
-        <Cover animate size="medium" id={manifestationPid} />
+        <Cover animate size="medium" ids={[manifestationPid]} />
       </div>
       <div className="simple-material__favourite">
         <ButtonFavourite

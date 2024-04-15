@@ -10,7 +10,7 @@ export type CoverProps = {
   animate: boolean;
   size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
-  id: Pid | string;
+  ids: (Pid | string)[];
   alt?: string;
   url?: URL;
   idType?: GetCoverCollectionType;
@@ -24,7 +24,7 @@ export const Cover = ({
   size,
   animate,
   tint,
-  id,
+  ids,
   idType = "pid",
   shadow,
   linkAriaLabelledBy
@@ -43,7 +43,7 @@ export const Cover = ({
 
   const { data } = useGetCoverCollection({
     type: idType,
-    identifiers: [id],
+    identifiers: ids,
     sizes: [dataSize]
   });
 

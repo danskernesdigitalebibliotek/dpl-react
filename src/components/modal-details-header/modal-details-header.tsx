@@ -27,7 +27,7 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
   series,
   children
 }) => {
-  const coverId = pid || isbnForCover;
+  const coverIds = [pid || isbnForCover];
 
   return (
     <div className="modal-details__header">
@@ -35,7 +35,7 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
         <div className="material-container">
           <span className="material material--large bg-identity-tint-120 material__animate">
             <Cover
-              id={coverId}
+              ids={coverIds}
               idType={pid ? "pid" : "isbn"}
               size="large"
               animate={false}
