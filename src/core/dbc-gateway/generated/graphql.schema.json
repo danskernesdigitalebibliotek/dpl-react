@@ -258,6 +258,18 @@
         "description": null,
         "fields": [
           {
+            "name": "PEGI",
+            "description": "PEGI age rating for games ",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PEGI",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "ages",
             "description": "Range of numbers with either beginning of range or end of range or both e.g. 6-10, 1980-1999",
             "args": [],
@@ -360,6 +372,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "mediaCouncilAgeRestriction",
+            "description": "Media council age recommendation",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MediaCouncilAgeRestriction",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5257,6 +5281,41 @@
       },
       {
         "kind": "OBJECT",
+        "name": "MediaCouncilAgeRestriction",
+        "description": null,
+        "fields": [
+          {
+            "name": "display",
+            "description": "Display string for minimum age",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "minimumAge",
+            "description": "Minimum age",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "Mood",
         "description": null,
         "fields": [
@@ -5758,6 +5817,41 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PEGI",
+        "description": null,
+        "fields": [
+          {
+            "name": "display",
+            "description": "Display string for PEGI minimum age",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "minimumAge",
+            "description": "Minimum age to play the game. PEGI rating",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -10000,6 +10094,12 @@
             "deprecationReason": null
           },
           {
+            "name": "MOOD_CHILDREN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "MUSICAL_INSTRUMENTATION",
             "description": null,
             "isDeprecated": false,
@@ -10205,7 +10305,7 @@
           },
           {
             "name": "expires",
-            "description": null,
+            "description": "expires is required to be iso 8601 dateTime eg. \"2024-03-15T12:24:32Z\"",
             "type": {
               "kind": "SCALAR",
               "name": "String",

@@ -76,6 +76,8 @@ export enum AccessUrlType {
 
 export type Audience = {
   __typename?: "Audience";
+  /** PEGI age rating for games  */
+  PEGI?: Maybe<Pegi>;
   /** Range of numbers with either beginning of range or end of range or both e.g. 6-10, 1980-1999 */
   ages: Array<Range>;
   /** Is this material for children or adults */
@@ -88,6 +90,8 @@ export type Audience = {
   libraryRecommendation?: Maybe<Scalars["String"]>;
   /** Lix number of this manifestion, defines the reability level, Lix stands for læsbarhedsindex */
   lix?: Maybe<Scalars["String"]>;
+  /** Media council age recommendation */
+  mediaCouncilAgeRestriction?: Maybe<MediaCouncilAgeRestriction>;
   /** Number of players in the game. */
   players?: Maybe<Players>;
   /** Primary target audience for this manifestation */
@@ -820,6 +824,14 @@ export type MaterialType = {
   specific: Scalars["String"];
 };
 
+export type MediaCouncilAgeRestriction = {
+  __typename?: "MediaCouncilAgeRestriction";
+  /** Display string for minimum age */
+  display?: Maybe<Scalars["String"]>;
+  /** Minimum age */
+  minimumAge?: Maybe<Scalars["Int"]>;
+};
+
 export type Mood = Subject & {
   __typename?: "Mood";
   display: Scalars["String"];
@@ -896,6 +908,14 @@ export enum OrderType {
   Normal = "NORMAL",
   StackRetrieval = "STACK_RETRIEVAL"
 }
+
+export type Pegi = {
+  __typename?: "PEGI";
+  /** Display string for PEGI minimum age */
+  display?: Maybe<Scalars["String"]>;
+  /** Minimum age to play the game. PEGI rating */
+  minimumAge?: Maybe<Scalars["Int"]>;
+};
 
 export type PeriodicaArticleOrder = {
   authorOfComponent?: InputMaybe<Scalars["String"]>;
@@ -1435,6 +1455,7 @@ export enum SubjectType {
   Location = "LOCATION",
   MedicalSubjectHeading = "MEDICAL_SUBJECT_HEADING",
   Mood = "MOOD",
+  MoodChildren = "MOOD_CHILDREN",
   MusicalInstrumentation = "MUSICAL_INSTRUMENTATION",
   MusicCountryOfOrigin = "MUSIC_COUNTRY_OF_ORIGIN",
   MusicTimePeriod = "MUSIC_TIME_PERIOD",
@@ -1465,6 +1486,7 @@ export type SubmitOrderInput = {
   author?: InputMaybe<Scalars["String"]>;
   authorOfComponent?: InputMaybe<Scalars["String"]>;
   exactEdition?: InputMaybe<Scalars["Boolean"]>;
+  /** expires is required to be iso 8601 dateTime eg. "2024-03-15T12:24:32Z" */
   expires?: InputMaybe<Scalars["String"]>;
   key?: InputMaybe<Scalars["String"]>;
   orderType?: InputMaybe<OrderType>;
@@ -1738,8 +1760,6 @@ export enum WorkType {
   Track = "TRACK"
 }
 
-// TODO: DBC needs to fix the schema.
-// The `ComplexSearchFacetsNew`type is named like this, manually, to avoid conflicts with the `ComplexSearchFacets` type.
 /** The facets to ask for */
 export type ComplexSearchFacetsNew = {
   facetLimit: Scalars["Int"];
@@ -4222,6 +4242,7 @@ export type SuggestionsFromQueryStringQuery = {
         >;
         manifestations: {
           __typename?: "Manifestations";
+          all: Array<{ __typename?: "Manifestation"; pid: string }>;
           bestRepresentation: {
             __typename?: "Manifestation";
             pid: string;
@@ -6154,6 +6175,9 @@ export const SuggestionsFromQueryStringDocument = `
           display
         }
         manifestations {
+          all {
+            pid
+          }
           bestRepresentation {
             pid
             ...WithLanguages

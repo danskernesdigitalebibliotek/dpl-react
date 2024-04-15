@@ -12,6 +12,9 @@ query suggestionsFromQueryString($q: String!) {
           display
         }
         manifestations {
+          all {
+            pid
+          }
           bestRepresentation {
             pid
             ...WithLanguages
