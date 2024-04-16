@@ -42,18 +42,21 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
         if (!work) {
           return null;
         }
-        const { creators } = work;
+        const {
+          workId,
+          titles,
+          creators,
+          manifestations: { all: allManifestations, bestRepresentation }
+        } = work;
         const authors = flattenCreators(
           creators as WorkSmallFragment["creators"]
         );
 
         const manifestationLanguageIsoCode =
-          item.work?.manifestations.bestRepresentation &&
-          getManifestationLanguageIsoCode([
-            item.work.manifestations.bestRepresentation
-          ]);
+          bestRepresentation &&
+          getManifestationLanguageIsoCode([bestRepresentation]);
         const coverPids = getManifestationsPids(
-          (item.work?.manifestations.all ?? []) as Manifestation[]
+          (allManifestations ?? []) as Manifestation[]
         );
 
         return (
