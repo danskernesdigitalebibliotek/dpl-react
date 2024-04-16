@@ -3,7 +3,7 @@ import {
   CoverImageUrls,
   Cover as CoverType
 } from "../../core/cover-service-api/model";
-import { CoverProps } from "./cover";
+import { Manifestation } from "../../core/utils/types/entities";
 
 type CoverServiceSizes = keyof CoverImageUrls;
 
@@ -16,7 +16,7 @@ export const getCoverUrl = ({
   size
 }: {
   coverData: CoverType[] | null | undefined;
-  bestRepresentation: CoverProps["bestRepresentation"];
+  bestRepresentation?: Manifestation;
   size: CoverServiceSizes;
 }) => {
   if (!coverData) {
