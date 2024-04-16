@@ -21,6 +21,9 @@ updates:
       babel:
         patterns:
           - "@babel/*"
+      fullcalendar:
+        patterns:
+          - "@fullcalendar/*"
       graphql-codegen:
         patterns:
           - "@graphql-codegen/*"
