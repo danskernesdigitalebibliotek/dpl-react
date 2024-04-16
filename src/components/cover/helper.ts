@@ -96,7 +96,7 @@ if (import.meta.vitest) {
         coverData,
         size: "large"
       });
-      expect(url).toBe(null);
+      expect(url).toBeNull();
     });
 
     it("Should return null if the size does not exist", () => {
@@ -111,7 +111,7 @@ if (import.meta.vitest) {
         coverData: [],
         size: "small"
       });
-      expect(url).toBe(null);
+      expect(url).toBeNull();
     });
   });
 
