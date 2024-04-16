@@ -45,7 +45,7 @@ export default defineConfig({
       prettier: true
     },
     input: {
-      target: "https://cover.dandigbib.org/api/v2/spec.yaml",
+      target: "https://cover.dandigbib.org/spec.yaml",
       converterOptions: {
         indent: 2
       }

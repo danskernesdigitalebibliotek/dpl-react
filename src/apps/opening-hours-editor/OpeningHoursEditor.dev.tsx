@@ -4,7 +4,7 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import OpeningHoursEditor from "./OpeningHoursEditor.entry";
 
 export default {
-  title: "Apps / OpeningHoursEditor",
+  title: "Apps / Opening Hours Editor",
   component: OpeningHoursEditor,
   argTypes: {
     ...serviceUrlArgs,

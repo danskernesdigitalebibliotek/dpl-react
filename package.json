@@ -38,9 +38,9 @@
     "cypress:open": "cypress open",
     "codegen:dbc:gateway": "CODEGEN_SCHEMA_PROFILE=next graphql-codegen -r dotenv/config --config dbc-gateway.codegen.yml",
     "codegen:rest-services": "orval",
-    "codegen:client:fbs": "orval --project fbsAdapter",
-    "codegen:client:cover": "orval --project coverService",
-    "codegen:client:publizon": "orval --project publizonAdapter",
+    "codegen:client:fbs": "rm -rf src/core/fbs/model/*.* && orval --project fbsAdapter",
+    "codegen:client:cover": "rm -rf src/core/cover-service-api/model/*.* && orval --project coverService",
+    "codegen:client:publizon": "rm -rf src/core/publizon/model/*.* && orval --project publizonAdapter",
     "codegen:client:dpl-cms": "rm -rf src/core/dpl-cms/model/*.* && orval --project dplCms",
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
@@ -144,7 +144,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.15.0-25f5debbe4757dda1a1324bdd773fa6d9381bd27",
+    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.16.0-bc3c62df13c140271e26a5d5be9c9c23de13b1bf",
     "@fullcalendar/core": "^6.1.11",
     "@fullcalendar/daygrid": "^6.1.11",
     "@fullcalendar/interaction": "^6.1.11",

@@ -27,6 +27,10 @@ export default {
       defaultValue: "Week",
       control: { type: "text" }
     },
+    libraryIsClosedText: {
+      defaultValue: "The library is closed this day",
+      control: { type: "text" }
+    },
     openingHoursHeadingText: {
       defaultValue: "Opening hours",
       control: { type: "text" }
