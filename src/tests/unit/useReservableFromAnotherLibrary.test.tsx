@@ -73,7 +73,10 @@ describe("useReservableFromAnotherLibrary", () => {
     );
 
     act(() => {
-      expect(result.current).toEqual(["870970-basis:27721257"]);
+      expect(result.current.reservablePidsFromAnotherLibrary).toEqual([
+        "870970-basis:27721257"
+      ]);
+      expect(result.current.materialIsReservableFromAnotherLibrary).toBe(true);
     });
   });
 
@@ -103,7 +106,8 @@ describe("useReservableFromAnotherLibrary", () => {
     );
 
     act(() => {
-      expect(result.current).toEqual([]);
+      expect(result.current.reservablePidsFromAnotherLibrary).toEqual([]);
+      expect(result.current.materialIsReservableFromAnotherLibrary).toBe(false);
     });
   });
 });
