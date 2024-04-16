@@ -134,6 +134,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
         {showItem && (
           <CardListItemCover
             ids={manifestationPids}
+            bestRepresentation={bestRepresentation}
             url={materialFullUrl}
             tint={coverTint}
             linkAriaLabelledBy={searchTitleId}

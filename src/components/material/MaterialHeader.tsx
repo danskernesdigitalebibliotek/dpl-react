@@ -48,7 +48,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   work: {
     titles: { full: fullTitle },
     creators,
-    manifestations: { all: manifestations },
+    manifestations: { all: manifestations, bestRepresentation },
     mainLanguages,
     workId: wid
   },
@@ -117,7 +117,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   return (
     <header className="material-header">
       <div className="material-header__cover">
-        <Cover ids={coverPids} size="xlarge" animate shadow="small" />
+        <Cover
+          ids={coverPids}
+          bestRepresentation={bestRepresentation}
+          size="xlarge"
+          animate
+          shadow="small"
+        />
       </div>
       <div
         data-cy="material-header-content"

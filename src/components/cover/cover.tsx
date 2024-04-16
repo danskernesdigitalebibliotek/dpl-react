@@ -1,21 +1,70 @@
 import React, { useCallback, useState } from "react";
 import clsx from "clsx";
+import { first } from "lodash";
 import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
-import { GetCoverCollectionType } from "../../core/cover-service-api/model";
+import {
+  Cover as CoverType,
+  CoverImageUrls,
+  GetCoverCollectionType
+} from "../../core/cover-service-api/model";
 import { Pid } from "../../core/utils/types/ids";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import CoverImage from "./cover-image";
+import { Manifestation } from "../../core/utils/types/entities";
+
+type CoverServiceSizes = keyof CoverImageUrls;
 
 export type CoverProps = {
   animate: boolean;
   size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
   ids: (Pid | string)[];
+  bestRepresentation?: Manifestation;
   alt?: string;
   url?: URL;
   idType?: GetCoverCollectionType;
   shadow?: "small" | "medium";
   linkAriaLabelledBy?: string;
+};
+
+const getUrl = (cover: CoverType, size: CoverServiceSizes) =>
+  cover.imageUrls?.[size]?.url;
+
+const getCoverUrl = ({
+  coverData,
+  bestRepresentation,
+  size
+}: {
+  coverData: CoverType[] | null | undefined;
+  bestRepresentation: CoverProps["bestRepresentation"];
+  size: CoverServiceSizes;
+}) => {
+  if (!coverData) {
+    return null;
+  }
+
+  const firstCover = first(coverData);
+
+  if (!bestRepresentation && firstCover && getUrl(firstCover, size)) {
+    return getUrl(firstCover, size);
+  }
+
+  const bestRepresentationCover = first(
+    coverData.filter(
+      (item: CoverType) =>
+        bestRepresentation && item.id === bestRepresentation.pid
+    )
+  );
+
+  if (bestRepresentationCover && getUrl(bestRepresentationCover, size)) {
+    return getUrl(bestRepresentationCover, size);
+  }
+
+  if (firstCover && getUrl(firstCover, size)) {
+    return getUrl(firstCover, size);
+  }
+
+  return null;
 };
 
 export const Cover = ({
@@ -25,6 +74,7 @@ export const Cover = ({
   animate,
   tint,
   ids,
+  bestRepresentation,
   idType = "pid",
   shadow,
   linkAriaLabelledBy
@@ -47,7 +97,11 @@ export const Cover = ({
     sizes: [dataSize]
   });
 
-  const coverSrc = data?.[0]?.imageUrls?.[`${dataSize}`]?.url;
+  const coverSrc = getCoverUrl({
+    coverData: data,
+    bestRepresentation,
+    size: dataSize
+  });
 
   type TintClassesType = {
     [key: string]: string;
