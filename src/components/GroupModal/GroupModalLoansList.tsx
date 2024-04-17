@@ -7,7 +7,7 @@ import StatusMessage from "../../apps/loan-list/materials/selectable-material/St
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
 import { formatDate } from "../../core/utils/helpers/date";
 import { ListType } from "../../core/utils/types/list-type";
-import { isDigital } from "../../apps/loan-list/utils/helpers";
+import { getLoanDeliveryDate } from "../../apps/loan-list/utils/helpers";
 
 export interface GroupModalLoansListProps {
   materials: LoanType[];
@@ -60,21 +60,14 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
             statusBadgeComponent={
               <StatusBadge
                 badgeDate={loanType.dueDate}
-                neutralText={
-                  // Set the value of 'neutralText' based on the material type and due date
-                  loanType.dueDate
-                    ? t(
-                        isDigital(loanType)
-                          ? "groupModalDueDateDigitalMaterialText"
-                          : "groupModalDueDateMaterialText",
-                        {
-                          placeholders: {
-                            "@date": formatDate(loanType.dueDate)
-                          }
-                        }
-                      )
-                    : ""
-                }
+                neutralText={getLoanDeliveryDate(loanType, formatDate, t)}
+              />
+            }
+            statusBadgeComponentMobile={
+              <StatusBadge
+                badgeDate={loanType.dueDate}
+                neutralText={getLoanDeliveryDate(loanType, formatDate, t)}
+                mobileVersion
               />
             }
             statusMessageComponentDesktop={
