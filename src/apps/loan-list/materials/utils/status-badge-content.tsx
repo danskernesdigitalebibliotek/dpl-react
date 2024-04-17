@@ -4,18 +4,18 @@ import React, { FC } from "react";
 interface StatusBadgeContentProps {
   statusLabelType: "danger" | "warning" | "neutral" | "info";
   text: string;
-  mobileVersion?: boolean;
+  isMobileVersion?: boolean;
 }
 
 const StatusBadgeContent: FC<StatusBadgeContentProps> = ({
   statusLabelType,
   text,
-  mobileVersion = false
+  isMobileVersion = false
 }) => {
   return (
     <div
       className={clsx(`status-label status-label--${statusLabelType}`, [
-        { "hide-on-desktop ml-16": mobileVersion }
+        { "hide-on-desktop ml-16": isMobileVersion }
       ])}
     >
       {text}

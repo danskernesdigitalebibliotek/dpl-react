@@ -30,7 +30,7 @@ const StatusBadge: FC<StatusBadgeProps> = ({
   if (daysBetweenTodayAndDue < threshold.danger && dangerText) {
     return (
       <StatusBadgeContent
-        mobileVersion={mobileVersion}
+        isMobileVersion={mobileVersion}
         text={dangerText}
         statusLabelType="danger"
       />
@@ -40,7 +40,7 @@ const StatusBadge: FC<StatusBadgeProps> = ({
   if (daysBetweenTodayAndDue <= threshold.warning && warningText) {
     return (
       <StatusBadgeContent
-        mobileVersion={mobileVersion}
+        isMobileVersion={mobileVersion}
         text={warningText}
         statusLabelType="warning"
       />
@@ -50,7 +50,7 @@ const StatusBadge: FC<StatusBadgeProps> = ({
   if (neutralText && !showBadgeWithDueDate) {
     return (
       <StatusBadgeContent
-        mobileVersion={mobileVersion}
+        isMobileVersion={mobileVersion}
         text={neutralText}
         statusLabelType="neutral"
       />
@@ -60,7 +60,7 @@ const StatusBadge: FC<StatusBadgeProps> = ({
   if (infoText && !showBadgeWithDueDate) {
     return (
       <StatusBadgeContent
-        mobileVersion={mobileVersion}
+        isMobileVersion={mobileVersion}
         text={infoText}
         statusLabelType="info"
       />
@@ -70,7 +70,7 @@ const StatusBadge: FC<StatusBadgeProps> = ({
   if (dangerText && !showBadgeWithDueDate) {
     return (
       <StatusBadgeContent
-        mobileVersion={mobileVersion}
+        isMobileVersion={mobileVersion}
         text={dangerText}
         statusLabelType="danger"
       />
