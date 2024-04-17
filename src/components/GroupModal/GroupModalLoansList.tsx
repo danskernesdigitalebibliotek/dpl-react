@@ -24,16 +24,20 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
   selectMaterials,
   pageSize
 }) => {
+  // Show renewable materials first, then non-renewable
+  const groupedMaterials = materials.sort(
+    (a, b) => Number(!!b.isRenewable) - Number(!!a.isRenewable)
+  );
   const t = useText();
   const [displayedMaterials, setDisplayedMaterials] = useState<LoanType[]>([]);
   const { itemsShown, PagerComponent, firstInNewPage } = usePager({
-    hitcount: materials.length,
+    hitcount: groupedMaterials.length,
     pageSize
   });
 
   useEffect(() => {
-    setDisplayedMaterials([...materials].splice(0, itemsShown));
-  }, [itemsShown, materials]);
+    setDisplayedMaterials([...groupedMaterials].splice(0, itemsShown));
+  }, [itemsShown, groupedMaterials]);
 
   const onMaterialChecked = (item: ListType) => {
     const selectedMaterialsCopy = [...selectedMaterials];
