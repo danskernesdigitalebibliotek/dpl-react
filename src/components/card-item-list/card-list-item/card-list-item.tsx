@@ -32,6 +32,7 @@ import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
 import {
+  getFirstBookManifestation,
   getManifestationLanguageIsoCode,
   getNumberedSeries
 } from "../../../apps/material/helper";
@@ -69,6 +70,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
     filters,
     manifestations
   );
+  const bookManifestation = getFirstBookManifestation(manifestations);
 
   const dispatch = useDispatch<TypedDispatch>();
   const queryClient = useQueryClient();
@@ -134,7 +136,8 @@ const CardListItem: React.FC<CardListItemProps> = ({
         {showItem && (
           <CardListItemCover
             ids={manifestationPids}
-            bestRepresentation={bestRepresentation}
+            // We'll try to prioritize book covers or else use FBI's recommended manifestation.
+            bestRepresentation={bookManifestation ?? bestRepresentation}
             url={materialFullUrl}
             tint={coverTint}
             linkAriaLabelledBy={searchTitleId}
