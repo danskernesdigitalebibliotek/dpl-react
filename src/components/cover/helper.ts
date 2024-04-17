@@ -31,8 +31,8 @@ export const getCoverUrl = ({
 
   const bestRepresentationCover = first(
     coverData.filter(
-      (item: CoverType) =>
-        bestRepresentation && item.id === bestRepresentation.pid
+      (cover: CoverType) =>
+        bestRepresentation && cover.id === bestRepresentation.pid
     )
   );
 
