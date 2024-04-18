@@ -45,7 +45,7 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
   });
 
   if (isLoading || !data?.work) {
-    return <RecommendedMaterialSkeleton />;
+    return <RecommendedMaterialSkeleton partOfGrid={partOfGrid} />;
   }
 
   const {
