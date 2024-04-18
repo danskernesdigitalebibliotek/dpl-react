@@ -6,9 +6,26 @@ import {
 import { Manifestation } from "../../core/utils/types/entities";
 
 type CoverServiceSizes = keyof CoverImageUrls;
+type CoverData = CoverType[] | null | undefined;
 
 const getUrl = (cover: CoverType, size: CoverServiceSizes) =>
   cover.imageUrls?.[size]?.url;
+
+const coverDataRemoveEmptyCovers = ({
+  coverData,
+  size
+}: {
+  coverData: CoverData;
+  size: CoverServiceSizes;
+}) => {
+  if (!coverData) {
+    return [];
+  }
+
+  return coverData.filter((cover: CoverType) => {
+    return getUrl(cover, size);
+  });
+};
 
 export const getCoverUrl = ({
   coverData,
@@ -23,27 +40,35 @@ export const getCoverUrl = ({
     return null;
   }
 
-  const firstCover = first(coverData);
+  // Make sure we only have covers in our data that has an url in the given size.
+  const covers = coverDataRemoveEmptyCovers({ coverData, size });
+  // Get the first cover which we can use as a fallback cover.
+  const firstCover = first(covers);
 
+  // If no best representation has been given use first cover if available.
   if (!bestRepresentation && firstCover && getUrl(firstCover, size)) {
     return getUrl(firstCover, size);
   }
 
+  // See if we can find a cover that has same id as the best representation id.
   const bestRepresentationCover = first(
-    coverData.filter(
+    covers.filter(
       (cover: CoverType) =>
         bestRepresentation && cover.id === bestRepresentation.pid
     )
   );
 
+  // If we have a best representation cover in the given size use that.
   if (bestRepresentationCover && getUrl(bestRepresentationCover, size)) {
     return getUrl(bestRepresentationCover, size);
   }
 
+  // If the best representation method failed we try the first cover.
   if (firstCover && getUrl(firstCover, size)) {
     return getUrl(firstCover, size);
   }
 
+  // Everything else failed. We don't know what to do 🤷.
   return null;
 };
 
