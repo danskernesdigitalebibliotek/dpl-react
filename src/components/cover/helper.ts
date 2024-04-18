@@ -40,7 +40,7 @@ export const getCoverUrl = ({
     return null;
   }
 
-  // Make sure we only have covers in our data that has an url in the given size.
+  // Make sure we only have covers in our data that has a url in the given size.
   const covers = coverDataRemoveEmptyCovers({ coverData, size });
   // Get the first cover which we can use as a fallback cover.
   const firstCover = first(covers);
