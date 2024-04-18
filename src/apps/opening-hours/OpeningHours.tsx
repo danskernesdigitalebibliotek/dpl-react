@@ -54,6 +54,7 @@ const OpeningHours: React.FC<OpeningHoursProps> = ({
         </h2>
         <div className="opening-hours__navigation-controls">
           <button
+            data-cy="opening-hours-previous-week-button"
             className="opening-hours__navigation-control"
             aria-label={previousWeekString}
             onClick={navigateToPreviousWeek}
@@ -63,6 +64,7 @@ const OpeningHours: React.FC<OpeningHoursProps> = ({
           </button>
           <div className="opening-hours__week-display">{currentWeekString}</div>
           <button
+            data-cy="opening-hours-next-week-button"
             className="opening-hours__navigation-control opening-hours__navigation-control--next"
             aria-label={nextWeekString}
             onClick={navigateToNextWeek}

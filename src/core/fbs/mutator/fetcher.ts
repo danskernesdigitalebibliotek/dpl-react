@@ -16,7 +16,7 @@ export const fetcher = async <ResponseType>({
   data
 }: {
   url: string;
-  method: "get" | "post" | "put" | "delete" | "patch" | "head";
+  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD";
   headers?: object;
   params?: unknown;
   data?: BodyType<unknown>;
