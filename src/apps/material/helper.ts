@@ -411,19 +411,29 @@ export const isParallelReservation = (manifestations: Manifestation[]) =>
   hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
   !isArticle(manifestations);
 
-// Because we  need to exclude the branches that are blacklisted, we need to use a custom hook to prevent duplicate code
+// Because we need to exclude the branches that are blacklisted, we need to
+// use a custom hook to prevent duplicate code
 export const getBlacklistedQueryArgs = (
   faustIds: FaustId[],
   config: UseConfigFunction,
-  blacklist: "availability" | "pickup"
+  blacklist: "availability" | "pickup" | "both"
 ) => {
-  const configKey =
-    blacklist === "availability"
-      ? "blacklistedAvailabilityBranchesConfig"
-      : "blacklistedPickupBranchesConfig";
-  const blacklistBranches = config(configKey, {
+  const configKey = {
+    availability: "blacklistedAvailabilityBranchesConfig",
+    pickup: "blacklistedPickupBranchesConfig",
+    both: "blacklistedAvailabilityBranchesConfig"
+  };
+  let blacklistBranches = config(configKey[blacklist], {
     transformer: "stringToArray"
   });
+  // If we want to blacklist both availability and pickup branches we now add the
+  // complimentary blacklist
+  if (blacklist === "both") {
+    const additionalBlacklistBranches = config(configKey.pickup, {
+      transformer: "stringToArray"
+    });
+    blacklistBranches = blacklistBranches.concat(additionalBlacklistBranches);
+  }
   return {
     recordid: faustIds,
     ...(blacklistBranches ? { exclude: blacklistBranches } : {})
@@ -442,16 +452,19 @@ export const getAvailability = async ({
 export const useGetHoldings = ({
   faustIds,
   config,
+  useAvailabilityBlacklist = false,
   options
 }: {
   faustIds: FaustId[];
   config: UseConfigFunction;
+  useAvailabilityBlacklist?: boolean;
   options?: {
     query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>>;
   };
 }) => {
+  const blacklistedBranches = useAvailabilityBlacklist ? "both" : "pickup";
   const { data, isLoading, isError } = useGetHoldingsV3(
-    getBlacklistedQueryArgs(faustIds, config, "pickup"),
+    getBlacklistedQueryArgs(faustIds, config, blacklistedBranches),
     options
   );
   return { data, isLoading, isError };

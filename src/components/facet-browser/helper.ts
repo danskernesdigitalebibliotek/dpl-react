@@ -10,16 +10,16 @@ import { Filter, FilterItemTerm } from "../../core/filter.slice";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 
 export const allFacetFields = [
-  FacetField.MainLanguages,
-  FacetField.AccessTypes,
-  FacetField.ChildrenOrAdults,
+  FacetField.WorkTypes,
   FacetField.Creators,
+  FacetField.Subjects,
   FacetField.FictionNonfiction,
-  FacetField.FictionalCharacters,
+  FacetField.ChildrenOrAdults,
+  FacetField.AccessTypes,
+  FacetField.MainLanguages,
   FacetField.GenreAndForm,
   FacetField.MaterialTypesSpecific,
-  FacetField.Subjects,
-  FacetField.WorkTypes
+  FacetField.FictionalCharacters
 ];
 
 export const getPlaceHolderFacets = (facets: string[]) =>

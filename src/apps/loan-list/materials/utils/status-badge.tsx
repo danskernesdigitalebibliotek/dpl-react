@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { daysBetweenTodayAndDate } from "../../../../core/utils/helpers/general";
 import useLoanThresholds from "../../../../core/utils/useLoanThresholds";
+import StatusBadgeContent from "./status-badge-content";
 
 interface StatusBadgeProps {
   badgeDate?: string | null;
@@ -9,6 +10,7 @@ interface StatusBadgeProps {
   neutralText?: string;
   infoText?: string;
   showBadgeWithDueDate?: boolean;
+  mobileVersion?: boolean;
 }
 
 const StatusBadge: FC<StatusBadgeProps> = ({
@@ -17,7 +19,8 @@ const StatusBadge: FC<StatusBadgeProps> = ({
   showBadgeWithDueDate = false,
   dangerText,
   infoText,
-  neutralText
+  neutralText,
+  mobileVersion = false
 }) => {
   const threshold = useLoanThresholds();
   const daysBetweenTodayAndDue = badgeDate
@@ -26,29 +29,51 @@ const StatusBadge: FC<StatusBadgeProps> = ({
 
   if (daysBetweenTodayAndDue < threshold.danger && dangerText) {
     return (
-      <div className="status-label status-label--danger">{dangerText}</div>
+      <StatusBadgeContent
+        isMobileVersion={mobileVersion}
+        text={dangerText}
+        statusLabelType="danger"
+      />
     );
   }
 
   if (daysBetweenTodayAndDue <= threshold.warning && warningText) {
     return (
-      <div className="status-label status-label--warning">{warningText}</div>
+      <StatusBadgeContent
+        isMobileVersion={mobileVersion}
+        text={warningText}
+        statusLabelType="warning"
+      />
     );
   }
 
   if (neutralText && !showBadgeWithDueDate) {
     return (
-      <div className="status-label status-label--neutral">{neutralText}</div>
+      <StatusBadgeContent
+        isMobileVersion={mobileVersion}
+        text={neutralText}
+        statusLabelType="neutral"
+      />
     );
   }
 
   if (infoText && !showBadgeWithDueDate) {
-    return <div className="status-label status-label--info">{infoText}</div>;
+    return (
+      <StatusBadgeContent
+        isMobileVersion={mobileVersion}
+        text={infoText}
+        statusLabelType="info"
+      />
+    );
   }
 
   if (dangerText && !showBadgeWithDueDate) {
     return (
-      <div className="status-label status-label--danger">{dangerText}</div>
+      <StatusBadgeContent
+        isMobileVersion={mobileVersion}
+        text={dangerText}
+        statusLabelType="danger"
+      />
     );
   }
 

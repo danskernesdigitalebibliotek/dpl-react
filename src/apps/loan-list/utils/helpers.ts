@@ -83,4 +83,24 @@ export const getStackedItems = (
   return returnLoans;
 };
 
+export const getLoanDeliveryDate = (
+  loanType: LoanType,
+  formatDate: (date: string) => string,
+  t: UseTextFunction
+) => {
+  // Set the value of 'neutralText' based on the material type and due date
+  return loanType.dueDate
+    ? t(
+        isDigital(loanType)
+          ? "groupModalDueDateDigitalMaterialText"
+          : "groupModalDueDateMaterialText",
+        {
+          placeholders: {
+            "@date": formatDate(loanType.dueDate)
+          }
+        }
+      )
+    : "";
+};
+
 export default {};
