@@ -29,7 +29,7 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   });
 
   if (isLoading || !data) {
-    return <MaterialGridSkeleton />;
+    return <MaterialGridSkeleton title={title} />;
   }
 
   const resultWorks: Work[] = data.complexSearch.works as Work[];
