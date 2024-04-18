@@ -6,10 +6,12 @@ import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import { Cover } from "../cover/cover";
 import {
   creatorsToString,
-  flattenCreators
+  flattenCreators,
+  getManifestationsPids
 } from "../../core/utils/helpers/general";
 import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
+import { Manifestation } from "../../core/utils/types/entities";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -40,16 +42,22 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
         if (!work) {
           return null;
         }
-        const { creators } = work;
+        const {
+          workId,
+          titles,
+          creators,
+          manifestations: { all: allManifestations, bestRepresentation }
+        } = work;
         const authors = flattenCreators(
           creators as WorkSmallFragment["creators"]
         );
 
         const manifestationLanguageIsoCode =
-          item.work?.manifestations.bestRepresentation &&
-          getManifestationLanguageIsoCode([
-            item.work.manifestations.bestRepresentation
-          ]);
+          bestRepresentation &&
+          getManifestationLanguageIsoCode([bestRepresentation]);
+        const coverPids = getManifestationsPids(
+          (allManifestations ?? []) as Manifestation[]
+        );
 
         return (
           <li
@@ -59,26 +67,25 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
               "autosuggest__material-item--highlight":
                 highlightedIndex === index
             })}
-            key={item.work?.workId}
+            key={workId}
             {...getItemProps({ item, index })}
             data-cy={dataCy}
           >
             {/* eslint-enable react/jsx-props-no-spreading */}
             <div className="autosuggest__material-card">
-              {item.work && (
-                <Cover
-                  animate
-                  size="xsmall"
-                  id={item.work.manifestations.bestRepresentation.pid}
-                  shadow="small"
-                />
-              )}
+              <Cover
+                animate
+                size="xsmall"
+                ids={coverPids}
+                bestRepresentation={bestRepresentation as Manifestation}
+                shadow="small"
+              />
               <div className="autosuggest__info">
                 <div
                   lang={manifestationLanguageIsoCode}
                   className="text-body-medium-medium autosuggest__title"
                 >
-                  {item.work?.titles.main[0]}
+                  {titles.main[0]}
                 </div>
                 <div className="text-body-small-regular autosuggest__author">
                   {creatorsToString(authors, t)}

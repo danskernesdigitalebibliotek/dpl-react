@@ -22,7 +22,6 @@ import {
   isParallelReservation
 } from "./helper";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { getManifestationPid } from "../../core/utils/helpers/general";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
 import { useStatistics } from "../../core/statistics/useStatistics";
@@ -38,6 +37,7 @@ import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import { useGetWork } from "../../core/utils/useGetWork";
+import { getWorkPid } from "../../core/utils/helpers/general";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -137,7 +137,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   } = data as { work: Work };
 
-  const pid = getManifestationPid(manifestations);
+  const pid = getWorkPid(work);
   const detailsListData = getDetailsListData({
     manifestation: selectedManifestations[0],
     work,

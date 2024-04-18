@@ -29,7 +29,7 @@ const FeeInfo: FC<FeeInfoProps> = ({
     <div className="list-reservation__material">
       <div>
         <Cover
-          id={pid as Pid}
+          ids={[pid as Pid]}
           idType="pid"
           size="small"
           animate={false}
