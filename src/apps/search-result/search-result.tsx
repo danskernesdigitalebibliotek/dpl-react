@@ -30,6 +30,7 @@ import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultZeroHits from "./search-result-zero-hits";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
+import { shouldShowInvalidSearchPage } from "./helper";
 
 interface SearchResultProps {
   q: string;
@@ -166,7 +167,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
-  if (!qUrlParameter || qUrlParameter.length < 3) {
+  if (shouldShowInvalidSearchPage(q, qUrlParameter)) {
     return <SearchResultInvalidSearch />;
   }
 
