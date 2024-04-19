@@ -13,6 +13,9 @@ interface OpeningHoursEditorEntryTextProps {
   openingHoursEventFormStartTimeText: string;
   openingHoursEventFormEndTimeText: string;
   openingHoursEventFormSubmitText: string;
+  openingHoursEventFormRepeatedText: string;
+  openingHoursEventFormWeklyText: string;
+  openingHoursEventFormEndDateText: string;
 }
 
 interface OpeningHoursEditorEntryConfigProps {

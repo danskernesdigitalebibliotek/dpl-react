@@ -112,3 +112,15 @@ export const updateDateTime = (date: Date, timeStr: string) => {
   const [hours, minutes] = timeStr.split(":").map(Number);
   return dayjs(date).hour(hours).minute(minutes).toDate();
 };
+
+export const getWeekDayName = (date: Date) => {
+  return dayjs(date).format("dddd");
+};
+
+export const getDateString = (date: Date) => {
+  return dayjs(date).format("DD-MM-YYYY");
+};
+
+export const getStringForDateInput = (date: Date) => {
+  return dayjs(date).format("YYYY-MM-DD");
+};

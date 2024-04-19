@@ -3,7 +3,6 @@ import { DateSelectArg } from "@fullcalendar/core";
 import {
   adjustEndDateToStartDayGridMonth,
   adjustEndDateToStartDayTimeGridWeek,
-  extractTime,
   formatDateStr,
   formatFullCalendarEventToCmsEvent,
   updateDateTime
@@ -32,8 +31,15 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
   const handleSubmit: EventFormOnSubmitType = (
     category,
     startTime,
-    endTime
+    endTime,
+    repeatedEndDate
   ) => {
+    if (repeatedEndDate) {
+      // eslint-disable-next-line no-alert
+      alert("Repeated event is not supported yet");
+      closeDialog();
+      return;
+    }
     const start = updateDateTime(selectedEventInfo.start, startTime);
     const startStr = formatDateStr(start);
     let end = updateDateTime(selectedEventInfo.end, endTime);
@@ -71,9 +77,10 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
   return (
     <EventForm
       openingHoursCategories={openingHoursCategories}
-      initialStartTime={extractTime(selectedEventInfo.start)}
-      initialEndTime={extractTime(selectedEventInfo.end)}
+      startDate={selectedEventInfo.start}
+      endDate={selectedEventInfo.end}
       onSubmit={handleSubmit}
+      isRepeatedOpeningHour
     />
   );
 };

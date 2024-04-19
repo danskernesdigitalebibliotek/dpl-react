@@ -4,39 +4,54 @@
 import React, { useEffect, useState } from "react";
 import { OpeningHoursCategoriesType } from "./types";
 import { useText } from "../../core/utils/text";
+import {
+  extractTime,
+  getDateString,
+  getStringForDateInput,
+  getWeekDayName
+} from "./helper";
 
 export type EventFormOnSubmitType = (
   category: OpeningHoursCategoriesType,
   startTime: string,
-  endTime: string
+  endTime: string,
+  repeatedEndDate: string | null
 ) => void;
 
 type EventFormProps = {
   initialTitle?: string;
-  initialStartTime: string;
-  initialEndTime: string;
+  startDate: Date;
+  endDate: Date;
   onSubmit: EventFormOnSubmitType;
   openingHoursCategories: OpeningHoursCategoriesType[];
   children?: React.ReactNode;
+  isRepeatedOpeningHour?: boolean;
 };
 
 const EventForm: React.FC<EventFormProps> = ({
   initialTitle,
-  initialStartTime,
-  initialEndTime,
+  startDate,
+  endDate,
   onSubmit,
   openingHoursCategories,
-  children
+  children,
+  isRepeatedOpeningHour
 }) => {
   const t = useText();
   const initialCategory = initialTitle
     ? openingHoursCategories.find((category) => category.title === initialTitle)
     : openingHoursCategories[0];
 
+  const initialStartTime = extractTime(startDate);
+  const initialEndTime = extractTime(endDate);
+  const weekDayName = getWeekDayName(startDate);
+
   const [startTime, setStartTime] = useState(initialStartTime);
   const [endTime, setEndTime] = useState(initialEndTime);
   const [category, setCategory] = useState(initialCategory);
   const isSameTime = startTime === endTime;
+  const [isRepeated, setIsRepeated] = useState(false);
+  const [repeatedEndDate, setRepeatedEndDate] = useState<null | string>(null);
 
   // Reset the form when the initial values change
   // This is necessary because EventForm are reused
@@ -44,12 +59,14 @@ const EventForm: React.FC<EventFormProps> = ({
     setCategory(initialCategory);
     setStartTime(initialStartTime);
     setEndTime(initialEndTime);
+    setIsRepeated(false);
+    setRepeatedEndDate(null);
   }, [initialCategory, initialEndTime, initialStartTime]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (category) {
-      onSubmit(category, startTime, endTime);
+      onSubmit(category, startTime, endTime, repeatedEndDate);
     }
   };
 
@@ -112,7 +129,70 @@ const EventForm: React.FC<EventFormProps> = ({
         min={startTime}
         max="00:00"
       />
-      {children}
+      {isRepeatedOpeningHour && (
+        <>
+          <div className="opening-hours-editor-form__checkbox">
+            <input
+              id="event-form-repeated"
+              data-cy="opening-hours-editor-form-repeated"
+              type="checkbox"
+              checked={isRepeated}
+              onChange={(e) => setIsRepeated(e.target.checked)}
+            />
+            <label
+              className="opening-hours-editor-form__label"
+              htmlFor="event-form-repeated"
+            >
+              {t("openingHoursEventFormRepeatedText", {
+                placeholders: { "@startDate": getDateString(startDate) }
+              })}
+            </label>
+          </div>
+
+          <div className="opening-hours-editor-form__checkbox">
+            <input
+              id="event-form-weekly"
+              data-cy="opening-hours-editor-form-week-day"
+              type="checkbox"
+              checked={isRepeated}
+              disabled={!isRepeated}
+            />
+            <label className="" htmlFor="event-form-weekly">
+              {t("openingHoursEventFormWeklyText")}
+            </label>
+          </div>
+
+          <div className="opening-hours-editor-form__checkbox">
+            <input
+              id="event-form-week-day"
+              data-cy="opening-hours-editor-form-week-day"
+              type="checkbox"
+              checked={isRepeated}
+              disabled={!isRepeated}
+            />
+            <label className="" htmlFor="event-form-week-day">
+              {weekDayName}
+            </label>
+          </div>
+
+          <label
+            className="opening-hours-editor-form__label"
+            htmlFor="event-form-end-date"
+          >
+            {t("openingHoursEventFormEndDateText")}
+          </label>
+          <input
+            type="date"
+            className="opening-hours-editor-form__time-input"
+            id="event-form-end-date"
+            min={getStringForDateInput(startDate)}
+            disabled={!isRepeated}
+            required={isRepeated}
+            value={repeatedEndDate || ""}
+            onChange={(e) => setRepeatedEndDate(e.target.value)}
+          />
+        </>
+      )}
       <button
         data-cy="opening-hours-editor-form-submit"
         type="submit"
@@ -121,6 +201,7 @@ const EventForm: React.FC<EventFormProps> = ({
       >
         {t("openingHoursEventFormSubmitText")}
       </button>
+      {children}
     </form>
   );
 };

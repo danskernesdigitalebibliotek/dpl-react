@@ -2,7 +2,6 @@ import React from "react";
 import { EventImpl } from "@fullcalendar/core/internal";
 import {
   adjustEndDateBasedOnStartDate,
-  extractTime,
   formatFullCalendarEventToCmsEvent,
   updateDateTime
 } from "./helper";
@@ -60,8 +59,8 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
   return (
     <EventForm
       initialTitle={eventInfo.title}
-      initialStartTime={extractTime(eventInfo.start)}
-      initialEndTime={extractTime(eventInfo.end)}
+      startDate={eventInfo.start}
+      endDate={eventInfo.end}
       onSubmit={handleSubmit}
       openingHoursCategories={openingHoursCategories}
     >

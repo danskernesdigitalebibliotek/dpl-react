@@ -54,6 +54,22 @@ export default {
       name: "Opening hours event form submit",
       defaultValue: "Submit",
       control: { type: "text" }
+    },
+    openingHoursEventFormRepeatedText: {
+      name: "Opening hours event form repeated",
+      defaultValue: "Repeat opening hour from @startDate",
+      control: { type: "text" }
+    },
+    openingHoursEventFormWeklyText: {
+      name: "Opening hours event form weekly",
+      defaultValue: "Weekly",
+      control: { type: "text" }
+    },
+
+    openingHoursEventFormEndDateText: {
+      name: "Opening hours event to end date",
+      defaultValue: "End date",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof OpeningHoursEditor>;
