@@ -166,7 +166,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
-  if (qUrlParameter === null || qUrlParameter.length < 3) {
+  if (!qUrlParameter || qUrlParameter.length < 3) {
     return <SearchResultInvalidSearch />;
   }
 
