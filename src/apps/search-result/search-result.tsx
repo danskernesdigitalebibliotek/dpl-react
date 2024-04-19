@@ -29,6 +29,7 @@ import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultZeroHits from "./search-result-zero-hits";
+import SearchResultInvalidSearch from "./search-result-not-valid-search";
 
 interface SearchResultProps {
   q: string;
@@ -36,6 +37,8 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
+  const queryParametersFromUrl = new URLSearchParams(window.location.search);
+  const qUrlParameter = queryParametersFromUrl.get("q");
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
@@ -163,11 +166,19 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
+  if (qUrlParameter === null || qUrlParameter.length < 3) {
+    return <SearchResultInvalidSearch />;
+  }
+
   if (isLoading) {
     return <SearchResultSkeleton q={q} />;
   }
 
   if (hitcount === 0) {
+    return <SearchResultZeroHits />;
+  }
+
+  if (q === "") {
     return <SearchResultZeroHits />;
   }
 
