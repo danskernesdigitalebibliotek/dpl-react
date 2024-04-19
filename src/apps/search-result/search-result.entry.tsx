@@ -38,6 +38,8 @@ interface SearchResultEntryTextProps {
   noSearchResultText: string;
   showMoreText: string;
   showResultsText: string;
+  invalidSearchText: string;
+  invalidSearchDescriptionText: string;
 }
 
 interface SearchResultEntryConfigProps {
