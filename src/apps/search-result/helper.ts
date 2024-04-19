@@ -18,4 +18,13 @@ export const getFirstMaterialTypeFromFilters = (
     : undefined;
 };
 
+export const shouldShowInvalidSearchPage = (
+  q: string,
+  qUrlParameter: string | null
+) => {
+  return (
+    (!qUrlParameter && !q) || (!qUrlParameter && q === "null") || q.length < 3
+  );
+};
+
 export default {};
