@@ -35,9 +35,9 @@ export default {
       defaultValue: new Date("2024-03-25"),
       control: { type: "date" }
     },
-    openingHoursEventFormTitleText: {
-      name: "Opening hours event form title",
-      defaultValue: "Title",
+    openingHoursEventFormCategoryText: {
+      name: "Opening hours event form category",
+      defaultValue: "Opening hour",
       control: { type: "text" }
     },
     openingHoursEventFormStartTimeText: {
@@ -69,6 +69,31 @@ export default {
     openingHoursEventFormEndDateText: {
       name: "Opening hours event to end date",
       defaultValue: "End date",
+      control: { type: "text" }
+    },
+    openingHoursEventFormStartDateText: {
+      name: "Opening hours event form start date",
+      defaultValue: "Start date",
+      control: { type: "text" }
+    },
+    openingHoursEventFormEveryWeekdayText: {
+      name: "Opening hours event form every weekday",
+      defaultValue: "Every",
+      control: { type: "text" }
+    },
+    openingHoursConfirmAddRepeatedText: {
+      name: "Opening hours confirm add repeated",
+      defaultValue: "Do you want to add this repeated opening hour?",
+      control: { type: "text" }
+    },
+    openingHoursConfirmAddRepeatedCancelText: {
+      name: "Opening hours confirm add repeated cancel",
+      defaultValue: "Cancel",
+      control: { type: "text" }
+    },
+    openingHoursConfirmAddRepeatedSubmitText: {
+      name: "Opening hours confirm add repeated submit",
+      defaultValue: "I'm sure",
       control: { type: "text" }
     }
   }
