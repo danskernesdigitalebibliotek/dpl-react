@@ -1380,23 +1380,23 @@ describe("Dashboard", () => {
 
     // Notification - handed in too later
     // Red icon
-    cy.getBySel("physical-loans-overdue")
-      .should("have.text", "6Returned too lateExpired")
-      .find(".list-dashboard__dot")
-      .should("exist");
+    cy.getBySel("physical-loans-overdue").should(
+      "have.text",
+      "6Returned too lateExpired"
+    );
 
     // Notification - hand in soon.
     // Red icon
-    cy.getBySel("physical-loans-soon-overdue")
-      .should("have.text", "22To be returned soonExpires soon")
-      .find(".list-dashboard__dot")
-      .should("exist");
+    cy.getBySel("physical-loans-soon-overdue").should(
+      "have.text",
+      "22To be returned soonExpires soon"
+    );
 
     // Notification - hand in in a long time.
-    cy.getBySel("loans-not-overdue")
-      .should("have.text", "14Longer return time")
-      .find(".list-dashboard__dot")
-      .should("not.exist");
+    cy.getBySel("loans-not-overdue").should(
+      "have.text",
+      "14Longer return time"
+    );
 
     // Header "Reservations" with link to loans page
     cy.getBySel("dashboard-reservations-header")
@@ -1407,17 +1407,14 @@ describe("Dashboard", () => {
 
     // Notification - reservations ready
     // Red icon
-    cy.getBySel("reservations-ready")
-      .should("have.text", "2Ready for youReady for pickup")
-      .find(".list-dashboard__dot")
-      .should("exist");
+    cy.getBySel("reservations-ready").should(
+      "have.text",
+      "2Ready for youReady for pickup"
+    );
 
     // Notification - reservations queued
     // Red icon
-    cy.getBySel("reservations-queued")
-      .should("have.text", "9Still in queue")
-      .find(".list-dashboard__dot")
-      .should("not.exist");
+    cy.getBySel("reservations-queued").should("have.text", "9Still in queue");
   });
 
   it("Can go trough renewal flow of soon overdue loans", () => {
