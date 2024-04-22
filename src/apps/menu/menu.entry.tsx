@@ -44,6 +44,8 @@ export interface MenuProps {
   menuNotAuthenticatedModalDescriptionText: string;
   physicalLoansUrl: string;
   reservationsUrl: string;
+  searchHeaderLoginText: string;
+  searchHeaderFavoritesText: string;
 }
 
 export interface MenuEntryProps
