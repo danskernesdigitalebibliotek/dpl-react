@@ -202,7 +202,7 @@ describe("Fee list", () => {
     cy.wait(["@digital_loans"]);
     cy.wait(["@physical_loans_no_overdue"]);
 
-    cy.getBySel("warning-bar").should("be.visible");
+    cy.getBySel("warning-bar").should("not.be.visible");
   });
 });
 
