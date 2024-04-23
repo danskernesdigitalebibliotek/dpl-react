@@ -94,7 +94,7 @@ export const physicalLoansDataWithOverdue = [
       periodical: null,
       loanDate: "2022-10-16T16:43:25.325",
       // Should have been handed in yesterday, renders a overdue-warning
-      dueDate: "2022-10-20",
+      dueDate: "2021-10-20",
       loanType: "loan",
       ilBibliographicRecord: null,
       materialGroup: {
