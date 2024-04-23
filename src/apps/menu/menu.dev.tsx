@@ -165,6 +165,14 @@ export default {
     expirationWarningDaysBeforeConfig: {
       defaultValue: "6",
       control: { type: "text" }
+    },
+    searchHeaderLoginText: {
+      defaultValue: "Login",
+      control: { type: "text" }
+    },
+    searchHeaderFavoritesText: {
+      defaultValue: "Liked",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof WrappedMenu>;
