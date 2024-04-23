@@ -38,14 +38,14 @@ describe("Fee list", () => {
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
       body: digitalLoansData
-    }).as("digital loans");
-
-    cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
-    cy.wait(["@fees"]);
-    cy.wait(["@digital loans"]);
+    }).as("digital_loans");
   });
 
   it("Fee list basics (physical loans)", () => {
+    cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
+    cy.wait(["@fees"]);
+    cy.wait(["@digital_loans"]);
+
     // Wait for element not in skeleton screen to prevent testing prematurely.
     cy.get(".status-label").should("be.visible");
 
@@ -182,21 +182,25 @@ describe("Fee list", () => {
   });
 
   it("Should show a warning bar if user has overdue loans", () => {
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2", {
       statusCode: 200,
       body: physicalLoansDataWithOverdue
     }).as("physical loans with overdue");
+    cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
+    cy.wait(["@digital_loans"]);
     cy.wait(["@physical loans with overdue"]);
 
     cy.getBySel("warning-bar").should("be.visible");
   });
 
   it("Shouldn't render warning bar if user has no overdue loans", () => {
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2", {
       statusCode: 200,
       body: physicalLoansDataNoOverdue
-    }).as("physical loans no overdue");
-    cy.wait(["@physical loans no overdue"]);
+    }).as("physical_loans_no_overdue");
+    cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
+    cy.wait(["@digital_loans"]);
+    cy.wait(["@physical_loans_no_overdue"]);
 
     cy.getBySel("warning-bar").should("be.visible");
   });
