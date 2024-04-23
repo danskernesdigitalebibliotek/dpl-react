@@ -30,7 +30,6 @@ import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultZeroHits from "./search-result-zero-hits";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
-import { shouldShowInvalidSearchPage } from "./helper";
 
 interface SearchResultProps {
   q: string;
@@ -38,8 +37,6 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
-  const queryParametersFromUrl = new URLSearchParams(window.location.search);
-  const qUrlParameter = queryParametersFromUrl.get("q");
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
@@ -55,6 +52,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     null
   );
   const { facets: campaignFacets } = useGetFacets(q, filters);
+  const minimalQueryLength = 3;
 
   // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
@@ -99,12 +97,15 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     addFilterFromUrlParamListener(FacetField.WorkTypes);
   }, [addFilterFromUrlParamListener]);
 
-  const { data, isLoading } = useSearchWithPaginationQuery({
-    q: { all: q },
-    offset: page * pageSize,
-    limit: pageSize,
-    filters: createFilters(filters, cleanBranches)
-  });
+  const { data, isLoading } = useSearchWithPaginationQuery(
+    {
+      q: { all: q },
+      offset: page * pageSize,
+      limit: pageSize,
+      filters: createFilters(filters, cleanBranches)
+    },
+    { enabled: q.length >= minimalQueryLength }
+  );
 
   useEffect(() => {
     if (!data) {
@@ -167,7 +168,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
-  if (shouldShowInvalidSearchPage(q, qUrlParameter)) {
+  if (!q || q.length < minimalQueryLength) {
     return <SearchResultInvalidSearch />;
   }
 
