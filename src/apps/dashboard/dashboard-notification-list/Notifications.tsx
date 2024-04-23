@@ -49,14 +49,12 @@ const Notifications: FC<NotificationsProps> = ({
           header: headerNotification,
           color,
           notificationClickEvent,
-          showNotificationDot,
           badge,
           dataCy
         }) => (
           <DashboardNotification
             notificationNumber={listLength}
             notificationText={headerNotification}
-            showNotificationDot={showNotificationDot}
             badge={badge}
             dataCy={dataCy}
             key={headerNotification}
