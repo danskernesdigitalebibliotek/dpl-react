@@ -1,4 +1,11 @@
 import { TOKEN_LIBRARY_KEY } from "../../core/token";
+import {
+  digitalLoansData,
+  feesData,
+  physicalLoansDataNoOverdue,
+  physicalLoansDataWithOverdue,
+  workData
+} from "./test-mappings";
 
 describe("Fee list", () => {
   beforeEach(() => {
@@ -20,96 +27,22 @@ describe("Fee list", () => {
 
     cy.intercept("GET", "**/external/agencyid/patron/patronid/fees/v2**", {
       statusCode: 200,
-      body: [
-        {
-          feeId: 434536,
-          type: "fee",
-          reasonMessage: "Gebyr (for sent)",
-          amount: 70,
-          dueDate: "2022-05-08",
-          creationDate: "2022-04-06",
-          paidDate: null,
-          payableByClient: true,
-          materials: [
-            {
-              materialItemNumber: "5237124059",
-              recordId: "48724566",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            },
-            {
-              materialItemNumber: "5119382558",
-              recordId: "52518563",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            },
-            {
-              materialItemNumber: "5324175956",
-              recordId: "38540335",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            }
-          ]
-        },
-        {
-          feeId: 306404,
-          type: "fee",
-          reasonMessage: "Gebyr (for sent)",
-          amount: 2.56,
-          dueDate: "2020-04-15",
-          creationDate: "2019-10-18",
-          paidDate: null,
-          payableByClient: true,
-          materials: [
-            {
-              materialItemNumber: "3839631447",
-              recordId: "26285283",
-              periodical: null,
-              materialGroup: {
-                name: "standard",
-                description: "31 dages lånetid til alm lånere"
-              }
-            }
-          ]
-        }
-      ]
+      body: feesData
     }).as("fees");
 
     cy.intercept("POST", "**/next*/**", {
       statusCode: 200,
-      body: {
-        data: {
-          manifestation: {
-            pid: "870970-basis:22629344",
-            titles: { full: ["Dummy Some Title"] },
-            abstract: ["Dummy Some abstract ..."],
-            edition: {
-              summary: "3. udgave, 1. oplag (2019)",
-              publicationYear: {
-                display: "2006"
-              }
-            },
-            materialTypes: [{ materialTypeSpecific: { display: "Dummy bog" } }],
-            creators: [
-              { display: "Dummy Jens Jensen" },
-              { display: "Dummy Some Corporation" }
-            ]
-          }
-        }
-      }
+      body: workData
     }).as("work");
+
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: digitalLoansData
+    }).as("digital loans");
 
     cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
     cy.wait(["@fees"]);
+    cy.wait(["@digital loans"]);
   });
 
   it("Fee list basics (physical loans)", () => {
@@ -246,6 +179,26 @@ describe("Fee list", () => {
       .find("li")
       .find(".list-materials")
       .should("exist");
+  });
+
+  it("Should show a warning bar if user has overdue loans", () => {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: physicalLoansDataWithOverdue
+    }).as("physical loans with overdue");
+    cy.wait(["@physical loans with overdue"]);
+
+    cy.getBySel("warning-bar").should("be.visible");
+  });
+
+  it("Shouldn't render warning bar if user has no overdue loans", () => {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: physicalLoansDataNoOverdue
+    }).as("physical loans no overdue");
+    cy.wait(["@physical loans no overdue"]);
+
+    cy.getBySel("warning-bar").should("be.visible");
   });
 });
 
