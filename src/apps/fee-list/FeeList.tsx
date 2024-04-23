@@ -66,12 +66,8 @@ const FeeList: FC = () => {
     if (!isLoadingFbs && !isLoadingPublizon) {
       setOverdueLoans(loansOverduePhysical.concat(loansOverdueDigital));
     }
-  }, [
-    loansOverduePhysical,
-    loansOverdueDigital,
-    isLoadingFbs,
-    isLoadingPublizon
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoadingFbs, isLoadingPublizon]);
 
   return (
     <>
