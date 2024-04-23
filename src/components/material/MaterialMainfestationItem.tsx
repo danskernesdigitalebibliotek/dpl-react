@@ -64,7 +64,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     {
       label: t("detailsListContributorsText"),
       value: getManifestationContributors(manifestation),
-      type: "link"
+      type: "standard"
     },
     {
       label: t("detailsListOriginalTitleText"),

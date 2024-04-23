@@ -157,7 +157,15 @@ export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
 export const getManifestationContributors = (manifestation: Manifestation) => {
   return (
     manifestation.contributors
-      .map((contributor) => contributor.display)
+      .map((contributor) => {
+        if (contributor.roles.length > 0) {
+          const roleNames = contributor.roles
+            .map((role) => role.function.singular)
+            .join(", ");
+          return `${contributor.display} (${roleNames})`;
+        }
+        return contributor.display;
+      })
       .join(" / ") ?? ""
   );
 };
@@ -236,7 +244,7 @@ export const getDetailsListData = ({
       value: getManifestationContributors(
         manifestation ?? fallBackManifestation
       ),
-      type: "link"
+      type: "standard"
     },
     {
       label: t("detailsListScopeText"),
