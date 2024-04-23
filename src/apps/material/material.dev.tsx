@@ -86,9 +86,14 @@ export default {
       defaultValue: "Reserve",
       control: { type: "text" }
     },
+    reserveWithMaterialTypeText: {
+      name: "Reserve",
+      defaultValue: "Reserve @materialType",
+      control: { type: "text" }
+    },
     reservableFromAnotherLibraryText: {
       name: "Reservable on another library",
-      defaultValue: "Reservable on another library",
+      defaultValue: "Ordered from another library.",
       control: { type: "text" }
     },
     findOnBookshelfText: {
@@ -769,7 +774,7 @@ export default {
     },
     openOrderNotOwnedIllLocText: {
       name: "Open order item localized for ILL text",
-      defaultValue: "Item not available at pickup agency but localized for ILL",
+      defaultValue: "Your material has been ordered from another library",
       control: { type: "text" }
     },
     openOrderNotOwnedNoIllLocText: {

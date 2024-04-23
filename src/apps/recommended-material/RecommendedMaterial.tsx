@@ -1,4 +1,5 @@
 import * as React from "react";
+import clsx from "clsx";
 import { useDispatch } from "react-redux";
 import { useQueryClient } from "react-query";
 import ButtonFavourite, {
@@ -45,7 +46,7 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
   });
 
   if (isLoading || !data?.work) {
-    return <RecommendedMaterialSkeleton />;
+    return <RecommendedMaterialSkeleton partOfGrid={partOfGrid} />;
   }
 
   const {
@@ -79,9 +80,10 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
 
   return (
     <div
-      className={`recommended-material ${
-        partOfGrid && "recommended-material--in-grid "
-      }`}
+      className={clsx(
+        "recommended-material",
+        partOfGrid && "recommended-material--in-grid"
+      )}
     >
       <div className="recommended-material__icon">
         <ButtonFavourite

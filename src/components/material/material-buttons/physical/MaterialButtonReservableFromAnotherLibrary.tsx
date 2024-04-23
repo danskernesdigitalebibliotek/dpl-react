@@ -40,10 +40,10 @@ const MaterialButtonReservableFromAnotherLibrary: FC<
       dataCy={dataCy}
       label={
         size === "small"
-          ? t("reservableFromAnotherLibraryText")
-          : `${t(
-              "reservableFromAnotherLibraryText"
-            )} ${manifestationMaterialType}`
+          ? t("reserveText")
+          : `${t("reserveWithMaterialTypeText", {
+              placeholders: { "@materialType": manifestationMaterialType }
+            })}`
       }
       buttonType="none"
       variant="filled"
