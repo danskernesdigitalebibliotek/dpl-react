@@ -207,6 +207,12 @@ export const getManifestationPhysicalDescription = (
   return manifestation.physicalDescriptions?.[0]?.summary ?? "";
 };
 
+export const getManifestationHostPublication = (
+  manifestation: Manifestation
+) => {
+  return manifestation.hostPublication?.summary ?? "";
+};
+
 export const getDetailsListData = ({
   manifestation,
   work,
@@ -297,6 +303,13 @@ export const getDetailsListData = ({
     {
       label: t("detailsListPhysicalDescriptionText"),
       value: getManifestationPhysicalDescription(
+        manifestation ?? fallBackManifestation
+      ),
+      type: "standard"
+    },
+    {
+      label: t("detailsListHostPublicationText"),
+      value: getManifestationHostPublication(
         manifestation ?? fallBackManifestation
       ),
       type: "standard"

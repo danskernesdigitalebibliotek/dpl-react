@@ -103,6 +103,9 @@ fragment ManifestationsSimpleFields on Manifestation {
     numberOfPages
     playingTime
   }
+  hostPublication {
+    summary
+  }
   accessTypes {
     code
   }
