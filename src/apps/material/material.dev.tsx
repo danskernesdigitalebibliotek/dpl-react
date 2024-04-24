@@ -253,6 +253,11 @@ export default {
       defaultValue: "Dimensions",
       control: { type: "text" }
     },
+    detailsListSourceText: {
+      name: "Source",
+      defaultValue: "Source",
+      control: { type: "text" }
+    },
     editionText: {
       name: "Edition",
       defaultValue: "Edition",

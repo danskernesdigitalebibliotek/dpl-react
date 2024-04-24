@@ -130,6 +130,10 @@ export const getManifestationIsbn = (manifestation: Manifestation) => {
   return manifestation.identifiers?.[0]?.value ?? "";
 };
 
+export const getManifestationSource = (manifestation: Manifestation) => {
+  return manifestation.source ?? "";
+};
+
 export const getManifestationLanguages = (manifestation: Manifestation) => {
   const { languages } = manifestation;
 

@@ -26,7 +26,8 @@ import {
   getManifestationNumberOfPages,
   getManifestationOriginalTitle,
   getManifestationPhysicalDescription,
-  getManifestationPublisher
+  getManifestationPublisher,
+  getManifestationSource
 } from "../../apps/material/helper";
 
 export interface MaterialMainfestationItemProps {
@@ -111,6 +112,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     {
       label: t("detailsListNotesText"),
       value: getManifestationNotes(manifestation),
+      type: "standard"
+    },
+    {
+      label: t("detailsListSourceText"),
+      value: getManifestationSource(manifestation),
       type: "standard"
     }
   ];
