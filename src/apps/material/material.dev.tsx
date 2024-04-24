@@ -213,6 +213,11 @@ export default {
       defaultValue: "Audience",
       control: { type: "text" }
     },
+    detailsListAgeRangeText: {
+      name: "Age range",
+      defaultValue: "for @ageRange year olds",
+      control: { type: "text" }
+    },
     detailsListGenreAndFormText: {
       name: "Genre and form",
       defaultValue: "Genre",

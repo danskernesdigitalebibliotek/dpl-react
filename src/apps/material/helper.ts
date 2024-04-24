@@ -109,8 +109,21 @@ export const getManifestationNumberOfPages = (manifestation: Manifestation) => {
     : "";
 };
 
-export const getManifestationAudience = (manifestation: Manifestation) => {
-  return manifestation.audience?.generalAudience[0] ?? "";
+export const getManifestationAudience = (
+  manifestation: Manifestation,
+  t: UseTextFunction
+) => {
+  const generalAudience = manifestation.audience?.generalAudience[0] ?? "";
+  const agesDisplay = manifestation.audience?.ages[0]?.display ?? "";
+  const formattedAges = agesDisplay
+    ? t("detailsListAgeRangeText", {
+        placeholders: { "@ageRange": agesDisplay }
+      })
+    : "";
+
+  return generalAudience && formattedAges
+    ? `${generalAudience}, ${formattedAges}`
+    : generalAudience || formattedAges;
 };
 
 export const getManifestationIsbn = (manifestation: Manifestation) => {
@@ -255,7 +268,10 @@ export const getDetailsListData = ({
     },
     {
       label: t("detailsListAudienceText"),
-      value: getManifestationAudience(manifestation ?? fallBackManifestation),
+      value: getManifestationAudience(
+        manifestation ?? fallBackManifestation,
+        t
+      ),
       type: "standard"
     }
   ];

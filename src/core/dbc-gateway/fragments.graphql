@@ -88,6 +88,9 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   audience {
     generalAudience
+    ages {
+      display
+    }
   }
   physicalDescriptions {
     numberOfPages

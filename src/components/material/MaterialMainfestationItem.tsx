@@ -93,7 +93,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     },
     {
       label: t("detailsListAudienceText"),
-      value: getManifestationAudience(manifestation),
+      value: getManifestationAudience(manifestation, t),
       type: "standard"
     },
     {
