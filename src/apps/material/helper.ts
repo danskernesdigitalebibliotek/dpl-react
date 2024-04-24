@@ -131,11 +131,17 @@ export const getManifestationIsbn = (manifestation: Manifestation) => {
 };
 
 export const getManifestationLanguages = (manifestation: Manifestation) => {
-  return (
-    manifestation.languages?.main
-      ?.map((language) => language.display)
-      .join(", ") ?? ""
-  );
+  const { languages } = manifestation;
+
+  if (languages?.notes?.length) {
+    return languages.notes.join(", ");
+  }
+
+  // Return main languages if no notes or empty notes.
+  const mainLanguages = languages?.main
+    ?.map((language) => language.display)
+    .join(", ");
+  return mainLanguages ?? "";
 };
 
 export const getManifestationLanguageIsoCode = (

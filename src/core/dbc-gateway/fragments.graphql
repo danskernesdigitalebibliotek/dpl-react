@@ -95,6 +95,9 @@ fragment ManifestationsSimpleFields on Manifestation {
   notes {
     display
   }
+  languages {
+    notes
+  }
   physicalDescriptions {
     summary
     numberOfPages
