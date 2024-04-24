@@ -191,6 +191,12 @@ export const getManifestationNotes = (manifestation: Manifestation) => {
   return manifestation.notes?.[0]?.display?.join(", ") ?? "";
 };
 
+export const getManifestationPhysicalDescription = (
+  manifestation: Manifestation
+) => {
+  return manifestation.physicalDescriptions?.[0]?.summary ?? "";
+};
+
 export const getDetailsListData = ({
   manifestation,
   work,
@@ -275,6 +281,13 @@ export const getDetailsListData = ({
       value: getManifestationAudience(
         manifestation ?? fallBackManifestation,
         t
+      ),
+      type: "standard"
+    },
+    {
+      label: t("detailsListPhysicalDescriptionText"),
+      value: getManifestationPhysicalDescription(
+        manifestation ?? fallBackManifestation
       ),
       type: "standard"
     }

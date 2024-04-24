@@ -248,6 +248,11 @@ export default {
       defaultValue: "Notes",
       control: { type: "text" }
     },
+    detailsListPhysicalDescriptionText: {
+      name: "Dimensions",
+      defaultValue: "Dimensions",
+      control: { type: "text" }
+    },
     editionText: {
       name: "Edition",
       defaultValue: "Edition",

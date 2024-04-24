@@ -25,6 +25,7 @@ import {
   getManifestationNotes,
   getManifestationNumberOfPages,
   getManifestationOriginalTitle,
+  getManifestationPhysicalDescription,
   getManifestationPublisher
 } from "../../apps/material/helper";
 
@@ -100,6 +101,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     {
       label: t("detailsListAuthorsText"),
       value: getManifestationAuthors(manifestation),
+      type: "standard"
+    },
+    {
+      label: t("detailsListPhysicalDescriptionText"),
+      value: getManifestationPhysicalDescription(manifestation),
       type: "standard"
     },
     {

@@ -96,6 +96,7 @@ fragment ManifestationsSimpleFields on Manifestation {
     display
   }
   physicalDescriptions {
+    summary
     numberOfPages
     playingTime
   }
