@@ -243,6 +243,11 @@ export default {
       defaultValue: "Authors",
       control: { type: "text" }
     },
+    detailsListNotesText: {
+      name: "Notes",
+      defaultValue: "Notes",
+      control: { type: "text" }
+    },
     editionText: {
       name: "Edition",
       defaultValue: "Edition",

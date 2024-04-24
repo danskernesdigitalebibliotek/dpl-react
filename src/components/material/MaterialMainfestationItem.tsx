@@ -22,6 +22,7 @@ import {
   getManifestationLanguageIsoCode,
   getManifestationLanguages,
   getManifestationMaterialTypes,
+  getManifestationNotes,
   getManifestationNumberOfPages,
   getManifestationOriginalTitle,
   getManifestationPublisher
@@ -99,6 +100,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     {
       label: t("detailsListAuthorsText"),
       value: getManifestationAuthors(manifestation),
+      type: "standard"
+    },
+    {
+      label: t("detailsListNotesText"),
+      value: getManifestationNotes(manifestation),
       type: "standard"
     }
   ];

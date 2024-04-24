@@ -187,6 +187,10 @@ export const getManifestationAuthors = (manifestation: Manifestation) => {
   return flattenCreators(manifestation.creators).join(", ") ?? "";
 };
 
+export const getManifestationNotes = (manifestation: Manifestation) => {
+  return manifestation.notes?.[0]?.display?.join(", ") ?? "";
+};
+
 export const getDetailsListData = ({
   manifestation,
   work,
