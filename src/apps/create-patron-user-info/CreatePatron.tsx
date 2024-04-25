@@ -4,7 +4,11 @@ import { useText } from "../../core/utils/text";
 import { useConfig } from "../../core/utils/config";
 import useUserInfo from "../../core/adgangsplatformen/useUserInfo";
 
-const CreatePatron: FC = () => {
+export interface CreatePatronProps {
+  storybookContextCpr?: string;
+}
+
+const CreatePatron: FC<CreatePatronProps> = ({ storybookContextCpr }) => {
   const [cpr, setCpr] = useState<string | null>(null);
   const config = useConfig();
   const t = useText();
@@ -14,21 +18,25 @@ const CreatePatron: FC = () => {
   }>("agencyConfig", {
     transformer: "jsonParse"
   });
-  // Fetch user info data.
-  const { data: userInfo, isLoading } = useUserInfo();
+  // Fetch user info data (only if not in storybook context).
+  const { data: userInfo, isLoading } = useUserInfo({
+    enabled: !storybookContextCpr
+  });
 
   useEffect(() => {
-    if (isLoading || !userInfo) {
+    if (isLoading || !userInfo || storybookContextCpr) {
       return;
     }
-
     const {
       attributes: { cpr: userCpr }
     } = userInfo;
-
     // Otherwise set the cpr so we can show the create patron form.
     setCpr(String(userCpr));
-  }, [agencyId, isLoading, userInfo]);
+  }, [agencyId, isLoading, userInfo, storybookContextCpr]);
+
+  if (storybookContextCpr) {
+    return <UserInfo cpr={storybookContextCpr} />;
+  }
 
   if (isLoading) {
     return <div>{t("loadingText")}</div>;
