@@ -31,7 +31,7 @@ export default {
       defaultValue: "https://login.bib.dk/userinfo",
       control: { type: "text" }
     },
-    logOutUrl: {
+    logoutUrl: {
       defaultValue: "/Logout",
       control: { type: "text" }
     },
