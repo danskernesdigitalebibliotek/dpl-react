@@ -5,6 +5,7 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import pincodeArgs from "../../core/storybook/pincodeArgs";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import { TOKEN_UNREGISTERED_USER_KEY, setToken } from "../../core/token";
 
 export default {
   title: "Apps / Create patron",
@@ -159,9 +160,10 @@ export default {
   }
 } as ComponentMeta<typeof CreatePatron>;
 
-const Template: ComponentStory<typeof CreatePatron> = (props) => (
-  <CreatePatron {...props} />
-);
+const Template: ComponentStory<typeof CreatePatron> = (props) => {
+  setToken(TOKEN_UNREGISTERED_USER_KEY, "123456");
+  return <CreatePatron {...props} />;
+};
 
 export const CreatePatronEntry = Template.bind({});
 CreatePatronEntry.args = {};
