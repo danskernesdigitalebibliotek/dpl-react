@@ -90,6 +90,11 @@ export default {
       name: "Opening hours confirm add repeated submit",
       defaultValue: "I'm sure",
       control: { type: "text" }
+    },
+    openingHoursRepeatedIconAltText: {
+      name: "Opening hours repeated icon alt text",
+      defaultValue: "Repeated opening hour",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof OpeningHoursEditor>;

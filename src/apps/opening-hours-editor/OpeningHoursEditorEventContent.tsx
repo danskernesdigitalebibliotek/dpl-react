@@ -5,11 +5,12 @@ import { extractTime } from "./helper";
 
 type OpeningHoursEditorEventContentProps = {
   eventInput: EventInput;
+  iconAltText: string;
 };
 
 const OpeningHoursEditorEventContent: React.FC<
   OpeningHoursEditorEventContentProps
-> = ({ eventInput }) => {
+> = ({ eventInput, iconAltText }) => {
   const { event } = eventInput;
   const { repetition } = event.extendedProps;
   const isSeries = repetition?.type === "weekly";
@@ -27,7 +28,7 @@ const OpeningHoursEditorEventContent: React.FC<
       </div>
       {isSeries && (
         <div className="opening-hours-editor-event-content__series-icon">
-          <img src={logo} alt="" className="" />
+          <img src={logo} alt={iconAltText} />
         </div>
       )}
     </div>

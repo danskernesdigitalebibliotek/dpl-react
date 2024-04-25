@@ -20,6 +20,7 @@ interface OpeningHoursEditorEntryTextProps {
   openingHoursConfirmAddRepeatedText: string;
   openingHoursConfirmAddRepeatedCancelText: string;
   openingHoursConfirmAddRepeatedSubmitText: string;
+  openingHoursRepeatedIconAltText: string;
 }
 
 interface OpeningHoursEditorEntryConfigProps {
