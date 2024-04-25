@@ -35,6 +35,8 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
     phoneNumber: "",
     emailAddress: ""
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSubmitError, setIsSubmitError] = useState<boolean>(false);
   const getSubmitButtonText = () => {
     if (isLoading) {
       return t("createPatronButtonLoadingText");
@@ -55,15 +57,22 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { preferredPickupBranch, phoneNumber, emailAddress } = patron;
-    if (pin && preferredPickupBranch && phoneNumber && emailAddress) {
+    setIsLoading(true);
+    const { preferredPickupBranch, emailAddress } = patron;
+
+    if (pin && preferredPickupBranch && emailAddress) {
       mutate(
         {
           data: { cprNumber: cpr, patron, pincode: pin }
         },
         {
           onSuccess: () => {
+            setIsLoading(false);
             redirectTo(redirectOnUserCreatedUrl);
+          },
+          onError: () => {
+            setIsLoading(false);
+            setIsSubmitError(true);
           }
         }
       );
