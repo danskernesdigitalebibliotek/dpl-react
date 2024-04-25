@@ -37,9 +37,9 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   });
 
   // Changes the patron object by key.
-  // So using the paramters 123 and "phoneNumber" would change the phoneNumber to 123.
+  // So using the parameters 123 and "phoneNumber" would change the phoneNumber to 123.
   const changePatron = (newValue: string | boolean, key: string) => {
-    // Deeeep copy
+    // Deep copy
     const copyUser = JSON.parse(JSON.stringify(patron));
     set(copyUser, key, newValue);
     setPatron(copyUser);
