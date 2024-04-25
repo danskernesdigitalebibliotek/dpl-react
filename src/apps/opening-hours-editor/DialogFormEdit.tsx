@@ -78,14 +78,6 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
         data-cy="opening-hours-editor-form__remove"
         className="opening-hours-editor-form__remove"
         type="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            eventInfo.remove();
-            handleEventRemove(eventInfo.id);
-            closeDialog();
-          }
-        }}
         onClick={() => {
           eventInfo.remove();
           handleEventRemove(eventInfo.id);
