@@ -57,15 +57,10 @@ export default {
     },
     openingHoursEventFormRepeatedText: {
       name: "Opening hours event form repeated",
-      defaultValue: "Repeat opening hour from @startDate",
+      defaultValue:
+        "Repeat opening hour weekly every @weekDayName from @startDate",
       control: { type: "text" }
     },
-    openingHoursEventFormWeklyText: {
-      name: "Opening hours event form weekly",
-      defaultValue: "Weekly",
-      control: { type: "text" }
-    },
-
     openingHoursEventFormEndDateText: {
       name: "Opening hours event to end date",
       defaultValue: "End date",

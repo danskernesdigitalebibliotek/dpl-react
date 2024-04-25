@@ -180,34 +180,11 @@ const EventForm: React.FC<EventFormProps> = ({
                 htmlFor="event-form-repeated"
               >
                 {t("openingHoursEventFormRepeatedText", {
-                  placeholders: { "@startDate": startDateString }
+                  placeholders: {
+                    "@startDate": startDateString,
+                    "@weekDayName": weekDayName
+                  }
                 })}
-              </label>
-            </div>
-
-            <div className="opening-hours-editor-form__checkbox">
-              <input
-                id="event-form-weekly"
-                data-cy="opening-hours-editor-form-week-day"
-                type="checkbox"
-                checked={isRepeated}
-                disabled={!isRepeated}
-              />
-              <label className="" htmlFor="event-form-weekly">
-                {t("openingHoursEventFormWeklyText")}
-              </label>
-            </div>
-
-            <div className="opening-hours-editor-form__checkbox">
-              <input
-                id="event-form-week-day"
-                data-cy="opening-hours-editor-form-week-day"
-                type="checkbox"
-                checked={isRepeated}
-                disabled={!isRepeated}
-              />
-              <label className="" htmlFor="event-form-week-day">
-                {weekDayName}
               </label>
             </div>
 

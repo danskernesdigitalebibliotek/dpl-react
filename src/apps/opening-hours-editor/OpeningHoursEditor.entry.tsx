@@ -14,7 +14,6 @@ interface OpeningHoursEditorEntryTextProps {
   openingHoursEventFormEndTimeText: string;
   openingHoursEventFormSubmitText: string;
   openingHoursEventFormRepeatedText: string;
-  openingHoursEventFormWeklyText: string;
   openingHoursEventFormEndDateText: string;
   openingHoursEventFormEveryWeekdayText: string;
   openingHoursEventFormStartDateText: string;
