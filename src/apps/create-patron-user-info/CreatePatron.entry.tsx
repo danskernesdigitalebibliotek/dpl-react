@@ -48,6 +48,8 @@ interface CreatePatronTextProps {
   patronPagePincodeTooShortValidationText: string;
   phoneInputMessageText: string;
   pickupBranchesDropdownNothingSelectedText: string;
+  createPatronButtonLoadingText: string;
+  createPatronButtonErrorText: string;
 }
 
 export interface CreatePatronProps

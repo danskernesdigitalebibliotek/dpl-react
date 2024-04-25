@@ -144,7 +144,7 @@ export default {
     },
     storybookContextCpr: {
       name: "Storybook context cpr",
-      defaultValue: "0101901234",
+      defaultValue: "0101901111",
       control: { type: "text" }
     },
     createPatronCancelButtonText: {
@@ -155,6 +155,16 @@ export default {
     patronPagePhoneInputMessageText: {
       name: "patron page phone input message text",
       defaultValue: "Phone number",
+      control: { type: "text" }
+    },
+    createPatronButtonLoadingText: {
+      name: "create patron button loading text",
+      defaultValue: "Loading",
+      control: { type: "text" }
+    },
+    createPatronButtonErrorText: {
+      name: "create patron button error text",
+      defaultValue: "Error occurred",
       control: { type: "text" }
     }
   }
