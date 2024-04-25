@@ -35,7 +35,15 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
     phoneNumber: "",
     emailAddress: ""
   });
-
+  const getSubmitButtonText = () => {
+    if (isLoading) {
+      return t("createPatronButtonLoadingText");
+    }
+    if (isSubmitError) {
+      return t("createPatronButtonErrorText");
+    }
+    return t("createPatronConfirmButtonText");
+  };
   // Changes the patron object by key.
   // So using the parameters 123 and "phoneNumber" would change the phoneNumber to 123.
   const changePatron = (newValue: string | boolean, key: string) => {
@@ -106,7 +114,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
               className="btn-primary btn-filled btn-small"
               data-cy="complete-user-registration-button"
             >
-              {t("createPatronConfirmButtonText")}
+              {getSubmitButtonText()}
             </button>
             <Link
               href={logoutUrl}

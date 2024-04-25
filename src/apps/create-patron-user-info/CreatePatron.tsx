@@ -12,7 +12,6 @@ const CreatePatron: FC<CreatePatronProps> = ({ storybookContextCpr }) => {
   const [cpr, setCpr] = useState<string | null>(null);
   const config = useConfig();
   const t = useText();
-
   const { id: agencyId } = config<{
     id: `${number}`;
   }>("agencyConfig", {
