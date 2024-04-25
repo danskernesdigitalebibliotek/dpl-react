@@ -2,17 +2,17 @@ import React from "react";
 import { EventImpl } from "@fullcalendar/core/internal";
 import {
   adjustEndDateBasedOnStartDate,
-  formatFullCalendarEventToCmsEvent,
+  formatFullCalendarEventToCmsEventEdit,
   updateDateTime
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { useText } from "../../core/utils/text";
 import { OpeningHoursCategoriesType } from "./types";
-import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+import { DplOpeningHoursUpdatePATCHBody } from "../../core/dpl-cms/model";
 
 type DialogFormEditProps = {
   eventInfo: EventImpl;
-  handleEventEditing: (event: DplOpeningHoursListGET200Item) => void;
+  handleEventEditing: (event: DplOpeningHoursUpdatePATCHBody) => void;
   closeDialog: () => void;
   handleEventRemove: (eventId: string) => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
@@ -46,13 +46,23 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
     eventInfo.setProp("color", category.color);
     eventInfo.setDates(startDate, endDate);
 
-    handleEventEditing(formatFullCalendarEventToCmsEvent(eventInfo));
+    const cmsEvent = {
+      id: eventInfo.id,
+      category,
+      title: eventInfo.title,
+      backgroundColor: eventInfo.backgroundColor,
+      startStr: eventInfo.startStr,
+      endStr: eventInfo.endStr,
+      repetition: eventInfo.extendedProps.repetition
+    };
+
+    handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
     closeDialog();
   };
 
   if (!eventInfo.start || !eventInfo.end) {
     // eslint-disable-next-line no-alert
-    alert("Invalid event");
+    alert(t("openingHoursInvalidEventText"));
     return null;
   }
 

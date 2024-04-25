@@ -21,7 +21,7 @@ export default {
     openingHoursEditorCategoriesConfig: {
       name: "Opening hours categories",
       defaultValue:
-        '[{"title":"\\u00c5bent","color":"#B3DC6C"},{"title":"Telefontid","color":"#FBE983"}]',
+        '[{"title":"\\u00c5bent","color":"#B3DC6C"},{"title":"Telefontid","color":"#FBE983"},{"title":"SingleOpeningHour1","color":"lightblue"},{"title":"SingleOpeningHour2","color":"pink"},{"title":"SingleOpeningHour3","color":"limegreen"},{"title":"SingleOpeningHour4","color":"gray"},{"title":"SingleOpeningHour5","color":"darkblue"}]',
       control: { type: "text" }
     },
     openingHoursBranchIdConfig: {

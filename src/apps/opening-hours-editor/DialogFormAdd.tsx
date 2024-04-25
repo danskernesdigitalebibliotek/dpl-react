@@ -4,16 +4,19 @@ import {
   adjustEndDateToStartDayGridMonth,
   adjustEndDateToStartDayTimeGridWeek,
   formatDateStr,
-  formatFullCalendarEventToCmsEvent,
+  formatFullCalendarEventToCmsEventAdd,
   updateDateTime
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
-import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+import {
+  DplOpeningHoursCreatePOSTBody,
+  DplOpeningHoursCreatePOSTBodyRepetitionType
+} from "../../core/dpl-cms/model";
 import { OpeningHoursCategoriesType } from "./types";
 
 type DialogFormAddProps = {
   selectedEventInfo: DateSelectArg;
-  handleEventAdd: (selectedEventInfo: DplOpeningHoursListGET200Item) => void;
+  handleEventAdd: (event: DplOpeningHoursCreatePOSTBody) => void;
   closeDialog: () => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
 };
@@ -34,12 +37,6 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
     endTime,
     repeatedEndDate
   ) => {
-    if (repeatedEndDate) {
-      // eslint-disable-next-line no-alert
-      alert("Repeated event is not supported yet");
-      closeDialog();
-      return;
-    }
     const start = updateDateTime(selectedEventInfo.start, startTime);
     const startStr = formatDateStr(start);
     let end = updateDateTime(selectedEventInfo.end, endTime);
@@ -57,7 +54,7 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
       endStr = adjustedEnd.endStr;
     }
 
-    const newEventInfo = {
+    const newFullCalenderEvent = {
       ...selectedEventInfo,
       start,
       startStr,
@@ -68,9 +65,22 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
       allDay: false
     };
 
-    calendarApi.addEvent(newEventInfo);
+    calendarApi.addEvent(newFullCalenderEvent);
     calendarApi.unselect();
-    handleEventAdd(formatFullCalendarEventToCmsEvent(newEventInfo));
+
+    const cmsEvent = formatFullCalendarEventToCmsEventAdd({
+      ...newFullCalenderEvent,
+      repetition: {
+        type: repeatedEndDate
+          ? DplOpeningHoursCreatePOSTBodyRepetitionType.weekly
+          : DplOpeningHoursCreatePOSTBodyRepetitionType.none,
+        ...(repeatedEndDate
+          ? { weekly_data: { end_date: repeatedEndDate } }
+          : {})
+      }
+    });
+
+    handleEventAdd(cmsEvent);
     closeDialog();
   };
 
