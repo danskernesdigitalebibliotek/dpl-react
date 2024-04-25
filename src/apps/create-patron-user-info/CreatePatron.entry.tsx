@@ -19,6 +19,7 @@ interface CreatePatronConfigProps {
 interface CreatePatronUrlProps {
   loginUrl: string;
   redirectOnUserCreatedUrl: string;
+  logoutUrl: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;
   dashboardUrl: string;
@@ -27,6 +28,7 @@ interface CreatePatronUrlProps {
 interface CreatePatronTextProps {
   pickupBranchesDropdownLabelText: string;
   createPatronCancelButtonText: string;
+  patronPagePhoneInputMessageText: string;
   createPatronChangePickupBodyText: string;
   createPatronChangePickupHeaderText: string;
   createPatronConfirmButtonText: string;

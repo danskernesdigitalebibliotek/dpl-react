@@ -204,6 +204,10 @@ export default {
   errorBoundaryAlertBodyButtonAriaText: {
     defaultValue: "Close error message",
     control: { type: "text" }
+  },
+  loadingText: {
+    defaultValue: "Loading...",
+    control: { type: "text" }
   }
 };
 

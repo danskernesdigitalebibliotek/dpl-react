@@ -140,6 +140,21 @@ export default {
       defaultValue:
         "The phone number must be 6 to 15 characters in length and should be comprised solely of numbers or begin with a +",
       control: { type: "text" }
+    },
+    storybookContextCpr: {
+      name: "Storybook context cpr",
+      defaultValue: "0101901234",
+      control: { type: "text" }
+    },
+    createPatronCancelButtonText: {
+      name: "create patron cancel button text",
+      defaultValue: "Cancel",
+      control: { type: "text" }
+    },
+    patronPagePhoneInputMessageText: {
+      name: "patron page phone input message text",
+      defaultValue: "Phone number",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof CreatePatron>;
