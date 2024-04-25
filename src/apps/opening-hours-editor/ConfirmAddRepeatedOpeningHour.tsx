@@ -1,21 +1,20 @@
 import React from "react";
 import { useText } from "../../core/utils/text";
 import { OpeningHoursCategoriesType } from "./types";
+import { getDateString, getWeekDayName } from "./helper";
 
 type ConfirmAddRepeatedOpeningHourType = {
-  startDateString: string;
-  weekDayName: string;
+  startDate: Date;
   category: OpeningHoursCategoriesType;
   startTime: string;
   endTime: string;
-  repeatedEndDate: string;
+  repeatedEndDate: Date;
   confirmSubmit: () => void;
   closeDialog: () => void;
 };
 
 const ConfirmAddRepeatedOpeningHour = ({
-  startDateString,
-  weekDayName,
+  startDate,
   category,
   startTime,
   endTime,
@@ -51,15 +50,15 @@ const ConfirmAddRepeatedOpeningHour = ({
           </tr>
           <tr>
             <td>{t("openingHoursEventFormStartDateText")}:</td>
-            <td>{startDateString}</td>
+            <td>{getDateString(startDate)}</td>
           </tr>
           <tr>
             <td>{t("openingHoursEventFormEndDateText")}:</td>
-            <td>{repeatedEndDate}</td>
+            <td>{getDateString(repeatedEndDate)}</td>
           </tr>
           <tr>
             <td>{t("openingHoursEventFormEveryWeekdayText")}:</td>
-            <td>{weekDayName}</td>
+            <td>{getWeekDayName(startDate)}</td>
           </tr>
         </tbody>
       </table>

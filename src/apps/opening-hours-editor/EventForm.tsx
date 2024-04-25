@@ -86,12 +86,11 @@ const EventForm: React.FC<EventFormProps> = ({
     if (repeatedEndDate) {
       openDialogWithContent(
         <ConfirmAddRepeatedOpeningHour
-          startDateString={startDateString}
-          weekDayName={weekDayName}
+          startDate={startDate}
           category={category}
           startTime={startTime}
           endTime={endTime}
-          repeatedEndDate={getDateString(new Date(repeatedEndDate))}
+          repeatedEndDate={new Date(repeatedEndDate)}
           confirmSubmit={() =>
             onSubmit(category, startTime, endTime, repeatedEndDate)
           }
