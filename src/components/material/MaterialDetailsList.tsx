@@ -33,7 +33,7 @@ const ListItem = ({ value }: { value: string[] }) => {
 
 interface MaterialDetailsListRowProps {
   value: string | string[];
-  type: ListItemType;
+  type?: ListItemType;
 }
 
 const MaterialDetailsListRow: FC<MaterialDetailsListRowProps> = ({
