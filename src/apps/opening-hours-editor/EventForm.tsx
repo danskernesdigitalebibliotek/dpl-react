@@ -218,6 +218,7 @@ const EventForm: React.FC<EventFormProps> = ({
               {t("openingHoursEventFormEndDateText")}
             </label>
             <input
+              data-cy="opening-hours-editor-form-end-date"
               type="date"
               className="opening-hours-editor-form__time-input"
               id="event-form-end-date"
