@@ -64,8 +64,10 @@ const FeeList: FC = () => {
 
   useEffect(() => {
     if (!isLoadingFbs && !isLoadingPublizon) {
-      setOverdueLoans(loansOverduePhysical.concat(loansOverdueDigital));
+      setOverdueLoans([...loansOverduePhysical, ...loansOverdueDigital]);
     }
+    // We don't want to call this when loansOverduePhysical or loansOverdueDigital
+    // change, because then the component rerenders indefinitely.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoadingFbs, isLoadingPublizon]);
 
