@@ -38,6 +38,8 @@ interface SearchResultEntryTextProps {
   noSearchResultText: string;
   showMoreText: string;
   showResultsText: string;
+  invalidSearchText: string;
+  invalidSearchDescriptionText: string;
 }
 
 interface SearchResultEntryConfigProps {
@@ -75,7 +77,8 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
 
   return (
     <div>
-      {searchQuery && (
+      {/* We still want to render the app, even if the search query is an empty string */}
+      {(searchQuery || searchQuery === "") && (
         <GuardedApp app="search-result">
           <SearchResult q={searchQuery} pageSize={pageSize} />
         </GuardedApp>

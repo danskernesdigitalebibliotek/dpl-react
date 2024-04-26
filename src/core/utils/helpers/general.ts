@@ -167,9 +167,10 @@ export const convertPostIdsToFaustIds = (postIds: Pid[]) => {
 export const getParams = (props: Record<string, string | undefined>) =>
   Object.entries(props).reduce<Record<string, string>>(
     (acc, [property, value]) => {
+      const paramValue = value || getUrlQueryParam(property);
       return {
         ...acc,
-        [property]: String(value || getUrlQueryParam(property))
+        [property]: paramValue ? String(paramValue) : ""
       };
     },
     {}
