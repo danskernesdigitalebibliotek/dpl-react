@@ -23,7 +23,7 @@ const ListItem = ({ value }: { value: string[] }) => {
   }
 
   return (
-    <ul>
+    <ul className="list-description__value--list">
       {value.map((item) => (
         <li key={item}>{item}</li>
       ))}
