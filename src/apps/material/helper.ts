@@ -309,7 +309,7 @@ export const getDetailsListData = ({
     {
       label: t("detailsListPartsText"),
       value: getManifestationParts(manifestation ?? fallBackManifestation),
-      type: ListItemType.Link
+      type: ListItemType.List
     }
   ];
 };
