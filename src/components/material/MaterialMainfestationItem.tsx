@@ -51,73 +51,59 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const detailsListData: ListData = [
     {
       label: t("detailsListTypeText"),
-      value: getManifestationMaterialTypes(manifestation),
-      type: "standard"
+      value: getManifestationMaterialTypes(manifestation)
     },
     {
       label: t("detailsListLanguageText"),
-      value: getManifestationLanguages(manifestation),
-      type: "standard"
+      value: getManifestationLanguages(manifestation)
     },
     {
       label: t("detailsListGenreAndFormText"),
-      value: getManifestationGenreAndForm(manifestation),
-      type: "standard"
+      value: getManifestationGenreAndForm(manifestation)
     },
     {
       label: t("detailsListContributorsText"),
-      value: getManifestationContributors(manifestation),
-      type: "standard"
+      value: getManifestationContributors(manifestation)
     },
     {
       label: t("detailsListOriginalTitleText"),
-      value: getManifestationOriginalTitle(manifestation),
-      type: "standard"
+      value: getManifestationOriginalTitle(manifestation)
     },
     {
       label: t("detailsListIsbnText"),
-      value: getManifestationIsbn(manifestation),
-      type: "standard"
+      value: getManifestationIsbn(manifestation)
     },
     {
       label: t("detailsListEditionText"),
-      value: getManifestationEdition(manifestation),
-      type: "standard"
+      value: getManifestationEdition(manifestation)
     },
     {
       label: t("detailsListScopeText"),
-      value: getManifestationNumberOfPages(manifestation),
-      type: "standard"
+      value: getManifestationNumberOfPages(manifestation)
     },
     {
       label: t("detailsListPublisherText"),
-      value: getManifestationPublisher(manifestation),
-      type: "standard"
+      value: getManifestationPublisher(manifestation)
     },
     {
       label: t("detailsListAudienceText"),
-      value: getManifestationAudience(manifestation, t),
-      type: "standard"
+      value: getManifestationAudience(manifestation, t)
     },
     {
       label: t("detailsListAuthorsText"),
-      value: getManifestationAuthors(manifestation),
-      type: "standard"
+      value: getManifestationAuthors(manifestation)
     },
     {
       label: t("detailsListPhysicalDescriptionText"),
-      value: getManifestationPhysicalDescription(manifestation),
-      type: "standard"
+      value: getManifestationPhysicalDescription(manifestation)
     },
     {
       label: t("detailsListNotesText"),
-      value: getManifestationNotes(manifestation),
-      type: "standard"
+      value: getManifestationNotes(manifestation)
     },
     {
       label: t("detailsListSourceText"),
-      value: getManifestationSource(manifestation),
-      type: "standard"
+      value: getManifestationSource(manifestation)
     }
   ];
 

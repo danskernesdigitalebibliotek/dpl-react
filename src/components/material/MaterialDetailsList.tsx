@@ -3,7 +3,7 @@ import { FC } from "react";
 import DescriptionList from "../description-list/description-list";
 
 // Enums for item types
-enum ListItemType {
+export enum ListItemType {
   Standard = "standard",
   Link = "link",
   List = "list"
@@ -12,18 +12,24 @@ enum ListItemType {
 interface IListDataItem {
   label: string;
   value: string | string[];
-  type: ListItemType;
+  type?: ListItemType;
 }
 
-type ListData = IListDataItem[];
+export type ListData = IListDataItem[];
 
-const ListItem = ({ value }: { value: string[] }) => (
-  <ul>
-    {value.map((item) => (
-      <li key={item}>{item}</li>
-    ))}
-  </ul>
-);
+const ListItem = ({ value }: { value: string[] }) => {
+  if (value.length === 0) {
+    return null;
+  }
+
+  return (
+    <ul>
+      {value.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+};
 
 interface MaterialDetailsListRowProps {
   value: string | string[];
