@@ -27,11 +27,11 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
 }) => {
   const t = useText();
 
-  const handleSubmit: EventFormOnSubmitType = (
+  const handleSubmit = ({
     category,
     startTime,
     endTime
-  ) => {
+  }: EventFormOnSubmitType) => {
     if (!eventInfo.start || !eventInfo.end) {
       // eslint-disable-next-line no-alert
       alert(t("openingHoursInvalidEventText"));
