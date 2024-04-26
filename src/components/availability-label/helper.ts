@@ -42,10 +42,13 @@ export const useAvailabilityData = ({
 
   useEffect(() => {
     // Articles are always available.
-    if (manifestText === ManifestationMaterialType.article) {
+    if (
+      manifestText === ManifestationMaterialType.article &&
+      isAvailable === null
+    ) {
       setIsAvailable(true);
     }
-  }, [manifestText]);
+  }, [manifestText, isAvailable]);
 
   const { isLoading: isLoadingIdentifier } = useGetV1ProductsIdentifier(
     isbn ?? "",
