@@ -263,6 +263,11 @@ export default {
       defaultValue: "Source",
       control: { type: "text" }
     },
+    detailsListPartsText: {
+      name: "Contents",
+      defaultValue: "Contents",
+      control: { type: "text" }
+    },
     editionText: {
       name: "Edition",
       defaultValue: "Edition",

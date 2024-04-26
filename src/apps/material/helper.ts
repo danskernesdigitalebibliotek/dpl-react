@@ -212,6 +212,13 @@ export const getManifestationHostPublication = (
 ) => {
   return manifestation.hostPublication?.summary ?? "";
 };
+export const getManifestationParts = (
+  manifestation: Manifestation
+): string[] => {
+  return (
+    manifestation.manifestationParts?.parts?.map((item) => item.title) || []
+  );
+};
 
 export const getDetailsListData = ({
   manifestation,
@@ -313,6 +320,11 @@ export const getDetailsListData = ({
         manifestation ?? fallBackManifestation
       ),
       type: "standard"
+    },
+    {
+      label: t("detailsListPartsText"),
+      value: getManifestationParts(manifestation ?? fallBackManifestation),
+      type: "list"
     }
   ];
 };
