@@ -19,7 +19,7 @@ import type {
   CampaignMatchPOST200,
   CampaignMatchPOSTBodyItem,
   CampaignMatchPOSTParams,
-  DplOpeningHoursCreatePOST200,
+  DplOpeningHoursCreatePOST200Item,
   DplOpeningHoursCreatePOSTBody,
   DplOpeningHoursCreatePOSTParams,
   DplOpeningHoursDeleteDELETEParams,
@@ -138,7 +138,7 @@ export const dplOpeningHoursCreatePOST = (
   dplOpeningHoursCreatePOSTBody: BodyType<DplOpeningHoursCreatePOSTBody>,
   params: DplOpeningHoursCreatePOSTParams
 ) => {
-  return fetcher<DplOpeningHoursCreatePOST200>({
+  return fetcher<DplOpeningHoursCreatePOST200Item[]>({
     url: `/dpl_opening_hours`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
