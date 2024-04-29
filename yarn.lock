@@ -1477,10 +1477,10 @@
     through2 "^2.0.0"
     watchify "^4.0.0"
 
-"@cypress/code-coverage@^3.12.35":
-  version "3.12.35"
-  resolved "https://registry.yarnpkg.com/@cypress/code-coverage/-/code-coverage-3.12.35.tgz#eeb4040557ed6b20fd946b12ea60b7786f158328"
-  integrity sha512-QmgyW9x8Z524qQc9BVFD+Dm/XMFgj1eafUg4N7xwpxN2lGmJs9EtiiRDpkbe+2BUAlFTAtveRyYE9q4wyz8Lcw==
+"@cypress/code-coverage@^3.12.37":
+  version "3.12.37"
+  resolved "https://registry.yarnpkg.com/@cypress/code-coverage/-/code-coverage-3.12.37.tgz#5f446efa4958e9f292ed00e557827162971ac2de"
+  integrity sha512-zrFenswftPuikfhIVCjCNG+dxWk/iJ4ML1WbMl9i+FFwGxEWL39/2H0wsAzl2FLIMk3K+AZPVrP74eE6VB+qqw==
   dependencies:
     "@cypress/webpack-preprocessor" "^6.0.0"
     chalk "4.1.2"
