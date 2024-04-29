@@ -86,6 +86,8 @@ export type Audience = {
   generalAudience: Array<Scalars["String"]>;
   /** LET number of this manifestion, defines the reability level, LET stands for læseegnethedstal */
   let?: Maybe<Scalars["String"]>;
+  /** Level of difficulty, illustrations, length, and realism in children's literature */
+  levelForChildren8to12?: Maybe<LevelForAudience>;
   /** Appropriate audience as recommended by the library */
   libraryRecommendation?: Maybe<Scalars["String"]>;
   /** Lix number of this manifestion, defines the reability level, Lix stands for læsbarhedsindex */
@@ -149,6 +151,7 @@ export type ComplexSearchFacetValue = {
 
 /** The supported facet fields */
 export enum ComplexSearchFacets {
+  Accesstype = "ACCESSTYPE",
   Ages = "AGES",
   Cataloguecode = "CATALOGUECODE",
   Contributor = "CONTRIBUTOR",
@@ -163,13 +166,23 @@ export enum ComplexSearchFacets {
   Generalaudience = "GENERALAUDIENCE",
   Generalmaterialtype = "GENERALMATERIALTYPE",
   Genreandform = "GENREANDFORM",
+  Hostpublication = "HOSTPUBLICATION",
   Issue = "ISSUE",
   Language = "LANGUAGE",
+  Let = "LET",
   Libraryrecommendation = "LIBRARYRECOMMENDATION",
+  Lix = "LIX",
   Mainlanguage = "MAINLANGUAGE",
+  Mediacouncilagerestriction = "MEDIACOUNCILAGERESTRICTION",
+  Mood = "MOOD",
   Musicalensembleorcast = "MUSICALENSEMBLEORCAST",
+  Narrativetechnique = "NARRATIVETECHNIQUE",
+  Pegi = "PEGI",
   Players = "PLAYERS",
   Primarytarget = "PRIMARYTARGET",
+  Publicationyear = "PUBLICATIONYEAR",
+  Series = "SERIES",
+  Setting = "SETTING",
   Specificmaterialtype = "SPECIFICMATERIALTYPE",
   Spokenlanguage = "SPOKENLANGUAGE",
   Subject = "SUBJECT",
@@ -611,6 +624,18 @@ export type Languages = {
   spoken?: Maybe<Array<Language>>;
   /** Subtitles in this manifestation */
   subtitles?: Maybe<Array<Language>>;
+};
+
+export type LevelForAudience = {
+  __typename?: "LevelForAudience";
+  /** Level expressed as integer on a scale from 1 to 5 */
+  difficulty?: Maybe<Scalars["Int"]>;
+  /** Level expressed as integer on a scale from 1 to 5 */
+  illustrationsLevel?: Maybe<Scalars["Int"]>;
+  /** Level expressed as integer on a scale from 1 to 5 */
+  length?: Maybe<Scalars["Int"]>;
+  /** Level expressed as integer on a scale from 1 to 5 */
+  realisticVsFictional?: Maybe<Scalars["Int"]>;
 };
 
 export type LinkCheckResponse = {
@@ -1468,8 +1493,20 @@ export enum SubjectType {
   Tempo = "TEMPO",
   TimePeriod = "TIME_PERIOD",
   Title = "TITLE",
-  Topic = "TOPIC"
+  Topic = "TOPIC",
+  /** Subject describing selected topics for children, and a rating. */
+  TopicChildren = "TOPIC_CHILDREN"
 }
+
+export type SubjectWithRating = Subject & {
+  __typename?: "SubjectWithRating";
+  display: Scalars["String"];
+  language?: Maybe<Language>;
+  local?: Maybe<Scalars["Boolean"]>;
+  /** Expressed as integer on a scale from 1 to 5 */
+  rating?: Maybe<Scalars["Int"]>;
+  type: SubjectType;
+};
 
 export type SubmitOrder = {
   __typename?: "SubmitOrder";
@@ -1845,8 +1882,22 @@ export type GetSmallWorkQuery = {
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | {
+              __typename?: "Corporation";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
+          | {
+              __typename?: "Person";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
         >;
         edition?: {
           __typename?: "Edition";
@@ -1864,12 +1915,32 @@ export type GetSmallWorkQuery = {
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
+          ages: Array<{ __typename?: "Range"; display: string }>;
+        } | null;
+        notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+        languages?: {
+          __typename?: "Languages";
+          notes?: Array<string> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
+          summary: string;
           numberOfPages?: number | null;
           playingTime?: string | null;
         }>;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          summary: string;
+        } | null;
+        manifestationParts?: {
+          __typename?: "ManifestationParts";
+          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+        } | null;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
           | {
@@ -1902,14 +1973,6 @@ export type GetSmallWorkQuery = {
           nationalBibliography: Array<string>;
           otherCatalogues: Array<string>;
         };
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{
-            __typename?: "Language";
-            display: string;
-            isoCode: string;
-          }> | null;
-        } | null;
       }>;
       latest: {
         __typename?: "Manifestation";
@@ -1940,8 +2003,22 @@ export type GetSmallWorkQuery = {
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | {
+              __typename?: "Corporation";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
+          | {
+              __typename?: "Person";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
         >;
         edition?: {
           __typename?: "Edition";
@@ -1959,12 +2036,32 @@ export type GetSmallWorkQuery = {
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
+          ages: Array<{ __typename?: "Range"; display: string }>;
+        } | null;
+        notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+        languages?: {
+          __typename?: "Languages";
+          notes?: Array<string> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
+          summary: string;
           numberOfPages?: number | null;
           playingTime?: string | null;
         }>;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          summary: string;
+        } | null;
+        manifestationParts?: {
+          __typename?: "ManifestationParts";
+          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+        } | null;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
           | {
@@ -1997,14 +2094,6 @@ export type GetSmallWorkQuery = {
           nationalBibliography: Array<string>;
           otherCatalogues: Array<string>;
         };
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{
-            __typename?: "Language";
-            display: string;
-            isoCode: string;
-          }> | null;
-        } | null;
       };
       bestRepresentation: {
         __typename?: "Manifestation";
@@ -2035,8 +2124,22 @@ export type GetSmallWorkQuery = {
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | {
+              __typename?: "Corporation";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
+          | {
+              __typename?: "Person";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
         >;
         edition?: {
           __typename?: "Edition";
@@ -2054,12 +2157,32 @@ export type GetSmallWorkQuery = {
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
+          ages: Array<{ __typename?: "Range"; display: string }>;
+        } | null;
+        notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+        languages?: {
+          __typename?: "Languages";
+          notes?: Array<string> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
+          summary: string;
           numberOfPages?: number | null;
           playingTime?: string | null;
         }>;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          summary: string;
+        } | null;
+        manifestationParts?: {
+          __typename?: "ManifestationParts";
+          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+        } | null;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
           | {
@@ -2092,14 +2215,6 @@ export type GetSmallWorkQuery = {
           nationalBibliography: Array<string>;
           otherCatalogues: Array<string>;
         };
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{
-            __typename?: "Language";
-            display: string;
-            isoCode: string;
-          }> | null;
-        } | null;
       };
     };
   } | null;
@@ -2283,6 +2398,7 @@ export type GetMaterialQuery = {
         | { __typename?: "Person"; display: string }
         | { __typename?: "Setting"; display: string }
         | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
         | { __typename?: "TimePeriod"; display: string }
       >;
       dbcVerified: Array<
@@ -2292,6 +2408,7 @@ export type GetMaterialQuery = {
         | { __typename?: "Person"; display: string }
         | { __typename?: "Setting"; display: string }
         | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
         | { __typename?: "TimePeriod"; display: string }
       >;
     };
@@ -2377,8 +2494,22 @@ export type GetMaterialQuery = {
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | {
+              __typename?: "Corporation";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
+          | {
+              __typename?: "Person";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
         >;
         edition?: {
           __typename?: "Edition";
@@ -2396,12 +2527,32 @@ export type GetMaterialQuery = {
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
+          ages: Array<{ __typename?: "Range"; display: string }>;
+        } | null;
+        notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+        languages?: {
+          __typename?: "Languages";
+          notes?: Array<string> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
+          summary: string;
           numberOfPages?: number | null;
           playingTime?: string | null;
         }>;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          summary: string;
+        } | null;
+        manifestationParts?: {
+          __typename?: "ManifestationParts";
+          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+        } | null;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
           | {
@@ -2434,14 +2585,6 @@ export type GetMaterialQuery = {
           nationalBibliography: Array<string>;
           otherCatalogues: Array<string>;
         };
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{
-            __typename?: "Language";
-            display: string;
-            isoCode: string;
-          }> | null;
-        } | null;
       }>;
       latest: {
         __typename?: "Manifestation";
@@ -2472,8 +2615,22 @@ export type GetMaterialQuery = {
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | {
+              __typename?: "Corporation";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
+          | {
+              __typename?: "Person";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
         >;
         edition?: {
           __typename?: "Edition";
@@ -2491,12 +2648,32 @@ export type GetMaterialQuery = {
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
+          ages: Array<{ __typename?: "Range"; display: string }>;
+        } | null;
+        notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+        languages?: {
+          __typename?: "Languages";
+          notes?: Array<string> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
+          summary: string;
           numberOfPages?: number | null;
           playingTime?: string | null;
         }>;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          summary: string;
+        } | null;
+        manifestationParts?: {
+          __typename?: "ManifestationParts";
+          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+        } | null;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
           | {
@@ -2529,14 +2706,6 @@ export type GetMaterialQuery = {
           nationalBibliography: Array<string>;
           otherCatalogues: Array<string>;
         };
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{
-            __typename?: "Language";
-            display: string;
-            isoCode: string;
-          }> | null;
-        } | null;
       };
       bestRepresentation: {
         __typename?: "Manifestation";
@@ -2567,8 +2736,22 @@ export type GetMaterialQuery = {
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | {
+              __typename?: "Corporation";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
+          | {
+              __typename?: "Person";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
         >;
         edition?: {
           __typename?: "Edition";
@@ -2586,12 +2769,32 @@ export type GetMaterialQuery = {
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
+          ages: Array<{ __typename?: "Range"; display: string }>;
+        } | null;
+        notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+        languages?: {
+          __typename?: "Languages";
+          notes?: Array<string> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
+          summary: string;
           numberOfPages?: number | null;
           playingTime?: string | null;
         }>;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          summary: string;
+        } | null;
+        manifestationParts?: {
+          __typename?: "ManifestationParts";
+          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+        } | null;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
           | {
@@ -2624,14 +2827,6 @@ export type GetMaterialQuery = {
           nationalBibliography: Array<string>;
           otherCatalogues: Array<string>;
         };
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{
-            __typename?: "Language";
-            display: string;
-            isoCode: string;
-          }> | null;
-        } | null;
       };
     };
   } | null;
@@ -2669,6 +2864,7 @@ export type GetMaterialGloballyQuery = {
         | { __typename?: "Person"; display: string }
         | { __typename?: "Setting"; display: string }
         | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
         | { __typename?: "TimePeriod"; display: string }
       >;
       dbcVerified: Array<
@@ -2678,6 +2874,7 @@ export type GetMaterialGloballyQuery = {
         | { __typename?: "Person"; display: string }
         | { __typename?: "Setting"; display: string }
         | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
         | { __typename?: "TimePeriod"; display: string }
       >;
     };
@@ -2763,8 +2960,22 @@ export type GetMaterialGloballyQuery = {
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | {
+              __typename?: "Corporation";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
+          | {
+              __typename?: "Person";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
         >;
         edition?: {
           __typename?: "Edition";
@@ -2782,12 +2993,32 @@ export type GetMaterialGloballyQuery = {
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
+          ages: Array<{ __typename?: "Range"; display: string }>;
+        } | null;
+        notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+        languages?: {
+          __typename?: "Languages";
+          notes?: Array<string> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
+          summary: string;
           numberOfPages?: number | null;
           playingTime?: string | null;
         }>;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          summary: string;
+        } | null;
+        manifestationParts?: {
+          __typename?: "ManifestationParts";
+          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+        } | null;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
           | {
@@ -2820,14 +3051,6 @@ export type GetMaterialGloballyQuery = {
           nationalBibliography: Array<string>;
           otherCatalogues: Array<string>;
         };
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{
-            __typename?: "Language";
-            display: string;
-            isoCode: string;
-          }> | null;
-        } | null;
       }>;
       latest: {
         __typename?: "Manifestation";
@@ -2858,8 +3081,22 @@ export type GetMaterialGloballyQuery = {
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | {
+              __typename?: "Corporation";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
+          | {
+              __typename?: "Person";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
         >;
         edition?: {
           __typename?: "Edition";
@@ -2877,12 +3114,32 @@ export type GetMaterialGloballyQuery = {
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
+          ages: Array<{ __typename?: "Range"; display: string }>;
+        } | null;
+        notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+        languages?: {
+          __typename?: "Languages";
+          notes?: Array<string> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
+          summary: string;
           numberOfPages?: number | null;
           playingTime?: string | null;
         }>;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          summary: string;
+        } | null;
+        manifestationParts?: {
+          __typename?: "ManifestationParts";
+          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+        } | null;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
           | {
@@ -2915,14 +3172,6 @@ export type GetMaterialGloballyQuery = {
           nationalBibliography: Array<string>;
           otherCatalogues: Array<string>;
         };
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{
-            __typename?: "Language";
-            display: string;
-            isoCode: string;
-          }> | null;
-        } | null;
       };
       bestRepresentation: {
         __typename?: "Manifestation";
@@ -2953,8 +3202,22 @@ export type GetMaterialGloballyQuery = {
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
+          | {
+              __typename?: "Corporation";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
+          | {
+              __typename?: "Person";
+              display: string;
+              roles: Array<{
+                __typename?: "Role";
+                function: { __typename?: "Translation"; singular: string };
+              }>;
+            }
         >;
         edition?: {
           __typename?: "Edition";
@@ -2972,12 +3235,32 @@ export type GetMaterialGloballyQuery = {
         audience?: {
           __typename?: "Audience";
           generalAudience: Array<string>;
+          ages: Array<{ __typename?: "Range"; display: string }>;
+        } | null;
+        notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+        languages?: {
+          __typename?: "Languages";
+          notes?: Array<string> | null;
+          main?: Array<{
+            __typename?: "Language";
+            display: string;
+            isoCode: string;
+          }> | null;
         } | null;
         physicalDescriptions: Array<{
           __typename?: "PhysicalDescription";
+          summary: string;
           numberOfPages?: number | null;
           playingTime?: string | null;
         }>;
+        hostPublication?: {
+          __typename?: "HostPublication";
+          summary: string;
+        } | null;
+        manifestationParts?: {
+          __typename?: "ManifestationParts";
+          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+        } | null;
         accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
         access: Array<
           | {
@@ -3010,14 +3293,6 @@ export type GetMaterialGloballyQuery = {
           nationalBibliography: Array<string>;
           otherCatalogues: Array<string>;
         };
-        languages?: {
-          __typename?: "Languages";
-          main?: Array<{
-            __typename?: "Language";
-            display: string;
-            isoCode: string;
-          }> | null;
-        } | null;
       };
     };
   } | null;
@@ -3195,8 +3470,22 @@ export type RecommendFromFaustQuery = {
             >;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
-              | { __typename?: "Corporation"; display: string }
-              | { __typename?: "Person"; display: string }
+              | {
+                  __typename?: "Corporation";
+                  display: string;
+                  roles: Array<{
+                    __typename?: "Role";
+                    function: { __typename?: "Translation"; singular: string };
+                  }>;
+                }
+              | {
+                  __typename?: "Person";
+                  display: string;
+                  roles: Array<{
+                    __typename?: "Role";
+                    function: { __typename?: "Translation"; singular: string };
+                  }>;
+                }
             >;
             edition?: {
               __typename?: "Edition";
@@ -3214,12 +3503,32 @@ export type RecommendFromFaustQuery = {
             audience?: {
               __typename?: "Audience";
               generalAudience: Array<string>;
+              ages: Array<{ __typename?: "Range"; display: string }>;
+            } | null;
+            notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+            languages?: {
+              __typename?: "Languages";
+              notes?: Array<string> | null;
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
             } | null;
             physicalDescriptions: Array<{
               __typename?: "PhysicalDescription";
+              summary: string;
               numberOfPages?: number | null;
               playingTime?: string | null;
             }>;
+            hostPublication?: {
+              __typename?: "HostPublication";
+              summary: string;
+            } | null;
+            manifestationParts?: {
+              __typename?: "ManifestationParts";
+              parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+            } | null;
             accessTypes: Array<{
               __typename?: "AccessType";
               code: AccessTypeCode;
@@ -3255,14 +3564,6 @@ export type RecommendFromFaustQuery = {
               nationalBibliography: Array<string>;
               otherCatalogues: Array<string>;
             };
-            languages?: {
-              __typename?: "Languages";
-              main?: Array<{
-                __typename?: "Language";
-                display: string;
-                isoCode: string;
-              }> | null;
-            } | null;
           }>;
           latest: {
             __typename?: "Manifestation";
@@ -3293,8 +3594,22 @@ export type RecommendFromFaustQuery = {
             >;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
-              | { __typename?: "Corporation"; display: string }
-              | { __typename?: "Person"; display: string }
+              | {
+                  __typename?: "Corporation";
+                  display: string;
+                  roles: Array<{
+                    __typename?: "Role";
+                    function: { __typename?: "Translation"; singular: string };
+                  }>;
+                }
+              | {
+                  __typename?: "Person";
+                  display: string;
+                  roles: Array<{
+                    __typename?: "Role";
+                    function: { __typename?: "Translation"; singular: string };
+                  }>;
+                }
             >;
             edition?: {
               __typename?: "Edition";
@@ -3312,12 +3627,32 @@ export type RecommendFromFaustQuery = {
             audience?: {
               __typename?: "Audience";
               generalAudience: Array<string>;
+              ages: Array<{ __typename?: "Range"; display: string }>;
+            } | null;
+            notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+            languages?: {
+              __typename?: "Languages";
+              notes?: Array<string> | null;
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
             } | null;
             physicalDescriptions: Array<{
               __typename?: "PhysicalDescription";
+              summary: string;
               numberOfPages?: number | null;
               playingTime?: string | null;
             }>;
+            hostPublication?: {
+              __typename?: "HostPublication";
+              summary: string;
+            } | null;
+            manifestationParts?: {
+              __typename?: "ManifestationParts";
+              parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+            } | null;
             accessTypes: Array<{
               __typename?: "AccessType";
               code: AccessTypeCode;
@@ -3353,14 +3688,6 @@ export type RecommendFromFaustQuery = {
               nationalBibliography: Array<string>;
               otherCatalogues: Array<string>;
             };
-            languages?: {
-              __typename?: "Languages";
-              main?: Array<{
-                __typename?: "Language";
-                display: string;
-                isoCode: string;
-              }> | null;
-            } | null;
           };
           bestRepresentation: {
             __typename?: "Manifestation";
@@ -3391,8 +3718,22 @@ export type RecommendFromFaustQuery = {
             >;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
-              | { __typename?: "Corporation"; display: string }
-              | { __typename?: "Person"; display: string }
+              | {
+                  __typename?: "Corporation";
+                  display: string;
+                  roles: Array<{
+                    __typename?: "Role";
+                    function: { __typename?: "Translation"; singular: string };
+                  }>;
+                }
+              | {
+                  __typename?: "Person";
+                  display: string;
+                  roles: Array<{
+                    __typename?: "Role";
+                    function: { __typename?: "Translation"; singular: string };
+                  }>;
+                }
             >;
             edition?: {
               __typename?: "Edition";
@@ -3410,12 +3751,32 @@ export type RecommendFromFaustQuery = {
             audience?: {
               __typename?: "Audience";
               generalAudience: Array<string>;
+              ages: Array<{ __typename?: "Range"; display: string }>;
+            } | null;
+            notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+            languages?: {
+              __typename?: "Languages";
+              notes?: Array<string> | null;
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
             } | null;
             physicalDescriptions: Array<{
               __typename?: "PhysicalDescription";
+              summary: string;
               numberOfPages?: number | null;
               playingTime?: string | null;
             }>;
+            hostPublication?: {
+              __typename?: "HostPublication";
+              summary: string;
+            } | null;
+            manifestationParts?: {
+              __typename?: "ManifestationParts";
+              parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+            } | null;
             accessTypes: Array<{
               __typename?: "AccessType";
               code: AccessTypeCode;
@@ -3451,14 +3812,6 @@ export type RecommendFromFaustQuery = {
               nationalBibliography: Array<string>;
               otherCatalogues: Array<string>;
             };
-            languages?: {
-              __typename?: "Languages";
-              main?: Array<{
-                __typename?: "Language";
-                display: string;
-                isoCode: string;
-              }> | null;
-            } | null;
           };
         };
       };
@@ -3549,8 +3902,22 @@ export type SearchWithPaginationQuery = {
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
-            | { __typename?: "Corporation"; display: string }
-            | { __typename?: "Person"; display: string }
+            | {
+                __typename?: "Corporation";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
+            | {
+                __typename?: "Person";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
           >;
           edition?: {
             __typename?: "Edition";
@@ -3568,12 +3935,32 @@ export type SearchWithPaginationQuery = {
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
+            ages: Array<{ __typename?: "Range"; display: string }>;
+          } | null;
+          notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+          languages?: {
+            __typename?: "Languages";
+            notes?: Array<string> | null;
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
           physicalDescriptions: Array<{
             __typename?: "PhysicalDescription";
+            summary: string;
             numberOfPages?: number | null;
             playingTime?: string | null;
           }>;
+          hostPublication?: {
+            __typename?: "HostPublication";
+            summary: string;
+          } | null;
+          manifestationParts?: {
+            __typename?: "ManifestationParts";
+            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+          } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
             code: AccessTypeCode;
@@ -3609,14 +3996,6 @@ export type SearchWithPaginationQuery = {
             nationalBibliography: Array<string>;
             otherCatalogues: Array<string>;
           };
-          languages?: {
-            __typename?: "Languages";
-            main?: Array<{
-              __typename?: "Language";
-              display: string;
-              isoCode: string;
-            }> | null;
-          } | null;
         }>;
         latest: {
           __typename?: "Manifestation";
@@ -3647,8 +4026,22 @@ export type SearchWithPaginationQuery = {
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
-            | { __typename?: "Corporation"; display: string }
-            | { __typename?: "Person"; display: string }
+            | {
+                __typename?: "Corporation";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
+            | {
+                __typename?: "Person";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
           >;
           edition?: {
             __typename?: "Edition";
@@ -3666,12 +4059,32 @@ export type SearchWithPaginationQuery = {
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
+            ages: Array<{ __typename?: "Range"; display: string }>;
+          } | null;
+          notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+          languages?: {
+            __typename?: "Languages";
+            notes?: Array<string> | null;
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
           physicalDescriptions: Array<{
             __typename?: "PhysicalDescription";
+            summary: string;
             numberOfPages?: number | null;
             playingTime?: string | null;
           }>;
+          hostPublication?: {
+            __typename?: "HostPublication";
+            summary: string;
+          } | null;
+          manifestationParts?: {
+            __typename?: "ManifestationParts";
+            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+          } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
             code: AccessTypeCode;
@@ -3707,14 +4120,6 @@ export type SearchWithPaginationQuery = {
             nationalBibliography: Array<string>;
             otherCatalogues: Array<string>;
           };
-          languages?: {
-            __typename?: "Languages";
-            main?: Array<{
-              __typename?: "Language";
-              display: string;
-              isoCode: string;
-            }> | null;
-          } | null;
         };
         bestRepresentation: {
           __typename?: "Manifestation";
@@ -3745,8 +4150,22 @@ export type SearchWithPaginationQuery = {
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
-            | { __typename?: "Corporation"; display: string }
-            | { __typename?: "Person"; display: string }
+            | {
+                __typename?: "Corporation";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
+            | {
+                __typename?: "Person";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
           >;
           edition?: {
             __typename?: "Edition";
@@ -3764,12 +4183,32 @@ export type SearchWithPaginationQuery = {
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
+            ages: Array<{ __typename?: "Range"; display: string }>;
+          } | null;
+          notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+          languages?: {
+            __typename?: "Languages";
+            notes?: Array<string> | null;
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
           physicalDescriptions: Array<{
             __typename?: "PhysicalDescription";
+            summary: string;
             numberOfPages?: number | null;
             playingTime?: string | null;
           }>;
+          hostPublication?: {
+            __typename?: "HostPublication";
+            summary: string;
+          } | null;
+          manifestationParts?: {
+            __typename?: "ManifestationParts";
+            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+          } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
             code: AccessTypeCode;
@@ -3805,14 +4244,6 @@ export type SearchWithPaginationQuery = {
             nationalBibliography: Array<string>;
             otherCatalogues: Array<string>;
           };
-          languages?: {
-            __typename?: "Languages";
-            main?: Array<{
-              __typename?: "Language";
-              display: string;
-              isoCode: string;
-            }> | null;
-          } | null;
         };
       };
     }>;
@@ -3950,8 +4381,22 @@ export type ComplexSearchWithPaginationQuery = {
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
-            | { __typename?: "Corporation"; display: string }
-            | { __typename?: "Person"; display: string }
+            | {
+                __typename?: "Corporation";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
+            | {
+                __typename?: "Person";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
           >;
           edition?: {
             __typename?: "Edition";
@@ -3969,12 +4414,32 @@ export type ComplexSearchWithPaginationQuery = {
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
+            ages: Array<{ __typename?: "Range"; display: string }>;
+          } | null;
+          notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+          languages?: {
+            __typename?: "Languages";
+            notes?: Array<string> | null;
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
           physicalDescriptions: Array<{
             __typename?: "PhysicalDescription";
+            summary: string;
             numberOfPages?: number | null;
             playingTime?: string | null;
           }>;
+          hostPublication?: {
+            __typename?: "HostPublication";
+            summary: string;
+          } | null;
+          manifestationParts?: {
+            __typename?: "ManifestationParts";
+            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+          } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
             code: AccessTypeCode;
@@ -4010,14 +4475,6 @@ export type ComplexSearchWithPaginationQuery = {
             nationalBibliography: Array<string>;
             otherCatalogues: Array<string>;
           };
-          languages?: {
-            __typename?: "Languages";
-            main?: Array<{
-              __typename?: "Language";
-              display: string;
-              isoCode: string;
-            }> | null;
-          } | null;
         }>;
         latest: {
           __typename?: "Manifestation";
@@ -4048,8 +4505,22 @@ export type ComplexSearchWithPaginationQuery = {
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
-            | { __typename?: "Corporation"; display: string }
-            | { __typename?: "Person"; display: string }
+            | {
+                __typename?: "Corporation";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
+            | {
+                __typename?: "Person";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
           >;
           edition?: {
             __typename?: "Edition";
@@ -4067,12 +4538,32 @@ export type ComplexSearchWithPaginationQuery = {
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
+            ages: Array<{ __typename?: "Range"; display: string }>;
+          } | null;
+          notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+          languages?: {
+            __typename?: "Languages";
+            notes?: Array<string> | null;
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
           physicalDescriptions: Array<{
             __typename?: "PhysicalDescription";
+            summary: string;
             numberOfPages?: number | null;
             playingTime?: string | null;
           }>;
+          hostPublication?: {
+            __typename?: "HostPublication";
+            summary: string;
+          } | null;
+          manifestationParts?: {
+            __typename?: "ManifestationParts";
+            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+          } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
             code: AccessTypeCode;
@@ -4108,14 +4599,6 @@ export type ComplexSearchWithPaginationQuery = {
             nationalBibliography: Array<string>;
             otherCatalogues: Array<string>;
           };
-          languages?: {
-            __typename?: "Languages";
-            main?: Array<{
-              __typename?: "Language";
-              display: string;
-              isoCode: string;
-            }> | null;
-          } | null;
         };
         bestRepresentation: {
           __typename?: "Manifestation";
@@ -4146,8 +4629,22 @@ export type ComplexSearchWithPaginationQuery = {
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
-            | { __typename?: "Corporation"; display: string }
-            | { __typename?: "Person"; display: string }
+            | {
+                __typename?: "Corporation";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
+            | {
+                __typename?: "Person";
+                display: string;
+                roles: Array<{
+                  __typename?: "Role";
+                  function: { __typename?: "Translation"; singular: string };
+                }>;
+              }
           >;
           edition?: {
             __typename?: "Edition";
@@ -4165,12 +4662,32 @@ export type ComplexSearchWithPaginationQuery = {
           audience?: {
             __typename?: "Audience";
             generalAudience: Array<string>;
+            ages: Array<{ __typename?: "Range"; display: string }>;
+          } | null;
+          notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+          languages?: {
+            __typename?: "Languages";
+            notes?: Array<string> | null;
+            main?: Array<{
+              __typename?: "Language";
+              display: string;
+              isoCode: string;
+            }> | null;
           } | null;
           physicalDescriptions: Array<{
             __typename?: "PhysicalDescription";
+            summary: string;
             numberOfPages?: number | null;
             playingTime?: string | null;
           }>;
+          hostPublication?: {
+            __typename?: "HostPublication";
+            summary: string;
+          } | null;
+          manifestationParts?: {
+            __typename?: "ManifestationParts";
+            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+          } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
             code: AccessTypeCode;
@@ -4206,14 +4723,6 @@ export type ComplexSearchWithPaginationQuery = {
             nationalBibliography: Array<string>;
             otherCatalogues: Array<string>;
           };
-          languages?: {
-            __typename?: "Languages";
-            main?: Array<{
-              __typename?: "Language";
-              display: string;
-              isoCode: string;
-            }> | null;
-          } | null;
         };
       };
     }>;
@@ -4355,8 +4864,22 @@ export type ManifestationsSimpleFragment = {
     >;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
-      | { __typename?: "Corporation"; display: string }
-      | { __typename?: "Person"; display: string }
+      | {
+          __typename?: "Corporation";
+          display: string;
+          roles: Array<{
+            __typename?: "Role";
+            function: { __typename?: "Translation"; singular: string };
+          }>;
+        }
+      | {
+          __typename?: "Person";
+          display: string;
+          roles: Array<{
+            __typename?: "Role";
+            function: { __typename?: "Translation"; singular: string };
+          }>;
+        }
     >;
     edition?: {
       __typename?: "Edition";
@@ -4374,12 +4897,32 @@ export type ManifestationsSimpleFragment = {
     audience?: {
       __typename?: "Audience";
       generalAudience: Array<string>;
+      ages: Array<{ __typename?: "Range"; display: string }>;
+    } | null;
+    notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+    languages?: {
+      __typename?: "Languages";
+      notes?: Array<string> | null;
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
     } | null;
     physicalDescriptions: Array<{
       __typename?: "PhysicalDescription";
+      summary: string;
       numberOfPages?: number | null;
       playingTime?: string | null;
     }>;
+    hostPublication?: {
+      __typename?: "HostPublication";
+      summary: string;
+    } | null;
+    manifestationParts?: {
+      __typename?: "ManifestationParts";
+      parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+    } | null;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
     access: Array<
       | {
@@ -4409,14 +4952,6 @@ export type ManifestationsSimpleFragment = {
       nationalBibliography: Array<string>;
       otherCatalogues: Array<string>;
     };
-    languages?: {
-      __typename?: "Languages";
-      main?: Array<{
-        __typename?: "Language";
-        display: string;
-        isoCode: string;
-      }> | null;
-    } | null;
   }>;
   latest: {
     __typename?: "Manifestation";
@@ -4447,8 +4982,22 @@ export type ManifestationsSimpleFragment = {
     >;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
-      | { __typename?: "Corporation"; display: string }
-      | { __typename?: "Person"; display: string }
+      | {
+          __typename?: "Corporation";
+          display: string;
+          roles: Array<{
+            __typename?: "Role";
+            function: { __typename?: "Translation"; singular: string };
+          }>;
+        }
+      | {
+          __typename?: "Person";
+          display: string;
+          roles: Array<{
+            __typename?: "Role";
+            function: { __typename?: "Translation"; singular: string };
+          }>;
+        }
     >;
     edition?: {
       __typename?: "Edition";
@@ -4466,12 +5015,32 @@ export type ManifestationsSimpleFragment = {
     audience?: {
       __typename?: "Audience";
       generalAudience: Array<string>;
+      ages: Array<{ __typename?: "Range"; display: string }>;
+    } | null;
+    notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+    languages?: {
+      __typename?: "Languages";
+      notes?: Array<string> | null;
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
     } | null;
     physicalDescriptions: Array<{
       __typename?: "PhysicalDescription";
+      summary: string;
       numberOfPages?: number | null;
       playingTime?: string | null;
     }>;
+    hostPublication?: {
+      __typename?: "HostPublication";
+      summary: string;
+    } | null;
+    manifestationParts?: {
+      __typename?: "ManifestationParts";
+      parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+    } | null;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
     access: Array<
       | {
@@ -4501,14 +5070,6 @@ export type ManifestationsSimpleFragment = {
       nationalBibliography: Array<string>;
       otherCatalogues: Array<string>;
     };
-    languages?: {
-      __typename?: "Languages";
-      main?: Array<{
-        __typename?: "Language";
-        display: string;
-        isoCode: string;
-      }> | null;
-    } | null;
   };
   bestRepresentation: {
     __typename?: "Manifestation";
@@ -4539,8 +5100,22 @@ export type ManifestationsSimpleFragment = {
     >;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
-      | { __typename?: "Corporation"; display: string }
-      | { __typename?: "Person"; display: string }
+      | {
+          __typename?: "Corporation";
+          display: string;
+          roles: Array<{
+            __typename?: "Role";
+            function: { __typename?: "Translation"; singular: string };
+          }>;
+        }
+      | {
+          __typename?: "Person";
+          display: string;
+          roles: Array<{
+            __typename?: "Role";
+            function: { __typename?: "Translation"; singular: string };
+          }>;
+        }
     >;
     edition?: {
       __typename?: "Edition";
@@ -4558,12 +5133,32 @@ export type ManifestationsSimpleFragment = {
     audience?: {
       __typename?: "Audience";
       generalAudience: Array<string>;
+      ages: Array<{ __typename?: "Range"; display: string }>;
+    } | null;
+    notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+    languages?: {
+      __typename?: "Languages";
+      notes?: Array<string> | null;
+      main?: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }> | null;
     } | null;
     physicalDescriptions: Array<{
       __typename?: "PhysicalDescription";
+      summary: string;
       numberOfPages?: number | null;
       playingTime?: string | null;
     }>;
+    hostPublication?: {
+      __typename?: "HostPublication";
+      summary: string;
+    } | null;
+    manifestationParts?: {
+      __typename?: "ManifestationParts";
+      parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+    } | null;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
     access: Array<
       | {
@@ -4593,14 +5188,6 @@ export type ManifestationsSimpleFragment = {
       nationalBibliography: Array<string>;
       otherCatalogues: Array<string>;
     };
-    languages?: {
-      __typename?: "Languages";
-      main?: Array<{
-        __typename?: "Language";
-        display: string;
-        isoCode: string;
-      }> | null;
-    } | null;
   };
 };
 
@@ -4663,8 +5250,22 @@ export type ManifestationsSimpleFieldsFragment = {
   >;
   identifiers: Array<{ __typename?: "Identifier"; value: string }>;
   contributors: Array<
-    | { __typename?: "Corporation"; display: string }
-    | { __typename?: "Person"; display: string }
+    | {
+        __typename?: "Corporation";
+        display: string;
+        roles: Array<{
+          __typename?: "Role";
+          function: { __typename?: "Translation"; singular: string };
+        }>;
+      }
+    | {
+        __typename?: "Person";
+        display: string;
+        roles: Array<{
+          __typename?: "Role";
+          function: { __typename?: "Translation"; singular: string };
+        }>;
+      }
   >;
   edition?: {
     __typename?: "Edition";
@@ -4679,12 +5280,32 @@ export type ManifestationsSimpleFieldsFragment = {
     display: string;
     year?: number | null;
   } | null;
-  audience?: { __typename?: "Audience"; generalAudience: Array<string> } | null;
+  audience?: {
+    __typename?: "Audience";
+    generalAudience: Array<string>;
+    ages: Array<{ __typename?: "Range"; display: string }>;
+  } | null;
+  notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+  languages?: {
+    __typename?: "Languages";
+    notes?: Array<string> | null;
+    main?: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }> | null;
+  } | null;
   physicalDescriptions: Array<{
     __typename?: "PhysicalDescription";
+    summary: string;
     numberOfPages?: number | null;
     playingTime?: string | null;
   }>;
+  hostPublication?: { __typename?: "HostPublication"; summary: string } | null;
+  manifestationParts?: {
+    __typename?: "ManifestationParts";
+    parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+  } | null;
   accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
   access: Array<
     | {
@@ -4714,14 +5335,6 @@ export type ManifestationsSimpleFieldsFragment = {
     nationalBibliography: Array<string>;
     otherCatalogues: Array<string>;
   };
-  languages?: {
-    __typename?: "Languages";
-    main?: Array<{
-      __typename?: "Language";
-      display: string;
-      isoCode: string;
-    }> | null;
-  } | null;
 };
 
 export type ManifestationReviewFieldsFragment = {
@@ -4888,8 +5501,22 @@ export type WorkSmallFragment = {
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
-        | { __typename?: "Corporation"; display: string }
-        | { __typename?: "Person"; display: string }
+        | {
+            __typename?: "Corporation";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
+        | {
+            __typename?: "Person";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
       >;
       edition?: {
         __typename?: "Edition";
@@ -4907,12 +5534,32 @@ export type WorkSmallFragment = {
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
+        ages: Array<{ __typename?: "Range"; display: string }>;
+      } | null;
+      notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+      languages?: {
+        __typename?: "Languages";
+        notes?: Array<string> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
+        summary: string;
         numberOfPages?: number | null;
         playingTime?: string | null;
       }>;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        summary: string;
+      } | null;
+      manifestationParts?: {
+        __typename?: "ManifestationParts";
+        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+      } | null;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
         | {
@@ -4945,14 +5592,6 @@ export type WorkSmallFragment = {
         nationalBibliography: Array<string>;
         otherCatalogues: Array<string>;
       };
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{
-          __typename?: "Language";
-          display: string;
-          isoCode: string;
-        }> | null;
-      } | null;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -4983,8 +5622,22 @@ export type WorkSmallFragment = {
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
-        | { __typename?: "Corporation"; display: string }
-        | { __typename?: "Person"; display: string }
+        | {
+            __typename?: "Corporation";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
+        | {
+            __typename?: "Person";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
       >;
       edition?: {
         __typename?: "Edition";
@@ -5002,12 +5655,32 @@ export type WorkSmallFragment = {
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
+        ages: Array<{ __typename?: "Range"; display: string }>;
+      } | null;
+      notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+      languages?: {
+        __typename?: "Languages";
+        notes?: Array<string> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
+        summary: string;
         numberOfPages?: number | null;
         playingTime?: string | null;
       }>;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        summary: string;
+      } | null;
+      manifestationParts?: {
+        __typename?: "ManifestationParts";
+        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+      } | null;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
         | {
@@ -5040,14 +5713,6 @@ export type WorkSmallFragment = {
         nationalBibliography: Array<string>;
         otherCatalogues: Array<string>;
       };
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{
-          __typename?: "Language";
-          display: string;
-          isoCode: string;
-        }> | null;
-      } | null;
     };
     bestRepresentation: {
       __typename?: "Manifestation";
@@ -5078,8 +5743,22 @@ export type WorkSmallFragment = {
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
-        | { __typename?: "Corporation"; display: string }
-        | { __typename?: "Person"; display: string }
+        | {
+            __typename?: "Corporation";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
+        | {
+            __typename?: "Person";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
       >;
       edition?: {
         __typename?: "Edition";
@@ -5097,12 +5776,32 @@ export type WorkSmallFragment = {
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
+        ages: Array<{ __typename?: "Range"; display: string }>;
+      } | null;
+      notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+      languages?: {
+        __typename?: "Languages";
+        notes?: Array<string> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
+        summary: string;
         numberOfPages?: number | null;
         playingTime?: string | null;
       }>;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        summary: string;
+      } | null;
+      manifestationParts?: {
+        __typename?: "ManifestationParts";
+        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+      } | null;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
         | {
@@ -5135,14 +5834,6 @@ export type WorkSmallFragment = {
         nationalBibliography: Array<string>;
         otherCatalogues: Array<string>;
       };
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{
-          __typename?: "Language";
-          display: string;
-          isoCode: string;
-        }> | null;
-      } | null;
     };
   };
 };
@@ -5173,6 +5864,7 @@ export type WorkMediumFragment = {
       | { __typename?: "Person"; display: string }
       | { __typename?: "Setting"; display: string }
       | { __typename?: "SubjectText"; display: string }
+      | { __typename?: "SubjectWithRating"; display: string }
       | { __typename?: "TimePeriod"; display: string }
     >;
     dbcVerified: Array<
@@ -5182,6 +5874,7 @@ export type WorkMediumFragment = {
       | { __typename?: "Person"; display: string }
       | { __typename?: "Setting"; display: string }
       | { __typename?: "SubjectText"; display: string }
+      | { __typename?: "SubjectWithRating"; display: string }
       | { __typename?: "TimePeriod"; display: string }
     >;
   };
@@ -5267,8 +5960,22 @@ export type WorkMediumFragment = {
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
-        | { __typename?: "Corporation"; display: string }
-        | { __typename?: "Person"; display: string }
+        | {
+            __typename?: "Corporation";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
+        | {
+            __typename?: "Person";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
       >;
       edition?: {
         __typename?: "Edition";
@@ -5286,12 +5993,32 @@ export type WorkMediumFragment = {
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
+        ages: Array<{ __typename?: "Range"; display: string }>;
+      } | null;
+      notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+      languages?: {
+        __typename?: "Languages";
+        notes?: Array<string> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
+        summary: string;
         numberOfPages?: number | null;
         playingTime?: string | null;
       }>;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        summary: string;
+      } | null;
+      manifestationParts?: {
+        __typename?: "ManifestationParts";
+        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+      } | null;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
         | {
@@ -5324,14 +6051,6 @@ export type WorkMediumFragment = {
         nationalBibliography: Array<string>;
         otherCatalogues: Array<string>;
       };
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{
-          __typename?: "Language";
-          display: string;
-          isoCode: string;
-        }> | null;
-      } | null;
     }>;
     latest: {
       __typename?: "Manifestation";
@@ -5362,8 +6081,22 @@ export type WorkMediumFragment = {
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
-        | { __typename?: "Corporation"; display: string }
-        | { __typename?: "Person"; display: string }
+        | {
+            __typename?: "Corporation";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
+        | {
+            __typename?: "Person";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
       >;
       edition?: {
         __typename?: "Edition";
@@ -5381,12 +6114,32 @@ export type WorkMediumFragment = {
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
+        ages: Array<{ __typename?: "Range"; display: string }>;
+      } | null;
+      notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+      languages?: {
+        __typename?: "Languages";
+        notes?: Array<string> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
+        summary: string;
         numberOfPages?: number | null;
         playingTime?: string | null;
       }>;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        summary: string;
+      } | null;
+      manifestationParts?: {
+        __typename?: "ManifestationParts";
+        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+      } | null;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
         | {
@@ -5419,14 +6172,6 @@ export type WorkMediumFragment = {
         nationalBibliography: Array<string>;
         otherCatalogues: Array<string>;
       };
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{
-          __typename?: "Language";
-          display: string;
-          isoCode: string;
-        }> | null;
-      } | null;
     };
     bestRepresentation: {
       __typename?: "Manifestation";
@@ -5457,8 +6202,22 @@ export type WorkMediumFragment = {
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
-        | { __typename?: "Corporation"; display: string }
-        | { __typename?: "Person"; display: string }
+        | {
+            __typename?: "Corporation";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
+        | {
+            __typename?: "Person";
+            display: string;
+            roles: Array<{
+              __typename?: "Role";
+              function: { __typename?: "Translation"; singular: string };
+            }>;
+          }
       >;
       edition?: {
         __typename?: "Edition";
@@ -5476,12 +6235,32 @@ export type WorkMediumFragment = {
       audience?: {
         __typename?: "Audience";
         generalAudience: Array<string>;
+        ages: Array<{ __typename?: "Range"; display: string }>;
+      } | null;
+      notes: Array<{ __typename?: "Note"; display: Array<string> }>;
+      languages?: {
+        __typename?: "Languages";
+        notes?: Array<string> | null;
+        main?: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }> | null;
       } | null;
       physicalDescriptions: Array<{
         __typename?: "PhysicalDescription";
+        summary: string;
         numberOfPages?: number | null;
         playingTime?: string | null;
       }>;
+      hostPublication?: {
+        __typename?: "HostPublication";
+        summary: string;
+      } | null;
+      manifestationParts?: {
+        __typename?: "ManifestationParts";
+        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
+      } | null;
       accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
       access: Array<
         | {
@@ -5514,14 +6293,6 @@ export type WorkMediumFragment = {
         nationalBibliography: Array<string>;
         otherCatalogues: Array<string>;
       };
-      languages?: {
-        __typename?: "Languages";
-        main?: Array<{
-          __typename?: "Language";
-          display: string;
-          isoCode: string;
-        }> | null;
-      } | null;
     };
   };
 };
@@ -5715,6 +6486,11 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   contributors {
     display
+    roles {
+      function {
+        singular
+      }
+    }
   }
   edition {
     summary
@@ -5728,10 +6504,28 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   audience {
     generalAudience
+    ages {
+      display
+    }
+  }
+  notes {
+    display
+  }
+  languages {
+    notes
   }
   physicalDescriptions {
+    summary
     numberOfPages
     playingTime
+  }
+  hostPublication {
+    summary
+  }
+  manifestationParts {
+    parts {
+      title
+    }
   }
   accessTypes {
     code
