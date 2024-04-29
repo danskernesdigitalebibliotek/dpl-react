@@ -14,6 +14,7 @@ import {
   DplOpeningHoursUpdatePATCHBody
 } from "../../core/dpl-cms/model";
 import { useConfig } from "../../core/utils/config";
+import { HandleEventRemoveType } from "./types";
 
 const useOpeningHoursEditor = () => {
   const config = useConfig();
@@ -94,12 +95,16 @@ const useOpeningHoursEditor = () => {
     );
   };
 
-  const handleEventRemove = (eventId: string) => {
+  const handleEventRemove = ({
+    eventId,
+    repetition_id
+  }: HandleEventRemoveType) => {
     removeOpeningHours(
       {
         id: eventId,
         params: {
-          _format: "json"
+          _format: "json",
+          ...(repetition_id ? { repetition_id } : {})
         }
       },
       {

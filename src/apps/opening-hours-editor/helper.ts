@@ -1,9 +1,11 @@
 import dayjs from "dayjs";
 import { EventInput } from "@fullcalendar/core";
+import { EventImpl } from "@fullcalendar/core/internal";
 import {
   DplOpeningHoursListGET200Item,
   DplOpeningHoursCreatePOSTBody,
-  DplOpeningHoursUpdatePATCHBody
+  DplOpeningHoursUpdatePATCHBody,
+  DplOpeningHoursListGET200ItemRepetitionType
 } from "../../core/dpl-cms/model";
 
 const formatDateTimeString = (date: string, time: string): string => {
@@ -153,4 +155,19 @@ export const getDateString = (date: Date) => {
 
 export const getStringForDateInput = (date: Date) => {
   return dayjs(date).format("YYYY-MM-DD");
+};
+
+export const isOpeningHourWeeklyRepetition = (
+  event: EventImpl | EventInput
+) => {
+  if ("event" in event) {
+    return (
+      event.event.extendedProps?.repetition?.type ===
+      DplOpeningHoursListGET200ItemRepetitionType.weekly
+    );
+  }
+  return (
+    event.extendedProps?.repetition?.type ===
+    DplOpeningHoursListGET200ItemRepetitionType.weekly
+  );
 };

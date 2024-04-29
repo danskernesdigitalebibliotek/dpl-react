@@ -3,29 +3,38 @@ import { EventImpl } from "@fullcalendar/core/internal";
 import {
   adjustEndDateBasedOnStartDate,
   formatFullCalendarEventToCmsEventEdit,
+  isOpeningHourWeeklyRepetition,
   updateDateTime
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { useText } from "../../core/utils/text";
-import { OpeningHoursCategoriesType } from "./types";
+import { HandleEventRemoveType, OpeningHoursCategoriesType } from "./types";
 import { DplOpeningHoursUpdatePATCHBody } from "../../core/dpl-cms/model";
+import useDialog from "../../components/dialog/useDialog";
+import Dialog from "../../components/dialog/Dialog";
+import ConfirmEditRepeatedOpeningHour from "./ConfirmEditRepeatedOpeningHour";
 
 type DialogFormEditProps = {
   eventInfo: EventImpl;
   handleEventEditing: (event: DplOpeningHoursUpdatePATCHBody) => void;
   closeDialog: () => void;
-  handleEventRemove: (eventId: string) => void;
+  handleEventRemove: ({
+    eventId,
+    repetition_id
+  }: HandleEventRemoveType) => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
 };
 
 const DialogFormEdit: React.FC<DialogFormEditProps> = ({
   eventInfo,
   handleEventEditing,
-  closeDialog,
+  closeDialog: closeEditDialog,
   handleEventRemove,
   openingHoursCategories
 }) => {
   const t = useText();
+  const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
+    useDialog();
 
   const handleSubmit = ({
     category,
@@ -57,7 +66,7 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
     };
 
     handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
-    closeDialog();
+    closeEditDialog();
   };
 
   if (!eventInfo.start || !eventInfo.end) {
@@ -66,27 +75,55 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
     return null;
   }
 
+  const handleEventRemoveConfirm = (editSerie: boolean) => {
+    handleEventRemove({
+      eventId: eventInfo.id,
+      ...(editSerie
+        ? { repetition_id: eventInfo.extendedProps.repetition.id }
+        : {})
+    });
+    eventInfo.remove();
+    closeDialog();
+    closeEditDialog();
+  };
+
+  const handleRemoveButtonClick = () => {
+    if (isOpeningHourWeeklyRepetition(eventInfo)) {
+      openDialogWithContent(
+        <ConfirmEditRepeatedOpeningHour
+          title={t("openingHoursRemoveEventTitleText")}
+          confirmSubmit={handleEventRemoveConfirm}
+          closeDialog={closeDialog}
+        />
+      );
+    } else {
+      handleEventRemoveConfirm(false);
+    }
+  };
+
   return (
-    <EventForm
-      initialTitle={eventInfo.title}
-      startDate={eventInfo.start}
-      endDate={eventInfo.end}
-      onSubmit={handleSubmit}
-      openingHoursCategories={openingHoursCategories}
-    >
-      <button
-        data-cy="opening-hours-editor-form__remove"
-        className="opening-hours-editor-form__remove"
-        type="button"
-        onClick={() => {
-          eventInfo.remove();
-          handleEventRemove(eventInfo.id);
-          closeDialog();
-        }}
+    <>
+      <EventForm
+        initialTitle={eventInfo.title}
+        startDate={eventInfo.start}
+        endDate={eventInfo.end}
+        onSubmit={handleSubmit}
+        openingHoursCategories={openingHoursCategories}
       >
-        {t("openingHoursRemoveEventButtonText")}
-      </button>
-    </EventForm>
+        <button
+          data-cy="opening-hours-editor-form__remove"
+          className="opening-hours-editor-form__remove"
+          type="button"
+          onClick={handleRemoveButtonClick}
+        >
+          {t("openingHoursRemoveEventButtonText")}
+        </button>
+      </EventForm>
+
+      <Dialog closeDialog={closeDialog} ref={dialogRef}>
+        {dialogContent}
+      </Dialog>
+    </>
   );
 };
 

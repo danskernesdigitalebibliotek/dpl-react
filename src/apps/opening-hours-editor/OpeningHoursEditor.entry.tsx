@@ -19,8 +19,11 @@ interface OpeningHoursEditorEntryTextProps {
   openingHoursEventFormStartDateText: string;
   openingHoursConfirmAddRepeatedText: string;
   openingHoursConfirmAddRepeatedCancelText: string;
-  openingHoursConfirmAddRepeatedSubmitText: string;
+  openingHoursConfirmRepeatedSubmitText: string;
   openingHoursRepeatedIconAltText: string;
+  openingHoursEditEventConfirmOptionThisText: string;
+  openingHoursEditEventConfirmOptionAllText: string;
+  openingHoursRemoveEventTitleText: string;
 }
 
 interface OpeningHoursEditorEntryConfigProps {
