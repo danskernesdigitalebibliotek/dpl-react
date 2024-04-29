@@ -86,7 +86,7 @@ export default {
       defaultValue: "Cancel",
       control: { type: "text" }
     },
-    openingHoursConfirmAddRepeatedSubmitText: {
+    openingHoursConfirmRepeatedSubmitText: {
       name: "Opening hours confirm add repeated submit",
       defaultValue: "I'm sure",
       control: { type: "text" }
@@ -94,6 +94,21 @@ export default {
     openingHoursRepeatedIconAltText: {
       name: "Opening hours repeated icon alt text",
       defaultValue: "Repeated opening hour",
+      control: { type: "text" }
+    },
+    openingHoursEditEventConfirmOptionThisText: {
+      name: "Opening hours remove event confirm option this",
+      defaultValue: "Only this instance",
+      control: { type: "text" }
+    },
+    openingHoursEditEventConfirmOptionAllText: {
+      name: "Opening hours remove event confirm option all",
+      defaultValue: "This and feuture instances",
+      control: { type: "text" }
+    },
+    openingHoursRemoveEventTitleText: {
+      name: "Opening hours remove event title",
+      defaultValue: "Remove opening hour",
       control: { type: "text" }
     }
   }

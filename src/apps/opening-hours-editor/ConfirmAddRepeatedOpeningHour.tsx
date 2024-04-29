@@ -79,7 +79,7 @@ const ConfirmAddRepeatedOpeningHour = ({
           closeDialog();
         }}
       >
-        {t("openingHoursConfirmAddRepeatedSubmitText")}
+        {t("openingHoursConfirmRepeatedSubmitText")}
       </button>
     </div>
   );
