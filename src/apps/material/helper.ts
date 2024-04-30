@@ -219,7 +219,7 @@ export const getManifestationParts = (
   manifestation: Manifestation
 ): string[] => {
   return (
-    manifestation.manifestationParts?.parts?.map((item) => item.title) || null
+    manifestation.manifestationParts?.parts?.map((item) => item.title) || []
   );
 };
 
