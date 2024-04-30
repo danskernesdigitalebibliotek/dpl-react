@@ -16,7 +16,12 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         },
       ],
       "audience": {
+        "ages": [],
         "generalAudience": [],
+      },
+      "catalogueCodes": {
+        "nationalBibliography": [],
+        "otherCatalogues": [],
       },
       "contributors": [],
       "creators": [
@@ -39,6 +44,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "genreAndForm": [
         "noveller",
       ],
+      "hostPublication": null,
       "identifiers": [
         {
           "value": "0-19-423069-4",
@@ -51,7 +57,9 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
             "isoCode": "eng",
           },
         ],
+        "notes": [],
       },
+      "manifestationParts": null,
       "materialTypes": [
         {
           "materialTypeSpecific": {
@@ -59,10 +67,12 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           },
         },
       ],
+      "notes": [],
       "physicalDescriptions": [
         {
           "numberOfPages": 104,
           "playingTime": null,
+          "summary": "104 sider: ill.",
         },
       ],
       "pid": "870970-basis:23798255",
@@ -94,24 +104,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           "origin": "link.overdrive.com",
           "url": "http://link.overdrive.com/?websiteID=100515&titleID=39136",
         },
-        {
-          "__typename": "AccessUrl",
-          "loginRequired": false,
-          "origin": "samples.overdrive.com",
-          "url": "https://samples.overdrive.com/?crid=9AB7D235-9D58-4180-8DF3-57A4A60CD51E&.epub-sample.overdrive.com",
-        },
-        {
-          "__typename": "AccessUrl",
-          "loginRequired": false,
-          "origin": "img1.od-cdn.com",
-          "url": "https://img1.od-cdn.com/ImageType-100/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg100.jpg",
-        },
-        {
-          "__typename": "AccessUrl",
-          "loginRequired": false,
-          "origin": "img1.od-cdn.com",
-          "url": "https://img1.od-cdn.com/ImageType-200/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg200.jpg",
-        },
       ],
       "accessTypes": [
         {
@@ -119,12 +111,17 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         },
       ],
       "audience": {
+        "ages": [],
         "generalAudience": [
           "Text Difficulty 3 - Text Difficulty 5",
           "UG/Upper grades (9th-12)",
           "820. Lexile",
           "6.1. ATOS Level",
         ],
+      },
+      "catalogueCodes": {
+        "nationalBibliography": [],
+        "otherCatalogues": [],
       },
       "contributors": [],
       "creators": [
@@ -145,6 +142,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         "display": "skønlitteratur",
       },
       "genreAndForm": [],
+      "hostPublication": null,
       "identifiers": [
         {
           "value": "9780553900330",
@@ -157,7 +155,9 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
             "isoCode": "eng",
           },
         ],
+        "notes": [],
       },
+      "manifestationParts": null,
       "materialTypes": [
         {
           "materialTypeSpecific": {
@@ -165,10 +165,18 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           },
         },
       ],
+      "notes": [
+        {
+          "display": [
+            "Electronic reproduction. New York : Spectra, 2004. Requires the Libby app or a modern web browser",
+          ],
+        },
+      ],
       "physicalDescriptions": [
         {
           "numberOfPages": null,
           "playingTime": null,
+          "summary": "1 online resource",
         },
       ],
       "pid": "150061-ebog:ODN0000039136",
@@ -195,24 +203,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           "origin": "link.overdrive.com",
           "url": "http://link.overdrive.com/?websiteID=100515&titleID=105225",
         },
-        {
-          "__typename": "AccessUrl",
-          "loginRequired": false,
-          "origin": "samples.overdrive.com",
-          "url": "https://samples.overdrive.com/?crid=A6AAE8CE-F944-44F3-960D-4E9A7715CDD5&.epub-sample.overdrive.com",
-        },
-        {
-          "__typename": "AccessUrl",
-          "loginRequired": false,
-          "origin": "img1.od-cdn.com",
-          "url": "https://img1.od-cdn.com/ImageType-100/1191-1/%7BA6AAE8CE-F944-44F3-960D-4E9A7715CDD5%7DImg100.jpg",
-        },
-        {
-          "__typename": "AccessUrl",
-          "loginRequired": false,
-          "origin": "img1.od-cdn.com",
-          "url": "https://img1.od-cdn.com/ImageType-200/1191-1/%7BA6AAE8CE-F944-44F3-960D-4E9A7715CDD5%7DImg200.jpg",
-        },
       ],
       "accessTypes": [
         {
@@ -220,10 +210,15 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         },
       ],
       "audience": {
+        "ages": [],
         "generalAudience": [
           "Text Difficulty 3 - Text Difficulty 4",
           "820. Lexile",
         ],
+      },
+      "catalogueCodes": {
+        "nationalBibliography": [],
+        "otherCatalogues": [],
       },
       "contributors": [],
       "creators": [
@@ -248,6 +243,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         "display": "vides ikke",
       },
       "genreAndForm": [],
+      "hostPublication": null,
       "identifiers": [
         {
           "value": "9780739346273",
@@ -260,7 +256,9 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
             "isoCode": "eng",
           },
         ],
+        "notes": [],
       },
+      "manifestationParts": null,
       "materialTypes": [
         {
           "materialTypeSpecific": {
@@ -268,10 +266,18 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           },
         },
       ],
+      "notes": [
+        {
+          "display": [
+            "Unabridged",
+          ],
+        },
+      ],
       "physicalDescriptions": [
         {
           "numberOfPages": null,
           "playingTime": null,
+          "summary": "1 online resource (7 audio files) digital",
         },
       ],
       "pid": "150061-netlydbog:ODN0000105225",
@@ -305,6 +311,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         },
       ],
       "audience": {
+        "ages": [],
         "generalAudience": [],
       },
       "catalogueCodes": {
@@ -339,6 +346,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "genreAndForm": [
         "noveller",
       ],
+      "hostPublication": null,
       "identifiers": [
         {
           "value": "9780230026810",
@@ -354,7 +362,9 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
             "isoCode": "eng",
           },
         ],
+        "notes": [],
       },
+      "manifestationParts": null,
       "materialTypes": [
         {
           "materialTypeSpecific": {
@@ -367,10 +377,18 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           },
         },
       ],
+      "notes": [
+        {
+          "display": [
+            "Bogens originaludgave: 1950",
+          ],
+        },
+      ],
       "physicalDescriptions": [
         {
           "numberOfPages": 95,
           "playingTime": "2t., 31 min.",
+          "summary": "2 cd'er 1 bog 95 sider: ill. 2t., 31 min.",
         },
       ],
       "pid": "870970-basis:44504928",
