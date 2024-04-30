@@ -6,6 +6,7 @@
  * OpenAPI spec version: Versioning not supported
  */
 import type { DplOpeningHoursCreatePOSTBodyCategory } from "./dplOpeningHoursCreatePOSTBodyCategory";
+import type { DplOpeningHoursCreatePOSTBodyRepetition } from "./dplOpeningHoursCreatePOSTBodyRepetition";
 
 export type DplOpeningHoursCreatePOSTBody = {
   /** The id for the branch the instance belongs to */
@@ -17,6 +18,7 @@ export type DplOpeningHoursCreatePOSTBody = {
   end_time: string;
   /** An serial unique id of the opening hours instance. */
   id?: number;
+  repetition: DplOpeningHoursCreatePOSTBodyRepetition;
   /** When the opening hours start. In format HH:MM */
   start_time: string;
 };
