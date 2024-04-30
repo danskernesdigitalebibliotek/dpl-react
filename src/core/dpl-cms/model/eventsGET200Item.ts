@@ -30,6 +30,8 @@ export type EventsGET200Item = {
   series?: EventsGET200ItemSeries;
   /** The state of the event. */
   state: EventsGET200ItemState;
+  /** Total number of tickets which can be sold for the event. */
+  ticket_capacity?: number;
   /** Ticket categories used for the event. Not present for events without ticketing. */
   ticket_categories?: EventsGET200ItemTicketCategoriesItem[];
   /** The event title. */

@@ -6,6 +6,7 @@
  * OpenAPI spec version: Versioning not supported
  */
 import type { DplOpeningHoursCreatePOST200Category } from "./dplOpeningHoursCreatePOST200Category";
+import type { DplOpeningHoursCreatePOST200Repetition } from "./dplOpeningHoursCreatePOST200Repetition";
 
 export type DplOpeningHoursCreatePOST200 = {
   /** The id for the branch the instance belongs to */
@@ -17,6 +18,7 @@ export type DplOpeningHoursCreatePOST200 = {
   end_time: string;
   /** An serial unique id of the opening hours instance. */
   id: number;
+  repetition: DplOpeningHoursCreatePOST200Repetition;
   /** When the opening hours start. In format HH:MM */
   start_time: string;
 };
