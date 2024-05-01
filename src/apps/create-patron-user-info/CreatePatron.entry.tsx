@@ -36,11 +36,9 @@ interface CreatePatronTextProps {
   createPatronInvalidSsnHeaderText: string;
   patronContactEmailCheckboxText: string;
   patronContactEmailLabelText: string;
-  patronContactInfoHeaderText: string;
   patronContactNameLabelText: string;
   patronContactPhoneCheckboxText: string;
   patronContactPhoneLabelText: string;
-  patronPageChangePincodeBodyText: string;
   patronPageChangePincodeHeaderText: string;
   patronPageConfirmPincodeLabelText: string;
   patronPagePincodeLabelText: string;

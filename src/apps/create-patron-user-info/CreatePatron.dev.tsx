@@ -61,10 +61,6 @@ export default {
       defaultValue: "Nothing selected",
       control: { type: "text" }
     },
-    patronPageChangePincodeBodyText: {
-      defaultValue: "Change current pin by entering a new pin and saving",
-      control: { type: "text" }
-    },
     patronPagePincodeLabelText: {
       defaultValue: "New pin",
       control: { type: "text" }
@@ -88,10 +84,6 @@ export default {
     },
     patronContactPhoneLabelText: {
       defaultValue: "Phone number",
-      control: { type: "text" }
-    },
-    patronContactInfoHeaderText: {
-      defaultValue: "Contact information",
       control: { type: "text" }
     },
     patronContactPhoneCheckboxText: {
