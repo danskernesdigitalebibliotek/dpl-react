@@ -9,7 +9,10 @@ import {
   useDplOpeningHoursListGET,
   useDplOpeningHoursUpdatePATCH
 } from "../../core/dpl-cms/dpl-cms";
-import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+import {
+  DplOpeningHoursCreatePOSTBody,
+  DplOpeningHoursUpdatePATCHBody
+} from "../../core/dpl-cms/model";
 import { useConfig } from "../../core/utils/config";
 
 const useOpeningHoursEditor = () => {
@@ -46,7 +49,7 @@ const useOpeningHoursEditor = () => {
     window.location.reload();
   };
 
-  const handleEventAdd = (event: DplOpeningHoursListGET200Item) => {
+  const handleEventAdd = (event: DplOpeningHoursCreatePOSTBody) => {
     createOpeningHours(
       {
         data: {
@@ -68,7 +71,7 @@ const useOpeningHoursEditor = () => {
     );
   };
 
-  const handleEventEditing = (event: DplOpeningHoursListGET200Item) => {
+  const handleEventEditing = (event: DplOpeningHoursUpdatePATCHBody) => {
     updateOpeningHours(
       {
         id: event.id.toString(),

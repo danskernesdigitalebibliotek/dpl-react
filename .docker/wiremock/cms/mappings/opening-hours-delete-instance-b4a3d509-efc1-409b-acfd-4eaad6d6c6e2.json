@@ -1,6 +1,6 @@
 {
-  "id": "f52a1b96-38d2-479a-aeaf-65367637d365",
-  "name": "Delete event",
+  "id": "b4a3d509-efc1-409b-acfd-4eaad6d6c6e2",
+  "name": "Opening hours delete instance",
   "request": {
     "urlPathPattern": "/dpl_opening_hours/[0-9]+",
     "method": "DELETE"
@@ -10,9 +10,9 @@
     "body": "",
     "headers": {}
   },
-  "uuid": "f52a1b96-38d2-479a-aeaf-65367637d365",
+  "uuid": "b4a3d509-efc1-409b-acfd-4eaad6d6c6e2",
   "persistent": true,
   "priority": 5,
-  "insertionIndex": 1,
+  "insertionIndex": 5,
   "postServeActions": []
 }
