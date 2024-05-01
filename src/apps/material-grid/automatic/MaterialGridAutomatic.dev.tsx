@@ -9,6 +9,7 @@ import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import MaterialGridAutomatic, {
   MaterialGridAutomaticEntryProps
 } from "./MaterialGridAutomatic.entry";
+import MaterialGridSkeleton from "../MaterialGridSkeleton";
 
 export default {
   title: "Apps / Material Grid / Automatic",
@@ -79,3 +80,8 @@ export default {
 export const App: ComponentStory<typeof MaterialGridAutomatic> = (
   args: MaterialGridAutomaticEntryProps & GlobalEntryTextProps
 ) => <MaterialGridAutomatic {...args} />;
+
+const SkeletonTemplate: ComponentStory<typeof MaterialGridAutomatic> = () => {
+  return <MaterialGridSkeleton />;
+};
+export const Skeleton = SkeletonTemplate.bind({});

@@ -1,0 +1,21 @@
+{
+  "id": "f17d80cb-0e88-46f5-910a-07d9b803d2c3",
+  "name": "Opening hours create instance",
+  "request": {
+    "url": "/dpl_opening_hours?_format=json",
+    "method": "POST"
+  },
+  "response": {
+    "status": 200,
+    "body": "[  \n  {\n    \"id\": {{randomValue length=3 type='NUMERIC'}},\n    \"category\": {\n      \"title\": \"{{jsonPath request.body '$.category.title'}}\",\n      \"color\": \"{{jsonPath request.body '$.category.color'}}\"\n    },\n    \"date\": \"{{jsonPath request.body '$.date'}}\",\n    \"start_time\": \"{{jsonPath request.body '$.start_time'}}\",\n    \"end_time\": \"{{jsonPath request.body '$.end_time'}}\",\n    \"branch_id\": {{jsonPath request.body '$.branch_id'}},\n    \"repetition\": {\n        \"id\": {{randomValue length=3 type='NUMERIC'}},\n        \"type\": \"{{jsonPath request.body '$.repetition.type'}}\",{{#if (eq (jsonPath request.body '$.repetition.type') 'weekly')}}\"weekly_data\": {{{jsonPath request.body '$.repetition.weekly_data'}}}{{/if}}\n      }\n  }\n]",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["response-template"]
+  },
+  "uuid": "f17d80cb-0e88-46f5-910a-07d9b803d2c3",
+  "persistent": true,
+  "priority": 5,
+  "insertionIndex": 1,
+  "postServeActions": []
+}

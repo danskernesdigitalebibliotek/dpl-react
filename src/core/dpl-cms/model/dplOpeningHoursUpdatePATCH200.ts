@@ -6,6 +6,7 @@
  * OpenAPI spec version: Versioning not supported
  */
 import type { DplOpeningHoursUpdatePATCH200Category } from "./dplOpeningHoursUpdatePATCH200Category";
+import type { DplOpeningHoursUpdatePATCH200Repetition } from "./dplOpeningHoursUpdatePATCH200Repetition";
 
 export type DplOpeningHoursUpdatePATCH200 = {
   /** The id for the branch the instance belongs to */
@@ -17,6 +18,7 @@ export type DplOpeningHoursUpdatePATCH200 = {
   end_time: string;
   /** An serial unique id of the opening hours instance. */
   id: number;
+  repetition: DplOpeningHoursUpdatePATCH200Repetition;
   /** When the opening hours start. In format HH:MM */
   start_time: string;
 };
