@@ -3,18 +3,20 @@ import { DateSelectArg } from "@fullcalendar/core";
 import {
   adjustEndDateToStartDayGridMonth,
   adjustEndDateToStartDayTimeGridWeek,
-  extractTime,
   formatDateStr,
-  formatFullCalendarEventToCmsEvent,
+  formatFullCalendarEventToCmsEventAdd,
   updateDateTime
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
-import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+import {
+  DplOpeningHoursCreatePOSTBody,
+  DplOpeningHoursCreatePOSTBodyRepetitionType
+} from "../../core/dpl-cms/model";
 import { OpeningHoursCategoriesType } from "./types";
 
 type DialogFormAddProps = {
   selectedEventInfo: DateSelectArg;
-  handleEventAdd: (selectedEventInfo: DplOpeningHoursListGET200Item) => void;
+  handleEventAdd: (event: DplOpeningHoursCreatePOSTBody) => void;
   closeDialog: () => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
 };
@@ -32,7 +34,8 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
   const handleSubmit: EventFormOnSubmitType = (
     category,
     startTime,
-    endTime
+    endTime,
+    repeatedEndDate
   ) => {
     const start = updateDateTime(selectedEventInfo.start, startTime);
     const startStr = formatDateStr(start);
@@ -51,7 +54,7 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
       endStr = adjustedEnd.endStr;
     }
 
-    const newEventInfo = {
+    const newFullCalenderEvent = {
       ...selectedEventInfo,
       start,
       startStr,
@@ -62,18 +65,32 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
       allDay: false
     };
 
-    calendarApi.addEvent(newEventInfo);
+    calendarApi.addEvent(newFullCalenderEvent);
     calendarApi.unselect();
-    handleEventAdd(formatFullCalendarEventToCmsEvent(newEventInfo));
+
+    const cmsEvent = formatFullCalendarEventToCmsEventAdd({
+      ...newFullCalenderEvent,
+      repetition: {
+        type: repeatedEndDate
+          ? DplOpeningHoursCreatePOSTBodyRepetitionType.weekly
+          : DplOpeningHoursCreatePOSTBodyRepetitionType.none,
+        ...(repeatedEndDate
+          ? { weekly_data: { end_date: repeatedEndDate } }
+          : {})
+      }
+    });
+
+    handleEventAdd(cmsEvent);
     closeDialog();
   };
 
   return (
     <EventForm
       openingHoursCategories={openingHoursCategories}
-      initialStartTime={extractTime(selectedEventInfo.start)}
-      initialEndTime={extractTime(selectedEventInfo.end)}
+      startDate={selectedEventInfo.start}
+      endDate={selectedEventInfo.end}
       onSubmit={handleSubmit}
+      isRepeatedOpeningHour
     />
   );
 };

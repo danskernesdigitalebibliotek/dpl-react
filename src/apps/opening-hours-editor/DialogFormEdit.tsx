@@ -2,18 +2,17 @@ import React from "react";
 import { EventImpl } from "@fullcalendar/core/internal";
 import {
   adjustEndDateBasedOnStartDate,
-  extractTime,
-  formatFullCalendarEventToCmsEvent,
+  formatFullCalendarEventToCmsEventEdit,
   updateDateTime
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { useText } from "../../core/utils/text";
 import { OpeningHoursCategoriesType } from "./types";
-import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+import { DplOpeningHoursUpdatePATCHBody } from "../../core/dpl-cms/model";
 
 type DialogFormEditProps = {
   eventInfo: EventImpl;
-  handleEventEditing: (event: DplOpeningHoursListGET200Item) => void;
+  handleEventEditing: (event: DplOpeningHoursUpdatePATCHBody) => void;
   closeDialog: () => void;
   handleEventRemove: (eventId: string) => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
@@ -47,21 +46,31 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
     eventInfo.setProp("color", category.color);
     eventInfo.setDates(startDate, endDate);
 
-    handleEventEditing(formatFullCalendarEventToCmsEvent(eventInfo));
+    const cmsEvent = {
+      id: eventInfo.id,
+      category,
+      title: eventInfo.title,
+      backgroundColor: eventInfo.backgroundColor,
+      startStr: eventInfo.startStr,
+      endStr: eventInfo.endStr,
+      repetition: eventInfo.extendedProps.repetition
+    };
+
+    handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
     closeDialog();
   };
 
   if (!eventInfo.start || !eventInfo.end) {
     // eslint-disable-next-line no-alert
-    alert("Invalid event");
+    alert(t("openingHoursInvalidEventText"));
     return null;
   }
 
   return (
     <EventForm
       initialTitle={eventInfo.title}
-      initialStartTime={extractTime(eventInfo.start)}
-      initialEndTime={extractTime(eventInfo.end)}
+      startDate={eventInfo.start}
+      endDate={eventInfo.end}
       onSubmit={handleSubmit}
       openingHoursCategories={openingHoursCategories}
     >
@@ -69,14 +78,6 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
         data-cy="opening-hours-editor-form__remove"
         className="opening-hours-editor-form__remove"
         type="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            eventInfo.remove();
-            handleEventRemove(eventInfo.id);
-            closeDialog();
-          }
-        }}
         onClick={() => {
           eventInfo.remove();
           handleEventRemove(eventInfo.id);

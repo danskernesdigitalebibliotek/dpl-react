@@ -12,11 +12,11 @@ export default {
   component: OpeningHours,
   argTypes: {
     initialDate: {
-      defaultValue: new Date("2024-03-21"),
+      defaultValue: new Date("2024-03-25"),
       control: { type: "date" }
     },
     branchId: {
-      defaultValue: 1,
+      defaultValue: 12,
       control: { type: "number" }
     },
     showOpeningHoursForWeekText: {
