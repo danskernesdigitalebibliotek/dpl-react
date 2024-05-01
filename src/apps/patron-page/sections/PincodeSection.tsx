@@ -56,13 +56,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
   ]);
 
   return (
-    <section data-cy="pincode-section">
-      <h2 className="text-header-h4 mt-64 mb-16">
-        {t("patronPageChangePincodeHeaderText")}
-      </h2>
-      <p className="text-body-small-regular mb-8">
-        {t("patronPageChangePincodeBodyText")}
-      </p>
+    <section data-cy="pincode-section" className="create-patron-page__row">
       <div className="dpl-pincode-container">
         <TextInput
           className="patron__input patron__input--desktop"
