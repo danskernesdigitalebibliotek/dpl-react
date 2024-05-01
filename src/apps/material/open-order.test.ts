@@ -9,7 +9,7 @@ const navigateToMaterial = () => {
   cy.getBySel("material-button-reservable-on-another-library")
     .first()
     .should("be.visible")
-    .and("contain", "Reservable on another library")
+    .and("contain", "Reserve bog")
     .click();
   cy.getBySel("material-description").scrollIntoView();
   cy.getBySel("reservation-modal-submit-button", true)
@@ -45,7 +45,7 @@ describe("Open Order Functionality", () => {
 
     cy.getBySel("open-oprder-response-status-text")
       .should("be.visible")
-      .and("contain", "Your order is accepted");
+      .and("contain", "Your material has been ordered from another library");
 
     closeModal();
   });

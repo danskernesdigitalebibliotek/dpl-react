@@ -48,6 +48,12 @@ export const getFutureDateString = (num: number) => {
   const futureDate = dayjs().add(num, "day").format("YYYY-MM-DD");
   return futureDate;
 };
+
+export const getFutureDateStringISO = (num: number) => {
+  const futureDate = dayjs().add(num, "day").format("YYYY-MM-DDTHH:mm:ssZ");
+  return futureDate;
+};
+
 type Periodical = Pick<PeriodicalEdition, "volumeNumber" | "volumeYear">;
 
 const constructReservation = ({

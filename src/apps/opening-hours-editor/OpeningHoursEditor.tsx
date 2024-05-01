@@ -12,6 +12,7 @@ import useDialog from "../../components/dialog/useDialog";
 import DialogFormAdd from "./DialogFormAdd";
 import { OpeningHoursCategoriesType } from "./types";
 import { useConfig } from "../../core/utils/config";
+import { useText } from "../../core/utils/text";
 
 export type OpeningHoursEditorType = {
   initialDate?: Date;
@@ -20,6 +21,10 @@ export type OpeningHoursEditorType = {
 const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
   initialDate
 }) => {
+  // OpeningHoursEditorEventContent cannot be rendered as a standard component,
+  // thus preventing the use of useText hook within it.
+  const t = useText();
+  const iconAltText = t("openingHoursRepeatedIconAltText");
   const config = useConfig();
   const openingHoursCategories = config<OpeningHoursCategoriesType[]>(
     "openingHoursEditorCategoriesConfig",
@@ -83,7 +88,8 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         }
         eventContent={(eventInput) =>
           OpeningHoursEditorEventContent({
-            eventInput
+            eventInput,
+            iconAltText
           })
         }
         events={events}
