@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import ExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import clsx from "clsx";
 import { useGetBranches } from "../../../core/utils/branches";
 import { useText } from "../../../core/utils/text";
 
@@ -7,12 +8,16 @@ interface BranchesDropdownProps {
   selected: string;
   classNames?: string;
   onChange: (value: string) => void;
+  required?: boolean;
+  footnote?: string;
 }
 
 const BranchesDropdown: FC<BranchesDropdownProps> = ({
   selected,
   onChange,
-  classNames
+  classNames,
+  required = false,
+  footnote
 }) => {
   const t = useText();
   const branches = useGetBranches("blacklistedPickupBranchesConfig");
@@ -23,9 +28,16 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
         htmlFor="branches-dropdown"
         className="text-body-medium-medium mt-32 mb-8"
       >
-        {t("pickupBranchesDropdownLabelText")}
+        {`${t("pickupBranchesDropdownLabelText")}${required ? "*" : null}`}
       </label>
-      <div className={`dropdown mb-32 mt-4 ${classNames || ""}`}>
+      <div
+        className={clsx(`dropdown mt-8 ${classNames || ""}`, [
+          {
+            "mb-32": !footnote
+          },
+          { "mb-8": footnote }
+        ])}
+      >
         {branches && (
           <>
             <select
@@ -60,6 +72,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
           </>
         )}
       </div>
+      {footnote && <p className="dropdown__footnote">{footnote}</p>}
     </>
   );
 };
