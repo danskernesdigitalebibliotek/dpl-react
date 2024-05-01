@@ -63,7 +63,7 @@ describe("Favorites list", () => {
       .eq(0)
       .find("a")
       .should("have.attr", "href")
-      .should("include", "/work/work-of:870970-basis:51363035");
+      .should("include", "/work/work-of:870970-basis:20636866");
   });
   it("Favorites list paginates", () => {
     // 2.h it paginates
