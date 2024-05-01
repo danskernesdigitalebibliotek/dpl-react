@@ -166,6 +166,12 @@ export default {
       name: "create patron button error text",
       defaultValue: "Error occurred",
       control: { type: "text" }
+    },
+    createPatronBranchDropdownNoteText: {
+      name: "create patron branch dropdown note text",
+      defaultValue:
+        "Choose preferred library for pickup of your future reservations.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof CreatePatron>;

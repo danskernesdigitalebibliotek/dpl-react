@@ -50,6 +50,7 @@ interface CreatePatronTextProps {
   pickupBranchesDropdownNothingSelectedText: string;
   createPatronButtonLoadingText: string;
   createPatronButtonErrorText: string;
+  createPatronBranchDropdownNoteText: string;
 }
 
 export interface CreatePatronProps
