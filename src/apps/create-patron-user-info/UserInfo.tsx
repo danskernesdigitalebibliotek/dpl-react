@@ -11,6 +11,7 @@ import { useConfig } from "../../core/utils/config";
 import { redirectTo } from "../../core/utils/helpers/url";
 import { useUrls } from "../../core/utils/url";
 import Link from "../../components/atoms/links/Link";
+import { getSubmitButtonText } from "./helper";
 
 export interface UserInfoProps {
   cpr: string;
@@ -37,15 +38,6 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSubmitError, setIsSubmitError] = useState<boolean>(false);
-  const getSubmitButtonText = () => {
-    if (isLoading) {
-      return t("createPatronButtonLoadingText");
-    }
-    if (isSubmitError) {
-      return t("createPatronButtonErrorText");
-    }
-    return t("createPatronConfirmButtonText");
-  };
   // Changes the patron object by key.
   // So using the parameters 123 and "phoneNumber" would change the phoneNumber to 123.
   const changePatron = (newValue: string | boolean, key: string) => {
@@ -54,7 +46,6 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
     set(copyUser, key, newValue);
     setPatron(copyUser);
   };
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -110,7 +101,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
                 className="btn-primary btn-filled btn-small"
                 data-cy="complete-user-registration-button"
               >
-                {getSubmitButtonText()}
+                {getSubmitButtonText(t, isLoading, isSubmitError)}
               </button>
               <Link
                 href={logoutUrl}
