@@ -56,10 +56,10 @@ export interface CreatePatronProps
     GlobalEntryTextProps,
     CreatePatronUrlProps,
     CreatePatronTextProps {
-  storybookContextCpr?: string;
+  fakeCpr?: string;
 }
 
-const CreatePatronEntry: FC<CreatePatronProps> = ({ storybookContextCpr }) => {
+const CreatePatronEntry: FC<CreatePatronProps> = ({ fakeCpr }) => {
   const u = useUrls();
   const dashboardUrl = u("dashboardUrl");
 
@@ -71,9 +71,7 @@ const CreatePatronEntry: FC<CreatePatronProps> = ({ storybookContextCpr }) => {
     }
   }, [dashboardUrl]);
 
-  return isUnregistered() ? (
-    <CreatePatron storybookContextCpr={storybookContextCpr} />
-  ) : null;
+  return isUnregistered() ? <CreatePatron fakeCpr={fakeCpr} /> : null;
 };
 
 export default withConfig(withText(withUrls(CreatePatronEntry)));

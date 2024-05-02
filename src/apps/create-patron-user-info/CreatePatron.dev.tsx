@@ -134,7 +134,7 @@ export default {
         "The phone number must be 6 to 15 characters in length and should be comprised solely of numbers or begin with a +",
       control: { type: "text" }
     },
-    storybookContextCpr: {
+    fakeCpr: {
       name: "Storybook context cpr",
       defaultValue: "0101901111",
       control: { type: "text" }

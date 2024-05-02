@@ -5,10 +5,10 @@ import { useConfig } from "../../core/utils/config";
 import useUserInfo from "../../core/adgangsplatformen/useUserInfo";
 
 export interface CreatePatronProps {
-  storybookContextCpr?: string;
+  fakeCpr?: string;
 }
 
-const CreatePatron: FC<CreatePatronProps> = ({ storybookContextCpr }) => {
+const CreatePatron: FC<CreatePatronProps> = ({ fakeCpr }) => {
   const [cpr, setCpr] = useState<string | null>(null);
   const config = useConfig();
   const t = useText();
@@ -19,11 +19,11 @@ const CreatePatron: FC<CreatePatronProps> = ({ storybookContextCpr }) => {
   });
   // Fetch user info data (only if not in storybook context).
   const { data: userInfo, isLoading } = useUserInfo({
-    enabled: !storybookContextCpr
+    enabled: !fakeCpr
   });
 
   useEffect(() => {
-    if (isLoading || !userInfo || storybookContextCpr) {
+    if (isLoading || !userInfo || fakeCpr) {
       return;
     }
     const {
@@ -31,10 +31,10 @@ const CreatePatron: FC<CreatePatronProps> = ({ storybookContextCpr }) => {
     } = userInfo;
     // Otherwise set the cpr so we can show the create patron form.
     setCpr(String(userCpr));
-  }, [agencyId, isLoading, userInfo, storybookContextCpr]);
+  }, [agencyId, isLoading, userInfo, fakeCpr]);
 
-  if (storybookContextCpr) {
-    return <UserInfo cpr={storybookContextCpr} />;
+  if (fakeCpr) {
+    return <UserInfo cpr={fakeCpr} />;
   }
 
   if (isLoading) {
