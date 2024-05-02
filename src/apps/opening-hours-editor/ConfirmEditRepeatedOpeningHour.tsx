@@ -57,11 +57,13 @@ const ConfirmEditRepeatedOpeningHour: FC<
         className="opening-hours-editor-form__cancel"
         data-cy="opening-hours-editor-form__cancel"
         type="button"
-        onClick={closeDialog}
+        onClick={() => {
+          closeDialog();
+          setSelectedOption(options[0].value);
+        }}
       >
         {t("openingHoursConfirmAddRepeatedCancelText")}
       </button>
-
       <button
         className="opening-hours-editor-form__submit"
         data-cy="opening-hours-editor-form__confirm"
@@ -69,6 +71,7 @@ const ConfirmEditRepeatedOpeningHour: FC<
         onClick={(e) => {
           e.preventDefault();
           confirmSubmit(selectedOption === OptionValue.All);
+          setSelectedOption(options[0].value);
         }}
       >
         {t("openingHoursConfirmRepeatedSubmitText")}
