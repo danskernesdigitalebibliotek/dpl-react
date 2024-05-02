@@ -45,7 +45,7 @@ describe("Material", () => {
       .and("contain", "Reserve bog")
       .click();
 
-    cy.getBySel("reservation-modal-parallel").should("be.visible");
+    cy.getBySel("reservation-modal").should("be.visible");
   });
 
   beforeEach(() => {
