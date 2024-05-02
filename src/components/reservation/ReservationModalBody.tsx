@@ -245,7 +245,7 @@ export const ReservationModalBody = ({
       {!reservationResults && !openOrderResponse && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
-            <Cover id={manifestation.pid} size="medium" animate />
+            <Cover ids={[manifestation.pid]} size="medium" animate />
             <div className="reservation-modal-description">
               <div className="reservation-modal-tag">
                 {getMaterialTypes(selectedManifestations)[0]}

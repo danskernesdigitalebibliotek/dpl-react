@@ -5,12 +5,15 @@ import { GetCoverCollectionType } from "../../core/cover-service-api/model";
 import { Pid } from "../../core/utils/types/ids";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import CoverImage from "./cover-image";
+import { Manifestation } from "../../core/utils/types/entities";
+import { getCoverUrl } from "./helper";
 
 export type CoverProps = {
   animate: boolean;
   size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
   tint?: "20" | "40" | "80" | "100" | "120";
-  id: Pid | string;
+  ids: (Pid | string)[];
+  bestRepresentation?: Manifestation;
   alt?: string;
   url?: URL;
   idType?: GetCoverCollectionType;
@@ -24,7 +27,8 @@ export const Cover = ({
   size,
   animate,
   tint,
-  id,
+  ids,
+  bestRepresentation,
   idType = "pid",
   shadow,
   linkAriaLabelledBy
@@ -43,11 +47,15 @@ export const Cover = ({
 
   const { data } = useGetCoverCollection({
     type: idType,
-    identifiers: [id],
+    identifiers: ids,
     sizes: [dataSize]
   });
 
-  const coverSrc = data?.[0]?.imageUrls?.[`${dataSize}`]?.url;
+  const coverSrc = getCoverUrl({
+    coverData: data,
+    bestRepresentation,
+    size: dataSize
+  });
 
   type TintClassesType = {
     [key: string]: string;

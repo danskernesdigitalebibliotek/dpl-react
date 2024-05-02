@@ -31,12 +31,19 @@ const returnFocusElement = () => {
   return element;
 };
 
+// Removes the 'modal' parameter from the browser's address bar.
+// If state.modalIds is not empty, adds the last modal ID as the 'modal' parameter.
 const removeModalIdFromUrl = (state: StateProps) => {
-  let newModalParam = "?";
-  if (state.modalIds?.toString() !== "") {
-    newModalParam = `?modal=${state.modalIds.toString()}`;
+  const currentUrl = new URL(window.location.href);
+
+  if (state.modalIds && state.modalIds.length > 0) {
+    const lastModalId = state.modalIds[state.modalIds.length - 1];
+    currentUrl.searchParams.set("modal", lastModalId);
+  } else {
+    currentUrl.searchParams.delete("modal");
   }
-  window.history.pushState("", "", newModalParam);
+
+  window.history.pushState({}, "", currentUrl);
 };
 
 const modalSlice = createSlice({
@@ -75,6 +82,7 @@ const modalSlice = createSlice({
     },
     closeModal(state: StateProps, action: PayloadProps) {
       const modalId = state.modalIds.pop();
+      // Check if the modalId from action payload exists in state.modalIds; if so, remove it:
       if (state.modalIds.indexOf(action.payload.modalId) > -1) {
         state.modalIds.splice(
           state.modalIds.indexOf(action.payload.modalId),

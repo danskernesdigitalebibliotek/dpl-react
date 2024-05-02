@@ -96,9 +96,9 @@ export const getFirstPublishedYear = (manifestations: Manifestation[]) => {
   );
 };
 
-export const getManifestationPid = (manifestations: Manifestation[]) => {
-  const ordered = orderManifestationsByYear(manifestations);
-  return ordered[0].pid;
+// This function is used to find the most representative pid of a work.
+export const getWorkPid = (work: Work) => {
+  return work.manifestations.bestRepresentation.pid || null;
 };
 
 export const getCoverTint = (index: number) => {

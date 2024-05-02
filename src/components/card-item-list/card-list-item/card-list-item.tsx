@@ -13,9 +13,9 @@ import Link from "../../atoms/links/Link";
 import {
   creatorsToString,
   flattenCreators,
-  getManifestationPid,
   getReleaseYearSearchResult,
-  materialIsFiction
+  materialIsFiction,
+  getManifestationsPids
 } from "../../../core/utils/helpers/general";
 import CardListItemCover from "./card-list-item-cover";
 import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
@@ -32,6 +32,7 @@ import { useStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
 import {
+  getFirstBookManifestation,
   getManifestationLanguageIsoCode,
   getNumberedSeries
 } from "../../../apps/material/helper";
@@ -69,11 +70,12 @@ const CardListItem: React.FC<CardListItemProps> = ({
     filters,
     manifestations
   );
+  const bookManifestation = getFirstBookManifestation(manifestations);
 
   const dispatch = useDispatch<TypedDispatch>();
   const queryClient = useQueryClient();
   const author = creatorsToString(flattenCreators(creators), t);
-  const manifestationPid = getManifestationPid(manifestations);
+  const manifestationPids = getManifestationsPids(manifestations);
   const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(
     materialUrl,
@@ -133,7 +135,9 @@ const CardListItem: React.FC<CardListItemProps> = ({
       <div className="card-list-item__cover">
         {showItem && (
           <CardListItemCover
-            id={manifestationPid}
+            ids={manifestationPids}
+            // We'll try to prioritize book covers or else use FBI's recommended manifestation.
+            bestRepresentation={bookManifestation ?? bestRepresentation}
             url={materialFullUrl}
             tint={coverTint}
             linkAriaLabelledBy={searchTitleId}

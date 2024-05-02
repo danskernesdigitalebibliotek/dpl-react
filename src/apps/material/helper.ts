@@ -346,6 +346,12 @@ export const getManifestationsWithMaterialType = (
   });
 };
 
+export const getFirstBookManifestation = (manifestations: Manifestation[]) => {
+  const dividedManifestations =
+    divideManifestationsByMaterialType(manifestations);
+  return first(dividedManifestations[ManifestationMaterialType.book]) ?? null;
+};
+
 export const isABook = (manifestations: Manifestation[]) => {
   return manifestations.some((manifestation) => {
     return manifestation.materialTypes.some(
