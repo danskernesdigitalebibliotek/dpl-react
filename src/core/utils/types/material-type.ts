@@ -8,6 +8,8 @@ export const enum ManifestationMaterialType {
   game = "playstation 5",
   animatedSeries = "tegneserie",
   article = "artikel",
+  paperArticle = "avisartikel",
+  onlineArticle = "artikel (online)",
   earticle = "artikel",
   boardGame = "spil",
   cdRom = "cd",
