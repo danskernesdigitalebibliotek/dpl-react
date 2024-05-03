@@ -912,3 +912,8 @@ export const globalMaterial = Template.bind({});
 globalMaterial.args = {
   wid: "work-of:870970-basis:07185995"
 };
+
+export const digitalArticle = Template.bind({});
+digitalArticle.args = {
+  wid: "work-of:870971-tsart:36297484"
+};
