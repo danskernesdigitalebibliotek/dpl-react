@@ -140,7 +140,7 @@ export const extractTime = (date: Date) => {
   return dayjs(date).format("HH:mm");
 };
 
-export const updateDateTime = (date: Date, timeStr: string) => {
+export const updateDateTime = (date: Date, timeStr: string): Date => {
   const [hours, minutes] = timeStr.split(":").map(Number);
   return dayjs(date).hour(hours).minute(minutes).toDate();
 };

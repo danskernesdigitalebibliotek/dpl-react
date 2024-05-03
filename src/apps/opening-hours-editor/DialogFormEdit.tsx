@@ -9,7 +9,10 @@ import {
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { useText } from "../../core/utils/text";
 import { HandleEventRemoveType, OpeningHoursCategoriesType } from "./types";
-import { DplOpeningHoursUpdatePATCHBody } from "../../core/dpl-cms/model";
+import {
+  DplOpeningHoursListGET200ItemRepetitionType,
+  DplOpeningHoursUpdatePATCHBody
+} from "../../core/dpl-cms/model";
 import useDialog from "../../components/dialog/useDialog";
 import Dialog from "../../components/dialog/Dialog";
 import ConfirmEditRepeatedOpeningHour from "./ConfirmEditRepeatedOpeningHour";
@@ -65,8 +68,44 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
       repetition: eventInfo.extendedProps.repetition
     };
 
-    handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
-    closeEditDialog();
+    const handleEventEditConfirm = (editSerie: boolean) => {
+      if (editSerie) {
+        handleEventEditing(
+          formatFullCalendarEventToCmsEventEdit({
+            ...cmsEvent,
+            // Todo: remove ts-ignore when the openAPI spec is updated (repetition id should not be required)
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore: Unreachable code error
+            repetition: {
+              type: DplOpeningHoursListGET200ItemRepetitionType.weekly,
+              weekly_data: {
+                end_date:
+                  eventInfo.extendedProps.repetition.weekly_data.end_date
+              }
+            }
+          })
+        );
+        closeDialog();
+        closeEditDialog();
+      } else {
+        handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
+        closeDialog();
+        closeEditDialog();
+      }
+    };
+
+    if (isOpeningHourWeeklyRepetition(eventInfo)) {
+      openDialogWithContent(
+        <ConfirmEditRepeatedOpeningHour
+          title={t("openingHoursEditEventTitleText")}
+          confirmSubmit={handleEventEditConfirm}
+          closeDialog={closeDialog}
+        />
+      );
+    } else {
+      handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
+      closeEditDialog();
+    }
   };
 
   if (!eventInfo.start || !eventInfo.end) {
