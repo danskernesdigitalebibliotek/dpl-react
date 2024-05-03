@@ -24,6 +24,7 @@ interface OpeningHoursEditorEntryTextProps {
   openingHoursEditEventConfirmOptionThisText: string;
   openingHoursEditEventConfirmOptionAllText: string;
   openingHoursRemoveEventTitleText: string;
+  openingHoursEditEventTitleText: string;
 }
 
 interface OpeningHoursEditorEntryConfigProps {

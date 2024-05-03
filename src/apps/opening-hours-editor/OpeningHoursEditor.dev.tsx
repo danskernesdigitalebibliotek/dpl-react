@@ -110,6 +110,11 @@ export default {
       name: "Opening hours remove event title",
       defaultValue: "Remove opening hour",
       control: { type: "text" }
+    },
+    openingHoursEditEventTitleText: {
+      name: "Opening hours edit event title",
+      defaultValue: "Edit opening hour",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof OpeningHoursEditor>;
