@@ -35,10 +35,6 @@ export default {
       },
       defaultValue: "et al."
     },
-    viewFeesAndCompensationRatesUrl: {
-      defaultValue: "https://unsplash.com/photos/NEJcmvLFcws", // Open source image of a curious giraffe
-      control: { type: "text" }
-    },
     totalFeeAmountText: {
       defaultValue: "Fee",
       control: { type: "text" }
@@ -77,10 +73,6 @@ export default {
     },
     termsOfTradeText: {
       defaultValue: "Terms of trade",
-      control: { type: "text" }
-    },
-    termsOfTradeUrl: {
-      defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
       control: { type: "text" }
     },
     unpaidFeesPayableByClientHeadlineText: {
@@ -157,10 +149,6 @@ export default {
       },
       defaultValue: "Fees charged @date"
     },
-    availablePaymentTypesUrl: {
-      defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
-      control: { type: "text" }
-    },
     feeListAlreadyPaidInfoText: {
       defaultValue:
         "Already paid? It can take up to 72 hours to register the transaction.",
@@ -175,12 +163,41 @@ export default {
       defaultValue: "# @materialNumber",
       control: { type: "text" }
     },
+    feeListConfig: {
+      defaultValue: '{ "paymentSiteButtonLabel": "Go to payment page" }',
+      control: { type: "text" }
+    },
+    feeListYouHaveOverdueLoansText: {
+      defaultValue: `{"type":"plural","text":["You have an overdue loan. You may be charged fees upon handing in or renewing it.","You have overdue loans. You may be charged fees upon handing in or renewing them."]}`,
+      control: { type: "text" }
+    },
+    feeListSeeYourOverdueLoansText: {
+      defaultValue: "See your overdue loans",
+      control: { type: "text" }
+    },
+    feeListSeeYourOverdueLoansAriaText: {
+      defaultValue: "Go to the loan list page to see your overdue loans",
+      control: { type: "text" }
+    },
+    // Urls
+    physicalLoansUrl: {
+      defaultValue: "/user/me/loans",
+      control: { type: "text" }
+    },
     feeListPaymentSiteUrl: {
       defaultValue: "https://google.com",
       control: { type: "text" }
     },
-    feeListConfig: {
-      defaultValue: '{ "paymentSiteButtonLabel": "Go to payment page" }',
+    availablePaymentTypesUrl: {
+      defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
+      control: { type: "text" }
+    },
+    termsOfTradeUrl: {
+      defaultValue: "https://unsplash.com/photos/JDzoTGfoogA", // Open source image of an adventurous duck
+      control: { type: "text" }
+    },
+    viewFeesAndCompensationRatesUrl: {
+      defaultValue: "https://unsplash.com/photos/NEJcmvLFcws", // Open source image of a curious giraffe
       control: { type: "text" }
     }
   },
