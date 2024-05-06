@@ -8,16 +8,10 @@ export const getRedirectUrl = ({
   loginUrl: URL;
   logoutUrl: URL;
   redirectOnUserCreatedUrl: URL;
-}) => {
-  const loginUrlWithRedirect = appendQueryParametersToUrl(loginUrl, {
-    "current-path": `${redirectOnUserCreatedUrl.pathname}${redirectOnUserCreatedUrl.search}`
+}) =>
+  appendQueryParametersToUrl(logoutUrl, {
+    "current-path": `${loginUrl.pathname}?current-path=${redirectOnUserCreatedUrl.pathname}`
   });
-  const logoutUrlWithRedirect = appendQueryParametersToUrl(logoutUrl, {
-    "current-path": `${loginUrlWithRedirect.pathname}${loginUrlWithRedirect.search}`
-  });
-
-  return logoutUrlWithRedirect;
-};
 
 export default {};
 
@@ -27,7 +21,8 @@ if (import.meta.vitest) {
 
   describe("getRedirectUrl", () => {
     it("should be able to create a redirect url combining three urls", () => {
-      const domain = "https://dpl-cms.com";
+      const domain = "http://some-domain.com";
+
       const loginUrl = new URL(`${domain}/login`);
       const logoutUrl = new URL(`${domain}/logout`);
       const redirectOnUserCreatedUrl = new URL(`${domain}/velkommen`);
@@ -38,7 +33,7 @@ if (import.meta.vitest) {
       });
 
       expect(String(redirectUrl)).toEqual(
-        "https://dpl-cms.com/logout?current-path=%2Flogin%3Fcurrent-path%3D%25252Fvelkommen"
+        "http://some-domain.com/logout?current-path=%2Flogin%3Fcurrent-path%3D%2Fvelkommen"
       );
     });
   });
