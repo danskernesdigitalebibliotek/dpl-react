@@ -93,7 +93,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     );
   }
 
-  if (url && handleSelectManifestation) {
+  if (url && !handleSelectManifestation) {
     return (
       <LinkNoStyle className={parentClass} url={url} data-cy={dataCy}>
         {availabilityLabel}
