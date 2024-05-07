@@ -57,7 +57,6 @@ const CheckBox: FC<CheckBoxProps> = ({
         </span>
         {label && (
           <span
-            id={id}
             data-cy="checkbox-text"
             className={`checkbox__text text-small-caption color-secondary-gray ${
               hideLabel ? "checkbox__text--hide-visually" : ""
