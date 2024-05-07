@@ -103,7 +103,7 @@ export default {
     },
     openingHoursEditEventConfirmOptionAllText: {
       name: "Opening hours remove event confirm option all",
-      defaultValue: "This and feuture instances",
+      defaultValue: "This and future instances",
       control: { type: "text" }
     },
     openingHoursRemoveEventTitleText: {

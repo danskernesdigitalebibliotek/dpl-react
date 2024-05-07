@@ -2,8 +2,8 @@ import React, { ChangeEvent, FC, useState } from "react";
 import { useText } from "../../core/utils/text";
 
 enum OptionValue {
-  THIS = "this",
-  All = "all"
+  This = "This",
+  All = "All"
 }
 
 type ConfirmEditRepeatedOpeningHourType = {
@@ -18,7 +18,7 @@ const ConfirmEditRepeatedOpeningHour: FC<
   const t = useText();
   const options = [
     {
-      value: OptionValue.THIS,
+      value: OptionValue.This,
       label: t("openingHoursEditEventConfirmOptionThisText")
     },
     {
@@ -31,7 +31,7 @@ const ConfirmEditRepeatedOpeningHour: FC<
 
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (
-      event.target.value === OptionValue.THIS ||
+      event.target.value === OptionValue.This ||
       event.target.value === OptionValue.All
     ) {
       setSelectedOption(event.target.value);
@@ -55,7 +55,7 @@ const ConfirmEditRepeatedOpeningHour: FC<
       ))}
       <button
         className="opening-hours-editor-form__cancel"
-        data-cy="cy-opening-hours-editor-form__cancel"
+        data-cy="opening-hours-editor-form__cancel"
         type="button"
         onClick={closeDialog}
       >
@@ -64,7 +64,7 @@ const ConfirmEditRepeatedOpeningHour: FC<
 
       <button
         className="opening-hours-editor-form__submit"
-        data-cy="cy-opening-hours-editor-form__confirm"
+        data-cy="opening-hours-editor-form__confirm"
         type="button"
         onClick={(e) => {
           e.preventDefault();
