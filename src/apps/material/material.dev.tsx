@@ -917,3 +917,8 @@ export const digitalArticle = Template.bind({});
 digitalArticle.args = {
   wid: "work-of:870971-tsart:36297484"
 };
+
+export const inLargeSameSeriesAndIrregularFaustId = Template.bind({});
+inLargeSameSeriesAndIrregularFaustId.args = {
+  wid: "work-of:150086-netmusik:BIS-2067"
+};
