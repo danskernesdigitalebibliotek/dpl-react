@@ -5,20 +5,20 @@
  * The REST API provide by the core REST module.
  * OpenAPI spec version: Versioning not supported
  */
-import type { DplOpeningHoursUpdatePATCH200Category } from "./dplOpeningHoursUpdatePATCH200Category";
-import type { DplOpeningHoursUpdatePATCH200Repetition } from "./dplOpeningHoursUpdatePATCH200Repetition";
+import type { DplOpeningHoursUpdatePATCH200ItemCategory } from "./dplOpeningHoursUpdatePATCH200ItemCategory";
+import type { DplOpeningHoursUpdatePATCH200ItemRepetition } from "./dplOpeningHoursUpdatePATCH200ItemRepetition";
 
-export type DplOpeningHoursUpdatePATCH200 = {
+export type DplOpeningHoursUpdatePATCH200Item = {
   /** The id for the branch the instance belongs to */
   branch_id: number;
-  category: DplOpeningHoursUpdatePATCH200Category;
+  category: DplOpeningHoursUpdatePATCH200ItemCategory;
   /** The date which the opening hours applies to. In ISO 8601 format. */
   date: string;
   /** When the opening hours end. In format HH:MM */
   end_time: string;
   /** An serial unique id of the opening hours instance. */
   id: number;
-  repetition: DplOpeningHoursUpdatePATCH200Repetition;
+  repetition: DplOpeningHoursUpdatePATCH200ItemRepetition;
   /** When the opening hours start. In format HH:MM */
   start_time: string;
 };

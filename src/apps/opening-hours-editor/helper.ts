@@ -3,8 +3,8 @@ import { EventInput } from "@fullcalendar/core";
 import { EventImpl } from "@fullcalendar/core/internal";
 import {
   DplOpeningHoursListGET200Item,
-  DplOpeningHoursCreatePOSTBody,
-  DplOpeningHoursUpdatePATCHBody,
+  DplOpeningHoursCreatePOSTOpeningHoursInstanceBody,
+  DplOpeningHoursUpdatePATCH200Item,
   DplOpeningHoursListGET200ItemRepetitionType
 } from "../../core/dpl-cms/model";
 
@@ -30,8 +30,9 @@ export const formatCmsEventsToFullCalendar = (
 };
 
 export const formatFullCalendarEventToCmsEventAdd = (
-  event: EventInput & Pick<DplOpeningHoursCreatePOSTBody, "repetition">
-): DplOpeningHoursCreatePOSTBody => {
+  event: EventInput &
+    Pick<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody, "repetition">
+): DplOpeningHoursCreatePOSTOpeningHoursInstanceBody => {
   if (!event.title || !event.color) {
     throw new Error("Invalid event format");
   }
@@ -56,8 +57,8 @@ export const formatFullCalendarEventToCmsEventAdd = (
 };
 
 export const formatFullCalendarEventToCmsEventEdit = (
-  event: EventInput & Pick<DplOpeningHoursUpdatePATCHBody, "repetition">
-): DplOpeningHoursUpdatePATCHBody => {
+  event: EventInput & Pick<DplOpeningHoursUpdatePATCH200Item, "repetition">
+): DplOpeningHoursUpdatePATCH200Item => {
   if (!event.title || !event.backgroundColor) {
     throw new Error("Invalid event format");
   }

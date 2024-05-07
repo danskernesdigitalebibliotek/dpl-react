@@ -9,8 +9,8 @@ import {
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import {
-  DplOpeningHoursCreatePOSTBody,
-  DplOpeningHoursCreatePOSTBodyRepetitionType
+  DplOpeningHoursCreatePOSTOpeningHoursInstanceBody,
+  DplOpeningHoursCreatePOSTOpeningHoursInstanceBodyRepetitionType
 } from "../../core/dpl-cms/model";
 import { OpeningHoursCategoriesType } from "./types";
 import useDialog from "../../components/dialog/useDialog";
@@ -19,7 +19,9 @@ import Dialog from "../../components/dialog/Dialog";
 
 type DialogFormAddProps = {
   selectedEventInfo: DateSelectArg;
-  handleEventAdd: (event: DplOpeningHoursCreatePOSTBody) => void;
+  handleEventAdd: (
+    event: DplOpeningHoursCreatePOSTOpeningHoursInstanceBody
+  ) => void;
   closeDialog: () => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
 };
@@ -78,8 +80,8 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
       ...newFullCalenderEvent,
       repetition: {
         type: repeatedEndDate
-          ? DplOpeningHoursCreatePOSTBodyRepetitionType.weekly
-          : DplOpeningHoursCreatePOSTBodyRepetitionType.none,
+          ? DplOpeningHoursCreatePOSTOpeningHoursInstanceBodyRepetitionType.weekly
+          : DplOpeningHoursCreatePOSTOpeningHoursInstanceBodyRepetitionType.none,
         ...(repeatedEndDate
           ? { weekly_data: { end_date: repeatedEndDate } }
           : {})

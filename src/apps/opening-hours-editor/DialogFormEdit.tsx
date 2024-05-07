@@ -11,7 +11,7 @@ import { useText } from "../../core/utils/text";
 import { HandleEventRemoveType, OpeningHoursCategoriesType } from "./types";
 import {
   DplOpeningHoursListGET200ItemRepetitionType,
-  DplOpeningHoursUpdatePATCHBody
+  DplOpeningHoursUpdatePATCH200Item
 } from "../../core/dpl-cms/model";
 import useDialog from "../../components/dialog/useDialog";
 import Dialog from "../../components/dialog/Dialog";
@@ -19,7 +19,7 @@ import ConfirmEditRepeatedOpeningHour from "./ConfirmEditRepeatedOpeningHour";
 
 type DialogFormEditProps = {
   eventInfo: EventImpl;
-  handleEventEditing: (event: DplOpeningHoursUpdatePATCHBody) => void;
+  handleEventEditing: (event: DplOpeningHoursUpdatePATCH200Item) => void;
   closeDialog: () => void;
   handleEventRemove: ({
     eventId,
@@ -73,7 +73,8 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
         handleEventEditing(
           formatFullCalendarEventToCmsEventEdit({
             ...cmsEvent,
-            // Todo: remove ts-ignore when the openAPI spec is updated (repetition id should not be required)
+            // Workaround for a bug caused by the orval tool, which incorrectly requires the repetition ID.
+            // Ideally, the repetition ID should be optional according to the API specifications.
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore: Unreachable code error
             repetition: {
