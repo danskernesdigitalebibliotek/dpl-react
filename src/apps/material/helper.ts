@@ -217,9 +217,9 @@ export const getManifestationHostPublication = (
 };
 export const getManifestationParts = (
   manifestation: Manifestation
-): string[] => {
+): string[] | string => {
   return (
-    manifestation.manifestationParts?.parts?.map((item) => item.title) || []
+    manifestation.manifestationParts?.parts?.map((item) => item.title) || ""
   );
 };
 
