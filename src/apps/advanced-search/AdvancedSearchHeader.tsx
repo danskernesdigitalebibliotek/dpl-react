@@ -48,6 +48,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     );
   const [previewCql, setPreviewCql] = useState<string>(searchQuery || "");
   const [rawCql, setRawCql] = useState<string>("");
+  const [focusedRow, setFocusedRow] = useState<number | null>(null);
 
   // If a new search object is passed in, override the internal state to reflect
   // the updated values in the state.
@@ -75,18 +76,15 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     };
     setInternalSearchObject(newSearchObject);
   };
-
   const reset = () => {
     setSearchObject(structuredClone(initialAdvancedSearchQuery));
   };
-
   const scrollToResults = () => {
     const element = document.getElementById("advanced-search-result");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-
   const handleSearchButtonClick = () => {
     if (rawCql.trim() !== "" && !isFormMode) {
       setSearchQuery(rawCql);
@@ -102,10 +100,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       scrollToResults();
     }, 500);
   };
-
   const [isSearchButtonDisabled, setIsSearchButtonDisabled] =
     useState<boolean>(true);
-
   const translatedCql = previewCql || searchQuery || "";
 
   useEffect(() => {
@@ -141,6 +137,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
                     rowIndex={index}
                     setSearchObject={setInternalSearchObject}
                     dataCy={`${dataCy}-row`}
+                    setFocusedRow={setFocusedRow}
+                    isFocused={focusedRow === index}
                   />
                 );
               })}
