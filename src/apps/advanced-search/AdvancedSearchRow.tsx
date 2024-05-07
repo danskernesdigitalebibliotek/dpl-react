@@ -78,7 +78,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
     newData.rows.splice(index, 1);
     updateData(newData);
     // Update the focus. If we're removing the first row, focus the new first row.
-    setFocusedRow(index === 0 ? 0 : index);
+    setFocusedRow(index);
   };
   const inputElement = useRef<HTMLInputElement>(null);
 
