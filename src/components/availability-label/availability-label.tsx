@@ -23,6 +23,7 @@ export interface AvailabilityLabelProps {
   cursorPointer?: boolean;
   dataCy?: string;
   isbns: string[];
+  isVisualOnly?: boolean;
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
@@ -35,7 +36,8 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   handleSelectManifestation,
   cursorPointer = false,
   dataCy = "availability-label",
-  isbns
+  isbns,
+  isVisualOnly
 }) => {
   const { track } = useStatistics();
   const t = useText();
@@ -83,11 +85,23 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     cursorPointer
   });
 
-  return url && !handleSelectManifestation ? (
-    <LinkNoStyle className={parentClass} url={url} data-cy={dataCy}>
-      {availabilityLabel}
-    </LinkNoStyle>
-  ) : (
+  if (isVisualOnly) {
+    return (
+      <div className={parentClass} data-cy={dataCy}>
+        {availabilityLabel}
+      </div>
+    );
+  }
+
+  if (url && !handleSelectManifestation) {
+    return (
+      <LinkNoStyle className={parentClass} url={url} data-cy={dataCy}>
+        {availabilityLabel}
+      </LinkNoStyle>
+    );
+  }
+
+  return (
     <button
       className={parentClass}
       type="button"

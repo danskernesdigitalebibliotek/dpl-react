@@ -20,22 +20,19 @@ const ButtonTag = React.forwardRef<HTMLButtonElement, ButtonTagProps>(
       "cursor-pointer"
     );
 
-    return (
-      <button
-        ref={ref}
-        type="button"
-        aria-pressed={selected}
-        className={className}
-        onClick={onClick}
-        data-cy={dataCy}
-      >
-        {children}
-        {removable && (
-          <img className="tag-icon" src={iconCross} alt="close icon" />
-        )}
-      </button>
-    );
-  }
-);
+  return (
+    <button
+      type="button"
+      aria-pressed={selected ?? undefined}
+      className={className}
+      onClick={onClick}
+      data-cy={dataCy}
+    >
+      {children}
+      {/* No need for alt tag, because screen readers announce it as a toggle button. */}
+      {removable && <img className="tag-icon" src={iconCross} alt="" />}
+    </button>
+  );
+};
 
 export default ButtonTag;

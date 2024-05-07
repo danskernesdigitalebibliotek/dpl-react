@@ -42,10 +42,24 @@ export const hasCorrectMaterialType = (
   });
 };
 
+// We need this e.g. for articles - the material type for articles has many definitions.
+export const hasCorrectPartialMaterialType = (
+  desiredPartialMaterialType: string,
+  manifestations: Manifestation[]
+) => {
+  return manifestations.some((manifestation) => {
+    return manifestation.materialTypes.some((type) =>
+      type.materialTypeSpecific.display
+        .toLowerCase()
+        .includes(desiredPartialMaterialType.toLowerCase())
+    );
+  });
+};
+
 export const isArticle = (manifestations: Manifestation[]) => {
-  return (
-    hasCorrectMaterialType(ManifestationMaterialType.article, manifestations) ||
-    hasCorrectMaterialType("avisartikel", manifestations)
+  return hasCorrectPartialMaterialType(
+    ManifestationMaterialType.article,
+    manifestations
   );
 };
 
