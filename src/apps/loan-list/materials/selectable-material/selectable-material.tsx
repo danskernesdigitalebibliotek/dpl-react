@@ -106,6 +106,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           })}
           onClick={handleOnClick}
           onKeyUp={handleOnKeyUp}
+          role="button"
           tabIndex={0}
         >
           <div className="list-materials__content-status">

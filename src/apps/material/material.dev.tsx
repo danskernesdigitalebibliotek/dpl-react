@@ -917,3 +917,8 @@ export const onlyOneEdition = Template.bind({});
 onlyOneEdition.args = {
   wid: "work-of:870970-basis:52796202"
 };
+
+export const digitalArticle = Template.bind({});
+digitalArticle.args = {
+  wid: "work-of:870971-tsart:36297484"
+};

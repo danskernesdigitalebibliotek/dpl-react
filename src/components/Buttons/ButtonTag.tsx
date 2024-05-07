@@ -35,9 +35,8 @@ const ButtonTag: React.FunctionComponent<ButtonTagProps> = ({
       data-cy={dataCy}
     >
       {children}
-      {removable && (
-        <img className="tag-icon" src={iconCross} alt="close icon" />
-      )}
+      {/* No need for alt tag, because screen readers announce it as a toggle button. */}
+      {removable && <img className="tag-icon" src={iconCross} alt="" />}
     </button>
   );
 };
