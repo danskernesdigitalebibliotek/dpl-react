@@ -2,7 +2,7 @@
   "id": "104eae1e-ae10-4893-aadb-7f19ca988f1a",
   "name": "Opening hours next week",
   "request": {
-    "url": "/dpl_opening_hours?branch_id=12&from_date=2024-04-01&to_date=2024-04-07",
+    "url": "/api/v1/opening_hours?branch_id=12&from_date=2024-04-01&to_date=2024-04-07",
     "method": "GET"
   },
   "response": {
