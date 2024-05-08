@@ -139,7 +139,7 @@ export default defineConfig({
     },
     input: {
       target:
-        "https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-cms/opening-hours-repeated-edit-delete/openapi.json",
+        "https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-cms/opening-hours-api-url-update/openapi.json",
       converterOptions: {
         indent: 2
       }

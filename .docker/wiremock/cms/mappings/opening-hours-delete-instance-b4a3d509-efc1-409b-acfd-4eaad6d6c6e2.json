@@ -2,7 +2,7 @@
   "id": "b4a3d509-efc1-409b-acfd-4eaad6d6c6e2",
   "name": "Opening hours delete instance",
   "request": {
-    "urlPathPattern": "/dpl_opening_hours/[0-9]+",
+    "urlPathPattern": "/api/v1/opening_hours/[0-9]+",
     "method": "DELETE"
   },
   "response": {

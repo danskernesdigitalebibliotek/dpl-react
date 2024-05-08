@@ -138,7 +138,7 @@ export const dplOpeningHoursCreatePOST = (
   params: DplOpeningHoursCreatePOSTParams
 ) => {
   return fetcher<DplOpeningHoursCreatePOST200Item[]>({
-    url: `/dpl_opening_hours`,
+    url: `/api/v1/opening_hours`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
     data: dplOpeningHoursCreatePOSTOpeningHoursInstanceBody,
@@ -230,7 +230,7 @@ export const dplOpeningHoursListGET = (
   signal?: AbortSignal
 ) => {
   return fetcher<DplOpeningHoursListGET200Item[]>({
-    url: `/dpl_opening_hours`,
+    url: `/api/v1/opening_hours`,
     method: "GET",
     params,
     signal
@@ -240,7 +240,7 @@ export const dplOpeningHoursListGET = (
 export const getDplOpeningHoursListGETQueryKey = (
   params: DplOpeningHoursListGETParams
 ) => {
-  return [`/dpl_opening_hours`, ...(params ? [params] : [])] as const;
+  return [`/api/v1/opening_hours`, ...(params ? [params] : [])] as const;
 };
 
 export const getDplOpeningHoursListGETQueryOptions = <
@@ -312,7 +312,7 @@ export const dplOpeningHoursDeleteDELETE = (
   params: DplOpeningHoursDeleteDELETEParams
 ) => {
   return fetcher<void>({
-    url: `/dpl_opening_hours/${id}`,
+    url: `/api/v1/opening_hours/${id}`,
     method: "DELETE",
     params
   });
@@ -388,7 +388,7 @@ export const dplOpeningHoursUpdatePATCH = (
   params: DplOpeningHoursUpdatePATCHParams
 ) => {
   return fetcher<DplOpeningHoursUpdatePATCH200Item[]>({
-    url: `/dpl_opening_hours/${id}`,
+    url: `/api/v1/opening_hours/${id}`,
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     data: dplOpeningHoursCreatePOSTOpeningHoursInstanceBody,
