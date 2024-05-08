@@ -19,11 +19,13 @@ const ConfirmEditRepeatedOpeningHour: FC<
   const options = [
     {
       value: OptionValue.This,
-      label: t("openingHoursEditEventConfirmOptionThisText")
+      label: t("openingHoursEditEventConfirmOptionThisText"),
+      cy: "opening-hours-editor-form__radio-this"
     },
     {
       value: OptionValue.All,
-      label: t("openingHoursEditEventConfirmOptionAllText")
+      label: t("openingHoursEditEventConfirmOptionAllText"),
+      cy: "opening-hours-editor-form__radio-all"
     }
   ];
 
@@ -41,9 +43,10 @@ const ConfirmEditRepeatedOpeningHour: FC<
   return (
     <form className="opening-hours-editor-form">
       <h2 className="opening-hours-editor-form__label">{title}</h2>
-      {options.map(({ value, label }) => (
+      {options.map(({ value, label, cy }) => (
         <div className="opening-hours-editor-form__radio" key={value}>
           <input
+            data-cy={cy}
             type="radio"
             id={value}
             value={value}
