@@ -220,6 +220,16 @@ export default {
       defaultValue:
         "Your search is invalid. Please try again. In order to perform a valid search, you need to include at least three letters.",
       control: { type: "text" }
+    },
+    intelligentFiltersAccessibleHeadlineText: {
+      name: "Intelligent filters accessible headline",
+      defaultValue: "Available filters",
+      control: { type: "text" }
+    },
+    intelligentFiltersSelectedAccessibleHeadlineText: {
+      name: "Intelligent filters - selected - accessible headline",
+      defaultValue: "Selected filters",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;

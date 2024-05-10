@@ -40,6 +40,8 @@ interface SearchResultEntryTextProps {
   showResultsText: string;
   invalidSearchText: string;
   invalidSearchDescriptionText: string;
+  intelligentFiltersAccessibleHeadlineText: string;
+  intelligentFiltersSelectedAccessibleHeadlineText: string;
 }
 
 interface SearchResultEntryConfigProps {
