@@ -35,6 +35,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
     phoneNumber: "",
     emailAddress: ""
   });
+  const [isPinValid, setIsPinValid] = useState<boolean>(true);
 
   // Changes the patron object by key.
   // So using the paramters 123 and "phoneNumber" would change the phoneNumber to 123.
@@ -80,7 +81,11 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
             patron={patron}
             requiredFields={["email"]}
           />
-          <PincodeSection required changePincode={setPin} />
+          <PincodeSection
+            required
+            changePincode={setPin}
+            setIsPinValid={setIsPinValid}
+          />
           {t("createPatronChangePickupHeaderText") && (
             <h2 className="text-subtitle mt-32 mb-16">
               {t("createPatronChangePickupHeaderText")}
@@ -105,6 +110,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
               type="submit"
               className="btn-primary btn-filled btn-small"
               data-cy="complete-user-registration-button"
+              disabled={!isPinValid}
             >
               {t("createPatronConfirmButtonText")}
             </button>

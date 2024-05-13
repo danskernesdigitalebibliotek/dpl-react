@@ -6,11 +6,13 @@ import { useText } from "../../../core/utils/text";
 interface PincodeSectionProps {
   changePincode: (newPin: string | null) => void;
   required: boolean;
+  setIsPinValid: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PincodeSection: FC<PincodeSectionProps> = ({
   changePincode,
-  required
+  required,
+  setIsPinValid
 }) => {
   const t = useText();
   const config = useConfig();
@@ -30,6 +32,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
         pincode.length > pincodeLengthMax ||
         pincode.length < pincodeLengthMin
       ) {
+        setIsPinValid(false);
         setPincodeValidation(
           t("patronPagePincodeTooShortValidationText", {
             placeholders: {
@@ -41,12 +44,15 @@ const PincodeSection: FC<PincodeSectionProps> = ({
         return;
       }
       if (pincode !== confirmPincode) {
+        setIsPinValid(false);
         setPincodeValidation(t("patronPagePincodesNotTheSameText"));
         return;
       }
+      setIsPinValid(true);
       changePincode(confirmPincode);
     }
   }, [
+    setIsPinValid,
     changePincode,
     confirmPincode,
     pincode,
