@@ -65,7 +65,9 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
       backgroundColor: eventInfo.backgroundColor,
       startStr: eventInfo.startStr,
       endStr: eventInfo.endStr,
-      repetition: eventInfo.extendedProps.repetition
+      repetition: {
+        type: DplOpeningHoursListGET200ItemRepetitionType.none
+      }
     };
 
     const handleEventEditConfirm = (editSerie: boolean) => {
@@ -89,6 +91,10 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
         closeDialog();
         closeEditDialog();
       } else {
+        // Workaround for a bug caused by the orval tool, which incorrectly requires the repetition ID.
+        // Ideally, the repetition ID should be optional according to the API specifications.
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore: Unreachable code error
         handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
         closeDialog();
         closeEditDialog();
@@ -104,6 +110,10 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
         />
       );
     } else {
+      // Workaround for a bug caused by the orval tool, which incorrectly requires the repetition ID.
+      // Ideally, the repetition ID should be optional according to the API specifications.
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore: Unreachable code error
       handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
       closeEditDialog();
     }
