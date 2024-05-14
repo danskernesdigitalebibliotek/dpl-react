@@ -10,7 +10,7 @@ import { stringifyValue } from "../../../core/utils/helpers/general";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import TextInput from "../../atoms/input/TextInput";
-import { getReservationModalTypeTranslation } from "../helper";
+import { getInputType, getReservationModalTypeTranslation } from "../helper";
 import {
   modalReservationFormId,
   ModalReservationFormTextType,
@@ -57,11 +57,9 @@ const ModalReservationFormText = ({
   const t = useText();
   const [text, setText] = useState<string>(stringifyValue(defaultText));
   const { mutate } = useUpdateV5();
-
   const onChange = (input: string) => {
     setText(input);
   };
-
   const onSubmit = () => {
     saveText({
       type,
@@ -89,7 +87,6 @@ const ModalReservationFormText = ({
         close(modalReservationFormId(type));
       });
   };
-
   const { modalId, screenReaderModalDescriptionText, closeModalAriaLabelText } =
     modalProps(type, t);
 
@@ -105,10 +102,9 @@ const ModalReservationFormText = ({
         onSubmit={onSubmit}
       >
         <TextInput
-          description={inputField.description}
           id={type}
           label={inputField.label}
-          type="text"
+          type={getInputType(type)}
           onChange={onChange}
           value={text}
         />
