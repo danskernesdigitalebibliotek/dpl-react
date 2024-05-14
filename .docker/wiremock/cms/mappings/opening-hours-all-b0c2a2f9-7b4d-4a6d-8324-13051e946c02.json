@@ -2,7 +2,7 @@
   "id": "b0c2a2f9-7b4d-4a6d-8324-13051e946c02",
   "name": "Opening hours all",
   "request": {
-    "url": "/dpl_opening_hours?branch_id=12",
+    "url": "/api/v1/opening_hours?branch_id=12",
     "method": "GET"
   },
   "response": {

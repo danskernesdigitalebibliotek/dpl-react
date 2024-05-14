@@ -10,22 +10,20 @@ import {
   getStringForDateInput,
   getWeekDayName
 } from "./helper";
-import useDialog from "../../components/dialog/useDialog";
-import Dialog from "../../components/dialog/Dialog";
-import ConfirmAddRepeatedOpeningHour from "./ConfirmAddRepeatedOpeningHour";
 
-export type EventFormOnSubmitType = (
-  category: OpeningHoursCategoriesType,
-  startTime: string,
-  endTime: string,
-  repeatedEndDate: string | null
-) => void;
+export type EventFormOnSubmitType = {
+  category: OpeningHoursCategoriesType;
+  startTime: string;
+  endTime: string;
+  startDate: Date;
+  repeatedEndDate: string | null;
+};
 
 type EventFormProps = {
   initialTitle?: string;
   startDate: Date;
   endDate: Date;
-  onSubmit: EventFormOnSubmitType;
+  onSubmit: (EventFormOnSubmitType: EventFormOnSubmitType) => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
   children?: React.ReactNode;
   isRepeatedOpeningHour?: boolean;
@@ -41,8 +39,6 @@ const EventForm: React.FC<EventFormProps> = ({
   isRepeatedOpeningHour
 }) => {
   const t = useText();
-  const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
-    useDialog();
 
   const initialCategory = initialTitle
     ? openingHoursCategories.find((category) => category.title === initialTitle)
@@ -82,145 +78,120 @@ const EventForm: React.FC<EventFormProps> = ({
     if (!category) {
       return;
     }
-
-    if (repeatedEndDate) {
-      openDialogWithContent(
-        <ConfirmAddRepeatedOpeningHour
-          startDate={startDate}
-          category={category}
-          startTime={startTime}
-          endTime={endTime}
-          repeatedEndDate={new Date(repeatedEndDate)}
-          confirmSubmit={() =>
-            onSubmit(category, startTime, endTime, repeatedEndDate)
-          }
-          closeDialog={closeDialog}
-        />
-      );
-    } else {
-      onSubmit(category, startTime, endTime, repeatedEndDate);
-    }
+    onSubmit({ category, startTime, endTime, startDate, repeatedEndDate });
   };
 
   return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        className="opening-hours-editor-form"
-        data-cy="opening-hours-editor-form"
+    <form
+      onSubmit={handleSubmit}
+      className="opening-hours-editor-form"
+      data-cy="opening-hours-editor-form"
+    >
+      <label
+        className="opening-hours-editor-form__label"
+        htmlFor="event-form-title"
       >
-        <label
-          className="opening-hours-editor-form__label"
-          htmlFor="event-form-title"
-        >
-          {t("openingHoursEventFormCategoryText")}
-        </label>
-        <select
-          data-cy="opening-hours-editor-form-select"
-          className="opening-hours-editor-form__select"
-          id="event-form-title"
-          value={category?.title}
-          onChange={(e) => {
-            setCategory(
-              openingHoursCategories.find(
-                (item) => item.title === e.target.value
-              )
-            );
-          }}
-        >
-          {openingHoursCategories.map((categoryItem) => (
-            <option key={categoryItem.title} value={categoryItem.title}>
-              {categoryItem.title}
-            </option>
-          ))}
-        </select>
-        <label
-          className="opening-hours-editor-form__label"
-          htmlFor="event-form-start-time"
-        >
-          {t("openingHoursEventFormStartTimeText")}
-        </label>
-        <input
-          data-cy="opening-hours-editor-form-start-time"
-          className="opening-hours-editor-form__time-input"
-          id="event-form-start-time"
-          type="time"
-          value={startTime}
-          onChange={(e) => setStartTime(e.target.value)}
-        />
-        <label
-          className="opening-hours-editor-form__label"
-          htmlFor="event-form-end-time"
-        >
-          {t("openingHoursEventFormEndTimeText")}
-        </label>
-        <input
-          data-cy="opening-hours-editor-form-end-time"
-          className="opening-hours-editor-form__time-input"
-          id="event-form-end-time"
-          type="time"
-          value={endTime}
-          onChange={(e) => setEndTime(e.target.value)}
-          min={startTime}
-          max="00:00"
-        />
-        {isRepeatedOpeningHour && (
-          <>
-            <div className="opening-hours-editor-form__checkbox">
-              <input
-                id="event-form-repeated"
-                data-cy="opening-hours-editor-form-repeated"
-                type="checkbox"
-                checked={isRepeated}
-                onChange={(e) => setIsRepeated(e.target.checked)}
-              />
-              <label
-                className="opening-hours-editor-form__label"
-                htmlFor="event-form-repeated"
-              >
-                {t("openingHoursEventFormRepeatedText", {
-                  placeholders: {
-                    "@startDate": startDateString,
-                    "@weekDayName": weekDayName
-                  }
-                })}
-              </label>
-            </div>
-
+        {t("openingHoursEventFormCategoryText")}
+      </label>
+      <select
+        data-cy="opening-hours-editor-form-select"
+        className="opening-hours-editor-form__select"
+        id="event-form-title"
+        value={category?.title}
+        onChange={(e) => {
+          setCategory(
+            openingHoursCategories.find((item) => item.title === e.target.value)
+          );
+        }}
+      >
+        {openingHoursCategories.map((categoryItem) => (
+          <option key={categoryItem.title} value={categoryItem.title}>
+            {categoryItem.title}
+          </option>
+        ))}
+      </select>
+      <label
+        className="opening-hours-editor-form__label"
+        htmlFor="event-form-start-time"
+      >
+        {t("openingHoursEventFormStartTimeText")}
+      </label>
+      <input
+        data-cy="opening-hours-editor-form-start-time"
+        className="opening-hours-editor-form__time-input"
+        id="event-form-start-time"
+        type="time"
+        value={startTime}
+        onChange={(e) => setStartTime(e.target.value)}
+      />
+      <label
+        className="opening-hours-editor-form__label"
+        htmlFor="event-form-end-time"
+      >
+        {t("openingHoursEventFormEndTimeText")}
+      </label>
+      <input
+        data-cy="opening-hours-editor-form-end-time"
+        className="opening-hours-editor-form__time-input"
+        id="event-form-end-time"
+        type="time"
+        value={endTime}
+        onChange={(e) => setEndTime(e.target.value)}
+        min={startTime}
+        max="00:00"
+      />
+      {isRepeatedOpeningHour && (
+        <>
+          <div className="opening-hours-editor-form__checkbox">
+            <input
+              id="event-form-repeated"
+              data-cy="opening-hours-editor-form-repeated"
+              type="checkbox"
+              checked={isRepeated}
+              onChange={(e) => setIsRepeated(e.target.checked)}
+            />
             <label
               className="opening-hours-editor-form__label"
-              htmlFor="event-form-end-date"
+              htmlFor="event-form-repeated"
             >
-              {t("openingHoursEventFormEndDateText")}
+              {t("openingHoursEventFormRepeatedText", {
+                placeholders: {
+                  "@startDate": startDateString,
+                  "@weekDayName": weekDayName
+                }
+              })}
             </label>
-            <input
-              data-cy="opening-hours-editor-form-end-date"
-              type="date"
-              className="opening-hours-editor-form__time-input"
-              id="event-form-end-date"
-              min={getStringForDateInput(startDate)}
-              disabled={!isRepeated}
-              required={isRepeated}
-              value={repeatedEndDate || ""}
-              onChange={(e) => setRepeatedEndDate(e.target.value)}
-            />
-          </>
-        )}
-        <button
-          data-cy="opening-hours-editor-form-submit"
-          type="submit"
-          className="opening-hours-editor-form__submit"
-          disabled={isSameTime}
-        >
-          {t("openingHoursEventFormSubmitText")}
-        </button>
-        {children}
-      </form>
+          </div>
 
-      <Dialog closeDialog={closeDialog} ref={dialogRef}>
-        {dialogContent}
-      </Dialog>
-    </>
+          <label
+            className="opening-hours-editor-form__label"
+            htmlFor="event-form-end-date"
+          >
+            {t("openingHoursEventFormEndDateText")}
+          </label>
+          <input
+            data-cy="opening-hours-editor-form-end-date"
+            type="date"
+            className="opening-hours-editor-form__time-input"
+            id="event-form-end-date"
+            min={getStringForDateInput(startDate)}
+            disabled={!isRepeated}
+            required={isRepeated}
+            value={repeatedEndDate || ""}
+            onChange={(e) => setRepeatedEndDate(e.target.value)}
+          />
+        </>
+      )}
+      <button
+        data-cy="opening-hours-editor-form-submit"
+        type="submit"
+        className="opening-hours-editor-form__submit"
+        disabled={isSameTime}
+      >
+        {t("openingHoursEventFormSubmitText")}
+      </button>
+      {children}
+    </form>
   );
 };
 

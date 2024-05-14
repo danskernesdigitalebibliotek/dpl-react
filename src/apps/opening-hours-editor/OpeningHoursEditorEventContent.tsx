@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/logo/reload_logo_black.svg";
 import { EventInput } from "@fullcalendar/core";
-import { extractTime } from "./helper";
+import { extractTime, isOpeningHourWeeklyRepetition } from "./helper";
 
 type OpeningHoursEditorEventContentProps = {
   eventInput: EventInput;
@@ -12,8 +12,6 @@ const OpeningHoursEditorEventContent: React.FC<
   OpeningHoursEditorEventContentProps
 > = ({ eventInput, iconAltText }) => {
   const { event } = eventInput;
-  const { repetition } = event.extendedProps;
-  const isSeries = repetition?.type === "weekly";
 
   return (
     <div
@@ -26,7 +24,7 @@ const OpeningHoursEditorEventContent: React.FC<
           {extractTime(event.start)} - {extractTime(event.end)}
         </div>
       </div>
-      {isSeries && (
+      {isOpeningHourWeeklyRepetition(event) && (
         <div className="opening-hours-editor-event-content__series-icon">
           <img src={logo} alt={iconAltText} />
         </div>

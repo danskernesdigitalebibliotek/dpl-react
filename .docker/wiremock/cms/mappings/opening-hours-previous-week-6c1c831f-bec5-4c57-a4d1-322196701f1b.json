@@ -2,7 +2,7 @@
   "id": "6c1c831f-bec5-4c57-a4d1-322196701f1b",
   "name": "Opening hours previous week",
   "request": {
-    "url": "/dpl_opening_hours?branch_id=12&from_date=2024-03-18&to_date=2024-03-24",
+    "url": "/api/v1/opening_hours?branch_id=12&from_date=2024-03-18&to_date=2024-03-24",
     "method": "GET"
   },
   "response": {
