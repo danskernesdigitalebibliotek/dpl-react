@@ -209,6 +209,17 @@ export default {
       name: "Loading",
       defaultValue: "Loading",
       control: { type: "text" }
+    },
+    invalidSearchText: {
+      name: "Invalid search headline",
+      defaultValue: "Invalid search",
+      control: { type: "text" }
+    },
+    invalidSearchDescriptionText: {
+      name: "Invalid search description",
+      defaultValue:
+        "Your search is invalid. Please try again. In order to perform a valid search, you need to include at least three letters.",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;

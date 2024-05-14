@@ -42,7 +42,7 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
     <div className="list-reservation__material">
       <div>
         <Cover
-          id={coverId}
+          ids={[coverId]}
           idType={pid ? "pid" : "isbn"}
           size="small"
           animate={false}

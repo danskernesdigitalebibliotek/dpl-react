@@ -14,6 +14,16 @@ export default {
     ...pincodeArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    authUrl: {
+      name: "Url where user can authenticate",
+      defaultValue: "/login",
+      control: { type: "text" }
+    },
+    logoutUrl: {
+      name: "Url where user can logout",
+      defaultValue: "/logout",
+      control: { type: "text" }
+    },
     blacklistedPickupBranchesConfig: {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
@@ -139,6 +149,23 @@ export default {
       name: "Phone input validation message",
       defaultValue:
         "The phone number must be 6 to 15 characters in length and should be comprised solely of numbers or begin with a +",
+      control: { type: "text" }
+    },
+    postRegisterRedirectInfoTopText: {
+      name: "Redirect info top text",
+      defaultValue:
+        "You are now registered as a user and need to log in again to be able to use the application.",
+      control: { type: "text" }
+    },
+    postRegisterRedirectInfoBottomText: {
+      name: "Redirect info bottom text",
+      defaultValue:
+        "You will be sent to the Adgangsplatformen to log in again in @seconds seconds.",
+      control: { type: "text" }
+    },
+    postRegisterRedirectButtonText: {
+      name: "Redirect button text",
+      defaultValue: "Log in again",
       control: { type: "text" }
     }
   }

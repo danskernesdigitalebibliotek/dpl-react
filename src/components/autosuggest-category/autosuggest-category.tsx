@@ -40,7 +40,7 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
                 "autosuggest__text-item--highlight": highlightedIndex === index
               }
             )}
-            key={item.term + (item.work?.workId || "")}
+            key={`${item.term}-${index}`}
             {...getItemProps({ item, index })}
             data-cy={dataCy}
           >

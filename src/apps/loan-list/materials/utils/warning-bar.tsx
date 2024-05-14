@@ -11,6 +11,7 @@ interface WarningBarProps {
   rightText?: string;
   leftLink?: URL;
   rightLink?: URL;
+  classNames?: string;
 }
 
 const WarningBar: FC<WarningBarProps> = ({
@@ -20,12 +21,16 @@ const WarningBar: FC<WarningBarProps> = ({
   rightButtonText,
   rightButtonAriaLabelText,
   leftLink,
-  rightLink
+  rightLink,
+  classNames
 }) => {
   const labelId = useId();
 
   return (
-    <div className="warning-bar bg-global-secondary" data-cy="warning-bar">
+    <div
+      className={`warning-bar bg-global-secondary${` ${classNames}`}`}
+      data-cy="warning-bar"
+    >
       <div className="warning-bar__left">
         <img className="warning-bar__icon" src={IconWarning} alt="" />
         <div>

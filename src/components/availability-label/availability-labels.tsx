@@ -40,6 +40,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
   return (
     <>
       {allMaterialTypes.map((materialType) => {
+        const isTheOnlyLabel = allMaterialTypes.length === 1;
         const manifestationsOfMaterialType =
           manifestationsByMaterialType[materialType];
         const faustIds = getAllFaustIds(manifestationsOfMaterialType).sort();
@@ -81,6 +82,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
                 : undefined
             }
             isbns={identifiers}
+            isVisualOnly={isTheOnlyLabel}
           />
         );
       })}

@@ -1,11 +1,24 @@
 import FetchFailedError from "../../fetchers/FetchFailedError";
-import { getServiceUrlWithParams } from "../../fetchers/helpers";
+import { FetchParams } from "../../fetchers/types";
 import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
 import {
   getServiceBaseUrl,
   serviceUrlKeys
 } from "../../utils/reduxMiddleware/extractServiceBaseUrls";
 import CoverServiceHttpError from "./CoverServiceHttpError";
+
+export const getServiceUrlWithParams = ({
+  baseUrl,
+  url,
+  params
+}: {
+  baseUrl: string;
+  url: string;
+  params: unknown;
+}) => {
+  const urlParams = new URLSearchParams(params as FetchParams);
+  return `${baseUrl}${url}?${urlParams}`;
+};
 
 export const fetcher = async <ResponseType>({
   url,
