@@ -1,7 +1,6 @@
 import React, { FC, useState, useCallback } from "react";
 import { useText } from "../../../core/utils/text";
 import { LoanType } from "../../../core/utils/types/loan-type";
-import { useUrls } from "../../../core/utils/url";
 import { yesterday, soon, longer } from "../util/helpers";
 import NotificationColumn from "./NotificationColumn";
 import { useModalButtonHandler } from "../../../core/utils/modal";
@@ -37,9 +36,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   columns
 }) => {
   const t = useText();
-  const u = useUrls();
-  const physicalLoansUrl = u("physicalLoansUrl");
-  const reservationsUrl = u("reservationsUrl");
   const {
     all: {
       reservations,
@@ -216,7 +212,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             <NotificationColumn
               materials={dashboardNotificationsLoan}
               materialsCount={loans.length}
-              headerUrl={physicalLoansUrl}
               header={t("physicalLoansText")}
               emptyListText={t("noPhysicalLoansText")}
               isLoading={isLoadingLoans || isLoadingLoansPhysical}
@@ -224,7 +219,6 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             <NotificationColumn
               materials={dashboardNotificationsReservations}
               materialsCount={reservations.length}
-              headerUrl={reservationsUrl}
               header={t("reservationsText")}
               emptyListText={t("noReservationsText")}
               isLoading={isLoadingReservations}
