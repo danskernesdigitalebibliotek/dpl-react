@@ -71,7 +71,7 @@ const CreatePatronEntry: FC<CreatePatronProps> = ({ fakeCpr }) => {
     }
   }, [dashboardUrl]);
 
-  return isUnregistered() ? <CreatePatron fakeCpr={fakeCpr} /> : null;
+  return isUnregistered() ? <CreatePatron cpr={fakeCpr} /> : null;
 };
 
 export default withConfig(withText(withUrls(CreatePatronEntry)));
