@@ -15,7 +15,7 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
   const classes = clsx(["text-header-h2", "mb-16", "search-result-title"]);
 
   return (
-    <h1 className={classes} data-cy="search-result-header">
+    <h1 className={classes} data-cy="search-result-header" aria-live="polite">
       {`${t("showingResultsForText", {
         placeholders: { "@query": q }
       })} (${hitcount})`}
