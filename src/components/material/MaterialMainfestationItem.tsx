@@ -116,6 +116,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           isbns={identifiers.map((identifier) => identifier.value)}
           accessTypes={accessTypesCodes}
           access={access}
+          isVisualOnly
         />
       </div>
       <div className="material-manifestation-item__cover">

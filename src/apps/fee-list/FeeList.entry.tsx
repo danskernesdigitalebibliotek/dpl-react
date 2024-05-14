@@ -51,6 +51,10 @@ export interface FeeListProps {
   viewFeesAndCompensationRatesUrl: string;
   feeListAlreadyPaidInfoText: string;
   feeListAlreadyPaidSecondInfoText: string;
+  feeListYouHaveOverdueLoansText: string;
+  feeListSeeYourOverdueLoansText: string;
+  feeListSeeYourOverdueLoansAriaText: string;
+  physicalLoansUrl: string;
 }
 
 const FeeListEntry: FC<

@@ -12,17 +12,20 @@ import {
 import { FaustId } from "../../core/utils/types/ids";
 import useGetAvailability from "../../core/utils/useGetAvailability";
 import { publizonProductStatuses } from "./types";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 export const useAvailabilityData = ({
   accessTypes,
   access,
   faustIds,
-  isbn
+  isbn,
+  manifestText
 }: {
   accessTypes: AccessTypeCode[];
   access: Access["__typename"][];
   faustIds: FaustId[] | null;
   isbn: string | null;
+  manifestText: string;
 }) => {
   const [isAvailable, setIsAvailable] = useState<null | boolean>(null);
   const config = useConfig();
@@ -37,13 +40,26 @@ export const useAvailabilityData = ({
     }
   }, [isOnline]);
 
+  useEffect(() => {
+    // Articles are always available.
+    if (
+      manifestText === ManifestationMaterialType.article &&
+      isAvailable === null
+    ) {
+      setIsAvailable(true);
+    }
+  }, [manifestText, isAvailable]);
+
   const { isLoading: isLoadingIdentifier } = useGetV1ProductsIdentifier(
     isbn ?? "",
     {
       query: {
         // Publizon / useGetV1ProductsIdentifier is responsible for online
         // materials. It requires an ISBN to do lookups.
-        enabled: isOnline && isbn !== null,
+        enabled:
+          isOnline &&
+          isbn !== null &&
+          manifestText !== ManifestationMaterialType.article,
         onSuccess: (res) => {
           // If an online material isn't cost-free we need to check whether there is a queue
           // to reserve it (via useGetV1LoanstatusIdentifier below in the code)
@@ -67,7 +83,8 @@ export const useAvailabilityData = ({
         isOnline &&
         !!isbn &&
         isCostFree === false &&
-        access.some((acc) => acc === "Ereol"),
+        access.some((acc) => acc === "Ereol") &&
+        manifestText !== ManifestationMaterialType.article,
       onSuccess: (res) => {
         if (res && res.loanStatus) {
           setIsAvailable(publizonProductStatuses[res.loanStatus].isAvailable);
@@ -87,7 +104,10 @@ export const useAvailabilityData = ({
         // FBS / useGetAvailabilityV3 is responsible for handling availability
         // for physical items. This will be the majority of all materials so we
         // use this for everything except materials that are explicitly online.
-        enabled: !isOnline && faustIds !== null,
+        enabled:
+          !isOnline &&
+          faustIds !== null &&
+          manifestText !== ManifestationMaterialType.article,
         onSuccess: (data) => {
           if (data?.some((item) => item.available)) {
             setIsAvailable(true);
@@ -98,15 +118,21 @@ export const useAvailabilityData = ({
   });
 
   useEffect(() => {
-    setIsLoading(
-      (isLoadingAvailability || isLoadingIdentifier || isLoadingProductInfo) &&
-        isAvailable === null
-    );
+    // Articles are always available, thus no need to load.
+    if (manifestText !== ManifestationMaterialType.article) {
+      setIsLoading(
+        (isLoadingAvailability ||
+          isLoadingIdentifier ||
+          isLoadingProductInfo) &&
+          isAvailable === null
+      );
+    }
   }, [
     isLoadingAvailability,
     isLoadingIdentifier,
     isLoadingProductInfo,
-    isAvailable
+    isAvailable,
+    manifestText
   ]);
 
   return { isLoading, isAvailable };
