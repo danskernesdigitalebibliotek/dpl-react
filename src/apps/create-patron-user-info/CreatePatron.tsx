@@ -3,9 +3,13 @@ import UserInfo from "./UserInfo";
 import { useText } from "../../core/utils/text";
 import { useConfig } from "../../core/utils/config";
 import useUserInfo from "../../core/adgangsplatformen/useUserInfo";
+import RedirectToLoginMessage from "./RedirectToLoginMessage";
 
 const CreatePatron: FC = () => {
   const [cpr, setCpr] = useState<string | null>(null);
+  const [patronIsRegistered, setPpatronIsRegistered] = useState<boolean | null>(
+    null
+  );
   const config = useConfig();
   const t = useText();
 
@@ -38,7 +42,13 @@ const CreatePatron: FC = () => {
     return null;
   }
 
-  return <UserInfo cpr={cpr} />;
+  if (patronIsRegistered) {
+    return <RedirectToLoginMessage />;
+  }
+
+  return (
+    <UserInfo cpr={cpr} registerSuccessCallback={setPpatronIsRegistered} />
+  );
 };
 
 export default CreatePatron;
