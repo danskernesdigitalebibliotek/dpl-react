@@ -912,3 +912,18 @@ export const globalMaterial = Template.bind({});
 globalMaterial.args = {
   wid: "work-of:870970-basis:07185995"
 };
+
+export const onlyOneEdition = Template.bind({});
+onlyOneEdition.args = {
+  wid: "work-of:870970-basis:52796202"
+};
+
+export const digitalArticle = Template.bind({});
+digitalArticle.args = {
+  wid: "work-of:870971-tsart:36297484"
+};
+
+export const inLargeSameSeriesAndIrregularFaustId = Template.bind({});
+inLargeSameSeriesAndIrregularFaustId.args = {
+  wid: "work-of:150086-netmusik:BIS-2067"
+};

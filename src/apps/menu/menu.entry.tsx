@@ -38,6 +38,7 @@ export interface MenuProps {
   menuSignUpUrl: string;
   menuProfileLinksAriaLabelText: string;
   menuUserIconAriaLabelText: string;
+  menuUserIconAriaLabelLoggedOutText: string;
   menuNotAuthenticatedCloseButtonText: string;
   menuAuthenticatedCloseButtonText: string;
   menuAuthenticatedModalDescriptionText: string;
