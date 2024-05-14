@@ -38,6 +38,7 @@ const TextInput: FC<TextInputProps> = ({
     <div className={`${className || "dpl-input"}`}>
       <label htmlFor={id}>{required ? `${label}*` : label}</label>
       <input
+        className="text-body-medium-medium"
         required={required}
         aria-describedby={description ? `description-${id}` : ""}
         id={id}
