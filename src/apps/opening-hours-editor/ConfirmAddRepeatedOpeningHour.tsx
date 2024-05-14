@@ -26,14 +26,14 @@ const ConfirmAddRepeatedOpeningHour = ({
   return (
     <div
       className="opening-hours-editor-form"
-      data-cy="cy-opening-hours-editor-confirm-add-repeated-form"
+      data-cy="opening-hours-editor-confirm-add-repeated-form"
     >
       <h2 className="opening-hours-editor-form__label">
         {t("openingHoursConfirmAddRepeatedText")}
       </h2>
       <table
         className="opening-hours-editor-form__table"
-        data-cy="cy-opening-hours-editor-form__table"
+        data-cy="opening-hours-editor-form__table"
       >
         <tbody>
           <tr>
@@ -63,7 +63,7 @@ const ConfirmAddRepeatedOpeningHour = ({
         </tbody>
       </table>
       <button
-        data-cy="cy-opening-hours-editor-form__cancel"
+        data-cy="opening-hours-editor-form__cancel"
         type="button"
         className="opening-hours-editor-form__cancel"
         onClick={closeDialog}
@@ -71,7 +71,7 @@ const ConfirmAddRepeatedOpeningHour = ({
         {t("openingHoursConfirmAddRepeatedCancelText")}
       </button>
       <button
-        data-cy="cy-opening-hours-editor-form__confirm"
+        data-cy="opening-hours-editor-form__confirm"
         type="button"
         className="opening-hours-editor-form__submit"
         onClick={() => {
@@ -79,7 +79,7 @@ const ConfirmAddRepeatedOpeningHour = ({
           closeDialog();
         }}
       >
-        {t("openingHoursConfirmAddRepeatedSubmitText")}
+        {t("openingHoursConfirmRepeatedSubmitText")}
       </button>
     </div>
   );

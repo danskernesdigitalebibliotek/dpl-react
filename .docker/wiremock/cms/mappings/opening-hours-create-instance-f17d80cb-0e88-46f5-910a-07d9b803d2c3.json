@@ -2,7 +2,7 @@
   "id": "f17d80cb-0e88-46f5-910a-07d9b803d2c3",
   "name": "Opening hours create instance",
   "request": {
-    "url": "/dpl_opening_hours?_format=json",
+    "url": "/api/v1/opening_hours?_format=json",
     "method": "POST"
   },
   "response": {
