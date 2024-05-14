@@ -9,7 +9,8 @@ import { ChangePatronProps } from "./types";
 
 interface ContactInfoSectionProps {
   patron: PatronV5 | PatronSettingsV3 | null;
-  inLine: boolean;
+  inLine?: boolean;
+  isDouble?: boolean;
   changePatron: ChangePatronProps;
   showCheckboxes: boolean;
   requiredFields?: ("email" | "phone")[];
@@ -17,12 +18,16 @@ interface ContactInfoSectionProps {
 
 const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   patron,
-  inLine,
+  inLine = false,
+  isDouble = false,
   changePatron,
   showCheckboxes,
   requiredFields = []
 }) => {
-  const inputsClass = clsx("dpl-input", { input__desktop: inLine });
+  const inputsClass = clsx("dpl-input", [
+    { input__desktop: inLine },
+    { "dpl-input--double": isDouble }
+  ]);
   const config = useConfig();
   const textNotificationsEnabledConfig =
     config("textNotificationsEnabledConfig") === "1";

@@ -80,12 +80,13 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
           <form onSubmit={(e) => handleSubmit(e)} ref={formRef}>
             <ContactInfoSection
               showCheckboxes={false}
+              isDouble
               inLine
               changePatron={changePatron}
               patron={patron}
               requiredFields={["email"]}
             />
-            <PincodeSection required changePincode={setPin} />
+            <PincodeSection required changePincode={setPin} isFlex />
             <BranchesDropdown
               classNames="dropdown--grey-borders"
               selected={patron?.preferredPickupBranch || ""}

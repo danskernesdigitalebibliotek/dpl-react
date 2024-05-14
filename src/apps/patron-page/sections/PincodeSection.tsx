@@ -1,4 +1,5 @@
 import React, { useEffect, useState, FC } from "react";
+import clsx from "clsx";
 import TextInput from "../../../components/atoms/input/TextInput";
 import { useConfig } from "../../../core/utils/config";
 import { useText } from "../../../core/utils/text";
@@ -6,11 +7,13 @@ import { useText } from "../../../core/utils/text";
 interface PincodeSectionProps {
   changePincode: (newPin: string | null) => void;
   required: boolean;
+  isFlex?: boolean;
 }
 
 const PincodeSection: FC<PincodeSectionProps> = ({
   changePincode,
-  required
+  required,
+  isFlex = false
 }) => {
   const t = useText();
   const config = useConfig();
@@ -57,7 +60,12 @@ const PincodeSection: FC<PincodeSectionProps> = ({
 
   return (
     <section data-cy="pincode-section" className="create-patron-page__row">
-      <div className="dpl-pincode-container">
+      <div
+        className={clsx([
+          { "dpl-pincode-container": !isFlex },
+          { "dpl-input__flex": isFlex }
+        ])}
+      >
         <TextInput
           className="patron__input patron__input--desktop"
           id="pincode-input"
