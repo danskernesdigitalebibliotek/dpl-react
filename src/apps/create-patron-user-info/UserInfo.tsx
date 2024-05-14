@@ -8,19 +8,18 @@ import ContactInfoSection from "../../components/contact-info-section/ContactInf
 import { useCreateV4 } from "../../core/fbs/fbs";
 import { patronAgeValid } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
-import { redirectTo } from "../../core/utils/helpers/url";
 import { useUrls } from "../../core/utils/url";
 import Link from "../../components/atoms/links/Link";
 
 export interface UserInfoProps {
   cpr: string;
+  registerSuccessCallback: (success: boolean) => void;
 }
 
-const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
+const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
   const t = useText();
   const u = useUrls();
   const logoutUrl = u("logoutUrl");
-  const redirectOnUserCreatedUrl = u("redirectOnUserCreatedUrl");
   const config = useConfig();
   const formRef = useRef<HTMLFormElement>(null);
   const [pin, setPin] = useState<string | null>(null);
@@ -37,7 +36,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   });
 
   // Changes the patron object by key.
-  // So using the paramters 123 and "phoneNumber" would change the phoneNumber to 123.
+  // So using the parameters 123 and "phoneNumber" would change the phoneNumber to 123.
   const changePatron = (newValue: string | boolean, key: string) => {
     // Deeeep copy
     const copyUser = JSON.parse(JSON.stringify(patron));
@@ -54,9 +53,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
           data: { cprNumber: cpr, patron, pincode: pin }
         },
         {
-          onSuccess: () => {
-            redirectTo(redirectOnUserCreatedUrl);
-          }
+          onSuccess: () => registerSuccessCallback(true)
         }
       );
     }
