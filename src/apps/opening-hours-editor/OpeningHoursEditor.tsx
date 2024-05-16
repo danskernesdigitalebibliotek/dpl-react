@@ -63,9 +63,9 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         ref={fullCalendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
-          left: "title",
-          center: "prev,next today",
-          right: "dayGridMonth,timeGridWeek"
+          left: "dayGridMonth,timeGridWeek",
+          center: "title",
+          right: "prevCustom,nextCustom today"
         }}
         initialView="timeGridWeek"
         locale={da}
