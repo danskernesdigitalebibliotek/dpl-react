@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import weekOfYear from "dayjs/plugin/weekOfYear";
 import { EventInput } from "@fullcalendar/core";
 import { EventImpl } from "@fullcalendar/core/internal";
 import {
@@ -7,6 +8,11 @@ import {
   DplOpeningHoursUpdatePATCH200Item,
   DplOpeningHoursListGET200ItemRepetitionType
 } from "../../core/dpl-cms/model";
+import "dayjs/locale/da";
+
+// Set the locale to Danish to start the week on Monday
+dayjs.locale("da");
+dayjs.extend(weekOfYear);
 
 const formatDateTimeString = (date: string, time: string): string => {
   return `${date}T${time}:00`;
@@ -176,5 +182,22 @@ export const isOpeningHourWeeklyRepetition = (
 export const getThreeMonthRange = (date: Date) => {
   const start = dayjs(date).subtract(1, "month").startOf("month").toDate();
   const end = dayjs(date).add(1, "month").endOf("month").toDate();
+  return { start, end };
+};
+
+export const getWeekStartDate = (date: Date): Date => {
+  return dayjs(date).startOf("week").toDate();
+};
+export const getNextWeek = (date: Date): Date => {
+  return dayjs(date).add(1, "week").toDate();
+};
+
+export const getPreviousWeek = (date: Date): Date => {
+  return dayjs(date).subtract(1, "week").toDate();
+};
+
+export const getWeekRange = (date: Date) => {
+  const start = dayjs(date).startOf("week").toDate();
+  const end = dayjs(date).endOf("week").toDate();
   return { start, end };
 };

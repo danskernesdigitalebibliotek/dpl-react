@@ -41,8 +41,10 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
     handleEventAdd,
     handleEventEditing,
     handleEventRemove,
-    navigateToPreviousMonthRange,
-    navigateToNextMonthRange
+    navigateToPreviousDateRange,
+    navigateToNextDateRange,
+    handleDayGridMonthView,
+    handleTimeGridWeekView
   } = useOpeningHoursEditor(fullCalendarApi);
 
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
@@ -63,7 +65,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         ref={fullCalendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
-          left: "dayGridMonth,timeGridWeek",
+          left: "customDayGridMonth,customTimeGridWeek",
           center: "title",
           right: "prevCustom,nextCustom today"
         }}
@@ -106,11 +108,19 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         customButtons={{
           prevCustom: {
             icon: "chevron-left",
-            click: navigateToPreviousMonthRange
+            click: navigateToPreviousDateRange
           },
           nextCustom: {
             icon: "chevron-right",
-            click: navigateToNextMonthRange
+            click: navigateToNextDateRange
+          },
+          customDayGridMonth: {
+            text: "Month", // Todo: Translate or find a better solution
+            click: handleDayGridMonthView
+          },
+          customTimeGridWeek: {
+            text: "Week", // Todo: Translate or find a better solution
+            click: handleTimeGridWeekView
           }
         }}
       />

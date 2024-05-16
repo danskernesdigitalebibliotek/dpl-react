@@ -4,7 +4,11 @@ import { useQueryClient } from "react-query";
 import {
   formatCmsEventsToFullCalendar,
   getStringForDateInput,
-  getThreeMonthRange
+  getThreeMonthRange,
+  getWeekStartDate,
+  getWeekRange,
+  getNextWeek,
+  getPreviousWeek
 } from "./helper";
 import {
   getDplOpeningHoursListGETQueryKey,
@@ -27,13 +31,25 @@ const useOpeningHoursEditor = (calendarApi: CalendarApi | undefined) => {
   });
 
   const [date, setDate] = useState(new Date());
-  const currentMonthRange = useMemo(() => getThreeMonthRange(date), [date]);
+  console.log(
+    "🚀 ~ useOpeningHoursEditor ~ date:",
+    date,
+    getWeekStartDate(date)
+  );
+
+  const currentRange = useMemo(
+    () =>
+      calendarApi?.view.type === "dayGridMonth"
+        ? getThreeMonthRange(date)
+        : getWeekRange(date),
+    [calendarApi, date]
+  );
 
   const queryClient = useQueryClient();
   const { data: openingHoursData } = useDplOpeningHoursListGET({
     branch_id: openingHoursBranchId,
-    from_date: getStringForDateInput(currentMonthRange.start),
-    to_date: getStringForDateInput(currentMonthRange.end)
+    from_date: getStringForDateInput(currentRange.start),
+    to_date: getStringForDateInput(currentRange.end)
   });
   const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
   const { mutate: createOpeningHours } = useDplOpeningHoursCreatePOST();
@@ -47,21 +63,39 @@ const useOpeningHoursEditor = (calendarApi: CalendarApi | undefined) => {
     }
   }, [openingHoursData]);
 
-  const navigateToPreviousMonthRange = useCallback(() => {
+  const navigateToPreviousDateRange = useCallback(() => {
     if (calendarApi) {
       calendarApi.prev();
       setDate(
-        (prevDate) => new Date(prevDate.setMonth(prevDate.getMonth() - 1))
+        calendarApi.view.type === "dayGridMonth"
+          ? (prevDate) => new Date(prevDate.setMonth(prevDate.getMonth() - 1))
+          : (prevDate) => new Date(getPreviousWeek(prevDate))
       );
     }
   }, [calendarApi]);
 
-  const navigateToNextMonthRange = useCallback(() => {
+  const navigateToNextDateRange = useCallback(() => {
     if (calendarApi) {
       calendarApi.next();
       setDate(
-        (prevDate) => new Date(prevDate.setMonth(prevDate.getMonth() + 1))
+        calendarApi.view.type === "dayGridMonth"
+          ? (prevDate) => new Date(prevDate.setMonth(prevDate.getMonth() + 1))
+          : (prevDate) => new Date(getNextWeek(prevDate))
       );
+    }
+  }, [calendarApi]);
+
+  const handleDayGridMonthView = useCallback(() => {
+    if (calendarApi) {
+      calendarApi.changeView("dayGridMonth");
+      setDate((prevDate) => new Date(prevDate.setMonth(prevDate.getMonth())));
+    }
+  }, [calendarApi]);
+
+  const handleTimeGridWeekView = useCallback(() => {
+    if (calendarApi) {
+      calendarApi.changeView("timeGridWeek");
+      setDate((prevDate) => new Date(getWeekStartDate(prevDate)));
     }
   }, [calendarApi]);
 
@@ -153,8 +187,10 @@ const useOpeningHoursEditor = (calendarApi: CalendarApi | undefined) => {
     handleEventAdd,
     handleEventRemove,
     handleEventEditing,
-    navigateToPreviousMonthRange,
-    navigateToNextMonthRange
+    navigateToPreviousDateRange,
+    navigateToNextDateRange,
+    handleDayGridMonthView,
+    handleTimeGridWeekView
   };
 };
 
