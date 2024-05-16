@@ -172,3 +172,9 @@ export const isOpeningHourWeeklyRepetition = (
     DplOpeningHoursListGET200ItemRepetitionType.weekly
   );
 };
+
+export const getThreeMonthRange = (date: Date) => {
+  const start = dayjs(date).subtract(1, "month").startOf("month").toDate();
+  const end = dayjs(date).add(1, "month").endOf("month").toDate();
+  return { start, end };
+};

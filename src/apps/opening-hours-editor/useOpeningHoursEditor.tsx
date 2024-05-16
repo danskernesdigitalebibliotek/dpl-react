@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
-import { EventInput } from "@fullcalendar/core";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { CalendarApi, EventInput } from "@fullcalendar/core";
 import { useQueryClient } from "react-query";
-import { formatCmsEventsToFullCalendar } from "./helper";
+import {
+  formatCmsEventsToFullCalendar,
+  getStringForDateInput,
+  getThreeMonthRange
+} from "./helper";
 import {
   getDplOpeningHoursListGETQueryKey,
   useDplOpeningHoursCreatePOST,
@@ -16,14 +20,20 @@ import {
 import { useConfig } from "../../core/utils/config";
 import { HandleEventRemoveType } from "./types";
 
-const useOpeningHoursEditor = () => {
+const useOpeningHoursEditor = (calendarApi: CalendarApi | undefined) => {
   const config = useConfig();
   const openingHoursBranchId = config("openingHoursBranchIdConfig", {
     transformer: "stringToNumber"
   });
+
+  const [date, setDate] = useState(new Date());
+  const currentMonthRange = useMemo(() => getThreeMonthRange(date), [date]);
+
   const queryClient = useQueryClient();
   const { data: openingHoursData } = useDplOpeningHoursListGET({
-    branch_id: openingHoursBranchId
+    branch_id: openingHoursBranchId,
+    from_date: getStringForDateInput(currentMonthRange.start),
+    to_date: getStringForDateInput(currentMonthRange.end)
   });
   const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
   const { mutate: createOpeningHours } = useDplOpeningHoursCreatePOST();
@@ -36,6 +46,24 @@ const useOpeningHoursEditor = () => {
       setEvents(formattedEvents);
     }
   }, [openingHoursData]);
+
+  const navigateToPreviousMonthRange = useCallback(() => {
+    if (calendarApi) {
+      calendarApi.prev();
+      setDate(
+        (prevDate) => new Date(prevDate.setMonth(prevDate.getMonth() - 1))
+      );
+    }
+  }, [calendarApi]);
+
+  const navigateToNextMonthRange = useCallback(() => {
+    if (calendarApi) {
+      calendarApi.next();
+      setDate(
+        (prevDate) => new Date(prevDate.setMonth(prevDate.getMonth() + 1))
+      );
+    }
+  }, [calendarApi]);
 
   const onSuccess = () => {
     queryClient.invalidateQueries(
@@ -124,7 +152,9 @@ const useOpeningHoursEditor = () => {
     events,
     handleEventAdd,
     handleEventRemove,
-    handleEventEditing
+    handleEventEditing,
+    navigateToPreviousMonthRange,
+    navigateToNextMonthRange
   };
 };
 

@@ -36,8 +36,14 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
   const fullCalendarRef = React.useRef<FullCalendar>(null);
   const fullCalendarApi = fullCalendarRef.current?.getApi();
 
-  const { events, handleEventAdd, handleEventEditing, handleEventRemove } =
-    useOpeningHoursEditor();
+  const {
+    events,
+    handleEventAdd,
+    handleEventEditing,
+    handleEventRemove,
+    navigateToPreviousMonthRange,
+    navigateToNextMonthRange
+  } = useOpeningHoursEditor(fullCalendarApi);
 
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
     useDialog({
@@ -97,6 +103,16 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         height="auto"
         selectMirror
         allDaySlot={false}
+        customButtons={{
+          prevCustom: {
+            icon: "chevron-left",
+            click: navigateToPreviousMonthRange
+          },
+          nextCustom: {
+            icon: "chevron-right",
+            click: navigateToNextMonthRange
+          }
+        }}
       />
     </>
   );
