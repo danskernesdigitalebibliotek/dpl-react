@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { EventInput } from "@fullcalendar/core";
+import { DatesSetArg, EventInput } from "@fullcalendar/core";
 import { useQueryClient } from "react-query";
-import { formatCmsEventsToFullCalendar } from "./helper";
+import { formatCmsEventsToFullCalendar, getStringForDateInput } from "./helper";
 import {
   getDplOpeningHoursListGETQueryKey,
   useDplOpeningHoursCreatePOST,
@@ -21,9 +21,16 @@ const useOpeningHoursEditor = () => {
   const openingHoursBranchId = config("openingHoursBranchIdConfig", {
     transformer: "stringToNumber"
   });
+  const [datesSet, setDatseSet] = useState<null | DatesSetArg>(null);
   const queryClient = useQueryClient();
   const { data: openingHoursData } = useDplOpeningHoursListGET({
-    branch_id: openingHoursBranchId
+    branch_id: openingHoursBranchId,
+    ...(datesSet
+      ? {
+          from_date: getStringForDateInput(datesSet.start),
+          to_date: getStringForDateInput(datesSet.end)
+        }
+      : {})
   });
   const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
   const { mutate: createOpeningHours } = useDplOpeningHoursCreatePOST();
@@ -36,6 +43,10 @@ const useOpeningHoursEditor = () => {
       setEvents(formattedEvents);
     }
   }, [openingHoursData]);
+
+  const handleDatesSet = (datesInView: DatesSetArg) => {
+    setDatseSet(datesInView);
+  };
 
   const onSuccess = () => {
     queryClient.invalidateQueries(
@@ -124,7 +135,8 @@ const useOpeningHoursEditor = () => {
     events,
     handleEventAdd,
     handleEventRemove,
-    handleEventEditing
+    handleEventEditing,
+    handleDatesSet
   };
 };
 

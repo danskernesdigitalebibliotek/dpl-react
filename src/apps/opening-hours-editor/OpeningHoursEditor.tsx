@@ -36,8 +36,13 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
   const fullCalendarRef = React.useRef<FullCalendar>(null);
   const fullCalendarApi = fullCalendarRef.current?.getApi();
 
-  const { events, handleEventAdd, handleEventEditing, handleEventRemove } =
-    useOpeningHoursEditor();
+  const {
+    events,
+    handleEventAdd,
+    handleEventEditing,
+    handleEventRemove,
+    handleDatesSet
+  } = useOpeningHoursEditor();
 
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
     useDialog({
@@ -97,6 +102,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         height="auto"
         selectMirror
         allDaySlot={false}
+        datesSet={handleDatesSet}
       />
     </>
   );
