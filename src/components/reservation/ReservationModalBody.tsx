@@ -64,6 +64,7 @@ import ModalMessage from "../message/modal-message/ModalMessage";
 import configuration, { getConf } from "../../core/configuration";
 import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromAnotherLibrary";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
+import { Periods } from "./types";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -152,9 +153,12 @@ export const ReservationModalBody = ({
   const reservations = getTotalReservations(holdingsData);
   const { patron } = userData;
   const authorLine = getAuthorLine(selectedManifestations[0], t);
-  const expiryDate = selectedInterest
-    ? getFutureDateString(selectedInterest)
-    : null;
+  const interestPeriods = config<Periods>("interestPeriodsConfig", {
+    transformer: "jsonParse"
+  });
+  const interestPeriod =
+    selectedInterest || interestPeriods.defaultInterestPeriod.value;
+  const expiryDate = getFutureDateString(interestPeriod);
 
   const saveReservation = () => {
     if (manifestationsToReserve?.length) {
