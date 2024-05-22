@@ -5,6 +5,7 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import pincodeArgs from "../../core/storybook/pincodeArgs";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import { TOKEN_UNREGISTERED_USER_KEY, setToken } from "../../core/token";
 
 export default {
   title: "Apps / Create patron",
@@ -41,10 +42,6 @@ export default {
       defaultValue: "https://login.bib.dk/userinfo",
       control: { type: "text" }
     },
-    logOutUrl: {
-      defaultValue: "/Logout",
-      control: { type: "text" }
-    },
     dashboardUrl: {
       defaultValue: "/user/me/dashboard",
       control: { type: "text" }
@@ -70,10 +67,6 @@ export default {
       defaultValue: "Nothing selected",
       control: { type: "text" }
     },
-    patronPageChangePincodeBodyText: {
-      defaultValue: "Change current pin by entering a new pin and saving",
-      control: { type: "text" }
-    },
     patronPagePincodeLabelText: {
       defaultValue: "New pin",
       control: { type: "text" }
@@ -97,10 +90,6 @@ export default {
     },
     patronContactPhoneLabelText: {
       defaultValue: "Phone number",
-      control: { type: "text" }
-    },
-    patronContactInfoHeaderText: {
-      defaultValue: "Contact information",
       control: { type: "text" }
     },
     patronContactPhoneCheckboxText: {
@@ -151,6 +140,37 @@ export default {
         "The phone number must be 6 to 15 characters in length and should be comprised solely of numbers or begin with a +",
       control: { type: "text" }
     },
+    fakeCpr: {
+      name: "Storybook context cpr",
+      defaultValue: "0101901111",
+      control: { type: "text" }
+    },
+    createPatronCancelButtonText: {
+      name: "create patron cancel button text",
+      defaultValue: "Cancel",
+      control: { type: "text" }
+    },
+    patronPagePhoneInputMessageText: {
+      name: "patron page phone input message text",
+      defaultValue: "Phone number",
+      control: { type: "text" }
+    },
+    createPatronButtonLoadingText: {
+      name: "create patron button loading text",
+      defaultValue: "Loading",
+      control: { type: "text" }
+    },
+    createPatronButtonErrorText: {
+      name: "create patron button error text",
+      defaultValue: "Error occurred",
+      control: { type: "text" }
+    },
+    createPatronBranchDropdownNoteText: {
+      name: "create patron branch dropdown note text",
+      defaultValue:
+        "Choose preferred library for pickup of your future reservations.",
+      control: { type: "text" }
+    },
     postRegisterRedirectInfoTopText: {
       name: "Redirect info top text",
       defaultValue:
@@ -171,9 +191,10 @@ export default {
   }
 } as ComponentMeta<typeof CreatePatron>;
 
-const Template: ComponentStory<typeof CreatePatron> = (props) => (
-  <CreatePatron {...props} />
-);
+const Template: ComponentStory<typeof CreatePatron> = (props) => {
+  setToken(TOKEN_UNREGISTERED_USER_KEY, "123456");
+  return <CreatePatron {...props} />;
+};
 
 export const CreatePatronEntry = Template.bind({});
 CreatePatronEntry.args = {};

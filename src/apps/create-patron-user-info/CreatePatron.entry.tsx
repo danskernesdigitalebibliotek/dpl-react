@@ -2,11 +2,10 @@ import React, { FC, useEffect } from "react";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { useUrls, withUrls } from "../../core/utils/url";
-import CreatePatron from "./CreatePatron";
-import { getToken, hasToken } from "../../core/token";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { isUnregistered } from "../../core/utils/helpers/user";
 import { redirectTo } from "../../core/utils/helpers/url";
+import CreatePatron from "./CreatePatron";
 
 interface CreatePatronConfigProps {
   agencyConfig: string;
@@ -19,6 +18,7 @@ interface CreatePatronConfigProps {
 interface CreatePatronUrlProps {
   loginUrl: string;
   redirectOnUserCreatedUrl: string;
+  logoutUrl: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;
   dashboardUrl: string;
@@ -27,6 +27,7 @@ interface CreatePatronUrlProps {
 interface CreatePatronTextProps {
   pickupBranchesDropdownLabelText: string;
   createPatronCancelButtonText: string;
+  patronPagePhoneInputMessageText: string;
   createPatronChangePickupBodyText: string;
   createPatronChangePickupHeaderText: string;
   createPatronConfirmButtonText: string;
@@ -35,11 +36,9 @@ interface CreatePatronTextProps {
   createPatronInvalidSsnHeaderText: string;
   patronContactEmailCheckboxText: string;
   patronContactEmailLabelText: string;
-  patronContactInfoHeaderText: string;
   patronContactNameLabelText: string;
   patronContactPhoneCheckboxText: string;
   patronContactPhoneLabelText: string;
-  patronPageChangePincodeBodyText: string;
   patronPageChangePincodeHeaderText: string;
   patronPageConfirmPincodeLabelText: string;
   patronPagePincodeLabelText: string;
@@ -47,15 +46,20 @@ interface CreatePatronTextProps {
   patronPagePincodeTooShortValidationText: string;
   phoneInputMessageText: string;
   pickupBranchesDropdownNothingSelectedText: string;
+  createPatronButtonLoadingText: string;
+  createPatronButtonErrorText: string;
+  createPatronBranchDropdownNoteText: string;
 }
 
 export interface CreatePatronProps
   extends CreatePatronConfigProps,
     GlobalEntryTextProps,
     CreatePatronUrlProps,
-    CreatePatronTextProps {}
+    CreatePatronTextProps {
+  fakeCpr?: string;
+}
 
-const CreatePatronEntry: FC<CreatePatronProps> = () => {
+const CreatePatronEntry: FC<CreatePatronProps> = ({ fakeCpr }) => {
   const u = useUrls();
   const dashboardUrl = u("dashboardUrl");
 
@@ -67,7 +71,7 @@ const CreatePatronEntry: FC<CreatePatronProps> = () => {
     }
   }, [dashboardUrl]);
 
-  return isUnregistered() ? <CreatePatron /> : null;
+  return isUnregistered() ? <CreatePatron cpr={fakeCpr} /> : null;
 };
 
 export default withConfig(withText(withUrls(CreatePatronEntry)));
