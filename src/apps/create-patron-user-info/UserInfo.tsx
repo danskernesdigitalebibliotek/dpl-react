@@ -93,30 +93,16 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
               isFlex
               setIsPinValid={setIsPinValid}
             />
-            {t("createPatronChangePickupHeaderText") && (
-              <h2 className="text-subtitle mt-32 mb-16">
-                {t("createPatronChangePickupHeaderText")}
-              </h2>
-            )}
-            {t("createPatronChangePickupBodyText") && (
-              <p className="text-body-small-regular my-32">
-                {t("createPatronChangePickupBodyText")}
-              </p>
-            )}
-            <div className="mt-32">
-              <BranchesDropdown
-                classNames="dropdown--grey-borders"
-                selected={patron?.preferredPickupBranch || ""}
-                onChange={(newPreferredPickupBranch) =>
-                  changePatron(
-                    newPreferredPickupBranch,
-                    "preferredPickupBranch"
-                  )
-                }
-                required
-                footnote={t("createPatronBranchDropdownNoteText")}
-              />
-            </div>
+            <BranchesDropdown
+              classNames="dropdown--grey-borders"
+              selected={patron?.preferredPickupBranch || ""}
+              onChange={(newPreferredPickupBranch) =>
+                changePatron(newPreferredPickupBranch, "preferredPickupBranch")
+              }
+              required
+              footnote={t("createPatronBranchDropdownNoteText")}
+            />
+
             <div className="create-patron-page__buttons">
               <button
                 type="submit"
