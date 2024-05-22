@@ -28,6 +28,18 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
   // This is the CQL query that is actually executed.
   const [executedQuery, setExecutedQuery] = useState<string | null>(null);
 
+  const [onShelf, setOnShelf] = useState(false);
+  const handleOnShelfChange = (checked: boolean) => {
+    setOnShelf(checked);
+    if (checked) {
+      setQueryParametersInUrl({
+        onshelf: "true"
+      });
+    } else {
+      removeQueryParametersFromUrl("onshelf");
+    }
+  };
+
   // Only react on url parameters on the initial render.
   useEffectOnce(() => {
     const advancedSearchQuery = getUrlQueryParam("advancedSearchQuery");
@@ -47,6 +59,10 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
 
     if (getUrlQueryParam("linked") === "true") {
       setShowResultOnly(true);
+    }
+
+    if (getUrlQueryParam("onshelf") === "true") {
+      setOnShelf(true);
     }
   });
 
@@ -81,6 +97,8 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           setSearchObject={setSearchObject}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          onShelf={onShelf}
+          setOnShelf={handleOnShelfChange}
         />
       )}
       {executedQuery && (
@@ -88,6 +106,7 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           q={executedQuery}
           pageSize={pageSize}
           showContentOnly={showResultOnly}
+          onShelf={onShelf}
         />
       )}
     </div>
