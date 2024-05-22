@@ -40,16 +40,16 @@ const StatusSection: FC = () => {
   } = libraryProfile || {};
 
   let patronEbookLoans = 0;
-  if (patronData?.ebookLoansRemaining) {
-    patronEbookLoans = Math.abs(patronData?.ebookLoansRemaining) || 0;
+  if (patronData?.totalEbookLoans) {
+    patronEbookLoans = Math.abs(patronData?.totalEbookLoans) || 0;
   }
   let patronAudioBookLoans = 0;
-  if (patronData?.audiobookLoansRemaining) {
-    patronAudioBookLoans = Math.abs(patronData?.audiobookLoansRemaining) || 0;
+  if (patronData?.totalAudioLoans) {
+    patronAudioBookLoans = Math.abs(patronData?.totalAudioLoans) || 0;
   }
-  let eBookLoanPerent = 100;
+  let eBookLoanPercent = 100;
   if (maxConcurrentEbookLoansPerBorrower) {
-    eBookLoanPerent =
+    eBookLoanPercent =
       (patronEbookLoans / maxConcurrentEbookLoansPerBorrower) * 100;
   }
 
@@ -125,7 +125,7 @@ const StatusSection: FC = () => {
                           }
                         }
                       )}
-                      style={{ width: `${eBookLoanPerent}%` }}
+                      style={{ width: `${eBookLoanPercent}%` }}
                     />
                   )}
                 </div>
