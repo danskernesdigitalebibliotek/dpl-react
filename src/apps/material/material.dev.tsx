@@ -86,9 +86,14 @@ export default {
       defaultValue: "Reserve",
       control: { type: "text" }
     },
+    reserveWithMaterialTypeText: {
+      name: "Reserve",
+      defaultValue: "Reserve @materialType",
+      control: { type: "text" }
+    },
     reservableFromAnotherLibraryText: {
       name: "Reservable on another library",
-      defaultValue: "Reservable on another library",
+      defaultValue: "Ordered from another library.",
       control: { type: "text" }
     },
     findOnBookshelfText: {
@@ -769,7 +774,7 @@ export default {
     },
     openOrderNotOwnedIllLocText: {
       name: "Open order item localized for ILL text",
-      defaultValue: "Item not available at pickup agency but localized for ILL",
+      defaultValue: "Your material has been ordered from another library",
       control: { type: "text" }
     },
     openOrderNotOwnedNoIllLocText: {
@@ -906,4 +911,19 @@ overbygningsMatriale.args = {
 export const globalMaterial = Template.bind({});
 globalMaterial.args = {
   wid: "work-of:870970-basis:07185995"
+};
+
+export const onlyOneEdition = Template.bind({});
+onlyOneEdition.args = {
+  wid: "work-of:870970-basis:52796202"
+};
+
+export const digitalArticle = Template.bind({});
+digitalArticle.args = {
+  wid: "work-of:870971-tsart:36297484"
+};
+
+export const inLargeSameSeriesAndIrregularFaustId = Template.bind({});
+inLargeSameSeriesAndIrregularFaustId.args = {
+  wid: "work-of:150086-netmusik:BIS-2067"
 };

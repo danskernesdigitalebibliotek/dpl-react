@@ -15,6 +15,16 @@ export default {
     ...pincodeArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    authUrl: {
+      name: "Url where user can authenticate",
+      defaultValue: "/login",
+      control: { type: "text" }
+    },
+    logoutUrl: {
+      name: "Url where user can logout",
+      defaultValue: "/logout",
+      control: { type: "text" }
+    },
     blacklistedPickupBranchesConfig: {
       defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
@@ -30,10 +40,6 @@ export default {
     },
     userinfoUrl: {
       defaultValue: "https://login.bib.dk/userinfo",
-      control: { type: "text" }
-    },
-    logoutUrl: {
-      defaultValue: "/Logout",
       control: { type: "text" }
     },
     dashboardUrl: {
@@ -163,6 +169,23 @@ export default {
       name: "create patron branch dropdown note text",
       defaultValue:
         "Choose preferred library for pickup of your future reservations.",
+      control: { type: "text" }
+    },
+    postRegisterRedirectInfoTopText: {
+      name: "Redirect info top text",
+      defaultValue:
+        "You are now registered as a user and need to log in again to be able to use the application.",
+      control: { type: "text" }
+    },
+    postRegisterRedirectInfoBottomText: {
+      name: "Redirect info bottom text",
+      defaultValue:
+        "You will be sent to the Adgangsplatformen to log in again in @seconds seconds.",
+      control: { type: "text" }
+    },
+    postRegisterRedirectButtonText: {
+      name: "Redirect button text",
+      defaultValue: "Log in again",
       control: { type: "text" }
     }
   }

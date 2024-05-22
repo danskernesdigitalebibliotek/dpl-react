@@ -8,20 +8,19 @@ import ContactInfoSection from "../../components/contact-info-section/ContactInf
 import { useCreateV4 } from "../../core/fbs/fbs";
 import { patronAgeValid } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
-import { redirectTo } from "../../core/utils/helpers/url";
 import { useUrls } from "../../core/utils/url";
 import Link from "../../components/atoms/links/Link";
 import { getSubmitButtonText } from "./helper";
 
 export interface UserInfoProps {
   cpr: string;
+  registerSuccessCallback: (success: boolean) => void;
 }
 
-const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
+const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
   const t = useText();
   const u = useUrls();
   const logoutUrl = u("logoutUrl");
-  const redirectOnUserCreatedUrl = u("redirectOnUserCreatedUrl");
   const config = useConfig();
   const formRef = useRef<HTMLFormElement>(null);
   const [pin, setPin] = useState<string | null>(null);
@@ -38,6 +37,8 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSubmitError, setIsSubmitError] = useState<boolean>(false);
+  const [isPinValid, setIsPinValid] = useState<boolean>(true);
+
   // Changes the patron object by key.
   // So using the parameters 123 and "phoneNumber" would change the phoneNumber to 123.
   const changePatron = (newValue: string | boolean, key: string) => {
@@ -59,7 +60,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
         {
           onSuccess: () => {
             setIsLoading(false);
-            redirectTo(redirectOnUserCreatedUrl);
+            registerSuccessCallback(true);
           },
           onError: () => {
             setIsLoading(false);
@@ -86,21 +87,42 @@ const UserInfo: FC<UserInfoProps> = ({ cpr }) => {
               patron={patron}
               requiredFields={["email"]}
             />
-            <PincodeSection required changePincode={setPin} isFlex />
-            <BranchesDropdown
-              classNames="dropdown--grey-borders"
-              selected={patron?.preferredPickupBranch || ""}
-              onChange={(newPreferredPickupBranch) =>
-                changePatron(newPreferredPickupBranch, "preferredPickupBranch")
-              }
+            <PincodeSection
               required
-              footnote={t("createPatronBranchDropdownNoteText")}
+              changePincode={setPin}
+              isFlex
+              setIsPinValid={setIsPinValid}
             />
+            {t("createPatronChangePickupHeaderText") && (
+              <h2 className="text-subtitle mt-32 mb-16">
+                {t("createPatronChangePickupHeaderText")}
+              </h2>
+            )}
+            {t("createPatronChangePickupBodyText") && (
+              <p className="text-body-small-regular my-32">
+                {t("createPatronChangePickupBodyText")}
+              </p>
+            )}
+            <div className="mt-32">
+              <BranchesDropdown
+                classNames="dropdown--grey-borders"
+                selected={patron?.preferredPickupBranch || ""}
+                onChange={(newPreferredPickupBranch) =>
+                  changePatron(
+                    newPreferredPickupBranch,
+                    "preferredPickupBranch"
+                  )
+                }
+                required
+                footnote={t("createPatronBranchDropdownNoteText")}
+              />
+            </div>
             <div className="create-patron-page__buttons">
               <button
                 type="submit"
                 className="btn-primary btn-filled btn-small"
                 data-cy="complete-user-registration-button"
+                disabled={!isPinValid}
               >
                 {getSubmitButtonText(t, isLoading, isSubmitError)}
               </button>

@@ -3,6 +3,7 @@ import UserInfo from "./UserInfo";
 import { useText } from "../../core/utils/text";
 import { useConfig } from "../../core/utils/config";
 import useUserInfo from "../../core/adgangsplatformen/useUserInfo";
+import RedirectToLoginMessage from "./RedirectToLoginMessage";
 
 export interface CreatePatronProps {
   cpr?: string;
@@ -10,6 +11,9 @@ export interface CreatePatronProps {
 
 const CreatePatron: FC<CreatePatronProps> = ({ cpr }) => {
   const [userInfoCpr, setCpr] = useState<string | null>(null);
+  const [patronIsRegistered, setPpatronIsRegistered] = useState<boolean | null>(
+    null
+  );
   const config = useConfig();
   const t = useText();
   const { id: agencyId } = config<{
@@ -33,8 +37,11 @@ const CreatePatron: FC<CreatePatronProps> = ({ cpr }) => {
     setCpr(String(userCpr));
   }, [agencyId, isLoading, userInfo, cpr]);
 
+  // We only hit this if in case we are in storybook context.
   if (cpr) {
-    return <UserInfo cpr={cpr} />;
+    return (
+      <UserInfo cpr={cpr} registerSuccessCallback={setPpatronIsRegistered} />
+    );
   }
 
   if (isLoading) {
@@ -45,7 +52,16 @@ const CreatePatron: FC<CreatePatronProps> = ({ cpr }) => {
     return null;
   }
 
-  return <UserInfo cpr={userInfoCpr} />;
+  if (patronIsRegistered) {
+    return <RedirectToLoginMessage />;
+  }
+
+  return (
+    <UserInfo
+      cpr={userInfoCpr}
+      registerSuccessCallback={setPpatronIsRegistered}
+    />
+  );
 };
 
 export default CreatePatron;

@@ -11,35 +11,30 @@ type ButtonTagProps = {
   dataCy?: string;
 };
 
-const ButtonTag: React.FunctionComponent<ButtonTagProps> = ({
-  onClick,
-  selected,
-  children,
-  size,
-  removable = false,
-  dataCy
-}) => {
-  const className = clsx(
-    "tag",
-    selected && "tag--fill",
-    size && `tag--${size}`,
-    "cursor-pointer"
-  );
+const ButtonTag = React.forwardRef<HTMLButtonElement, ButtonTagProps>(
+  ({ onClick, selected, children, size, removable = false, dataCy }, ref) => {
+    const className = clsx(
+      "tag",
+      selected && "tag--fill",
+      size && `tag--${size}`,
+      "cursor-pointer"
+    );
 
-  return (
-    <button
-      type="button"
-      aria-pressed={selected ?? undefined}
-      className={className}
-      onClick={onClick}
-      data-cy={dataCy}
-    >
-      {children}
-      {removable && (
-        <img className="tag-icon" src={iconCross} alt="close icon" />
-      )}
-    </button>
-  );
-};
+    return (
+      <button
+        ref={ref}
+        type="button"
+        aria-pressed={selected}
+        className={className}
+        onClick={onClick}
+        data-cy={dataCy}
+      >
+        {children}
+        {/* No need for alt tag, because screen readers announce it as a toggle button. */}
+        {removable && <img className="tag-icon" src={iconCross} alt="" />}
+      </button>
+    );
+  }
+);
 
 export default ButtonTag;

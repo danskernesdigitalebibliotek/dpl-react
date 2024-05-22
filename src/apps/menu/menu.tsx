@@ -49,7 +49,11 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
       <button
         className="header__menu-profile header__button btn-ui"
         type="button"
-        aria-label={t("menuUserIconAriaLabelText")}
+        aria-label={
+          userData
+            ? t("menuUserIconAriaLabelText")
+            : t("menuUserIconAriaLabelLoggedOutText")
+        }
         onClick={() => openMenu()}
         onKeyDown={(e) => e.key === "Enter" && openMenu()}
         tabIndex={0}

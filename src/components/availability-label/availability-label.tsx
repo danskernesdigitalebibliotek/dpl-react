@@ -11,7 +11,6 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import AvailabilityLabelInside from "./availability-label-inside";
 import { FaustId } from "../../core/utils/types/ids";
-import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 export interface AvailabilityLabelProps {
   manifestText: string;
@@ -24,6 +23,7 @@ export interface AvailabilityLabelProps {
   cursorPointer?: boolean;
   dataCy?: string;
   isbns: string[];
+  isVisualOnly?: boolean;
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
@@ -36,7 +36,8 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   handleSelectManifestation,
   cursorPointer = false,
   dataCy = "availability-label",
-  isbns
+  isbns,
+  isVisualOnly
 }) => {
   const { track } = useStatistics();
   const t = useText();
@@ -45,16 +46,13 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     accessTypes,
     access,
     faustIds,
-    isbn: isbns ? isbns[0] : null
+    isbn: isbns ? isbns[0] : null,
+    manifestText
   });
 
-  let availabilityText = isAvailable
+  const availabilityText = isAvailable
     ? t("availabilityAvailableText")
     : t("availabilityUnavailableText");
-  // Articles are always available
-  if (manifestText === ManifestationMaterialType.article) {
-    availabilityText = t("availabilityAvailableText");
-  }
 
   useDeepCompareEffect(() => {
     // Track material availability (status) if the button is active - also meaning
@@ -76,12 +74,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     <AvailabilityLabelInside
       selected={selected}
       isLoading={!!isLoading}
-      // Articles are always available
-      isAvailable={
-        manifestText === ManifestationMaterialType.article
-          ? true
-          : !!isAvailable
-      }
+      isAvailable={!!isAvailable}
       manifestText={manifestText}
       availabilityText={availabilityText}
     />
@@ -92,11 +85,23 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     cursorPointer
   });
 
-  return url && !handleSelectManifestation ? (
-    <LinkNoStyle className={parentClass} url={url} data-cy={dataCy}>
-      {availabilityLabel}
-    </LinkNoStyle>
-  ) : (
+  if (isVisualOnly) {
+    return (
+      <div className={parentClass} data-cy={dataCy}>
+        {availabilityLabel}
+      </div>
+    );
+  }
+
+  if (url && !handleSelectManifestation) {
+    return (
+      <LinkNoStyle className={parentClass} url={url} data-cy={dataCy}>
+        {availabilityLabel}
+      </LinkNoStyle>
+    );
+  }
+
+  return (
     <button
       className={parentClass}
       type="button"

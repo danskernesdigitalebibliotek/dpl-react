@@ -153,6 +153,7 @@ interface MaterialEntryTextProps {
   reservationSuccesTitleText: string;
   reserveBookText: string;
   reserveText: string;
+  reserveWithMaterialTypeText: string;
   reviewsText: string;
   saveButtonText: string;
   seeOnlineText: string;

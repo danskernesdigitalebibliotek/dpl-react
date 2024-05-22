@@ -48,6 +48,12 @@ export const getFutureDateString = (num: number) => {
   const futureDate = dayjs().add(num, "day").format("YYYY-MM-DD");
   return futureDate;
 };
+
+export const getFutureDateStringISO = (num: number) => {
+  const futureDate = dayjs().add(num, "day").format("YYYY-MM-DDTHH:mm:ssZ");
+  return futureDate;
+};
+
 type Periodical = Pick<PeriodicalEdition, "volumeNumber" | "volumeYear">;
 
 const constructReservation = ({
@@ -289,6 +295,17 @@ export const translateOpenOrderStatus = (
   };
 
   return statusTextMap[status] ? t(statusTextMap[status]) : "";
+};
+
+export const getInputType = (type: ModalReservationFormTextType) => {
+  switch (type) {
+    case "email":
+      return "email";
+    case "sms":
+      return "tel";
+    default:
+      return "text";
+  }
 };
 
 export default {};

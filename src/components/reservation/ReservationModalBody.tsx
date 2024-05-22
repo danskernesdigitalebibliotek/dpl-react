@@ -41,7 +41,8 @@ import {
   getInstantLoanBranchHoldings,
   getInstantLoanBranchHoldingsAboveThreshold,
   removePrefixFromBranchId,
-  translateOpenOrderStatus
+  translateOpenOrderStatus,
+  getFutureDateStringISO
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -63,6 +64,7 @@ import ModalMessage from "../message/modal-message/ModalMessage";
 import configuration, { getConf } from "../../core/configuration";
 import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromAnotherLibrary";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
+import { Periods } from "./types";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -134,9 +136,10 @@ export const ReservationModalBody = ({
     !!selectedPeriodical
   );
 
-  const reservablePidsFromAnotherLibrary = useReservableFromAnotherLibrary(
-    selectedManifestations
-  );
+  const {
+    reservablePidsFromAnotherLibrary,
+    materialIsReservableFromAnotherLibrary
+  } = useReservableFromAnotherLibrary(selectedManifestations);
 
   // If we don't have all data for displaying the view render nothing.
   if (!userResponse.data || !holdingsResponse.data) {
@@ -150,9 +153,12 @@ export const ReservationModalBody = ({
   const reservations = getTotalReservations(holdingsData);
   const { patron } = userData;
   const authorLine = getAuthorLine(selectedManifestations[0], t);
-  const expiryDate = selectedInterest
-    ? getFutureDateString(selectedInterest)
-    : null;
+  const interestPeriods = config<Periods>("interestPeriodsConfig", {
+    transformer: "jsonParse"
+  });
+  const interestPeriod =
+    selectedInterest || interestPeriods.defaultInterestPeriod.value;
+  const expiryDate = getFutureDateString(interestPeriod);
 
   const saveReservation = () => {
     if (manifestationsToReserve?.length) {
@@ -185,19 +191,20 @@ export const ReservationModalBody = ({
       );
     }
 
-    if (reservablePidsFromAnotherLibrary?.length && patron) {
+    if (materialIsReservableFromAnotherLibrary && patron) {
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
+
       // Save reservation to open order.
       mutateOpenOrder(
         {
           input: {
-            pids: [...reservablePidsFromAnotherLibrary],
+            pids: reservablePidsFromAnotherLibrary,
             pickUpBranch: selectedBranch
               ? removePrefixFromBranchId(selectedBranch)
               : removePrefixFromBranchId(preferredPickupBranch),
-            expires:
-              selectedInterest?.toString() ||
-              defaultInterestDaysForOpenOrder.toString(),
+            expires: getFutureDateStringISO(
+              Number(selectedInterest ?? defaultInterestDaysForOpenOrder)
+            ),
             userParameters: {
               userId: patronId.toString(),
               userName: name,
@@ -259,10 +266,14 @@ export const ReservationModalBody = ({
           <div>
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
-                <StockAndReservationInfo
-                  stockCount={holdings}
-                  reservationCount={reservations}
-                />
+                {materialIsReservableFromAnotherLibrary ? (
+                  t("reservableFromAnotherLibraryText")
+                ) : (
+                  <StockAndReservationInfo
+                    stockCount={holdings}
+                    reservationCount={reservations}
+                  />
+                )}
               </MaterialAvailabilityTextParagraph>
               <Button
                 dataCy="reservation-modal-submit-button"
@@ -303,7 +314,12 @@ export const ReservationModalBody = ({
                   branches={branches}
                   selectedBranch={selectedBranch}
                   selectBranchHandler={setSelectedBranch}
-                  selectedInterest={selectedInterest}
+                  selectedInterest={
+                    materialIsReservableFromAnotherLibrary &&
+                    selectedInterest === null
+                      ? Number(defaultInterestDaysForOpenOrder)
+                      : selectedInterest
+                  }
                   setSelectedInterest={setSelectedInterest}
                 />
               )}

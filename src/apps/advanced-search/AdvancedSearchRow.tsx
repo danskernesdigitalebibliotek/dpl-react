@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import IconMinus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/MinusButton.svg";
 import IconPlus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
@@ -20,17 +20,20 @@ export type AdvancedSearchRowProps = {
   data: AdvancedSearchQuery;
   dataCy?: string;
   rowIndex: number;
+  isFocused?: boolean;
   setSearchObject: (searchObject: AdvancedSearchQuery) => void;
+  setFocusedRow: (rowIndex: number) => void;
 };
 
 const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
   dataCy = "advanced-search-row",
   data,
   rowIndex,
-  setSearchObject
+  isFocused,
+  setSearchObject,
+  setFocusedRow
 }) => {
   const t = useText();
-
   const updateRowData = (
     rowAspect: AdvancedSearchRowUpdateRowAspect,
     update: string | AdvancedSearchClause | AdvancedSearchIndex,
@@ -43,7 +46,6 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
     newData.rows[rowIndex][rowAspect] = update;
     updateData(newData);
   };
-
   const getClauseClasses = (
     clickedClause: AdvancedSearchClause["value"],
     currentClause: AdvancedSearchClause["value"]
@@ -55,7 +57,6 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
       }
     );
   };
-
   const addRow = (updateData: (data: AdvancedSearchQuery) => void) => {
     const newData = { ...data };
     newData.rows.push(
@@ -66,8 +67,9 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
     newData.rows[newData.rows.length - 1].id =
       newData.rows[newData.rows.length - 2].id + 1;
     updateData(newData);
+    // Update the focus.
+    setFocusedRow(rowIndex + 1);
   };
-
   const removeRow = (
     index: number,
     updateData: (data: AdvancedSearchQuery) => void
@@ -75,7 +77,16 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
     const newData = { ...data };
     newData.rows.splice(index, 1);
     updateData(newData);
+    // Update the focus. If we're removing the first row, focus the new first row.
+    setFocusedRow(index);
   };
+  const inputElement = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputElement.current && isFocused) {
+      inputElement.current.focus();
+    }
+  }, [isFocused]);
 
   return (
     <>
@@ -103,7 +114,17 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
       )}
 
       <div className="input-with-dropdown" data-cy={dataCy}>
+        <label
+          htmlFor={`advanced-search-input-${rowIndex}`}
+          className="hide-visually"
+        >
+          {t("advancedSearchInputLabelText", {
+            placeholders: { "@inputNumber": rowIndex }
+          })}
+        </label>
         <input
+          id={`advanced-search-input-${rowIndex}`}
+          ref={inputElement}
           className="input-with-dropdown__input focus-styling__input capitalize-first"
           type="text"
           placeholder={t("advancedSearchInputPlaceholderText")}

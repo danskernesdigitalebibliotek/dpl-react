@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   appendQueryParametersToUrl,
-  getCurrentLocation
+  getCurrentLocation,
+  removeQueryParametersFromUrl,
+  setQueryParametersInUrl
 } from "./utils/helpers/url";
 
 export type ModalId = string;
@@ -34,16 +36,14 @@ const returnFocusElement = () => {
 // Removes the 'modal' parameter from the browser's address bar.
 // If state.modalIds is not empty, adds the last modal ID as the 'modal' parameter.
 const removeModalIdFromUrl = (state: StateProps) => {
-  const currentUrl = new URL(window.location.href);
-
   if (state.modalIds && state.modalIds.length > 0) {
     const lastModalId = state.modalIds[state.modalIds.length - 1];
-    currentUrl.searchParams.set("modal", lastModalId);
+    setQueryParametersInUrl({
+      modal: lastModalId
+    });
   } else {
-    currentUrl.searchParams.delete("modal");
+    removeQueryParametersFromUrl("modal");
   }
-
-  window.history.pushState({}, "", currentUrl);
 };
 
 const modalSlice = createSlice({

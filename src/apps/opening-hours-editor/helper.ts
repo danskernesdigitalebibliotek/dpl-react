@@ -1,7 +1,10 @@
 import dayjs from "dayjs";
 import { EventInput } from "@fullcalendar/core";
-import { EventImpl } from "@fullcalendar/core/internal";
-import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+import {
+  DplOpeningHoursListGET200Item,
+  DplOpeningHoursCreatePOSTBody,
+  DplOpeningHoursUpdatePATCHBody
+} from "../../core/dpl-cms/model";
 
 const formatDateTimeString = (date: string, time: string): string => {
   return `${date}T${time}:00`;
@@ -10,24 +13,24 @@ const formatDateTimeString = (date: string, time: string): string => {
 export const formatCmsEventsToFullCalendar = (
   data: DplOpeningHoursListGET200Item[]
 ): EventInput[] => {
-  return data.map(({ category, date, start_time, end_time, id }) => {
-    return {
-      id: id.toString(),
-      title: category.title,
-      start: formatDateTimeString(date, start_time),
-      end: formatDateTimeString(date, end_time),
-      color: category.color
-    };
-  });
+  return data.map(
+    ({ category, date, start_time, end_time, id, repetition }) => {
+      return {
+        id: id.toString(),
+        title: category.title,
+        start: formatDateTimeString(date, start_time),
+        end: formatDateTimeString(date, end_time),
+        color: category.color,
+        repetition
+      };
+    }
+  );
 };
 
-export const formatFullCalendarEventToCmsEvent = (
-  event: EventInput | EventImpl
-): DplOpeningHoursListGET200Item => {
-  const isEventInput = "color" in event; // Check if it's EventInput type
-  const color = isEventInput ? event.color : event.backgroundColor;
-
-  if (!event.title || !color) {
+export const formatFullCalendarEventToCmsEventAdd = (
+  event: EventInput & Pick<DplOpeningHoursCreatePOSTBody, "repetition">
+): DplOpeningHoursCreatePOSTBody => {
+  if (!event.title || !event.color) {
     throw new Error("Invalid event format");
   }
 
@@ -38,11 +41,38 @@ export const formatFullCalendarEventToCmsEvent = (
     id: Number(event.id),
     category: {
       title: event.title,
-      color
+      color: event.color
     },
     date: startDate.format("YYYY-MM-DD"),
     start_time: startDate.format("HH:mm"),
     end_time: endDate.format("HH:mm"),
+    repetition: event.repetition,
+    // set to id 0 to because the API requires a branch_id.
+    // This will be overwritten when the event is added or edited in the useOpeningHoursEditor hook
+    branch_id: 0
+  };
+};
+
+export const formatFullCalendarEventToCmsEventEdit = (
+  event: EventInput & Pick<DplOpeningHoursUpdatePATCHBody, "repetition">
+): DplOpeningHoursUpdatePATCHBody => {
+  if (!event.title || !event.backgroundColor) {
+    throw new Error("Invalid event format");
+  }
+
+  const startDate = dayjs(event.startStr);
+  const endDate = dayjs(event.endStr);
+
+  return {
+    id: Number(event.id),
+    category: {
+      title: event.title,
+      color: event.backgroundColor
+    },
+    date: startDate.format("YYYY-MM-DD"),
+    start_time: startDate.format("HH:mm"),
+    end_time: endDate.format("HH:mm"),
+    repetition: event.repetition,
     // set to id 0 to because the API requires a branch_id.
     // This will be overwritten when the event is added or edited in the useOpeningHoursEditor hook
     branch_id: 0
@@ -111,4 +141,16 @@ export const extractTime = (date: Date) => {
 export const updateDateTime = (date: Date, timeStr: string) => {
   const [hours, minutes] = timeStr.split(":").map(Number);
   return dayjs(date).hour(hours).minute(minutes).toDate();
+};
+
+export const getWeekDayName = (date: Date) => {
+  return dayjs(date).format("dddd");
+};
+
+export const getDateString = (date: Date) => {
+  return dayjs(date).format("DD-MM-YYYY");
+};
+
+export const getStringForDateInput = (date: Date) => {
+  return dayjs(date).format("YYYY-MM-DD");
 };

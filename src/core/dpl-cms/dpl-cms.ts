@@ -487,7 +487,7 @@ export const eventPATCH = (
   params: EventPATCHParams
 ) => {
   return fetcher<void>({
-    url: `/dpl_event/${uuid}`,
+    url: `/api/v1/events/${uuid}`,
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     data: eventPATCHBody,
@@ -560,7 +560,7 @@ export const useEventPATCH = <
  */
 export const eventsGET = (params: EventsGETParams, signal?: AbortSignal) => {
   return fetcher<EventsGET200Item[]>({
-    url: `/dpl_event`,
+    url: `/api/v1/events`,
     method: "GET",
     params,
     signal
@@ -568,7 +568,7 @@ export const eventsGET = (params: EventsGETParams, signal?: AbortSignal) => {
 };
 
 export const getEventsGETQueryKey = (params: EventsGETParams) => {
-  return [`/dpl_event`, ...(params ? [params] : [])] as const;
+  return [`/api/v1/events`, ...(params ? [params] : [])] as const;
 };
 
 export const getEventsGETQueryOptions = <
