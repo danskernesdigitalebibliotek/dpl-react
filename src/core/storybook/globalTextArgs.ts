@@ -208,6 +208,10 @@ export default {
   loadingText: {
     defaultValue: "Loading...",
     control: { type: "text" }
+  },
+  pincodeSectionDescriptionText: {
+    defaultValue: "Length of 4 characters",
+    control: { type: "text" }
   }
 };
 
@@ -254,4 +258,5 @@ export interface GlobalEntryTextProps {
   reservationPickUpLatestText: string;
   reservationListReadyText: string;
   reservationListDigitalPickupText: string;
+  pincodeSectionDescriptionText: string;
 }

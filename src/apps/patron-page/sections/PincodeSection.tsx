@@ -83,6 +83,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
           value={pincode}
           label={t("patronPagePincodeLabelText")}
           validation={pincodeValidation}
+          description={t("pincodeSectionDescriptionText")}
         />
         <TextInput
           className="patron__input patron__input--desktop"
@@ -94,6 +95,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
           onChange={(newPin) => setConfirmPincode(newPin)}
           value={confirmPincode}
           label={t("patronPageConfirmPincodeLabelText")}
+          description={t("pincodeSectionDescriptionText")}
         />
       </div>
     </section>
