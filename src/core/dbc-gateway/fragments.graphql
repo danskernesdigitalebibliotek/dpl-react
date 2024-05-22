@@ -70,6 +70,11 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   contributors {
     display
+    roles {
+      function {
+        singular
+      }
+    }
   }
   edition {
     summary
@@ -83,10 +88,28 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   audience {
     generalAudience
+    ages {
+      display
+    }
+  }
+  notes {
+    display
+  }
+  languages {
+    notes
   }
   physicalDescriptions {
+    summary
     numberOfPages
     playingTime
+  }
+  hostPublication {
+    summary
+  }
+  manifestationParts {
+    parts {
+      title
+    }
   }
   accessTypes {
     code

@@ -12,7 +12,11 @@ const DescriptionList: React.FC<DescriptionListProps> = ({
   id
 }) => {
   return (
-    <dl id={id} className={`list-description ${classNames ?? ""}`}>
+    <dl
+      id={id}
+      className={`list-description ${classNames ?? ""}`}
+      data-cy="list-description"
+    >
       {data.map((item) => {
         const { label, value } = item;
         return (

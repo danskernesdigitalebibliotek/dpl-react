@@ -121,6 +121,274 @@ describe("Material", () => {
     cy.getBySel("material-details-disclosure").click();
   });
 
+  it("Renders the correct details for books", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+    cy.wait("@getMaterial GraphQL operation");
+
+    cy.scrollTo("bottom");
+    cy.getBySel("material-details-disclosure").click();
+
+    cy.get('[data-cy="list-description"]').within(() => {
+      // Verify "Language" field and its value
+      cy.get(".list-description__item")
+        .contains("Language")
+        .next()
+        .should("contain.text", "dansk");
+
+      // Verify "Edition" field and its value
+      cy.get(".list-description__item")
+        .contains("Edition")
+        .next()
+        .should("contain.text", "1. udgave, 2016");
+
+      // Verify "Genre" field and its value
+      cy.get(".list-description__item")
+        .contains("Genre")
+        .next()
+        .should("contain.text", "roman / slægtsromaner");
+
+      // Verify "Original title" field and its value
+      cy.get(".list-description__item")
+        .contains("Original title")
+        .next()
+        .should("contain.text", "The seven sisters");
+
+      // Verify "Publisher" field and its value
+      cy.get(".list-description__item")
+        .contains("Publisher")
+        .next()
+        .should("contain.text", "Cicero");
+
+      // Verify "Type" field and its value
+      cy.get(".list-description__item")
+        .contains("Type")
+        .next()
+        .should("contain.text", "bog");
+
+      // Verify "Contributors" field and its value
+      cy.get(".list-description__item")
+        .contains("Contributors")
+        .next()
+        .should("contain.text", "Ulla Lauridsen (oversætter)");
+
+      // Verify "Scope" field and its value
+      cy.get(".list-description__item")
+        .contains("Scope")
+        .next()
+        .should("contain.text", "523");
+
+      // Verify "Dimensions" field and its value
+      cy.get(".list-description__item")
+        .contains("Dimensions")
+        .next()
+        .should("contain.text", "523 sider");
+    });
+
+    cy.getBySel("material-editions-disclosure").click();
+    cy.get(".material-manifestation-item__details").first().click();
+
+    cy.get('[data-cy="list-description"]').within(() => {
+      // Verify "Type" field and its value
+      cy.get(".list-description__item")
+        .contains("Type")
+        .next()
+        .should("contain.text", "bog");
+
+      // Verify "Language" field and its value
+      cy.get(".list-description__item")
+        .contains("Language")
+        .next()
+        .should("contain.text", "dansk");
+
+      // Verify "Genre" field and its value
+      cy.get(".list-description__item")
+        .contains("Genre")
+        .next()
+        .should("contain.text", "roman / slægtsromaner");
+
+      // Verify "Contributors" field and its value
+      cy.get(".list-description__item")
+        .contains("Contributors")
+        .next()
+        .should("contain.text", "Ulla Lauridsen (oversætter)");
+
+      // Verify "Original title" field and its value
+      cy.get(".list-description__item")
+        .contains("Original title")
+        .next()
+        .should("contain.text", "The seven sisters");
+
+      // Verify "ISBN" field and its value
+      cy.get(".list-description__item")
+        .contains("ISBN")
+        .next()
+        .should("contain.text", "9788763844116");
+
+      // Verify "Edition" field and its value
+      cy.get(".list-description__item")
+        .contains("Edition")
+        .next()
+        .should("contain.text", "1. udgave, 2016");
+
+      // Verify "Scope" field and its value
+      cy.get(".list-description__item")
+        .contains("Scope")
+        .next()
+        .should("contain.text", "523");
+
+      // Verify "Publisher" field and its value
+      cy.get(".list-description__item")
+        .contains("Publisher")
+        .next()
+        .should("contain.text", "Cicero");
+
+      // Verify "Authors" field and its value
+      cy.get(".list-description__item")
+        .contains("Authors")
+        .next()
+        .should("contain.text", "Lucinda Riley");
+
+      // Verify "Dimensions" field and its value
+      cy.get(".list-description__item")
+        .contains("Dimensions")
+        .next()
+        .should("contain.text", "523 sider");
+
+      // Verify "Source" field and its value
+      cy.get(".list-description__item")
+        .contains("Source")
+        .next()
+        .should("contain.text", "Bibliotekskatalog");
+    });
+  });
+
+  it("Renders the correct details for infomedia", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/infomedia-fbi-api.json"
+    });
+
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--infomedia&viewMode=story&type=artikel"
+    );
+    cy.wait("@getMaterial GraphQL operation");
+
+    cy.scrollTo("bottom");
+    cy.getBySel("material-details-disclosure").click();
+
+    cy.get('[data-cy="list-description"]').within(() => {
+      // Verify "Language" field and its value
+      cy.get(".list-description__item")
+        .contains("Language")
+        .next()
+        .should("contain.text", "dansk");
+
+      // Verify "Edition" field and its value
+      cy.get(".list-description__item")
+        .contains("Edition")
+        .next()
+        .should("contain.text", "2013");
+
+      // Verify "Type" field and its value
+      cy.get(".list-description__item")
+        .contains("Type")
+        .next()
+        .should("contain.text", "artikel");
+
+      // Verify "Scope" field and its value
+      cy.get(".list-description__item")
+        .contains("Scope")
+        .next()
+        .should("contain.text", "2");
+
+      // Verify "Dimensions" field and its value
+      cy.get(".list-description__item")
+        .contains("Dimensions")
+        .next()
+        .should("contain.text", "Sektion 3, s. 6-7: ill.");
+
+      // Verify "Host Publication" field and its value
+      cy.get(".list-description__item")
+        .contains("Host Publication")
+        .next()
+        .should("contain.text", "Politiken, 2013-09-19");
+    });
+  });
+
+  it("Renders the correct details for music", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/music-fbi-api.json"
+    });
+
+    cy.visit(
+      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=musik+%28cd%29"
+    );
+    cy.wait("@getMaterial GraphQL operation");
+
+    cy.scrollTo("bottom");
+    cy.getBySel("material-details-disclosure").click();
+    cy.get('[data-cy="list-description"]').within(() => {
+      // Verify "Publisher" field and its value
+      cy.get(".list-description__item")
+        .contains("Publisher")
+        .next()
+        .should("contain.text", "Warner Bros.");
+
+      // Verify "Type" field and its value
+      cy.get(".list-description__item")
+        .contains("Type")
+        .next()
+        .should("contain.text", "musik (cd)");
+
+      // Verify "Contributors" field and its value
+      cy.get(".list-description__item")
+        .contains("Contributors")
+        .next()
+        .should(
+          "contain.text",
+          "Michael Bruce / Dennis Dunaway / Neal Smith / Glen Buxton"
+        );
+
+      // Verify "Dimensions" field and its value
+      cy.get(".list-description__item")
+        .contains("Dimensions")
+        .next()
+        .should("contain.text", "Stereo");
+
+      // Verify "Contents" field and its list values
+      cy.get(".list-description__item")
+        .contains("Contents")
+        .next()
+        .within(() => {
+          // Validate each list item in "Contents"
+          const contents = [
+            "Hello hooray",
+            "Raped and freezin'",
+            "Elected",
+            "Billion dollar babies",
+            "Unfinished sweet",
+            "No more Mr. Nice Guy",
+            "Generation landslide",
+            "Sick things",
+            "Mary Ann",
+            "I love the dead"
+          ];
+
+          contents.forEach((item, index) => {
+            cy.get(".list-description__value--list li")
+              .eq(index)
+              .should("have.text", item);
+          });
+        });
+    });
+  });
+
   it("Renders editions with a reservation button", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",

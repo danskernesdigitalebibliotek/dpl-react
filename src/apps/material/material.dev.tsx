@@ -218,6 +218,11 @@ export default {
       defaultValue: "Audience",
       control: { type: "text" }
     },
+    detailsListAgeRangeText: {
+      name: "Age range",
+      defaultValue: "for @ageRange year olds",
+      control: { type: "text" }
+    },
     detailsListGenreAndFormText: {
       name: "Genre and form",
       defaultValue: "Genre",
@@ -241,6 +246,31 @@ export default {
     detailsListAuthorsText: {
       name: "Authors",
       defaultValue: "Authors",
+      control: { type: "text" }
+    },
+    detailsListNotesText: {
+      name: "Notes",
+      defaultValue: "Notes",
+      control: { type: "text" }
+    },
+    detailsListPhysicalDescriptionText: {
+      name: "Dimensions",
+      defaultValue: "Dimensions",
+      control: { type: "text" }
+    },
+    detailsListHostPublicationText: {
+      name: "Host Publication",
+      defaultValue: "Host Publication",
+      control: { type: "text" }
+    },
+    detailsListSourceText: {
+      name: "Source",
+      defaultValue: "Source",
+      control: { type: "text" }
+    },
+    detailsListPartsText: {
+      name: "Contents",
+      defaultValue: "Contents",
       control: { type: "text" }
     },
     editionText: {

@@ -15,7 +15,7 @@ export const mockedManifestationData: Manifestation[] = [
     },
     fictionNonfiction: {
       display: "SKOENLITTERATUR",
-      code: "FICTION" as FictionNonfictionCode
+      code: FictionNonfictionCode.Fiction
     },
     materialTypes: [
       {
@@ -46,7 +46,14 @@ export const mockedManifestationData: Manifestation[] = [
     ],
     contributors: [
       {
-        display: "Ulla Lauridsen"
+        display: "Ulla Lauridsen",
+        roles: [
+          {
+            function: {
+              singular: "oversætter"
+            }
+          }
+        ]
       }
     ],
     edition: {
@@ -56,16 +63,19 @@ export const mockedManifestationData: Manifestation[] = [
       }
     },
     audience: {
-      generalAudience: []
+      generalAudience: [],
+      ages: []
     },
+    notes: [],
     physicalDescriptions: [
       {
-        numberOfPages: null
+        numberOfPages: null,
+        summary: ""
       }
     ],
     accessTypes: [
       {
-        code: "PHYSICAL" as AccessTypeCode
+        code: AccessTypeCode.Physical
       }
     ],
     access: [
@@ -121,10 +131,24 @@ export const mockedManifestationData: Manifestation[] = [
     ],
     contributors: [
       {
-        display: "Maria Stokholm"
+        display: "Maria Stokholm",
+        roles: [
+          {
+            function: {
+              singular: "indlæser"
+            }
+          }
+        ]
       },
       {
-        display: "Ulla Lauridsen"
+        display: "Ulla Lauridsen",
+        roles: [
+          {
+            function: {
+              singular: "oversætter"
+            }
+          }
+        ]
       }
     ],
     edition: {
@@ -134,11 +158,21 @@ export const mockedManifestationData: Manifestation[] = [
       }
     },
     audience: {
-      generalAudience: []
+      generalAudience: [],
+      ages: []
     },
+    notes: [
+      {
+        display: [
+          "Gengivelse af bogen",
+          "Indlæst efter 1. udgave. 2016. ISBN: 9788763844116"
+        ]
+      }
+    ],
     physicalDescriptions: [
       {
-        numberOfPages: null
+        numberOfPages: null,
+        summary: ""
       }
     ],
     accessTypes: [
@@ -203,8 +237,24 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
       }
     },
     audience: {
-      generalAudience: []
+      generalAudience: [],
+      ages: []
     },
+    notes: [
+      {
+        display: ["[Nr. 1, 1946]-"]
+      },
+      {
+        display: ["Ugentlig"]
+      },
+      {
+        display: [
+          "Tidligere udgivet: Kbh. : Gutenberghus Bladene",
+          "Hertil findes tillæg",
+          "Hertil findes årligt tillæg med titel: Skønhed"
+        ]
+      }
+    ],
     physicalDescriptions: [],
     accessTypes: [
       {
