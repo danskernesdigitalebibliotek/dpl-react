@@ -106,14 +106,6 @@ export default {
         "Receive emails about your loans, reservations, and so forth",
       control: { type: "text" }
     },
-    createPatronChangePickupHeaderText: {
-      defaultValue: "Create patron change pickup header text",
-      control: { type: "text" }
-    },
-    createPatronChangePickupBodyText: {
-      defaultValue: "Create patron change pickup body text",
-      control: { type: "text" }
-    },
     createPatronHeaderText: {
       defaultValue: "Register as patron",
       control: { type: "text" }

@@ -28,8 +28,6 @@ interface CreatePatronTextProps {
   pickupBranchesDropdownLabelText: string;
   createPatronCancelButtonText: string;
   patronPagePhoneInputMessageText: string;
-  createPatronChangePickupBodyText: string;
-  createPatronChangePickupHeaderText: string;
   createPatronConfirmButtonText: string;
   createPatronHeaderText: string;
   createPatronInvalidSsnBodyText: string;
