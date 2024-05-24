@@ -16,7 +16,10 @@ import RenewalModalMessage from "../renewal/RenewalModalMessage";
 import { succeededRenewalCount } from "../../core/utils/helpers/renewal";
 import { useSingleRequestWithStatus } from "../../core/utils/useRequestsWithStatus";
 import { ListType } from "../../core/utils/types/list-type";
-import { getModalIds } from "../../core/utils/helpers/modal-helpers";
+import {
+  createLoanModalId,
+  getModalIds
+} from "../../core/utils/helpers/modal-helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 
@@ -39,7 +42,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   const { mutate } = useRenewLoansV2();
   const { dueDateModal, allLoansId } = getModalIds();
   const queryClient = useQueryClient();
-  const modalIdUsed = dueDate ? `${dueDateModal}-${dueDate}` : allLoansId;
+  const modalIdUsed = createLoanModalId(dueDate, dueDateModal, allLoansId);
   const renewableMaterials = getAmountOfRenewableLoans(loansModal);
   const [materialsToRenew, setMaterialsToRenew] = useState<ListType[]>([]);
   const [renewingResponse, setRenewingResponse] = useState<
