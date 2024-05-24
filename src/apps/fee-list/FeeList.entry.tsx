@@ -7,6 +7,11 @@ import FeeList from "./FeeList";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { withConfig } from "../../core/utils/config";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { pageSizeGlobal } from "../../core/utils/helpers/general";
+import { GroupModalProps } from "../../core/storybook/groupModalArgs";
+import { GroupModalLoansProps } from "../../core/storybook/loanGroupModalArgs";
+import { MaterialDetailsModalProps } from "../../core/storybook/materialDetailsModalArgs";
+import { RenewalArgs } from "../../core/storybook/renewalArgs";
 
 export interface IntermedateListEntryConfigProps {
   expirationWarningDaysBeforeConfig: string;
@@ -62,8 +67,21 @@ const FeeListEntry: FC<
     BlockedPatronEntryTextProps &
     IntermedateListEntryConfigProps &
     GlobalEntryTextProps &
-    GlobalUrlEntryPropsInterface
-> = () => <FeeList />;
+    GlobalUrlEntryPropsInterface &
+    GroupModalProps &
+    GroupModalLoansProps &
+    MaterialDetailsModalProps &
+    RenewalArgs
+> = ({ pageSizeDesktop, pageSizeMobile }) => {
+  const pageSize = pageSizeGlobal(
+    {
+      desktop: pageSizeDesktop,
+      mobile: pageSizeMobile
+    },
+    "pageSizeLoanList"
+  );
+  return <FeeList pageSize={pageSize} />;
+};
 
 export default withUrls(
   withText(withIsPatronBlockedHoc(withConfig(FeeListEntry)))
