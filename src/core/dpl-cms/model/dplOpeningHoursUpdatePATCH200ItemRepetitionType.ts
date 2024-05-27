@@ -9,11 +9,11 @@
 /**
  * If/how the instance should be repeated in the future: <br/> - single: The instance should not be repeated <br/> - weekly: The instance should be repeated weekly from the first day of the repetition until the provided end date. The week day of the first instance defines which weekday should be used for the repeated instances.
  */
-export type DplOpeningHoursCreatePOSTBodyRepetitionType =
-  typeof DplOpeningHoursCreatePOSTBodyRepetitionType[keyof typeof DplOpeningHoursCreatePOSTBodyRepetitionType];
+export type DplOpeningHoursUpdatePATCH200ItemRepetitionType =
+  typeof DplOpeningHoursUpdatePATCH200ItemRepetitionType[keyof typeof DplOpeningHoursUpdatePATCH200ItemRepetitionType];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-export const DplOpeningHoursCreatePOSTBodyRepetitionType = {
+export const DplOpeningHoursUpdatePATCH200ItemRepetitionType = {
   none: "none",
   weekly: "weekly"
 } as const;

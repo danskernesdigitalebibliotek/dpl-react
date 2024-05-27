@@ -6,7 +6,7 @@
  * OpenAPI spec version: Versioning not supported
  */
 
-export type DplOpeningHoursCreatePOST200Category = {
+export type DplOpeningHoursCreatePOSTOpeningHoursInstanceBodyCategory = {
   /** A CSS compatible color code which can be used to represent the category */
   color: string;
   title: string;
