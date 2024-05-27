@@ -10,6 +10,6 @@
  * The main image for the event.
  */
 export type EventsGET200ItemImage = {
-  /** An absolute url for the image. */
+  /** An absolute url for the image. This is a link to the original, unaltered file, so the size, aspect ratio, and file format will be different from event to event. */
   url: string;
 };

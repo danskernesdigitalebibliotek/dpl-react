@@ -23,15 +23,16 @@ const useOpeningHoursEditor = () => {
   });
   const [datesSet, setDatseSet] = useState<null | DatesSetArg>(null);
   const queryClient = useQueryClient();
-  const { data: openingHoursData } = useDplOpeningHoursListGET({
-    branch_id: openingHoursBranchId,
-    ...(datesSet
-      ? {
-          from_date: getStringForDateInput(datesSet.start),
-          to_date: getStringForDateInput(datesSet.end)
-        }
-      : {})
-  });
+  const { data: openingHoursData } = useDplOpeningHoursListGET(
+    {
+      branch_id: openingHoursBranchId,
+      ...(datesSet && {
+        from_date: getStringForDateInput(datesSet.start),
+        to_date: getStringForDateInput(datesSet.end)
+      })
+    },
+    { enabled: !!datesSet }
+  );
   const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
   const { mutate: createOpeningHours } = useDplOpeningHoursCreatePOST();
   const { mutate: updateOpeningHours } = useDplOpeningHoursUpdatePATCH();
