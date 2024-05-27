@@ -45,12 +45,12 @@
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.5",
+    "@babel/core": "^7.24.6",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
-    "@babel/preset-env": "^7.24.5",
-    "@babel/preset-react": "^7.24.1",
-    "@babel/preset-typescript": "^7.24.1",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6",
+    "@babel/preset-typescript": "^7.24.6",
     "@csstools/postcss-sass": "^5.1.1",
     "@cypress/browserify-preprocessor": "^3.0.2",
     "@cypress/code-coverage": "^3.12.39",
