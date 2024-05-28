@@ -64,6 +64,10 @@ export default {
       defaultValue: "Open user menu",
       control: { type: "text" }
     },
+    menuUserIconAriaLabelLoggedOutText: {
+      defaultValue: "Open login menu",
+      control: { type: "text" }
+    },
     menuNotificationLoansExpiredUrl: {
       defaultValue: "/LoansExpired",
       control: { type: "text" }

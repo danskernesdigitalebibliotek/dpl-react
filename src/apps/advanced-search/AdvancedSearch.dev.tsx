@@ -59,6 +59,11 @@ export default {
       defaultValue: "Showing @itemsShown out of @hitcount results",
       control: { type: "text" }
     },
+    advancedSearchInputLabelText: {
+      name: "Advanced search input label",
+      defaultValue: "Input field @inputNumber",
+      control: { type: "text" }
+    },
     numberDescriptionText: {
       name: "Number description",
       defaultValue: "Nr.",

@@ -10,6 +10,7 @@ import { patronAgeValid } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
 import { useUrls } from "../../core/utils/url";
 import Link from "../../components/atoms/links/Link";
+import { getSubmitButtonText } from "./helper";
 
 export interface UserInfoProps {
   cpr: string;
@@ -34,26 +35,37 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
     phoneNumber: "",
     emailAddress: ""
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSubmitError, setIsSubmitError] = useState<boolean>(false);
+  const [isPinValid, setIsPinValid] = useState<boolean>(true);
 
   // Changes the patron object by key.
   // So using the parameters 123 and "phoneNumber" would change the phoneNumber to 123.
   const changePatron = (newValue: string | boolean, key: string) => {
-    // Deeeep copy
+    // Deep copy
     const copyUser = JSON.parse(JSON.stringify(patron));
     set(copyUser, key, newValue);
     setPatron(copyUser);
   };
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { preferredPickupBranch, phoneNumber, emailAddress } = patron;
-    if (pin && preferredPickupBranch && phoneNumber && emailAddress) {
+    setIsLoading(true);
+    const { preferredPickupBranch, emailAddress } = patron;
+
+    if (pin && preferredPickupBranch && emailAddress) {
       mutate(
         {
           data: { cprNumber: cpr, patron, pincode: pin }
         },
         {
-          onSuccess: () => registerSuccessCallback(true)
+          onSuccess: () => {
+            setIsLoading(false);
+            registerSuccessCallback(true);
+          },
+          onError: () => {
+            setIsLoading(false);
+            setIsSubmitError(true);
+          }
         }
       );
     }
@@ -62,58 +74,54 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
   return (
     <>
       {validCpr && (
-        <form
-          onSubmit={(e) => handleSubmit(e)}
-          ref={formRef}
-          className="dpl-patron-page"
-        >
-          <h1 className="text-header-h1 mb-48">
+        <div className="create-patron-page">
+          <h1 className="create-patron-page__title">
             {t("createPatronHeaderText")}
           </h1>
-          <ContactInfoSection
-            showCheckboxes={false}
-            inLine
-            changePatron={changePatron}
-            patron={patron}
-            requiredFields={["email"]}
-          />
-          <PincodeSection required changePincode={setPin} />
-          {t("createPatronChangePickupHeaderText") && (
-            <h2 className="text-subtitle mt-32 mb-16">
-              {t("createPatronChangePickupHeaderText")}
-            </h2>
-          )}
-          {t("createPatronChangePickupBodyText") && (
-            <p className="text-body-small-regular my-32">
-              {t("createPatronChangePickupBodyText")}
-            </p>
-          )}
-          <div className="mt-32">
+          <form onSubmit={(e) => handleSubmit(e)} ref={formRef}>
+            <ContactInfoSection
+              showCheckboxes={false}
+              isDouble
+              inLine
+              changePatron={changePatron}
+              patron={patron}
+              requiredFields={["email"]}
+            />
+            <PincodeSection
+              required
+              changePincode={setPin}
+              isFlex
+              setIsPinValid={setIsPinValid}
+            />
             <BranchesDropdown
-              classNames="dropdow dropdown__desktop"
+              classNames="dropdown--grey-borders"
               selected={patron?.preferredPickupBranch || ""}
               onChange={(newPreferredPickupBranch) =>
                 changePatron(newPreferredPickupBranch, "preferredPickupBranch")
               }
+              required
+              footnote={t("createPatronBranchDropdownNoteText")}
             />
-          </div>
-          <div className="patron-buttons">
-            <button
-              type="submit"
-              className="btn-primary btn-filled btn-small"
-              data-cy="complete-user-registration-button"
-            >
-              {t("createPatronConfirmButtonText")}
-            </button>
-            <Link
-              href={logoutUrl}
-              className="link-tag mx-16 mt-8"
-              dataCy="cancel-user-registration-button"
-            >
-              {t("createPatronCancelButtonText")}
-            </Link>
-          </div>
-        </form>
+
+            <div className="create-patron-page__buttons">
+              <button
+                type="submit"
+                className="btn-primary btn-filled btn-small"
+                data-cy="complete-user-registration-button"
+                disabled={!isPinValid}
+              >
+                {getSubmitButtonText(t, isLoading, isSubmitError)}
+              </button>
+              <Link
+                href={logoutUrl}
+                className="link-tag mx-16 mt-8"
+                dataCy="cancel-user-registration-button"
+              >
+                {t("createPatronCancelButtonText")}
+              </Link>
+            </div>
+          </form>
+        </div>
       )}
       {!validCpr && (
         <div className="dpl-patron-page">

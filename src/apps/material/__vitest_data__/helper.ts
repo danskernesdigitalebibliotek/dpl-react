@@ -13,7 +13,8 @@ export default {
               display: "engelsk",
               isoCode: "eng"
             }
-          ]
+          ],
+          notes: []
         },
         titles: {
           main: ["I, Robot (Ved Tricia Reilly)"],
@@ -66,14 +67,23 @@ export default {
           year: 1950
         },
         audience: {
-          generalAudience: []
+          generalAudience: [],
+          ages: []
         },
+        notes: [
+          {
+            display: ["Bogens originaludgave: 1950"]
+          }
+        ],
         physicalDescriptions: [
           {
+            summary: "2 cd'er 1 bog 95 sider: ill. 2t., 31 min.",
             numberOfPages: 95,
             playingTime: "2t., 31 min."
           }
         ],
+        hostPublication: null,
+        manifestationParts: null,
         accessTypes: [
           {
             code: "PHYSICAL"
@@ -107,7 +117,8 @@ export default {
               display: "engelsk",
               isoCode: "eng"
             }
-          ]
+          ],
+          notes: []
         },
         titles: {
           main: ["I, Robot"],
@@ -150,14 +161,25 @@ export default {
             "UG/Upper grades (9th-12)",
             "820. Lexile",
             "6.1. ATOS Level"
-          ]
+          ],
+          ages: []
         },
+        notes: [
+          {
+            display: [
+              "Electronic reproduction. New York : Spectra, 2004. Requires the Libby app or a modern web browser"
+            ]
+          }
+        ],
         physicalDescriptions: [
           {
+            summary: "1 online resource",
             numberOfPages: null,
             playingTime: null
           }
         ],
+        hostPublication: null,
+        manifestationParts: null,
         accessTypes: [
           {
             code: "ONLINE"
@@ -169,28 +191,14 @@ export default {
             origin: "link.overdrive.com",
             url: "http://link.overdrive.com/?websiteID=100515&titleID=39136",
             loginRequired: false
-          },
-          {
-            __typename: "AccessUrl",
-            origin: "samples.overdrive.com",
-            url: "https://samples.overdrive.com/?crid=9AB7D235-9D58-4180-8DF3-57A4A60CD51E&.epub-sample.overdrive.com",
-            loginRequired: false
-          },
-          {
-            __typename: "AccessUrl",
-            origin: "img1.od-cdn.com",
-            url: "https://img1.od-cdn.com/ImageType-100/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg100.jpg",
-            loginRequired: false
-          },
-          {
-            __typename: "AccessUrl",
-            origin: "img1.od-cdn.com",
-            url: "https://img1.od-cdn.com/ImageType-200/0111-1/%7B9AB7D235-9D58-4180-8DF3-57A4A60CD51E%7DImg200.jpg",
-            loginRequired: false
           }
         ],
         shelfmark: null,
-        workYear: null
+        workYear: null,
+        catalogueCodes: {
+          nationalBibliography: [],
+          otherCatalogues: []
+        }
       },
       {
         pid: "150061-netlydbog:ODN0000105225",
@@ -202,7 +210,8 @@ export default {
               display: "engelsk",
               isoCode: "eng"
             }
-          ]
+          ],
+          notes: []
         },
         titles: {
           main: ["I, Robot"],
@@ -247,14 +256,23 @@ export default {
           generalAudience: [
             "Text Difficulty 3 - Text Difficulty 4",
             "820. Lexile"
-          ]
+          ],
+          ages: []
         },
+        notes: [
+          {
+            display: ["Unabridged"]
+          }
+        ],
         physicalDescriptions: [
           {
+            summary: "1 online resource (7 audio files) digital",
             numberOfPages: null,
             playingTime: null
           }
         ],
+        hostPublication: null,
+        manifestationParts: null,
         accessTypes: [
           {
             code: "ONLINE"
@@ -266,28 +284,14 @@ export default {
             origin: "link.overdrive.com",
             url: "http://link.overdrive.com/?websiteID=100515&titleID=105225",
             loginRequired: false
-          },
-          {
-            __typename: "AccessUrl",
-            origin: "samples.overdrive.com",
-            url: "https://samples.overdrive.com/?crid=A6AAE8CE-F944-44F3-960D-4E9A7715CDD5&.epub-sample.overdrive.com",
-            loginRequired: false
-          },
-          {
-            __typename: "AccessUrl",
-            origin: "img1.od-cdn.com",
-            url: "https://img1.od-cdn.com/ImageType-100/1191-1/%7BA6AAE8CE-F944-44F3-960D-4E9A7715CDD5%7DImg100.jpg",
-            loginRequired: false
-          },
-          {
-            __typename: "AccessUrl",
-            origin: "img1.od-cdn.com",
-            url: "https://img1.od-cdn.com/ImageType-200/1191-1/%7BA6AAE8CE-F944-44F3-960D-4E9A7715CDD5%7DImg200.jpg",
-            loginRequired: false
           }
         ],
         shelfmark: null,
-        workYear: null
+        workYear: null,
+        catalogueCodes: {
+          nationalBibliography: [],
+          otherCatalogues: []
+        }
       },
       {
         pid: "870970-basis:23798255",
@@ -299,7 +303,8 @@ export default {
               display: "engelsk",
               isoCode: "eng"
             }
-          ]
+          ],
+          notes: []
         },
         titles: {
           main: ["I, Robot (Oxford bookworms library, ved Rowena Akinyemi)"],
@@ -337,14 +342,19 @@ export default {
         },
         dateFirstEdition: null,
         audience: {
-          generalAudience: []
+          generalAudience: [],
+          ages: []
         },
+        notes: [],
         physicalDescriptions: [
           {
+            summary: "104 sider: ill.",
             numberOfPages: 104,
             playingTime: null
           }
         ],
+        hostPublication: null,
+        manifestationParts: null,
         accessTypes: [
           {
             code: "PHYSICAL"
@@ -360,7 +370,11 @@ export default {
           postfix: "Asimov",
           shelfmark: "83.8"
         },
-        workYear: null
+        workYear: null,
+        catalogueCodes: {
+          nationalBibliography: [],
+          otherCatalogues: []
+        }
       }
     ] as Manifestation[]
   }

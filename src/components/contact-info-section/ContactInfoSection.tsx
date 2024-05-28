@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import clsx from "clsx";
 import { PatronV5, PatronSettingsV3 } from "../../core/fbs/model";
-import { useText } from "../../core/utils/text";
 import { useConfig } from "../../core/utils/config";
 import ContactInfoInputs from "./ContactInfoInputs";
 import ContactInfoPhone from "./ContactInfoPhone";
@@ -10,7 +9,8 @@ import { ChangePatronProps } from "./types";
 
 interface ContactInfoSectionProps {
   patron: PatronV5 | PatronSettingsV3 | null;
-  inLine: boolean;
+  inLine?: boolean;
+  isDouble?: boolean;
   changePatron: ChangePatronProps;
   showCheckboxes: boolean;
   requiredFields?: ("email" | "phone")[];
@@ -18,27 +18,25 @@ interface ContactInfoSectionProps {
 
 const ContactInfoSection: FC<ContactInfoSectionProps> = ({
   patron,
-  inLine,
+  inLine = false,
+  isDouble = false,
   changePatron,
   showCheckboxes,
   requiredFields = []
 }) => {
-  const t = useText();
-  const inputsClass = clsx("dpl-input", { input__desktop: inLine });
+  const inputsClass = clsx("dpl-input", [
+    { input__desktop: inLine },
+    { "dpl-input--double": isDouble }
+  ]);
   const config = useConfig();
   const textNotificationsEnabledConfig =
     config("textNotificationsEnabledConfig") === "1";
 
   return (
-    <section data-cy="patron-page-contact-info">
-      <h2 className="text-header-h4 mt-64 mb-16">
-        {t("patronContactInfoHeaderText")}
-      </h2>
-      {t("patronContactInfoBodyText") && (
-        <p className="text-body-small-regular mb-32">
-          {t("patronContactInfoBodyText")}
-        </p>
-      )}
+    <section
+      data-cy="patron-page-contact-info"
+      className="create-patron-page__row"
+    >
       <ContactInfoInputs isInline={inLine}>
         <ContactInfoPhone
           className={inputsClass}

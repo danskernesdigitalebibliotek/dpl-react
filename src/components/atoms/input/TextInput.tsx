@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { FC } from "react";
 
 export interface TextInputProps {
@@ -35,9 +36,14 @@ const TextInput: FC<TextInputProps> = ({
     onChange(e.target.value);
   };
   return (
-    <div className={`${className || "dpl-input"}`}>
+    <div
+      className={clsx("dpl-input", className, [
+        { "dpl-input--invalid": !!validation }
+      ])}
+    >
       <label htmlFor={id}>{required ? `${label}*` : label}</label>
       <input
+        className="text-body-medium-medium"
         required={required}
         aria-describedby={description ? `description-${id}` : ""}
         id={id}

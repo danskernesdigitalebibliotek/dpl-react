@@ -297,4 +297,15 @@ export const translateOpenOrderStatus = (
   return statusTextMap[status] ? t(statusTextMap[status]) : "";
 };
 
+export const getInputType = (type: ModalReservationFormTextType) => {
+  switch (type) {
+    case "email":
+      return "email";
+    case "sms":
+      return "tel";
+    default:
+      return "text";
+  }
+};
+
 export default {};

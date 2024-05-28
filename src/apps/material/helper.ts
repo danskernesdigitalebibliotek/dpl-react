@@ -6,7 +6,10 @@ import {
   flattenCreators
 } from "../../core/utils/helpers/general";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
-import { ListData } from "../../components/material/MaterialDetailsList";
+import {
+  ListData,
+  ListItemType
+} from "../../components/material/MaterialDetailsList";
 import {
   HoldingsForBibliographicalRecordV3,
   HoldingsV3
@@ -109,20 +112,43 @@ export const getManifestationNumberOfPages = (manifestation: Manifestation) => {
     : "";
 };
 
-export const getManifestationAudience = (manifestation: Manifestation) => {
-  return manifestation.audience?.generalAudience[0] ?? "";
+export const getManifestationAudience = (
+  manifestation: Manifestation,
+  t: UseTextFunction
+) => {
+  const generalAudience = manifestation.audience?.generalAudience[0] ?? "";
+  const agesDisplay = manifestation.audience?.ages[0]?.display ?? "";
+  const formattedAges = agesDisplay
+    ? t("detailsListAgeRangeText", {
+        placeholders: { "@ageRange": agesDisplay }
+      })
+    : "";
+
+  return generalAudience && formattedAges
+    ? `${generalAudience}, ${formattedAges}`
+    : generalAudience || formattedAges;
 };
 
 export const getManifestationIsbn = (manifestation: Manifestation) => {
   return manifestation.identifiers?.[0]?.value ?? "";
 };
 
+export const getManifestationSource = (manifestation: Manifestation) => {
+  return manifestation.source ?? "";
+};
+
 export const getManifestationLanguages = (manifestation: Manifestation) => {
-  return (
-    manifestation.languages?.main
-      ?.map((language) => language.display)
-      .join(", ") ?? ""
-  );
+  const { languages } = manifestation;
+
+  if (languages?.notes?.length) {
+    return languages.notes.join(", ");
+  }
+
+  // Return main languages if no notes or empty notes.
+  const mainLanguages = languages?.main
+    ?.map((language) => language.display)
+    .join(", ");
+  return mainLanguages ?? "";
 };
 
 export const getManifestationLanguageIsoCode = (
@@ -157,13 +183,44 @@ export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
 export const getManifestationContributors = (manifestation: Manifestation) => {
   return (
     manifestation.contributors
-      .map((contributor) => contributor.display)
+      .map((contributor) => {
+        if (contributor.roles.length > 0) {
+          const roleNames = contributor.roles
+            .map((role) => role.function.singular)
+            .join(", ");
+          return `${contributor.display} (${roleNames})`;
+        }
+        return contributor.display;
+      })
       .join(" / ") ?? ""
   );
 };
 
 export const getManifestationAuthors = (manifestation: Manifestation) => {
   return flattenCreators(manifestation.creators).join(", ") ?? "";
+};
+
+export const getManifestationNotes = (manifestation: Manifestation) => {
+  return manifestation.notes?.[0]?.display?.join(", ") ?? "";
+};
+
+export const getManifestationPhysicalDescription = (
+  manifestation: Manifestation
+) => {
+  return manifestation.physicalDescriptions?.[0]?.summary ?? "";
+};
+
+export const getManifestationHostPublication = (
+  manifestation: Manifestation
+) => {
+  return manifestation.hostPublication?.summary ?? "";
+};
+export const getManifestationParts = (
+  manifestation: Manifestation
+): string[] | string => {
+  return (
+    manifestation.manifestationParts?.parts?.map((item) => item.title) || ""
+  );
 };
 
 export const getDetailsListData = ({
@@ -184,71 +241,75 @@ export const getDetailsListData = ({
   return [
     {
       label: t("detailsListLanguageText"),
-      value: getManifestationLanguages(manifestation ?? fallBackManifestation),
-      type: "standard"
+      value: getManifestationLanguages(manifestation ?? fallBackManifestation)
     },
     {
       label: t("detailsListPlayTimeText"),
-      value: getManifestationPlayingTime(
-        manifestation ?? fallBackManifestation
-      ),
-      type: "standard"
+      value: getManifestationPlayingTime(manifestation ?? fallBackManifestation)
     },
     {
       label: t("detailsListEditionText"),
-      value: getManifestationEdition(manifestation ?? fallBackManifestation),
-      type: "standard"
+      value: getManifestationEdition(manifestation ?? fallBackManifestation)
     },
 
     {
       label: t("detailsListGenreAndFormText"),
       value: getManifestationGenreAndForm(
         manifestation ?? fallBackManifestation
-      ),
-      type: "standard"
+      )
     },
     {
       label: t("detailsListOriginalTitleText"),
       value: getManifestationOriginalTitle(
         manifestation ?? fallBackManifestation
-      ),
-      type: "standard"
+      )
     },
     {
       label: t("detailsListPublisherText"),
-      value: getManifestationPublisher(manifestation ?? fallBackManifestation),
-      type: "standard"
+      value: getManifestationPublisher(manifestation ?? fallBackManifestation)
     },
     {
       label: t("detailsListFirstEditionYearText"),
-      value: workFirstEditionYear,
-      type: "standard"
+      value: workFirstEditionYear
     },
     {
       label: t("detailsListTypeText"),
       value: getManifestationMaterialTypes(
         manifestation ?? fallBackManifestation
-      ),
-      type: "standard"
+      )
     },
     {
       label: t("detailsListContributorsText"),
       value: getManifestationContributors(
         manifestation ?? fallBackManifestation
-      ),
-      type: "link"
+      )
     },
     {
       label: t("detailsListScopeText"),
       value: getManifestationNumberOfPages(
         manifestation ?? fallBackManifestation
-      ),
-      type: "standard"
+      )
     },
     {
       label: t("detailsListAudienceText"),
-      value: getManifestationAudience(manifestation ?? fallBackManifestation),
-      type: "standard"
+      value: getManifestationAudience(manifestation ?? fallBackManifestation, t)
+    },
+    {
+      label: t("detailsListPhysicalDescriptionText"),
+      value: getManifestationPhysicalDescription(
+        manifestation ?? fallBackManifestation
+      )
+    },
+    {
+      label: t("detailsListHostPublicationText"),
+      value: getManifestationHostPublication(
+        manifestation ?? fallBackManifestation
+      )
+    },
+    {
+      label: t("detailsListPartsText"),
+      value: getManifestationParts(manifestation ?? fallBackManifestation),
+      type: ListItemType.List
     }
   ];
 };

@@ -23,13 +23,11 @@ const PatronPage: FC = () => {
   const t = useText();
   const u = useUrls();
   const deletePatronUrl = u("deletePatronUrl");
-
   const { mutate } = useUpdateV5();
-
   const { data: patronData, isLoading } = usePatronData();
-
   const [patron, setPatron] = useState<PatronV5 | null>(null);
   const [pin, setPin] = useState<string | null>(null);
+  const [isPinChangeValid, setIsPinChangeValid] = useState<boolean>(true);
   const [disableSubmitButton, setDisableSubmitButton] = useState(false);
   const [successPinMessage, setSuccessPinMessage] = useState<string | null>(
     null
@@ -132,7 +130,13 @@ const PatronPage: FC = () => {
             patron={patron}
           />
         )}
-        {patron && <PincodeSection changePincode={setPin} required={false} />}
+        {patron && (
+          <PincodeSection
+            changePincode={setPin}
+            required={false}
+            setIsPinValid={setIsPinChangeValid}
+          />
+        )}
         {successPinMessage && (
           <p className="text-body-small-regular mb-8 mt-8" role="alert">
             {successPinMessage}
@@ -143,7 +147,7 @@ const PatronPage: FC = () => {
           data-cy="save-user-patron"
           className="mt-48 btn-primary btn-filled btn-small arrow__hover--right-small "
           type="submit"
-          disabled={disableSubmitButton}
+          disabled={disableSubmitButton || !isPinChangeValid}
         >
           {disableSubmitButton
             ? t("patronPageLoadingText")

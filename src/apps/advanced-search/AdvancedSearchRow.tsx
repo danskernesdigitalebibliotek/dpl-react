@@ -114,7 +114,16 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
       )}
 
       <div className="input-with-dropdown" data-cy={dataCy}>
+        <label
+          htmlFor={`advanced-search-input-${rowIndex}`}
+          className="hide-visually"
+        >
+          {t("advancedSearchInputLabelText", {
+            placeholders: { "@inputNumber": rowIndex }
+          })}
+        </label>
         <input
+          id={`advanced-search-input-${rowIndex}`}
           ref={inputElement}
           className="input-with-dropdown__input focus-styling__input capitalize-first"
           type="text"

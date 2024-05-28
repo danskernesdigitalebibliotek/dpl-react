@@ -1,4 +1,5 @@
 import React, { useEffect, useState, FC } from "react";
+import clsx from "clsx";
 import TextInput from "../../../components/atoms/input/TextInput";
 import { useConfig } from "../../../core/utils/config";
 import { useText } from "../../../core/utils/text";
@@ -6,11 +7,15 @@ import { useText } from "../../../core/utils/text";
 interface PincodeSectionProps {
   changePincode: (newPin: string | null) => void;
   required: boolean;
+  isFlex?: boolean;
+  setIsPinValid: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PincodeSection: FC<PincodeSectionProps> = ({
   changePincode,
-  required
+  required,
+  isFlex = false,
+  setIsPinValid
 }) => {
   const t = useText();
   const config = useConfig();
@@ -30,6 +35,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
         pincode.length > pincodeLengthMax ||
         pincode.length < pincodeLengthMin
       ) {
+        setIsPinValid(false);
         setPincodeValidation(
           t("patronPagePincodeTooShortValidationText", {
             placeholders: {
@@ -41,12 +47,15 @@ const PincodeSection: FC<PincodeSectionProps> = ({
         return;
       }
       if (pincode !== confirmPincode) {
+        setIsPinValid(false);
         setPincodeValidation(t("patronPagePincodesNotTheSameText"));
         return;
       }
+      setIsPinValid(true);
       changePincode(confirmPincode);
     }
   }, [
+    setIsPinValid,
     changePincode,
     confirmPincode,
     pincode,
@@ -56,14 +65,13 @@ const PincodeSection: FC<PincodeSectionProps> = ({
   ]);
 
   return (
-    <section data-cy="pincode-section">
-      <h2 className="text-header-h4 mt-64 mb-16">
-        {t("patronPageChangePincodeHeaderText")}
-      </h2>
-      <p className="text-body-small-regular mb-8">
-        {t("patronPageChangePincodeBodyText")}
-      </p>
-      <div className="dpl-pincode-container">
+    <section data-cy="pincode-section" className="create-patron-page__row">
+      <div
+        className={clsx([
+          { "dpl-pincode-container": !isFlex },
+          { "dpl-input__flex": isFlex }
+        ])}
+      >
         <TextInput
           className="patron__input patron__input--desktop"
           id="pincode-input"
@@ -75,6 +83,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
           value={pincode}
           label={t("patronPagePincodeLabelText")}
           validation={pincodeValidation}
+          description={t("pincodeSectionDescriptionText")}
         />
         <TextInput
           className="patron__input patron__input--desktop"
@@ -86,6 +95,7 @@ const PincodeSection: FC<PincodeSectionProps> = ({
           onChange={(newPin) => setConfirmPincode(newPin)}
           value={confirmPincode}
           label={t("patronPageConfirmPincodeLabelText")}
+          description={t("pincodeSectionDescriptionText")}
         />
       </div>
     </section>
