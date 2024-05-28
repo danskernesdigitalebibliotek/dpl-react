@@ -32,7 +32,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   const t = useText();
   const handleDropdownMenu = () => {
-    setIsHeaderDropdownOpen(!isHeaderDropdownOpen);
+    setIsHeaderDropdownOpen((prev) => !prev);
   };
 
   return (
