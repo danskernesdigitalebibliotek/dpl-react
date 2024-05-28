@@ -132,6 +132,9 @@ export default defineConfig({
           // proxy-url:GET query. This lets us call it conditionally.
           "proxy-url:GET": {
             requestOptions: false
+          },
+          "dpl_opening_hours_list:GET": {
+            requestOptions: false
           }
         }
       },

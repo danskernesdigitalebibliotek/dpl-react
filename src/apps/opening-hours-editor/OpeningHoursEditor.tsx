@@ -36,8 +36,13 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
   const fullCalendarRef = React.useRef<FullCalendar>(null);
   const fullCalendarApi = fullCalendarRef.current?.getApi();
 
-  const { events, handleEventAdd, handleEventEditing, handleEventRemove } =
-    useOpeningHoursEditor();
+  const {
+    events,
+    handleEventAdd,
+    handleEventEditing,
+    handleEventRemove,
+    handleDatesSet
+  } = useOpeningHoursEditor();
 
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
     useDialog({
@@ -57,9 +62,9 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         ref={fullCalendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
-          left: "title",
-          center: "prev,next today",
-          right: "dayGridMonth,timeGridWeek"
+          left: "dayGridMonth,timeGridWeek",
+          center: "title",
+          right: "prev,next today"
         }}
         initialView="timeGridWeek"
         locale={da}
@@ -97,6 +102,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         height="auto"
         selectMirror
         allDaySlot={false}
+        datesSet={handleDatesSet}
       />
     </>
   );

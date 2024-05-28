@@ -248,16 +248,12 @@ export const getDplOpeningHoursListGETQueryOptions = <
   TError = ErrorType<void>
 >(
   params: DplOpeningHoursListGETParams,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
-      TError,
-      TData
-    >;
-  }
+  queryOptions?: UseQueryOptions<
+    Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
+    TError,
+    TData
+  >
 ) => {
-  const { query: queryOptions } = options ?? {};
-
   const queryKey =
     queryOptions?.queryKey ?? getDplOpeningHoursListGETQueryKey(params);
 
@@ -285,21 +281,19 @@ export const useDplOpeningHoursListGET = <
   TError = ErrorType<void>
 >(
   params: DplOpeningHoursListGETParams,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
-      TError,
-      TData
-    >;
-  }
+  queryOptions?: UseQueryOptions<
+    Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
+    TError,
+    TData
+  >
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getDplOpeningHoursListGETQueryOptions(params, options);
+  const options = getDplOpeningHoursListGETQueryOptions(params, queryOptions);
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+  const query = useQuery(options) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
   };
 
-  query.queryKey = queryOptions.queryKey;
+  query.queryKey = options.queryKey;
 
   return query;
 };
