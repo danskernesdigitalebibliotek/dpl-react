@@ -2,6 +2,7 @@ import * as React from "react";
 import searchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-search.svg";
 import expandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { UseComboboxPropGetters } from "downshift";
+import clsx from "clsx";
 import { useText } from "../../core/utils/text";
 import { redirectTo } from "../../core/utils/helpers/url";
 
@@ -87,7 +88,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
         type="image"
         src={expandIcon}
         alt={t("searchHeaderDropdownText")}
-        className="header__menu-dropdown-icon"
+        className={clsx("header__menu-dropdown-icon", {
+          "header__menu-dropdown-icon--expanded": isHeaderDropdownOpen
+        })}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
