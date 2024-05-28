@@ -106,6 +106,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         tabIndex={0}
         aria-label={t("searchHeaderDropdownText")}
         data-cy="search-header-dropdown-icon"
+        aria-expanded={isHeaderDropdownOpen}
       />
     </>
   );
