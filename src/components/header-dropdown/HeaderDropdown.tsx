@@ -21,7 +21,7 @@ const HeaderDropdown: React.FC<HeaderDropdownprops> = ({
           <a
             ref={headerDropdownRef}
             role="menuitem"
-            className="header__menu-dropdown-item cursor-pointer"
+            className="header__menu-dropdown-item hide-linkstyle"
             href={String(advancedSearchUrl)}
             onClick={(e) => {
               e.preventDefault();
