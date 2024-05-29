@@ -5,11 +5,13 @@ import { calculateAmountToDisplay } from "../materiel-grid-util";
 export type MaterialGridManualProps = {
   materials: MaterialGridItemProps[];
   title?: string;
+  description?: string;
 };
 
 const MaterialGridManual: React.FC<MaterialGridManualProps> = ({
   materials,
-  title
+  title,
+  description
 }) => {
   const selectedAmountOfMaterialsForDisplay = calculateAmountToDisplay(
     materials.length
@@ -18,6 +20,7 @@ const MaterialGridManual: React.FC<MaterialGridManualProps> = ({
   return (
     <MaterialGrid
       title={title}
+      description={description}
       materials={materials}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
     />
