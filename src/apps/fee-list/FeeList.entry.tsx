@@ -78,6 +78,7 @@ const FeeListEntry: FC<
       desktop: pageSizeDesktop,
       mobile: pageSizeMobile
     },
+    // We use page size from loan list for overdue loans modal on the fees page.
     "pageSizeLoanList"
   );
   return <FeeList pageSize={pageSize} />;
