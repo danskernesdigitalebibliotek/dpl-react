@@ -31,6 +31,8 @@ interface LoansGroupModalProps {
   children: ReactNode;
 }
 
+// TODO: fix up these very complex types to be more specific. (Requires digging
+// in variable definitions)
 export const createLoanModalId = (
   dueDate: string | null | undefined,
   dueDateModal: string | number | Record<string, unknown>,
