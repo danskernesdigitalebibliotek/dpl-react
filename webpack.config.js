@@ -66,7 +66,15 @@ module.exports = (_env, argv) => {
     optimization: {
       runtimeChunk: "single",
       splitChunks: {
-        name: () => "bundle",
+        name: (module) => {
+          if (module.identifier().includes("@fullcalendar")) {
+            return "fullcalendar";
+          }
+          if (module.identifier().includes("flatpickr")) {
+            return "flatpickr";
+          }
+          return "bundle";
+        },
         chunks: "all"
       }
     },
