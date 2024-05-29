@@ -51,8 +51,8 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
         type="button"
         aria-label={
           userData
-            ? t("menuUserIconAriaLabelText")
-            : t("menuUserIconAriaLabelLoggedOutText")
+            ? t("menuUserIconAriaLabelLoggedOutText")
+            : t("menuUserIconAriaLabelText")
         }
         onClick={() => openMenu()}
         onKeyDown={(e) => e.key === "Enter" && openMenu()}
