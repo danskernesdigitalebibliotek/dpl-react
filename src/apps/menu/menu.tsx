@@ -64,12 +64,12 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
             <TextLineSkeleton width={50} />
           </span>
         )}
-        {!userData?.patron?.name && (
+        {!isLoading && !userData?.patron?.name && (
           <span className="text-small-caption">
             {t("searchHeaderLoginText")}
           </span>
         )}
-        {userData?.patron?.name && (
+        {!isLoading && userData?.patron?.name && (
           <span className="text-small-caption">{userData.patron.name}</span>
         )}
       </button>
