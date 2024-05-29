@@ -157,6 +157,14 @@ export default {
     expirationWarningDaysBeforeConfig: {
       defaultValue: "6",
       control: { type: "text" }
+    },
+    dashboardLoansLinkText: {
+      defaultValue: "All loans",
+      control: { type: "text" }
+    },
+    dashboardReservationsLinkText: {
+      defaultValue: "All reservations",
+      control: { type: "text" }
     }
   },
   component: DashBoard
