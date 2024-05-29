@@ -45,14 +45,3 @@ export const getDetailsModalId = (queryParam: string, prefix: string) => {
   }
   return "";
 };
-
-export const createLoanModalId = (
-  dueDate: string | null | undefined,
-  dueDateModal: string | number | Record<string, unknown>,
-  allLoansId: string | number | Record<string, unknown>
-) => {
-  if (dueDate && dueDateModal) {
-    return constructModalId(String(dueDateModal), [dueDate]);
-  }
-  return constructModalId("", [String(allLoansId)]);
-};

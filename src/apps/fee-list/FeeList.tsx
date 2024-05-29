@@ -23,15 +23,14 @@ import FeeListSkeleton from "./FeeListSkeleton";
 import WarningBar from "../loan-list/materials/utils/warning-bar";
 import useLoans from "../../core/utils/useLoans";
 import { LoanType } from "../../core/utils/types/loan-type";
-import LoansGroupModal from "../../components/GroupModal/LoansGroupModal";
+import LoansGroupModal, {
+  createLoanModalId
+} from "../../components/GroupModal/LoansGroupModal";
 import MaterialDetailsModal, {
   loanDetailsModalId
 } from "../loan-list/modal/material-details-modal";
 import SimpleModalHeader from "../../components/GroupModal/SimpleModalHeader";
-import {
-  createLoanModalId,
-  getModalIds
-} from "../../core/utils/helpers/modal-helpers";
+import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 import MaterialDetails from "../loan-list/modal/material-details";
 
 interface FeeListProps {

@@ -17,7 +17,7 @@ import { succeededRenewalCount } from "../../core/utils/helpers/renewal";
 import { useSingleRequestWithStatus } from "../../core/utils/useRequestsWithStatus";
 import { ListType } from "../../core/utils/types/list-type";
 import {
-  createLoanModalId,
+  constructModalId,
   getModalIds
 } from "../../core/utils/helpers/modal-helpers";
 import { useStatistics } from "../../core/statistics/useStatistics";
@@ -30,6 +30,17 @@ interface LoansGroupModalProps {
   openDetailsModal: (loan: LoanType) => void;
   children: ReactNode;
 }
+
+export const createLoanModalId = (
+  dueDate: string | null | undefined,
+  dueDateModal: string | number | Record<string, unknown>,
+  allLoansId: string | number | Record<string, unknown>
+) => {
+  if (dueDate && dueDateModal) {
+    return constructModalId(String(dueDateModal), [dueDate]);
+  }
+  return constructModalId("", [String(allLoansId)]);
+};
 
 const LoansGroupModal: FC<LoansGroupModalProps> = ({
   dueDate,
