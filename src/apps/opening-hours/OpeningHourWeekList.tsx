@@ -27,9 +27,14 @@ const OpeningHoursWeekList: React.FC<OpeningHoursWeekListProps> = ({
       {data.map(({ dateTime, openingHourEntries }) => {
         const dateAsWeekday = formatDateToWeekday(dateTime);
         const formattedDateForDisplay = dayjs(dateTime).format("DD/MM");
+        const formattedDateForCy = dayjs(dateTime).format("YYYY-MM-DD");
 
         return (
-          <li key={formattedDateForDisplay} className="opening-hours__row">
+          <li
+            key={formattedDateForDisplay}
+            className="opening-hours__row"
+            data-cy={formattedDateForCy}
+          >
             <h3 className="opening-hours__individual-day">{`${dateAsWeekday}: d. ${formattedDateForDisplay}`}</h3>
             {openingHourEntries.length > 0 ? (
               <ul>
