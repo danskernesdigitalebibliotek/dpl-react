@@ -79,6 +79,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
 
                 const handleAddOrRemoveFilter = (e: React.MouseEvent) => {
                   e.stopPropagation();
+                  close(FacetBrowserModalId);
                   return selected
                     ? removeFromFilter({ facet: name, term: termItem })
                     : addToFilter({ facet: name, term: termItem });
