@@ -80,7 +80,6 @@ export const groupOpeningHoursByWeekday = (
   const daysWithOpeningHours: GroupedOpeningHours = allDays.map((day) => {
     return {
       dateTime: day,
-      date: day,
       openingHourEntries: openingHours.filter((individualOpeningHour) =>
         dayjs(individualOpeningHour.date).isSame(day, "day")
       )
