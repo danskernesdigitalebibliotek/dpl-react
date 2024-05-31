@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDeepCompareEffect } from "react-use";
-import { isEmpty } from "lodash";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
@@ -40,7 +39,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
-  const [resultItems, setResultItems] = useState<Work[]>([]);
+  const [resultItems, setResultItems] = useState<Work[] | null>(null);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
   const { PagerComponent, page } = usePager({
@@ -111,7 +110,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (!data) {
       return;
     }
-
     const {
       search: { works: resultWorks, hitcount: resultCount }
     } = data as {
@@ -120,12 +118,15 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         hitcount: SearchWithPaginationQuery["search"]["hitcount"];
       };
     };
-
     setHitCount(resultCount);
-
     // if page has change then append the new result to the existing result
     if (page > 0) {
-      setResultItems((prev) => [...prev, ...resultWorks]);
+      setResultItems((prev) => {
+        if (prev === null) {
+          return [...resultWorks];
+        }
+        return [...prev, ...resultWorks];
+      });
       return;
     }
 
@@ -172,32 +173,35 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     return <SearchResultInvalidSearch />;
   }
 
-  if (isLoading) {
-    return <SearchResultSkeleton q={q} />;
-  }
-
-  if (hitcount === 0) {
-    return <SearchResultZeroHits />;
-  }
-
-  if (q === "") {
-    return <SearchResultZeroHits />;
-  }
-
+  const shouldShowZeroHits = () => {
+    return !isLoading && hitcount === 0;
+  };
+  // We are handling loading state for every element separately inside this return(),
+  // because then we achieve smoother experience using the filters - not having
+  // to loose the filter modal upon selecting a filter.
   return (
     <div className="card-list-page">
-      <SearchResultHeader hitcount={hitcount} q={q} />
-      <FacetLine q={q} />
-      {campaignData && campaignData.data && (
-        <Campaign campaignData={campaignData.data} />
+      {isLoading && <SearchResultSkeleton q={q} />}
+
+      {shouldShowZeroHits() && <SearchResultZeroHits />}
+
+      {!isLoading && !shouldShowZeroHits() && resultItems && (
+        <>
+          <SearchResultHeader hitcount={hitcount} q={q} />
+          <FacetLine q={q} />
+          {campaignData && campaignData.data && (
+            <Campaign campaignData={campaignData.data} />
+          )}
+          <SearchResultList
+            resultItems={resultItems}
+            page={page}
+            pageSize={pageSize}
+          />
+          <PagerComponent isLoading={isLoading} />
+        </>
       )}
-      <SearchResultList
-        resultItems={resultItems}
-        page={page}
-        pageSize={pageSize}
-      />
-      <PagerComponent isLoading={isLoading} />
-      {!isEmpty(resultItems) && <FacetBrowserModal q={q} />}
+      {/* We know we can show the facet browser after the first valid search. */}
+      {resultItems !== null && <FacetBrowserModal q={q} />}
     </div>
   );
 };
