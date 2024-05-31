@@ -34,6 +34,7 @@ const List: FC<ListProps> = ({
               materialItemNumber={itemData.materials[0].materialItemNumber}
               feeData={itemData}
               openDetailsModalClickEvent={openDetailsModalClickEvent}
+              key={itemData.feeId}
             />
           ))}
           <div className="fee-list-bottom">

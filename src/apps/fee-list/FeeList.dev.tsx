@@ -7,6 +7,10 @@ import FeeList from "./FeeList.entry";
 import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import groupModalArgs from "../../core/storybook/groupModalArgs";
+import groupModalLoansArgs from "../../core/storybook/loanGroupModalArgs";
+import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
+import renewalArgs from "../../core/storybook/renewalArgs";
 
 export default {
   title: "Apps / Fee list",
@@ -16,6 +20,10 @@ export default {
     ...blockedArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    ...groupModalArgs,
+    ...groupModalLoansArgs,
+    ...materialDetailsModalArgs,
+    ...renewalArgs,
     feeListHeadlineText: {
       defaultValue: "Fees & Replacement costs",
       control: { type: "text" }
@@ -177,6 +185,10 @@ export default {
     },
     feeListSeeYourOverdueLoansAriaText: {
       defaultValue: "Go to the loan list page to see your overdue loans",
+      control: { type: "text" }
+    },
+    loansOverdueText: {
+      defaultValue: "Returned too late",
       control: { type: "text" }
     },
     // Urls

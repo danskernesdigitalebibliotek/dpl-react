@@ -23,7 +23,6 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
     userMenuUnregistered: userMenuUnregisteredModalId
   } = getModalIds();
   const { isLoading, data: userData } = usePatronData();
-
   const openMenu = () => {
     if (isUnregistered()) {
       open(userMenuUnregisteredModalId as string);
@@ -35,25 +34,25 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
     }
     open(userMenuAuthenticatedModalId as string);
   };
+  const getAriaLabel = () => {
+    if (isLoading) {
+      return t("searchHeaderLoginText");
+    }
+    return userData?.patron
+      ? t("menuUserIconAriaLabelText")
+      : t("menuUserIconAriaLabelLoggedOutText");
+  };
 
   /*
   TODO: Add data-cy to all elements regarding cypress tests in this file,
   for reduced flakyness.
-  */
-
-  /*
-  TODO: Find a way generally to handle loading state in app.
   */
   return (
     <>
       <button
         className="header__menu-profile header__button btn-ui"
         type="button"
-        aria-label={
-          userData
-            ? t("menuUserIconAriaLabelText")
-            : t("menuUserIconAriaLabelLoggedOutText")
-        }
+        aria-label={getAriaLabel()}
         onClick={() => openMenu()}
         onKeyDown={(e) => e.key === "Enter" && openMenu()}
         tabIndex={0}
@@ -64,12 +63,12 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
             <TextLineSkeleton width={50} />
           </span>
         )}
-        {!userData?.patron?.name && (
+        {!isLoading && !userData?.patron?.name && (
           <span className="text-small-caption">
             {t("searchHeaderLoginText")}
           </span>
         )}
-        {userData?.patron?.name && (
+        {!isLoading && userData?.patron?.name && (
           <span className="text-small-caption">{userData.patron.name}</span>
         )}
       </button>

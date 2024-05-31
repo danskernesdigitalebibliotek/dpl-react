@@ -58,6 +58,8 @@ export interface DashBoardProps {
   totalAmountFeeText: string;
   totalOwedText: string;
   yourProfileText: string;
+  dashboardLoansLinkText: string;
+  dashboardReservationsLinkText: string;
 }
 
 const DashboardEntry: FC<

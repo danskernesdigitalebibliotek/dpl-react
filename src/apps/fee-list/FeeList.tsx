@@ -23,11 +23,23 @@ import FeeListSkeleton from "./FeeListSkeleton";
 import WarningBar from "../loan-list/materials/utils/warning-bar";
 import useLoans from "../../core/utils/useLoans";
 import { LoanType } from "../../core/utils/types/loan-type";
+import LoansGroupModal, {
+  createLoanModalId
+} from "../../components/GroupModal/LoansGroupModal";
+import MaterialDetailsModal, {
+  loanDetailsModalId
+} from "../loan-list/modal/material-details-modal";
+import SimpleModalHeader from "../../components/GroupModal/SimpleModalHeader";
+import { getModalIds } from "../../core/utils/helpers/modal-helpers";
+import MaterialDetails from "../loan-list/modal/material-details";
 
-const FeeList: FC = () => {
+interface FeeListProps {
+  pageSize: number;
+}
+
+const FeeList: FC<FeeListProps> = ({ pageSize }) => {
   const t = useText();
   const u = useUrls();
-  const physicalLoansUrl = u("physicalLoansUrl");
   const viewFeesAndCompensationRatesUrl = u("viewFeesAndCompensationRatesUrl");
   const [feeDetailsModalId, setFeeDetailsModalId] = useState("");
   const { open } = useModalButtonHandler();
@@ -41,6 +53,9 @@ const FeeList: FC = () => {
   } = useLoans();
   const [overdueLoans, setOverdueLoans] = useState<LoanType[]>([]);
   const [feeDetailsData, setFeeDetailsData] = useState<FeeV2[]>();
+  const dueDate: string | number = "yesterday";
+  const { dueDateModal, allLoansId } = getModalIds();
+  const [modalLoan, setModalLoan] = useState<LoanType | null>(null);
   const openDetailsModalClickEvent = useCallback(
     (feeId: number) => {
       if (feeId) {
@@ -61,6 +76,13 @@ const FeeList: FC = () => {
   }, [fbsFees]);
   const shouldShowWarningBar =
     overdueLoans.length > 0 && !isLoadingFbs && !isLoadingPublizon;
+  const openLoanDetailsModal = useCallback(
+    (loan: LoanType) => {
+      setModalLoan(loan);
+      open(loanDetailsModalId(loan));
+    },
+    [open]
+  );
 
   useEffect(() => {
     if (!isLoadingFbs && !isLoadingPublizon) {
@@ -70,6 +92,17 @@ const FeeList: FC = () => {
     // change, because then the component rerenders indefinitely.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoadingFbs, isLoadingPublizon]);
+
+  const openLoanModal = useCallback(
+    (loans: LoanType[]) => {
+      if (loans.length === 1) {
+        openLoanDetailsModal(loans[0]);
+      } else {
+        open(createLoanModalId(dueDate, dueDateModal, allLoansId));
+      }
+    },
+    [openLoanDetailsModal, open, allLoansId, dueDateModal]
+  );
 
   return (
     <>
@@ -92,8 +125,8 @@ const FeeList: FC = () => {
             })}
             rightButtonText={t("feeListSeeYourOverdueLoansText")}
             rightButtonAriaLabelText={t("feeListSeeYourOverdueLoansAriaText")}
-            rightLink={physicalLoansUrl}
             classNames="my-64"
+            rightAction={() => openLoanModal(overdueLoans)}
           />
         )}
         <div className="fee-list-body__payment-button">
@@ -155,6 +188,25 @@ const FeeList: FC = () => {
         )}
       </FeeDetailsModal>
       <MyPaymentOverviewModal />
+      {!isLoadingFbs && (
+        <LoansGroupModal
+          pageSize={pageSize}
+          openDetailsModal={openLoanDetailsModal}
+          dueDate={dueDate}
+          loansModal={loansOverduePhysical}
+        >
+          <SimpleModalHeader header={t("loansOverdueText")} />
+        </LoansGroupModal>
+      )}
+      {modalLoan && (
+        <MaterialDetailsModal modalId={loanDetailsModalId(modalLoan)}>
+          <MaterialDetails
+            item={modalLoan}
+            loan={modalLoan as LoanType}
+            modalId={loanDetailsModalId(modalLoan)}
+          />
+        </MaterialDetailsModal>
+      )}
     </>
   );
 };

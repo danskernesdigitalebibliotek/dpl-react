@@ -25,6 +25,7 @@ import {
   getModalIds
 } from "../../../core/utils/helpers/modal-helpers";
 import { ListType } from "../../../core/utils/types/list-type";
+import { useUrls } from "../../../core/utils/url";
 
 export interface DashboardNotificationListProps {
   pageSize: number;
@@ -36,6 +37,9 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
   columns
 }) => {
   const t = useText();
+  const u = useUrls();
+  const physicalLoansUrl = u("physicalLoansUrl");
+  const reservationsUrl = u("reservationsUrl");
   const {
     all: {
       reservations,
@@ -215,6 +219,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
               header={t("physicalLoansText")}
               emptyListText={t("noPhysicalLoansText")}
               isLoading={isLoadingLoans || isLoadingLoansPhysical}
+              linkText={t("dashboardLoansLinkText")}
+              linkUrl={physicalLoansUrl}
             />
             <NotificationColumn
               materials={dashboardNotificationsReservations}
@@ -222,6 +228,8 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
               header={t("reservationsText")}
               emptyListText={t("noReservationsText")}
               isLoading={isLoadingReservations}
+              linkText={t("dashboardReservationsLinkText")}
+              linkUrl={reservationsUrl}
             />
           </>
         )}

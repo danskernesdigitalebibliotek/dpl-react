@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import EmptyList from "../../../components/empty-list/empty-list";
 import Notifications, { NotificationMaterialsList } from "./Notifications";
 import NotificationSkeleton from "../dashboard-notification/notification-skeleton";
+import Link from "../../../components/atoms/links/Link";
 
 export interface NotificationColumnProps {
   materials: NotificationMaterialsList[];
@@ -9,6 +10,8 @@ export interface NotificationColumnProps {
   header: string;
   emptyListText: string;
   isLoading?: boolean;
+  linkText?: string;
+  linkUrl?: URL;
 }
 
 const NotificationColumn: FC<NotificationColumnProps> = ({
@@ -16,7 +19,9 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
   materialsCount,
   emptyListText,
   header,
-  isLoading = false
+  isLoading = false,
+  linkText,
+  linkUrl
 }) => {
   return (
     <div className="status-userprofile__column my-64">
@@ -38,6 +43,14 @@ const NotificationColumn: FC<NotificationColumnProps> = ({
       )}
       {materialsCount !== 0 && (
         <Notifications materials={materials} showStatusLabel />
+      )}
+      {linkText && linkUrl && (
+        <div className="mt-8">
+          <Link href={linkUrl} className="link-tag link-tag link-filters__tag">
+            {linkText}
+          </Link>
+          <span className="link-filters__counter">{materialsCount}</span>
+        </div>
       )}
     </div>
   );
