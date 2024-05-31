@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useId, useRef, useState } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { useMultipleSelection } from "downshift";
 import clsx from "clsx";
@@ -30,6 +30,7 @@ const Multiselect: FC<MultiselectProps> = ({
   defaultValue = [],
   updateExternalState
 }) => {
+  const id = useId();
   const t = useText();
   const ref = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -189,7 +190,7 @@ const Multiselect: FC<MultiselectProps> = ({
                 </span>
                 <div className="checkbox multiselect__checkbox">
                   <CheckBox
-                    id={index.toString()}
+                    id={`${id}-${index.toString()}`}
                     selected={
                       !!selectedItems.find(
                         (selected) => selected.value === item.value
