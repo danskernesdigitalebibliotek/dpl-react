@@ -51,6 +51,8 @@ describe("The Facet Browser", () => {
     }).as("Material list service");
 
     cy.visit("/iframe.html?id=apps-search-result--search-result");
+    cy.wait("@searchWithPagination GraphQL operation");
+    cy.wait("@intelligentFacets GraphQL operation");
     cy.getBySel("facet-line-open-browser").click();
   });
 
@@ -140,7 +142,6 @@ describe("The Facet Browser", () => {
       .and("have.attr", "aria-pressed", "false")
       .click();
 
-    cy.getBySel("modal-facet-browser-modal-close-button").click();
     cy.contains("h1", "harry");
 
     cy.log(
