@@ -173,8 +173,12 @@ describe("The Facet Browser", () => {
     cy.getBySel("facet-browser-creators-Joanne K. Rowling")
       .should("be.visible")
       .and("have.attr", "aria-pressed", "true")
-      .click()
-      .should("have.attr", "aria-pressed", "false");
+      .click();
+    cy.getBySel("facet-line-open-browser").click();
+    cy.getBySel("facet-browser-creators").click();
+    cy.getBySel("facet-browser-creators-Joanne K. Rowling")
+      .should("be.visible")
+      .and("have.attr", "aria-pressed", "false");
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
 
