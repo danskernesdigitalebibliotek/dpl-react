@@ -6,6 +6,7 @@ import Store from "../components/store";
 import { persistor, store } from "./store";
 import ErrorBoundaryAlert from "../components/error-boundary-alert/ErrorBoundaryAlert";
 import { closeLastModal } from "./modal.slice";
+import extractErrorDetails from "./utils/extractErrorDetails";
 
 /**
  * We look for containers and corresponding applications.
@@ -37,6 +38,24 @@ function mount(context) {
                 // Logging should be acceptable in an error handler.
                 // eslint-disable-next-line no-console
                 console.error(error, info);
+
+                const { filename, lineNumber, column } = extractErrorDetails(
+                  info.componentStack
+                );
+
+                // Call window.onerror to send the error to the error logging system.
+                if (window.onerror) {
+                  window.onerror(
+                    `${error.name}: ${error.message}`,
+                    filename,
+                    lineNumber,
+                    column,
+                    {
+                      ...info,
+                      stack: info.componentStack
+                    }
+                  );
+                }
               }
             }),
             {
