@@ -11,7 +11,7 @@ const DashboardFees: FC = () => {
   const u = useUrls();
 
   const feesPageUrl = u("feesPageUrl");
-  const { data: fbsFees = [] } = useGetFeesV2<FeeV2[]>({
+  const { data: fbsFees = [], isLoading } = useGetFeesV2<FeeV2[]>({
     includepaid: false,
     includenonpayable: true
   });
@@ -23,32 +23,32 @@ const DashboardFees: FC = () => {
     }
   }, [fbsFees, totalFeeAmount]);
 
+  if (isLoading || (!isLoading && fbsFees.length === 0)) return null;
+
   return (
     <div className="fee-container">
-      {fbsFees && (
-        <div>
-          <div className="status-userprofile__column">
-            <div className="link-filters">
-              <div className="link-filters__tag-wrapper">
-                <h2
-                  className="text-header-h3 mb-16"
-                  data-cy="dashboard-fees-header"
-                >
-                  {t("feesText")}
-                </h2>
-              </div>
+      <div>
+        <div className="status-userprofile__column">
+          <div className="link-filters">
+            <div className="link-filters__tag-wrapper">
+              <h2
+                className="text-header-h3 mb-16"
+                data-cy="dashboard-fees-header"
+              >
+                {t("feesText")}
+              </h2>
             </div>
-            <WarningBar
-              overdueText={`${t("totalOwedText")} ${t("totalAmountFeeText", {
-                placeholders: { "@total": totalFeeAmount }
-              })}`}
-              rightButtonText={t("dashboardSeeMoreFeesText")}
-              rightButtonAriaLabelText={t("dashboardSeeMoreFeesAriaLabelText")}
-              rightLink={feesPageUrl}
-            />
           </div>
+          <WarningBar
+            overdueText={`${t("totalOwedText")} ${t("totalAmountFeeText", {
+              placeholders: { "@total": totalFeeAmount }
+            })}`}
+            rightButtonText={t("dashboardSeeMoreFeesText")}
+            rightButtonAriaLabelText={t("dashboardSeeMoreFeesAriaLabelText")}
+            rightLink={feesPageUrl}
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 };
