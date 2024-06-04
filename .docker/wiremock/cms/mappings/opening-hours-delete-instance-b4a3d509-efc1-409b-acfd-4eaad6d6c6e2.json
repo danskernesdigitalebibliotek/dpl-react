@@ -1,0 +1,18 @@
+{
+  "id": "b4a3d509-efc1-409b-acfd-4eaad6d6c6e2",
+  "name": "Opening hours delete instance",
+  "request": {
+    "urlPathPattern": "/api/v1/opening_hours/[0-9]+",
+    "method": "DELETE"
+  },
+  "response": {
+    "status": 204,
+    "body": "",
+    "headers": {}
+  },
+  "uuid": "b4a3d509-efc1-409b-acfd-4eaad6d6c6e2",
+  "persistent": true,
+  "priority": 5,
+  "insertionIndex": 5,
+  "postServeActions": []
+}

@@ -8,12 +8,6 @@ module.exports = async ({ config }) => {
 
   const rules = [
     ...custom.module.rules,
-    // We consume css from the dpl-design-system package.
-    {
-      test: /\.css$/i,
-      use: ["style-loader", "css-loader"],
-      include: path.resolve(__dirname, "../")
-    },
     // We need to make use of css modules in our stories.
     {
       test: /\.scss$/,

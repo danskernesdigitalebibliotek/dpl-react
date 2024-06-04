@@ -1,132 +1,143 @@
-import * as React from "react";
-import { FC, useState } from "react";
+import React, { useId, FC, useState } from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
 import {
   convertPostIdToFaustId,
   creatorsToString,
-  filterCreators,
   flattenCreators
 } from "../../core/utils/helpers/general";
-import { Pid } from "../../core/utils/types/ids";
-import ButtonSmallFilled from "../Buttons/ButtonSmallFilled";
-import { ManifestationsSimpleFieldsFragment } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
-import { getCurrentLocation } from "../../core/utils/helpers/url";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
+import MaterialButtons from "./material-buttons/MaterialButtons";
+import { Manifestation } from "../../core/utils/types/entities";
+import { WorkId } from "../../core/utils/types/ids";
+import {
+  getManifestationAudience,
+  getManifestationAuthors,
+  getManifestationContributors,
+  getManifestationEdition,
+  getManifestationGenreAndForm,
+  getManifestationIsbn,
+  getManifestationLanguageIsoCode,
+  getManifestationLanguages,
+  getManifestationMaterialTypes,
+  getManifestationNotes,
+  getManifestationNumberOfPages,
+  getManifestationOriginalTitle,
+  getManifestationPhysicalDescription,
+  getManifestationPublisher,
+  getManifestationSource
+} from "../../apps/material/helper";
 
 export interface MaterialMainfestationItemProps {
-  manifestation: ManifestationsSimpleFieldsFragment;
+  manifestation: Manifestation;
+  workId: WorkId;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
-  manifestation: {
-    materialTypes,
-    pid,
-    titles,
-    creators,
-    hostPublication,
-    languages,
-    identifiers,
-    contributors,
-    edition,
-    audience,
-    physicalDescriptions,
-    genreAndForm
-  }
+  manifestation: { materialTypes, pid, titles, creators, identifiers, edition },
+  manifestation,
+  workId
 }) => {
+  const mainfestationTitleId = useId();
   const t = useText();
   const [isOpen, setIsOpen] = useState(false);
-  const faustId = convertPostIdToFaustId(pid as Pid);
+  const faustId = convertPostIdToFaustId(pid);
+  const author = creatorsToString(flattenCreators(creators), t);
 
-  const creatorsText = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
+  const languageIsoCode = getManifestationLanguageIsoCode([manifestation]);
 
-  const allContributors = String(
-    contributors.map((contributor) => contributor.display)
-  );
-
-  const allLanguages = String(
-    languages?.main?.map((language) => language.display).join(", ")
-  );
-
-  const listDescriptionData: ListData = [
+  const detailsListData: ListData = [
     {
-      label: t("typeText"),
-      value: materialTypes?.[0]?.specific ?? "",
-      type: "standard"
+      label: t("detailsListTypeText"),
+      value: getManifestationMaterialTypes(manifestation)
     },
     {
-      label: t("languageText"),
-      value: allLanguages ?? "",
-      type: "standard"
+      label: t("detailsListLanguageText"),
+      value: getManifestationLanguages(manifestation)
     },
     {
-      label: t("genreAndFormText"),
-      value: genreAndForm?.[0] ?? "",
-      type: "standard"
+      label: t("detailsListGenreAndFormText"),
+      value: getManifestationGenreAndForm(manifestation)
     },
     {
-      label: t("contributorsText"),
-      value: allContributors ?? "",
-      type: "link"
+      label: t("detailsListContributorsText"),
+      value: getManifestationContributors(manifestation)
     },
     {
-      label: t("originalTitleText"),
-      value: titles?.original?.[0] ?? "",
-      type: "standard"
+      label: t("detailsListOriginalTitleText"),
+      value: getManifestationOriginalTitle(manifestation)
     },
     {
-      label: t("isbnText"),
-      value: identifiers?.[0].value ?? "",
-      type: "standard"
+      label: t("detailsListIsbnText"),
+      value: getManifestationIsbn(manifestation)
     },
     {
-      label: t("editionText"),
-      value: edition?.summary ?? "",
-      type: "standard"
+      label: t("detailsListEditionText"),
+      value: getManifestationEdition(manifestation)
     },
     {
-      label: t("scopeText"),
-      value: String(physicalDescriptions?.[0]?.numberOfPages ?? ""),
-      type: "standard"
+      label: t("detailsListScopeText"),
+      value: getManifestationNumberOfPages(manifestation)
     },
     {
-      label: t("publisherText"),
-      value: hostPublication?.publisher ?? "",
-      type: "standard"
+      label: t("detailsListPublisherText"),
+      value: getManifestationPublisher(manifestation)
     },
     {
-      label: t("audienceText"),
-      value: audience?.generalAudience[0] ?? "",
-      type: "standard"
+      label: t("detailsListAudienceText"),
+      value: getManifestationAudience(manifestation, t)
+    },
+    {
+      label: t("detailsListAuthorsText"),
+      value: getManifestationAuthors(manifestation)
+    },
+    {
+      label: t("detailsListPhysicalDescriptionText"),
+      value: getManifestationPhysicalDescription(manifestation)
+    },
+    {
+      label: t("detailsListNotesText"),
+      value: getManifestationNotes(manifestation)
+    },
+    {
+      label: t("detailsListSourceText"),
+      value: getManifestationSource(manifestation)
     }
   ];
+
+  const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
+  const access = manifestation.access.map((acc) => acc.__typename);
+  const detailsId = `material-details-${pid}`;
 
   return (
     <div className="material-manifestation-item">
       <div className="material-manifestation-item__availability">
-        {faustId && (
-          <AvailabilityLabel
-            manifestText={materialTypes[0]?.specific}
-            url={new URL("/", getCurrentLocation())} // TODO the correct link must be added
-            faustIds={[faustId]}
-          />
-        )}
+        <AvailabilityLabel
+          manifestText={materialTypes[0]?.materialTypeSpecific.display}
+          faustIds={[faustId]}
+          isbns={identifiers.map((identifier) => identifier.value)}
+          accessTypes={accessTypesCodes}
+          access={access}
+          isVisualOnly
+        />
       </div>
       <div className="material-manifestation-item__cover">
-        <Cover pid={pid as Pid} size="small" animate={false} />
+        <Cover ids={[pid]} size="small" animate={false} />
       </div>
       <div className="material-manifestation-item__text">
-        <h2 className="material-manifestation-item__title text-header-h4">
+        <h3
+          lang={languageIsoCode}
+          id={mainfestationTitleId}
+          className="material-manifestation-item__title text-header-h4"
+        >
           {titles?.main[0]}
-        </h2>
+        </h3>
         <p className="text-small-caption">
-          {t("materialHeaderAuthorByText")} {creatorsText} (
-          {hostPublication?.year?.year})
+          {t("materialHeaderAuthorByText")} {author}
+          {edition?.publicationYear?.display &&
+            ` (${edition.publicationYear.display})`}
         </p>
 
         <div
@@ -141,6 +152,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           }}
           role="button"
           tabIndex={0}
+          aria-controls={detailsId}
+          aria-expanded={isOpen}
         >
           <p className="link-tag text-small-caption">
             {t("detailsOfTheMaterialText")}
@@ -148,15 +161,20 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <MaterialDetailsList className="mt-24" data={listDescriptionData} />
+          <MaterialDetailsList
+            id={detailsId}
+            className="mt-24"
+            data={detailsListData}
+          />
         )}
       </div>
       <div className="material-manifestation-item__buttons">
-        <ButtonSmallFilled label={t("reserveText")} disabled={false} />
-        {/* TODO The button has no functionality so far. This will come later */}
-        <span className="link-tag text-small-caption material-manifestation-item__find">
-          {t("findOnBookshelfText")}
-        </span>
+        <MaterialButtons
+          manifestations={[manifestation]}
+          size="small"
+          workId={workId}
+          materialTitleId={mainfestationTitleId}
+        />
       </div>
     </div>
   );

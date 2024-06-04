@@ -1,0 +1,737 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870970-basis:20636866",
+      "titles": {
+        "full": ["Turen går til Rom"],
+        "original": []
+      },
+      "abstract": [
+        "Turen Går Til Rom dækker alle de centrale kvarterer i Den Evige Stad. I det sidste kapitel er der også forslag til ture ud af byen. Den kendte dansk-italienske journalist Alfredo Tesio tager kyndigt sine læsere med på en tidsrejse gennem Roms forunderlige historie. Byen er dog meget mere end romerske søjler og barok-facader. Rom er fuld af indtryk, og bogen har derfor også mange gode bud på spisesteder, cafeer og shopping-muligheder, ligesom Alfredo Tesio viser vej til grønne parker, smukke torve og andre romantiske hjørner. TUREN GÅR TIL har eksisteret siden 1952 og er blandt verdens hyppigst opdaterede rejsebogsserier. Serien dækker hele verden fra Nordatlanten til Australien. Bøgerne skrives på dansk af forfattere og journalister med et særligt indgående kendskab til de enkelte destinationer. Med nøje udvalgte attraktioner, herunder spisesteder, viser vi vej til de største oplevelser."
+      ],
+      "creators": [
+        {
+          "display": "Alfredo Tesio",
+          "__typename": "Person"
+        }
+      ],
+      "series": [],
+      "seriesMembers": [],
+      "workYear": null,
+      "genreAndForm": ["rejseguides", "rejseførere"],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870970-basis:138130479",
+            "genreAndForm": ["rejseguides"],
+            "source": ["Bibliotekskatalog"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk",
+                  "isoCode": "dan"
+                }
+              ],
+              "notes": []
+            },
+            "titles": {
+              "main": ["Turen går til Rom"],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "materialTypeSpecific": {
+                  "display": "bog"
+                }
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Politiken"],
+            "identifiers": [
+              {
+                "value": "9788740088588"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Thomas Linder Thomsen",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "illustrator"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Marine Gastineau",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "illustrator"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Martin Thomas",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "illustrator"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Ulla Britze",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "korttegner"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Susan Bergqvist",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "korttegner"
+                    }
+                  }
+                ]
+              }
+            ],
+            "edition": {
+              "summary": "30. udgave, 2024",
+              "publicationYear": {
+                "display": "2024"
+              }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": [],
+              "ages": []
+            },
+            "notes": [],
+            "physicalDescriptions": [
+              {
+                "summary": "168 sider: ill. i farver",
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "hostPublication": null,
+            "manifestationParts": null,
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null,
+            "catalogueCodes": {
+              "nationalBibliography": ["DBF202415"],
+              "otherCatalogues": ["ACC202412", "BKM202415", "BKX202413"]
+            }
+          },
+          {
+            "pid": "870970-basis:53976018",
+            "genreAndForm": ["rejseguides"],
+            "source": ["Bibliotekskatalog"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk",
+                  "isoCode": "dan"
+                }
+              ],
+              "notes": []
+            },
+            "titles": {
+              "main": ["Turen går til Rom"],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "materialTypeSpecific": {
+                  "display": "bog"
+                }
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Politiken"],
+            "identifiers": [
+              {
+                "value": "9788740025323"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Ulla Britze",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "korttegner"
+                    }
+                  }
+                ]
+              }
+            ],
+            "edition": {
+              "summary": "28. udgave, 2018",
+              "publicationYear": {
+                "display": "2018"
+              }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": [],
+              "ages": []
+            },
+            "notes": [
+              {
+                "display": ["Med links"]
+              }
+            ],
+            "physicalDescriptions": [
+              {
+                "summary": "168 sider: ill. i farver",
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "hostPublication": null,
+            "manifestationParts": null,
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null,
+            "catalogueCodes": {
+              "nationalBibliography": ["DBF201810"],
+              "otherCatalogues": ["ACC201807", "BKX201809", "BKM201810"]
+            }
+          },
+          {
+            "pid": "870970-basis:61991484",
+            "genreAndForm": ["rejseguides"],
+            "source": ["Bibliotekskatalog"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk",
+                  "isoCode": "dan"
+                }
+              ],
+              "notes": []
+            },
+            "titles": {
+              "main": ["Turen går til Rom"],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "materialTypeSpecific": {
+                  "display": "bog"
+                }
+              }
+            ],
+            "creators": [
+              {
+                "display": "Alfredo Tesio",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Politiken"],
+            "identifiers": [
+              {
+                "value": "9788740063585"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Marine Gastineau",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "illustrator"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Martin Thomas",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "illustrator"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Thomas Linder Thomsen",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "illustrator"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Ulla Britze",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "korttegner"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Susan Bergqvist",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "korttegner"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Trine Blak Kosteljanetz",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "redaktør"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Birgitta Lund",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "diverse"
+                    }
+                  }
+                ]
+              }
+            ],
+            "edition": {
+              "summary": "29. udgave, 2021",
+              "publicationYear": {
+                "display": "2021"
+              }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": [],
+              "ages": []
+            },
+            "notes": [],
+            "physicalDescriptions": [
+              {
+                "summary": "168 sider: ill. i farver",
+                "numberOfPages": 168,
+                "playingTime": null
+              }
+            ],
+            "hostPublication": null,
+            "manifestationParts": null,
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Tesio",
+              "shelfmark": "47.57 Rom"
+            },
+            "workYear": null,
+            "catalogueCodes": {
+              "nationalBibliography": ["DBF202207"],
+              "otherCatalogues": ["ACF202202", "ACC202203", "BKM202207"]
+            }
+          }
+        ],
+        "latest": {
+          "pid": "870970-basis:138130479",
+          "genreAndForm": ["rejseguides"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Turen går til Rom"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "bog"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Alfredo Tesio",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Politiken"],
+          "identifiers": [
+            {
+              "value": "9788740088588"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Thomas Linder Thomsen",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "illustrator"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Marine Gastineau",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "illustrator"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Martin Thomas",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "illustrator"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Ulla Britze",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "korttegner"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Susan Bergqvist",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "korttegner"
+                  }
+                }
+              ]
+            }
+          ],
+          "edition": {
+            "summary": "30. udgave, 2024",
+            "publicationYear": {
+              "display": "2024"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [],
+          "physicalDescriptions": [
+            {
+              "summary": "168 sider: ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            }
+          ],
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Tesio",
+            "shelfmark": "47.57 Rom"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["DBF202415"],
+            "otherCatalogues": ["ACC202412", "BKM202415", "BKX202413"]
+          }
+        },
+        "bestRepresentation": {
+          "pid": "870970-basis:138130479",
+          "genreAndForm": ["rejseguides"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Turen går til Rom"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "bog"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Alfredo Tesio",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Politiken"],
+          "identifiers": [
+            {
+              "value": "9788740088588"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Thomas Linder Thomsen",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "illustrator"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Marine Gastineau",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "illustrator"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Martin Thomas",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "illustrator"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Ulla Britze",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "korttegner"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Susan Bergqvist",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "korttegner"
+                  }
+                }
+              ]
+            }
+          ],
+          "edition": {
+            "summary": "30. udgave, 2024",
+            "publicationYear": {
+              "display": "2024"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [],
+          "physicalDescriptions": [
+            {
+              "summary": "168 sider: ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            }
+          ],
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Tesio",
+            "shelfmark": "47.57 Rom"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["DBF202415"],
+            "otherCatalogues": ["ACC202412", "BKM202415", "BKX202413"]
+          }
+        }
+      },
+      "materialTypes": [
+        {
+          "materialTypeSpecific": {
+            "display": "bog"
+          }
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "dansk",
+          "isoCode": "dan"
+        }
+      ],
+      "subjects": {
+        "all": [
+          {
+            "display": "Rom"
+          },
+          {
+            "display": "Italien"
+          },
+          {
+            "display": "Rejseførere"
+          }
+        ],
+        "dbcVerified": [
+          {
+            "display": "Rom"
+          },
+          {
+            "display": "Italien"
+          }
+        ]
+      },
+      "fictionNonfiction": {
+        "display": "faglitteratur",
+        "code": "NONFICTION"
+      },
+      "dk5MainEntry": {
+        "display": "47.57 Rom"
+      },
+      "relations": {
+        "hasReview": [
+          {
+            "pid": "870971-anmeld:83421541"
+          },
+          {
+            "pid": "870971-anmeld:83421673"
+          },
+          {
+            "pid": "870971-anmeld:62154837"
+          }
+        ],
+        "hasAdaptation": []
+      }
+    }
+  }
+}

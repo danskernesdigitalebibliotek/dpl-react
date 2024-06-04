@@ -1,91 +1,106 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Search Result", () => {
-  it("Should render the search results as expected", () => {
+  it("Should render the site", () => {
     cy.visit(
       "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
-
-    cy.log("Check length of search result list:");
-    cy.get(".search-result-page__list").find("li").should("have.length", 2);
-
-    cy.log("Do the search results have images?");
-    cy.get(".search-result-page__list .search-result-item img")
-      .should("have.attr", "src")
-      .and("match", coverUrlPattern);
-
-    cy.log("Does the search result have favourite buttons?");
-    cy.get(
-      ".search-result-page__list .search-result-item .button-favourite"
-    ).should("have.attr", "aria-label", "Add to favorites");
-
-    cy.log("Does the search result have a series line?");
-    cy.get(
-      ".search-result-page__list .search-result-item .horizontal-term-line"
-    ).should(
-      "contain.text",
-      // TODO: The series string being rendered makes no sense with the dummy data given
-      // and the (lack) of knowledge of which properties to use and how to combine them.
-      // Therefor when data is in place we can revisit this part of the test.
-      "Nr. 1  i serienDummy Some SeriesNr. 1  i serienDummy Some Series"
-    );
-
-    cy.log("Does the search result have titles?");
-    cy.get(".search-result-page__list .search-result-item h2").should(
-      "contain.text",
-      "Dummy Some Title: Full"
-    );
-
-    cy.log("Does the search result have authors?");
-    cy.get(".search-result-page__list .search-result-item").should(
-      "contain.text",
-      "Af Dummy Jens Jensen (Dummy 1839)"
-    );
-
-    cy.log(
-      "Does a search result have the expected number of availibility labels?"
-    );
-    cy.get(
-      ".search-result-page__list :nth-child(1) .search-result-item .search-result-item__availability"
-    )
-      .find("a")
-      .should("have.length", 20);
-
-    cy.log("Do we have a pager?");
-    cy.get(".search-result-pager__title").should(
-      "contain.text",
-      "Viser 2 ud af 9486 resultater"
-    );
-
-    cy.log("Do we have some pager info?");
-    cy.get(".search-result-pager button").should("contain.text", "VIS FLERE");
   });
 
-  it("Shows more items if asked to", () => {
+  it("Renders search title", () => {
+    cy.getBySel("search-result-header")
+      .should("be.visible")
+      .and("contain", "Showing results for “harry” (3537)");
+  });
+
+  it("Renders all the search results", () => {
+    cy.get(".card-list-page__list").find("li").should("have.length", 2);
+  });
+
+  it("Renders the images", () => {
+    cy.get(".card-list-page__list .card-list-item img")
+      .should("have.attr", "src")
+      .and("match", coverUrlPattern);
+  });
+
+  it("Renders the favorite buttons", () => {
+    cy.get(".card-list-page__list .card-list-item .button-favourite").should(
+      "have.attr",
+      "aria-label",
+      "Add Harry : samtaler med prinsen to favorites list"
+    );
+  });
+
+  it("Renders the titles", () => {
+    cy.getBySel("card-list-item-title")
+      .first()
+      .should("be.visible")
+      .and("contain", "Harry : samtaler med prinsen");
+  });
+
+  it("Renders the authors", () => {
+    cy.getBySel("card-list-item-author")
+      .first()
+      .should("be.visible")
+      .and("contain.text", "By Angela Levin");
+  });
+
+  it("Renders one availability labels per material type", () => {
+    cy.getBySel("card-list-item-availability")
+      .eq(1)
+      .find("a")
+      .should("be.visible")
+      .and("have.length", 6);
+  });
+
+  it("Renders the pager", () => {
+    cy.get(".result-pager__title").should(
+      "contain.text",
+      "Showing 2 out of 3537 results"
+    );
+  });
+
+  it("Renders show more button", () => {
+    cy.get(".result-pager button").should("contain.text", "show more");
+  });
+
+  it("Loads more search result items after clicking show more results", () => {
+    cy.get(".result-pager button").click();
+    cy.getBySel("search-result-list").find("li").should("have.length", 4);
+  });
+
+  it("Updates the pager info after clicking show more results", () => {
+    cy.get(".result-pager__title").should(
+      "contain.text",
+      "Showing 4 out of 3537 results"
+    );
+  });
+
+  it("Renders the correct release year for fictional works", () => {
+    cy.getBySel("card-list-item").eq(1).should("contain", "2003");
+  });
+
+  it("Renders the correct release year for non-fictional works", () => {
+    cy.getBySel("card-list-item").first().should("contain", "2018");
+  });
+
+  it("Renders the 0-result page correctly", () => {
+    // Overwrite graphql search query fixture.
+    cy.interceptGraphql({
+      operationName: "searchWithPagination",
+      fixtureFilePath: "search-result/fbi-api-no-results.json"
+    });
     cy.visit(
       "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
-
-    cy.log("Show more results.");
-    cy.get(".search-result-pager button").click();
-
-    cy.log(
-      "Check length of search result list since it should be twice as long."
-    );
-    cy.get(".search-result-page__list").find("li").should("have.length", 4);
-
-    cy.log("The pager info should also have been updated.");
-    cy.get(".search-result-pager__title").should(
-      "contain.text",
-      "Viser 4 ud af 9486 resultater"
-    );
+    cy.getBySel("search-result-zero-hits").should("be.visible");
   });
 
   beforeEach(() => {
     // Intercept graphql search query.
     cy.fixture("search-result/fbi-api.json")
       .then((result) => {
-        cy.intercept("POST", "**/opac/graphql**", result);
+        cy.intercept("POST", "**/next*/graphql**", result);
       })
       .as("Graphql search query");
     // Intercept all images from Cloudinary.
@@ -121,6 +136,13 @@ describe("Search Result", () => {
       statusCode: 404,
       body: {}
     }).as("Material list service");
+
+    // Intercept campaign query.
+    cy.fixture("search-result/campaign.json")
+      .then((result) => {
+        cy.intercept("**/dpl_campaign/match", result);
+      })
+      .as("Campaign service - full campaign");
   });
 });
 

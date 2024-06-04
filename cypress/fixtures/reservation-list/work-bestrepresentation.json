@@ -1,0 +1,44 @@
+{
+  "data": {
+    "manifestation": {
+      "ownerWork": {
+        "manifestations": {
+          "bestRepresentation": {
+            "pid": "870970-basis:22629344",
+            "titles": {
+              "full": ["Best representation of dummy title"]
+            },
+            "abstract": ["Dummy Some abstract ..."],
+            "edition": {
+              "summary": "3. udgave, 1. oplag (2019)",
+              "publicationYear": {
+                "display": "2006"
+              }
+            },
+            "materialTypes": [
+              {
+                "materialTypeSpecific": { "display": "Dummy bog" }
+              }
+            ],
+            "series": [
+              {
+                "numberInSeries": {
+                  "number": [1]
+                },
+                "title": "Detektivbureau Nr. 2"
+              }
+            ],
+            "creators": [
+              {
+                "display": "Dummy Jens Jensen"
+              },
+              {
+                "display": "Dummy Some Corporation"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

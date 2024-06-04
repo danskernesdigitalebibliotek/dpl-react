@@ -1,140 +1,249 @@
+import { withQuery } from "@storybook/addon-queryparams";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { withQuery } from "@storybook/addon-queryparams";
-import LoanList, { LoanListEntryProps } from "./loan-list.entry";
+import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
+import blockedArgs from "../../../core/storybook/blockedArgs";
+import globalTextArgs from "../../../core/storybook/globalTextArgs";
+import LoanList from "./loan-list.entry";
+import groupModalArgs from "../../../core/storybook/groupModalArgs";
+import loanGroupModalArgs from "../../../core/storybook/loanGroupModalArgs";
+import materialDetailsModalArgs from "../../../core/storybook/materialDetailsModalArgs";
+import renewalArgs from "../../../core/storybook/renewalArgs";
+import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
+import globalConfigArgs from "../../../core/storybook/globalConfigArgs";
 
 export default {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
-    loanListTitleText: {
-      defaultValue: "Dine lånte materialer",
+    ...serviceUrlArgs,
+    ...groupModalArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    ...loanGroupModalArgs,
+    ...renewalArgs,
+    ...materialDetailsModalArgs,
+    ...blockedArgs,
+    // Config
+    pageSizeDesktop: {
+      defaultValue: 10,
+      control: { type: "number" }
+    },
+    pageSizeMobile: {
+      defaultValue: 5,
+      control: { type: "number" }
+    },
+    // Config
+    expirationWarningDaysBeforeConfig: {
+      defaultValue: "6",
       control: { type: "text" }
+    },
+    // Texts
+    loanListAriaLabelListButtonText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "This button shows all loans in the list"
+    },
+    loanListAriaLabelStackButtonText: {
+      control: {
+        type: "text"
+      },
+      defaultValue:
+        "This button filters the list, so only one the materials that have the same due date is shown"
+    },
+    loanListDigitalLoansEmptyListText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "You have no digital loans at the moment"
+    },
+    loanListDigitalLoansTitleText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Digital loans"
+    },
+    loanListDigitalPhysicalLoansEmptyListText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "You have 0 loans at the moment"
+    },
+    loanListDueDateModalAriaLabelText: {
+      control: {
+        type: "text"
+      },
+      defaultValue:
+        "This button opens a modal that covers the entire page and contains loans with the same due date as the loan currently in focus"
+    },
+    loanListMaterialLateFeeText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "You will be charged a fee, when the item is returned"
+    },
+    loanListMaterialDaysText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "days"
+    },
+    loanListMaterialDayText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "day"
+    },
+    loanListAdditionalMaterialsText: {
+      control: {
+        type: "text"
+      },
+      defaultValue:
+        '{"type":"plural","text":["+ 1 other material","+ @count other materials"]}'
+    },
+    loanListPhysicalLoansEmptyListText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "You have no physical loans at the moment"
     },
     loanListPhysicalLoansTitleText: {
-      defaultValue: "Fysiske lån",
-      control: { type: "text" }
-    },
-    loanListListText: {
-      defaultValue: "Liste aria text",
-      control: { type: "text" }
-    },
-    loanListStackText: {
-      defaultValue: "Stack aria text",
-      control: { type: "text" }
+      control: {
+        type: "text"
+      },
+      defaultValue: "Physical loans"
     },
     loanListRenewMultipleButtonExplanationText: {
-      defaultValue: "Denne knap åbner en modal",
-      control: { type: "text" }
+      control: {
+        type: "text"
+      },
+      defaultValue:
+        "This button opens a modal that covers the entire page and contains loans with different due dates, if some of the loans in the modal are renewable you can renew them"
     },
     loanListRenewMultipleButtonText: {
-      defaultValue: "Forny flere",
-      control: { type: "text" }
+      control: {
+        type: "text"
+      },
+      defaultValue: "Renew several"
     },
-    loanListMaterialByAuthorText: {
-      defaultValue: "Af",
-      control: { type: "text" }
-    },
-    loanListMaterialAndAuthorText: {
-      defaultValue: "og",
-      control: { type: "text" }
-    },
-    loanListLateFeeDesktopText: {
-      defaultValue: "Du pålægges et gebyr, når materialet afleveres",
-      control: { type: "text" }
-    },
-    loanListLateFeeMobileText: {
-      defaultValue: "Du pålægges et gebyr, når materialet afleveres",
-      control: { type: "text" }
-    },
-    loanListDaysText: {
-      defaultValue: "dage",
-      control: { type: "text" }
-    },
-    LoanListToBeDeliveredText: {
-      defaultValue: "Afleveres",
-      control: { type: "text" }
-    },
-    LoanListMaterialsDesktopText: {
-      defaultValue: "andre materialer",
-      control: { type: "text" }
-    },
-    LoanListMaterialsMobileText: {
-      defaultValue: "andre materialer",
-      control: { type: "text" }
-    },
-    loanListMaterialsModalDesktopText: {
-      defaultValue:
-        "Denne knap åbner en modal der dækker hele vinduet og der viser de lån der har den pågældende udlånsdato",
-      control: { type: "text" }
-    },
-    loanListMaterialsModalMobileText: {
-      defaultValue:
-        "Denne knap åbner en modal der dækker hele vinduet og der viser de lån der har den pågældende udlånsdato",
-      control: { type: "text" }
-    },
-    loanListToBeDeliveredModalText: {
-      defaultValue: "Afleveres",
-      control: { type: "text" }
-    },
-    loanListStatusCircleAriaLabelText: {
-      defaultValue: "Dette materiale skal afleveres om {number} dage", // todo number?
-      control: { type: "text" }
+    loanListNoItemsCanBeRenewedText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "No materials can be renewed"
     },
     loanListStatusBadgeDangerText: {
-      defaultValue: "Overskredet",
-      control: { type: "text" }
+      control: {
+        type: "text"
+      },
+      defaultValue: "Expired"
     },
     loanListStatusBadgeWarningText: {
-      defaultValue: "Udløber snart",
-      control: { type: "text" }
+      control: {
+        type: "text"
+      },
+      defaultValue: "Expiring soon"
     },
-    loanListRenewPossibleText: {
-      defaultValue: "Forny mulige",
-      control: { type: "text" }
-    },
-    loanListSelectPossibleCheckboxText: {
-      defaultValue: "Vælg alle med mulighed for fornyelse",
-      control: { type: "text" }
-    },
-    LoanListDeniedMaxRenewalsReachedText: {
-      defaultValue: "Materialet kan ikke fornyes flere gange",
-      control: { type: "text" }
-    },
-    LoanListDeniedOtherReasonText: {
-      defaultValue: "Materialet er reserveret af andre",
-      control: { type: "text" }
-    },
-    LoanListDeniedInterLibraryLoanText: {
+    loanListStatusCircleAriaLabelText: {
+      control: {
+        type: "text"
+      },
       defaultValue:
-        "Materialet er udlånt fra en anden kommune og fornyelsen er derfor betinget af et andet biblioteks accept",
-      control: { type: "text" }
+        '{"type":"plural","text":["This material is due in one day","This material is due in @count days"]}'
     },
-    LoanListToBeDeliveredMaterialText: {
-      defaultValue: "Afleveres",
-      control: { type: "text" }
+    loanListTitleText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Your loans"
     },
-    LoanListLabelCheckboxMaterialModalText: {
-      defaultValue: "Vælg element til fornyelse",
-      control: { type: "text" }
+    loanListToBeDeliveredDigitalMaterialText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Due date @date"
     },
-    LoanListCloseModalText: {
-      defaultValue: "Luk forny lån modal",
-      control: { type: "text" }
+    loanListToBeDeliveredText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Due date @date"
     },
-    LoanListModalDescriptionText: {
-      defaultValue:
-        "Denne modal grupperer lån efter afleveringsdato og gør det muligt at forny lån",
-      control: { type: "text" }
+    etAlText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "et al."
     },
-    LoanListEmptyPhysicalLoansText: {
-      defaultValue: "Du har i øjeblikket ingen fysiske lån",
+    materialByAuthorText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "By"
+    },
+    materialAndAuthorText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "and"
+    },
+    publizonAudioBookText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Audiobook"
+    },
+    publizonEbookText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "E-book"
+    },
+    publizonPodcastText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Podcast"
+    },
+    groupModalHeaderText: {
+      control: {
+        type: "text"
+      },
+      defaultValue: "Renew several"
+    },
+    resultPagerStatusText: {
+      defaultValue: "Showing @itemsShown out of @hitcount loans",
       control: { type: "text" }
     }
   },
   decorators: [withQuery]
 } as ComponentMeta<typeof LoanList>;
 
-export const LoanListEntry: ComponentStory<typeof LoanList> = (
-  args: LoanListEntryProps
-) => <LoanList {...args} />;
+const Template: ComponentStory<typeof LoanList> = (props) => (
+  <LoanList {...props} />
+);
+
+export const LoanListEntry = Template.bind({});
+LoanListEntry.args = {};
+const { dueDateModal, loanDetails, allLoansId } = getModalIds();
+export const LoanListDetailsModal = Template.bind({});
+LoanListDetailsModal.parameters = {
+  query: {
+    modal: `${loanDetails}9562505082`
+  }
+};
+
+export const LoanListDueDateModal = Template.bind({});
+LoanListDueDateModal.parameters = {
+  query: {
+    modal: `${dueDateModal}2022-12-15`
+  }
+};
+
+export const LoanListRenewLoansModal = Template.bind({});
+LoanListRenewLoansModal.parameters = {
+  query: {
+    modal: allLoansId
+  }
+};

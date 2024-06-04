@@ -7,12 +7,21 @@
           "term": "Harry Potter og De Vises Sten",
           "work": {
             "workId": "work-of:870970-basis:22629344",
-            "titles": { "main": ["Harry Potter og De Vises Sten"] },
+            "titles": {
+              "main": [
+                "Harry Potter og de vises sten"
+              ]
+            },
             "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
+              {
+                "display": "Joanne K. Rowling"
+              }
             ],
-            "manifestations": { "first": { "pid": "870970-basis:22629344" } }
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:38289977"
+              }
+            }
           }
         },
         {
@@ -20,25 +29,43 @@
           "term": "Harry Potter",
           "work": {
             "workId": "work-of:870970-basis:22677780",
-            "titles": { "main": ["Dummy Some Title"] },
+            "titles": {
+              "main": [
+                "Harry Potter og Hemmelighedernes Kammer"
+              ]
+            },
             "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
+              {
+                "display": "Joanne K. Rowling"
+              }
             ],
-            "manifestations": { "first": { "pid": "870970-basis:22677780" } }
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:61636935"
+              }
+            }
           }
         },
         {
-          "type": "SUBJECT",
-          "term": "Harry Hole",
+          "type": "TITLE",
+          "term": "Har døden taget noget fra dig så giv det tilbage",
           "work": {
-            "workId": "work-of:870970-basis:53045650",
-            "titles": { "main": ["Dummy Some Title"] },
+            "workId": "work-of:870970-basis:53053149",
+            "titles": {
+              "main": [
+                "Har døden taget noget fra dig så giv det tilbage"
+              ]
+            },
             "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
+              {
+                "display": "Naja Marie Aidt"
+              }
             ],
-            "manifestations": { "first": { "pid": "870970-basis:53045650" } }
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:53111203"
+              }
+            }
           }
         },
         {
@@ -46,38 +73,65 @@
           "term": "Hartmut Rosa",
           "work": {
             "workId": "work-of:870970-basis:50999335",
-            "titles": { "main": ["Dummy Some Title"] },
+            "titles": {
+              "main": [
+                "Fremmedgørelse og acceleration"
+              ]
+            },
             "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
+              {
+                "display": "Hartmut Rosa"
+              }
             ],
-            "manifestations": { "first": { "pid": "870970-basis:50999335" } }
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:50999335"
+              }
+            }
+          }
+        },
+        {
+          "type": "SUBJECT",
+          "term": "Harry Hole",
+          "work": {
+            "workId": "work-of:870970-basis:53045650",
+            "titles": {
+              "main": [
+                "Tørst"
+              ]
+            },
+            "creators": [
+              {
+                "display": "Jo Nesbø"
+              }
+            ],
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:54215797"
+              }
+            }
           }
         },
         {
           "type": "CREATOR",
-          "term": "Susan Hart (f. 1956)",
+          "term": "Haruki Murakami",
           "work": {
-            "workId": "work-of:870970-basis:28028881",
-            "titles": { "main": ["Dummy Some Title"] },
+            "workId": "work-of:870970-basis:54103581",
+            "titles": {
+              "main": [
+                "Mordet på kommandanten. Bog 1 : En ide viser sig"
+              ]
+            },
             "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
+              {
+                "display": "Haruki Murakami"
+              }
             ],
-            "manifestations": { "first": { "pid": "870970-basis:28028881" } }
-          }
-        },
-        {
-          "type": "TITLE",
-          "term": "Harry Potter og fangen fra Azkaban",
-          "work": {
-            "workId": "work-of:870970-basis:22995154",
-            "titles": { "main": ["Dummy Some Title"] },
-            "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
-            ],
-            "manifestations": { "first": { "pid": "870970-basis:22995154" } }
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:54936508"
+              }
+            }
           }
         },
         {
@@ -85,38 +139,39 @@
           "term": "Harry Dresden",
           "work": {
             "workId": "work-of:870970-basis:53182623",
-            "titles": { "main": ["Dummy Some Title"] },
-            "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
-            ],
-            "manifestations": { "first": { "pid": "870970-basis:53182623" } }
+            "titles": {
+              "main": [
+                "The Dresden files"
+              ]
+            },
+            "creators": [],
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:53182623"
+              }
+            }
           }
         },
         {
-          "type": "TITLE",
-          "term": "Harry Potter og Fønixordenen",
+          "type": "COMPOSIT",
+          "term": "Joanne K. Rowling Harry Potter og fangen fra Azkaban",
           "work": {
-            "workId": "work-of:870970-basis:25245784",
-            "titles": { "main": ["Dummy Some Title"] },
+            "workId": "work-of:870970-basis:22995154",
+            "titles": {
+              "main": [
+                "Harry Potter og fangen fra Azkaban"
+              ]
+            },
             "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
+              {
+                "display": "Joanne K. Rowling"
+              }
             ],
-            "manifestations": { "first": { "pid": "870970-basis:25245784" } }
-          }
-        },
-        {
-          "type": "CREATOR",
-          "term": "Yuval Noah Harari",
-          "work": {
-            "workId": "work-of:870970-basis:51725832",
-            "titles": { "main": ["Dummy Some Title"] },
-            "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
-            ],
-            "manifestations": { "first": { "pid": "870970-basis:51725832" } }
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:54871945"
+              }
+            }
           }
         },
         {
@@ -124,12 +179,43 @@
           "term": "Harry Potter and the philosopher's stone",
           "work": {
             "workId": "work-of:870970-basis:42042455",
-            "titles": { "main": ["Dummy Some Title"] },
+            "titles": {
+              "main": [
+                "Harry Potter and the philosopher's stone"
+              ]
+            },
             "creators": [
-              { "display": "Dummy Jens Jensen" },
-              { "display": "Dummy Some Corporation" }
+              {
+                "display": "Joanne K. Rowling"
+              }
             ],
-            "manifestations": { "first": { "pid": "870970-basis:42042455" } }
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:134987766"
+              }
+            }
+          }
+        },
+        {
+          "type": "CREATOR",
+          "term": "Stephen Harper",
+          "work": {
+            "workId": "work-of:870970-basis:28813597",
+            "titles": {
+              "main": [
+                "Enigma"
+              ]
+            },
+            "creators": [
+              {
+                "display": "Stephen Harper"
+              }
+            ],
+            "manifestations": {
+              "bestRepresentation": {
+                "pid": "870970-basis:28813597"
+              }
+            }
           }
         }
       ]

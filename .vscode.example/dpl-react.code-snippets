@@ -5,16 +5,16 @@
   // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
   // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
   // Placeholders with the same ids are connected.
-  "Dpl-react functional component": {
+  "Functional component": {
     "scope": "typescriptreact",
     "prefix": "fcdplreact",
     "body": [
       "import * as React from \"react\";",
       "import { FC } from \"react\";",
       "",
-      "export interface ${1:component}Props {}",
+      "export interface ${TM_FILENAME_BASE}Props {}",
       "",
-      "const ${1:component}: FC<${1:component}Props> = ({}) => {",
+      "const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = ({}) => {",
       "return (",
       "<>",
       "Hello",
@@ -22,8 +22,24 @@
       ");",
       "};",
       "",
-      "export default ${1:component};"
+      "export default ${TM_FILENAME_BASE};"
     ],
     "description": "Creates a skeleton for a new functional component in dpl-react style"
-  }
+  },
+  "String literal variable": {
+    "scope": "typescriptreact",
+    "prefix": "slvdplreact",
+    "body": [
+      "${${1:variable}}",
+    ],
+    "description": "Formats a varaible to be used in a string literal"
+  },
+  "Debug": {
+    "scope": "typescriptreact",
+    "prefix": "debugdplreact",
+    "body": [
+      "console.debug(${1:variable});",
+    ],
+    "description": "Writes console.debug();"
+  },
 }

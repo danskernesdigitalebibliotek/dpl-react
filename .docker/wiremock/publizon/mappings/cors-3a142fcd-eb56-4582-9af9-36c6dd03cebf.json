@@ -1,0 +1,26 @@
+{
+  "id": "2a87cbe7-56ac-4a57-a5f5-f61a2286d80f",
+  "name": "CORS",
+  "request": {
+    "urlPathPattern": "/.*",
+    "method": "OPTIONS"
+  },
+  "response": {
+    "status": 200,
+    "body": "",
+    "headers": {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+      "X-Content-Type-Options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-xss-protection": "1; mode=block"
+    }
+  },
+  "uuid": "2a87cbe7-56ac-4a57-a5f5-f61a2286d80f",
+  "persistent": true,
+  "priority": 1,
+  "insertionIndex": 0,
+  "postServeActions": []
+}

@@ -2,39 +2,42 @@ import React, { useEffect, useState } from "react";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
-import MaterialHeader from "../../components/material/MaterialHeader";
-import {
-  ExternalReview,
-  InfomediaReview,
-  LibrariansReview,
-  useGetMaterialQuery,
-  ManifestationsSimpleFieldsFragment
-} from "../../core/dbc-gateway/generated/graphql";
+import { useDeepCompareEffect } from "react-use";
 import { WorkId } from "../../core/utils/types/ids";
 import MaterialDescription from "../../components/material/MaterialDescription";
-import Disclosure from "../../components/material/disclosures/disclosure";
 import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
-
 import { useText } from "../../core/utils/text";
-import {
-  creatorsToString,
-  filterCreators,
-  flattenCreators,
-  getManifestationPid
-} from "../../core/utils/helpers/general";
-import MaterialDetailsList, {
-  ListData
-} from "../../components/material/MaterialDetailsList";
+import MaterialDetailsList from "../../components/material/MaterialDetailsList";
 import {
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
 import {
-  getManifestationFromType,
-  getManifestationType,
-  getWorkManifestation
+  getDetailsListData,
+  getInfomediaIds,
+  divideManifestationsByMaterialType,
+  getBestMaterialTypeForWork,
+  getManifestationsOrderByTypeAndYear,
+  isParallelReservation
 } from "./helper";
+import { Manifestation, Work } from "../../core/utils/types/entities";
+import { PeriodicalEdition } from "../../components/material/periodical/helper";
+import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
+import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
+import DigitalModal from "../../components/material/digital-modal/DigitalModal";
+import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
+import MaterialHeader from "../../components/material/MaterialHeader";
+import MaterialSkeleton from "../../components/material/MaterialSkeleton";
+import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
+import MaterialDisclosure from "./MaterialDisclosure";
+import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
+import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
+import { usePatronData } from "../../core/utils/helpers/usePatronData";
+import { useGetWork } from "../../core/utils/useGetWork";
+import { getWorkPid } from "../../core/utils/helpers/general";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -42,177 +45,204 @@ export interface MaterialProps {
 
 const Material: React.FC<MaterialProps> = ({ wid }) => {
   const t = useText();
+  const [selectedManifestations, setSelectedManifestations] = useState<
+    Manifestation[] | null
+  >(null);
+  const [selectedPeriodical, setSelectedPeriodical] =
+    useState<PeriodicalEdition | null>(null);
+  const { data, isLoading, workType } = useGetWork(wid);
+  const { data: userData } = usePatronData();
+  const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
+  const { track } = useStatistics();
 
-  const [currentManifestation, setCurrentManifestation] =
-    useState<ManifestationsSimpleFieldsFragment | null>(null);
+  useEffect(() => {
+    setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));
+  }, [userData]);
 
-  const { data, isLoading } = useGetMaterialQuery({
-    wid
-  });
+  useDeepCompareEffect(() => {
+    if (data?.work?.genreAndForm) {
+      track("click", {
+        id: statistics.materialGenre.id,
+        name: statistics.materialGenre.name,
+        trackedData: data.work.genreAndForm.join(", ")
+      });
+    }
+    if (data?.work?.mainLanguages) {
+      track("click", {
+        id: statistics.materialLanguage.id,
+        name: statistics.materialLanguage.name,
+        trackedData: data.work.mainLanguages
+          .map((language) => language.display)
+          .join(", ")
+      });
+    }
+    if (data?.work?.dk5MainEntry) {
+      track("click", {
+        id: statistics.materialTopicNumber.id,
+        name: statistics.materialTopicNumber.name,
+        trackedData: data.work.dk5MainEntry.display
+      });
+    }
+    // We can afford to only check the latest manifestation because audience doesn't
+    // vary between a specific work's manifestations (information provided by DDF).
+    if (data?.work?.manifestations.latest.audience?.generalAudience) {
+      track("click", {
+        id: statistics.materialTopicNumber.id,
+        name: statistics.materialTopicNumber.name,
+        trackedData:
+          data.work.manifestations.latest.audience.generalAudience.join(", ")
+      });
+    }
+    if (data?.work?.fictionNonfiction) {
+      track("click", {
+        id: statistics.materialFictionNonFiction.id,
+        name: statistics.materialFictionNonFiction.name,
+        trackedData: data.work.fictionNonfiction.display
+      });
+    }
+    // In this case we only want to track once - on work data load
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
-  // This useEffect selects the current manifestation
+  // This useEffect selects the current manifestation.
   useEffect(() => {
     if (!data?.work) return;
-    const { work } = data;
+    const { work } = data as { work: Work };
     const type = getUrlQueryParam("type");
-    // if there is no type in the url, getWorkManifestation is used to set the state and url type parameters
+    const manifestationsByMaterialType = divideManifestationsByMaterialType(
+      work.manifestations.all
+    );
+    // If there is no type in the url, we select one.
     if (!type) {
-      const workManifestation = getWorkManifestation(work);
-      setCurrentManifestation(workManifestation);
+      const bestMaterialType = getBestMaterialTypeForWork(work);
+      setSelectedManifestations(manifestationsByMaterialType[bestMaterialType]);
       setQueryParametersInUrl({
-        type: getManifestationType(workManifestation)
+        type: bestMaterialType
       });
       return;
     }
-    // if there is a type, getManifestationFromType will sort and filter all manifestation and choose the first one
-    const manifestationFromType = getManifestationFromType(type, work);
-    if (manifestationFromType) {
-      setCurrentManifestation(manifestationFromType);
-    }
+    // If there is a type, use it to select a group of manifestations.
+    setSelectedManifestations(manifestationsByMaterialType[type]);
   }, [data]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (isLoading || !data?.work || !selectedManifestations) {
+    return <MaterialSkeleton />;
   }
 
-  // TODO: handle error if data is empty array
-  if (!data?.work) {
-    return <div>No work data</div>;
-  }
-
-  const { manifestations, titles, mainLanguages, creators, workYear } =
-    data.work;
-
-  // TODO: Temporary way to get a pid we can use for showing a cover for the material.
-  // It should be replaced with some dynamic feature
-  // that follows the current type of the material.
-  const pid = getManifestationPid(manifestations);
-  const fallBackManifestation = getWorkManifestation(data?.work);
-  const creatorsText = creatorsToString(
-    flattenCreators(filterCreators(creators, ["Person"])),
-    t
-  );
-
-  const allLanguages = mainLanguages
-    .map((language) => language.display)
-    .join(", ");
-
-  const listDescriptionData: ListData = [
-    {
-      label: t("typeText"),
-      value:
-        (currentManifestation?.materialTypes?.[0]?.specific && "") ||
-        (fallBackManifestation?.materialTypes?.[0]?.specific && ""),
-      type: "standard"
-    },
-    {
-      label: t("languageText"),
-      value: allLanguages,
-      type: "standard"
-    },
-    {
-      label: t("genreAndFormText"),
-      value:
-        (currentManifestation?.genreAndForm?.[0] ?? "") ||
-        (fallBackManifestation?.genreAndForm?.[0] ?? ""),
-      type: "standard"
-    },
-    { label: t("contributorsText"), value: creatorsText, type: "link" },
-    {
-      label: t("originalTitleText"),
-      value: titles && workYear ? `${titles?.original} ${workYear}` : "",
-      type: "standard"
-    },
-    {
-      label: t("isbnText"),
-      value:
-        (currentManifestation?.identifiers?.[0].value ?? "") ||
-        (fallBackManifestation?.identifiers?.[0].value ?? ""),
-      type: "standard"
-    },
-    {
-      label: t("editionText"),
-      value:
-        (currentManifestation?.edition?.summary ?? "") ||
-        (fallBackManifestation?.edition?.summary ?? ""),
-      type: "standard"
-    },
-    {
-      label: t("scopeText"),
-      value:
-        String(
-          currentManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
-        ) ||
-        String(
-          fallBackManifestation?.physicalDescriptions?.[0]?.numberOfPages ?? ""
-        ),
-      type: "standard"
-    },
-    {
-      label: t("publisherText"),
-      value:
-        (currentManifestation?.hostPublication?.publisher ?? "") ||
-        (fallBackManifestation?.hostPublication?.publisher ?? ""),
-      type: "standard"
-    },
-    {
-      label: t("audienceText"),
-      value:
-        (currentManifestation?.audience?.generalAudience[0] ?? "") ||
-        (fallBackManifestation?.audience?.generalAudience[0] ?? ""),
-      type: "standard"
+  const {
+    work,
+    work: {
+      manifestations: { all: manifestations },
+      relations: { hasReview }
     }
-  ];
+  } = data as { work: Work };
+
+  const pid = getWorkPid(work);
+  const detailsListData = getDetailsListData({
+    manifestation: selectedManifestations[0],
+    work,
+    t
+  });
+  const infomediaIds = getInfomediaIds(selectedManifestations);
+
+  // Get disclosure URL parameter from the current URL to see if it should be open.
+  const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
   return (
-    <main className="material-page">
+    <section className="material-page">
       <MaterialHeader
         wid={wid}
-        work={data.work}
-        manifestation={
-          currentManifestation as ManifestationsSimpleFieldsFragment
-        }
-        selectManifestationHandler={setCurrentManifestation}
-      />
-      <MaterialDescription pid={pid} work={data.work} />
-      <Disclosure
-        mainIconPath={VariousIcon}
-        title={`${t("editionsText")} (${
-          data?.work?.manifestations?.all.length
-        })`}
-        disclosureIconExpandAltText=""
+        work={work}
+        selectedManifestations={selectedManifestations}
+        setSelectedManifestations={setSelectedManifestations}
+        selectedPeriodical={selectedPeriodical}
+        selectPeriodicalHandler={setSelectedPeriodical}
+        isGlobalMaterial={workType === "global"}
       >
-        {manifestations.all.map((manifestation) => {
-          return (
-            <MaterialMainfestationItem
-              key={manifestation.pid}
-              manifestation={manifestation}
-            />
-          );
-        })}
-      </Disclosure>
-      <Disclosure
-        mainIconPath={Receipt}
+        {manifestations.map((manifestation) => (
+          <ReservationFindOnShelfModals
+            patron={userData?.patron}
+            manifestations={[manifestation]}
+            selectedPeriodical={selectedPeriodical}
+            work={work}
+            setSelectedPeriodical={setSelectedPeriodical}
+          />
+        ))}
+
+        {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
+          <InfomediaModal
+            selectedManifestations={selectedManifestations}
+            infoMediaId={infomediaIds[0]}
+          />
+        )}
+        {hasCorrectAccess("DigitalArticleService", selectedManifestations) &&
+          !isAnonymous() &&
+          !isUserBlocked && (
+            <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
+          )}
+        {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
+        Online materials lead to external links, or to same modals as are created for singular editions. */}
+        {isParallelReservation(selectedManifestations) && (
+          <ReservationFindOnShelfModals
+            patron={userData?.patron}
+            manifestations={selectedManifestations}
+            selectedPeriodical={selectedPeriodical}
+            work={work}
+            setSelectedPeriodical={setSelectedPeriodical}
+          />
+        )}
+      </MaterialHeader>
+      <MaterialDescription pid={pid} work={work} />
+      {/* Since we cannot trust the editions for global manifestations */}
+      {/* we limit them to only occur if the loaded work is global */}
+      {workType === "local" && (
+        <MaterialDisclosure
+          title={`${t("editionsText")} (${manifestations.length})`}
+          icon={VariousIcon}
+          dataCy="material-editions-disclosure"
+        >
+          <>
+            {getManifestationsOrderByTypeAndYear(manifestations).map(
+              (manifestation: Manifestation) => {
+                return (
+                  <MaterialMainfestationItem
+                    key={manifestation.pid}
+                    manifestation={manifestation}
+                    workId={wid}
+                  />
+                );
+              }
+            )}
+          </>
+        </MaterialDisclosure>
+      )}
+      <MaterialDisclosure
+        dataCy="material-details-disclosure"
         title={t("detailsText")}
-        disclosureIconExpandAltText=""
+        icon={Receipt}
       >
         <MaterialDetailsList
+          id={`material-details-${wid}`}
           className="pl-80 pb-48"
-          data={listDescriptionData}
+          data={detailsListData}
         />
-      </Disclosure>
-      {data.work.reviews && data.work.reviews.length >= 1 && (
-        <Disclosure title={t("reviewsText")} mainIconPath={CreateIcon}>
-          <MaterialReviews
-            listOfReviews={
-              data.work.reviews as Array<
-                LibrariansReview | ExternalReview | InfomediaReview
-              >
-            }
-          />
-        </Disclosure>
+      </MaterialDisclosure>
+      {hasReview && hasReview.length > 0 && (
+        <DisclosureControllable
+          id="reviews"
+          showContent={shouldOpenReviewDisclosure}
+          cyData="material-reviews-disclosure"
+          summary={
+            <DisclosureSummary
+              title={t("reviewsText")}
+              mainIconPath={CreateIcon}
+            />
+          }
+        >
+          <MaterialReviews pids={hasReview.map((review) => review.pid)} />
+        </DisclosureControllable>
       )}
-    </main>
+    </section>
   );
 };
 

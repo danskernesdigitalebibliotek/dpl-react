@@ -1,5 +1,11 @@
 {
   "baseUrl": "http://localhost:57021",
   "integrationFolder": "./src",
-  "testFiles": "**/*.test.*"
+  "testFiles": "@(apps|components)/**/*.test.@(ts|tsx)",
+  "defaultCommandTimeout": 10000,
+  "retries": {
+    "runMode": 3,
+    "openMode": 0
+  },
+  "projectId": "4trcdv"
 }

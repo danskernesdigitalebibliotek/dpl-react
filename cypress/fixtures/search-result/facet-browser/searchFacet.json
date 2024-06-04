@@ -1,0 +1,377 @@
+{
+  "data": {
+    "search": {
+      "facets": [
+        {
+          "name": "mainLanguages",
+          "values": [
+            {
+              "key": "eng",
+              "term": "Engelsk",
+              "score": 4914
+            },
+            {
+              "key": "dan",
+              "term": "Dansk",
+              "score": 2284
+            },
+            {
+              "key": "mul",
+              "term": "flere sprog",
+              "score": 716
+            },
+            {
+              "key": "ger",
+              "term": "Tysk",
+              "score": 462
+            },
+            {
+              "key": "swe",
+              "term": "Svensk",
+              "score": 315
+            },
+            {
+              "key": "und",
+              "term": "Sproget kan ikke bestemmes",
+              "score": 222
+            },
+            {
+              "key": "fre",
+              "term": "Fransk",
+              "score": 182
+            },
+            {
+              "key": "ita",
+              "term": "Italiensk",
+              "score": 171
+            },
+            {
+              "key": "spa",
+              "term": "Spansk",
+              "score": 138
+            },
+            {
+              "key": "lat",
+              "term": "Latin",
+              "score": 93
+            }
+          ]
+        },
+        {
+          "name": "accessTypes",
+          "values": [
+            {
+              "key": "physical",
+              "term": "Fysisk",
+              "score": 7259
+            },
+            {
+              "key": "online",
+              "term": "Digital",
+              "score": 2444
+            }
+          ]
+        },
+        {
+          "name": "childrenOrAdults",
+          "values": [
+            {
+              "key": "voksenmaterialer",
+              "term": "voksenmaterialer",
+              "score": 8703
+            },
+            {
+              "key": "børnematerialer",
+              "term": "børnematerialer",
+              "score": 861
+            }
+          ]
+        },
+        {
+          "name": "creators",
+          "values": [
+            {
+              "key": "Joanne K. Rowling",
+              "term": "Joanne K. Rowling",
+              "score": 214
+            },
+            {
+              "key": "Jo Nesbø",
+              "term": "Jo Nesbø",
+              "score": 83
+            },
+            {
+              "key": "Harry Haue",
+              "term": "Harry Haue",
+              "score": 82
+            },
+            {
+              "key": "Michael Connelly",
+              "term": "Michael Connelly",
+              "score": 79
+            },
+            {
+              "key": "Jon Bokenkamp",
+              "term": "Jon Bokenkamp",
+              "score": 74
+            },
+            {
+              "key": "Harry Lahrmann",
+              "term": "Harry Lahrmann",
+              "score": 73
+            },
+            {
+              "key": "Harry Rasmussen",
+              "term": "Harry Rasmussen",
+              "score": 64
+            },
+            {
+              "key": "Harry Søiberg",
+              "term": "Harry Søiberg",
+              "score": 62
+            },
+            {
+              "key": "Duke Ellington",
+              "term": "Duke Ellington",
+              "score": 61
+            },
+            {
+              "key": "Harry Belafonte",
+              "term": "Harry Belafonte",
+              "score": 57
+            }
+          ]
+        },
+        {
+          "name": "fictionNonfiction",
+          "values": [
+            {
+              "key": "nonfiktion",
+              "term": "Faglitteratur",
+              "score": 3956
+            },
+            {
+              "key": "fiktion",
+              "term": "Skønlitteratur",
+              "score": 1790
+            }
+          ]
+        },
+        {
+          "name": "fictionalCharacter",
+          "values": []
+        },
+        {
+          "name": "genreAndForm",
+          "values": [
+            {
+              "key": "jazz",
+              "term": "jazz",
+              "score": 770
+            },
+            {
+              "key": "rock",
+              "term": "rock",
+              "score": 414
+            },
+            {
+              "key": "krimi",
+              "term": "krimi",
+              "score": 276
+            },
+            {
+              "key": "swing",
+              "term": "swing",
+              "score": 227
+            },
+            {
+              "key": "evergreen",
+              "term": "evergreen",
+              "score": 197
+            },
+            {
+              "key": "filmmusik - soundtracks",
+              "term": "filmmusik - soundtracks",
+              "score": 166
+            },
+            {
+              "key": "pop",
+              "term": "pop",
+              "score": 145
+            },
+            {
+              "key": "tv-serier",
+              "term": "tv-serier",
+              "score": 134
+            },
+            {
+              "key": "eventyrlige fortællinger",
+              "term": "eventyrlige fortællinger",
+              "score": 119
+            },
+            {
+              "key": "jazz-dansk",
+              "term": "jazz-dansk",
+              "score": 106
+            }
+          ]
+        },
+        {
+          "name": "materialTypes",
+          "values": [
+            {
+              "key": "bog",
+              "term": "bog",
+              "score": 2565
+            },
+            {
+              "key": "cd (musik)",
+              "term": "cd (musik)",
+              "score": 2211
+            },
+            {
+              "key": "grammofonplade",
+              "term": "grammofonplade",
+              "score": 792
+            },
+            {
+              "key": "artikel",
+              "term": "artikel",
+              "score": 1417
+            },
+            {
+              "key": "dvd",
+              "term": "dvd",
+              "score": 582
+            },
+            {
+              "key": "node",
+              "term": "node",
+              "score": 290
+            },
+            {
+              "key": "ebog",
+              "term": "e-bog",
+              "score": 387
+            },
+            {
+              "key": "bånd",
+              "term": "bånd",
+              "score": 292
+            },
+            {
+              "key": "tidsskriftsartikel",
+              "term": "tidsskriftsartikel",
+              "score": 451
+            },
+            {
+              "key": "blu-ray",
+              "term": "blu-ray",
+              "score": 176
+            }
+          ]
+        },
+        {
+          "name": "subjects",
+          "values": [
+            {
+              "key": "vokal",
+              "term": "vokal",
+              "score": 1311
+            },
+            {
+              "key": "instrumental",
+              "term": "instrumental",
+              "score": 655
+            },
+            {
+              "key": "jazz",
+              "term": "jazz",
+              "score": 543
+            },
+            {
+              "key": "rock",
+              "term": "rock",
+              "score": 448
+            },
+            {
+              "key": "Harry Potter",
+              "term": "Harry Potter",
+              "score": 400
+            },
+            {
+              "key": "magi",
+              "term": "magi",
+              "score": 312
+            },
+            {
+              "key": "troldmænd",
+              "term": "troldmænd",
+              "score": 309
+            },
+            {
+              "key": "swing",
+              "term": "swing",
+              "score": 304
+            },
+            {
+              "key": "fantasy",
+              "term": "fantasy",
+              "score": 280
+            },
+            {
+              "key": "krimi",
+              "term": "krimi",
+              "score": 278
+            }
+          ]
+        },
+        {
+          "name": "workTypes",
+          "values": [
+            {
+              "key": "literature",
+              "term": "Bøger",
+              "score": 3004
+            },
+            {
+              "key": "music",
+              "term": "Musik",
+              "score": 2705
+            },
+            {
+              "key": "article",
+              "term": "Artikler",
+              "score": 2206
+            },
+            {
+              "key": "movie",
+              "term": "Film",
+              "score": 682
+            },
+            {
+              "key": "sheetmusic",
+              "term": "Noder",
+              "score": 290
+            },
+            {
+              "key": "review",
+              "term": "Anmeldelser",
+              "score": 234
+            },
+            {
+              "key": "periodica",
+              "term": "Periodika",
+              "score": 27
+            },
+            {
+              "key": "game",
+              "term": "Spil",
+              "score": 25
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

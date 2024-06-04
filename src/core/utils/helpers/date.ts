@@ -1,9 +1,26 @@
-const dateMatchesUsFormat = (date: string | null) => {
-  // regex for finding date string from modal query param
-  const regex = /^\d{4}-\d{2}-\d{2}$/;
-  const dateFound = date ? date.toString().match(regex) : null;
-  const returnValue = dateFound && dateFound.length > 0 ? dateFound[0] : null;
-  return returnValue;
+import dayjs from "dayjs";
+
+const getCurrentUnixTime = () => Math.floor(Date.now() / 1000);
+
+export const dateHasPassed = (date: string) => {
+  return dayjs().isAfter(date, "day");
 };
 
-export default dateMatchesUsFormat;
+export const formatDate = (date: string) => {
+  return dayjs(date).format("DD-MM-YYYY");
+};
+export const formatDateTime = (date: string) => {
+  return dayjs(date).format("DD-MM-YYYY HH:mm");
+};
+
+export const formatDateDependingOnDigitalMaterial = ({
+  date,
+  isDigital
+}: {
+  date: string;
+  isDigital: boolean;
+}) => {
+  return isDigital ? formatDateTime(date) : formatDate(date);
+};
+
+export default getCurrentUnixTime;

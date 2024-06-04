@@ -1,42 +1,12 @@
+import FetchFailedCriticalError from "../../fetchers/FetchFailedCriticalError";
+import { getServiceUrlWithParams } from "../../fetchers/helpers";
 import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
-
-const baseURL = "https://fbs-openplatform.dbc.dk"; // use your own URL here or environment variable
-
-type FetchParams =
-  | string
-  | string[][]
-  | Record<string, string>
-  | URLSearchParams
-  | undefined;
-
-/**
- * Build URLSearchParams instance with support for arrays of values.
- *
- * By default URLSearchParams will join arrays of values with a comma. This is
- * not desirable for our use case. Instead we want arrays of values to be
- * represented as multiple entries with the same key.
- */
-function buildParams(data: FetchParams) {
-  let params: URLSearchParams;
-
-  if (typeof data === "string" || data === undefined) {
-    params = new URLSearchParams(data);
-  } else {
-    params = new URLSearchParams();
-
-    Object.entries(data).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((inner) => {
-          params.append(key, inner.toString());
-        });
-      } else {
-        params.append(key, value.toString());
-      }
-    });
-  }
-
-  return params;
-}
+import { getUserToken } from "../../utils/helpers/user";
+import {
+  getServiceBaseUrl,
+  serviceUrlKeys
+} from "../../utils/reduxMiddleware/extractServiceBaseUrls";
+import FbsServiceHttpError from "./FbsServiceHttpError";
 
 export const fetcher = async <ResponseType>({
   url,
@@ -46,41 +16,54 @@ export const fetcher = async <ResponseType>({
   data
 }: {
   url: string;
-  method: "get" | "post" | "put" | "delete" | "patch" | "head";
+  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD";
   headers?: object;
   params?: unknown;
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  const libraryToken = getToken(TOKEN_LIBRARY_KEY);
-  const authHeaders = libraryToken
-    ? ({ Authorization: `Bearer ${libraryToken}` } as object)
+  const token = getUserToken() ?? getToken(TOKEN_LIBRARY_KEY);
+  const baseUrl = getServiceBaseUrl(serviceUrlKeys.fbs);
+
+  const authHeaders = token
+    ? ({ Authorization: `Bearer ${token}` } as object)
     : {};
 
   const body = data ? JSON.stringify(data) : null;
+  const serviceUrl = getServiceUrlWithParams({ baseUrl, url, params });
 
-  const response = await fetch(
-    `${baseURL}${url}${params ? `?${buildParams(params as FetchParams)}` : ""}`,
-    {
+  try {
+    const response = await fetch(serviceUrl, {
       method,
       headers: {
         ...headers,
         ...authHeaders
       },
       body
-    }
-  );
+    });
 
-  if (!response.ok) {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-
-  try {
-    return (await response.json()) as ResponseType;
-  } catch (e) {
-    if (!(e instanceof SyntaxError)) {
-      throw e;
+    if (!response.ok) {
+      throw new FbsServiceHttpError(
+        response.status,
+        response.statusText,
+        serviceUrl
+      );
     }
+
+    try {
+      return (await response.json()) as ResponseType;
+    } catch (e) {
+      if (!(e instanceof SyntaxError)) {
+        throw e;
+      }
+    }
+  } catch (error: unknown) {
+    if (error instanceof FbsServiceHttpError) {
+      throw error;
+    }
+
+    const message = error instanceof Error ? error.message : "Unknown error";
+    throw new FetchFailedCriticalError(message, serviceUrl);
   }
 
   // Do nothing. Some of our responses are intentionally empty and thus

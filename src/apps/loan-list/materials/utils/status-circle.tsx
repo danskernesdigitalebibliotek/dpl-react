@@ -1,51 +1,72 @@
-import React from "react";
-import dayjs from "dayjs";
+import React, { FC } from "react";
+import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
+import StatusCircleIcon from "./status-circle-icon";
+import {
+  getColors,
+  daysBetweenTodayAndDate,
+  daysBetweenDates
+} from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
-import statusThreshold from "../../../../core/configuration/status-thresholds.json";
-import colors from "../../../../core/configuration/colors.json";
+import useLoanThresholds from "../../../../core/utils/useLoanThresholds";
 
 interface StatusCircleProps {
-  dueDate: string;
-  loanDate: string | undefined;
+  dueDate?: string | null;
+  loanDate: string;
 }
 
-const StatusCircle: React.FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
+const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   const t = useText();
-  const dueD = dayjs(dueDate);
-  const today = dayjs();
-  const loanD = dayjs(loanDate);
-
-  const daysBetweenTodayAndDue = Math.ceil(dueD.diff(today, "day", true));
-  const daysBetweenLoanAndDue = Math.ceil(dueD.diff(loanD, "day", true));
-
-  const percent = 100 - (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
+  const colors = getColors();
+  const threshold = useLoanThresholds();
 
   let color = colors.default;
-  if (daysBetweenTodayAndDue <= statusThreshold.danger) {
-    color = colors.danger;
-  } else if (daysBetweenTodayAndDue <= statusThreshold.warning) {
-    color = colors.warning;
+  let percent = 100;
+  let daysBetweenTodayAndDue = null;
+  let daysBetweenLoanAndDue = null;
+  if (dueDate) {
+    daysBetweenTodayAndDue = daysBetweenTodayAndDate(dueDate);
+    daysBetweenLoanAndDue = daysBetweenDates(dueDate, loanDate);
+
+    percent = 100 - (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
+    if (percent < 0) {
+      percent = 100;
+    }
+    if (daysBetweenTodayAndDue < threshold.danger) {
+      color = colors.danger;
+    } else if (daysBetweenTodayAndDue <= threshold.warning) {
+      color = colors.warning;
+    }
+  } else {
+    color = colors.success;
   }
 
   return (
-    <div
-      className="list-reservation__counter"
-      aria-label={t("loanListStatusCircleAriaLabelText")}
-    >
-      <div
-        role="progressbar"
-        className="counter"
-        aria-hidden
-        style={{
-          background: `radial-gradient( closest-side, var(--parent-bg-color) calc(100% - 3px), transparent calc(100% - 2px), transparent 0 100% ), conic-gradient(${color} ${percent}%, #DBDBDB 0)`
-        }}
-      >
-        <span className="counter__value">
-          {daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0}
-        </span>
-        <span className="counter__label">{t("loanListDaysText")}</span>
-      </div>
-    </div>
+    <StatusCircleIcon percent={percent} color={color as string}>
+      {daysBetweenTodayAndDue !== null && daysBetweenTodayAndDue !== null && (
+        <>
+          <span className="counter__value color-secondary-gray">
+            {/* I am not using string interpolation here because of styling */}
+            {/* if somehow it is possible to break text in one div into two lines */}
+            {/* where the first line has another font size AND is only the first "word" */}
+            {/* then this should be changed to do that */}
+            {daysBetweenTodayAndDue > 0 ? daysBetweenTodayAndDue : 0}{" "}
+          </span>
+          <span className="counter__label color-secondary-gray">
+            {daysBetweenTodayAndDue === 1
+              ? t("loanListMaterialDayText")
+              : t("loanListMaterialDaysText")}
+          </span>
+        </>
+      )}
+      {daysBetweenTodayAndDue === null && daysBetweenTodayAndDue === null && (
+        <>
+          <img className="counter__icon" src={check} alt="" />
+          <span className="counter__label">
+            {t("readyForLoanCounterLabelText")}
+          </span>
+        </>
+      )}
+    </StatusCircleIcon>
   );
 };
 

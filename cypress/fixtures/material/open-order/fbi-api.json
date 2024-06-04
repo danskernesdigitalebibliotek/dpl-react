@@ -1,0 +1,360 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870970-basis:44926407",
+      "titles": {
+        "full": [
+          "Duchess of Death : the unauthorized biography of Agatha Christie"
+        ],
+        "original": []
+      },
+      "abstract": [
+        "Summary: Utilizing over 5,000 previously unpublished letters, notes, and documents, the author tells how Christie's life was \"as full of romance, travel, wealth, and scandal as any mystery Christie ever crafted.\" -- from publisher description."
+      ],
+      "creators": [
+        {
+          "display": "Richard Hack",
+          "__typename": "Person"
+        }
+      ],
+      "series": [],
+      "seriesMembers": [],
+      "workYear": null,
+      "genreAndForm": ["biografier", "bibliografier"],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870970-basis:44926407",
+            "genreAndForm": ["biografier"],
+            "source": ["Bibliotekskatalog"],
+            "languages": {
+              "main": [
+                {
+                  "display": "engelsk",
+                  "isoCode": "eng"
+                }
+              ],
+              "notes": []
+            },
+            "titles": {
+              "main": ["Duchess of Death"],
+              "original": []
+            },
+            "fictionNonfiction": {
+              "display": "faglitteratur",
+              "code": "NONFICTION"
+            },
+            "materialTypes": [
+              {
+                "materialTypeSpecific": {
+                  "display": "bog"
+                }
+              }
+            ],
+            "creators": [
+              {
+                "display": "Richard Hack",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["JR Books"],
+            "identifiers": [
+              {
+                "value": "9781906779832"
+              }
+            ],
+            "contributors": [],
+            "edition": {
+              "summary": "1. edition, 2010",
+              "publicationYear": {
+                "display": "2010"
+              }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": [],
+              "ages": []
+            },
+            "notes": [
+              {
+                "display": ["Med litteraturhenvisninger"]
+              }
+            ],
+            "physicalDescriptions": [
+              {
+                "summary": "xxxiii, 284 sider, 8 sider med tavler",
+                "numberOfPages": 325,
+                "playingTime": null
+              }
+            ],
+            "hostPublication": null,
+            "manifestationParts": null,
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Hack",
+              "shelfmark": "99.4 Christie, Agatha"
+            },
+            "workYear": null,
+            "catalogueCodes": {
+              "nationalBibliography": [],
+              "otherCatalogues": ["OVE999999"]
+            }
+          }
+        ],
+        "latest": {
+          "pid": "870970-basis:44926407",
+          "genreAndForm": ["biografier"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "engelsk",
+                "isoCode": "eng"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Duchess of Death"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "bog"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Richard Hack",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["JR Books"],
+          "identifiers": [
+            {
+              "value": "9781906779832"
+            }
+          ],
+          "contributors": [],
+          "edition": {
+            "summary": "1. edition, 2010",
+            "publicationYear": {
+              "display": "2010"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [
+            {
+              "display": ["Med litteraturhenvisninger"]
+            }
+          ],
+          "physicalDescriptions": [
+            {
+              "summary": "xxxiii, 284 sider, 8 sider med tavler",
+              "numberOfPages": 325,
+              "playingTime": null
+            }
+          ],
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Hack",
+            "shelfmark": "99.4 Christie, Agatha"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": [],
+            "otherCatalogues": ["OVE999999"]
+          }
+        },
+        "bestRepresentation": {
+          "pid": "870970-basis:44926407",
+          "genreAndForm": ["biografier"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "engelsk",
+                "isoCode": "eng"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Duchess of Death"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "bog"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Richard Hack",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["JR Books"],
+          "identifiers": [
+            {
+              "value": "9781906779832"
+            }
+          ],
+          "contributors": [],
+          "edition": {
+            "summary": "1. edition, 2010",
+            "publicationYear": {
+              "display": "2010"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [
+            {
+              "display": ["Med litteraturhenvisninger"]
+            }
+          ],
+          "physicalDescriptions": [
+            {
+              "summary": "xxxiii, 284 sider, 8 sider med tavler",
+              "numberOfPages": 325,
+              "playingTime": null
+            }
+          ],
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Hack",
+            "shelfmark": "99.4 Christie, Agatha"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": [],
+            "otherCatalogues": ["OVE999999"]
+          }
+        }
+      },
+      "materialTypes": [
+        {
+          "materialTypeSpecific": {
+            "display": "bog"
+          }
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "engelsk",
+          "isoCode": "eng"
+        }
+      ],
+      "subjects": {
+        "all": [
+          {
+            "display": "forfattere"
+          },
+          {
+            "display": "kriminalforfattere"
+          },
+          {
+            "display": "England"
+          },
+          {
+            "display": "Authors, English -- 20th century -- Biography"
+          },
+          {
+            "display": "Detective and mystery stories -- Authorship"
+          },
+          {
+            "display": "Agatha Christie (1890-1976)"
+          },
+          {
+            "display": "Agatha Christie"
+          },
+          {
+            "display": "1900-tallet"
+          }
+        ],
+        "dbcVerified": [
+          {
+            "display": "forfattere"
+          },
+          {
+            "display": "kriminalforfattere"
+          },
+          {
+            "display": "England"
+          },
+          {
+            "display": "Agatha Christie"
+          },
+          {
+            "display": "1900-tallet"
+          }
+        ]
+      },
+      "fictionNonfiction": {
+        "display": "faglitteratur",
+        "code": "NONFICTION"
+      },
+      "dk5MainEntry": {
+        "display": "99.4 Christie, Agatha"
+      },
+      "relations": {
+        "hasReview": [],
+        "hasAdaptation": []
+      }
+    }
+  }
+}

@@ -2,6 +2,8 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Hello, HelloProps, TextProps } from "./hello";
 import { withText } from "../../core/utils/text";
+import globalTextArgs from "../../core/storybook/globalTextArgs";
+import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 type Args = {
   args: HelloProps | TextProps;
@@ -14,6 +16,8 @@ export default {
   title: "Components/Hello",
   component: WrappedHello,
   argTypes: {
+    ...globalTextArgs,
+    ...globalConfigArgs,
     whatText: {
       defaultValue: "world",
       control: { type: "text" }

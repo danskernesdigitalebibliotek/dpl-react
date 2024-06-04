@@ -1,6 +1,11 @@
+import FetchFailedError from "../../fetchers/FetchFailedError";
+import { getServiceUrlWithParams } from "../../fetchers/helpers";
 import { getToken, TOKEN_USER_KEY } from "../../token";
-
-const baseURL = "https://prod.materiallist.dandigbib.org"; // use your own URL here or environment variable
+import {
+  getServiceBaseUrl,
+  serviceUrlKeys
+} from "../../utils/reduxMiddleware/extractServiceBaseUrls";
+import MaterialListServiceHttpError from "./MaterialListServiceHttpError";
 
 export const fetcher = async <ResponseType>({
   url,
@@ -14,16 +19,8 @@ export const fetcher = async <ResponseType>({
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  type FetchParams =
-    | string
-    | string[][]
-    | Record<string, string>
-    | URLSearchParams
-    | undefined;
-
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
-
   const userToken = getToken(TOKEN_USER_KEY);
   const authHeaders = userToken
     ? ({ Authorization: `Bearer ${userToken}` } as object)
@@ -31,29 +28,47 @@ export const fetcher = async <ResponseType>({
 
   const headers = {
     ...authHeaders,
-    ...additionalHeaders
+    ...additionalHeaders,
+    "Accept-Version": "2"
   };
-  const body = data ? JSON.stringify(data) : null;
 
-  const response = await fetch(
-    `${baseURL}${url}${new URLSearchParams(params as FetchParams)}`,
-    {
+  const body = data ? JSON.stringify(data) : null;
+  const serviceUrl = getServiceUrlWithParams({
+    baseUrl: getServiceBaseUrl(serviceUrlKeys.materialList),
+    url,
+    params
+  });
+
+  try {
+    const response = await fetch(serviceUrl, {
       method,
       headers,
       body
-    }
-  );
+    });
 
-  if (!response.ok) {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-
-  try {
-    return (await response.json()) as ResponseType;
-  } catch (e) {
-    if (!(e instanceof SyntaxError)) {
-      throw e;
+    if (!response.ok) {
+      throw new MaterialListServiceHttpError(
+        response.status,
+        response.statusText,
+        serviceUrl
+      );
     }
+
+    // Return the response body in JSON format if the method is GET.
+    if (method === "get") {
+      try {
+        return (await response.json()) as ResponseType;
+      } catch (error) {
+        throw new Error("The response body contains invalid JSON");
+      }
+    }
+  } catch (error) {
+    if (error instanceof MaterialListServiceHttpError) {
+      throw error;
+    }
+
+    const message = error instanceof Error ? error.message : "Unknown error";
+    throw new FetchFailedError(message, serviceUrl);
   }
 
   // Do nothing. Some of our responses are intentionally empty and thus

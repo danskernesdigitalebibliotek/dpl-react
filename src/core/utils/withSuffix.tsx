@@ -22,12 +22,14 @@ export default <T,>(
       })
     );
 
-    // Put found urls in redux store.
-    store.dispatch(
-      reduxAction({
-        entries: suffixEntries
-      })
-    );
+    // Put found props in redux store - if any.
+    if (Object.keys(suffixEntries).length) {
+      store.dispatch(
+        reduxAction({
+          entries: suffixEntries
+        })
+      );
+    }
     // Since this is a High Order Functional Component
     // we do not know what props we are dealing with.
     // That is a part of the design.

@@ -12,7 +12,9 @@ import {
   QueryFunction,
   MutationFunction,
   UseQueryResult,
-  QueryKey
+  QueryKey,
+  useQueryClient,
+  QueryClient
 } from "react-query";
 import type { List, GetListParams } from "./model";
 import { fetcher, ErrorType } from "./mutator/fetcher";
@@ -131,8 +133,15 @@ export const useHasItem = <
 /**
  * Add collection to the the list.
  */
-export const addItem = (listId: string, itemId: string) => {
-  return fetcher<void>({ url: `/list/${listId}/${itemId}`, method: "put" });
+export const addItem = (
+  listId: string,
+  itemId: string,
+  queryClient: QueryClient
+): Promise<void> => {
+  return fetcher<void>({
+    url: `/list/${listId}/${itemId}`,
+    method: "put"
+  }).then(() => queryClient.invalidateQueries(getGetListQueryKey(listId)));
 };
 
 export type AddItemMutationResult = NonNullable<
@@ -152,6 +161,7 @@ export const useAddItem = <
     TContext
   >;
 }) => {
+  const queryClient = useQueryClient();
   const { mutation: mutationOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
@@ -160,7 +170,7 @@ export const useAddItem = <
   > = (props) => {
     const { listId, itemId } = props ?? {};
 
-    return addItem(listId, itemId);
+    return addItem(listId, itemId, queryClient);
   };
 
   return useMutation<
@@ -174,8 +184,15 @@ export const useAddItem = <
 /**
  * Delete collection from list.
  */
-export const removeItem = (listId: string, itemId: string) => {
-  return fetcher<void>({ url: `/list/${listId}/${itemId}`, method: "delete" });
+export const removeItem = (
+  listId: string,
+  itemId: string,
+  queryClient: QueryClient
+): Promise<void> => {
+  return fetcher<void>({
+    url: `/list/${listId}/${itemId}`,
+    method: "delete"
+  }).then(() => queryClient.invalidateQueries(getGetListQueryKey(listId)));
 };
 
 export type RemoveItemMutationResult = NonNullable<
@@ -184,6 +201,8 @@ export type RemoveItemMutationResult = NonNullable<
 
 export type RemoveItemMutationError = ErrorType<unknown>;
 
+// TODO: I probably had greatness and prosperity in mind when creating this function,
+// but I'm not sure how it functions. Find out or delete.
 export const useRemoveItem = <
   TError = ErrorType<unknown>,
   TContext = unknown
@@ -195,6 +214,7 @@ export const useRemoveItem = <
     TContext
   >;
 }) => {
+  const queryClient = useQueryClient();
   const { mutation: mutationOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
@@ -203,7 +223,7 @@ export const useRemoveItem = <
   > = (props) => {
     const { listId, itemId } = props ?? {};
 
-    return removeItem(listId, itemId);
+    return removeItem(listId, itemId, queryClient);
   };
 
   return useMutation<

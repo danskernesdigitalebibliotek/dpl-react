@@ -4,7 +4,7 @@ describe("Search header app", () => {
   beforeEach(() => {
     cy.fixture("search-header-data.json")
       .then((result) => {
-        cy.intercept("POST", "**/opac/graphql", {
+        cy.intercept("POST", "**/next*/graphql", {
           statusCode: 200,
           body: result
         });
@@ -26,53 +26,55 @@ describe("Search header app", () => {
       })
       .as("Cover service");
 
-    cy.visit("/iframe.html?args=viewMode=story&id=apps-search-header--default");
+    cy.visit("/iframe.html?args=viewMode=story&id=apps-header--search");
   });
 
   it("Allows user to write into the search field", () => {
-    cy.get(".header__menu-search-input")
-      .should("be.visible")
-      .focus()
-      .type("ad");
+    cy.getBySel("search-header-input").should("be.visible").focus().type("ad");
   });
 
   it("Doesn't show suggestions before 3 characters are typed", () => {
-    cy.get(".header__menu-search-input").focus().type("ha");
-    cy.get(".autosuggest").should("not.be.visible");
-    cy.get(".header__menu-search-input").focus().type("r");
-    cy.get(".autosuggest").should("be.visible");
+    cy.getBySel("search-header-input").focus().type("ha");
+    cy.getBySel("autosuggest").should("not.be.visible");
+    cy.getBySel("search-header-input").focus().type("r");
+    cy.getBySel("autosuggest-text-item").should("be.visible");
   });
 
   it("Allows use of arrow keys to navigate autosuggest", () => {
-    cy.get(".header__menu-search-input").focus().type("harry");
-    cy.get(".autosuggest").should("contain.text", "Harry");
-    cy.get(".header__menu-search-input").focus().type("{downArrow}");
-    cy.get("#downshift-0-item-0").should("have.attr", "aria-selected", "true");
+    cy.getBySel("search-header-input").focus().type("harry");
+    cy.getBySel("autosuggest").should("contain.text", "Harry");
+    cy.getBySel("search-header-input").focus().type("{downArrow}");
+    cy.getBySel("autosuggest-text-item")
+      .first()
+      .should("have.attr", "aria-selected", "true");
   });
 
   it("Matches text in the search field with highlighted item", () => {
-    cy.get(".header__menu-search-input").focus().type("har");
-    cy.get(".autosuggest").should("contain.text", "Harry");
-    cy.get(".header__menu-search-input")
+    cy.getBySel("search-header-input").focus().type("har");
+    cy.getBySel("autosuggest").should("contain.text", "Harry");
+    cy.getBySel("search-header-input")
       .focus()
       .type("{downArrow}")
       .should("have.attr", "value", "Harry Potter");
   });
 
   it("Shows both parts of the autosuggest", () => {
-    cy.get(".header__menu-search-input").focus().type("har");
-    cy.get(".autosuggest").should("contain.text", "Harry");
-    cy.contains("Harry Potter (emne)");
-    cy.contains("Harry Potter og De Vises Sten");
+    cy.getBySel("search-header-input").focus().type("har");
+    cy.getBySel("autosuggest").should("contain.text", "Harry");
+    cy.contains("Harry Potter (topic)");
+    cy.contains("Harry Potter og de vises sten");
   });
 
   it("Shows cover pictures for the material suggestions", () => {
-    cy.get(".header__menu-search-input").focus().type("har");
-    cy.get(".autosuggest__cover>div>span>img").should(
-      "have.attr",
-      "src",
-      "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886150/bogportalen.dk/9788702029444.jpg"
-    );
+    cy.getBySel("search-header-input").focus().type("har");
+    cy.getBySel("autosuggest-material-item")
+      .first()
+      .find("img")
+      .should(
+        "have.attr",
+        "src",
+        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886150/bogportalen.dk/9788702029444.jpg"
+      );
   });
 });
 

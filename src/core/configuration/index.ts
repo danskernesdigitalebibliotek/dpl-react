@@ -1,7 +1,24 @@
 import { isMobile } from "react-device-detect";
-import search from "./search.json";
+import pageSize from "./page-size.json";
+import pageSizeLoanList from "./page-size-loan-list.json";
+import pageSizeReservationList from "./page-size-reservation-list.json";
+import recommenderMaterialLimits from "./recommender-material-limits.json";
+import coverTints from "./cover-tints.json";
+import colors from "./colors.json";
+import modalIds from "./modal-ids.json";
+import reservation from "./reservation.json";
+import payment from "./payment.json";
 
-type ConfScope = "search";
+export type ConfScope =
+  | "pageSize"
+  | "coverTints"
+  | "pageSizeLoanList"
+  | "pageSizeReservationList"
+  | "recommenderMaterialLimits"
+  | "colors"
+  | "modalIds"
+  | "reservation"
+  | "payment";
 type Device = "mobile" | "desktop";
 type ConfigurationEntry = {
   [key: string]: string | number | Record<string, unknown>;
@@ -16,7 +33,6 @@ export const getConf = (
   device?: Device
 ) => {
   const subConf = configuration[type];
-
   if (device) {
     return subConf[device] as ConfigurationEntry;
   }
@@ -33,5 +49,13 @@ export const getDeviceConf = (
 };
 
 export default {
-  search
+  pageSize,
+  coverTints,
+  pageSizeLoanList,
+  pageSizeReservationList,
+  colors,
+  recommenderMaterialLimits,
+  modalIds,
+  reservation,
+  payment
 } as Configuration;

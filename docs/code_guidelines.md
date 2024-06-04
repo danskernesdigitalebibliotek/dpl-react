@@ -169,7 +169,7 @@ ones which provide similar functionality. This ensures consistency and avoids
 unnecessary increases in the package size of the project.
 
 The reasoning behind the choice of key dependencies have been documented in
-[the architecture directory](../architecture).
+[the architecture directory](./architecture).
 
 ### Altering third party code
 
@@ -256,3 +256,79 @@ future analysis and the project should always pass through static analysis.
 If there are discrepancies between the automated checks and the standards
 defined here then developers are encouraged to point this out so the automated
 checks or these standards can be updated accordingly.
+
+## Writing frontend tests
+
+The frontend tests are executed in
+[Cypress](https://docs.cypress.io/guides/overview/why-cypress).
+
+The test files are placed alongside the application components
+and are named following pattern: "*.test.ts". Eg.: material.test.ts.
+
+### Test structuring
+
+After quite a lot of bad experiences with unstable tests
+and reading both the official documentation
+and articles about the best practices we have ended up with a recommendation of
+how to write the tests.
+
+According to [this article](https://medium.com/@theomakaurii/when-to-use-commands-vs-assertions-when-testing-36e41d9a71c)
+it is important to distinguish between commands and assertions.
+Commands are used in the beginning of a statement and yields a chainable element
+that can be followed by one or more assertions in the end.
+
+So first we target an element.
+Next we can make one or more assertions on the element.
+
+We have created some helper commands for targeting an element:
+getBySel, getBySelLike and getBySelStartEnd.
+They look for elements as advised by the
+[Selecting Elements](https://docs.cypress.io/guides/references/best-practices#Selecting-Elements)
+section from the Cypress documentation about best practices.
+
+Example of a statement:
+
+```typescript
+// Targeting.
+cy.getBySel("reservation-success-title-text")
+  // Assertion.
+  .should("be.visible")
+  // Another assertion.
+  .and("contain", "Material is available and reserved for you!");
+```
+
+## Writing Unit Tests
+
+We are using Vitest as framework for running unit tests.
+By using that we can test functions (and therefore also hooks) and classes.
+
+### Where do I place my tests?
+
+They have to be placed in `src/tests/unit`.
+
+Or they can also be placed next to the code at the end of a file as described
+[here](https://vitest.dev/guide/in-source.html#setup).
+
+```typescript
+export const sum = (...numbers: number[]) =>
+  numbers.reduce((total, number) => total + number, 0);
+
+if (import.meta.vitest) {
+  const { describe, expect, it } = import.meta.vitest;
+
+  describe("sum", () => {
+    it("should sum numbers", () => {
+      expect(sum(1, 2, 3)).toBe(6);
+    });
+  });
+}
+```
+
+In that way it helps us to test and mock unexported functions.
+
+### Testing hooks
+
+For testing hooks we are using the library
+[`@testing-library/react-hooks`](https://react-hooks-testing-library.com/)
+and you can also take a look at the [text test](../src/tests/unit/text.test.tsx)
+to see how it can be done.

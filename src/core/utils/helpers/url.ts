@@ -9,7 +9,7 @@ export const appendQueryParametersToUrl = (
   // We need to clone url in order not to manipulate the incoming object.
   const processedUrl = new URL(url);
   Object.keys(parameters).forEach((key) => {
-    processedUrl.searchParams.append(key, parameters[key]);
+    processedUrl.searchParams.set(key, encodeURI(parameters[key]));
   });
 
   return processedUrl;
@@ -34,8 +34,18 @@ export const setQueryParametersInUrl = (parameters: {
   window.history.replaceState(null, "", processedUrl);
 };
 
+export const replaceCurrentLocation = (replacementUrl: URL) => {
+  window.history.replaceState(null, "", replacementUrl);
+};
+
+export const removeQueryParametersFromUrl = (parameter: string) => {
+  const processedUrl = new URL(getCurrentLocation());
+  processedUrl.searchParams.delete(parameter);
+  replaceCurrentLocation(processedUrl);
+};
+
 export const redirectTo = (url: URL): void => {
-  window.location.replace(url);
+  window.location.assign(String(url));
 };
 
 export const constructUrlWithPlaceholder = (
@@ -72,9 +82,10 @@ export const constructMaterialUrl = (
   workId: WorkId,
   type?: string
 ) => {
-  const materialUrl = url;
+  const materialUrl = new URL(url);
+
   // Replace placeholders with values.
-  materialUrl.pathname = processUrlPlaceholders(url.pathname, [
+  materialUrl.pathname = processUrlPlaceholders(materialUrl.pathname, [
     [":workid", workId]
   ]);
 
@@ -91,6 +102,23 @@ export const constructSearchUrl = (searchUrl: URL, q: string) =>
     q
   });
 
+export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>
+  appendQueryParametersToUrl(advancedSearchUrl, {
+    advancedSearchCql: q
+  });
+
+export const constructSearchUrlWithFilter = (args: {
+  searchUrl: URL;
+  selectedItemString: string;
+  filter: { [type: string]: string };
+}) => {
+  const { searchUrl, selectedItemString, filter } = args;
+  return appendQueryParametersToUrl(searchUrl, {
+    q: selectedItemString,
+    ...filter
+  });
+};
+
 export const turnUrlStringsIntoObjects = (urls: { [key: string]: string }) => {
   return Object.keys(urls).reduce(
     (acc: { [key: string]: URL }, key: string) => {
@@ -102,3 +130,38 @@ export const turnUrlStringsIntoObjects = (urls: { [key: string]: string }) => {
     {}
   );
 };
+
+type RedirectToLoginAndBackParams = {
+  authUrl: URL;
+  returnUrl: URL;
+  trackingFunction?: () => Promise<unknown>;
+};
+export function redirectToLoginAndBack({
+  authUrl,
+  returnUrl,
+  trackingFunction
+}: RedirectToLoginAndBackParams) {
+  const { pathname, search, hash } = returnUrl;
+  const localPathToReturnTo = `${pathname}${search}${hash}`;
+  const redirectUrl = appendQueryParametersToUrl(authUrl, {
+    "current-path": localPathToReturnTo
+  });
+  if (trackingFunction) {
+    trackingFunction().then(() => redirectTo(redirectUrl));
+  }
+  redirectTo(redirectUrl);
+}
+
+// Checks whether a valid URL can be made out of a given string.
+export const isUrlValid = (text: string) => {
+  try {
+    const url = new URL(text);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (err) {
+    return false;
+  }
+};
+
+export const currentLocationWithParametersUrl = (
+  params: Record<string, string>
+) => appendQueryParametersToUrl(new URL(getCurrentLocation()), params);

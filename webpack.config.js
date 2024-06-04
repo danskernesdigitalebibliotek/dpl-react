@@ -1,8 +1,10 @@
 const path = require("path");
 const glob = require("glob");
+const webpack = require("webpack");
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const { getWebPackEnvVariables } = require("./webpack.helpers");
 
 module.exports = (_env, argv) => {
   const production = argv.mode === "production";
@@ -42,6 +44,14 @@ module.exports = (_env, argv) => {
     );
   }
 
+  // Add environment variables to webpack in development mode
+  if (!production) {
+    const variables = getWebPackEnvVariables();
+    if (variables) {
+      plugins.push(new webpack.DefinePlugin(variables));
+    }
+  }
+
   return {
     entry: {
       ...entry,
@@ -70,7 +80,11 @@ module.exports = (_env, argv) => {
           exclude: /node_modules/,
           use: ["babel-loader"]
         },
-        // We consume svg files from dpl-design-system package
+        // We consume css and svg files from dpl-design-system package
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"]
+        },
         {
           test: /\.svg$/,
           use: [
@@ -82,8 +96,9 @@ module.exports = (_env, argv) => {
       ]
     },
     stats: {
-      entrypoints: false,
-      modules: false
+      assets: true,
+      chunks: true,
+      modules: true
     },
     plugins
   };

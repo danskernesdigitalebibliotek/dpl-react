@@ -1,33 +1,54 @@
-version: '3.7'
+version: "3.7"
 
 services:
-  node:
-    image: node:16
-    user: node
-    init: true
-    working_dir: /home/node/app
-    volumes:
-      - root:/home/node/app
-      - ~/.npmrc:/home/node/.npmrc
-    ports:
-      - "80"
-    command: 'yarn dev'
-    environment:
-      VIRTUAL_HOST: dpl-react.docker
-      VIRTUAL_PORT: 80
-      STORYBOOK_CLIENT_ID: bdc1d425-9117-4867-acb9-c7307ddc2e0f
-      YARN_CACHE_FOLDER: /home/node/app/.cache
-
   wiremock:
     image: up9inc/wiremock-studio:2.32.0-18
     ports:
       - "9000"
+      # FBS
       - "8100"
+      # Publizon
+      - "8110"
+      # CMS
+      - "8120"
     volumes:
       - wiremock_data:/home/wiremock
     environment:
+      VIRTUAL_HOST: dpl-mock.docker
+      VIRTUAL_PORT: 9000
+
+  wiremock-fbs:
+    image: wiremock/wiremock:2.32.0
+    command: "--enable-stub-cors  --global-response-templating" # Enable automatic sending of cross-origin (CORS) response headers.
+    ports:
+      - "8080"
+    volumes:
+      - wiremock_fbs_data:/home/wiremock
+    environment:
       VIRTUAL_HOST: fbs-mock.docker
-      VIRTUAL_PORT: 8100
+      VIRTUAL_PORT: 8080
+
+  wiremock-publizon:
+    image: wiremock/wiremock:2.32.0
+    command: "--enable-stub-cors  --global-response-templating" # Enable automatic sending of cross-origin (CORS) response headers.
+    ports:
+      - "8080"
+    volumes:
+      - wiremock_publizon_data:/home/wiremock
+    environment:
+      VIRTUAL_HOST: publizon-mock.docker
+      VIRTUAL_PORT: 8080
+
+  wiremock-cms:
+    image: wiremock/wiremock:2.32.0
+    command: "--enable-stub-cors  --global-response-templating" # Enable automatic sending of cross-origin (CORS) response headers.
+    ports:
+      - "8080"
+    volumes:
+      - wiremock_cms_data:/home/wiremock
+    environment:
+      VIRTUAL_HOST: cms-mock.docker
+      VIRTUAL_PORT: 8080
 
 volumes:
   root:
@@ -39,4 +60,19 @@ volumes:
     driver_opts:
       type: none
       device: $PWD/.docker/wiremock
+      o: bind
+  wiremock_fbs_data:
+    driver_opts:
+      type: none
+      device: $PWD/.docker/wiremock/fbs
+      o: bind
+  wiremock_publizon_data:
+    driver_opts:
+      type: none
+      device: $PWD/.docker/wiremock/publizon
+      o: bind
+  wiremock_cms_data:
+    driver_opts:
+      type: none
+      device: $PWD/.docker/wiremock/cms
       o: bind

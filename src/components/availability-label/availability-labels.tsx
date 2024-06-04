@@ -1,67 +1,88 @@
 import React from "react";
-import { getManifestationType } from "../../apps/material/helper";
 import {
-  ManifestationsSimpleFieldsFragment,
-  ManifestationsSimpleFragment
-} from "../../core/dbc-gateway/generated/graphql";
-import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
+  getAllFaustIds,
+  getMaterialTypes
+} from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
-import { Pid, WorkId } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import { AvailabilityLabel } from "./availability-label";
+import { Manifestation } from "../../core/utils/types/entities";
+import {
+  divideManifestationsByMaterialType,
+  getAllIdentifiers
+} from "../../apps/material/helper";
 
 export interface AvailabilityLabelsProps {
-  manifestations: ManifestationsSimpleFragment;
+  manifestations: Manifestation[];
   workId: WorkId;
-  manifestation?: ManifestationsSimpleFieldsFragment;
-  selectManifestationHandler?: (
-    manifestation: ManifestationsSimpleFieldsFragment
-  ) => void;
+  selectedManifestations?: Manifestation[];
+  setSelectedManifestations?: (manifestations: Manifestation[]) => void;
+  cursorPointer?: boolean;
 }
-
-export const AvailabiltityLabels: React.FC<AvailabilityLabelsProps> = ({
+export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
   manifestations,
   workId,
-  manifestation,
-  selectManifestationHandler
+  selectedManifestations,
+  setSelectedManifestations,
+  cursorPointer = false
 }) => {
-  const { materialUrl } = useUrls();
+  const u = useUrls();
+  const materialUrl = u("materialUrl");
+  const allMaterialTypes = getMaterialTypes(manifestations);
+  const manifestationsByMaterialType =
+    divideManifestationsByMaterialType(manifestations);
 
+  // Map over the distinct material types and assign manifestations of that type to each label
   return (
     <>
-      {manifestations.all.map((item) => {
-        const { pid, materialTypes } = item;
-        const materialType = materialTypes[0].specific;
-        const faustId = convertPostIdToFaustId(pid as Pid);
+      {allMaterialTypes.map((materialType) => {
+        const isTheOnlyLabel = allMaterialTypes.length === 1;
+        const manifestationsOfMaterialType =
+          manifestationsByMaterialType[materialType];
+        const faustIds = getAllFaustIds(manifestationsOfMaterialType).sort();
+        const identifiers = getAllIdentifiers(manifestationsOfMaterialType);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
+        const accessTypesCodes = manifestationsOfMaterialType
+          .map((manifest) =>
+            manifest.accessTypes.map((accessType) => accessType.code)
+          )
+          .flat();
 
-        if (!faustId) {
-          return null;
-        }
+        const access = manifestationsOfMaterialType
+          .map((manifest) => {
+            return manifest.access.map((acc) => acc.__typename);
+          })
+          .flat();
 
         return (
           <AvailabilityLabel
-            key={pid}
+            key={faustIds.join("-")}
             url={url}
-            faustIds={[faustId]}
+            cursorPointer={cursorPointer}
+            faustIds={faustIds}
             manifestText={materialType}
+            accessTypes={accessTypesCodes}
+            access={access}
             selected={
-              manifestation &&
-              materialType === getManifestationType(manifestation)
+              selectedManifestations &&
+              materialType === getMaterialTypes(selectedManifestations)[0]
             }
             handleSelectManifestation={
-              selectManifestationHandler
+              setSelectedManifestations
                 ? () => {
-                    selectManifestationHandler(item);
+                    setSelectedManifestations(manifestationsOfMaterialType);
                     setQueryParametersInUrl({
                       type: materialType
                     });
                   }
                 : undefined
             }
+            isbns={identifiers}
+            isVisualOnly={isTheOnlyLabel}
           />
         );
       })}

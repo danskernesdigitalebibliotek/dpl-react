@@ -9,10 +9,18 @@
     "plugin:prettier/recommended",
     "plugin:cypress/recommended"
   ],
+  "plugins": [
+    "no-only-tests"
+  ],
   "settings": {
     "react": {
       "version": "16.11.0"
-    }
+    },
+    // Since we use vitest alongside our production code we have to instruct eslint
+    // not to throw the import/no-extraneous-dependencies error when doing so.
+    "import/core-modules": [
+      "vitest"
+    ]
   },
   "env": {
     "browser": true,
@@ -54,20 +62,30 @@
           "/**/*.test.jsx",
           "/**/*.test.ts",
           "/**/*.test.tsx",
+          "vitest.config.ts",
           "webpack.config.js",
+          "webpack.helpers.js",
           "postcss.config.js",
           "orval.config.ts",
           "cypress/plugins/index.js",
-          "cypress/support/index.js",
+          "cypress/support/index.ts",
           "scripts/postcss-node-sass.js",
-          "scripts/post-process-generated-graphql.ts"
+          "scripts/post-process-generated-graphql.ts",
+          "cypress/utils/graphql-test-utils.ts"
         ]
       }
     ],
     // We like to use arrow function syntax also for functional components.
     "react/function-component-definition": "off",
     // No complaints about missing trailing comma
-    "@typescript-eslint/comma-dangle": "off"
+    "@typescript-eslint/comma-dangle": "off",
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        "additionalHooks": "useDeepCompareEffect"
+      }
+    ],
+    "no-only-tests/no-only-tests": "warn"
   },
   "overrides": [
     {
@@ -92,7 +110,8 @@
     },
     {
       "files": [
-        "*.tsx"
+        "*.tsx",
+        "*.ts"
       ],
       "rules": {
         // We do not use prop-types in ts.
@@ -104,6 +123,17 @@
           {
             "allow": [
               "__typename"
+            ]
+          }
+        ],
+        "react/forbid-elements": [
+          1,
+          {
+            "forbid": [
+              {
+                "element": "main",
+                "message": "dpl-cms provide a <main> to render react in, therefore you must use <section> to avoid duplicate main"
+              }
             ]
           }
         ]

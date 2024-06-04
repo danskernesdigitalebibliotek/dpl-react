@@ -1,15 +1,18 @@
 import * as React from "react";
 import menuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-menu.svg";
+import searchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-search.svg";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
 import heartIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-heart.svg";
 import watchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
 import crossIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross-medium.svg";
+import expandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 
 export interface StoryHeaderProps {
-  children: React.ReactNode;
+  search?: React.ReactNode;
+  userProfile?: React.ReactNode;
 }
 
-const StoryHeader: React.FC<StoryHeaderProps> = ({ children }) => {
+const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
   // the component below is copied from the Design system repository:
   // https://github.com/danskernesdigitalebibliotek/dpl-design-system
   // located at -> /src/stories/header
@@ -32,12 +35,19 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ children }) => {
           </a>
         </div>
         <div className="header__menu">
-          <nav className="header__menu-first">
+          <nav
+            className="header__menu-first"
+            aria-label="Primary site navigation"
+          >
             <div>
               <div className="header__menu-navigation-mobile">
                 <div
                   className="pagefold-parent--small header__menu-navigation-button header__button"
-                  id="header__menu--open"
+                  id="header-sidebar-nav__toggle"
+                  aria-controls="sidebarNav"
+                  aria-expanded="false"
+                  role="button"
+                  tabIndex={0}
                 >
                   <div className="pagefold-triangle--small" />
                   <img src={menuIcon} alt="List of bookmarks" />
@@ -94,18 +104,41 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ children }) => {
                 </li>
               </ul>
             </div>
-            <div className="header__menu-profile header__button">
-              <a href="/" className="hide-linkstyle">
+            {userProfile || (
+              <div className="header__menu-profile header__button">
                 <img src={profileIcon} alt="Profile" />
-              </a>
-            </div>
+                <span className="text-small-caption">Login</span>
+              </div>
+            )}
             <div className="header__menu-bookmarked header__button">
               <a href="/">
                 <img src={heartIcon} alt="List of bookmarks" />
+                <span className="text-small-caption">Liked</span>
               </a>
             </div>
           </nav>
-          {children}
+          {search || (
+            <div className="header__menu-search">
+              <input
+                name="q"
+                className="header__menu-search-input text-body-medium-regular"
+                type="text"
+                autoComplete="off"
+                placeholder="Cannot search in this story"
+              />
+              <input
+                type="image"
+                src={searchIcon}
+                className="header__menu-search-icon"
+                alt="search icon"
+              />
+              <img
+                className="header__menu-dropdown-icon"
+                src={expandIcon}
+                alt="expand dropdown icon"
+              />
+            </div>
+          )}
         </div>
         <div className="header__clock">
           <div className="pagefold-parent--medium">
@@ -118,53 +151,64 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ children }) => {
           </div>
         </div>
       </header>
-      <div id="header__overlay">
-        <div className="header__overlay-main">
-          <img id="header__menu--close" src={crossIcon} alt="close" />
-          <ul className="header__overlay-menu">
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Det sker
-              </a>
-            </li>
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Biblioteker &amp; åbningstider
-              </a>
-            </li>
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Digitale tilbud
-              </a>
-            </li>
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Litteratur
-              </a>
-            </li>
-            <li className="header__overlay-menu-item">
-              <a
-                href="/"
-                className="header__overlay-menu-link text-body-large hide-linkstyle"
-              >
-                Børn &amp; forældre
-              </a>
-            </li>
-          </ul>
+      <div className="header-sidebar-nav" data-open="closed">
+        <div className="header-sidebar-nav__background-wrapper">
+          <div className="header-sidebar-nav__menu-wrapper">
+            <div
+              className="header-sidebar-nav__close-menu-button"
+              id="js-header-sidebar-nav__close-menu-button"
+              tabIndex={0}
+              role="button"
+              aria-label="Close menu"
+            >
+              <img src={crossIcon} alt="Close menu" />
+            </div>
+            <nav aria-label="Sidebar site navigation">
+              <ul className="header__menu-navigation">
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Det sker
+                  </a>
+                </li>
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Biblioteker &amp; åbningstider
+                  </a>
+                </li>
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Digitale tilbud
+                  </a>
+                </li>
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Litteratur
+                  </a>
+                </li>
+                <li className="header__menu-navigation-item">
+                  <a
+                    href="/"
+                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
+                  >
+                    Børn &amp; forældre
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-        <div className="header__overlay-backdrop" />
       </div>
     </div>
   );

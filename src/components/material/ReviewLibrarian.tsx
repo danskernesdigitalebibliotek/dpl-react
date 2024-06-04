@@ -1,30 +1,54 @@
 import React from "react";
 import {
-  LibrariansReview,
-  LibrariansReviewSection
-} from "../../core/dbc-gateway/generated/graphql";
-import ReviewMetadata, { usDateStringToDateObj } from "./ReviewMetadata";
+  getAuthorNames,
+  getPublicationName,
+  getReviewRelease
+} from "../../core/utils/helpers/general";
+import { ReviewManifestation } from "../../core/utils/types/entities";
+import ReviewMetadata from "./ReviewMetadata";
 
 export interface ReviewLibrarianProps {
-  review: LibrariansReview;
+  review: ReviewManifestation;
+  dataCy?: string;
 }
 
-const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({ review }) => {
-  const date = review.date ? usDateStringToDateObj(review.date) : null;
+const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
+  review: {
+    workYear,
+    dateFirstEdition,
+    creators,
+    review,
+    edition,
+    hostPublication
+  },
+  dataCy = "review-librarian"
+}) => {
+  const date = getReviewRelease(dateFirstEdition, workYear, edition);
+  const authors = getAuthorNames(creators);
+  const publication = getPublicationName(hostPublication);
+
   return (
-    <li className="review text-small-caption">
-      {(review.author || review.date) && (
-        <ReviewMetadata author={review.author} date={date} />
+    <li className="review text-small-caption" data-cy={dataCy}>
+      {(authors || date || publication) && (
+        <ReviewMetadata
+          author={authors}
+          date={date}
+          publication={publication}
+        />
       )}
-      {review.sections &&
-        review.sections.map((section: LibrariansReviewSection) => {
+      {review?.reviewByLibrarians &&
+        review.reviewByLibrarians.map((librarianReview) => {
           return (
             <>
-              {section.heading && (
-                <div className="review__headline mb-8">{section.heading}</div>
+              {librarianReview?.heading && (
+                <h3 className="review__headline mb-8">
+                  {librarianReview.heading}
+                </h3>
               )}
-              {section.text && (
-                <div className="review__body mb-8">{section.text}</div>
+              {librarianReview?.content && (
+                <div className="review__body mb-8">
+                  {librarianReview.content}
+                </div>
               )}
             </>
           );

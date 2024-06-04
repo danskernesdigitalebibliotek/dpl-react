@@ -1,20 +1,46 @@
-query getMaterialManifestation($faust: String!) {
-  manifestation(faust: $faust) {
-    pid
-    titles {
-      main
-    }
-    abstract
-    hostPublication {
-      year {
-        year
-      }
-    }
-    materialTypes {
-      specific
-    }
-    creators {
+fragment ManifestationBasicDetails on Manifestation {
+  ...WithLanguages
+  pid
+  titles {
+    full
+  }
+  abstract
+  materialTypes {
+    materialTypeSpecific {
       display
+    }
+  }
+  creators {
+    display
+  }
+  edition {
+    publicationYear {
+      display
+    }
+  }
+  series {
+    title
+    numberInSeries {
+      number
+    }
+  }
+}
+
+
+query getManifestationViaMaterialByFaust($faust: String!) {
+  manifestation(faust: $faust) {
+    ...ManifestationBasicDetails
+  }
+}
+
+query getManifestationViaBestRepresentationByFaust($faust: String!) {
+  manifestation(faust: $faust) {
+    ownerWork {
+      manifestations {
+        bestRepresentation {
+          ...ManifestationBasicDetails
+        }
+      }
     }
   }
 }

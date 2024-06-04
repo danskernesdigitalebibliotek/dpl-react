@@ -1,14 +1,23 @@
 import React from "react";
-import ArrowSmallRight from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/arrow-ui/icon-arrow-ui-small-right.svg";
+import {
+  ButtonSize,
+  ButtonType,
+  ButtonVariant
+} from "../../core/utils/types/button";
+import { ButtonIcon } from "./ButtonIcon";
 
 export type ButtonProps = {
   label: string;
-  buttonType: "none" | "default" | "external-link" | "search";
+  buttonType: ButtonType;
   disabled: boolean;
   collapsible: boolean;
-  size: "large" | "medium" | "small" | "xsmall";
-  variant: "outline" | "filled";
+  size: ButtonSize;
+  variant: ButtonVariant;
   onClick?: () => void;
+  iconClassNames?: string;
+  id?: string;
+  classNames?: string;
+  dataCy?: string;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -18,44 +27,29 @@ export const Button: React.FC<ButtonProps> = ({
   collapsible,
   size,
   variant,
-  onClick
+  onClick,
+  iconClassNames,
+  id,
+  classNames,
+  dataCy
 }) => {
-  const iconClassName = `btn-icon ${collapsible ? "btn-collapsible" : ""}`;
-
-  const Icon = React.useCallback(() => {
-    if (variant !== "outline") return null;
-
-    if (buttonType === "default") {
-      return (
-        <div className="ml-16">
-          <ArrowSmallRight />
-        </div>
-      );
-    }
-
-    if (buttonType === "external-link") {
-      return (
-        <img
-          className={iconClassName}
-          src="icons/buttons/icon-btn-external-link.svg"
-          alt="external-link"
-        />
-      );
-    }
-
-    return null;
-  }, [buttonType, iconClassName, variant]);
-
   return (
     <button
+      data-cy={dataCy || "button"}
       type="button"
-      className={`btn-primary btn-${variant} btn-${size} arrow__hover--right-small`}
+      className={`btn-primary btn-${variant} btn-${size} ${
+        disabled ? "btn-outline" : ""
+      } arrow__hover--right-small ${classNames ?? ""}`}
       disabled={disabled}
       onClick={onClick}
+      id={id}
     >
-      {/* TODO find out what should be instead (6) */}
-      {`${label} ${buttonType === "search" ? "(6)" : ""}`}
-      <Icon />
+      {label}
+      <ButtonIcon
+        buttonType={buttonType}
+        iconClassNames={iconClassNames}
+        collapsible={collapsible}
+      />
     </button>
   );
 };

@@ -1,0 +1,1023 @@
+{
+  "data": {
+    "work": {
+      "workId": "work-of:870970-basis:46555902",
+      "titles": {
+        "full": ["Underverden"],
+        "original": ["Underverden"]
+      },
+      "abstract": [
+        "Zaid er læge, hjertespecialist, med et godt job. Han har en dyr lejlighed, og en gravid kæreste. Under en fest opsøges Zaid af sin desperate lillebror Yasin, som beder om penge. Zaid afviser Yasin i døren. Kort efter findes lillebror Yasin død."
+      ],
+      "creators": [
+        {
+          "display": "Fenar Ahmad",
+          "__typename": "Person"
+        }
+      ],
+      "series": [],
+      "seriesMembers": [],
+      "workYear": null,
+      "genreAndForm": ["actionfilm"],
+      "manifestations": {
+        "all": [
+          {
+            "pid": "870970-basis:52886619",
+            "genreAndForm": ["actionfilm"],
+            "source": ["Bibliotekskatalog"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk",
+                  "isoCode": "dan"
+                }
+              ],
+              "notes": ["Undertekster på dansk"]
+            },
+            "titles": {
+              "main": ["Underverden"],
+              "original": ["Underverden"]
+            },
+            "fictionNonfiction": {
+              "display": "fiktion",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "materialTypeSpecific": {
+                  "display": "film (dvd)"
+                }
+              }
+            ],
+            "creators": [
+              {
+                "display": "Fenar Ahmad",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Scanbox Entertainment Denmark"],
+            "identifiers": [
+              {
+                "value": "1209-11 D 0"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Adam August",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "manuskript"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Kasper Tuxen",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "filmfotograf"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Dar Salim",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Stine Fisher Christensen",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Ali Sivandi",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Dulfi Al-Jabouri",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Roland Møller",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Jacob Hauberg Lohmann",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "B. Branco",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              }
+            ],
+            "edition": {
+              "summary": "2017",
+              "publicationYear": {
+                "display": "2017"
+              }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": [],
+              "ages": []
+            },
+            "notes": [],
+            "physicalDescriptions": [
+              {
+                "summary": "1 dvd-video ca. 109 min.",
+                "numberOfPages": null,
+                "playingTime": "ca. 109 min."
+              }
+            ],
+            "hostPublication": null,
+            "manifestationParts": null,
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Underverden",
+              "shelfmark": "77.7"
+            },
+            "workYear": null,
+            "catalogueCodes": {
+              "nationalBibliography": ["DBI201728"],
+              "otherCatalogues": ["ACC201722", "BKM201728"]
+            }
+          },
+          {
+            "pid": "870970-basis:53205747",
+            "genreAndForm": ["actionfilm"],
+            "source": ["Bibliotekskatalog"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk",
+                  "isoCode": "dan"
+                }
+              ],
+              "notes": ["Undertekster på dansk"]
+            },
+            "titles": {
+              "main": ["Underverden"],
+              "original": ["Underverden"]
+            },
+            "fictionNonfiction": {
+              "display": "fiktion",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "materialTypeSpecific": {
+                  "display": "film (blu-ray)"
+                }
+              }
+            ],
+            "creators": [
+              {
+                "display": "Fenar Ahmad",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Scanbox Entertainment Denmark"],
+            "identifiers": [
+              {
+                "value": "1209-11 N 0"
+              }
+            ],
+            "contributors": [
+              {
+                "display": "Adam August",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "manuskript"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Kasper Tuxen",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "filmfotograf"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Dar Salim",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Stine Fisher Christensen",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Ali Sivandi",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Dulfi Al-Jabouri",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Roland Møller",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Jacob Hauberg Lohmann",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "B. Branco",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              }
+            ],
+            "edition": {
+              "summary": "2017",
+              "publicationYear": {
+                "display": "2017"
+              }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": [],
+              "ages": []
+            },
+            "notes": [],
+            "physicalDescriptions": [
+              {
+                "summary": "1 disc (blu-ray) ca. 113 min.",
+                "numberOfPages": null,
+                "playingTime": "ca. 113 min."
+              }
+            ],
+            "hostPublication": null,
+            "manifestationParts": null,
+            "accessTypes": [
+              {
+                "code": "PHYSICAL"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "InterLibraryLoan",
+                "loanIsPossible": true
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Underverden",
+              "shelfmark": "77.7"
+            },
+            "workYear": null,
+            "catalogueCodes": {
+              "nationalBibliography": ["DBI201728"],
+              "otherCatalogues": ["ACC201722", "BKM201728"]
+            }
+          },
+          {
+            "pid": "870970-basis:53369936",
+            "genreAndForm": ["actionfilm"],
+            "source": ["Filmstriben"],
+            "languages": {
+              "main": [
+                {
+                  "display": "dansk",
+                  "isoCode": "dan"
+                }
+              ],
+              "notes": ["Undertekster på dansk"]
+            },
+            "titles": {
+              "main": ["Underverden"],
+              "original": ["Underverden"]
+            },
+            "fictionNonfiction": {
+              "display": "fiktion",
+              "code": "FICTION"
+            },
+            "materialTypes": [
+              {
+                "materialTypeSpecific": {
+                  "display": "film (online)"
+                }
+              }
+            ],
+            "creators": [
+              {
+                "display": "Fenar Ahmad",
+                "__typename": "Person"
+              }
+            ],
+            "publisher": ["Scanbox"],
+            "identifiers": [],
+            "contributors": [
+              {
+                "display": "Adam August",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "manuskript"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Kasper Tuxen",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "filmfotograf"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Dar Salim",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Stine Fisher Christensen",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Ali Sivandi",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Dulfi Al-Jabouri",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Roland Møller",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "Jacob Hauberg Lohmann",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              },
+              {
+                "display": "B. Branco",
+                "roles": [
+                  {
+                    "function": {
+                      "singular": "skuespiller"
+                    }
+                  }
+                ]
+              }
+            ],
+            "edition": {
+              "summary": "2017",
+              "publicationYear": {
+                "display": "2017"
+              }
+            },
+            "dateFirstEdition": null,
+            "audience": {
+              "generalAudience": [],
+              "ages": []
+            },
+            "notes": [],
+            "physicalDescriptions": [
+              {
+                "summary": "Ca. 113 min.",
+                "numberOfPages": null,
+                "playingTime": "Ca. 113 min."
+              }
+            ],
+            "hostPublication": null,
+            "manifestationParts": null,
+            "accessTypes": [
+              {
+                "code": "ONLINE"
+              }
+            ],
+            "access": [
+              {
+                "__typename": "AccessUrl",
+                "origin": "www.filmstriben.dk",
+                "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
+                "loginRequired": false
+              }
+            ],
+            "shelfmark": {
+              "postfix": "Underverden",
+              "shelfmark": "77.7"
+            },
+            "workYear": null,
+            "catalogueCodes": {
+              "nationalBibliography": ["DBI201737"],
+              "otherCatalogues": [
+                "ACC201729",
+                "BKM201737",
+                "FSF201737",
+                "DAT201844"
+              ]
+            }
+          }
+        ],
+        "latest": {
+          "pid": "870970-basis:53369936",
+          "genreAndForm": ["actionfilm"],
+          "source": ["Filmstriben"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": ["Undertekster på dansk"]
+          },
+          "titles": {
+            "main": ["Underverden"],
+            "original": ["Underverden"]
+          },
+          "fictionNonfiction": {
+            "display": "fiktion",
+            "code": "FICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "film (online)"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Fenar Ahmad",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Scanbox"],
+          "identifiers": [],
+          "contributors": [
+            {
+              "display": "Adam August",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "manuskript"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Kasper Tuxen",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "filmfotograf"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Dar Salim",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Stine Fisher Christensen",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Ali Sivandi",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Dulfi Al-Jabouri",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Roland Møller",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Jacob Hauberg Lohmann",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "B. Branco",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            }
+          ],
+          "edition": {
+            "summary": "2017",
+            "publicationYear": {
+              "display": "2017"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [],
+          "physicalDescriptions": [
+            {
+              "summary": "Ca. 113 min.",
+              "numberOfPages": null,
+              "playingTime": "Ca. 113 min."
+            }
+          ],
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "ONLINE"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "AccessUrl",
+              "origin": "www.filmstriben.dk",
+              "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
+              "loginRequired": false
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Underverden",
+            "shelfmark": "77.7"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["DBI201737"],
+            "otherCatalogues": [
+              "ACC201729",
+              "BKM201737",
+              "FSF201737",
+              "DAT201844"
+            ]
+          }
+        },
+        "bestRepresentation": {
+          "pid": "870970-basis:53369936",
+          "genreAndForm": ["actionfilm"],
+          "source": ["Filmstriben"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": ["Undertekster på dansk"]
+          },
+          "titles": {
+            "main": ["Underverden"],
+            "original": ["Underverden"]
+          },
+          "fictionNonfiction": {
+            "display": "fiktion",
+            "code": "FICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "film (online)"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Fenar Ahmad",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Scanbox"],
+          "identifiers": [],
+          "contributors": [
+            {
+              "display": "Adam August",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "manuskript"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Kasper Tuxen",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "filmfotograf"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Dar Salim",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Stine Fisher Christensen",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Ali Sivandi",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Dulfi Al-Jabouri",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Roland Møller",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Jacob Hauberg Lohmann",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "B. Branco",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "skuespiller"
+                  }
+                }
+              ]
+            }
+          ],
+          "edition": {
+            "summary": "2017",
+            "publicationYear": {
+              "display": "2017"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [],
+          "physicalDescriptions": [
+            {
+              "summary": "Ca. 113 min.",
+              "numberOfPages": null,
+              "playingTime": "Ca. 113 min."
+            }
+          ],
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "ONLINE"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "AccessUrl",
+              "origin": "www.filmstriben.dk",
+              "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
+              "loginRequired": false
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Underverden",
+            "shelfmark": "77.7"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["DBI201737"],
+            "otherCatalogues": [
+              "ACC201729",
+              "BKM201737",
+              "FSF201737",
+              "DAT201844"
+            ]
+          }
+        }
+      },
+      "materialTypes": [
+        {
+          "materialTypeSpecific": {
+            "display": "film (online)"
+          }
+        },
+        {
+          "materialTypeSpecific": {
+            "display": "film (blu-ray)"
+          }
+        },
+        {
+          "materialTypeSpecific": {
+            "display": "film (dvd)"
+          }
+        }
+      ],
+      "mainLanguages": [
+        {
+          "display": "dansk",
+          "isoCode": "dan"
+        }
+      ],
+      "subjects": {
+        "all": [
+          {
+            "display": "danske film"
+          },
+          {
+            "display": "selvtægt"
+          },
+          {
+            "display": "indvandrere"
+          },
+          {
+            "display": "brødre"
+          },
+          {
+            "display": "bander"
+          },
+          {
+            "display": "kriminalitet"
+          },
+          {
+            "display": "bandekriminalitet"
+          },
+          {
+            "display": "København"
+          },
+          {
+            "display": "actionfilm"
+          }
+        ],
+        "dbcVerified": [
+          {
+            "display": "selvtægt"
+          },
+          {
+            "display": "indvandrere"
+          },
+          {
+            "display": "brødre"
+          },
+          {
+            "display": "bander"
+          },
+          {
+            "display": "kriminalitet"
+          },
+          {
+            "display": "bandekriminalitet"
+          },
+          {
+            "display": "København"
+          },
+          {
+            "display": "actionfilm"
+          }
+        ]
+      },
+      "fictionNonfiction": {
+        "display": "fiktion",
+        "code": "FICTION"
+      },
+      "dk5MainEntry": {
+        "display": "77.7 Spillefilm"
+      },
+      "relations": {
+        "hasReview": [
+          {
+            "pid": "870976-anmeld:129681799"
+          },
+          {
+            "pid": "870971-anmeld:37307394"
+          },
+          {
+            "pid": "870971-anmeld:37249955"
+          },
+          {
+            "pid": "870971-anmeld:37247405"
+          },
+          {
+            "pid": "870971-anmeld:37249998"
+          },
+          {
+            "pid": "870971-anmeld:37248029"
+          },
+          {
+            "pid": "870971-anmeld:37321664"
+          },
+          {
+            "pid": "870971-anmeld:37247782"
+          }
+        ],
+        "hasAdaptation": []
+      }
+    }
+  }
+}

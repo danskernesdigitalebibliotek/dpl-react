@@ -1,0 +1,20 @@
+{
+  "id": "6c1c831f-bec5-4c57-a4d1-322196701f1b",
+  "name": "Opening hours previous week",
+  "request": {
+    "url": "/api/v1/opening_hours?branch_id=12&from_date=2024-03-18&to_date=2024-03-24",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "body": "[\n    {\n        \"id\": 2,\n        \"category\": {\n            \"title\": \"Åbent\",\n            \"color\": \"#4986e7\"\n        },\n        \"date\": \"2024-03-18\",\n        \"start_time\": \"08:00\",\n        \"end_time\": \"16:00\",\n        \"branch_id\": 12,\n        \"repetition\": {\n            \"id\": 1,\n            \"type\": \"weekly\",\n            \"weekly_data\": {\n                \"end_date\": \"2024-04-14\"\n            }\n        }\n    },\n    {\n        \"id\": 7,\n        \"category\": {\n            \"title\": \"Åbent\",\n            \"color\": \"#4986e7\"\n        },\n        \"date\": \"2024-03-19\",\n        \"start_time\": \"08:00\",\n        \"end_time\": \"16:00\",\n        \"branch_id\": 12,\n        \"repetition\": {\n            \"id\": 2,\n            \"type\": \"weekly\",\n            \"weekly_data\": {\n                \"end_date\": \"2024-04-14\"\n            }\n        }\n    },\n    {\n        \"id\": 27,\n        \"category\": {\n            \"title\": \"Telefon\",\n            \"color\": \"green\"\n        },\n        \"date\": \"2024-03-19\",\n        \"start_time\": \"10:00\",\n        \"end_time\": \"13:00\",\n        \"branch_id\": 12,\n        \"repetition\": {\n            \"id\": 6,\n            \"type\": \"weekly\",\n            \"weekly_data\": {\n                \"end_date\": \"2024-04-14\"\n            }\n        }\n    },\n    {\n        \"id\": 12,\n        \"category\": {\n            \"title\": \"Åbent\",\n            \"color\": \"#4986e7\"\n        },\n        \"date\": \"2024-03-20\",\n        \"start_time\": \"08:00\",\n        \"end_time\": \"14:00\",\n        \"branch_id\": 12,\n        \"repetition\": {\n            \"id\": 3,\n            \"type\": \"weekly\",\n            \"weekly_data\": {\n                \"end_date\": \"2024-04-14\"\n            }\n        }\n    },\n    {\n        \"id\": 17,\n        \"category\": {\n            \"title\": \"Åbent\",\n            \"color\": \"#4986e7\"\n        },\n        \"date\": \"2024-03-21\",\n        \"start_time\": \"08:00\",\n        \"end_time\": \"16:00\",\n        \"branch_id\": 12,\n        \"repetition\": {\n            \"id\": 4,\n            \"type\": \"weekly\",\n            \"weekly_data\": {\n                \"end_date\": \"2024-04-14\"\n            }\n        }\n    },\n    {\n        \"id\": 22,\n        \"category\": {\n            \"title\": \"Åbent\",\n            \"color\": \"#4986e7\"\n        },\n        \"date\": \"2024-03-22\",\n        \"start_time\": \"08:00\",\n        \"end_time\": \"12:00\",\n        \"branch_id\": 12,\n        \"repetition\": {\n            \"id\": 5,\n            \"type\": \"weekly\",\n            \"weekly_data\": {\n                \"end_date\": \"2024-04-14\"\n            }\n        }\n    },\n    {\n        \"id\": 32,\n        \"category\": {\n            \"title\": \"Borgerservice\",\n            \"color\": \"lightblue\"\n        },\n        \"date\": \"2024-03-19\",\n        \"start_time\": \"12:00\",\n        \"end_time\": \"14:00\",\n        \"branch_id\": 12,\n        \"repetition\": {\n            \"id\": 7,\n            \"type\": \"none\"\n        }\n    }\n]",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "uuid": "6c1c831f-bec5-4c57-a4d1-322196701f1b",
+  "persistent": true,
+  "priority": 5,
+  "insertionIndex": 5,
+  "postServeActions": []
+}

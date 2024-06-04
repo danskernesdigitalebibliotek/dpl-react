@@ -1,40 +1,85 @@
-import * as React from "react";
+import React, { FC } from "react";
 import LoanList from "./loan-list";
 import { withText } from "../../../core/utils/text";
+import { withUrls } from "../../../core/utils/url";
+import { pageSizeGlobal } from "../../../core/utils/helpers/general";
+import withIsPatronBlockedHoc from "../../../core/utils/withIsPatronBlockedHoc";
+import { BlockedPatronEntryTextProps } from "../../../core/storybook/blockedArgs";
+import { withConfig } from "../../../core/utils/config";
+import GlobalUrlEntryPropsInterface from "../../../core/utils/types/global-url-props";
+import { GroupModalProps } from "../../../core/storybook/groupModalArgs";
+import { GroupModalLoansProps } from "../../../core/storybook/loanGroupModalArgs";
+import { RenewalArgs } from "../../../core/storybook/renewalArgs";
+import { MaterialDetailsModalProps } from "../../../core/storybook/materialDetailsModalArgs";
+import { GlobalEntryTextProps } from "../../../core/storybook/globalTextArgs";
 
-export interface LoanListEntryProps {
-  loanListTitleText: string;
-  loanListPhysicalLoansTitleText: string;
-  loanListRenewMultipleButtonText: string;
-  loanListListText: string;
-  loanListStackText: string;
-  loanListRenewMultipleButtonExplanationText: string;
-  loanListMaterialByAuthorText: string;
-  loanListMaterialAndAuthorText: string;
-  loanListLateFeeDesktopText: string;
-  loanListLateFeeMobileText: string;
-  loanListDaysText: string;
-  LoanListToBeDeliveredText: string;
-  LoanListMaterialsDesktopText: string;
-  LoanListMaterialsMobileText: string;
-  loanListMaterialsModalDesktopText: string;
-  loanListMaterialsModalMobileText: string;
-  loanListToBeDeliveredModalText: string;
-  loanListStatusCircleAriaLabelText: string;
-  loanListStatusBadgeDangerText: string;
-  loanListStatusBadgeWarningText: string;
-  loanListRenewPossibleText: string;
-  loanListSelectPossibleCheckboxText: string;
-  LoanListDeniedMaxRenewalsReachedText: string;
-  LoanListDeniedOtherReasonText: string;
-  LoanListDeniedInterLibraryLoanText: string;
-  LoanListToBeDeliveredMaterialText: string;
-  LoanListLabelCheckboxMaterialModalText: string;
-  LoanListCloseModalText: string;
-  LoanListModalDescriptionText: string;
-  LoanListEmptyPhysicalLoansText: string;
+export interface LoanListEntryConfigProps {
+  expirationWarningDaysBeforeConfig: string;
+}
+export interface LoanListEntryUrlProps {
+  expirationWarningDaysBeforeConfig: string;
 }
 
-const LoanListEntry: React.FC<LoanListEntryProps> = () => <LoanList />;
+interface LoanListEntryTextProps {
+  loanListAriaLabelListButtonText: string;
+  loanListAriaLabelStackButtonText: string;
+  loanListDigitalLoansEmptyListText: string;
+  loanListDigitalLoansTitleText: string;
+  loanListDigitalPhysicalLoansEmptyListText: string;
+  loanListDueDateModalAriaLabelText: string;
+  loanListDueDateModalAriaDescribeMobileText: string;
+  loanListLateFeeDesktopText: string;
+  loanListLateFeeMobileText: string;
+  loanListMaterialDaysText: string;
+  loanListAdditionalMaterialsText: string;
+  loanListPhysicalLoansEmptyListText: string;
+  loanListPhysicalLoansTitleText: string;
+  loanListRenewMultipleButtonExplanationText: string;
+  loanListRenewMultipleButtonText: string;
+  loanListNoItemsCanBeRenewedText: string;
+  loanListStatusBadgeDangerText: string;
+  loanListStatusBadgeWarningText: string;
+  loanListTitleText: string;
+  loanListToBeDeliveredDigitalMaterialText: string;
+  loanListToBeDeliveredText: string;
+  etAlText: string;
+  materialAndAuthorText: string;
+  materialByAuthorText: string;
+  publizonAudioBookText: string;
+  publizonEbookText: string;
+  publizonPodcastText: string;
+  resultPagerStatusText: string;
+  loanListMaterialLateFeeText: string;
+  loanListMaterialDayText: string;
+  loanListStatusCircleAriaLabelText: string;
+}
 
-export default withText(LoanListEntry);
+export interface LoanListEntryWithPageSizeProps
+  extends BlockedPatronEntryTextProps,
+    LoanListEntryTextProps,
+    LoanListEntryConfigProps,
+    GlobalEntryTextProps,
+    GroupModalProps,
+    GroupModalLoansProps,
+    RenewalArgs,
+    LoanListEntryUrlProps,
+    MaterialDetailsModalProps,
+    GlobalUrlEntryPropsInterface {}
+
+const LoanListEntry: FC<LoanListEntryWithPageSizeProps> = ({
+  pageSizeDesktop,
+  pageSizeMobile
+}) => {
+  const pageSize = pageSizeGlobal(
+    {
+      desktop: pageSizeDesktop,
+      mobile: pageSizeMobile
+    },
+    "pageSizeLoanList"
+  );
+
+  return <LoanList pageSize={pageSize} />;
+};
+export default withConfig(
+  withUrls(withText(withIsPatronBlockedHoc(LoanListEntry)))
+);

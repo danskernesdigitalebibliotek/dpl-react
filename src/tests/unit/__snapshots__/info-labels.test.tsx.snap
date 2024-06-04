@@ -1,0 +1,28 @@
+// Vitest Snapshot v1
+
+exports[`InfoLabel > Should show the markup for the simple info label 1`] = `
+<div
+  class="status-label status-label--info"
+  data-cy="info-label"
+>
+  Some text
+</div>
+`;
+
+exports[`ReservationStatusInfoLabel > Should show the markup for the for a reservation status for a DIGITAL reservation status info label 1`] = `
+<div
+  class="status-label status-label--info"
+  data-cy="reservation-status-info-label"
+>
+  Borrow before 12-12-2022 12:12
+</div>
+`;
+
+exports[`ReservationStatusInfoLabel > Should show the markup for the for a reservation status for a reservation status info label 1`] = `
+<div
+  class="status-label status-label--info"
+  data-cy="reservation-status-info-label"
+>
+  Borrow before 12-12-2022
+</div>
+`;

@@ -1,0 +1,36 @@
+// Vitest Snapshot v1
+
+exports[`ContactInfoInputs > Should NOT wrap the input fields if it is NOT inline 1`] = `
+<div
+  data-cy="contact-info-input-inline"
+>
+  <p>
+    One input component
+  </p>
+  <p>
+    Another input component
+  </p>
+</div>
+`;
+
+exports[`ContactInfoInputs > Should wrap the input fields if it is inline 1`] = `
+<div
+  class="dpl-input__flex"
+  data-cy="contact-info-input"
+>
+  <div
+    class="patron__input--desktop mr-16"
+  >
+    <p>
+      One input component
+    </p>
+  </div>
+  <div
+    class="patron__input--desktop"
+  >
+    <p>
+      Another input component
+    </p>
+  </div>
+</div>
+`;

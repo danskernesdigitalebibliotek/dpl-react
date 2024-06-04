@@ -1,0 +1,18 @@
+{
+  "id" : "4c965a6f-9846-4132-95b9-7dff7f91232d",
+  "name" : "Reservation (update)",
+  "request" : {
+    "url" : "/external/v1/agencyid/patrons/patronid/reservations",
+    "method" : "PUT"
+  },
+  "response" : {
+    "status" : 201,
+    "body" : "{ code: 101, message: \"OK\" }",
+    "headers" : { }
+  },
+  "uuid" : "4c965a6f-9846-4132-95b9-7dff7f91232d",
+  "persistent" : true,
+  "priority" : 5,
+  "insertionIndex" : 16,
+  "postServeActions" : [ ]
+}

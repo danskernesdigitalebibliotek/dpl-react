@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "../atoms/link";
+import React, { useState } from "react";
+import Link from "../atoms/links/Link";
+import ButtonExpand from "../button-expand/ButtonExpand";
 
 export interface HorizontalTermLineProps {
   title: string;
@@ -8,23 +9,36 @@ export interface HorizontalTermLineProps {
     url: URL;
     term: string;
   }[];
+  dataCy?: string;
 }
 
 const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   title,
   subTitle,
-  linkList
+  linkList,
+  dataCy = "horizontal-term-line"
 }) => {
+  const numberOfItemsToShow = 3;
+  const [showMore, setShowMore] = useState(false);
+  const itemsToShow = showMore
+    ? linkList
+    : linkList.slice(0, numberOfItemsToShow);
+  const showMoreButton = linkList.length > numberOfItemsToShow;
+
+  if (linkList.length === 0) {
+    return null;
+  }
+
   return (
-    <div className="text-small-caption horizontal-term-line">
-      <p className="text-label-bold">
+    <div data-cy={dataCy} className="text-small-caption horizontal-term-line">
+      <h3 className="text-label-bold">
         {title || ""}{" "}
         {subTitle && (
           <span className="text-small-caption">{` ${subTitle}`}</span>
         )}
-      </p>
+      </h3>
 
-      {linkList.map((item) => {
+      {itemsToShow.map((item) => {
         const { term, url } = item;
         return (
           <span key={term}>
@@ -34,6 +48,10 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
           </span>
         );
       })}
+
+      {showMoreButton && (
+        <ButtonExpand showMore={showMore} setShowMore={setShowMore} />
+      )}
     </div>
   );
 };

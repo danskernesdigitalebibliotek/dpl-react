@@ -1,0 +1,417 @@
+// Vitest Snapshot v1
+
+exports[`divideManifestationsByMaterialType > should divide manifestations by material type 1`] = `
+{
+  "bog": [
+    {
+      "access": [
+        {
+          "__typename": "InterLibraryLoan",
+          "loanIsPossible": true,
+        },
+      ],
+      "accessTypes": [
+        {
+          "code": "PHYSICAL",
+        },
+      ],
+      "audience": {
+        "ages": [],
+        "generalAudience": [],
+      },
+      "catalogueCodes": {
+        "nationalBibliography": [],
+        "otherCatalogues": [],
+      },
+      "contributors": [],
+      "creators": [
+        {
+          "__typename": "Person",
+          "display": "Isaac Asimov",
+        },
+      ],
+      "dateFirstEdition": null,
+      "edition": {
+        "publicationYear": {
+          "display": "2000",
+        },
+        "summary": "2. edition, 2000",
+      },
+      "fictionNonfiction": {
+        "code": "FICTION",
+        "display": "skønlitteratur",
+      },
+      "genreAndForm": [
+        "noveller",
+      ],
+      "hostPublication": null,
+      "identifiers": [
+        {
+          "value": "0-19-423069-4",
+        },
+      ],
+      "languages": {
+        "main": [
+          {
+            "display": "engelsk",
+            "isoCode": "eng",
+          },
+        ],
+        "notes": [],
+      },
+      "manifestationParts": null,
+      "materialTypes": [
+        {
+          "materialTypeSpecific": {
+            "display": "bog",
+          },
+        },
+      ],
+      "notes": [],
+      "physicalDescriptions": [
+        {
+          "numberOfPages": 104,
+          "playingTime": null,
+          "summary": "104 sider: ill.",
+        },
+      ],
+      "pid": "870970-basis:23798255",
+      "publisher": [
+        "Oxford University Press",
+      ],
+      "shelfmark": {
+        "postfix": "Asimov",
+        "shelfmark": "83.8",
+      },
+      "source": [
+        "Bibliotekskatalog",
+      ],
+      "titles": {
+        "main": [
+          "I, Robot (Oxford bookworms library, ved Rowena Akinyemi)",
+        ],
+        "original": [],
+      },
+      "workYear": null,
+    },
+  ],
+  "e-bog": [
+    {
+      "access": [
+        {
+          "__typename": "AccessUrl",
+          "loginRequired": false,
+          "origin": "link.overdrive.com",
+          "url": "http://link.overdrive.com/?websiteID=100515&titleID=39136",
+        },
+      ],
+      "accessTypes": [
+        {
+          "code": "ONLINE",
+        },
+      ],
+      "audience": {
+        "ages": [],
+        "generalAudience": [
+          "Text Difficulty 3 - Text Difficulty 5",
+          "UG/Upper grades (9th-12)",
+          "820. Lexile",
+          "6.1. ATOS Level",
+        ],
+      },
+      "catalogueCodes": {
+        "nationalBibliography": [],
+        "otherCatalogues": [],
+      },
+      "contributors": [],
+      "creators": [
+        {
+          "__typename": "Person",
+          "display": "Isaac Asimov",
+        },
+      ],
+      "dateFirstEdition": null,
+      "edition": {
+        "publicationYear": {
+          "display": "2004",
+        },
+        "summary": "2004",
+      },
+      "fictionNonfiction": {
+        "code": "FICTION",
+        "display": "skønlitteratur",
+      },
+      "genreAndForm": [],
+      "hostPublication": null,
+      "identifiers": [
+        {
+          "value": "9780553900330",
+        },
+      ],
+      "languages": {
+        "main": [
+          {
+            "display": "engelsk",
+            "isoCode": "eng",
+          },
+        ],
+        "notes": [],
+      },
+      "manifestationParts": null,
+      "materialTypes": [
+        {
+          "materialTypeSpecific": {
+            "display": "e-bog",
+          },
+        },
+      ],
+      "notes": [
+        {
+          "display": [
+            "Electronic reproduction. New York : Spectra, 2004. Requires the Libby app or a modern web browser",
+          ],
+        },
+      ],
+      "physicalDescriptions": [
+        {
+          "numberOfPages": null,
+          "playingTime": null,
+          "summary": "1 online resource",
+        },
+      ],
+      "pid": "150061-ebog:ODN0000039136",
+      "publisher": [],
+      "shelfmark": null,
+      "source": [
+        "eReolen Global",
+      ],
+      "titles": {
+        "main": [
+          "I, Robot",
+        ],
+        "original": [],
+      },
+      "workYear": null,
+    },
+  ],
+  "lydbog (online)": [
+    {
+      "access": [
+        {
+          "__typename": "AccessUrl",
+          "loginRequired": false,
+          "origin": "link.overdrive.com",
+          "url": "http://link.overdrive.com/?websiteID=100515&titleID=105225",
+        },
+      ],
+      "accessTypes": [
+        {
+          "code": "ONLINE",
+        },
+      ],
+      "audience": {
+        "ages": [],
+        "generalAudience": [
+          "Text Difficulty 3 - Text Difficulty 4",
+          "820. Lexile",
+        ],
+      },
+      "catalogueCodes": {
+        "nationalBibliography": [],
+        "otherCatalogues": [],
+      },
+      "contributors": [],
+      "creators": [
+        {
+          "__typename": "Person",
+          "display": "Isaac Asimov",
+        },
+        {
+          "__typename": "Person",
+          "display": "Scott Brick",
+        },
+      ],
+      "dateFirstEdition": null,
+      "edition": {
+        "publicationYear": {
+          "display": "2004",
+        },
+        "summary": "Unabridged, 2004",
+      },
+      "fictionNonfiction": {
+        "code": "NOT_SPECIFIED",
+        "display": "vides ikke",
+      },
+      "genreAndForm": [],
+      "hostPublication": null,
+      "identifiers": [
+        {
+          "value": "9780739346273",
+        },
+      ],
+      "languages": {
+        "main": [
+          {
+            "display": "engelsk",
+            "isoCode": "eng",
+          },
+        ],
+        "notes": [],
+      },
+      "manifestationParts": null,
+      "materialTypes": [
+        {
+          "materialTypeSpecific": {
+            "display": "lydbog (online)",
+          },
+        },
+      ],
+      "notes": [
+        {
+          "display": [
+            "Unabridged",
+          ],
+        },
+      ],
+      "physicalDescriptions": [
+        {
+          "numberOfPages": null,
+          "playingTime": null,
+          "summary": "1 online resource (7 audio files) digital",
+        },
+      ],
+      "pid": "150061-netlydbog:ODN0000105225",
+      "publisher": [
+        "Random House Audio",
+      ],
+      "shelfmark": null,
+      "source": [
+        "eReolen Global",
+      ],
+      "titles": {
+        "main": [
+          "I, Robot",
+        ],
+        "original": [],
+      },
+      "workYear": null,
+    },
+  ],
+  "lydoptagelse (cd)": [
+    {
+      "access": [
+        {
+          "__typename": "InterLibraryLoan",
+          "loanIsPossible": true,
+        },
+      ],
+      "accessTypes": [
+        {
+          "code": "PHYSICAL",
+        },
+      ],
+      "audience": {
+        "ages": [],
+        "generalAudience": [],
+      },
+      "catalogueCodes": {
+        "nationalBibliography": [],
+        "otherCatalogues": [],
+      },
+      "contributors": [],
+      "creators": [
+        {
+          "__typename": "Person",
+          "display": "Isaac Asimov",
+        },
+        {
+          "__typename": "Person",
+          "display": "Tricia Reilly",
+        },
+      ],
+      "dateFirstEdition": {
+        "display": "1950",
+        "year": 1950,
+      },
+      "edition": {
+        "publicationYear": {
+          "display": "2008",
+        },
+        "summary": "2008",
+      },
+      "fictionNonfiction": {
+        "code": "FICTION",
+        "display": "skønlitteratur",
+      },
+      "genreAndForm": [
+        "noveller",
+      ],
+      "hostPublication": null,
+      "identifiers": [
+        {
+          "value": "9780230026810",
+        },
+        {
+          "value": "9780230026827",
+        },
+      ],
+      "languages": {
+        "main": [
+          {
+            "display": "engelsk",
+            "isoCode": "eng",
+          },
+        ],
+        "notes": [],
+      },
+      "manifestationParts": null,
+      "materialTypes": [
+        {
+          "materialTypeSpecific": {
+            "display": "lydoptagelse (cd)",
+          },
+        },
+        {
+          "materialTypeSpecific": {
+            "display": "bog",
+          },
+        },
+      ],
+      "notes": [
+        {
+          "display": [
+            "Bogens originaludgave: 1950",
+          ],
+        },
+      ],
+      "physicalDescriptions": [
+        {
+          "numberOfPages": 95,
+          "playingTime": "2t., 31 min.",
+          "summary": "2 cd'er 1 bog 95 sider: ill. 2t., 31 min.",
+        },
+      ],
+      "pid": "870970-basis:44504928",
+      "publisher": [
+        "Macmillan",
+      ],
+      "shelfmark": {
+        "postfix": "Asimov",
+        "shelfmark": "83.8",
+      },
+      "source": [
+        "Bibliotekskatalog",
+      ],
+      "titles": {
+        "main": [
+          "I, Robot (Ved Tricia Reilly)",
+        ],
+        "original": [],
+      },
+      "workYear": {
+        "year": 1950,
+      },
+    },
+  ],
+}
+`;

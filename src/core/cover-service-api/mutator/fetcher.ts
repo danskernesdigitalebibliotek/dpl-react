@@ -1,6 +1,24 @@
+import FetchFailedError from "../../fetchers/FetchFailedError";
+import { FetchParams } from "../../fetchers/types";
 import { getToken, TOKEN_LIBRARY_KEY } from "../../token";
+import {
+  getServiceBaseUrl,
+  serviceUrlKeys
+} from "../../utils/reduxMiddleware/extractServiceBaseUrls";
+import CoverServiceHttpError from "./CoverServiceHttpError";
 
-const baseURL = "https://cover.dandigbib.org"; // use your own URL here or environment variable
+export const getServiceUrlWithParams = ({
+  baseUrl,
+  url,
+  params
+}: {
+  baseUrl: string;
+  url: string;
+  params: unknown;
+}) => {
+  const urlParams = new URLSearchParams(params as FetchParams);
+  return `${baseUrl}${url}?${urlParams}`;
+};
 
 export const fetcher = async <ResponseType>({
   url,
@@ -9,18 +27,11 @@ export const fetcher = async <ResponseType>({
   data
 }: {
   url: string;
-  method: "get" | "post" | "put" | "delete" | "patch" | "head";
+  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD";
   params?: unknown;
   data?: BodyType<unknown>;
   signal?: AbortSignal;
 }) => {
-  type FetchParams =
-    | string
-    | string[][]
-    | Record<string, string>
-    | URLSearchParams
-    | undefined;
-
   const additionalHeaders =
     data?.headers === "object" ? (data?.headers as unknown as object) : {};
 
@@ -35,29 +46,41 @@ export const fetcher = async <ResponseType>({
   };
   const body = data ? JSON.stringify(data) : null;
 
-  const response = await fetch(
-    `${baseURL}${url}${
-      params ? `?${new URLSearchParams(params as FetchParams)}` : ""
-    }`,
-    {
+  const serviceUrl = getServiceUrlWithParams({
+    baseUrl: getServiceBaseUrl(serviceUrlKeys.cover),
+    url,
+    params
+  });
+
+  try {
+    const response = await fetch(serviceUrl, {
       method,
       headers,
       body
+    });
+
+    if (!response.ok) {
+      throw new CoverServiceHttpError(
+        response.status,
+        response.statusText,
+        serviceUrl
+      );
     }
-  );
 
-  if (!response.ok) {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-
-  try {
-    return (await response.json()) as ResponseType;
-  } catch (e) {
-    if (!(e instanceof SyntaxError)) {
-      throw e;
+    try {
+      return (await response.json()) as ResponseType;
+    } catch (e) {
+      if (!(e instanceof SyntaxError)) {
+        throw e;
+      }
     }
+  } catch (error: unknown) {
+    if (error instanceof CoverServiceHttpError) {
+      throw error;
+    }
+    const message = error instanceof Error ? error.message : "Unknown error";
+    throw new FetchFailedError(message, serviceUrl);
   }
-
   // Do nothing. Some of our responses are intentionally empty and thus
   // cannot be converted to JSON. Fetch API and TypeScript has no clean
   // way for us to identify empty responses so instead we swallow

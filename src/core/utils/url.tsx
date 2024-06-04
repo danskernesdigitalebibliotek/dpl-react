@@ -6,7 +6,18 @@ import withSuffix from "./withSuffix";
 
 export const useUrls = () => {
   const { data } = useSelector((state: RootState) => state.url);
-  return useMemo(() => turnUrlStringsIntoObjects(data), [data]);
+  const urls = useMemo(() => turnUrlStringsIntoObjects(data), [data]);
+
+  return (name: string, returnFalseIfUndefined = false) => {
+    if (returnFalseIfUndefined) {
+      return urls[name] || false;
+    }
+
+    if (!urls[name]) {
+      throw new Error(`The url ${name} is not defined`);
+    }
+    return urls[name];
+  };
 };
 export const withUrls = <T,>(Component: React.ComponentType<T>) => {
   return withSuffix(Component, "Url", addUrlEntries);

@@ -1,0 +1,164 @@
+// Vitest Snapshot v1
+
+exports[`createFacetsMap 1`] = `
+{
+  "mainLanguages:dan": {
+    "key": "dan",
+    "score": 427,
+    "term": "Dansk",
+  },
+  "mainLanguages:eng": {
+    "key": "eng",
+    "score": 82,
+    "term": "Engelsk",
+  },
+  "materialTypesGeneral:artikler": {
+    "key": "artikler",
+    "score": 346,
+    "term": "artikler",
+  },
+  "materialTypesGeneral:bøger": {
+    "key": "bøger",
+    "score": 74,
+    "term": "bøger",
+  },
+  "materialTypesGeneral:computerspil": {
+    "key": "computerspil",
+    "score": 26,
+    "term": "computerspil",
+  },
+  "materialTypesGeneral:e-bøger": {
+    "key": "e-bøger",
+    "score": 38,
+    "term": "e-bøger",
+  },
+  "materialTypesGeneral:film": {
+    "key": "film",
+    "score": 9,
+    "term": "film",
+  },
+}
+`;
+
+exports[`createFilters > should create filters 1`] = `
+{
+  "accessTypes": [
+    "Fysisk",
+  ],
+  "branchId": [
+    "710100",
+    "710200",
+  ],
+  "mainLanguages": [
+    "Dansk",
+    "Engelsk",
+  ],
+}
+`;
+
+exports[`formatFacetTerms > should format facet terms 1`] = `
+{
+  "accessTypes": [
+    "Fysisk",
+  ],
+  "mainLanguages": [
+    "Dansk",
+    "Engelsk",
+  ],
+}
+`;
+
+exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
+[
+  {
+    "name": "workTypes",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "creators",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "subjects",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "fictionNonfiction",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "childrenOrAdults",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "accessTypes",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "mainLanguages",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "genreAndForm",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "materialTypesSpecific",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+  {
+    "name": "fictionalCharacters",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+      },
+    ],
+  },
+]
+`;

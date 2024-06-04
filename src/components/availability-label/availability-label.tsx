@@ -1,80 +1,117 @@
-import React from "react";
-import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
-import clsx from "clsx";
-import { useGetAvailabilityV3 } from "../../core/fbs/fbs";
+import React, { memo } from "react";
+import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../core/utils/text";
-import { LinkNoStyle } from "../atoms/link-no-style";
+import LinkNoStyle from "../atoms/links/LinkNoStyle";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
+import { getParentAvailabilityLabelClass, useAvailabilityData } from "./helper";
+import {
+  Access,
+  AccessTypeCode
+} from "../../core/dbc-gateway/generated/graphql";
+import AvailabilityLabelInside from "./availability-label-inside";
+import { FaustId } from "../../core/utils/types/ids";
 
 export interface AvailabilityLabelProps {
   manifestText: string;
+  accessTypes: AccessTypeCode[];
+  access: Access["__typename"][];
   selected?: boolean;
   url?: URL;
-  faustIds: string[];
+  faustIds: FaustId[];
   handleSelectManifestation?: () => void | undefined;
+  cursorPointer?: boolean;
+  dataCy?: string;
+  isbns: string[];
+  isVisualOnly?: boolean;
 }
 
 export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   manifestText,
+  accessTypes,
+  access,
   selected = false,
   url,
   faustIds,
-  handleSelectManifestation
+  handleSelectManifestation,
+  cursorPointer = false,
+  dataCy = "availability-label",
+  isbns,
+  isVisualOnly
 }) => {
+  const { track } = useStatistics();
   const t = useText();
-  const { data, isLoading, isError } = useGetAvailabilityV3({
-    recordid: faustIds
+
+  const { isLoading, isAvailable } = useAvailabilityData({
+    accessTypes,
+    access,
+    faustIds,
+    isbn: isbns ? isbns[0] : null,
+    manifestText
   });
 
-  if (isLoading || isError) {
-    return null;
-  }
+  const availabilityText = isAvailable
+    ? t("availabilityAvailableText")
+    : t("availabilityUnavailableText");
 
-  const isAvailable = data?.some((item) => item.available);
-  const availabilityText = isAvailable ? t("available") : t("unavailable");
-  const availableTriangleCss = isAvailable ? "success" : "alert";
-
-  const classes = {
-    parent: clsx(
-      {
-        "pagefold-parent--none availability-label--selected": selected
-      },
-      {
-        "pagefold-parent--xsmall availability-label--unselected": !selected
-      },
-      "text-label",
-      "availability-label"
-    ),
-    triangle: clsx(
-      { "pagefold-triangle--none": selected },
-      {
-        [`pagefold-triangle--xsmall pagefold-triangle--xsmall--${availableTriangleCss}`]:
-          !selected
-      }
-    ),
-    check: clsx("availability-label--check", selected && "selected")
-  };
+  useDeepCompareEffect(() => {
+    // Track material availability (status) if the button is active - also meaning
+    // it is displayed on the material page and represent the active manifestation
+    // material type
+    if (selected) {
+      track("click", {
+        id: statistics.materialStatus.id,
+        name: statistics.materialStatus.name,
+        trackedData: availabilityText
+      });
+    }
+    // We only want to track if the faustIds change (once - on load), or the selected
+    // status changes (on select of the availability button)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [faustIds, selected]);
 
   const availabilityLabel = (
-    <div
-      className={classes.parent}
-      onClick={handleSelectManifestation ?? undefined}
-      onKeyPress={handleSelectManifestation ?? undefined}
-      role="button"
-      tabIndex={0}
-    >
-      <div className={classes.triangle} />
-      <img className={classes.check} src={CheckIcon} alt="check-icon" />
-      <p className="text-label-semibold ml-24">{manifestText}</p>
-      <div className="availability-label--divider ml-4" />
-      <p className="text-label-normal ml-4 mr-8">{availabilityText}</p>
-    </div>
+    <AvailabilityLabelInside
+      selected={selected}
+      isLoading={!!isLoading}
+      isAvailable={!!isAvailable}
+      manifestText={manifestText}
+      availabilityText={availabilityText}
+    />
   );
 
-  return url && !handleSelectManifestation ? (
-    <LinkNoStyle url={url}>{availabilityLabel}</LinkNoStyle>
-  ) : (
-    availabilityLabel
+  const parentClass = getParentAvailabilityLabelClass({
+    selected,
+    cursorPointer
+  });
+
+  if (isVisualOnly) {
+    return (
+      <div className={parentClass} data-cy={dataCy}>
+        {availabilityLabel}
+      </div>
+    );
+  }
+
+  if (url && !handleSelectManifestation) {
+    return (
+      <LinkNoStyle className={parentClass} url={url} data-cy={dataCy}>
+        {availabilityLabel}
+      </LinkNoStyle>
+    );
+  }
+
+  return (
+    <button
+      className={parentClass}
+      type="button"
+      onClick={handleSelectManifestation}
+      data-cy={dataCy}
+      aria-pressed={selected}
+    >
+      {availabilityLabel}
+    </button>
   );
 };
 
-export default AvailabilityLabel;
+export default memo(AvailabilityLabel);

@@ -2,7 +2,7 @@
   "id" : "bd783b91-b464-4137-9575-b093008866df",
   "name" : "Fees (v2)",
   "request" : {
-    "url" : "/external/agencyid/patron/patronid/fees/v2",
+    "urlPattern": "/external/agencyid/patron/patronid/fees/v2\\?includepaid=false&includenonpayable=true$",
     "method" : "GET"
   },
   "response" : {
@@ -11,14 +11,13 @@
     "headers" : {
       "content-type" : "application/json; charset=utf-8",
       "date" : "{{now format='yyyy-MM-dd HH:mm:ssZ'}}",
-      "strict-transport-security" : "max-age=15552000",
-      "Access-Control-Allow-Origin" : "*"
+      "strict-transport-security" : "max-age=15552000"
     },
     "transformers" : [ "response-template" ]
   },
   "uuid" : "bd783b91-b464-4137-9575-b093008866df",
   "persistent" : true,
   "priority" : 5,
-  "insertionIndex" : 13,
+  "insertionIndex" : 18,
   "postServeActions" : [ ]
 }

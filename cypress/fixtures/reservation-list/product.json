@@ -1,0 +1,46 @@
+{
+  "product": {
+    "createdUtc": "2014-11-04T12:20:19.347Z",
+    "updatedUtc": "2017-02-23T13:04:56.617Z",
+    "title": "Mordet i det blå tog",
+    "isActive": true,
+    "languageCode": "dan",
+    "coverUri": null,
+    "thumbnailUri": null,
+    "productType": 1,
+    "externalProductId": {
+      "idType": 15,
+      "id": "9788711321683"
+    },
+    "internalProductId": "fa07f75d-5c00-4429-90c9-76e2bb5eb526",
+    "contributors": [
+      {
+        "type": "A01",
+        "firstName": "Agatha",
+        "lastName": "Christie"
+      },
+      {
+        "type": "B06",
+        "firstName": "Jutta",
+        "lastName": "Larsen"
+      }
+    ],
+    "format": "epub",
+    "fileSizeInBytes": 899,
+    "durationInSeconds": null,
+    "publisher": "Lindhardt og Ringhof",
+    "publicationDate": "2014-11-07T00:00:00Z",
+    "description": "I køen på rejsebureauet får Katherine øje på en mand, som hun samme morgen har set uden for sin hoteldør. Da hun kigger sig tilbage over skulderen, ser hun, at manden står i døråbningen og stirrer på hende, og der går en kuldegysning gennem hende …<br><br>Episoden udvikler sig til en sag for den lille belgiske mesterdetektiv, der med klædelig ubeskedenhed præsenterer sig: \"Mit navn er Hercule Poirot, og jeg er formentlig den største detektiv i verden.\"",
+    "productCategories": [
+      {
+        "description": "Skønlitteratur og relaterede emner",
+        "code": "F"
+      },
+      {
+        "description": "Klassiske krimier",
+        "code": "FFC"
+      }
+    ],
+    "costFree": true
+  }
+}

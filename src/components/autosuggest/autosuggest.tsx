@@ -1,34 +1,46 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
+import { useText } from "../../core/utils/text";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
+import AutosuggestCategory from "../autosuggest-category/autosuggest-category";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
 
 export interface AutosuggestProps {
-  originalData:
-    | SuggestionsFromQueryStringQuery["suggest"]["result"]
-    | undefined;
   textData: SuggestionsFromQueryStringQuery["suggest"]["result"];
   materialData: Suggestions;
-  isLoading: boolean;
   status: string;
   getMenuProps: UseComboboxPropGetters<unknown>["getMenuProps"];
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
+  categoryData?: SuggestionsFromQueryStringQuery["suggest"]["result"];
+  isLoading: boolean;
+  dataCy?: string;
 }
 
 export const Autosuggest: React.FC<AutosuggestProps> = ({
-  originalData,
   textData,
   materialData,
-  status,
   getMenuProps,
   highlightedIndex,
   getItemProps,
-  isOpen
+  isOpen,
+  categoryData,
+  isLoading,
+  dataCy = "autosuggest"
 }) => {
+  const t = useText();
+
+  if (isLoading && !textData) {
+    return (
+      <ul className="autosuggest pb-16" data-cy={dataCy}>
+        <li className="ml-24">{t("loadingText")}</li>
+      </ul>
+    );
+  }
+
   return (
     <>
       {/* eslint-disable react/jsx-props-no-spreading */}
@@ -37,23 +49,30 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
         className="autosuggest pb-16"
         {...getMenuProps()}
         style={!isOpen ? { display: "none" } : {}}
+        data-cy={dataCy}
       >
         {/* eslint-enable react/jsx-props-no-spreading */}
 
-        {originalData && status && isOpen && (
-          <>
-            <AutosuggestText
-              textData={textData}
-              highlightedIndex={highlightedIndex}
-              getItemProps={getItemProps}
-            />
-            <AutosuggestMaterial
-              materialData={materialData}
-              getItemProps={getItemProps}
-              highlightedIndex={highlightedIndex}
-              textDataLength={textData.length}
-            />
-          </>
+        <AutosuggestText
+          textData={textData}
+          highlightedIndex={highlightedIndex}
+          getItemProps={getItemProps}
+        />
+        {materialData.length > 0 && (
+          <AutosuggestMaterial
+            materialData={materialData}
+            getItemProps={getItemProps}
+            highlightedIndex={highlightedIndex}
+            textDataLength={textData.length}
+          />
+        )}
+        {categoryData && categoryData.length > 0 && (
+          <AutosuggestCategory
+            categoryData={categoryData}
+            getItemProps={getItemProps}
+            highlightedIndex={highlightedIndex}
+            textAndMaterialDataLength={textData.length + materialData.length}
+          />
         )}
       </ul>
     </>

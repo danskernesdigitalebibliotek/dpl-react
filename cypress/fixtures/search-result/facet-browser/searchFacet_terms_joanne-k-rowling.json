@@ -1,0 +1,113 @@
+{
+  "data": {
+    "search": {
+      "facets": [
+        {
+          "name": "mainLanguages",
+          "values": [
+            { "term": "Engelsk", "score": 71 },
+            { "term": "Dansk", "score": 49 },
+            { "term": "Tysk", "score": 34 },
+            { "term": "flere sprog", "score": 30 },
+            { "term": "Fransk", "score": 26 },
+            { "term": "Spansk", "score": 26 },
+            { "term": "Italiensk", "score": 25 },
+            { "term": "Nederlandsk (Hollandsk)", "score": 18 },
+            { "term": "Kinesisk", "score": 15 },
+            { "term": "Persisk", "score": 14 }
+          ]
+        },
+        {
+          "name": "accessTypes",
+          "values": [
+            { "term": "Fysisk", "score": 214 },
+            { "term": "Digital", "score": 27 }
+          ]
+        },
+        {
+          "name": "childrenOrAdults",
+          "values": [
+            { "term": "børnematerialer", "score": 185 },
+            { "term": "voksenmaterialer", "score": 107 }
+          ]
+        },
+        {
+          "name": "creators",
+          "values": [
+            { "term": "Joanne K. Rowling", "score": 214 },
+            { "term": "J.K. Rowling", "score": 29 },
+            { "term": "J. K. Rowling", "score": 22 },
+            { "term": "Steve Kloves", "score": 17 },
+            { "term": "Joanne K Rowling", "score": 13 },
+            { "term": "David Yates", "score": 11 },
+            { "term": "J K Rowling", "score": 9 },
+            { "term": "J.K Rowling", "score": 9 },
+            { "term": "Chris Columbus (f. 1958)", "score": 6 },
+            { "term": "Chris Columbus", "score": 5 }
+          ]
+        },
+        {
+          "name": "fictionNonfiction",
+          "values": [
+            { "term": "Skønlitteratur", "score": 193 },
+            { "term": "Faglitteratur", "score": 8 }
+          ]
+        },
+        { "name": "fictionalCharacter", "values": [] },
+        {
+          "name": "genreAndForm",
+          "values": [
+            { "term": "eventyrlige fortællinger", "score": 116 },
+            { "term": "fantasy", "score": 69 },
+            { "term": "adventurespil", "score": 10 },
+            { "term": "actionspil", "score": 4 },
+            { "term": "børnefilm", "score": 3 },
+            { "term": "shooters", "score": 2 },
+            { "term": "kærlighed", "score": 1 }
+          ]
+        },
+        {
+          "name": "materialTypes",
+          "values": [
+            { "term": "bog", "score": 151 },
+            { "term": "dvd", "score": 18 },
+            { "term": "lydbog (cd)", "score": 40 },
+            { "term": "blu-ray", "score": 18 },
+            { "term": "lydbog (bånd)", "score": 23 },
+            { "term": "blu-ray 4k", "score": 10 },
+            { "term": "e-bog", "score": 13 },
+            { "term": "lydbog (cd-mp3)", "score": 13 },
+            { "term": "pc-spil", "score": 9 },
+            { "term": "lydbog (net)", "score": 19 }
+          ]
+        },
+        {
+          "name": "subjects",
+          "values": [
+            { "term": "Harry Potter", "score": 196 },
+            { "term": "Hermione Granger", "score": 194 },
+            { "term": "Ron Weasley", "score": 194 },
+            { "term": "magi", "score": 168 },
+            { "term": "troldmænd", "score": 168 },
+            { "term": "eventyrlige fortællinger", "score": 116 },
+            { "term": "fantasy", "score": 87 },
+            { "term": "Børnebøger", "score": 62 },
+            { "term": "Fantasy", "score": 13 },
+            { "term": "Wizards", "score": 13 }
+          ]
+        },
+        {
+          "name": "workTypes",
+          "values": [
+            { "term": "Bøger", "score": 172 },
+            { "term": "Film", "score": 21 },
+            { "term": "Anmeldelser", "score": 16 },
+            { "term": "Spil", "score": 12 },
+            { "term": "Artikler", "score": 7 },
+            { "term": "Musik", "score": 7 }
+          ]
+        }
+      ]
+    }
+  }
+}

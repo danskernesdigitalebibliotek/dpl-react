@@ -1,0 +1,33 @@
+{
+  "data": {
+    "manifestation": {
+      "languages": {
+        "main": [
+          {
+            "display": "engelsk",
+            "isoCode": "eng"
+          }
+        ]
+      },
+      "pid": "870970-basis:46985591",
+      "titles": {
+        "full": ["Harry Potter"]
+      },
+      "abstract": [
+        "How has Harry Potter aged and what does it still have to teach us? This book offers Potter fans a taste of the best the fandom has to offer. Enthusiasts and scholars explore the culture of the fandom, its evolution, and how it managed to turn a boy wizard into an international icon."
+      ],
+      "materialTypes": [
+        {
+          "materialTypeSpecific": { "display": "bog" }
+        }
+      ],
+      "creators": [],
+      "edition": {
+        "publicationYear": {
+          "display": "2019"
+        }
+      },
+      "series": []
+    }
+  }
+}

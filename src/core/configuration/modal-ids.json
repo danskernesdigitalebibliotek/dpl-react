@@ -1,0 +1,17 @@
+{
+  "allLoansId": "all-loans-id",
+  "pauseReservation": "pause-reservation",
+  "deleteReservation": "delete-reservation",
+  "deleteReservations": "delete-reservations",
+  "loanDetails": "loan-details-",
+  "acceptModal": "accept-fee",
+  "reservationDetails": "reservation-details-",
+  "dueDateModal": "due-date",
+  "feeDetails": "fee-details-",
+  "userMenuAuthenticated": "user-modal-authenticated",
+  "userMenuAnonymous": "user-modal-anonymous",
+  "userMenuUnregistered": "user-modal-unregistered",
+  "blockedModal": "blocked-modal",
+  "reservationsReady": "reservations-ready",
+  "reservationsQueued": "reservations-queued"
+}

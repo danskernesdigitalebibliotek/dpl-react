@@ -1,0 +1,633 @@
+{
+  "data": {
+    "complexSearch": {
+      "hitcount": 2,
+      "works": [
+        {
+          "workId": "work-of:870970-basis:135229989",
+          "titles": {
+            "full": ["Reserven"],
+            "original": ["Spare"]
+          },
+          "abstract": [
+            "Prins Harry fortæller om konflikten med sin far, sin bror og det engelske kongehus i bestræbelsen på at værne om sig selv og sin familie. Til alle, som interesserer sig for de europæiske kongehuse og ønsker et nuanceret syn på monarkiet som styreform."
+          ],
+          "creators": [
+            {
+              "display": "Harry (prins, hertug af Sussex)",
+              "__typename": "Person"
+            }
+          ],
+          "series": [],
+          "seriesMembers": [],
+          "workYear": null,
+          "genreAndForm": ["erindringer", "biografier"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:135229989",
+                "genreAndForm": ["erindringer", "biografier"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Reserven"],
+                  "original": ["Spare"]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Harry (prins, hertug af Sussex)",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Politiken"],
+                "identifiers": [
+                  {
+                    "value": "9788740075212"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Didde Gaardsted",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Carsten Norton",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2023",
+                  "publicationYear": {
+                    "display": "2023"
+                  }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [],
+                "physicalDescriptions": [
+                  {
+                    "summary": "576 sider",
+                    "numberOfPages": 576,
+                    "playingTime": null
+                  }
+                ],
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Harry",
+                  "shelfmark": "99.4 Harry"
+                },
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF202305"],
+                  "otherCatalogues": [
+                    "ACF202250",
+                    "ACC202302",
+                    "BKM202305",
+                    "BKX202304"
+                  ]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:135229989",
+              "genreAndForm": ["erindringer", "biografier"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Reserven"],
+                "original": ["Spare"]
+              },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Politiken"],
+              "identifiers": [
+                {
+                  "value": "9788740075212"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Didde Gaardsted",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Carsten Norton",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
+              },
+              "dateFirstEdition": null,
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescriptions": [
+                {
+                  "summary": "576 sider",
+                  "numberOfPages": 576,
+                  "playingTime": null
+                }
+              ],
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202305"],
+                "otherCatalogues": [
+                  "ACF202250",
+                  "ACC202302",
+                  "BKM202305",
+                  "BKX202304"
+                ]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:135229989",
+              "genreAndForm": ["erindringer", "biografier"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Reserven"],
+                "original": ["Spare"]
+              },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Politiken"],
+              "identifiers": [
+                {
+                  "value": "9788740075212"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Didde Gaardsted",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Carsten Norton",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
+              },
+              "dateFirstEdition": null,
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescriptions": [
+                {
+                  "summary": "576 sider",
+                  "numberOfPages": 576,
+                  "playingTime": null
+                }
+              ],
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202305"],
+                "otherCatalogues": [
+                  "ACF202250",
+                  "ACC202302",
+                  "BKM202305",
+                  "BKX202304"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "workId": "work-of:870970-basis:134991119",
+          "titles": {
+            "full": ["Spare"],
+            "original": []
+          },
+          "abstract": [
+            "Before losing his mother, Diana, Princess of Wales, Prince Harry was known as the happy-to-lucky Spare to the more serious Heir. Grief changed everything. Because he blamed the press for his mother's death, he struggled to accept life in the spotlight. From the beginning, his romance with Meghan was preyed upon by the press, subjected to waves of abuse, racism, and lies. Here Prince Harry tells his own story."
+          ],
+          "creators": [
+            {
+              "display": "Harry (prins, hertug af Sussex)",
+              "__typename": "Person"
+            }
+          ],
+          "series": [],
+          "seriesMembers": [],
+          "workYear": null,
+          "genreAndForm": ["erindringer", "biografier"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:134991119",
+                "genreAndForm": ["erindringer", "biografier"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "engelsk",
+                      "isoCode": "eng"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Spare"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Harry (prins, hertug af Sussex)",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Random House"],
+                "identifiers": [
+                  {
+                    "value": "9780593593806"
+                  }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "1. US edition, 2023",
+                  "publicationYear": {
+                    "display": "2023"
+                  }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [],
+                "physicalDescriptions": [
+                  {
+                    "summary": "410 sider: ill.",
+                    "numberOfPages": 410,
+                    "playingTime": null
+                  }
+                ],
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": {
+                  "postfix": "Harry",
+                  "shelfmark": "99.4 Harry"
+                },
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": [],
+                  "otherCatalogues": ["OVE999999"]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:134991119",
+              "genreAndForm": ["erindringer", "biografier"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "engelsk",
+                    "isoCode": "eng"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Spare"],
+                "original": []
+              },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Random House"],
+              "identifiers": [
+                {
+                  "value": "9780593593806"
+                }
+              ],
+              "contributors": [],
+              "edition": {
+                "summary": "1. US edition, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
+              },
+              "dateFirstEdition": null,
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescriptions": [
+                {
+                  "summary": "410 sider: ill.",
+                  "numberOfPages": 410,
+                  "playingTime": null
+                }
+              ],
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": [],
+                "otherCatalogues": ["OVE999999"]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:134991119",
+              "genreAndForm": ["erindringer", "biografier"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "engelsk",
+                    "isoCode": "eng"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Spare"],
+                "original": []
+              },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Random House"],
+              "identifiers": [
+                {
+                  "value": "9780593593806"
+                }
+              ],
+              "contributors": [],
+              "edition": {
+                "summary": "1. US edition, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
+              },
+              "dateFirstEdition": null,
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescriptions": [
+                {
+                  "summary": "410 sider: ill.",
+                  "numberOfPages": 410,
+                  "playingTime": null
+                }
+              ],
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": [],
+                "otherCatalogues": ["OVE999999"]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
