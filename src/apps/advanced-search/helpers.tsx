@@ -105,7 +105,7 @@ export const translateSearchObjectToCql = (
 ) => {
   const rowsAsCql = translateRowsToCql(searchObject.rows);
   const filtersAsCql = translateFiltersToCql(searchObject.filters);
-  return `${rowsAsCql} ${wrapFiltersInParentheses(filtersAsCql)}`;
+  return `${rowsAsCql}${wrapFiltersInParentheses(filtersAsCql)}`;
 };
 
 export const shouldAdvancedSearchButtonBeDisabled = (
