@@ -11,7 +11,6 @@ type ReservationSuccesProps = {
   preferredPickupBranch: string;
   modalId: string;
   numberInQueue?: number;
-  reservationCount: number;
   holdings: number;
 };
 
@@ -20,7 +19,6 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
   title,
   preferredPickupBranch,
   numberInQueue,
-  reservationCount,
   holdings
 }) => {
   const dispatch = useDispatch();
@@ -51,7 +49,6 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
         >
           <StockAndReservationInfo
             stockCount={holdings}
-            reservationCount={reservationCount}
             numberInQueue={numberInQueue}
           />
         </p>
