@@ -95,7 +95,7 @@ export const wrapFiltersInParentheses = (filters: string) => {
   if (!filters.includes(" OR ")) {
     return filters;
   }
-  // They always start with " AND", so we can work with that.
+  // The filter string always start with " AND", so we can work with that.
   const splitFiltersArray = filters.split(" AND", 2);
   return `${splitFiltersArray.join(" AND (")})`;
 };
