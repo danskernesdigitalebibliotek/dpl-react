@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCombobox, UseComboboxStateChange } from "downshift";
 import { useClickAway } from "react-use";
 import {
@@ -63,9 +63,8 @@ const SearchHeader: React.FC = () => {
     useState<boolean>(false);
   // Once we register the item select event the original highlighted index is
   // already set to -1 by Downshift.
-  const [highlightedIndexAfterClick, setHighlightedIndexAfterClick] = useState<
-    number | null
-  >(null);
+  const highlightedIndexAfterClick = useRef<number | null>(null);
+
   const { track } = useStatistics();
 
   // Make sure to only assign the data once.
@@ -150,7 +149,7 @@ const SearchHeader: React.FC = () => {
     // Set highlighted index when hovering over with mouse + exit function.
     if (type === useCombobox.stateChangeTypes.ItemMouseMove) {
       if (highlightedIndex !== undefined && highlightedIndex > -1) {
-        setHighlightedIndexAfterClick(highlightedIndex);
+        highlightedIndexAfterClick.current = highlightedIndex;
       }
       return;
     }
@@ -161,7 +160,7 @@ const SearchHeader: React.FC = () => {
       type === useCombobox.stateChangeTypes.InputKeyDownEnter
     ) {
       if (highlightedIndex !== undefined && highlightedIndex > -1) {
-        setHighlightedIndexAfterClick(highlightedIndex);
+        highlightedIndexAfterClick.current = highlightedIndex;
       }
     }
     // Close autosuggest if there is no highlighted index.
@@ -182,7 +181,8 @@ const SearchHeader: React.FC = () => {
       type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
       type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
     ) {
-      setQWithoutQuery(currentItemValue);
+      // Triggers re-render and confuses screen readers
+      // setQWithoutQuery(currentItemValue);
       return;
     }
     // Make a new API suggestion request.
@@ -232,11 +232,12 @@ const SearchHeader: React.FC = () => {
       nonWorkSuggestion &&
       changes.selectedItem &&
       nonWorkSuggestion.term === changes.selectedItem.term &&
-      highlightedIndexAfterClick &&
-      highlightedIndexAfterClick >= textData.concat(materialData).length
+      highlightedIndexAfterClick.current &&
+      highlightedIndexAfterClick.current >= textData.concat(materialData).length
     ) {
       const highlightedCategoryIndex =
-        highlightedIndexAfterClick - (textData.length + materialData.length);
+        highlightedIndexAfterClick.current -
+        (textData.length + materialData.length);
       const selectedItemString = determineSuggestionTerm(changes.selectedItem);
       track("click", {
         id: statistics.autosuggestClick.id,
