@@ -286,7 +286,7 @@ const SearchHeader: React.FC = () => {
     onHighlightedIndexChange: handleHighlightedIndexChange
   });
 
-  const headerDropdownRef = React.useRef<HTMLButtonElement>(null);
+  const headerDropdownRef = React.useRef<HTMLAnchorElement>(null);
 
   useClickAway(headerDropdownRef, () => {
     // We use a timeout so that when the user clicks on the dropdown arrow as
