@@ -8,12 +8,14 @@ const extractErrorDetails = (stack) => {
   const stackLines = (stack || "").split("\n");
   const match = stackLines
     .map((line) => {
+      // Extract filename, lineNumber, and column from a string formatted like "filename:line:column"
       const parts = line.match(/(?:\()?(.*?):(\d+):(\d+)(?:\))?/);
       if (parts) {
+        const [, filename, lineNumber, column] = parts;
         return {
-          filename: parts[1],
-          lineNumber: parts[2],
-          column: parts[3]
+          filename,
+          lineNumber,
+          column
         };
       }
       return null;
