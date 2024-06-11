@@ -65,7 +65,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
               />
             }
           >
-            <div className="facet-browser__facet-group">
+            <ul className="facet-browser__facet-group">
               {values.map((termItem) => {
                 const { term } = termItem;
 
@@ -85,17 +85,19 @@ const FacetBrowserModalBody: React.FunctionComponent<
                 };
 
                 return (
-                  <ButtonTag
-                    key={term}
-                    onClick={handleAddOrRemoveFilter}
-                    selected={selected}
-                    dataCy={`facet-browser-${name}-${term}`}
-                  >
-                    {termItem.term} {termItem?.score && `(${termItem.score})`}
-                  </ButtonTag>
+                  <li>
+                    <ButtonTag
+                      key={term}
+                      onClick={handleAddOrRemoveFilter}
+                      selected={selected}
+                      dataCy={`facet-browser-${name}-${term}`}
+                    >
+                      {termItem.term} {termItem?.score && `(${termItem.score})`}
+                    </ButtonTag>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </DisclosureControllable>
         );
       })}
