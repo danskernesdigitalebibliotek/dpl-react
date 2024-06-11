@@ -12,12 +12,11 @@ export interface SearchResultSkeletonProps {
 
 const SearchResultSkeleton: FC<SearchResultSkeletonProps> = ({
   q,
-  dataCy = "search-header-skeleton",
   hideFacetLine = false
 }) => {
   const t = useText();
   return (
-    <div className="card-list-page" data-cy={dataCy}>
+    <>
       <h1 className="text-header-h2 mb-16 search-result-title text-loading">
         {!hideFacetLine &&
           t("showingResultsForText", { placeholders: { "@query": q } })}
@@ -33,7 +32,7 @@ const SearchResultSkeleton: FC<SearchResultSkeletonProps> = ({
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 
