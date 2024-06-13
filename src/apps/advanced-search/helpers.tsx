@@ -47,19 +47,28 @@ const translateFilterToCql = (
   filterToTranslate: MultiselectOption[],
   cqlKey: keyof typeof advancedSearchFilters
 ) => {
-  return filterToTranslate.reduce((acc: string, curr: MultiselectOption) => {
-    let filterTranslation = "";
-    const relation = acc.trim() === "" ? " AND" : " OR";
-    if (curr.value === "all") {
-      return `${acc}`;
-    }
-    filterTranslation = filterTranslation.concat(
-      relation,
-      ` ${advancedSearchFilters[cqlKey]}=`,
-      `'${curr.value}'`
-    );
-    return acc + filterTranslation;
-  }, "");
+  let translation = filterToTranslate.reduce(
+    (acc: string, curr: MultiselectOption) => {
+      let filterTranslation = "";
+      const relation = acc.trim() === "" ? " AND" : " OR";
+      if (curr.value === "all") {
+        return `${acc}`;
+      }
+      filterTranslation = filterTranslation.concat(
+        relation,
+        ` ${advancedSearchFilters[cqlKey]}=`,
+        `'${curr.value}'`
+      );
+      return acc + filterTranslation;
+    },
+    ""
+  );
+  // If multiple values are selected in a single filter, we need to wrap them in
+  // parentheses & add move the opening AND clause before the parenthesis opening.
+  if (filterToTranslate.length > 1) {
+    translation = ` AND (${translation.split(" AND")[1]})`;
+  }
+  return translation;
 };
 
 const translateFiltersToCql = (
@@ -105,7 +114,7 @@ export const translateSearchObjectToCql = (
 ) => {
   const rowsAsCql = translateRowsToCql(searchObject.rows);
   const filtersAsCql = translateFiltersToCql(searchObject.filters);
-  return `${rowsAsCql}${wrapFiltersInParentheses(filtersAsCql)}`;
+  return `${rowsAsCql}${filtersAsCql}`;
 };
 
 export const shouldAdvancedSearchButtonBeDisabled = (
