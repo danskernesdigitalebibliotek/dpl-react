@@ -47,6 +47,18 @@ describe("Search Result", () => {
       "contain",
       "'Harry' AND 'Prince' AND term.generalmaterialtype='bøger'"
     );
+    cy.getBySel("advanced-search-accessibility")
+      .first()
+      .click()
+      .find("li")
+      .eq(2)
+      .should("contain", "Online")
+      .click();
+    cy.getBySel("advanced-search-accessibility").first().click();
+    cy.getBySel("preview-section", true).should(
+      "contain",
+      "'Harry' AND 'Prince' AND term.generalmaterialtype='bøger' AND term.accesstype='online'"
+    );
   });
 
   it("Should reset the form upon reset button click", () => {
