@@ -4,7 +4,7 @@ import { useText } from "../../core/utils/text";
 
 export interface StockAndReservationInfoProps {
   stockCount: number;
-  reservationCount: number;
+  reservationCount?: number;
   numberInQueue?: number;
 }
 
@@ -20,7 +20,7 @@ const StockAndReservationInfo: FC<StockAndReservationInfoProps> = ({
   });
   const materialReservationInfoText = t("materialReservationInfoText", {
     count: reservationCount,
-    placeholders: { "@count": reservationCount }
+    placeholders: { "@count": reservationCount || 0 }
   });
 
   const numberInQueueText = numberInQueue
@@ -33,7 +33,7 @@ const StockAndReservationInfo: FC<StockAndReservationInfoProps> = ({
     <>
       {numberInQueueText && `${numberInQueueText} `}
       {materialsInStockInfoText && `${materialsInStockInfoText} `}
-      {materialReservationInfoText && materialReservationInfoText}
+      {!!reservationCount && materialReservationInfoText}
     </>
   );
 };
