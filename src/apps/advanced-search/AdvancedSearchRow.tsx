@@ -123,7 +123,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           className="hide-visually"
         >
           {t("advancedSearchInputLabelText", {
-            placeholders: { "@inputNumber": rowIndex }
+            placeholders: { "@inputNumber": rowIndex + 1 }
           })}
         </label>
         <input
