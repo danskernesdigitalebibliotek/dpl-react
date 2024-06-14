@@ -8,10 +8,12 @@ import { getManifestationPublicationYear } from "../../core/utils/helpers/genera
 
 export interface FindOnShelfManifestationListProps {
   libraryBranchHoldings: ManifestationHoldings;
+  author: string;
 }
 
 const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
-  libraryBranchHoldings
+  libraryBranchHoldings,
+  author
 }) => {
   const t = useText();
 
@@ -55,6 +57,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
               branchHolding.holding.materials
             )}
             key={branchHolding.holding.branch.branchId}
+            author={author}
           />
         );
       })}

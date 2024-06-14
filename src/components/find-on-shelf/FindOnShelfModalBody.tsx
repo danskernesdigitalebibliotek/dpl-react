@@ -215,6 +215,7 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
               >
                 <FindOnShelfManifestationList
                   libraryBranchHoldings={libraryBranch}
+                  author={author}
                 />
               </Disclosure>
             );
