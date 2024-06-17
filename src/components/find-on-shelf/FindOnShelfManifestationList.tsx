@@ -32,7 +32,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
         <span className="find-on-shelf__material-header" role="columnheader">
           {t("findOnShelfModalListMaterialText")}
         </span>
-        <span role="columnheader">
+        <span className="find-on-shelf__location-header" role="columnheader">
           {t("findOnShelfModalListFindOnShelfText")}
         </span>
         <span
