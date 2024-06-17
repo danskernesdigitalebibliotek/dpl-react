@@ -29,6 +29,16 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 
+// This q internal state is used to store the query string without requesting the search service.
+// This is used to keep the query string in the search field when the user clicks on the autosuggest
+// item.
+// We also want to make sure that we don't rerender the component when the user clicks on the
+// autosuggest item, because it confuses screen readers. So that is why we are NOT using `setState`.
+let qInternal = "";
+const setQInternally = (input: string) => {
+  qInternal = input;
+};
+
 const SearchHeader: React.FC = () => {
   const t = useText();
   const u = useUrls();
@@ -36,7 +46,6 @@ const SearchHeader: React.FC = () => {
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
   const [q, setQ] = useState<string>("");
-  const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<
     SuggestionsFromQueryStringQuery["suggest"]["result"] | []
   >([]);
@@ -69,6 +78,9 @@ const SearchHeader: React.FC = () => {
 
   // Make sure to only assign the data once.
   useEffect(() => {
+    if (!qInternal && q) {
+      setQInternally(q);
+    }
     if (data) {
       const arrayOfResults = data.suggest.result;
       setSuggestItems(arrayOfResults);
@@ -120,12 +132,12 @@ const SearchHeader: React.FC = () => {
   }, [data]);
 
   useEffect(() => {
-    if (qWithoutQuery.length > 2) {
+    if (qInternal.length > 2) {
       setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [qWithoutQuery]);
+  }, [qInternal]);
 
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
@@ -181,8 +193,7 @@ const SearchHeader: React.FC = () => {
       type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
       type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
     ) {
-      // Triggers re-render and confuses screen readers
-      // setQWithoutQuery(currentItemValue);
+      setQInternally(currentItemValue);
       return;
     }
     // Make a new API suggestion request.
@@ -196,10 +207,12 @@ const SearchHeader: React.FC = () => {
     }
     if (type === useCombobox.stateChangeTypes.InputChange) {
       setQ(inputValue);
-      setQWithoutQuery(inputValue);
+      // setQWithoutRequestingService(inputValue);
+      setQInternally(inputValue);
+
       return;
     }
-    setQWithoutQuery(inputValue);
+    setQInternally(inputValue);
     // Escape if there is no selected item defined.
     if (!selectedItem) {
       return;
@@ -279,7 +292,7 @@ const SearchHeader: React.FC = () => {
   } = useCombobox({
     isOpen: isAutosuggestOpen,
     items: orderedData,
-    inputValue: qWithoutQuery,
+    inputValue: qInternal,
     defaultIsOpen: false,
     onInputValueChange: handleInputValueChange,
     onSelectedItemChange: handleSelectedItemChange,
@@ -327,8 +340,8 @@ const SearchHeader: React.FC = () => {
           q={q}
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}
-          qWithoutQuery={qWithoutQuery}
-          setQWithoutQuery={setQWithoutQuery}
+          qWithoutQuery={qInternal}
+          setQWithoutQuery={setQInternally}
           isHeaderDropdownOpen={isHeaderDropdownOpen}
           setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
           redirectUrl={redirectUrl}
