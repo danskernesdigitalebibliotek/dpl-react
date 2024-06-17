@@ -19,6 +19,7 @@ export interface MaterialGridAutomaticEntryProps
     MaterialGridAutomaticEntryConfigProps {
   cql: string;
   title?: string;
+  description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
   buttonText: string;
 }
@@ -26,6 +27,7 @@ export interface MaterialGridAutomaticEntryProps
 const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   cql,
   title,
+  description,
   selectedAmountOfMaterialsForDisplay,
   buttonText
 }) => (
@@ -33,6 +35,7 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
     <MaterialGridAutomatic
       cql={cql}
       title={title}
+      description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
       buttonText={buttonText}
     />

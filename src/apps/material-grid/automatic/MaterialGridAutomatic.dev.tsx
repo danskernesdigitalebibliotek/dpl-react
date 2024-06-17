@@ -17,8 +17,13 @@ export default {
   argTypes: {
     title: {
       name: "Title",
-
       defaultValue: "Recommended materials",
+      control: { type: "text" }
+    },
+    description: {
+      name: "Description",
+      defaultValue:
+        "This is a long description of the materials selected, or whatever else you want to put in here",
       control: { type: "text" }
     },
     cql: {
