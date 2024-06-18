@@ -51,7 +51,10 @@ const FindOnShelfManifestationListItem: FC<
           : t("findOnShelfModalNoLocationSpecifiedText")}
       </span>
       <span className="find-on-shelf__item-count-text" role="cell">
-        {numberAvailable}
+        {numberAvailable}{" "}
+        <span className="hide-on-desktop">
+          {t("findOnShelfModalListItemCountText")}
+        </span>
       </span>
     </li>
   );
