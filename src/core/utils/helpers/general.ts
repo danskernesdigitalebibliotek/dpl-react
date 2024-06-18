@@ -64,6 +64,20 @@ export const creatorsToString = (creators: string[], t: UseTextFunction) => {
   return creators[0];
 };
 
+export const creatorsToStringLastNameFirst = (
+  creators: string[],
+  t: UseTextFunction
+) => {
+  const invertedCreators = creators.map((creator) => {
+    const [firstName, ...rest] = creator.split(" ");
+    // We don't know whether last name is second, or last, and so just put all
+    // after first name in the beginning of the string, then add the first name.
+    return `${rest.join(" ")}, ${firstName}`;
+  });
+
+  return creatorsToString(invertedCreators, t);
+};
+
 export const getCreatorTextFromManifestations = (
   manifestations: Manifestation[],
   t: UseTextFunction
