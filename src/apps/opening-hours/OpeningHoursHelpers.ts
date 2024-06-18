@@ -80,10 +80,19 @@ export const groupOpeningHoursByWeekday = (
   const daysWithOpeningHours: GroupedOpeningHours = allDays.map((day) => {
     return {
       dateTime: day,
-      date: day,
-      openingHourEntries: openingHours.filter((individualOpeningHour) =>
-        dayjs(individualOpeningHour.date).isSame(day, "day")
-      )
+      openingHourEntries: openingHours
+        .filter((individualOpeningHour) =>
+          dayjs(individualOpeningHour.date).isSame(day, "day")
+        )
+        .sort((a, b) => {
+          // The array is primarily sorted by the start_time property of each object.
+          const startTimeComparison = a.start_time.localeCompare(b.start_time);
+          if (startTimeComparison !== 0) {
+            return startTimeComparison;
+          }
+          // If two objects have the same start_time, they are then sorted by the end_time property.
+          return a.end_time.localeCompare(b.end_time);
+        })
     };
   });
 
