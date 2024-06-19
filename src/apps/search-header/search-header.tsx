@@ -48,7 +48,7 @@ const SearchHeader: React.FC = () => {
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
 
   const getSearchInputValue = () => {
-    return searchInputRef.current ? searchInputRef.current.value : '';
+    return searchInputRef.current ? searchInputRef.current.value : "";
   };
 
   const setSearchInputValue = (value: string) => {
