@@ -29,19 +29,10 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 
-// This q internal state is used to store the query string without requesting the search service.
-// This is used to keep the query string in the search field when the user clicks on the autosuggest
-// item.
-// We also want to make sure that we don't rerender the component when the user clicks on the
-// autosuggest item, because it confuses screen readers. So that is why we are NOT using `setState`.
-let qInternal = "";
-const setQInternally = (input: string) => {
-  qInternal = input;
-};
-
 const SearchHeader: React.FC = () => {
   const t = useText();
   const u = useUrls();
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
@@ -55,6 +46,16 @@ const SearchHeader: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
+
+  const getSearchInputValue = () => {
+    return searchInputRef.current ? searchInputRef.current.value : '';
+  };
+
+  const setSearchInputValue = (value: string) => {
+    if (searchInputRef.current) {
+      searchInputRef.current.value = value;
+    }
+  };
 
   const {
     data,
@@ -78,9 +79,6 @@ const SearchHeader: React.FC = () => {
 
   // Make sure to only assign the data once.
   useEffect(() => {
-    if (!qInternal && q) {
-      setQInternally(q);
-    }
     if (data) {
       const arrayOfResults = data.suggest.result;
       setSuggestItems(arrayOfResults);
@@ -132,12 +130,12 @@ const SearchHeader: React.FC = () => {
   }, [data]);
 
   useEffect(() => {
-    if (qInternal.length > 2) {
+    if (getSearchInputValue().length > 2) {
       setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [qInternal]);
+  }, [searchInputRef]);
 
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
@@ -193,7 +191,7 @@ const SearchHeader: React.FC = () => {
       type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
       type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
     ) {
-      setQInternally(currentItemValue);
+      setSearchInputValue(currentItemValue);
       return;
     }
     // Make a new API suggestion request.
@@ -207,12 +205,12 @@ const SearchHeader: React.FC = () => {
     }
     if (type === useCombobox.stateChangeTypes.InputChange) {
       setQ(inputValue);
-      // setQWithoutRequestingService(inputValue);
-      setQInternally(inputValue);
+      setSearchInputValue(inputValue);
 
       return;
     }
-    setQInternally(inputValue);
+    setSearchInputValue(inputValue);
+
     // Escape if there is no selected item defined.
     if (!selectedItem) {
       return;
@@ -292,7 +290,6 @@ const SearchHeader: React.FC = () => {
   } = useCombobox({
     isOpen: isAutosuggestOpen,
     items: orderedData,
-    inputValue: qInternal,
     defaultIsOpen: false,
     onInputValueChange: handleInputValueChange,
     onSelectedItemChange: handleSelectedItemChange,
@@ -340,11 +337,11 @@ const SearchHeader: React.FC = () => {
           q={q}
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}
-          qWithoutQuery={qInternal}
-          setQWithoutQuery={setQInternally}
+          qWithoutQuery={getSearchInputValue()}
           isHeaderDropdownOpen={isHeaderDropdownOpen}
           setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
           redirectUrl={redirectUrl}
+          inputRef={searchInputRef}
         />
         <Autosuggest
           textData={textData}

@@ -12,12 +12,12 @@ export interface SearchBarProps {
   getLabelProps: UseComboboxPropGetters<unknown>["getLabelProps"];
   dataCy?: string;
   qWithoutQuery: string;
-  setQWithoutQuery: (value: string) => void;
   isHeaderDropdownOpen: boolean;
   setIsHeaderDropdownOpen: (
     value: boolean | ((prevState: boolean) => boolean)
   ) => void;
   redirectUrl: URL;
+  inputRef: React.RefObject<HTMLInputElement>;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -26,10 +26,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
   getLabelProps,
   dataCy = "search-header-input",
   qWithoutQuery,
-  setQWithoutQuery,
   isHeaderDropdownOpen,
   setIsHeaderDropdownOpen,
-  redirectUrl
+  redirectUrl,
+  inputRef
 }) => {
   const t = useText();
   const handleDropdownMenu = () => {
@@ -60,9 +60,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           }
         }}
         {...getInputProps({
-          onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-            setQWithoutQuery(e.target.value);
-          }
+          ref: inputRef
         })}
       />
       {/* eslint-enable react/jsx-props-no-spreading */}
