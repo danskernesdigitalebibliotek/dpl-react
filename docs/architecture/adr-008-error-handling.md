@@ -41,7 +41,7 @@ To make sure that not all fetching errors are being caught we have created a
 `queryErrorHandler` in `src/components/store.jsx`. The `queryErrorHandler` looks
 at the type of error/instance of error that is being thrown
 and decides if the Error Boundary should be used or not.
-At the moment of this writing there are two type of errors critical and non-critical.
+At the moment of this writing there are two type of errors - critical and non-critical.
 The critical ones are being caught by the Error Boundary and the non-critical
 are only ending up in the error log and is not blocking the app.
 
