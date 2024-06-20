@@ -36,7 +36,7 @@ of a failing request to a service or on our side.
 The change made to the error system in this context was to distinguish
 between the request errors.
 Some data for some services are being considered to be essential for the apps to
-work others not.
+work, others are not.
 To make sure that not all fetching errors are being caught we have created a
 `queryErrorHandler` in `src/components/store.jsx`. The `queryErrorHandler` looks
 at the type of error/instance of error that is being thrown
