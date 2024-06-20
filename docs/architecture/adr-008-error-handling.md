@@ -9,7 +9,7 @@ Errors were already handled in the initial implementation of this project.
 An [Error Boundary](https://react.dev/reference/react/use#displaying-an-error-to-users-with-error-boundary).
 was already implemented but we were lacking two important features:
 
-* Every app shouldn't show its error in there own scope. We wanted to centralise
+* Every app shouldn't show its error in their own scope. We wanted to centralise
 the error rendering for the end user
 * All errors should NOT be caught by the Error Boundary an thereby blocking the
 whole app.
