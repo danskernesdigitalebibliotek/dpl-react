@@ -1,5 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useCombobox, UseComboboxStateChange } from "downshift";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCombobox,
+  UseComboboxState,
+  UseComboboxStateChange,
+  UseComboboxStateChangeOptions
+} from "downshift";
 import { useClickAway } from "react-use";
 import {
   SuggestionsFromQueryStringQuery,
@@ -51,12 +56,6 @@ const SearchHeader: React.FC = () => {
     return searchInputRef.current ? searchInputRef.current.value : "";
   };
 
-  const setSearchInputValue = (value: string) => {
-    if (searchInputRef.current) {
-      searchInputRef.current.value = value;
-    }
-  };
-
   const {
     data,
     isLoading,
@@ -92,7 +91,10 @@ const SearchHeader: React.FC = () => {
   // The first suggestion that is not of SuggestionType.Title - used for showing/
   // /hiding autosuggest categories suggestions.
   let nonWorkSuggestion: Suggestion | undefined;
-  let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
+  let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] =
+    useMemo(() => {
+      return [];
+    }, []);
 
   if (originalData) {
     nonWorkSuggestion = findNonWorkSuggestion(originalData);
@@ -191,7 +193,6 @@ const SearchHeader: React.FC = () => {
       type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
       type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
     ) {
-      setSearchInputValue(currentItemValue);
       return;
     }
     // Make a new API suggestion request.
@@ -205,11 +206,8 @@ const SearchHeader: React.FC = () => {
     }
     if (type === useCombobox.stateChangeTypes.InputChange) {
       setQ(inputValue);
-      setSearchInputValue(inputValue);
-
       return;
     }
-    setSearchInputValue(inputValue);
 
     // Escape if there is no selected item defined.
     if (!selectedItem) {
@@ -280,6 +278,32 @@ const SearchHeader: React.FC = () => {
     });
   }
 
+  const stateReducer = React.useCallback(
+    (
+      state: UseComboboxState<string>,
+      actionAndChanges: UseComboboxStateChangeOptions<string>
+    ) => {
+      const { type, changes } = actionAndChanges;
+      const currentlyHighlightedObject =
+        orderedData[changes?.highlightedIndex ?? -1];
+      const currentItemValue = currentlyHighlightedObject
+        ? determineSuggestionTerm(currentlyHighlightedObject)
+        : "";
+
+      switch (type) {
+        case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
+        case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
+          return {
+            ...changes,
+            inputValue: currentItemValue
+          };
+        default:
+          return changes;
+      }
+    },
+    [orderedData]
+  );
+
   // This is the main Downshift hook.
   const {
     getMenuProps,
@@ -294,7 +318,8 @@ const SearchHeader: React.FC = () => {
     onInputValueChange: handleInputValueChange,
     onSelectedItemChange: handleSelectedItemChange,
     selectedItem: currentlySelectedItem,
-    onHighlightedIndexChange: handleHighlightedIndexChange
+    onHighlightedIndexChange: handleHighlightedIndexChange,
+    stateReducer
   });
 
   const headerDropdownRef = React.useRef<HTMLAnchorElement>(null);
