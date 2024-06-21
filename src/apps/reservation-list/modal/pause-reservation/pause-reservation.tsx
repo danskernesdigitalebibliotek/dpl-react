@@ -41,12 +41,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
       }
       // TODO: consolidate with the other save patron function
       // be aware the defaults are not necessarily the same in the different save patron functions
-      const saveData = {
-        preferredPickupBranch: user.preferredPickupBranch,
-        receiveEmail: user.receiveEmail,
-        receivePostalMail: user.receivePostalMail,
-        receiveSms: user.receiveSms
-      } as Patron;
+      const saveData = user as Patron;
 
       saveData.onHold = {
         from: localStartDate === "" ? undefined : localStartDate,
