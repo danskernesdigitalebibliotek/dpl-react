@@ -13,7 +13,7 @@ interface Reservation extends ListType {
   pickupBranch: string;
   title: string;
   periodical: string;
-  reservationType: "normal" | "parallel" | "serial" | "inter_library";
+  reservationType: string;
 }
 
 export type ReservationType = Nullable<Partial<Reservation>>;
