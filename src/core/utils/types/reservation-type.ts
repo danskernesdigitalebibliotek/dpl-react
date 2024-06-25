@@ -1,3 +1,4 @@
+import { ILLBibliographicRecord } from "../../fbs/model";
 import { ListType } from "./list-type";
 import { Nullable } from "./nullable";
 
@@ -14,6 +15,7 @@ interface Reservation extends ListType {
   title: string;
   periodical: string;
   reservationType: "normal" | "parallel" | "serial" | "inter_library";
+  ilBibliographicRecord?: ILLBibliographicRecord;
 }
 
 export type ReservationType = Nullable<Partial<Reservation>>;
