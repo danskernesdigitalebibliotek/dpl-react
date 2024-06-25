@@ -13,9 +13,11 @@ import ArrowButton from "../../../../components/Buttons/ArrowButton";
 import { isDigital } from "../../utils/helpers";
 import { listId, ListType } from "../../../../core/utils/types/list-type";
 import SelectableMaterialSkeleton from "./selectable-material-skeleton";
+import { ILLBibliographicRecord } from "../../../../core/fbs/model";
 
 interface SelectableMaterialProps {
   identifier?: string | null;
+  ilBibliographicRecord?: ILLBibliographicRecord;
   disabled?: boolean;
   item?: ListType;
   onMaterialChecked?: (listItem: ListType) => void;
@@ -32,6 +34,7 @@ interface SelectableMaterialProps {
 
 const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   material,
+  ilBibliographicRecord,
   disabled,
   onMaterialChecked,
   selected,
@@ -48,13 +51,23 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   const t = useText();
 
   if (!item) return null;
-  const {
+  let {
     authorsShort = "",
     materialType,
     year = "",
     title = "",
     lang
   } = material || {};
+
+  // There is a chance material isn't provided, if corresponding reservation PID is
+  // incorrect (that's unfortunately possible). Then we use ilBibliographicRecord data.
+  if (!material) {
+    authorsShort = ilBibliographicRecord?.author || "";
+    materialType = "";
+    year = ilBibliographicRecord?.publicationDate || "";
+    title = ilBibliographicRecord?.title || "";
+    lang = ilBibliographicRecord?.language || "";
+  }
 
   // The reason why the handlers are used on multiple containers is because of multiple reasons:
   // * We cannot attach them to the li or the list-materials container because it prevents the checkbox from being checked.
@@ -110,9 +123,14 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           tabIndex={0}
         >
           <div className="list-materials__content-status">
-            <div className="status-label status-label--outline ">
-              {materialType}
-            </div>
+            {materialType && materialType !== "" && (
+              <div className="status-label status-label--outline ">
+                {materialType}
+              </div>
+            )}
+            {(!materialType || materialType === "") && (
+              <span className="mt-8" />
+            )}
           </div>
           {statusBadgeComponentMobile || null}
           <p className="list-materials__content__header mt-8" lang={lang || ""}>

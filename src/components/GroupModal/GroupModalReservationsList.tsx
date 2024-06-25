@@ -10,6 +10,7 @@ import {
 import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
 import { ListType } from "../../core/utils/types/list-type";
 import { getStatusText } from "../../apps/reservation-list/utils/helpers";
+import { ILLBibliographicRecord } from "../../core/fbs/model";
 
 export interface GroupModalReservationsListProps {
   materials: ReservationType[];
@@ -75,9 +76,7 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
           const selected = selectedMaterials?.some((selectedMaterial) =>
             isEqual(selectedMaterial, material)
           );
-
           const statusText: string = getStatusText(material, t);
-
           const statusBadgeComponent = statusText ? (
             <StatusBadge
               badgeDate={expiryDate}
@@ -100,6 +99,11 @@ const GroupModalReservationsList: FC<GroupModalReservationsListProps> = ({
                 disabled={false}
                 statusMessageComponentMobile={null}
                 statusMessageComponentDesktop={null}
+                // material.ilBibliographicRecord is of the ILLBibliographicRecord type,
+                // we just make it nullable in the code defining ReservationType.
+                ilBibliographicRecord={
+                  material.ilBibliographicRecord as ILLBibliographicRecord
+                }
               />
             )
           );

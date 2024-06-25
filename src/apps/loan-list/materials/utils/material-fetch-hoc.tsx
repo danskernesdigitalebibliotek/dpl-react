@@ -8,12 +8,14 @@ import { Product } from "../../../../core/publizon/model";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
 import { mapManifestationToBasicDetailsType } from "../../../../core/utils/helpers/list-mapper";
 import { ListType } from "../../../../core/utils/types/list-type";
+import { ILLBibliographicRecord } from "../../../../core/fbs/model";
 
 export interface MaterialProps {
   material?: BasicDetailsType | null;
 }
 
 type InputProps = {
+  ilBibliographicRecord?: ILLBibliographicRecord;
   digitalMaterial?: Product | null;
   item?: ListType;
 };
@@ -72,8 +74,9 @@ const fetchMaterial =
         return FallbackComponent ? <FallbackComponent /> : null;
       }
 
-      // in cases where the material is not found we return null, else we would load forever
-      if (!manifestation) return null;
+      // In cases where the material is not found AND we don't have fallback data
+      // we return null, else we would load forever.
+      if (!manifestation && !props.ilBibliographicRecord) return null;
 
       return (
         <Component
@@ -81,6 +84,7 @@ const fetchMaterial =
           {...(props as P)}
           item={item}
           material={material}
+          ilBibliographicRecord={props.ilBibliographicRecord}
         />
       );
     }
