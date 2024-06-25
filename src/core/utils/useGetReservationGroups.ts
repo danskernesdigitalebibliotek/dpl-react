@@ -27,10 +27,12 @@ export type ReservationGroupDetails = Omit<
 };
 
 function groupReservations(data: ReservationDetailsV2[]) {
-  const reservationGroups = groupBy(
-    data,
-    (reservation) => reservation.transactionId
-  );
+  const reservationGroups = groupBy(data, (reservation) => {
+    if (reservation.reservationType === "parallel") {
+      return reservation.recordId;
+    }
+    return reservation.reservationId;
+  });
 
   const processedReserations = map(
     reservationGroups,
