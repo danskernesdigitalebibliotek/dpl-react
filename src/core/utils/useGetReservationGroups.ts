@@ -106,8 +106,14 @@ if (import.meta.vitest) {
     it("groups reservations by transaction id", () => {
       const reservations = groupReservations([
         generateReservation({ transactionId: "t1" }),
-        generateReservation({ transactionId: "t2" }),
-        generateReservation({ transactionId: "t2" }),
+        generateReservation({
+          transactionId: "t2",
+          reservationType: "parallel"
+        }),
+        generateReservation({
+          transactionId: "t2",
+          reservationType: "parallel"
+        }),
         generateReservation({ transactionId: "t3" })
       ]);
       expect(reservations).toHaveLength(3);
