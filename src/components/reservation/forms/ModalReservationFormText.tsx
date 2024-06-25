@@ -1,13 +1,8 @@
 import { isEqual } from "lodash";
 import React, { memo, useState } from "react";
-import { useQueryClient } from "react-query";
-import {
-  getGetPatronInformationByPatronIdV2QueryKey,
-  useUpdateV5
-} from "../../../core/fbs/fbs";
 import { PatronV5 } from "../../../core/fbs/model";
 import { stringifyValue } from "../../../core/utils/helpers/general";
-import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
+import Modal from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import TextInput from "../../atoms/input/TextInput";
 import { getInputType, getReservationModalTypeTranslation } from "../helper";
@@ -17,6 +12,7 @@ import {
   saveText
 } from "./helper";
 import ReservationForm from "./ReservationForm";
+import useSavePatron from "../../../core/utils/useSavePatron";
 
 export interface ModalReservationFormTextProps {
   type: ModalReservationFormTextType;
@@ -52,11 +48,19 @@ const ModalReservationFormText = ({
   inputField,
   patron
 }: ModalReservationFormTextProps) => {
-  const { close } = useModalButtonHandler();
-  const queryClient = useQueryClient();
   const t = useText();
   const [text, setText] = useState<string>(stringifyValue(defaultText));
-  const { mutate } = useUpdateV5();
+  const { savePatron } = useSavePatron({
+    patron,
+    fetchHandlers: {
+      savePatron: {
+        // If an error occurred make sure to reset the text to the old value.
+        onError: () => {
+          setText(stringifyValue(defaultText));
+        }
+      }
+    }
+  });
   const onChange = (input: string) => {
     setText(input);
   };
@@ -66,26 +70,8 @@ const ModalReservationFormText = ({
       changedText: text,
       savedText: defaultText,
       patron,
-      mutate
-    })
-      .then((response) => {
-        // If we succeeded in saving we can cache the new data.
-        if (response) {
-          queryClient.setQueryData(
-            getGetPatronInformationByPatronIdV2QueryKey(),
-            response
-          );
-        }
-      })
-      .catch((e) => {
-        // If an error ocurred make sure to reset the text to the old value.
-        setText(stringifyValue(defaultText));
-        throw e;
-      })
-      .finally(() => {
-        // Close modal no matter what.
-        close(modalReservationFormId(type));
-      });
+      savePatron
+    });
   };
   const { modalId, screenReaderModalDescriptionText, closeModalAriaLabelText } =
     modalProps(type, t);
