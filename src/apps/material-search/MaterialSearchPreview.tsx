@@ -1,0 +1,117 @@
+import React, { FC, useEffect, useState } from "react";
+import { Cover } from "../../components/cover/cover";
+import {
+  creatorsToString,
+  flattenCreators
+} from "../../core/utils/helpers/general";
+import { useText } from "../../core/utils/text";
+import { Manifestation, Work } from "../../core/utils/types/entities";
+import { getManifestationsFromType } from "../material/helper";
+import MaterialSearchLoading from "./MaterialSearchLoading";
+
+type MaterialSearchPreviewProps = {
+  work: Work | null;
+  selectedMaterialType: string | null;
+  isLoading: boolean;
+};
+
+const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
+  work,
+  selectedMaterialType,
+  isLoading
+}) => {
+  const t = useText();
+  const [materialForDisplay, setMaterialForDisplay] =
+    useState<Manifestation | null>(null);
+
+  useEffect(() => {
+    if (work) {
+      const matchedManifestations = selectedMaterialType
+        ? getManifestationsFromType(selectedMaterialType, work)
+        : [work.manifestations.bestRepresentation];
+
+      setMaterialForDisplay(matchedManifestations[0]);
+    } else {
+      setMaterialForDisplay(null);
+    }
+  }, [work, selectedMaterialType]);
+
+  if (isLoading) {
+    return (
+      <div className="material-search__preview">
+        <div className="material-search__preview-loading">
+          <MaterialSearchLoading loadingText={t("materialSearchLoadingText")} />
+        </div>
+      </div>
+    );
+  }
+
+  if (!work || !materialForDisplay) {
+    return (
+      <div className="material-search__preview">
+        <div className="material-search__preview-empty">
+          {t("materialSearchNoMaterialSelectedText")}
+        </div>
+      </div>
+    );
+  }
+
+  const author = creatorsToString(flattenCreators(work.creators), t);
+
+  return (
+    <div className="material-search__preview">
+      <div className="material-search__preview-material">
+        <Cover
+          ids={[materialForDisplay.pid]}
+          size="large"
+          displaySize="small"
+          animate
+          alt={`Cover for ${materialForDisplay.titles.main}`}
+          shadow="small"
+        />
+        <div>
+          <div className="material-search__preview-item">
+            <span className="material-search__preview-term">
+              {t("materialSearchPreviewTitleText")}:
+            </span>
+            <span className="material-search__preview-detail">
+              {materialForDisplay.titles.main}
+            </span>
+          </div>
+          <div className="material-search__preview-item">
+            <span className="material-search__preview-term">
+              {t("materialSearchPreviewAuthorText")}:
+            </span>
+            <span className="material-search__preview-detail">{author}</span>
+          </div>
+          <div className="material-search__preview-item">
+            <span className="material-search__preview-term">
+              {t("materialSearchPreviewPublicationYearText")}:
+            </span>
+            <span className="material-search__preview-detail">
+              {materialForDisplay.edition?.publicationYear?.display}
+            </span>
+          </div>
+          <div className="material-search__preview-item">
+            <span className="material-search__preview-term">
+              {t("materialSearchPreviewSourceText")}:
+            </span>
+            <span className="material-search__preview-detail">
+              {materialForDisplay.source}
+            </span>
+          </div>
+          <div className="material-search__preview-item">
+            <span className="material-search__preview-term">
+              {t("materialSearchPreviewWorkIdText")}:
+            </span>
+            <span className="material-search__preview-detail">
+              {work.workId}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MaterialSearchPreview;

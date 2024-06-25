@@ -20,18 +20,22 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const pauseReservationInfoUrl = u("pauseReservationInfoUrl");
   const { close } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
+  const [isLoading, setIsLoading] = useState(false);
   const { savePatron } = useSavePatron({
     patron: user,
     fetchHandlers: {
       savePatron: {
         onSuccess: () => {
+          setIsLoading(false);
           close(pauseReservation as string);
+        },
+        onError: () => {
+          setIsLoading(false);
         }
       }
     }
   });
   const saveFormId = useId();
-
   const currentDate = dayjs().format("YYYY-MM-DD");
   const [startDate, setStartDate] = useState<string>(currentDate);
   const [endDate, setEndDate] = useState<string>("");
@@ -43,6 +47,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
         return;
       }
 
+      setIsLoading(true);
       savePatron({
         onHold: {
           from: start === "" ? undefined : start,
@@ -126,6 +131,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
             type="submit"
             form={saveFormId}
             className="btn-primary btn-filled btn-small"
+            disabled={isLoading}
           >
             {t("pauseReservationModalSaveButtonLabelText")}
           </button>

@@ -42,7 +42,7 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
         const { term, url } = item;
         return (
           <span key={term}>
-            <Link href={url} className="link-tag">
+            <Link href={url} className="link-tag" stopPropagation>
               {term}
             </Link>
           </span>
