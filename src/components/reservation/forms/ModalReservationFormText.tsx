@@ -2,7 +2,7 @@ import { isEqual } from "lodash";
 import React, { memo, useState } from "react";
 import { PatronV5 } from "../../../core/fbs/model";
 import { stringifyValue } from "../../../core/utils/helpers/general";
-import Modal from "../../../core/utils/modal";
+import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
 import TextInput from "../../atoms/input/TextInput";
 import { getInputType, getReservationModalTypeTranslation } from "../helper";
@@ -48,15 +48,20 @@ const ModalReservationFormText = ({
   inputField,
   patron
 }: ModalReservationFormTextProps) => {
+  const { close } = useModalButtonHandler();
   const t = useText();
   const [text, setText] = useState<string>(stringifyValue(defaultText));
   const { savePatron } = useSavePatron({
     patron,
     fetchHandlers: {
       savePatron: {
+        onSuccess: () => {
+          close(modalReservationFormId(type));
+        },
         // If an error occurred make sure to reset the text to the old value.
         onError: () => {
           setText(stringifyValue(defaultText));
+          close(modalReservationFormId(type));
         }
       }
     }
