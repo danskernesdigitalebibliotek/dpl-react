@@ -539,7 +539,7 @@ export const useGetHoldings = ({
 
 export const getManifestationBasedOnType = (
   work: Work,
-  materialType: DisplayMaterialType
+  materialType: ManifestationMaterialType
 ): Manifestation => {
   const { bestRepresentation, all } = work.manifestations;
 
