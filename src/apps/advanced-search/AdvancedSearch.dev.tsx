@@ -344,6 +344,11 @@ export default {
       name: "Advanced search filter - non-fiction",
       defaultValue: "Non-fiction",
       control: { type: "text" }
+    },
+    advancedSearchFilterHoldingStatusText: {
+      name: "Advanced search filter - holding status",
+      defaultValue: "Holding Status On Shelf",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof AdvancedSearchEntry>;

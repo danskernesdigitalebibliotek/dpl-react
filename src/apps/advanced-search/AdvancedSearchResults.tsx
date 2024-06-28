@@ -7,23 +7,29 @@ import useGetCleanBranches from "../../core/utils/branches";
 import { Work } from "../../core/utils/types/entities";
 import {
   ComplexSearchWithPaginationQuery,
+  HoldingsStatus,
   useComplexSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
+import { LocationFilter } from "./LocationFilter";
 
 interface AdvancedSearchResultProps {
   q: string;
   pageSize: number;
   showContentOnly: boolean;
+  onShelf: boolean;
+  locationFilter: LocationFilter;
 }
 
 const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   q,
   pageSize,
-  showContentOnly
+  showContentOnly,
+  onShelf,
+  locationFilter
 }) => {
   const t = useText();
   const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
@@ -62,7 +68,12 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     offset: page * pageSize,
     limit: pageSize,
     filters: {
-      branchId: cleanBranches
+      branchId: cleanBranches,
+      status: onShelf ? [HoldingsStatus.OnShelf] : [],
+      ...(locationFilter?.location && { location: locationFilter.location }),
+      ...(locationFilter?.sublocation && {
+        sublocation: locationFilter.sublocation
+      })
     }
   });
 
@@ -85,7 +96,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       return;
     }
     setResultItems(resultWorks);
-  }, [data, page]);
+  }, [data, locationFilter, page]);
 
   const shouldShowSearchResults = isLoading || (!isLoading && hitcount > 0);
   const shouldShowResultHeadline = !!(hitcount && !isLoading);
