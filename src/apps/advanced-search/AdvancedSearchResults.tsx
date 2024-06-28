@@ -95,9 +95,6 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       setResultItems((prev) => [...prev, ...resultWorks]);
       return;
     }
-
-    console.log("SEARCH", locationFilter);
-
     setResultItems(resultWorks);
   }, [data, locationFilter, page]);
 
