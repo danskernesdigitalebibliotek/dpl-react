@@ -9,6 +9,7 @@ import {
   removeQueryParametersFromUrl,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
+import { LocationFilter } from "./LocationFilter";
 
 interface AdvancedSearchProps {
   pageSize: number;
@@ -27,6 +28,20 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
   const [showResultOnly, setShowResultOnly] = useState<boolean>(false);
   // This is the CQL query that is actually executed.
   const [executedQuery, setExecutedQuery] = useState<string | null>(null);
+
+  const [locationFilter, setLocationFilter] = useState<LocationFilter>({});
+  const handleLocationChange = (location: string) => {
+    setLocationFilter((prevFilter) => ({
+      ...prevFilter,
+      location: [location]
+    }));
+  };
+  const handleSublocationChange = (sublocation: string) => {
+    setLocationFilter((prevFilter) => ({
+      ...prevFilter,
+      sublocation: [sublocation]
+    }));
+  };
 
   const [onShelf, setOnShelf] = useState(false);
   const handleOnShelfChange = (checked: boolean) => {
@@ -99,6 +114,8 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           setSearchQuery={setSearchQuery}
           onShelf={onShelf}
           setOnShelf={handleOnShelfChange}
+          onLocationChange={handleLocationChange}
+          onSublocationChange={handleSublocationChange}
         />
       )}
       {executedQuery && (
@@ -107,6 +124,7 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           pageSize={pageSize}
           showContentOnly={showResultOnly}
           onShelf={onShelf}
+          locationFilter={locationFilter}
         />
       )}
     </div>

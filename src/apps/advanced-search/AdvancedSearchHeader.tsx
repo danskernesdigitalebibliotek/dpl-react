@@ -31,6 +31,8 @@ export type AdvancedSearchHeaderProps = {
   setSearchObject: (searchObject: AdvancedSearchQuery | null) => void;
   onShelf: boolean;
   setOnShelf: (checked: boolean) => void;
+  onLocationChange: (location: string) => void;
+  onSublocationChange: (sublocation: string) => void;
 };
 
 const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
@@ -40,7 +42,9 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   searchObject,
   setSearchObject,
   onShelf,
-  setOnShelf
+  setOnShelf,
+  onLocationChange,
+  onSublocationChange
 }) => {
   const t = useText();
   const [isFormMode, setIsFormMode] = useState<boolean>(true);
@@ -220,6 +224,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
           setCql={setRawCql}
           onShelf={onShelf}
           handleOnShelfChange={handleOnShelfChange}
+          onLocationChange={onLocationChange}
+          onSublocationChange={onSublocationChange}
         />
       )}
 
