@@ -4,13 +4,13 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
-import { DisplayMaterialType } from "../../core/utils/types/material-type";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { withUrls } from "../../core/utils/url";
 import Recommendation from "./recommendation";
 
 export interface RecommendationEntryProps extends GlobalEntryTextProps {
   wid: WorkId;
-  materialType?: DisplayMaterialType;
+  materialType?: ManifestationMaterialType;
   positionImageRight?: boolean;
 }
 

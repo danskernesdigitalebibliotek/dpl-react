@@ -9,9 +9,14 @@ import MaterialSearch, {
   MaterialSearchEntryProps,
   MaterialSearchEntryTextProps
 } from "./MaterialSearch.entry";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 // Can't use useId() here since this is not inside a functional component.
 const uniqueIdentifier = Math.floor(Math.random() * 10000);
+
+const defaultValuePreselectedWorkId =
+  "work-of:800010-katalog:99122475830405763";
+const defaultValuePreselectedMaterialType = "bog";
 
 export default {
   title: "Apps / Material Search",
@@ -22,15 +27,19 @@ export default {
       control: { type: "number" }
     },
     previouslySelectedWorkId: {
-      defaultValue: "work-of:870970-basis:134320257",
+      defaultValue: defaultValuePreselectedWorkId,
       control: { type: "text" }
     },
     previouslySelectedMaterialType: {
-      defaultValue: "bog",
+      defaultValue: defaultValuePreselectedMaterialType,
       control: { type: "text" }
     },
     etAlText: {
       defaultValue: "et al.",
+      control: { type: "text" }
+    },
+    materialUrl: {
+      defaultValue: "/work/:workid",
       control: { type: "text" }
     },
     materialSearchSearchInputText: {
@@ -109,6 +118,32 @@ export default {
       defaultValue: "Work ID",
       control: { type: "text" }
     },
+    materialSearchErrorTitleText: {
+      defaultValue: "Title",
+      control: { type: "text" }
+    },
+    materialSearchErrorAuthorText: {
+      defaultValue: "Author",
+      control: { type: "text" }
+    },
+    materialSearchErrorLinkText: {
+      defaultValue: "Link",
+      control: { type: "text" }
+    },
+    materialSearchErrorHeaderText: {
+      defaultValue: "This material needs to be updated.",
+      control: { type: "text" }
+    },
+    materialSearchErrorMaterialTypeNotFoundText: {
+      defaultValue:
+        "The currently selected type of the material is no longer available in the system. As a result of this, the link is likely broken. Use the title or link underneath to find and update the material and its type, or replace / delete it.",
+      control: { type: "text" }
+    },
+    materialSearchErrorWorkNotFoundText: {
+      defaultValue:
+        "The material that was previously selected is no longer available in the system. Either delete this entry or search for a new material to replace it.",
+      control: { type: "text" }
+    },
     ...globalTextArgs,
     ...serviceUrlArgs,
     ...globalConfigArgs
@@ -134,6 +169,7 @@ export const Default: ComponentStory<typeof MaterialSearch> = (
           placeholder="Enter search terms"
           className="material-search__input"
           tabIndex={-1}
+          defaultValue={defaultValuePreselectedWorkId}
         />
       </label>
       <label
@@ -146,6 +182,7 @@ export const Default: ComponentStory<typeof MaterialSearch> = (
           type="text"
           className="material-search__selector"
           tabIndex={-1}
+          defaultValue={defaultValuePreselectedMaterialType}
         />
       </label>
     </div>
@@ -153,4 +190,12 @@ export const Default: ComponentStory<typeof MaterialSearch> = (
   </div>
 );
 
-export const materialWithoutType = Default.bind({});
+export const materialWithInvalidType = Default.bind({});
+materialWithInvalidType.args = {
+  previouslySelectedMaterialType: "playstation 5" as ManifestationMaterialType
+};
+
+export const materialWithInvalidWorkId = Default.bind({});
+materialWithInvalidWorkId.args = {
+  previouslySelectedWorkId: "work-of:222222-katalog:33332313"
+};

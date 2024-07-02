@@ -1,20 +1,20 @@
-import * as React from "react";
 import clsx from "clsx";
-import { useState, useEffect } from "react";
-import { WorkId } from "../../core/utils/types/ids";
-import RecommendedMaterial from "../recommended-material/RecommendedMaterial";
+import * as React from "react";
+import { useEffect, useState } from "react";
+import MaterialListItem from "../../components/card-item-list/MaterialListItem";
 import { useText } from "../../core/utils/text";
+import { WorkId } from "../../core/utils/types/ids";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import RecommendedMaterial from "../recommended-material/RecommendedMaterial";
 import {
   MaterialGridValidIncrements,
   ValidSelectedIncrements,
   calculateAmountToDisplay
 } from "./materiel-grid-util";
-import { DisplayMaterialType } from "../../core/utils/types/material-type";
-import MaterialListItem from "../../components/card-item-list/MaterialListItem";
 
 export type MaterialGridItemProps = {
   wid: WorkId;
-  materialType?: DisplayMaterialType;
+  materialType?: ManifestationMaterialType;
 };
 
 export type MaterialGridProps = {

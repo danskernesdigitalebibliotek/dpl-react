@@ -1,12 +1,12 @@
 import React, { FC, useEffect } from "react";
 import { WorkId } from "../../core/utils/types/ids";
-import MaterialSearchList from "./MaterialSearchList";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import MaterialSearchInputs from "./MaterialSearchInputs";
+import MaterialSearchList from "./MaterialSearchList";
 import MaterialSearchPreview from "./MaterialSearchPreview";
 import useGetMaterialListSearch from "./useGetMaterialListSearch";
 import useGetSelectedWork from "./useGetSelectedWork";
 import useUpdateFields from "./useUpdateFields";
-import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 type MaterialSearchProps = {
   previouslySelectedWorkId: WorkId | null;
@@ -26,8 +26,13 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
     selectedWorkId,
     setSelectedWorkId,
     selectedMaterialType,
-    setSelectedMaterialType
-  } = useGetSelectedWork();
+    setSelectedMaterialType,
+    workError,
+    workErrorHasBeenChecked
+  } = useGetSelectedWork({
+    previouslySelectedWorkId,
+    previouslySelectedMaterialType
+  });
 
   const {
     searchInput,
@@ -45,17 +50,25 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
   });
 
   useEffect(() => {
-    if (previouslySelectedWorkId) {
+    if (workError || workErrorHasBeenChecked || !isSelectedWorkLoading) return;
+    if (previouslySelectedWorkId && !workErrorHasBeenChecked) {
       handleUpdateWorkId(previouslySelectedWorkId);
     }
-    if (previouslySelectedMaterialType && previouslySelectedWorkId) {
+    if (
+      previouslySelectedMaterialType &&
+      previouslySelectedWorkId &&
+      !workErrorHasBeenChecked
+    ) {
       handleUpdateMaterialType(previouslySelectedMaterialType);
     }
   }, [
     previouslySelectedWorkId,
     previouslySelectedMaterialType,
     handleUpdateWorkId,
-    handleUpdateMaterialType
+    handleUpdateMaterialType,
+    workError,
+    workErrorHasBeenChecked,
+    isSelectedWorkLoading
   ]);
 
   return (
@@ -73,6 +86,7 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
         work={work}
         isLoading={isSelectedWorkLoading}
         selectedMaterialType={selectedMaterialType}
+        workError={workError}
       />
       <MaterialSearchList
         data={searchListData}

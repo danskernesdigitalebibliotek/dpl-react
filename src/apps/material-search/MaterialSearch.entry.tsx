@@ -25,6 +25,12 @@ export interface MaterialSearchEntryTextProps {
   materialSearchPreviewPublicationYearText: string;
   materialSearchPreviewSourceText: string;
   materialSearchPreviewWorkIdText: string;
+  materialSearchErrorTitleText: string;
+  materialSearchErrorAuthorText: string;
+  materialSearchErrorLinkText: string;
+  materialSearchErrorHeaderText: string;
+  materialSearchErrorMaterialTypeNotFoundText: string;
+  materialSearchErrorWorkNotFoundText: string;
 }
 
 export interface MaterialSearchEntryProps {

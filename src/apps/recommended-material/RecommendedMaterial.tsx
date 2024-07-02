@@ -1,7 +1,7 @@
-import * as React from "react";
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
+import * as React from "react";
 import { useQueryClient } from "react-query";
+import { useDispatch } from "react-redux";
 import ButtonFavourite, {
   ButtonFavouriteId
 } from "../../components/button-favourite/button-favourite";
@@ -17,16 +17,16 @@ import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
 
+import Link from "../../components/atoms/links/Link";
 import { WorkId } from "../../core/utils/types/ids";
-import { DisplayMaterialType } from "../../core/utils/types/material-type";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { useUrls } from "../../core/utils/url";
 import { getManifestationBasedOnType } from "../material/helper";
 import RecommendedMaterialSkeleton from "./RecommendedMaterialSkeleton";
-import Link from "../../components/atoms/links/Link";
 
 export type RecommendedMaterialProps = {
   wid: WorkId;
-  materialType?: DisplayMaterialType;
+  materialType?: ManifestationMaterialType;
   partOfGrid?: boolean;
 };
 
