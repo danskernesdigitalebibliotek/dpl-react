@@ -218,7 +218,8 @@ export const mapFBSReservationToReservationType = (
       pickupDeadline,
       pickupNumber,
       reservationId,
-      periodical
+      periodical,
+      reservationType
     }) => {
       return {
         periodical: periodical?.displayText || "",
@@ -230,7 +231,8 @@ export const mapFBSReservationToReservationType = (
         pickupBranch,
         pickupDeadline,
         pickupNumber,
-        reservationIds: [reservationId]
+        reservationIds: [reservationId],
+        reservationType
       };
     }
   );

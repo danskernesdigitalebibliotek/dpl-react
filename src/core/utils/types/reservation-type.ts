@@ -13,6 +13,7 @@ interface Reservation extends ListType {
   pickupBranch: string;
   title: string;
   periodical: string;
+  reservationType: string;
 }
 
 export type ReservationType = Nullable<Partial<Reservation>>;
