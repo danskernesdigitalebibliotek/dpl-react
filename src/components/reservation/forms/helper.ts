@@ -1,9 +1,5 @@
-import { UseMutateFunction } from "react-query";
-import {
-  AuthenticatedPatronV6,
-  PatronV5,
-  UpdatePatronRequestV4
-} from "../../../core/fbs/model";
+import { PatronV5 } from "../../../core/fbs/model";
+import useSavePatron from "../../../core/utils/useSavePatron";
 
 export type ModalReservationFormTextType =
   | "email"
@@ -63,14 +59,7 @@ type SaveText = {
   changedText: string;
   savedText?: string;
   patron: PatronV5;
-  mutate: UseMutateFunction<
-    AuthenticatedPatronV6 | null,
-    void,
-    {
-      data: UpdatePatronRequestV4;
-    },
-    unknown
-  >;
+  savePatron: ReturnType<typeof useSavePatron>["savePatron"];
 };
 
 export const saveText = ({
@@ -78,48 +67,26 @@ export const saveText = ({
   changedText,
   savedText,
   patron,
-  mutate
+  savePatron
 }: SaveText) => {
-  return new Promise((resolve, reject) => {
-    const textDiffers = changedText !== savedText;
-    const updatedPatronData = constructPatronSaveData({
-      type,
-      value: changedText,
-      patron
-    });
-
-    // If we cannot construct the updated patron data we do not want to save anything.
-    if (!updatedPatronData) {
-      reject(new Error("Cannot construct updated patron data"));
-      return;
-    }
-    // If the email address is the same we do not want to save anything.
-    if (!textDiffers) {
-      resolve("");
-      return;
-    }
-
-    // Update user data.
-    mutate(
-      {
-        data: {
-          patron: updatedPatronData
-        }
-      },
-      {
-        onSuccess: (response) => {
-          if (!response) {
-            reject(new Error("We did not get a response from the server"));
-            return;
-          }
-          resolve(response);
-        },
-        onError: (e) => {
-          reject(e);
-        }
-      }
-    );
+  const textDiffers = changedText !== savedText;
+  const updatedPatronData = constructPatronSaveData({
+    type,
+    value: changedText,
+    patron
   });
+
+  // If we cannot construct the updated patron data we do not want to save anything.
+  if (!updatedPatronData) {
+    throw new Error("Cannot construct updated patron data");
+  }
+  // If the text has not changed we do not want to save anything.
+  if (!textDiffers) {
+    return;
+  }
+
+  // Update patron data.
+  savePatron(updatedPatronData);
 };
 
 export function modalReservationFormSelectTypeIsInterestPeriod(
