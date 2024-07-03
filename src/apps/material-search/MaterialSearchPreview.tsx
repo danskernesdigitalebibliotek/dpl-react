@@ -10,21 +10,21 @@ import { ManifestationMaterialType } from "../../core/utils/types/material-type"
 import { getManifestationBasedOnType } from "../material/helper";
 import MaterialTypeNotFoundError from "./Errors/MaterialTypeNotFoundError";
 import WorkNotFoundError from "./Errors/WorkNotFoundError";
+import ErrorState from "./Errors/errorState";
 import MaterialSearchLoading from "./MaterialSearchLoading";
-import { WorkErrorType } from "./useGetSelectedWork";
 
 type MaterialSearchPreviewProps = {
   work: Work | null;
   selectedMaterialType: ManifestationMaterialType | null;
   isLoading: boolean;
-  workError: WorkErrorType;
+  errorState: ErrorState;
 };
 
 const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
   work,
   selectedMaterialType,
   isLoading,
-  workError
+  errorState
 }) => {
   const t = useText();
 
@@ -55,11 +55,11 @@ const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
       </div>
     );
   }
-  if (workError === "work-not-found") {
+  if (errorState === ErrorState.WorkError) {
     return <WorkNotFoundError />;
   }
 
-  if (work && workError === "material-type-not-found") {
+  if (work && errorState === ErrorState.MaterialTypeError) {
     return <MaterialTypeNotFoundError work={work} />;
   }
 

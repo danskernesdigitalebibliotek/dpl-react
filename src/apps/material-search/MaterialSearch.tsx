@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { WorkId } from "../../core/utils/types/ids";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import MaterialSearchInputs from "./MaterialSearchInputs";
@@ -27,8 +27,7 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
     setSelectedWorkId,
     selectedMaterialType,
     setSelectedMaterialType,
-    workError,
-    workErrorHasBeenChecked
+    errorState
   } = useGetSelectedWork({
     previouslySelectedWorkId,
     previouslySelectedMaterialType
@@ -49,28 +48,6 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
     uniqueIdentifier
   });
 
-  useEffect(() => {
-    if (workError || workErrorHasBeenChecked || !isSelectedWorkLoading) return;
-    if (previouslySelectedWorkId && !workErrorHasBeenChecked) {
-      handleUpdateWorkId(previouslySelectedWorkId);
-    }
-    if (
-      previouslySelectedMaterialType &&
-      previouslySelectedWorkId &&
-      !workErrorHasBeenChecked
-    ) {
-      handleUpdateMaterialType(previouslySelectedMaterialType);
-    }
-  }, [
-    previouslySelectedWorkId,
-    previouslySelectedMaterialType,
-    handleUpdateWorkId,
-    handleUpdateMaterialType,
-    workError,
-    workErrorHasBeenChecked,
-    isSelectedWorkLoading
-  ]);
-
   return (
     <div className="material-search">
       <MaterialSearchInputs
@@ -86,7 +63,7 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
         work={work}
         isLoading={isSelectedWorkLoading}
         selectedMaterialType={selectedMaterialType}
-        workError={workError}
+        errorState={errorState}
       />
       <MaterialSearchList
         data={searchListData}

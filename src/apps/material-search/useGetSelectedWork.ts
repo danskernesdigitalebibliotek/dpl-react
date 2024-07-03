@@ -4,8 +4,7 @@ import { getMaterialTypes } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
-
-export type WorkErrorType = "work-not-found" | "material-type-not-found" | null;
+import ErrorState from "./Errors/errorState";
 
 interface UseGetSelectedMaterialReturn {
   work: Work | null;
@@ -13,8 +12,7 @@ interface UseGetSelectedMaterialReturn {
   selectedMaterialType: ManifestationMaterialType | null;
   availableMaterialTypes: ManifestationMaterialType[] | null;
   isSelectedWorkLoading: boolean;
-  workError: WorkErrorType;
-  workErrorHasBeenChecked: boolean;
+  errorState: ErrorState;
   setSelectedWorkId: (wid: WorkId | string) => void;
   setSelectedMaterialType: (
     materialType: ManifestationMaterialType | null
@@ -36,28 +34,19 @@ const useGetSelectedWork = ({
   const [selectedMaterialType, setSelectedMaterialType] =
     useState<ManifestationMaterialType | null>(previouslySelectedMaterialType);
 
-  const [workError, setWorkError] = useState<WorkErrorType>(null);
-  const [workErrorHasBeenChecked, setErrorHasBeenChecked] = useState(false);
+  const [errorState, setErrorState] = useState<ErrorState>(ErrorState.NoError);
 
   const { data, isLoading: isSelectedWorkLoading } = useGetMaterialQuery(
     { wid: selectedWorkId },
     {
-      enabled: !!selectedWorkId,
+      enabled: !!selectedWorkId && selectedWorkId.length > 0,
       onSuccess: (responseData) => {
-        if (!previouslySelectedWorkId) return;
-
-        if (workErrorHasBeenChecked) {
-          setWorkError(null);
-          return;
-        }
-
         if (!responseData.work) {
-          setErrorHasBeenChecked(true);
-          setWorkError("work-not-found");
+          setErrorState(ErrorState.WorkError);
           return;
         }
 
-        if (previouslySelectedMaterialType && responseData.work) {
+        if (selectedMaterialType && responseData.work) {
           const work = responseData.work as Work;
 
           const availableMaterialTypes = work
@@ -66,16 +55,13 @@ const useGetSelectedWork = ({
 
           if (
             availableMaterialTypes &&
-            !availableMaterialTypes.includes(previouslySelectedMaterialType)
+            !availableMaterialTypes.includes(selectedMaterialType)
           ) {
-            setErrorHasBeenChecked(true);
-            setWorkError("material-type-not-found");
+            setErrorState(ErrorState.MaterialTypeError);
             return;
           }
         }
-
-        setErrorHasBeenChecked(true);
-        setWorkError(null);
+        setErrorState(ErrorState.NoError);
       }
     }
   );
@@ -90,12 +76,11 @@ const useGetSelectedWork = ({
     work,
     availableMaterialTypes,
     selectedWorkId,
-    workErrorHasBeenChecked,
     setSelectedMaterialType,
     isSelectedWorkLoading,
     setSelectedWorkId,
     selectedMaterialType,
-    workError
+    errorState
   };
 };
 

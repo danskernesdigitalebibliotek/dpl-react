@@ -16,7 +16,7 @@ const uniqueIdentifier = Math.floor(Math.random() * 10000);
 
 const defaultValuePreselectedWorkId =
   "work-of:800010-katalog:99122475830405763";
-const defaultValuePreselectedMaterialType = "bog";
+const defaultValuePreselectedMaterialType = "lydbog (cd-mp3)";
 
 export default {
   title: "Apps / Material Search",
