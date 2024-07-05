@@ -9,6 +9,7 @@ export interface LinkNoStyleProps {
   trackClick?: () => Promise<unknown>;
   dataCy?: string;
   ariaLabelledBy?: string;
+  isHiddenFromScreenReaders?: boolean;
 }
 
 const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
@@ -18,7 +19,8 @@ const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
   className,
   trackClick,
   dataCy = "link-no-style",
-  ariaLabelledBy
+  ariaLabelledBy,
+  isHiddenFromScreenReaders
 }) => {
   return (
     <Link
@@ -28,6 +30,7 @@ const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
       trackClick={trackClick}
       dataCy={dataCy}
       ariaLabelledBy={ariaLabelledBy}
+      isHiddenFromScreenReaders={isHiddenFromScreenReaders}
     >
       {children}
     </Link>
