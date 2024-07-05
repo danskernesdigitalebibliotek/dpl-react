@@ -64,6 +64,8 @@ const fetchMaterial =
       useEffect(() => {
         if (manifestation) {
           setMaterial(mapManifestationToBasicDetailsType(manifestation));
+        } else if (item.details) {
+          setMaterial(item.details);
         }
       }, [manifestation]);
 
@@ -73,7 +75,7 @@ const fetchMaterial =
       }
 
       // in cases where the material is not found we return null, else we would load forever
-      if (!manifestation) return null;
+      if (!material) return null;
 
       return (
         <Component
