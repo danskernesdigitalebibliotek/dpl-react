@@ -35,21 +35,21 @@ const StatusSection: FC = () => {
   const {
     maxConcurrentAudioLoansPerBorrower,
     maxConcurrentEbookLoansPerBorrower,
-    maxConcurrentAudioReservationsPerBorrower,
-    maxConcurrentEbookReservationsPerBorrower
+    maxConcurrentAudioReservationsPerBorrower = 0,
+    maxConcurrentEbookReservationsPerBorrower = 0
   } = libraryProfile || {};
 
   let patronEbookLoans = 0;
-  if (patronData?.ebookLoansRemaining) {
-    patronEbookLoans = Math.abs(patronData?.ebookLoansRemaining) || 0;
+  if (patronData?.totalEbookLoans) {
+    patronEbookLoans = Math.abs(patronData?.totalEbookLoans) || 0;
   }
   let patronAudioBookLoans = 0;
-  if (patronData?.audiobookLoansRemaining) {
-    patronAudioBookLoans = Math.abs(patronData?.audiobookLoansRemaining) || 0;
+  if (patronData?.totalAudioLoans) {
+    patronAudioBookLoans = Math.abs(patronData?.totalAudioLoans) || 0;
   }
-  let eBookLoanPerent = 100;
+  let eBookLoanPercent = 100;
   if (maxConcurrentEbookLoansPerBorrower) {
-    eBookLoanPerent =
+    eBookLoanPercent =
       (patronEbookLoans / maxConcurrentEbookLoansPerBorrower) * 100;
   }
 
@@ -72,18 +72,14 @@ const StatusSection: FC = () => {
               {t("patronPageStatusSectionLinkText")}
             </Link>
           </div>
-          {maxConcurrentEbookReservationsPerBorrower &&
-            maxConcurrentAudioReservationsPerBorrower && (
-              <div className="text-body-small-regular mt-8 mb-8">
-                {t("patronPageStatusSectionReservationsText", {
-                  placeholders: {
-                    "@countEbooks": maxConcurrentEbookReservationsPerBorrower,
-                    "@countAudiobooks":
-                      maxConcurrentAudioReservationsPerBorrower
-                  }
-                })}
-              </div>
-            )}
+          <div className="text-body-small-regular mt-8 mb-8">
+            {t("patronPageStatusSectionReservationsText", {
+              placeholders: {
+                "@countEbooks": maxConcurrentEbookReservationsPerBorrower,
+                "@countAudiobooks": maxConcurrentAudioReservationsPerBorrower
+              }
+            })}
+          </div>
           <div className="dpl-status-loans__column">
             <div className="dpl-status mt-32">
               <h3 className="text-small-caption">
@@ -97,7 +93,7 @@ const StatusSection: FC = () => {
                   >
                     {t("patronPageStatusSectionLoansEbooksText")}
                   </label>
-                  {maxConcurrentEbookLoansPerBorrower && (
+                  {maxConcurrentEbookLoansPerBorrower !== undefined && (
                     <div
                       className="text-label"
                       id="patron-page-status-section-out-of-text"
@@ -112,7 +108,7 @@ const StatusSection: FC = () => {
                   )}
                 </div>
                 <div className="dpl-progress-bar__progress-bar bg-global-secondary">
-                  {maxConcurrentEbookLoansPerBorrower && (
+                  {maxConcurrentEbookLoansPerBorrower !== undefined && (
                     <div
                       className="bg-identity-primary"
                       role="figure"
@@ -125,7 +121,7 @@ const StatusSection: FC = () => {
                           }
                         }
                       )}
-                      style={{ width: `${eBookLoanPerent}%` }}
+                      style={{ width: `${eBookLoanPercent}%` }}
                     />
                   )}
                 </div>
@@ -138,7 +134,7 @@ const StatusSection: FC = () => {
                   >
                     {t("patronPageStatusSectionLoansAudioBooksText")}
                   </label>
-                  {maxConcurrentAudioLoansPerBorrower && (
+                  {maxConcurrentAudioLoansPerBorrower !== undefined && (
                     <div
                       className="text-label"
                       id="max-concurrent-audio-loans-per-borrower"
@@ -153,7 +149,7 @@ const StatusSection: FC = () => {
                   )}
                 </div>
                 <div className="dpl-progress-bar__progress-bar bg-global-secondary">
-                  {maxConcurrentEbookLoansPerBorrower && (
+                  {maxConcurrentAudioLoansPerBorrower !== undefined && (
                     <div
                       role="figure"
                       aria-label={t(
@@ -161,7 +157,7 @@ const StatusSection: FC = () => {
                         {
                           placeholders: {
                             "@this": patronEbookLoans,
-                            "@that": maxConcurrentEbookLoansPerBorrower
+                            "@that": maxConcurrentAudioLoansPerBorrower
                           }
                         }
                       )}

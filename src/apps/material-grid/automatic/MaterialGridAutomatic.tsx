@@ -9,6 +9,7 @@ import { ValidSelectedIncrements } from "../materiel-grid-util";
 export type MaterialGridAutomaticProps = {
   cql: string;
   title?: string;
+  description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
   buttonText: string;
 };
@@ -16,6 +17,7 @@ export type MaterialGridAutomaticProps = {
 const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   cql,
   title,
+  description,
   selectedAmountOfMaterialsForDisplay
 }) => {
   const cleanBranches = useGetCleanBranches();
@@ -43,6 +45,7 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
     <MaterialGrid
       title={title}
       materials={materials}
+      description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
     />
   );

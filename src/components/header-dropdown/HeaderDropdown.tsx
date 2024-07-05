@@ -4,7 +4,7 @@ import { useText } from "../../core/utils/text";
 interface HeaderDropdownprops {
   redirectTo: (url: URL) => void;
   setIsHeaderDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  headerDropdownRef: React.RefObject<HTMLButtonElement>;
+  headerDropdownRef: React.RefObject<HTMLAnchorElement>;
   advancedSearchUrl: URL;
 }
 const HeaderDropdown: React.FC<HeaderDropdownprops> = ({
@@ -16,16 +16,20 @@ const HeaderDropdown: React.FC<HeaderDropdownprops> = ({
   const t = useText();
   return (
     <div className="header__menu-dropdown" data-cy="search-header-dropdown">
-      <ul>
-        <li>
-          <button
+      <ul role="menu">
+        <li role="presentation">
+          <a
             ref={headerDropdownRef}
-            type="button"
             role="menuitem"
-            className="header__menu-dropdown-item cursor-pointer"
-            onClick={() => redirectTo(advancedSearchUrl)}
+            className="header__menu-dropdown-item hide-linkstyle"
+            href={String(advancedSearchUrl)}
+            onClick={(e) => {
+              e.preventDefault();
+              redirectTo(advancedSearchUrl);
+            }}
             onKeyUp={(e) => {
               if (e.key === "Enter") {
+                e.preventDefault();
                 return redirectTo(advancedSearchUrl);
               }
               if (
@@ -40,7 +44,7 @@ const HeaderDropdown: React.FC<HeaderDropdownprops> = ({
             onBlur={() => setIsHeaderDropdownOpen(false)}
           >
             {t("headerDropdownItemAdvancedSearchText")}
-          </button>
+          </a>
         </li>
       </ul>
     </div>

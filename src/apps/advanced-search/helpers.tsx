@@ -47,19 +47,28 @@ const translateFilterToCql = (
   filterToTranslate: MultiselectOption[],
   cqlKey: keyof typeof advancedSearchFilters
 ) => {
-  return filterToTranslate.reduce((acc: string, curr: MultiselectOption) => {
-    let filterTranslation = "";
-    const relation = acc.trim() === "" ? " AND" : " OR";
-    if (curr.value === "all") {
-      return `${acc}`;
-    }
-    filterTranslation = filterTranslation.concat(
-      relation,
-      ` ${advancedSearchFilters[cqlKey]}=`,
-      `'${curr.value}'`
-    );
-    return acc + filterTranslation;
-  }, "");
+  let translation = filterToTranslate.reduce(
+    (acc: string, curr: MultiselectOption) => {
+      let filterTranslation = "";
+      const relation = acc.trim() === "" ? " AND" : " OR";
+      if (curr.value === "all") {
+        return `${acc}`;
+      }
+      filterTranslation = filterTranslation.concat(
+        relation,
+        ` ${advancedSearchFilters[cqlKey]}=`,
+        `'${curr.value}'`
+      );
+      return acc + filterTranslation;
+    },
+    ""
+  );
+  // If multiple values are selected in a single filter, we need to wrap them in
+  // parentheses & add move the opening AND clause before the parenthesis opening.
+  if (filterToTranslate.length > 1) {
+    translation = ` AND (${translation.split(" AND")[1]})`;
+  }
+  return translation;
 };
 
 const translateFiltersToCql = (
@@ -86,12 +95,26 @@ const translateFiltersToCql = (
   return translatedFilters;
 };
 
+export const wrapFiltersInParentheses = (filters: string) => {
+  // No filters, no wrapping needed.
+  if (filters.trim() === "") {
+    return "";
+  }
+  // If there's only one clause, no wrapping is needed either.
+  if (!filters.includes(" OR ")) {
+    return filters;
+  }
+  // The filter string always start with " AND", so we can work with that.
+  const splitFiltersArray = filters.split(" AND", 2);
+  return `${splitFiltersArray.join(" AND (")})`;
+};
+
 export const translateSearchObjectToCql = (
   searchObject: AdvancedSearchQuery
 ) => {
   const rowsAsCql = translateRowsToCql(searchObject.rows);
   const filtersAsCql = translateFiltersToCql(searchObject.filters);
-  return rowsAsCql + filtersAsCql;
+  return `${rowsAsCql}${filtersAsCql}`;
 };
 
 export const shouldAdvancedSearchButtonBeDisabled = (

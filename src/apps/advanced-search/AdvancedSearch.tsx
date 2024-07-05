@@ -57,7 +57,11 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
 
   // Only react on url parameters on the initial render.
   useEffectOnce(() => {
-    const advancedSearchQuery = getUrlQueryParam("advancedSearchQuery");
+    // We have to remove brackets if multiple filters were used so that we can
+    // translate the string back to an object.
+    const advancedSearchQuery = getUrlQueryParam("advancedSearchQuery")
+      ?.replace("(", "")
+      .replace(")", "");
     if (advancedSearchQuery) {
       // TODO: Add runtime validation
       // If the value does not match the type because of url tampering, type

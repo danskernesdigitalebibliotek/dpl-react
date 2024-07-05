@@ -1,82 +1,68 @@
 import React, { FC, useCallback, useState, useEffect, useId } from "react";
 import dayjs from "dayjs";
-import { useQueryClient } from "react-query";
 import Link from "../../../../components/atoms/links/Link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
-import {
-  useUpdateV5,
-  getGetPatronInformationByPatronIdV2QueryKey
-} from "../../../../core/fbs/fbs";
-import { Patron, PatronV5 } from "../../../../core/fbs/model";
 import { useUrls } from "../../../../core/utils/url";
 import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
 import DateRangeInput from "../../../../components/date-inputs/DateRangeInput";
+import useSavePatron from "../../../../core/utils/useSavePatron";
+import { Patron } from "../../../../core/utils/types/entities";
 
 interface PauseReservationProps {
   id: string;
-  user: PatronV5;
+  user: Patron;
 }
 
 const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
   const t = useText();
   const u = useUrls();
   const pauseReservationInfoUrl = u("pauseReservationInfoUrl");
-
-  const queryClient = useQueryClient();
-  const { mutate } = useUpdateV5();
   const { close } = useModalButtonHandler();
   const { pauseReservation } = getModalIds();
+  const [isLoading, setIsLoading] = useState(false);
+  const { savePatron } = useSavePatron({
+    patron: user,
+    fetchHandlers: {
+      savePatron: {
+        onSuccess: () => {
+          setIsLoading(false);
+          close(pauseReservation as string);
+        },
+        onError: () => {
+          setIsLoading(false);
+        }
+      }
+    }
+  });
   const saveFormId = useId();
-
   const currentDate = dayjs().format("YYYY-MM-DD");
   const [startDate, setStartDate] = useState<string>(currentDate);
   const [endDate, setEndDate] = useState<string>("");
   const pauseActive = user?.onHold?.from && user?.onHold?.to;
 
-  const save = useCallback(
-    (localStartDate?: string, localEndDate?: string) => {
+  const saveDates = useCallback(
+    (start?: string, end?: string) => {
       if (!user) {
         return;
       }
-      // TODO: consolidate with the other save patron function
-      // be aware the defaults are not necessarily the same in the different save patron functions
-      const saveData = {
-        preferredPickupBranch: user.preferredPickupBranch,
-        receiveEmail: user.receiveEmail,
-        receivePostalMail: user.receivePostalMail,
-        receiveSms: user.receiveSms
-      } as Patron;
 
-      saveData.onHold = {
-        from: localStartDate === "" ? undefined : localStartDate,
-        to: localEndDate === "" ? undefined : localEndDate
-      };
-
-      mutate(
-        {
-          data: { patron: saveData }
-        },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries(
-              getGetPatronInformationByPatronIdV2QueryKey()
-            );
-            close(pauseReservation as string);
-          },
-          // todo error handling, missing in figma
-          onError: () => {}
+      setIsLoading(true);
+      savePatron({
+        onHold: {
+          from: start === "" ? undefined : start,
+          to: end === "" ? undefined : end
         }
-      );
+      });
     },
-    [close, mutate, pauseReservation, queryClient, user]
+    [savePatron, user]
   );
 
   const resetPauseDates = useCallback(() => {
     setStartDate(currentDate);
     setEndDate("");
-    save();
-  }, [currentDate, save]);
+    saveDates();
+  }, [currentDate, saveDates]);
 
   useEffect(() => {
     if (user?.onHold?.from) {
@@ -110,7 +96,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
           onSubmit={(e) => {
             e.preventDefault();
             if (startDate && endDate) {
-              save(startDate, endDate);
+              saveDates(startDate, endDate);
             }
           }}
         >
@@ -145,6 +131,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
             type="submit"
             form={saveFormId}
             className="btn-primary btn-filled btn-small"
+            disabled={isLoading}
           >
             {t("pauseReservationModalSaveButtonLabelText")}
           </button>

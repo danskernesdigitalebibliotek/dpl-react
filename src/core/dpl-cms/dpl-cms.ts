@@ -19,14 +19,13 @@ import type {
   CampaignMatchPOST200,
   CampaignMatchPOSTBodyItem,
   CampaignMatchPOSTParams,
-  DplOpeningHoursCreatePOST200,
-  DplOpeningHoursCreatePOSTBody,
+  DplOpeningHoursCreatePOST200Item,
+  DplOpeningHoursCreatePOSTOpeningHoursInstanceBody,
   DplOpeningHoursCreatePOSTParams,
   DplOpeningHoursDeleteDELETEParams,
   DplOpeningHoursListGET200Item,
   DplOpeningHoursListGETParams,
-  DplOpeningHoursUpdatePATCH200,
-  DplOpeningHoursUpdatePATCHBody,
+  DplOpeningHoursUpdatePATCH200Item,
   DplOpeningHoursUpdatePATCHParams,
   EventPATCHBody,
   EventPATCHParams,
@@ -135,14 +134,14 @@ export const useCampaignMatchPOST = <
  * @summary Create individual opening hours
  */
 export const dplOpeningHoursCreatePOST = (
-  dplOpeningHoursCreatePOSTBody: BodyType<DplOpeningHoursCreatePOSTBody>,
+  dplOpeningHoursCreatePOSTOpeningHoursInstanceBody: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>,
   params: DplOpeningHoursCreatePOSTParams
 ) => {
-  return fetcher<DplOpeningHoursCreatePOST200>({
-    url: `/dpl_opening_hours`,
+  return fetcher<DplOpeningHoursCreatePOST200Item[]>({
+    url: `/api/v1/opening_hours`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    data: dplOpeningHoursCreatePOSTBody,
+    data: dplOpeningHoursCreatePOSTOpeningHoursInstanceBody,
     params
   });
 };
@@ -155,7 +154,7 @@ export const getDplOpeningHoursCreatePOSTMutationOptions = <
     Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>,
     TError,
     {
-      data: BodyType<DplOpeningHoursCreatePOSTBody>;
+      data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
       params: DplOpeningHoursCreatePOSTParams;
     },
     TContext
@@ -164,7 +163,7 @@ export const getDplOpeningHoursCreatePOSTMutationOptions = <
   Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>,
   TError,
   {
-    data: BodyType<DplOpeningHoursCreatePOSTBody>;
+    data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
     params: DplOpeningHoursCreatePOSTParams;
   },
   TContext
@@ -174,7 +173,7 @@ export const getDplOpeningHoursCreatePOSTMutationOptions = <
   const mutationFn: MutationFunction<
     Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>,
     {
-      data: BodyType<DplOpeningHoursCreatePOSTBody>;
+      data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
       params: DplOpeningHoursCreatePOSTParams;
     }
   > = (props) => {
@@ -190,7 +189,7 @@ export type DplOpeningHoursCreatePOSTMutationResult = NonNullable<
   Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>
 >;
 export type DplOpeningHoursCreatePOSTMutationBody =
-  BodyType<DplOpeningHoursCreatePOSTBody>;
+  BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
 export type DplOpeningHoursCreatePOSTMutationError = ErrorType<void>;
 
 /**
@@ -204,7 +203,7 @@ export const useDplOpeningHoursCreatePOST = <
     Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>,
     TError,
     {
-      data: BodyType<DplOpeningHoursCreatePOSTBody>;
+      data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
       params: DplOpeningHoursCreatePOSTParams;
     },
     TContext
@@ -213,7 +212,7 @@ export const useDplOpeningHoursCreatePOST = <
   Awaited<ReturnType<typeof dplOpeningHoursCreatePOST>>,
   TError,
   {
-    data: BodyType<DplOpeningHoursCreatePOSTBody>;
+    data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
     params: DplOpeningHoursCreatePOSTParams;
   },
   TContext
@@ -231,7 +230,7 @@ export const dplOpeningHoursListGET = (
   signal?: AbortSignal
 ) => {
   return fetcher<DplOpeningHoursListGET200Item[]>({
-    url: `/dpl_opening_hours`,
+    url: `/api/v1/opening_hours`,
     method: "GET",
     params,
     signal
@@ -241,7 +240,7 @@ export const dplOpeningHoursListGET = (
 export const getDplOpeningHoursListGETQueryKey = (
   params: DplOpeningHoursListGETParams
 ) => {
-  return [`/dpl_opening_hours`, ...(params ? [params] : [])] as const;
+  return [`/api/v1/opening_hours`, ...(params ? [params] : [])] as const;
 };
 
 export const getDplOpeningHoursListGETQueryOptions = <
@@ -249,16 +248,12 @@ export const getDplOpeningHoursListGETQueryOptions = <
   TError = ErrorType<void>
 >(
   params: DplOpeningHoursListGETParams,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
-      TError,
-      TData
-    >;
-  }
+  queryOptions?: UseQueryOptions<
+    Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
+    TError,
+    TData
+  >
 ) => {
-  const { query: queryOptions } = options ?? {};
-
   const queryKey =
     queryOptions?.queryKey ?? getDplOpeningHoursListGETQueryKey(params);
 
@@ -286,21 +281,19 @@ export const useDplOpeningHoursListGET = <
   TError = ErrorType<void>
 >(
   params: DplOpeningHoursListGETParams,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
-      TError,
-      TData
-    >;
-  }
+  queryOptions?: UseQueryOptions<
+    Awaited<ReturnType<typeof dplOpeningHoursListGET>>,
+    TError,
+    TData
+  >
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getDplOpeningHoursListGETQueryOptions(params, options);
+  const options = getDplOpeningHoursListGETQueryOptions(params, queryOptions);
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+  const query = useQuery(options) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
   };
 
-  query.queryKey = queryOptions.queryKey;
+  query.queryKey = options.queryKey;
 
   return query;
 };
@@ -313,7 +306,7 @@ export const dplOpeningHoursDeleteDELETE = (
   params: DplOpeningHoursDeleteDELETEParams
 ) => {
   return fetcher<void>({
-    url: `/dpl_opening_hours/${id}`,
+    url: `/api/v1/opening_hours/${id}`,
     method: "DELETE",
     params
   });
@@ -385,14 +378,14 @@ export const useDplOpeningHoursDeleteDELETE = <
  */
 export const dplOpeningHoursUpdatePATCH = (
   id: string,
-  dplOpeningHoursUpdatePATCHBody: BodyType<DplOpeningHoursUpdatePATCHBody>,
+  dplOpeningHoursCreatePOSTOpeningHoursInstanceBody: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>,
   params: DplOpeningHoursUpdatePATCHParams
 ) => {
-  return fetcher<DplOpeningHoursUpdatePATCH200>({
-    url: `/dpl_opening_hours/${id}`,
+  return fetcher<DplOpeningHoursUpdatePATCH200Item[]>({
+    url: `/api/v1/opening_hours/${id}`,
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    data: dplOpeningHoursUpdatePATCHBody,
+    data: dplOpeningHoursCreatePOSTOpeningHoursInstanceBody,
     params
   });
 };
@@ -406,7 +399,7 @@ export const getDplOpeningHoursUpdatePATCHMutationOptions = <
     TError,
     {
       id: string;
-      data: BodyType<DplOpeningHoursUpdatePATCHBody>;
+      data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
       params: DplOpeningHoursUpdatePATCHParams;
     },
     TContext
@@ -416,7 +409,7 @@ export const getDplOpeningHoursUpdatePATCHMutationOptions = <
   TError,
   {
     id: string;
-    data: BodyType<DplOpeningHoursUpdatePATCHBody>;
+    data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
     params: DplOpeningHoursUpdatePATCHParams;
   },
   TContext
@@ -427,7 +420,7 @@ export const getDplOpeningHoursUpdatePATCHMutationOptions = <
     Awaited<ReturnType<typeof dplOpeningHoursUpdatePATCH>>,
     {
       id: string;
-      data: BodyType<DplOpeningHoursUpdatePATCHBody>;
+      data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
       params: DplOpeningHoursUpdatePATCHParams;
     }
   > = (props) => {
@@ -443,7 +436,7 @@ export type DplOpeningHoursUpdatePATCHMutationResult = NonNullable<
   Awaited<ReturnType<typeof dplOpeningHoursUpdatePATCH>>
 >;
 export type DplOpeningHoursUpdatePATCHMutationBody =
-  BodyType<DplOpeningHoursUpdatePATCHBody>;
+  BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
 export type DplOpeningHoursUpdatePATCHMutationError = ErrorType<void>;
 
 /**
@@ -458,7 +451,7 @@ export const useDplOpeningHoursUpdatePATCH = <
     TError,
     {
       id: string;
-      data: BodyType<DplOpeningHoursUpdatePATCHBody>;
+      data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
       params: DplOpeningHoursUpdatePATCHParams;
     },
     TContext
@@ -468,7 +461,7 @@ export const useDplOpeningHoursUpdatePATCH = <
   TError,
   {
     id: string;
-    data: BodyType<DplOpeningHoursUpdatePATCHBody>;
+    data: BodyType<DplOpeningHoursCreatePOSTOpeningHoursInstanceBody>;
     params: DplOpeningHoursUpdatePATCHParams;
   },
   TContext

@@ -29,7 +29,7 @@ const ContactInfoInputs: FC<ContactInfoInputsProps> = ({
   return (
     <div
       className={clsx(className, {
-        "contact-info-flex": isInline
+        "dpl-input__flex": isInline
       })}
       data-cy={dataCy}
     >

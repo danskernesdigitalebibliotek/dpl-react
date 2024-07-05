@@ -78,13 +78,17 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
     newData.rows.splice(index, 1);
     updateData(newData);
     // Update the focus. If we're removing the first row, focus the new first row.
-    setFocusedRow(index);
+    if (newData.rows.length === index) {
+      setFocusedRow(index - 1);
+    } else {
+      setFocusedRow(index);
+    }
   };
   const inputElement = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (inputElement.current && isFocused) {
-      inputElement.current.focus();
+    if (isFocused) {
+      inputElement.current?.focus();
     }
   }, [isFocused]);
 
@@ -119,7 +123,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
           className="hide-visually"
         >
           {t("advancedSearchInputLabelText", {
-            placeholders: { "@inputNumber": rowIndex }
+            placeholders: { "@inputNumber": rowIndex + 1 }
           })}
         </label>
         <input

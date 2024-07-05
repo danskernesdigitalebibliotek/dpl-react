@@ -4,1029 +4,626 @@
       "hitcount": 2,
       "works": [
         {
-          "workId": "work-of:870970-basis:54129807",
+          "workId": "work-of:870970-basis:135229989",
           "titles": {
-            "full": ["Harry : samtaler med prinsen"],
-            "original": ["Harry (engelsk)"]
+            "full": ["Reserven"],
+            "original": ["Spare"]
           },
           "abstract": [
-            "Gennem samtaler gives et portræt af den engelske prins Harry. Der åbnes med forlovelsen mellem Harry (f. 1984) og Meghan Markle (f. 1981). Samtalerne kredser om de store emner i Harrys liv, bl.a. prinsesse Dianas alt for tidlige død"
+            "Prins Harry fortæller om konflikten med sin far, sin bror og det engelske kongehus i bestræbelsen på at værne om sig selv og sin familie. Til alle, som interesserer sig for de europæiske kongehuse og ønsker et nuanceret syn på monarkiet som styreform."
           ],
-          "creators": [{ "display": "Angela Levin", "__typename": "Person" }],
+          "creators": [
+            {
+              "display": "Harry (prins, hertug af Sussex)",
+              "__typename": "Person"
+            }
+          ],
           "series": [],
           "seriesMembers": [],
           "workYear": null,
-          "genreAndForm": ["biografier"],
+          "genreAndForm": ["erindringer", "biografier"],
           "manifestations": {
             "all": [
               {
-                "pid": "870970-basis:54129793",
-                "genreAndForm": ["biografier"],
-                "source": ["eReolen"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry"],
-                  "original": ["Harry (engelsk)"]
-                },
-                "fictionNonfiction": {
-                  "display": "faglitteratur",
-                  "code": "NONFICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "e-bog" } }
-                ],
-                "creators": [
-                  { "display": "Angela Levin", "__typename": "Person" }
-                ],
-                "publisher": ["Memoris"],
-                "identifiers": [
-                  { "value": "9788793681095" },
-                  { "value": "9788793681095" }
-                ],
-                "contributors": [{ "display": "Birgitte Brix" }],
-                "edition": {
-                  "summary": "1. udgave, 2018",
-                  "publicationYear": { "display": "2018" }
-                },
-                "dateFirstEdition": null,
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": 301, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "ONLINE" }],
-                "access": [
-                  {
-                    "__typename": "Ereol",
-                    "origin": "eReolen",
-                    "url": "https://ereolen.dk/ting/object/870970-basis:54129793",
-                    "canAlwaysBeLoaned": false
-                  }
-                ],
-                "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
-                "workYear": null
-              },
-              {
-                "pid": "870970-basis:54129807",
-                "genreAndForm": ["biografier"],
+                "pid": "870970-basis:135229989",
+                "genreAndForm": ["erindringer", "biografier"],
                 "source": ["Bibliotekskatalog"],
                 "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
                 },
                 "titles": {
-                  "main": ["Harry"],
-                  "original": ["Harry (engelsk)"]
+                  "main": ["Reserven"],
+                  "original": ["Spare"]
                 },
                 "fictionNonfiction": {
                   "display": "faglitteratur",
                   "code": "NONFICTION"
                 },
                 "materialTypes": [
-                  { "materialTypeSpecific": { "display": "bog" } }
-                ],
-                "creators": [
-                  { "display": "Angela Levin", "__typename": "Person" }
-                ],
-                "publisher": ["Memoris"],
-                "identifiers": [{ "value": "9788793681088" }],
-                "contributors": [{ "display": "Birgitte Brix" }],
-                "edition": {
-                  "summary": "1. udgave, 2018",
-                  "publicationYear": { "display": "2018" }
-                },
-                "dateFirstEdition": null,
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": 301, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
-                "workYear": null
-              },
-              {
-                "pid": "870970-basis:54168446",
-                "genreAndForm": [],
-                "source": ["Netlydbog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry"],
-                  "original": ["Harry (engelsk)"]
-                },
-                "fictionNonfiction": {
-                  "display": "faglitteratur",
-                  "code": "NONFICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "lydbog (online)" } }
-                ],
-                "creators": [
-                  { "display": "Angela Levin", "__typename": "Person" }
-                ],
-                "publisher": ["Memoris"],
-                "identifiers": [
-                  { "value": "9788793681132" },
-                  { "value": "9788793681132" }
-                ],
-                "contributors": [
-                  { "display": "Randi Winther" },
-                  { "display": "Birgitte Brix" }
-                ],
-                "edition": {
-                  "summary": "2018",
-                  "publicationYear": { "display": "2018" }
-                },
-                "dateFirstEdition": { "display": "2018", "year": 2018 },
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": null, "playingTime": "8 t., 37 min." }
-                ],
-                "accessTypes": [{ "code": "ONLINE" }],
-                "access": [
                   {
-                    "__typename": "Ereol",
-                    "origin": "eReolen",
-                    "url": "https://ereolen.dk/ting/object/870970-basis:54168446",
-                    "canAlwaysBeLoaned": false
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
                   }
                 ],
-                "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
-                "workYear": null
-              },
-              {
-                "pid": "870970-basis:54175183",
-                "genreAndForm": [],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry (mp3)"],
-                  "original": ["Harry (engelsk)"]
-                },
-                "fictionNonfiction": {
-                  "display": "faglitteratur",
-                  "code": "NONFICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
-                ],
                 "creators": [
-                  { "display": "Angela Levin", "__typename": "Person" }
+                  {
+                    "display": "Harry (prins, hertug af Sussex)",
+                    "__typename": "Person"
+                  }
                 ],
-                "publisher": ["Memoris"],
-                "identifiers": [{ "value": "9788793681231" }],
+                "publisher": ["Politiken"],
+                "identifiers": [
+                  {
+                    "value": "9788740075212"
+                  }
+                ],
                 "contributors": [
-                  { "display": "Randi Winther" },
-                  { "display": "Birgitte Brix" }
+                  {
+                    "display": "Didde Gaardsted",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Carsten Norton",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
                 ],
                 "edition": {
-                  "summary": "2018",
-                  "publicationYear": { "display": "2018" }
+                  "summary": "1. udgave, 2023",
+                  "publicationYear": {
+                    "display": "2023"
+                  }
                 },
-                "dateFirstEdition": { "display": "2018", "year": 2018 },
-                "audience": { "generalAudience": [] },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [],
                 "physicalDescriptions": [
-                  { "numberOfPages": null, "playingTime": "8 t., 37 min." }
+                  {
+                    "summary": "576 sider",
+                    "numberOfPages": 576,
+                    "playingTime": null
+                  }
                 ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
                 "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
                 ],
-                "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
-                "workYear": null
+                "shelfmark": {
+                  "postfix": "Harry",
+                  "shelfmark": "99.4 Harry"
+                },
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF202305"],
+                  "otherCatalogues": [
+                    "ACF202250",
+                    "ACC202302",
+                    "BKM202305",
+                    "BKX202304"
+                  ]
+                }
               }
             ],
             "latest": {
-              "pid": "870970-basis:54175183",
-              "genreAndForm": [],
+              "pid": "870970-basis:135229989",
+              "genreAndForm": ["erindringer", "biografier"],
               "source": ["Bibliotekskatalog"],
               "languages": {
-                "main": [{ "display": "dansk", "isoCode": "dan" }]
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
               },
               "titles": {
-                "main": ["Harry (mp3)"],
-                "original": ["Harry (engelsk)"]
+                "main": ["Reserven"],
+                "original": ["Spare"]
               },
               "fictionNonfiction": {
                 "display": "faglitteratur",
                 "code": "NONFICTION"
               },
               "materialTypes": [
-                { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
               ],
               "creators": [
-                { "display": "Angela Levin", "__typename": "Person" }
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
               ],
-              "publisher": ["Memoris"],
-              "identifiers": [{ "value": "9788793681231" }],
+              "publisher": ["Politiken"],
+              "identifiers": [
+                {
+                  "value": "9788740075212"
+                }
+              ],
               "contributors": [
-                { "display": "Randi Winther" },
-                { "display": "Birgitte Brix" }
+                {
+                  "display": "Didde Gaardsted",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Carsten Norton",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
               ],
               "edition": {
-                "summary": "2018",
-                "publicationYear": { "display": "2018" }
-              },
-              "dateFirstEdition": { "display": "2018", "year": 2018 },
-              "audience": { "generalAudience": [] },
-              "physicalDescriptions": [
-                { "numberOfPages": null, "playingTime": "8 t., 37 min." }
-              ],
-              "accessTypes": [{ "code": "PHYSICAL" }],
-              "access": [
-                { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-              ],
-              "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
-              "workYear": null
-            },
-            "bestRepresentation": {
-              "pid": "870970-basis:54129807",
-              "genreAndForm": ["biografier"],
-              "source": ["Bibliotekskatalog"],
-              "languages": {
-                "main": [{ "display": "dansk", "isoCode": "dan" }]
-              },
-              "titles": { "main": ["Harry"], "original": ["Harry (engelsk)"] },
-              "fictionNonfiction": {
-                "display": "faglitteratur",
-                "code": "NONFICTION"
-              },
-              "materialTypes": [
-                { "materialTypeSpecific": { "display": "bog" } }
-              ],
-              "creators": [
-                { "display": "Angela Levin", "__typename": "Person" }
-              ],
-              "publisher": ["Memoris"],
-              "identifiers": [{ "value": "9788793681088" }],
-              "contributors": [{ "display": "Birgitte Brix" }],
-              "edition": {
-                "summary": "1. udgave, 2018",
-                "publicationYear": { "display": "2018" }
+                "summary": "1. udgave, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
               },
               "dateFirstEdition": null,
-              "audience": { "generalAudience": [] },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
               "physicalDescriptions": [
-                { "numberOfPages": 301, "playingTime": null }
+                {
+                  "summary": "576 sider",
+                  "numberOfPages": 576,
+                  "playingTime": null
+                }
               ],
-              "accessTypes": [{ "code": "PHYSICAL" }],
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
               "access": [
-                { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
               ],
-              "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
-              "workYear": null
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202305"],
+                "otherCatalogues": [
+                  "ACF202250",
+                  "ACC202302",
+                  "BKM202305",
+                  "BKX202304"
+                ]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:135229989",
+              "genreAndForm": ["erindringer", "biografier"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Reserven"],
+                "original": ["Spare"]
+              },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Politiken"],
+              "identifiers": [
+                {
+                  "value": "9788740075212"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Didde Gaardsted",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Carsten Norton",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
+              },
+              "dateFirstEdition": null,
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescriptions": [
+                {
+                  "summary": "576 sider",
+                  "numberOfPages": 576,
+                  "playingTime": null
+                }
+              ],
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202305"],
+                "otherCatalogues": [
+                  "ACF202250",
+                  "ACC202302",
+                  "BKM202305",
+                  "BKX202304"
+                ]
+              }
             }
           }
         },
         {
-          "workId": "work-of:870970-basis:25245784",
+          "workId": "work-of:870970-basis:134991119",
           "titles": {
-            "full": ["Harry Potter og Fønixordenen"],
-            "original": ["Harry Potter and the Order of the Phoenix"]
+            "full": ["Spare"],
+            "original": []
           },
           "abstract": [
-            "Stor, flot og gennemillustreret udgave af bind 5 i \"Harry Potter\"-serien. Harry går stadig på kostskolen Hogwarts, men det bliver ikke et let år.  Bogen er meget velegnet til oplæsning for børn fra 8 år - og kan selvlæses fra 12 år"
+            "Before losing his mother, Diana, Princess of Wales, Prince Harry was known as the happy-to-lucky Spare to the more serious Heir. Grief changed everything. Because he blamed the press for his mother's death, he struggled to accept life in the spotlight. From the beginning, his romance with Meghan was preyed upon by the press, subjected to waves of abuse, racism, and lies. Here Prince Harry tells his own story."
           ],
           "creators": [
-            { "display": "Joanne K. Rowling", "__typename": "Person" }
-          ],
-          "series": [
             {
-              "title": "Harry Potter (bøger)",
-              "isPopular": true,
-              "numberInSeries": { "display": "5", "number": [5] },
-              "readThisFirst": null,
-              "readThisWhenever": null
+              "display": "Harry (prins, hertug af Sussex)",
+              "__typename": "Person"
             }
           ],
-          "seriesMembers": [
-            {
-              "workId": "work-of:870970-basis:22629344",
-              "titles": {
-                "main": ["Harry Potter og de vises sten"],
-                "full": ["Harry Potter og de vises sten"],
-                "original": ["Harry Potter and the philosopher's stone"]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:22677780",
-              "titles": {
-                "main": ["Harry Potter og Hemmelighedernes Kammer"],
-                "full": ["Harry Potter og Hemmelighedernes Kammer"],
-                "original": ["Harry Potter and the Chamber of Secrets"]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:22995154",
-              "titles": {
-                "main": ["Harry Potter og fangen fra Azkaban"],
-                "full": ["Harry Potter og fangen fra Azkaban"],
-                "original": ["Harry Potter and the prisoner of Azkaban"]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:23540703",
-              "titles": {
-                "main": ["Harry Potter og Flammernes Pokal"],
-                "full": ["Harry Potter og Flammernes Pokal"],
-                "original": ["Harry Potter and the goblet of fire"]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:25245784",
-              "titles": {
-                "main": ["Harry Potter og Fønixordenen"],
-                "full": ["Harry Potter og Fønixordenen"],
-                "original": ["Harry Potter and the Order of the Phoenix"]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:25807995",
-              "titles": {
-                "main": ["Harry Potter og halvblodsprinsen"],
-                "full": ["Harry Potter og halvblodsprinsen"],
-                "original": ["Harry Potter and the half-blood prince"]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:27267912",
-              "titles": {
-                "main": ["Harry Potter og dødsregalierne"],
-                "full": ["Harry Potter og dødsregalierne"],
-                "original": ["Harry Potter and the deathly hallows"]
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:52646251",
-              "titles": {
-                "main": ["Harry Potter og det forbandede barn"],
-                "full": ["Harry Potter og det forbandede barn : del et & to"],
-                "original": ["Harry Potter and the cursed child"]
-              }
-            }
-          ],
-          "workYear": { "year": 2003 },
-          "genreAndForm": [
-            "roman",
-            "fantasy",
-            "eventyrlige fortællinger",
-            "romaner"
-          ],
+          "series": [],
+          "seriesMembers": [],
+          "workYear": null,
+          "genreAndForm": ["erindringer", "biografier"],
           "manifestations": {
             "all": [
               {
-                "pid": "870970-basis:134693959",
-                "genreAndForm": ["roman", "fantasy", "romaner"],
+                "pid": "870970-basis:134991119",
+                "genreAndForm": ["erindringer", "biografier"],
                 "source": ["Bibliotekskatalog"],
                 "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                  "main": [
+                    {
+                      "display": "engelsk",
+                      "isoCode": "eng"
+                    }
+                  ],
+                  "notes": []
                 },
                 "titles": {
-                  "main": ["Harry Potter og Fønixordenen (Ill. Jim Kay)"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
+                  "main": ["Spare"],
+                  "original": []
                 },
                 "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
                 },
                 "materialTypes": [
-                  { "materialTypeSpecific": { "display": "bog" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702307566" }],
-                "contributors": [
-                  { "display": "Jim Kay" },
-                  { "display": "Neil Packer" },
-                  { "display": "Hanna Lützen" }
-                ],
-                "edition": {
-                  "summary": "Illustreret udgave, 7. udgave, 2022",
-                  "publicationYear": { "display": "2022" }
-                },
-                "dateFirstEdition": null,
-                "audience": {
-                  "generalAudience": [
-                    "Højtlæsning fra 8 år. Selvlæsning fra 12 år",
-                    "for højtlæsning"
-                  ]
-                },
-                "physicalDescriptions": [
-                  { "numberOfPages": 565, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:24880605",
-                "genreAndForm": ["roman", "fantasy"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "bog" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "87-02-02222-2" }],
-                "contributors": [],
-                "edition": {
-                  "summary": "2003",
-                  "publicationYear": { "display": "2003" }
-                },
-                "dateFirstEdition": { "display": "2003", "year": 2003 },
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": 923, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:24973670",
-                "genreAndForm": ["roman"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "lydbog (bånd)" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" },
-                  { "display": "Mikkel Schou", "__typename": "Person" }
-                ],
-                "publisher": ["Danmarks Blindebibliotek"],
-                "identifiers": [{ "value": "Best.nr. 14948" }],
-                "contributors": [{ "display": "Mikkel Schou" }],
-                "edition": {
-                  "summary": "2003",
-                  "publicationYear": { "display": "2003" }
-                },
-                "dateFirstEdition": { "display": "2003", "year": 2003 },
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": null, "playingTime": "27 t., 58 min." }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:25040007",
-                "genreAndForm": ["roman", "eventyrlige fortællinger"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "diskette" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Danmarks Blindebibliotek"],
-                "identifiers": [
-                  { "value": "Best.nr. ascii 503142" },
-                  { "value": "Best.nr. html 603142" }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2003",
-                  "publicationYear": { "display": "2003" }
-                },
-                "dateFirstEdition": { "display": "2003", "year": 2003 },
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": null, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:25082427",
-                "genreAndForm": ["roman"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "bog" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Gyldendals Bogklubber"],
-                "identifiers": [{ "value": "87-03-00004-4" }],
-                "contributors": [],
-                "edition": {
-                  "summary": "1. bogklubudgave, 2004",
-                  "publicationYear": { "display": "2004" }
-                },
-                "dateFirstEdition": null,
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": 923, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": null
-              },
-              {
-                "pid": "870970-basis:25096517",
-                "genreAndForm": ["roman"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "punktskrift" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Danmarks Blindebibliotek"],
-                "identifiers": [{ "value": "Best.nr. 103081" }],
-                "contributors": [],
-                "edition": {
-                  "summary": "2003",
-                  "publicationYear": { "display": "2003" }
-                },
-                "dateFirstEdition": { "display": "2003", "year": 2003 },
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": null, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
                   {
-                    "__typename": "AccessUrl",
-                    "origin": "nota.dk",
-                    "url": "https://nota.dk/bibliotek/bogid/103081",
-                    "loginRequired": false
-                  },
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:25245784",
-                "genreAndForm": ["roman", "fantasy"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "bog" } }
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
                 ],
                 "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Gyldendal"],
-                "identifiers": [
-                  { "value": "9788702029444" },
-                  { "value": "87-02-02944-8" }
-                ],
-                "contributors": [],
-                "edition": {
-                  "summary": "2. udgave, 2004",
-                  "publicationYear": { "display": "2004" }
-                },
-                "dateFirstEdition": { "display": "2003", "year": 2003 },
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": 923, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:26167663",
-                "genreAndForm": ["roman"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "lydbog (cd)" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" },
                   {
-                    "display": "Jesper Christensen (f. 1948)",
+                    "display": "Harry (prins, hertug af Sussex)",
                     "__typename": "Person"
                   }
                 ],
-                "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "87-02-04746-2" }],
-                "contributors": [],
-                "edition": {
-                  "summary": "2006",
-                  "publicationYear": { "display": "2006" }
-                },
-                "dateFirstEdition": null,
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": null, "playingTime": "29 t., 33 min." }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:26470498",
-                "genreAndForm": ["roman"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "bog" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Gyldendals Bogklubber"],
+                "publisher": ["Random House"],
                 "identifiers": [
-                  { "value": "9788703014807" },
-                  { "value": "87-03-01480-0" }
+                  {
+                    "value": "9780593593806"
+                  }
                 ],
                 "contributors": [],
                 "edition": {
-                  "summary": "2. bogklubudgave, 2006",
-                  "publicationYear": { "display": "2006" }
+                  "summary": "1. US edition, 2023",
+                  "publicationYear": {
+                    "display": "2023"
+                  }
                 },
                 "dateFirstEdition": null,
-                "audience": { "generalAudience": [] },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [],
                 "physicalDescriptions": [
-                  { "numberOfPages": 923, "playingTime": null }
+                  {
+                    "summary": "410 sider: ill.",
+                    "numberOfPages": 410,
+                    "playingTime": null
+                  }
                 ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
                 "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
                 ],
-                "shelfmark": null,
-                "workYear": null
-              },
-              {
-                "pid": "870970-basis:27639534",
-                "genreAndForm": ["roman"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                "shelfmark": {
+                  "postfix": "Harry",
+                  "shelfmark": "99.4 Harry"
                 },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen (mp3)"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "lydbog (cd-mp3)" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702075427" }],
-                "contributors": [{ "display": "Jesper Christensen (f. 1948)" }],
-                "edition": {
-                  "summary": "2009",
-                  "publicationYear": { "display": "2009" }
-                },
-                "dateFirstEdition": null,
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": null, "playingTime": "29 t., 34 min." }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:29368872",
-                "genreAndForm": ["roman", "fantasy"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "bog" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702114393" }],
-                "contributors": [{ "display": "Hanna Lützen" }],
-                "edition": {
-                  "summary": "4. udgave, 2012",
-                  "publicationYear": { "display": "2012" }
-                },
-                "dateFirstEdition": null,
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": 923, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:51980204",
-                "genreAndForm": ["roman", "fantasy"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "bog" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702173260" }],
-                "contributors": [{ "display": "Hanna Lützen" }],
-                "edition": {
-                  "summary": "5. udgave, 2015",
-                  "publicationYear": { "display": "2015" }
-                },
-                "dateFirstEdition": null,
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": 841, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
-              },
-              {
-                "pid": "870970-basis:54871996",
-                "genreAndForm": ["roman", "fantasy"],
-                "source": ["Bibliotekskatalog"],
-                "languages": {
-                  "main": [{ "display": "dansk", "isoCode": "dan" }]
-                },
-                "titles": {
-                  "main": ["Harry Potter og Fønixordenen"],
-                  "original": ["Harry Potter and the Order of the Phoenix"]
-                },
-                "fictionNonfiction": {
-                  "display": "skønlitteratur",
-                  "code": "FICTION"
-                },
-                "materialTypes": [
-                  { "materialTypeSpecific": { "display": "bog" } }
-                ],
-                "creators": [
-                  { "display": "Joanne K. Rowling", "__typename": "Person" }
-                ],
-                "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702272482" }],
-                "contributors": [{ "display": "Hanna Lützen" }],
-                "edition": {
-                  "summary": "6. udgave, 2018",
-                  "publicationYear": { "display": "2018" }
-                },
-                "dateFirstEdition": null,
-                "audience": { "generalAudience": [] },
-                "physicalDescriptions": [
-                  { "numberOfPages": 841, "playingTime": null }
-                ],
-                "accessTypes": [{ "code": "PHYSICAL" }],
-                "access": [
-                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-                ],
-                "shelfmark": null,
-                "workYear": { "year": 2003 }
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": [],
+                  "otherCatalogues": ["OVE999999"]
+                }
               }
             ],
             "latest": {
-              "pid": "870970-basis:134693959",
-              "genreAndForm": ["roman", "fantasy", "romaner"],
+              "pid": "870970-basis:134991119",
+              "genreAndForm": ["erindringer", "biografier"],
               "source": ["Bibliotekskatalog"],
               "languages": {
-                "main": [{ "display": "dansk", "isoCode": "dan" }]
+                "main": [
+                  {
+                    "display": "engelsk",
+                    "isoCode": "eng"
+                  }
+                ],
+                "notes": []
               },
               "titles": {
-                "main": ["Harry Potter og Fønixordenen (Ill. Jim Kay)"],
-                "original": ["Harry Potter and the Order of the Phoenix"]
+                "main": ["Spare"],
+                "original": []
               },
               "fictionNonfiction": {
-                "display": "skønlitteratur",
-                "code": "FICTION"
+                "display": "faglitteratur",
+                "code": "NONFICTION"
               },
               "materialTypes": [
-                { "materialTypeSpecific": { "display": "bog" } }
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
               ],
               "creators": [
-                { "display": "Joanne K. Rowling", "__typename": "Person" }
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
               ],
-              "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702307566" }],
-              "contributors": [
-                { "display": "Jim Kay" },
-                { "display": "Neil Packer" },
-                { "display": "Hanna Lützen" }
+              "publisher": ["Random House"],
+              "identifiers": [
+                {
+                  "value": "9780593593806"
+                }
               ],
+              "contributors": [],
               "edition": {
-                "summary": "Illustreret udgave, 7. udgave, 2022",
-                "publicationYear": { "display": "2022" }
+                "summary": "1. US edition, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
               },
               "dateFirstEdition": null,
               "audience": {
-                "generalAudience": [
-                  "Højtlæsning fra 8 år. Selvlæsning fra 12 år",
-                  "for højtlæsning"
-                ]
+                "generalAudience": [],
+                "ages": []
               },
+              "notes": [],
               "physicalDescriptions": [
-                { "numberOfPages": 565, "playingTime": null }
+                {
+                  "summary": "410 sider: ill.",
+                  "numberOfPages": 410,
+                  "playingTime": null
+                }
               ],
-              "accessTypes": [{ "code": "PHYSICAL" }],
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
               "access": [
-                { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
               ],
-              "shelfmark": null,
-              "workYear": { "year": 2003 }
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": [],
+                "otherCatalogues": ["OVE999999"]
+              }
             },
             "bestRepresentation": {
-              "pid": "870970-basis:134693959",
-              "genreAndForm": ["roman", "fantasy", "romaner"],
+              "pid": "870970-basis:134991119",
+              "genreAndForm": ["erindringer", "biografier"],
               "source": ["Bibliotekskatalog"],
               "languages": {
-                "main": [{ "display": "dansk", "isoCode": "dan" }]
+                "main": [
+                  {
+                    "display": "engelsk",
+                    "isoCode": "eng"
+                  }
+                ],
+                "notes": []
               },
               "titles": {
-                "main": ["Harry Potter og Fønixordenen (Ill. Jim Kay)"],
-                "original": ["Harry Potter and the Order of the Phoenix"]
+                "main": ["Spare"],
+                "original": []
               },
               "fictionNonfiction": {
-                "display": "skønlitteratur",
-                "code": "FICTION"
+                "display": "faglitteratur",
+                "code": "NONFICTION"
               },
               "materialTypes": [
-                { "materialTypeSpecific": { "display": "bog" } }
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
               ],
               "creators": [
-                { "display": "Joanne K. Rowling", "__typename": "Person" }
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
               ],
-              "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702307566" }],
-              "contributors": [
-                { "display": "Jim Kay" },
-                { "display": "Neil Packer" },
-                { "display": "Hanna Lützen" }
+              "publisher": ["Random House"],
+              "identifiers": [
+                {
+                  "value": "9780593593806"
+                }
               ],
+              "contributors": [],
               "edition": {
-                "summary": "Illustreret udgave, 7. udgave, 2022",
-                "publicationYear": { "display": "2022" }
+                "summary": "1. US edition, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
               },
               "dateFirstEdition": null,
               "audience": {
-                "generalAudience": [
-                  "Højtlæsning fra 8 år. Selvlæsning fra 12 år",
-                  "for højtlæsning"
-                ]
+                "generalAudience": [],
+                "ages": []
               },
+              "notes": [],
               "physicalDescriptions": [
-                { "numberOfPages": 565, "playingTime": null }
+                {
+                  "summary": "410 sider: ill.",
+                  "numberOfPages": 410,
+                  "playingTime": null
+                }
               ],
-              "accessTypes": [{ "code": "PHYSICAL" }],
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
               "access": [
-                { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
               ],
-              "shelfmark": null,
-              "workYear": { "year": 2003 }
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": [],
+                "otherCatalogues": ["OVE999999"]
+              }
             }
           }
         }

@@ -9,14 +9,19 @@ import {
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import {
-  DplOpeningHoursCreatePOSTBody,
-  DplOpeningHoursCreatePOSTBodyRepetitionType
+  DplOpeningHoursCreatePOSTOpeningHoursInstanceBody,
+  DplOpeningHoursCreatePOSTOpeningHoursInstanceBodyRepetitionType
 } from "../../core/dpl-cms/model";
 import { OpeningHoursCategoriesType } from "./types";
+import useDialog from "../../components/dialog/useDialog";
+import ConfirmAddRepeatedOpeningHour from "./ConfirmAddRepeatedOpeningHour";
+import Dialog from "../../components/dialog/Dialog";
 
 type DialogFormAddProps = {
   selectedEventInfo: DateSelectArg;
-  handleEventAdd: (event: DplOpeningHoursCreatePOSTBody) => void;
+  handleEventAdd: (
+    event: DplOpeningHoursCreatePOSTOpeningHoursInstanceBody
+  ) => void;
   closeDialog: () => void;
   openingHoursCategories: OpeningHoursCategoriesType[];
 };
@@ -24,19 +29,22 @@ type DialogFormAddProps = {
 const DialogFormAdd: React.FC<DialogFormAddProps> = ({
   selectedEventInfo,
   handleEventAdd,
-  closeDialog,
+  closeDialog: closeAddDialog,
   openingHoursCategories
 }) => {
+  const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
+    useDialog();
   const calendarApi = selectedEventInfo.view.calendar;
   const isDayGridMonth = selectedEventInfo.view.type === "dayGridMonth";
   const isTimeGridWeek = selectedEventInfo.view.type === "timeGridWeek";
 
-  const handleSubmit: EventFormOnSubmitType = (
+  const handleSubmit = ({
     category,
     startTime,
     endTime,
+    startDate,
     repeatedEndDate
-  ) => {
+  }: EventFormOnSubmitType) => {
     const start = updateDateTime(selectedEventInfo.start, startTime);
     const startStr = formatDateStr(start);
     let end = updateDateTime(selectedEventInfo.end, endTime);
@@ -72,26 +80,49 @@ const DialogFormAdd: React.FC<DialogFormAddProps> = ({
       ...newFullCalenderEvent,
       repetition: {
         type: repeatedEndDate
-          ? DplOpeningHoursCreatePOSTBodyRepetitionType.weekly
-          : DplOpeningHoursCreatePOSTBodyRepetitionType.none,
+          ? DplOpeningHoursCreatePOSTOpeningHoursInstanceBodyRepetitionType.weekly
+          : DplOpeningHoursCreatePOSTOpeningHoursInstanceBodyRepetitionType.none,
         ...(repeatedEndDate
           ? { weekly_data: { end_date: repeatedEndDate } }
           : {})
       }
     });
 
-    handleEventAdd(cmsEvent);
-    closeDialog();
+    if (repeatedEndDate) {
+      openDialogWithContent(
+        <ConfirmAddRepeatedOpeningHour
+          startDate={startDate}
+          category={category}
+          startTime={startTime}
+          endTime={endTime}
+          repeatedEndDate={new Date(repeatedEndDate)}
+          confirmSubmit={() => {
+            handleEventAdd(cmsEvent);
+            closeAddDialog();
+          }}
+          closeDialog={closeDialog}
+        />
+      );
+    } else {
+      handleEventAdd(cmsEvent);
+      closeAddDialog();
+    }
   };
 
   return (
-    <EventForm
-      openingHoursCategories={openingHoursCategories}
-      startDate={selectedEventInfo.start}
-      endDate={selectedEventInfo.end}
-      onSubmit={handleSubmit}
-      isRepeatedOpeningHour
-    />
+    <>
+      <EventForm
+        openingHoursCategories={openingHoursCategories}
+        startDate={selectedEventInfo.start}
+        endDate={selectedEventInfo.end}
+        onSubmit={handleSubmit}
+        isRepeatedOpeningHour
+      />
+
+      <Dialog closeDialog={closeDialog} ref={dialogRef}>
+        {dialogContent}
+      </Dialog>
+    </>
   );
 };
 

@@ -369,7 +369,6 @@ export const ReservationModalBody = ({
             branches
           )}
           holdings={holdings}
-          reservationCount={reservations}
           numberInQueue={reservationDetails.numberInQueue}
         />
       )}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { EventInput } from "@fullcalendar/core";
+import { DatesSetArg, EventInput } from "@fullcalendar/core";
 import { useQueryClient } from "react-query";
-import { formatCmsEventsToFullCalendar } from "./helper";
+import { formatCmsEventsToFullCalendar, getStringForDateInput } from "./helper";
 import {
   getDplOpeningHoursListGETQueryKey,
   useDplOpeningHoursCreatePOST,
@@ -10,20 +10,29 @@ import {
   useDplOpeningHoursUpdatePATCH
 } from "../../core/dpl-cms/dpl-cms";
 import {
-  DplOpeningHoursCreatePOSTBody,
-  DplOpeningHoursUpdatePATCHBody
+  DplOpeningHoursCreatePOSTOpeningHoursInstanceBody,
+  DplOpeningHoursUpdatePATCH200Item
 } from "../../core/dpl-cms/model";
 import { useConfig } from "../../core/utils/config";
+import { HandleEventRemoveType } from "./types";
 
 const useOpeningHoursEditor = () => {
   const config = useConfig();
   const openingHoursBranchId = config("openingHoursBranchIdConfig", {
     transformer: "stringToNumber"
   });
+  const [datesSet, setDatseSet] = useState<null | DatesSetArg>(null);
   const queryClient = useQueryClient();
-  const { data: openingHoursData } = useDplOpeningHoursListGET({
-    branch_id: openingHoursBranchId
-  });
+  const { data: openingHoursData } = useDplOpeningHoursListGET(
+    {
+      branch_id: openingHoursBranchId,
+      ...(datesSet && {
+        from_date: getStringForDateInput(datesSet.start),
+        to_date: getStringForDateInput(datesSet.end)
+      })
+    },
+    { enabled: !!datesSet }
+  );
   const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
   const { mutate: createOpeningHours } = useDplOpeningHoursCreatePOST();
   const { mutate: updateOpeningHours } = useDplOpeningHoursUpdatePATCH();
@@ -35,6 +44,10 @@ const useOpeningHoursEditor = () => {
       setEvents(formattedEvents);
     }
   }, [openingHoursData]);
+
+  const handleDatesSet = (datesInView: DatesSetArg) => {
+    setDatseSet(datesInView);
+  };
 
   const onSuccess = () => {
     queryClient.invalidateQueries(
@@ -49,7 +62,9 @@ const useOpeningHoursEditor = () => {
     window.location.reload();
   };
 
-  const handleEventAdd = (event: DplOpeningHoursCreatePOSTBody) => {
+  const handleEventAdd = (
+    event: DplOpeningHoursCreatePOSTOpeningHoursInstanceBody
+  ) => {
     createOpeningHours(
       {
         data: {
@@ -71,7 +86,7 @@ const useOpeningHoursEditor = () => {
     );
   };
 
-  const handleEventEditing = (event: DplOpeningHoursUpdatePATCHBody) => {
+  const handleEventEditing = (event: DplOpeningHoursUpdatePATCH200Item) => {
     updateOpeningHours(
       {
         id: event.id.toString(),
@@ -94,12 +109,16 @@ const useOpeningHoursEditor = () => {
     );
   };
 
-  const handleEventRemove = (eventId: string) => {
+  const handleEventRemove = ({
+    eventId,
+    repetition_id
+  }: HandleEventRemoveType) => {
     removeOpeningHours(
       {
         id: eventId,
         params: {
-          _format: "json"
+          _format: "json",
+          ...(repetition_id ? { repetition_id } : {})
         }
       },
       {
@@ -117,7 +136,8 @@ const useOpeningHoursEditor = () => {
     events,
     handleEventAdd,
     handleEventRemove,
-    handleEventEditing
+    handleEventEditing,
+    handleDatesSet
   };
 };
 
