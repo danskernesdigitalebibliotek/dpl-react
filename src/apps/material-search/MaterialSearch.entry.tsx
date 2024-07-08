@@ -2,10 +2,8 @@ import React from "react";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
-import { WorkId } from "../../core/utils/types/ids";
 import { withUrls } from "../../core/utils/url";
 import MaterialSearch from "./MaterialSearch";
-import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 export interface MaterialSearchEntryTextProps {
   materialSearchSearchInputText: string;
@@ -36,23 +34,13 @@ export interface MaterialSearchEntryTextProps {
 }
 
 export interface MaterialSearchEntryProps {
-  previouslySelectedWorkId: WorkId | null;
-  previouslySelectedMaterialType: ManifestationMaterialType | null;
   uniqueIdentifier: string;
 }
 
 const MaterialSearchEntry: React.FC<
   MaterialSearchEntryProps & MaterialSearchEntryTextProps & GlobalEntryTextProps
-> = ({
-  previouslySelectedWorkId,
-  previouslySelectedMaterialType,
-  uniqueIdentifier
-}) => (
-  <MaterialSearch
-    previouslySelectedWorkId={previouslySelectedWorkId}
-    previouslySelectedMaterialType={previouslySelectedMaterialType}
-    uniqueIdentifier={uniqueIdentifier}
-  />
+> = ({ uniqueIdentifier }) => (
+  <MaterialSearch uniqueIdentifier={uniqueIdentifier} />
 );
 
 export default withConfig(withUrls(withText(MaterialSearchEntry)));

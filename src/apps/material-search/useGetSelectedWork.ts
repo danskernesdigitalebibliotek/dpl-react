@@ -19,20 +19,10 @@ interface UseGetSelectedMaterialReturn {
   ) => void;
 }
 
-interface UseGetSelectedMaterialProps {
-  previouslySelectedWorkId: WorkId | null;
-  previouslySelectedMaterialType: ManifestationMaterialType | null;
-}
-
-const useGetSelectedWork = ({
-  previouslySelectedWorkId,
-  previouslySelectedMaterialType
-}: UseGetSelectedMaterialProps): UseGetSelectedMaterialReturn => {
-  const [selectedWorkId, setSelectedWorkId] = useState<string>(
-    previouslySelectedWorkId ?? ""
-  );
+const useGetSelectedWork = (): UseGetSelectedMaterialReturn => {
+  const [selectedWorkId, setSelectedWorkId] = useState<string>("");
   const [selectedMaterialType, setSelectedMaterialType] =
-    useState<ManifestationMaterialType | null>(previouslySelectedMaterialType);
+    useState<ManifestationMaterialType | null>(null);
 
   const [errorState, setErrorState] = useState<ErrorState>(ErrorState.NoError);
 

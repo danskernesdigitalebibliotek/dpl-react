@@ -1,24 +1,20 @@
-import React, { FC } from "react";
-import { WorkId } from "../../core/utils/types/ids";
+import React, { FC, useEffect } from "react";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import HiddenInputsNotFoundError from "./Errors/HiddenInputsNotFoundError";
+import ErrorState from "./Errors/errorState";
 import MaterialSearchInputs from "./MaterialSearchInputs";
 import MaterialSearchList from "./MaterialSearchList";
 import MaterialSearchPreview from "./MaterialSearchPreview";
 import useGetMaterialListSearch from "./useGetMaterialListSearch";
 import useGetSelectedWork from "./useGetSelectedWork";
+import useGetHiddenInputs from "./useGetHiddenInputs";
 import useUpdateFields from "./useUpdateFields";
 
 type MaterialSearchProps = {
-  previouslySelectedWorkId: WorkId | null;
-  previouslySelectedMaterialType: ManifestationMaterialType | null;
   uniqueIdentifier: string;
 };
 
-const MaterialSearch: FC<MaterialSearchProps> = ({
-  previouslySelectedWorkId,
-  previouslySelectedMaterialType,
-  uniqueIdentifier
-}) => {
+const MaterialSearch: FC<MaterialSearchProps> = ({ uniqueIdentifier }) => {
   const {
     availableMaterialTypes,
     work,
@@ -28,10 +24,7 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
     selectedMaterialType,
     setSelectedMaterialType,
     errorState
-  } = useGetSelectedWork({
-    previouslySelectedWorkId,
-    previouslySelectedMaterialType
-  });
+  } = useGetSelectedWork();
 
   const {
     searchInput,
@@ -48,6 +41,32 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
     uniqueIdentifier
   });
 
+  const {
+    workIdElement,
+    materialTypeElement,
+    errorState: hiddenInputErrorState
+  } = useGetHiddenInputs(uniqueIdentifier);
+
+  useEffect(() => {
+    if (workIdElement && workIdElement.value) {
+      setSelectedWorkId(workIdElement?.value);
+    }
+
+    if (materialTypeElement && materialTypeElement.value) {
+      setSelectedMaterialType(
+        materialTypeElement?.value as ManifestationMaterialType
+      );
+    }
+  }, [
+    workIdElement,
+    materialTypeElement,
+    setSelectedWorkId,
+    setSelectedMaterialType
+  ]);
+
+  if (hiddenInputErrorState === ErrorState.hiddenInputsNotFoundError) {
+    return <HiddenInputsNotFoundError />;
+  }
   return (
     <div className="material-search">
       <MaterialSearchInputs
