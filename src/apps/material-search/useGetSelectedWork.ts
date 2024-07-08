@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
 import { getMaterialTypes } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
@@ -36,7 +36,11 @@ const useGetSelectedWork = ({
 
   const [errorState, setErrorState] = useState<ErrorState>(ErrorState.NoError);
 
-  const { data, isLoading: isSelectedWorkLoading } = useGetMaterialQuery(
+  const {
+    data,
+    isLoading: isSelectedWorkLoading,
+    refetch
+  } = useGetMaterialQuery(
     { wid: selectedWorkId },
     {
       enabled: !!selectedWorkId && selectedWorkId.length > 0,
@@ -65,6 +69,12 @@ const useGetSelectedWork = ({
       }
     }
   );
+
+  useEffect(() => {
+    if (selectedWorkId) {
+      refetch();
+    }
+  }, [selectedWorkId, selectedMaterialType, refetch]);
 
   const work = (data?.work as Work) ?? null;
 
