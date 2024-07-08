@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentMeta } from "@storybook/react";
 import React from "react";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 import globalTextArgs, {
@@ -9,29 +9,82 @@ import MaterialSearch, {
   MaterialSearchEntryProps,
   MaterialSearchEntryTextProps
 } from "./MaterialSearch.entry";
-import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 // Can't use useId() here since this is not inside a functional component.
-const uniqueIdentifier = Math.floor(Math.random() * 10000);
+const uniqueIdentifierValue = Math.floor(Math.random() * 10000);
 
-const defaultValuePreselectedWorkId =
-  "work-of:800010-katalog:99122475830405763";
-const defaultValuePreselectedMaterialType = "lydbog (cd-mp3)";
+const previouslySelectedWorkId = "work-of:800010-katalog:99122475830405763";
+const previouslySelectedMaterialType = "lydbog (cd-mp3)";
+
+interface MaterialSearchHiddenInputsProps
+  extends MaterialSearchEntryProps,
+    MaterialSearchEntryTextProps,
+    GlobalEntryTextProps {
+  defaultWorkId: string;
+  defaultMaterialType: string;
+  uniqueIdentifier: string;
+}
+
+const MaterialSearchHiddenInputs = ({
+  defaultWorkId,
+  defaultMaterialType,
+  uniqueIdentifier,
+  ...args
+}: MaterialSearchHiddenInputsProps) => {
+  return (
+    <div className="material-search">
+      <span>
+        Input fields only shown in storybook. They are used to reflect how the
+        hidden workId and materialType fields are updated.
+      </span>
+      <div className="material-search__inputs-container">
+        <label
+          className="material-search__label"
+          htmlFor="material-search-input"
+        >
+          Work id
+          <input
+            data-field-input-work-id={uniqueIdentifier}
+            type="text"
+            placeholder="Enter search terms"
+            className="material-search__input"
+            tabIndex={-1}
+            defaultValue={defaultWorkId}
+          />
+        </label>
+        <label
+          className="material-search__label"
+          htmlFor="material-type-selector"
+        >
+          Material type
+          <input
+            data-field-input-material-type-id={uniqueIdentifier}
+            type="text"
+            className="material-search__selector"
+            tabIndex={-1}
+            defaultValue={defaultMaterialType}
+          />
+        </label>
+      </div>
+      <MaterialSearch uniqueIdentifier={uniqueIdentifier} {...args} />
+    </div>
+  );
+};
 
 export default {
   title: "Apps / Material Search",
-  component: MaterialSearch,
+  component: MaterialSearchHiddenInputs,
   argTypes: {
     uniqueIdentifier: {
-      defaultValue: uniqueIdentifier,
+      defaultValue: uniqueIdentifierValue,
       control: { type: "number" }
     },
     previouslySelectedWorkId: {
-      defaultValue: defaultValuePreselectedWorkId,
+      defaultValue: previouslySelectedWorkId,
       control: { type: "text" }
     },
     previouslySelectedMaterialType: {
-      defaultValue: defaultValuePreselectedMaterialType,
+      defaultValue: previouslySelectedMaterialType,
       control: { type: "text" }
     },
     etAlText: {
@@ -157,54 +210,36 @@ export default {
     ...serviceUrlArgs,
     ...globalConfigArgs
   }
-} as ComponentMeta<typeof MaterialSearch>;
+} as ComponentMeta<typeof MaterialSearchHiddenInputs>;
 
-export const Default: ComponentStory<typeof MaterialSearch> = (
-  args: MaterialSearchEntryProps &
-    MaterialSearchEntryTextProps &
-    GlobalEntryTextProps
-) => (
-  <div className="material-search">
-    <span>
-      Input fields only shown in storybook. They are used to reflect how the
-      hidden workId and materialType fields are updated.
-    </span>
-    <div className="material-search__inputs-container">
-      <label className="material-search__label" htmlFor="material-search-input">
-        Work id
-        <input
-          data-field-input-work-id={uniqueIdentifier}
-          type="text"
-          placeholder="Enter search terms"
-          className="material-search__input"
-          tabIndex={-1}
-          defaultValue={defaultValuePreselectedWorkId}
-        />
-      </label>
-      <label
-        className="material-search__label"
-        htmlFor="material-type-selector"
-      >
-        Material type
-        <input
-          data-field-input-material-type-id={uniqueIdentifier}
-          type="text"
-          className="material-search__selector"
-          tabIndex={-1}
-          defaultValue={defaultValuePreselectedMaterialType}
-        />
-      </label>
-    </div>
-    <MaterialSearch {...args} />
-  </div>
+const createStory =
+  (defaultWorkId: string, defaultMaterialType: string) =>
+  (
+    args: MaterialSearchEntryProps &
+      MaterialSearchEntryTextProps &
+      GlobalEntryTextProps
+  ) =>
+    (
+      <MaterialSearchHiddenInputs
+        defaultWorkId={defaultWorkId}
+        defaultMaterialType={defaultMaterialType}
+        {...args}
+      />
+    );
+
+export const Default = createStory("", "");
+
+export const WithPreviouslySelectedValues = createStory(
+  previouslySelectedWorkId,
+  previouslySelectedMaterialType
 );
 
-export const materialWithInvalidType = Default.bind({});
-materialWithInvalidType.args = {
-  previouslySelectedMaterialType: "playstation 5" as ManifestationMaterialType
-};
+export const materialWithInvalidType = createStory(
+  previouslySelectedWorkId,
+  "invalid-type"
+);
 
-export const materialWithInvalidWorkId = Default.bind({});
-materialWithInvalidWorkId.args = {
-  previouslySelectedWorkId: "work-of:222222-katalog:33332313"
-};
+export const materialWithInvalidWorkId = createStory(
+  "invalid-work-id",
+  previouslySelectedMaterialType
+);
