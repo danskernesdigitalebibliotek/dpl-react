@@ -672,6 +672,84 @@ describe("Loan list", () => {
     );
   });
 
+  it("It shows interlibrary record when work is not found", () => {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/loans/v2**", {
+      statusCode: 200,
+      body: [
+        {
+          isRenewable: true,
+          isLongtermLoan: false,
+          loanDetails: {
+            loanId: 956250509,
+            materialItemNumber: "3846990827",
+            recordId: "28843238",
+            periodical: null,
+            loanDate: "2022-10-14T16:43:25.325",
+            dueDate: "2022-10-28",
+            loanType: "loan",
+            ilBibliographicRecord: {
+              author: "Thorpe, D.R.",
+              bibliographicCategory: "mono",
+              edition: null,
+              isbn: "9781844135417",
+              issn: null,
+              language: "eng",
+              mediumType: "a xx",
+              periodicalNumber: null,
+              periodicalVolume: null,
+              placeOfPublication: "London",
+              publicationDate: "2011",
+              publicationDateOfComponent: null,
+              publisher: "Pimlico",
+              recordId: "2449448",
+              title: "Supermac : the life of Harold Macmillan"
+            },
+            materialGroup: {
+              name: "fon2",
+              description: "Flere CD-plader"
+            }
+          }
+        }
+      ]
+    }).as("physical_loans");
+
+    cy.intercept("GET", "**/v1/user/**", {
+      statusCode: 200,
+      body: {
+        reservations: [],
+        code: 101,
+        message: "OK"
+      }
+    }).as("digital_loans");
+
+    // No works are found. This should make the reservation use data from the
+    // ilBibliographicRecord property.
+    cy.intercept("POST", "**/next*/**", {
+      statusCode: 200,
+      body: {
+        data: {}
+      }
+    }).as("work_not_found");
+
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .get(".list-reservation__header")
+      // The title should be the one returned by ilBibliographicRecord property
+      // on the reservation.
+      .should("contain", "Supermac : the life of Harold Macmillan")
+      // Open the modal to see the details.
+      .click();
+
+    cy.getBySel("modal")
+      // Modal should be open.
+      .should("exist")
+      .find(".modal-details__title")
+      // Details should also contain the ilBibliographicRecord title.
+      .should("contain", "Supermac : the life of Harold Macmillan");
+  });
+
   it("Empty digital loan list", () => {
     cy.intercept("GET", "**/v1/user/**", {
       statusCode: 200,
