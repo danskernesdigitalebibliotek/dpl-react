@@ -1,7 +1,8 @@
 const enum ErrorState {
   NoError = "NoError",
   WorkError = "WorkError",
-  MaterialTypeError = "MaterialTypeError"
+  MaterialTypeError = "MaterialTypeError",
+  hiddenInputsNotFoundError = "hiddenInputsNotFoundError"
 }
 
 export default ErrorState;

@@ -28,7 +28,7 @@ const MaterialTypeNotFoundError: React.FC<MaterialTypeNotFoundErrorProps> = ({
   const authors = creatorsToString(flattenCreators(creators), t);
 
   return (
-    <MaterialSearchBaseError>
+    <MaterialSearchBaseError headingText={t("materialSearchErrorHeaderText")}>
       <div className="material-search__error-content">
         <p className="material-search__error-description">
           {t("materialSearchErrorMaterialTypeNotFoundText")}

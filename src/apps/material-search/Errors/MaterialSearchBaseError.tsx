@@ -1,21 +1,20 @@
 import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import React from "react";
-import { useText } from "../../../core/utils/text";
 
 interface MaterialSearchBaseErrorProps {
-  children: React.ReactNode;
+  headingText: string;
+  children?: React.ReactNode;
 }
 
 const MaterialSearchBaseError: React.FC<MaterialSearchBaseErrorProps> = ({
+  headingText,
   children
 }) => {
-  const t = useText();
-
   return (
     <div className="material-search__error">
       <div className="material-search__error-header">
         <img src={WarningIcon} className="material-search__error-icon" alt="" />
-        <div>{t("materialSearchErrorHeaderText")}</div>
+        <h3 className="material-search__error-header-text">{headingText}</h3>
       </div>
       {children}
     </div>

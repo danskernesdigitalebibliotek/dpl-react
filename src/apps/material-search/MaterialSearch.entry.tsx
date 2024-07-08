@@ -31,6 +31,8 @@ export interface MaterialSearchEntryTextProps {
   materialSearchErrorHeaderText: string;
   materialSearchErrorMaterialTypeNotFoundText: string;
   materialSearchErrorWorkNotFoundText: string;
+  materialSearchErrorHiddenInputsNotFoundHeadingText: string;
+  materialSearchErrorHiddenInputsNotFoundDescriptionText: string;
 }
 
 export interface MaterialSearchEntryProps {

@@ -144,6 +144,15 @@ export default {
         "The material that was previously selected is no longer available in the system. Either delete this entry or search for a new material to replace it.",
       control: { type: "text" }
     },
+    materialSearchErrorHiddenInputsNotFoundHeadingText: {
+      defaultValue: "Error retrieving saved data. Inputs not found.",
+      control: { type: "text" }
+    },
+    materialSearchErrorHiddenInputsNotFoundDescriptionText: {
+      defaultValue:
+        "Something went wrong when trying to find the previously saved values. Please try again. If the problem persists, something could be wrong with the app.",
+      control: { type: "text" }
+    },
     ...globalTextArgs,
     ...serviceUrlArgs,
     ...globalConfigArgs
