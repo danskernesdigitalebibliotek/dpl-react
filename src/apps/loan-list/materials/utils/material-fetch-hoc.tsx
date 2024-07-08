@@ -67,7 +67,7 @@ const fetchMaterial =
         } else if (item.details) {
           setMaterial(item.details);
         }
-      }, [manifestation]);
+      }, [manifestation, item.details]);
 
       // if the fallback component is provided we can show it while the data is loading
       if (isLoadingAnything) {
