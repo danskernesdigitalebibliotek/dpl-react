@@ -1,16 +1,26 @@
 import React, { useEffect } from "react";
 import { useText } from "../../core/utils/text";
+import CheckBox from "../../components/checkbox/Checkbox";
+import TextInput from "../../components/atoms/input/TextInput";
 
 export type CqlSearchHeaderProps = {
   dataCy?: string;
   initialCql: string;
   setCql: (newState: string) => void;
+  onShelf: boolean;
+  handleOnShelfChange: (newState: boolean) => void;
+  onLocationChange: (location: string) => void;
+  onSublocationChange: (sublocation: string) => void;
 };
 
 const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   dataCy = "cql-search-header",
   initialCql,
-  setCql
+  setCql,
+  onShelf,
+  handleOnShelfChange,
+  onLocationChange,
+  onSublocationChange
 }) => {
   const t = useText();
 
@@ -36,6 +46,24 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
         data-cy={`${dataCy}-input`}
         onChange={(e) => setCql(e.target.value)}
         defaultValue={initialCql}
+      />
+      <TextInput
+        id="location"
+        label="Location"
+        type="text"
+        onChange={(location) => onLocationChange(location)}
+      />
+      <TextInput
+        id="location"
+        label="Sublocation"
+        type="text"
+        onChange={(sublocation) => onSublocationChange(sublocation)}
+      />
+      <CheckBox
+        id="on-shelf"
+        selected={onShelf}
+        onChecked={handleOnShelfChange}
+        label={t("advancedSearchFilterHoldingStatusText")}
       />
     </>
   );
