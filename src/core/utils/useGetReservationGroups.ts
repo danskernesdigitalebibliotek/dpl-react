@@ -27,10 +27,12 @@ export type ReservationGroupDetails = Omit<
 };
 
 function groupReservations(data: ReservationDetailsV2[]) {
-  const reservationGroups = groupBy(
-    data,
-    (reservation) => reservation.transactionId
-  );
+  const reservationGroups = groupBy(data, (reservation) => {
+    if (reservation.reservationType === "parallel") {
+      return reservation.transactionId;
+    }
+    return reservation.reservationId;
+  });
 
   const processedReserations = map(
     reservationGroups,
@@ -103,10 +105,18 @@ if (import.meta.vitest) {
 
     it("groups reservations by transaction id", () => {
       const reservations = groupReservations([
-        generateReservation({ transactionId: "t1" }),
-        generateReservation({ transactionId: "t2" }),
-        generateReservation({ transactionId: "t2" }),
-        generateReservation({ transactionId: "t3" })
+        generateReservation({ transactionId: "t1", reservationId: 1 }),
+        generateReservation({
+          reservationId: 2,
+          transactionId: "t2",
+          reservationType: "parallel"
+        }),
+        generateReservation({
+          reservationId: 3,
+          transactionId: "t2",
+          reservationType: "parallel"
+        }),
+        generateReservation({ transactionId: "t3", reservationId: 4 })
       ]);
       expect(reservations).toHaveLength(3);
     });
@@ -116,12 +126,14 @@ if (import.meta.vitest) {
         generateReservation({
           transactionId: "t1",
           reservationId: 1,
-          recordId: "r11"
+          recordId: "r11",
+          reservationType: "parallel"
         }),
         generateReservation({
           transactionId: "t1",
           reservationId: 2,
-          recordId: "r22"
+          recordId: "r22",
+          reservationType: "parallel"
         })
       ]);
       expect(reservations).toHaveLength(1);
