@@ -280,8 +280,7 @@ export const mapFBSReservationGroupToReservationType = (
               authorsShort: ilBibliographicRecord.author,
               firstAuthor: ilBibliographicRecord.author,
               year: ilBibliographicRecord.publicationDate,
-              lang: ilBibliographicRecord.language,
-              isbn: ilBibliographicRecord.isbn
+              lang: ilBibliographicRecord.language
             }
           : null
       };
