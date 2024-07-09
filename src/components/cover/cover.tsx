@@ -91,6 +91,7 @@ export const Cover = ({
         className={classes.wrapper}
         url={url}
         ariaLabelledBy={linkAriaLabelledBy}
+        isHiddenFromScreenReaders={!alt}
       >
         {coverSrc && (
           <CoverImage
