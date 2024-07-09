@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentMeta } from "@storybook/react";
 import React from "react";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 import globalTextArgs, {
@@ -11,26 +11,88 @@ import MaterialSearch, {
 } from "./MaterialSearch.entry";
 
 // Can't use useId() here since this is not inside a functional component.
-const uniqueIdentifier = Math.floor(Math.random() * 10000);
+const uniqueIdentifierValue = Math.floor(Math.random() * 10000);
+
+const previouslySelectedWorkId = "work-of:800010-katalog:99122475830405763";
+const previouslySelectedMaterialType = "lydbog (cd-mp3)";
+
+interface MaterialSearchHiddenInputsProps
+  extends MaterialSearchEntryProps,
+    MaterialSearchEntryTextProps,
+    GlobalEntryTextProps {
+  defaultWorkId: string;
+  defaultMaterialType: string;
+  uniqueIdentifier: string;
+}
+
+const MaterialSearchHiddenInputs = ({
+  defaultWorkId,
+  defaultMaterialType,
+  uniqueIdentifier,
+  ...args
+}: MaterialSearchHiddenInputsProps) => {
+  return (
+    <div className="material-search">
+      <span>
+        Input fields only shown in storybook. They are used to reflect how the
+        hidden workId and materialType fields are updated.
+      </span>
+      <div className="material-search__inputs-container">
+        <label
+          className="material-search__label"
+          htmlFor="material-search-input"
+        >
+          Work id
+          <input
+            data-field-input-work-id={uniqueIdentifier}
+            type="text"
+            placeholder="Enter search terms"
+            className="material-search__input"
+            tabIndex={-1}
+            defaultValue={defaultWorkId}
+          />
+        </label>
+        <label
+          className="material-search__label"
+          htmlFor="material-type-selector"
+        >
+          Material type
+          <input
+            data-field-input-material-type-id={uniqueIdentifier}
+            type="text"
+            className="material-search__selector"
+            tabIndex={-1}
+            defaultValue={defaultMaterialType}
+          />
+        </label>
+      </div>
+      <MaterialSearch uniqueIdentifier={uniqueIdentifier} {...args} />
+    </div>
+  );
+};
 
 export default {
   title: "Apps / Material Search",
-  component: MaterialSearch,
+  component: MaterialSearchHiddenInputs,
   argTypes: {
     uniqueIdentifier: {
-      defaultValue: uniqueIdentifier,
+      defaultValue: uniqueIdentifierValue,
       control: { type: "number" }
     },
     previouslySelectedWorkId: {
-      defaultValue: "work-of:870970-basis:134320257",
+      defaultValue: previouslySelectedWorkId,
       control: { type: "text" }
     },
     previouslySelectedMaterialType: {
-      defaultValue: "bog",
+      defaultValue: previouslySelectedMaterialType,
       control: { type: "text" }
     },
     etAlText: {
       defaultValue: "et al.",
+      control: { type: "text" }
+    },
+    materialUrl: {
+      defaultValue: "/work/:workid",
       control: { type: "text" }
     },
     materialSearchSearchInputText: {
@@ -109,48 +171,75 @@ export default {
       defaultValue: "Work ID",
       control: { type: "text" }
     },
+    materialSearchErrorTitleText: {
+      defaultValue: "Title",
+      control: { type: "text" }
+    },
+    materialSearchErrorAuthorText: {
+      defaultValue: "Author",
+      control: { type: "text" }
+    },
+    materialSearchErrorLinkText: {
+      defaultValue: "Link",
+      control: { type: "text" }
+    },
+    materialSearchErrorHeaderText: {
+      defaultValue: "This material needs to be updated.",
+      control: { type: "text" }
+    },
+    materialSearchErrorMaterialTypeNotFoundText: {
+      defaultValue:
+        "The currently selected type of the material is no longer available in the system. As a result of this, the link is likely broken. Use the title or link underneath to find and update the material and its type, or replace / delete it.",
+      control: { type: "text" }
+    },
+    materialSearchErrorWorkNotFoundText: {
+      defaultValue:
+        "The material that was previously selected is no longer available in the system. Either delete this entry or search for a new material to replace it.",
+      control: { type: "text" }
+    },
+    materialSearchErrorHiddenInputsNotFoundHeadingText: {
+      defaultValue: "Error retrieving saved data. Inputs not found.",
+      control: { type: "text" }
+    },
+    materialSearchErrorHiddenInputsNotFoundDescriptionText: {
+      defaultValue:
+        "Something went wrong when trying to find the previously saved values. Please try again. If the problem persists, something could be wrong with the app.",
+      control: { type: "text" }
+    },
     ...globalTextArgs,
     ...serviceUrlArgs,
     ...globalConfigArgs
   }
-} as ComponentMeta<typeof MaterialSearch>;
+} as ComponentMeta<typeof MaterialSearchHiddenInputs>;
 
-export const Default: ComponentStory<typeof MaterialSearch> = (
-  args: MaterialSearchEntryProps &
-    MaterialSearchEntryTextProps &
-    GlobalEntryTextProps
-) => (
-  <div className="material-search">
-    <span>
-      Input fields only shown in storybook. They are used to reflect how the
-      hidden workId and materialType fields are updated.
-    </span>
-    <div className="material-search__inputs-container">
-      <label className="material-search__label" htmlFor="material-search-input">
-        Work id
-        <input
-          data-field-input-work-id={uniqueIdentifier}
-          type="text"
-          placeholder="Enter search terms"
-          className="material-search__input"
-          tabIndex={-1}
-        />
-      </label>
-      <label
-        className="material-search__label"
-        htmlFor="material-type-selector"
-      >
-        Material type
-        <input
-          data-field-input-material-type-id={uniqueIdentifier}
-          type="text"
-          className="material-search__selector"
-          tabIndex={-1}
-        />
-      </label>
-    </div>
-    <MaterialSearch {...args} />
-  </div>
+const createStory =
+  (defaultWorkId: string, defaultMaterialType: string) =>
+  (
+    args: MaterialSearchEntryProps &
+      MaterialSearchEntryTextProps &
+      GlobalEntryTextProps
+  ) =>
+    (
+      <MaterialSearchHiddenInputs
+        defaultWorkId={defaultWorkId}
+        defaultMaterialType={defaultMaterialType}
+        {...args}
+      />
+    );
+
+export const Default = createStory("", "");
+
+export const WithPreviouslySelectedValues = createStory(
+  previouslySelectedWorkId,
+  previouslySelectedMaterialType
 );
 
-export const materialWithoutType = Default.bind({});
+export const materialWithInvalidType = createStory(
+  previouslySelectedWorkId,
+  "invalid-type"
+);
+
+export const materialWithInvalidWorkId = createStory(
+  "invalid-work-id",
+  previouslySelectedMaterialType
+);
