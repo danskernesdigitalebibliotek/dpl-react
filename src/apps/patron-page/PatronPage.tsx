@@ -1,11 +1,5 @@
 import React, { useEffect, useState, FC, FormEvent } from "react";
 import { set } from "lodash";
-import { useQueryClient } from "react-query";
-import { PatronV5, UpdatePatronRequestV4 } from "../../core/fbs/model";
-import {
-  useUpdateV5,
-  getGetPatronInformationByPatronIdV2QueryKey
-} from "../../core/fbs/fbs";
 import { useText } from "../../core/utils/text";
 import Link from "../../components/atoms/links/Link";
 import BasicDetailsSection from "./sections/BasicDetailsSection";
@@ -17,15 +11,15 @@ import { useUrls } from "../../core/utils/url";
 import { useNotificationMessage } from "../../core/utils/useNotificationMessage";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import PatronPageSkeleton from "./PatronPageSkeleton";
+import useSavePatron from "../../core/utils/useSavePatron";
+import { Patron } from "../../core/utils/types/entities";
 
 const PatronPage: FC = () => {
-  const queryClient = useQueryClient();
   const t = useText();
   const u = useUrls();
   const deletePatronUrl = u("deletePatronUrl");
-  const { mutate } = useUpdateV5();
   const { data: patronData, isLoading } = usePatronData();
-  const [patron, setPatron] = useState<PatronV5 | null>(null);
+  const [patron, setPatron] = useState<Patron | null>(null);
   const [pin, setPin] = useState<string | null>(null);
   const [isPinChangeValid, setIsPinChangeValid] = useState<boolean>(true);
   const [disableSubmitButton, setDisableSubmitButton] = useState(false);
@@ -34,6 +28,34 @@ const PatronPage: FC = () => {
   );
   const [NotificationComponent, handleNotificationMessage] =
     useNotificationMessage();
+  const { savePatron, savePincode } = useSavePatron({
+    patron: patron || undefined,
+    fetchHandlers: {
+      savePatron: {
+        onSuccess: () => {
+          setDisableSubmitButton(false);
+          handleNotificationMessage(
+            t("patronPageHandleResponseInformationText")
+          );
+        },
+        onError: () => {
+          setDisableSubmitButton(false);
+        }
+      },
+      savePincode: {
+        onSuccess: () => {
+          setDisableSubmitButton(false);
+          setSuccessPinMessage(t("patronPinSavedSuccessText"));
+          handleNotificationMessage(
+            t("patronPageHandleResponseInformationText")
+          );
+        },
+        onError: () => {
+          setDisableSubmitButton(false);
+        }
+      }
+    }
+  });
 
   useEffect(() => {
     if (patronData && patronData.patron) {
@@ -46,7 +68,7 @@ const PatronPage: FC = () => {
   }
 
   // Changes the patron object by key.
-  // So using the paramters 123 and "phoneNumber" would change the phoneNumber to 123.
+  // So using the parameters 123 and "phoneNumber" would change the phoneNumber to 123.
   const changePatron = (newValue: string | boolean, key: string) => {
     // Deeeep copy
     const copyUser = JSON.parse(JSON.stringify(patron));
@@ -57,50 +79,15 @@ const PatronPage: FC = () => {
   const save = () => {
     if (patron) {
       setDisableSubmitButton(true);
-      // The save patron request is done in another section of the code, but in that section
-      // it is saved differently. Here, we save the input from the user, in the other scenario,
-      // the checkboxes (subscribe to texts, subscribe to emails) will be set automatically
-      const data: UpdatePatronRequestV4 = {
-        patron: {
-          emailAddress: patron.emailAddress,
-          receivePostalMail: patron.receivePostalMail,
-          phoneNumber: patron.phoneNumber,
-          onHold: patron.onHold,
-          preferredPickupBranch: patron.preferredPickupBranch,
-          receiveEmail: patron.receiveEmail,
-          receiveSms: patron.receiveSms
-        }
-      };
       // If pincode is changed, the pincode should be updated.
       if (pin) {
-        data.pincodeChange = {
+        savePincode({
           pincode: pin,
           libraryCardNumber: patron.patronId.toString()
-        };
+        });
+      } else {
+        savePatron(patron);
       }
-      mutate(
-        {
-          data
-        },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries(
-              getGetPatronInformationByPatronIdV2QueryKey()
-            );
-            if (pin) {
-              setSuccessPinMessage(t("patronPinSavedSuccessText"));
-            }
-            setDisableSubmitButton(false);
-            handleNotificationMessage(
-              t("patronPageHandleResponseInformationText")
-            );
-          },
-          // todo error handling, missing in figma
-          onError: () => {
-            setDisableSubmitButton(false);
-          }
-        }
-      );
     }
   };
 

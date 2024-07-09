@@ -56,24 +56,23 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   );
   const t = useText();
   const { data, error } = useProxyUrlGET(
-    {
-      url: externalUrl
-    },
-    {
-      enabled: urlWasTranslated === null && externalUrl.length > 0
-    }
+    { url: externalUrl },
+    { enabled: urlWasTranslated === null && externalUrl.length > 0 }
   );
 
+  // Update translatedUrl and reset urlWasTranslated when externalUrl changes
   useEffect(() => {
-    if (urlWasTranslated) {
-      return;
-    }
+    setTranslatedUrl(new URL(externalUrl));
+    setUrlWasTranslated(null);
+  }, [externalUrl]);
 
-    if (!error && data?.data?.url) {
+  // Handle URL translation when data or error changes
+  useEffect(() => {
+    if (urlWasTranslated === false && !error && data?.data?.url) {
       setTranslatedUrl(new URL(data.data.url));
       setUrlWasTranslated(true);
     }
-  }, [data, error, translatedUrl, urlWasTranslated]);
+  }, [data, error, urlWasTranslated]);
 
   const label = (
     sourceName: AccessUrl["origin"],
