@@ -68,7 +68,17 @@ export const mapFBSLoanToLoanType = (list: LoanV2[]): LoanType[] => {
       loanType: loanDetails.loanType,
       identifier: null,
       faust: (loanDetails.recordId as FaustId) || null,
-      loanId: loanDetails.loanId
+      loanId: loanDetails.loanId,
+      details: loanDetails.ilBibliographicRecord
+        ? {
+            title: loanDetails.ilBibliographicRecord.title,
+            authors: loanDetails.ilBibliographicRecord.author,
+            authorsShort: loanDetails.ilBibliographicRecord.author,
+            firstAuthor: loanDetails.ilBibliographicRecord.author,
+            year: loanDetails.ilBibliographicRecord.publicationDate,
+            lang: loanDetails.ilBibliographicRecord.language
+          }
+        : null
     };
   });
 };
@@ -251,7 +261,8 @@ export const mapFBSReservationGroupToReservationType = (
       pickupDeadline,
       pickupNumber,
       periodical,
-      records
+      records,
+      ilBibliographicRecord
     }) => {
       return {
         periodical: periodical?.displayText || "",
@@ -263,7 +274,17 @@ export const mapFBSReservationGroupToReservationType = (
         pickupBranch,
         pickupDeadline,
         pickupNumber,
-        reservationIds: values(records)
+        reservationIds: values(records),
+        details: ilBibliographicRecord
+          ? {
+              title: ilBibliographicRecord.title,
+              authors: ilBibliographicRecord.author,
+              authorsShort: ilBibliographicRecord.author,
+              firstAuthor: ilBibliographicRecord.author,
+              year: ilBibliographicRecord.publicationDate,
+              lang: ilBibliographicRecord.language
+            }
+          : null
       };
     }
   );
