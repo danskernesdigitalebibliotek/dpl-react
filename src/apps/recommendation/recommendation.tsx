@@ -5,14 +5,14 @@ import Link from "../../components/atoms/links/Link";
 import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
-import { DisplayMaterialType } from "../../core/utils/types/material-type";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { useUrls } from "../../core/utils/url";
 import RecommendedMaterial from "../recommended-material/RecommendedMaterial";
 import RecommendationMaterialSkeleton from "./RecommendationSkeleton";
 
 export type RecommendationProps = {
   wid: WorkId;
-  materialType?: DisplayMaterialType;
+  materialType?: ManifestationMaterialType;
   positionImageRight?: boolean;
 };
 

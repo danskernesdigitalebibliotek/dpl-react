@@ -6,34 +6,44 @@ import {
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
-import { getManifestationsFromType } from "../material/helper";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import { getManifestationBasedOnType } from "../material/helper";
+import MaterialTypeNotFoundError from "./Errors/MaterialTypeNotFoundError";
+import WorkNotFoundError from "./Errors/WorkNotFoundError";
+import ErrorState from "./Errors/errorState";
 import MaterialSearchLoading from "./MaterialSearchLoading";
 
 type MaterialSearchPreviewProps = {
   work: Work | null;
-  selectedMaterialType: string | null;
+  selectedMaterialType: ManifestationMaterialType | null;
   isLoading: boolean;
+  errorState: ErrorState;
 };
 
 const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
   work,
   selectedMaterialType,
-  isLoading
+  isLoading,
+  errorState
 }) => {
   const t = useText();
+
   const [materialForDisplay, setMaterialForDisplay] =
     useState<Manifestation | null>(null);
 
   useEffect(() => {
-    if (work) {
-      const matchedManifestations = selectedMaterialType
-        ? getManifestationsFromType(selectedMaterialType, work)
-        : [work.manifestations.bestRepresentation];
+    if (!work) return;
 
-      setMaterialForDisplay(matchedManifestations[0]);
-    } else {
-      setMaterialForDisplay(null);
+    if (!selectedMaterialType) {
+      setMaterialForDisplay(work.manifestations.bestRepresentation);
+      return;
     }
+
+    const manifestation = getManifestationBasedOnType(
+      work,
+      selectedMaterialType
+    );
+    setMaterialForDisplay(manifestation);
   }, [work, selectedMaterialType]);
 
   if (isLoading) {
@@ -44,6 +54,13 @@ const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
         </div>
       </div>
     );
+  }
+  if (errorState === ErrorState.WorkError) {
+    return <WorkNotFoundError />;
+  }
+
+  if (work && errorState === ErrorState.MaterialTypeError) {
+    return <MaterialTypeNotFoundError work={work} />;
   }
 
   if (!work || !materialForDisplay) {

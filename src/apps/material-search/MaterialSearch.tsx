@@ -1,24 +1,20 @@
 import React, { FC, useEffect } from "react";
-import { WorkId } from "../../core/utils/types/ids";
-import MaterialSearchList from "./MaterialSearchList";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import HiddenInputsNotFoundError from "./Errors/HiddenInputsNotFoundError";
+import ErrorState from "./Errors/errorState";
 import MaterialSearchInputs from "./MaterialSearchInputs";
+import MaterialSearchList from "./MaterialSearchList";
 import MaterialSearchPreview from "./MaterialSearchPreview";
 import useGetMaterialListSearch from "./useGetMaterialListSearch";
 import useGetSelectedWork from "./useGetSelectedWork";
+import useGetHiddenInputs from "./useGetHiddenInputs";
 import useUpdateFields from "./useUpdateFields";
-import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 type MaterialSearchProps = {
-  previouslySelectedWorkId: WorkId | null;
-  previouslySelectedMaterialType: ManifestationMaterialType | null;
   uniqueIdentifier: string;
 };
 
-const MaterialSearch: FC<MaterialSearchProps> = ({
-  previouslySelectedWorkId,
-  previouslySelectedMaterialType,
-  uniqueIdentifier
-}) => {
+const MaterialSearch: FC<MaterialSearchProps> = ({ uniqueIdentifier }) => {
   const {
     availableMaterialTypes,
     work,
@@ -26,7 +22,8 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
     selectedWorkId,
     setSelectedWorkId,
     selectedMaterialType,
-    setSelectedMaterialType
+    setSelectedMaterialType,
+    errorState
   } = useGetSelectedWork();
 
   const {
@@ -44,20 +41,32 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
     uniqueIdentifier
   });
 
+  const {
+    workIdElement,
+    materialTypeElement,
+    errorState: hiddenInputErrorState
+  } = useGetHiddenInputs(uniqueIdentifier);
+
   useEffect(() => {
-    if (previouslySelectedWorkId) {
-      handleUpdateWorkId(previouslySelectedWorkId);
+    if (workIdElement && workIdElement.value) {
+      setSelectedWorkId(workIdElement?.value);
     }
-    if (previouslySelectedMaterialType && previouslySelectedWorkId) {
-      handleUpdateMaterialType(previouslySelectedMaterialType);
+
+    if (materialTypeElement && materialTypeElement.value) {
+      setSelectedMaterialType(
+        materialTypeElement?.value as ManifestationMaterialType
+      );
     }
   }, [
-    previouslySelectedWorkId,
-    previouslySelectedMaterialType,
-    handleUpdateWorkId,
-    handleUpdateMaterialType
+    workIdElement,
+    materialTypeElement,
+    setSelectedWorkId,
+    setSelectedMaterialType
   ]);
 
+  if (hiddenInputErrorState === ErrorState.hiddenInputsNotFoundError) {
+    return <HiddenInputsNotFoundError />;
+  }
   return (
     <div className="material-search">
       <MaterialSearchInputs
@@ -73,6 +82,7 @@ const MaterialSearch: FC<MaterialSearchProps> = ({
         work={work}
         isLoading={isSelectedWorkLoading}
         selectedMaterialType={selectedMaterialType}
+        errorState={errorState}
       />
       <MaterialSearchList
         data={searchListData}

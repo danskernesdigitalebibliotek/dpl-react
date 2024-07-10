@@ -21,6 +21,7 @@ import {
   translateSearchObjectToCql
 } from "./helpers";
 import { Button } from "../../components/Buttons/Button";
+import CheckBox from "../../components/checkbox/Checkbox";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;
@@ -28,6 +29,10 @@ export type AdvancedSearchHeaderProps = {
   setSearchQuery: (searchQuery: string | null) => void;
   searchObject: AdvancedSearchQuery | null;
   setSearchObject: (searchObject: AdvancedSearchQuery | null) => void;
+  onShelf: boolean;
+  setOnShelf: (checked: boolean) => void;
+  onLocationChange: (location: string) => void;
+  onSublocationChange: (sublocation: string) => void;
 };
 
 const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
@@ -35,7 +40,11 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   searchQuery,
   setSearchQuery,
   searchObject,
-  setSearchObject
+  setSearchObject,
+  onShelf,
+  setOnShelf,
+  onLocationChange,
+  onSublocationChange
 }) => {
   const t = useText();
   const [isFormMode, setIsFormMode] = useState<boolean>(true);
@@ -49,6 +58,10 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   const [previewCql, setPreviewCql] = useState<string>(searchQuery || "");
   const [rawCql, setRawCql] = useState<string>("");
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
+
+  const handleOnShelfChange = (checked: boolean) => {
+    setOnShelf(checked);
+  };
 
   // If a new search object is passed in, override the internal state to reflect
   // the updated values in the state.
@@ -191,6 +204,12 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
               />
             </div>
           </section>
+          <CheckBox
+            id="on-shelf"
+            selected={onShelf}
+            onChecked={handleOnShelfChange}
+            label={t("advancedSearchFilterHoldingStatusText")}
+          />
           <PreviewSection
             translatedCql={translatedCql}
             reset={reset}
@@ -200,7 +219,14 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
         </>
       )}
       {!isFormMode && (
-        <CqlSearchHeader initialCql={translatedCql} setCql={setRawCql} />
+        <CqlSearchHeader
+          initialCql={translatedCql}
+          setCql={setRawCql}
+          onShelf={onShelf}
+          handleOnShelfChange={handleOnShelfChange}
+          onLocationChange={onLocationChange}
+          onSublocationChange={onSublocationChange}
+        />
       )}
 
       <section className="advanced-search__footer">
