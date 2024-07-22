@@ -81,7 +81,7 @@
     "@types/react-flatpickr": "^3.8.11",
     "@types/react-redux": "^7.1.24",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
-    "@typescript-eslint/parser": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.1",
     "@vitest/coverage-istanbul": "^2.0.3",
     "autoprefixer": "^10.4.19",
     "babel-loader": "^9.1.3",
