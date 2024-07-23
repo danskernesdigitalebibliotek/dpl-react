@@ -59,6 +59,8 @@ export type AccessUrl = {
   note?: Maybe<Scalars["String"]>;
   /** The origin, e.g. "DBC Webarkiv" */
   origin: Scalars["String"];
+  /** Status from linkcheck */
+  status: LinkStatus;
   /** The type of content that can be found at this URL */
   type?: Maybe<AccessUrlType>;
   /** The url where manifestation is located */
@@ -150,7 +152,7 @@ export type ComplexSearchFacetValue = {
 };
 
 /** The supported facet fields */
-export enum ComplexSearchFacets {
+export enum ComplexSearchFacetTypes {
   Accesstype = "ACCESSTYPE",
   Ages = "AGES",
   Cataloguecode = "CATALOGUECODE",
@@ -252,6 +254,37 @@ export type ComplexSearchResponseWorksArgs = {
   sort?: InputMaybe<Array<Sort>>;
 };
 
+export type ComplexSearchSuggestion = {
+  __typename?: "ComplexSearchSuggestion";
+  /** The suggested term which can be searched for */
+  term: Scalars["String"];
+  /** The type of suggestion */
+  type: Scalars["String"];
+  /** A work related to the term */
+  work?: Maybe<Work>;
+};
+
+export type ComplexSuggestResponse = {
+  __typename?: "ComplexSuggestResponse";
+  result: Array<ComplexSearchSuggestion>;
+};
+
+export enum ComplexSuggestionType {
+  Contributor = "contributor",
+  Contributorfunction = "contributorfunction",
+  Creator = "creator",
+  Creatorcontributor = "creatorcontributor",
+  Creatorcontributorfunction = "creatorcontributorfunction",
+  Creatorfunction = "creatorfunction",
+  Default = "default",
+  Fictionalcharacter = "fictionalcharacter",
+  Hostpublication = "hostpublication",
+  Publisher = "publisher",
+  Series = "series",
+  Subject = "subject",
+  Title = "title"
+}
+
 export type CopyRequestInput = {
   authorOfComponent?: InputMaybe<Scalars["String"]>;
   issueOfComponent?: InputMaybe<Scalars["String"]>;
@@ -286,6 +319,7 @@ export enum CopyRequestStatus {
   ErrorMunicipalityagencyidNotFound = "ERROR_MUNICIPALITYAGENCYID_NOT_FOUND",
   ErrorPidNotReservable = "ERROR_PID_NOT_RESERVABLE",
   ErrorUnauthenticatedUser = "ERROR_UNAUTHENTICATED_USER",
+  InternalError = "INTERNAL_ERROR",
   Ok = "OK",
   UnknownUser = "UNKNOWN_USER"
 }
@@ -595,6 +629,11 @@ export type InterLibraryLoan = {
   loanIsPossible: Scalars["Boolean"];
 };
 
+export type KidRecommenderTags = {
+  tag?: InputMaybe<Scalars["String"]>;
+  weight?: InputMaybe<Scalars["Int"]>;
+};
+
 export type Language = {
   __typename?: "Language";
   /** Language as displayable text */
@@ -662,6 +701,13 @@ export enum LinkCheckStatus {
   Ok = "OK"
 }
 
+export enum LinkStatus {
+  Broken = "BROKEN",
+  Gone = "GONE",
+  Invalid = "INVALID",
+  Ok = "OK"
+}
+
 export type Manifestation = {
   __typename?: "Manifestation";
   /** Abstract of the entity */
@@ -710,7 +756,12 @@ export type Manifestation = {
   notes: Array<Note>;
   /** The work that this manifestation is part of */
   ownerWork: Work;
-  /** Physical description of this manifestation like extent (pages/minutes), illustrations etc. */
+  /** Physical description  of this manifestation like extent (pages/minutes), illustrations etc. */
+  physicalDescription: PhysicalUnitDescription;
+  /**
+   * Physical description of this manifestation like extent (pages/minutes), illustrations etc.
+   * @deprecated Use 'physicalDescription' instead
+   */
   physicalDescriptions: Array<PhysicalDescription>;
   /** Unique identification of the manifestation e.g 870970-basis:54029519 */
   pid: Scalars["String"];
@@ -865,6 +916,81 @@ export type Mood = Subject & {
   type: SubjectType;
 };
 
+export type MoodKidsRecommendFilters = {
+  difficulty?: InputMaybe<Array<Scalars["Int"]>>;
+  fictionNonfiction?: InputMaybe<FictionNonfictionCode>;
+  illustrationsLevel?: InputMaybe<Array<Scalars["Int"]>>;
+  length?: InputMaybe<Array<Scalars["Int"]>>;
+  realisticVsFictional?: InputMaybe<Array<Scalars["Int"]>>;
+};
+
+/** The reponse from moodrecommenkids */
+export type MoodRecommendKidsResponse = {
+  __typename?: "MoodRecommendKidsResponse";
+  works: Array<Work>;
+};
+
+/** The reponse from moodrecommenkids */
+export type MoodRecommendKidsResponseWorksArgs = {
+  limit: Scalars["PaginationLimit"];
+  offset: Scalars["Int"];
+};
+
+/** Supported fields for moodsearch request */
+export enum MoodSearchFieldValues {
+  All = "ALL",
+  Alltags = "ALLTAGS",
+  Creator = "CREATOR",
+  Moodtags = "MOODTAGS",
+  Title = "TITLE"
+}
+
+/** The reponse from moodsearchkids */
+export type MoodSearchKidsResponse = {
+  __typename?: "MoodSearchKidsResponse";
+  works: Array<Work>;
+};
+
+/** The reponse from moodsearchkids */
+export type MoodSearchKidsResponseWorksArgs = {
+  limit: Scalars["PaginationLimit"];
+  offset: Scalars["Int"];
+};
+
+/** The response from moodsearch */
+export type MoodSearchResponse = {
+  __typename?: "MoodSearchResponse";
+  /** The works matching the given search query. Use offset and limit for pagination. */
+  works: Array<Work>;
+};
+
+/** The response from moodsearch */
+export type MoodSearchResponseWorksArgs = {
+  limit: Scalars["PaginationLimit"];
+  offset: Scalars["Int"];
+};
+
+/** Type of moodSuggest response */
+export enum MoodSuggest {
+  Creator = "creator",
+  Tag = "tag",
+  Title = "title"
+}
+
+/** The response type for moodSuggest */
+export type MoodSuggestResponse = {
+  __typename?: "MoodSuggestResponse";
+  /** Response is an array of moodSuggestResponse */
+  response: Array<MoodSuggestResponseElement>;
+};
+
+/** Response type for moodTagRecommend */
+export type MoodTagRecommendResponse = {
+  __typename?: "MoodTagRecommendResponse";
+  similarity?: Maybe<Scalars["Float"]>;
+  work: Work;
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   elba: ElbaServices;
@@ -906,6 +1032,7 @@ export enum NoteType {
   DescriptionOfMaterial = "DESCRIPTION_OF_MATERIAL",
   Dissertation = "DISSERTATION",
   Edition = "EDITION",
+  EstimatedPlayingTimeForGames = "ESTIMATED_PLAYING_TIME_FOR_GAMES",
   Frequency = "FREQUENCY",
   MusicalEnsembleOrCast = "MUSICAL_ENSEMBLE_OR_CAST",
   NotSpecified = "NOT_SPECIFIED",
@@ -914,6 +1041,7 @@ export enum NoteType {
   OriginalVersion = "ORIGINAL_VERSION",
   References = "REFERENCES",
   RestrictionsOnUse = "RESTRICTIONS_ON_USE",
+  TechnicalRequirements = "TECHNICAL_REQUIREMENTS",
   TypeOfScore = "TYPE_OF_SCORE"
 }
 
@@ -1021,6 +1149,14 @@ export type PhysicalDescription = {
   textVsIllustrations?: Maybe<Scalars["Int"]>;
 };
 
+export type PhysicalUnitDescription = {
+  __typename?: "PhysicalUnitDescription";
+  accompanyingMaterial?: Maybe<Scalars["String"]>;
+  materialUnits?: Maybe<Array<UnitDescription>>;
+  numberOfPages?: Maybe<Scalars["Int"]>;
+  summaryFull?: Maybe<Scalars["String"]>;
+};
+
 export type Players = {
   __typename?: "Players";
   /** Number of players interval begin. */
@@ -1054,11 +1190,13 @@ export type PublicationYear = {
 export type Query = {
   __typename?: "Query";
   complexSearch: ComplexSearchResponse;
+  complexSuggest: ComplexSuggestResponse;
   infomedia: InfomediaResponse;
   linkCheck: LinkCheckService;
   localSuggest: LocalSuggestResponse;
   manifestation?: Maybe<Manifestation>;
   manifestations: Array<Maybe<Manifestation>>;
+  mood: MoodQueries;
   /** Get recommendations */
   recommend: RecommendationResponse;
   refWorks: Scalars["String"];
@@ -1074,6 +1212,11 @@ export type QueryComplexSearchArgs = {
   cql: Scalars["String"];
   facets?: InputMaybe<ComplexSearchFacets>;
   filters?: InputMaybe<ComplexSearchFilters>;
+};
+
+export type QueryComplexSuggestArgs = {
+  q: Scalars["String"];
+  type: ComplexSuggestionType;
 };
 
 export type QueryInfomediaArgs = {
@@ -1128,6 +1271,7 @@ export type QuerySuggestArgs = {
   limit?: InputMaybe<Scalars["Int"]>;
   q: Scalars["String"];
   suggestType?: InputMaybe<SuggestionType>;
+  suggestTypes?: InputMaybe<Array<SuggestionType>>;
   workType?: InputMaybe<WorkType>;
 };
 
@@ -1382,6 +1526,8 @@ export type Series = {
   alternativeTitles: Array<Scalars["String"]>;
   /** Description of the series */
   description?: Maybe<Scalars["String"]>;
+  /** Additional information  */
+  identifyingAddition?: Maybe<Scalars["String"]>;
   /** Whether this is a popular series or general series */
   isPopular?: Maybe<Scalars["Boolean"]>;
   /** MainLanguages of the series */
@@ -1433,7 +1579,11 @@ export type Sort = {
 
 export enum SortOrder {
   Asc = "ASC",
-  Desc = "DESC"
+  Desc = "DESC",
+  /** @deprecated No longer supported */
+  Asc = "asc",
+  /** @deprecated No longer supported */
+  Desc = "desc"
 }
 
 export type SpecificMaterialType = {
@@ -1667,10 +1817,20 @@ export type Unit = {
   manifestations: Array<Manifestation>;
 };
 
+export type UnitDescription = {
+  __typename?: "UnitDescription";
+  additionalDescription?: Maybe<Scalars["String"]>;
+  extent?: Maybe<Scalars["String"]>;
+  numberAndType?: Maybe<Scalars["String"]>;
+  size?: Maybe<Scalars["String"]>;
+  summary: Scalars["String"];
+  technicalInformation?: Maybe<Scalars["String"]>;
+};
+
 export type Universe = {
   __typename?: "Universe";
   /** A alternative title to the main 'title' of the universe */
-  alternativeTitles: Array<Scalars["String"]>;
+  alternativeTitles?: Maybe<Array<Scalars["String"]>>;
   /** both series and works in a list */
   content: UniverseContentResult;
   /** Description of the universe */
@@ -1725,6 +1885,8 @@ export type Work = {
   fictionNonfiction?: Maybe<FictionNonfiction>;
   /** The genre, (literary) form, type etc. of this work */
   genreAndForm: Array<Scalars["String"]>;
+  /** Date of latest publication */
+  latestPublicationDate?: Maybe<Scalars["String"]>;
   /** The main language(s) of the work's content */
   mainLanguages: Array<Language>;
   /** Details about the manifestations of this work */
@@ -1798,14 +1960,81 @@ export enum WorkType {
 }
 
 /** The facets to ask for */
-export type ComplexSearchFacetsNew = {
+export type ComplexSearchFacets = {
   facetLimit: Scalars["Int"];
-  facets: Array<ComplexSearchFacets>;
+  facets: Array<ComplexSearchFacetTypes>;
 };
 
 export type LocalSuggestResponse = {
   __typename?: "localSuggestResponse";
   result: Array<Suggestion>;
+};
+
+export type MoodQueries = {
+  __typename?: "moodQueries";
+  moodRecommendKids: MoodRecommendKidsResponse;
+  moodSearch: MoodSearchResponse;
+  moodSearchKids: MoodSearchKidsResponse;
+  moodSuggest: MoodSuggestResponse;
+  moodTagRecommend: Array<Maybe<MoodTagRecommendResponse>>;
+  moodWorkRecommend: Array<Maybe<MoodTagRecommendResponse>>;
+};
+
+export type MoodQueriesMoodRecommendKidsArgs = {
+  dislikes?: InputMaybe<Array<Scalars["String"]>>;
+  filters?: InputMaybe<MoodKidsRecommendFilters>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  tags?: InputMaybe<Array<KidRecommenderTags>>;
+  work?: InputMaybe<Scalars["String"]>;
+};
+
+export type MoodQueriesMoodSearchArgs = {
+  field?: InputMaybe<MoodSearchFieldValues>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  q: Scalars["String"];
+};
+
+export type MoodQueriesMoodSearchKidsArgs = {
+  field?: InputMaybe<MoodSearchFieldValues>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  q: Scalars["String"];
+};
+
+export type MoodQueriesMoodSuggestArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
+  q: Scalars["String"];
+};
+
+export type MoodQueriesMoodTagRecommendArgs = {
+  hasCover?: InputMaybe<Scalars["Boolean"]>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  minus?: InputMaybe<Array<Scalars["String"]>>;
+  plus?: InputMaybe<Array<Scalars["String"]>>;
+  tags: Array<Scalars["String"]>;
+};
+
+export type MoodQueriesMoodWorkRecommendArgs = {
+  dislikes?: InputMaybe<Array<Scalars["String"]>>;
+  hasCover?: InputMaybe<Scalars["Boolean"]>;
+  likes: Array<Scalars["String"]>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  maxAuthorRecommendations?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  threshold?: InputMaybe<Scalars["Float"]>;
+};
+
+/** Response type for moodSuggest */
+export type MoodSuggestResponseElement = {
+  __typename?: "moodSuggestResponse";
+  /** Suggestion */
+  term: Scalars["String"];
+  /** The type of suggestion title/creator/tag */
+  type: MoodSuggest;
+  /** A work associated with the suggestion */
+  work?: Maybe<Work>;
 };
 
 export type GetSmallWorkQueryVariables = Exact<{

@@ -1,17 +1,15 @@
 overwrite: true
 schema:
   - "https://fbi-api.dbc.dk/${CODEGEN_SCHEMA_PROFILE}/graphql":
-        headers:
-          Authorization: "Bearer ${STORYBOOK_LIBRARY_TOKEN}"
+      headers:
+        Authorization: "Bearer ${STORYBOOK_LIBRARY_TOKEN}"
 documents: "src/**/*.graphql"
 generates:
   src/core/dbc-gateway/generated/graphql.tsx:
     config:
       fetcher:
-        func: '../graphql-fetcher#fetcher'
-      namingConvention:
-        typeNames: change-case-all#pascalCase
-        transformUnderscore: true
+        func: "../graphql-fetcher#fetcher"
+      namingConvention: "./dbc-gateway.codegen.naming"
       defaultScalarType: unknown
     plugins:
       - "typescript"
@@ -19,9 +17,8 @@ generates:
       - "typescript-react-query"
     hooks:
       afterOneFileWrite:
-      - yarn post-process-generated-graphql
-      - yarn eslint --fix
+        - yarn post-process-generated-graphql
+        - yarn eslint --fix
   src/core/dbc-gateway/generated/graphql.schema.json:
     plugins:
       - "introspection"
-
