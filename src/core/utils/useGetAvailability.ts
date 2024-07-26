@@ -15,11 +15,11 @@ const useGetAvailability = ({
     query?: UseQueryOptions<Awaited<ReturnType<typeof getAvailabilityV3>>>;
   };
 }) => {
-  const { data, isLoading, isError } = useGetAvailabilityV3(
+  const response = useGetAvailabilityV3(
     getBlacklistedQueryArgs(faustIds, config, "availability"),
     options
   );
-  return { data, isLoading, isError };
+  return response;
 };
 
 export default useGetAvailability;
