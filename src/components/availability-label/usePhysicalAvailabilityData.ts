@@ -32,6 +32,14 @@ const usePhysicalAvailabilityData = ({
 
   const { isLoading, data } = response;
 
+  // If hook is not enabled make it clear that the loading and availability status is unknown.
+  if (!enabled) {
+    return {
+      isLoading: null,
+      isAvailable: null
+    };
+  }
+
   // Articles are always available.
   if (manifestText === ManifestationMaterialType.article) {
     return {
@@ -55,6 +63,7 @@ const usePhysicalAvailabilityData = ({
       isAvailable: true
     };
   }
+
   // Otherwise the manifestation is not available.
   return {
     isLoading: false,
