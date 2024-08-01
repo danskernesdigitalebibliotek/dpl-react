@@ -11,14 +11,12 @@ const useOnlineAvailabilityData = ({
   enabled,
   access,
   faustIds,
-  isbn,
-  manifestText
+  isbn
 }: {
   enabled: boolean;
   access: Access["__typename"][];
   faustIds: FaustId[] | null;
   isbn: string | null;
-  manifestText: string;
 }) => {
   const [isAvailable, setIsAvailable] = useState<null | boolean>(null);
 
@@ -66,7 +64,6 @@ const useOnlineAvailabilityData = ({
   }, [
     isLoadingIdentifier,
     isAvailable,
-    manifestText,
     faustIds,
     enabled,
     dataEreol,

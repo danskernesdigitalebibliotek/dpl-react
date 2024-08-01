@@ -24,8 +24,7 @@ const useAvailabilityData = ({
     enabled: isOnline(accessTypes),
     access,
     faustIds,
-    isbn,
-    manifestText
+    isbn
   });
 
   const availabilityPhysical = usePhysicalAvailabilityData({
