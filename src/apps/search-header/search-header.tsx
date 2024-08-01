@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useCombobox, UseComboboxStateChange } from "downshift";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCombobox,
+  UseComboboxState,
+  UseComboboxStateChange,
+  UseComboboxStateChangeOptions
+} from "downshift";
 import { useClickAway } from "react-use";
 import {
   SuggestionsFromQueryStringQuery,
@@ -32,11 +37,11 @@ import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 const SearchHeader: React.FC = () => {
   const t = useText();
   const u = useUrls();
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
   const [q, setQ] = useState<string>("");
-  const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<
     SuggestionsFromQueryStringQuery["suggest"]["result"] | []
   >([]);
@@ -46,6 +51,10 @@ const SearchHeader: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
+
+  const getSearchInputValue = () => {
+    return searchInputRef.current ? searchInputRef.current.value : "";
+  };
 
   const {
     data,
@@ -63,9 +72,8 @@ const SearchHeader: React.FC = () => {
     useState<boolean>(false);
   // Once we register the item select event the original highlighted index is
   // already set to -1 by Downshift.
-  const [highlightedIndexAfterClick, setHighlightedIndexAfterClick] = useState<
-    number | null
-  >(null);
+  const highlightedIndexAfterClick = useRef<number | null>(null);
+
   const { track } = useStatistics();
 
   // Make sure to only assign the data once.
@@ -83,7 +91,10 @@ const SearchHeader: React.FC = () => {
   // The first suggestion that is not of SuggestionType.Title - used for showing/
   // /hiding autosuggest categories suggestions.
   let nonWorkSuggestion: Suggestion | undefined;
-  let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
+  let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] =
+    useMemo(() => {
+      return [];
+    }, []);
 
   if (originalData) {
     nonWorkSuggestion = findNonWorkSuggestion(originalData);
@@ -121,12 +132,12 @@ const SearchHeader: React.FC = () => {
   }, [data]);
 
   useEffect(() => {
-    if (qWithoutQuery.length > 2) {
+    if (getSearchInputValue().length > 2) {
       setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [qWithoutQuery]);
+  }, [searchInputRef]);
 
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
@@ -150,7 +161,7 @@ const SearchHeader: React.FC = () => {
     // Set highlighted index when hovering over with mouse + exit function.
     if (type === useCombobox.stateChangeTypes.ItemMouseMove) {
       if (highlightedIndex !== undefined && highlightedIndex > -1) {
-        setHighlightedIndexAfterClick(highlightedIndex);
+        highlightedIndexAfterClick.current = highlightedIndex;
       }
       return;
     }
@@ -161,7 +172,7 @@ const SearchHeader: React.FC = () => {
       type === useCombobox.stateChangeTypes.InputKeyDownEnter
     ) {
       if (highlightedIndex !== undefined && highlightedIndex > -1) {
-        setHighlightedIndexAfterClick(highlightedIndex);
+        highlightedIndexAfterClick.current = highlightedIndex;
       }
     }
     // Close autosuggest if there is no highlighted index.
@@ -182,7 +193,6 @@ const SearchHeader: React.FC = () => {
       type === useCombobox.stateChangeTypes.InputKeyDownArrowDown ||
       type === useCombobox.stateChangeTypes.InputKeyDownArrowUp
     ) {
-      setQWithoutQuery(currentItemValue);
       return;
     }
     // Make a new API suggestion request.
@@ -196,10 +206,9 @@ const SearchHeader: React.FC = () => {
     }
     if (type === useCombobox.stateChangeTypes.InputChange) {
       setQ(inputValue);
-      setQWithoutQuery(inputValue);
       return;
     }
-    setQWithoutQuery(inputValue);
+
     // Escape if there is no selected item defined.
     if (!selectedItem) {
       return;
@@ -232,11 +241,12 @@ const SearchHeader: React.FC = () => {
       nonWorkSuggestion &&
       changes.selectedItem &&
       nonWorkSuggestion.term === changes.selectedItem.term &&
-      highlightedIndexAfterClick &&
-      highlightedIndexAfterClick >= textData.concat(materialData).length
+      highlightedIndexAfterClick.current &&
+      highlightedIndexAfterClick.current >= textData.concat(materialData).length
     ) {
       const highlightedCategoryIndex =
-        highlightedIndexAfterClick - (textData.length + materialData.length);
+        highlightedIndexAfterClick.current -
+        (textData.length + materialData.length);
       const selectedItemString = determineSuggestionTerm(changes.selectedItem);
       track("click", {
         id: statistics.autosuggestClick.id,
@@ -268,6 +278,32 @@ const SearchHeader: React.FC = () => {
     });
   }
 
+  const stateReducer = React.useCallback(
+    (
+      state: UseComboboxState<string>,
+      actionAndChanges: UseComboboxStateChangeOptions<string>
+    ) => {
+      const { type, changes } = actionAndChanges;
+      const currentlyHighlightedObject =
+        orderedData[changes?.highlightedIndex ?? -1];
+      const currentItemValue = currentlyHighlightedObject
+        ? determineSuggestionTerm(currentlyHighlightedObject)
+        : "";
+
+      switch (type) {
+        case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
+        case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
+          return {
+            ...changes,
+            inputValue: currentItemValue
+          };
+        default:
+          return changes;
+      }
+    },
+    [orderedData]
+  );
+
   // This is the main Downshift hook.
   const {
     getMenuProps,
@@ -278,12 +314,12 @@ const SearchHeader: React.FC = () => {
   } = useCombobox({
     isOpen: isAutosuggestOpen,
     items: orderedData,
-    inputValue: qWithoutQuery,
     defaultIsOpen: false,
     onInputValueChange: handleInputValueChange,
     onSelectedItemChange: handleSelectedItemChange,
     selectedItem: currentlySelectedItem,
-    onHighlightedIndexChange: handleHighlightedIndexChange
+    onHighlightedIndexChange: handleHighlightedIndexChange,
+    stateReducer
   });
 
   const headerDropdownRef = React.useRef<HTMLAnchorElement>(null);
@@ -326,11 +362,11 @@ const SearchHeader: React.FC = () => {
           q={q}
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}
-          qWithoutQuery={qWithoutQuery}
-          setQWithoutQuery={setQWithoutQuery}
+          qWithoutQuery={getSearchInputValue()}
           isHeaderDropdownOpen={isHeaderDropdownOpen}
           setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
           redirectUrl={redirectUrl}
+          inputRef={searchInputRef}
         />
         <Autosuggest
           textData={textData}
