@@ -84,8 +84,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           }
         }}
       />
-      <input
-        type="image"
+      <img
         src={expandIcon}
         alt={t("searchHeaderDropdownText")}
         className={clsx("header__menu-dropdown-icon", {
