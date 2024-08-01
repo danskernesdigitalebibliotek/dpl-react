@@ -28,7 +28,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
         htmlFor="branches-dropdown"
         className="text-body-medium-medium mt-32 mb-8"
       >
-        {`${t("pickupBranchesDropdownLabelText")}${required ? "*" : null}`}
+        {`${t("pickupBranchesDropdownLabelText")}${required ? " *" : ""}`}
       </label>
       <div
         className={clsx(`dropdown mt-8 ${classNames || ""}`, [
