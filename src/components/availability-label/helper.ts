@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
+import articleTypes from "../../core/utils/types/article-types";
 
 type GetParrentAvailabilityLabelClassProps = {
   selected?: boolean;
@@ -8,6 +9,9 @@ type GetParrentAvailabilityLabelClassProps = {
 
 export const isOnline = (accessTypes: AccessTypeCode[]): boolean =>
   accessTypes?.includes(AccessTypeCode.Online) ?? false;
+
+export const isArticle = (manifestText: string): boolean =>
+  articleTypes.some((type) => manifestText.toLowerCase() === type);
 
 export const getParentAvailabilityLabelClass = ({
   selected,

@@ -1,7 +1,7 @@
 import { useConfig } from "../../core/utils/config";
 import { FaustId } from "../../core/utils/types/ids";
 import useGetAvailability from "../../core/utils/useGetAvailability";
-import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import { isArticle } from "./helper";
 
 const usePhysicalAvailabilityData = ({
   enabled,
@@ -22,10 +22,7 @@ const usePhysicalAvailabilityData = ({
         // FBS / useGetAvailabilityV3 is responsible for handling availability
         // for physical items. This will be the majority of all materials so we
         // use this for everything except materials that are explicitly online.
-        enabled:
-          enabled &&
-          faustIds !== null &&
-          manifestText !== ManifestationMaterialType.article
+        enabled: enabled && faustIds !== null && !isArticle(manifestText)
       }
     }
   });
@@ -41,7 +38,7 @@ const usePhysicalAvailabilityData = ({
   }
 
   // Articles are always available.
-  if (manifestText === ManifestationMaterialType.article) {
+  if (isArticle(manifestText)) {
     return {
       isLoading: false,
       isAvailable: true
