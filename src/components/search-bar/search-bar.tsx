@@ -84,10 +84,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
           }
         }}
       />
-      <input
-        role="combobox"
-        src={expandIcon}
-        alt={t("searchHeaderDropdownText")}
+      <button
+        type="button"
         className={clsx("header__menu-dropdown-icon", {
           "header__menu-dropdown-icon--expanded": isHeaderDropdownOpen
         })}
@@ -107,8 +105,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
         aria-label={t("searchHeaderDropdownText")}
         data-cy="search-header-dropdown-icon"
         aria-expanded={isHeaderDropdownOpen}
-        aria-controls="search-header-dropdown"
-      />
+      >
+        <img src={expandIcon} alt={t("searchHeaderDropdownText")} />
+      </button>
     </>
   );
 };
