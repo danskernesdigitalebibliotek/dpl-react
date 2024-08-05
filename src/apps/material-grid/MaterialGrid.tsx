@@ -1,29 +1,32 @@
+import clsx from "clsx";
 import * as React from "react";
-import { useState, useEffect } from "react";
-import { WorkId } from "../../core/utils/types/ids";
-import RecommendedMaterial from "../recommended-material/RecommendedMaterial";
+import { useEffect, useState } from "react";
+import MaterialListItem from "../../components/card-item-list/MaterialListItem";
 import { useText } from "../../core/utils/text";
+import { WorkId } from "../../core/utils/types/ids";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import RecommendedMaterial from "../recommended-material/RecommendedMaterial";
 import {
   MaterialGridValidIncrements,
   ValidSelectedIncrements,
   calculateAmountToDisplay
 } from "./materiel-grid-util";
-import { DisplayMaterialType } from "../../core/utils/types/material-type";
-import MaterialListItem from "../../components/card-item-list/MaterialListItem";
 
 export type MaterialGridItemProps = {
   wid: WorkId;
-  materialType?: DisplayMaterialType;
+  materialType?: ManifestationMaterialType;
 };
 
 export type MaterialGridProps = {
   materials: MaterialGridItemProps[];
   title?: string;
+  description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
 };
 const MaterialGrid: React.FC<MaterialGridProps> = ({
   materials,
   title,
+  description,
   selectedAmountOfMaterialsForDisplay
 }) => {
   const t = useText();
@@ -56,9 +59,19 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
     setShowAllMaterials(!showAllMaterials);
   }
 
+  const titleClasses = clsx("material-grid__title", {
+    "material-grid__title--no-description": !description
+  });
   return (
     <div className="material-grid">
-      {title && <h2 className="material-grid__title">{title}</h2>}
+      {(title || description) && (
+        <div className="material-grid__text-wrapper">
+          {title && <h2 className={titleClasses}>{title}</h2>}
+          {description && (
+            <p className="material-grid__description">{description}</p>
+          )}
+        </div>
+      )}
       <ul className="material-grid__items">
         {materials
           .slice(0, currentAmountOfDisplayedMaterials)

@@ -9,6 +9,7 @@ import {
   removeQueryParametersFromUrl,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
+import { LocationFilter } from "./LocationFilter";
 
 interface AdvancedSearchProps {
   pageSize: number;
@@ -28,9 +29,39 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
   // This is the CQL query that is actually executed.
   const [executedQuery, setExecutedQuery] = useState<string | null>(null);
 
+  const [locationFilter, setLocationFilter] = useState<LocationFilter>({});
+  const handleLocationChange = (location: string) => {
+    setLocationFilter((prevFilter) => ({
+      ...prevFilter,
+      location: [location]
+    }));
+  };
+  const handleSublocationChange = (sublocation: string) => {
+    setLocationFilter((prevFilter) => ({
+      ...prevFilter,
+      sublocation: [sublocation]
+    }));
+  };
+
+  const [onShelf, setOnShelf] = useState(false);
+  const handleOnShelfChange = (checked: boolean) => {
+    setOnShelf(checked);
+    if (checked) {
+      setQueryParametersInUrl({
+        onshelf: "true"
+      });
+    } else {
+      removeQueryParametersFromUrl("onshelf");
+    }
+  };
+
   // Only react on url parameters on the initial render.
   useEffectOnce(() => {
-    const advancedSearchQuery = getUrlQueryParam("advancedSearchQuery");
+    // We have to remove brackets if multiple filters were used so that we can
+    // translate the string back to an object.
+    const advancedSearchQuery = getUrlQueryParam("advancedSearchQuery")
+      ?.replace("(", "")
+      .replace(")", "");
     if (advancedSearchQuery) {
       // TODO: Add runtime validation
       // If the value does not match the type because of url tampering, type
@@ -47,6 +78,10 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
 
     if (getUrlQueryParam("linked") === "true") {
       setShowResultOnly(true);
+    }
+
+    if (getUrlQueryParam("onshelf") === "true") {
+      setOnShelf(true);
     }
   });
 
@@ -81,6 +116,10 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           setSearchObject={setSearchObject}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          onShelf={onShelf}
+          setOnShelf={handleOnShelfChange}
+          onLocationChange={handleLocationChange}
+          onSublocationChange={handleSublocationChange}
         />
       )}
       {executedQuery && (
@@ -88,6 +127,8 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           q={executedQuery}
           pageSize={pageSize}
           showContentOnly={showResultOnly}
+          onShelf={onShelf}
+          locationFilter={locationFilter}
         />
       )}
     </div>

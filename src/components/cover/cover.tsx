@@ -8,9 +8,13 @@ import CoverImage from "./cover-image";
 import { Manifestation } from "../../core/utils/types/entities";
 import { getCoverUrl } from "./helper";
 
+type Sizes = "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
+type DisplaySizes = "2xsmall" | Sizes;
+
 export type CoverProps = {
   animate: boolean;
-  size: "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
+  size: Sizes;
+  displaySize?: DisplaySizes;
   tint?: "20" | "40" | "80" | "100" | "120";
   ids: (Pid | string)[];
   bestRepresentation?: Manifestation;
@@ -25,6 +29,7 @@ export const Cover = ({
   url,
   alt,
   size,
+  displaySize,
   animate,
   tint,
   ids,
@@ -69,11 +74,13 @@ export const Cover = ({
     "20": "bg-identity-tint-20"
   };
 
+  const coverDisplaySize = displaySize || size;
+
   const classes = {
     wrapper: clsx(
       "cover",
-      `cover--size-${size}`,
-      `cover--aspect-${size}`,
+      `cover--size-${coverDisplaySize}`,
+      `cover--aspect-${coverDisplaySize}`,
       imageLoaded || tintClasses[tint || "default"]
     )
   };
@@ -84,6 +91,7 @@ export const Cover = ({
         className={classes.wrapper}
         url={url}
         ariaLabelledBy={linkAriaLabelledBy}
+        isHiddenFromScreenReaders={!alt}
       >
         {coverSrc && (
           <CoverImage

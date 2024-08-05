@@ -35,23 +35,3 @@ export type AutosuggestCategoryList = {
 };
 
 export default {};
-
-export type DisplayMaterialType =
-  | "bog"
-  | "billedbog"
-  | "billedbog (online)"
-  | "e-bog"
-  | "cd"
-  | "podcast"
-  | "musik (online)"
-  | "film"
-  | "film (online)"
-  | "lydbog"
-  | "lydbog (online)"
-  | "lydbog (cd-mp3)"
-  | "artikel"
-  | "artikel (online)"
-  | "tegneserie"
-  | "tegneserie (online)"
-  | "tidsskrift"
-  | "tidsskrift (online)";

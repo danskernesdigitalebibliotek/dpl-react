@@ -38,7 +38,10 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     });
   };
 
-  const accessElement = manifestations[0].access[0];
+  // Find 'Ereol' object or default to the first 'access' object
+  const accessElement =
+    manifestations[0].access.find((item) => item.__typename === "Ereol") ||
+    manifestations[0].access[0];
 
   // If the access type is an external type we'll show corresponding button.
   if (

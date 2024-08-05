@@ -11,6 +11,7 @@ export interface LinkProps {
   dataCy?: string;
   ariaLabelledBy?: string;
   stopPropagation?: boolean;
+  isHiddenFromScreenReaders?: boolean;
 }
 
 const Link: React.FC<LinkProps> = ({
@@ -22,7 +23,8 @@ const Link: React.FC<LinkProps> = ({
   trackClick,
   dataCy,
   ariaLabelledBy,
-  stopPropagation = false
+  stopPropagation = false,
+  isHiddenFromScreenReaders
 }) => {
   const handleClick = getLinkHandler({
     type: "click",
@@ -51,6 +53,8 @@ const Link: React.FC<LinkProps> = ({
       onClick={handleClick}
       onKeyUp={handleKeyUp}
       aria-labelledby={ariaLabelledBy}
+      tabIndex={isHiddenFromScreenReaders ? -1 : 0}
+      aria-hidden={isHiddenFromScreenReaders}
     >
       {children}
     </a>

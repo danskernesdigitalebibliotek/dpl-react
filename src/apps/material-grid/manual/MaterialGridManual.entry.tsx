@@ -19,11 +19,13 @@ export interface MaterialGridManualEntryProps
     MaterialGridManualEntryConfigProps {
   materials: string;
   title?: string;
+  description?: string;
 }
 
 const MaterialGridManualEntry: React.FC<MaterialGridManualEntryProps> = ({
   materials,
-  title
+  title,
+  description
 }) => {
   const parsedMaterialsString: MaterialGridItemProps[] = JSON.parse(materials);
   const parsedMaterials = parsedMaterialsString.map((work) => ({
@@ -33,7 +35,11 @@ const MaterialGridManualEntry: React.FC<MaterialGridManualEntryProps> = ({
 
   return (
     <GuardedApp app="material-grid-manual">
-      <MaterialGridManual materials={parsedMaterials} title={title} />
+      <MaterialGridManual
+        materials={parsedMaterials}
+        title={title}
+        description={description}
+      />
     </GuardedApp>
   );
 };

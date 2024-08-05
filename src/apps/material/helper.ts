@@ -1,42 +1,39 @@
-import { compact, groupBy, uniqBy, uniq, head, first } from "lodash";
+import { compact, first, groupBy, head, uniq, uniqBy } from "lodash";
 import { UseQueryOptions } from "react-query";
-import {
-  getManifestationType,
-  orderManifestationsByYear,
-  flattenCreators
-} from "../../core/utils/helpers/general";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import {
   ListData,
   ListItemType
 } from "../../components/material/MaterialDetailsList";
 import {
-  HoldingsForBibliographicalRecordV3,
-  HoldingsV3
-} from "../../core/fbs/model";
-import { UseTextFunction } from "../../core/utils/text";
-import { Manifestation, Work } from "../../core/utils/types/entities";
-import { FaustId } from "../../core/utils/types/ids";
-import {
-  DisplayMaterialType,
-  ManifestationMaterialType
-} from "../../core/utils/types/material-type";
+  hasCorrectAccessType,
+  isArticle
+} from "../../components/material/material-buttons/helper";
 import {
   AccessTypeCode,
   WorkType
 } from "../../core/dbc-gateway/generated/graphql";
 import {
-  hasCorrectAccessType,
-  isArticle
-} from "../../components/material/material-buttons/helper";
-import { UseConfigFunction } from "../../core/utils/config";
-import {
   getAvailabilityV3,
   getHoldingsV3,
   useGetHoldingsV3
 } from "../../core/fbs/fbs";
-import vitestData from "./__vitest_data__/helper";
+import {
+  HoldingsForBibliographicalRecordV3,
+  HoldingsV3
+} from "../../core/fbs/model";
+import { UseConfigFunction } from "../../core/utils/config";
+import {
+  flattenCreators,
+  getManifestationType,
+  orderManifestationsByYear
+} from "../../core/utils/helpers/general";
 import { constructModalId } from "../../core/utils/helpers/modal-helpers";
+import { UseTextFunction } from "../../core/utils/text";
+import { Manifestation, Work } from "../../core/utils/types/entities";
+import { FaustId } from "../../core/utils/types/ids";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import vitestData from "./__vitest_data__/helper";
 
 export const getWorkManifestation = (
   work: Work,
@@ -539,7 +536,7 @@ export const useGetHoldings = ({
 
 export const getManifestationBasedOnType = (
   work: Work,
-  materialType: DisplayMaterialType
+  materialType: ManifestationMaterialType
 ): Manifestation => {
   const { bestRepresentation, all } = work.manifestations;
 
@@ -549,11 +546,11 @@ export const getManifestationBasedOnType = (
   if (materialType === bestRepresentationMaterialType) {
     return bestRepresentation;
   }
-
   // Filters and sorts the manifestations if the best representation does not match.
+  const sortedManifestations = getManifestationsOrderByTypeAndYear(all);
   const filteredAndSortedManifestations = filterManifestationsByType(
     materialType,
-    all
+    sortedManifestations
   );
   const newestFilteredAndSortedManifestation = first(
     filteredAndSortedManifestations

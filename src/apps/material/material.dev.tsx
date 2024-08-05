@@ -705,6 +705,11 @@ export default {
       defaultValue: "Error missing municipality agency ID",
       control: { type: "text" }
     },
+    orderDigitalCopyFeedbackInternalErrorText: {
+      name: "Internal error text",
+      defaultValue: "Internal error",
+      control: { type: "text" }
+    },
     authUrl: {
       name: "Url where user can authenticate",
       defaultValue: "",

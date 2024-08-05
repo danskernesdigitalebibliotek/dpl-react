@@ -109,11 +109,13 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           role="button"
           tabIndex={0}
         >
-          <div className="list-materials__content-status">
-            <div className="status-label status-label--outline ">
-              {materialType}
+          {materialType && (
+            <div className="list-materials__content-status">
+              <div className="status-label status-label--outline ">
+                {materialType}
+              </div>
             </div>
-          </div>
+          )}
           {statusBadgeComponentMobile || null}
           <p className="list-materials__content__header mt-8" lang={lang || ""}>
             {title}

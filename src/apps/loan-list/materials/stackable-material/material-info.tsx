@@ -50,13 +50,16 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         />
       </div>
       <div className="list-reservation__information">
-        {materialType && (
-          <div>
-            <div className="status-label status-label--outline">
-              {materialType}
+        {/* Add a div for material types even if there are none to ensure element alignment */}
+        <div>
+          {materialType && (
+            <div>
+              <div className="status-label status-label--outline">
+                {materialType}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
         <div className="list-reservation__about">
           <button
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

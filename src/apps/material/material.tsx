@@ -1,43 +1,43 @@
-import React, { useEffect, useState } from "react";
-import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Create.svg";
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
+import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
+import React, { useEffect, useState } from "react";
 import { useDeepCompareEffect } from "react-use";
-import { WorkId } from "../../core/utils/types/ids";
+import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
+import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
+import DigitalModal from "../../components/material/digital-modal/DigitalModal";
+import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
+import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
 import MaterialDescription from "../../components/material/MaterialDescription";
-import { MaterialReviews } from "../../components/material/MaterialReviews";
-import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
-import { useText } from "../../core/utils/text";
 import MaterialDetailsList from "../../components/material/MaterialDetailsList";
+import MaterialHeader from "../../components/material/MaterialHeader";
+import MaterialMainfestationItem from "../../components/material/MaterialMainfestationItem";
+import { MaterialReviews } from "../../components/material/MaterialReviews";
+import MaterialSkeleton from "../../components/material/MaterialSkeleton";
+import { PeriodicalEdition } from "../../components/material/periodical/helper";
+import { statistics } from "../../core/statistics/statistics";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { getWorkPid } from "../../core/utils/helpers/general";
 import {
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
+import { usePatronData } from "../../core/utils/helpers/usePatronData";
+import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
+import { useText } from "../../core/utils/text";
+import { Manifestation, Work } from "../../core/utils/types/entities";
+import { WorkId } from "../../core/utils/types/ids";
+import { useGetWork } from "../../core/utils/useGetWork";
 import {
-  getDetailsListData,
-  getInfomediaIds,
   divideManifestationsByMaterialType,
   getBestMaterialTypeForWork,
+  getDetailsListData,
+  getInfomediaIds,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation
 } from "./helper";
-import { Manifestation, Work } from "../../core/utils/types/entities";
-import { PeriodicalEdition } from "../../components/material/periodical/helper";
-import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
-import { useStatistics } from "../../core/statistics/useStatistics";
-import { statistics } from "../../core/statistics/statistics";
-import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
-import DigitalModal from "../../components/material/digital-modal/DigitalModal";
-import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
-import MaterialHeader from "../../components/material/MaterialHeader";
-import MaterialSkeleton from "../../components/material/MaterialSkeleton";
-import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import MaterialDisclosure from "./MaterialDisclosure";
-import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
-import { usePatronData } from "../../core/utils/helpers/usePatronData";
-import { useGetWork } from "../../core/utils/useGetWork";
-import { getWorkPid } from "../../core/utils/helpers/general";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -104,25 +104,27 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  // This useEffect selects the current manifestation.
   useEffect(() => {
     if (!data?.work) return;
     const { work } = data as { work: Work };
-    const type = getUrlQueryParam("type");
+
+    const urlType = getUrlQueryParam("type");
     const manifestationsByMaterialType = divideManifestationsByMaterialType(
       work.manifestations.all
     );
-    // If there is no type in the url, we select one.
-    if (!type) {
+
+    const urlTypeIsPresentInManifestations =
+      urlType && manifestationsByMaterialType[urlType]?.length > 0;
+
+    if (urlTypeIsPresentInManifestations) {
+      // Use the type from the URL if it's present in the manifestations
+      setSelectedManifestations(manifestationsByMaterialType[urlType]);
+    } else {
+      // Otherwise, fallback to the best material type for the work
       const bestMaterialType = getBestMaterialTypeForWork(work);
       setSelectedManifestations(manifestationsByMaterialType[bestMaterialType]);
-      setQueryParametersInUrl({
-        type: bestMaterialType
-      });
-      return;
+      setQueryParametersInUrl({ type: bestMaterialType });
     }
-    // If there is a type, use it to select a group of manifestations.
-    setSelectedManifestations(manifestationsByMaterialType[type]);
   }, [data]);
 
   if (isLoading || !data?.work || !selectedManifestations) {
