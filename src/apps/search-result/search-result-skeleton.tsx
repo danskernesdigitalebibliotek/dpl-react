@@ -17,12 +17,14 @@ const SearchResultSkeleton: FC<SearchResultSkeletonProps> = ({
   const t = useText();
   return (
     <>
+      {/* Todo: use content-list-page__heading */}
       <h1 className="text-header-h2 mb-16 search-result-title text-loading">
         {!hideFacetLine &&
           t("showingResultsForText", { placeholders: { "@query": q } })}
         {hideFacetLine && t("showingResultsForWithoutQueryText")}
       </h1>
       {!hideFacetLine && <FacetLineFiltersSkeleton />}
+      {/* Todo: use card-list-page__list */}
       <ul className="card-list-page__list my-32">
         {/* Show skeleton search result items if no data is available yet.
           We'll show 5 items which should cover most screens. */}

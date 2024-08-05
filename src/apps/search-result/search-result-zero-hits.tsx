@@ -13,6 +13,7 @@ const SearchResultZeroHits: FC<SearchResultZeroHitsProps> = ({
 
   return (
     <div className="card-list-page" data-cy={dataCy}>
+      {/* Todo: use content-list-page__heading */}
       <h1
         className="text-header-h2 search-result-title my-112"
         data-cy="search-result-zero-hits"
