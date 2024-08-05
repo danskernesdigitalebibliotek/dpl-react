@@ -61,7 +61,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   );
 
   const materialsCount = materials.length > 0 && (
-    <p className="text-small-caption my-32">
+    <p className="content-list-page__subheading">
       {t("favoritesListMaterialsText", {
         placeholders: { "@count": materials.length }
       })}
@@ -92,7 +92,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
 
   return (
     <div className="card-list-page">
-      <h1 className="text-header-h2 mb-16 search-result-title">
+      <h1 className="content-list-page__heading">
         {t("favoritesListHeaderText")}
       </h1>
       {isLoading ? (

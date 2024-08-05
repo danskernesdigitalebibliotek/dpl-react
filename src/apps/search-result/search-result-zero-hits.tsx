@@ -14,7 +14,7 @@ const SearchResultZeroHits: FC<SearchResultZeroHitsProps> = ({
   return (
     <div className="card-list-page" data-cy={dataCy}>
       <h1
-        className="text-header-h2 search-result-title my-112"
+        className="content-list-page__heading"
         data-cy="search-result-zero-hits"
       >
         {t("noSearchResultText")}

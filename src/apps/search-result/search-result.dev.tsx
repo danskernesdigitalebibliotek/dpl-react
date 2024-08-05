@@ -230,6 +230,17 @@ export default {
       name: "Intelligent filters - selected - accessible headline",
       defaultValue: "Selected filters",
       control: { type: "text" }
+    },
+    webSearchLinkText: {
+      name: "Web search link text",
+      defaultValue: "Switch to the results for the library content.",
+      control: { type: "text" }
+    },
+    webSearchConfig: {
+      name: "Web search config",
+      defaultValue:
+        '{\n  "webSearchUrl": "https://www.google.com",\n  "webSearchText": "Google",\n  "webSearchTotal": "1000"\n}',
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof SearchResultEntry>;

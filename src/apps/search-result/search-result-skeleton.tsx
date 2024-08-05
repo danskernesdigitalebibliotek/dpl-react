@@ -17,7 +17,7 @@ const SearchResultSkeleton: FC<SearchResultSkeletonProps> = ({
   const t = useText();
   return (
     <>
-      <h1 className="text-header-h2 mb-16 search-result-title text-loading">
+      <h1 className="content-list-page__heading text-loading">
         {!hideFacetLine &&
           t("showingResultsForText", { placeholders: { "@query": q } })}
         {hideFacetLine && t("showingResultsForWithoutQueryText")}
