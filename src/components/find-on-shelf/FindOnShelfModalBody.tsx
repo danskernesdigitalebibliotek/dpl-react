@@ -7,10 +7,11 @@ import {
   useGetHoldings
 } from "../../apps/material/helper";
 import {
+  capitalizeFirstLetters,
   convertPostIdToFaustId,
   creatorsToString,
-  creatorsToStringLastNameFirst,
   flattenCreators,
+  flattenCreatorsLastNameFirst,
   getManifestationsPids
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -57,9 +58,8 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   });
   const author = creatorsToString(flattenCreators(authors), t);
   // Inverted author - last name, then first name is used in find on shelf modal.
-  const invertedAuthor = creatorsToStringLastNameFirst(
-    flattenCreators(authors),
-    t
+  const invertedAuthor = capitalizeFirstLetters(
+    creatorsToString(flattenCreatorsLastNameFirst(authors), t)
   );
   const title = workTitles.join(", ");
   const isPeriodical = manifestations.some((manifestation) => {

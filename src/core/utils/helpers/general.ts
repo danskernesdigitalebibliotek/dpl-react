@@ -54,6 +54,11 @@ export const flattenCreators = (creators: Work["creators"]) =>
     return creator.display;
   });
 
+export const flattenCreatorsLastNameFirst = (creators: Work["creators"]) =>
+  creators.map((creator: Work["creators"][0]) => {
+    return creator.nameSort;
+  });
+
 const getCreatorsFromManifestations = (manifestations: Manifestation[]) => {
   const creators = manifestations.reduce<string[]>((acc: string[], curr) => {
     return [...acc, ...flattenCreators(curr.creators)];
@@ -69,20 +74,6 @@ export const creatorsToString = (creators: string[], t: UseTextFunction) => {
   }
 
   return creators[0];
-};
-
-export const creatorsToStringLastNameFirst = (
-  creators: string[],
-  t: UseTextFunction
-) => {
-  const invertedCreators = creators.map((creator) => {
-    const [firstName, ...rest] = creator.split(" ");
-    // We don't know whether last name is second, or last, and so just put all
-    // after first name in the beginning of the string, then add the first name.
-    return `${rest.join(" ")}, ${firstName}`;
-  });
-
-  return creatorsToString(invertedCreators, t);
 };
 
 export const getCreatorTextFromManifestations = (
