@@ -2102,8 +2102,8 @@ export type GetSmallWorkQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string }
-          | { __typename: "Person"; display: string }
+          | { __typename: "Corporation"; display: string; nameSort: string }
+          | { __typename: "Person"; display: string; nameSort: string }
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -2223,8 +2223,8 @@ export type GetSmallWorkQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string }
-          | { __typename: "Person"; display: string }
+          | { __typename: "Corporation"; display: string; nameSort: string }
+          | { __typename: "Person"; display: string; nameSort: string }
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -2344,8 +2344,8 @@ export type GetSmallWorkQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string }
-          | { __typename: "Person"; display: string }
+          | { __typename: "Corporation"; display: string; nameSort: string }
+          | { __typename: "Person"; display: string; nameSort: string }
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -2714,8 +2714,8 @@ export type GetMaterialQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string }
-          | { __typename: "Person"; display: string }
+          | { __typename: "Corporation"; display: string; nameSort: string }
+          | { __typename: "Person"; display: string; nameSort: string }
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -2835,8 +2835,8 @@ export type GetMaterialQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string }
-          | { __typename: "Person"; display: string }
+          | { __typename: "Corporation"; display: string; nameSort: string }
+          | { __typename: "Person"; display: string; nameSort: string }
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -2956,8 +2956,8 @@ export type GetMaterialQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string }
-          | { __typename: "Person"; display: string }
+          | { __typename: "Corporation"; display: string; nameSort: string }
+          | { __typename: "Person"; display: string; nameSort: string }
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -3180,8 +3180,8 @@ export type GetMaterialGloballyQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string }
-          | { __typename: "Person"; display: string }
+          | { __typename: "Corporation"; display: string; nameSort: string }
+          | { __typename: "Person"; display: string; nameSort: string }
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -3301,8 +3301,8 @@ export type GetMaterialGloballyQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string }
-          | { __typename: "Person"; display: string }
+          | { __typename: "Corporation"; display: string; nameSort: string }
+          | { __typename: "Person"; display: string; nameSort: string }
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -3422,8 +3422,8 @@ export type GetMaterialGloballyQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string }
-          | { __typename: "Person"; display: string }
+          | { __typename: "Corporation"; display: string; nameSort: string }
+          | { __typename: "Person"; display: string; nameSort: string }
         >;
         identifiers: Array<{ __typename?: "Identifier"; value: string }>;
         contributors: Array<
@@ -3690,8 +3690,8 @@ export type RecommendFromFaustQuery = {
               };
             }>;
             creators: Array<
-              | { __typename: "Corporation"; display: string }
-              | { __typename: "Person"; display: string }
+              | { __typename: "Corporation"; display: string; nameSort: string }
+              | { __typename: "Person"; display: string; nameSort: string }
             >;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
@@ -3814,8 +3814,8 @@ export type RecommendFromFaustQuery = {
               };
             }>;
             creators: Array<
-              | { __typename: "Corporation"; display: string }
-              | { __typename: "Person"; display: string }
+              | { __typename: "Corporation"; display: string; nameSort: string }
+              | { __typename: "Person"; display: string; nameSort: string }
             >;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
@@ -3938,8 +3938,8 @@ export type RecommendFromFaustQuery = {
               };
             }>;
             creators: Array<
-              | { __typename: "Corporation"; display: string }
-              | { __typename: "Person"; display: string }
+              | { __typename: "Corporation"; display: string; nameSort: string }
+              | { __typename: "Person"; display: string; nameSort: string }
             >;
             identifiers: Array<{ __typename?: "Identifier"; value: string }>;
             contributors: Array<
@@ -4122,8 +4122,8 @@ export type SearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string }
-            | { __typename: "Person"; display: string }
+            | { __typename: "Corporation"; display: string; nameSort: string }
+            | { __typename: "Person"; display: string; nameSort: string }
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
@@ -4246,8 +4246,8 @@ export type SearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string }
-            | { __typename: "Person"; display: string }
+            | { __typename: "Corporation"; display: string; nameSort: string }
+            | { __typename: "Person"; display: string; nameSort: string }
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
@@ -4370,8 +4370,8 @@ export type SearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string }
-            | { __typename: "Person"; display: string }
+            | { __typename: "Corporation"; display: string; nameSort: string }
+            | { __typename: "Person"; display: string; nameSort: string }
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
@@ -4601,8 +4601,8 @@ export type ComplexSearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string }
-            | { __typename: "Person"; display: string }
+            | { __typename: "Corporation"; display: string; nameSort: string }
+            | { __typename: "Person"; display: string; nameSort: string }
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
@@ -4725,8 +4725,8 @@ export type ComplexSearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string }
-            | { __typename: "Person"; display: string }
+            | { __typename: "Corporation"; display: string; nameSort: string }
+            | { __typename: "Person"; display: string; nameSort: string }
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
@@ -4849,8 +4849,8 @@ export type ComplexSearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string }
-            | { __typename: "Person"; display: string }
+            | { __typename: "Corporation"; display: string; nameSort: string }
+            | { __typename: "Person"; display: string; nameSort: string }
           >;
           identifiers: Array<{ __typename?: "Identifier"; value: string }>;
           contributors: Array<
@@ -5084,8 +5084,8 @@ export type ManifestationsSimpleFragment = {
       };
     }>;
     creators: Array<
-      | { __typename: "Corporation"; display: string }
-      | { __typename: "Person"; display: string }
+      | { __typename: "Corporation"; display: string; nameSort: string }
+      | { __typename: "Person"; display: string; nameSort: string }
     >;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
@@ -5202,8 +5202,8 @@ export type ManifestationsSimpleFragment = {
       };
     }>;
     creators: Array<
-      | { __typename: "Corporation"; display: string }
-      | { __typename: "Person"; display: string }
+      | { __typename: "Corporation"; display: string; nameSort: string }
+      | { __typename: "Person"; display: string; nameSort: string }
     >;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
@@ -5320,8 +5320,8 @@ export type ManifestationsSimpleFragment = {
       };
     }>;
     creators: Array<
-      | { __typename: "Corporation"; display: string }
-      | { __typename: "Person"; display: string }
+      | { __typename: "Corporation"; display: string; nameSort: string }
+      | { __typename: "Person"; display: string; nameSort: string }
     >;
     identifiers: Array<{ __typename?: "Identifier"; value: string }>;
     contributors: Array<
@@ -5470,8 +5470,8 @@ export type ManifestationsSimpleFieldsFragment = {
     };
   }>;
   creators: Array<
-    | { __typename: "Corporation"; display: string }
-    | { __typename: "Person"; display: string }
+    | { __typename: "Corporation"; display: string; nameSort: string }
+    | { __typename: "Person"; display: string; nameSort: string }
   >;
   identifiers: Array<{ __typename?: "Identifier"; value: string }>;
   contributors: Array<
@@ -5721,8 +5721,8 @@ export type WorkSmallFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string }
-        | { __typename: "Person"; display: string }
+        | { __typename: "Corporation"; display: string; nameSort: string }
+        | { __typename: "Person"; display: string; nameSort: string }
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -5842,8 +5842,8 @@ export type WorkSmallFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string }
-        | { __typename: "Person"; display: string }
+        | { __typename: "Corporation"; display: string; nameSort: string }
+        | { __typename: "Person"; display: string; nameSort: string }
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -5963,8 +5963,8 @@ export type WorkSmallFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string }
-        | { __typename: "Person"; display: string }
+        | { __typename: "Corporation"; display: string; nameSort: string }
+        | { __typename: "Person"; display: string; nameSort: string }
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -6180,8 +6180,8 @@ export type WorkMediumFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string }
-        | { __typename: "Person"; display: string }
+        | { __typename: "Corporation"; display: string; nameSort: string }
+        | { __typename: "Person"; display: string; nameSort: string }
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -6301,8 +6301,8 @@ export type WorkMediumFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string }
-        | { __typename: "Person"; display: string }
+        | { __typename: "Corporation"; display: string; nameSort: string }
+        | { __typename: "Person"; display: string; nameSort: string }
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -6422,8 +6422,8 @@ export type WorkMediumFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string }
-        | { __typename: "Person"; display: string }
+        | { __typename: "Corporation"; display: string; nameSort: string }
+        | { __typename: "Person"; display: string; nameSort: string }
       >;
       identifiers: Array<{ __typename?: "Identifier"; value: string }>;
       contributors: Array<
@@ -6703,6 +6703,7 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   creators {
     display
+    nameSort
     __typename
   }
   publisher

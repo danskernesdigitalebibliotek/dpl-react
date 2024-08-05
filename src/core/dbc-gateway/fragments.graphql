@@ -62,6 +62,7 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   creators {
     display
+    nameSort
     __typename
   }
   publisher
