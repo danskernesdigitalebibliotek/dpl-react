@@ -260,6 +260,9 @@ fragment WorkMedium on Work {
       display
     }
   }
+  creators {
+    nameSort
+  }
   mainLanguages {
     display
     isoCode

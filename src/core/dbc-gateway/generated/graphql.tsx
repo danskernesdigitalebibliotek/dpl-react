@@ -24,7 +24,9 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: unknown;
+  /** An integer in the range from 1 to 100 */
   PaginationLimit: unknown;
 };
 
@@ -2607,6 +2609,10 @@ export type GetMaterialQuery = {
         display: string;
       };
     }>;
+    creators: Array<
+      | { __typename: "Corporation"; nameSort: string; display: string }
+      | { __typename: "Person"; nameSort: string; display: string }
+    >;
     mainLanguages: Array<{
       __typename?: "Language";
       display: string;
@@ -2659,10 +2665,6 @@ export type GetMaterialQuery = {
       full: Array<string>;
       original?: Array<string> | null;
     };
-    creators: Array<
-      | { __typename: "Corporation"; display: string }
-      | { __typename: "Person"; display: string }
-    >;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -3073,6 +3075,10 @@ export type GetMaterialGloballyQuery = {
         display: string;
       };
     }>;
+    creators: Array<
+      | { __typename: "Corporation"; nameSort: string; display: string }
+      | { __typename: "Person"; nameSort: string; display: string }
+    >;
     mainLanguages: Array<{
       __typename?: "Language";
       display: string;
@@ -3125,10 +3131,6 @@ export type GetMaterialGloballyQuery = {
       full: Array<string>;
       original?: Array<string> | null;
     };
-    creators: Array<
-      | { __typename: "Corporation"; display: string }
-      | { __typename: "Person"; display: string }
-    >;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -6073,6 +6075,10 @@ export type WorkMediumFragment = {
       display: string;
     };
   }>;
+  creators: Array<
+    | { __typename: "Corporation"; nameSort: string; display: string }
+    | { __typename: "Person"; nameSort: string; display: string }
+  >;
   mainLanguages: Array<{
     __typename?: "Language";
     display: string;
@@ -6125,10 +6131,6 @@ export type WorkMediumFragment = {
     full: Array<string>;
     original?: Array<string> | null;
   };
-  creators: Array<
-    | { __typename: "Corporation"; display: string }
-    | { __typename: "Person"; display: string }
-  >;
   series: Array<{
     __typename?: "Series";
     title: string;
@@ -6841,6 +6843,9 @@ export const WorkMediumFragmentDoc = `
     materialTypeSpecific {
       display
     }
+  }
+  creators {
+    nameSort
   }
   mainLanguages {
     display
