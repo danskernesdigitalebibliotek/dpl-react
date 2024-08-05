@@ -22,6 +22,13 @@ import { store } from "../../store";
 import { constructModalId } from "./modal-helpers";
 import { formatCurrency } from "./currency";
 
+export const capitalizeFirstLetters = (str: string) => {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
 ): string | null => {
