@@ -6,6 +6,7 @@ import { flattenCreators } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import useInfiniteScrollLoading from "./useInfiteScrollLoading";
 import { SearchWithPaginationQuery } from "../../core/dbc-gateway/generated/graphql";
+import { Work } from "../../core/utils/types/entities";
 
 type MaterialSearchListResultsProps = {
   data: SearchWithPaginationQuery["search"]["works"];
@@ -58,7 +59,7 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
       </div>
       <ol className="material-search-list__results">
         {data.map((work, index) => {
-          const authors = flattenCreators(work.creators);
+          const authors = flattenCreators(work.creators as Work["creators"]);
           const isLastItem = index === data.length - 1;
 
           return (

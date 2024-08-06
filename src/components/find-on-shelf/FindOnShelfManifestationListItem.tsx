@@ -11,6 +11,7 @@ export interface FindOnShelfManifestationListItemProps {
   title: string;
   publicationYear: string | null;
   numberAvailable: number;
+  author: string;
 }
 
 const FindOnShelfManifestationListItem: FC<
@@ -22,7 +23,8 @@ const FindOnShelfManifestationListItem: FC<
   sublocation,
   title,
   publicationYear,
-  numberAvailable
+  numberAvailable,
+  author
 }) => {
   const t = useText();
 
@@ -45,11 +47,16 @@ const FindOnShelfManifestationListItem: FC<
       </span>
       <span role="cell">
         {locationArray.length
-          ? locationArray.join(" · ")
+          ? `${locationArray.join(" · ")}${
+              author && author !== "undefined" ? ` · ${author}` : ""
+            }`
           : t("findOnShelfModalNoLocationSpecifiedText")}
       </span>
       <span className="find-on-shelf__item-count-text" role="cell">
-        {numberAvailable}
+        {numberAvailable}{" "}
+        <span className="hide-on-desktop">
+          {t("findOnShelfModalListItemCountText")}
+        </span>
       </span>
     </li>
   );

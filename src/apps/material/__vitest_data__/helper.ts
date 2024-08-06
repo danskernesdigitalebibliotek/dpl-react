@@ -39,7 +39,8 @@ export default {
         creators: [
           {
             display: "Isaac Asimov",
-            __typename: "Person"
+            __typename: "Person",
+            nameSort: "Asimov, Isaac"
           },
           {
             display: "Tricia Reilly",
@@ -138,7 +139,8 @@ export default {
         creators: [
           {
             display: "Isaac Asimov",
-            __typename: "Person"
+            __typename: "Person",
+            nameSort: "Asimov, Isaac"
           }
         ],
         publisher: [],
@@ -231,7 +233,8 @@ export default {
         creators: [
           {
             display: "Isaac Asimov",
-            __typename: "Person"
+            __typename: "Person",
+            nameSort: "Asimov, Isaac"
           },
           {
             display: "Scott Brick",
@@ -324,7 +327,8 @@ export default {
         creators: [
           {
             display: "Isaac Asimov",
-            __typename: "Person"
+            __typename: "Person",
+            nameSort: "Asimov, Isaac"
           }
         ],
         publisher: ["Oxford University Press"],
