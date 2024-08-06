@@ -41,7 +41,7 @@ const TextInput: FC<TextInputProps> = ({
         { "dpl-input--invalid": !!validation }
       ])}
     >
-      <label htmlFor={id}>{required ? `${label}*` : label}</label>
+      <label htmlFor={id}>{required ? `${label} *` : label}</label>
       <input
         className="text-body-medium-medium"
         required={required}
