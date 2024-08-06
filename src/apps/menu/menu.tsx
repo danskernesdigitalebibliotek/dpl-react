@@ -50,27 +50,22 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
   return (
     <>
       <button
-        className="header__menu-profile header__button btn-ui"
+        className="header__button header__button--left-border btn-ui"
+        data-cy="header-menu-profile-button"
         type="button"
         aria-label={getAriaLabel()}
         onClick={() => openMenu()}
         onKeyDown={(e) => e.key === "Enter" && openMenu()}
         tabIndex={0}
       >
-        <img src={profileIcon} alt="" />
-        {isLoading && (
-          <span className="text-small-caption">
+        <img src={profileIcon} className="header__button-icon" alt="" />
+        <span className="header__button-text">
+          {isLoading ? (
             <TextLineSkeleton width={50} />
-          </span>
-        )}
-        {!isLoading && !userData?.patron?.name && (
-          <span className="text-small-caption">
-            {t("searchHeaderLoginText")}
-          </span>
-        )}
-        {!isLoading && userData?.patron?.name && (
-          <span className="text-small-caption">{userData.patron.name}</span>
-        )}
+          ) : (
+            userData?.patron?.name || t("searchHeaderLoginText")
+          )}
+        </span>
       </button>
       <MenuLoggedIn pageSize={pageSize} />
       <MenuUserUnregistered />

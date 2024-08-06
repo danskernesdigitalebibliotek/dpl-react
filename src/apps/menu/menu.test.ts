@@ -245,7 +245,7 @@ describe("Menu (authenticated))", () => {
   });
 
   it("Menu", () => {
-    cy.get(".header__menu-profile").should("exist").click();
+    cy.getBySel("header-menu-profile-button").should("exist").click();
     cy.wait(["@reservations", "@physical_loans", "@fees"]);
     cy.getBySel("modal").scrollTo("bottom");
     // 2. Systemet viser Lånerstatusmenuen med

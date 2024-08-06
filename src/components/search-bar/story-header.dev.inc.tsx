@@ -105,17 +105,16 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
               </ul>
             </div>
             {userProfile || (
-              <div className="header__menu-profile header__button">
+              <button type="button" className="header__button">
                 <img src={profileIcon} alt="Profile" />
-                <span className="text-small-caption">Login</span>
-              </div>
+                <span className="header__button-text">Login</span>
+              </button>
             )}
-            <div className="header__menu-bookmarked header__button">
-              <a href="/">
-                <img src={heartIcon} alt="List of bookmarks" />
-                <span className="text-small-caption">Liked</span>
-              </a>
-            </div>
+
+            <a href="/" className="header__button">
+              <img src={heartIcon} alt="List of bookmarks" />
+              <span className="header__button-text">Liked</span>
+            </a>
           </nav>
           {search || (
             <div className="header__menu-search">
