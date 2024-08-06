@@ -475,32 +475,59 @@ export const isParallelReservation = (manifestations: Manifestation[]) =>
   hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
   !isArticle(manifestations);
 
+type BlacklistType = "availability" | "pickup" | "both";
+
+const formatBranches = (branches: string[][]) => {
+  return branches.flat().length ? { exclude: branches.flat() } : {};
+};
+
+const branchesFromConfig = (
+  blacklist: BlacklistType,
+  config: UseConfigFunction
+) => {
+  const configMap: Record<Exclude<BlacklistType, "both">, string> = {
+    availability: "blacklistedAvailabilityBranchesConfig",
+    pickup: "blacklistedPickupBranchesConfig"
+  };
+
+  type ConfigMapKey = keyof typeof configMap;
+
+  if (!configMap[blacklist as ConfigMapKey]) {
+    return [];
+  }
+
+  return config(configMap[blacklist as ConfigMapKey], {
+    transformer: "stringToArray"
+  }).filter((branch) => branch);
+};
+
 // Because we need to exclude the branches that are blacklisted, we need to
 // use a custom hook to prevent duplicate code
 export const getBlacklistedQueryArgs = (
   faustIds: FaustId[],
   config: UseConfigFunction,
-  blacklist: "availability" | "pickup" | "both"
+  blacklistType: BlacklistType
 ) => {
-  const configKey = {
-    availability: "blacklistedAvailabilityBranchesConfig",
-    pickup: "blacklistedPickupBranchesConfig",
-    both: "blacklistedAvailabilityBranchesConfig"
+  // Fixed arguments for the query.
+  const args = {
+    recordid: faustIds
   };
-  let blacklistBranches = config(configKey[blacklist], {
-    transformer: "stringToArray"
-  });
-  // If we want to blacklist both availability and pickup branches we now add the
-  // complimentary blacklist
-  if (blacklist === "both") {
-    const additionalBlacklistBranches = config(configKey.pickup, {
-      transformer: "stringToArray"
-    });
-    blacklistBranches = blacklistBranches.concat(additionalBlacklistBranches);
+  // Return query args with the either availability or pickup branches excluded.
+  if (blacklistType !== "both") {
+    return {
+      ...args,
+      ...formatBranches([branchesFromConfig(blacklistType, config)])
+    };
   }
+
+  // If we want to blacklist both availability and pickup branches
+  // return query args with both blacklist types excluded.
   return {
-    recordid: faustIds,
-    ...(blacklistBranches ? { exclude: blacklistBranches } : {})
+    ...args,
+    ...formatBranches([
+      branchesFromConfig("availability", config),
+      branchesFromConfig("pickup", config)
+    ])
   };
 };
 

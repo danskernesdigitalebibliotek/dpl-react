@@ -4,13 +4,14 @@ import { useText } from "../../core/utils/text";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import { getParentAvailabilityLabelClass, useAvailabilityData } from "./helper";
+import { getParentAvailabilityLabelClass } from "./helper";
 import {
   Access,
   AccessTypeCode
 } from "../../core/dbc-gateway/generated/graphql";
 import AvailabilityLabelInside from "./availability-label-inside";
 import { FaustId } from "../../core/utils/types/ids";
+import useAvailabilityData from "./useAvailabilityData";
 
 export interface AvailabilityLabelProps {
   manifestText: string;

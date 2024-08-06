@@ -4,7 +4,7 @@ import {
   AccessTypeCode
 } from "../../../core/dbc-gateway/generated/graphql";
 import { Manifestation } from "../../../core/utils/types/entities";
-import { ManifestationMaterialType } from "../../../core/utils/types/material-type";
+import articleTypes from "../../../core/utils/types/article-types";
 
 export const hasCorrectAccess = (
   desiredAccess: NonNullable<Access["__typename"]>,
@@ -57,9 +57,8 @@ export const hasCorrectPartialMaterialType = (
 };
 
 export const isArticle = (manifestations: Manifestation[]) => {
-  return hasCorrectPartialMaterialType(
-    ManifestationMaterialType.article,
-    manifestations
+  return articleTypes.some((type) =>
+    hasCorrectMaterialType(type, manifestations)
   );
 };
 
