@@ -61,6 +61,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   );
 
   const materialsCount = materials.length > 0 && (
+    // Todo: content-list-page__subheading
     <p className="text-small-caption my-32">
       {t("favoritesListMaterialsText", {
         placeholders: { "@count": materials.length }
@@ -92,6 +93,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
 
   return (
     <div className="card-list-page">
+      {/* Todo: content-list-page__heading */}
       <h1 className="text-header-h2 mb-16 search-result-title">
         {t("favoritesListHeaderText")}
       </h1>
