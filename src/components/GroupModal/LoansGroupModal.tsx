@@ -41,7 +41,7 @@ export const createLoanModalId = (
   if (dueDate && dueDateModal) {
     return constructModalId(String(dueDateModal), [dueDate]);
   }
-  return constructModalId(null, [String(allLoansId)]);
+  return constructModalId("", [String(allLoansId)]);
 };
 
 const LoansGroupModal: FC<LoansGroupModalProps> = ({
