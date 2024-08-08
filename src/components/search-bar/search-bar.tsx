@@ -107,7 +107,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         aria-expanded={isHeaderDropdownOpen}
         aria-controls="search-header-dropdown"
       >
-        <img src={expandIcon} alt={t("searchHeaderDropdownText")} />
+        <img src={expandIcon} alt="" />
       </button>
     </>
   );
