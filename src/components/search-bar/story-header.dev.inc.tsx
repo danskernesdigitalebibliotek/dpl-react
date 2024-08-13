@@ -129,18 +129,14 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
               <input
                 type="image"
                 src={searchIcon}
-                alt="search-button"
                 className="header__menu-search-icon"
+                alt="search icon"
               />
-              <button
-                type="button"
+              <img
                 className="header__menu-dropdown-icon"
-                aria-label="dropdown with advanced search"
-                aria-expanded="false"
-                aria-controls="search-header-dropdown"
-              >
-                <img src={expandIcon} alt="" />
-              </button>
+                src={expandIcon}
+                alt="expand dropdown icon"
+              />
             </div>
           )}
         </div>
