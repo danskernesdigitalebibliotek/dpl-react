@@ -14,17 +14,17 @@ describe("Search Result", () => {
   });
 
   it("Renders all the search results", () => {
-    cy.get(".card-list-page__list").find("li").should("have.length", 2);
+    cy.get(".content-list").find("li").should("have.length", 2);
   });
 
   it("Renders the images", () => {
-    cy.get(".card-list-page__list .card-list-item img")
+    cy.get(".content-list .card-list-item img")
       .should("have.attr", "src")
       .and("match", coverUrlPattern);
   });
 
   it("Renders the favorite buttons", () => {
-    cy.get(".card-list-page__list .card-list-item .button-favourite").should(
+    cy.get(".content-list .card-list-item .button-favourite").should(
       "have.attr",
       "aria-label",
       "Add Harry : samtaler med prinsen to favorites list"

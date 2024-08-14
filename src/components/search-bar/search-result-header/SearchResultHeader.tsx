@@ -27,8 +27,7 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
   return (
     <>
       <h1
-        // Todo: content-list-page__heading and content-list-page__subheading
-        className="text-header-h2 mb-16 search-result-title"
+        className="content-list-page__heading"
         data-cy="search-result-header"
         aria-live="polite"
       >
@@ -37,7 +36,7 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
         })} (${hitcount})`}
       </h1>
       {webSearchConfig.hasWebSearchResults && (
-        <h2 className="text-body-medium-regular">
+        <h2 className="content-list-page__subheading">
           {t("webSearchLinkText")}&nbsp;
           <a
             className="link-tag text-body-medium-medium"

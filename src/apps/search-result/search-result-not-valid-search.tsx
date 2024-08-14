@@ -12,10 +12,9 @@ const SearchResultInvalidSearch: FC<SearchResultInvalidSearchProps> = ({
   const t = useText();
 
   return (
-    <div className="card-list-page" data-cy={dataCy}>
-      {/* Todo: use content-list-page__heading */}
+    <div className="content-list-page" data-cy={dataCy}>
       <h1
-        className="text-header-h2 search-result-title my-112"
+        className="content-list-page__heading my-112"
         data-cy="search-result-zero-hits"
       >
         {t("invalidSearchText")}
