@@ -29,10 +29,7 @@ const withIsPatronBlockedHoc =
     const { blockedModal } = getModalIds();
 
     const [blockedFromViewingContentArray] = useState<string[]>([
-      BlockedTypes.deceased,
-      BlockedTypes.automatonBlocked,
-      BlockedTypes.extendedExclusion,
-      BlockedTypes.stolen
+      BlockedTypes.extendedSuspension
     ]);
 
     const [blockedStatus, setBlockedStatus] = useState<string>();

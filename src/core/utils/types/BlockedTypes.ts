@@ -1,11 +1,22 @@
 enum BlockedTypes {
-  extendedExclusion = "F", // Extended exclusion
-  deceased = "D", // Deceased
-  fee = "E", // Patron has fee
-  selfcreated = "W", // Self created at website
-  stolen = "O", // library card stolen
-  exclusion = "U", // Exclusion
-  automatonBlocked = "S" // Blocked by self service automaton
+  // Extended suspension
+  extendedSuspension = "F",
+  // Deceased
+  deceased = "D",
+  // Patron has fee
+  fee = "E",
+
+  // The user has not been assigned a correct patron category.
+  // This should be pretty rare.
+  // In Danish this is also called "Selvoprettet på web"
+  missingPatronCategory = "W",
+
+  // library card stolen
+  accountStolen = "O",
+  // Suspension
+  suspension = "U",
+  // Blocked by self service
+  blockedFromSelfservice = "S"
 }
 
 export default BlockedTypes;
