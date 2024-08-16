@@ -16,7 +16,9 @@ enum BlockedTypes {
   // Suspension
   suspension = "U",
   // Blocked by self service
-  blockedFromSelfservice = "S"
+  blockedFromSelfservice = "S",
+  // A fallback for unknown types
+  unknown = "unknown"
 }
 
 export default BlockedTypes;
