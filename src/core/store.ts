@@ -10,7 +10,6 @@ import {
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 import textReducer from "./text.slice";
-import userReducer from "./user.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
 import filterReducer from "./filter.slice";
@@ -37,7 +36,6 @@ export const store = configureStore({
   reducer: persistReducer(
     persistConfig,
     combineReducers({
-      user: userReducer,
       text: textReducer,
       modal: modalReducer,
       url: urlReducer,
