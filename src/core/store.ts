@@ -54,3 +54,5 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export type TypedDispatch = ThunkDispatch<RootState, never, never>;
 export const useSelector: TypedUseSelectorHook<RootState> = rawUseSelector;
+
+export const resetPersistedData = async () => persistor.purge();
