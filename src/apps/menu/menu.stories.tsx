@@ -9,7 +9,7 @@ import reservationGroupModalArgs from "../../core/storybook/reservationGroupModa
 import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
 import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
 import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
-import StoryHeader from "../../components/search-bar/story-header.dev.inc";
+import StoryHeader from "../../components/search-bar/story-header.stories.inc";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 import { withText } from "../../core/utils/text";

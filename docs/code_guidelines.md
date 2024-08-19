@@ -4,11 +4,11 @@ The following guidelines describe best practices for developing code for React
 components for the Danish Public Libraries CMS project. The guidelines should
 help achieve:
 
-* A stable, secure and high quality foundation for building and maintaining
+- A stable, secure and high quality foundation for building and maintaining
   client-side TypeScript components for library websites
-* Consistency across multiple developers participating in the project
-* The best possible conditions for sharing components between library websites
-* The best possible conditions for the individual library website to customize
+- Consistency across multiple developers participating in the project
+- The best possible conditions for sharing components between library websites
+- The best possible conditions for the individual library website to customize
   configuration and appearance
 
 Contributions to the DPL React project will be reviewed by members of the Core
@@ -40,19 +40,19 @@ be especially aware of.
 
 ### General
 
-* The default language for all code and comments is English.
-* Components must be compatible with the latest stable version of the following
+- The default language for all code and comments is English.
+- Components must be compatible with the latest stable version of the following
   browsers:
-  * Desktop
-    * Microsoft Edge
-    * Google Chrome
-    * Safari
-    * Firefox
-  * Mobile
-    * Google Chrome
-    * Safari
-    * Firefox
-    * Samsung Browser
+  - Desktop
+    - Microsoft Edge
+    - Google Chrome
+    - Safari
+    - Firefox
+  - Mobile
+    - Google Chrome
+    - Safari
+    - Firefox
+    - Samsung Browser
 
 ### TypeScript
 
@@ -77,38 +77,38 @@ stacktraces.
 
 ### React
 
-* Configuration must be passed as props for components. This allows the host
+- Configuration must be passed as props for components. This allows the host
   system to modify how a component works when it is inserted.
-* All components should be provided with [skeleton screens](https://www.lukew.com/ff/entry.asp?1797).
+- All components should be provided with [skeleton screens](https://www.lukew.com/ff/entry.asp?1797).
   This ensures that the user interface reflects the final state even when data
   is loaded asynchronously. This reduces load time frustration.
-* Components should be [optimistic](https://www.smashingmagazine.com/2016/11/true-lies-of-optimistic-user-interfaces/).
+- Components should be [optimistic](https://www.smashingmagazine.com/2016/11/true-lies-of-optimistic-user-interfaces/).
   Unless we have reason to believe that an operation may fail we should provide
   fast response to users.
-* All interface text must be implemented as props for components. This allows
+- All interface text must be implemented as props for components. This allows
   the host system to provide a suitable translation/version when using the
   component.
 
 ### CSS
 
-* All classes must have the dpl- prefix. This makes them distinguishable from
+- All classes must have the dpl- prefix. This makes them distinguishable from
   classes provided by the host system.
-* Class names should follow the [Block-Element-Modifier architecture](http://getbem.com/introduction/).
-* Components must use and/or provide a default style sheet which at least
+- Class names should follow the [Block-Element-Modifier architecture](http://getbem.com/introduction/).
+- Components must use and/or provide a default style sheet which at least
   provides a minimum of styling showing the purpose of the component.
-* Elements must be provided with meaningful classes even though they are not
+- Elements must be provided with meaningful classes even though they are not
   targeted by the default style sheet. This helps host systems provide
   additional styling of the components. Consider how the component consists of
   blocks and elements with modifiers and how these can be nested within each
   other.
-* Components must use SCSS for styling. The project uses [PostCSS](http://sass-lang.com/libsass)
+- Components must use SCSS for styling. The project uses [PostCSS](http://sass-lang.com/libsass)
   and [PostCSS-SCSS](https://github.com/Igosuki/compass-mixins) within Webpack for
   processing.
 
 ### HTML
 
-* Components must use semantic HTML5 markup.
-* Components must provide configuration to set a top headline level for the
+- Components must use semantic HTML5 markup.
+- Components must provide configuration to set a top headline level for the
   component. This helps provide a proper document outline to ensure the
   accessibility of the system.
 
@@ -119,30 +119,30 @@ stacktraces.
 Files provided by components must be placed in the following folders and have
 the extensions defined here.
 
-* Components (React applications)
-  * apps/[component-name]/[component-name].tsx
-    * Core TSX component.
-  * components/[component-name]/[component-name].scss
-    * Stylesheet for the component.
-  * apps/[component-name]/[component-name].entry.tsx
-    * Main application entrypoint.
-    * This will usually also be where state management is implemented.
-    * This must _not_ include the default stylesheet.
-  * apps/[component-name]/[component-name].dev.tsx
-    * Storybook entry for the component.
-    * If the component has a stylesheet this must also be included here.
-  * apps/[component-name]/[component-name].mount.ts
-    * Code for registering the application to be booted when a page is loaded on
+- Components (React applications)
+  - apps/[component-name]/[component-name].tsx
+    - Core TSX component.
+  - components/[component-name]/[component-name].scss
+    - Stylesheet for the component.
+  - apps/[component-name]/[component-name].entry.tsx
+    - Main application entrypoint.
+    - This will usually also be where state management is implemented.
+    - This must _not_ include the default stylesheet.
+  - apps/[component-name]/[component-name].stories.tsx
+    - Storybook entry for the component.
+    - If the component has a stylesheet this must also be included here.
+  - apps/[component-name]/[component-name].mount.ts
+    - Code for registering the application to be booted when a page is loaded on
       the host system.
-  * apps/[component-name]/[component-name].test.ts
-    * Test of the component implemented with [Cypress](https://www.cypress.io/)
-* Reusable elements (React components)
-  * components/[component-name]/[component-name].dev.tsx
-  * components/[component-name]/[component-name].tsx
-  * components/[component-name]/[component-name].scss
-* Reusable functions and classes
-  * core/[function].ts
-  * core/[Class].ts
+  - apps/[component-name]/[component-name].test.ts
+    - Test of the component implemented with [Cypress](https://www.cypress.io/)
+- Reusable elements (React components)
+  - components/[component-name]/[component-name].stories.tsx
+  - components/[component-name]/[component-name].tsx
+  - components/[component-name]/[component-name].scss
+- Reusable functions and classes
+  - core/[function].ts
+  - core/[Class].ts
 
 ## Third party code
 
@@ -153,13 +153,13 @@ code must not be committed to the Core project repository.
 When specifying third party package versions the project follows these
 guidelines:
 
-* Use the [^ next significant release operator](https://getcomposer.org/doc/articles/versions.md#next-significant-release-operators)
+- Use the [^ next significant release operator](https://getcomposer.org/doc/articles/versions.md#next-significant-release-operators)
   for packages which follow semantic versioning.
-* The version specified must be the latest known working and secure version. We
+- The version specified must be the latest known working and secure version. We
   do not want accidental downgrades.
-* We want to allow easy updates to all working releases within the same major
+- We want to allow easy updates to all working releases within the same major
   version.
-* Packages which are not intended to be executed at runtime in the production
+- Packages which are not intended to be executed at runtime in the production
   environment should be marked as development dependencies.
 
 ### Reusing dependencies
@@ -177,11 +177,11 @@ The project uses patches rather than forks to modify third party packages. This
 makes maintenance of modified packages easier and avoids a collection of forked
 repositories within the project.
 
-* Use an appropriate method for the corresponding package manager for managing
+- Use an appropriate method for the corresponding package manager for managing
   the patch.
-* Patches should be external by default. In rare cases it may be needed to
+- Patches should be external by default. In rare cases it may be needed to
   commit them as a part of the project.
-* When providing a patch you must document the origin of the patch e.g. through
+- When providing a patch you must document the origin of the patch e.g. through
   an url in a commit comment or preferably in the package manager configuration
   for the project.
 
@@ -232,14 +232,11 @@ easier.
 The following tools pay a key part here:
 
 1. [Eslint](https://eslint.org/) with the following rulesets and plugins:
-    1. [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-    2. [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
-    3. [Prettier](https://prettier.io/)
-    4. [Cypress](https://github.com/cypress-io/eslint-plugin-cypress)
-2. [Stylelint](https://stylelint.io/) with the following rulesets and plugins
-    5. [Recommended SCSS](https://github.com/kristerkari/stylelint-config-recommended-scss)
-    6. [Prettier](https://github.com/prettier/stylelint-prettier)
-    7. [BEM support](https://www.npmjs.com/package/@namics/stylelint-bem)
+   1. [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+   2. [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+   3. [Prettier](https://prettier.io/)
+   4. [Cypress](https://github.com/cypress-io/eslint-plugin-cypress)
+2. [Stylelint](https://stylelint.io/) with the following rulesets and plugins 5. [Recommended SCSS](https://github.com/kristerkari/stylelint-config-recommended-scss) 6. [Prettier](https://github.com/prettier/stylelint-prettier) 7. [BEM support](https://www.npmjs.com/package/@namics/stylelint-bem)
 
 In general all tools must be able to run locally. This allows developers to get
 quick feedback on their work.
@@ -263,7 +260,7 @@ The frontend tests are executed in
 [Cypress](https://docs.cypress.io/guides/overview/why-cypress).
 
 The test files are placed alongside the application components
-and are named following pattern: "*.test.ts". Eg.: material.test.ts.
+and are named following pattern: "\*.test.ts". Eg.: material.test.ts.
 
 ### Test structuring
 

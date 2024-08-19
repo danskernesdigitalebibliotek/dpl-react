@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import * as React from "react";
-import StoryHeader from "../../components/search-bar/story-header.dev.inc";
+import StoryHeader from "../../components/search-bar/story-header.stories.inc";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SearchHeaderEntry, {
   SearchHeaderEntryProps

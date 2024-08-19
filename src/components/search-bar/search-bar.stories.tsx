@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react";
 import * as React from "react";
 import SearchBar, { SearchBarProps } from "./search-bar";
-import StorySearchBar from "./search-bar.dev.inc";
+import StorySearchBar from "./search-bar.stories.inc";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 

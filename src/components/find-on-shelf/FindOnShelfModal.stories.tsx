@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
-import materialDev from "../../apps/material/material.dev";
+import materialDev from "../../apps/material/material.stories";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
