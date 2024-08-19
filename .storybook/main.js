@@ -1,30 +1,31 @@
 module.exports = {
-  stories: ["../src/**/*.dev.@(jsx|tsx)"],
+  stories: ["../src/**/*.stories.@(jsx|tsx)"],
+
   addons: [
     "@storybook/addon-essentials",
     "@storybook/addon-queryparams",
     {
-      name: "@storybook/preset-typescript",
-    },
-    {
-      name: "@storybook/addon-postcss",
-      options: {
-        postcssLoaderOptions: {
-          implementation: require("postcss"),
-        },
-      },
-    },
+      name: "@storybook/preset-typescript"
+    }
   ],
+
   typescript: {
     check: true,
     checkOptions: {},
     reactDocgen: "react-docgen-typescript",
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
-      propFilter: prop => prop.parent ? !/node_modules/.test(prop.parent.fileName) : true
+      propFilter: (prop) =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true
     }
   },
-  core: {
-    builder: "webpack5"
+
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {}
+  },
+
+  docs: {
+    autodocs: true
   }
 };
