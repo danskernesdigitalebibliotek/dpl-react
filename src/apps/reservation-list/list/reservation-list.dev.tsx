@@ -1,6 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
-import { withQuery } from "@storybook/addon-queryparams";
 import ReservationList from "./reservation-list.entry";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import blockedArgs from "../../../core/storybook/blockedArgs";
@@ -235,11 +234,10 @@ export default {
       defaultValue: "Showing @itemsShown out of @hitcount results",
       control: { type: "text" }
     }
-  },
-  decorators: [withQuery]
-} as ComponentMeta<typeof ReservationList>;
+  }
+} as Meta<typeof ReservationList>;
 
-const Template: ComponentStory<typeof ReservationList> = (props) => (
+const Template: StoryFn<typeof ReservationList> = (props) => (
   <ReservationList {...props} />
 );
 

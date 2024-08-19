@@ -1,6 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
-import { withQuery } from "@storybook/addon-queryparams";
 import DemoModal, { DemoModalEntryProps } from "./demo-modal.entry";
 import globalTextArgs, {
   GlobalEntryTextProps
@@ -9,7 +8,6 @@ import globalTextArgs, {
 export default {
   title: "Apps / Demo modal",
   component: DemoModal,
-  decorators: [withQuery],
   parameters: {
     query: {
       modal: "demo-modal-one"
@@ -27,8 +25,8 @@ export default {
       defaultValue: "Denne modal dækker sidens indhold, og er en demo"
     }
   }
-} as ComponentMeta<typeof DemoModal>;
+} as Meta<typeof DemoModal>;
 
-export const App: ComponentStory<typeof DemoModal> = (
+export const App: StoryFn<typeof DemoModal> = (
   props: DemoModalEntryProps & GlobalEntryTextProps
 ) => <DemoModal {...props} />;

@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Cover } from "./cover";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import { withUrls } from "../../core/utils/url";
@@ -47,12 +47,10 @@ export default {
     url: new URL("/", getCurrentLocation()),
     alt: "alt text for the image"
   }
-} as ComponentMeta<typeof Cover>;
+} as Meta<typeof Cover>;
 
 const WrappedCover = withUrls(Cover);
-const Template: ComponentStory<typeof Cover> = (args) => (
-  <WrappedCover {...args} />
-);
+const Template: StoryFn<typeof Cover> = (args) => <WrappedCover {...args} />;
 
 export const item = Template.bind({});
 item.args = {};

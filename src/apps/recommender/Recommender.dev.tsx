@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import Recommender from "./Recommender.entry";
@@ -57,9 +57,9 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof Recommender>;
+} as Meta<typeof Recommender>;
 
-const Template: ComponentStory<typeof Recommender> = (props) => (
+const Template: StoryFn<typeof Recommender> = (props) => (
   <Recommender {...props} />
 );
 export const RecommenderEntry = Template.bind({});

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import * as React from "react";
 import SearchBar, { SearchBarProps } from "./search-bar";
 import StorySearchBar from "./search-bar.dev.inc";
@@ -22,10 +22,8 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof SearchBar>;
+} as Meta<typeof SearchBar>;
 
-export const Default: ComponentStory<typeof SearchBar> = (
-  args: SearchBarProps
-) => {
+export const Default: StoryFn<typeof SearchBar> = (args: SearchBarProps) => {
   return <StorySearchBar storybookArgs={args} />;
 };

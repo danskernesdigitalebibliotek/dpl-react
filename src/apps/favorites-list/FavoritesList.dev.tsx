@@ -1,6 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
-import { withQuery } from "@storybook/addon-queryparams";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import FavoritesListEntry, {
   FavoritesListEntryProps
@@ -80,10 +79,9 @@ export default {
       defaultValue: "in series",
       control: { type: "text" }
     }
-  },
-  decorators: [withQuery]
-} as ComponentMeta<typeof FavoritesListEntry>;
+  }
+} as Meta<typeof FavoritesListEntry>;
 
-export const FavoritesList: ComponentStory<typeof FavoritesListEntry> = (
+export const FavoritesList: StoryFn<typeof FavoritesListEntry> = (
   args: FavoritesListEntryProps
 ) => <FavoritesListEntry {...args} />;

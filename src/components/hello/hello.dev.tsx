@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { Hello, HelloProps, TextProps } from "./hello";
 import { withText } from "../../core/utils/text";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
@@ -26,9 +26,9 @@ export default {
       defaultValue: true
     }
   }
-} as ComponentMeta<typeof WrappedHello>;
+} as Meta<typeof WrappedHello>;
 
-const Template: ComponentStory<typeof WrappedHello> = (props: HelloProps) => (
+const Template: StoryFn<typeof WrappedHello> = (props: HelloProps) => (
   <WrappedHello {...props} />
 );
 

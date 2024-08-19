@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import globalTextArgs, {
   GlobalEntryTextProps
@@ -39,15 +39,13 @@ export default {
     ...globalTextArgs,
     ...serviceUrlArgs
   }
-} as ComponentMeta<typeof Recommendation>;
+} as Meta<typeof Recommendation>;
 
-export const App: ComponentStory<typeof Recommendation> = (
+export const App: StoryFn<typeof Recommendation> = (
   args: RecommendationEntryProps & GlobalEntryTextProps
 ) => <Recommendation {...args} />;
 
-const SkeletonTemplate: ComponentStory<typeof RecommendationSkeleton> = (
-  args
-) => {
+const SkeletonTemplate: StoryFn<typeof RecommendationSkeleton> = (args) => {
   return <RecommendationSkeleton {...args} />;
 };
 export const Skeleton = SkeletonTemplate.bind({});

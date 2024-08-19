@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import MaterialEntry, { MaterialEntryProps } from "./material.entry";
@@ -868,11 +868,11 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof MaterialEntry>;
+} as Meta<typeof MaterialEntry>;
 
-const Template: ComponentStory<typeof MaterialEntry> = (
-  args: MaterialEntryProps
-) => <MaterialEntry {...args} />;
+const Template: StoryFn<typeof MaterialEntry> = (args: MaterialEntryProps) => (
+  <MaterialEntry {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {};

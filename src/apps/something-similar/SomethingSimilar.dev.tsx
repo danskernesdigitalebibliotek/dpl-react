@@ -1,6 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
-import { withQuery } from "@storybook/addon-queryparams";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SomethingSimilar from "./SomethingSimilar.entry";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
@@ -9,7 +8,6 @@ import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 export default {
   title: "Apps / Something similar",
   component: SomethingSimilar,
-  decorators: [withQuery],
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
@@ -61,9 +59,9 @@ export default {
       defaultValue: "Something similar"
     }
   }
-} as ComponentMeta<typeof SomethingSimilar>;
+} as Meta<typeof SomethingSimilar>;
 
-const Template: ComponentStory<typeof SomethingSimilar> = (props) => (
+const Template: StoryFn<typeof SomethingSimilar> = (props) => (
   <SomethingSimilar {...props} />
 );
 export const SomethingSimilarEntry = Template.bind({});

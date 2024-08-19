@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import HelloWorld, { HelloWorldEntryProps } from "./hello-world.entry";
 import globalTextArgs, {
@@ -23,8 +23,8 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof HelloWorld>;
+} as Meta<typeof HelloWorld>;
 
-export const App: ComponentStory<typeof HelloWorld> = (
+export const App: StoryFn<typeof HelloWorld> = (
   args: HelloWorldEntryProps & GlobalEntryTextProps
 ) => <HelloWorld {...args} />;

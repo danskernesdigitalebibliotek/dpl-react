@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
@@ -346,8 +346,8 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof AdvancedSearchEntry>;
+} as Meta<typeof AdvancedSearchEntry>;
 
-export const AdvancedSearch: ComponentStory<typeof AdvancedSearchEntry> = (
+export const AdvancedSearch: StoryFn<typeof AdvancedSearchEntry> = (
   args: AdvancedSearchEntryProps
 ) => <AdvancedSearchEntry {...args} />;

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 
 import globalTextArgs, {
@@ -105,13 +105,13 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof MaterialGridManual>;
+} as Meta<typeof MaterialGridManual>;
 
-export const App: ComponentStory<typeof MaterialGridManual> = (
+export const App: StoryFn<typeof MaterialGridManual> = (
   args: MaterialGridManualEntryProps & GlobalEntryTextProps
 ) => <MaterialGridManual {...args} />;
 
-const SkeletonTemplate: ComponentStory<typeof MaterialGridManual> = () => {
+const SkeletonTemplate: StoryFn<typeof MaterialGridManual> = () => {
   return <MaterialGridSkeleton />;
 };
 export const Skeleton = SkeletonTemplate.bind({});

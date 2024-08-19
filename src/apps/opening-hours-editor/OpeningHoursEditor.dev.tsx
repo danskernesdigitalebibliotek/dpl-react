@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import OpeningHoursEditor from "./OpeningHoursEditor.entry";
@@ -117,8 +117,8 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof OpeningHoursEditor>;
+} as Meta<typeof OpeningHoursEditor>;
 
-export const App: ComponentStory<typeof OpeningHoursEditor> = (args) => (
+export const App: StoryFn<typeof OpeningHoursEditor> = (args) => (
   <OpeningHoursEditor {...args} />
 );

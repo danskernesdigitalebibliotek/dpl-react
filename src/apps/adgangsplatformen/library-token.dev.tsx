@@ -1,12 +1,12 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import LibraryToken from "./library-token";
 
 export default {
   title: "SB Utilities / Set Library Token",
   component: LibraryToken
-} as ComponentMeta<typeof LibraryToken>;
+} as Meta<typeof LibraryToken>;
 
-export const LibraryTokenApp: ComponentStory<typeof LibraryToken> = () => {
+export const LibraryTokenApp: StoryFn<typeof LibraryToken> = () => {
   return <LibraryToken />;
 };

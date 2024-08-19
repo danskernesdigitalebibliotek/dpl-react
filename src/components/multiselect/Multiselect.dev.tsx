@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import Multiselect from "./Multiselect";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
@@ -40,9 +40,9 @@ export default {
     caption: "Title",
     options
   }
-} as ComponentMeta<typeof WrappedMultiselect>;
+} as Meta<typeof WrappedMultiselect>;
 
-const Template: ComponentStory<typeof WrappedMultiselect> = (args) => (
+const Template: StoryFn<typeof WrappedMultiselect> = (args) => (
   <WrappedMultiselect {...args} />
 );
 

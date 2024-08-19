@@ -1,6 +1,5 @@
 import React from "react";
-import { withQuery } from "@storybook/addon-queryparams";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import blockedArgs from "../../core/storybook/blockedArgs";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import FeeList from "./FeeList.entry";
@@ -212,13 +211,10 @@ export default {
       defaultValue: "https://unsplash.com/photos/NEJcmvLFcws", // Open source image of a curious giraffe
       control: { type: "text" }
     }
-  },
-  decorators: [withQuery]
-} as ComponentMeta<typeof FeeList>;
+  }
+} as Meta<typeof FeeList>;
 
-const Template: ComponentStory<typeof FeeList> = (props) => (
-  <FeeList {...props} />
-);
+const Template: StoryFn<typeof FeeList> = (props) => <FeeList {...props} />;
 
 export const FeeListEntry = Template.bind({});
 

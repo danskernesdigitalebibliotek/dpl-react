@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import React from "react";
 import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
@@ -67,9 +67,9 @@ export default {
     url: new URL("/", getCurrentLocation()),
     selected: false
   }
-} as ComponentMeta<typeof AvailabilityLabel>;
+} as Meta<typeof AvailabilityLabel>;
 
-const Template: ComponentStory<typeof AvailabilityLabel> = (
+const Template: StoryFn<typeof AvailabilityLabel> = (
   args: AvailabilityLabelProps
 ) => {
   const ConfiguredAvailabilityLabel = withUrls(withConfig(AvailabilityLabel));

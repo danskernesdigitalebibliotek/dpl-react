@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import ButtonFavourite, {
   ButtonFavouriteId,
   ButtonFavouriteProps
@@ -31,9 +31,9 @@ export default {
       defaultValue: "title"
     }
   }
-} as ComponentMeta<typeof WrappedButtonFavourite>;
+} as Meta<typeof WrappedButtonFavourite>;
 
-const Template: ComponentStory<typeof WrappedButtonFavourite> = (
+const Template: StoryFn<typeof WrappedButtonFavourite> = (
   args: ButtonFavouriteProps
 ) => {
   // This is a fake situation where we just need to give the button a handler.

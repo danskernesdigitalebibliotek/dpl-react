@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React, { useEffect } from "react";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import ModalMessage from "./ModalMessage";
@@ -18,9 +18,9 @@ export default {
     }
   },
   component: ModalMessage
-} as ComponentMeta<typeof ModalMessage>;
+} as Meta<typeof ModalMessage>;
 
-const Template: ComponentStory<typeof ModalMessage> = (props) => {
+const Template: StoryFn<typeof ModalMessage> = (props) => {
   const { open } = useModalButtonHandler();
 
   useEffect(() => {

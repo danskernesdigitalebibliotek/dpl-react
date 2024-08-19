@@ -1,5 +1,4 @@
-import { withQuery } from "@storybook/addon-queryparams";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
 import blockedArgs from "../../../core/storybook/blockedArgs";
@@ -216,13 +215,10 @@ export default {
       defaultValue: "Showing @itemsShown out of @hitcount loans",
       control: { type: "text" }
     }
-  },
-  decorators: [withQuery]
-} as ComponentMeta<typeof LoanList>;
+  }
+} as Meta<typeof LoanList>;
 
-const Template: ComponentStory<typeof LoanList> = (props) => (
-  <LoanList {...props} />
-);
+const Template: StoryFn<typeof LoanList> = (props) => <LoanList {...props} />;
 
 export const LoanListEntry = Template.bind({});
 LoanListEntry.args = {};

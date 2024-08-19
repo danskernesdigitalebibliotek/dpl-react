@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 import globalTextArgs, {
@@ -113,9 +113,9 @@ export default {
     ...serviceUrlArgs,
     ...globalConfigArgs
   }
-} as ComponentMeta<typeof MaterialSearch>;
+} as Meta<typeof MaterialSearch>;
 
-export const Default: ComponentStory<typeof MaterialSearch> = (
+export const Default: StoryFn<typeof MaterialSearch> = (
   args: MaterialSearchEntryProps &
     MaterialSearchEntryTextProps &
     GlobalEntryTextProps

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import Menu from "./menu.entry";
@@ -179,9 +179,9 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof WrappedMenu>;
+} as Meta<typeof WrappedMenu>;
 
-export const UserMenu: ComponentStory<typeof WrappedMenu> = (args) => {
+export const UserMenu: StoryFn<typeof WrappedMenu> = (args) => {
   const menu = <WrappedMenu {...args} />;
 
   return (

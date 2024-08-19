@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SearchResultEntry, {
@@ -232,8 +232,8 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof SearchResultEntry>;
+} as Meta<typeof SearchResultEntry>;
 
-export const SearchResult: ComponentStory<typeof SearchResultEntry> = (
+export const SearchResult: StoryFn<typeof SearchResultEntry> = (
   args: SearchResultEntryProps
 ) => <SearchResultEntry {...args} />;

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import * as React from "react";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
@@ -126,9 +126,9 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof SearchHeaderEntry>;
+} as Meta<typeof SearchHeaderEntry>;
 
-export const Search: ComponentStory<typeof SearchHeaderEntry> = (
+export const Search: StoryFn<typeof SearchHeaderEntry> = (
   args: SearchHeaderEntryProps
 ) => (
   // We use the Header component as context to the search bar.

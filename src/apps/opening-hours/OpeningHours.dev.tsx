@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 import globalTextArgs, {
@@ -39,9 +39,9 @@ export default {
     ...globalTextArgs,
     ...serviceUrlArgs
   }
-} as ComponentMeta<typeof OpeningHours>;
+} as Meta<typeof OpeningHours>;
 
-export const Default: ComponentStory<typeof OpeningHours> = (
+export const Default: StoryFn<typeof OpeningHours> = (
   args: OpeningHoursEntryProps & GlobalEntryTextProps
 ) => <OpeningHours {...args} />;
 

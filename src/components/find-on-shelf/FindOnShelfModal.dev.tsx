@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React, { useState } from "react";
 import materialDev from "../../apps/material/material.dev";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
@@ -67,9 +67,9 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof WrappedFindOnShelfModal>;
+} as Meta<typeof WrappedFindOnShelfModal>;
 
-const Template: ComponentStory<typeof WrappedFindOnShelfModal> = (
+const Template: StoryFn<typeof WrappedFindOnShelfModal> = (
   args: FindOnShelfModalProps
 ) => {
   const [storySelectedPeriodical, setStorySelectedPeriodical] = useState({

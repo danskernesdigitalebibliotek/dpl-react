@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import globalTextArgs, {
   GlobalEntryTextProps
@@ -34,9 +34,9 @@ export default {
     ...globalTextArgs,
     ...serviceUrlArgs
   }
-} as ComponentMeta<typeof RecommendedMaterial>;
+} as Meta<typeof RecommendedMaterial>;
 
-export const Default: ComponentStory<typeof RecommendedMaterial> = (
+export const Default: StoryFn<typeof RecommendedMaterial> = (
   args: RecommendedMaterialEntryProps & GlobalEntryTextProps
 ) => <RecommendedMaterial {...args} />;
 
@@ -46,9 +46,7 @@ materialWithoutType.args = {
   materialType: undefined
 };
 
-const SkeletonTemplate: ComponentStory<
-  typeof RecommendedMaterialSkeleton
-> = () => {
+const SkeletonTemplate: StoryFn<typeof RecommendedMaterialSkeleton> = () => {
   return <RecommendedMaterialSkeleton />;
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import PatronPage from "./PatronPage.entry";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import pincodeArgs from "../../core/storybook/pincodeArgs";
@@ -260,9 +260,9 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof PatronPage>;
+} as Meta<typeof PatronPage>;
 
-const Template: ComponentStory<typeof PatronPage> = (props) => (
+const Template: StoryFn<typeof PatronPage> = (props) => (
   <PatronPage {...props} />
 );
 

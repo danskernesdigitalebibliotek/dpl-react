@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import ErrorBoundaryAlertBody, {
   ErrorBoundaryAlertBodyProps
@@ -25,14 +25,14 @@ export default {
       control: { type: "boolean" }
     }
   }
-} as ComponentMeta<typeof ErrorBoundaryAlertBody>;
+} as Meta<typeof ErrorBoundaryAlertBody>;
 
 const WrappedErrorBoundaryAlertBody = withText(
   withConfig(ErrorBoundaryAlertBody)
 );
-export const ErrorBoundaryAlert: ComponentStory<
-  typeof ErrorBoundaryAlertBody
-> = (args: ErrorBoundaryAlertBodyProps) => (
+export const ErrorBoundaryAlert: StoryFn<typeof ErrorBoundaryAlertBody> = (
+  args: ErrorBoundaryAlertBodyProps
+) => (
   <WrappedErrorBoundaryAlertBody
     {...args}
     resetErrorBoundary={() => {

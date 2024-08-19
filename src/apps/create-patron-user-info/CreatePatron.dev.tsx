@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import CreatePatron from "./CreatePatron.entry";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import pincodeArgs from "../../core/storybook/pincodeArgs";
@@ -181,9 +181,9 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof CreatePatron>;
+} as Meta<typeof CreatePatron>;
 
-const Template: ComponentStory<typeof CreatePatron> = (props) => {
+const Template: StoryFn<typeof CreatePatron> = (props) => {
   setToken(TOKEN_UNREGISTERED_USER_KEY, "123456");
   return <CreatePatron {...props} />;
 };
