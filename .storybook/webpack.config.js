@@ -6,15 +6,7 @@ const customWebpack = require("../webpack.config.js");
 module.exports = async ({ config }) => {
   const custom = customWebpack(undefined, { mode: "development" });
 
-  const rules = [
-    ...custom.module.rules,
-    // We need to make use of css modules in our stories.
-    {
-      test: /\.scss$/,
-      use: ["style-loader", "css-loader", "postcss-loader"],
-      include: path.resolve(__dirname, "../")
-    }
-  ];
+  const rules = [...custom.module.rules];
   const plugins = [...config.plugins];
   return { ...config, plugins, module: { ...config.module, rules } };
 };

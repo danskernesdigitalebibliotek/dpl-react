@@ -7,14 +7,6 @@ module.exports = (ctx) => {
   return {
     parser: "postcss-scss",
     map: ctx.options.map,
-    plugins: [
-      postcssSass({
-        // We always want to inject all of our variables and mixins.
-        // There is not to be any actual output from _system.scss.
-        data: '@import "./src/components/design-system/_system.scss";'
-      }),
-      production && autoprefixer,
-      production && cssnano
-    ]
+    plugins: [production && autoprefixer, production && cssnano]
   };
 };
