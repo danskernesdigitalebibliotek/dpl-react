@@ -23,6 +23,7 @@ export const argTypes = {
   },
   [serviceUrlKeys.dplCms]: {
     description: "Base url for the DPL CMS API",
+    defaultValue: "https://dpl-cms.inlead.dev",
     control: { type: "text" },
     table: {
       type: { summary: "text" },
@@ -63,6 +64,7 @@ export const argTypes = {
   },
   [serviceUrlKeys.fbiLocal]: {
     description: "Base url for the FBI API (local inventory)",
+    defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
     control: { type: "text" },
     table: {
       type: { summary: "text" },

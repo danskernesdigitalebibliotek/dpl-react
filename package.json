@@ -31,7 +31,7 @@
     "watch:lint:js": "chokidar \"./src/**/*.{js,jsx,ts,tsx}\" -c \"yarn lint:js\"",
     "build:storybook": "storybook build -c .storybook -o dev",
     "start:storybook:test": "NODE_ENV=test storybook dev --port 57021 --quiet --ci",
-    "start:storybook:dev": "NODE_ENV=development  storybook dev --port 80",
+    "start:storybook:dev": "NODE_ENV=development  storybook dev --port 7020",
     "dev": "npx concurrently --raw \"yarn start:storybook:dev\" \"yarn watch\"",
     "test:unit": "vitest",
     "test:integration": "cypress run",
@@ -142,10 +142,11 @@
   },
   "//dependencies": {
     "@danskernesdigitalebibliotek/dpl-design-system": "Is being used for being able to see the dpl-design-system styling in Storybook and potentially use icons",
+    "@danskernesdigitalebibliotek/dpl-design-system": "2024.33.0-a94d6181a38deec2ab5b3723b9436372c0027d4a",
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.46.0-26b569fe9286c99caa7d35dfffb9e4d176826c7a",
+    "@danskernesdigitalebibliotek/dpl-design-system": "https://github.com/danskernesdigitalebibliotek/dpl-design-system.git",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",
