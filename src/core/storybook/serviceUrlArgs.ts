@@ -14,7 +14,7 @@ export default {
   },
   [serviceUrlKeys.dplCms]: {
     name: "Base url for the DPL CMS API",
-    defaultValue: process.env.CMS_BASEURL ?? "https://dpl-cms.docker",
+    defaultValue: "https://dpl-cms.inlead.dev",
     control: { type: "text" }
   },
   [serviceUrlKeys.cover]: {
@@ -34,7 +34,7 @@ export default {
   },
   [serviceUrlKeys.fbiLocal]: {
     name: "Base url for the FBI API (local inventory)",
-    defaultValue: "https://fbi-api.dbc.dk/next/graphql",
+    defaultValue: "https://fbi-api.dbc.dk/opac/graphql",
     control: { type: "text" }
   },
   [serviceUrlKeys.fbiGlobal]: {
