@@ -68,7 +68,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         },
       ],
       "notes": [],
-      "physicalDescriptions": [
+      "physicalDescription": [
         {
           "numberOfPages": 104,
           "playingTime": null,
@@ -172,7 +172,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           ],
         },
       ],
-      "physicalDescriptions": [
+      "physicalDescription": [
         {
           "numberOfPages": null,
           "playingTime": null,
@@ -273,7 +273,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           ],
         },
       ],
-      "physicalDescriptions": [
+      "physicalDescription": [
         {
           "numberOfPages": null,
           "playingTime": null,
@@ -384,7 +384,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           ],
         },
       ],
-      "physicalDescriptions": [
+      "physicalDescription": [
         {
           "numberOfPages": 95,
           "playingTime": "2t., 31 min.",

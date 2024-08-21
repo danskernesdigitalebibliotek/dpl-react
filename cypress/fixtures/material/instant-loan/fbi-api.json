@@ -143,7 +143,7 @@
                 "display": ["Originaludgave: 2022"]
               }
             ],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "365 sider",
                 "numberOfPages": 365,
@@ -243,7 +243,7 @@
               "display": ["Originaludgave: 2022"]
             }
           ],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "365 sider",
               "numberOfPages": 365,
@@ -342,7 +342,7 @@
               "display": ["Originaludgave: 2022"]
             }
           ],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "365 sider",
               "numberOfPages": 365,

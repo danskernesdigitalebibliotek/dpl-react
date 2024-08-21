@@ -165,7 +165,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "1 dvd-video ca. 109 min.",
                 "numberOfPages": null,
@@ -339,7 +339,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "1 disc (blu-ray) ca. 113 min.",
                 "numberOfPages": null,
@@ -509,7 +509,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "Ca. 113 min.",
                 "numberOfPages": null,
@@ -687,7 +687,7 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "Ca. 113 min.",
               "numberOfPages": null,
@@ -864,7 +864,7 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "Ca. 113 min.",
               "numberOfPages": null,

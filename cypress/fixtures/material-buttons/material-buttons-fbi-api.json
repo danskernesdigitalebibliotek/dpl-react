@@ -161,7 +161,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "523 sider",
                 "numberOfPages": 523,
@@ -255,7 +255,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [],
+            "physicalDescription": [],
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -367,7 +367,7 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
                 "numberOfPages": null,
@@ -479,7 +479,7 @@
               ]
             }
           ],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
               "numberOfPages": null,
@@ -590,7 +590,7 @@
               ]
             }
           ],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
               "numberOfPages": null,

@@ -75,7 +75,7 @@ export default {
             display: ["Bogens originaludgave: 1950"]
           }
         ],
-        physicalDescriptions: [
+        physicalDescription: [
           {
             summary: "2 cd'er 1 bog 95 sider: ill. 2t., 31 min.",
             numberOfPages: 95,
@@ -171,7 +171,7 @@ export default {
             ]
           }
         ],
-        physicalDescriptions: [
+        physicalDescription: [
           {
             summary: "1 online resource",
             numberOfPages: null,
@@ -264,7 +264,7 @@ export default {
             display: ["Unabridged"]
           }
         ],
-        physicalDescriptions: [
+        physicalDescription: [
           {
             summary: "1 online resource (7 audio files) digital",
             numberOfPages: null,
@@ -346,7 +346,7 @@ export default {
           ages: []
         },
         notes: [],
-        physicalDescriptions: [
+        physicalDescription: [
           {
             summary: "104 sider: ill.",
             numberOfPages: 104,

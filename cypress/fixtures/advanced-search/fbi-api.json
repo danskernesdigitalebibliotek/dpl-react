@@ -98,7 +98,7 @@
                   "ages": []
                 },
                 "notes": [],
-                "physicalDescriptions": [
+                "physicalDescription": [
                   {
                     "summary": "576 sider",
                     "numberOfPages": 576,
@@ -208,7 +208,7 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescriptions": [
+              "physicalDescription": [
                 {
                   "summary": "576 sider",
                   "numberOfPages": 576,
@@ -317,7 +317,7 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescriptions": [
+              "physicalDescription": [
                 {
                   "summary": "576 sider",
                   "numberOfPages": 576,
@@ -428,7 +428,7 @@
                   "ages": []
                 },
                 "notes": [],
-                "physicalDescriptions": [
+                "physicalDescription": [
                   {
                     "summary": "410 sider: ill.",
                     "numberOfPages": 410,
@@ -512,7 +512,7 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescriptions": [
+              "physicalDescription": [
                 {
                   "summary": "410 sider: ill.",
                   "numberOfPages": 410,
@@ -595,7 +595,7 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescriptions": [
+              "physicalDescription": [
                 {
                   "summary": "410 sider: ill.",
                   "numberOfPages": 410,

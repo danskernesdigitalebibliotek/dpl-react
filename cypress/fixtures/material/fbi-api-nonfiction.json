@@ -125,7 +125,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "168 sider: ill. i farver",
                 "numberOfPages": 168,
@@ -223,7 +223,7 @@
                 "display": ["Med links"]
               }
             ],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "168 sider: ill. i farver",
                 "numberOfPages": 168,
@@ -377,7 +377,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "168 sider: ill. i farver",
                 "numberOfPages": 168,
@@ -512,7 +512,7 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "168 sider: ill. i farver",
               "numberOfPages": 168,
@@ -646,7 +646,7 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "168 sider: ill. i farver",
               "numberOfPages": 168,

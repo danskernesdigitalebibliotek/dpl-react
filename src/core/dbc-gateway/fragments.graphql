@@ -98,7 +98,7 @@ fragment ManifestationsSimpleFields on Manifestation {
   languages {
     notes
   }
-  physicalDescriptions {
+  physicalDescription {
     summary
     numberOfPages
     playingTime
@@ -179,7 +179,7 @@ fragment ManifestationReviewFields on Manifestation {
   creators {
     display
   }
-  physicalDescriptions {
+  physicalDescription {
     summary
   }
   dateFirstEdition {
@@ -207,10 +207,7 @@ fragment ManifestationReviewFields on Manifestation {
 fragment SeriesSimple on Series {
   title
   isPopular
-  numberInSeries {
-    display
-    number
-  }
+  numberInSeries
   readThisFirst
   readThisWhenever
 }

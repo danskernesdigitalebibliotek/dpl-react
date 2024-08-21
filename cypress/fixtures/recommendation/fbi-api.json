@@ -81,7 +81,7 @@
             "audience": {
               "generalAudience": ["for begynderlæsere", "let at læse"]
             },
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "numberOfPages": 16,
                 "playingTime": null
@@ -166,7 +166,7 @@
             "audience": {
               "generalAudience": ["for begynderlæsere", "let at læse"]
             },
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "numberOfPages": 16,
                 "playingTime": null
@@ -261,7 +261,7 @@
             "audience": {
               "generalAudience": ["for begynderlæsere", "let at læse"]
             },
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "numberOfPages": 16,
                 "playingTime": null
@@ -349,7 +349,7 @@
           "audience": {
             "generalAudience": ["for begynderlæsere", "let at læse"]
           },
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "numberOfPages": 16,
               "playingTime": null
@@ -436,7 +436,7 @@
           "audience": {
             "generalAudience": ["for begynderlæsere", "let at læse"]
           },
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "numberOfPages": 16,
               "playingTime": null

@@ -83,7 +83,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
+            "physicalDescription": [
               {
                 "summary": "Sektion 3, s. 6-7: ill.",
                 "numberOfPages": 2,
@@ -177,7 +177,7 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "Sektion 3, s. 6-7: ill.",
               "numberOfPages": 2,
@@ -270,7 +270,7 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
+          "physicalDescription": [
             {
               "summary": "Sektion 3, s. 6-7: ill.",
               "numberOfPages": 2,

@@ -67,7 +67,7 @@ export const mockedManifestationData: Manifestation[] = [
       ages: []
     },
     notes: [],
-    physicalDescriptions: [
+    physicalDescription: [
       {
         numberOfPages: null,
         summary: ""
@@ -169,7 +169,7 @@ export const mockedManifestationData: Manifestation[] = [
         ]
       }
     ],
-    physicalDescriptions: [
+    physicalDescription: [
       {
         numberOfPages: null,
         summary: ""
@@ -255,7 +255,7 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
         ]
       }
     ],
-    physicalDescriptions: [],
+    physicalDescription: [],
     accessTypes: [
       {
         code: "PHYSICAL" as AccessTypeCode

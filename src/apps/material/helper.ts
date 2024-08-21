@@ -84,7 +84,7 @@ export const getManifestationsFromType = (
 };
 
 export const getManifestationPlayingTime = (manifestation: Manifestation) => {
-  return manifestation.physicalDescriptions?.[0]?.playingTime ?? "";
+  return manifestation.physicalDescription?.[0]?.playingTime ?? "";
 };
 
 export const getManifestationEdition = (manifestation: Manifestation) => {
@@ -104,8 +104,8 @@ export const getManifestationMaterialTypes = (manifestation: Manifestation) => {
 };
 
 export const getManifestationNumberOfPages = (manifestation: Manifestation) => {
-  return manifestation.physicalDescriptions?.[0]?.numberOfPages
-    ? String(manifestation.physicalDescriptions?.[0].numberOfPages)
+  return manifestation.physicalDescription?.[0]?.numberOfPages
+    ? String(manifestation.physicalDescription?.[0].numberOfPages)
     : "";
 };
 
@@ -204,7 +204,7 @@ export const getManifestationNotes = (manifestation: Manifestation) => {
 export const getManifestationPhysicalDescription = (
   manifestation: Manifestation
 ) => {
-  return manifestation.physicalDescriptions?.[0]?.summary ?? "";
+  return manifestation.physicalDescription?.[0]?.summary ?? "";
 };
 
 export const getManifestationHostPublication = (
