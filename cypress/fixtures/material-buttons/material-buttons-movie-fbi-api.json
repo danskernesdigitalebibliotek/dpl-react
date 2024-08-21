@@ -167,7 +167,7 @@
             "notes": [],
             "physicalDescription": [
               {
-                "summary": "1 dvd-video ca. 109 min.",
+                "summaryFull": "1 dvd-video ca. 109 min.",
                 "numberOfPages": null,
                 "playingTime": "ca. 109 min."
               }
@@ -341,7 +341,7 @@
             "notes": [],
             "physicalDescription": [
               {
-                "summary": "1 disc (blu-ray) ca. 113 min.",
+                "summaryFull": "1 disc (blu-ray) ca. 113 min.",
                 "numberOfPages": null,
                 "playingTime": "ca. 113 min."
               }
@@ -511,7 +511,7 @@
             "notes": [],
             "physicalDescription": [
               {
-                "summary": "Ca. 113 min.",
+                "summaryFull": "Ca. 113 min.",
                 "numberOfPages": null,
                 "playingTime": "Ca. 113 min."
               }
@@ -689,7 +689,7 @@
           "notes": [],
           "physicalDescription": [
             {
-              "summary": "Ca. 113 min.",
+              "summaryFull": "Ca. 113 min.",
               "numberOfPages": null,
               "playingTime": "Ca. 113 min."
             }
@@ -866,7 +866,7 @@
           "notes": [],
           "physicalDescription": [
             {
-              "summary": "Ca. 113 min.",
+              "summaryFull": "Ca. 113 min.",
               "numberOfPages": null,
               "playingTime": "Ca. 113 min."
             }

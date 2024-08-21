@@ -82,7 +82,7 @@
             ],
             "physicalDescription": [
               {
-                "summary": "xxxiii, 284 sider, 8 sider med tavler",
+                "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
                 "numberOfPages": 325,
                 "playingTime": null
               }
@@ -170,7 +170,7 @@
           ],
           "physicalDescription": [
             {
-              "summary": "xxxiii, 284 sider, 8 sider med tavler",
+              "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
               "numberOfPages": 325,
               "playingTime": null
             }
@@ -257,7 +257,7 @@
           ],
           "physicalDescription": [
             {
-              "summary": "xxxiii, 284 sider, 8 sider med tavler",
+              "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
               "numberOfPages": 325,
               "playingTime": null
             }

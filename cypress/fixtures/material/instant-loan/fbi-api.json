@@ -145,7 +145,7 @@
             ],
             "physicalDescription": [
               {
-                "summary": "365 sider",
+                "summaryFull": "365 side ",
                 "numberOfPages": 365,
                 "playingTime": null
               }
@@ -245,7 +245,7 @@
           ],
           "physicalDescription": [
             {
-              "summary": "365 sider",
+              "summaryFull": "365 side ",
               "numberOfPages": 365,
               "playingTime": null
             }
@@ -344,7 +344,7 @@
           ],
           "physicalDescription": [
             {
-              "summary": "365 sider",
+              "summaryFull": "365 side ",
               "numberOfPages": 365,
               "playingTime": null
             }

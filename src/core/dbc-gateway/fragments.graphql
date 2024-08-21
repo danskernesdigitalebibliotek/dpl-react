@@ -99,7 +99,7 @@ fragment ManifestationsSimpleFields on Manifestation {
     notes
   }
   physicalDescription {
-    summary
+    summaryFull
     numberOfPages
     playingTime
   }
@@ -180,7 +180,7 @@ fragment ManifestationReviewFields on Manifestation {
     display
   }
   physicalDescription {
-    summary
+    summaryFull
   }
   dateFirstEdition {
     display

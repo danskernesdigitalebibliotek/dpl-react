@@ -121,7 +121,7 @@
             ],
             "physicalDescription": [
               {
-                "summary": "S. 8-13: ill.",
+                "summaryFull": "S. 8-13: ill.",
                 "numberOfPages": 6,
                 "playingTime": null
               }
@@ -211,7 +211,7 @@
           ],
           "physicalDescription": [
             {
-              "summary": "S. 8-13: ill.",
+              "summaryFull": "S. 8-13: ill.",
               "numberOfPages": 6,
               "playingTime": null
             }
@@ -300,7 +300,7 @@
           ],
           "physicalDescription": [
             {
-              "summary": "S. 8-13: ill.",
+              "summaryFull": "S. 8-13: ill.",
               "numberOfPages": 6,
               "playingTime": null
             }

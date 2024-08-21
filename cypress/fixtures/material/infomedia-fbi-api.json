@@ -85,7 +85,7 @@
             "notes": [],
             "physicalDescription": [
               {
-                "summary": "Sektion 3, s. 6-7: ill.",
+                "summaryFull": "Sektion 3, s. 6-7: ill.",
                 "numberOfPages": 2,
                 "playingTime": null
               }
@@ -179,7 +179,7 @@
           "notes": [],
           "physicalDescription": [
             {
-              "summary": "Sektion 3, s. 6-7: ill.",
+              "summaryFull": "Sektion 3, s. 6-7: ill.",
               "numberOfPages": 2,
               "playingTime": null
             }
@@ -272,7 +272,7 @@
           "notes": [],
           "physicalDescription": [
             {
-              "summary": "Sektion 3, s. 6-7: ill.",
+              "summaryFull": "Sektion 3, s. 6-7: ill.",
               "numberOfPages": 2,
               "playingTime": null
             }

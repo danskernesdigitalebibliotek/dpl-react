@@ -100,7 +100,7 @@
                 "notes": [],
                 "physicalDescription": [
                   {
-                    "summary": "576 sider",
+                    "summaryFull": "576 sider",
                     "numberOfPages": 576,
                     "playingTime": null
                   }
@@ -210,7 +210,7 @@
               "notes": [],
               "physicalDescription": [
                 {
-                  "summary": "576 sider",
+                  "summaryFull": "576 sider",
                   "numberOfPages": 576,
                   "playingTime": null
                 }
@@ -319,7 +319,7 @@
               "notes": [],
               "physicalDescription": [
                 {
-                  "summary": "576 sider",
+                  "summaryFull": "576 sider",
                   "numberOfPages": 576,
                   "playingTime": null
                 }
@@ -430,7 +430,7 @@
                 "notes": [],
                 "physicalDescription": [
                   {
-                    "summary": "410 sider: ill.",
+                    "summaryFull": "410 sider: ill.",
                     "numberOfPages": 410,
                     "playingTime": null
                   }
@@ -514,7 +514,7 @@
               "notes": [],
               "physicalDescription": [
                 {
-                  "summary": "410 sider: ill.",
+                  "summaryFull": "410 sider: ill.",
                   "numberOfPages": 410,
                   "playingTime": null
                 }
@@ -597,7 +597,7 @@
               "notes": [],
               "physicalDescription": [
                 {
-                  "summary": "410 sider: ill.",
+                  "summaryFull": "410 sider: ill.",
                   "numberOfPages": 410,
                   "playingTime": null
                 }

@@ -35,7 +35,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         "publicationYear": {
           "display": "2000",
         },
-        "summary": "2. edition, 2000",
+        "summaryFull": "2. edition, 2000",
       },
       "fictionNonfiction": {
         "code": "FICTION",
@@ -72,7 +72,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         {
           "numberOfPages": 104,
           "playingTime": null,
-          "summary": "104 sider: ill.",
+          "summaryFull": "104 side : ill.",
         },
       ],
       "pid": "870970-basis:23798255",
@@ -135,7 +135,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         "publicationYear": {
           "display": "2004",
         },
-        "summary": "2004",
+        "summaryFull": "2004",
       },
       "fictionNonfiction": {
         "code": "FICTION",
@@ -176,7 +176,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         {
           "numberOfPages": null,
           "playingTime": null,
-          "summary": "1 online resource",
+          "summaryFull": "1 online resource",
         },
       ],
       "pid": "150061-ebog:ODN0000039136",
@@ -277,7 +277,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         {
           "numberOfPages": null,
           "playingTime": null,
-          "summary": "1 online resource (7 audio files) digital",
+          "summaryFull": "1 online resource (7 audio files) digital",
         },
       ],
       "pid": "150061-netlydbog:ODN0000105225",
@@ -388,7 +388,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         {
           "numberOfPages": 95,
           "playingTime": "2t., 31 min.",
-          "summary": "2 cd'er 1 bog 95 sider: ill. 2t., 31 min.",
+          "summaryFull": "2 cd'er 1 bog 95 side : ill. 2t., 31 min.",
         },
       ],
       "pid": "870970-basis:44504928",

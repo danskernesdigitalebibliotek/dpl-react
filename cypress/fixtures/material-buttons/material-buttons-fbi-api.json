@@ -163,7 +163,7 @@
             "notes": [],
             "physicalDescription": [
               {
-                "summary": "523 sider",
+                "summaryFull": "523 side ",
                 "numberOfPages": 523,
                 "playingTime": null
               }
@@ -369,7 +369,7 @@
             ],
             "physicalDescription": [
               {
-                "summary": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+                "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
                 "numberOfPages": null,
                 "playingTime": "16 t., 30 min."
               }
@@ -481,7 +481,7 @@
           ],
           "physicalDescription": [
             {
-              "summary": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+              "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
               "numberOfPages": null,
               "playingTime": "16 t., 30 min."
             }
@@ -592,7 +592,7 @@
           ],
           "physicalDescription": [
             {
-              "summary": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+              "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
               "numberOfPages": null,
               "playingTime": "16 t., 30 min."
             }

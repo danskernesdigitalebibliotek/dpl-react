@@ -81,7 +81,7 @@
             "notes": [],
             "physicalDescription": [
               {
-                "summary": "Stereo",
+                "summaryFull": "Stereo",
                 "numberOfPages": null,
                 "playingTime": null
               }
@@ -214,7 +214,7 @@
             "notes": [],
             "physicalDescription": [
               {
-                "summary": "2 cd'er (1 kommentarbilag)",
+                "summaryFull": "2 cd'er (1 kommentarbilag)",
                 "numberOfPages": null,
                 "playingTime": null
               }
@@ -408,7 +408,7 @@
           "notes": [],
           "physicalDescription": [
             {
-              "summary": "2 cd'er (1 kommentarbilag)",
+              "summaryFull": "2 cd'er (1 kommentarbilag)",
               "numberOfPages": null,
               "playingTime": null
             }
@@ -601,7 +601,7 @@
           "notes": [],
           "physicalDescription": [
             {
-              "summary": "2 cd'er (1 kommentarbilag)",
+              "summaryFull": "2 cd'er (1 kommentarbilag)",
               "numberOfPages": null,
               "playingTime": null
             }
