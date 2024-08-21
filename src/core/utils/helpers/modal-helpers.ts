@@ -1,7 +1,11 @@
 import configuration, { getConf } from "../../configuration";
 
-export const constructModalId = (prefix: string, fragments: string[]) =>
-  [prefix, ...fragments].join("-");
+export const constructModalId = (prefix: string, fragments: string[]) => {
+  if (prefix === "") {
+    return fragments.join("-");
+  }
+  return [prefix, ...fragments].join("-");
+};
 
 export const getModalIds = () => {
   return getConf("modalIds", configuration);

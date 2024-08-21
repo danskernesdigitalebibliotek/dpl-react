@@ -962,3 +962,8 @@ export const inLargeSameSeriesAndIrregularFaustId = Template.bind({});
 inLargeSameSeriesAndIrregularFaustId.args = {
   wid: "work-of:150086-netmusik:BIS-2067"
 };
+
+export const journal = Template.bind({});
+journal.args = {
+  wid: "work-of:870970-basis:01007556"
+};
