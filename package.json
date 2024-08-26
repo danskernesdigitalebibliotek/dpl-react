@@ -156,7 +156,7 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@types/lodash": "^4.17.5",
     "clsx": "^2.1.1",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.13",
     "downshift": "8.5.0",
     "focus-trap-react": "^10.2.3",
     "graphql": "^16.9.0",
