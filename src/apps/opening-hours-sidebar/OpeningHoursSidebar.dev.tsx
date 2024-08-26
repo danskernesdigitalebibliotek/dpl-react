@@ -1,11 +1,11 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-import OpeningHoursClockIcon from "./OpeningHoursClockIcon.entry";
+import OpeningHoursSidebar from "./OpeningHoursSidebar.entry";
 
 export default {
-  title: "Apps / Opening Hour Clock Icon",
-  component: OpeningHoursClockIcon,
+  title: "Apps / Opening Hour Sidebar",
+  component: OpeningHoursSidebar,
   argTypes: {
     ...serviceUrlArgs,
     openingHoursText: {
@@ -14,8 +14,8 @@ export default {
       control: { type: "text" }
     }
   }
-} as ComponentMeta<typeof OpeningHoursClockIcon>;
+} as ComponentMeta<typeof OpeningHoursSidebar>;
 
-export const App: ComponentStory<typeof OpeningHoursClockIcon> = (args) => (
-  <OpeningHoursClockIcon {...args} />
+export const App: ComponentStory<typeof OpeningHoursSidebar> = (args) => (
+  <OpeningHoursSidebar {...args} />
 );
