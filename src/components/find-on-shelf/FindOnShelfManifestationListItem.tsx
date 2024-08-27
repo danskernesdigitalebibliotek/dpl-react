@@ -2,6 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../core/utils/text";
 import { Manifestation } from "../../core/utils/types/entities";
+import { getFindOnShelfLocationText } from "./helper";
 
 export interface FindOnShelfManifestationListItemProps {
   shelfmark: Manifestation["shelfmark"];
@@ -47,9 +48,7 @@ const FindOnShelfManifestationListItem: FC<
       </span>
       <span role="cell">
         {locationArray.length
-          ? `${locationArray.join(" · ")}${
-              author && author !== "undefined" ? ` · ${author}` : ""
-            }`
+          ? getFindOnShelfLocationText(locationArray, author)
           : t("findOnShelfModalNoLocationSpecifiedText")}
       </span>
       <span className="find-on-shelf__item-count-text" role="cell">
