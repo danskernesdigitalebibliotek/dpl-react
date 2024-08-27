@@ -27,14 +27,14 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
   }, [page, resultItems]);
 
   return (
-    <ul className="card-list-page__list my-32" data-cy="search-result-list">
+    <ul className="content-list" data-cy="search-result-list">
       {/*
           Show skeleton search result items if no data is available yet.
           We'll show 5 items which should cover most screens.
         */}
       {!worksAreLoaded &&
         [...Array(5)].map(() => (
-          <li>
+          <li className="content-list__item">
             <CardListItemSkeleton />
           </li>
         ))}
@@ -43,6 +43,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
           const isFirstNewItem = i === page * pageSize;
           return (
             <MaterialListItem
+              className="content-list__item"
               key={item.workId}
               ref={isFirstNewItem ? lastItemRef : null}
             >
