@@ -55,7 +55,7 @@ export const flattenCreators = (creators: Work["creators"]) =>
   });
 
 export const flattenCreatorsLastNameFirst = (creators: Work["creators"]) =>
-  creators.map((creator: Work["creators"][0]) => {
+  creators.map((creator) => {
     return creator.nameSort;
   });
 
