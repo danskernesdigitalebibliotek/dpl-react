@@ -51,6 +51,7 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
   }
 
   if (!data || data.length === 0) return null;
+  const works = data as Work[];
 
   return (
     <div className="material-search-list" ref={containerRef}>
@@ -58,8 +59,8 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
         {t("materialSearchAmountOfResultsText")}:<span>{hitCount}</span>
       </div>
       <ol className="material-search-list__results">
-        {data.map((work, index) => {
-          const authors = flattenCreators(work.creators as Work["creators"]);
+        {works.map((work, index) => {
+          const authors = flattenCreators(work.creators);
           const isLastItem = index === data.length - 1;
 
           return (
