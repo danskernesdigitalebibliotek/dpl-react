@@ -7,20 +7,11 @@ import {
 } from "../src/core/token";
 import "../src/core/mount";
 import Store from "../src/components/store";
-import { store } from "../src/core/store";
 
 import React from "react";
-import { updateStatus } from "../src/core/user.slice";
 import { withErrorBoundary } from "react-error-boundary";
 import ErrorBoundaryAlert from "../src/components/error-boundary-alert/ErrorBoundaryAlert";
 
-if (process.env.NODE_ENV === "test") {
-  store.dispatch(
-    updateStatus({
-      hasToken: true
-    })
-  );
-}
 
 const getSessionStorage = (type) => window.sessionStorage.getItem(type);
 const userToken =
