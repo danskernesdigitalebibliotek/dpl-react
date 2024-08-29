@@ -1,19 +1,9 @@
 import React, { FC } from "react";
+import { LibraryType } from "./helper";
 
-export type OpeningHoursItemType = {
-  term: string;
-  description: string;
-};
-
-type OpeningHoursSidebarDetailsType = {
-  openingHoursData: OpeningHoursItemType[];
-  link: string;
-};
-
-const OpeningHoursSidebarDetails: FC<OpeningHoursSidebarDetailsType> = ({
-  openingHoursData,
-  link
-}) => {
+const OpeningHoursSidebarDetails: FC<
+  Pick<LibraryType, "openingHoursData" | "link">
+> = ({ openingHoursData, link }) => {
   return (
     <div className="opening-hours-sidebar-details__content">
       <dl className="opening-hours-sidebar-details__list">

@@ -1,11 +1,8 @@
 import React, { FC } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import { LibraryType } from "./helper";
 
-type OpeningHoursSidebarSummaryType = {
-  name: string;
-};
-
-const OpeningHoursSidebarSummary: FC<OpeningHoursSidebarSummaryType> = ({
+const OpeningHoursSidebarSummary: FC<Pick<LibraryType, "name">> = ({
   name
 }) => {
   return (

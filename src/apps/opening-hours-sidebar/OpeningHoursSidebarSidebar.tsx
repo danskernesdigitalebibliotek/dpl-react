@@ -1,49 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import iconWatch from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
 import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 import OpeningHoursSidebarSummary from "./OpeningHoursSidebarSummary";
 import OpeningHoursSidebarDetails from "./OpeningHoursSidebarDetails";
+import { LibraryType } from "./helper";
 
-const libraries = [
-  {
-    id: "1",
-    name: "Hovedbiblioteket",
-    openingHoursData: [
-      { term: "Selvbetjening & læsesale", description: "7:00 - 22:00" },
-      { term: "Personlig betjening:", description: "9:00 - 16:00" },
-      { term: "Telefon (+45 30 30 30 30):", description: "7:00 - 22:00" }
-    ]
-  },
-  {
-    id: "2",
-    name: "BIBLIOTEKET Rentemestervej",
-    openingHoursData: [
-      { term: "Selvbetjening & læsesale", description: "7:00 - 22:00" },
-      { term: "Personlig betjening:", description: "9:00 - 16:00" },
-      { term: "Telefon (+45 30 30 30 30):", description: "7:00 - 22:00" }
-    ]
-  },
-  {
-    id: "3",
-    name: "Bibliotekshuset",
-    openingHoursData: [
-      { term: "Selvbetjening & læsesale", description: "7:00 - 22:00" },
-      { term: "Personlig betjening:", description: "9:00 - 16:00" },
-      { term: "Telefon (+45 30 30 30 30):", description: "7:00 - 22:00" }
-    ]
-  },
-  {
-    id: "4",
-    name: "Blågårdens Bibliotek",
-    openingHoursData: [
-      { term: "Selvbetjening & læsesale", description: "7:00 - 22:00" },
-      { term: "Personlig betjening:", description: "9:00 - 16:00" },
-      { term: "Telefon (+45 30 30 30 30):", description: "7:00 - 22:00" }
-    ]
-  }
-];
-
-const OpeningHoursSidebarSidebar = () => {
+const OpeningHoursSidebarSidebar: FC<{ libraries: LibraryType[] }> = ({
+  libraries
+}) => {
   return (
     <section className="opening-hours-sidebar">
       <header className="opening-hours-sidebar__header">
@@ -54,7 +18,7 @@ const OpeningHoursSidebarSidebar = () => {
         </div>
       </header>
 
-      {libraries.map(({ id, name, openingHoursData }, i) => (
+      {libraries.map(({ id, name, openingHoursData, link }, i) => (
         <DisclosureControllable
           showContent={i === 0}
           key={id}
@@ -65,7 +29,7 @@ const OpeningHoursSidebarSidebar = () => {
         >
           <OpeningHoursSidebarDetails
             openingHoursData={openingHoursData}
-            link="#"
+            link={link}
           />
         </DisclosureControllable>
       ))}

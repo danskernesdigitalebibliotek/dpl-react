@@ -4,6 +4,7 @@ import OpeningHoursSidebarSidebar from "./OpeningHoursSidebarSidebar";
 import OpeningHoursSidebarButtonLarge from "./OpeningHoursSidebarButtonLarge";
 import OpeningHoursSidebarButtonSmall from "./OpeningHoursSidebarButtonSmall";
 import Dialog from "../../components/dialog/Dialog";
+import useOpeningHoursSidebar from "./useOpeningHoursSidebar";
 
 export type OpeningHoursSidebarType = {
   size: "small" | "large";
@@ -13,8 +14,10 @@ const OpeningHoursSidebar: FC<OpeningHoursSidebarType> = ({ size }) => {
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
     useDialog();
 
+  const { libraries } = useOpeningHoursSidebar();
+
   const openDialog = () =>
-    openDialogWithContent(<OpeningHoursSidebarSidebar />);
+    openDialogWithContent(<OpeningHoursSidebarSidebar libraries={libraries} />);
 
   return (
     <>
