@@ -1,51 +1,34 @@
 import React, { FC } from "react";
-import iconWatch from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
-import { useText } from "../../core/utils/text";
+import useDialog from "../../components/dialog/useDialog";
+import OpeningHoursSidebarSidebar from "./OpeningHoursSidebarSidebar";
+import OpeningHoursSidebarButtonLarge from "./OpeningHoursSidebarButtonLarge";
+import OpeningHoursSidebarButtonSmall from "./OpeningHoursSidebarButtonSmall";
+import Dialog from "../../components/dialog/Dialog";
 
 export type OpeningHoursSidebarType = {
   size: "small" | "large";
 };
 
 const OpeningHoursSidebar: FC<OpeningHoursSidebarType> = ({ size }) => {
-  const t = useText();
+  const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
+    useDialog();
 
-  if (size === "large") {
-    return (
-      <div className="header__clock">
-        <div className="pagefold-parent--medium">
-          <div className="pagefold-triangle--medium" />
-        </div>
-        <button type="button" className="header__clock-items">
-          <img
-            loading="lazy"
-            width="58"
-            height="58"
-            src={iconWatch}
-            className="mb-8"
-            alt=""
-          />
-          <span className="text-small-caption">{t("openingHoursText")}</span>
-        </button>
-      </div>
-    );
-  }
+  const openDialog = () =>
+    openDialogWithContent(<OpeningHoursSidebarSidebar />);
 
   return (
-    <button
-      type="button"
-      className="header__button header__button--left-border"
-    >
-      <img
-        className="header__button-icon"
-        loading="lazy"
-        width="24"
-        height="24"
-        src={iconWatch}
-        alt="clock icon"
-      />
+    <>
+      {size === "large" && (
+        <OpeningHoursSidebarButtonLarge openDialog={openDialog} />
+      )}
+      {size === "small" && (
+        <OpeningHoursSidebarButtonSmall openDialog={openDialog} />
+      )}
 
-      <span className="header__button-text">{t("openingHoursText")}</span>
-    </button>
+      <Dialog isSidebar closeDialog={closeDialog} ref={dialogRef}>
+        {dialogContent}
+      </Dialog>
+    </>
   );
 };
 
