@@ -12,6 +12,11 @@ export default {
       name: "Opening hours text",
       defaultValue: "Opening hours",
       control: { type: "text" }
+    },
+    openingHoursSidebarTodayText: {
+      name: "Opening hours today text",
+      defaultValue: "Today (@toDayString)",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof OpeningHoursSidebar>;

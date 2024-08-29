@@ -3,18 +3,28 @@ import iconWatch from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 import OpeningHoursSidebarSummary from "./OpeningHoursSidebarSummary";
 import OpeningHoursSidebarDetails from "./OpeningHoursSidebarDetails";
-import { LibraryType } from "./helper";
+import { LibraryType, toDayString } from "./helper";
+import { useText } from "../../core/utils/text";
 
 const OpeningHoursSidebarSidebar: FC<{ libraries: LibraryType[] }> = ({
   libraries
 }) => {
+  const t = useText();
   return (
     <section className="opening-hours-sidebar">
       <header className="opening-hours-sidebar__header">
         <img src={iconWatch} className="opening-hours-sidebar__icon" alt="" />
         <div className="opening-hours-sidebar__texts">
-          <h2 className="opening-hours-sidebar__title">Åbningstider</h2>
-          <p className="opening-hours-sidebar__date">I dag (fredag 28. maj)</p>
+          <h2 className="opening-hours-sidebar__title">
+            {t("openingHoursText")}
+          </h2>
+          <p className="opening-hours-sidebar__date">
+            {t("openingHoursSidebarTodayText", {
+              placeholders: {
+                "@toDayString": toDayString()
+              }
+            })}
+          </p>
         </div>
       </header>
 

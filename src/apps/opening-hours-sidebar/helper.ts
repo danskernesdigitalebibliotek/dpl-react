@@ -1,6 +1,9 @@
 import { groupBy } from "lodash";
 import dayjs from "dayjs";
+import "dayjs/locale/da";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
+
+dayjs.locale("da");
 
 type OpeningHoursDataType = {
   term: string;
@@ -43,6 +46,7 @@ export const convertGroupBranchesToLibrariesList = (
   });
 };
 
-export const formatDateForAPI = (date: Date): string => {
-  return dayjs(date).format("YYYY-MM-DD");
-};
+export const formatDateForAPI = (date: Date): string =>
+  dayjs(date).format("YYYY-MM-DD");
+
+export const toDayString = (): string => dayjs().format("dddd D. MMMM");
