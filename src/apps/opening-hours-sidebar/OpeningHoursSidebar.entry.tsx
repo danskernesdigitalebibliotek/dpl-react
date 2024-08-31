@@ -11,8 +11,14 @@ interface OpeningHoursClockEntryTextProps {
   openingHoursSidebarTodayText: string;
 }
 
+interface OpeningHoursClockEntryConfigProps {
+  openingHoursSidebarBranchesConfig: string;
+}
+
 const OpeningHoursSidebarEntry: FC<
-  OpeningHoursClockEntryTextProps & OpeningHoursSidebarType
+  OpeningHoursClockEntryTextProps &
+    OpeningHoursSidebarType &
+    OpeningHoursClockEntryConfigProps
 > = ({ size }) => {
   return <OpeningHoursSidebar size={size} />;
 };

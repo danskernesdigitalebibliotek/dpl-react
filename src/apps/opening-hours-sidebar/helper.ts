@@ -1,4 +1,3 @@
-import { groupBy } from "lodash";
 import dayjs from "dayjs";
 import "dayjs/locale/da";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
@@ -11,37 +10,67 @@ type OpeningHoursDataType = {
 };
 
 export type LibraryType = {
-  id: string;
+  branch_id: string;
   name: string;
   openingHoursData: OpeningHoursDataType[];
   link: string;
 };
 
-export type GroupedOpeningHourstype = Record<
-  string,
-  DplOpeningHoursListGET200Item[]
->;
-
-export const groupByBranchId = (
-  events: DplOpeningHoursListGET200Item[]
-): GroupedOpeningHourstype => {
-  return groupBy(events, "branch_id");
+export type BranchConfigType = {
+  branch_id: string;
+  link: string;
+  name: string;
+  promoted: boolean;
 };
 
-export const convertGroupBranchesToLibrariesList = (
-  input: GroupedOpeningHourstype
+// Sort branches by promoted status and name
+const sortBranches = (branches: BranchConfigType[]): BranchConfigType[] =>
+  branches.sort(
+    (a, b) =>
+      Number(b.promoted) - Number(a.promoted) || a.name.localeCompare(b.name)
+  );
+
+const filterOpeningHoursByBranchId = (
+  branch_id: string,
+  openingHours: DplOpeningHoursListGET200Item[]
+): DplOpeningHoursListGET200Item[] =>
+  openingHours.filter((item) => item.branch_id === Number(branch_id));
+
+const sortOpeningHours = (
+  openingHours: DplOpeningHoursListGET200Item[]
+): DplOpeningHoursListGET200Item[] =>
+  openingHours.sort(
+    (a, b) =>
+      a.start_time.localeCompare(b.start_time) ||
+      a.end_time.localeCompare(b.end_time)
+  );
+
+const mapOpeningHoursData = (
+  openingHours: DplOpeningHoursListGET200Item[]
+): OpeningHoursDataType[] =>
+  openingHours.map((item) => ({
+    term: item.category.title,
+    description: `${item.start_time} - ${item.end_time}`
+  }));
+
+export const convertBranchesToLibraries = (
+  branches: BranchConfigType[],
+  openingHours: DplOpeningHoursListGET200Item[]
 ): LibraryType[] => {
-  return Object.entries(input).map(([branchId, events]) => {
-    const openingHoursData = events.map((event) => ({
-      term: event.category.title,
-      description: `${event.start_time} - ${event.end_time}`
-    }));
+  const sortedBranches = sortBranches(branches);
+  return sortedBranches.map(({ branch_id, name, link }) => {
+    const branchOpeningHours = filterOpeningHoursByBranchId(
+      branch_id,
+      openingHours
+    );
+    const sortedOpeningHours = sortOpeningHours(branchOpeningHours);
+    const openingHoursData = mapOpeningHoursData(sortedOpeningHours);
 
     return {
-      id: branchId,
-      name: `Branch ${branchId}`, // Placeholder name
+      branch_id,
+      name,
       openingHoursData,
-      link: "#" // Placeholder URL
+      link
     };
   });
 };

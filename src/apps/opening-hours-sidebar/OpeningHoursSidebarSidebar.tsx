@@ -28,11 +28,11 @@ const OpeningHoursSidebarSidebar: FC<{ libraries: LibraryType[] }> = ({
         </div>
       </header>
 
-      {libraries.map(({ id, name, openingHoursData, link }, i) => (
+      {libraries.map(({ branch_id, name, openingHoursData, link }, i) => (
         <DisclosureControllable
           showContent={i === 0}
-          key={id}
-          id={id}
+          key={branch_id}
+          id={branch_id}
           detailsClassName="opening-hours-sidebar-details"
           summaryClassName="opening-hours-sidebar-summary"
           summary={<OpeningHoursSidebarSummary name={name} />}

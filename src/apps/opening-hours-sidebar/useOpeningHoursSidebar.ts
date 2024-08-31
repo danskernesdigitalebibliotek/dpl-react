@@ -1,11 +1,20 @@
 import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
+import { useConfig } from "../../core/utils/config";
 import {
   formatDateForAPI,
-  groupByBranchId,
-  convertGroupBranchesToLibrariesList
+  convertBranchesToLibraries,
+  BranchConfigType
 } from "./helper";
 
 const useOpeningHoursSidebar = () => {
+  const config = useConfig();
+  const branches = config<BranchConfigType[]>(
+    "openingHoursSidebarBranchesConfig",
+    {
+      transformer: "jsonParse"
+    }
+  );
+
   const toDayAndDate = formatDateForAPI(new Date());
   const {
     data: openingHours,
@@ -24,8 +33,7 @@ const useOpeningHoursSidebar = () => {
     };
   }
 
-  const groupedOpeningHours = groupByBranchId(openingHours);
-  const libraries = convertGroupBranchesToLibrariesList(groupedOpeningHours);
+  const libraries = convertBranchesToLibraries(branches, openingHours);
 
   return {
     libraries,
