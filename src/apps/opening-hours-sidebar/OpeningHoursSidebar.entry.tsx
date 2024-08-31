@@ -9,6 +9,7 @@ import { withConfig } from "../../core/utils/config";
 interface OpeningHoursClockEntryTextProps {
   openingHoursText: string;
   openingHoursSidebarTodayText: string;
+  openingHoursSidebarLinkText: string;
 }
 
 interface OpeningHoursClockEntryConfigProps {
