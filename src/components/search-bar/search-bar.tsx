@@ -24,6 +24,7 @@ export interface SearchBarProps {
   searchNoValidCharactersErrorText?: string;
   searchHeaderDropdownText?: string;
   searchHeaderInputLabelText?: string;
+  isEnabledAdvancedSearch: boolean;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -35,7 +36,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
   setQWithoutQuery,
   isHeaderDropdownOpen,
   setIsHeaderDropdownOpen,
-  redirectUrl
+  redirectUrl,
+  isEnabledAdvancedSearch
 }) => {
   const t = useText();
   const handleDropdownMenu = () => {
@@ -91,30 +93,32 @@ const SearchBar: React.FC<SearchBarProps> = ({
           }
         }}
       />
-      <input
-        type="image"
-        src={expandIcon}
-        alt={t("searchHeaderDropdownText")}
-        className={clsx("header__menu-dropdown-icon", {
-          "header__menu-dropdown-icon--expanded": isHeaderDropdownOpen
-        })}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          handleDropdownMenu();
-        }}
-        onKeyUp={(e) => {
-          if (e.key === "Enter" || e.key === "ArrowDown") {
+      {isEnabledAdvancedSearch ? (
+        <input
+          type="image"
+          src={expandIcon}
+          alt={t("searchHeaderDropdownText")}
+          className={clsx("header__menu-dropdown-icon", {
+            "header__menu-dropdown-icon--expanded": isHeaderDropdownOpen
+          })}
+          onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             handleDropdownMenu();
-          }
-        }}
-        tabIndex={0}
-        aria-label={t("searchHeaderDropdownText")}
-        data-cy="search-header-dropdown-icon"
-        aria-expanded={isHeaderDropdownOpen}
-      />
+          }}
+          onKeyUp={(e) => {
+            if (e.key === "Enter" || e.key === "ArrowDown") {
+              e.preventDefault();
+              e.stopPropagation();
+              handleDropdownMenu();
+            }
+          }}
+          tabIndex={0}
+          aria-label={t("searchHeaderDropdownText")}
+          data-cy="search-header-dropdown-icon"
+          aria-expanded={isHeaderDropdownOpen}
+        />
+      ) : null}
     </>
   );
 };

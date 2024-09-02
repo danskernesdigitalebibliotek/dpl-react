@@ -30,7 +30,11 @@ import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 import useFilterHandler from "../search-result/useFilterHandler";
 
-const SearchHeader: React.FC = () => {
+interface SearchHeaderProps {
+  isEnabledAdvancedSearch: boolean;
+}
+
+const SearchHeader: React.FC<SearchHeaderProps> = ({isEnabledAdvancedSearch}) => {
   const t = useText();
   const u = useUrls();
   const searchUrl = u("searchUrl");
