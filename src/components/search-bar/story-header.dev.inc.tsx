@@ -6,6 +6,7 @@ import heartIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import watchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
 import crossIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross-medium.svg";
 import expandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import { useEffect, useState } from "react";
 
 export interface StoryHeaderProps {
   search?: React.ReactNode;
@@ -20,6 +21,28 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
   // please update it to match the design system
   // NOTE: icons need to be imported here + the search bar needs to be
   // replaced by {children}
+  const [isEnabledAdvancedSearch, setIsEnabledAdvancedSearch] = useState(true);
+  const headerMenuRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (headerMenuRef.current) {
+      const { children } = headerMenuRef.current;
+
+      Array.from(children).forEach((child) => {
+        const advancedSearchNode = Array.from(child.attributes).find(
+          (attr) => attr.name === "data-advanced-search-enabled"
+        );
+
+        const nodeAttr = Array.from(child.attributes).map((attr) => attr.name);
+
+        setIsEnabledAdvancedSearch(
+          nodeAttr.includes("data-dpl-app") &&
+            nodeAttr.includes("data-advanced-search-enabled") &&
+            advancedSearchNode?.nodeValue === "true"
+        );
+      });
+    }
+  }, []);
   return (
     <div>
       <header className="header">
@@ -34,7 +57,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
             </div>
           </a>
         </div>
-        <div className="header__menu">
+        <div ref={headerMenuRef} className="header__menu">
           <nav
             className="header__menu-first"
             aria-label="Primary site navigation"
@@ -116,7 +139,8 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
               <span className="header__button-text">Liked</span>
             </a>
           </nav>
-          {search || (
+          {(React.isValidElement(search) &&
+            React.cloneElement(search, { isEnabledAdvancedSearch })) || (
             <div className="header__menu-search">
               <input
                 name="q"
@@ -150,64 +174,53 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
           </div>
         </div>
       </header>
-      <div className="header-sidebar-nav" data-open="closed">
-        <div className="header-sidebar-nav__background-wrapper">
-          <div className="header-sidebar-nav__menu-wrapper">
-            <div
-              className="header-sidebar-nav__close-menu-button"
-              id="js-header-sidebar-nav__close-menu-button"
-              tabIndex={0}
-              role="button"
-              aria-label="Close menu"
-            >
-              <img src={crossIcon} alt="Close menu" />
-            </div>
-            <nav aria-label="Sidebar site navigation">
-              <ul className="header__menu-navigation">
-                <li className="header__menu-navigation-item">
-                  <a
-                    href="/"
-                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
-                  >
-                    Det sker
-                  </a>
-                </li>
-                <li className="header__menu-navigation-item">
-                  <a
-                    href="/"
-                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
-                  >
-                    Biblioteker &amp; åbningstider
-                  </a>
-                </li>
-                <li className="header__menu-navigation-item">
-                  <a
-                    href="/"
-                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
-                  >
-                    Digitale tilbud
-                  </a>
-                </li>
-                <li className="header__menu-navigation-item">
-                  <a
-                    href="/"
-                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
-                  >
-                    Litteratur
-                  </a>
-                </li>
-                <li className="header__menu-navigation-item">
-                  <a
-                    href="/"
-                    className="header__menu-navigation-link text-body-medium-regular hide-linkstyle"
-                  >
-                    Børn &amp; forældre
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+      <div id="header__overlay">
+        <div className="header__overlay-main">
+          <img id="header__menu--close" src={crossIcon} alt="close" />
+          <ul className="header__overlay-menu">
+            <li className="header__overlay-menu-item">
+              <a
+                href="/"
+                className="header__overlay-menu-link text-body-large hide-linkstyle"
+              >
+                Det sker
+              </a>
+            </li>
+            <li className="header__overlay-menu-item">
+              <a
+                href="/"
+                className="header__overlay-menu-link text-body-large hide-linkstyle"
+              >
+                Biblioteker &amp; åbningstider
+              </a>
+            </li>
+            <li className="header__overlay-menu-item">
+              <a
+                href="/"
+                className="header__overlay-menu-link text-body-large hide-linkstyle"
+              >
+                Digitale tilbud
+              </a>
+            </li>
+            <li className="header__overlay-menu-item">
+              <a
+                href="/"
+                className="header__overlay-menu-link text-body-large hide-linkstyle"
+              >
+                Litteratur
+              </a>
+            </li>
+            <li className="header__overlay-menu-item">
+              <a
+                href="/"
+                className="header__overlay-menu-link text-body-large hide-linkstyle"
+              >
+                Børn &amp; forældre
+              </a>
+            </li>
+          </ul>
         </div>
+        <div className="header__overlay-backdrop" />
       </div>
     </div>
   );
