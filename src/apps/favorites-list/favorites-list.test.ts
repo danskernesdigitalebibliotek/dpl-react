@@ -50,15 +50,15 @@ describe("Favorites list", () => {
     cy.get(".cover").should("be.visible");
 
     // 2.a. Header "Favorites"
-    cy.get(".card-list-page").find("h1").should("have.text", "Favorites");
+    cy.get(".content-list-page").find("h1").should("have.text", "Favorites");
     // Number of materials on list
-    cy.get(".card-list-page")
+    cy.get(".content-list-page")
       .find("p")
       .eq(0)
       .should("have.text", "3 materials");
 
     // 2.f. Link on material to work page
-    cy.get(".card-list-page")
+    cy.get(".content-list-page")
       .find(".card-list-item")
       .eq(0)
       .find("a")
@@ -70,7 +70,9 @@ describe("Favorites list", () => {
     cy.visit(
       "/iframe.html?id=apps-favorite-list--favorites-list&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
-    cy.get(".card-list-page").find(".card-list-item").should("have.length", 2);
+    cy.get(".content-list-page")
+      .find(".card-list-item")
+      .should("have.length", 2);
   });
 });
 

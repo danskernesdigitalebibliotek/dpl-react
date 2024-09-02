@@ -11,7 +11,6 @@
   "userMenuAuthenticated": "user-modal-authenticated",
   "userMenuAnonymous": "user-modal-anonymous",
   "userMenuUnregistered": "user-modal-unregistered",
-  "blockedModal": "blocked-modal",
   "reservationsReady": "reservations-ready",
   "reservationsQueued": "reservations-queued"
 }

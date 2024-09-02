@@ -1,29 +1,37 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import BlockedTypes from "../../../core/utils/types/BlockedTypes";
 import { useUrls } from "../../../core/utils/url";
 import Link from "../../atoms/links/Link";
-import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
+import { useSetHasBeenVisible } from "../../../core/blockedModal.slice";
+import { useBlockedModalHasBeenVisible } from "../helper";
 
 interface BlockedModalProps {
-  blockedStatus: string;
+  blockedStatus: BlockedTypes;
 }
+
+export const getBlockedModalId = () => "blocked-patron";
 
 const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
   const t = useText();
   const u = useUrls();
   const blockedPatronELinkUrl = u("blockedPatronELinkUrl", true);
-  const { blockedModal } = getModalIds();
+  const modalId = getBlockedModalId();
+  const setHasBeenVisible = useSetHasBeenVisible();
+  // Used to check whether the modal has been opened by another component,
+  // the modal should really only be showed once.
+  const hasBeenVisible = useBlockedModalHasBeenVisible();
 
-  // If the user isn't actually blocked, don't render the modal.
-  if (!blockedStatus || blockedStatus === "") {
-    return null;
-  }
+  useEffect(() => {
+    if (!hasBeenVisible) {
+      setHasBeenVisible();
+    }
+  }, [blockedStatus, hasBeenVisible, setHasBeenVisible]);
 
   return (
     <Modal
-      modalId={blockedModal as string}
+      modalId={modalId}
       classNames="modal-cta modal-padding"
       closeModalAriaLabelText={t(`blockedPatronCloseModalAriaLabelText`)}
       screenReaderModalDescriptionText={t(

@@ -13,6 +13,7 @@ import DashboardNotificationList from "../../dashboard/dashboard-notification-li
 import useReservations from "../../../core/utils/useReservations";
 import useLoans from "../../../core/utils/useLoans";
 import { usePatronData } from "../../../core/utils/helpers/usePatronData";
+import { resetPersistedData } from "../../../core/store";
 
 interface MenuLoggedInContentProps {
   pageSize: number;
@@ -111,6 +112,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
         <div className="modal-profile__btn-logout mx-32">
           <Link
             className="btn-primary btn-filled btn-large arrow__hover--right-small"
+            onClick={() => resetPersistedData()}
             href={logoutUrl}
           >
             {t("menuLogOutText")}
