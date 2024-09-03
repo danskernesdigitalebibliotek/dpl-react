@@ -53,7 +53,7 @@
     "@babel/preset-typescript": "^7.24.7",
     "@csstools/postcss-sass": "^5.1.1",
     "@cypress/browserify-preprocessor": "^3.0.2",
-    "@cypress/code-coverage": "^3.12.45",
+    "@cypress/code-coverage": "^3.12.46",
     "@graphql-codegen/add": "^3.1.1",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/introspection": "^2.1.1",
@@ -75,8 +75,8 @@
     "@testing-library/react": "^14.2.2",
     "@testing-library/react-hooks": "^8.0.1",
     "@tsconfig/create-react-app": "^1.0.2",
-    "@types/node": "^20.16.1",
-    "@types/react": "^18.3.4",
+    "@types/node": "^20.16.3",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@types/react-flatpickr": "^3.8.11",
     "@types/react-redux": "^7.1.24",
@@ -88,7 +88,7 @@
     "babel-plugin-istanbul": "^7.0.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "caniuse-lite": "^1.0.30001653",
+    "caniuse-lite": "^1.0.30001655",
     "change-case-all": "^2.1.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.2",
@@ -117,7 +117,7 @@
     "mutationobserver-shim": "^0.3.7",
     "nyc": "^17.0.0",
     "orval": "^6.26.0",
-    "postcss": "^8.4.41",
+    "postcss": "^8.4.43",
     "postcss-cli": "^11.0.0",
     "postcss-loader": "^8.1.1",
     "postcss-scss": "^4.0.9",
@@ -145,7 +145,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "2024.33.0-a94d6181a38deec2ab5b3723b9436372c0027d4a",
+    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.36.0-b82b94df2d6d6d798fa5c695a2622133b60cd16d",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",
@@ -176,6 +176,6 @@
     "unfetch": "^4.2.0"
   },
   "peerDependencies": {
-    "postcss": "^8.4.41"
+    "postcss": "^8.4.43"
   }
 }
