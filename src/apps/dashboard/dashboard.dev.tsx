@@ -12,10 +12,12 @@ import deleteReservationModalArgs from "../../core/storybook/deleteReservationMo
 import reservationListArgs from "../../core/storybook/reservationListArgs";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import blockedArgs from "../../core/storybook/blockedArgs";
 
 export default {
   title: "Apps / Dashboard",
   argTypes: {
+    ...blockedArgs,
     ...serviceUrlArgs,
     ...groupModalArgs,
     ...loanGroupModalArgs,

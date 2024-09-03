@@ -10,7 +10,6 @@ import {
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 import textReducer from "./text.slice";
-import userReducer from "./user.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
 import filterReducer from "./filter.slice";
@@ -26,7 +25,7 @@ import extractServiceBaseUrls from "./utils/reduxMiddleware/extractServiceBaseUr
 const persistConfig = {
   key: "dpl-react",
   storage,
-  blacklist: ["text", "url", "modal", "config", "blockedModal"]
+  blacklist: ["text", "url", "modal", "config"]
 };
 
 export const store = configureStore({
@@ -37,7 +36,6 @@ export const store = configureStore({
   reducer: persistReducer(
     persistConfig,
     combineReducers({
-      user: userReducer,
       text: textReducer,
       modal: modalReducer,
       url: urlReducer,
@@ -56,3 +54,5 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export type TypedDispatch = ThunkDispatch<RootState, never, never>;
 export const useSelector: TypedUseSelectorHook<RootState> = rawUseSelector;
+
+export const resetPersistedData = async () => persistor.purge();
