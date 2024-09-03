@@ -39,13 +39,15 @@ const queryClient = new QueryClient({
   }
 });
 
-const Store = ({ children }) => (
-  <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
+function Store({ children }: { children: React.ReactNode }) {
+  return (
+    <Provider store={store}>
+      {/* <QueryClientProvider client={queryClient}> */}
       <PersistGate persistor={persistor}>{children}</PersistGate>
-    </QueryClientProvider>
-  </Provider>
-);
+      {/* </QueryClientProvider> */}
+    </Provider>
+  );
+}
 
 Store.propTypes = {
   children: PropTypes.node.isRequired

@@ -1,4 +1,4 @@
-export default {
+export const argTypes = {
   alertErrorCloseText: {
     name: "Alert error close text",
     defaultValue: "close",
@@ -42,9 +42,7 @@ export default {
   },
   materialDetailsCloseModalAriaLabelText: {
     defaultValue: "Close material details modal",
-    control: {
-      type: "text"
-    }
+    control: { type: "text" }
   },
   findOnShelfExpandButtonExplanationText: {
     name: "Find on shelf expand button explanation text",
@@ -58,9 +56,7 @@ export default {
   materialDetailsModalAriaDescriptionText: {
     defaultValue:
       "This modal shows material details, and makes it possible to renew a material, of that material is renewable",
-    control: {
-      type: "text"
-    }
+    control: { type: "text" }
   },
   changePickupLocationText: {
     name: "Change pickup location text",
@@ -150,15 +146,11 @@ export default {
   },
   addToFavoritesAriaLabelText: {
     defaultValue: "Add @title to favorites list",
-    control: {
-      type: "text"
-    }
+    control: { type: "text" }
   },
   removeFromFavoritesAriaLabelText: {
     defaultValue: "Remove @title from favorites list",
-    control: {
-      type: "text"
-    }
+    control: { type: "text" }
   },
   acceptModalAriaDescriptionText: {
     defaultValue: "accept modal aria description text",
@@ -213,6 +205,62 @@ export default {
     defaultValue: "Length of 4 characters",
     control: { type: "text" }
   }
+};
+
+export default {
+  alertErrorCloseText: "close",
+  alertErrorMessageText: "An error occurred",
+  multiselectAllOptionText: "All",
+  groupModalGoToMaterialAriaLabelText: "Go to @label material details",
+  availabilityAvailableText: "Available",
+  availabilityUnavailableText: "Unavailable",
+  loansNotOverdueText: "Longer return time",
+  patronContactInfoBodyText: "Patron contact info body text",
+  pauseReservationModalBelowInputsText:
+    "Pause reservation modal below inputs text",
+  materialDetailsCloseModalAriaLabelText: "Close material details modal",
+  findOnShelfExpandButtonExplanationText: "This button opens a modal",
+  reservationsStillInQueueForText: "Still in queue",
+  materialDetailsModalAriaDescriptionText:
+    "This modal shows material details, and makes it possible to renew a material, of that material is renewable",
+  changePickupLocationText: "Change pickup location",
+  changeInterestPeriodText: "Change interest period",
+  modalReservationFormPickupLabelText:
+    "Change pickup location for your reservation.",
+  screenReaderModalDescriptionPickupText: "Change pickup location modal",
+  closeModalAriaLabelPickupText: "Close pickup location modal",
+  modalReservationFormNoInterestAfterHeaderTitleText: "Change date of interest",
+  modalReservationFormNoInterestAfterHeaderDescriptionText:
+    "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
+  modalReservationFormNoInterestAfterLabelText:
+    "Change the amount of time after which you're no longer interested in this material.",
+  screenReaderModalDescriptionInterestPeriodText:
+    "Change interest period modal",
+  screenReaderModalDescriptionEmailText: "Change email modal",
+  screenReaderModalDescriptionSmsText: "Change mobile number modal",
+  closeModalAriaLabelInterestPeriodText: "Close interest period modal",
+  closeModalAriaLabelSmsText: "Close change mobile number modal",
+  closeModalAriaLabelEmailText: "Close change email modal",
+  deleteReservationModalButtonText: "Ok",
+  acceptModalAriaLabelText: "accept modal aria label text",
+  pauseReservationModalAriaDescriptionText:
+    "This modal makes it possible to pause your physical reservations",
+  addToFavoritesAriaLabelText: "Add @title to favorites list",
+  removeFromFavoritesAriaLabelText: "Remove @title from favorites list",
+  acceptModalAriaDescriptionText: "accept modal aria description text",
+  acceptModalHeaderText: "Hov, dit gebyr forhøjes!",
+  acceptModalBodyText:
+    "Fornyer du dine lån, forhøjes dit gebyr. Alle materialer ikke kan fornys og lånet splittes derfor op. Ved overskredne lån modtager du et gebyr pr. lån og derfor forhøjes dit samlede gebyr, hvis du vælger at gå videre med at fornye.",
+  acceptModalAreYouSureText: "Er du sikker på du vil fornye?",
+  acceptModalAcceptButtonText: "Ja, forny mulige",
+  acceptModalCancelButtonText: "Annuller fornyelse",
+  isLoadingHeartText: "Indlæser",
+  reservationPickUpLatestText: "Pick up before @date",
+  reservationListReadyText: "Ready",
+  reservationListDigitalPickupText: "Online access",
+  errorBoundaryAlertBodyButtonAriaText: "Close error message",
+  loadingText: "Loading...",
+  pincodeSectionDescriptionText: "Length of 4 characters"
 };
 
 export interface GlobalEntryTextProps {

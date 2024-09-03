@@ -1,24 +1,13 @@
-import { Provider } from "react-redux";
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 import AdvancedSearchEntry from "./AdvancedSearch.entry";
 
-export const Default = (args) => {
-  console.log({ args });
-
-  return <AdvancedSearchEntry {...args} />;
-};
-
 const meta: Meta<typeof AdvancedSearchEntry> = {
   title: "Apps / Advanced Search",
   component: AdvancedSearchEntry,
   argTypes: {
-    ...serviceUrlArgs,
-    ...globalTextArgs,
-    ...globalConfigArgs,
     pageSizeDesktop: {
       name: "Number of search result items on desktop",
       control: { type: "number", value: 50 },
@@ -315,3 +304,200 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
 };
 
 export default meta;
+
+type Story = StoryObj<typeof AdvancedSearchEntry>;
+
+export const Primary: Story = {
+  args: {
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    pageSizeDesktop: 50,
+    pageSizeMobile: 20,
+    materialUrl: "/work/:workid",
+    authUrl: "",
+    searchUrl: "/search",
+    etAlText: "et al.",
+    byAuthorText: "By",
+    showMoreText: "show more",
+    resultPagerStatusText: "Showing @itemsShown out of @hitcount results",
+    advancedSearchInputLabelText: "Input field @inputNumber",
+    numberDescriptionText: "Nr.",
+    inSeriesText: "in series",
+    showingMaterialsText: "Showing materials (@hitcount)",
+    noSearchResultText: "Your search has 0 results",
+    blacklistedPickupBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    blacklistedAvailabilityBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    blacklistedSearchBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    branchesConfig: `[
+      {
+        branchId: "DK-775120",
+        title: "Højbjerg"
+      },
+      {
+        branchId: "DK-775122",
+        title: "Beder-Malling"
+      },
+      {
+        branchId: "DK-775144",
+        title: "Gellerup"
+      },
+      {
+        branchId: "DK-775167",
+        title: "Lystrup"
+      },
+      {
+        branchId: "DK-775146",
+        title: "Harlev"
+      },
+      {
+        branchId: "DK-775168",
+        title: "Skødstrup"
+      },
+      {
+        branchId: "FBS-751010",
+        title: "Arresten"
+      },
+      {
+        branchId: "DK-775147",
+        title: "Hasle"
+      },
+      {
+        branchId: "FBS-751032",
+        title: "Må ikke benyttes"
+      },
+      {
+        branchId: "FBS-751031",
+        title: "Fjernlager 1"
+      },
+      {
+        branchId: "DK-775126",
+        title: "Solbjerg"
+      },
+      {
+        branchId: "FBS-751030",
+        title: "ITK"
+      },
+      {
+        branchId: "DK-775149",
+        title: "Sabro"
+      },
+      {
+        branchId: "DK-775127",
+        title: "Tranbjerg"
+      },
+      {
+        branchId: "DK-775160",
+        title: "Risskov"
+      },
+      {
+        branchId: "DK-775162",
+        title: "Hjortshøj"
+      },
+      {
+        branchId: "DK-775140",
+        title: "Åby"
+      },
+      {
+        branchId: "FBS-751009",
+        title: "Fjernlager 2"
+      },
+      {
+        branchId: "FBS-751029",
+        title: "Stadsarkivet"
+      },
+      {
+        branchId: "FBS-751027",
+        title: "Intern"
+      },
+      {
+        branchId: "FBS-751026",
+        title: "Fælles undervejs"
+      },
+      {
+        branchId: "FBS-751025",
+        title: "Fællessekretariatet"
+      },
+      {
+        branchId: "DK-775133",
+        title: "Bavnehøj"
+      },
+      {
+        branchId: "FBS-751024",
+        title: "Fjernlånte materialer"
+      },
+      {
+        branchId: "DK-775100",
+        title: "Hovedbiblioteket"
+      },
+      {
+        branchId: "DK-775170",
+        title: "Trige"
+      },
+      {
+        branchId: "DK-775150",
+        title: "Tilst"
+      },
+      {
+        branchId: "DK-775130",
+        title: "Viby"
+      },
+      {
+        branchId: "DK-775164",
+        title: "Egå"
+      }
+    ]`,
+    loadingText: "Loading",
+    advancedSearchLinkToThisSearchText: "Link to this search",
+    advancedSearchAllIndexesText: "All indexes",
+    advancedSearchCreatorText: "Creator",
+    advancedSearchSubjectText: "Subject",
+    advancedSearchGenreText: "Genre",
+    advancedSearchLanguageText: "Language",
+    advancedSearchDateText: "Date",
+    advancedSearchMainCreatorText: "Main creator",
+    advancedSearchMainTitleText: "Main title",
+    advancedSearchSourceText: "Source",
+    advancedSearchDateFirstEditionText: "Edition",
+    advancedSearchDecimalDk5Text: "DK5",
+    advancedSearchTypeText: "Type",
+    advancedSearchAudienceText: "Audience",
+    advancedSearchPublisherText: "Publisher",
+    advancedSearchIdentifierText: "Identifier",
+    advancedSearchAcSourceText: "Source",
+    advancedSearchAddRowText: "Add row",
+    advancedSearchInputPlaceholderText: "Search term",
+    advancedSearchTitleText: "Advanced search",
+    advancedSearchPreviewHeadlineText: "CQL search string",
+    advancedSearchPreviewEmptyText: "-",
+    advancedSearchResetText: "Reset",
+    advancedSearchCopyStringText: "Copy CQL",
+    advancedSearchEditCqlText: "Edit CQL",
+    advancedSearchSearchButtonText: "Search",
+    loadingResultsText: "Loading results...",
+    toAdvancedSearchButtonText: "Back to advanced search",
+    cqlSearchTitleText: "CQL search",
+    copiedToClipboardText: "Copied",
+    copiedLinkToThisSearchText: "Link copied to clipboard",
+    clauseAndText: "AND",
+    clauseOrText: "OR",
+    clauseNotText: "NOT",
+    advancedSearchFilterMaterialTypeText: "Material Type",
+    advancedSearchFilterLiteratureFormText: "Literature form",
+    advancedSearchFilterAccessText: "Accessibility",
+    advancedSearchFilterBookText: "Book",
+    advancedSearchFilterEbookText: "Ebook",
+    advancedSearchFilterAudioBookText: "Audio book",
+    advancedSearchFilterArticleText: "Article",
+    advancedSearchFilterMovieText: "Movie",
+    advancedSearchFilterMusicText: "Music",
+    advancedSearchFilterPhysicalText: "Physical",
+    advancedSearchFilterOnlineText: "Online",
+    advancedSearchFilterFictionText: "Fiction",
+    advancedSearchFilterNonFictionText: "Non-fiction",
+    advancedSearchFilterHoldingStatusText: "Holding Status On Shelf"
+  }
+};
