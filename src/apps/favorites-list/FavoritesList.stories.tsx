@@ -1,87 +1,99 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-import FavoritesListEntry, {
-  FavoritesListEntryProps
-} from "./FavoritesList.entry";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import type { Meta, StoryObj } from "@storybook/react";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
+import FavoritesListEntry from "./FavoritesList.entry";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
-export default {
+const meta: Meta<typeof FavoritesListEntry> = {
   title: "Apps / Favorite list",
   component: FavoritesListEntry,
   argTypes: {
-    ...serviceUrlArgs,
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...serviceUrlArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     pageSizeDesktop: {
-      name: "Number of favorite items on desktop",
-      defaultValue: 50,
+      description: "Number of favorite items on desktop",
       control: { type: "number" }
     },
     blacklistedAvailabilityBranchesConfig: {
-      name: "Blacklisted Availability branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      description: "Blacklisted Availability branches",
       control: { type: "text" }
     },
     searchUrl: {
-      name: "Path to the search result page",
-      defaultValue: "/search",
+      description: "Path to the search result page",
       control: { type: "text" }
     },
     pageSizeMobile: {
-      name: "Number of favorite items on mobile",
-      defaultValue: 20,
+      description: "Number of favorite items on mobile",
       control: { type: "number" }
     },
     showMoreText: {
-      name: "Show more Text",
-      defaultValue: "show more",
+      description: "Show more Text",
       control: { type: "text" }
     },
     resultPagerStatusText: {
-      name: "Result pager status text",
-      defaultValue: "Showing @itemsShown out of @hitcount results",
+      description: "Result pager status text",
       control: { type: "text" }
     },
     materialUrl: {
-      name: "Path to the material page",
-      defaultValue: "/work/:workid",
+      description: "Path to the material page",
       control: { type: "text" }
     },
     favoritesListMaterialsText: {
-      defaultValue: "@count materials",
       control: { type: "text" }
     },
     favoritesListHeaderText: {
-      defaultValue: "Favorites",
       control: { type: "text" }
     },
     byAuthorText: {
-      defaultValue: "By",
       control: { type: "text" }
     },
     etAlText: {
-      defaultValue: "...",
       control: { type: "text" }
     },
     favoritesListEmptyText: {
-      defaultValue: "Your favorites list is empty",
       control: { type: "text" }
     },
     numberDescriptionText: {
-      name: "Number description",
-      defaultValue: "Nr.",
+      description: "Number description",
       control: { type: "text" }
     },
     inSeriesText: {
-      name: "In series",
-      defaultValue: "in series",
+      description: "In series",
       control: { type: "text" }
     }
   }
-} as Meta<typeof FavoritesListEntry>;
+};
 
-export const FavoritesList: StoryFn<typeof FavoritesListEntry> = (
-  args: FavoritesListEntryProps
-) => <FavoritesListEntry {...args} />;
+export default meta;
+
+type Story = StoryObj<typeof FavoritesListEntry>;
+
+export const Primary: Story = {
+  args: {
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    pageSizeDesktop: 50,
+    blacklistedAvailabilityBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    searchUrl: "/search",
+    pageSizeMobile: 20,
+    showMoreText: "show more",
+    resultPagerStatusText: "Showing @itemsShown out of @hitcount results",
+    materialUrl: "/work/:workid",
+    favoritesListMaterialsText: "@count materials",
+    favoritesListHeaderText: "Favorites",
+    byAuthorText: "By",
+    etAlText: "...",
+    favoritesListEmptyText: "Your favorites list is empty",
+    numberDescriptionText: "Nr.",
+    inSeriesText: "in series"
+  }
+};
