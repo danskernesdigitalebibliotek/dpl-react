@@ -16,12 +16,14 @@ interface CreatePatronConfigProps {
   textNotificationsEnabledConfig: string;
 }
 interface CreatePatronUrlProps {
+  authUrl: string;
   loginUrl: string;
   redirectOnUserCreatedUrl: string;
   logoutUrl: string;
   fbsBaseUrl: string;
   publizonBaseUrl: string;
   dashboardUrl: string;
+  userinfoUrl: string;
 }
 
 interface CreatePatronTextProps {
@@ -47,6 +49,9 @@ interface CreatePatronTextProps {
   createPatronButtonLoadingText: string;
   createPatronButtonErrorText: string;
   createPatronBranchDropdownNoteText: string;
+  postRegisterRedirectInfoTopText: string;
+  postRegisterRedirectInfoBottomText: string;
+  postRegisterRedirectButtonText: string;
 }
 
 export interface CreatePatronProps
@@ -55,6 +60,7 @@ export interface CreatePatronProps
     CreatePatronUrlProps,
     CreatePatronTextProps {
   fakeCpr?: string;
+  minAgeConfig?: string;
 }
 
 const CreatePatronEntry: FC<CreatePatronProps> = ({ fakeCpr }) => {
