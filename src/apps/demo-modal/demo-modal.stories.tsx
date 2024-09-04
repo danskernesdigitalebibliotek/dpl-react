@@ -1,11 +1,10 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
-import DemoModal, { DemoModalEntryProps } from "./demo-modal.entry";
+import type { Meta, StoryObj } from "@storybook/react";
+import DemoModal from "./demo-modal.entry";
 import globalTextArgs, {
-  GlobalEntryTextProps
+  argTypes as globalTextArgTypes
 } from "../../core/storybook/globalTextArgs";
 
-export default {
+const meta: Meta<typeof DemoModal> = {
   title: "Apps / Demo modal",
   component: DemoModal,
   parameters: {
@@ -14,19 +13,29 @@ export default {
     }
   },
   argTypes: {
-    ...globalTextArgs,
+    ...globalTextArgTypes,
     ariaLabelModalOneText: {
-      defaultValue: "Luk dialog et"
+      control: { type: "text" }
     },
     ariaLabelModalTwoText: {
-      defaultValue: "Luk dialog to"
+      control: { type: "text" }
     },
     screenReaderModalDescriptionText: {
-      defaultValue: "Denne modal dækker sidens indhold, og er en demo"
+      control: { type: "text" }
     }
   }
-} as Meta<typeof DemoModal>;
+};
 
-export const App: StoryFn<typeof DemoModal> = (
-  props: DemoModalEntryProps & GlobalEntryTextProps
-) => <DemoModal {...props} />;
+export default meta;
+
+type Story = StoryObj<typeof DemoModal>;
+
+export const Primary: Story = {
+  args: {
+    ...globalTextArgs,
+    ariaLabelModalOneText: "Luk dialog et",
+    ariaLabelModalTwoText: "Luk dialog to",
+    screenReaderModalDescriptionText:
+      "Denne modal dækker sidens indhold, og er en demo"
+  }
+};
