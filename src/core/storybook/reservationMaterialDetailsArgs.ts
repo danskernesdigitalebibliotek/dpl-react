@@ -1,139 +1,320 @@
-export default {
+export const argTypes = {
   blacklistedPickupBranchesConfig: {
-    name: "Blacklisted branches",
-    defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    description: "Blacklisted branches",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024"
+      }
+    },
     control: { type: "text" }
   },
   branchesConfig: {
-    name: "Branches",
-    defaultValue:
-      '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
+    description: "Branches",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: `[{"branchId":"DK-775120","title":"Højbjerg"},{"branchId":"DK-775122","title":"Beder-Malling"},{"branchId":"DK-775144","title":"Gellerup"},{"branchId":"DK-775167","title":"Lystrup"},{"branchId":"DK-775146","title":"Harlev"},{"branchId":"DK-775168","title":"Skødstrup"},{"branchId":"FBS-751010","title":"Arresten"},{"branchId":"DK-775147","title":"Hasle"},{"branchId":"FBS-751032","title":"Må ikke benyttes"},{"branchId":"FBS-751031","title":"Fjernlager 1"},{"branchId":"DK-775126","title":"Solbjerg"},{"branchId":"FBS-751030","title":"ITK"},{"branchId":"DK-775149","title":"Sabro"},{"branchId":"DK-775127","title":"Tranbjerg"},{"branchId":"DK-775160","title":"Risskov"},{"branchId":"DK-775162","title":"Hjortshøj"},{"branchId":"DK-775140","title":"Åby"},{"branchId":"FBS-751009","title":"Fjernlager 2"},{"branchId":"FBS-751029","title":"Stadsarkivet"},{"branchId":"FBS-751027","title":"Intern"},{"branchId":"FBS-751026","title":"Fælles undervejs"},{"branchId":"FBS-751025","title":"Fællessekretariatet"},{"branchId":"DK-775133","title":"Bavnehøj"},{"branchId":"FBS-751024","title":"Fjernlånte materialer"},{"branchId":"DK-775100","title":"Hovedbiblioteket"},{"branchId":"DK-775170","title":"Trige"},{"branchId":"DK-775150","title":"Tilst"},{"branchId":"DK-775130","title":"Viby"},{"branchId":"DK-775164","title":"Egå"}]`
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsConfig: {
-    defaultValue: '{"allowRemoveReadyReservations": true}',
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: `{"allowRemoveReadyReservations": true}`
+      }
+    },
     control: { type: "text" }
   },
   interestPeriodsConfig: {
-    defaultValue:
-      '{ "interestPeriods":[ { "value":14, "label":"14 days" }, { "value":30, "label":"1 month" }, { "value":60, "label":"2 months" }, { "value":90, "label":"3 months" }, { "value":180, "label":"6 months" }, { "value":365, "label":"1 year" } ], "defaultInterestPeriod":{ "value":14, "label":"14 days" } }',
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: `{"interestPeriods":[{"value":14,"label":"14 days"},{"value":30,"label":"1 month"},{"value":60,"label":"2 months"},{"value":90,"label":"3 months"},{"value":180,"label":"6 months"},{"value":365,"label":"1 year"}],"defaultInterestPeriod":{"value":14,"label":"14 days"}}`
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsRemoveDigitalReservationText: {
-    defaultValue: "Remove your reservation",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Remove your reservation"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsDateOfReservationTitleText: {
-    defaultValue: "Date of reservation",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Date of reservation"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsNoInterestAfterTitleText: {
-    defaultValue: "Not interested after",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Not interested after"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsChangeText: {
-    defaultValue: "Apply changes",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Apply changes"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsPickUpAtTitleText: {
-    defaultValue: "Pickup branch",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Pickup branch"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsButtonRemoveText: {
-    defaultValue: "Remove your reservation",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Remove your reservation"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsStatusTitleText: {
-    defaultValue: "Status",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Status"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsBorrowBeforeText: {
-    defaultValue: "Borrow before @date",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Borrow before @date"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsDigitalReservationGoToEreolenText: {
-    defaultValue: "Go to eReolen",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Go to eReolen"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsReadyForLoanText: {
-    defaultValue: "Ready for pickup",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Ready for pickup"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsPickupDeadlineTitleText: {
-    defaultValue: "Pickup deadline",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Pickup deadline"
+      }
+    },
     control: { type: "text" }
   },
   reservationDetailsNumberInQueueLabelText: {
-    defaultValue: "@count queued",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "@count queued"
+      }
+    },
     control: { type: "text" }
   },
   shiftText: {
-    name: "Change",
-    defaultValue: "Change",
+    description: "Change",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Change"
+      }
+    },
     control: { type: "text" }
   },
   modalReservationFormPickupHeaderTitleText: {
-    name: "Modal reservation form pickup header title",
-    defaultValue: "Change pick-up location",
+    description: "Modal reservation form pickup header title",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Change pick-up location"
+      }
+    },
     control: { type: "text" }
   },
   modalReservationFormPickupHeaderDescriptionText: {
-    name: "Modal reservation form pickup header description",
-    defaultValue:
-      "If you wish to change the pick-up location for your reservation, you can do it here.",
+    description: "Modal reservation form pickup header description",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary:
+          "If you wish to change the pick-up location for your reservation, you can do it here."
+      }
+    },
     control: { type: "text" }
   },
   modalReservationFormNoInterestAfterHeaderTitleText: {
-    name: "Modal reservation form no interest after header title",
-    defaultValue: "Change date of interest",
+    description: "Modal reservation form no interest after header title",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Change date of interest"
+      }
+    },
     control: { type: "text" }
   },
   modalReservationFormNoInterestAfterHeaderDescriptionText: {
-    name: "Modal reservation form no interest after header description",
-    defaultValue:
-      "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
+    description: "Modal reservation form no interest after header description",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary:
+          "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here."
+      }
+    },
     control: { type: "text" }
   },
   saveButtonText: {
-    name: "Save button text",
-    defaultValue: "Save",
+    description: "Save button text",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Save"
+      }
+    },
     control: { type: "text" }
   },
   chooseOneText: {
-    name: "Choose one text",
-    defaultValue: "Choose one",
+    description: "Choose one text",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Choose one"
+      }
+    },
     control: { type: "text" }
   },
   loadingText: {
-    name: "Loading",
-    defaultValue: "Loading...",
+    description: "Loading",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Loading..."
+      }
+    },
     control: { type: "text" }
   },
   reservationSuccessTitleText: {
-    name: "Reservation success title",
-    defaultValue: "Your reservation has been changed",
+    description: "Reservation success title",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Your reservation has been changed"
+      }
+    },
     control: { type: "text" }
   },
   reservationSuccessSubTitleText: {
-    name: "Reservation success sub title",
-    defaultValue: "Click the button below to close this window",
+    description: "Reservation success sub title",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Click the button below to close this window"
+      }
+    },
     control: { type: "text" }
   },
   reservationerrorTitleText: {
-    name: "Reservation error title",
-    defaultValue: "Something went wrong",
+    description: "Reservation error title",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Something went wrong"
+      }
+    },
     control: { type: "text" }
   },
   reservationerrorSubTitleText: {
-    name: "Reservation error sub title",
-    defaultValue: "Click the button below to close this window and try again",
+    description: "Reservation error sub title",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Click the button below to close this window and try again"
+      }
+    },
     control: { type: "text" }
   },
   reservationStatusButtonText: {
-    name: "Reservation success button text",
-    defaultValue: "Close",
+    description: "Reservation success button text",
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Close"
+      }
+    },
     control: { type: "text" }
   }
+};
+
+export default {
+  reservationDetailsRemoveDigitalReservationText: "Remove your reservation",
+  reservationDetailsDateOfReservationTitleText: "Date of reservation",
+  reservationDetailsNumberInQueueLabelText: "@count queued",
+  reservationDetailsNoInterestAfterTitleText: "Not interested after",
+  reservationDetailsChangeText: "Apply changes",
+  reservationDetailsPickUpAtTitleText: "Pickup branch",
+  reservationDetailsButtonRemoveText: "Remove your reservation",
+  reservationDetailsStatusTitleText: "Status",
+  reservationDetailsBorrowBeforeText: "Borrow before @date",
+  reservationDetailsDigitalReservationGoToEreolenText: "Go to eReolen",
+  reservationDetailsReadyForLoanText: "Ready for pickup",
+  reservationDetailsPickupDeadlineTitleText: "Pickup deadline",
+  interestPeriodsConfig:
+    '{"interestPeriods":[ { "value":14, "label":"14 days" }, { "value":30, "label":"1 month" }, { "value":60, "label":"2 months" }, { "value":90, "label":"3 months" }, { "value":180, "label":"6 months" }, { "value":365, "label":"1 year" } ], "defaultInterestPeriod":{ "value":14, "label":"14 days" } }',
+  reservationDetailsConfig: '{"allowRemoveReadyReservations": true}',
+  branchesConfig:
+    '[{ "branchId":"DK-775120", "title":"Højbjerg" }, { "branchId":"DK-775122", "title":"Beder-Malling" }, { "branchId":"DK-775144", "title":"Gellerup" }, { "branchId":"DK-775167", "title":"Lystrup" }, { "branchId":"DK-775146", "title":"Harlev" }, { "branchId":"DK-775168", "title":"Skødstrup" }, { "branchId":"FBS-751010", "title":"Arresten" }, { "branchId":"DK-775147", "title":"Hasle" }, { "branchId":"FBS-751032", "title":"Må ikke benyttes" }, { "branchId":"FBS-751031", "title":"Fjernlager 1" }, { "branchId":"DK-775126", "title":"Solbjerg" }, { "branchId":"FBS-751030", "title":"ITK" }, { "branchId":"DK-775149", "title":"Sabro" }, { "branchId":"DK-775127", "title":"Tranbjerg" }, { "branchId":"DK-775160", "title":"Risskov" }, { "branchId":"DK-775162", "title":"Hjortshøj" }, { "branchId":"DK-775140", "title":"Åby" }, { "branchId":"FBS-751009", "title":"Fjernlager 2" }, { "branchId":"FBS-751029", "title":"Stadsarkivet" }, { "branchId":"FBS-751027", "title":"Intern" }, { "branchId":"FBS-751026", "title":"Fælles undervejs" }, { "branchId":"FBS-751025", "title":"Fællessekretariatet" }, { "branchId":"DK-775133", "title":"Bavnehøj" }, { "branchId":"FBS-751024", "title":"Fjernlånte materialer" }, { "branchId":"DK-775100", "title":"Hovedbiblioteket" }, { "branchId":"DK-775170", "title":"Trige" }, { "branchId":"DK-775150", "title":"Tilst" }, { "branchId":"DK-775130", "title":"Viby" }, { "branchId":"DK-775164", "title":"Egå" }]',
+  blacklistedPickupBranchesConfig:
+    "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+  shiftText: "Change",
+  modalReservationFormPickupHeaderTitleText: "Change pick-up location",
+  modalReservationFormPickupHeaderDescriptionText:
+    "If you wish to change the pick-up location for your reservation, you can do it here.",
+  saveButtonText: "Save",
+  modalReservationFormNoInterestAfterHeaderTitleText: "Change date of interest",
+  modalReservationFormNoInterestAfterHeaderDescriptionText:
+    "If you wish to change the amount of time after which you're no longer interested in the material, you can do it here.",
+  chooseOneText: "Choose one",
+  loadingText: "Loading...",
+  reservationSuccessTitleText: "Your reservation has been changed",
+  reservationSuccessSubTitleText: "Click the button below to close this window",
+  reservationerrorTitleText: "Something went wrong",
+  reservationerrorSubTitleText:
+    "Click the button below to close this window and try again",
+  reservationStatusButtonText: "Close"
 };
 
 export interface ReservationMaterialDetailsProps {
