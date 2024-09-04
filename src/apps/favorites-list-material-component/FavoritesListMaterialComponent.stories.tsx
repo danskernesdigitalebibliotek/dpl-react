@@ -1,61 +1,62 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import type { Meta, StoryObj } from "@storybook/react";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 import FavoritesListMaterialComponent from "./FavoritesListMaterialComponent.entry";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
-export default {
+const meta: Meta<typeof FavoritesListMaterialComponent> = {
   title: "Apps / Favorites list material component",
   component: FavoritesListMaterialComponent,
   argTypes: {
-    ...serviceUrlArgs,
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...serviceUrlArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     favoritesListMaterialComponentTitleText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Your list"
+      control: { type: "text" }
     },
     materialUrl: {
-      defaultValue: "/work/:workid",
       control: { type: "text" }
     },
     materialByAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "By"
+      control: { type: "text" }
     },
     materialAndAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "and"
+      control: { type: "text" }
     },
     etAlText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "et al."
+      control: { type: "text" }
     },
     favoritesListMaterialComponentGoToListText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Go to My list"
+      control: { type: "text" }
     },
     favoritesListMaterialComponentGoToListUrl: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "https://unsplash.com/photos/wd6YQy0PJt8" // open source image of a red panda
+      control: { type: "text" }
     }
   }
-} as Meta<typeof FavoritesListMaterialComponent>;
+};
 
-const Template: StoryFn<typeof FavoritesListMaterialComponent> = (props) => (
-  <FavoritesListMaterialComponent {...props} />
-);
-export const FavoritesListMaterialComponentEntry = Template.bind({});
+export default meta;
+
+type Story = StoryObj<typeof FavoritesListMaterialComponent>;
+
+export const Primary: Story = {
+  args: {
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    favoritesListMaterialComponentTitleText: "Your list",
+    materialUrl: "/work/:workid",
+    materialByAuthorText: "By",
+    materialAndAuthorText: "and",
+    etAlText: "et al.",
+    favoritesListMaterialComponentGoToListText: "Go to My list",
+    favoritesListMaterialComponentGoToListUrl:
+      "https://unsplash.com/photos/wd6YQy0PJt8" // open source image of a red panda
+  }
+};
