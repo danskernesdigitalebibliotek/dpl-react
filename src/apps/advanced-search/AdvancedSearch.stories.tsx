@@ -1,103 +1,112 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 import AdvancedSearchEntry from "./AdvancedSearch.entry";
 
 const meta: Meta<typeof AdvancedSearchEntry> = {
   title: "Apps / Advanced Search",
   component: AdvancedSearchEntry,
   argTypes: {
+    ...serviceUrlArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     pageSizeDesktop: {
-      name: "Number of search result items on desktop",
-      control: { type: "number", value: 50 },
+      description: "Number of search result items on desktop",
+      control: "number",
       table: {
         type: { summary: "number" },
         defaultValue: { summary: "50" }
       }
     },
     pageSizeMobile: {
-      name: "Number of search result items on mobile",
-      control: { type: "number", value: 20 },
+      description: "Number of search result items on mobile",
+      control: { type: "number" },
       table: {
         type: { summary: "number" },
         defaultValue: { summary: "20" }
       }
     },
     materialUrl: {
-      name: "Path to the material page",
+      description: "Path to the material page",
       control: { type: "text", value: "/work/:workid" }
     },
     authUrl: {
-      name: "Url where user can authenticate",
+      description: "Url where user can authenticate",
       control: { type: "text", value: "" }
     },
     searchUrl: {
-      name: "Path to the search result page",
+      description: "Path to the search result page",
       control: { type: "text", value: "/search" }
     },
     etAlText: {
-      name: "Et al. Text",
+      description: "Et al. Text",
       control: { type: "text", value: "et al." }
     },
     byAuthorText: {
-      name: "By (author) Text",
+      description: "By (author) Text",
       control: { type: "text", value: "By" }
     },
     showMoreText: {
-      name: "Show more Text",
+      description: "Show more Text",
       control: { type: "text", value: "show more" }
     },
     resultPagerStatusText: {
-      name: "Result pager status text",
+      description: "Result pager status text",
       control: {
         type: "text",
         value: "Showing @itemsShown out of @hitcount results"
       }
     },
     advancedSearchInputLabelText: {
-      name: "Advanced search input label",
+      description: "Advanced search input label",
       control: { type: "text", value: "Input field @inputNumber" }
     },
     numberDescriptionText: {
-      name: "Number description",
+      description: "Number description",
       control: { type: "text", value: "Nr." }
     },
     inSeriesText: {
-      name: "In series",
+      description: "In series",
       control: { type: "text", value: "in series" }
     },
     showingMaterialsText: {
-      name: "Showing materials",
+      description: "Showing materials",
       control: { type: "text", value: "Showing materials (@hitcount)" }
     },
     noSearchResultText: {
-      name: "0-hit search result",
+      description: "0-hit search result",
       control: { type: "text", value: "Your search has 0 results" }
     },
     blacklistedPickupBranchesConfig: {
-      name: "Blacklisted Pickup branches",
+      description: "Blacklisted Pickup branches",
       control: {
         type: "text",
         value: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024"
       }
     },
     blacklistedAvailabilityBranchesConfig: {
-      name: "Blacklisted Availability branches",
+      description: "Blacklisted Availability branches",
       control: {
         type: "text",
         value: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024"
       }
     },
     blacklistedSearchBranchesConfig: {
-      name: "Blacklisted branches",
+      description: "Blacklisted branches",
       control: {
         type: "text",
         value: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024"
       }
     },
     branchesConfig: {
-      name: "Branches",
+      description: "Branches",
       control: {
         type: "text",
         value:
@@ -105,199 +114,200 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
       }
     },
     loadingText: {
-      name: "Loading",
+      description: "Loading",
       control: { type: "text", value: "Loading" }
     },
     advancedSearchLinkToThisSearchText: {
-      name: "Advanced search copy to clipboard button text",
+      description: "Advanced search copy to clipboard button text",
       control: { type: "text", value: "Link to this search" }
     },
     advancedSearchAllIndexesText: {
-      name: "Advanced search indexes - all",
+      description: "Advanced search indexes - all",
       control: { type: "text", value: "All indexes" }
     },
     advancedSearchCreatorText: {
-      name: "Advanced search indexes - creator",
+      description: "Advanced search indexes - creator",
       control: { type: "text", value: "Creator" }
     },
     advancedSearchSubjectText: {
-      name: "Advanced search indexes - subject",
+      description: "Advanced search indexes - subject",
       control: { type: "text", value: "Subject" }
     },
     advancedSearchGenreText: {
-      name: "Advanced search indexes - genre",
+      description: "Advanced search indexes - genre",
       control: { type: "text", value: "Genre" }
     },
     advancedSearchLanguageText: {
-      name: "Advanced search indexes - language",
+      description: "Advanced search indexes - language",
       control: { type: "text", value: "Language" }
     },
     advancedSearchDateText: {
-      name: "Advanced search indexes - date",
+      description: "Advanced search indexes - date",
       control: { type: "text", value: "Date" }
     },
     advancedSearchMainCreatorText: {
-      name: "Advanced search indexes - main creator",
+      description: "Advanced search indexes - main creator",
       control: { type: "text", value: "Main creator" }
     },
     advancedSearchMainTitleText: {
-      name: "Advanced search indexes - main title",
+      description: "Advanced search indexes - main title",
       control: { type: "text", value: "Main title" }
     },
     advancedSearchSourceText: {
-      name: "Advanced search indexes - source",
+      description: "Advanced search indexes - source",
       control: { type: "text", value: "Source" }
     },
     advancedSearchDateFirstEditionText: {
-      name: "Advanced search indexes - edition",
+      description: "Advanced search indexes - edition",
       control: { type: "text", value: "Edition" }
     },
     advancedSearchDecimalDk5Text: {
-      name: "Advanced search indexes - DK5",
+      description: "Advanced search indexes - DK5",
       control: { type: "text", value: "DK5" }
     },
     advancedSearchTypeText: {
-      name: "Advanced search indexes - type",
+      description: "Advanced search indexes - type",
       control: { type: "text", value: "Type" }
     },
     advancedSearchAudienceText: {
-      name: "Advanced search indexes - audience",
+      description: "Advanced search indexes - audience",
       control: { type: "text", value: "Audience" }
     },
     advancedSearchPublisherText: {
-      name: "Advanced search indexes - publisher",
+      description: "Advanced search indexes - publisher",
       control: { type: "text", value: "Publisher" }
     },
     advancedSearchIdentifierText: {
-      name: "Advanced search indexes - identifier",
+      description: "Advanced search indexes - identifier",
       control: { type: "text", value: "Identifier" }
     },
     advancedSearchAcSourceText: {
-      name: "Advanced search indexes - source",
+      description: "Advanced search indexes - source",
       control: { type: "text", value: "Source" }
     },
     advancedSearchAddRowText: {
-      name: "Add row",
+      description: "Add row",
       control: { type: "text", value: "Add row" }
     },
     advancedSearchInputPlaceholderText: {
-      name: "Advanced search input placeholder",
+      description: "Advanced search input placeholder",
       control: { type: "text", value: "Search term" }
     },
     advancedSearchTitleText: {
-      name: "Advanced search page title",
+      description: "Advanced search page title",
       control: { type: "text", value: "Advanced search" }
     },
     advancedSearchPreviewHeadlineText: {
-      name: "Advanced search CQL preview headline",
+      description: "Advanced search CQL preview headline",
       control: { type: "text", value: "CQL search string" }
     },
     advancedSearchPreviewEmptyText: {
-      name: "Advanced search empty preview",
+      description: "Advanced search empty preview",
       control: { type: "text", value: "-" }
     },
     advancedSearchResetText: {
-      name: "Advanced search reset button text",
+      description: "Advanced search reset button text",
       control: { type: "text", value: "Reset" }
     },
     advancedSearchCopyStringText: {
-      name: "Advanced search page copy string button text",
+      description: "Advanced search page copy string button text",
       control: { type: "text", value: "Copy CQL" }
     },
     advancedSearchEditCqlText: {
-      name: "Advanced search page edit CQL button text",
+      description: "Advanced search page edit CQL button text",
       control: { type: "text", value: "Edit CQL" }
     },
     advancedSearchSearchButtonText: {
-      name: "Advanced search search button text",
+      description: "Advanced search search button text",
       control: { type: "text", value: "Search" }
     },
     loadingResultsText: {
-      name: "Advanced search loading results text",
+      description: "Advanced search loading results text",
       control: { type: "text", value: "Loading results..." }
     },
     toAdvancedSearchButtonText: {
-      name: "To advanced search button text",
+      description: "To advanced search button text",
       control: { type: "text", value: "Back to advanced search" }
     },
     cqlSearchTitleText: {
-      name: "CQL search title text",
+      description: "CQL search title text",
       control: { type: "text", value: "CQL search" }
     },
     copiedToClipboardText: {
-      name: "Text that appears after copying to clipboard",
+      description: "Text that appears after copying to clipboard",
       control: { type: "text", value: "Copied" }
     },
     copiedLinkToThisSearchText: {
-      name: "Text that appears after getting link to a search copied to clipboard",
+      description:
+        "Text that appears after getting link to a search copied to clipboard",
       control: { type: "text", value: "Link copied to clipboard" }
     },
     clauseAndText: {
-      name: "Advanced search clause - AND",
+      description: "Advanced search clause - AND",
       control: { type: "text", value: "AND" }
     },
     clauseOrText: {
-      name: "Advanced search clause - OR",
+      description: "Advanced search clause - OR",
       control: { type: "text", value: "OR" }
     },
     clauseNotText: {
-      name: "Advanced search clause - NOT",
+      description: "Advanced search clause - NOT",
       control: { type: "text", value: "NOT" }
     },
     advancedSearchFilterMaterialTypeText: {
-      name: "Advanced search filter - material type",
+      description: "Advanced search filter - material type",
       control: { type: "text", value: "Material Type" }
     },
     advancedSearchFilterLiteratureFormText: {
-      name: "Advanced search filter - literature form",
+      description: "Advanced search filter - literature form",
       control: { type: "text", value: "Literature form" }
     },
     advancedSearchFilterAccessText: {
-      name: "Advanced search filter - access",
+      description: "Advanced search filter - access",
       control: { type: "text", value: "Accessibility" }
     },
     advancedSearchFilterBookText: {
-      name: "Advanced search filter - book",
+      description: "Advanced search filter - book",
       control: { type: "text", value: "Book" }
     },
     advancedSearchFilterEbookText: {
-      name: "Advanced search filter - ebook",
+      description: "Advanced search filter - ebook",
       control: { type: "text", value: "Ebook" }
     },
     advancedSearchFilterAudioBookText: {
-      name: "Advanced search filter - audio book",
+      description: "Advanced search filter - audio book",
       control: { type: "text", value: "Audio book" }
     },
     advancedSearchFilterArticleText: {
-      name: "Advanced search filter - article",
+      description: "Advanced search filter - article",
       control: { type: "text", value: "Article" }
     },
     advancedSearchFilterMovieText: {
-      name: "Advanced search filter - movie",
+      description: "Advanced search filter - movie",
       control: { type: "text", value: "Movie" }
     },
     advancedSearchFilterMusicText: {
-      name: "Advanced search filter - music",
+      description: "Advanced search filter - music",
       control: { type: "text", value: "Music" }
     },
     advancedSearchFilterPhysicalText: {
-      name: "Advanced search filter - physical access",
+      description: "Advanced search filter - physical access",
       control: { type: "text", value: "Physical" }
     },
     advancedSearchFilterOnlineText: {
-      name: "Advanced search filter - online access",
+      description: "Advanced search filter - online access",
       control: { type: "text", value: "Online" }
     },
     advancedSearchFilterFictionText: {
-      name: "Advanced search filter - fiction",
+      description: "Advanced search filter - fiction",
       control: { type: "text", value: "Fiction" }
     },
     advancedSearchFilterNonFictionText: {
-      name: "Advanced search filter - non-fiction",
-      control: { type: "text", value: "Non-fiction" }
+      description: "Advanced search filter - non-fiction",
+      control: { type: "text" }
     },
     advancedSearchFilterHoldingStatusText: {
-      name: "Advanced search filter - holding status",
+      description: "Advanced search filter - holding status",
       control: { type: "text", value: "Holding Status On Shelf" }
     }
   }
@@ -332,124 +342,8 @@ export const Primary: Story = {
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
     blacklistedSearchBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
-    branchesConfig: `[
-      {
-        branchId: "DK-775120",
-        title: "Højbjerg"
-      },
-      {
-        branchId: "DK-775122",
-        title: "Beder-Malling"
-      },
-      {
-        branchId: "DK-775144",
-        title: "Gellerup"
-      },
-      {
-        branchId: "DK-775167",
-        title: "Lystrup"
-      },
-      {
-        branchId: "DK-775146",
-        title: "Harlev"
-      },
-      {
-        branchId: "DK-775168",
-        title: "Skødstrup"
-      },
-      {
-        branchId: "FBS-751010",
-        title: "Arresten"
-      },
-      {
-        branchId: "DK-775147",
-        title: "Hasle"
-      },
-      {
-        branchId: "FBS-751032",
-        title: "Må ikke benyttes"
-      },
-      {
-        branchId: "FBS-751031",
-        title: "Fjernlager 1"
-      },
-      {
-        branchId: "DK-775126",
-        title: "Solbjerg"
-      },
-      {
-        branchId: "FBS-751030",
-        title: "ITK"
-      },
-      {
-        branchId: "DK-775149",
-        title: "Sabro"
-      },
-      {
-        branchId: "DK-775127",
-        title: "Tranbjerg"
-      },
-      {
-        branchId: "DK-775160",
-        title: "Risskov"
-      },
-      {
-        branchId: "DK-775162",
-        title: "Hjortshøj"
-      },
-      {
-        branchId: "DK-775140",
-        title: "Åby"
-      },
-      {
-        branchId: "FBS-751009",
-        title: "Fjernlager 2"
-      },
-      {
-        branchId: "FBS-751029",
-        title: "Stadsarkivet"
-      },
-      {
-        branchId: "FBS-751027",
-        title: "Intern"
-      },
-      {
-        branchId: "FBS-751026",
-        title: "Fælles undervejs"
-      },
-      {
-        branchId: "FBS-751025",
-        title: "Fællessekretariatet"
-      },
-      {
-        branchId: "DK-775133",
-        title: "Bavnehøj"
-      },
-      {
-        branchId: "FBS-751024",
-        title: "Fjernlånte materialer"
-      },
-      {
-        branchId: "DK-775100",
-        title: "Hovedbiblioteket"
-      },
-      {
-        branchId: "DK-775170",
-        title: "Trige"
-      },
-      {
-        branchId: "DK-775150",
-        title: "Tilst"
-      },
-      {
-        branchId: "DK-775130",
-        title: "Viby"
-      },
-      {
-        branchId: "DK-775164",
-        title: "Egå"
-      }
-    ]`,
+    branchesConfig:
+      '[{  branchId: "DK-775120",  title: "Højbjerg"},{  branchId: "DK-775122",  title: "Beder-Malling"},{  branchId: "DK-775144",  title: "Gellerup"},{  branchId: "DK-775167",  title: "Lystrup"},{  branchId: "DK-775146",  title: "Harlev"},{  branchId: "DK-775168",  title: "Skødstrup"},{  branchId: "FBS-751010",  title: "Arresten"},{  branchId: "DK-775147",  title: "Hasle"},{  branchId: "FBS-751032",  title: "Må ikke benyttes"},{  branchId: "FBS-751031",  title: "Fjernlager 1"},{  branchId: "DK-775126",  title: "Solbjerg"},{  branchId: "FBS-751030",  title: "ITK"},{  branchId: "DK-775149",  title: "Sabro"},{  branchId: "DK-775127",  title: "Tranbjerg"},{  branchId: "DK-775160",  title: "Risskov"},{  branchId: "DK-775162",  title: "Hjortshøj"},{  branchId: "DK-775140",  title: "Åby"},{  branchId: "FBS-751009",  title: "Fjernlager 2"},{  branchId: "FBS-751029",  title: "Stadsarkivet"},{  branchId: "FBS-751027",  title: "Intern"},{  branchId: "FBS-751026",  title: "Fælles undervejs"},{  branchId: "FBS-751025",  title: "Fællessekretariatet"},{  branchId: "DK-775133",  title: "Bavnehøj"},{  branchId: "FBS-751024",  title: "Fjernlånte materialer"},{  branchId: "DK-775100",  title: "Hovedbiblioteket"},{  branchId: "DK-775170",  title: "Trige"},{  branchId: "DK-775150",  title: "Tilst"},{  branchId: "DK-775130",  title: "Viby"},{  branchId: "DK-775164", title: "Egå"}]',
     loadingText: "Loading",
     advancedSearchLinkToThisSearchText: "Link to this search",
     advancedSearchAllIndexesText: "All indexes",

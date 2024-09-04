@@ -1,7 +1,14 @@
 export const argTypes = {
   errorMessagesConfig: {
-    name: "Configuration for error messages behaviour",
-    control: { type: "text" }
+    description: "Configuration for error messages behaviour",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary:
+          '{"containerId":"dpl-react-apps-error-messages","shouldOnlyShowOneError":true,"showCloseButton":true}'
+      }
+    }
   }
 };
 

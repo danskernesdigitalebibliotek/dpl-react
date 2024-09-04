@@ -52,7 +52,10 @@ function App({ story }) {
 
 const preview: Preview = {
   parameters: {
-    layout: "fullscreen"
+    layout: "fullscreen",
+    controls: {
+      expanded: true
+    }
   },
   decorators: [
     (Story) => (

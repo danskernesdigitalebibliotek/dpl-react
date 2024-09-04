@@ -42,9 +42,9 @@ const queryClient = new QueryClient({
 function Store({ children }: { children: React.ReactNode }) {
   return (
     <Provider store={store}>
-      {/* <QueryClientProvider client={queryClient}> */}
-      <PersistGate persistor={persistor}>{children}</PersistGate>
-      {/* </QueryClientProvider> */}
+      <QueryClientProvider client={queryClient}>
+        <PersistGate persistor={persistor}>{children}</PersistGate>
+      </QueryClientProvider>
     </Provider>
   );
 }
