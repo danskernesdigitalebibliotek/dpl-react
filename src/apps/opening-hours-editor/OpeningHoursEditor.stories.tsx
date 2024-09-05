@@ -1,124 +1,131 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import type { Meta, StoryObj } from "@storybook/react";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 import OpeningHoursEditor from "./OpeningHoursEditor.entry";
 
-export default {
+const meta: Meta<typeof OpeningHoursEditor> = {
   title: "Apps / Opening Hours Editor",
   component: OpeningHoursEditor,
   argTypes: {
-    ...serviceUrlArgs,
+    ...serviceUrlArgTypes,
     openingHoursRemoveEventButtonText: {
-      name: "Opening hours remove event button",
-      defaultValue: "Remove event",
+      description: "Opening hours remove event button",
       control: { type: "text" }
     },
     openingHoursInvalidEventText: {
-      name: "Opening hours invalid event text",
-      defaultValue: "Invalid event. No start or end time",
+      description: "Opening hours invalid event text",
       control: { type: "text" }
     },
     openingHoursEditorCategoriesConfig: {
-      name: "Opening hours categories",
-      defaultValue:
-        '[{"title":"\\u00c5bent","color":"#B3DC6C"},{"title":"Telefontid","color":"#FBE983"},{"title":"Borgerservice","color":"lightblue"}]',
+      description: "Opening hours categories",
       control: { type: "text" }
     },
     openingHoursBranchIdConfig: {
-      name: "Opening hours branch id",
-      defaultValue: "12",
+      description: "Opening hours branch id",
       control: { type: "text" }
     },
     initialDate: {
-      name: "Initial date to show",
-      // This date is aligned with the wiremock data
-      defaultValue: new Date("2024-03-25"),
+      description: "Initial date to show",
       control: { type: "date" }
     },
     openingHoursEventFormCategoryText: {
-      name: "Opening hours event form category",
-      defaultValue: "Opening hour",
+      description: "Opening hours event form category",
       control: { type: "text" }
     },
     openingHoursEventFormStartTimeText: {
-      name: "Opening hours event form start time",
-      defaultValue: "Start time",
+      description: "Opening hours event form start time",
       control: { type: "text" }
     },
     openingHoursEventFormEndTimeText: {
-      name: "Opening hours event form end time",
-      defaultValue: "End time",
+      description: "Opening hours event form end time",
       control: { type: "text" }
     },
     openingHoursEventFormSubmitText: {
-      name: "Opening hours event form submit",
-      defaultValue: "Submit",
+      description: "Opening hours event form submit",
       control: { type: "text" }
     },
     openingHoursEventFormRepeatedText: {
-      name: "Opening hours event form repeated",
-      defaultValue:
-        "Repeat opening hour weekly every @weekDayName from @startDate",
+      description: "Opening hours event form repeated",
       control: { type: "text" }
     },
     openingHoursEventFormEndDateText: {
-      name: "Opening hours event to end date",
-      defaultValue: "End date",
+      description: "Opening hours event to end date",
       control: { type: "text" }
     },
     openingHoursEventFormStartDateText: {
-      name: "Opening hours event form start date",
-      defaultValue: "Start date",
+      description: "Opening hours event form start date",
       control: { type: "text" }
     },
     openingHoursEventFormEveryWeekdayText: {
-      name: "Opening hours event form every weekday",
-      defaultValue: "Every",
+      description: "Opening hours event form every weekday",
       control: { type: "text" }
     },
     openingHoursConfirmAddRepeatedText: {
-      name: "Opening hours confirm add repeated",
-      defaultValue: "Do you want to add this repeated opening hour?",
+      description: "Opening hours confirm add repeated",
       control: { type: "text" }
     },
     openingHoursConfirmAddRepeatedCancelText: {
-      name: "Opening hours confirm add repeated cancel",
-      defaultValue: "Cancel",
+      description: "Opening hours confirm add repeated cancel",
       control: { type: "text" }
     },
     openingHoursConfirmRepeatedSubmitText: {
-      name: "Opening hours confirm add repeated submit",
-      defaultValue: "I'm sure",
+      description: "Opening hours confirm add repeated submit",
       control: { type: "text" }
     },
     openingHoursRepeatedIconAltText: {
-      name: "Opening hours repeated icon alt text",
-      defaultValue: "Repeated opening hour",
+      description: "Opening hours repeated icon alt text",
       control: { type: "text" }
     },
     openingHoursEditEventConfirmOptionThisText: {
-      name: "Opening hours remove event confirm option this",
-      defaultValue: "Only this instance",
+      description: "Opening hours remove event confirm option this",
       control: { type: "text" }
     },
     openingHoursEditEventConfirmOptionAllText: {
-      name: "Opening hours remove event confirm option all",
-      defaultValue: "This and future instances",
+      description: "Opening hours remove event confirm option all",
       control: { type: "text" }
     },
     openingHoursRemoveEventTitleText: {
-      name: "Opening hours remove event title",
-      defaultValue: "Remove opening hour",
+      description: "Opening hours remove event title",
       control: { type: "text" }
     },
     openingHoursEditEventTitleText: {
-      name: "Opening hours edit event title",
-      defaultValue: "Edit opening hour",
+      description: "Opening hours edit event title",
       control: { type: "text" }
     }
   }
-} as Meta<typeof OpeningHoursEditor>;
+};
 
-export const App: StoryFn<typeof OpeningHoursEditor> = (args) => (
-  <OpeningHoursEditor {...args} />
-);
+export default meta;
+
+type Story = StoryObj<typeof OpeningHoursEditor>;
+
+export const Primary: Story = {
+  args: {
+    ...serviceUrlArgs,
+    openingHoursRemoveEventButtonText: "Remove event",
+    openingHoursInvalidEventText: "Invalid event. No start or end time",
+    openingHoursEditorCategoriesConfig:
+      '[{"title":"\\u00c5bent","color":"#B3DC6C"},{"title":"Telefontid","color":"#FBE983"},{"title":"Borgerservice","color":"lightblue"}]',
+    openingHoursBranchIdConfig: "12",
+    initialDate: new Date("2024-03-25"),
+    openingHoursEventFormCategoryText: "Opening hour",
+    openingHoursEventFormStartTimeText: "Start time",
+    openingHoursEventFormEndTimeText: "End time",
+    openingHoursEventFormSubmitText: "Submit",
+    openingHoursEventFormRepeatedText:
+      "Repeat opening hour weekly every @weekDayName from @startDate",
+    openingHoursEventFormEndDateText: "End date",
+    openingHoursEventFormStartDateText: "Start date",
+    openingHoursEventFormEveryWeekdayText: "Every",
+    openingHoursConfirmAddRepeatedText:
+      "Do you want to add this repeated opening hour?",
+    openingHoursConfirmAddRepeatedCancelText: "Cancel",
+    openingHoursConfirmRepeatedSubmitText: "I'm sure",
+    openingHoursRepeatedIconAltText: "Repeated opening hour",
+    openingHoursEditEventConfirmOptionThisText: "Only this instance",
+    openingHoursEditEventConfirmOptionAllText: "This and future instances",
+    openingHoursRemoveEventTitleText: "Remove opening hour",
+    openingHoursEditEventTitleText: "Edit opening hour"
+  }
+};
