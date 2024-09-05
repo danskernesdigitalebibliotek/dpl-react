@@ -1,17 +1,37 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 import Menu from "./menu.entry";
-import groupModalArgs from "../../core/storybook/groupModalArgs";
-import loanGroupModalArgs from "../../core/storybook/loanGroupModalArgs";
-import renewalArgs from "../../core/storybook/renewalArgs";
-import reservationGroupModalArgs from "../../core/storybook/reservationGroupModalArgs";
-import reservationMaterialDetailsProps from "../../core/storybook/reservationMaterialDetailsArgs";
-import materialDetailsModalArgs from "../../core/storybook/materialDetailsModalArgs";
-import deleteReservationModalArgs from "../../core/storybook/deleteReservationModalArgs";
+import groupModalArgs, {
+  argTypes as groupModalArgTypes
+} from "../../core/storybook/groupModalArgs";
+import loanGroupModalArgs, {
+  argTypes as loanGroupModalArgTypes
+} from "../../core/storybook/loanGroupModalArgs";
+import renewalArgs, {
+  argTypes as renewalArgTypes
+} from "../../core/storybook/renewalArgs";
+import reservationGroupModalArgs, {
+  argTypes as reservationGroupModalArgTypes
+} from "../../core/storybook/reservationGroupModalArgs";
+import reservationMaterialDetailsProps, {
+  argTypes as reservationMaterialDetailsPropTypes
+} from "../../core/storybook/reservationMaterialDetailsArgs";
+import materialDetailsModalArgs, {
+  argTypes as materialDetailsModalArgTypes
+} from "../../core/storybook/materialDetailsModalArgs";
+import deleteReservationModalArgs, {
+  argTypes as deleteReservationModalArgTypes
+} from "../../core/storybook/deleteReservationModalArgs";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import { withConfig } from "../../core/utils/config";
@@ -19,10 +39,134 @@ import { withConfig } from "../../core/utils/config";
 const WrappedMenu = withText(withUrls(withConfig(Menu)));
 const WrappedStoryHeader = withText(withUrls(withConfig(StoryHeader)));
 
-export default {
+const meta: Meta<typeof WrappedMenu> = {
   title: "Apps / Header",
   component: WrappedMenu,
   argTypes: {
+    ...serviceUrlArgTypes,
+    ...groupModalArgTypes,
+    ...loanGroupModalArgTypes,
+    ...renewalArgTypes,
+    ...reservationMaterialDetailsPropTypes,
+    ...reservationGroupModalArgTypes,
+    ...deleteReservationModalArgTypes,
+    ...materialDetailsModalArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
+    materialAndAuthorText: {
+      control: { type: "text" }
+    },
+    materialByAuthorText: {
+      control: { type: "text" }
+    },
+    menuUserProfileUrlText: {
+      control: { type: "text" }
+    },
+    userProfileUrl: {
+      control: { type: "text" }
+    },
+    menuNavigationDataConfig: {
+      control: { type: "text" }
+    },
+    menuNotificationLoansExpiredText: {
+      control: { type: "text" }
+    },
+    menuUserIconAriaLabelText: {
+      control: { type: "text" }
+    },
+    menuUserIconAriaLabelLoggedOutText: {
+      control: { type: "text" }
+    },
+    menuNotificationLoansExpiredUrl: {
+      control: { type: "text" }
+    },
+    menuNotificationLoansExpiringSoonText: {
+      control: { type: "text" }
+    },
+    menuNotificationLoansExpiringSoonUrl: {
+      control: { type: "text" }
+    },
+    menuNotificationReadyForPickupText: {
+      control: { type: "text" }
+    },
+    menuNotAuthenticatedCloseButtonText: {
+      control: { type: "text" }
+    },
+    menuAuthenticatedCloseButtonText: {
+      control: { type: "text" }
+    },
+    menuAuthenticatedModalDescriptionText: {
+      control: { type: "text" }
+    },
+    menuNotAuthenticatedModalDescriptionText: {
+      control: { type: "text" }
+    },
+    menuNotificationReadyForPickupUrl: {
+      control: { type: "text" }
+    },
+    menuLogOutText: {
+      control: { type: "text" }
+    },
+    reservationsReadyText: {
+      control: { type: "text" }
+    },
+    readyForLoanText: {
+      control: { type: "text" }
+    },
+    loansSoonOverdueText: {
+      control: { type: "text" }
+    },
+    statusBadgeWarningText: {
+      control: { type: "text" }
+    },
+    loansOverdueText: {
+      control: { type: "text" }
+    },
+    menuProfileLinksAriaLabelText: {
+      control: { type: "text" }
+    },
+    logoutUrl: {
+      control: { type: "text" }
+    },
+    physicalLoansUrl: {
+      control: { type: "text" }
+    },
+    reservationsUrl: {
+      control: { type: "text" }
+    },
+    menuLoginText: {
+      control: { type: "text" }
+    },
+    menuLoginUrl: {
+      control: { type: "text" }
+    },
+    menuSignUpText: {
+      control: { type: "text" }
+    },
+    menuSignUpUrl: {
+      control: { type: "text" }
+    },
+    ereolenHomepageUrl: {
+      control: { type: "text" }
+    },
+    expirationWarningDaysBeforeConfig: {
+      control: { type: "text" }
+    },
+    searchHeaderLoginText: {
+      control: { type: "text" }
+    },
+    searchHeaderFavoritesText: {
+      control: { type: "text" }
+    }
+  }
+};
+
+export default meta;
+
+type Story = StoryObj<typeof WrappedMenu>;
+
+export const Primary: Story = {
+  args: {
     ...serviceUrlArgs,
     ...groupModalArgs,
     ...loanGroupModalArgs,
@@ -33,161 +177,49 @@ export default {
     ...materialDetailsModalArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
-    materialAndAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "and"
-    },
-    materialByAuthorText: {
-      defaultValue: "By",
-      control: { type: "text" }
-    },
-    menuUserProfileUrlText: {
-      defaultValue: "My Account",
-      control: { type: "text" }
-    },
-    userProfileUrl: {
-      defaultValue: "/YourProfile",
-      control: { type: "text" }
-    },
-    menuNavigationDataConfig: {
-      defaultValue:
-        '[{"name":"Dashboard","link":"/user/me/dashboard","dataId":"40"},{"name":"Loans","link":"/user/me/loans","dataId":"1"},{"name":"Reservations","link":"/user/me/reservations","dataId":"2"},{"name":"My list","link":"/user/me/favorites","dataId":"20"},{"name":"Fees & Replacement costs","link":"/user/me/fees","dataId":"4"}]',
-      control: { type: "text" }
-    },
-    menuNotificationLoansExpiredText: {
-      defaultValue: "loans expired",
-      control: { type: "text" }
-    },
-    menuUserIconAriaLabelText: {
-      defaultValue: "Open user menu",
-      control: { type: "text" }
-    },
-    menuUserIconAriaLabelLoggedOutText: {
-      defaultValue: "Open login menu",
-      control: { type: "text" }
-    },
-    menuNotificationLoansExpiredUrl: {
-      defaultValue: "/LoansExpired",
-      control: { type: "text" }
-    },
-    menuNotificationLoansExpiringSoonText: {
-      defaultValue: "loans expiring soon",
-      control: { type: "text" }
-    },
-    menuNotificationLoansExpiringSoonUrl: {
-      defaultValue: "/LoansExpiringSoon",
-      control: { type: "text" }
-    },
-    menuNotificationReadyForPickupText: {
-      defaultValue: "reservations ready for pickup",
-      control: { type: "text" }
-    },
-    menuNotAuthenticatedCloseButtonText: {
-      defaultValue: "Close user menu",
-      control: { type: "text" }
-    },
-    menuAuthenticatedCloseButtonText: {
-      defaultValue: "Close user menu",
-      control: { type: "text" }
-    },
-    menuAuthenticatedModalDescriptionText: {
-      defaultValue: "The user modal",
-      control: { type: "text" }
-    },
-    menuNotAuthenticatedModalDescriptionText: {
-      defaultValue: "The user modal, log in or create a user",
-      control: { type: "text" }
-    },
-    menuNotificationReadyForPickupUrl: {
-      defaultValue: "/ReservationsReadyForPickup",
-      control: { type: "text" }
-    },
-    menuLogOutText: {
-      defaultValue: "Log out",
-      control: { type: "text" }
-    },
-    reservationsReadyText: {
-      defaultValue: "Ready for you",
-      control: { type: "text" }
-    },
-    readyForLoanText: {
-      defaultValue: "Ready for pickup",
-      control: { type: "text" }
-    },
-    loansSoonOverdueText: {
-      defaultValue: "To be returned soon",
-      control: { type: "text" }
-    },
-    statusBadgeWarningText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Expires soon"
-    },
-    loansOverdueText: {
-      defaultValue: "Returned too late",
-      control: { type: "text" }
-    },
-    menuProfileLinksAriaLabelText: {
-      defaultValue: "Profile links",
-      control: { type: "text" }
-    },
-    logoutUrl: {
-      defaultValue: "/Logout",
-      control: { type: "text" }
-    },
-    physicalLoansUrl: {
-      defaultValue: "/user/me/loans",
-      control: { type: "text" }
-    },
-    reservationsUrl: {
-      defaultValue: "/user/me/reservations",
-      control: { type: "text" }
-    },
-    menuLoginText: {
-      defaultValue: "Log in",
-      control: { type: "text" }
-    },
-    menuLoginUrl: {
-      defaultValue: "/Login",
-      control: { type: "text" }
-    },
-    menuSignUpText: {
-      defaultValue: "Sign up",
-      control: { type: "text" }
-    },
-    menuSignUpUrl: {
-      defaultValue: "/Signup",
-      control: { type: "text" }
-    },
-    ereolenHomepageUrl: {
-      defaultValue: "https://ereolen.dk/",
-      control: { type: "text" }
-    },
-    expirationWarningDaysBeforeConfig: {
-      defaultValue: "6",
-      control: { type: "text" }
-    },
-    searchHeaderLoginText: {
-      defaultValue: "Login",
-      control: { type: "text" }
-    },
-    searchHeaderFavoritesText: {
-      defaultValue: "Liked",
-      control: { type: "text" }
-    }
-  }
-} as Meta<typeof WrappedMenu>;
-
-export const UserMenu: StoryFn<typeof WrappedMenu> = (args) => {
-  const menu = <WrappedMenu {...args} />;
-
-  return (
+    materialAndAuthorText: "and",
+    materialByAuthorText: "By",
+    menuUserProfileUrlText: "My Account",
+    userProfileUrl: "/YourProfile",
+    menuNavigationDataConfig:
+      '[{"name":"Dashboard","link":"/user/me/dashboard","dataId":"40"},{"name":"Loans","link":"/user/me/loans","dataId":"1"},{"name":"Reservations","link":"/user/me/reservations","dataId":"2"},{"name":"My list","link":"/user/me/favorites","dataId":"20"},{"name":"Fees & Replacement costs","link":"/user/me/fees","dataId":"4"}]',
+    menuNotificationLoansExpiredText: "loans expired",
+    menuUserIconAriaLabelText: "Open user menu",
+    menuUserIconAriaLabelLoggedOutText: "Open login menu",
+    menuNotificationLoansExpiredUrl: "/LoansExpired",
+    menuNotificationLoansExpiringSoonText: "loans expiring soon",
+    menuNotificationLoansExpiringSoonUrl: "/LoansExpiringSoon",
+    menuNotificationReadyForPickupText: "reservations ready for pickup",
+    menuNotAuthenticatedCloseButtonText: "Close user menu",
+    menuAuthenticatedCloseButtonText: "Close user menu",
+    menuAuthenticatedModalDescriptionText: "The user modal",
+    menuNotAuthenticatedModalDescriptionText:
+      "The user modal, log in or create a user",
+    menuNotificationReadyForPickupUrl: "/ReservationsReadyForPickup",
+    menuLogOutText: "Log out",
+    reservationsReadyText: "Ready for you",
+    readyForLoanText: "Ready for pickup",
+    loansSoonOverdueText: "To be returned soon",
+    statusBadgeWarningText: "Expires soon",
+    loansOverdueText: "Returned too late",
+    menuProfileLinksAriaLabelText: "Profile links",
+    logoutUrl: "/Logout",
+    physicalLoansUrl: "/user/me/loans",
+    reservationsUrl: "/user/me/reservations",
+    menuLoginText: "Log in",
+    menuLoginUrl: "/Login",
+    menuSignUpText: "Sign up",
+    menuSignUpUrl: "/Signup",
+    ereolenHomepageUrl: "https://ereolen.dk/",
+    expirationWarningDaysBeforeConfig: "6",
+    searchHeaderLoginText: "Login",
+    searchHeaderFavoritesText: "Liked"
+  },
+  render: (args) => {
+    const menu = <WrappedMenu {...args} />;
     // We use the Header component as context to the search bar.
     // It is the Header that creates the Search bar's design -
     // - without it, the Search bar loses its shape.
-    <WrappedStoryHeader userProfile={menu} />
-  );
+    return <WrappedStoryHeader userProfile={menu} />;
+  }
 };
