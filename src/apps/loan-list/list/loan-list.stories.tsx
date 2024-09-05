@@ -1,20 +1,151 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
-import serviceUrlArgs from "../../../core/storybook/serviceUrlArgs";
-import blockedArgs from "../../../core/storybook/blockedArgs";
-import globalTextArgs from "../../../core/storybook/globalTextArgs";
+import type { Meta, StoryObj } from "@storybook/react";
 import LoanList from "./loan-list.entry";
-import groupModalArgs from "../../../core/storybook/groupModalArgs";
-import loanGroupModalArgs from "../../../core/storybook/loanGroupModalArgs";
-import materialDetailsModalArgs from "../../../core/storybook/materialDetailsModalArgs";
-import renewalArgs from "../../../core/storybook/renewalArgs";
 import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
-import globalConfigArgs from "../../../core/storybook/globalConfigArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../../core/storybook/serviceUrlArgs";
+import groupModalArgs, {
+  argTypes as groupModalArgTypes
+} from "../../../core/storybook/groupModalArgs";
+import loanGroupModalArgs, {
+  argTypes as loanGroupModalArgTypes
+} from "../../../core/storybook/loanGroupModalArgs";
+import renewalArgs, {
+  argTypes as renewalArgTypes
+} from "../../../core/storybook/renewalArgs";
+import materialDetailsModalArgs, {
+  argTypes as materialDetailsModalArgTypes
+} from "../../../core/storybook/materialDetailsModalArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../../core/storybook/globalConfigArgs";
+import blockedArgs, {
+  argTypes as blockedArgTypes
+} from "../../../core/storybook/blockedArgs";
 
-export default {
+const meta: Meta<typeof LoanList> = {
   title: "Apps / Loan list",
   component: LoanList,
   argTypes: {
+    ...serviceUrlArgTypes,
+    ...groupModalArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
+    ...loanGroupModalArgTypes,
+    ...renewalArgTypes,
+    ...materialDetailsModalArgTypes,
+    ...blockedArgTypes,
+    // Config
+    pageSizeDesktop: {
+      control: { type: "number" }
+    },
+    pageSizeMobile: {
+      control: { type: "number" }
+    },
+    // Config
+    expirationWarningDaysBeforeConfig: {
+      control: { type: "text" }
+    },
+    // Texts
+    loanListAriaLabelListButtonText: {
+      control: { type: "text" }
+    },
+    loanListAriaLabelStackButtonText: {
+      control: { type: "text" }
+    },
+    loanListDigitalLoansEmptyListText: {
+      control: { type: "text" }
+    },
+    loanListDigitalLoansTitleText: {
+      control: { type: "text" }
+    },
+    loanListDigitalPhysicalLoansEmptyListText: {
+      control: { type: "text" }
+    },
+    loanListDueDateModalAriaLabelText: {
+      control: { type: "text" }
+    },
+    loanListMaterialLateFeeText: {
+      control: { type: "text" }
+    },
+    loanListMaterialDaysText: {
+      control: { type: "text" }
+    },
+    loanListMaterialDayText: {
+      control: { type: "text" }
+    },
+    loanListAdditionalMaterialsText: {
+      control: { type: "text" }
+    },
+    loanListPhysicalLoansEmptyListText: {
+      control: { type: "text" }
+    },
+    loanListPhysicalLoansTitleText: {
+      control: { type: "text" }
+    },
+    loanListRenewMultipleButtonExplanationText: {
+      control: { type: "text" }
+    },
+    loanListRenewMultipleButtonText: {
+      control: { type: "text" }
+    },
+    loanListNoItemsCanBeRenewedText: {
+      control: { type: "text" }
+    },
+    loanListStatusBadgeDangerText: {
+      control: { type: "text" }
+    },
+    loanListStatusBadgeWarningText: {
+      control: { type: "text" }
+    },
+    loanListStatusCircleAriaLabelText: {
+      control: { type: "text" }
+    },
+    loanListTitleText: {
+      control: { type: "text" }
+    },
+    loanListToBeDeliveredDigitalMaterialText: {
+      control: { type: "text" }
+    },
+    loanListToBeDeliveredText: {
+      control: { type: "text" }
+    },
+    etAlText: {
+      control: { type: "text" }
+    },
+    materialByAuthorText: {
+      control: { type: "text" }
+    },
+    materialAndAuthorText: {
+      control: { type: "text" }
+    },
+    publizonAudioBookText: {
+      control: { type: "text" }
+    },
+    publizonEbookText: {
+      control: { type: "text" }
+    },
+    publizonPodcastText: {
+      control: { type: "text" }
+    },
+    groupModalHeaderText: {
+      control: { type: "text" }
+    },
+    resultPagerStatusText: {
+      control: { type: "text" }
+    }
+  }
+};
+
+export default meta;
+
+type Story = StoryObj<typeof LoanList>;
+
+export const Primary: Story = {
+  args: {
     ...serviceUrlArgs,
     ...groupModalArgs,
     ...globalTextArgs,
@@ -23,223 +154,82 @@ export default {
     ...renewalArgs,
     ...materialDetailsModalArgs,
     ...blockedArgs,
+    pageSizeDesktop: 10,
+    pageSizeMobile: 5,
     // Config
-    pageSizeDesktop: {
-      defaultValue: 10,
-      control: { type: "number" }
-    },
-    pageSizeMobile: {
-      defaultValue: 5,
-      control: { type: "number" }
-    },
-    // Config
-    expirationWarningDaysBeforeConfig: {
-      defaultValue: "6",
-      control: { type: "text" }
-    },
+    expirationWarningDaysBeforeConfig: "6",
     // Texts
-    loanListAriaLabelListButtonText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "This button shows all loans in the list"
-    },
-    loanListAriaLabelStackButtonText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "This button filters the list, so only one the materials that have the same due date is shown"
-    },
-    loanListDigitalLoansEmptyListText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "You have no digital loans at the moment"
-    },
-    loanListDigitalLoansTitleText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Digital loans"
-    },
-    loanListDigitalPhysicalLoansEmptyListText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "You have 0 loans at the moment"
-    },
-    loanListDueDateModalAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "This button opens a modal that covers the entire page and contains loans with the same due date as the loan currently in focus"
-    },
-    loanListMaterialLateFeeText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "You will be charged a fee, when the item is returned"
-    },
-    loanListMaterialDaysText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "days"
-    },
-    loanListMaterialDayText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "day"
-    },
-    loanListAdditionalMaterialsText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        '{"type":"plural","text":["+ 1 other material","+ @count other materials"]}'
-    },
-    loanListPhysicalLoansEmptyListText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "You have no physical loans at the moment"
-    },
-    loanListPhysicalLoansTitleText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Physical loans"
-    },
-    loanListRenewMultipleButtonExplanationText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        "This button opens a modal that covers the entire page and contains loans with different due dates, if some of the loans in the modal are renewable you can renew them"
-    },
-    loanListRenewMultipleButtonText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Renew several"
-    },
-    loanListNoItemsCanBeRenewedText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "No materials can be renewed"
-    },
-    loanListStatusBadgeDangerText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Expired"
-    },
-    loanListStatusBadgeWarningText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Expiring soon"
-    },
-    loanListStatusCircleAriaLabelText: {
-      control: {
-        type: "text"
-      },
-      defaultValue:
-        '{"type":"plural","text":["This material is due in one day","This material is due in @count days"]}'
-    },
-    loanListTitleText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Your loans"
-    },
-    loanListToBeDeliveredDigitalMaterialText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Due date @date"
-    },
-    loanListToBeDeliveredText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Due date @date"
-    },
-    etAlText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "et al."
-    },
-    materialByAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "By"
-    },
-    materialAndAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "and"
-    },
-    publizonAudioBookText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Audiobook"
-    },
-    publizonEbookText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "E-book"
-    },
-    publizonPodcastText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Podcast"
-    },
-    groupModalHeaderText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Renew several"
-    },
-    resultPagerStatusText: {
-      defaultValue: "Showing @itemsShown out of @hitcount loans",
-      control: { type: "text" }
-    }
+    loanListAriaLabelListButtonText: "This button shows all loans in the list",
+    loanListAriaLabelStackButtonText:
+      "This button filters the list, so only one the materials that have the same due date is shown",
+    loanListDigitalLoansEmptyListText:
+      "You have no digital loans at the moment",
+    loanListDigitalLoansTitleText: "Digital loans",
+    loanListDigitalPhysicalLoansEmptyListText: "You have 0 loans at the moment",
+    loanListDueDateModalAriaLabelText:
+      "This button opens a modal that covers the entire page and contains loans with the same due date as the loan currently in focus",
+    loanListMaterialLateFeeText:
+      "You will be charged a fee, when the item is returned",
+    loanListMaterialDaysText: "days",
+    loanListMaterialDayText: "day",
+    loanListAdditionalMaterialsText:
+      '{"type":"plural","text":["+ 1 other material","+ @count other materials"]}',
+    loanListPhysicalLoansEmptyListText:
+      "You have no physical loans at the moment",
+    loanListPhysicalLoansTitleText: "Physical loans",
+    loanListRenewMultipleButtonExplanationText:
+      "This button opens a modal that covers the entire page and contains loans with different due dates, if some of the loans in the modal are renewable you can renew them",
+    loanListRenewMultipleButtonText: "Renew several",
+    loanListNoItemsCanBeRenewedText: "No materials can be renewed",
+    loanListStatusBadgeDangerText: "Expired",
+    loanListStatusBadgeWarningText: "Expiring soon",
+    loanListStatusCircleAriaLabelText:
+      '{"type":"plural","text":["This material is due in one day","This material is due in @count days"]}',
+    loanListTitleText: "Your loans",
+    loanListToBeDeliveredDigitalMaterialText: "Due date @date",
+    loanListToBeDeliveredText: "Due date @date",
+    etAlText: "et al.",
+    materialByAuthorText: "By",
+    materialAndAuthorText: "and",
+    publizonAudioBookText: "Audiobook",
+    publizonEbookText: "E-book",
+    publizonPodcastText: "Podcast",
+    groupModalHeaderText: "Renew several",
+    resultPagerStatusText: "Showing @itemsShown out of @hitcount loans"
   }
-} as Meta<typeof LoanList>;
+};
 
-const Template: StoryFn<typeof LoanList> = (props) => <LoanList {...props} />;
-
-export const LoanListEntry = Template.bind({});
-LoanListEntry.args = {};
 const { dueDateModal, loanDetails, allLoansId } = getModalIds();
-export const LoanListDetailsModal = Template.bind({});
-LoanListDetailsModal.parameters = {
-  query: {
-    modal: `${loanDetails}9562505082`
+
+export const LoanListDetailsModal: Story = {
+  parameters: {
+    query: {
+      modal: `${loanDetails}9562505082`
+    }
+  },
+  args: {
+    ...Primary.args
   }
 };
 
-export const LoanListDueDateModal = Template.bind({});
-LoanListDueDateModal.parameters = {
-  query: {
-    modal: `${dueDateModal}2022-12-15`
+export const LoanListDueDateModal: Story = {
+  parameters: {
+    query: {
+      modal: `${dueDateModal}2022-12-15`
+    }
+  },
+  args: {
+    ...Primary.args
   }
 };
 
-export const LoanListRenewLoansModal = Template.bind({});
-LoanListRenewLoansModal.parameters = {
-  query: {
-    modal: allLoansId
+export const LoanListRenewLoansModal: Story = {
+  parameters: {
+    query: {
+      modal: allLoansId
+    }
+  },
+  args: {
+    ...Primary.args
   }
 };
