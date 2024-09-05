@@ -34,7 +34,9 @@ interface SearchHeaderProps {
   isEnabledAdvancedSearch: boolean;
 }
 
-const SearchHeader: React.FC<SearchHeaderProps> = ({isEnabledAdvancedSearch}) => {
+const SearchHeader: React.FC<SearchHeaderProps> = ({
+  isEnabledAdvancedSearch
+}) => {
   const t = useText();
   const u = useUrls();
   const searchUrl = u("searchUrl");
@@ -341,6 +343,7 @@ const SearchHeader: React.FC<SearchHeaderProps> = ({isEnabledAdvancedSearch}) =>
           isHeaderDropdownOpen={isHeaderDropdownOpen}
           setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
           redirectUrl={redirectUrl}
+          isEnabledAdvancedSearch={isEnabledAdvancedSearch}
         />
         <Autosuggest
           textData={textData}
