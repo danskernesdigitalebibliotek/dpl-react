@@ -1,138 +1,154 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import StoryHeader from "../../components/search-bar/story-header.dev.inc";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 import SearchHeaderEntry, {
   SearchHeaderEntryProps
 } from "./search-header.entry";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
-export default {
+const meta: Meta<typeof SearchHeaderEntry> = {
   title: "Apps / Header",
   component: SearchHeaderEntry,
   argTypes: {
-    ...serviceUrlArgs,
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...serviceUrlArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     etAlText: {
-      name: "Et al. Text",
-      defaultValue: "et al.",
+      description: "Et al. Text",
       control: { type: "text" }
     },
     searchHeaderIconAltText: {
-      name: "Alt text for search button image",
-      defaultValue: "search icon",
+      description: "Alt text for search button image",
       control: { type: "text" }
     },
     searchHeaderInputLabelText: {
-      name: "Search header input label",
-      defaultValue: "The main search field.",
+      description: "Search header input label",
       control: { type: "text" }
     },
     inputPlaceholderText: {
-      name: "Input field placeholder",
-      defaultValue: "Search among the library's materials",
+      description: "Input field placeholder",
       control: { type: "text" }
     },
     stringSuggestionAuthorText: {
-      name: "String suggestion spec - author",
-      defaultValue: "author",
+      description: "String suggestion spec - author",
       control: { type: "text" }
     },
     stringSuggestionWorkText: {
-      name: "String suggestion spec - work",
-      defaultValue: "material",
+      description: "String suggestion spec - work",
       control: { type: "text" }
     },
     stringSuggestionTopicText: {
-      name: "String suggestion spec - topic",
-      defaultValue: "topic",
+      description: "String suggestion spec - topic",
       control: { type: "text" }
     },
     searchUrl: {
-      name: "Base search url",
-      defaultValue: "/search",
+      description: "Base search url",
       control: { type: "text" }
     },
     advancedSearchUrl: {
-      name: "Advanced search url",
-      defaultValue: "/advanced-search",
+      description: "Advanced search url",
       control: { type: "text" }
     },
     searchHeaderDropdownText: {
-      name: "Search header advanced search icon label",
-      defaultValue: "Dropdown with additional search functions",
+      description: "Search header advanced search icon label",
       control: { type: "text" }
     },
     materialUrl: {
-      name: "Base material page url",
-      defaultValue: "/work/:workid",
+      description: "Base material page url",
       control: { type: "text" }
     },
     autosuggestBookCategoryText: {
-      name: "Book category",
-      defaultValue: "Books",
+      description: "Book category",
       control: { type: "text" }
     },
     autosuggestEbookCategoryText: {
-      name: "Ebook category",
-      defaultValue: "E-books",
+      description: "Ebook category",
       control: { type: "text" }
     },
     autosuggestFilmCategoryText: {
-      name: "Movie category",
-      defaultValue: "Movies",
+      description: "Movie category",
       control: { type: "text" }
     },
     autosuggestAudioBookCategoryText: {
-      name: "Audio book category",
-      defaultValue: "Audio books",
+      description: "Audio book category",
       control: { type: "text" }
     },
     autosuggestMusicCategoryText: {
-      name: "Music category",
-      defaultValue: "Music",
+      description: "Music category",
       control: { type: "text" }
     },
     autosuggestGameCategoryText: {
-      name: "Game category",
-      defaultValue: "Games",
+      description: "Game category",
       control: { type: "text" }
     },
     autosuggestAnimatedSeriesCategoryText: {
-      name: "Animated series category",
-      defaultValue: "Animated series",
+      description: "Animated series category",
       control: { type: "text" }
     },
     inText: {
-      name: "x 'in' y",
-      defaultValue: "in",
+      description: "x 'in' y",
       control: { type: "text" }
     },
     loadingText: {
-      name: "Loading",
-      defaultValue: "Loading",
+      description: "Loading",
       control: { type: "text" }
     },
     searchNoValidCharactersErrorText: {
-      name: "Search non-whitespace character error",
-      defaultValue: "Input must contain at least one non-whitespace character.",
+      description: "Search non-whitespace character error",
       control: { type: "text" }
     },
     headerDropdownItemAdvancedSearchText: {
-      name: "Advanced search menu text",
-      defaultValue: "Advanced search",
+      description: "Advanced search menu text",
       control: { type: "text" }
     }
   }
-} as Meta<typeof SearchHeaderEntry>;
+};
 
-export const Search: StoryFn<typeof SearchHeaderEntry> = (
-  args: SearchHeaderEntryProps
-) => (
+export default meta;
+
+type Story = StoryObj<typeof SearchHeaderEntry>;
+
+export const Search: Story = {
+  args: {
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    etAlText: "et al.",
+    searchHeaderIconAltText: "search icon",
+    searchHeaderInputLabelText: "The main search field.",
+    inputPlaceholderText: "Search among the library's materials",
+    stringSuggestionAuthorText: "author",
+    stringSuggestionWorkText: "material",
+    stringSuggestionTopicText: "topic",
+    searchUrl: "/search",
+    advancedSearchUrl: "/advanced-search",
+    searchHeaderDropdownText: "Dropdown with additional search functions",
+    materialUrl: "/work/:workid",
+    autosuggestBookCategoryText: "Books",
+    autosuggestEbookCategoryText: "E-books",
+    autosuggestFilmCategoryText: "Movies",
+    autosuggestAudioBookCategoryText: "Audio books",
+    autosuggestMusicCategoryText: "Music",
+    autosuggestGameCategoryText: "Games",
+    autosuggestAnimatedSeriesCategoryText: "Animated series",
+    inText: "in",
+    loadingText: "Loading",
+    searchNoValidCharactersErrorText:
+      "Input must contain at least one non-whitespace character.",
+    headerDropdownItemAdvancedSearchText: "Advanced search"
+  },
   // We use the Header component as context to the search bar.
   // It is the Header that creates the Search bar's design -
   // - without it, the Search bar loses its shape.
-  <StoryHeader search={<SearchHeaderEntry {...args} />} />
-);
+  render: (args: SearchHeaderEntryProps) => (
+    <StoryHeader search={<SearchHeaderEntry {...args} />} />
+  )
+};
