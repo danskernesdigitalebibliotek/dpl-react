@@ -1,53 +1,62 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import globalTextArgs, {
-  GlobalEntryTextProps
+  argTypes as globalTextArgTypes
 } from "../../core/storybook/globalTextArgs";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-import RecommendedMaterial, {
-  RecommendedMaterialEntryProps
-} from "./RecommendedMaterial.entry";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
+import RecommendedMaterial from "./RecommendedMaterial.entry";
 import RecommendedMaterialSkeleton from "./RecommendedMaterialSkeleton";
 import DisplayMaterialTypeOptions from "./recommendedMaterialDisplayTypeData";
 
-export default {
+const meta: Meta<typeof RecommendedMaterial> = {
   title: "Apps / Recommended Material",
   component: RecommendedMaterial,
   argTypes: {
+    ...globalTextArgTypes,
+    ...serviceUrlArgTypes,
     wid: {
-      defaultValue: "work-of:870970-basis:22383590",
       control: { type: "text" }
     },
     materialType: {
-      defaultValue: "bog",
       control: { type: "select", options: DisplayMaterialTypeOptions }
     },
     materialUrl: {
-      defaultValue: "/work/:workid",
       control: { type: "text" }
     },
     etAlText: {
-      name: "Et al. Text",
-      defaultValue: "et al.",
+      description: "Et al. Text",
       control: { type: "text" }
-    },
-    ...globalTextArgs,
-    ...serviceUrlArgs
+    }
   }
-} as Meta<typeof RecommendedMaterial>;
-
-export const Default: StoryFn<typeof RecommendedMaterial> = (
-  args: RecommendedMaterialEntryProps & GlobalEntryTextProps
-) => <RecommendedMaterial {...args} />;
-
-export const materialWithoutType = Default.bind({});
-
-materialWithoutType.args = {
-  materialType: undefined
 };
 
-const SkeletonTemplate: StoryFn<typeof RecommendedMaterialSkeleton> = () => {
-  return <RecommendedMaterialSkeleton />;
+export default meta;
+
+type Story = StoryObj<typeof RecommendedMaterial>;
+
+export const Primary: Story = {
+  args: {
+    ...globalTextArgs,
+    ...serviceUrlArgs,
+    wid: "work-of:870970-basis:22383590",
+    materialType: "bog",
+    materialUrl: "/work/:workid",
+    etAlText: "et al."
+  }
 };
 
-export const Skeleton = SkeletonTemplate.bind({});
+export const Skeleton: Story = {
+  args: {
+    ...Primary.args
+  },
+  render: () => <RecommendedMaterialSkeleton />
+};
+
+export const materialWithoutType: Story = {
+  args: {
+    ...Primary.args,
+    materialType: undefined
+  }
+};
