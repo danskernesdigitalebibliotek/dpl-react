@@ -1,10 +1,15 @@
-import { Meta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 import globalTextArgs, {
-  GlobalEntryTextProps
+  GlobalEntryTextProps,
+  argTypes as globalTextArgTypes
 } from "../../core/storybook/globalTextArgs";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 import MaterialSearch, {
   MaterialSearchEntryProps,
   MaterialSearchEntryTextProps
@@ -71,175 +76,195 @@ const MaterialSearchHiddenInputs = ({
   );
 };
 
-export default {
+const meta: Meta<typeof MaterialSearchHiddenInputs> = {
   title: "Apps / Material Search",
   component: MaterialSearchHiddenInputs,
   argTypes: {
+    ...globalTextArgTypes,
+    ...serviceUrlArgTypes,
+    ...globalConfigArgTypes,
     uniqueIdentifier: {
-      defaultValue: uniqueIdentifierValue,
       control: { type: "number" }
     },
     previouslySelectedWorkId: {
-      defaultValue: previouslySelectedWorkId,
       control: { type: "text" }
     },
     previouslySelectedMaterialType: {
-      defaultValue: previouslySelectedMaterialType,
       control: { type: "text" }
     },
     etAlText: {
-      defaultValue: "et al.",
       control: { type: "text" }
     },
     materialUrl: {
-      defaultValue: "/work/:workid",
       control: { type: "text" }
     },
     materialSearchSearchInputText: {
-      defaultValue: "Search for material",
       control: { type: "text" }
     },
     materialSearchMaterialTypeSelectorText: {
-      defaultValue: "Select material type",
       control: { type: "text" }
     },
     materialSearchMaterialTypeSelectorNoneOptionText: {
-      defaultValue: "Select material type",
       control: { type: "text" }
     },
     materialSearchNoMaterialSelectedText: {
-      defaultValue: "No material selected",
       control: { type: "text" }
     },
     materialSearchPreviewTitle: {
-      defaultValue: "Title",
       control: { type: "text" }
     },
     materialSearchPreviewAuthor: {
-      defaultValue: "Author",
       control: { type: "text" }
     },
     materialSearchPreviewPublicationYear: {
-      defaultValue: "Publication year",
       control: { type: "text" }
     },
     materialSearchPreviewSource: {
-      defaultValue: "Source",
       control: { type: "text" }
     },
     materialSearchPreviewWorkId: {
-      defaultValue: "Work ID",
       control: { type: "text" }
     },
     materialSearchLoadingText: {
-      defaultValue: "Loading...",
       control: { type: "text" }
     },
     materialSearchAmountOfResultsText: {
-      defaultValue: "Amount of hits",
       control: { type: "text" }
     },
     materialSearchNoResultsText: {
-      defaultValue: "No results",
       control: { type: "text" }
     },
     materialSearchAriaButtonSelectWorkWithText: {
-      defaultValue: "Select work with title @title",
       control: { type: "text" }
     },
     materialSearchSearchInputPlaceholderText: {
-      defaultValue: "Enter search terms",
       control: { type: "text" }
     },
     materialSearchPreviewTitleText: {
-      defaultValue: "Title",
       control: { type: "text" }
     },
     materialSearchPreviewAuthorText: {
-      defaultValue: "Author",
       control: { type: "text" }
     },
     materialSearchPreviewPublicationYearText: {
-      defaultValue: "Publication year",
       control: { type: "text" }
     },
     materialSearchPreviewSourceText: {
-      defaultValue: "Source",
       control: { type: "text" }
     },
     materialSearchPreviewWorkIdText: {
-      defaultValue: "Work ID",
       control: { type: "text" }
     },
     materialSearchErrorTitleText: {
-      defaultValue: "Title",
       control: { type: "text" }
     },
     materialSearchErrorAuthorText: {
-      defaultValue: "Author",
       control: { type: "text" }
     },
     materialSearchErrorLinkText: {
-      defaultValue: "Link",
       control: { type: "text" }
     },
     materialSearchErrorHeaderText: {
-      defaultValue: "This material needs to be updated.",
       control: { type: "text" }
     },
     materialSearchErrorMaterialTypeNotFoundText: {
-      defaultValue:
-        "The currently selected type of the material is no longer available in the system. As a result of this, the link is likely broken. Use the title or link underneath to find and update the material and its type, or replace / delete it.",
       control: { type: "text" }
     },
     materialSearchErrorWorkNotFoundText: {
-      defaultValue:
-        "The material that was previously selected is no longer available in the system. Either delete this entry or search for a new material to replace it.",
       control: { type: "text" }
     },
     materialSearchErrorHiddenInputsNotFoundHeadingText: {
-      defaultValue: "Error retrieving saved data. Inputs not found.",
       control: { type: "text" }
     },
     materialSearchErrorHiddenInputsNotFoundDescriptionText: {
-      defaultValue:
-        "Something went wrong when trying to find the previously saved values. Please try again. If the problem persists, something could be wrong with the app.",
       control: { type: "text" }
-    },
+    }
+  }
+};
+
+export default meta;
+
+type Story = StoryObj<typeof MaterialSearchHiddenInputs>;
+
+export const Primary: Story = {
+  args: {
     ...globalTextArgs,
     ...serviceUrlArgs,
-    ...globalConfigArgs
+    ...globalConfigArgs,
+    uniqueIdentifier: uniqueIdentifierValue.toString(),
+    previouslySelectedWorkId,
+    previouslySelectedMaterialType,
+    etAlText: "et al.",
+    materialUrl: "/work/:workid",
+    materialSearchSearchInputText: "Search for material",
+    materialSearchMaterialTypeSelectorText: "Select material type",
+    materialSearchMaterialTypeSelectorNoneOptionText: "Select material type",
+    materialSearchNoMaterialSelectedText: "No material selected",
+    materialSearchPreviewTitle: "Title",
+    materialSearchPreviewAuthor: "Author",
+    materialSearchPreviewPublicationYear: "Publication year",
+    materialSearchPreviewSource: "Source",
+    materialSearchPreviewWorkId: "Work ID",
+    materialSearchLoadingText: "Loading...",
+    materialSearchAmountOfResultsText: "Amount of hits",
+    materialSearchNoResultsText: "No results",
+    materialSearchAriaButtonSelectWorkWithText: "Select work with title @title",
+    materialSearchSearchInputPlaceholderText: "Enter search terms",
+    materialSearchPreviewTitleText: "Title",
+    materialSearchPreviewAuthorText: "Author",
+    materialSearchPreviewPublicationYearText: "Publication year",
+    materialSearchPreviewSourceText: "Source",
+    materialSearchPreviewWorkIdText: "Work ID",
+    materialSearchErrorTitleText: "Title",
+    materialSearchErrorAuthorText: "Author",
+    materialSearchErrorLinkText: "Link",
+    materialSearchErrorHeaderText: "This material needs to be updated.",
+    materialSearchErrorMaterialTypeNotFoundText:
+      "The currently selected type of the material is no longer available in the system. As a result of this, the link is likely broken. Use the title or link underneath to find and update the material and its type, or replace / delete it.",
+    materialSearchErrorWorkNotFoundText:
+      "The material that was previously selected is no longer available in the system. Either delete this entry or search for a new material to replace it.",
+    materialSearchErrorHiddenInputsNotFoundHeadingText:
+      "Error retrieving saved data. Inputs not found.",
+    materialSearchErrorHiddenInputsNotFoundDescriptionText:
+      "Something went wrong when trying to find the previously saved values. Please try again. If the problem persists, something could be wrong with the app."
   }
-} as Meta<typeof MaterialSearchHiddenInputs>;
+};
 
-const createStory =
-  (defaultWorkId: string, defaultMaterialType: string) =>
-  (
-    args: MaterialSearchEntryProps &
-      MaterialSearchEntryTextProps &
-      GlobalEntryTextProps
-  ) =>
-    (
-      <MaterialSearchHiddenInputs
-        defaultWorkId={defaultWorkId}
-        defaultMaterialType={defaultMaterialType}
-        {...args}
-      />
-    );
+export const WithPreviouslySelectedValues: Story = {
+  args: {
+    ...Primary.args
+  },
+  render: (args) => {
+    const defaultWorkId = previouslySelectedWorkId;
+    const defaultMaterialType = previouslySelectedMaterialType;
+    const modifiedProps = { ...args, defaultWorkId, defaultMaterialType };
 
-export const Default = createStory("", "");
+    return <MaterialSearchHiddenInputs {...modifiedProps} />;
+  }
+};
 
-export const WithPreviouslySelectedValues = createStory(
-  previouslySelectedWorkId,
-  previouslySelectedMaterialType
-);
+export const materialWithInvalidType: Story = {
+  args: {
+    ...Primary.args
+  },
+  render: (args) => {
+    const defaultWorkId = previouslySelectedWorkId;
+    const defaultMaterialType = "invalid-type";
+    const modifiedProps = { ...args, defaultWorkId, defaultMaterialType };
 
-export const materialWithInvalidType = createStory(
-  previouslySelectedWorkId,
-  "invalid-type"
-);
+    return <MaterialSearchHiddenInputs {...modifiedProps} />;
+  }
+};
 
-export const materialWithInvalidWorkId = createStory(
-  "invalid-work-id",
-  previouslySelectedMaterialType
-);
+export const materialWithInvalidWorkId: Story = {
+  args: {
+    ...Primary.args
+  },
+  render: (args) => {
+    const defaultWorkId = "invalid-work-id";
+    const defaultMaterialType = previouslySelectedMaterialType;
+    const modifiedProps = { ...args, defaultWorkId, defaultMaterialType };
+
+    return <MaterialSearchHiddenInputs {...modifiedProps} />;
+  }
+};
