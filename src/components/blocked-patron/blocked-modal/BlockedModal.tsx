@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import BlockedTypes from "../../../core/utils/types/BlockedTypes";
@@ -15,18 +15,9 @@ const BlockedModal: FC<BlockedModalProps> = ({ blockedStatus }) => {
   const u = useUrls();
   const blockedPatronELinkUrl = u("blockedPatronELinkUrl", true);
   const { blockedModal } = getModalIds();
-  const [isJustLoggedIn, setJustLoggedIn] = useState<boolean>(false);
 
-  useEffect(() => {
-    const urlPrams = new URLSearchParams(window.location.search);
-    if (urlPrams.get("check_logged_in")) {
-      setJustLoggedIn(true);
-    }
-  }, []);
-
-  // If the user isn't actually blocked, don't render the modal,
-  // and only showe the modal if the user has just logged in.
-  if (!blockedStatus || blockedStatus === "" || !isJustLoggedIn) {
+  // If the user isn't actually blocked, don't render the modal.
+  if (!blockedStatus || blockedStatus === "") {
     return null;
   }
 

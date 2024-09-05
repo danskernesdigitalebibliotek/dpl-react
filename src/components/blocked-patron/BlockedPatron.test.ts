@@ -28,9 +28,7 @@ describe("Patron page", () => {
         ]
       }
     });
-    cy.visit(
-      "/iframe.html?path=/story/apps-loan-list--loan-list-entry&check_logged_in=1"
-    );
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
     cy.getBySel("modal").should("exist");
     cy.getBySel("modal").should("exist");
     cy.getBySel("modal").get("h1").should("exist");
@@ -52,9 +50,7 @@ describe("Patron page", () => {
         ]
       }
     });
-    cy.visit(
-      "/iframe.html?path=/story/apps-loan-list--loan-list-entry&check_logged_in=1"
-    );
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
     cy.getBySel("modal").should("exist");
     cy.getBySel("modal").get("h1").should("exist");
     cy.getBySel("modal").get("p").should("exist");
@@ -75,31 +71,11 @@ describe("Patron page", () => {
         ]
       }
     });
-    cy.visit(
-      "/iframe.html?path=/story/apps-loan-list--loan-list-entry&check_logged_in=1"
-    );
+    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
     cy.getBySel("modal").should("exist");
     cy.getBySel("modal").get("h1").should("exist");
     cy.getBySel("modal").get("p").should("exist");
     cy.getBySel("modal").get("a").should("not.exist");
-  });
-
-  // Blocked types:
-  // https://github.com/itk-dev/dpl-react/blob/develop/src/core/utils/types/BlockedTypes.ts
-  it("Patron blocked E - Do not show modal unless just logged in", () => {
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      patron: {
-        blockStatus: [
-          {
-            blockedReason: "E",
-            blockedSince: "",
-            message: ""
-          }
-        ]
-      }
-    });
-    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
-    cy.get(".modal").should("not.exist");
   });
 });
 
