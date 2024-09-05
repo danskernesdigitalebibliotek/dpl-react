@@ -705,6 +705,11 @@ export default {
       defaultValue: "Error missing municipality agency ID",
       control: { type: "text" }
     },
+    orderDigitalCopyFeedbackInternalErrorText: {
+      name: "Internal error text",
+      defaultValue: "Internal error",
+      control: { type: "text" }
+    },
     authUrl: {
       name: "Url where user can authenticate",
       defaultValue: "",
@@ -956,4 +961,9 @@ digitalArticle.args = {
 export const inLargeSameSeriesAndIrregularFaustId = Template.bind({});
 inLargeSameSeriesAndIrregularFaustId.args = {
   wid: "work-of:150086-netmusik:BIS-2067"
+};
+
+export const journal = Template.bind({});
+journal.args = {
+  wid: "work-of:870970-basis:01007556"
 };

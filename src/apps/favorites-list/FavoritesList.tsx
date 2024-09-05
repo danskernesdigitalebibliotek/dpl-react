@@ -47,12 +47,12 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
       <div className="ssc">
         <div className="ssc-line w-10 my-32">&nbsp;</div>
       </div>
-      <ul className="card-list-page__list my-32">
+      <ul className="content-list">
         {/*
           We'll show 5 skeleton cards which should cover most screens.
         */}
         {[...Array(5)].map(() => (
-          <li>
+          <li className="content-list__item">
             <CardListItemSkeleton />
           </li>
         ))}
@@ -61,7 +61,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   );
 
   const materialsCount = materials.length > 0 && (
-    <p className="text-small-caption my-32">
+    <p className="content-list-page__subheading">
       {t("favoritesListMaterialsText", {
         placeholders: { "@count": materials.length }
       })}
@@ -70,11 +70,12 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
 
   const renderContent = () =>
     displayedMaterials.length > 0 ? (
-      <ul className="card-list-page__list my-32">
+      <ul className="content-list">
         {displayedMaterials.map((pid, i) => {
           const isFirstNewItem = i === page * pageSize;
           return (
             <MaterialListItem
+              className="content-list__item"
               key={pid}
               ref={isFirstNewItem ? lastItemRef : null}
             >
@@ -91,8 +92,8 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
     );
 
   return (
-    <div className="card-list-page">
-      <h1 className="text-header-h2 mb-16 search-result-title">
+    <div className="content-list-page">
+      <h1 className="content-list-page__heading">
         {t("favoritesListHeaderText")}
       </h1>
       {isLoading ? (

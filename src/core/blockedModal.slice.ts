@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 
 const initialState: {
   data: { [key: string]: boolean } | Record<string, never>;
@@ -20,6 +21,11 @@ export const blockedModalSlice = createSlice({
   }
 });
 
-export const { setHasBeenVisible } = blockedModalSlice.actions;
+export const useSetHasBeenVisible = () => {
+  const { setHasBeenVisible } = blockedModalSlice.actions;
+  const dispatch = useDispatch();
+
+  return () => dispatch(setHasBeenVisible({ hasBeenVisible: true }));
+};
 
 export default blockedModalSlice.reducer;

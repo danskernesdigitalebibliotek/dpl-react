@@ -59,6 +59,12 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
     setShowAllMaterials(!showAllMaterials);
   }
 
+  if (!materials.length) {
+    // eslint-disable-next-line no-console
+    console.warn(`No materials to show for MaterialGrid: ${title}`);
+    return null;
+  }
+
   const titleClasses = clsx("material-grid__title", {
     "material-grid__title--no-description": !description
   });

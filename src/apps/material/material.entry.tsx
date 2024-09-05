@@ -139,6 +139,7 @@ interface MaterialEntryTextProps {
   orderDigitalCopyModalCloseModalAriaLabelText: string;
   orderDigitalCopyModalScreenReaderModalDescriptionText: string;
   orderDigitalCopyFeedbackErrorMissingMunicipalityagencyidText: string;
+  orderDigitalCopyFeedbackInternalErrorText: string;
   orderDigitalCopyTitleText: string;
   outOfText: string;
   periodicalSelectEditionText: string;
