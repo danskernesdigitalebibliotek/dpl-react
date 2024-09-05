@@ -68,7 +68,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
 
   // Handle URL translation when data or error changes
   useEffect(() => {
-    if (urlWasTranslated === false && !error && data?.data?.url) {
+    if (!urlWasTranslated && !error && data?.data?.url) {
       setTranslatedUrl(new URL(data.data.url));
       setUrlWasTranslated(true);
     }
