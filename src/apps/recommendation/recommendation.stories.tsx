@@ -1,58 +1,60 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import globalTextArgs, {
-  GlobalEntryTextProps
+  argTypes as globalTextArgTypes
 } from "../../core/storybook/globalTextArgs";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 
 import DisplayMaterialTypeOptions from "../recommended-material/recommendedMaterialDisplayTypeData";
 import RecommendationSkeleton from "./RecommendationSkeleton";
-import Recommendation, {
-  RecommendationEntryProps
-} from "./recommendation.entry";
+import Recommendation from "./recommendation.entry";
 
-export default {
+const meta: Meta<typeof Recommendation> = {
   title: "Apps / Recommendation",
   component: Recommendation,
   argTypes: {
+    ...globalTextArgTypes,
+    ...serviceUrlArgTypes,
     wid: {
-      defaultValue: "work-of:870970-basis:22383590",
       control: { type: "text" }
     },
     materialType: {
-      defaultValue: "bog",
       control: { type: "select", options: DisplayMaterialTypeOptions }
     },
     positionImageRight: {
-      defaultValue: false,
       control: { type: "boolean" }
     },
     materialUrl: {
-      defaultValue: "/work/:workid",
       control: { type: "text" }
     },
     etAlText: {
-      name: "Et al. Text",
-      defaultValue: "et al.",
+      description: "Et al. Text",
       control: { type: "text" }
-    },
-    ...globalTextArgs,
-    ...serviceUrlArgs
+    }
   }
-} as Meta<typeof Recommendation>;
-
-export const App: StoryFn<typeof Recommendation> = (
-  args: RecommendationEntryProps & GlobalEntryTextProps
-) => <Recommendation {...args} />;
-
-const SkeletonTemplate: StoryFn<typeof RecommendationSkeleton> = (args) => {
-  return <RecommendationSkeleton {...args} />;
 };
-export const Skeleton = SkeletonTemplate.bind({});
 
-Skeleton.argTypes = {
-  positionImageRight: {
-    defaultValue: false,
-    control: { type: "boolean" }
+export default meta;
+
+type Story = StoryObj<typeof Recommendation>;
+
+export const Primary: Story = {
+  args: {
+    ...globalTextArgs,
+    ...serviceUrlArgs,
+    wid: "work-of:870970-basis:22383590",
+    materialType: "bog",
+    positionImageRight: false,
+    materialUrl: "/work/:workid",
+    etAlText: "et al."
   }
+};
+
+export const Skeleton: Story = {
+  args: {
+    ...Primary.args
+  },
+  render: (args) => <RecommendationSkeleton {...args} />
 };
