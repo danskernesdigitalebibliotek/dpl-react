@@ -1,250 +1,265 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-import SearchResultEntry, {
-  SearchResultEntryProps
-} from "./search-result.entry";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import type { Meta, StoryObj } from "@storybook/react";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
+import SearchResultEntry from "./search-result.entry";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
-export default {
+const meta: Meta<typeof SearchResultEntry> = {
   title: "Apps / Search Result",
   component: SearchResultEntry,
   argTypes: {
-    ...serviceUrlArgs,
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...serviceUrlArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     q: {
-      name: "Search string",
-      defaultValue: "harry",
+      description: "Search string",
       control: { type: "text" }
     },
     pageSizeDesktop: {
-      name: "Number of search result items on desktop",
-      defaultValue: 50,
+      description: "Number of search result items on desktop",
       control: { type: "number" }
     },
     pageSizeMobile: {
-      name: "Number of search result items on mobile",
-      defaultValue: 20,
+      description: "Number of search result items on mobile",
       control: { type: "number" }
     },
     authUrl: {
-      name: "Url where user can authenticate",
-      defaultValue: "",
+      description: "Url where user can authenticate",
       control: { type: "text" }
     },
     searchUrl: {
-      name: "Path to the search result page",
-      defaultValue: "/search",
+      description: "Path to the search result page",
       control: { type: "text" }
     },
     materialUrl: {
-      name: "Path to the material page",
-      defaultValue: "/work/:workid",
+      description: "Path to the material page",
       control: { type: "text" }
     },
     etAlText: {
-      name: "Et al. Text",
-      defaultValue: "et al.",
+      description: "Et al. Text",
       control: { type: "text" }
     },
     byAuthorText: {
-      name: "By (author) Text",
-      defaultValue: "By",
+      description: "By (author) Text",
       control: { type: "text" }
     },
     showMoreText: {
-      name: "Show more Text",
-      defaultValue: "show more",
+      description: "Show more Text",
       control: { type: "text" }
     },
     resultPagerStatusText: {
-      name: "Result pager status text",
-      defaultValue: "Showing @itemsShown out of @hitcount results",
+      description: "Result pager status text",
       control: { type: "text" }
     },
     numberDescriptionText: {
-      name: "Number description",
-      defaultValue: "Nr.",
+      description: "Number description",
       control: { type: "text" }
     },
     inSeriesText: {
-      name: "In series",
-      defaultValue: "in series",
+      description: "In series",
       control: { type: "text" }
     },
     showingResultsForText: {
-      name: "Showing results for",
-      defaultValue: "Showing results for “@query”",
+      description: "Showing results for",
       control: { type: "text" }
     },
     noSearchResultText: {
-      name: "0-hit search result",
-      defaultValue: "Your search has 0 results",
+      description: "0-hit search result",
       control: { type: "text" }
     },
     blacklistedPickupBranchesConfig: {
-      name: "Blacklisted Pickup branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      description: "Blacklisted Pickup branches",
       control: { type: "text" }
     },
     blacklistedAvailabilityBranchesConfig: {
-      name: "Blacklisted Availability branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      description: "Blacklisted Availability branches",
       control: { type: "text" }
     },
     blacklistedSearchBranchesConfig: {
-      name: "Blacklisted branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+      description: "Blacklisted branches",
       control: { type: "text" }
     },
     branchesConfig: {
-      name: "Branches",
-      defaultValue:
-        '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
+      description: "Branches",
       control: { type: "text" }
     },
     facetBrowserModalScreenReaderModalDescriptionText: {
-      name: "facet browser screen reader modal description text",
-      defaultValue: "Modal for facet browser",
+      description: "facet browser screen reader modal description text",
       control: { type: "text" }
     },
     facetBrowserModalCloseModalAriaLabelText: {
-      name: "facet browser close modal aria label text",
-      defaultValue: "Close facet browser modal",
+      description: "facet browser close modal aria label text",
       control: { type: "text" }
     },
     facetAccessTypesText: {
-      name: "Access types text",
-      defaultValue: "Access types",
+      description: "Access types text",
       control: { type: "text" }
     },
     facetCanAlwaysBeLoanedText: {
-      name: "Can always be loaned text",
-      defaultValue: "Can always be loaned",
+      description: "Can always be loaned text",
       control: { type: "text" }
     },
     facetChildrenOrAdultsText: {
-      name: "Children or adults text",
-      defaultValue: "Children or adults",
+      description: "Children or adults text",
       control: { type: "text" }
     },
     facetCreatorsText: {
-      name: "Creators text",
-      defaultValue: "Creators",
+      description: "Creators text",
       control: { type: "text" }
     },
     facetDk5Text: {
-      name: "Dk5 text",
-      defaultValue: "Dk5",
+      description: "Dk5 text",
       control: { type: "text" }
     },
     facetFictionalCharactersText: {
-      name: "Fictional characters text",
-      defaultValue: "Fictional characters",
+      description: "Fictional characters text",
       control: { type: "text" }
     },
     facetFictionNonfictionText: {
-      name: "Fiction or nonfiction text",
-      defaultValue: "Fiction or nonfiction",
+      description: "Fiction or nonfiction text",
       control: { type: "text" }
     },
     facetGenreAndFormText: {
-      name: "Genre and form text",
-      defaultValue: "Genre and form",
+      description: "Genre and form text",
       control: { type: "text" }
     },
     facetMainLanguagesText: {
-      name: "Main languages text",
-      defaultValue: "Main languages",
+      description: "Main languages text",
       control: { type: "text" }
     },
     facetMaterialTypesText: {
-      name: "Material types text",
-      defaultValue: "Material types",
+      description: "Material types text",
       control: { type: "text" }
     },
     facetMaterialTypesGeneralText: {
-      name: "Material types general text",
-      defaultValue: "Material types general",
+      description: "Material types general text",
       control: { type: "text" }
     },
     facetMaterialTypesSpecificText: {
-      name: "Material types specific text",
-      defaultValue: "Material types specific",
+      description: "Material types specific text",
       control: { type: "text" }
     },
     facetSubjectsText: {
-      name: "Subjects text",
-      defaultValue: "Subjects",
+      description: "Subjects text",
       control: { type: "text" }
     },
     facetWorkTypesText: {
-      name: "Work types text",
-      defaultValue: "Work types",
+      description: "Work types text",
       control: { type: "text" }
     },
     facetYearText: {
-      name: "Year text",
-      defaultValue: "Year",
+      description: "Year text",
       control: { type: "text" }
     },
     showResultsText: {
-      name: "Show results text",
-      defaultValue: "Show results",
+      description: "Show results text",
       control: { type: "text" }
     },
     filterListText: {
-      name: "Filter list text",
-      defaultValue: "Filter list",
+      description: "Filter list text",
       control: { type: "text" }
     },
     addMoreFiltersText: {
-      name: "Add more filters text",
-      defaultValue: "+ more filters",
+      description: "Add more filters text",
       control: { type: "text" }
     },
     loadingText: {
-      name: "Loading",
-      defaultValue: "Loading",
+      description: "Loading",
       control: { type: "text" }
     },
     invalidSearchText: {
-      name: "Invalid search headline",
-      defaultValue: "Invalid search",
+      description: "Invalid search headline",
       control: { type: "text" }
     },
     invalidSearchDescriptionText: {
-      name: "Invalid search description",
-      defaultValue:
-        "Your search is invalid. Please try again. In order to perform a valid search, you need to include at least three letters.",
+      description: "Invalid search description",
       control: { type: "text" }
     },
     intelligentFiltersAccessibleHeadlineText: {
-      name: "Intelligent filters accessible headline",
-      defaultValue: "Available filters",
+      description: "Intelligent filters accessible headline",
       control: { type: "text" }
     },
     intelligentFiltersSelectedAccessibleHeadlineText: {
-      name: "Intelligent filters - selected - accessible headline",
-      defaultValue: "Selected filters",
+      description: "Intelligent filters - selected - accessible headline",
       control: { type: "text" }
     },
     webSearchLinkText: {
-      name: "Web search link text",
-      defaultValue: "Switch to the results for the library content.",
+      description: "Web search link text",
       control: { type: "text" }
     },
     webSearchConfig: {
-      name: "Web search config",
-      defaultValue:
-        '{\n  "webSearchUrl": "https://www.google.com",\n  "webSearchText": "Google",\n  "webSearchTotal": "1000"\n}',
+      description: "Web search config",
       control: { type: "text" }
     }
   }
-} as Meta<typeof SearchResultEntry>;
+};
 
-export const SearchResult: StoryFn<typeof SearchResultEntry> = (
-  args: SearchResultEntryProps
-) => <SearchResultEntry {...args} />;
+export default meta;
+
+type Story = StoryObj<typeof SearchResultEntry>;
+
+export const Primary: Story = {
+  args: {
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    q: "harry",
+    pageSizeDesktop: 50,
+    pageSizeMobile: 20,
+    authUrl: "",
+    searchUrl: "/search",
+    materialUrl: "/work/:workid",
+    etAlText: "et al.",
+    byAuthorText: "By",
+    showMoreText: "show more",
+    resultPagerStatusText: "Showing @itemsShown out of @hitcount results",
+    numberDescriptionText: "Nr.",
+    inSeriesText: "in series",
+    showingResultsForText: "Showing results for “@query”",
+    noSearchResultText: "Your search has 0 results",
+    blacklistedPickupBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    blacklistedAvailabilityBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    blacklistedSearchBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    branchesConfig:
+      '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
+    facetBrowserModalScreenReaderModalDescriptionText:
+      "Modal for facet browser",
+    facetBrowserModalCloseModalAriaLabelText: "Close facet browser modal",
+    facetAccessTypesText: "Access types",
+    facetCanAlwaysBeLoanedText: "Can always be loaned",
+    facetChildrenOrAdultsText: "Children or adults",
+    facetCreatorsText: "Creators",
+    facetDk5Text: "Dk5",
+    facetFictionalCharactersText: "Fictional characters",
+    facetFictionNonfictionText: "Fiction or nonfiction",
+    facetGenreAndFormText: "Genre and form",
+    facetMainLanguagesText: "Main languages",
+    facetMaterialTypesText: "Material types",
+    facetMaterialTypesGeneralText: "Material types general",
+    facetMaterialTypesSpecificText: "Material types specific",
+    facetSubjectsText: "Subjects",
+    facetWorkTypesText: "Work types",
+    facetYearText: "Year",
+    showResultsText: "Show results",
+    filterListText: "Filter list",
+    addMoreFiltersText: "+ more filters",
+    loadingText: "Loading",
+    invalidSearchText: "Invalid search",
+    invalidSearchDescriptionText:
+      "Your search is invalid. Please try again. In order to perform a valid search, you need to include at least three letters.",
+    intelligentFiltersAccessibleHeadlineText: "Available filters",
+    intelligentFiltersSelectedAccessibleHeadlineText: "Selected filters",
+    webSearchLinkText: "Switch to the results for the library content.",
+    webSearchConfig:
+      '{\n  "webSearchUrl": "https://www.google.com",\n  "webSearchText": "Google",\n  "webSearchTotal": "1000"\n}'
+  }
+};
