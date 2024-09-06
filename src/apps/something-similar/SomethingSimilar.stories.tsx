@@ -1,11 +1,10 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import SomethingSimilar from "./SomethingSimilar.entry";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
-export default {
+const meta: Meta<typeof SomethingSimilar> = {
   title: "Apps / Something similar",
   component: SomethingSimilar,
   argTypes: {
@@ -13,55 +12,48 @@ export default {
     ...globalTextArgs,
     ...globalConfigArgs,
     somethingSimilarTitleText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Other materials"
+      control: { type: "text" }
     },
     materialUrl: {
-      defaultValue: "/work/:workid",
       control: { type: "text" }
     },
     materialByAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "By"
+      control: { type: "text" }
     },
     materialAndAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "and"
+      control: { type: "text" }
     },
     etAlText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "et al."
+      control: { type: "text" }
     },
     somethingSimilarByTheSameAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "By the same author"
+      control: { type: "text" }
     },
     faust: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "48953786"
+      control: { type: "text" }
     },
     somethingSimilarSomethingSimilarAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Something similar"
+      control: { type: "text" }
     }
   }
-} as Meta<typeof SomethingSimilar>;
+};
 
-const Template: StoryFn<typeof SomethingSimilar> = (props) => (
-  <SomethingSimilar {...props} />
-);
-export const SomethingSimilarEntry = Template.bind({});
+export default meta;
+
+type Story = StoryObj<typeof SomethingSimilar>;
+
+export const Primary: Story = {
+  args: {
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    somethingSimilarTitleText: "Other materials",
+    materialUrl: "/work/:workid",
+    materialByAuthorText: "By",
+    materialAndAuthorText: "and",
+    etAlText: "et al.",
+    somethingSimilarByTheSameAuthorText: "By the same author",
+    faust: "48953786",
+    somethingSimilarSomethingSimilarAuthorText: "Something similar"
+  }
+};
