@@ -3,8 +3,8 @@ import { LibraryType } from "./helper";
 import { useText } from "../../core/utils/text";
 
 const OpeningHoursSidebarDetails: FC<
-  Pick<LibraryType, "openingHoursData" | "link">
-> = ({ openingHoursData, link }) => {
+  Pick<LibraryType, "openingHoursData" | "link" | "name">
+> = ({ openingHoursData, link, name }) => {
   const t = useText();
   return (
     <div className="opening-hours-sidebar-details__content">
@@ -20,7 +20,11 @@ const OpeningHoursSidebarDetails: FC<
         ))}
       </dl>
       <a href={link} className="opening-hours-sidebar__link">
-        {t("openingHoursSidebarLinkText")}
+        {t("openingHoursSidebarLinkText", {
+          placeholders: {
+            "@branchName": name
+          }
+        })}
       </a>
     </div>
   );

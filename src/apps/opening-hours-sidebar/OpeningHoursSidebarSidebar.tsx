@@ -16,15 +16,9 @@ const OpeningHoursSidebarSidebar: FC<{ libraries: LibraryType[] }> = ({
         <img src={iconWatch} className="opening-hours-sidebar__icon" alt="" />
         <div className="opening-hours-sidebar__texts">
           <h2 className="opening-hours-sidebar__title">
-            {t("openingHoursText")}
+            {t("openingHoursSidebarTitleText")}
           </h2>
-          <p className="opening-hours-sidebar__date">
-            {t("openingHoursSidebarTodayText", {
-              placeholders: {
-                "@toDayString": toDayString()
-              }
-            })}
-          </p>
+          <p className="opening-hours-sidebar__date">{toDayString()}</p>
         </div>
       </header>
 
@@ -40,6 +34,7 @@ const OpeningHoursSidebarSidebar: FC<{ libraries: LibraryType[] }> = ({
           <OpeningHoursSidebarDetails
             openingHoursData={openingHoursData}
             link={link}
+            name={name}
           />
         </DisclosureControllable>
       ))}

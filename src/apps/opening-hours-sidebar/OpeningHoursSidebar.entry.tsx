@@ -8,7 +8,7 @@ import { withConfig } from "../../core/utils/config";
 
 interface OpeningHoursClockEntryTextProps {
   openingHoursText: string;
-  openingHoursSidebarTodayText: string;
+  openingHoursSidebarTitleText: string;
   openingHoursSidebarLinkText: string;
 }
 

@@ -8,19 +8,19 @@ export default {
   component: OpeningHoursSidebar,
   argTypes: {
     ...serviceUrlArgs,
+    openingHoursSidebarTitleText: {
+      name: "Today's opening hours",
+      defaultValue: "Today's opening hours",
+      control: { type: "text" }
+    },
     openingHoursText: {
       name: "Opening hours text",
       defaultValue: "Opening hours",
       control: { type: "text" }
     },
-    openingHoursSidebarTodayText: {
-      name: "Opening hours today text",
-      defaultValue: "Today (@toDayString)",
-      control: { type: "text" }
-    },
     openingHoursSidebarLinkText: {
       name: "Opening hours link text",
-      defaultValue: "See all opening hours",
+      defaultValue: "Go to @branchName",
       control: { type: "text" }
     },
     openingHoursSidebarBranchesConfig: {
