@@ -1,66 +1,67 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import type { Meta, StoryObj } from "@storybook/react";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 import Recommender from "./Recommender.entry";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
-export default {
+const meta: Meta<typeof Recommender> = {
   title: "Apps / Recommender",
   component: Recommender,
   argTypes: {
-    ...serviceUrlArgs,
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...serviceUrlArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     emptyRecommenderSearchConfig: {
-      defaultValue: "Mimbo jimbo",
       control: { type: "text" }
     },
     recommenderTitleLoansText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Because you have borrowed @title you may also like"
+      control: { type: "text" }
     },
     recommenderTitleReservationsText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "Because you have reserved @title you may also like"
+      control: { type: "text" }
     },
     materialByAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "By"
+      control: { type: "text" }
     },
     materialAndAuthorText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "and"
+      control: { type: "text" }
     },
     etAlText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "et al."
+      control: { type: "text" }
     },
     recommenderTitleInspirationText: {
-      control: {
-        type: "text"
-      },
-      defaultValue: "For your inspiration"
+      control: { type: "text" }
     },
     materialUrl: {
-      defaultValue: "/work/:workid",
       control: { type: "text" }
     }
   }
-} as Meta<typeof Recommender>;
+};
 
-const Template: StoryFn<typeof Recommender> = (props) => (
-  <Recommender {...props} />
-);
-export const RecommenderEntry = Template.bind({});
-RecommenderEntry.args = {};
+export default meta;
+
+type Story = StoryObj<typeof Recommender>;
+
+export const Primary: Story = {
+  args: {
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    emptyRecommenderSearchConfig: "Mimbo jimbo",
+    recommenderTitleLoansText:
+      "Because you have borrowed @title you may also like",
+    recommenderTitleReservationsText:
+      "Because you have reserved @title you may also like",
+    materialByAuthorText: "By",
+    materialAndAuthorText: "and",
+    etAlText: "et al.",
+    recommenderTitleInspirationText: "For your inspiration",
+    materialUrl: "/work/:workid"
+  }
+};
