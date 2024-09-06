@@ -1,20 +1,35 @@
-import React from "react";
 import Alert from "./alert";
 
-export default { title: "Components/Alert" };
-
-const Template = (args) => <Alert {...args} />;
-
-export const Info = Template.bind({});
-
-export const Warning = Template.bind({});
-Warning.args = {
-  variant: "warning",
-  message: "Noget gik galt"
+const meta = {
+  title: "Components/Alert",
+  component: Alert,
+  argTypes: {
+    variant: {
+      options: ["info", "warning", "success"],
+      control: { type: "radio" }
+    }
+  }
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  variant: "success",
-  message: "Det lykkedes"
+export default meta;
+
+export const Info = {
+  args: {
+    variant: "info",
+    message: "Hov, der opstod en fejl!"
+  }
+};
+
+export const Warning = {
+  args: {
+    variant: "warning",
+    message: "Noget gik galt"
+  }
+};
+
+export const Success = {
+  args: {
+    variant: "success",
+    message: "Det lykkedes"
+  }
 };
