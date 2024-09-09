@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import useDialog from "../../components/dialog/useDialog";
-import OpeningHoursSidebarSidebar from "./OpeningHoursSidebarSidebar";
+import OpeningHoursSidebarContent from "./OpeningHoursSidebarContent";
 import OpeningHoursSidebarButtonLarge from "./OpeningHoursSidebarButtonLarge";
 import OpeningHoursSidebarButtonSmall from "./OpeningHoursSidebarButtonSmall";
 import Dialog from "../../components/dialog/Dialog";
@@ -17,7 +17,7 @@ const OpeningHoursSidebar: FC<OpeningHoursSidebarType> = ({ size }) => {
   const { libraries } = useOpeningHoursSidebar();
 
   const openDialog = () =>
-    openDialogWithContent(<OpeningHoursSidebarSidebar libraries={libraries} />);
+    openDialogWithContent(<OpeningHoursSidebarContent libraries={libraries} />);
 
   return (
     <>

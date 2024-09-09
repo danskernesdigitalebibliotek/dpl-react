@@ -6,7 +6,7 @@ import OpeningHoursSidebarDetails from "./OpeningHoursSidebarDetails";
 import { LibraryType, toDayString } from "./helper";
 import { useText } from "../../core/utils/text";
 
-const OpeningHoursSidebarSidebar: FC<{ libraries: LibraryType[] }> = ({
+const OpeningHoursSidebarContent: FC<{ libraries: LibraryType[] }> = ({
   libraries
 }) => {
   const t = useText();
@@ -42,4 +42,4 @@ const OpeningHoursSidebarSidebar: FC<{ libraries: LibraryType[] }> = ({
   );
 };
 
-export default OpeningHoursSidebarSidebar;
+export default OpeningHoursSidebarContent;
