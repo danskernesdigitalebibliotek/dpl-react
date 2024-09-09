@@ -1,29 +1,59 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import SearchBar, { SearchBarProps } from "./search-bar";
 import StorySearchBar from "./search-bar.dev.inc";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
-export default {
+const meta: Meta<typeof SearchBar> = {
   title: "Components / Search Bar",
   component: SearchBar,
   argTypes: {
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     altText: {
-      name: "Alt text for search button image",
-      defaultValue: "søgeikon",
+      description: "Alt text for search button image",
       control: { type: "text" }
     },
     inputPlaceholderText: {
-      name: "Input field placeholder",
-      defaultValue: "Søg blandt bibliotekets materialer",
+      description: "Input field placeholder",
+      control: { type: "text" }
+    },
+    searchHeaderIconAltText: {
+      control: { type: "text" }
+    },
+    searchNoValidCharactersErrorText: {
+      control: { type: "text" }
+    },
+    searchHeaderDropdownText: {
+      control: { type: "text" }
+    },
+    searchHeaderInputLabelText: {
       control: { type: "text" }
     }
   }
-} as Meta<typeof SearchBar>;
+};
 
-export const Default: StoryFn<typeof SearchBar> = (args: SearchBarProps) => {
-  return <StorySearchBar storybookArgs={args} />;
+export default meta;
+
+type Story = StoryObj<typeof SearchBar>;
+
+export const Primary: Story = {
+  args: {
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    altText: "søgeikon",
+    inputPlaceholderText: "Søg blandt bibliotekets materialer",
+    searchHeaderIconAltText: "søgeikon",
+    searchNoValidCharactersErrorText: "Søgefeltet indeholder ikke gyldige tegn",
+    searchHeaderDropdownText: "Søg i",
+    searchHeaderInputLabelText: "Søg"
+  },
+  render: (args: SearchBarProps) => {
+    return <StorySearchBar storybookArgs={args} />;
+  }
 };
