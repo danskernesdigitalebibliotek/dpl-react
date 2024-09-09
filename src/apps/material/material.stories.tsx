@@ -805,14 +805,7 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Open order error missing pincode text",
       control: { type: "text" }
     }
-  }
-};
-
-export default meta;
-
-type Story = StoryObj<typeof MaterialEntry>;
-
-export const Primary: Story = {
+  },
   args: {
     ...serviceUrlArgs,
     ...globalTextArgs,
@@ -1029,6 +1022,12 @@ export const Primary: Story = {
     openOrderErrorMissingPincodeText: "Missing pincode"
   }
 };
+
+export default meta;
+
+type Story = StoryObj<typeof MaterialEntry>;
+
+export const Primary: Story = {};
 
 export const Periodical: Story = {
   args: {

@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import materialDev from "../../apps/material/material.stories";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
@@ -22,7 +22,7 @@ const WrappedMaterialButtonsFindOnShelf = withText(
   withUrls(withConfig(MaterialButtonsFindOnShelf))
 );
 
-export default {
+const meta: Meta<typeof WrappedFindOnShelfModal> = {
   title: "Components / Find On Shelf Modal",
   component: WrappedFindOnShelfModal,
   argTypes: {
@@ -34,77 +34,82 @@ export default {
     ...globalConfigArgs,
     manifestations: {
       name: "Manifestations",
-      defaultValue: mockedManifestationData,
       control: { type: "object" }
     },
     workTitles: {
       name: "Work title(s)",
-      defaultValue: ["Title 1", "Title 2"],
       control: { type: "object" }
     },
     authors: {
       name: "Author(s)",
-      defaultValue: [
-        { __typename: "Person", display: "author 1" },
-        { __typename: "Person", display: "author 2" },
-        { __typename: "Corporation", display: "author 3" }
-      ],
       control: { type: "object" }
     },
     selectedPeriodical: {
       name: "Selected periodical",
-      defaultValue: null,
-      control: { type: "null" }
+      control: { type: "object" }
     },
     setSelectedPeriodical: {
       name: "Set selected periodical function",
-      defaultValue: null,
-      control: { type: "null" }
+      control: { type: "object" }
     },
     blacklistedPickupBranchesConfig: {
       name: "Blacklisted Pickup branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
     }
+  },
+  args: {
+    ...materialDev.args,
+    manifestations: mockedManifestationData,
+    workTitles: ["Title 1", "Title 2"],
+    authors: [
+      { __typename: "Person", display: "author 1" },
+      { __typename: "Person", display: "author 2" },
+      { __typename: "Corporation", display: "author 3" }
+    ],
+    selectedPeriodical: null,
+    setSelectedPeriodical: null,
+    blacklistedPickupBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024"
+  },
+  render: (args: FindOnShelfModalProps) => {
+    const storySelectedPeriodical = {
+      volume: "",
+      volumeYear: "2022",
+      displayText: "2022, nr. 29",
+      volumeNumber: "29",
+      itemNumber: "5313131426"
+    };
+
+    const modifiedArgs = {
+      ...args,
+      selectedPeriodical: storySelectedPeriodical
+    };
+    /* eslint-enable no-param-reassign */
+    const {
+      manifestations: [{ pid }]
+    } = args;
+
+    return (
+      <>
+        <WrappedMaterialButtonsFindOnShelf
+          {...modifiedArgs}
+          size="small"
+          faustIds={[convertPostIdToFaustId(pid)]}
+        />
+        <WrappedFindOnShelfModal {...modifiedArgs} />
+      </>
+    );
   }
-} as Meta<typeof WrappedFindOnShelfModal>;
-
-const Template: StoryFn<typeof WrappedFindOnShelfModal> = (
-  args: FindOnShelfModalProps
-) => {
-  const [storySelectedPeriodical, setStorySelectedPeriodical] = useState({
-    volume: "",
-    volumeYear: "2022",
-    displayText: "2022, nr. 29",
-    volumeNumber: "29",
-    itemNumber: "5313131426"
-  });
-  // We would like useState values to be passed to the story so that it rerenders
-  // upon dropdown change.
-  /* eslint-disable no-param-reassign */
-  args.selectedPeriodical = storySelectedPeriodical;
-  args.setSelectedPeriodical = setStorySelectedPeriodical;
-  /* eslint-enable no-param-reassign */
-  const {
-    manifestations: [{ pid }]
-  } = args;
-
-  return (
-    <>
-      <WrappedMaterialButtonsFindOnShelf
-        {...args}
-        size="small"
-        faustIds={[convertPostIdToFaustId(pid)]}
-      />
-      <WrappedFindOnShelfModal {...args} />
-    </>
-  );
 };
 
-export const Default = Template.bind({});
-Default.args = {};
+export default meta;
 
-export const Periodical = Template.bind({});
-Periodical.args = {
-  manifestations: mockedPeriodicalManifestationData
+type Story = StoryObj<typeof WrappedFindOnShelfModal>;
+
+export const Primary: Story = {};
+
+export const Periodical: Story = {
+  args: {
+    manifestations: mockedPeriodicalManifestationData
+  }
 };
