@@ -1,19 +1,23 @@
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import React from "react";
 import ErrorBoundaryAlertBody, {
   ErrorBoundaryAlertBodyProps
 } from "./ErrorBoundaryAlertBody";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
 
-export default {
+const meta: Meta<typeof ErrorBoundaryAlertBody> = {
   title: "Components / Error Boundary Alert",
   component: ErrorBoundaryAlertBody,
   argTypes: {
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     message: {
       name: "Error Message",
       defaultValue: "Something went wrong, try again later.",
@@ -24,12 +28,32 @@ export default {
       defaultValue: true,
       control: { type: "boolean" }
     }
+  },
+  args: {
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    message: "Something went wrong, try again later.",
+    showCloseButton: true
   }
-} as Meta<typeof ErrorBoundaryAlertBody>;
+};
+
+export default meta;
+
+type Story = StoryObj<typeof ErrorBoundaryAlertBody>;
 
 const WrappedErrorBoundaryAlertBody = withText(
   withConfig(ErrorBoundaryAlertBody)
 );
-export const ErrorBoundaryAlert: StoryFn<typeof ErrorBoundaryAlertBody> = (
-  args: ErrorBoundaryAlertBodyProps
-) => <div style={{ width: "300px" }}>Hej</div>;
+
+export const Primary: Story = {
+  render: (args: ErrorBoundaryAlertBodyProps) => (
+    <WrappedErrorBoundaryAlertBody
+      {...args}
+      resetErrorBoundary={() => {
+        // We just want to confirm that the click handler works and show it in storybook.
+        // eslint-disable-next-line no-alert
+        alert("Close button clicked!");
+      }}
+    />
+  )
+};
