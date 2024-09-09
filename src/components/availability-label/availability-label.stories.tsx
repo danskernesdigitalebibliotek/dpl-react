@@ -37,7 +37,6 @@ const meta: Meta<typeof AvailabilityLabel> = {
     },
     blacklistedAvailabilityBranchesConfig: {
       name: "Blacklisted Availability branches",
-      defaultValue: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
       control: { type: "text" }
     },
     cursorPointer: {
