@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import materialDev from "../../apps/material/material.stories";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { convertPostIdToFaustId } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
@@ -12,8 +14,12 @@ import {
   mockedManifestationData,
   mockedPeriodicalManifestationData
 } from "./mocked-data";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
 const WrappedFindOnShelfModal = withText(
   withUrls(withConfig(FindOnShelfModal))
@@ -26,12 +32,12 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
   title: "Components / Find On Shelf Modal",
   component: WrappedFindOnShelfModal,
   argTypes: {
-    ...serviceUrlArgs,
+    ...serviceUrlArgTypes,
     // Spread material app argTypes so that we get access to system strings.
     // -> t() function strings in this story.
     ...materialDev.argTypes,
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     manifestations: {
       name: "Manifestations",
       control: { type: "object" }
@@ -59,6 +65,9 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
   },
   args: {
     ...materialDev.args,
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
     manifestations: mockedManifestationData,
     workTitles: ["Title 1", "Title 2"],
     authors: [

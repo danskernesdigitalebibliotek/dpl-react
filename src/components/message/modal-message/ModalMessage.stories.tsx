@@ -2,7 +2,9 @@ import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import React, { useEffect } from "react";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import ModalMessage from "./ModalMessage";
-import globalTextArgs from "../../../core/storybook/globalTextArgs";
+import globalTextArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../../core/storybook/globalTextArgs";
 
 const Template: StoryFn<typeof ModalMessage> = (props) => {
   const { open } = useModalButtonHandler();
@@ -32,7 +34,7 @@ const meta: Meta<typeof ModalMessage> = {
   title: "Components / Message / Modal Message",
   component: ModalMessage,
   argTypes: {
-    ...globalTextArgs,
+    ...globalConfigArgTypes,
     title: {
       control: { type: "text" }
     },

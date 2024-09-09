@@ -1,8 +1,12 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import Multiselect from "./Multiselect";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 
@@ -27,8 +31,8 @@ const meta: Meta<typeof WrappedMultiselect> = {
   title: "Components / Multiselect",
   component: WrappedMultiselect,
   argTypes: {
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     caption: {
       name: "Caption",
       control: { type: "text" }
@@ -41,6 +45,8 @@ const meta: Meta<typeof WrappedMultiselect> = {
     }
   },
   args: {
+    ...globalTextArgs,
+    ...globalConfigArgs,
     caption: "Title",
     options
   },
