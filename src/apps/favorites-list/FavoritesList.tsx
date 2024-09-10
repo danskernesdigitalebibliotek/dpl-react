@@ -44,8 +44,8 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
 
   const skeletonList = (
     <>
-      <div className="ssc">
-        <div className="ssc-line w-10 my-32">&nbsp;</div>
+      <div className="ssc content-list">
+        <div className="ssc-line w-10 mt-32">&nbsp;</div>
       </div>
       <ul className="content-list">
         {/*
