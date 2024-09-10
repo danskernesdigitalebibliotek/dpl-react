@@ -1,16 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 import SomethingSimilar from "./SomethingSimilar.entry";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
 const meta: Meta<typeof SomethingSimilar> = {
   title: "Apps / Something similar",
   component: SomethingSimilar,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
-    ...serviceUrlArgs,
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...serviceUrlArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     somethingSimilarTitleText: {
       control: { type: "text" }
     },

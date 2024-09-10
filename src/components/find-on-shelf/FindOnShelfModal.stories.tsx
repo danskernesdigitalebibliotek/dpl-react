@@ -76,7 +76,7 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
       { __typename: "Corporation", display: "author 3" }
     ],
     selectedPeriodical: null,
-    setSelectedPeriodical: null,
+    setSelectedPeriodical: () => {},
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024"
   },
@@ -101,10 +101,12 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
     return (
       <>
         <WrappedMaterialButtonsFindOnShelf
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...modifiedArgs}
           size="small"
           faustIds={[convertPostIdToFaustId(pid)]}
         />
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <WrappedFindOnShelfModal {...modifiedArgs} />
       </>
     );

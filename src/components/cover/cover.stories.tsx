@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Cover } from "./cover";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import { withUrls } from "../../core/utils/url";
@@ -7,7 +7,7 @@ import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
-export default {
+const meta: Meta<typeof Cover> = {
   title: "Components / Cover",
   component: Cover,
   argTypes: {
@@ -26,13 +26,9 @@ export default {
       name: "Use animation",
       control: { type: "boolean" }
     },
-    id: {
-      name: "PID",
-      control: { type: "text" }
-    },
     url: {
       name: "URL",
-      control: { type: "string" }
+      control: { type: "text" }
     },
     alt: {
       name: "Alt text",
@@ -40,17 +36,22 @@ export default {
     }
   },
   args: {
-    id: "870970-basis:45234401",
     size: "small",
     animate: true,
     tint: "120",
     url: new URL("/", getCurrentLocation()),
     alt: "alt text for the image"
   }
-} as Meta<typeof Cover>;
+};
 
-const WrappedCover = withUrls(Cover);
-const Template: StoryFn<typeof Cover> = (args) => <WrappedCover {...args} />;
+export default meta;
 
-export const item = Template.bind({});
-item.args = {};
+type Story = StoryObj<typeof Cover>;
+
+export const Item: Story = {
+  render: (args) => {
+    const WrappedCover = withUrls(Cover);
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    return <WrappedCover {...args} />;
+  }
+};

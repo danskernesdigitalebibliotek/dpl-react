@@ -216,6 +216,7 @@ export const Primary: Story = {
     searchHeaderFavoritesText: "Liked"
   },
   render: (args) => {
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const menu = <WrappedMenu {...args} />;
     // We use the Header component as context to the search bar.
     // It is the Header that creates the Search bar's design -

@@ -13,13 +13,15 @@ import AdvancedSearchEntry from "./AdvancedSearch.entry";
 const meta: Meta<typeof AdvancedSearchEntry> = {
   title: "Apps / Advanced Search",
   component: AdvancedSearchEntry,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
-      control: "number",
+      control: { type: "number" },
       table: {
         type: { summary: "number" },
         defaultValue: { summary: "50" }
@@ -35,272 +37,256 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     },
     materialUrl: {
       description: "Path to the material page",
-      control: { type: "text", value: "/work/:workid" }
+      control: { type: "text" }
     },
     authUrl: {
       description: "Url where user can authenticate",
-      control: { type: "text", value: "" }
+      control: { type: "text" }
     },
     searchUrl: {
       description: "Path to the search result page",
-      control: { type: "text", value: "/search" }
+      control: { type: "text" }
     },
     etAlText: {
       description: "Et al. Text",
-      control: { type: "text", value: "et al." }
+      control: { type: "text" }
     },
     byAuthorText: {
       description: "By (author) Text",
-      control: { type: "text", value: "By" }
+      control: { type: "text" }
     },
     showMoreText: {
       description: "Show more Text",
-      control: { type: "text", value: "show more" }
+      control: { type: "text" }
     },
     resultPagerStatusText: {
       description: "Result pager status text",
-      control: {
-        type: "text",
-        value: "Showing @itemsShown out of @hitcount results"
-      }
+      control: { type: "text" }
     },
     advancedSearchInputLabelText: {
       description: "Advanced search input label",
-      control: { type: "text", value: "Input field @inputNumber" }
+      control: { type: "text" }
     },
     numberDescriptionText: {
       description: "Number description",
-      control: { type: "text", value: "Nr." }
+      control: { type: "text" }
     },
     inSeriesText: {
       description: "In series",
-      control: { type: "text", value: "in series" }
+      control: { type: "text" }
     },
     showingMaterialsText: {
       description: "Showing materials",
-      control: { type: "text", value: "Showing materials (@hitcount)" }
+      control: { type: "text" }
     },
     noSearchResultText: {
       description: "0-hit search result",
-      control: { type: "text", value: "Your search has 0 results" }
+      control: { type: "text" }
     },
     blacklistedPickupBranchesConfig: {
       description: "Blacklisted Pickup branches",
-      control: {
-        type: "text",
-        value: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024"
-      }
+      control: { type: "text" }
     },
     blacklistedAvailabilityBranchesConfig: {
       description: "Blacklisted Availability branches",
-      control: {
-        type: "text",
-        value: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024"
-      }
+      control: { type: "text" }
     },
     blacklistedSearchBranchesConfig: {
       description: "Blacklisted branches",
-      control: {
-        type: "text",
-        value: "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024"
-      }
+      control: { type: "text" }
     },
     branchesConfig: {
       description: "Branches",
-      control: {
-        type: "text",
-        value:
-          '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]'
-      }
+      control: { type: "text" }
     },
     loadingText: {
       description: "Loading",
-      control: { type: "text", value: "Loading" }
+      control: { type: "text" }
     },
     advancedSearchLinkToThisSearchText: {
       description: "Advanced search copy to clipboard button text",
-      control: { type: "text", value: "Link to this search" }
+      control: { type: "text" }
     },
     advancedSearchAllIndexesText: {
       description: "Advanced search indexes - all",
-      control: { type: "text", value: "All indexes" }
+      control: { type: "text" }
     },
     advancedSearchCreatorText: {
       description: "Advanced search indexes - creator",
-      control: { type: "text", value: "Creator" }
+      control: { type: "text" }
     },
     advancedSearchSubjectText: {
       description: "Advanced search indexes - subject",
-      control: { type: "text", value: "Subject" }
+      control: { type: "text" }
     },
     advancedSearchGenreText: {
       description: "Advanced search indexes - genre",
-      control: { type: "text", value: "Genre" }
+      control: { type: "text" }
     },
     advancedSearchLanguageText: {
       description: "Advanced search indexes - language",
-      control: { type: "text", value: "Language" }
+      control: { type: "text" }
     },
     advancedSearchDateText: {
       description: "Advanced search indexes - date",
-      control: { type: "text", value: "Date" }
+      control: { type: "text" }
     },
     advancedSearchMainCreatorText: {
       description: "Advanced search indexes - main creator",
-      control: { type: "text", value: "Main creator" }
+      control: { type: "text" }
     },
     advancedSearchMainTitleText: {
       description: "Advanced search indexes - main title",
-      control: { type: "text", value: "Main title" }
+      control: { type: "text" }
     },
     advancedSearchSourceText: {
       description: "Advanced search indexes - source",
-      control: { type: "text", value: "Source" }
+      control: { type: "text" }
     },
     advancedSearchDateFirstEditionText: {
       description: "Advanced search indexes - edition",
-      control: { type: "text", value: "Edition" }
+      control: { type: "text" }
     },
     advancedSearchDecimalDk5Text: {
       description: "Advanced search indexes - DK5",
-      control: { type: "text", value: "DK5" }
+      control: { type: "text" }
     },
     advancedSearchTypeText: {
       description: "Advanced search indexes - type",
-      control: { type: "text", value: "Type" }
+      control: { type: "text" }
     },
     advancedSearchAudienceText: {
       description: "Advanced search indexes - audience",
-      control: { type: "text", value: "Audience" }
+      control: { type: "text" }
     },
     advancedSearchPublisherText: {
       description: "Advanced search indexes - publisher",
-      control: { type: "text", value: "Publisher" }
+      control: { type: "text" }
     },
     advancedSearchIdentifierText: {
       description: "Advanced search indexes - identifier",
-      control: { type: "text", value: "Identifier" }
+      control: { type: "text" }
     },
     advancedSearchAcSourceText: {
       description: "Advanced search indexes - source",
-      control: { type: "text", value: "Source" }
+      control: { type: "text" }
     },
     advancedSearchAddRowText: {
       description: "Add row",
-      control: { type: "text", value: "Add row" }
+      control: { type: "text" }
     },
     advancedSearchInputPlaceholderText: {
       description: "Advanced search input placeholder",
-      control: { type: "text", value: "Search term" }
+      control: { type: "text" }
     },
     advancedSearchTitleText: {
       description: "Advanced search page title",
-      control: { type: "text", value: "Advanced search" }
+      control: { type: "text" }
     },
     advancedSearchPreviewHeadlineText: {
       description: "Advanced search CQL preview headline",
-      control: { type: "text", value: "CQL search string" }
+      control: { type: "text" }
     },
     advancedSearchPreviewEmptyText: {
       description: "Advanced search empty preview",
-      control: { type: "text", value: "-" }
+      control: { type: "text" }
     },
     advancedSearchResetText: {
       description: "Advanced search reset button text",
-      control: { type: "text", value: "Reset" }
+      control: { type: "text" }
     },
     advancedSearchCopyStringText: {
       description: "Advanced search page copy string button text",
-      control: { type: "text", value: "Copy CQL" }
+      control: { type: "text" }
     },
     advancedSearchEditCqlText: {
       description: "Advanced search page edit CQL button text",
-      control: { type: "text", value: "Edit CQL" }
+      control: { type: "text" }
     },
     advancedSearchSearchButtonText: {
       description: "Advanced search search button text",
-      control: { type: "text", value: "Search" }
+      control: { type: "text" }
     },
     loadingResultsText: {
       description: "Advanced search loading results text",
-      control: { type: "text", value: "Loading results..." }
+      control: { type: "text" }
     },
     toAdvancedSearchButtonText: {
       description: "To advanced search button text",
-      control: { type: "text", value: "Back to advanced search" }
+      control: { type: "text" }
     },
     cqlSearchTitleText: {
       description: "CQL search title text",
-      control: { type: "text", value: "CQL search" }
+      control: { type: "text" }
     },
     copiedToClipboardText: {
       description: "Text that appears after copying to clipboard",
-      control: { type: "text", value: "Copied" }
+      control: { type: "text" }
     },
     copiedLinkToThisSearchText: {
       description:
         "Text that appears after getting link to a search copied to clipboard",
-      control: { type: "text", value: "Link copied to clipboard" }
+      control: { type: "text" }
     },
     clauseAndText: {
       description: "Advanced search clause - AND",
-      control: { type: "text", value: "AND" }
+      control: { type: "text" }
     },
     clauseOrText: {
       description: "Advanced search clause - OR",
-      control: { type: "text", value: "OR" }
+      control: { type: "text" }
     },
     clauseNotText: {
       description: "Advanced search clause - NOT",
-      control: { type: "text", value: "NOT" }
+      control: { type: "text" }
     },
     advancedSearchFilterMaterialTypeText: {
       description: "Advanced search filter - material type",
-      control: { type: "text", value: "Material Type" }
+      control: { type: "text" }
     },
     advancedSearchFilterLiteratureFormText: {
       description: "Advanced search filter - literature form",
-      control: { type: "text", value: "Literature form" }
+      control: { type: "text" }
     },
     advancedSearchFilterAccessText: {
       description: "Advanced search filter - access",
-      control: { type: "text", value: "Accessibility" }
+      control: { type: "text" }
     },
     advancedSearchFilterBookText: {
       description: "Advanced search filter - book",
-      control: { type: "text", value: "Book" }
+      control: { type: "text" }
     },
     advancedSearchFilterEbookText: {
       description: "Advanced search filter - ebook",
-      control: { type: "text", value: "Ebook" }
+      control: { type: "text" }
     },
     advancedSearchFilterAudioBookText: {
       description: "Advanced search filter - audio book",
-      control: { type: "text", value: "Audio book" }
+      control: { type: "text" }
     },
     advancedSearchFilterArticleText: {
       description: "Advanced search filter - article",
-      control: { type: "text", value: "Article" }
+      control: { type: "text" }
     },
     advancedSearchFilterMovieText: {
       description: "Advanced search filter - movie",
-      control: { type: "text", value: "Movie" }
+      control: { type: "text" }
     },
     advancedSearchFilterMusicText: {
       description: "Advanced search filter - music",
-      control: { type: "text", value: "Music" }
+      control: { type: "text" }
     },
     advancedSearchFilterPhysicalText: {
       description: "Advanced search filter - physical access",
-      control: { type: "text", value: "Physical" }
+      control: { type: "text" }
     },
     advancedSearchFilterOnlineText: {
       description: "Advanced search filter - online access",
-      control: { type: "text", value: "Online" }
+      control: { type: "text" }
     },
     advancedSearchFilterFictionText: {
       description: "Advanced search filter - fiction",
-      control: { type: "text", value: "Fiction" }
+      control: { type: "text" }
     },
     advancedSearchFilterNonFictionText: {
       description: "Advanced search filter - non-fiction",
@@ -308,7 +294,7 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     },
     advancedSearchFilterHoldingStatusText: {
       description: "Advanced search filter - holding status",
-      control: { type: "text", value: "Holding Status On Shelf" }
+      control: { type: "text" }
     }
   }
 };

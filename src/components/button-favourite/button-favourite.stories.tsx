@@ -1,9 +1,6 @@
 import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
-import ButtonFavourite, {
-  ButtonFavouriteId,
-  ButtonFavouriteProps
-} from "./button-favourite";
+import type { Meta, StoryObj } from "@storybook/react";
+import ButtonFavourite, { ButtonFavouriteProps } from "./button-favourite";
 import { withUrls } from "../../core/utils/url";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withText } from "../../core/utils/text";
@@ -12,10 +9,9 @@ import globalConfigArgs from "../../core/storybook/globalConfigArgs";
 
 const WrappedButtonFavourite = withText(withUrls(ButtonFavourite));
 
-export default {
+const meta: Meta<typeof WrappedButtonFavourite> = {
   title: "Components  / Button Favourite",
   component: WrappedButtonFavourite,
-
   argTypes: {
     ...serviceUrlArgs,
     ...globalTextArgs,
@@ -31,20 +27,20 @@ export default {
       defaultValue: "title"
     }
   }
-} as Meta<typeof WrappedButtonFavourite>;
-
-const Template: StoryFn<typeof WrappedButtonFavourite> = (
-  args: ButtonFavouriteProps
-) => {
-  // This is a fake situation where we just need to give the button a handler.
-  // The handler does nothing.
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const addToListRequest = (id: ButtonFavouriteId) => {};
-
-  return (
-    <WrappedButtonFavourite {...args} addToListRequest={addToListRequest} />
-  );
 };
 
-export const favourite = Template.bind({});
-favourite.args = {};
+export default meta;
+
+type Story = StoryObj<typeof WrappedButtonFavourite>;
+
+export const favourite: Story = {
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  render: (args: ButtonFavouriteProps) => {
+    const addToListRequest = () => {};
+
+    return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <WrappedButtonFavourite {...args} addToListRequest={addToListRequest} />
+    );
+  }
+};

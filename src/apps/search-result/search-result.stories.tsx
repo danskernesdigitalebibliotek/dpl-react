@@ -13,6 +13,8 @@ import globalConfigArgs, {
 const meta: Meta<typeof SearchResultEntry> = {
   title: "Apps / Search Result",
   component: SearchResultEntry,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
@@ -192,10 +194,6 @@ const meta: Meta<typeof SearchResultEntry> = {
     webSearchLinkText: {
       description: "Web search link text",
       control: { type: "text" }
-    },
-    webSearchConfig: {
-      description: "Web search config",
-      control: { type: "text" }
     }
   }
 };
@@ -258,8 +256,6 @@ export const Primary: Story = {
       "Your search is invalid. Please try again. In order to perform a valid search, you need to include at least three letters.",
     intelligentFiltersAccessibleHeadlineText: "Available filters",
     intelligentFiltersSelectedAccessibleHeadlineText: "Selected filters",
-    webSearchLinkText: "Switch to the results for the library content.",
-    webSearchConfig:
-      '{\n  "webSearchUrl": "https://www.google.com",\n  "webSearchText": "Google",\n  "webSearchTotal": "1000"\n}'
+    webSearchLinkText: "Switch to the results for the library content."
   }
 };

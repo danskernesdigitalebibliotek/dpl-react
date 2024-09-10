@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import ErrorBoundaryAlertBody, {
   ErrorBoundaryAlertBodyProps
@@ -48,6 +48,7 @@ const WrappedErrorBoundaryAlertBody = withText(
 export const Primary: Story = {
   render: (args: ErrorBoundaryAlertBodyProps) => (
     <WrappedErrorBoundaryAlertBody
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...args}
       resetErrorBoundary={() => {
         // We just want to confirm that the click handler works and show it in storybook.

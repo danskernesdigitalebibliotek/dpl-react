@@ -21,7 +21,7 @@ const meta: Meta<typeof AvailabilityLabel> = {
     ...globalConfigArgs,
     faustIds: {
       name: "Faust Ids",
-      control: { type: "array" }
+      control: { type: "object" }
     },
     manifestText: {
       name: "Manifestation text",
@@ -34,10 +34,6 @@ const meta: Meta<typeof AvailabilityLabel> = {
     selected: {
       name: "selected",
       control: { type: "boolean" }
-    },
-    blacklistedAvailabilityBranchesConfig: {
-      name: "Blacklisted Availability branches",
-      control: { type: "text" }
     },
     cursorPointer: {
       name: "Cursor pointer",
@@ -62,14 +58,11 @@ const meta: Meta<typeof AvailabilityLabel> = {
     ...globalTextArgs,
     ...globalConfigArgs,
     faustIds: ["62523611"],
-    blacklistedAvailabilityBranchesConfig:
-      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
     cursorPointer: false,
     dataCy: "",
     isbns: [],
     accessTypes: [],
     manifestText: "Bog",
-    availabilityText: "Hjemme",
     url: new URL("/", getCurrentLocation()),
     selected: false
   },

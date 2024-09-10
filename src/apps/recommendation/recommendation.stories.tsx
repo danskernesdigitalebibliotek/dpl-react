@@ -56,5 +56,7 @@ export const Skeleton: Story = {
   args: {
     ...Primary.args
   },
+
+  // eslint-disable-next-line react/jsx-props-no-spreading
   render: (args) => <RecommendationSkeleton {...args} />
 };

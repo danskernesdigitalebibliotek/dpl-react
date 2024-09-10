@@ -13,6 +13,8 @@ import globalConfigArgs, {
 const meta: Meta<typeof Recommender> = {
   title: "Apps / Recommender",
   component: Recommender,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,

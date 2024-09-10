@@ -407,4 +407,5 @@ export interface GlobalEntryTextProps {
   reservationListReadyText: string;
   reservationListDigitalPickupText: string;
   pincodeSectionDescriptionText: string;
+  errorBoundaryAlertBodyButtonAriaText: string;
 }

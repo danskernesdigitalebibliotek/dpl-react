@@ -1,7 +1,8 @@
 import {
   configureStore,
   combineReducers,
-  ThunkDispatch
+  ThunkDispatch,
+  Middleware
 } from "@reduxjs/toolkit";
 import {
   TypedUseSelectorHook,
@@ -29,10 +30,8 @@ const persistConfig = {
 };
 
 export const store = configureStore({
-  middleware: (getDefaultMiddleware) => [
-    ...getDefaultMiddleware(),
-    extractServiceBaseUrls
-  ],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().prepend(extractServiceBaseUrls as Middleware),
   reducer: persistReducer(
     persistConfig,
     combineReducers({

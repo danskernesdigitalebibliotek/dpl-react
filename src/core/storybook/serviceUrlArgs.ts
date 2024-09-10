@@ -7,7 +7,7 @@ export const argTypes = {
     table: {
       type: { summary: "text" },
       defaultValue: {
-        summary: process.env.FBS_BASEURL ?? "https://fbs-openplatform.dbc.dk"
+        summary: "https://fbs-openplatform.dbc.dk"
       }
     }
   },
@@ -17,8 +17,7 @@ export const argTypes = {
     table: {
       type: { summary: "text" },
       defaultValue: {
-        summary:
-          process.env.PUBLIZON_BASEURL ?? "https://pubhub-openplatform.dbc.dk"
+        summary: "https://pubhub-openplatform.dbc.dk"
       }
     }
   },
@@ -28,7 +27,7 @@ export const argTypes = {
     table: {
       type: { summary: "text" },
       defaultValue: {
-        summary: process.env.CMS_BASEURL ?? "https://dpl-cms.docker"
+        summary: "https://dpl-cms.docker"
       }
     }
   },

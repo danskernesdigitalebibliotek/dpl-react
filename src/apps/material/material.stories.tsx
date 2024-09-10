@@ -13,6 +13,8 @@ import globalConfigArgs, {
 const meta: Meta<typeof MaterialEntry> = {
   title: "Apps / Material",
   component: MaterialEntry,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
@@ -562,126 +564,6 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Url where user can authenticate",
       control: { type: "text" }
     },
-    etAlText: {
-      description: "Et al. Text",
-      control: { type: "text" }
-    },
-    modalReservationFormPickupHeaderTitleText: {
-      description: "Modal reservation form pickup header title",
-      control: { type: "text" }
-    },
-    modalReservationFormPickupHeaderDescriptionText: {
-      description: "Modal reservation form pickup header description",
-      control: { type: "text" }
-    },
-    chooseOneText: {
-      description: "Choose one text",
-      control: { type: "text" }
-    },
-    infomediaModalScreenReaderModalDescriptionText: {
-      description: "Infomedia modal screen reader description",
-      control: { type: "text" }
-    },
-    infomediaModalCloseModalAriaLabelText: {
-      description: "Close infomedia modal",
-      control: { type: "text" }
-    },
-    saveButtonText: {
-      description: "Save button text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyModalScreenReaderModalDescriptionText: {
-      description: "Order digital copy modal screen reader description",
-      control: { type: "text" }
-    },
-    orderDigitalCopyModalCloseModalAriaLabelText: {
-      description: "Close order digital copy modal",
-      control: { type: "text" }
-    },
-    orderDigitalCopyTitleText: {
-      description: "Order digital copy title text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyDescriptionText: {
-      description: "Order digital copy description text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyButtonText: {
-      description: "Order digital copy button text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyButtonLoadingText: {
-      description: "Order digital copy button loading text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackTitleText: {
-      description: "Order digital copy feedback title",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackErrorAgencyNotSubscribedText: {
-      description: "Order digital copy agency not subscribed",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackErrorInvalidPickupBranchText: {
-      description: "Order digital copy invalid pickup branch",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackErrorMissingClientConfigurationText: {
-      description: "Order digital copy missing client configuration",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackErrorPidNotReservableText: {
-      description: "Order digital copy pid not reservable",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackErrorUnauthenticatedUserText: {
-      description: "Order digital copy unauthenticated user",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackOkText: {
-      description: "Order digital copy success description text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackButtonText: {
-      description: "Order digital copy success button text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackBorchkUserBlockedByAgencyText: {
-      description: "Borchk user blocked by agency text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackBorchkUserNotVerifiedText: {
-      description: "Borchk user not verified text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackBorchkUserNoLongerExistOnAgencyText: {
-      description: "Borchk user no longer exists on agency text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackErrorMunicipalityagencyidNotFoundText: {
-      description: "Error municipality agency ID not found text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackUnknownUserText: {
-      description: "Unknown user text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyEmailLabelText: {
-      description: "Order digital copy error email text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackErrorMissingMunicipalityagencyidText: {
-      description: "Error missing municipality agency ID text",
-      control: { type: "text" }
-    },
-    orderDigitalCopyFeedbackInternalErrorText: {
-      description: "Internal error text",
-      control: { type: "text" }
-    },
-    authUrl: {
-      description: "Url where user can authenticate",
-      control: { type: "text" }
-    },
     materialIsAvailableInAnotherEditionText: {
       description: "Skip queue material is available in another edition",
       control: { type: "text" }
@@ -813,7 +695,7 @@ const meta: Meta<typeof MaterialEntry> = {
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
-    smsNotificationsForReservationsEnabledConfig: "1",
+    smsNotificationsForReservationsEnabledConfig: true,
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
     blacklistedAvailabilityBranchesConfig:
