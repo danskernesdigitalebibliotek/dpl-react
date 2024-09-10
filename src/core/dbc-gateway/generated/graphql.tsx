@@ -485,6 +485,15 @@ export type FacetValue = {
   term: Scalars["String"];
 };
 
+/** A sorting value. */
+export type SearchSortingOption = {
+  __typename?: "SearchSortingOption";
+  /** A name of a sorting field */
+  name: Scalars["String"];
+  /** Use the value when applying sorting */
+  value: Scalars["String"];
+};
+
 export type FictionNonfiction = {
   __typename?: "FictionNonfiction";
   /** Binary code fiction/nonfiction used for filtering */
@@ -1474,6 +1483,8 @@ export type SearchResponse = {
   __typename?: "SearchResponse";
   /** A list of alternative search queries */
   didYouMean: Array<DidYouMean>;
+  /** Alailable sorting options  */
+  sorting: Array<SearchSortingOption> | null;
   /**
    * Make sure only to fetch this when needed
    * This may take seconds to complete
@@ -5006,6 +5017,7 @@ export type SearchFacetQuery = {
   __typename?: "Query";
   search: {
     __typename?: "SearchResponse";
+    sorting: Array<SearchSortingOption> | null;
     facets: Array<{
       __typename?: "FacetResult";
       name: string;
@@ -5030,6 +5042,7 @@ export type IntelligentFacetsQuery = {
   __typename?: "Query";
   search: {
     __typename?: "SearchResponse";
+    sorting: Array<SearchSortingOption> | null;
     intelligentFacets: Array<{
       __typename?: "FacetResult";
       name: string;
@@ -7255,6 +7268,10 @@ export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
 export const IntelligentFacetsDocument = `
     query intelligentFacets($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFilters!) {
   search(q: $q, filters: $filters) {
+    sotring {
+      name
+      value
+    }
     intelligentFacets(limit: $facetsLimit) {
       name
       values(limit: $valuesLimit) {
