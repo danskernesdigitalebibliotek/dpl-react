@@ -24,7 +24,7 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({ q }) => {
   return (
     <>
       {isLoading && <FacetLineFiltersSkeleton />}
-      {data && <FacetLineFilters facets={data.search.intelligentFacets} />}
+      {data && <FacetLineFilters facets={data.search.intelligentFacets} sorting={data.search?.sorting} />}
       <FacetLineSelected />
     </>
   );

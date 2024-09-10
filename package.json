@@ -146,7 +146,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "https://github.com/danskernesdigitalebibliotek/dpl-design-system.git",
+    "@danskernesdigitalebibliotek/dpl-design-system": "git+ssh://git@github.com:inleadmedia/dpl-design-system.git#inlead-1.0.0",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",

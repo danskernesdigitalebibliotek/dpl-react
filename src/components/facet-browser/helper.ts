@@ -73,13 +73,14 @@ export function useGetFacets(query: string, filters: Filter) {
       keepPreviousData: true,
       placeholderData: {
         search: {
+          sorting: null,
           facets: getPlaceHolderFacets(allFacetFields)
         }
       }
     }
   );
 
-  return { facets: data?.search.facets || null, isLoading };
+  return { facets: data?.search.facets || null, sorting: data?.search.sorting isLoading };
 }
 
 export const FacetBrowserModalId = "facet-browser-modal";

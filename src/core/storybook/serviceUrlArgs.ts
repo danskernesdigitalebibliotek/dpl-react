@@ -58,7 +58,7 @@ export const argTypes = {
     table: {
       type: { summary: "text" },
       defaultValue: {
-        summary: "https://temp.fbi-api.dbc.dk/next-present/graphql"
+        summary: "http://localhost:7002/naesbib/graphql"
       }
     }
   },
@@ -69,7 +69,7 @@ export const argTypes = {
     table: {
       type: { summary: "text" },
       defaultValue: {
-        summary: "https://temp.fbi-api.dbc.dk/next/graphql"
+        summary: "http://localhost:7002/naesbib/graphql"
       }
     }
   },
@@ -79,7 +79,7 @@ export const argTypes = {
     table: {
       type: { summary: "text" },
       defaultValue: {
-        summary: "https://temp.fbi-api.dbc.dk/next-present/graphql"
+        summary: "http://localhost:7002/naesbib/graphql"
       }
     }
   }

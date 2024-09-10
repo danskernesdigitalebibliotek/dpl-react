@@ -3,6 +3,8 @@ import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import {
   FacetFieldEnum,
   FacetValue
+  FacetField,
+  SearchSortingOption
 } from "../../core/dbc-gateway/generated/graphql";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
@@ -18,10 +20,30 @@ import { Facets } from "../../core/utils/types/entities";
 
 type FacetLineFiltersProps = {
   facets: Facets;
+  sorting: SearchSortingOption[] | null;
 };
 
+const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
+  return values.map((value) => {
+    return {
+      label: value.term,
+      value: value.key
+    };
+  });
+};
+
+const formatSortingOptionsToDropdown = (sortingOptions: SearchSortingOption[]) => {
+  return sortingOptions.map(option => {
+    return {
+      label: option.name,
+      value: option.value
+    };
+  });
+}
+
 const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
-  facets = []
+  facets = [],
+  sorting = null
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -33,15 +55,6 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const facetMap = createFacetsMap(facets);
-
-  const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
-    return values.map((value) => {
-      return {
-        label: value.term,
-        value: value.key
-      };
-    });
-  };
 
   const handleDropdownOnchange = (
     e: React.ChangeEvent<HTMLSelectElement>,
@@ -57,12 +70,38 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     });
   };
 
+  const onSortingChange = function(event: React.ChangeEvent<HTMLSelectElement>) {
+    console.log(arguments);
+  };
+
   return (
     <section>
       <h2 className="hide-visually">
         {t("intelligentFiltersAccessibleHeadlineText")}
       </h2>
       <ul className="facet-line mt-48">
+        {
+          sorting && sorting.length !== 0
+            ? <li className="facet-line__item">
+              <Dropdown
+                cyData={`sorting-line-dropdown`}
+                placeholder={{
+                  label: t("Sorting"),
+                  value: ""
+                }}
+                options={formatSortingOptionsToDropdown(sorting)}
+                ariaLabel={t("Sorting")}
+                arrowIcon="chevron"
+                classNames="dropdown--grey-borders"
+                innerClassNames={{
+                  select: "dropdown__select--inline",
+                  arrowWrapper: "dropdown__arrows--inline "
+                }}
+                handleOnChange={onSortingChange}
+              />
+            </li>
+            : null
+        }
         {facets &&
           facets.map(({ name, values }) => {
             if (values.length > 1) {

@@ -1,5 +1,9 @@
 query intelligentFacets ($q: SearchQueryInput!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFiltersInput!) {
   search(q: $q, filters: $filters) {
+    sotring {
+      name
+      value
+    }
     intelligentFacets(limit: $facetsLimit) {
       name
       type

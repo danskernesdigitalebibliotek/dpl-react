@@ -41,13 +41,24 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   const { track } = useStatistics();
   const t = useText();
 
-  const { isLoading, isAvailable } = useAvailabilityData({
-    accessTypes,
-    access,
-    faustIds,
-    isbn: isbns ? isbns[0] : null,
-    manifestText
-  });
+  let isLoading, isAvailable
+  try {
+    const availabilityData = useAvailabilityData({
+      accessTypes,
+      access,
+      faustIds,
+      isbn: isbns ? isbns[0] : null,
+      manifestText
+    });
+
+    isLoading = availabilityData.isLoading;
+    isAvailable = availabilityData.isAvailable;
+  } catch (error) {
+    console.error("Can't get availability", error);
+
+    isLoading = false;
+    isAvailable = false;
+  }
 
   const availabilityText = isAvailable
     ? t("availabilityAvailableText")
