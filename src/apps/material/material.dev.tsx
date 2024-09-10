@@ -958,9 +958,14 @@ digitalArticle.args = {
   wid: "work-of:870971-tsart:36297484"
 };
 
-export const inLargeSameSeriesAndIrregularFaustId = Template.bind({});
-inLargeSameSeriesAndIrregularFaustId.args = {
+export const irregularFaustId1InLargeSameSeries = Template.bind({});
+irregularFaustId1InLargeSameSeries.args = {
   wid: "work-of:150086-netmusik:BIS-2067"
+};
+
+export const irregularFaustId2fairytale = Template.bind({});
+irregularFaustId2fairytale.args = {
+  wid: "work-of:800010-katalog:99122572002205763__1"
 };
 
 export const journal = Template.bind({});
