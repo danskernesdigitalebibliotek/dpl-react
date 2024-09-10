@@ -408,4 +408,6 @@ export interface GlobalEntryTextProps {
   reservationListDigitalPickupText: string;
   pincodeSectionDescriptionText: string;
   errorBoundaryAlertBodyButtonAriaText: string;
+  buttonText: string;
+  etAlText: string;
 }

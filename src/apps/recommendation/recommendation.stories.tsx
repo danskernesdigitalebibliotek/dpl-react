@@ -10,10 +10,13 @@ import serviceUrlArgs, {
 import DisplayMaterialTypeOptions from "../recommended-material/recommendedMaterialDisplayTypeData";
 import RecommendationSkeleton from "./RecommendationSkeleton";
 import Recommendation from "./recommendation.entry";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 const meta: Meta<typeof Recommendation> = {
   title: "Apps / Recommendation",
   component: Recommendation,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type globalTextArgTypes and serviceUrlArgTypes
   argTypes: {
     ...globalTextArgTypes,
     ...serviceUrlArgTypes,
@@ -45,7 +48,7 @@ export const Primary: Story = {
     ...globalTextArgs,
     ...serviceUrlArgs,
     wid: "work-of:870970-basis:22383590",
-    materialType: "bog",
+    materialType: "bog" as ManifestationMaterialType,
     positionImageRight: false,
     materialUrl: "/work/:workid",
     etAlText: "et al."

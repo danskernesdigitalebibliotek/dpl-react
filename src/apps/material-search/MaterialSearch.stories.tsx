@@ -28,6 +28,11 @@ interface MaterialSearchHiddenInputsProps
   defaultWorkId: string;
   defaultMaterialType: string;
   uniqueIdentifier: string;
+  previouslySelectedWorkId: string;
+  previouslySelectedMaterialType: string;
+  materialUrl: string;
+  etAlText: string;
+  buttonText: string;
 }
 
 const MaterialSearchHiddenInputs = ({
@@ -80,6 +85,8 @@ const MaterialSearchHiddenInputs = ({
 const meta: Meta<typeof MaterialSearchHiddenInputs> = {
   title: "Apps / Material Search",
   component: MaterialSearchHiddenInputs,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type this
   argTypes: {
     ...globalTextArgTypes,
     ...serviceUrlArgTypes,

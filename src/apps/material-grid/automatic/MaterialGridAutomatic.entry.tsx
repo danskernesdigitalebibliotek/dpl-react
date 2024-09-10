@@ -22,6 +22,7 @@ export interface MaterialGridAutomaticEntryProps
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
   buttonText: string;
+  materialUrl: string;
 }
 
 const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({

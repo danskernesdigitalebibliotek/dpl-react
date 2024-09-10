@@ -29,6 +29,8 @@ import renewalArgs, {
 const meta: Meta<typeof FeeList> = {
   title: "Apps / Fee list",
   component: FeeList,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type this
   argTypes: {
     ...serviceUrlArgTypes,
     ...blockedArgTypes,

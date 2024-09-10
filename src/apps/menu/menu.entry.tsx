@@ -47,6 +47,9 @@ export interface MenuProps {
   reservationsUrl: string;
   searchHeaderLoginText: string;
   searchHeaderFavoritesText: string;
+  materialAndAuthorText: string;
+  materialByAuthorText: string;
+  statusBadgeWarningText: string;
 }
 
 export interface MenuEntryProps

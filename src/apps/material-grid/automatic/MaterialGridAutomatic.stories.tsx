@@ -12,6 +12,8 @@ import MaterialGridSkeleton from "../MaterialGridSkeleton";
 const meta: Meta<typeof MaterialGridAutomatic> = {
   title: "Apps / Material Grid / Automatic",
   component: MaterialGridAutomatic,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type this
   argTypes: {
     ...globalTextArgTypes,
     ...serviceUrlArgTypes,

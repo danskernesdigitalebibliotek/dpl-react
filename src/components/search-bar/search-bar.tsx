@@ -18,6 +18,12 @@ export interface SearchBarProps {
     value: boolean | ((prevState: boolean) => boolean)
   ) => void;
   redirectUrl: URL;
+  altText?: string;
+  inputPlaceholderText?: string;
+  searchHeaderIconAltText?: string;
+  searchNoValidCharactersErrorText?: string;
+  searchHeaderDropdownText?: string;
+  searchHeaderInputLabelText?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({

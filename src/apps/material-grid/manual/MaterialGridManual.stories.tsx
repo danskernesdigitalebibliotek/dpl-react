@@ -49,6 +49,8 @@ const materials = [
 const meta: Meta<typeof MaterialGridManual> = {
   title: "Apps / Material Grid / Manual",
   component: MaterialGridManual,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type this
   argTypes: {
     ...globalTextArgTypes,
     ...serviceUrlArgTypes,

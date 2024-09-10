@@ -9,7 +9,7 @@ import FetcherError from "../core/fetchers/FetcherError";
 import FetcherCriticalHttpError from "../core/fetchers/FetcherCriticalHttpError";
 import InvalidUrlError from "../core/errors/InvalidUrlError";
 
-const queryErrorHandler = (error: Error) => {
+const queryErrorHandler = (error: unknown) => {
   // If we get an error that controls the error boundary make sure it does just that.
   if (
     error instanceof FetcherHttpError ||
