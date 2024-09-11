@@ -21,10 +21,14 @@ const filterState = createSlice({
   reducers: {
     add(state, action: PayloadAction<FilterPayloadType>) {
       const { facet, term } = action.payload;
+      let existingFacets = { ...state[facet] };
+      if (facet === "sorting")
+        existingFacets = {};
+
       return {
         ...state,
         [facet]: {
-          ...state[facet],
+          ...existingFacets,
           [term.term]: term
         }
       };

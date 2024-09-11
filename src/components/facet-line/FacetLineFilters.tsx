@@ -47,7 +47,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const { filters, addToFilter } = useFilterHandler();
+  const { filters, addToFilter, setSorting } = useFilterHandler();
   // TODO: Since the huge refactoring of the FBI API,
   // summer 2024, a lot of changes has been introduced
   // which implies refactoring of facet types/functionality.
@@ -71,7 +71,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   };
 
   const onSortingChange = function(event: React.ChangeEvent<HTMLSelectElement>) {
-    console.log(arguments);
+    setSorting((sorting || []).find(option => option.value === event.target.value));
   };
 
   return (
@@ -86,11 +86,11 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
               <Dropdown
                 cyData={`sorting-line-dropdown`}
                 placeholder={{
-                  label: t("Sorting"),
+                  label: t("searchSortingOptionText"),
                   value: ""
                 }}
                 options={formatSortingOptionsToDropdown(sorting)}
-                ariaLabel={t("Sorting")}
+                ariaLabel={t("searchSortingOptionText")}
                 arrowIcon="chevron"
                 classNames="dropdown--grey-borders"
                 innerClassNames={{

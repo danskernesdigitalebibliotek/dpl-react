@@ -12,13 +12,15 @@ type FacetLineProps = {
 };
 
 const FacetLine: React.FunctionComponent<FacetLineProps> = ({ q }) => {
-  const { filters } = useFilterHandler();
+  const { filters, sorting } = useFilterHandler();
+
   const cleanBranches = useGetCleanBranches();
   const { data, isLoading } = useIntelligentFacetsQuery({
     q: { all: q },
     facetsLimit: 6,
     valuesLimit: 5,
-    filters: createFilters(filters, cleanBranches)
+    filters: createFilters(filters, cleanBranches),
+    sorting: sorting?.key
   });
 
   return (

@@ -80,7 +80,7 @@ export function useGetFacets(query: string, filters: Filter) {
     }
   );
 
-  return { facets: data?.search.facets || null, sorting: data?.search.sorting isLoading };
+  return { facets: data?.search.facets || null, sorting: data?.search.sorting, isLoading };
 }
 
 export const FacetBrowserModalId = "facet-browser-modal";

@@ -36,7 +36,7 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
-  const { filters, clearFilter, addFilterFromUrlParamListener } =
+  const { filters, sorting, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[] | null>(null);
@@ -57,7 +57,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // then make sure that we reset the entire result set.
   useDeepCompareEffect(() => {
     setResultItems([]);
-  }, [q, pageSize, filters]);
+  }, [q, pageSize, filters, sorting]);
 
   const { track } = useStatistics();
   useEffect(() => {
@@ -101,7 +101,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       q: { all: q },
       offset: page * pageSize,
       limit: pageSize,
-      filters: createFilters(filters, cleanBranches)
+      filters: createFilters(filters, cleanBranches),
+      sorting: sorting?.key
     },
     { enabled: q.length >= minimalQueryLength }
   );

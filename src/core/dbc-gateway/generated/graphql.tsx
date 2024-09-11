@@ -4004,6 +4004,7 @@ export type SearchWithPaginationQueryVariables = Exact<{
   offset: Scalars["Int"];
   limit: Scalars["PaginationLimitScalar"];
   filters?: InputMaybe<SearchFiltersInput>;
+  sorting?: string;
 }>;
 
 export type SearchWithPaginationQuery = {
@@ -4963,6 +4964,7 @@ export type IntelligentFacetsQueryVariables = Exact<{
   facetsLimit: Scalars["Int"];
   valuesLimit: Scalars["Int"];
   filters: SearchFiltersInput;
+  sorting: string;
 }>;
 
 export type IntelligentFacetsQuery = {
@@ -7042,8 +7044,8 @@ export const useRecommendFromFaustQuery = <
     options
   );
 export const SearchWithPaginationDocument = `
-    query searchWithPagination($q: SearchQueryInput!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: SearchFiltersInput) {
-  search(q: $q, filters: $filters) {
+    query searchWithPagination($q: SearchQueryInput!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: SearchFiltersInput, $sorting: String) {
+  search(q: $q, filters: $filters, sorting: $sorting) {
     hitcount
     works(offset: $offset, limit: $limit) {
       ...WorkSmall
@@ -7191,8 +7193,8 @@ export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
     options
   );
 export const IntelligentFacetsDocument = `
-    query intelligentFacets($q: SearchQueryInput!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFiltersInput!) {
-  search(q: $q, filters: $filters) {
+    query intelligentFacets($q: SearchQueryInput!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFiltersInput!, $sorting: String) {
+  search(q: $q, filters: $filters, sorting: $sorting) {
     sotring {
       name
       value
