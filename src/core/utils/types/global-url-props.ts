@@ -14,6 +14,7 @@ interface GlobalUrlEntryPropsInterface {
   fbiGlobalBaseUrl: string;
   authUrl: string;
   ereolenHomepageUrl: string;
+  wayfinderBaseUrl: string;
 }
 
 export default GlobalUrlEntryPropsInterface;

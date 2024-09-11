@@ -12,6 +12,11 @@ export default {
       process.env.PUBLIZON_BASEURL ?? "https://pubhub-openplatform.dbc.dk",
     control: { type: "text" }
   },
+  [serviceUrlKeys.wayfinder]: {
+    name: "Base url for the Wayfinder API (global inventory)",
+    defaultValue: process.env.WAYFINDER_BASEURL,
+    control: { type: "text" }
+  },
   [serviceUrlKeys.dplCms]: {
     name: "Base url for the DPL CMS API",
     defaultValue: "https://dpl-cms.inlead.dev",

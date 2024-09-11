@@ -19,6 +19,7 @@ export default {
   getReviewManifestations: serviceUrlKeys.fbiGlobal,
   getSmallWork: serviceUrlKeys.fbiGlobal,
   openOrder: serviceUrlKeys.fbiGlobal,
+  getWayfinder: serviceUrlKeys.wayfinder,
   // All other requests.
   default: serviceUrlKeys.fbi
 } as const;
