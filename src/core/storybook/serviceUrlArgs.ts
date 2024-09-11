@@ -21,6 +21,11 @@ export const argTypes = {
       }
     }
   },
+  [serviceUrlKeys.wayfinder]: {
+    name: "Base url for the Wayfinder API (global inventory)",
+    defaultValue: process.env.WAYFINDER_BASEURL,
+    control: { type: "text" }
+  },
   [serviceUrlKeys.dplCms]: {
     description: "Base url for the DPL CMS API",
     defaultValue: "https://dpl-cms.inlead.dev",
