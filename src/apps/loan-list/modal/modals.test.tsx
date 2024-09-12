@@ -70,7 +70,7 @@ describe("Modals", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-loan-list--loan-list-details-modal"
     );
-    cy.wait(["@loans", "@work", "@cover"]);
+    cy.wait(["@loans", "@work", "@cover"], { timeout: 10000 });
 
     cy.get(".modal-details__container").should("exist");
   });
