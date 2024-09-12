@@ -286,7 +286,7 @@ describe("Loan list", () => {
       }
     ).as("renew");
 
-    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
     cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"], {
       timeout: 30000
     });
@@ -638,7 +638,7 @@ describe("Loan list", () => {
       statusCode: 200,
       body: []
     });
-    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
     cy.get(".dpl-list-empty").should(
       "have.text",
       "You have 0 loans at the moment"
@@ -663,7 +663,7 @@ describe("Loan list", () => {
       statusCode: 200,
       body: []
     });
-    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
 
     // 2.b.iv.9. No physical loans, the text: "You have no physical loans at the moment"
     cy.get(".dpl-list-empty").should(
@@ -731,7 +731,7 @@ describe("Loan list", () => {
       }
     }).as("work_not_found");
 
-    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
 
     cy.get(".list-reservation-container")
       .find(".list-reservation")
@@ -755,7 +755,7 @@ describe("Loan list", () => {
       statusCode: 200,
       body: []
     });
-    cy.visit("/iframe.html?path=/story/apps-loan-list--loan-list-entry");
+    cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
     // 2.d No digital loans, the text: "You have 0 loans at the moment"
     cy.get(".dpl-list-empty").should(
       "have.text",
@@ -765,7 +765,7 @@ describe("Loan list", () => {
 
   it("Pagination is shown", () => {
     cy.visit(
-      "/iframe.html?id=apps-loan-list--loan-list-entry&args=pageSizeDesktop:2;pageSizeMobile:2"
+      "/iframe.html?id=apps-loan-list--primary&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
 
     cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"]);
