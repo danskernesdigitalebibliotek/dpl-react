@@ -1,7 +1,6 @@
 import React from "react";
 import { isEmpty, upperFirst } from "lodash";
 import { useDeepCompareEffect } from "react-use";
-import { FacetResult } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
@@ -9,11 +8,7 @@ import DisclosureControllable from "../Disclosures/DisclosureControllable";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import {
-  FacetBrowserModalId,
-  getAllFilterPathsAsString,
-  useGetFacets
-} from "./helper";
+import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import DisclosureSummary from "../Disclosures/DisclosureSummary";
 import { Facets } from "../../core/utils/types/entities";

@@ -199,6 +199,7 @@ if (import.meta.vitest) {
   const facetsTestData: Facets = [
     {
       name: "materialTypesGeneral",
+      type: FacetFieldEnum.Materialtypesgeneral,
       values: [
         {
           key: "computerspil",
@@ -209,6 +210,7 @@ if (import.meta.vitest) {
     },
     {
       name: "mainLanguages",
+      type: FacetFieldEnum.Mainlanguages,
       values: [
         {
           key: "dan",
@@ -224,6 +226,7 @@ if (import.meta.vitest) {
     },
     {
       name: "materialTypesGeneral",
+      type: FacetFieldEnum.Materialtypesgeneral,
       values: [
         {
           key: "artikler",
@@ -273,12 +276,6 @@ if (import.meta.vitest) {
   });
 
   it("createFacetsMap", () => {
-    // TODO: Since the huge refactoring of the FBI API,
-    // summer 2024, a lot of changes has been introduced
-    // which implies refactoring of facet types/functionality.
-    // Something here needs to be looked at.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     expect(createFacetsMap(facetsTestData)).toMatchSnapshot();
   });
 }
