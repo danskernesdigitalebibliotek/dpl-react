@@ -16,11 +16,11 @@ import {
   serviceUrlKeys
 } from "../../core/utils/reduxMiddleware/extractServiceBaseUrls";
 
-export const easyWayUrl = "https://wf-dev.stg.easyscreen.io";
-
 interface HttpErrorResponse {
   message: string;
 }
+
+export const wayfinder = getServiceBaseUrl(serviceUrlKeys.wayfinder);
 
 const getWayfinder = async (
   holdingsIds: HoldingDataInterface
@@ -33,9 +33,7 @@ const getWayfinder = async (
   const queryStringUrl = querystring.stringify(result);
   try {
     const response = await fetch(
-      `${getServiceBaseUrl(
-        serviceUrlKeys.wayfinder
-      )}/includes?${queryStringUrl}`,
+      `${wayfinder}/includes?${queryStringUrl}`,
       {
         method: "GET"
       }
@@ -49,7 +47,11 @@ const getWayfinder = async (
         if ("message" in jsonBody) {
           console.error(
             "Can't get data from wayfinder",
-            new HttpError(response.status, jsonBody.message, easyWayUrl)
+            new HttpError(
+              response.status,
+              jsonBody.message,
+              `${wayfinder}/includes?${queryStringUrl}`
+            )
           );
         }
       }

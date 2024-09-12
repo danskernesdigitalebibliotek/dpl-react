@@ -142,7 +142,6 @@
   },
   "//dependencies": {
     "@danskernesdigitalebibliotek/dpl-design-system": "Is being used for being able to see the dpl-design-system styling in Storybook and potentially use icons",
-    "@danskernesdigitalebibliotek/dpl-design-system": "2024.33.0-a94d6181a38deec2ab5b3723b9436372c0027d4a",
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
