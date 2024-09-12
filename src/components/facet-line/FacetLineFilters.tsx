@@ -3,7 +3,8 @@ import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import {
   FacetField,
   FacetResult,
-  FacetValue
+  FacetValue,
+  SearchSortingOption
 } from "../../core/dbc-gateway/generated/graphql";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
@@ -18,24 +19,35 @@ import {
 
 type FacetLineFiltersProps = {
   facets: FacetResult[];
+  sorting: SearchSortingOption[] | null;
 };
 
+const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
+  return values.map((value) => {
+    return {
+      label: value.term,
+      value: value.key
+    };
+  });
+};
+
+const formatSortingOptionsToDropdown = (sortingOptions: SearchSortingOption[]) => {
+  return sortingOptions.map(option => {
+    return {
+      label: option.name,
+      value: option.value
+    };
+  });
+}
+
 const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
-  facets = []
+  facets = [],
+  sorting = null
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const { filters, addToFilter } = useFilterHandler();
+  const { filters, addToFilter, setSorting } = useFilterHandler();
   const facetMap = createFacetsMap(facets);
-
-  const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
-    return values.map((value) => {
-      return {
-        label: value.term,
-        value: value.key
-      };
-    });
-  };
 
   const handleDropdownOnchange = (
     e: React.ChangeEvent<HTMLSelectElement>,
@@ -51,12 +63,38 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     });
   };
 
+  const onSortingChange = function(event: React.ChangeEvent<HTMLSelectElement>) {
+    setSorting((sorting || []).find(option => option.value === event.target.value));
+  };
+
   return (
     <section>
       <h2 className="hide-visually">
         {t("intelligentFiltersAccessibleHeadlineText")}
       </h2>
       <ul className="facet-line mt-48">
+        {
+          sorting && sorting.length !== 0
+            ? <li className="facet-line__item">
+              <Dropdown
+                cyData={`sorting-line-dropdown`}
+                placeholder={{
+                  label: t("searchSortingOptionText"),
+                  value: ""
+                }}
+                options={formatSortingOptionsToDropdown(sorting)}
+                ariaLabel={t("searchSortingOptionText")}
+                arrowIcon="chevron"
+                classNames="dropdown--grey-borders"
+                innerClassNames={{
+                  select: "dropdown__select--inline",
+                  arrowWrapper: "dropdown__arrows--inline "
+                }}
+                handleOnChange={onSortingChange}
+              />
+            </li>
+            : null
+        }
         {facets.map(({ name, values }) => {
           if (values.length > 1) {
             const translatedName = getFacetFieldTranslation(name as FacetField);

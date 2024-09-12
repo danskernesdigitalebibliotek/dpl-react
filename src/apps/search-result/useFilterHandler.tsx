@@ -1,3 +1,4 @@
+import lodash from "lodash";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,11 +14,22 @@ import {
   removeQueryParametersFromUrl,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
-import { FacetField } from "../../core/dbc-gateway/generated/graphql";
+import { FacetField, SearchSortingOption } from "../../core/dbc-gateway/generated/graphql";
 
 const useFilterHandler = () => {
   const dispatch = useDispatch();
-  const filters = useSelector((state: RootState) => state.filter) as Filter;
+  const filters = useSelector((state: RootState) => {
+    return lodash.omit(state.filter || {}, ["sorting"]);
+  }) as Filter;
+
+  const sorting = useSelector((state: RootState) => {
+    let activeSortingKey = Object.keys(state.filter.sorting || {})[0];
+
+    if (!activeSortingKey)
+      return null;
+
+    return state.filter.sorting[activeSortingKey];
+  });
 
   const clearFilter = useCallback(() => {
     removeQueryParametersFromUrl("filters");
@@ -53,12 +65,18 @@ const useFilterHandler = () => {
     }
   };
 
+  const setSorting = (sorting: SearchSortingOption | undefined) => {
+    dispatch(add({ facet: "sorting", term: { key: sorting?.value || "", term: sorting?.name || ""  } }));
+  };
+
   return {
     filters,
     addToFilter,
     removeFromFilter,
     clearFilter,
-    addFilterFromUrlParamListener
+    addFilterFromUrlParamListener,
+    sorting,
+    setSorting
   };
 };
 

@@ -200,6 +200,11 @@ export default {
       defaultValue: "Filter list",
       control: { type: "text" }
     },
+    searchSortingOptionText: {
+      name: "Label of the search sorting field",
+      defaultValue: "Sorting",
+      control: { type: "text" }
+    },
     addMoreFiltersText: {
       name: "Add more filters text",
       defaultValue: "+ more filters",
