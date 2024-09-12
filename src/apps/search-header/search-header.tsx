@@ -3,7 +3,7 @@ import { useCombobox, UseComboboxStateChange } from "downshift";
 import { useClickAway } from "react-use";
 import {
   SuggestionsFromQueryStringQuery,
-  SuggestionType,
+  SuggestionTypeEnum,
   useSuggestionsFromQueryStringQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import SearchBar from "../../components/search-bar/search-bar";
@@ -90,8 +90,8 @@ const SearchHeader: React.FC = () => {
 
     originalData.forEach((item: Suggestion) => {
       if (
-        (item.type === SuggestionType.Composit ||
-          item.type === SuggestionType.Title) &&
+        (item.type === SuggestionTypeEnum.Composit ||
+          item.type === SuggestionTypeEnum.Title) &&
         item.work
       ) {
         if (materialData.length < 3) {

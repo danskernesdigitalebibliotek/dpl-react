@@ -10,8 +10,8 @@ import {
   isArticle
 } from "../../components/material/material-buttons/helper";
 import {
-  AccessTypeCode,
-  WorkType
+  AccessTypeCodeEnum,
+  WorkTypeEnum
 } from "../../core/dbc-gateway/generated/graphql";
 import {
   getAvailabilityV3,
@@ -84,7 +84,9 @@ export const getManifestationsFromType = (
 };
 
 export const getManifestationPlayingTime = (manifestation: Manifestation) => {
-  return manifestation.physicalDescription?.[0]?.playingTime ?? "";
+  return "";
+  // TODO: solve missing playingTime.
+  // return manifestation.physicalDescription?.[0]?.playingTime ?? "";
 };
 
 export const getManifestationEdition = (manifestation: Manifestation) => {
@@ -104,8 +106,8 @@ export const getManifestationMaterialTypes = (manifestation: Manifestation) => {
 };
 
 export const getManifestationNumberOfPages = (manifestation: Manifestation) => {
-  return manifestation.physicalDescription?.[0]?.numberOfPages
-    ? String(manifestation.physicalDescription?.[0].numberOfPages)
+  return manifestation.physicalDescription?.numberOfPages
+    ? String(manifestation.physicalDescription?.numberOfPages)
     : "";
 };
 
@@ -204,7 +206,7 @@ export const getManifestationNotes = (manifestation: Manifestation) => {
 export const getManifestationPhysicalDescription = (
   manifestation: Manifestation
 ) => {
-  return manifestation.physicalDescription?.[0]?.summary ?? "";
+  return manifestation.physicalDescription?.summaryFull ?? "";
 };
 
 export const getManifestationHostPublication = (
@@ -453,11 +455,12 @@ export const reservationModalId = (faustIds: FaustId[]) => {
 };
 
 export const getNumberedSeries = (series: Work["series"]) =>
-  series.filter((seriesEntry) => seriesEntry.numberInSeries?.number);
+  series.filter((seriesEntry) => seriesEntry.numberInSeries);
 
 export const getUniqueMovies = (relations: Work["relations"]) => {
-  const movies = relations.hasAdaptation.filter((item) =>
-    item.ownerWork.workTypes.includes(WorkType.Movie)
+  const movies = relations.hasAdaptation.filter(
+    (item) => item.ownerWork.workTypes.includes(WorkTypeEnum.Movie)
+    // item.ownerWork.workTypeWorkTypeEnums.includes(WorkTypeEnum.Movie)
   );
 
   return uniqBy(movies, (item) => item.ownerWork.workId);
@@ -472,7 +475,7 @@ export const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
 
 export const isParallelReservation = (manifestations: Manifestation[]) =>
   manifestations.length > 1 &&
-  hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
+  hasCorrectAccessType(AccessTypeCodeEnum.Physical, manifestations) &&
   !isArticle(manifestations);
 
 type BlacklistType = "availability" | "pickup" | "both";

@@ -1,8 +1,8 @@
 query searchWithPagination(
-  $q: SearchQuery!
+  $q: SearchQueryInput!
   $offset: Int!
-  $limit: PaginationLimit!
-  $filters: SearchFilters
+  $limit: PaginationLimitScalar!
+  $filters: SearchFiltersInput
 ) {
   search(q: $q, filters: $filters) {
     hitcount
@@ -15,8 +15,8 @@ query searchWithPagination(
 query complexSearchWithPaginationWorkAccess(
   $cql: String!,
   $offset: Int!,
-  $limit: PaginationLimit!,
-  $filters: ComplexSearchFilters!
+  $limit: PaginationLimitScalar!,
+  $filters: ComplexSearchFiltersInput!
 ) {
   complexSearch(cql: $cql, filters: $filters) {
     hitcount
@@ -29,8 +29,8 @@ query complexSearchWithPaginationWorkAccess(
 query complexSearchWithPagination(
   $cql: String!,
   $offset: Int!,
-  $limit: PaginationLimit!,
-  $filters: ComplexSearchFilters!
+  $limit: PaginationLimitScalar!,
+  $filters: ComplexSearchFiltersInput!
 ) {
   complexSearch(cql: $cql, filters: $filters) {
     hitcount

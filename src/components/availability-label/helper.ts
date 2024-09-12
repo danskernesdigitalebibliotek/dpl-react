@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
+import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import articleTypes from "../../core/utils/types/article-types";
 
 type GetParrentAvailabilityLabelClassProps = {
@@ -7,8 +7,8 @@ type GetParrentAvailabilityLabelClassProps = {
   cursorPointer?: boolean;
 };
 
-export const isOnline = (accessTypes: AccessTypeCode[]): boolean =>
-  accessTypes?.includes(AccessTypeCode.Online) ?? false;
+export const isOnline = (accessTypes: AccessTypeCodeEnum[]): boolean =>
+  accessTypes?.includes(AccessTypeCodeEnum.Online) ?? false;
 
 export const isArticle = (manifestText: string): boolean =>
   articleTypes.some((type) => manifestText.toLowerCase() === type);

@@ -4,7 +4,7 @@ import SearchResultHeader from "../../components/search-bar/search-result-header
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import {
-  FacetField,
+  FacetFieldEnum,
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
@@ -92,8 +92,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // This is an initial, intentionally simple approach supporting what is required by the search header.
   // It could be reworked to support all filters and terms at a later point.
   useEffect(() => {
-    addFilterFromUrlParamListener(FacetField.MaterialTypesSpecific);
-    addFilterFromUrlParamListener(FacetField.WorkTypes);
+    addFilterFromUrlParamListener(FacetFieldEnum.Materialtypesspecific);
+    addFilterFromUrlParamListener(FacetFieldEnum.Worktypes);
   }, [addFilterFromUrlParamListener]);
 
   const { data, isLoading } = useSearchWithPaginationQuery(

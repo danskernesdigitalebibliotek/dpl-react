@@ -1,10 +1,10 @@
-import {
-  SuggestionType,
-  SuggestionsFromQueryStringQuery
-} from "../../core/dbc-gateway/generated/graphql";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { AutosuggestCategory } from "../../core/utils/types/material-type";
 import { UseTextFunction } from "../../core/utils/text";
+import {
+  SuggestionsFromQueryStringQuery,
+  SuggestionTypeEnum
+} from "../../core/dbc-gateway/generated/graphql";
 
 export const getAutosuggestCategoryList = (t: UseTextFunction) => {
   const autosuggestCategoryList = [
@@ -52,13 +52,13 @@ export function findNonWorkSuggestion(
 ) {
   return originalData.find(
     (item) =>
-      item.type !== SuggestionType.Title &&
-      item.type !== SuggestionType.Composit
+      item.type !== SuggestionTypeEnum.Title &&
+      item.type !== SuggestionTypeEnum.Composit
   );
 }
 
 export function determineSuggestionTerm(suggestion: Suggestion): string {
-  if (suggestion.type === SuggestionType.Composit) {
+  if (suggestion.type === SuggestionTypeEnum.Composit) {
     return suggestion.work?.titles.main[0] || "incomplete data";
   }
   return suggestion.term;

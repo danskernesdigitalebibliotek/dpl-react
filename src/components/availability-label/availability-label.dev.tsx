@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
-import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
@@ -11,6 +10,7 @@ import {
 } from "./availability-label";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 
 // The configuration below addresses the different variables,
 // their default values, and how they translate into storybook
@@ -57,7 +57,7 @@ export default {
     },
     accessTypes: {
       name: "Access types",
-      options: [...Object.values(AccessTypeCode)],
+      options: [...Object.values(AccessTypeCodeEnum)],
       control: { type: "check" }
     }
   },
@@ -103,5 +103,5 @@ export const EBogPrinsenHarry = Template.bind({});
 EBogPrinsenHarry.args = {
   isbns: ["9788763844123"],
   manifestText: "ebog",
-  accessTypes: [AccessTypeCode.Online]
+  accessTypes: [AccessTypeCodeEnum.Online]
 };

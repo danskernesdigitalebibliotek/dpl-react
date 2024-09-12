@@ -1,4 +1,6 @@
+import { useGetFacets } from "../../../components/facet-browser/helper";
 import {
+  AccessUnion,
   ManifestationReviewFieldsFragment,
   ManifestationsSimpleFieldsFragment,
   Relations,
@@ -42,3 +44,8 @@ export type Work = Omit<
 };
 
 export type Patron = PatronV5;
+
+export type Facets = ReturnType<typeof useGetFacets>["facets"];
+
+export type Access = AccessUnion;
+export type ManifestationAccess = Array<AccessUnion>;

@@ -156,7 +156,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
           {firstItemInSeries && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
-                firstItemInSeries.numberInSeries?.number
+                firstItemInSeries.numberInSeries ?? ""
               }`}
               subTitle={t("inSeriesText")}
               linkList={[

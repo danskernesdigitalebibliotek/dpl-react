@@ -101,7 +101,7 @@ fragment ManifestationsSimpleFields on Manifestation {
   physicalDescription {
     summaryFull
     numberOfPages
-    playingTime
+    # playingTime
   }
   hostPublication {
     summary
@@ -233,14 +233,14 @@ fragment WorkSmall on Work {
   series {
     ...SeriesSimple
   }
-  seriesMembers {
-    workId
-    titles {
-      main
-      full
-      original
-    }
-  }
+  # seriesMembers {
+  #   workId
+  #   titles {
+  #     main
+  #     full
+  #     original
+  #   }
+  # }
   workYear {
     year
   }
