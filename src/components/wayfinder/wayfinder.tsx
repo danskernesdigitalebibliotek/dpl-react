@@ -3,7 +3,7 @@ import Modal, { useModalButtonHandler } from "../../core/utils/modal";
 import { useText, withText } from "../../core/utils/text";
 import IconLocation from "../icon-location/icon-location";
 import "./wayfinder.scss";
-import { easyWayUrl } from "../find-on-shelf/getWayfinder";
+import { wayfinder } from "../find-on-shelf/getWayfinder";
 import { WayfinderReaponse } from "./wayfinder-types";
 
 const Wayfinder: React.FC<WayfinderReaponse> = ({ viewId, link }) => {
@@ -14,7 +14,7 @@ const Wayfinder: React.FC<WayfinderReaponse> = ({ viewId, link }) => {
     language = `&lang=${language}`;
   }
 
-  if (viewId === undefined || link === undefined) {
+  if (viewId == null || link == null) {
     return null;
   }
 
@@ -39,7 +39,7 @@ const Wayfinder: React.FC<WayfinderReaponse> = ({ viewId, link }) => {
         <iframe
           className="wayfinder-iframe"
           title="iframeModal"
-          src={`${easyWayUrl}${link}${language}`}
+          src={`${wayfinder}${link}${language}`}
         />
       </Modal>
     </div>
