@@ -10,7 +10,7 @@ import { Filter, FilterItemTerm } from "../../core/filter.slice";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 
 export const allFacetFields = [
-  FacetField.WorkTypes,
+  FacetField.MaterialTypesGeneral,
   FacetField.Creators,
   FacetField.Subjects,
   FacetField.FictionNonfiction,
