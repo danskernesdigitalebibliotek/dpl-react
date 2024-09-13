@@ -199,14 +199,7 @@ const meta: Meta<typeof PatronPage> = {
       description: "Loading",
       control: { type: "text" }
     }
-  }
-};
-
-export default meta;
-
-type Story = StoryObj<typeof PatronPage>;
-
-export const Primary: Story = {
+  },
   args: {
     ...serviceUrlArgs,
     ...pincodeArgs,
@@ -292,3 +285,9 @@ export const Primary: Story = {
     patronPageLoadingText: "Loading.."
   }
 };
+
+export default meta;
+
+type Story = StoryObj<typeof PatronPage>;
+
+export const PatronPageEntry: Story = {};
