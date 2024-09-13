@@ -11,7 +11,7 @@ import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 import { Facets } from "../../core/utils/types/entities";
 
 export const allFacetFields = [
-  FacetFieldEnum.Worktypes,
+  FacetFieldEnum.Materialtypesgeneral,
   FacetFieldEnum.Creators,
   FacetFieldEnum.Subjects,
   FacetFieldEnum.Fictionnonfiction,
@@ -19,7 +19,7 @@ export const allFacetFields = [
   FacetFieldEnum.Accesstypes,
   FacetFieldEnum.Mainlanguages,
   FacetFieldEnum.Genreandform,
-  FacetFieldEnum.Materialtypesgeneral,
+  FacetFieldEnum.Materialtypesspecific,
   FacetFieldEnum.Fictionalcharacters
 ];
 

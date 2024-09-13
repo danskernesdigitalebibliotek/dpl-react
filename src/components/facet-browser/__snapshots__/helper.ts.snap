@@ -71,8 +71,8 @@ exports[`formatFacetTerms > should format facet terms 1`] = `
 exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
 [
   {
-    "name": "WORKTYPES",
-    "type": "WORKTYPES",
+    "name": "MATERIALTYPESGENERAL",
+    "type": "MATERIALTYPESGENERAL",
     "values": [
       {
         "key": "",
@@ -151,8 +151,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "MATERIALTYPESGENERAL",
-    "type": "MATERIALTYPESGENERAL",
+    "name": "MATERIALTYPESSPECIFIC",
+    "type": "MATERIALTYPESSPECIFIC",
     "values": [
       {
         "key": "",
