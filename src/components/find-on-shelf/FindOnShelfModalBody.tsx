@@ -10,6 +10,7 @@ import {
   capitalizeFirstLetters,
   convertPostIdToFaustId,
   creatorsToString,
+  divideFirstNameByComma,
   flattenCreators,
   flattenCreatorsLastNameFirst,
   getManifestationsPids
@@ -58,8 +59,8 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   });
   const author = creatorsToString(flattenCreators(authors), t);
   // Inverted author - last name, then first name is used in find on shelf modal.
-  const invertedAuthor = capitalizeFirstLetters(
-    creatorsToString(flattenCreatorsLastNameFirst(authors), t)
+  const invertedAuthor = divideFirstNameByComma(capitalizeFirstLetters(
+    creatorsToString(flattenCreatorsLastNameFirst(authors), t))
   );
   const title = workTitles.join(", ");
   const isPeriodical = manifestations.some((manifestation) => {
