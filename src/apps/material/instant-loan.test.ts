@@ -78,7 +78,7 @@ describe("Instant Loan", () => {
       .should("have.length", 18);
   });
 
-  it.only("should render InstantLoan branch", () => {
+  it("should render InstantLoan branch", () => {
     cy.getBySel("instant-loan").scrollIntoView().click();
 
     // Hovedbiblioteket contains 14 materials
@@ -86,7 +86,7 @@ describe("Instant Loan", () => {
     // but only three is available.
     cy.getBySel("instant-loan-branches")
       .get("li")
-      .eq(8)
+      .contains("li", "Hovedbiblioteket")
       .scrollIntoView()
       .should("contain", "Hovedbiblioteket")
       .and("contain", "3 stk");
