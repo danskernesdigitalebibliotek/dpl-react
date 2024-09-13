@@ -58,7 +58,7 @@ const FindOnShelfManifestationListItem: FC<
     if (holdingData && numberAvailable) {
       processWayfinderRequests(holdingData);
     }
-  }, [holdingData]);
+  }, [holdingData, numberAvailable]);
 
   const shelfmarkFullText = shelfmark
     ? `${shelfmark.shelfmark} ${shelfmark.postfix}`
