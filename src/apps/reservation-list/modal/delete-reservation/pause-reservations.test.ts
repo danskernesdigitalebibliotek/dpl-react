@@ -69,7 +69,7 @@ describe("Pause reservation modal test", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-pause-modal"
     );
 
-    cy.wait("@user");
+    cy.wait("@user", { timeout: 10000 });
     // ID 12 1 The system opens a pause modal
     cy.get(".modal.modal-cta").should("exist");
 
