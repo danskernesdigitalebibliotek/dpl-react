@@ -190,6 +190,11 @@ export default {
       defaultValue: "Year",
       control: { type: "text" }
     },
+    facetAgeText: {
+      name: "Age text",
+      defaultValue: "Age",
+      control: { type: "text" }
+    },
     showResultsText: {
       name: "Show results text",
       defaultValue: "Show results",

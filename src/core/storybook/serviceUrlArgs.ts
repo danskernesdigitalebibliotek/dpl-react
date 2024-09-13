@@ -19,7 +19,7 @@ export default {
   },
   [serviceUrlKeys.cover]: {
     name: "Base url for the cover service",
-    defaultValue: "https://cover.dandigbib.org",
+    defaultValue: process.env.COVERS_BASEURL ?? "https://cover.dandigbib.org",
     control: { type: "text" }
   },
   [serviceUrlKeys.materialList]: {

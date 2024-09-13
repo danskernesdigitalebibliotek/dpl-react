@@ -134,6 +134,8 @@ export const getFacetFieldTranslation = (name: FacetField) => {
       return "facetWorkTypesText";
     case FacetField.Year:
       return "facetYearText";
+    case FacetField.Age:
+      return "facetAgeText";
     default:
       return invalidSwitchCase<string>(name as never);
   }
