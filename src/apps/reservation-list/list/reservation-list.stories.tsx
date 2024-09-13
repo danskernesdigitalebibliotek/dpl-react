@@ -293,6 +293,17 @@ export const ReservationListDigitalDetailsModal: Story = {
   }
 };
 
+export const ReservationListPhysicalDetailsModal: Story = {
+  parameters: {
+    query: {
+      modal: `${reservationDetails}4698559133`
+    }
+  },
+  args: {
+    ...Default.args
+  }
+};
+
 const { pauseReservation } = getModalIds();
 export const ReservationListPauseModal: Story = {
   parameters: {
