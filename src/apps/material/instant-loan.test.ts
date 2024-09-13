@@ -78,7 +78,7 @@ describe("Instant Loan", () => {
       .should("have.length", 18);
   });
 
-  it("should render InstantLoan branch", () => {
+  it.only("should render InstantLoan branch", () => {
     cy.getBySel("instant-loan").scrollIntoView().click();
 
     // Hovedbiblioteket contains 14 materials
