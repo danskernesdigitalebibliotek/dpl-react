@@ -909,123 +909,123 @@ export default meta;
 
 type Story = StoryObj<typeof MaterialEntry>;
 
-export const Primary: Story = {};
+export const Default: Story = {};
 
 export const Periodical: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:06373674"
   }
 };
 
 export const Infomedia: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870971-avis:35731733"
   }
 };
 
 export const HarryPotter: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:22629344"
   }
 };
 
 export const TurenGårTilRom: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:61991484"
   }
 };
 
 export const Digital: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870971-tsart:34310815"
   }
 };
 
 export const EBogPrinsenHarry: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:54129807"
   }
 };
 
 export const EBogBlaTitle: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:52880831"
   }
 };
 
 export const LangePeter: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:01196669"
   }
 };
 
 export const InstantLoan: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:134015012"
   }
 };
 
 export const Dinosaurierfedern: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:44805421"
   }
 };
 
 export const Underverden: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:52886619"
   }
 };
 
 export const OverbygningsMatriale: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:44926407"
   }
 };
 
 export const GlobalMaterial: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:07185995"
   }
 };
 
 export const OnlyOneEdition: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:52796202"
   }
 };
 
 export const DigitalArticle: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870971-tsart:36297484"
   }
 };
 
 export const InLargeSameSeriesAndIrregularFaustId: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:150086-netmusik:BIS-2067"
   }
 };
 
 export const Journal: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     wid: "work-of:870970-basis:01007556"
   }
 };
