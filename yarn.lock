@@ -1505,9 +1505,9 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@danskernesdigitalebibliotek/dpl-design-system@git+ssh://git@github.com:inleadmedia/dpl-design-system.git#inlead-release":
+"@danskernesdigitalebibliotek/dpl-design-system@git+https://github.com/inleadmedia/dpl-design-system.git#inlead-release":
   version "0.1.0"
-  resolved "git+ssh://git@github.com:inleadmedia/dpl-design-system.git#4faae095f74a5c8d26efbee6d4d0485988d59746"
+  resolved "git+https://github.com/inleadmedia/dpl-design-system.git#4faae095f74a5c8d26efbee6d4d0485988d59746"
 
 "@discoveryjs/json-ext@^0.5.0", "@discoveryjs/json-ext@^0.5.3":
   version "0.5.7"

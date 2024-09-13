@@ -5,8 +5,10 @@ import {
 } from "./helpers/list-mapper";
 import { getReadyForPickup } from "../../apps/reservation-list/utils/helpers";
 import { ReservationType } from "./types/reservation-type";
-import { dashboardReservedApiValueText } from "../configuration/api-strings.json";
+import apiValues from "../configuration/api-strings.json";
 import useGetReservationGroups from "./useGetReservationGroups";
+
+const { dashboardReservedApiValueText } = apiValues;
 
 const getQueuedReservations = (list: ReservationType[]) => {
   return [...list].filter(
