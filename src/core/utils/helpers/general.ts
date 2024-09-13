@@ -59,11 +59,11 @@ export const flattenCreatorsLastNameFirst = (creators: Work["creators"]) =>
     return creator.nameSort;
   });
 
-  export const divideFirstNameByComma = (creatorString: string) => {
-    const parts = creatorString.split(' ');
-    parts[0] += ",";
-    return parts.join(' ');
-  }
+export const divideFirstNameByComma = (creatorString: string) => {
+  const parts = creatorString.split(" ");
+  parts[0] += ",";
+  return parts.join(" ");
+};
 
 const getCreatorsFromManifestations = (manifestations: Manifestation[]) => {
   const creators = manifestations.reduce<string[]>((acc: string[], curr) => {
