@@ -198,7 +198,7 @@ export default meta;
 
 type Story = StoryObj<typeof ReservationList>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     // Config
     ...serviceUrlArgs,
@@ -277,7 +277,7 @@ export const Primary: Story = {
 
 export const ReservationListEntry: Story = {
   args: {
-    ...Primary.args
+    ...Default.args
   }
 };
 
@@ -289,7 +289,7 @@ export const ReservationListDigitalDetailsModal: Story = {
     }
   },
   args: {
-    ...Primary.args
+    ...Default.args
   }
 };
 
@@ -301,6 +301,6 @@ export const ReservationListPauseModal: Story = {
     }
   },
   args: {
-    ...Primary.args
+    ...Default.args
   }
 };
