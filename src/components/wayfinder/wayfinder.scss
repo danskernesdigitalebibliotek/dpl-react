@@ -1,4 +1,4 @@
-.wayfinder {
+.dpl-wayfinder {
   &-iframe {
     width: 100%;
   }
@@ -7,10 +7,8 @@
     left: -24px;
     top: 2px
   }
-}
 
-//Override custom styles
-.wayfinder {
+  //Override custom styles
   .modal-show {
     //padding: 0;
     padding: 70px;

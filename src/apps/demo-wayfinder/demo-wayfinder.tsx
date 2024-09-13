@@ -38,7 +38,7 @@ const DemoWayfinder: React.FC = () => {
   }, [mockBranchIds]);
 
   return (
-    <div className="demo-wayfinder">
+    <div className="dpl-demo-wayfinder">
       {wayfinderLink ? (
         <Wayfinder viewId={wayfinderLink.viewId} link={wayfinderLink.link} />
       ) : null}
