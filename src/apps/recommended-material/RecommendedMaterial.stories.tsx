@@ -39,7 +39,7 @@ export default meta;
 
 type Story = StoryObj<typeof RecommendedMaterial>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     ...globalTextArgs,
     ...serviceUrlArgs,
@@ -52,14 +52,14 @@ export const Primary: Story = {
 
 export const Skeleton: Story = {
   args: {
-    ...Primary.args
+    ...Default.args
   },
   render: () => <RecommendedMaterialSkeleton />
 };
 
 export const materialWithoutType: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     materialType: undefined
   }
 };
