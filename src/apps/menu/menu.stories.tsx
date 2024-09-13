@@ -167,7 +167,7 @@ export default meta;
 
 type Story = StoryObj<typeof WrappedMenu>;
 
-export const Primary: Story = {
+export const UserMenu: Story = {
   args: {
     ...serviceUrlArgs,
     ...groupModalArgs,
