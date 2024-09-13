@@ -178,7 +178,8 @@ export const convertPostIdToFaustId = (postId: Pid) => {
   if (matches?.[1]) {
     return matches?.[1] as FaustId;
   }
-  throw new Error(`Unable to extract faust id from post id "${postId}"`);
+
+  return postId as FaustId;
 };
 
 export const convertPostIdsToFaustIds = (postIds: Pid[]) => {

@@ -38,7 +38,7 @@ export const argTypes = {
     table: {
       type: { summary: "text" },
       defaultValue: {
-        summary: "https://cover.dandigbib.org"
+        summary: process.env.COVERS_BASEURL ?? "https://cover.dandigbib.org"
       }
     }
   },

@@ -31,6 +31,7 @@ interface SearchResultEntryTextProps {
   facetSubjectsText: string;
   facetWorkTypesText: string;
   facetYearText: string;
+  facetAgeText: string;
   filterListText: string;
   inSeriesText: string;
   loadingText: string;
