@@ -43,7 +43,7 @@ export default meta;
 
 type Story = StoryObj<typeof Recommendation>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     ...globalTextArgs,
     ...serviceUrlArgs,
@@ -57,7 +57,7 @@ export const Primary: Story = {
 
 export const Skeleton: Story = {
   args: {
-    ...Primary.args
+    ...Default.args
   },
 
   // eslint-disable-next-line react/jsx-props-no-spreading
