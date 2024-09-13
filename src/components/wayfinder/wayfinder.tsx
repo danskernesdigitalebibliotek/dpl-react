@@ -19,9 +19,9 @@ const Wayfinder: React.FC<WayfinderReaponse> = ({ viewId, link }) => {
   }
 
   return (
-    <div className="wayfinder">
+    <div className="dpl-wayfinder">
       <button
-        className="wayfinder-button"
+        className="drl-wayfinder-button"
         type="button"
         onClick={() => {
           open(viewId);
@@ -37,7 +37,7 @@ const Wayfinder: React.FC<WayfinderReaponse> = ({ viewId, link }) => {
         isFullScreen
       >
         <iframe
-          className="wayfinder-iframe"
+          className="dpl-wayfinder-iframe"
           title="iframeModal"
           src={`${wayfinder}${link}${language}`}
         />
