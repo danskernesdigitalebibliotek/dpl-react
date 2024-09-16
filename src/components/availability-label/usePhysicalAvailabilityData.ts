@@ -1,7 +1,7 @@
 import { useConfig } from "../../core/utils/config";
 import { FaustId } from "../../core/utils/types/ids";
 import useGetAvailability from "../../core/utils/useGetAvailability";
-import { isArticle } from "./helper";
+import { isArticleByLabelText } from "./helper";
 
 const usePhysicalAvailabilityData = ({
   enabled,
@@ -22,7 +22,8 @@ const usePhysicalAvailabilityData = ({
         // FBS / useGetAvailabilityV3 is responsible for handling availability
         // for physical items. This will be the majority of all materials so we
         // use this for everything except materials that are explicitly online.
-        enabled: enabled && faustIds !== null && !isArticle(manifestText)
+        enabled:
+          enabled && faustIds !== null && !isArticleByLabelText(manifestText)
       }
     }
   });
@@ -38,7 +39,7 @@ const usePhysicalAvailabilityData = ({
   }
 
   // Articles are always available.
-  if (isArticle(manifestText)) {
+  if (isArticleByLabelText(manifestText)) {
     return {
       isLoading: false,
       isAvailable: true

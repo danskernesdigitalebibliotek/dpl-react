@@ -10,7 +10,7 @@ type GetParrentAvailabilityLabelClassProps = {
 export const isOnline = (accessTypes: AccessTypeCodeEnum[]): boolean =>
   accessTypes?.includes(AccessTypeCodeEnum.Online) ?? false;
 
-export const isArticle = (manifestText: string): boolean =>
+export const isArticleByLabelText = (manifestText: string): boolean =>
   articleTypes.some((type) => manifestText.toLowerCase() === type);
 
 export const getParentAvailabilityLabelClass = ({
