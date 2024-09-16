@@ -4,7 +4,6 @@ const webpack = require("webpack");
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { getWebPackEnvVariables } = require("./webpack.helpers");
 
 module.exports = (_env, argv) => {
@@ -28,9 +27,6 @@ module.exports = (_env, argv) => {
       files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
       context: path.resolve(__dirname, "./src"),
       useEslintrc: true
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css"
     })
   ];
 
@@ -87,19 +83,7 @@ module.exports = (_env, argv) => {
         // We consume css and svg files from dpl-design-system package
         {
           test: /\.css$/,
-          use: [
-            production ? MiniCssExtractPlugin.loader : "style-loader",
-            "css-loader"
-          ]
-        },
-        // Support for SCSS
-        {
-          test: /\.scss$/,
-          use: [
-            production ? MiniCssExtractPlugin.loader : "style-loader",
-            "css-loader",
-            "sass-loader"
-          ]
+          use: ["style-loader", "css-loader"]
         },
         {
           test: /\.svg$/,

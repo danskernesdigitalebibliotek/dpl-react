@@ -10,7 +10,7 @@ import {
   redirectToLoginAndBack
 } from "./helpers/url";
 import { isVitestEnvironment } from "./helpers/vitest";
-import "../../../modal-styles-override.scss";
+import "./modal-styles-override.scss";
 
 type ModalId = string;
 
