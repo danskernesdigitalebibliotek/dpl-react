@@ -8,6 +8,7 @@ import {
   convertPostIdToFaustId,
   creatorsToString,
   flattenCreators,
+  getAllFaustIds,
   getManifestationsPids,
   getMaterialTypes,
   getWorkPid
@@ -27,11 +28,11 @@ import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "./periodical/helper";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import { hasCorrectMaterialType } from "./material-buttons/helper";
-import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
-import { isAnonymous } from "../../core/utils/helpers/user";
+import { isPeriodical, shouldShowMaterialAvailabilityText } from "./helper";
+import useAvailabilityData from "../availability-label/useAvailabilityData";
+import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -75,10 +76,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     );
   };
   const author = creatorsToString(flattenCreators(creators), t);
-  const isPeriodical = hasCorrectMaterialType(
-    ManifestationMaterialType.magazine,
-    selectedManifestations
-  );
   const containsDanish = mainLanguages.some((language) =>
     language?.isoCode.toLowerCase().includes("dan")
   );
@@ -95,6 +92,18 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const languageIsoCode = getManifestationLanguageIsoCode(
     selectedManifestations
   );
+  // We need availability in order to show availability text under action buttons
+  const { isAvailable } = useAvailabilityData({
+    // "accessTypes" will always be physical here - shouldShowMaterialAvailabilityText() helper
+    // rules out all online materials.
+    accessTypes: [AccessTypeCode.Physical],
+    access: [undefined],
+    faustIds: getAllFaustIds(selectedManifestations),
+    isbn: null, // Not needed for physical materials.
+    // "manifestText" is used inside the availability hook to check whether the material is an article
+    // which we check inside shouldShowMaterialAvailabilityText() helper here.
+    manifestText: "NOT AN ARTICLE"
+  });
 
   useDeepCompareEffect(() => {
     track("click", {
@@ -154,7 +163,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         {/* The CTA buttons apparently only make sense on a global work */}
         {!isGlobalMaterial && showItem && (
           <>
-            {isPeriodical && (
+            {isPeriodical(selectedManifestations) && (
               <MaterialPeriodical
                 faustId={convertPostIdToFaustId(pid)}
                 selectedPeriodical={selectedPeriodical}
@@ -171,11 +180,17 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                     materialTitleId={materialTitleId}
                   />
                 </div>
-                {!isAnonymous() && (
-                  <MaterialAvailabilityText
-                    manifestations={selectedManifestations}
-                  />
-                )}
+                {/* MaterialAvailabilityText is only shown for:
+                    - physical manifestations
+                    - that are not periodical or articles
+                    - that are available in at least one local library branch
+                */}
+                {shouldShowMaterialAvailabilityText(selectedManifestations) &&
+                  isAvailable && (
+                    <MaterialAvailabilityText
+                      manifestations={selectedManifestations}
+                    />
+                  )}
               </>
             )}
             {children}
