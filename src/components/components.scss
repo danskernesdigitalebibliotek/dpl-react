@@ -2,8 +2,8 @@
 @import "../../node_modules/@reach/dialog/styles";
 // Component specific styling should be included here:
 
-@import "../apps/search-result/no-results.scss";
-@import "../apps/demo-wayfinder/demo-wayfinder.scss";
-@import "./find-on-shelf/FindOnShelfManifestationListItem.scss";
-@import "./wayfinder/wayfinder.scss";
-@import "../core/utils/modal-styles-override.scss";
+@import "../apps/search-result/no-results";
+@import "../apps/demo-wayfinder/demo-wayfinder";
+@import "./find-on-shelf/FindOnShelfManifestationListItem";
+@import "./wayfinder/wayfinder";
+@import "../core/utils/modal-styles-override";
