@@ -24,10 +24,9 @@ const useFilterHandler = () => {
   }) as Filter;
 
   const sorting = useSelector((state: RootState) => {
-    let activeSortingKey = Object.keys(state.filter.sorting || {})[0];
+    const activeSortingKey = Object.keys(state.filter.sorting || {})[0];
 
-    if (!activeSortingKey)
-      return null;
+    if (!activeSortingKey) return null;
 
     return state.filter.sorting[activeSortingKey];
   });
@@ -66,8 +65,13 @@ const useFilterHandler = () => {
     }
   };
 
-  const setSorting = (sorting: SearchSortingOption | undefined) => {
-    dispatch(add({ facet: "sorting", term: { key: sorting?.value || "", term: sorting?.name || ""  } }));
+  const setSorting = (_sorting: SearchSortingOption | undefined) => {
+    dispatch(
+      add({
+        facet: "sorting",
+        term: { key: _sorting?.value || "", term: _sorting?.name || "" }
+      })
+    );
   };
 
   return {

@@ -5,7 +5,6 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { getFindOnShelfLocationText } from "./helper";
 import getWayfinder from "./getWayfinder";
 import Wayfinder from "../wayfinder/wayfinder";
-import "./FindOnShelfManifestationListItem.scss";
 import {
   HoldingDataInterface,
   WayfinderReaponse
@@ -50,6 +49,7 @@ const FindOnShelfManifestationListItem: FC<
         setWayfinderLink(wayfinderView);
       }
     } catch (error) {
+      // eslint-disable-next-line
       console.error("Error fetching Wayfinder data:", error);
     }
   };

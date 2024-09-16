@@ -2,7 +2,6 @@ import React from "react";
 import Modal, { useModalButtonHandler } from "../../core/utils/modal";
 import { useText, withText } from "../../core/utils/text";
 import IconLocation from "../icon-location/icon-location";
-import "./wayfinder.scss";
 import { wayfinder } from "../find-on-shelf/getWayfinder";
 import { WayfinderReaponse } from "./wayfinder-types";
 

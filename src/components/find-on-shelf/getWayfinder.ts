@@ -32,12 +32,9 @@ const getWayfinder = async (
 
   const queryStringUrl = querystring.stringify(result);
   try {
-    const response = await fetch(
-      `${wayfinder}/includes?${queryStringUrl}`,
-      {
-        method: "GET"
-      }
-    );
+    const response = await fetch(`${wayfinder}/includes?${queryStringUrl}`, {
+      method: "GET"
+    });
 
     const jsonBody: WayfinderReaponse | HttpErrorResponse =
       await response.json();
@@ -45,6 +42,7 @@ const getWayfinder = async (
     if (response.status !== 200) {
       if (response.status !== 404) {
         if ("message" in jsonBody) {
+          /* eslint-disable */
           console.error(
             "Can't get data from wayfinder",
             new HttpError(
@@ -53,6 +51,7 @@ const getWayfinder = async (
               `${wayfinder}/includes?${queryStringUrl}`
             )
           );
+          /* eslint-enable */
         }
       }
 
@@ -61,6 +60,7 @@ const getWayfinder = async (
 
     return jsonBody as WayfinderReaponse;
   } catch (error: unknown) {
+    // eslint-disable-next-line
     console.error("Wayfinder error", error);
   }
 

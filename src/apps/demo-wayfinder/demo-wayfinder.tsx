@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { withText } from "../../core/utils/text";
-import "./demo-wayfinder.scss";
 import getWayfinder from "../../components/find-on-shelf/getWayfinder";
 import Wayfinder from "../../components/wayfinder/wayfinder";
 import {
@@ -27,6 +26,7 @@ const DemoWayfinder: React.FC = () => {
         setWayfinderLink(wayfinderView);
       }
     } catch (error) {
+      // eslint-disable-next-line
       console.error("Error fetching Wayfinder data:", error);
     }
   };
@@ -35,7 +35,7 @@ const DemoWayfinder: React.FC = () => {
     if (mockBranchIds) {
       processWayfinderRequests(mockBranchIds);
     }
-  }, [mockBranchIds]);
+  });
 
   return (
     <div className="dpl-demo-wayfinder">

@@ -5,7 +5,6 @@ import DemoWayfinder, { DemoWayfinderLinkProps } from "./demo-wayfinder.entry";
 import globalTextArgs, {
   GlobalEntryTextProps
 } from "../../core/storybook/globalTextArgs";
-import "../../components/wayfinder/wayfinder.scss";
 
 export default {
   title: "Apps / Demo wayfinder",

@@ -10,7 +10,6 @@ import {
   redirectToLoginAndBack
 } from "./helpers/url";
 import { isVitestEnvironment } from "./helpers/vitest";
-import "./modal-styles-override.scss";
 
 type ModalId = string;
 
@@ -113,7 +112,7 @@ function Modal({
             "modal",
             {
               "modal-show": modalIds.includes(modalId),
-              "modal_full-screen": isFullScreen
+              "dpl-modal--full-screen": isFullScreen
             },
             classNames
           )}

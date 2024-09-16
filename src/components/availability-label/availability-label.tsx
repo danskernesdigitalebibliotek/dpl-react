@@ -41,7 +41,8 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   const { track } = useStatistics();
   const t = useText();
 
-  let isLoading, isAvailable
+  let isLoading;
+  let isAvailable;
   try {
     const availabilityData = useAvailabilityData({
       accessTypes,
@@ -54,6 +55,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     isLoading = availabilityData.isLoading;
     isAvailable = availabilityData.isAvailable;
   } catch (error) {
+    // eslint-disable-next-line
     console.error("Can't get availability", error);
 
     isLoading = false;

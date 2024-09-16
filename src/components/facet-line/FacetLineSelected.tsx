@@ -8,21 +8,21 @@ const FacetLineSelected = () => {
   const buttonsRef = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const t = useText();
 
-  let _filters = filters;
+  let filtersWithSorting = filters;
   if (sorting) {
-    _filters = {
+    filtersWithSorting = {
       sorting: { [sorting.term]: sorting },
-      ..._filters
-    }
+      ...filtersWithSorting
+    };
   }
 
   useEffect(() => {
-    const lastFacet = Object.keys(_filters).slice(-1)[0];
+    const lastFacet = Object.keys(filtersWithSorting).slice(-1)[0];
     if (lastFacet) {
-      const lastTerm = Object.keys(_filters[lastFacet]).slice(-1)[0];
+      const lastTerm = Object.keys(filtersWithSorting[lastFacet]).slice(-1)[0];
       buttonsRef.current[`${lastFacet}-${lastTerm}`]?.focus();
     }
-  }, [_filters]);
+  }, [filtersWithSorting]);
 
   return (
     <section>
@@ -30,7 +30,7 @@ const FacetLineSelected = () => {
         {t("intelligentFiltersSelectedAccessibleHeadlineText")}
       </h2>
       <ul className="facet-line-selected-terms">
-        {Object.entries(_filters).map(([facet, value]) => (
+        {Object.entries(filtersWithSorting).map(([facet, value]) => (
           <React.Fragment key={facet}>
             {Object.entries(value).map(([label, term]) => (
               <li

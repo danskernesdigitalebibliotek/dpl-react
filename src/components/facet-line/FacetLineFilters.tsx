@@ -32,14 +32,16 @@ const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
   });
 };
 
-const formatSortingOptionsToDropdown = (sortingOptions: SearchSortingOption[]) => {
-  return sortingOptions.map(option => {
+const formatSortingOptionsToDropdown = (
+  sortingOptions: SearchSortingOption[]
+) => {
+  return sortingOptions.map((option) => {
     return {
       label: option.name,
       value: option.value
     };
   });
-}
+};
 
 const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   facets = [],
@@ -70,8 +72,10 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
     });
   };
 
-  const onSortingChange = function(event: React.ChangeEvent<HTMLSelectElement>) {
-    setSorting((sorting || []).find(option => option.value === event.target.value));
+  const onSortingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSorting(
+      (sorting || []).find((option) => option.value === event.target.value)
+    );
   };
 
   return (
@@ -80,28 +84,26 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
         {t("intelligentFiltersAccessibleHeadlineText")}
       </h2>
       <ul className="facet-line mt-48">
-        {
-          sorting && sorting.length !== 0
-            ? <li className="facet-line__item">
-              <Dropdown
-                cyData={`sorting-line-dropdown`}
-                placeholder={{
-                  label: t("searchSortingOptionText"),
-                  value: ""
-                }}
-                options={formatSortingOptionsToDropdown(sorting)}
-                ariaLabel={t("searchSortingOptionText")}
-                arrowIcon="chevron"
-                classNames="dropdown--grey-borders"
-                innerClassNames={{
-                  select: "dropdown__select--inline",
-                  arrowWrapper: "dropdown__arrows--inline "
-                }}
-                handleOnChange={onSortingChange}
-              />
-            </li>
-            : null
-        }
+        {sorting && sorting.length !== 0 ? (
+          <li className="facet-line__item">
+            <Dropdown
+              cyData="sorting-line-dropdown"
+              placeholder={{
+                label: t("searchSortingOptionText"),
+                value: ""
+              }}
+              options={formatSortingOptionsToDropdown(sorting)}
+              ariaLabel={t("searchSortingOptionText")}
+              arrowIcon="chevron"
+              classNames="dropdown--grey-borders"
+              innerClassNames={{
+                select: "dropdown__select--inline",
+                arrowWrapper: "dropdown__arrows--inline "
+              }}
+              handleOnChange={(e) => onSortingChange(e)}
+            />
+          </li>
+        ) : null}
         {facets &&
           facets.map(({ name, values }) => {
             if (values.length > 1) {

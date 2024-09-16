@@ -40,12 +40,12 @@ const UseReservableManifestations = ({
       try {
         data = await getAvailability({ faustIds, config });
       } catch (error) {
-        console.error('`getAvailability` error:', error);
+        // eslint-disable-next-line
+        console.error("`getAvailability` error:", error);
       }
 
       // If we for some reason do not get any data, we return empty arrays.
       if (!data) {
-        console.log('No availability found!', data);
         return { reservable: [], unReservable: [] };
       }
 

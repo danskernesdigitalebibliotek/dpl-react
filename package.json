@@ -177,5 +177,10 @@
   },
   "peerDependencies": {
     "postcss": "^8.4.49"
+  },
+  "overrides": {
+    "babel-plugin-lodash": {
+      "@babel/types": "~7.20.0"
+    }
   }
 }
