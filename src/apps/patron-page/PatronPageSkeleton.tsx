@@ -17,7 +17,7 @@ const PatronPageSkeleton: React.FC = () => {
         changePatron={() => {}}
         patron={null}
         inLine={false}
-        showCheckboxes
+        showCheckboxes={["email", "phone"]}
       />
     </form>
   );

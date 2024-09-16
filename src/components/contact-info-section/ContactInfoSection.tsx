@@ -12,7 +12,7 @@ interface ContactInfoSectionProps {
   inLine?: boolean;
   isDouble?: boolean;
   changePatron: ChangePatronProps;
-  showCheckboxes: boolean;
+  showCheckboxes: ("email" | "phone")[];
   requiredFields?: ("email" | "phone")[];
 }
 
@@ -43,7 +43,9 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           changePatron={changePatron}
           patron={patron}
           isRequired={requiredFields.includes("phone")}
-          showCheckboxes={showCheckboxes && textNotificationsEnabledConfig}
+          showCheckboxes={
+            showCheckboxes.includes("phone") && textNotificationsEnabledConfig
+          }
         />
         <ContactInfoEmail
           className={clsx(inputsClass, {
@@ -52,7 +54,7 @@ const ContactInfoSection: FC<ContactInfoSectionProps> = ({
           changePatron={changePatron}
           patron={patron}
           isRequired={requiredFields.includes("email")}
-          showCheckboxes={showCheckboxes}
+          showCheckboxes={showCheckboxes.includes("email")}
         />
       </ContactInfoInputs>
     </section>
