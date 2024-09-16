@@ -78,7 +78,8 @@ const extractServiceBaseUrls: Middleware<
 
 export const getServiceBaseUrl = (apiBaseUrlKey: ApiBaseUrlKey) => {
   if (!serviceBaseUrls[apiBaseUrlKey as ServiceBaseUrlKey]) {
-    throw new Error(`Service base url for ${apiBaseUrlKey} is not defined.`);
+    // eslint-disable-next-line
+    console.warn(`Service base url for ${apiBaseUrlKey} is not defined.`);
   }
   return serviceBaseUrls[apiBaseUrlKey as ServiceBaseUrlKey];
 };

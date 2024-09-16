@@ -20,11 +20,17 @@ interface HttpErrorResponse {
   message: string;
 }
 
-export const wayfinder = getServiceBaseUrl(serviceUrlKeys.wayfinder);
+export function getBaseUrl() {
+  return getServiceBaseUrl(serviceUrlKeys.wayfinder);
+}
 
 const getWayfinder = async (
   holdingsIds: HoldingDataInterface
 ): Promise<WayfinderReaponse | null> => {
+  const wayfinderBaseUrl = getBaseUrl();
+
+  if (!wayfinderBaseUrl) return null;
+
   const result = lodash.omitBy(
     holdingsIds,
     (value) => value === undefined || value === null
@@ -32,9 +38,12 @@ const getWayfinder = async (
 
   const queryStringUrl = querystring.stringify(result);
   try {
-    const response = await fetch(`${wayfinder}/includes?${queryStringUrl}`, {
-      method: "GET"
-    });
+    const response = await fetch(
+      `${wayfinderBaseUrl}/includes?${queryStringUrl}`,
+      {
+        method: "GET"
+      }
+    );
 
     const jsonBody: WayfinderReaponse | HttpErrorResponse =
       await response.json();
@@ -48,7 +57,7 @@ const getWayfinder = async (
             new HttpError(
               response.status,
               jsonBody.message,
-              `${wayfinder}/includes?${queryStringUrl}`
+              `${wayfinderBaseUrl}/includes?${queryStringUrl}`
             )
           );
           /* eslint-enable */

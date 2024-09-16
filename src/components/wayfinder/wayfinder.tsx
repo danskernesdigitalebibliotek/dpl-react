@@ -2,7 +2,7 @@ import React from "react";
 import Modal, { useModalButtonHandler } from "../../core/utils/modal";
 import { useText, withText } from "../../core/utils/text";
 import IconLocation from "../icon-location/icon-location";
-import { wayfinder } from "../find-on-shelf/getWayfinder";
+import { getBaseUrl as getWayfinderBaseUrl } from "../find-on-shelf/getWayfinder";
 import { WayfinderReaponse } from "./wayfinder-types";
 
 const Wayfinder: React.FC<WayfinderReaponse> = ({ viewId, link }) => {
@@ -38,7 +38,7 @@ const Wayfinder: React.FC<WayfinderReaponse> = ({ viewId, link }) => {
         <iframe
           className="dpl-wayfinder-iframe"
           title="iframeModal"
-          src={`${wayfinder}${link}${language}`}
+          src={`${getWayfinderBaseUrl()}${link}${language}`}
         />
       </Modal>
     </div>
