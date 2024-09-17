@@ -1,0 +1,21 @@
+{
+  "id" : "d25c69b9-da31-4c2a-bc7f-41739eb13e40",
+  "name" : "Opening hours today",
+  "request": {
+    "urlPattern": "/api/v1/opening_hours\\?from_date=.*&to_date=.*",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "body": "[\n  {\n    \"id\": 12,\n    \"category\": {\n      \"title\": \"Åbent\",\n      \"color\": \"#4986E7\"\n    },\n    \"date\": \"{{request.query.from_date}}\",\n    \"start_time\": \"08:00\",\n    \"end_time\": \"17:00\",\n    \"branch_id\": 10,\n    \"repetition\": {\n      \"id\": 12,\n      \"type\": \"none\"\n    }\n  },\n  {\n    \"id\": 20,\n    \"category\": {\n      \"title\": \"Borgerservice\",\n      \"color\": \"#4986E7\"\n    },\n    \"date\": \"{{request.query.from_date}}\",\n    \"start_time\": \"09:00\",\n    \"end_time\": \"12:00\",\n    \"branch_id\": 10,\n    \"repetition\": {\n      \"id\": 20,\n      \"type\": \"none\"\n    }\n  },\n  {\n    \"id\": 21,\n    \"category\": {\n      \"title\": \"Selvbetjening\",\n      \"color\": \"#4986E7\"\n    },\n    \"date\": \"{{request.query.from_date}}\",\n    \"start_time\": \"06:00\",\n    \"end_time\": \"22:00\",\n    \"branch_id\": 10,\n    \"repetition\": {\n      \"id\": 21,\n      \"type\": \"none\"\n    }\n  },\n  {\n    \"id\": 22,\n    \"category\": {\n      \"title\": \"Åbent\",\n      \"color\": \"#4986E7\"\n    },\n    \"date\": \"{{request.query.from_date}}\",\n    \"start_time\": \"08:00\",\n    \"end_time\": \"16:00\",\n    \"branch_id\": 12,\n    \"repetition\": {\n      \"id\": 22,\n      \"type\": \"none\"\n    }\n  },\n  {\n    \"id\": 23,\n    \"category\": {\n      \"title\": \"Med betjening\",\n      \"color\": \"#4986E7\"\n    },\n    \"date\": \"{{request.query.from_date}}\",\n    \"start_time\": \"12:00\",\n    \"end_time\": \"14:30\",\n    \"branch_id\": 12,\n    \"repetition\": {\n      \"id\": 23,\n      \"type\": \"none\"\n    }\n  },\n  {\n    \"id\": 24,\n    \"category\": {\n      \"title\": \"Åbent\",\n      \"color\": \"#4986E7\"\n    },\n    \"date\": \"{{request.query.from_date}}\",\n    \"start_time\": \"10:00\",\n    \"end_time\": \"17:00\",\n    \"branch_id\": 18,\n    \"repetition\": {\n      \"id\": 24,\n      \"type\": \"none\"\n    }\n  }\n]",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": ["response-template"]
+  },
+  "uuid": "eb4b441b-def3-438b-b473-02a068e30d3f",
+  "persistent": true,
+  "priority": 5,
+  "insertionIndex": 2,
+  "postServeActions": []
+}
