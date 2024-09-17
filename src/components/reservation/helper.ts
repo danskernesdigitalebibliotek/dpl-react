@@ -54,7 +54,10 @@ export const getFutureDateStringISO = (num: number) => {
   return futureDate;
 };
 
-type Periodical = Pick<PeriodicalEdition, "volumeNumber" | "volumeYear">;
+type Periodical = Pick<
+  PeriodicalEdition,
+  "volumeNumber" | "volumeYear" | "volume"
+>;
 
 const constructReservation = ({
   manifestation: { pid },
@@ -116,6 +119,7 @@ export const constructReservationData = ({
       ...(periodical
         ? {
             periodical: {
+              volume: periodical.volume,
               volumeNumber: periodical.volumeNumber,
               volumeYear: periodical.volumeYear
             }
