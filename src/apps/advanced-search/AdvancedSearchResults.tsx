@@ -114,52 +114,56 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   return (
     <>
       {!showContentOnly && <div className="advanced-search__divider" />}
-      <h2
-        className="text-header-h2 advanced-search__title capitalize-first"
-        /* ID is used to scroll to the results upon hitting the search button. */
-        id="advanced-search-result"
-        aria-live="polite"
-      >
-        {isLoading && <>{t("loadingResultsText")}</>}
-        {shouldShowResultHeadline && (
-          <>
-            {t("showingMaterialsText", {
-              placeholders: { "@hitcount": hitcount }
-            })}
-          </>
-        )}
-      </h2>
-      {!showContentOnly && (
-        <button
-          type="button"
-          className={clsx("link-tag mb-16 capitalize-first", {
-            "cursor-pointer": !copiedLinkToSearch
-          })}
-          onClick={() => {
-            copy(currentLocationWithParametersUrl({ linked: "true" }).href);
-            setCopiedLinkToSearch(true);
-          }}
+      <section className="content-list-page">
+        <h2
+          className="content-list-page__heading"
+          /* ID is used to scroll to the results upon hitting the search button. */
+          id="advanced-search-result"
+          aria-live="polite"
         >
-          {!copiedLinkToSearch && t("advancedSearchLinkToThisSearchText")}
-          {copiedLinkToSearch && (
+          {isLoading && <>{t("loadingResultsText")}</>}
+          {shouldShowResultHeadline && (
             <>
-              {t("copiedLinkToThisSearchText")}
-              <img className="inline-icon" src={CheckIcon} alt="" />{" "}
+              {t("showingMaterialsText", {
+                placeholders: { "@hitcount": hitcount }
+              })}
             </>
           )}
-        </button>
-      )}
-      {shouldShowSearchResults && (
-        <>
-          <SearchResultList
-            resultItems={resultItems}
-            page={page}
-            pageSize={pageSize}
-          />
-          <PagerComponent isLoading={isLoading} />
-        </>
-      )}
-      {!isLoading && hitcount === 0 && <SearchResultZeroHits />}
+        </h2>
+        {!showContentOnly && (
+          <div className="content-list-page__subheading">
+            <button
+              type="button"
+              className={clsx("link-tag mb-16 capitalize-first", {
+                "cursor-pointer": !copiedLinkToSearch
+              })}
+              onClick={() => {
+                copy(currentLocationWithParametersUrl({ linked: "true" }).href);
+                setCopiedLinkToSearch(true);
+              }}
+            >
+              {!copiedLinkToSearch && t("advancedSearchLinkToThisSearchText")}
+              {copiedLinkToSearch && (
+                <>
+                  {t("copiedLinkToThisSearchText")}
+                  <img className="inline-icon" src={CheckIcon} alt="" />{" "}
+                </>
+              )}
+            </button>
+          </div>
+        )}
+        {shouldShowSearchResults && (
+          <>
+            <SearchResultList
+              resultItems={resultItems}
+              page={page}
+              pageSize={pageSize}
+            />
+            <PagerComponent isLoading={isLoading} />
+          </>
+        )}
+        {!isLoading && hitcount === 0 && <SearchResultZeroHits />}
+      </section>
     </>
   );
 };

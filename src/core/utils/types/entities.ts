@@ -1,5 +1,4 @@
 import {
-  AccessUnion,
   AccessUrl,
   DigitalArticleService,
   Ereol,
@@ -51,20 +50,6 @@ export type Work = Omit<
 export type Patron = PatronV5;
 
 export type Facets = FacetResult[] | null;
-
-// export type Access = AccessUnion;
-export type ManifestationAccess = AccessUnion[];
-
-/*
-export type AccessUnion =
-  | AccessUrl
-  | DigitalArticleService
-  | Ereol
-  | InfomediaService
-  | InterLibraryLoan;
-
-
-  */
 
 export type AccessTypes =
   | AccessUrl["__typename"]

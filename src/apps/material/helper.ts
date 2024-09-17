@@ -83,6 +83,7 @@ export const getManifestationsFromType = (
   return allManifestationsThatMatchType;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getManifestationPlayingTime = (manifestation: Manifestation) => {
   return "";
   // TODO: solve missing playingTime.

@@ -168,6 +168,9 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
             onClick={() => {
               removeRow(rowIndex, setSearchObject);
             }}
+            aria-label={t("advancedSearchRemoveRowText", {
+              placeholders: { "@inputNumber": rowIndex + 1 }
+            })}
           >
             <img className="input-with-dropdown__icon" src={IconMinus} alt="" />
           </button>

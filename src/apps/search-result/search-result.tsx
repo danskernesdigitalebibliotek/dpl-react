@@ -180,7 +180,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // because then we achieve smoother experience using the filters - not having
   // to loose the filter modal upon selecting a filter.
   return (
-    <div className="card-list-page">
+    <div className="content-list-page">
       {isLoading && <SearchResultSkeleton q={q} />}
 
       {shouldShowZeroHits() && <SearchResultZeroHits />}

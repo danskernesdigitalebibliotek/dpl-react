@@ -22,6 +22,13 @@ import { store } from "../../store";
 import { constructModalId } from "./modal-helpers";
 import { formatCurrency } from "./currency";
 
+export const capitalizeFirstLetters = (str: string) => {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
 ): string | null => {
@@ -45,6 +52,11 @@ export const orderManifestationsByYear = (
 export const flattenCreators = (creators: Work["creators"]) =>
   creators.map((creator: Work["creators"][0]) => {
     return creator.display;
+  });
+
+export const flattenCreatorsLastNameFirst = (creators: Work["creators"]) =>
+  creators.map((creator) => {
+    return creator.nameSort;
   });
 
 const getCreatorsFromManifestations = (manifestations: Manifestation[]) => {
@@ -151,7 +163,7 @@ export const convertPostIdToFaustId = (postId: Pid) => {
   // in the last part after the colon, but it can also have a dash.
   // We are about to have clarified what the proper name of the element.
   // But for now we will call it faustId.
-  const matches = postId.match(/^[0-9]+-[a-z]+:([a-zA-Z0-9-]+)$/);
+  const matches = postId.match(/^[0-9]+-[a-z]+:([a-zA-Z0-9-_]+)$/);
   if (matches?.[1]) {
     return matches?.[1] as FaustId;
   }
