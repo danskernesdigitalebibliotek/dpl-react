@@ -206,7 +206,7 @@ export default {
       control: { type: "text" }
     },
     searchSortingOptionText: {
-      name: "Label of the search sorting field",
+      name: "Search sorting option text",
       defaultValue: "Sorting",
       control: { type: "text" }
     },

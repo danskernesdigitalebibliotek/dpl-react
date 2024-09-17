@@ -89,11 +89,11 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
             <Dropdown
               cyData="sorting-line-dropdown"
               placeholder={{
-                label: t("searchSortingOptionText"),
+                label: t("searchSortingOptionText", { default: "Sorting" }),
                 value: ""
               }}
               options={formatSortingOptionsToDropdown(sorting)}
-              ariaLabel={t("searchSortingOptionText")}
+              ariaLabel={t("searchSortingOptionText", { default: "Sorting" })}
               arrowIcon="chevron"
               classNames="dropdown--grey-borders"
               innerClassNames={{
