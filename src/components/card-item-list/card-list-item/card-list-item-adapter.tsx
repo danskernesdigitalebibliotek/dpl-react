@@ -22,6 +22,7 @@ const CardListItemAdapter: FC<CardListItemAdapterProps> = ({ id }) => {
         <CardListItem
           key={id}
           item={data.work as Work}
+          preferredId={id}
           coverTint="100"
           resultNumber={0}
         />
