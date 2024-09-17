@@ -200,6 +200,11 @@ export default {
       defaultValue: "Add row",
       control: { type: "text" }
     },
+    advancedSearchRemoveRowText: {
+      name: "Remove row",
+      defaultValue: "Remove row @inputNumber",
+      control: { type: "text" }
+    },
     advancedSearchInputPlaceholderText: {
       name: "Advanced search input placeholder",
       defaultValue: "Search term",

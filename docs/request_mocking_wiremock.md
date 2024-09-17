@@ -39,6 +39,7 @@ We use Wiremock through Docker based on the following setup:
 ```dotenv
 PUBLIZON_BASEURL=http://publizon-mock.docker`
 FBS_BASEURL=http://fbs-mock.docker`
+CMS_BASEURL=http://cms-mock.docker
 ```
 
 <!-- markdownlint-disable-next-line MD029 -->
