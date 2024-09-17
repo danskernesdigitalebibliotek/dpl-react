@@ -996,6 +996,12 @@
             "deprecationReason": null
           },
           {
+            "name": "SOURCE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "SPECIFICMATERIALTYPE",
             "description": null,
             "isDeprecated": false,
@@ -2698,6 +2704,12 @@
           },
           {
             "name": "FICTIONNONFICTION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GAMEPLATFORM",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -7513,7 +7525,7 @@
         "fields": [
           {
             "name": "accompanyingMaterial",
-            "description": null,
+            "description": "Material that comes with the manifestation (bilag)",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -7525,7 +7537,7 @@
           },
           {
             "name": "materialUnits",
-            "description": null,
+            "description": "List of units contained within the material",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -7545,7 +7557,7 @@
           },
           {
             "name": "numberOfPages",
-            "description": null,
+            "description": "Number of pages of the manifestation as number",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -7557,7 +7569,7 @@
           },
           {
             "name": "summaryFull",
-            "description": null,
+            "description": "A summary of the physical description of this manifestation like extent (pages/minutes), illustrations etc.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12646,7 +12658,7 @@
         "fields": [
           {
             "name": "additionalDescription",
-            "description": null,
+            "description": "Other physical description, eg. illustrations, color or b/w, mono/stereo, rpm",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12658,7 +12670,7 @@
           },
           {
             "name": "extent",
-            "description": null,
+            "description": "Number of pages, tab (books, articles etc.) or playingtime (cd, dvd etc.)",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12670,7 +12682,7 @@
           },
           {
             "name": "numberAndType",
-            "description": null,
+            "description": "Technical formats, e.g. Playstation 4, blu-ray",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12682,7 +12694,7 @@
           },
           {
             "name": "size",
-            "description": null,
+            "description": "Size of the material unit",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12694,7 +12706,7 @@
           },
           {
             "name": "summary",
-            "description": null,
+            "description": "Assemblance of the data from all the other properties, separated by a comma",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -12710,7 +12722,7 @@
           },
           {
             "name": "technicalInformation",
-            "description": null,
+            "description": "Technical formats, e.g. Playstation 4, blu-ray",
             "args": [],
             "type": {
               "kind": "SCALAR",

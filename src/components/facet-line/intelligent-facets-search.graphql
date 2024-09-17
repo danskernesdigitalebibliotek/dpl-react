@@ -2,6 +2,7 @@ query intelligentFacets ($q: SearchQueryInput!, $facetsLimit: Int!, $valuesLimit
   search(q: $q, filters: $filters) {
     intelligentFacets(limit: $facetsLimit) {
       name
+      type
       values(limit: $valuesLimit) {
         key
         term

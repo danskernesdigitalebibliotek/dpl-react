@@ -20,7 +20,9 @@ fragment ManifestationBasicDetails on Manifestation {
   }
   series {
     title
-    numberInSeries
+    members {
+      numberInSeries
+    }
   }
 }
 

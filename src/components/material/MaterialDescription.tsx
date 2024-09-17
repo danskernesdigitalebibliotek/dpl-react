@@ -27,22 +27,20 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const u = useUrls();
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
-  const {
-    fictionNonfiction,
-    series,
-    subjects,
-    seriesMembers,
-    relations,
-    dk5MainEntry
-  } = work;
+  const { fictionNonfiction, series, subjects, relations, dk5MainEntry } = work;
 
   const isFiction = materialIsFiction(work);
   const seriesList = getNumberedSeries(series);
 
-  const seriesMembersList = seriesMembers.map((item) => {
+  const seriesMembersList = series.map((seriesItem) => {
+    // TODO: Since the series has changed it structure and can have multiple members
+    // we need to double check if we can only look at the first member entry.
     return {
-      url: constructMaterialUrl(materialUrl, item.workId as WorkId),
-      term: item.titles.main[0]
+      url: constructMaterialUrl(
+        materialUrl,
+        seriesItem.members[0].work.workId as WorkId
+      ),
+      term: seriesItem.members[0].work.titles.main[0]
     };
   });
 
@@ -96,9 +94,11 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
               />
             )}
             {seriesList.map((item, i) => (
+              // TODO: Since the series has changed it structure and can have multiple members
+              // we need to double check if we can only look at the first member entry.
               <HorizontalTermLine
                 title={`${t("numberDescriptionText")} ${
-                  item.numberInSeries?.number
+                  item.members[0].numberInSeries
                 }`}
                 subTitle={t("inSeriesText")}
                 linkList={[

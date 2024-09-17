@@ -26,6 +26,7 @@ export const allFacetFields = [
 export const getPlaceHolderFacets = (facets: string[]) =>
   facets.map((facet) => ({
     name: facet,
+    type: facet as FacetFieldEnum,
     values: [
       {
         key: "",

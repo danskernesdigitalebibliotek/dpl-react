@@ -19,7 +19,6 @@ import {
   useGetV1ProductsIdentifier
 } from "../../core/publizon/publizon";
 import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
-import { AccessUnion } from "../../core/dbc-gateway/generated/graphql";
 
 describe("usePhysicalAvailability tests", () => {
   beforeAll(() => {
@@ -436,7 +435,7 @@ describe("useOnlineAvailabilityData tests", () => {
     const { result } = renderHook(() =>
       useOnlineAvailabilityData({
         enabled: false,
-        access: ["Ereol" as AccessUnion],
+        access: ["Ereol"],
         faustIds: ["138625958"],
         isbn: "9788794564076"
       })

@@ -183,6 +183,7 @@ export enum ComplexSearchFacetsEnum {
   Publicationyear = "PUBLICATIONYEAR",
   Series = "SERIES",
   Setting = "SETTING",
+  Source = "SOURCE",
   Specificmaterialtype = "SPECIFICMATERIALTYPE",
   Spokenlanguage = "SPOKENLANGUAGE",
   Subject = "SUBJECT",
@@ -430,6 +431,7 @@ export enum FacetFieldEnum {
   Dk5 = "DK5",
   Fictionalcharacters = "FICTIONALCHARACTERS",
   Fictionnonfiction = "FICTIONNONFICTION",
+  Gameplatform = "GAMEPLATFORM",
   Generalaudience = "GENERALAUDIENCE",
   Genreandform = "GENREANDFORM",
   Let = "LET",
@@ -1118,9 +1120,13 @@ export type Person = CreatorInterface &
 
 export type PhysicalUnitDescription = {
   __typename?: "PhysicalUnitDescription";
+  /** Material that comes with the manifestation (bilag) */
   accompanyingMaterial?: Maybe<Scalars["String"]>;
+  /** List of units contained within the material */
   materialUnits?: Maybe<Array<UnitDescription>>;
+  /** Number of pages of the manifestation as number */
   numberOfPages?: Maybe<Scalars["Int"]>;
+  /** A summary of the physical description of this manifestation like extent (pages/minutes), illustrations etc. */
   summaryFull?: Maybe<Scalars["String"]>;
 };
 
@@ -1781,11 +1787,17 @@ export type Unit = {
 
 export type UnitDescription = {
   __typename?: "UnitDescription";
+  /** Other physical description, eg. illustrations, color or b/w, mono/stereo, rpm */
   additionalDescription?: Maybe<Scalars["String"]>;
+  /** Number of pages, tab (books, articles etc.) or playingtime (cd, dvd etc.) */
   extent?: Maybe<Scalars["String"]>;
+  /** Technical formats, e.g. Playstation 4, blu-ray */
   numberAndType?: Maybe<Scalars["String"]>;
+  /** Size of the material unit */
   size?: Maybe<Scalars["String"]>;
+  /** Assemblance of the data from all the other properties, separated by a comma */
   summary: Scalars["String"];
+  /** Technical formats, e.g. Playstation 4, blu-ray */
   technicalInformation?: Maybe<Scalars["String"]>;
 };
 
@@ -1937,9 +1949,17 @@ export type GetSmallWorkQuery = {
       __typename?: "Series";
       title: string;
       isPopular?: boolean | null;
-      numberInSeries?: string | null;
       readThisFirst?: boolean | null;
       readThisWhenever?: boolean | null;
+      members: Array<{
+        __typename?: "SerieWork";
+        numberInSeries?: string | null;
+        work: {
+          __typename?: "Work";
+          workId: string;
+          titles: { __typename?: "WorkTitles"; main: Array<string> };
+        };
+      }>;
     }>;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
     manifestations: {
@@ -2343,7 +2363,10 @@ export type ManifestationBasicDetailsFragment = {
   series: Array<{
     __typename?: "Series";
     title: string;
-    numberInSeries?: string | null;
+    members: Array<{
+      __typename?: "SerieWork";
+      numberInSeries?: string | null;
+    }>;
   }>;
   languages?: {
     __typename?: "Languages";
@@ -2387,7 +2410,10 @@ export type GetManifestationViaMaterialByFaustQuery = {
     series: Array<{
       __typename?: "Series";
       title: string;
-      numberInSeries?: string | null;
+      members: Array<{
+        __typename?: "SerieWork";
+        numberInSeries?: string | null;
+      }>;
     }>;
     languages?: {
       __typename?: "Languages";
@@ -2438,7 +2464,10 @@ export type GetManifestationViaBestRepresentationByFaustQuery = {
           series: Array<{
             __typename?: "Series";
             title: string;
-            numberInSeries?: string | null;
+            members: Array<{
+              __typename?: "SerieWork";
+              numberInSeries?: string | null;
+            }>;
           }>;
           languages?: {
             __typename?: "Languages";
@@ -2532,9 +2561,17 @@ export type GetMaterialQuery = {
       __typename?: "Series";
       title: string;
       isPopular?: boolean | null;
-      numberInSeries?: string | null;
       readThisFirst?: boolean | null;
       readThisWhenever?: boolean | null;
+      members: Array<{
+        __typename?: "SerieWork";
+        numberInSeries?: string | null;
+        work: {
+          __typename?: "Work";
+          workId: string;
+          titles: { __typename?: "WorkTitles"; main: Array<string> };
+        };
+      }>;
     }>;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
     manifestations: {
@@ -2990,9 +3027,17 @@ export type GetMaterialGloballyQuery = {
       __typename?: "Series";
       title: string;
       isPopular?: boolean | null;
-      numberInSeries?: string | null;
       readThisFirst?: boolean | null;
       readThisWhenever?: boolean | null;
+      members: Array<{
+        __typename?: "SerieWork";
+        numberInSeries?: string | null;
+        work: {
+          __typename?: "Work";
+          workId: string;
+          titles: { __typename?: "WorkTitles"; main: Array<string> };
+        };
+      }>;
     }>;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
     manifestations: {
@@ -3489,9 +3534,17 @@ export type RecommendFromFaustQuery = {
           __typename?: "Series";
           title: string;
           isPopular?: boolean | null;
-          numberInSeries?: string | null;
           readThisFirst?: boolean | null;
           readThisWhenever?: boolean | null;
+          members: Array<{
+            __typename?: "SerieWork";
+            numberInSeries?: string | null;
+            work: {
+              __typename?: "Work";
+              workId: string;
+              titles: { __typename?: "WorkTitles"; main: Array<string> };
+            };
+          }>;
         }>;
         workYear?: {
           __typename?: "PublicationYear";
@@ -3904,9 +3957,17 @@ export type SearchWithPaginationQuery = {
         __typename?: "Series";
         title: string;
         isPopular?: boolean | null;
-        numberInSeries?: string | null;
         readThisFirst?: boolean | null;
         readThisWhenever?: boolean | null;
+        members: Array<{
+          __typename?: "SerieWork";
+          numberInSeries?: string | null;
+          work: {
+            __typename?: "Work";
+            workId: string;
+            titles: { __typename?: "WorkTitles"; main: Array<string> };
+          };
+        }>;
       }>;
       workYear?: {
         __typename?: "PublicationYear";
@@ -4366,9 +4427,17 @@ export type ComplexSearchWithPaginationQuery = {
         __typename?: "Series";
         title: string;
         isPopular?: boolean | null;
-        numberInSeries?: string | null;
         readThisFirst?: boolean | null;
         readThisWhenever?: boolean | null;
+        members: Array<{
+          __typename?: "SerieWork";
+          numberInSeries?: string | null;
+          work: {
+            __typename?: "Work";
+            workId: string;
+            titles: { __typename?: "WorkTitles"; main: Array<string> };
+          };
+        }>;
       }>;
       workYear?: {
         __typename?: "PublicationYear";
@@ -4805,6 +4874,7 @@ export type SearchFacetQuery = {
     facets: Array<{
       __typename?: "FacetResult";
       name: string;
+      type: FacetFieldEnum;
       values: Array<{
         __typename?: "FacetValue";
         key: string;
@@ -4829,6 +4899,7 @@ export type IntelligentFacetsQuery = {
     intelligentFacets: Array<{
       __typename?: "FacetResult";
       name: string;
+      type: FacetFieldEnum;
       values: Array<{
         __typename?: "FacetValue";
         key: string;
@@ -5407,9 +5478,17 @@ export type SeriesSimpleFragment = {
   __typename?: "Series";
   title: string;
   isPopular?: boolean | null;
-  numberInSeries?: string | null;
   readThisFirst?: boolean | null;
   readThisWhenever?: boolean | null;
+  members: Array<{
+    __typename?: "SerieWork";
+    numberInSeries?: string | null;
+    work: {
+      __typename?: "Work";
+      workId: string;
+      titles: { __typename?: "WorkTitles"; main: Array<string> };
+    };
+  }>;
 };
 
 export type WorkAccessFragment = {
@@ -5464,9 +5543,17 @@ export type WorkSmallFragment = {
     __typename?: "Series";
     title: string;
     isPopular?: boolean | null;
-    numberInSeries?: string | null;
     readThisFirst?: boolean | null;
     readThisWhenever?: boolean | null;
+    members: Array<{
+      __typename?: "SerieWork";
+      numberInSeries?: string | null;
+      work: {
+        __typename?: "Work";
+        workId: string;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+      };
+    }>;
   }>;
   workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
   manifestations: {
@@ -5915,9 +6002,17 @@ export type WorkMediumFragment = {
     __typename?: "Series";
     title: string;
     isPopular?: boolean | null;
-    numberInSeries?: string | null;
     readThisFirst?: boolean | null;
     readThisWhenever?: boolean | null;
+    members: Array<{
+      __typename?: "SerieWork";
+      numberInSeries?: string | null;
+      work: {
+        __typename?: "Work";
+        workId: string;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+      };
+    }>;
   }>;
   workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
   manifestations: {
@@ -6339,7 +6434,9 @@ export const ManifestationBasicDetailsFragmentDoc = `
   }
   series {
     title
-    numberInSeries
+    members {
+      numberInSeries
+    }
   }
 }
     ${WithLanguagesFragmentDoc}`;
@@ -6444,7 +6541,15 @@ export const SeriesSimpleFragmentDoc = `
     fragment SeriesSimple on Series {
   title
   isPopular
-  numberInSeries
+  members {
+    numberInSeries
+    work {
+      workId
+      titles {
+        main
+      }
+    }
+  }
   readThisFirst
   readThisWhenever
 }
@@ -6985,6 +7090,7 @@ export const SearchFacetDocument = `
   search(q: $q, filters: $filters) {
     facets(facets: $facets) {
       name
+      type
       values(limit: $facetLimit) {
         key
         term
@@ -7011,6 +7117,7 @@ export const IntelligentFacetsDocument = `
   search(q: $q, filters: $filters) {
     intelligentFacets(limit: $facetsLimit) {
       name
+      type
       values(limit: $valuesLimit) {
         key
         term

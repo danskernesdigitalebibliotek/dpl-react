@@ -1,6 +1,11 @@
 import {
   AccessUnion,
+  AccessUrl,
+  DigitalArticleService,
+  Ereol,
   FacetResult,
+  InfomediaService,
+  InterLibraryLoan,
   ManifestationReviewFieldsFragment,
   ManifestationsSimpleFieldsFragment,
   Relations,
@@ -47,5 +52,23 @@ export type Patron = PatronV5;
 
 export type Facets = FacetResult[] | null;
 
-export type Access = AccessUnion;
-export type ManifestationAccess = Array<AccessUnion>;
+// export type Access = AccessUnion;
+export type ManifestationAccess = AccessUnion[];
+
+/*
+export type AccessUnion =
+  | AccessUrl
+  | DigitalArticleService
+  | Ereol
+  | InfomediaService
+  | InterLibraryLoan;
+
+
+  */
+
+export type AccessTypes =
+  | AccessUrl["__typename"]
+  | DigitalArticleService["__typename"]
+  | Ereol["__typename"]
+  | InfomediaService["__typename"]
+  | InterLibraryLoan["__typename"];

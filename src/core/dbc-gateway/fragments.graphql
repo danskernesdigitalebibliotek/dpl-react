@@ -207,7 +207,15 @@ fragment ManifestationReviewFields on Manifestation {
 fragment SeriesSimple on Series {
   title
   isPopular
-  numberInSeries
+  members {
+    numberInSeries
+    work {
+      workId
+      titles {
+        main
+      }
+    }
+  }
   readThisFirst
   readThisWhenever
 }

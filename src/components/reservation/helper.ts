@@ -18,7 +18,7 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { ModalReservationFormTextType } from "./forms/helper";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
-import { SubmitOrderStatus } from "../../core/dbc-gateway/generated/graphql";
+import { SubmitOrderStatusEnum } from "../../core/dbc-gateway/generated/graphql";
 import { Periods } from "./types";
 
 export const isConfigValueOne = (configValue: string | undefined | string[]) =>
@@ -266,32 +266,38 @@ export const removePrefixFromBranchId = (branchId: string) => {
 };
 
 export const translateOpenOrderStatus = (
-  status: SubmitOrderStatus,
+  status: SubmitOrderStatusEnum,
   t: UseTextFunction
 ) => {
   const statusTextMap = {
-    [SubmitOrderStatus.OwnedAccepted]: "openOrderStatusOwnedAcceptedText",
-    [SubmitOrderStatus.AuthenticationError]: "openOrderAuthenticationErrorText",
-    [SubmitOrderStatus.BorchkUserBlockedByAgency]:
+    [SubmitOrderStatusEnum.OwnedAccepted]: "openOrderStatusOwnedAcceptedText",
+    [SubmitOrderStatusEnum.AuthenticationError]:
+      "openOrderAuthenticationErrorText",
+    [SubmitOrderStatusEnum.BorchkUserBlockedByAgency]:
       "openOrderUserBlockedByAgencyText",
-    [SubmitOrderStatus.BorchkUserNotVerified]: "openOrderUserNotVerifiedText",
-    [SubmitOrderStatus.BorchkUserNoLongerExistOnAgency]:
+    [SubmitOrderStatusEnum.BorchkUserNotVerified]:
+      "openOrderUserNotVerifiedText",
+    [SubmitOrderStatusEnum.BorchkUserNoLongerExistOnAgency]:
       "openOrderUserNoLongerExistOnAgencyText",
-    [SubmitOrderStatus.InvalidOrder]: "openOrderInvalidOrderText",
-    [SubmitOrderStatus.NotOwnedIllLoc]: "openOrderNotOwnedIllLocText",
-    [SubmitOrderStatus.NotOwnedNoIllLoc]: "openOrderNotOwnedNoIllLocText",
-    [SubmitOrderStatus.NotOwnedWrongIllMediumtype]:
+    [SubmitOrderStatusEnum.InvalidOrder]: "openOrderInvalidOrderText",
+    [SubmitOrderStatusEnum.NotOwnedIllLoc]: "openOrderNotOwnedIllLocText",
+    [SubmitOrderStatusEnum.NotOwnedNoIllLoc]: "openOrderNotOwnedNoIllLocText",
+    [SubmitOrderStatusEnum.NotOwnedWrongIllMediumtype]:
       "openOrderNotOwnedWrongIllMediumtypeText",
-    [SubmitOrderStatus.NoServicerequester]: "openOrderNoServicerequesterText",
-    [SubmitOrderStatus.OrsError]: "openOrderOrsErrorText",
-    [SubmitOrderStatus.OwnedOwnCatalogue]: "openOrderOwnedOwnCatalogueText",
-    [SubmitOrderStatus.OwnedWrongMediumtype]:
+    [SubmitOrderStatusEnum.NoServicerequester]:
+      "openOrderNoServicerequesterText",
+    [SubmitOrderStatusEnum.OrsError]: "openOrderOrsErrorText",
+    [SubmitOrderStatusEnum.OwnedOwnCatalogue]: "openOrderOwnedOwnCatalogueText",
+    [SubmitOrderStatusEnum.OwnedWrongMediumtype]:
       "openOrderOwnedWrongMediumtypeText",
-    [SubmitOrderStatus.ServiceUnavailable]: "openOrderServiceUnavailableText",
-    [SubmitOrderStatus.UnknownError]: "openOrderUnknownErrorText",
-    [SubmitOrderStatus.UnknownPickupagency]: "openOrderUnknownPickupagencyText",
-    [SubmitOrderStatus.UnknownUser]: "openOrderUnknownUserText",
-    [SubmitOrderStatus.ErrorMissingPincode]: "openOrderErrorMissingPincodeText"
+    [SubmitOrderStatusEnum.ServiceUnavailable]:
+      "openOrderServiceUnavailableText",
+    [SubmitOrderStatusEnum.UnknownError]: "openOrderUnknownErrorText",
+    [SubmitOrderStatusEnum.UnknownPickupagency]:
+      "openOrderUnknownPickupagencyText",
+    [SubmitOrderStatusEnum.UnknownUser]: "openOrderUnknownUserText",
+    [SubmitOrderStatusEnum.ErrorMissingPincode]:
+      "openOrderErrorMissingPincodeText"
   };
 
   return statusTextMap[status] ? t(statusTextMap[status]) : "";
