@@ -231,6 +231,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       </MaterialDisclosure>
       {hasReview && hasReview.length > 0 && (
         <DisclosureControllable
+          detailsClassName="disclosure text-body-large"
           id="reviews"
           showContent={shouldOpenReviewDisclosure}
           cyData="material-reviews-disclosure"

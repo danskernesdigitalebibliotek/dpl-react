@@ -2,20 +2,22 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { forwardRef } from "react";
+import clsx from "clsx";
 import iconCross from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross.svg";
 import useEscapeKey from "./useEscapeKey";
 
 type DialogType = {
   children: React.ReactNode;
   closeDialog: () => void;
+  isSidebar?: boolean;
 };
 
 const Dialog = forwardRef<HTMLDialogElement, DialogType>(
-  ({ children, closeDialog }, ref) => {
+  ({ children, closeDialog, isSidebar }, ref) => {
     useEscapeKey({ closeDialog });
     return (
       <dialog
-        className="dialog"
+        className={clsx("dialog", { "dialog--sidebar": isSidebar })}
         ref={ref}
         // Close dialog when clicking outside of it (::backdrop pseudo-element)
         onClick={({ currentTarget, target }) => {
