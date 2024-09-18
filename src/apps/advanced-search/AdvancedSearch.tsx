@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useEffectOnce } from "react-use";
 import AdvancedSearchHeader from "./AdvancedSearchHeader";
 import AdvancedSearchResult from "./AdvancedSearchResults";
-import { translateSearchObjectToCql } from "./helpers";
+import {
+  commaSeparatedStringToArray,
+  translateSearchObjectToCql
+} from "./helpers";
 import { AdvancedSearchQuery } from "./types";
 import {
   getUrlQueryParam,
@@ -30,10 +33,11 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
   const [executedQuery, setExecutedQuery] = useState<string | null>(null);
 
   const [locationFilter, setLocationFilter] = useState<LocationFilter>({});
+
   const handleLocationChange = (location: string) => {
     setLocationFilter((prevFilter) => ({
       ...prevFilter,
-      location: [location]
+      location: commaSeparatedStringToArray(location)
     }));
     if (location) {
       setQueryParametersInUrl({ location });
@@ -41,10 +45,11 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
       removeQueryParametersFromUrl("location");
     }
   };
+
   const handleSublocationChange = (sublocation: string) => {
     setLocationFilter((prevFilter) => ({
       ...prevFilter,
-      sublocation: [sublocation]
+      sublocation: commaSeparatedStringToArray(sublocation)
     }));
     if (sublocation) {
       setQueryParametersInUrl({ sublocation });
@@ -98,7 +103,7 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     if (locationParam) {
       setLocationFilter((prevFilter) => ({
         ...prevFilter,
-        location: [locationParam]
+        location: commaSeparatedStringToArray(locationParam)
       }));
     }
 
@@ -106,7 +111,7 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     if (sublocationParam) {
       setLocationFilter((prevFilter) => ({
         ...prevFilter,
-        sublocation: [sublocationParam]
+        sublocation: commaSeparatedStringToArray(sublocationParam)
       }));
     }
   });

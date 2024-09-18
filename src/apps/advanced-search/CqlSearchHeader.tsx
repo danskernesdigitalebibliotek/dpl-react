@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useText } from "../../core/utils/text";
 import CheckBox from "../../components/checkbox/Checkbox";
 import TextInput from "../../components/atoms/input/TextInput";
@@ -33,6 +33,31 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
     }
   }, [initialCql, setCql]);
 
+  // Local state is needed to track input values as plain strings,
+  // since onLocationChange expects a comma-separated string,
+  // while locationFilter location and sublocation are provided as arrays.
+  const [inputValues, setInputValues] = useState({
+    location: locationFilter?.location?.join(", ") ?? "",
+    sublocation: locationFilter?.sublocation?.join(", ") ?? ""
+  });
+
+  const handleInputChange = (
+    name: "location" | "sublocation",
+    value: string
+  ) => {
+    setInputValues((prevValues) => ({
+      ...prevValues,
+      [name]: value
+    }));
+
+    if (name === "location") {
+      onLocationChange(value);
+    }
+    if (name === "sublocation") {
+      onSublocationChange(value);
+    }
+  };
+
   return (
     <>
       <h1
@@ -54,15 +79,17 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
         id="location"
         label="Location"
         type="text"
-        onChange={(location) => onLocationChange(location)}
-        value={locationFilter?.location?.[0] ?? ""}
+        onChange={(location) => handleInputChange("location", location)}
+        value={inputValues.location}
       />
       <TextInput
         id="sublocation"
         label="Sublocation"
         type="text"
-        onChange={(sublocation) => onSublocationChange(sublocation)}
-        value={locationFilter?.sublocation?.[0] ?? ""}
+        onChange={(sublocation) =>
+          handleInputChange("sublocation", sublocation)
+        }
+        value={inputValues.sublocation}
       />
       <CheckBox
         id="on-shelf"
