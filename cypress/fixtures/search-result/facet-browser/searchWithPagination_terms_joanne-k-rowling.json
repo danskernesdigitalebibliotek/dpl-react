@@ -19,7 +19,98 @@
             {
               "title": "Harry Potter (bøger)",
               "isPopular": true,
-              "numberInSeries": { "display": "1", "number": [1] },
+              "members": [
+                {
+                  "numberInSeries": "1",
+                  "work": {
+                    "workId": "work-of:870970-basis:22629344",
+                    "titles": {
+                      "main": ["Harry Potter og de vises sten"],
+                      "full": ["Harry Potter og de vises sten"],
+                      "original": ["Harry Potter and the philosopher's stone"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "1",
+                  "work": {
+                    "workId": "work-of:870970-basis:22677780",
+                    "titles": {
+                      "main": ["Harry Potter og Hemmelighedernes Kammer"],
+                      "full": ["Harry Potter og Hemmelighedernes Kammer"],
+                      "original": ["Harry Potter and the Chamber of Secrets"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "1",
+                  "work": {
+                    "workId": "work-of:870970-basis:22995154",
+                    "titles": {
+                      "main": ["Harry Potter og fangen fra Azkaban"],
+                      "full": ["Harry Potter og fangen fra Azkaban"],
+                      "original": ["Harry Potter and the prisoner of Azkaban"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "1",
+                  "work": {
+                    "workId": "work-of:870970-basis:23540703",
+                    "titles": {
+                      "main": ["Harry Potter og Flammernes Pokal"],
+                      "full": ["Harry Potter og Flammernes Pokal"],
+                      "original": ["Harry Potter and the goblet of fire"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "1",
+                  "work": {
+                    "workId": "work-of:870970-basis:25245784",
+                    "titles": {
+                      "main": ["Harry Potter og Fønixordenen"],
+                      "full": ["Harry Potter og Fønixordenen"],
+                      "original": ["Harry Potter and the Order of the Phoenix"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "1",
+                  "work": {
+                    "workId": "work-of:870970-basis:25807995",
+                    "titles": {
+                      "main": ["Harry Potter og halvblodsprinsen"],
+                      "full": ["Harry Potter og halvblodsprinsen"],
+                      "original": ["Harry Potter and the half-blood prince"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "1",
+                  "work": {
+                    "workId": "work-of:870970-basis:27267912",
+                    "titles": {
+                      "main": ["Harry Potter og dødsregalierne"],
+                      "full": ["Harry Potter og dødsregalierne"],
+                      "original": ["Harry Potter and the deathly hallows"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "1",
+                  "work": {
+                    "workId": "work-of:870970-basis:52646251",
+                    "titles": {
+                      "main": ["Harry Potter og det forbandede barn"],
+                      "full": [
+                        "Harry Potter og det forbandede barn : del et & to"
+                      ],
+                      "original": ["Harry Potter and the cursed child"]
+                    }
+                  }
+                }
+              ],
               "readThisFirst": true,
               "readThisWhenever": null
             }
