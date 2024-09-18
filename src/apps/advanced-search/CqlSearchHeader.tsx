@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useText } from "../../core/utils/text";
 import CheckBox from "../../components/checkbox/Checkbox";
 import TextInput from "../../components/atoms/input/TextInput";
+import { LocationFilter } from "./LocationFilter";
 
 export type CqlSearchHeaderProps = {
   dataCy?: string;
@@ -11,6 +12,7 @@ export type CqlSearchHeaderProps = {
   handleOnShelfChange: (newState: boolean) => void;
   onLocationChange: (location: string) => void;
   onSublocationChange: (sublocation: string) => void;
+  locationFilter: LocationFilter;
 };
 
 const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
@@ -20,7 +22,8 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   onShelf,
   handleOnShelfChange,
   onLocationChange,
-  onSublocationChange
+  onSublocationChange,
+  locationFilter
 }) => {
   const t = useText();
 
@@ -52,12 +55,14 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
         label="Location"
         type="text"
         onChange={(location) => onLocationChange(location)}
+        value={locationFilter?.location?.[0] ?? ""}
       />
       <TextInput
-        id="location"
+        id="sublocation"
         label="Sublocation"
         type="text"
         onChange={(sublocation) => onSublocationChange(sublocation)}
+        value={locationFilter?.sublocation?.[0] ?? ""}
       />
       <CheckBox
         id="on-shelf"
