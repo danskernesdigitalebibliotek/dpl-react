@@ -32,17 +32,17 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const isFiction = materialIsFiction(work);
   const seriesList = getNumberedSeries(series);
 
-  const seriesMembersList = series.map((seriesItem) => {
-    // TODO: Since the series has changed it structure and can have multiple members
-    // we need to double check if we can only look at the first member entry.
-    return {
-      url: constructMaterialUrl(
-        materialUrl,
-        seriesItem.members[0].work.workId as WorkId
-      ),
-      term: seriesItem.members[0].work.titles.main[0]
-    };
-  });
+  const seriesMembersList =
+    (series &&
+      series[0]?.members.map((member) => {
+        // TODO: Since the series has changed it structure and can have multiple members
+        // we need to double check if we can only look at the first member entry.
+        return {
+          url: constructMaterialUrl(materialUrl, member.work.workId as WorkId),
+          term: member.work.titles.main[0]
+        };
+      })) ??
+    [];
 
   const subjectsList = getDbcVerifiedSubjectsFirst(subjects).map((item) => ({
     url: constructSearchUrl(searchUrl, item),
