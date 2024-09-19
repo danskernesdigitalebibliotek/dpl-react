@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import dayjs from "dayjs";
-import { uniq } from "lodash";
+import { first, uniq } from "lodash";
 import { vi } from "vitest";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
@@ -67,13 +67,18 @@ const getCreatorsFromManifestations = (manifestations: Manifestation[]) => {
   return Array.from(new Set(creators)) as string[];
 };
 
-export const creatorsToString = (creators: string[], t: UseTextFunction) => {
+export const creatorsToString = (
+  creators: string[],
+  t: UseTextFunction
+): string => {
   if (creators.length > 1) {
     const firstTwo = creators.slice(0, 2);
     return `${firstTwo.join(", ")} ${t("etAlText")}`;
   }
-
-  return creators[0];
+  if (creators.length === 1) {
+    return first(creators) as string;
+  }
+  return "";
 };
 
 export const getCreatorTextFromManifestations = (
