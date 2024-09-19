@@ -26,8 +26,10 @@ import type {
   FeeV2,
   GetAvailabilityV3Params,
   GetBranchesParams,
+  GetExternalAgencyidCatalogHoldingsLogisticsV1Params,
   GetFeesV2Params,
   GetHoldingsV3Params,
+  HoldingsForBibliographicalRecordLogisticsV1,
   HoldingsForBibliographicalRecordV3,
   LoanV2,
   PatronWithGuardianRequest,
@@ -868,6 +870,104 @@ export const useGetHoldingsV3 = <
   }
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
   const queryOptions = getGetHoldingsV3QueryOptions(params, options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
+};
+
+/**
+ * Returns an array of holdings for each bibliographical record. The holdings list the materials on each placement, and whether they are available on-shelf or lent out.
+ * @summary Get placement holdings for bibliographical records.
+ */
+export const getExternalAgencyidCatalogHoldingsLogisticsV1 = (
+  params: GetExternalAgencyidCatalogHoldingsLogisticsV1Params,
+  signal?: AbortSignal
+) => {
+  return fetcher<HoldingsForBibliographicalRecordLogisticsV1[]>({
+    url: `/external/agencyid/catalog/holdingsLogistics/v1`,
+    method: "GET",
+    params,
+    signal
+  });
+};
+
+export const getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryKey = (
+  params: GetExternalAgencyidCatalogHoldingsLogisticsV1Params
+) => {
+  return [
+    `/external/agencyid/catalog/holdingsLogistics/v1`,
+    ...(params ? [params] : [])
+  ] as const;
+};
+
+export const getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryOptions = <
+  TData = Awaited<
+    ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>
+  >,
+  TError = ErrorType<void>
+>(
+  params: GetExternalAgencyidCatalogHoldingsLogisticsV1Params,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>,
+      TError,
+      TData
+    >;
+  }
+) => {
+  const { query: queryOptions } = options ?? {};
+
+  const queryKey =
+    queryOptions?.queryKey ??
+    getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryKey(params);
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>
+  > = ({ signal }) =>
+    getExternalAgencyidCatalogHoldingsLogisticsV1(params, signal);
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetExternalAgencyidCatalogHoldingsLogisticsV1QueryResult =
+  NonNullable<
+    Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>
+  >;
+export type GetExternalAgencyidCatalogHoldingsLogisticsV1QueryError =
+  ErrorType<void>;
+
+/**
+ * @summary Get placement holdings for bibliographical records.
+ */
+export const useGetExternalAgencyidCatalogHoldingsLogisticsV1 = <
+  TData = Awaited<
+    ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>
+  >,
+  TError = ErrorType<void>
+>(
+  params: GetExternalAgencyidCatalogHoldingsLogisticsV1Params,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>,
+      TError,
+      TData
+    >;
+  }
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const queryOptions =
+    getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryOptions(
+      params,
+      options
+    );
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
