@@ -8,12 +8,10 @@ import { getManifestationPublicationYear } from "../../core/utils/helpers/genera
 
 export interface FindOnShelfManifestationListProps {
   libraryBranchHoldings: ManifestationHoldings;
-  author: string;
 }
 
 const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
-  libraryBranchHoldings,
-  author
+  libraryBranchHoldings
 }) => {
   const t = useText();
 
@@ -32,7 +30,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
         <span className="find-on-shelf__material-header" role="columnheader">
           {t("findOnShelfModalListMaterialText")}
         </span>
-        <span className="find-on-shelf__location-header" role="columnheader">
+        <span role="columnheader">
           {t("findOnShelfModalListFindOnShelfText")}
         </span>
         <span
@@ -57,7 +55,6 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
               branchHolding.holding.materials
             )}
             key={branchHolding.holding.branch.branchId}
-            author={author}
           />
         );
       })}

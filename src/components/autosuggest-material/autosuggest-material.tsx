@@ -9,7 +9,7 @@ import {
   flattenCreators,
   getManifestationsPids
 } from "../../core/utils/helpers/general";
-import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
+import { WorkSmallFragment } from "../../core/dbc-gateway/generated/graphql";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 import { Manifestation } from "../../core/utils/types/entities";
 
@@ -49,7 +49,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           manifestations: { all: allManifestations, bestRepresentation }
         } = work;
         const authors = flattenCreators(
-          creators as WorkMediumFragment["creators"]
+          creators as WorkSmallFragment["creators"]
         );
 
         const manifestationLanguageIsoCode =

@@ -27,8 +27,7 @@ export const mockedManifestationData: Manifestation[] = [
     creators: [
       {
         display: "Lucinda Riley",
-        __typename: "Person",
-        nameSort: "Riley, Lucinda"
+        __typename: "Person"
       }
     ],
     publisher: [""],
@@ -113,8 +112,7 @@ export const mockedManifestationData: Manifestation[] = [
     creators: [
       {
         display: "Lucinda Riley",
-        __typename: "Person",
-        nameSort: "Riley, Lucinda"
+        __typename: "Person"
       }
     ],
     publisher: [""],
