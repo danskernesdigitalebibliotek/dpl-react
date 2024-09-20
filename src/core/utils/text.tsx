@@ -13,7 +13,7 @@ export type UseTextFunction = (
   options?: {
     placeholders?: Placeholders;
     count?: number;
-    default?: string
+    default?: string;
   }
 ) => string;
 
@@ -106,24 +106,27 @@ const processTexts = (texts: string[], placeholders: Placeholders) =>
   );
 
 interface MissingPhrases {
-  [index: string]: boolean
-};
+  [index: string]: boolean;
+}
 
-let _missingPhrases : MissingPhrases = {};
+const missingPhrases: MissingPhrases = {};
 export const useText = (): UseTextFunction => {
   const { data } = useSelector<{ data: Record<string, string> }>(
     (state: RootState) => state.text
   );
 
-  return (key: string, { placeholders, count, default: _defaultValue } = { count: 0 }) => {
+  return (
+    key: string,
+    { placeholders, count, default: _defaultValue } = { count: 0 }
+  ) => {
     if (!data) {
       throw new Error(`The translation store is broken.`);
     }
     if (data[key] === undefined) {
-      if (_missingPhrases[key] == null) {
+      if (missingPhrases[key] == null) {
         console.warn(`The translation for ${key} is not defined.`);
 
-        _missingPhrases[key] = true;
+        missingPhrases[key] = true;
       }
 
       return _defaultValue || key;

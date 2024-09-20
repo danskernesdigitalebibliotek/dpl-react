@@ -706,7 +706,16 @@ export const useAddReservationsV2 = <
 > => {
   const mutationOptions = getAddReservationsV2MutationOptions(options);
 
-  return useMutation(mutationOptions);
+  let reservationResponse = useMutation(mutationOptions);
+  if (reservationResponse?.data?.reservationResults) {
+    reservationResponse.data.reservationResults.forEach(reservationResult => {
+      if (reservationResult.reservationDetails == null) {
+        reservationResult.reservationDetails = JSON.parse(JSON.stringify(reservationResult));
+      }
+    });
+  }
+
+  return reservationResponse;
 };
 
 /**
