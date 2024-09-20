@@ -83,7 +83,7 @@ const PatronPage: FC = () => {
       if (pin) {
         savePincode({
           pincode: pin,
-          libraryCardNumber: patron.patronId.toString()
+          libraryCardNumber: patron.patronId ? patron.patronId.toString() : ""
         });
       } else {
         savePatron(patron);
