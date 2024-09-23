@@ -23,54 +23,65 @@
         {
           "title": "Krimiserien med Martin Juncker og Signe Kristiansen",
           "isPopular": true,
-          "numberInSeries": {
-            "display": "4",
-            "number": [4]
-          },
           "readThisFirst": null,
-          "readThisWhenever": null
-        }
-      ],
-      "seriesMembers": [
-        {
-          "workId": "work-of:870970-basis:46282736",
-          "titles": {
-            "main": ["Vinterland"],
-            "full": ["Vinterland : krimi"],
-            "original": []
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:47678633",
-          "titles": {
-            "main": ["Satans sommer"],
-            "full": ["Satans sommer : krimi"],
-            "original": []
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:39185474",
-          "titles": {
-            "main": ["Kvæler"],
-            "full": ["Kvæler : krimi"],
-            "original": []
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:134015012",
-          "titles": {
-            "main": ["Skyggeriget"],
-            "full": ["Skyggeriget"],
-            "original": []
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:137746069",
-          "titles": {
-            "main": ["Løgner"],
-            "full": ["Løgner : krimi"],
-            "original": []
-          }
+          "readThisWhenever": null,
+          "members": [
+            {
+              "numberInSeries": "4",
+              "work": {
+                "workId": "work-of:870970-basis:46282736",
+                "titles": {
+                  "main": ["Vinterland"],
+                  "full": ["Vinterland : krimi"],
+                  "original": []
+                }
+              }
+            },
+            {
+              "numberInSeries": "4",
+              "work": {
+                "workId": "work-of:870970-basis:47678633",
+                "titles": {
+                  "main": ["Satans sommer"],
+                  "full": ["Satans sommer : krimi"],
+                  "original": []
+                }
+              }
+            },
+            {
+              "numberInSeries": "4",
+              "work": {
+                "workId": "work-of:870970-basis:39185474",
+                "titles": {
+                  "main": ["Kvæler"],
+                  "full": ["Kvæler : krimi"],
+                  "original": []
+                }
+              }
+            },
+            {
+              "numberInSeries": "4",
+              "work": {
+                "workId": "work-of:870970-basis:134015012",
+                "titles": {
+                  "main": ["Skyggeriget"],
+                  "full": ["Skyggeriget"],
+                  "original": []
+                }
+              }
+            },
+            {
+              "numberInSeries": "4",
+              "work": {
+                "workId": "work-of:870970-basis:137746069",
+                "titles": {
+                  "main": ["Løgner"],
+                  "full": ["Løgner : krimi"],
+                  "original": []
+                }
+              }
+            }
+          ]
         }
       ],
       "workYear": {
