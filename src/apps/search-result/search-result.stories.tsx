@@ -256,6 +256,8 @@ export const Primary: Story = {
       "Your search is invalid. Please try again. In order to perform a valid search, you need to include at least three letters.",
     intelligentFiltersAccessibleHeadlineText: "Available filters",
     intelligentFiltersSelectedAccessibleHeadlineText: "Selected filters",
-    webSearchLinkText: "Switch to the results for the library content."
+    webSearchLinkText: "Switch to the results for the library content.",
+    webSearchConfig:
+      '{\n  "webSearchUrl": "https://www.google.com",\n  "webSearchText": "Google",\n  "webSearchTotal": "1000"\n}'
   }
 };
