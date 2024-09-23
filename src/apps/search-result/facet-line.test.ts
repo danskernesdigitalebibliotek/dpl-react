@@ -171,7 +171,7 @@ describe("The facet line", () => {
     );
   });
 
-  it.only("Clear all selected facets when filters not present in url", () => {
+  it("Clear all selected facets when filters not present in url", () => {
     cy.getBySel("facet-line-term-lydbog (net)")
       .should("be.visible")
       .and("have.attr", "aria-pressed", "false")
