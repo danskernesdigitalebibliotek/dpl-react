@@ -76,13 +76,11 @@ export default {
             display: ["Bogens originaludgave: 1950"]
           }
         ],
-        physicalDescription: [
-          {
-            summary: "2 cd'er 1 bog 95 sider: ill. 2t., 31 min.",
-            numberOfPages: 95,
-            playingTime: "2t., 31 min."
-          }
-        ],
+        physicalDescription: {
+          summaryFull: "2 cd'er 1 bog 95 sider: ill. 2t., 31 min.",
+          numberOfPages: 95,
+          playingTime: "2t., 31 min."
+        },
         hostPublication: null,
         manifestationParts: null,
         accessTypes: [
@@ -173,13 +171,11 @@ export default {
             ]
           }
         ],
-        physicalDescription: [
-          {
-            summary: "1 online resource",
-            numberOfPages: null,
-            playingTime: null
-          }
-        ],
+        physicalDescription: {
+          summaryFull: "1 online resource",
+          numberOfPages: null,
+          playingTime: null
+        },
         hostPublication: null,
         manifestationParts: null,
         accessTypes: [
@@ -267,13 +263,11 @@ export default {
             display: ["Unabridged"]
           }
         ],
-        physicalDescription: [
-          {
-            summary: "1 online resource (7 audio files) digital",
-            numberOfPages: null,
-            playingTime: null
-          }
-        ],
+        physicalDescription: {
+          summaryFull: "1 online resource (7 audio files) digital",
+          numberOfPages: null,
+          playingTime: null
+        },
         hostPublication: null,
         manifestationParts: null,
         accessTypes: [
@@ -350,13 +344,10 @@ export default {
           ages: []
         },
         notes: [],
-        physicalDescription: [
-          {
-            summary: "104 sider: ill.",
-            numberOfPages: 104,
-            playingTime: null
-          }
-        ],
+        physicalDescription: {
+          summaryFull: "104 sider: ill.",
+          numberOfPages: 104
+        },
         hostPublication: null,
         manifestationParts: null,
         accessTypes: [

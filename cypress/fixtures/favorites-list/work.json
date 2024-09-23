@@ -5935,7 +5935,7 @@
               {
                 "summaryFull": "80 min.",
                 "numberOfPages": null,
-                "playingTime": "80 min."
+                "materialUnits": [{ "extent": "80 min." }]
               }
             ,
             "hostPublication": null,
@@ -6828,7 +6828,7 @@
               {
                 "summaryFull": "80 min.",
                 "numberOfPages": null,
-                "playingTime": "80 min."
+                "materialUnits": [{ "extent": "80 min." }]
               }
             ,
             "hostPublication": null,

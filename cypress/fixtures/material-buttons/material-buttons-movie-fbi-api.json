@@ -168,7 +168,7 @@
             "physicalDescription": {
               "summaryFull": "1 dvd-video ca. 109 min.",
               "numberOfPages": null,
-              "playingTime": "ca. 109 min."
+              "materialUnits": [{ "extent": "ca. 109 min." }]
             },
             "hostPublication": null,
             "manifestationParts": null,
@@ -340,7 +340,7 @@
             "physicalDescription": {
               "summaryFull": "1 disc (blu-ray) ca. 113 min.",
               "numberOfPages": null,
-              "playingTime": "ca. 113 min."
+              "materialUnits": [{ "extent": "ca. 113 min." }]
             },
             "hostPublication": null,
             "manifestationParts": null,
@@ -508,7 +508,7 @@
             "physicalDescription": {
               "summaryFull": "Ca. 113 min.",
               "numberOfPages": null,
-              "playingTime": "Ca. 113 min."
+              "materialUnits": [{ "extent": "Ca. 113 min." }]
             },
             "hostPublication": null,
             "manifestationParts": null,
@@ -684,7 +684,7 @@
           "physicalDescription": {
             "summaryFull": "Ca. 113 min.",
             "numberOfPages": null,
-            "playingTime": "Ca. 113 min."
+            "materialUnits": [{ "extent": "Ca. 113 min." }]
           },
           "hostPublication": null,
           "manifestationParts": null,
@@ -859,7 +859,7 @@
           "physicalDescription": {
             "summaryFull": "Ca. 113 min.",
             "numberOfPages": null,
-            "playingTime": "Ca. 113 min."
+            "materialUnits": [{ "extent": "Ca. 113 min." }]
           },
           "hostPublication": null,
           "manifestationParts": null,

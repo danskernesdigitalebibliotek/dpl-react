@@ -390,7 +390,7 @@
             "physicalDescription": {
               "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
               "numberOfPages": null,
-              "playingTime": "16 t., 30 min."
+              "materialUnits": [{ "extent": "16 t., 30 min." }]
             },
             "hostPublication": null,
             "manifestationParts": null,
@@ -500,7 +500,7 @@
           "physicalDescription": {
             "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
             "numberOfPages": null,
-            "playingTime": "16 t., 30 min."
+            "materialUnits": [{ "extent": "16 t., 30 min." }]
           },
           "hostPublication": null,
           "manifestationParts": null,
@@ -609,7 +609,7 @@
           "physicalDescription": {
             "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
             "numberOfPages": null,
-            "playingTime": "16 t., 30 min."
+            "materialUnits": [{ "extent": "16 t., 30 min." }]
           },
           "hostPublication": null,
           "manifestationParts": null,

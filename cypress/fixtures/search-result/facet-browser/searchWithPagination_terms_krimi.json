@@ -193,7 +193,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 502, "playingTime": null }
+                  { "numberOfPages": 502, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -228,7 +228,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 502, "playingTime": null }
+                  { "numberOfPages": 502, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -263,7 +263,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 502, "playingTime": null }
+                  { "numberOfPages": 502, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -298,7 +298,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 502, "playingTime": null }
+                  { "numberOfPages": 502, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -337,7 +337,7 @@
                 "dateFirstEdition": { "display": "2019", "year": 2019 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 45 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 45 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -375,7 +375,7 @@
                 "dateFirstEdition": { "display": "2019", "year": 2019 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 45 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 45 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -410,7 +410,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 502, "playingTime": null }
+                  { "numberOfPages": 502, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -448,7 +448,7 @@
                 "dateFirstEdition": { "display": "2019", "year": 2019 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 45 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 45 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -482,7 +482,7 @@
               "dateFirstEdition": { "display": "2017", "year": 2017 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 502, "playingTime": null }
+                { "numberOfPages": 502, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -517,7 +517,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 502, "playingTime": null }
+                { "numberOfPages": 502, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -718,7 +718,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 523, "playingTime": null }
+                  { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -753,7 +753,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 523, "playingTime": null }
+                  { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -792,7 +792,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "18 t., 22 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "18 t., 22 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -830,7 +830,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "18 t., 22 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "18 t., 22 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -866,7 +866,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "18 t., 22 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "18 t., 22 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -901,7 +901,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 523, "playingTime": null }
+                  { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -936,7 +936,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 523, "playingTime": null }
+                  { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -971,7 +971,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 523, "playingTime": null }
+                  { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1007,7 +1007,7 @@
               "dateFirstEdition": { "display": "2017", "year": 2017 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 523, "playingTime": null }
+                { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -1042,7 +1042,7 @@
               "dateFirstEdition": { "display": "2017", "year": 2017 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 523, "playingTime": null }
+                { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -1249,7 +1249,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 344, "playingTime": null }
+                  { "numberOfPages": 344, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1287,7 +1287,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 23 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 23 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1328,7 +1328,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "13 t., 30 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "13 t., 30 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1366,7 +1366,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 23 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 23 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1404,7 +1404,7 @@
                 "dateFirstEdition": { "display": "2000", "year": 2000 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 343, "playingTime": null }
+                  { "numberOfPages": 343, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1442,7 +1442,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 342, "playingTime": null }
+                  { "numberOfPages": 342, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1480,7 +1480,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 342, "playingTime": null }
+                  { "numberOfPages": 342, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1521,8 +1521,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 28 min." }
-                ,
+                { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 28 min." }] },
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
                 "shelfmark": null,
@@ -1594,7 +1593,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "15 t., 28 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "15 t., 28 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1635,7 +1634,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 28 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 28 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1673,7 +1672,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 342, "playingTime": null }
+                  { "numberOfPages": 342, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1712,7 +1711,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 342, "playingTime": null }
+                { "numberOfPages": 342, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -1750,7 +1749,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 342, "playingTime": null }
+                { "numberOfPages": 342, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -1954,7 +1953,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 526, "playingTime": null }
+                  { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -1995,7 +1994,7 @@
                 "dateFirstEdition": { "display": "2013", "year": 2013 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "19 t., 9 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "19 t., 9 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2036,7 +2035,7 @@
                 "dateFirstEdition": { "display": "2013", "year": 2013 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "19 t., 9 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "19 t., 9 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2074,7 +2073,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 526, "playingTime": null }
+                  { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -2113,7 +2112,7 @@
                 "dateFirstEdition": { "display": "2013", "year": 2013 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "19 t., 9 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "19 t., 9 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -2149,7 +2148,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 526, "playingTime": null }
+                  { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2187,7 +2186,7 @@
                 "dateFirstEdition": { "display": "2013", "year": 2013 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 526, "playingTime": null }
+                  { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2228,7 +2227,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 526, "playingTime": null }
+                  { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2267,7 +2266,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 526, "playingTime": null }
+                { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -2305,7 +2304,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 526, "playingTime": null }
+                { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -2481,7 +2480,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 460, "playingTime": null }
+                  { "numberOfPages": 460, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2516,7 +2515,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "15 t., 31 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "15 t., 31 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2551,7 +2550,7 @@
                 "dateFirstEdition": { "display": "2007", "year": 2007 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 459, "playingTime": null }
+                  { "numberOfPages": 459, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2589,7 +2588,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "14 t., 57 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "14 t., 57 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2624,7 +2623,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 459, "playingTime": null }
+                  { "numberOfPages": 459, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2665,7 +2664,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "14 t., 57 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "14 t., 57 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2765,7 +2764,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 459, "playingTime": null }
+                  { "numberOfPages": 459, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2800,7 +2799,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 459, "playingTime": null }
+                  { "numberOfPages": 459, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -2836,7 +2835,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 459, "playingTime": null }
+                { "numberOfPages": 459, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -2871,7 +2870,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 459, "playingTime": null }
+                { "numberOfPages": 459, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -3072,7 +3071,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 540, "playingTime": null }
+                  { "numberOfPages": 540, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3107,7 +3106,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 524, "playingTime": null }
+                  { "numberOfPages": 524, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3145,7 +3144,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 40 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 40 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3180,7 +3179,7 @@
                 "dateFirstEdition": { "display": "2001", "year": 2001 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 524, "playingTime": null }
+                  { "numberOfPages": 524, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3215,7 +3214,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 2 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 2 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3250,7 +3249,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 523, "playingTime": null }
+                  { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3285,7 +3284,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 523, "playingTime": null }
+                  { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3320,7 +3319,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 523, "playingTime": null }
+                  { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3389,7 +3388,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 524, "playingTime": null }
+                  { "numberOfPages": 524, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -3428,7 +3427,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "14 t., 44 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "14 t., 44 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3463,7 +3462,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 523, "playingTime": null }
+                  { "numberOfPages": 523, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3499,7 +3498,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 540, "playingTime": null }
+                { "numberOfPages": 540, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -3534,7 +3533,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 540, "playingTime": null }
+                { "numberOfPages": 540, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -3745,7 +3744,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 335, "playingTime": null }
+                  { "numberOfPages": 335, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3788,7 +3787,7 @@
                 "dateFirstEdition": { "display": "2019", "year": 2019 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 16 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 16 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3831,7 +3830,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 335, "playingTime": null }
+                  { "numberOfPages": 335, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -3882,7 +3881,7 @@
                 "dateFirstEdition": { "display": "2019", "year": 2019 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 16 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 16 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -3933,7 +3932,7 @@
                 "dateFirstEdition": { "display": "2019", "year": 2019 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 356, "playingTime": null }
+                  { "numberOfPages": 356, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -3974,7 +3973,7 @@
               "dateFirstEdition": { "display": "2019", "year": 2019 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 356, "playingTime": null }
+                { "numberOfPages": 356, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -4014,7 +4013,7 @@
               "dateFirstEdition": { "display": "2019", "year": 2019 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 356, "playingTime": null }
+                { "numberOfPages": 356, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -4218,7 +4217,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 346, "playingTime": null }
+                  { "numberOfPages": 346, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4256,7 +4255,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 51 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 51 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4297,7 +4296,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 51 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 51 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4335,7 +4334,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 51 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 51 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4373,7 +4372,7 @@
                 "dateFirstEdition": { "display": "2001", "year": 2001 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 345, "playingTime": null }
+                  { "numberOfPages": 345, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4411,7 +4410,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 345, "playingTime": null }
+                  { "numberOfPages": 345, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4449,7 +4448,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 345, "playingTime": null }
+                  { "numberOfPages": 345, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4490,7 +4489,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "10 t., 52 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "10 t., 52 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -4563,7 +4562,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "10 t., 52 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "10 t., 52 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4604,7 +4603,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "10 t., 52 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "10 t., 52 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4642,7 +4641,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 345, "playingTime": null }
+                  { "numberOfPages": 345, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4681,7 +4680,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 345, "playingTime": null }
+                { "numberOfPages": 345, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -4719,7 +4718,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 345, "playingTime": null }
+                { "numberOfPages": 345, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -4926,7 +4925,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 634, "playingTime": null }
+                  { "numberOfPages": 634, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -4967,7 +4966,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "22 t., 11 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "22 t., 11 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5005,7 +5004,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 634, "playingTime": null }
+                  { "numberOfPages": 634, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5043,7 +5042,7 @@
                 "dateFirstEdition": { "display": "2009", "year": 2009 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 634, "playingTime": null }
+                  { "numberOfPages": 634, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5084,7 +5083,7 @@
                 "dateFirstEdition": { "display": "2009", "year": 2009 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "21 t., 31 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "21 t., 31 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -5157,7 +5156,7 @@
                 "dateFirstEdition": { "display": "2009", "year": 2009 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "21 t., 31 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "21 t., 31 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5195,7 +5194,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 634, "playingTime": null }
+                  { "numberOfPages": 634, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5233,7 +5232,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 634, "playingTime": null }
+                  { "numberOfPages": 634, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5272,7 +5271,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 634, "playingTime": null }
+                { "numberOfPages": 634, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -5310,7 +5309,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 634, "playingTime": null }
+                { "numberOfPages": 634, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -5511,7 +5510,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 456, "playingTime": null }
+                  { "numberOfPages": 456, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5549,7 +5548,7 @@
                 "dateFirstEdition": { "display": "2011", "year": 2011 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 24 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 24 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5584,7 +5583,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 456, "playingTime": null }
+                  { "numberOfPages": 456, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5622,7 +5621,7 @@
                 "dateFirstEdition": { "display": "2011", "year": 2011 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 24 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 24 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [],
@@ -5693,7 +5692,7 @@
                 "dateFirstEdition": { "display": "2011", "year": 2011 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 456, "playingTime": null }
+                  { "numberOfPages": 456, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5734,7 +5733,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 24 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 24 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5769,7 +5768,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 456, "playingTime": null }
+                  { "numberOfPages": 456, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5804,7 +5803,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 456, "playingTime": null }
+                  { "numberOfPages": 456, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -5840,7 +5839,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 456, "playingTime": null }
+                { "numberOfPages": 456, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -5875,7 +5874,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 456, "playingTime": null }
+                { "numberOfPages": 456, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -6085,7 +6084,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 479, "playingTime": null }
+                  { "numberOfPages": 479, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6123,7 +6122,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 30 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 30 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6164,7 +6163,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 479, "playingTime": null }
+                  { "numberOfPages": 479, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6202,7 +6201,7 @@
                 "dateFirstEdition": { "display": "2006", "year": 2006 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 479, "playingTime": null }
+                  { "numberOfPages": 479, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6240,7 +6239,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 478, "playingTime": null }
+                  { "numberOfPages": 478, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6352,7 +6351,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "15 t., 30 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "15 t., 30 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6390,7 +6389,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 478, "playingTime": null }
+                  { "numberOfPages": 478, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6429,7 +6428,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 478, "playingTime": null }
+                { "numberOfPages": 478, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -6467,7 +6466,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 478, "playingTime": null }
+                { "numberOfPages": 478, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -6671,7 +6670,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 431, "playingTime": null }
+                  { "numberOfPages": 431, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6709,7 +6708,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 431, "playingTime": null }
+                  { "numberOfPages": 431, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6747,7 +6746,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 39 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 39 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6788,7 +6787,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 39 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 39 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6873,7 +6872,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": null }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6920,7 +6919,7 @@
                 "dateFirstEdition": { "display": "2005", "year": 2005 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 430, "playingTime": null }
+                  { "numberOfPages": 430, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6958,7 +6957,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 430, "playingTime": null }
+                  { "numberOfPages": 430, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -6996,7 +6995,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 430, "playingTime": null }
+                  { "numberOfPages": 430, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -7108,7 +7107,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "15 t., 54 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "15 t., 54 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -7146,7 +7145,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 425, "playingTime": null }
+                  { "numberOfPages": 425, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -7185,7 +7184,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 425, "playingTime": null }
+                { "numberOfPages": 425, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -7223,7 +7222,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 425, "playingTime": null }
+                { "numberOfPages": 425, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -7440,7 +7439,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 18 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 18 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -7488,7 +7487,7 @@
                 "dateFirstEdition": { "display": "2018", "year": 2018 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 18 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 18 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -7528,7 +7527,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 320, "playingTime": null }
+                  { "numberOfPages": 320, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -7571,7 +7570,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 320, "playingTime": null }
+                  { "numberOfPages": 320, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -7620,7 +7619,7 @@
               "dateFirstEdition": { "display": "2018", "year": 2018 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "12 t., 18 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 18 min." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -7660,7 +7659,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 320, "playingTime": null }
+                { "numberOfPages": 320, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -7867,7 +7866,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 468, "playingTime": null }
+                  { "numberOfPages": 468, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -7908,7 +7907,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": null }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -7949,7 +7948,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 468, "playingTime": null }
+                  { "numberOfPages": 468, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -7987,7 +7986,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 43 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 43 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8028,7 +8027,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "16 t., 43 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "16 t., 43 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8069,7 +8068,7 @@
                 "dateFirstEdition": { "display": "2004", "year": 2004 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 468, "playingTime": null }
+                  { "numberOfPages": 468, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8107,7 +8106,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 467, "playingTime": null }
+                  { "numberOfPages": 467, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8145,7 +8144,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 467, "playingTime": null }
+                  { "numberOfPages": 467, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8183,7 +8182,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 467, "playingTime": null }
+                  { "numberOfPages": 467, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8295,7 +8294,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "15 t., 58 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "15 t., 58 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8333,7 +8332,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 467, "playingTime": null }
+                  { "numberOfPages": 467, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8372,7 +8371,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 467, "playingTime": null }
+                { "numberOfPages": 467, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -8410,7 +8409,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 467, "playingTime": null }
+                { "numberOfPages": 467, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -8621,7 +8620,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 349, "playingTime": null }
+                  { "numberOfPages": 349, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8661,7 +8660,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 348, "playingTime": null }
+                  { "numberOfPages": 348, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8704,7 +8703,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 348, "playingTime": null }
+                  { "numberOfPages": 348, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -8752,7 +8751,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "13 t., 36 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "13 t., 36 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8795,7 +8794,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "13 t., 36 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "13 t., 36 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -8841,7 +8840,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "13 t., 36 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "13 t., 36 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -8887,7 +8886,7 @@
               "dateFirstEdition": { "display": "2017", "year": 2017 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 349, "playingTime": null }
+                { "numberOfPages": 349, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -8927,7 +8926,7 @@
               "dateFirstEdition": { "display": "2017", "year": 2017 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 349, "playingTime": null }
+                { "numberOfPages": 349, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -9138,7 +9137,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 348, "playingTime": null }
+                  { "numberOfPages": 348, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -9183,7 +9182,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 348, "playingTime": null }
+                  { "numberOfPages": 348, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -9226,7 +9225,7 @@
                 "dateFirstEdition": { "display": "2015", "year": 2015 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 38 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 38 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -9269,7 +9268,7 @@
                 "dateFirstEdition": { "display": "2015", "year": 2015 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 38 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 38 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -9309,7 +9308,7 @@
                 "dateFirstEdition": { "display": "2015", "year": 2015 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 331, "playingTime": null }
+                  { "numberOfPages": 331, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -9355,7 +9354,7 @@
                 "dateFirstEdition": { "display": "2015", "year": 2015 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 38 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 38 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -9398,7 +9397,7 @@
               "dateFirstEdition": { "display": "2015", "year": 2015 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 331, "playingTime": null }
+                { "numberOfPages": 331, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -9435,7 +9434,7 @@
               "dateFirstEdition": { "display": "2015", "year": 2015 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 331, "playingTime": null }
+                { "numberOfPages": 331, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -9646,7 +9645,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 322, "playingTime": null }
+                  { "numberOfPages": 322, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -9686,7 +9685,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 10 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 10 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -9726,7 +9725,7 @@
                 "dateFirstEdition": { "display": "2008", "year": 2008 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 440, "playingTime": null }
+                  { "numberOfPages": 440, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -9769,7 +9768,7 @@
                 "dateFirstEdition": { "display": "2008", "year": 2008 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 38 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 38 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -9815,7 +9814,7 @@
                 "dateFirstEdition": { "display": "2008", "year": 2008 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 38 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 38 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -9867,7 +9866,7 @@
               "dateFirstEdition": { "display": "2008", "year": 2008 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "11 t., 38 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 38 min." }] }
               ,
               "accessTypes": [{ "code": "ONLINE" }],
               "access": [
@@ -9912,7 +9911,7 @@
               "dateFirstEdition": { "display": "2008", "year": 2008 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 440, "playingTime": null }
+                { "numberOfPages": 440, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -10123,7 +10122,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 391, "playingTime": null }
+                  { "numberOfPages": 391, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -10168,7 +10167,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 391, "playingTime": null }
+                  { "numberOfPages": 391, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -10214,7 +10213,7 @@
                 "dateFirstEdition": { "display": "2020", "year": 2020 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 46 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 46 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -10262,7 +10261,7 @@
                 "dateFirstEdition": { "display": "2020", "year": 2020 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 46 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 46 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -10306,7 +10305,7 @@
               "dateFirstEdition": { "display": "2020", "year": 2020 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "12 t., 46 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 46 min." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -10346,7 +10345,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 391, "playingTime": null }
+                { "numberOfPages": 391, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -10554,7 +10553,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 362, "playingTime": null }
+                  { "numberOfPages": 362, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -10597,7 +10596,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 362, "playingTime": null }
+                  { "numberOfPages": 362, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -10645,7 +10644,7 @@
                 "dateFirstEdition": { "display": "2016", "year": 2016 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "13 t., 17 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "13 t., 17 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -10688,7 +10687,7 @@
                 "dateFirstEdition": { "display": "2016", "year": 2016 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "13 t., 17 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "13 t., 17 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -10734,7 +10733,7 @@
                 "dateFirstEdition": { "display": "2016", "year": 2016 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "13 t., 17 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "13 t., 17 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -10779,7 +10778,7 @@
                 "dateFirstEdition": { "display": "2016", "year": 2016 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 362, "playingTime": null }
+                  { "numberOfPages": 362, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -10820,7 +10819,7 @@
               "dateFirstEdition": { "display": "2016", "year": 2016 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 362, "playingTime": null }
+                { "numberOfPages": 362, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -10860,7 +10859,7 @@
               "dateFirstEdition": { "display": "2016", "year": 2016 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 362, "playingTime": null }
+                { "numberOfPages": 362, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -11068,7 +11067,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 365, "playingTime": null }
+                  { "numberOfPages": 365, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -11111,7 +11110,7 @@
                 "dateFirstEdition": { "display": "2014", "year": 2014 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 29 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 29 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -11154,7 +11153,7 @@
                 "dateFirstEdition": { "display": "2014", "year": 2014 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 29 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 29 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -11197,7 +11196,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 365, "playingTime": null }
+                  { "numberOfPages": 365, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -11248,7 +11247,7 @@
                 "dateFirstEdition": { "display": "2014", "year": 2014 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 29 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 29 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -11294,7 +11293,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 365, "playingTime": null }
+                { "numberOfPages": 365, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "ONLINE" }],
               "access": [
@@ -11336,7 +11335,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 365, "playingTime": null }
+                { "numberOfPages": 365, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -11361,7 +11360,6 @@
             { "display": "Hossein Amini", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["krimi"],
           "manifestations": {
@@ -11413,7 +11411,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 114 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 114 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -11469,7 +11467,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 119 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 119 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -11523,7 +11521,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "ca. 119 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 119 min." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -11576,7 +11574,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "ca. 119 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 119 min." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -11784,7 +11782,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 279, "playingTime": null }
+                  { "numberOfPages": 279, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -11824,7 +11822,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 5 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 5 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -11864,7 +11862,7 @@
                 "dateFirstEdition": { "display": "2006", "year": 2006 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 299, "playingTime": null }
+                  { "numberOfPages": 299, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -11905,7 +11903,7 @@
               "dateFirstEdition": { "display": "2006", "year": 2006 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 299, "playingTime": null }
+                { "numberOfPages": 299, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -11945,7 +11943,7 @@
               "dateFirstEdition": { "display": "2006", "year": 2006 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 299, "playingTime": null }
+                { "numberOfPages": 299, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -12153,7 +12151,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 334, "playingTime": null }
+                  { "numberOfPages": 334, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -12193,7 +12191,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 39 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 39 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -12233,7 +12231,7 @@
                 "dateFirstEdition": { "display": "2008", "year": 2008 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 455, "playingTime": null }
+                  { "numberOfPages": 455, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -12274,7 +12272,7 @@
               "dateFirstEdition": { "display": "2008", "year": 2008 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 455, "playingTime": null }
+                { "numberOfPages": 455, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -12314,7 +12312,7 @@
               "dateFirstEdition": { "display": "2008", "year": 2008 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 455, "playingTime": null }
+                { "numberOfPages": 455, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -12525,7 +12523,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 345, "playingTime": null }
+                  { "numberOfPages": 345, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -12565,7 +12563,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 43 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 43 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -12606,7 +12604,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 43 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 43 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -12646,7 +12644,7 @@
                 "dateFirstEdition": { "display": "2003", "year": 2003 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 381, "playingTime": null }
+                  { "numberOfPages": 381, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -12692,7 +12690,7 @@
                 "dateFirstEdition": { "display": "2003", "year": 2003 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "12 t., 43 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 43 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -12744,7 +12742,7 @@
               "dateFirstEdition": { "display": "2003", "year": 2003 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "12 t., 43 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "12 t., 43 min." }] }
               ,
               "accessTypes": [{ "code": "ONLINE" }],
               "access": [
@@ -12789,7 +12787,7 @@
               "dateFirstEdition": { "display": "2003", "year": 2003 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 381, "playingTime": null }
+                { "numberOfPages": 381, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -13000,7 +12998,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 326, "playingTime": null }
+                  { "numberOfPages": 326, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13040,7 +13038,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 326, "playingTime": null }
+                  { "numberOfPages": 326, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13080,7 +13078,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "10 t., 28 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "10 t., 28 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13120,7 +13118,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "10 t., 28 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "10 t., 28 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13162,7 +13160,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "10 t., 28 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "10 t., 28 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13202,7 +13200,7 @@
                 "dateFirstEdition": { "display": "2004", "year": 2004 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 359, "playingTime": null }
+                  { "numberOfPages": 359, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13248,7 +13246,7 @@
                 "dateFirstEdition": { "display": "2004", "year": 2004 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "10 t., 28 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "10 t., 28 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -13300,7 +13298,7 @@
               "dateFirstEdition": { "display": "2004", "year": 2004 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "10 t., 28 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "10 t., 28 min." }] }
               ,
               "accessTypes": [{ "code": "ONLINE" }],
               "access": [
@@ -13345,7 +13343,7 @@
               "dateFirstEdition": { "display": "2004", "year": 2004 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 359, "playingTime": null }
+                { "numberOfPages": 359, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -13556,7 +13554,7 @@
                 "dateFirstEdition": { "display": "1992", "year": 1992 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 388, "playingTime": null }
+                  { "numberOfPages": 388, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13596,7 +13594,7 @@
                 "dateFirstEdition": { "display": "1992", "year": 1992 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 388, "playingTime": null }
+                  { "numberOfPages": 388, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13636,7 +13634,7 @@
                 "dateFirstEdition": { "display": "1992", "year": 1992 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 409, "playingTime": null }
+                  { "numberOfPages": 409, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13677,7 +13675,7 @@
               "dateFirstEdition": { "display": "1992", "year": 1992 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 409, "playingTime": null }
+                { "numberOfPages": 409, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -13717,7 +13715,7 @@
               "dateFirstEdition": { "display": "1992", "year": 1992 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 409, "playingTime": null }
+                { "numberOfPages": 409, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -13925,7 +13923,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 387, "playingTime": null }
+                  { "numberOfPages": 387, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -13968,7 +13966,7 @@
                 "dateFirstEdition": { "display": "2013", "year": 2013 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 19 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 19 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14011,7 +14009,7 @@
                 "dateFirstEdition": { "display": "2013", "year": 2013 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 19 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 19 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14057,7 +14055,7 @@
                 "dateFirstEdition": { "display": "2013", "year": 2013 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "11 t., 19 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "11 t., 19 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -14105,7 +14103,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 387, "playingTime": null }
+                  { "numberOfPages": 387, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -14151,7 +14149,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 387, "playingTime": null }
+                { "numberOfPages": 387, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "ONLINE" }],
               "access": [
@@ -14193,7 +14191,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 387, "playingTime": null }
+                { "numberOfPages": 387, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -14218,7 +14216,6 @@
             { "display": "Don Siegel", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["politifilm", "actionfilm", "krimi"],
           "manifestations": {
@@ -14264,7 +14261,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "98 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "98 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14314,7 +14311,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 98 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 98 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14364,7 +14361,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 102 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 102 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14414,7 +14411,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "98 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "98 min." }] }
                 ,
                 "accessTypes": [{ "code": "UNKNOWN" }],
                 "access": [],
@@ -14462,7 +14459,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 102 min" }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 102 min" }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14512,7 +14509,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 99 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 99 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14562,7 +14559,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "102 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "102 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14612,7 +14609,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "102 min" }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "102 min" }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14660,7 +14657,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "102 min" }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "102 min" }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -14707,7 +14704,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "102 min" }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "102 min" }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -14733,7 +14730,6 @@
             { "display": "Martin Ruhe", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["actionfilm", "krimi"],
           "manifestations": {
@@ -14783,7 +14779,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "99 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "99 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14839,7 +14835,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "103 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "103 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -14893,7 +14889,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "103 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "103 min." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -14946,7 +14942,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "103 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "103 min." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -15154,7 +15150,7 @@
                 "dateFirstEdition": { "display": "2018", "year": 2018 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 10 t., 30 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 10 t., 30 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -15191,7 +15187,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 433, "playingTime": null }
+                  { "numberOfPages": 433, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -15232,7 +15228,7 @@
               "dateFirstEdition": { "display": "2018", "year": 2018 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "ca. 10 t., 30 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 10 t., 30 min." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -15269,7 +15265,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 433, "playingTime": null }
+                { "numberOfPages": 433, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -15484,7 +15480,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 284, "playingTime": null }
+                  { "numberOfPages": 284, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -15529,7 +15525,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 340, "playingTime": null }
+                  { "numberOfPages": 340, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -15577,7 +15573,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 340, "playingTime": null }
+                  { "numberOfPages": 340, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -15634,7 +15630,7 @@
                 "dateFirstEdition": { "display": "2022", "year": 2022 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "8 t., 31 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "8 t., 31 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -15692,7 +15688,7 @@
               "dateFirstEdition": { "display": "2022", "year": 2022 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "8 t., 31 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "8 t., 31 min." }] }
               ,
               "accessTypes": [{ "code": "ONLINE" }],
               "access": [
@@ -15743,7 +15739,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 340, "playingTime": null }
+                { "numberOfPages": 340, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -15954,7 +15950,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 390, "playingTime": null }
+                  { "numberOfPages": 390, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -15997,7 +15993,7 @@
                 "dateFirstEdition": { "display": "2016", "year": 2016 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 10t., 22 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 10t., 22 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16040,7 +16036,7 @@
                 "dateFirstEdition": { "display": "2016", "year": 2016 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 390, "playingTime": null }
+                  { "numberOfPages": 390, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16083,7 +16079,7 @@
                 "dateFirstEdition": { "display": "2016", "year": 2016 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 439, "playingTime": null }
+                  { "numberOfPages": 439, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16127,7 +16123,7 @@
               "dateFirstEdition": { "display": "2016", "year": 2016 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 439, "playingTime": null }
+                { "numberOfPages": 439, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -16170,7 +16166,7 @@
               "dateFirstEdition": { "display": "2016", "year": 2016 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 439, "playingTime": null }
+                { "numberOfPages": 439, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -16191,7 +16187,6 @@
             { "display": "Michael Connelly", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -16227,7 +16222,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 402, "playingTime": null }
+                  { "numberOfPages": 402, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16268,7 +16263,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 402, "playingTime": null }
+                { "numberOfPages": 402, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -16308,7 +16303,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 402, "playingTime": null }
+                { "numberOfPages": 402, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -16513,7 +16508,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 405, "playingTime": null }
+                  { "numberOfPages": 405, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16553,7 +16548,7 @@
                 "dateFirstEdition": { "display": "2019", "year": 2019 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "10 t." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "10 t." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16594,7 +16589,7 @@
               "dateFirstEdition": { "display": "2019", "year": 2019 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "10 t." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "10 t." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -16631,7 +16626,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 405, "playingTime": null }
+                { "numberOfPages": 405, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -16653,7 +16648,6 @@
           ],
           "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["roman", "krimi", "politiromaner"],
           "manifestations": {
@@ -16687,7 +16681,7 @@
                 "dateFirstEdition": { "display": "2013", "year": 2013 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 322, "playingTime": null }
+                  { "numberOfPages": 322, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16726,7 +16720,7 @@
               "dateFirstEdition": { "display": "2013", "year": 2013 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 322, "playingTime": null }
+                { "numberOfPages": 322, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -16764,7 +16758,7 @@
               "dateFirstEdition": { "display": "2013", "year": 2013 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 322, "playingTime": null }
+                { "numberOfPages": 322, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -16788,7 +16782,6 @@
             { "display": "Raymond Chandler", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
           "workYear": { "year": 1953 },
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -16825,7 +16818,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 3, "playingTime": "930 min." }
+                  { "numberOfPages": 3, "materialUnits": [{ "extent": "930 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16865,7 +16858,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 289, "playingTime": null }
+                  { "numberOfPages": 289, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16905,7 +16898,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 289, "playingTime": null }
+                  { "numberOfPages": 289, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16945,7 +16938,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 315, "playingTime": null }
+                  { "numberOfPages": 315, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -16985,7 +16978,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 400, "playingTime": null }
+                  { "numberOfPages": 400, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17025,7 +17018,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 400, "playingTime": null }
+                  { "numberOfPages": 400, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17065,7 +17058,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 400, "playingTime": null }
+                  { "numberOfPages": 400, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17108,7 +17101,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 453, "playingTime": null }
+                  { "numberOfPages": 453, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17224,7 +17217,7 @@
               "dateFirstEdition": { "display": "1953", "year": 1953 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 453, "playingTime": null }
+                { "numberOfPages": 453, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -17246,7 +17239,6 @@
           ],
           "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -17280,7 +17272,7 @@
                 "dateFirstEdition": { "display": "2017", "year": 2017 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 326, "playingTime": null }
+                  { "numberOfPages": 326, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17319,7 +17311,7 @@
               "dateFirstEdition": { "display": "2017", "year": 2017 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 326, "playingTime": null }
+                { "numberOfPages": 326, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -17357,7 +17349,7 @@
               "dateFirstEdition": { "display": "2017", "year": 2017 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 326, "playingTime": null }
+                { "numberOfPages": 326, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -17379,7 +17371,6 @@
           ],
           "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -17415,7 +17406,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 308, "playingTime": null }
+                  { "numberOfPages": 308, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17454,7 +17445,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 308, "playingTime": null }
+                { "numberOfPages": 308, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -17492,7 +17483,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 308, "playingTime": null }
+                { "numberOfPages": 308, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -17511,7 +17502,6 @@
           ],
           "creators": [{ "display": "Stieg Trenter", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
           "workYear": { "year": 1953 },
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -17547,7 +17537,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 2, "playingTime": "ca 430 min." }
+                  { "numberOfPages": 2, "materialUnits": [{ "extent": "ca 430 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17587,7 +17577,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 220, "playingTime": null }
+                  { "numberOfPages": 220, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17627,7 +17617,7 @@
                 "dateFirstEdition": { "display": "1953", "year": 1953 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 263, "playingTime": null }
+                  { "numberOfPages": 263, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17719,7 +17709,7 @@
                 "dateFirstEdition": { "display": "1981", "year": 1981 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "6 t., 51 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "6 t., 51 min." }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -17771,7 +17761,7 @@
               "dateFirstEdition": { "display": "1981", "year": 1981 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "6 t., 51 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "6 t., 51 min." }] }
               ,
               "accessTypes": [{ "code": "ONLINE" }],
               "access": [
@@ -17816,7 +17806,7 @@
               "dateFirstEdition": { "display": "1953", "year": 1953 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 263, "playingTime": null }
+                { "numberOfPages": 263, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -17838,7 +17828,6 @@
           ],
           "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -17872,7 +17861,7 @@
                 "dateFirstEdition": { "display": "2009", "year": 2009 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 382, "playingTime": null }
+                  { "numberOfPages": 382, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -17911,7 +17900,7 @@
               "dateFirstEdition": { "display": "2009", "year": 2009 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 382, "playingTime": null }
+                { "numberOfPages": 382, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -17949,7 +17938,7 @@
               "dateFirstEdition": { "display": "2009", "year": 2009 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 382, "playingTime": null }
+                { "numberOfPages": 382, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -18153,7 +18142,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": null }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -18213,7 +18202,7 @@
                 "dateFirstEdition": { "display": "2000", "year": 2000 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 341, "playingTime": null }
+                  { "numberOfPages": 341, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -18250,7 +18239,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 341, "playingTime": null }
+                  { "numberOfPages": 341, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -18287,7 +18276,7 @@
                 "dateFirstEdition": { "display": "2000", "year": 2000 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 322, "playingTime": null }
+                  { "numberOfPages": 322, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -18324,7 +18313,7 @@
                 "dateFirstEdition": { "display": "2000", "year": 2000 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 307, "playingTime": null }
+                  { "numberOfPages": 307, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -18362,7 +18351,7 @@
               "dateFirstEdition": { "display": "2000", "year": 2000 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 307, "playingTime": null }
+                { "numberOfPages": 307, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -18399,7 +18388,7 @@
               "dateFirstEdition": { "display": "2000", "year": 2000 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 307, "playingTime": null }
+                { "numberOfPages": 307, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -18418,7 +18407,6 @@
           ],
           "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -18452,7 +18440,7 @@
                 "dateFirstEdition": { "display": "2011", "year": 2011 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 264, "playingTime": null }
+                  { "numberOfPages": 264, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -18491,7 +18479,7 @@
               "dateFirstEdition": { "display": "2011", "year": 2011 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 264, "playingTime": null }
+                { "numberOfPages": 264, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -18529,7 +18517,7 @@
               "dateFirstEdition": { "display": "2011", "year": 2011 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 264, "playingTime": null }
+                { "numberOfPages": 264, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -18748,7 +18736,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 95 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 95 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -18799,7 +18787,7 @@
                 "physicalDescription":
                   {
                     "numberOfPages": null,
-                    "playingTime": "ca. 99 min., ca. 35 min"
+                    "materialUnits": [{ "extent": "ca. 99 min., ca. 35 min" }]
                   }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
@@ -18850,7 +18838,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 99 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 99 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -18904,7 +18892,7 @@
                 "physicalDescription":
                   {
                     "numberOfPages": null,
-                    "playingTime": "ca. 99, ca. 47 min."
+                    "materialUnits": [{ "extent": "ca. 99, ca. 47 min." }]
                   }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
@@ -18955,7 +18943,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 99 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 99 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19006,7 +18994,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "ca. 99 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "ca. 99 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19055,7 +19043,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "99 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "99 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19099,7 +19087,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "99 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "99 min." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -19142,7 +19130,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": "99 min." }
+                { "numberOfPages": null, "materialUnits": [{ "extent": "99 min." }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -19163,7 +19151,6 @@
             { "display": "Michael Connelly", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
           "workYear": { "year": 2005 },
           "genreAndForm": ["roman", "politiromaner", "krimi"],
           "manifestations": {
@@ -19204,7 +19191,7 @@
                   ]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": null }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -19264,7 +19251,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 403, "playingTime": null }
+                  { "numberOfPages": 403, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19301,7 +19288,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 403, "playingTime": null }
+                  { "numberOfPages": 403, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19339,7 +19326,7 @@
                 "dateFirstEdition": { "display": "2005", "year": 2005 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": "5 t., 30 min." }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": "5 t., 30 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19379,7 +19366,7 @@
                 "dateFirstEdition": { "display": "2005", "year": 2005 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": null }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19416,7 +19403,7 @@
                 "dateFirstEdition": { "display": "2005", "year": 2005 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 447, "playingTime": null }
+                  { "numberOfPages": 447, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19456,7 +19443,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 405, "playingTime": null }
+                  { "numberOfPages": 405, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19496,7 +19483,7 @@
                 "dateFirstEdition": { "display": "2005", "year": 2005 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 1, "playingTime": "11 t., 59 min." }
+                  { "numberOfPages": 1, "materialUnits": [{ "extent": "11 t., 59 min." }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19533,7 +19520,7 @@
                 "dateFirstEdition": { "display": "2005", "year": 2005 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 405, "playingTime": null }
+                  { "numberOfPages": 405, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19571,7 +19558,7 @@
               "dateFirstEdition": { "display": "2005", "year": 2005 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 405, "playingTime": null }
+                { "numberOfPages": 405, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -19608,7 +19595,7 @@
               "dateFirstEdition": { "display": "2005", "year": 2005 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 405, "playingTime": null }
+                { "numberOfPages": 405, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -19630,7 +19617,6 @@
           ],
           "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -19664,7 +19650,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 300, "playingTime": null }
+                  { "numberOfPages": 300, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19703,7 +19689,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 300, "playingTime": null }
+                { "numberOfPages": 300, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -19741,7 +19727,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 300, "playingTime": null }
+                { "numberOfPages": 300, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -19758,7 +19744,6 @@
           "abstract": [],
           "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -19789,7 +19774,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 526, "playingTime": null }
+                  { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -19825,7 +19810,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 526, "playingTime": null }
+                { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -19860,7 +19845,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 526, "playingTime": null }
+                { "numberOfPages": 526, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -20067,7 +20052,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 282, "playingTime": null }
+                  { "numberOfPages": 282, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -20106,7 +20091,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 282, "playingTime": null }
+                { "numberOfPages": 282, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -20144,7 +20129,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 282, "playingTime": null }
+                { "numberOfPages": 282, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -20351,7 +20336,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 278, "playingTime": null }
+                  { "numberOfPages": 278, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -20390,7 +20375,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 278, "playingTime": null }
+                { "numberOfPages": 278, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -20428,7 +20413,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 278, "playingTime": null }
+                { "numberOfPages": 278, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -20449,7 +20434,6 @@
             { "display": "Michael Connelly", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
           "workYear": { "year": 2014 },
           "genreAndForm": ["roman", "krimi"],
           "manifestations": {
@@ -20483,7 +20467,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": null }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -20547,7 +20531,7 @@
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 388, "playingTime": null }
+                  { "numberOfPages": 388, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -20584,7 +20568,7 @@
                 "dateFirstEdition": { "display": "2014", "year": 2014 },
                 "audience": { "generalAudience": [] },
                 "physicalDescription":
-                  { "numberOfPages": 388, "playingTime": null }
+                  { "numberOfPages": 388, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -20623,7 +20607,7 @@
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": null }
+                { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "ONLINE" }],
               "access": [
@@ -20683,7 +20667,7 @@
               "dateFirstEdition": { "display": "2014", "year": 2014 },
               "audience": { "generalAudience": [] },
               "physicalDescription":
-                { "numberOfPages": 388, "playingTime": null }
+                { "numberOfPages": 388, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -20902,7 +20886,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": null }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -20957,7 +20941,7 @@
                   "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
                 },
                 "physicalDescription":
-                  { "numberOfPages": null, "playingTime": null }
+                  { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
                 ,
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -21008,7 +20992,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": null }
+                { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -21058,7 +21042,7 @@
                 "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
               },
               "physicalDescription":
-                { "numberOfPages": null, "playingTime": null }
+                { "numberOfPages": null, "materialUnits": [{ "extent": null }] }
               ,
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [

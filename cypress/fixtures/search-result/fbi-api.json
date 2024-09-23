@@ -147,7 +147,7 @@
                 "audience": { "generalAudience": [] },
                 "physicalDescription": {
                   "numberOfPages": null,
-                  "playingTime": "8 t., 37 min."
+                  "materialUnits": [{ "extent": "8 t., 37 min." }]
                 },
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
@@ -196,7 +196,7 @@
                 "audience": { "generalAudience": [] },
                 "physicalDescription": {
                   "numberOfPages": null,
-                  "playingTime": "8 t., 37 min."
+                  "materialUnits": [{ "extent": "8 t., 37 min." }]
                 },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -241,7 +241,7 @@
               "audience": { "generalAudience": [] },
               "physicalDescription": {
                 "numberOfPages": null,
-                "playingTime": "8 t., 37 min."
+                "materialUnits": [{ "extent": "8 t., 37 min." }]
               },
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
@@ -510,7 +510,7 @@
                 "audience": { "generalAudience": [] },
                 "physicalDescription": {
                   "numberOfPages": null,
-                  "playingTime": "27 t., 58 min."
+                  "materialUnits": [{ "extent": "27 t., 58 min." }]
                 },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -731,7 +731,7 @@
                 "audience": { "generalAudience": [] },
                 "physicalDescription": {
                   "numberOfPages": null,
-                  "playingTime": "29 t., 33 min."
+                  "materialUnits": [{ "extent": "29 t., 33 min." }]
                 },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
@@ -816,7 +816,7 @@
                 "audience": { "generalAudience": [] },
                 "physicalDescription": {
                   "numberOfPages": null,
-                  "playingTime": "29 t., 34 min."
+                  "materialUnits": [{ "extent": "29 t., 34 min." }]
                 },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [

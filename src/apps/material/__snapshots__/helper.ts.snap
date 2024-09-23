@@ -391,7 +391,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "physicalDescription":
         {
           "numberOfPages": 95,
-          "playingTime": "2t., 31 min.",
+          "materialUnits": [{ "extent": "2t., 31 min." }],
           "summaryFull": "2 cd'er 1 bog 95 side : ill. 2t., 31 min.",
         },
       ,
