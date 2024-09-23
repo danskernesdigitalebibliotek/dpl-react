@@ -106,34 +106,34 @@ export function getAllFilterPathsAsString(filterObject: {
 }
 
 export const getFacetFieldTranslation = (name: FacetFieldEnum) => {
-  switch (name) {
-    case FacetFieldEnum.Accesstypes:
+  switch (name.toLowerCase()) {
+    case FacetFieldEnum.Accesstypes.toLowerCase():
       return "facetAccessTypesText";
-    case FacetFieldEnum.Canalwaysbeloaned:
+    case FacetFieldEnum.Canalwaysbeloaned.toLowerCase():
       return "facetCanAlwaysBeLoanedText";
-    case FacetFieldEnum.Childrenoradults:
+    case FacetFieldEnum.Childrenoradults.toLowerCase():
       return "facetChildrenOrAdultsText";
-    case FacetFieldEnum.Creators:
+    case FacetFieldEnum.Creators.toLowerCase():
       return "facetCreatorsText";
-    case FacetFieldEnum.Dk5:
+    case FacetFieldEnum.Dk5.toLowerCase():
       return "facetDk5Text";
-    case FacetFieldEnum.Fictionnonfiction:
+    case FacetFieldEnum.Fictionnonfiction.toLowerCase():
       return "facetFictionNonfictionText";
-    case FacetFieldEnum.Fictionalcharacters:
+    case FacetFieldEnum.Fictionalcharacters.toLowerCase():
       return "facetFictionalCharactersText";
-    case FacetFieldEnum.Genreandform:
+    case FacetFieldEnum.Genreandform.toLowerCase():
       return "facetGenreAndFormText";
-    case FacetFieldEnum.Mainlanguages:
+    case FacetFieldEnum.Mainlanguages.toLowerCase():
       return "facetMainLanguagesText";
-    case FacetFieldEnum.Materialtypesspecific:
+    case FacetFieldEnum.Materialtypesspecific.toLowerCase():
       return "facetMaterialTypesGeneralText";
-    case FacetFieldEnum.Materialtypesgeneral:
+    case FacetFieldEnum.Materialtypesgeneral.toLowerCase():
       return "facetMaterialTypesSpecificText";
-    case FacetFieldEnum.Subjects:
+    case FacetFieldEnum.Subjects.toLowerCase():
       return "facetSubjectsText";
-    case FacetFieldEnum.Worktypes:
+    case FacetFieldEnum.Worktypes.toLowerCase():
       return "facetWorkTypesText";
-    case FacetFieldEnum.Year:
+    case FacetFieldEnum.Year.toLowerCase():
       return "facetYearText";
     default:
       return invalidSwitchCase<string>(name as never);

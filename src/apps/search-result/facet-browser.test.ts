@@ -24,7 +24,7 @@ describe("The Facet Browser", () => {
     cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
-      fixtureFilePath: "material/availability.json"
+      fixtureFilePath: "material/availability"
     });
 
     // Intercept all images from Cloudinary.

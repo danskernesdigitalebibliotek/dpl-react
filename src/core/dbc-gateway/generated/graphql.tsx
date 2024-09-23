@@ -269,6 +269,12 @@ export enum ComplexSuggestionTypeEnum {
   Title = "TITLE"
 }
 
+export type Complexity = {
+  __typename?: "Complexity";
+  class: Scalars["String"];
+  value: Scalars["String"];
+};
+
 export type CopyRequestInput = {
   authorOfComponent?: InputMaybe<Scalars["String"]>;
   issueOfComponent?: InputMaybe<Scalars["String"]>;
@@ -362,6 +368,11 @@ export type Dk5MainEntry = {
   display: Scalars["String"];
   /** The dk5Heading for the classification */
   dk5Heading: Scalars["String"];
+};
+
+export type Debug = {
+  __typename?: "Debug";
+  complexity: Complexity;
 };
 
 export type DidYouMean = {
@@ -1164,6 +1175,7 @@ export type Query = {
   __typename?: "Query";
   complexSearch: ComplexSearchResponse;
   complexSuggest: ComplexSuggestResponse;
+  debug?: Maybe<Debug>;
   infomedia: InfomediaResponse;
   linkCheck: LinkCheckService;
   localSuggest: LocalSuggestResponse;
@@ -1176,7 +1188,9 @@ export type Query = {
   relatedSubjects?: Maybe<Array<Scalars["String"]>>;
   ris: Scalars["String"];
   search: SearchResponse;
+  series?: Maybe<Series>;
   suggest: SuggestResponse;
+  universe?: Maybe<Universe>;
   work?: Maybe<Work>;
   works: Array<Maybe<Work>>;
 };
@@ -1240,12 +1254,21 @@ export type QuerySearchArgs = {
   search_exact?: InputMaybe<Scalars["Boolean"]>;
 };
 
+export type QuerySeriesArgs = {
+  seriesId: Scalars["String"];
+};
+
 export type QuerySuggestArgs = {
   limit?: InputMaybe<Scalars["Int"]>;
   q: Scalars["String"];
   suggestType?: InputMaybe<SuggestionTypeEnum>;
   suggestTypes?: InputMaybe<Array<SuggestionTypeEnum>>;
   workType?: InputMaybe<WorkTypeEnum>;
+};
+
+export type QueryUniverseArgs = {
+  key?: InputMaybe<Scalars["String"]>;
+  universeId?: InputMaybe<Scalars["String"]>;
 };
 
 export type QueryWorkArgs = {
