@@ -98,13 +98,11 @@
                   "ages": []
                 },
                 "notes": [],
-                "physicalDescription": [
-                  {
-                    "summaryFull": "576 sider",
-                    "numberOfPages": 576,
-                    "playingTime": null
-                  }
-                ],
+                "physicalDescription": {
+                  "summaryFull": "576 sider",
+                  "numberOfPages": 576,
+                  "playingTime": null
+                },
                 "hostPublication": null,
                 "manifestationParts": null,
                 "accessTypes": [
@@ -208,13 +206,11 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescription": [
-                {
-                  "summaryFull": "576 sider",
-                  "numberOfPages": 576,
-                  "playingTime": null
-                }
-              ],
+              "physicalDescription": {
+                "summaryFull": "576 sider",
+                "numberOfPages": 576,
+                "playingTime": null
+              },
               "hostPublication": null,
               "manifestationParts": null,
               "accessTypes": [
@@ -317,13 +313,11 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescription": [
-                {
-                  "summaryFull": "576 sider",
-                  "numberOfPages": 576,
-                  "playingTime": null
-                }
-              ],
+              "physicalDescription": {
+                "summaryFull": "576 sider",
+                "numberOfPages": 576,
+                "playingTime": null
+              },
               "hostPublication": null,
               "manifestationParts": null,
               "accessTypes": [
@@ -428,13 +422,11 @@
                   "ages": []
                 },
                 "notes": [],
-                "physicalDescription": [
-                  {
-                    "summaryFull": "410 sider: ill.",
-                    "numberOfPages": 410,
-                    "playingTime": null
-                  }
-                ],
+                "physicalDescription": {
+                  "summaryFull": "410 sider: ill.",
+                  "numberOfPages": 410,
+                  "playingTime": null
+                },
                 "hostPublication": null,
                 "manifestationParts": null,
                 "accessTypes": [
@@ -512,13 +504,11 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescription": [
-                {
-                  "summaryFull": "410 sider: ill.",
-                  "numberOfPages": 410,
-                  "playingTime": null
-                }
-              ],
+              "physicalDescription": {
+                "summaryFull": "410 sider: ill.",
+                "numberOfPages": 410,
+                "playingTime": null
+              },
               "hostPublication": null,
               "manifestationParts": null,
               "accessTypes": [
@@ -595,13 +585,11 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescription": [
-                {
-                  "summaryFull": "410 sider: ill.",
-                  "numberOfPages": 410,
-                  "playingTime": null
-                }
-              ],
+              "physicalDescription": {
+                "summaryFull": "410 sider: ill.",
+                "numberOfPages": 410,
+                "playingTime": null
+              },
               "hostPublication": null,
               "manifestationParts": null,
               "accessTypes": [

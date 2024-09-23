@@ -69,13 +69,13 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         },
       ],
       "notes": [],
-      "physicalDescription": [
+      "physicalDescription":
         {
           "numberOfPages": 104,
           "playingTime": null,
           "summaryFull": "104 side : ill.",
         },
-      ],
+      ,
       "pid": "870970-basis:23798255",
       "publisher": [
         "Oxford University Press",
@@ -174,13 +174,13 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           ],
         },
       ],
-      "physicalDescription": [
+      "physicalDescription":
         {
           "numberOfPages": null,
           "playingTime": null,
           "summaryFull": "1 online resource",
         },
-      ],
+      ,
       "pid": "150061-ebog:ODN0000039136",
       "publisher": [],
       "shelfmark": null,
@@ -276,13 +276,13 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           ],
         },
       ],
-      "physicalDescription": [
+      "physicalDescription":
         {
           "numberOfPages": null,
           "playingTime": null,
           "summaryFull": "1 online resource (7 audio files) digital",
         },
-      ],
+      ,
       "pid": "150061-netlydbog:ODN0000105225",
       "publisher": [
         "Random House Audio",
@@ -388,13 +388,13 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
           ],
         },
       ],
-      "physicalDescription": [
+      "physicalDescription":
         {
           "numberOfPages": 95,
           "playingTime": "2t., 31 min.",
           "summaryFull": "2 cd'er 1 bog 95 side : ill. 2t., 31 min.",
         },
-      ],
+      ,
       "pid": "870970-basis:44504928",
       "publisher": [
         "Macmillan",

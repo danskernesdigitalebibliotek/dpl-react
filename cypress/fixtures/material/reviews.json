@@ -13,7 +13,7 @@
         ],
         "edition": { "publicationYear": { "display": "2016" } },
         "hostPublication": null,
-        "physicalDescription": [],
+        "physicalDescriptions": {},
         "dateFirstEdition": null,
         "workYear": null,
         "review": null
@@ -24,7 +24,7 @@
         "access": [{ "__typename": "InterLibraryLoan" }],
         "edition": { "publicationYear": { "display": "2016" } },
         "hostPublication": null,
-        "physicalDescription": [],
+        "physicalDescriptions": {},
         "dateFirstEdition": null,
         "workYear": null,
         "review": {
@@ -82,7 +82,7 @@
           "title": "Litteratursiden.dk [online]",
           "issue": "2016-09-12"
         },
-        "physicalDescription": [],
+        "physicalDescriptions": {},
         "dateFirstEdition": null,
         "workYear": null,
         "review": { "rating": null, "reviewByLibrarians": [] }

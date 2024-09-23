@@ -183,13 +183,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescription": [
-              {
-                "summaryFull": "523 side ",
-                "numberOfPages": 523,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "523 side ",
+              "numberOfPages": 523,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -277,7 +275,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescription": [],
+            "physicalDescription": {},
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -389,13 +387,11 @@
                 ]
               }
             ],
-            "physicalDescription": [
-              {
-                "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
-                "numberOfPages": null,
-                "playingTime": "16 t., 30 min."
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+              "numberOfPages": null,
+              "playingTime": "16 t., 30 min."
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -501,13 +497,11 @@
               ]
             }
           ],
-          "physicalDescription": [
-            {
-              "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
-              "numberOfPages": null,
-              "playingTime": "16 t., 30 min."
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+            "numberOfPages": null,
+            "playingTime": "16 t., 30 min."
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -612,13 +606,11 @@
               ]
             }
           ],
-          "physicalDescription": [
-            {
-              "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
-              "numberOfPages": null,
-              "playingTime": "16 t., 30 min."
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+            "numberOfPages": null,
+            "playingTime": "16 t., 30 min."
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [

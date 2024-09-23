@@ -79,13 +79,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescription": [
-              {
-                "summaryFull": "Stereo",
-                "numberOfPages": null,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "Stereo",
+              "numberOfPages": null,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": {
               "parts": [
@@ -212,13 +210,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescription": [
-              {
-                "summaryFull": "2 cd'er (1 kommentarbilag)",
-                "numberOfPages": null,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "2 cd'er (1 kommentarbilag)",
+              "numberOfPages": null,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": {
               "parts": [
@@ -406,13 +402,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescription": [
-            {
-              "summaryFull": "2 cd'er (1 kommentarbilag)",
-              "numberOfPages": null,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "2 cd'er (1 kommentarbilag)",
+            "numberOfPages": null,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": {
             "parts": [
@@ -599,13 +593,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescription": [
-            {
-              "summaryFull": "2 cd'er (1 kommentarbilag)",
-              "numberOfPages": null,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "2 cd'er (1 kommentarbilag)",
+            "numberOfPages": null,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": {
             "parts": [

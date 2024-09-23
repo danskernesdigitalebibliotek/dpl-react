@@ -118,13 +118,11 @@
                 "display": ["Med litteraturhenvisninger"]
               }
             ],
-            "physicalDescription": [
-              {
-                "summaryFull": "S. 8-13: ill.",
-                "numberOfPages": 6,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "S. 8-13: ill.",
+              "numberOfPages": 6,
+              "playingTime": null
+            },
             "hostPublication": {
               "summary": "Dansk noter, Nr. 3 (2010)"
             },
@@ -208,13 +206,11 @@
               "display": ["Med litteraturhenvisninger"]
             }
           ],
-          "physicalDescription": [
-            {
-              "summaryFull": "S. 8-13: ill.",
-              "numberOfPages": 6,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "S. 8-13: ill.",
+            "numberOfPages": 6,
+            "playingTime": null
+          },
           "hostPublication": {
             "summary": "Dansk noter, Nr. 3 (2010)"
           },
@@ -297,13 +293,11 @@
               "display": ["Med litteraturhenvisninger"]
             }
           ],
-          "physicalDescription": [
-            {
-              "summaryFull": "S. 8-13: ill.",
-              "numberOfPages": 6,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "S. 8-13: ill.",
+            "numberOfPages": 6,
+            "playingTime": null
+          },
           "hostPublication": {
             "summary": "Dansk noter, Nr. 3 (2010)"
           },

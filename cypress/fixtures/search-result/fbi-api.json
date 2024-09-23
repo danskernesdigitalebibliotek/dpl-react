@@ -52,9 +52,10 @@
                 },
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": 301, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 301,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
                   {
@@ -97,9 +98,10 @@
                 },
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": 301, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 301,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -143,9 +145,10 @@
                 },
                 "dateFirstEdition": { "display": "2018", "year": 2018 },
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": null, "playingTime": "8 t., 37 min." }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "playingTime": "8 t., 37 min."
+                },
                 "accessTypes": [{ "code": "ONLINE" }],
                 "access": [
                   {
@@ -191,9 +194,10 @@
                 },
                 "dateFirstEdition": { "display": "2018", "year": 2018 },
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": null, "playingTime": "8 t., 37 min." }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "playingTime": "8 t., 37 min."
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -235,9 +239,10 @@
               },
               "dateFirstEdition": { "display": "2018", "year": 2018 },
               "audience": { "generalAudience": [] },
-              "physicalDescription": [
-                { "numberOfPages": null, "playingTime": "8 t., 37 min." }
-              ],
+              "physicalDescription": {
+                "numberOfPages": null,
+                "playingTime": "8 t., 37 min."
+              },
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
                 { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -272,9 +277,10 @@
               },
               "dateFirstEdition": null,
               "audience": { "generalAudience": [] },
-              "physicalDescription": [
-                { "numberOfPages": 301, "playingTime": null }
-              ],
+              "physicalDescription": {
+                "numberOfPages": 301,
+                "playingTime": null
+              },
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
                 { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -419,9 +425,10 @@
                     "for højtlæsning"
                   ]
                 },
-                "physicalDescription": [
-                  { "numberOfPages": 565, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 565,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -459,9 +466,10 @@
                 },
                 "dateFirstEdition": { "display": "2003", "year": 2003 },
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": 923, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 923,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -500,9 +508,10 @@
                 },
                 "dateFirstEdition": { "display": "2003", "year": 2003 },
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": null, "playingTime": "27 t., 58 min." }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "playingTime": "27 t., 58 min."
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -543,9 +552,10 @@
                 },
                 "dateFirstEdition": { "display": "2003", "year": 2003 },
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": null, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -583,9 +593,10 @@
                 },
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": 923, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 923,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -623,9 +634,10 @@
                 },
                 "dateFirstEdition": { "display": "2003", "year": 2003 },
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": null, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   {
@@ -672,9 +684,10 @@
                 },
                 "dateFirstEdition": { "display": "2003", "year": 2003 },
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": 923, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 923,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -716,9 +729,10 @@
                 },
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": null, "playingTime": "29 t., 33 min." }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "playingTime": "29 t., 33 min."
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -759,9 +773,10 @@
                 },
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": 923, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 923,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -799,9 +814,10 @@
                 },
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": null, "playingTime": "29 t., 34 min." }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "playingTime": "29 t., 34 min."
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -839,9 +855,10 @@
                 },
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": 923, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 923,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -879,9 +896,10 @@
                 },
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": 841, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 841,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -919,9 +937,10 @@
                 },
                 "dateFirstEdition": null,
                 "audience": { "generalAudience": [] },
-                "physicalDescription": [
-                  { "numberOfPages": 841, "playingTime": null }
-                ],
+                "physicalDescription": {
+                  "numberOfPages": 841,
+                  "playingTime": null
+                },
                 "accessTypes": [{ "code": "PHYSICAL" }],
                 "access": [
                   { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -969,9 +988,10 @@
                   "for højtlæsning"
                 ]
               },
-              "physicalDescription": [
-                { "numberOfPages": 565, "playingTime": null }
-              ],
+              "physicalDescription": {
+                "numberOfPages": 565,
+                "playingTime": null
+              },
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
                 { "__typename": "InterLibraryLoan", "loanIsPossible": true }
@@ -1018,9 +1038,10 @@
                   "for højtlæsning"
                 ]
               },
-              "physicalDescription": [
-                { "numberOfPages": 565, "playingTime": null }
-              ],
+              "physicalDescription": {
+                "numberOfPages": 565,
+                "playingTime": null
+              },
               "accessTypes": [{ "code": "PHYSICAL" }],
               "access": [
                 { "__typename": "InterLibraryLoan", "loanIsPossible": true }

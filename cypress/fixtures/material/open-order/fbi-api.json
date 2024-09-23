@@ -80,13 +80,11 @@
                 "display": ["Med litteraturhenvisninger"]
               }
             ],
-            "physicalDescription": [
-              {
-                "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
-                "numberOfPages": 325,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
+              "numberOfPages": 325,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -168,13 +166,11 @@
               "display": ["Med litteraturhenvisninger"]
             }
           ],
-          "physicalDescription": [
-            {
-              "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
-              "numberOfPages": 325,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
+            "numberOfPages": 325,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -255,13 +251,11 @@
               "display": ["Med litteraturhenvisninger"]
             }
           ],
-          "physicalDescription": [
-            {
-              "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
-              "numberOfPages": 325,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
+            "numberOfPages": 325,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [

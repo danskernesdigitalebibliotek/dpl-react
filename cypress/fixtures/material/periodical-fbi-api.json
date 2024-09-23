@@ -76,14 +76,14 @@
                 ]
               }
             ],
-            "physicalDescription": [],
+            "physicalDescription": ],
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
               }
-            ],
+            ,
             "access": [
               {
                 "__typename": "DigitalArticleService",
@@ -172,14 +172,14 @@
               ]
             }
           ],
-          "physicalDescription": [],
+          "physicalDescription": ],
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
             }
-          ],
+          ,
           "access": [
             {
               "__typename": "DigitalArticleService",
@@ -267,14 +267,14 @@
               ]
             }
           ],
-          "physicalDescription": [],
+          "physicalDescription": ],
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
             }
-          ],
+          ,
           "access": [
             {
               "__typename": "DigitalArticleService",

@@ -83,13 +83,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescription": [
-              {
-                "summaryFull": "Sektion 3, s. 6-7: ill.",
-                "numberOfPages": 2,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "Sektion 3, s. 6-7: ill.",
+              "numberOfPages": 2,
+              "playingTime": null
+            },
             "hostPublication": {
               "summary": "Politiken, 2013-09-19"
             },
@@ -177,13 +175,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescription": [
-            {
-              "summaryFull": "Sektion 3, s. 6-7: ill.",
-              "numberOfPages": 2,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "Sektion 3, s. 6-7: ill.",
+            "numberOfPages": 2,
+            "playingTime": null
+          },
           "hostPublication": {
             "summary": "Politiken, 2013-09-19"
           },
@@ -270,13 +266,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescription": [
-            {
-              "summaryFull": "Sektion 3, s. 6-7: ill.",
-              "numberOfPages": 2,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "Sektion 3, s. 6-7: ill.",
+            "numberOfPages": 2,
+            "playingTime": null
+          },
           "hostPublication": {
             "summary": "Politiken, 2013-09-19"
           },

@@ -182,13 +182,13 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescription": [
+            "physicalDescription":
               {
                 "summaryFull": "523 side ",
                 "numberOfPages": 523,
                 "playingTime": null
               }
-            ],
+            ,
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -276,14 +276,14 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescription": [],
+            "physicalDescription": ],
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
               }
-            ],
+            ,
             "access": [
               {
                 "__typename": "Ereol",
@@ -388,13 +388,13 @@
                 ]
               }
             ],
-            "physicalDescription": [
+            "physicalDescription":
               {
                 "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
                 "numberOfPages": null,
                 "playingTime": "16 t., 30 min."
               }
-            ],
+            ,
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -500,13 +500,13 @@
               ]
             }
           ],
-          "physicalDescription": [
+          "physicalDescription":
             {
               "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
               "numberOfPages": null,
               "playingTime": "16 t., 30 min."
             }
-          ],
+          ,
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -611,13 +611,13 @@
               ]
             }
           ],
-          "physicalDescription": [
+          "physicalDescription":
             {
               "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
               "numberOfPages": null,
               "playingTime": "16 t., 30 min."
             }
-          ],
+          ,
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [

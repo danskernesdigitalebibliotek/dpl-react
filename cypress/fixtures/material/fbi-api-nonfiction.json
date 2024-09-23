@@ -125,13 +125,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescription": [
-              {
-                "summaryFull": "168 side : ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -223,13 +221,11 @@
                 "display": ["Med links"]
               }
             ],
-            "physicalDescription": [
-              {
-                "summaryFull": "168 side : ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -377,13 +373,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescription": [
-              {
-                "summaryFull": "168 side : ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -512,13 +506,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescription": [
-            {
-              "summaryFull": "168 side : ill. i farver",
-              "numberOfPages": 168,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "168 side : ill. i farver",
+            "numberOfPages": 168,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -646,13 +638,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescription": [
-            {
-              "summaryFull": "168 side : ill. i farver",
-              "numberOfPages": 168,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "168 side : ill. i farver",
+            "numberOfPages": 168,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [

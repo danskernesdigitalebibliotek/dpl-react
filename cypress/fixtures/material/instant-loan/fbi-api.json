@@ -143,13 +143,11 @@
                 "display": ["Originaludgave: 2022"]
               }
             ],
-            "physicalDescription": [
-              {
-                "summaryFull": "365 side ",
-                "numberOfPages": 365,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "365 side ",
+              "numberOfPages": 365,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -243,13 +241,11 @@
               "display": ["Originaludgave: 2022"]
             }
           ],
-          "physicalDescription": [
-            {
-              "summaryFull": "365 side ",
-              "numberOfPages": 365,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "365 side ",
+            "numberOfPages": 365,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -342,13 +338,11 @@
               "display": ["Originaludgave: 2022"]
             }
           ],
-          "physicalDescription": [
-            {
-              "summaryFull": "365 side ",
-              "numberOfPages": 365,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "365 side ",
+            "numberOfPages": 365,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
