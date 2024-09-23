@@ -115,7 +115,7 @@
     "istanbul-lib-coverage": "^3.2.2",
     "markdownlint-cli2": "^0.4.0",
     "mutationobserver-shim": "^0.3.7",
-    "nyc": "^17.0.0",
+    "nyc": "^17.1.0",
     "orval": "^6.26.0",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
