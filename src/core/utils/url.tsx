@@ -16,6 +16,7 @@ export const useUrls = () => {
     if (!urls[name]) {
       throw new Error(`The url ${name} is not defined`);
     }
+
     return urls[name];
   };
 };
