@@ -627,6 +627,33 @@ export type InterLibraryLoan = {
   loanIsPossible: Scalars["Boolean"];
 };
 
+export type ItemIdResponse = {
+  __typename?: "ItemIdResponse";
+  /** ItemId response object. */
+  itemOrderEntity?: Maybe<ItemOrderEntity>;
+  /** Message field in case of an error. */
+  message?: Maybe<Scalars["String"]>;
+};
+
+export type ItemOrderEntity = {
+  __typename?: "ItemOrderEntity";
+  /** Item ID, the same value that was queried. */
+  itemId: Scalars["String"];
+  /** Key for the row in the database, can be ignored as it's only relevant for ORS. */
+  itemOrderKey: Scalars["Int"];
+  /** Order ID associated with the item ID. */
+  orderId: Scalars["String"];
+  /** Agency ID of the borrower of the material. */
+  requesterId: Scalars["String"];
+  /** Agency ID of the lender of the material. */
+  responderId: Scalars["String"];
+  /**
+   * Timestamp of when the row was created in the database.
+   * Example: "2024-09-09T07:32:24.081+00:00"
+   */
+  timestamp: Scalars["String"];
+};
+
 export type KidRecommenderTagsInput = {
   tag?: InputMaybe<Scalars["String"]>;
   weight?: InputMaybe<Scalars["Int"]>;
@@ -1095,6 +1122,16 @@ export enum OrderTypeEnum {
   StackRetrieval = "STACK_RETRIEVAL"
 }
 
+export type OrsQuery = {
+  __typename?: "OrsQuery";
+  /** Method to retrieve sender and receiver information from ORS based on an itemId. */
+  itemOrder: ItemIdResponse;
+};
+
+export type OrsQueryItemOrderArgs = {
+  itemId: Scalars["String"];
+};
+
 export type Pegi = {
   __typename?: "PEGI";
   /** Display string for PEGI minimum age */
@@ -1182,6 +1219,7 @@ export type Query = {
   manifestation?: Maybe<Manifestation>;
   manifestations: Array<Maybe<Manifestation>>;
   mood: MoodQueries;
+  ors: OrsQuery;
   /** Get recommendations */
   recommend: RecommendationResponse;
   refWorks: Scalars["String"];
