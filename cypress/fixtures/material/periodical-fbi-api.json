@@ -9,7 +9,6 @@
       "abstract": [],
       "creators": [],
       "series": [],
-      "seriesMembers": [],
       "workYear": null,
       "genreAndForm": ["tidsskrift", "tíðarrit"],
       "manifestations": {
@@ -76,14 +75,14 @@
                 ]
               }
             ],
-            "physicalDescription": ],
+            "physicalDescription": {},
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
               }
-            ,
+            ],
             "access": [
               {
                 "__typename": "DigitalArticleService",
@@ -172,14 +171,14 @@
               ]
             }
           ],
-          "physicalDescription": ],
+          "physicalDescription": {},
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
             }
-          ,
+          ],
           "access": [
             {
               "__typename": "DigitalArticleService",
@@ -267,14 +266,14 @@
               ]
             }
           ],
-          "physicalDescription": ],
+          "physicalDescription": {},
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
             }
-          ,
+          ],
           "access": [
             {
               "__typename": "DigitalArticleService",

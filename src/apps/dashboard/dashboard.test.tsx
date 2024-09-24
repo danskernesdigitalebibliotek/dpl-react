@@ -1456,7 +1456,7 @@ describe("Dashboard", () => {
     cy.getBySel("delete-reservation-button").should("have.text", buttonText);
   };
 
-  it.only("should toggle all reservations using the select all button", () => {
+  it("should toggle all reservations using the select all button", () => {
     navigateToQueuedReservations();
     cy.getBySel("checkbox-select-all").first().click();
     // We need this silly wait in order to make sure that the checkboxes

@@ -14,7 +14,6 @@
           ],
           "creators": [{ "display": "Angela Levin", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["biografier"],
           "manifestations": {
@@ -4515,7 +4514,7 @@
           ],
           "creators": [],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": [],
           "manifestations": {
@@ -6748,7 +6747,7 @@
           ],
           "creators": [{ "display": "Sarah Oliver", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": ["biografier"],
           "manifestations": {
@@ -10533,80 +10532,6 @@
               "readThisWhenever": null
             }
           ],
-          "seriesMembers": [
-            {
-              "workId": "work-of:870970-basis:24900770",
-              "titles": {
-                "main": ["Harry Potter og hemmelighedernes kammer"],
-                "full": ["Harry Potter og hemmelighedernes kammer"],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:25713583",
-              "titles": {
-                "main": ["Harry Potter og fangen fra Azkaban"],
-                "full": ["Harry Potter og fangen fra Azkaban"],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:26205530",
-              "titles": {
-                "main": ["Harry Potter og Flammernes Pokal"],
-                "full": ["Harry Potter og Flammernes Pokal"],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:27091423",
-              "titles": {
-                "main": ["Harry Potter og Fønixordenen"],
-                "full": ["Harry Potter og Fønixordenen"],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:28668147",
-              "titles": {
-                "main": ["Harry Potter and the half-blood prince"],
-                "full": ["Harry Potter and the half-blood prince"],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:27831184",
-              "titles": {
-                "main": ["Harry Potter og halvblodsprinsen"],
-                "full": ["Harry Potter og halvblodsprinsen"],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:28529724",
-              "titles": {
-                "main": ["Harry Potter and the deathly hallows - part 1"],
-                "full": ["Harry Potter and the deathly hallows - part 1"],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:29213097",
-              "titles": {
-                "main": ["Harry Potter og dødsregalierne - del 2"],
-                "full": ["Harry Potter og dødsregalierne - del 2"],
-                "original": []
-              }
-            },
-            {
-              "workId": "work-of:870970-basis:28870671",
-              "titles": {
-                "main": ["Harry Potter and the deathly hallows - part 2"],
-                "full": ["Harry Potter and the deathly hallows - part 2"],
-                "original": []
-              }
-            }
-          ],
           "workYear": null,
           "genreAndForm": ["børnefilm"],
           "manifestations": {
@@ -10843,7 +10768,7 @@
           ],
           "creators": [{ "display": "Emily Herbert", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": ["biografier"],
           "manifestations": {
@@ -11145,7 +11070,7 @@
           ],
           "creators": [{ "display": "Joël Dicker", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": ["roman", "spænding", "romaner"],
           "manifestations": {
@@ -11721,7 +11646,7 @@
           ],
           "creators": [],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": ["litteraturanalyser", "analyser"],
           "manifestations": {
@@ -13341,7 +13266,7 @@
           "abstract": [],
           "creators": [{ "display": "David Colbert", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": [],
           "manifestations": {
@@ -18559,7 +18484,7 @@
             { "display": "John Seale", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": [],
           "manifestations": {
@@ -20167,7 +20092,7 @@
             { "display": "Roger Pratt", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": [],
           "manifestations": {
@@ -20850,7 +20775,7 @@
           ],
           "creators": [{ "display": "Michael Part", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": ["biografier"],
           "manifestations": {
@@ -20992,7 +20917,7 @@
           ],
           "creators": [{ "display": "TT Games", "__typename": "Corporation" }],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": [
             "spil for 1-2 spillere",
@@ -21240,7 +21165,7 @@
           ],
           "creators": [{ "display": "Leo Timmers", "__typename": "Person" }],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": { "year": 2017 },
           "genreAndForm": ["dyrefortællinger"],
           "manifestations": {
@@ -21689,7 +21614,7 @@
             { "display": "Roger Pratt", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": [],
           "manifestations": {
@@ -23139,7 +23064,7 @@
             { "display": "Michael Seresin", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": [],
           "manifestations": {
@@ -23840,7 +23765,7 @@
             { "display": "Lauren Weisberger", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": { "year": 2008 },
           "genreAndForm": ["roman", "chick lit"],
           "manifestations": {
@@ -24468,7 +24393,7 @@
             { "display": "Sławomir Idziak", "__typename": "Person" }
           ],
           "series": [],
-          "seriesMembers": [],
+
           "workYear": null,
           "genreAndForm": [],
           "manifestations": {
