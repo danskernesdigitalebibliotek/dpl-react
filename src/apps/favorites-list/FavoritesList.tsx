@@ -3,7 +3,7 @@ import EmptyList from "../../components/empty-list/empty-list";
 import usePager from "../../components/result-pager/use-pager";
 import { useGetList } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
-import { Pid } from "../../core/utils/types/ids";
+import { WorkId } from "../../core/utils/types/ids";
 import CardListItemAdapter from "../../components/card-item-list/card-list-item/card-list-item-adapter";
 import MaterialListItem from "../../components/card-item-list/MaterialListItem";
 import CardListItemSkeleton from "../../components/card-item-list/card-list-item/card-list-item-skeleton";
@@ -15,13 +15,13 @@ export interface FavoritesListProps {
 const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   const t = useText();
   const { data, isLoading } = useGetList("default");
-  const [displayedMaterials, setDisplayedMaterials] = useState<Pid[]>([]);
-  const [materials, setMaterials] = useState<Pid[]>([]);
+  const [displayedMaterials, setDisplayedMaterials] = useState<WorkId[]>([]);
+  const [materials, setMaterials] = useState<WorkId[]>([]);
   const { itemsShown, PagerComponent, page } = usePager({
     hitcount: materials.length,
     pageSize
   });
-  const { collections } = (data as { collections: Pid[] }) || [];
+  const { collections } = (data as { collections: WorkId[] }) || [];
 
   const lastItemRef = useRef<HTMLLIElement>(null);
 
@@ -71,15 +71,15 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
   const renderContent = () =>
     displayedMaterials.length > 0 ? (
       <ul className="content-list">
-        {displayedMaterials.map((pid, i) => {
+        {displayedMaterials.map((id, i) => {
           const isFirstNewItem = i === page * pageSize;
           return (
             <MaterialListItem
               className="content-list__item"
-              key={pid}
+              key={id}
               ref={isFirstNewItem ? lastItemRef : null}
             >
-              <CardListItemAdapter pid={pid} />
+              <CardListItemAdapter id={id} />
             </MaterialListItem>
           );
         })}

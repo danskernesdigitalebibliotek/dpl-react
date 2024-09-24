@@ -44,6 +44,9 @@ export interface CardListItemProps {
   item: Work;
   coverTint: CoverProps["tint"];
   resultNumber: number;
+  preferredId?: WorkId; // If this item is on the favorites list, there is a single
+  // preferred ID - it needs to match the favorite item ID from useGetList("default")
+  // call in FavoritesList.tsx component.
   dataCy?: string;
 }
 const CardListItem: React.FC<CardListItemProps> = ({
@@ -57,6 +60,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
   },
   coverTint,
   resultNumber,
+  preferredId,
   dataCy = "card-list-item"
 }) => {
   const searchTitleId = useId();
@@ -149,7 +153,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
           {showItem && (
             <ButtonFavourite
               title={fullTitle[0]}
-              id={workId}
+              id={preferredId || workId}
               addToListRequest={addToListRequest}
             />
           )}
