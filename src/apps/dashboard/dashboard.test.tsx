@@ -1461,6 +1461,7 @@ describe("Dashboard", () => {
     cy.getBySel("checkbox-select-all").first().click();
     // We need this silly wait in order to make sure that the checkboxes
     // have been rattached to the DOM after click.
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(1000);
     cy.get("[type=checkbox]").each((checkbox) => {
       cy.wrap(checkbox).should("be.checked");
