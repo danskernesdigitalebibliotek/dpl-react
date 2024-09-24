@@ -71,7 +71,7 @@ exports[`formatFacetTerms > should format facet terms 1`] = `
 exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
 [
   {
-    "name": "workTypes",
+    "name": "materialTypesGeneral",
     "values": [
       {
         "key": "",
