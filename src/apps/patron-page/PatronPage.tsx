@@ -107,7 +107,7 @@ const PatronPage: FC = () => {
             changePatron={changePatron}
             patron={patron}
             inLine={false}
-            showCheckboxes
+            showCheckboxes={["email", "phone"]}
           />
         )}
         {patron?.resident && <StatusSection />}

@@ -47,6 +47,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
     set(copyUser, key, newValue);
     setPatron(copyUser);
   };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -80,7 +81,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
           </h1>
           <form onSubmit={(e) => handleSubmit(e)} ref={formRef}>
             <ContactInfoSection
-              showCheckboxes={false}
+              showCheckboxes={["phone"]}
               isDouble
               inLine
               changePatron={changePatron}
