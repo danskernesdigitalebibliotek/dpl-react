@@ -1016,10 +1016,17 @@ export const DigitalArticle: Story = {
   }
 };
 
-export const InLargeSameSeriesAndIrregularFaustId: Story = {
+export const irregularFaustId1InLargeSameSeries: Story = {
   args: {
     ...Default.args,
     wid: "work-of:150086-netmusik:BIS-2067"
+  }
+};
+
+export const irregularFaustId2fairytale: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:800010-katalog:99122572002205763__1"
   }
 };
 

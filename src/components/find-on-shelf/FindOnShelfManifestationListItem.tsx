@@ -2,6 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { useText } from "../../core/utils/text";
 import { Manifestation } from "../../core/utils/types/entities";
+import { getFindOnShelfLocationText } from "./helper";
 
 export interface FindOnShelfManifestationListItemProps {
   shelfmark: Manifestation["shelfmark"];
@@ -11,6 +12,7 @@ export interface FindOnShelfManifestationListItemProps {
   title: string;
   publicationYear: string | null;
   numberAvailable: number;
+  author: string;
 }
 
 const FindOnShelfManifestationListItem: FC<
@@ -22,7 +24,8 @@ const FindOnShelfManifestationListItem: FC<
   sublocation,
   title,
   publicationYear,
-  numberAvailable
+  numberAvailable,
+  author
 }) => {
   const t = useText();
 
@@ -45,11 +48,14 @@ const FindOnShelfManifestationListItem: FC<
       </span>
       <span role="cell">
         {locationArray.length
-          ? locationArray.join(" · ")
+          ? getFindOnShelfLocationText(locationArray, author)
           : t("findOnShelfModalNoLocationSpecifiedText")}
       </span>
       <span className="find-on-shelf__item-count-text" role="cell">
-        {numberAvailable}
+        {numberAvailable}{" "}
+        <span className="hide-on-desktop">
+          {t("findOnShelfModalListItemCountText")}
+        </span>
       </span>
     </li>
   );

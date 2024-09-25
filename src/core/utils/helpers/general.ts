@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import dayjs from "dayjs";
-import { uniq } from "lodash";
+import { first, uniq } from "lodash";
 import { vi } from "vitest";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
@@ -21,6 +21,13 @@ import { ManifestationMaterialType } from "../types/material-type";
 import { store } from "../../store";
 import { constructModalId } from "./modal-helpers";
 import { formatCurrency } from "./currency";
+
+export const capitalizeFirstLetters = (str: string) => {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -47,6 +54,17 @@ export const flattenCreators = (creators: Work["creators"]) =>
     return creator.display;
   });
 
+export const flattenCreatorsLastNameFirst = (creators: Work["creators"]) =>
+  creators.map((creator) => {
+    return creator.nameSort;
+  });
+
+export const divideFirstNameByComma = (creatorString: string) => {
+  const parts = creatorString.split(" ");
+  parts[0] += ",";
+  return parts.join(" ");
+};
+
 const getCreatorsFromManifestations = (manifestations: Manifestation[]) => {
   const creators = manifestations.reduce<string[]>((acc: string[], curr) => {
     return [...acc, ...flattenCreators(curr.creators)];
@@ -55,13 +73,18 @@ const getCreatorsFromManifestations = (manifestations: Manifestation[]) => {
   return Array.from(new Set(creators)) as string[];
 };
 
-export const creatorsToString = (creators: string[], t: UseTextFunction) => {
+export const creatorsToString = (
+  creators: string[],
+  t: UseTextFunction
+): string => {
   if (creators.length > 1) {
     const firstTwo = creators.slice(0, 2);
     return `${firstTwo.join(", ")} ${t("etAlText")}`;
   }
-
-  return creators[0];
+  if (creators.length === 1) {
+    return first(creators) as string;
+  }
+  return "";
 };
 
 export const getCreatorTextFromManifestations = (
@@ -151,7 +174,7 @@ export const convertPostIdToFaustId = (postId: Pid) => {
   // in the last part after the colon, but it can also have a dash.
   // We are about to have clarified what the proper name of the element.
   // But for now we will call it faustId.
-  const matches = postId.match(/^[0-9]+-[a-z]+:([a-zA-Z0-9-]+)$/);
+  const matches = postId.match(/^[0-9]+-[a-z]+:([a-zA-Z0-9-_]+)$/);
   if (matches?.[1]) {
     return matches?.[1] as FaustId;
   }

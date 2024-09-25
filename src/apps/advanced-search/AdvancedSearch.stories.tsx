@@ -175,6 +175,10 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
       description: "Add row",
       control: { type: "text" }
     },
+    advancedSearchRemoveRowText: {
+      description: "Remove row",
+      control: { type: "text" }
+    },
     advancedSearchInputPlaceholderText: {
       description: "Advanced search input placeholder",
       control: { type: "text" }
@@ -349,6 +353,7 @@ export const Primary: Story = {
     advancedSearchIdentifierText: "Identifier",
     advancedSearchAcSourceText: "Source",
     advancedSearchAddRowText: "Add row",
+    advancedSearchRemoveRowText: "Remove row @inputNumber",
     advancedSearchInputPlaceholderText: "Search term",
     advancedSearchTitleText: "Advanced search",
     advancedSearchPreviewHeadlineText: "CQL search string",

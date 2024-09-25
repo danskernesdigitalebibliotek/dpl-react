@@ -7,7 +7,8 @@ export interface DisclosureControllableProps {
   showContent?: boolean;
   onClick?: () => void;
   cyData?: string;
-  className?: string;
+  detailsClassName?: string;
+  summaryClassName?: string;
   summary: ReactNode;
 }
 
@@ -18,7 +19,8 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
   children,
   showContent = false,
   cyData,
-  className,
+  detailsClassName,
+  summaryClassName,
   summary
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(showContent);
@@ -43,8 +45,9 @@ const DisclosureControllable: FC<DisclosureControllableProps> = ({
   const disclosureId = `disclosure-${id}`;
 
   return (
-    <div className={clsx("disclosure text-body-large", className)}>
+    <div className={clsx(detailsClassName)}>
       <div
+        className={clsx(summaryClassName)}
         data-cy={cyData}
         onClick={handleClick}
         onKeyDown={handleKeyDown}

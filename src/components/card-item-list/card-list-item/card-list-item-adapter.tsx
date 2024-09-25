@@ -2,16 +2,16 @@ import React, { FC } from "react";
 import { useGetSmallWorkQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../../core/utils/types/entities";
 import CardListItem from "./card-list-item";
-import { Pid } from "../../../core/utils/types/ids";
 import CardListItemSkeleton from "./card-list-item-skeleton";
+import { WorkId } from "../../../core/utils/types/ids";
 
 export interface CardListItemAdapterProps {
-  pid: Pid;
+  id: WorkId;
 }
 
-const CardListItemAdapter: FC<CardListItemAdapterProps> = ({ pid }) => {
+const CardListItemAdapter: FC<CardListItemAdapterProps> = ({ id }) => {
   const { data, isLoading } = useGetSmallWorkQuery({
-    id: pid
+    id
   });
 
   if (isLoading) return <CardListItemSkeleton />;
@@ -20,8 +20,9 @@ const CardListItemAdapter: FC<CardListItemAdapterProps> = ({ pid }) => {
     <div>
       {data && data.work && (
         <CardListItem
-          key={data.work?.workId}
+          key={id}
           item={data.work as Work}
+          preferredId={id}
           coverTint="100"
           resultNumber={0}
         />

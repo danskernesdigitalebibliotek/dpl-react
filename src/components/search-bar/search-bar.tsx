@@ -61,7 +61,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
         placeholder={t("inputPlaceholderText")}
         aria-label={t("inputPlaceholderText")}
         onKeyUp={(e) => {
-          if (e.key === "Enter" && qWithoutQuery === q && q.length > 0) {
+          // Only redirect if there is no selected item in autosuggest + query is longer than 2 characters
+          if (e.key === "Enter" && qWithoutQuery === q && q.length > 2) {
             redirectTo(redirectUrl);
           }
         }}
@@ -78,14 +79,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
         alt={t("searchHeaderIconAltText")}
         className="header__menu-search-icon"
         onClick={() => {
-          // Only redirect if there is no selected item in autosuggest
-          if (qWithoutQuery === q && q.length > 0) {
+          // Only redirect if there is no selected item in autosuggest + query is longer than 2 characters
+          if (qWithoutQuery === q && q.length > 2) {
             redirectTo(redirectUrl);
           }
         }}
         onKeyUp={(e) => {
-          // Only redirect if there is no selected item in autosuggest
-          if (e.key === "Enter" && qWithoutQuery === q && q.length > 0) {
+          // Only redirect if there is no selected item in autosuggest + query is longer than 2 characters
+          if (e.key === "Enter" && qWithoutQuery === q && q.length > 2) {
             redirectTo(redirectUrl);
           }
         }}
