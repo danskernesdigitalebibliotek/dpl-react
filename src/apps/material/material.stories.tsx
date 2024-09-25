@@ -932,7 +932,7 @@ export const HarryPotter: Story = {
   }
 };
 
-export const TurenGårTilRom: Story = {
+export const TurenGarTilRom: Story = {
   args: {
     ...Default.args,
     wid: "work-of:870970-basis:61991484"

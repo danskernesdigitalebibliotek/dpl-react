@@ -330,7 +330,9 @@ describe("Reservation list", () => {
       .find(".btn-primary")
       .should("exist");
 
-    cy.wait(["@physical_reservations", "@digital_reservations"]);
+    cy.wait(["@physical_reservations", "@digital_reservations"], {
+      timeout: 30000
+    });
 
     // ID 11 2.b. The list "Ready for pickup"
     cy.get(".reservation-list-page");

@@ -2,10 +2,16 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import ButtonFavourite, { ButtonFavouriteProps } from "./button-favourite";
 import { withUrls } from "../../core/utils/url";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 import { withText } from "../../core/utils/text";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
 const WrappedButtonFavourite = withText(withUrls(ButtonFavourite));
 
@@ -13,19 +19,24 @@ const meta: Meta<typeof WrappedButtonFavourite> = {
   title: "Components  / Button Favourite",
   component: WrappedButtonFavourite,
   argTypes: {
-    ...serviceUrlArgs,
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...serviceUrlArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     id: {
-      control: "text",
-      defaultValue: "work-of:870970-basis:45234401"
+      control: "text"
     },
     title: {
       control: {
         type: "text"
-      },
-      defaultValue: "title"
+      }
     }
+  },
+  args: {
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
+    id: "work-of:870970-basis:45234401",
+    title: "title"
   }
 };
 

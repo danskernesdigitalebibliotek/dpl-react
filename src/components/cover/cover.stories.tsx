@@ -3,17 +3,23 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Cover } from "./cover";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
 import { withUrls } from "../../core/utils/url";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-import globalTextArgs from "../../core/storybook/globalTextArgs";
-import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
+import globalTextArgs, {
+  argTypes as globalTextArgTypes
+} from "../../core/storybook/globalTextArgs";
+import globalConfigArgs, {
+  argTypes as globalConfigArgTypes
+} from "../../core/storybook/globalConfigArgs";
 
 const meta: Meta<typeof Cover> = {
   title: "Components / Cover",
   component: Cover,
   argTypes: {
-    ...serviceUrlArgs,
-    ...globalTextArgs,
-    ...globalConfigArgs,
+    ...serviceUrlArgTypes,
+    ...globalTextArgTypes,
+    ...globalConfigArgTypes,
     size: {
       name: "Image size",
       control: { type: "radio" }
@@ -36,6 +42,9 @@ const meta: Meta<typeof Cover> = {
     }
   },
   args: {
+    ...serviceUrlArgs,
+    ...globalTextArgs,
+    ...globalConfigArgs,
     size: "small",
     animate: true,
     tint: "120",

@@ -56,7 +56,7 @@ describe("Campaign", () => {
     });
 
     cy.visit(
-      "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
+      "/iframe.html?id=apps-search-result--primary&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
   });
 
