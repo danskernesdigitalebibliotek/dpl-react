@@ -242,14 +242,6 @@ fragment WorkSmall on Work {
   series {
     ...SeriesSimple
   }
-  # seriesMembers {
-  #   workId
-  #   titles {
-  #     main
-  #     full
-  #     original
-  #   }
-  # }
   workYear {
     year
   }
