@@ -71,9 +71,9 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
     manifestations: mockedManifestationData,
     workTitles: ["Title 1", "Title 2"],
     authors: [
-      { __typename: "Person", display: "author 1" },
-      { __typename: "Person", display: "author 2" },
-      { __typename: "Corporation", display: "author 3" }
+      { __typename: "Person", nameSort: "", display: "author 1" },
+      { __typename: "Person", nameSort: "", display: "author 2" },
+      { __typename: "Corporation", nameSort: "", display: "author 3" }
     ],
     selectedPeriodical: null,
     setSelectedPeriodical: () => {},

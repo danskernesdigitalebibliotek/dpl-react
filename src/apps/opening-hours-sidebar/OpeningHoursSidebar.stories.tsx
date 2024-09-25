@@ -1,13 +1,15 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
+import serviceUrlArgs, {
+  argTypes as serviceUrlArgTypes
+} from "../../core/storybook/serviceUrlArgs";
 import OpeningHoursSidebar from "./OpeningHoursSidebar.entry";
 
-export default {
+const meta: Meta<typeof OpeningHoursSidebar> = {
   title: "Apps / Opening Hour Sidebar",
   component: OpeningHoursSidebar,
   argTypes: {
-    ...serviceUrlArgs,
+    ...serviceUrlArgTypes,
     openingHoursSidebarTitleText: {
       name: "Today's opening hours",
       defaultValue: "Today's opening hours",
@@ -37,9 +39,23 @@ export default {
         options: ["small", "large"]
       }
     }
+  },
+  args: {
+    ...serviceUrlArgs,
+    openingHoursSidebarTitleText: "Today's opening hours",
+    openingHoursText: "Opening hours",
+    openingHoursSidebarLinkText: "Go to @branchName",
+    openingHoursSidebarBranchesConfig:
+      '[{"branch_id":"10","name":"Hovedbiblioteket","link":"/hovedbiblioteket","promoted":true},{"branch_id":"12","name":"Brønshøj Bibliotek","link":"/bronshoj-bibliotek","promoted":false},{"branch_id":"18","name":"Læsefilialen","link":"/laesefilialen","promoted":false},{"branch_id":"24","name":"Det virtuelle bibliotek","link":"/det-virtuelle-bibliotek","promoted":false}]',
+    size: "small"
   }
-} as ComponentMeta<typeof OpeningHoursSidebar>;
+};
 
-export const App: ComponentStory<typeof OpeningHoursSidebar> = (args) => (
-  <OpeningHoursSidebar {...args} />
-);
+export default meta;
+
+type Story = StoryObj<typeof OpeningHoursSidebar>;
+
+export const App: Story = {
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  render: (args) => <OpeningHoursSidebar {...args} />
+};
