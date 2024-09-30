@@ -3,6 +3,7 @@ import { useText } from "../../core/utils/text";
 import CheckBox from "../../components/checkbox/Checkbox";
 import TextInput from "../../components/atoms/input/TextInput";
 import { LocationFilter } from "./LocationFilter";
+import Textarea from "../../components/forms/textarea/Textarea";
 
 export type CqlSearchHeaderProps = {
   dataCy?: string;
@@ -59,19 +60,23 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   };
 
   return (
-    <>
+    <form className="advanced-search-cql-form">
       <h1
         className="text-header-h2 advanced-search__title capitalize-first"
         data-cy={dataCy}
       >
         {t("cqlSearchTitleText")}
       </h1>
-      <textarea
-        className="advanced-search__cql-input focus-styling__input"
+
+      <Textarea
+        id="cql"
+        name="name"
+        label="CQL"
+        className="advanced-search-cql-form__input focus-styling__input"
         cols={100}
         rows={5}
-        placeholder="e.g. title=snemand*"
-        data-cy={`${dataCy}-input`}
+        placeholder="e.g. 'harry potter'"
+        dataCy={`${dataCy}-input`}
         onChange={(e) => setCql(e.target.value)}
         defaultValue={initialCql}
       />
@@ -99,7 +104,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
         onChecked={handleOnShelfChange}
         label={t("advancedSearchFilterHoldingStatusText")}
       />
-    </>
+    </form>
   );
 };
 
