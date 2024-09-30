@@ -77,14 +77,14 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
       />
       <TextInput
         id="location"
-        label="Location"
+        label={t("advancedSearchFilterLocationText")}
         type="text"
         onChange={(location) => handleInputChange("location", location)}
         value={inputValues.location}
       />
       <TextInput
         id="sublocation"
-        label="Sublocation"
+        label={t("advancedSearchFilterSublocationText")}
         type="text"
         onChange={(sublocation) =>
           handleInputChange("sublocation", sublocation)

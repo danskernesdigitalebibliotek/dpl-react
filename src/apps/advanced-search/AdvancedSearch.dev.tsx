@@ -354,6 +354,16 @@ export default {
       name: "Advanced search filter - holding status",
       defaultValue: "Holding Status On Shelf",
       control: { type: "text" }
+    },
+    advancedSearchFilterLocationText: {
+      name: "Advanced search filter - location",
+      defaultValue: "Location",
+      control: { type: "text" }
+    },
+    advancedSearchFilterSublocationText: {
+      name: "Advanced search filter - sublocation",
+      defaultValue: "Sublocation",
+      control: { type: "text" }
     }
   }
 } as ComponentMeta<typeof AdvancedSearchEntry>;
