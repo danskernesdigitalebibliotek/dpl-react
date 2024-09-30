@@ -360,9 +360,19 @@ export default {
       defaultValue: "Location",
       control: { type: "text" }
     },
+    advancedSearchFilterLocationDescriptionText: {
+      name: "Advanced search filter - location description",
+      defaultValue: "Add a comma separated list for multiple locations",
+      control: { type: "text" }
+    },
     advancedSearchFilterSublocationText: {
       name: "Advanced search filter - sublocation",
       defaultValue: "Sublocation",
+      control: { type: "text" }
+    },
+    advancedSearchFilterSublocationDescriptionText: {
+      name: "Advanced search filter - sublocation description",
+      defaultValue: "Add a comma separated list for multiple sublocations",
       control: { type: "text" }
     }
   }
