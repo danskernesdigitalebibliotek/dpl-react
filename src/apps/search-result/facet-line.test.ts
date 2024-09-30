@@ -49,9 +49,7 @@ describe("The facet line", () => {
     }).as("Material list service");
 
     cy.visit("/iframe.html?id=apps-search-result--primary");
-    cy.wait(["@Availability", "@Cover service", "@Material list service"], {
-      timeout: 30000
-    });
+    cy.wait(["@Availability", "@Cover service", "@Material list service"]);
   });
 
   it("Renders facets with a single term as a button", () => {

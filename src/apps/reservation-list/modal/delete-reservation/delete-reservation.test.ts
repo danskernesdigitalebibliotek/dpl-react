@@ -192,7 +192,7 @@ describe("Delete reservation modal", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
-    cy.wait(["@get-reservations", "@get-manifestation"], { timeout: 10000 });
+    cy.wait(["@get-reservations", "@get-manifestation"]);
 
     cy.get(".list-reservation__about").find("button").click();
     cy.get(".modal-details__buttons").eq(0).find("button").click();
@@ -299,7 +299,7 @@ describe("Delete reservation modal", () => {
     );
 
     // Ensure that the UI has loaded and the reservations are visible.
-    cy.wait(["@get-reservations", "@get-manifestation"], { timeout: 10000 });
+    cy.wait(["@get-reservations", "@get-manifestation"]);
 
     // Click on the only reservation in the list to open the details modal.
     cy.get(".list-reservation__about").find("button").click();

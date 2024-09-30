@@ -51,9 +51,7 @@ describe("The Facet Browser", () => {
     }).as("Material list service");
 
     cy.visit("/iframe.html?id=apps-search-result--primary");
-    cy.wait(["@Availability", "@Cover service", "@Material list service"], {
-      timeout: 30000
-    });
+    cy.wait(["@Availability", "@Cover service", "@Material list service"]);
     cy.getBySel("facet-line-open-browser").click();
   });
 
@@ -200,9 +198,7 @@ describe("The Facet Browser", () => {
       })
       .as("Campaign service - full campaign");
 
-    cy.wait(["@Material list service"], {
-      timeout: 30000
-    });
+    cy.wait(["@Material list service"]);
 
     cy.visit("/iframe.html?id=apps-search-result--primary");
     cy.contains("button", "+ more filters").click();

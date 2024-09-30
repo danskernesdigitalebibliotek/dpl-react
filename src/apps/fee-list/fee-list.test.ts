@@ -43,7 +43,7 @@ describe("Fee list", () => {
 
   it("Fee list basics (physical loans)", () => {
     cy.visit("/iframe.html?path=/story/apps-fee-list--primary");
-    cy.wait(["@fees", "@digital_loans"], { timeout: 10000 });
+    cy.wait(["@fees", "@digital_loans"]);
 
     // Wait for element not in skeleton screen to prevent testing prematurely.
     cy.get(".status-label").should("be.visible");
@@ -186,7 +186,7 @@ describe("Fee list", () => {
       body: physicalLoansDataWithOverdue
     }).as("physical loans with overdue");
     cy.visit("/iframe.html?path=/story/apps-fee-list--primary");
-    cy.wait(["@digital_loans"], { timeout: 10000 });
+    cy.wait(["@digital_loans"]);
     cy.wait(["@physical loans with overdue"]);
 
     cy.getBySel("warning-bar").should("be.visible");
@@ -198,7 +198,7 @@ describe("Fee list", () => {
       body: physicalLoansDataNoOverdue
     }).as("physical_loans_no_overdue");
     cy.visit("/iframe.html?path=/story/apps-fee-list--primary");
-    cy.wait(["@digital_loans"], { timeout: 10000 });
+    cy.wait(["@digital_loans"]);
     cy.wait(["@physical_loans_no_overdue"]);
 
     cy.getBySel("warning-bar").should("not.exist");

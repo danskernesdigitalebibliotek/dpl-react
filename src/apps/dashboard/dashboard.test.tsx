@@ -1345,7 +1345,7 @@ describe("Dashboard", () => {
     ).as("renew");
 
     cy.visit("/iframe.html?id=apps-dashboard--primary&viewMode=story");
-    cy.wait(["@fees", "@loans", "@reservations"], { timeout: 10000 });
+    cy.wait(["@fees", "@loans", "@reservations"]);
   });
 
   it.skip("Dashboard general", () => {

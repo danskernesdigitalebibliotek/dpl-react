@@ -100,7 +100,7 @@ describe("Patron page", () => {
       }
     }).as("User");
     cy.visit("/iframe.html?path=/story/apps-patron-page--patron-page-entry");
-    cy.wait(["@LibraryProfile", "@Loans", "@User"], { timeout: 10000 });
+    cy.wait(["@LibraryProfile", "@Loans", "@User"]);
   });
 
   // TODO: Add fixture to make the test pass. Since ErrorBoundary handling was added,

@@ -367,16 +367,13 @@ describe("Reservation list pagination", () => {
     cy.visit(
       "/iframe.html?id=apps-reservation-list--reservation-list-entry&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
-    cy.wait(
-      [
-        "@physical_reservations",
-        "@digital_reservations",
-        "@product",
-        "@work",
-        "@user"
-      ],
-      { timeout: 30000 }
-    );
+    cy.wait([
+      "@physical_reservations",
+      "@digital_reservations",
+      "@product",
+      "@work",
+      "@user"
+    ]);
 
     // ID 11 2.b.iv more than "ready for pickup" 10 reservations the items paginate (here 2, because of config in cy.visit)
     cy.getBySel("list-reservation-container")

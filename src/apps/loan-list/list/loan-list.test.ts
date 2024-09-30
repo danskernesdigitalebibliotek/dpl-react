@@ -287,9 +287,7 @@ describe("Loan list", () => {
     ).as("renew");
 
     cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
-    cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"], {
-      timeout: 30000
-    });
+    cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"]);
   });
 
   // TODO: Fix this test
