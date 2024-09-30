@@ -7,7 +7,7 @@ import useGetCleanBranches from "../../core/utils/branches";
 import { Work } from "../../core/utils/types/entities";
 import {
   ComplexSearchWithPaginationQuery,
-  HoldingsStatus,
+  HoldingsStatusEnum,
   useComplexSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import usePager from "../../components/result-pager/use-pager";
@@ -69,7 +69,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     limit: pageSize,
     filters: {
       branchId: cleanBranches,
-      status: onShelf ? [HoldingsStatus.OnShelf] : [],
+      status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
       ...(locationFilter?.location && { location: locationFilter.location }),
       ...(locationFilter?.sublocation && {
         sublocation: locationFilter.sublocation

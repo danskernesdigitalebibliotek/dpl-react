@@ -157,10 +157,12 @@ const CardListItem: React.FC<CardListItemProps> = ({
               addToListRequest={addToListRequest}
             />
           )}
+          {/* TODO: Since the series has changed it structure and can have multiple members
+          we need to double check if we can only look at the first member entry. (firstItemInSeries.members[0]) */}
           {firstItemInSeries && (
             <HorizontalTermLine
               title={`${t("numberDescriptionText")} ${
-                firstItemInSeries.numberInSeries?.number
+                firstItemInSeries.members[0].numberInSeries ?? ""
               }`}
               subTitle={t("inSeriesText")}
               linkList={[

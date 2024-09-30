@@ -9,8 +9,82 @@
     "subscriptionType": null,
     "types": [
       {
+        "kind": "OBJECT",
+        "name": "AccessType",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "code",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "AccessTypeCodeEnum",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "display",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "AccessTypeCodeEnum",
+        "description": null,
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "ONLINE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PHYSICAL",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "UNKNOWN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "UNION",
-        "name": "Access",
+        "name": "AccessUnion",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -44,86 +118,6 @@
             "ofType": null
           }
         ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "AccessType",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "code",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "AccessTypeCode",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "display",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "AccessTypeCode",
-        "description": null,
-        "isOneOf": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "NOT_SPECIFIED",
-            "description": null,
-            "isDeprecated": true,
-            "deprecationReason": "No longer supported"
-          },
-          {
-            "name": "ONLINE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "PHYSICAL",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UNKNOWN",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
       },
       {
         "kind": "OBJECT",
@@ -184,7 +178,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "LinkStatus",
+                "name": "LinkStatusEnum",
                 "ofType": null
               }
             },
@@ -197,7 +191,7 @@
             "args": [],
             "type": {
               "kind": "ENUM",
-              "name": "AccessUrlType",
+              "name": "AccessUrlTypeEnum",
               "ofType": null
             },
             "isDeprecated": false,
@@ -227,7 +221,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "AccessUrlType",
+        "name": "AccessUrlTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -575,7 +569,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "ChildOrAdultCode",
+                "name": "ChildOrAdultCodeEnum",
                 "ofType": null
               }
             },
@@ -606,7 +600,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "ChildOrAdultCode",
+        "name": "ChildOrAdultCodeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -684,7 +678,7 @@
             "args": [],
             "type": {
               "kind": "ENUM",
-              "name": "EntryType",
+              "name": "EntryTypeEnum",
               "ofType": null
             },
             "isDeprecated": false,
@@ -802,7 +796,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "ComplexSearchFacets",
+        "name": "ComplexSearchFacetsEnum",
         "description": "The supported facet fields",
         "isOneOf": null,
         "fields": null,
@@ -1002,6 +996,12 @@
             "deprecationReason": null
           },
           {
+            "name": "SOURCE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "SPECIFICMATERIALTYPE",
             "description": null,
             "isDeprecated": false,
@@ -1036,7 +1036,55 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "ComplexSearchFilters",
+        "name": "ComplexSearchFacetsInput",
+        "description": "The facets to ask for",
+        "isOneOf": false,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "facetLimit",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "facets",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "ComplexSearchFacetsEnum",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ComplexSearchFiltersInput",
         "description": "Search Filters",
         "isOneOf": false,
         "fields": null,
@@ -1192,7 +1240,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "HoldingsStatus",
+                  "name": "HoldingsStatusEnum",
                   "ofType": null
                 }
               }
@@ -1281,54 +1329,6 @@
             "deprecationReason": null
           },
           {
-            "name": "solrExecutionDurationInMs",
-            "description": "Time for execution on solr",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": true,
-            "deprecationReason": "No longer supported"
-          },
-          {
-            "name": "solrFilter",
-            "description": "filter applied to the query",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": true,
-            "deprecationReason": "No longer supported"
-          },
-          {
-            "name": "solrQuery",
-            "description": "the query being executed",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": true,
-            "deprecationReason": "No longer supported"
-          },
-          {
-            "name": "tokenizerDurationInMs",
-            "description": "Time to tokenize query",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": true,
-            "deprecationReason": "No longer supported"
-          },
-          {
             "name": "works",
             "description": "The works matching the given search query. Use offset and limit for pagination.",
             "args": [
@@ -1340,7 +1340,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "PaginationLimit",
+                    "name": "PaginationLimitScalar",
                     "ofType": null
                   }
                 },
@@ -1375,7 +1375,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "Sort",
+                      "name": "SortInput",
                       "ofType": null
                     }
                   }
@@ -1505,7 +1505,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "ComplexSuggestionType",
+        "name": "ComplexSuggestionTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -1513,84 +1513,122 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "contributor",
+            "name": "CONTRIBUTORFUNCTION",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "contributorfunction",
+            "name": "CREATOR",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "creator",
+            "name": "CREATORCONTRIBUTOR",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "creatorcontributor",
+            "name": "CREATORCONTRIBUTORFUNCTION",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "creatorcontributorfunction",
+            "name": "CREATORFUNCTION",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "creatorfunction",
+            "name": "DEFAULT",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "default",
+            "name": "FICTIONALCHARACTER",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "fictionalcharacter",
+            "name": "HOSTPUBLICATION",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "hostpublication",
+            "name": "PUBLISHER",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "publisher",
+            "name": "SERIES",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "series",
+            "name": "SUBJECT",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "subject",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "title",
+            "name": "TITLE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Complexity",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "class",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -1792,7 +1830,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "CopyRequestStatus",
+                "name": "CopyRequestStatusEnum",
                 "ofType": null
               }
             },
@@ -1807,7 +1845,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "CopyRequestStatus",
+        "name": "CopyRequestStatusEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -2050,7 +2088,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubjectType",
+                "name": "SubjectTypeEnum",
                 "ofType": null
               }
             },
@@ -2074,12 +2112,12 @@
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Creator",
+            "name": "CreatorInterface",
             "ofType": null
           },
           {
             "kind": "INTERFACE",
-            "name": "Subject",
+            "name": "SubjectInterface",
             "ofType": null
           }
         ],
@@ -2184,7 +2222,7 @@
       },
       {
         "kind": "INTERFACE",
-        "name": "Creator",
+        "name": "CreatorInterface",
         "description": null,
         "isOneOf": null,
         "fields": [
@@ -2329,6 +2367,34 @@
         "fields": null,
         "inputFields": null,
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Debug",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "complexity",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Complexity",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -2551,7 +2617,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "EntryType",
+        "name": "EntryTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -2659,7 +2725,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "FacetField",
+        "name": "FacetFieldEnum",
         "description": "The supported facet fields",
         "isOneOf": null,
         "fields": null,
@@ -2667,115 +2733,121 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "accessTypes",
+            "name": "ACCESSTYPES",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "age",
+            "name": "AGE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "canAlwaysBeLoaned",
+            "name": "CANALWAYSBELOANED",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "childrenOrAdults",
+            "name": "CHILDRENORADULTS",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "creators",
+            "name": "CREATORS",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "dk5",
+            "name": "DK5",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "fictionNonfiction",
+            "name": "FICTIONALCHARACTERS",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "fictionalCharacters",
+            "name": "FICTIONNONFICTION",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "generalAudience",
+            "name": "GAMEPLATFORM",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "genreAndForm",
+            "name": "GENERALAUDIENCE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "let",
+            "name": "GENREANDFORM",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "libraryRecommendation",
+            "name": "LET",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "lix",
+            "name": "LIBRARYRECOMMENDATION",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "mainLanguages",
+            "name": "LIX",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "materialTypesGeneral",
+            "name": "MAINLANGUAGES",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "materialTypesSpecific",
+            "name": "MATERIALTYPESGENERAL",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "subjects",
+            "name": "MATERIALTYPESSPECIFIC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "workTypes",
+            "name": "SUBJECTS",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "year",
+            "name": "WORKTYPES",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "YEAR",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -2799,6 +2871,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": "The enum type of the facet.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "FacetFieldEnum",
                 "ofType": null
               }
             },
@@ -2923,7 +3011,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "FictionNonfictionCode",
+                "name": "FictionNonfictionCodeEnum",
                 "ofType": null
               }
             },
@@ -2954,7 +3042,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "FictionNonfictionCode",
+        "name": "FictionNonfictionCodeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -3008,7 +3096,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "GeneralMaterialTypeCode",
+                "name": "GeneralMaterialTypeCodeEnum",
                 "ofType": null
               }
             },
@@ -3039,7 +3127,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "GeneralMaterialTypeCode",
+        "name": "GeneralMaterialTypeCodeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -3141,7 +3229,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "HoldingsStatus",
+        "name": "HoldingsStatusEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -3149,13 +3237,13 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "OnLoan",
+            "name": "ONLOAN",
             "description": "Holding is on loan",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "OnShelf",
+            "name": "ONSHELF",
             "description": "Holding is physically available at the branch",
             "isDeprecated": false,
             "deprecationReason": null
@@ -3350,7 +3438,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "IdentifierType",
+                "name": "IdentifierTypeEnum",
                 "ofType": null
               }
             },
@@ -3381,7 +3469,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "IdentifierType",
+        "name": "IdentifierTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -3601,7 +3689,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "InfomediaError",
+        "name": "InfomediaErrorEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -3695,7 +3783,7 @@
             "args": [],
             "type": {
               "kind": "ENUM",
-              "name": "InfomediaError",
+              "name": "InfomediaErrorEnum",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3775,8 +3863,152 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "ItemIdResponse",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "itemOrderEntity",
+            "description": "ItemId response object.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ItemOrderEntity",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "message",
+            "description": "Message field in case of an error.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ItemOrderEntity",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "itemId",
+            "description": "Item ID, the same value that was queried.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "itemOrderKey",
+            "description": "Key for the row in the database, can be ignored as it's only relevant for ORS.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orderId",
+            "description": "Order ID associated with the item ID.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "requesterId",
+            "description": "Agency ID of the borrower of the material.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "responderId",
+            "description": "Agency ID of the lender of the material.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "timestamp",
+            "description": "Timestamp of when the row was created in the database.\nExample: \"2024-09-09T07:32:24.081+00:00\"",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
-        "name": "KidRecommenderTags",
+        "name": "KidRecommenderTagsInput",
         "description": null,
         "isOneOf": false,
         "fields": null,
@@ -3856,7 +4088,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "LanguageCode",
+        "name": "LanguageCodeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -3864,13 +4096,13 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "da",
+            "name": "DA",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "en",
+            "name": "EN",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -4129,7 +4361,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "LinkCheckStatus",
+                "name": "LinkCheckStatusEnum",
                 "ofType": null
               }
             },
@@ -4217,7 +4449,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "LinkCheckStatus",
+        "name": "LinkCheckStatusEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -4253,7 +4485,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "LinkStatus",
+        "name": "LinkStatusEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -4285,6 +4517,42 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LocalSuggestResponse",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "result",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Suggestion",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -4332,7 +4600,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "UNION",
-                    "name": "Access",
+                    "name": "AccessUnion",
                     "ofType": null
                   }
                 }
@@ -4432,7 +4700,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INTERFACE",
-                    "name": "Creator",
+                    "name": "CreatorInterface",
                     "ofType": null
                   }
                 }
@@ -4496,7 +4764,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INTERFACE",
-                    "name": "Creator",
+                    "name": "CreatorInterface",
                     "ofType": null
                   }
                 }
@@ -4730,40 +4998,12 @@
             "description": "Physical description  of this manifestation like extent (pages/minutes), illustrations etc.",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "PhysicalUnitDescription",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "PhysicalUnitDescription",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "physicalDescriptions",
-            "description": "Physical description of this manifestation like extent (pages/minutes), illustrations etc.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "PhysicalDescription",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use 'physicalDescription' instead"
           },
           {
             "name": "pid",
@@ -4990,18 +5230,6 @@
             "deprecationReason": null
           },
           {
-            "name": "universe",
-            "description": "Universe for this manifestation",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Universe",
-              "ofType": null
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use 'universes' instead"
-          },
-          {
             "name": "universes",
             "description": "Universes for this manifestation",
             "args": [],
@@ -5052,7 +5280,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "WorkType",
+                    "name": "WorkTypeEnum",
                     "ofType": null
                   }
                 }
@@ -5148,7 +5376,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INTERFACE",
-                    "name": "Creator",
+                    "name": "CreatorInterface",
                     "ofType": null
                   }
                 }
@@ -5205,7 +5433,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INTERFACE",
-                  "name": "Subject",
+                  "name": "SubjectInterface",
                   "ofType": null
                 }
               }
@@ -5237,7 +5465,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "ManifestationPartType",
+        "name": "ManifestationPartTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -5322,7 +5550,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "ManifestationPartType",
+                "name": "ManifestationPartTypeEnum",
                 "ofType": null
               }
             },
@@ -5702,22 +5930,6 @@
         "isOneOf": null,
         "fields": [
           {
-            "name": "general",
-            "description": "The general type of material of the manifestation based on a grouping of bibliotek.dk material types, e.g. bøger, lydbøger etc. \n@TODO - this on is deprecated pr. 1/2 '24",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use 'materialTypeGenerel' instead"
-          },
-          {
             "name": "materialTypeGeneral",
             "description": "jed 1.1 - the general materialtype",
             "args": [],
@@ -5748,22 +5960,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "specific",
-            "description": "The type of material of the manifestation based on bibliotek.dk types\n@TODO - this on is deprecated pr. 1/2 '24",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use 'materialtTypeSpecific' instead"
           }
         ],
         "inputFields": null,
@@ -5862,7 +6058,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubjectType",
+                "name": "SubjectTypeEnum",
                 "ofType": null
               }
             },
@@ -5874,7 +6070,7 @@
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Subject",
+            "name": "SubjectInterface",
             "ofType": null
           }
         ],
@@ -5883,7 +6079,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "MoodKidsRecommendFilters",
+        "name": "MoodKidsRecommendFiltersInput",
         "description": null,
         "isOneOf": false,
         "fields": null,
@@ -5913,7 +6109,7 @@
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "FictionNonfictionCode",
+              "name": "FictionNonfictionCodeEnum",
               "ofType": null
             },
             "defaultValue": null,
@@ -5987,6 +6183,540 @@
       },
       {
         "kind": "OBJECT",
+        "name": "MoodQueries",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "moodRecommendKids",
+            "description": null,
+            "args": [
+              {
+                "name": "dislikes",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "filters",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "MoodKidsRecommendFiltersInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "tags",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "KidRecommenderTagsInput",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "work",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MoodRecommendKidsResponse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "moodSearch",
+            "description": null,
+            "args": [
+              {
+                "name": "field",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "MoodSearchFieldValuesEnum",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "q",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MoodSearchResponse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "moodSearchKids",
+            "description": null,
+            "args": [
+              {
+                "name": "field",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "MoodSearchFieldValuesEnum",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "q",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MoodSearchKidsResponse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "moodSuggest",
+            "description": null,
+            "args": [
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "q",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MoodSuggestResponse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "moodTagRecommend",
+            "description": null,
+            "args": [
+              {
+                "name": "hasCover",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "minus",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "plus",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "tags",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "String",
+                        "ofType": null
+                      }
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "MoodTagRecommendResponse",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "moodWorkRecommend",
+            "description": null,
+            "args": [
+              {
+                "name": "dislikes",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "hasCover",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "likes",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "String",
+                        "ofType": null
+                      }
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "maxAuthorRecommendations",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "threshold",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "MoodTagRecommendResponse",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "MoodRecommendKidsResponse",
         "description": "The reponse from moodrecommenkids",
         "isOneOf": null,
@@ -6003,7 +6733,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "PaginationLimit",
+                    "name": "PaginationLimitScalar",
                     "ofType": null
                   }
                 },
@@ -6056,7 +6786,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "MoodSearchFieldValues",
+        "name": "MoodSearchFieldValuesEnum",
         "description": "Supported fields for moodsearch request",
         "isOneOf": null,
         "fields": null,
@@ -6114,7 +6844,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "PaginationLimit",
+                    "name": "PaginationLimitScalar",
                     "ofType": null
                   }
                 },
@@ -6183,7 +6913,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "PaginationLimit",
+                    "name": "PaginationLimitScalar",
                     "ofType": null
                   }
                 },
@@ -6236,7 +6966,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "MoodSuggest",
+        "name": "MoodSuggestEnum",
         "description": "Type of moodSuggest response",
         "isOneOf": null,
         "fields": null,
@@ -6244,24 +6974,80 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "creator",
+            "name": "CREATOR",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "tag",
+            "name": "TAG",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "title",
+            "name": "TITLE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MoodSuggestItem",
+        "description": "MoodSuggest item",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "term",
+            "description": "Suggestion",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": "The type of suggestion title/creator/tag",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "MoodSuggestEnum",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "work",
+            "description": "A work associated with the suggestion",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Work",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -6272,7 +7058,7 @@
         "fields": [
           {
             "name": "response",
-            "description": "Response is an array of moodSuggestResponse",
+            "description": "Response is an array of MoodSuggestResponse",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -6285,7 +7071,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "moodSuggestResponse",
+                    "name": "MoodSuggestItem",
                     "ofType": null
                   }
                 }
@@ -6402,51 +7188,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "submitPeriodicaArticleOrder",
-            "description": null,
-            "args": [
-              {
-                "name": "dryRun",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "input",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "PeriodicaArticleOrder",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "PeriodicaArticleOrderResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use 'Elba.placeCopyRequest' instead"
           }
         ],
         "inputFields": null,
@@ -6509,7 +7250,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubjectType",
+                "name": "SubjectTypeEnum",
                 "ofType": null
               }
             },
@@ -6521,7 +7262,7 @@
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Subject",
+            "name": "SubjectInterface",
             "ofType": null
           }
         ],
@@ -6579,7 +7320,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "NoteType",
+                "name": "NoteTypeEnum",
                 "ofType": null
               }
             },
@@ -6594,7 +7335,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "NoteType",
+        "name": "NoteTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -6695,56 +7436,8 @@
         "possibleTypes": null
       },
       {
-        "kind": "OBJECT",
-        "name": "NumberInSeries",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "display",
-            "description": "The number in the series as text, quoted form the publication, e.g. 'Vol. IX'",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "number",
-            "description": "The number in the series as integer",
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "ENUM",
-        "name": "OrderType",
+        "name": "OrderTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -6792,6 +7485,51 @@
       },
       {
         "kind": "OBJECT",
+        "name": "OrsQuery",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "itemOrder",
+            "description": "Method to retrieve sender and receiver information from ORS based on an itemId.",
+            "args": [
+              {
+                "name": "itemId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ItemIdResponse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "PEGI",
         "description": null,
         "isOneOf": null,
@@ -6828,217 +7566,13 @@
       },
       {
         "kind": "SCALAR",
-        "name": "PaginationLimit",
+        "name": "PaginationLimitScalar",
         "description": "An integer in the range from 1 to 100",
         "isOneOf": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "PeriodicaArticleOrder",
-        "description": null,
-        "isOneOf": false,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "authorOfComponent",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pagination",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pickUpBranch",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pid",
-            "description": "The pid of an article or periodica",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "publicationDateOfComponent",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "titleOfComponent",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "userMail",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "userName",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "volume",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "PeriodicaArticleOrderResponse",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "status",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "PeriodicaArticleOrderStatus",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "PeriodicaArticleOrderStatus",
-        "description": null,
-        "isOneOf": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "ERROR_AGENCY_NOT_SUBSCRIBED",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ERROR_INVALID_PICKUP_BRANCH",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ERROR_NO_NAME_OR_EMAIL",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ERROR_PID_NOT_RESERVABLE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ERROR_UNAUTHORIZED_USER",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "OK",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
         "possibleTypes": null
       },
       {
@@ -7220,7 +7754,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubjectType",
+                "name": "SubjectTypeEnum",
                 "ofType": null
               }
             },
@@ -7232,12 +7766,12 @@
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Creator",
+            "name": "CreatorInterface",
             "ofType": null
           },
           {
             "kind": "INTERFACE",
-            "name": "Subject",
+            "name": "SubjectInterface",
             "ofType": null
           }
         ],
@@ -7246,7 +7780,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "PhysicalDescription",
+        "name": "PhysicalUnitDescription",
         "description": null,
         "isOneOf": null,
         "fields": [
@@ -7263,156 +7797,8 @@
             "deprecationReason": null
           },
           {
-            "name": "additionalDescription",
-            "description": "Additional physical description of the manifestation (e.g illustrations etc)",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "extent",
-            "description": "Extent of the manifestation like pages and number of items",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "numberOfPages",
-            "description": "Number of pages of the manifestation as number",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "numberOfUnits",
-            "description": "Number of units, like 3 cassettes, or 1 score etc.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "playingTime",
-            "description": "The playing time of the manifestation (e.g 2 hours 5 minutes)",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "requirements",
-            "description": "The necessary equipment to use the material",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "size",
-            "description": "Size of the manifestation",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "summary",
-            "description": "A summary of the physical description of this manifestation like extent (pages/minutes), illustrations etc.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "technicalInformation",
-            "description": "Technical information about the manifestation (e.g blu-ray disc)",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "textVsIllustrations",
-            "description": "Ratio of text vs. illustration from 1-5 as a number, where 1 means no illustrations and 5 means illustrations on all pages",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "PhysicalUnitDescription",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "accompanyingMaterial",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "materialUnits",
-            "description": null,
+            "description": "List of units contained within the material",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -7432,7 +7818,7 @@
           },
           {
             "name": "numberOfPages",
-            "description": null,
+            "description": "Number of pages of the manifestation as number",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -7444,7 +7830,7 @@
           },
           {
             "name": "summaryFull",
-            "description": null,
+            "description": "A summary of the physical description of this manifestation like extent (pages/minutes), illustrations etc.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -7671,7 +8057,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "complexSearchFacets",
+                  "name": "ComplexSearchFacetsInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -7683,7 +8069,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "ComplexSearchFilters",
+                  "name": "ComplexSearchFiltersInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -7731,7 +8117,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "ComplexSuggestionType",
+                    "name": "ComplexSuggestionTypeEnum",
                     "ofType": null
                   }
                 },
@@ -7748,6 +8134,18 @@
                 "name": "ComplexSuggestResponse",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "debug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Debug",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7856,7 +8254,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "SuggestionType",
+                      "name": "SuggestionTypeEnum",
                       "ofType": null
                     }
                   }
@@ -7871,7 +8269,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "localSuggestResponse",
+                "name": "LocalSuggestResponse",
                 "ofType": null
               }
             },
@@ -7985,7 +8383,23 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "moodQueries",
+                "name": "MoodQueries",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "OrsQuery",
                 "ofType": null
               }
             },
@@ -8217,7 +8631,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "SearchFilters",
+                  "name": "SearchFiltersInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -8232,7 +8646,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "SearchQuery",
+                    "name": "SearchQueryInput",
                     "ofType": null
                   }
                 },
@@ -8261,6 +8675,35 @@
                 "name": "SearchResponse",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "series",
+            "description": null,
+            "args": [
+              {
+                "name": "seriesId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Series",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -8302,7 +8745,7 @@
                 "description": "suggest type to include in result",
                 "type": {
                   "kind": "ENUM",
-                  "name": "SuggestionType",
+                  "name": "SuggestionTypeEnum",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -8320,7 +8763,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "SuggestionType",
+                      "name": "SuggestionTypeEnum",
                       "ofType": null
                     }
                   }
@@ -8334,7 +8777,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "WorkType",
+                  "name": "WorkTypeEnum",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -8350,6 +8793,43 @@
                 "name": "SuggestResponse",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "universe",
+            "description": null,
+            "args": [
+              {
+                "name": "key",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "universeId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Universe",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -8387,7 +8867,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "LanguageCode",
+                  "name": "LanguageCodeEnum",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -8476,7 +8956,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "LanguageCode",
+                  "name": "LanguageCodeEnum",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -9442,7 +9922,7 @@
             "args": [],
             "type": {
               "kind": "ENUM",
-              "name": "ReviewElementType",
+              "name": "ReviewElementTypeEnum",
               "ofType": null
             },
             "isDeprecated": false,
@@ -9456,7 +9936,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "ReviewElementType",
+        "name": "ReviewElementTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -9567,7 +10047,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SchoolUseCode",
+                "name": "SchoolUseCodeEnum",
                 "ofType": null
               }
             },
@@ -9598,7 +10078,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "SchoolUseCode",
+        "name": "SchoolUseCodeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -9622,7 +10102,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SearchFilters",
+        "name": "SearchFiltersInput",
         "description": "Search Filters",
         "isOneOf": false,
         "fields": null,
@@ -10038,7 +10518,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "HoldingsStatus",
+                  "name": "HoldingsStatusEnum",
                   "ofType": null
                 }
               }
@@ -10134,7 +10614,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SearchQuery",
+        "name": "SearchQueryInput",
         "description": "The supported fields to query",
         "isOneOf": false,
         "fields": null,
@@ -10253,7 +10733,7 @@
                       "name": null,
                       "ofType": {
                         "kind": "ENUM",
-                        "name": "FacetField",
+                        "name": "FacetFieldEnum",
                         "ofType": null
                       }
                     }
@@ -10349,7 +10829,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "PaginationLimit",
+                    "name": "PaginationLimitScalar",
                     "ofType": null
                   }
                 },
@@ -10605,15 +11085,15 @@
           },
           {
             "name": "numberInSeries",
-            "description": "The number in the series as text qoutation and a number",
+            "description": "The number in the series as text qoutation",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "NumberInSeries",
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
-            "isDeprecated": true,
-            "deprecationReason": "field 'NumberInSeries.number' is removed and only String value of 'NumberInSeries.display' is returned"
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "parallelTitles",
@@ -10658,6 +11138,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "seriesId",
+            "description": "Identifier for the series",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10764,7 +11256,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubjectType",
+                "name": "SubjectTypeEnum",
                 "ofType": null
               }
             },
@@ -10776,7 +11268,7 @@
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Subject",
+            "name": "SubjectInterface",
             "ofType": null
           }
         ],
@@ -10825,7 +11317,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "Sort",
+        "name": "SortInput",
         "description": null,
         "isOneOf": false,
         "fields": null,
@@ -10854,7 +11346,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SortOrder",
+                "name": "SortOrderEnum",
                 "ofType": null
               }
             },
@@ -10869,7 +11361,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "SortOrder",
+        "name": "SortOrderEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -10887,18 +11379,6 @@
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "asc",
-            "description": null,
-            "isDeprecated": true,
-            "deprecationReason": "No longer supported"
-          },
-          {
-            "name": "desc",
-            "description": null,
-            "isDeprecated": true,
-            "deprecationReason": "No longer supported"
           }
         ],
         "possibleTypes": null
@@ -10959,8 +11439,68 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "SubjectContainer",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "all",
+            "description": "All subjects",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INTERFACE",
+                    "name": "SubjectInterface",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "dbcVerified",
+            "description": "Only DBC verified subjects",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INTERFACE",
+                    "name": "SubjectInterface",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INTERFACE",
-        "name": "Subject",
+        "name": "SubjectInterface",
         "description": null,
         "isOneOf": null,
         "fields": [
@@ -11013,7 +11553,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubjectType",
+                "name": "SubjectTypeEnum",
                 "ofType": null
               }
             },
@@ -11066,66 +11606,6 @@
             "ofType": null
           }
         ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SubjectContainer",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "all",
-            "description": "All subjects",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INTERFACE",
-                    "name": "Subject",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "dbcVerified",
-            "description": "Only DBC verified subjects",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INTERFACE",
-                    "name": "Subject",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
       },
       {
         "kind": "OBJECT",
@@ -11182,7 +11662,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubjectType",
+                "name": "SubjectTypeEnum",
                 "ofType": null
               }
             },
@@ -11194,7 +11674,7 @@
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Subject",
+            "name": "SubjectInterface",
             "ofType": null
           }
         ],
@@ -11203,7 +11683,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "SubjectType",
+        "name": "SubjectTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -11424,7 +11904,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubjectType",
+                "name": "SubjectTypeEnum",
                 "ofType": null
               }
             },
@@ -11436,7 +11916,7 @@
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Subject",
+            "name": "SubjectInterface",
             "ofType": null
           }
         ],
@@ -11518,7 +11998,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubmitOrderStatus",
+                "name": "SubmitOrderStatusEnum",
                 "ofType": null
               }
             },
@@ -11603,7 +12083,7 @@
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "OrderType",
+              "name": "OrderTypeEnum",
               "ofType": null
             },
             "defaultValue": null,
@@ -11718,7 +12198,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "SubmitOrderUserParameters",
+                "name": "SubmitOrderUserParametersInput",
                 "ofType": null
               }
             },
@@ -11745,7 +12225,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "SubmitOrderStatus",
+        "name": "SubmitOrderStatusEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -11865,7 +12345,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SubmitOrderUserParameters",
+        "name": "SubmitOrderUserParametersInput",
         "description": null,
         "isOneOf": false,
         "fields": null,
@@ -12074,7 +12554,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SuggestionType",
+                "name": "SuggestionTypeEnum",
                 "ofType": null
               }
             },
@@ -12101,7 +12581,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "SuggestionType",
+        "name": "SuggestionTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -12262,7 +12742,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "SubjectType",
+                "name": "SubjectTypeEnum",
                 "ofType": null
               }
             },
@@ -12274,7 +12754,7 @@
         "interfaces": [
           {
             "kind": "INTERFACE",
-            "name": "Subject",
+            "name": "SubjectInterface",
             "ofType": null
           }
         ],
@@ -12533,7 +13013,7 @@
         "fields": [
           {
             "name": "additionalDescription",
-            "description": null,
+            "description": "Other physical description, eg. illustrations, color or b/w, mono/stereo, rpm",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12545,7 +13025,7 @@
           },
           {
             "name": "extent",
-            "description": null,
+            "description": "Number of pages, tab (books, articles etc.) or playingtime (cd, dvd etc.)",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12557,7 +13037,7 @@
           },
           {
             "name": "numberAndType",
-            "description": null,
+            "description": "Technical formats, e.g. Playstation 4, blu-ray",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12569,7 +13049,7 @@
           },
           {
             "name": "size",
-            "description": null,
+            "description": "Size of the material unit",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12581,7 +13061,7 @@
           },
           {
             "name": "summary",
-            "description": null,
+            "description": "Assemblance of the data from all the other properties, separated by a comma",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -12597,7 +13077,7 @@
           },
           {
             "name": "technicalInformation",
-            "description": null,
+            "description": "Technical formats, e.g. Playstation 4, blu-ray",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -12672,7 +13152,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "WorkType",
+                  "name": "WorkTypeEnum",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -12709,13 +13189,9 @@
             "description": "A key that identifies a universe.",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -12753,7 +13229,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "WorkType",
+                  "name": "WorkTypeEnum",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -12798,6 +13274,18 @@
             "deprecationReason": null
           },
           {
+            "name": "universeId",
+            "description": "An id that identifies a universe.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "workTypes",
             "description": "work types that are in this universe",
             "args": [],
@@ -12812,7 +13300,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "WorkType",
+                    "name": "WorkTypeEnum",
                     "ofType": null
                   }
                 }
@@ -12854,7 +13342,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "WorkType",
+                  "name": "WorkTypeEnum",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -12889,28 +13377,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "UNION",
-        "name": "UniverseContent",
-        "description": null,
-        "isOneOf": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "Series",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Work",
-            "ofType": null
-          }
-        ]
-      },
-      {
         "kind": "OBJECT",
         "name": "UniverseContentResult",
         "description": null,
@@ -12931,7 +13397,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "UNION",
-                    "name": "UniverseContent",
+                    "name": "UniverseContentUnion",
                     "ofType": null
                   }
                 }
@@ -12961,6 +13427,28 @@
         "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
+      },
+      {
+        "kind": "UNION",
+        "name": "UniverseContentUnion",
+        "description": null,
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "Series",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Work",
+            "ofType": null
+          }
+        ]
       },
       {
         "kind": "OBJECT",
@@ -13003,7 +13491,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INTERFACE",
-                    "name": "Creator",
+                    "name": "CreatorInterface",
                     "ofType": null
                   }
                 }
@@ -13177,30 +13665,6 @@
             "deprecationReason": null
           },
           {
-            "name": "seriesMembers",
-            "description": "Members of a series that this work is part of",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Work",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use 'Work.series.members' instead"
-          },
-          {
             "name": "subjects",
             "description": "Subjects for this work",
             "args": [],
@@ -13231,18 +13695,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "universe",
-            "description": "Literary/movie universe this work is part of, e.g. Wizarding World, Marvel Universe",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Universe",
-              "ofType": null
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use 'universes' instead"
           },
           {
             "name": "universes",
@@ -13299,7 +13751,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "WorkType",
+                    "name": "WorkTypeEnum",
                     "ofType": null
                   }
                 }
@@ -13504,7 +13956,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "WorkType",
+        "name": "WorkTypeEnum",
         "description": null,
         "isOneOf": null,
         "fields": null,
@@ -14523,684 +14975,6 @@
             "deprecationReason": null
           }
         ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "complexSearchFacets",
-        "description": "The facets to ask for",
-        "isOneOf": false,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "facetLimit",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "facets",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "ENUM",
-                    "name": "ComplexSearchFacets",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "localSuggestResponse",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "result",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Suggestion",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "moodQueries",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "moodRecommendKids",
-            "description": null,
-            "args": [
-              {
-                "name": "dislikes",
-                "description": null,
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "filters",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "MoodKidsRecommendFilters",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "limit",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "offset",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "tags",
-                "description": null,
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "KidRecommenderTags",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "work",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MoodRecommendKidsResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "moodSearch",
-            "description": null,
-            "args": [
-              {
-                "name": "field",
-                "description": null,
-                "type": {
-                  "kind": "ENUM",
-                  "name": "MoodSearchFieldValues",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "limit",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "offset",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "q",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MoodSearchResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "moodSearchKids",
-            "description": null,
-            "args": [
-              {
-                "name": "field",
-                "description": null,
-                "type": {
-                  "kind": "ENUM",
-                  "name": "MoodSearchFieldValues",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "limit",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "offset",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "q",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MoodSearchKidsResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "moodSuggest",
-            "description": null,
-            "args": [
-              {
-                "name": "limit",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "q",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MoodSuggestResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "moodTagRecommend",
-            "description": null,
-            "args": [
-              {
-                "name": "hasCover",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "limit",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "minus",
-                "description": null,
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "plus",
-                "description": null,
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "tags",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "SCALAR",
-                        "name": "String",
-                        "ofType": null
-                      }
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "MoodTagRecommendResponse",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "moodWorkRecommend",
-            "description": null,
-            "args": [
-              {
-                "name": "dislikes",
-                "description": null,
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "SCALAR",
-                      "name": "String",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "hasCover",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "likes",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "SCALAR",
-                        "name": "String",
-                        "ofType": null
-                      }
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "limit",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "maxAuthorRecommendations",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "offset",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "threshold",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "MoodTagRecommendResponse",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "moodSuggestResponse",
-        "description": "Response type for moodSuggest",
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "term",
-            "description": "Suggestion",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "type",
-            "description": "The type of suggestion title/creator/tag",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "MoodSuggest",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "work",
-            "description": "A work associated with the suggestion",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Work",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
         "possibleTypes": null
       }
     ],

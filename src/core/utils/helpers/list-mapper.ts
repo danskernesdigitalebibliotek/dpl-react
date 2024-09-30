@@ -14,18 +14,14 @@ function getYearFromDataString(date: string) {
   return new Date(date).getFullYear();
 }
 
-function getSeriesString(
-  series: {
-    title: string;
-    numberInSeries?: {
-      number?: Array<number> | null;
-    } | null;
-  }[]
-) {
+function getSeriesString(series: ManifestationBasicDetailsFragment["series"]) {
+  // TODO: Since the series has changed it structure and can have multiple members
+  // we need to double check if we can only look at the first member entry.
   return series
-    .map(({ title, numberInSeries }) => {
-      if (numberInSeries && numberInSeries.number) {
-        return `${title} ${numberInSeries.number?.[0]}`;
+    .map(({ title, members }) => {
+      if (members[0].numberInSeries) {
+        const number = members[0].numberInSeries;
+        return `${title} ${number}`;
       }
       return title;
     })
@@ -164,7 +160,13 @@ export const mapManifestationToBasicDetailsType = (
     title: fullText,
     year,
     description,
-    series: series && series.length > 0 ? getSeriesString(series) : "",
+    series:
+      series &&
+      series.length > 0 &&
+      series[0].members &&
+      series[0].members.length > 0
+        ? getSeriesString(series)
+        : "",
     materialType: materialTypes
       ? materialTypes[0].materialTypeSpecific.display
       : undefined

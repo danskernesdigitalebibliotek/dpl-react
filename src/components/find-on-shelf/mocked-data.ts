@@ -1,6 +1,6 @@
 import {
-  AccessTypeCode,
-  FictionNonfictionCode
+  AccessTypeCodeEnum,
+  FictionNonfictionCodeEnum
 } from "../../core/dbc-gateway/generated/graphql";
 import { Manifestation } from "../../core/utils/types/entities";
 
@@ -15,7 +15,7 @@ export const mockedManifestationData: Manifestation[] = [
     },
     fictionNonfiction: {
       display: "SKOENLITTERATUR",
-      code: FictionNonfictionCode.Fiction
+      code: FictionNonfictionCodeEnum.Fiction
     },
     materialTypes: [
       {
@@ -68,15 +68,13 @@ export const mockedManifestationData: Manifestation[] = [
       ages: []
     },
     notes: [],
-    physicalDescriptions: [
-      {
-        numberOfPages: null,
-        summary: ""
-      }
-    ],
+    physicalDescription: {
+      numberOfPages: null,
+      summaryFull: ""
+    },
     accessTypes: [
       {
-        code: AccessTypeCode.Physical
+        code: AccessTypeCodeEnum.Physical
       }
     ],
     access: [
@@ -101,7 +99,7 @@ export const mockedManifestationData: Manifestation[] = [
     },
     fictionNonfiction: {
       display: "SKOENLITTERATUR",
-      code: "FICTION" as FictionNonfictionCode
+      code: "FICTION" as FictionNonfictionCodeEnum
     },
     materialTypes: [
       {
@@ -171,15 +169,13 @@ export const mockedManifestationData: Manifestation[] = [
         ]
       }
     ],
-    physicalDescriptions: [
-      {
-        numberOfPages: null,
-        summary: ""
-      }
-    ],
+    physicalDescription: {
+      numberOfPages: null,
+      summaryFull: ""
+    },
     accessTypes: [
       {
-        code: "PHYSICAL" as AccessTypeCode
+        code: "PHYSICAL" as AccessTypeCodeEnum
       }
     ],
     access: [
@@ -207,7 +203,7 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
     },
     fictionNonfiction: {
       display: "FAGLITTERATUR",
-      code: "NONFICTION" as FictionNonfictionCode
+      code: "NONFICTION" as FictionNonfictionCodeEnum
     },
     materialTypes: [
       {
@@ -257,10 +253,10 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
         ]
       }
     ],
-    physicalDescriptions: [],
+    physicalDescription: {},
     accessTypes: [
       {
-        code: "PHYSICAL" as AccessTypeCode
+        code: "PHYSICAL" as AccessTypeCodeEnum
       }
     ],
     access: [

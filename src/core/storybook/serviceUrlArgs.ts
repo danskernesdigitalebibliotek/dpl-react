@@ -29,17 +29,17 @@ export default {
   },
   [serviceUrlKeys.fbi]: {
     name: "Base url for the FBI API",
-    defaultValue: "https://fbi-api.dbc.dk/next-present/graphql",
+    defaultValue: "https://temp.fbi-api.dbc.dk/next-present/graphql",
     control: { type: "text" }
   },
   [serviceUrlKeys.fbiLocal]: {
     name: "Base url for the FBI API (local inventory)",
-    defaultValue: "https://fbi-api.dbc.dk/next/graphql",
+    defaultValue: "https://temp.fbi-api.dbc.dk/next/graphql",
     control: { type: "text" }
   },
   [serviceUrlKeys.fbiGlobal]: {
     name: "Base url for the FBI API (global inventory)",
-    defaultValue: "https://fbi-api.dbc.dk/next-present/graphql",
+    defaultValue: "https://temp.fbi-api.dbc.dk/next-present/graphql",
     control: { type: "text" }
   }
 };

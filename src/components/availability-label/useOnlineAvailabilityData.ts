@@ -3,9 +3,9 @@ import {
   useGetV1LoanstatusIdentifier,
   useGetV1ProductsIdentifier
 } from "../../core/publizon/publizon";
-import { Access } from "../../core/dbc-gateway/generated/graphql";
 import { FaustId } from "../../core/utils/types/ids";
 import { publizonProductStatuses } from "./types";
+import { AccessTypes } from "../../core/utils/types/entities";
 
 const useOnlineAvailabilityData = ({
   enabled,
@@ -14,7 +14,7 @@ const useOnlineAvailabilityData = ({
   isbn
 }: {
   enabled: boolean;
-  access: Access["__typename"][];
+  access: AccessTypes[];
   faustIds: FaustId[] | null;
   isbn: string | null;
 }) => {

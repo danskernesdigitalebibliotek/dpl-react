@@ -381,7 +381,7 @@ describe("Reservation list", () => {
       .find(".list-reservation")
       .eq(2)
       .find("[data-cy='reservation-about-series']")
-      .should("have.text", "Detektivbureau Nr. 2 1");
+      .should("have.text", "Harry Potter (bøger) Del 1");
 
     // ID 42 2.e. authors & ID 42 2.f. year published
     cy.getBySel("list-reservation-container")

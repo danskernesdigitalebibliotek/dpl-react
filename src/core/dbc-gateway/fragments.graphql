@@ -99,10 +99,10 @@ fragment ManifestationsSimpleFields on Manifestation {
   languages {
     notes
   }
-  physicalDescriptions {
-    summary
+  physicalDescription {
+    summaryFull
     numberOfPages
-    playingTime
+    # playingTime
   }
   hostPublication {
     summary
@@ -180,8 +180,8 @@ fragment ManifestationReviewFields on Manifestation {
   creators {
     display
   }
-  physicalDescriptions {
-    summary
+  physicalDescription {
+    summaryFull
   }
   dateFirstEdition {
     display
@@ -208,9 +208,14 @@ fragment ManifestationReviewFields on Manifestation {
 fragment SeriesSimple on Series {
   title
   isPopular
-  numberInSeries {
-    display
-    number
+  members {
+    numberInSeries
+    work {
+      workId
+      titles {
+        main
+      }
+    }
   }
   readThisFirst
   readThisWhenever
@@ -236,14 +241,6 @@ fragment WorkSmall on Work {
   }
   series {
     ...SeriesSimple
-  }
-  seriesMembers {
-    workId
-    titles {
-      main
-      full
-      original
-    }
   }
   workYear {
     year

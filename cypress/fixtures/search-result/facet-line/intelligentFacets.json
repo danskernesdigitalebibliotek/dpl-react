@@ -5,6 +5,7 @@
       "intelligentFacets": [
         {
           "name": "genreAndForm",
+          "type": "",
           "values": [
             {
               "key": "krimi",
@@ -25,6 +26,7 @@
         },
         {
           "name": "mainLanguages",
+          "type": "",
           "values": [
             {
               "key": "dan",
@@ -45,6 +47,7 @@
         },
         {
           "name": "materialTypes",
+          "type": "",
           "values": [
             {
               "key": "lydbog (net)",

@@ -16,7 +16,6 @@
         }
       ],
       "series": [],
-      "seriesMembers": [],
       "workYear": null,
       "genreAndForm": [],
       "manifestations": {
@@ -81,12 +80,10 @@
             "audience": {
               "generalAudience": ["for begynderlæsere", "let at læse"]
             },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": 16,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "numberOfPages": 16,
+              "playingTime": null
+            },
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -166,12 +163,10 @@
             "audience": {
               "generalAudience": ["for begynderlæsere", "let at læse"]
             },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": 16,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "numberOfPages": 16,
+              "playingTime": null
+            },
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -261,12 +256,10 @@
             "audience": {
               "generalAudience": ["for begynderlæsere", "let at læse"]
             },
-            "physicalDescriptions": [
-              {
-                "numberOfPages": 16,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "numberOfPages": 16,
+              "playingTime": null
+            },
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -349,12 +342,10 @@
           "audience": {
             "generalAudience": ["for begynderlæsere", "let at læse"]
           },
-          "physicalDescriptions": [
-            {
-              "numberOfPages": 16,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "numberOfPages": 16,
+            "playingTime": null
+          },
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -436,12 +427,10 @@
           "audience": {
             "generalAudience": ["for begynderlæsere", "let at læse"]
           },
-          "physicalDescriptions": [
-            {
-              "numberOfPages": 16,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "numberOfPages": 16,
+            "playingTime": null
+          },
           "accessTypes": [
             {
               "code": "PHYSICAL"

@@ -16,50 +16,62 @@
       "series": [
         {
           "title": "Skriftlig faglig formidling",
+          "members": [
+            {
+              "numberInSeries": null,
+              "work": {
+                "workId": "work-of:870971-tsart:34310858",
+                "titles": {
+                  "main": [
+                    "Skriftlighed i overgangen fra folkeskole til gymnasieuddannelse"
+                  ],
+                  "full": [
+                    "Skriftlighed i overgangen fra folkeskole til gymnasieuddannelse"
+                  ],
+                  "original": []
+                }
+              }
+            },
+            {
+              "numberInSeries": null,
+              "work": {
+                "workId": "work-of:870971-tsart:34310866",
+                "titles": {
+                  "main": ["Grammatikkens poesi"],
+                  "full": ["Grammatikkens poesi"],
+                  "original": []
+                }
+              }
+            },
+            {
+              "numberInSeries": null,
+              "work": {
+                "workId": "work-of:870971-tsart:34310831",
+                "titles": {
+                  "main": ["Skal det være så svært at lære at skrive godt?"],
+                  "full": [
+                    "Skal det være så svært at lære at skrive godt? : om at træne grundlæggende skrivekompetencer med udgangspunkt i en konkret tværfaglig skriveopgave i dansk og matematik"
+                  ],
+                  "original": []
+                }
+              }
+            },
+            {
+              "numberInSeries": null,
+              "work": {
+                "workId": "work-of:870971-tsart:34310815",
+                "titles": {
+                  "main": ["Faglig formidling er ikke kun skriveteknik"],
+                  "full": ["Faglig formidling er ikke kun skriveteknik"],
+                  "original": []
+                }
+              }
+            }
+          ],
           "isPopular": false,
           "numberInSeries": null,
           "readThisFirst": null,
           "readThisWhenever": null
-        }
-      ],
-      "seriesMembers": [
-        {
-          "workId": "work-of:870971-tsart:34310858",
-          "titles": {
-            "main": [
-              "Skriftlighed i overgangen fra folkeskole til gymnasieuddannelse"
-            ],
-            "full": [
-              "Skriftlighed i overgangen fra folkeskole til gymnasieuddannelse"
-            ],
-            "original": []
-          }
-        },
-        {
-          "workId": "work-of:870971-tsart:34310866",
-          "titles": {
-            "main": ["Grammatikkens poesi"],
-            "full": ["Grammatikkens poesi"],
-            "original": []
-          }
-        },
-        {
-          "workId": "work-of:870971-tsart:34310831",
-          "titles": {
-            "main": ["Skal det være så svært at lære at skrive godt?"],
-            "full": [
-              "Skal det være så svært at lære at skrive godt? : om at træne grundlæggende skrivekompetencer med udgangspunkt i en konkret tværfaglig skriveopgave i dansk og matematik"
-            ],
-            "original": []
-          }
-        },
-        {
-          "workId": "work-of:870971-tsart:34310815",
-          "titles": {
-            "main": ["Faglig formidling er ikke kun skriveteknik"],
-            "full": ["Faglig formidling er ikke kun skriveteknik"],
-            "original": []
-          }
         }
       ],
       "workYear": null,
@@ -119,13 +131,11 @@
                 "display": ["Med litteraturhenvisninger"]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "S. 8-13: ill.",
-                "numberOfPages": 6,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "S. 8-13: ill.",
+              "numberOfPages": 6,
+              "playingTime": null
+            },
             "hostPublication": {
               "summary": "Dansk noter, Nr. 3 (2010)"
             },
@@ -209,13 +219,11 @@
               "display": ["Med litteraturhenvisninger"]
             }
           ],
-          "physicalDescriptions": [
-            {
-              "summary": "S. 8-13: ill.",
-              "numberOfPages": 6,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "S. 8-13: ill.",
+            "numberOfPages": 6,
+            "playingTime": null
+          },
           "hostPublication": {
             "summary": "Dansk noter, Nr. 3 (2010)"
           },
@@ -298,13 +306,11 @@
               "display": ["Med litteraturhenvisninger"]
             }
           ],
-          "physicalDescriptions": [
-            {
-              "summary": "S. 8-13: ill.",
-              "numberOfPages": 6,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "S. 8-13: ill.",
+            "numberOfPages": 6,
+            "playingTime": null
+          },
           "hostPublication": {
             "summary": "Dansk noter, Nr. 3 (2010)"
           },

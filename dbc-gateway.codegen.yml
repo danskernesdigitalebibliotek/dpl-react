@@ -1,6 +1,6 @@
 overwrite: true
 schema:
-  - "https://fbi-api.dbc.dk/${CODEGEN_SCHEMA_PROFILE}/graphql":
+  - "https://temp.fbi-api.dbc.dk/${CODEGEN_SCHEMA_PROFILE}/graphql":
       headers:
         Authorization: "Bearer ${STORYBOOK_LIBRARY_TOKEN}"
 documents: "src/**/*.graphql"

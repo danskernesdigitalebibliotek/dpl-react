@@ -1,7 +1,7 @@
 import * as React from "react";
 import { head } from "lodash";
 import { getAllIdentifiers } from "../../../apps/material/helper";
-import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
+import { AccessTypeCodeEnum } from "../../../core/dbc-gateway/generated/graphql";
 import {
   getAllPids,
   getMaterialTypes
@@ -25,7 +25,7 @@ const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
   const { materialIsReservableFromAnotherLibrary } =
     useReservableFromAnotherLibrary(manifestations);
 
-  if (hasCorrectAccessType(AccessTypeCode.Physical, manifestations)) {
+  if (hasCorrectAccessType(AccessTypeCodeEnum.Physical, manifestations)) {
     const pids = getAllPids(manifestations);
     if (materialIsReservableFromAnotherLibrary) {
       return (
@@ -38,7 +38,7 @@ const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
   }
 
   if (
-    hasCorrectAccessType(AccessTypeCode.Online, manifestations) &&
+    hasCorrectAccessType(AccessTypeCodeEnum.Online, manifestations) &&
     isbns.length > 0 &&
     materialType
   ) {

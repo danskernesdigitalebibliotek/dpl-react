@@ -5,18 +5,16 @@ import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { getParentAvailabilityLabelClass } from "./helper";
-import {
-  Access,
-  AccessTypeCode
-} from "../../core/dbc-gateway/generated/graphql";
 import AvailabilityLabelInside from "./availability-label-inside";
 import { FaustId } from "../../core/utils/types/ids";
 import useAvailabilityData from "./useAvailabilityData";
+import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
+import { AccessTypes } from "../../core/utils/types/entities";
 
 export interface AvailabilityLabelProps {
   manifestText: string;
-  accessTypes: AccessTypeCode[];
-  access: Access["__typename"][];
+  accessTypes: AccessTypeCodeEnum[];
+  access: AccessTypes[];
   selected?: boolean;
   url?: URL;
   faustIds: FaustId[];
