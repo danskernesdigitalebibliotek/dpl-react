@@ -2760,13 +2760,13 @@
   resolved "https://registry.npmjs.org/@n1ru4l/graphql-live-query/-/graphql-live-query-0.9.0.tgz"
   integrity sha512-BTpWy1e+FxN82RnLz4x1+JcEewVdfmUhV1C6/XYD5AjS7PQp9QFF7K8bCD6gzPTr2l+prvqOyVueQhFJxB1vfg==
 
-"@namics/stylelint-bem@^10.0.0":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/@namics/stylelint-bem/-/stylelint-bem-10.0.0.tgz#2a36859c122281d61f93624beafbb9c8cd371187"
-  integrity sha512-VYsuxl6jUt+RLkqNgD61mSTxWdy+Kb9tJa0+PYskZnOJdNCfl4hfix9mInSAgkrbARejxOGKTw9JtXwoR/9s4A==
+"@namics/stylelint-bem@^10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@namics/stylelint-bem/-/stylelint-bem-10.0.1.tgz#fba10959354a4670fa3c5bda3b002a8f2634f148"
+  integrity sha512-9J21k7Rh7ywKv9MqzfYVbCEo0hTXRtvZ/Yi4sSfhgz/EEchgsSC5U4VMmUDgezeIEnb9zP6vOLslcVzhvWvyPQ==
   dependencies:
     css-selector-parser "2.3.2"
-    postcss-resolve-nested-selector "0.1.1"
+    postcss-resolve-nested-selector "0.1.6"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -15843,12 +15843,7 @@ postcss-reporter@^7.0.0:
     picocolors "^1.0.0"
     thenby "^1.3.4"
 
-postcss-resolve-nested-selector@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.npmjs.org/postcss-resolve-nested-selector/-/postcss-resolve-nested-selector-0.1.1.tgz"
-  integrity sha1-Kcy8fDfe36wwTp//C/FZaz9qDk4=
-
-postcss-resolve-nested-selector@^0.1.1, postcss-resolve-nested-selector@^0.1.6:
+postcss-resolve-nested-selector@0.1.6, postcss-resolve-nested-selector@^0.1.1, postcss-resolve-nested-selector@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/postcss-resolve-nested-selector/-/postcss-resolve-nested-selector-0.1.6.tgz#3d84dec809f34de020372c41b039956966896686"
   integrity sha512-0sglIs9Wmkzbr8lQwEyIzlDOOC9bGmfVKcJTaxv3vMmd3uo4o4DerC3En0bnmgceeql9BfC8hRkp7cg0fjdVqw==
