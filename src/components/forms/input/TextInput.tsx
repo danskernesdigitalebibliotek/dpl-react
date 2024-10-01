@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React, { FC } from "react";
+import Label from "../label/Label";
 
 export interface TextInputProps {
   label: string;
@@ -41,7 +42,9 @@ const TextInput: FC<TextInputProps> = ({
         { "dpl-input--invalid": !!validation }
       ])}
     >
-      <label htmlFor={id}>{required ? `${label} *` : label}</label>
+      <Label id={id} required={required}>
+        {label}
+      </Label>
       <input
         className="text-body-medium-medium"
         required={required}
