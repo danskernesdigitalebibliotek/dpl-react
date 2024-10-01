@@ -22,6 +22,7 @@ import {
 } from "./helpers";
 import { Button } from "../../components/Buttons/Button";
 import CheckBox from "../../components/checkbox/Checkbox";
+import { LocationFilter } from "./LocationFilter";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;
@@ -33,6 +34,7 @@ export type AdvancedSearchHeaderProps = {
   setOnShelf: (checked: boolean) => void;
   onLocationChange: (location: string) => void;
   onSublocationChange: (sublocation: string) => void;
+  locationFilter: LocationFilter;
 };
 
 const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
@@ -44,7 +46,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   onShelf,
   setOnShelf,
   onLocationChange,
-  onSublocationChange
+  onSublocationChange,
+  locationFilter
 }) => {
   const t = useText();
   const [isFormMode, setIsFormMode] = useState<boolean>(true);
@@ -226,6 +229,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
           handleOnShelfChange={handleOnShelfChange}
           onLocationChange={onLocationChange}
           onSublocationChange={onSublocationChange}
+          locationFilter={locationFilter}
         />
       )}
 
