@@ -27,7 +27,7 @@ test("getInstantLoanBranchHoldings should return materials grouped by branches f
   expect(result[0].branch.title).toBe("Åby");
   expect(result[0].materials).toHaveLength(2);
   expect(result[0].materials[0].available).toBe(true);
-  expect(result[0].materials[0].materialGroup.description).toBe(
+  expect(result[0].materials[0].materialGroup.name).toBe(
     "I am supposed to be matched"
   );
 
@@ -39,7 +39,7 @@ test("getInstantLoanBranchHoldings should return materials grouped by branches f
   expect(result[1].branch.title).toBe("Sabro");
   expect(result[1].materials).toHaveLength(1);
   expect(result[1].materials[0].available).toBe(true);
-  expect(result[1].materials[0].materialGroup.description).toBe(
+  expect(result[1].materials[0].materialGroup.name).toBe(
     "I am supposed to be matched"
   );
 
@@ -50,11 +50,11 @@ test("getInstantLoanBranchHoldings should return materials grouped by branches f
   expect(result[2].branch.title).toBe("Hasle");
   expect(result[2].materials).toHaveLength(2);
   expect(result[2].materials[0].available).toBe(true);
-  expect(result[2].materials[0].materialGroup.description).toBe(
+  expect(result[2].materials[0].materialGroup.name).toBe(
     "I am supposed to be matched"
   );
   expect(result[2].materials[1].available).toBe(true);
-  expect(result[2].materials[1].materialGroup.description).toBe(
+  expect(result[2].materials[1].materialGroup.name).toBe(
     "I am also supposed to be matched"
   );
 });
