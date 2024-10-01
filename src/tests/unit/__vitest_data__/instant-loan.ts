@@ -12,8 +12,8 @@ const branchHoldings: HoldingsV3[] = [
         available: true,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am supposed to be matched"
+          name: "I am supposed to be matched",
+          description: undefined
         }
       },
       {
@@ -21,8 +21,8 @@ const branchHoldings: HoldingsV3[] = [
         available: false,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am supposed to be matched" // But am not available
+          name: "I am supposed to be matched", // But am not available
+          description: undefined
         }
       },
       {
@@ -30,8 +30,8 @@ const branchHoldings: HoldingsV3[] = [
         available: false,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am NOT supposed to be matched"
+          name: "I am NOT supposed to be matched",
+          description: "I am NOT supposed to be matched" // Description is optional and can be undefined
         }
       }
     ]
@@ -47,8 +47,8 @@ const branchHoldings: HoldingsV3[] = [
         available: true,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am supposed to be matched"
+          name: "I am supposed to be matched",
+          description: undefined
         }
       },
       {
@@ -56,8 +56,8 @@ const branchHoldings: HoldingsV3[] = [
         available: false,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am also supposed to be matched"
+          name: "I am also supposed to be matched",
+          description: undefined
         }
       },
       {
@@ -65,8 +65,8 @@ const branchHoldings: HoldingsV3[] = [
         available: false,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am NOT supposed to be matched"
+          name: "I am NOT supposed to be matched",
+          description: undefined
         }
       }
     ]
@@ -82,8 +82,8 @@ const branchHoldings: HoldingsV3[] = [
         available: true,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am supposed to be matched"
+          name: "I am supposed to be matched",
+          description: undefined
         }
       },
       {
@@ -91,8 +91,8 @@ const branchHoldings: HoldingsV3[] = [
         available: true,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am also supposed to be matched"
+          name: "I am also supposed to be matched",
+          description: "I am also supposed to be matched" // Description is optional and can be undefined
         }
       }
     ]
@@ -108,8 +108,8 @@ const branchHoldings: HoldingsV3[] = [
         available: false,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am NOT supposed to be matched"
+          name: "I am NOT supposed to be matched",
+          description: undefined
         }
       }
     ]
@@ -125,8 +125,8 @@ const branchHoldings: HoldingsV3[] = [
         available: true,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am supposed to be matched"
+          name: "I am supposed to be matched",
+          description: undefined
         }
       }
     ]
@@ -142,8 +142,8 @@ const branchHoldings: HoldingsV3[] = [
         available: true,
         periodical: undefined,
         materialGroup: {
-          name: "standard",
-          description: "I am supposed to be matched"
+          name: "I am supposed to be matched",
+          description: undefined
         }
       }
     ]
