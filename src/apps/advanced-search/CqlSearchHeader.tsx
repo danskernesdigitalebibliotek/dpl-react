@@ -61,50 +61,51 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   };
 
   return (
-    <form className="advanced-search-cql-form">
+    <>
       <h1
         className="text-header-h2 advanced-search__title capitalize-first"
         data-cy={dataCy}
       >
         {t("cqlSearchTitleText")}
       </h1>
-
-      <Textarea
-        id="cql"
-        label="CQL"
-        className="advanced-search-cql-form__input focus-styling__input"
-        cols={100}
-        rows={5}
-        placeholder="e.g. 'harry potter'"
-        dataCy={`${dataCy}-input`}
-        onChange={(e) => setCql(e.target.value)}
-        defaultValue={initialCql}
-      />
-      <TextInput
-        id="location"
-        label={t("advancedSearchFilterLocationText")}
-        description={t("advancedSearchFilterLocationDescriptionText")}
-        type="text"
-        onChange={(location) => handleInputChange("location", location)}
-        value={inputValues.location}
-      />
-      <TextInput
-        id="sublocation"
-        label={t("advancedSearchFilterSublocationText")}
-        description={t("advancedSearchFilterSublocationDescriptionText")}
-        type="text"
-        onChange={(sublocation) =>
-          handleInputChange("sublocation", sublocation)
-        }
-        value={inputValues.sublocation}
-      />
-      <CheckBox
-        id="on-shelf"
-        selected={onShelf}
-        onChecked={handleOnShelfChange}
-        label={t("advancedSearchFilterHoldingStatusText")}
-      />
-    </form>
+      <form className="advanced-search-cql-form">
+        <Textarea
+          id="cql"
+          label="CQL"
+          className="advanced-search-cql-form__input focus-styling__input"
+          cols={100}
+          rows={5}
+          placeholder="e.g. 'harry potter'"
+          dataCy={`${dataCy}-input`}
+          onChange={(e) => setCql(e.target.value)}
+          defaultValue={initialCql}
+        />
+        <TextInput
+          id="location"
+          label={t("advancedSearchFilterLocationText")}
+          description={t("advancedSearchFilterLocationDescriptionText")}
+          type="text"
+          onChange={(location) => handleInputChange("location", location)}
+          value={inputValues.location}
+        />
+        <TextInput
+          id="sublocation"
+          label={t("advancedSearchFilterSublocationText")}
+          description={t("advancedSearchFilterSublocationDescriptionText")}
+          type="text"
+          onChange={(sublocation) =>
+            handleInputChange("sublocation", sublocation)
+          }
+          value={inputValues.sublocation}
+        />
+        <CheckBox
+          id="on-shelf"
+          selected={onShelf}
+          onChecked={handleOnShelfChange}
+          label={t("advancedSearchFilterHoldingStatusText")}
+        />
+      </form>
+    </>
   );
 };
 
