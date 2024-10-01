@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useText } from "../../core/utils/text";
 import CheckBox from "../../components/checkbox/Checkbox";
-import TextInput from "../../components/atoms/input/TextInput";
+import { LocationFilter } from "./LocationFilter";
+import Textarea from "../../components/forms/textarea/Textarea";
+import TextInput from "../../components/forms/input/TextInput";
 
 export type CqlSearchHeaderProps = {
   dataCy?: string;
@@ -11,6 +13,7 @@ export type CqlSearchHeaderProps = {
   handleOnShelfChange: (newState: boolean) => void;
   onLocationChange: (location: string) => void;
   onSublocationChange: (sublocation: string) => void;
+  locationFilter: LocationFilter;
 };
 
 const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
@@ -20,7 +23,8 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   onShelf,
   handleOnShelfChange,
   onLocationChange,
-  onSublocationChange
+  onSublocationChange,
+  locationFilter
 }) => {
   const t = useText();
 
@@ -30,6 +34,31 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
     }
   }, [initialCql, setCql]);
 
+  // Local state is needed to track input values as plain strings,
+  // since onLocationChange expects a comma-separated string,
+  // while locationFilter location and sublocation are provided as arrays.
+  const [inputValues, setInputValues] = useState({
+    location: locationFilter?.location?.join(", ") ?? "",
+    sublocation: locationFilter?.sublocation?.join(", ") ?? ""
+  });
+
+  const handleInputChange = (
+    name: "location" | "sublocation",
+    value: string
+  ) => {
+    setInputValues((prevValues) => ({
+      ...prevValues,
+      [name]: value
+    }));
+
+    if (name === "location") {
+      onLocationChange(value);
+    }
+    if (name === "sublocation") {
+      onSublocationChange(value);
+    }
+  };
+
   return (
     <>
       <h1
@@ -38,33 +67,43 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
       >
         {t("cqlSearchTitleText")}
       </h1>
-      <textarea
-        className="advanced-search__cql-input focus-styling__input"
-        cols={100}
-        rows={5}
-        placeholder="e.g. title=snemand*"
-        data-cy={`${dataCy}-input`}
-        onChange={(e) => setCql(e.target.value)}
-        defaultValue={initialCql}
-      />
-      <TextInput
-        id="location"
-        label="Location"
-        type="text"
-        onChange={(location) => onLocationChange(location)}
-      />
-      <TextInput
-        id="location"
-        label="Sublocation"
-        type="text"
-        onChange={(sublocation) => onSublocationChange(sublocation)}
-      />
-      <CheckBox
-        id="on-shelf"
-        selected={onShelf}
-        onChecked={handleOnShelfChange}
-        label={t("advancedSearchFilterHoldingStatusText")}
-      />
+      <form className="advanced-search-cql-form">
+        <Textarea
+          id="cql"
+          label="CQL"
+          className="advanced-search-cql-form__input focus-styling__input"
+          cols={100}
+          rows={5}
+          placeholder="e.g. 'harry potter'"
+          dataCy={`${dataCy}-input`}
+          onChange={(e) => setCql(e.target.value)}
+          defaultValue={initialCql}
+        />
+        <TextInput
+          id="location"
+          label={t("advancedSearchFilterLocationText")}
+          description={t("advancedSearchFilterLocationDescriptionText")}
+          type="text"
+          onChange={(location) => handleInputChange("location", location)}
+          value={inputValues.location}
+        />
+        <TextInput
+          id="sublocation"
+          label={t("advancedSearchFilterSublocationText")}
+          description={t("advancedSearchFilterSublocationDescriptionText")}
+          type="text"
+          onChange={(sublocation) =>
+            handleInputChange("sublocation", sublocation)
+          }
+          value={inputValues.sublocation}
+        />
+        <CheckBox
+          id="on-shelf"
+          selected={onShelf}
+          onChecked={handleOnShelfChange}
+          label={t("advancedSearchFilterHoldingStatusText")}
+        />
+      </form>
     </>
   );
 };

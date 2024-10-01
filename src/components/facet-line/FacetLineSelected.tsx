@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
-
 import ButtonTag from "../Buttons/ButtonTag";
 import { useText } from "../../core/utils/text";
 

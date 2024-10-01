@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useEffectOnce } from "react-use";
 import AdvancedSearchHeader from "./AdvancedSearchHeader";
 import AdvancedSearchResult from "./AdvancedSearchResults";
-import { translateSearchObjectToCql } from "./helpers";
+import {
+  commaSeparatedStringToArray,
+  translateSearchObjectToCql
+} from "./helpers";
 import { AdvancedSearchQuery } from "./types";
 import {
   getUrlQueryParam,
@@ -30,17 +33,29 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
   const [executedQuery, setExecutedQuery] = useState<string | null>(null);
 
   const [locationFilter, setLocationFilter] = useState<LocationFilter>({});
+
   const handleLocationChange = (location: string) => {
     setLocationFilter((prevFilter) => ({
       ...prevFilter,
-      location: [location]
+      location: commaSeparatedStringToArray(location)
     }));
+    if (location) {
+      setQueryParametersInUrl({ location });
+    } else {
+      removeQueryParametersFromUrl("location");
+    }
   };
+
   const handleSublocationChange = (sublocation: string) => {
     setLocationFilter((prevFilter) => ({
       ...prevFilter,
-      sublocation: [sublocation]
+      sublocation: commaSeparatedStringToArray(sublocation)
     }));
+    if (sublocation) {
+      setQueryParametersInUrl({ sublocation });
+    } else {
+      removeQueryParametersFromUrl("sublocation");
+    }
   };
 
   const [onShelf, setOnShelf] = useState(false);
@@ -83,6 +98,22 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     if (getUrlQueryParam("onshelf") === "true") {
       setOnShelf(true);
     }
+
+    const locationParam = getUrlQueryParam("location");
+    if (locationParam) {
+      setLocationFilter((prevFilter) => ({
+        ...prevFilter,
+        location: commaSeparatedStringToArray(locationParam)
+      }));
+    }
+
+    const sublocationParam = getUrlQueryParam("sublocation");
+    if (sublocationParam) {
+      setLocationFilter((prevFilter) => ({
+        ...prevFilter,
+        sublocation: commaSeparatedStringToArray(sublocationParam)
+      }));
+    }
   });
 
   useEffect(() => {
@@ -120,6 +151,7 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           setOnShelf={handleOnShelfChange}
           onLocationChange={handleLocationChange}
           onSublocationChange={handleSublocationChange}
+          locationFilter={locationFilter}
         />
       )}
       {executedQuery && (

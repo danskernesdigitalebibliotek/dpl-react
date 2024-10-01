@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useText } from "../../../core/utils/text";
-import TextInput from "../../atoms/input/TextInput";
 import ReservationForm from "../../reservation/forms/ReservationForm";
+import TextInput from "../../forms/input/TextInput";
 
 type DigitalModalBodyProps = {
   userEmail: string;
