@@ -1,10 +1,11 @@
 import * as React from "react";
 import { FC } from "react";
-import TextInput from "../atoms/input/TextInput";
+
 import { PatronSettingsV3, PatronV5 } from "../../core/fbs/model";
 import CheckBox from "../checkbox/Checkbox";
 import { useText } from "../../core/utils/text";
 import { ChangePatronProps } from "./types";
+import TextInput from "../forms/input/TextInput";
 
 export interface ContactInfoPhoneProps {
   patron: PatronV5 | PatronSettingsV3 | null;
