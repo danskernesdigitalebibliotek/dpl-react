@@ -4,7 +4,6 @@ import globalTextArgs, {
   GlobalEntryTextProps
 } from "../../core/storybook/globalTextArgs";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
-
 import DisplayMaterialTypeOptions from "../recommended-material/recommendedMaterialDisplayTypeData";
 import RecommendationSkeleton from "./RecommendationSkeleton";
 import Recommendation, {

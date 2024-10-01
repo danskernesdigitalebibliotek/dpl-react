@@ -1,17 +1,11 @@
 import "../src/components/components.scss";
 import "@danskernesdigitalebibliotek/dpl-design-system/build/css/base.css";
-import {
-  setToken,
-  TOKEN_LIBRARY_KEY,
-  TOKEN_USER_KEY
-} from "../src/core/token";
+import { setToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../src/core/token";
 import "../src/core/mount";
 import Store from "../src/components/store";
-
 import React from "react";
 import { withErrorBoundary } from "react-error-boundary";
 import ErrorBoundaryAlert from "../src/components/error-boundary-alert/ErrorBoundaryAlert";
-
 
 const getSessionStorage = (type) => window.sessionStorage.getItem(type);
 const userToken =
@@ -51,7 +45,11 @@ const App = ({ story }) => <Store>{WrappedStory(story)}</Store>;
 // Consideration for the future - using addon-redux could bring value.
 // It wasn't implemented to begin with because it wasn't compatible with Storybook 6.
 export const decorators = [
-  Story => <><App story={Story} /></>
+  (Story) => (
+    <>
+      <App story={Story} />
+    </>
+  )
 ];
 
 export const parameters = {

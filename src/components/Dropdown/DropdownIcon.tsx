@@ -1,5 +1,4 @@
 import React from "react";
-
 import iconTriangle from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-triangle.svg";
 import iconExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 

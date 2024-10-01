@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useText } from "../../core/utils/text";
 import CheckBox from "../../components/checkbox/Checkbox";
-
 import { LocationFilter } from "./LocationFilter";
 import Textarea from "../../components/forms/textarea/Textarea";
 import TextInput from "../../components/forms/input/TextInput";

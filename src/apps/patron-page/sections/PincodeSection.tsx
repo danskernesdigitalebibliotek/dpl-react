@@ -1,6 +1,5 @@
 import React, { useEffect, useState, FC } from "react";
 import clsx from "clsx";
-
 import { useConfig } from "../../../core/utils/config";
 import { useText } from "../../../core/utils/text";
 import TextInput from "../../../components/forms/input/TextInput";
