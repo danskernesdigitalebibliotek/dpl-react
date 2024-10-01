@@ -4,7 +4,6 @@ import Label from "../label/Label";
 
 export interface TextareaProps {
   id: string;
-  name: string;
   label: string;
   rows?: number;
   cols?: number;
@@ -17,7 +16,6 @@ export interface TextareaProps {
 
 const Textarea: FC<TextareaProps> = ({
   id,
-  name,
   label,
   rows = 8,
   cols = 80,
@@ -35,7 +33,6 @@ const Textarea: FC<TextareaProps> = ({
           data-cy={dataCy}
           className={clsx(className)}
           id={id}
-          name={name}
           rows={rows}
           cols={cols}
           placeholder={placeholder}

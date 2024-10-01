@@ -71,7 +71,6 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
 
       <Textarea
         id="cql"
-        name="name"
         label="CQL"
         className="advanced-search-cql-form__input focus-styling__input"
         cols={100}
