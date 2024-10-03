@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useGetLoansV2 } from "../fbs/fbs";
 import { useGetV1UserLoans } from "../publizon/publizon";
 import { daysBetweenTodayAndDate, materialIsOverdue } from "./helpers/general";
@@ -48,11 +49,11 @@ const getDueDatesLoan = (list: LoanType[]) => {
 const sortByDueDate = (list: LoanType[]) => {
   // Todo figure out what to do if loan does not have loan date
   // For now, its at the bottom of the list
-  return list.sort(
-    (a, b) =>
-      new Date(a.dueDate || new Date()).getTime() -
-      new Date(b.dueDate || new Date()).getTime()
-  );
+  return list.sort((a, b) => {
+    const dateA = a.dueDate ? dayjs(a.dueDate).valueOf() : Infinity;
+    const dateB = b.dueDate ? dayjs(b.dueDate).valueOf() : Infinity;
+    return dateA - dateB;
+  });
 };
 
 type Loans = {
