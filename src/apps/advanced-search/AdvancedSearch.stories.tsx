@@ -315,7 +315,7 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     advancedSearchFilterSublocationDescriptionText: {
       description: "Advanced search filter - sublocation description",
       control: { type: "text" }
-    },
+    }
   }
 };
 
@@ -401,8 +401,10 @@ export const Primary: Story = {
     advancedSearchFilterNonFictionText: "Non-fiction",
     advancedSearchFilterHoldingStatusText: "Holding Status On Shelf",
     advancedSearchFilterLocationText: "Location",
-    advancedSearchFilterLocationDescriptionText: "Add a comma separated list for multiple locations",
+    advancedSearchFilterLocationDescriptionText:
+      "Add a comma separated list for multiple locations",
     advancedSearchFilterSublocationText: "Sublocation",
-    advancedSearchFilterSublocationDescriptionText: "Add a comma separated list for multiple sublocations",
+    advancedSearchFilterSublocationDescriptionText:
+      "Add a comma separated list for multiple sublocations"
   }
 };
