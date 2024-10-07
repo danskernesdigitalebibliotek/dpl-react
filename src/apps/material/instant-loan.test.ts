@@ -86,7 +86,7 @@ describe("Instant Loan", () => {
     // but only three is available.
     cy.getBySel("instant-loan-branches")
       .get("li")
-      .eq(8)
+      .contains("li", "Hovedbiblioteket")
       .scrollIntoView()
       .should("contain", "Hovedbiblioteket")
       .and("contain", "3 stk");

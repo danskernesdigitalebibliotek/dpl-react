@@ -3,7 +3,7 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 describe("Search Result", () => {
   it("Should render the site", () => {
     cy.visit(
-      "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
+      "/iframe.html?id=apps-search-result--primary&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
   });
 
@@ -91,7 +91,7 @@ describe("Search Result", () => {
       fixtureFilePath: "search-result/fbi-api-no-results.json"
     });
     cy.visit(
-      "/iframe.html?id=apps-search-result--search-result&args=pageSizeDesktop:2;pageSizeMobile:2"
+      "/iframe.html?id=apps-search-result--primary&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
     cy.getBySel("search-result-zero-hits").should("be.visible");
   });

@@ -43,6 +43,7 @@ interface SearchResultEntryTextProps {
   intelligentFiltersAccessibleHeadlineText: string;
   intelligentFiltersSelectedAccessibleHeadlineText: string;
   webSearchLinkText: string;
+  webSearchConfig: string;
 }
 
 interface SearchResultEntryConfigProps {

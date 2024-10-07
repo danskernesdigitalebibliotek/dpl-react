@@ -25,7 +25,7 @@ describe("Find on shelf modal - default", () => {
         });
       })
       .as("Find on shelf availability");
-    cy.visit("/iframe.html?id=components-find-on-shelf-modal--default");
+    cy.visit("/iframe.html?id=components-find-on-shelf-modal--primary");
     cy.contains("button:visible", "Find on shelf").click();
   });
 
@@ -97,7 +97,7 @@ describe("Find on shelf modal - periodical", () => {
 
     cy.get("select").eq(1).select("35");
     cy.getBySel("disclosure-summary")
-      .contains("Beder-Malling")
+      .contains("Tranbjerg")
       .parent()
       .contains("Unavailable");
   });

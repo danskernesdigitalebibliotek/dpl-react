@@ -42,9 +42,8 @@ describe("Fee list", () => {
   });
 
   it("Fee list basics (physical loans)", () => {
-    cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
-    cy.wait(["@fees"]);
-    cy.wait(["@digital_loans"]);
+    cy.visit("/iframe.html?path=/story/apps-fee-list--primary");
+    cy.wait(["@fees", "@digital_loans"]);
 
     // Wait for element not in skeleton screen to prevent testing prematurely.
     cy.get(".status-label").should("be.visible");
@@ -172,7 +171,7 @@ describe("Fee list", () => {
       .find("div")
       .find(".modal-loan__title")
       .should("exist")
-      .should("have.text", "Turned in 18. oktober 2019");
+      .should("have.text", "Turned in 18. October 2019");
 
     // book list
     cy.get(".modal-loan__list-materials")
@@ -186,7 +185,7 @@ describe("Fee list", () => {
       statusCode: 200,
       body: physicalLoansDataWithOverdue
     }).as("physical loans with overdue");
-    cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
+    cy.visit("/iframe.html?path=/story/apps-fee-list--primary");
     cy.wait(["@digital_loans"]);
     cy.wait(["@physical loans with overdue"]);
 
@@ -198,7 +197,7 @@ describe("Fee list", () => {
       statusCode: 200,
       body: physicalLoansDataNoOverdue
     }).as("physical_loans_no_overdue");
-    cy.visit("/iframe.html?path=/story/apps-fee-list--fee-list-entry");
+    cy.visit("/iframe.html?path=/story/apps-fee-list--primary");
     cy.wait(["@digital_loans"]);
     cy.wait(["@physical_loans_no_overdue"]);
 

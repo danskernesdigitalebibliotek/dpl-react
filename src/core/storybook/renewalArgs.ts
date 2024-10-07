@@ -1,103 +1,152 @@
-export default {
+export const argTypes = {
   renewProcessingText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Processing..."
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: { summary: "Processing..." }
+    }
   },
   renewButtonText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Renew"
+    control: { type: "text" },
+    table: { type: { summary: "text" }, defaultValue: { summary: "Renew" } }
   },
   renewMaterialLoanSuccessTitleText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "You have renewed your loan"
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: { summary: "You have renewed your loan" }
+    }
   },
   renewMaterialLoanSuccessStatusText: {
     control: { type: "text" },
-    defaultValue: "1 loan was renewed."
+    table: {
+      type: { summary: "text" },
+      defaultValue: { summary: "1 loan was renewed." }
+    }
   },
   renewMaterialLoanNoRenewalsPossibleErrorTitleText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "The loan could not be renewed"
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: { summary: "The loan could not be renewed" }
+    }
   },
   renewMaterialLoanNoRenewalsPossibleErrorStatusText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "For some reason, your loan could not be renewed."
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "For some reason, your loan could not be renewed."
+      }
+    }
   },
   renewMaterialLoanErrorTitleText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Renewal of your loan failed"
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: { summary: "Renewal of your loan failed" }
+    }
   },
   renewMaterialLoanErrorStatusText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Something went wrong renewing your loan. Please try again."
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Something went wrong renewing your loan. Please try again."
+      }
+    }
   },
   renewMaterialLoanButtonText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Ok"
+    control: { type: "text" },
+    table: { type: { summary: "text" }, defaultValue: { summary: "Ok" } }
   },
   renewGroupModalLoansSuccessTitleText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "You have renewed your loans"
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: { summary: "You have renewed your loans" }
+    }
   },
   renewGroupModalLoansSuccessStatusText: {
     control: { type: "text" },
-    defaultValue:
-      '{"type":"plural","text":["1 loan has been renewed.","@count loans have been renewed."]}'
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary:
+          '{"type":"plural","text":["1 loan has been renewed.","@count loans have been renewed."]}'
+      }
+    }
   },
   renewGroupModalLoansErrorTitleText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Renewing your loans failed"
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: { summary: "Renewing your loans failed" }
+    }
   },
   renewGroupModalLoansErrorStatusText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Something went wrong renewing your loans. Please try again."
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "Something went wrong renewing your loans. Please try again."
+      }
+    }
   },
   renewGroupModalLoansButtonText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Ok"
+    control: { type: "text" },
+    table: { type: { summary: "text" }, defaultValue: { summary: "Ok" } }
   },
   renewGroupModalLoansNoRenewalsPossibleErrorTitleText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "No loans could be renewed"
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: { summary: "No loans could be renewed" }
+    }
   },
   renewGroupModalLoansNoRenewalsPossibleErrorStatusText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "For some reason, no one of your loans could be renewed."
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "For some reason, no one of your loans could be renewed."
+      }
+    }
   },
   renewCannotBeRenewedText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Cannot be renewed"
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: { summary: "Cannot be renewed" }
+    }
   }
+};
+
+export default {
+  renewProcessingText: "Processing...",
+  renewButtonText: "Renew",
+  renewMaterialLoanSuccessTitleText: "You have renewed your loan",
+  renewMaterialLoanSuccessStatusText: "1 loan was renewed.",
+  renewMaterialLoanNoRenewalsPossibleErrorTitleText:
+    "The loan could not be renewed",
+  renewMaterialLoanNoRenewalsPossibleErrorStatusText:
+    "For some reason, your loan could not be renewed.",
+  renewMaterialLoanErrorTitleText: "Renewal of your loan failed",
+  renewMaterialLoanErrorStatusText:
+    "Something went wrong renewing your loan. Please try again.",
+  renewMaterialLoanButtonText: "Ok",
+  renewGroupModalLoansSuccessTitleText: "You have renewed your loans",
+  renewGroupModalLoansSuccessStatusText:
+    '{"type":"plural","text":["1 loan has been renewed.","@count loans have been renewed."]}',
+  renewGroupModalLoansErrorTitleText: "Renewing your loans failed",
+  renewGroupModalLoansErrorStatusText:
+    "Something went wrong renewing your loans. Please try again.",
+  renewGroupModalLoansButtonText: "Ok",
+  renewGroupModalLoansNoRenewalsPossibleErrorTitleText:
+    "No loans could be renewed",
+  renewGroupModalLoansNoRenewalsPossibleErrorStatusText:
+    "For some reason, no one of your loans could be renewed.",
+  renewCannotBeRenewedText: "Cannot be renewed"
 };
 
 export interface RenewalArgs {

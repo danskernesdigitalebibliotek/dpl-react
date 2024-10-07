@@ -1,91 +1,174 @@
-export default {
+export const argTypes = {
   blockedPatronDTitleText: {
-    defaultValue: "D Title",
+    table: {
+      defaultValue: { summary: "D Title" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronDBodyText: {
-    defaultValue: "Lorem ipsum",
+    table: {
+      defaultValue: { summary: "Lorem ipsum" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronSTitleText: {
-    defaultValue: "S Title",
+    table: {
+      defaultValue: { summary: "S Title" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronSBodyText: {
-    defaultValue: "Lorem ipsum",
+    table: {
+      defaultValue: { summary: "Lorem ipsum" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronFTitleText: {
-    defaultValue: "F Title",
+    table: {
+      defaultValue: { summary: "F Title" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronFBodyText: {
-    defaultValue: "Lorem ipsum",
+    table: {
+      defaultValue: { summary: "Lorem ipsum" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronETitleText: {
-    defaultValue: "You have exceeded your fee limit",
+    table: {
+      defaultValue: { summary: "You have exceeded your fee limit" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronEBodyText: {
-    defaultValue:
-      "You are therefore not able to borrow or reserve materials from the library",
+    table: {
+      defaultValue: {
+        summary:
+          "You are therefore not able to borrow or reserve materials from the library"
+      },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronWTitleText: {
-    defaultValue: "Your user is blocked",
+    table: {
+      defaultValue: { summary: "Your user is blocked" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronWBodyText: {
-    defaultValue:
-      "You therefore cannot reserve, borrow or renew loans. Please contact the library for further information",
+    table: {
+      defaultValue: {
+        summary:
+          "You therefore cannot reserve, borrow or renew loans. Please contact the library for further information"
+      },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronOTitleText: {
-    defaultValue: "O title",
+    table: {
+      defaultValue: { summary: "O title" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronOBodyText: {
-    defaultValue: "Lorem ipsum",
+    table: {
+      defaultValue: { summary: "Lorem ipsum" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronUTitleText: {
-    defaultValue: "Your user is blocked",
+    table: {
+      defaultValue: { summary: "Your user is blocked" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronUBodyText: {
-    defaultValue:
-      "You therefore cannot reserve, borrow or renew loans. $Please contact the library for further information",
+    table: {
+      defaultValue: {
+        summary:
+          "You therefore cannot reserve, borrow or renew loans. Please contact the library for further information"
+      },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronELinkText: {
-    defaultValue: "Pay your fees here",
+    table: {
+      defaultValue: { summary: "Pay your fees here" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronELinkUrl: {
-    // Open source image of a thoughtful ape
-    defaultValue: "https://unsplash.com/photos/r077pfFsdaU",
+    table: {
+      defaultValue: { summary: "https://unsplash.com/photos/r077pfFsdaU" },
+      type: { summary: "text" }
+    },
     control: { type: "text" }
   },
   blockedPatronCloseModalAriaLabelText: {
-    control: {
-      type: "text"
+    table: {
+      defaultValue: { summary: "Close blocked patron modal" },
+      type: { summary: "text" }
     },
-    defaultValue: "Close blocked patron modal"
+    control: { type: "text" }
   },
   blockedPatronModalAriaDescriptionText: {
-    control: {
-      type: "text"
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "This modal alerts you, that your patron has been blocked"
+      }
     },
-    defaultValue: "This modal alerts you, that your patron has been blocked"
+    control: { type: "text" }
   },
   redirectOnBlockedUrl: {
-    // Open source image of a thoughtful ape
-    control: {
-      type: "text"
+    table: {
+      defaultValue: { summary: "https://unsplash.com/photos/r077pfFsdaU" },
+      type: { summary: "text" }
     },
-    defaultValue: "https://unsplash.com/photos/r077pfFsdaU"
+    control: { type: "text" }
   }
+};
+
+export default {
+  blockedPatronDTitleText: "D Title",
+  blockedPatronDBodyText: "Lorem ipsum",
+  blockedPatronSTitleText: "S Title",
+  blockedPatronSBodyText: "Lorem ipsum",
+  blockedPatronFTitleText: "F Title",
+  blockedPatronFBodyText: "Lorem ipsum",
+  blockedPatronETitleText: "You have exceeded your fee limit",
+  blockedPatronEBodyText:
+    "You are therefore not able to borrow or reserve materials from the library",
+  blockedPatronWTitleText: "Your user is blocked",
+  blockedPatronWBodyText:
+    "You therefore cannot reserve, borrow or renew loans. Please contact the library for further information",
+  blockedPatronOTitleText: "O title",
+  blockedPatronOBodyText: "Lorem ipsum",
+  blockedPatronUTitleText: "Your user is blocked",
+  blockedPatronUBodyText:
+    "You therefore cannot reserve, borrow or renew loans. Please contact the library for further information",
+  blockedPatronELinkText: "Pay your fees here",
+  blockedPatronELinkUrl: "https://unsplash.com/photos/r077pfFsdaU",
+  blockedPatronCloseModalAriaLabelText: "Close blocked patron modal",
+  blockedPatronModalAriaDescriptionText:
+    "This modal alerts you, that your patron has been blocked",
+  redirectOnBlockedUrl: "https://unsplash.com/photos/r077pfFsdaU"
 };
 
 export interface BlockedPatronEntryTextProps {

@@ -73,6 +73,7 @@ interface PatronPageTextProps {
   pauseReservationModalSaveButtonLabelText: string;
   pickupBranchesDropdownLabelText: string;
   pickupBranchesDropdownNothingSelectedText: string;
+  alwaysAvailableEreolenUrl: string;
 }
 
 export interface PatronPageProps
