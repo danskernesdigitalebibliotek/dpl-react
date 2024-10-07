@@ -49,17 +49,12 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
     }
   } = useReservations();
   const {
-    all: { loans, isLoading: isLoadingLoans },
+    all: { loans, soonOverdue, farFromOverdue, isLoading: isLoadingLoans },
     fbs: {
       overdue: loansOverduePhysical,
       soonOverdue: loansSoonOverduePhysical,
       farFromOverdue: loansFarFromOverduePhysical,
       isLoading: isLoadingLoansPhysical
-    },
-    publizon: {
-      soonOverdue: loansSoonOverdueDigital,
-      farFromOverdue: loansFarFromOverdueDigital,
-      isLoading: isLoadingLoansDigital
     }
   } = useLoans();
 
@@ -125,16 +120,12 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           break;
 
         case soon:
-          setLoansToDisplay(
-            loansSoonOverduePhysical.concat(loansSoonOverdueDigital)
-          );
+          setLoansToDisplay(soonOverdue);
           setModalHeader(t("loansSoonOverdueText"));
           break;
 
         case longer:
-          setLoansToDisplay(
-            loansFarFromOverduePhysical.concat(loansFarFromOverdueDigital)
-          );
+          setLoansToDisplay(farFromOverdue);
           setModalHeader(t("loansNotOverdueText"));
           break;
 
@@ -143,16 +134,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
       }
       open(constructModalId(dueDateModal as string, [dueDateInput]));
     },
-    [
-      dueDateModal,
-      open,
-      loansFarFromOverduePhysical,
-      loansOverduePhysical,
-      loansSoonOverduePhysical,
-      loansSoonOverdueDigital,
-      loansFarFromOverdueDigital,
-      t
-    ]
+    [open, dueDateModal, loansOverduePhysical, t, soonOverdue, farFromOverdue]
   );
 
   const dashboardNotificationsLoan = [
@@ -169,8 +151,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           : openDueDateModal(yesterday)
     },
     {
-      listLength:
-        loansSoonOverduePhysical.length + loansSoonOverdueDigital.length,
+      listLength: soonOverdue.length,
       badge: t("statusBadgeWarningText"),
       header: t("loansSoonOverdueText"),
       color: "warning",
@@ -182,8 +163,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
           : openDueDateModal(soon)
     },
     {
-      listLength:
-        loansFarFromOverduePhysical.length + loansFarFromOverdueDigital.length,
+      listLength: farFromOverdue.length,
       header: t("loansNotOverdueText"),
       dataCy: "loans-not-overdue",
       color: "neutral",
@@ -231,11 +211,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
               materialsCount={loans.length}
               header={t("physicalLoansText")}
               emptyListText={t("noPhysicalLoansText")}
-              isLoading={
-                isLoadingLoans ||
-                isLoadingLoansPhysical ||
-                isLoadingLoansDigital
-              }
+              isLoading={isLoadingLoans || isLoadingLoansPhysical}
               linkText={t("dashboardLoansLinkText")}
               linkUrl={physicalLoansUrl}
             />
@@ -259,10 +235,7 @@ const DashboardNotificationList: FC<DashboardNotificationListProps> = ({
             ...dashboardNotificationsReservations
           ]}
           isLoading={
-            isLoadingLoans ||
-            isLoadingLoansPhysical ||
-            isLoadingLoansDigital ||
-            isLoadingReservations
+            isLoadingLoans || isLoadingLoansPhysical || isLoadingReservations
           }
         />
       )}
