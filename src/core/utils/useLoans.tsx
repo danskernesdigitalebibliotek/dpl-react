@@ -33,17 +33,6 @@ const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
     );
   });
 };
-//
-const getDueDatesLoan = (list: LoanType[]) => {
-  return Array.from(
-    new Set(
-      list
-        .filter(({ dueDate }) => dueDate !== (undefined || null))
-        .map(({ dueDate }) => dueDate)
-        .sort()
-    )
-  ) as string[];
-};
 
 type Loans = {
   loans: LoanType[];
@@ -52,7 +41,6 @@ type Loans = {
   farFromOverdue: LoanType[];
   isLoading: boolean;
   isError: boolean;
-  stackedMaterialsDueDates?: string[];
 };
 
 type UseLoansType = {
@@ -129,9 +117,6 @@ const useLoans: UseLoans = () => {
     ...loansFarFromOverduePublizon
   ];
 
-  // This logic should be moved to a separate function useloans shuld only return the data
-  // list of all due dates used for the stacked materials
-  const stackedMaterialsDueDatesFbs = getDueDatesLoan(mappedLoansFbs);
   return {
     all: {
       loans,
@@ -146,7 +131,6 @@ const useLoans: UseLoans = () => {
       overdue: loansOverdueFBS,
       soonOverdue: loansSoonOverdueFBS,
       farFromOverdue: loansFarFromOverdueFBS,
-      stackedMaterialsDueDates: stackedMaterialsDueDatesFbs,
       isLoading: isLoadingFbs,
       isError: isErrorFbs
     },

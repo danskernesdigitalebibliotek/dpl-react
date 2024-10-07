@@ -242,6 +242,17 @@ export const sortLoansByIsRenewableThenDueDate = (list: LoanType[]) => {
   );
 };
 
+export const getDueDatesLoan = (list: LoanType[]) => {
+  return Array.from(
+    new Set(
+      list
+        .filter(({ dueDate }) => dueDate !== (undefined || null))
+        .map(({ dueDate }) => dueDate)
+        .sort()
+    )
+  ) as string[];
+};
+
 export const getDueDatesForModal = (list: LoanType[], date: string) => {
   return list.filter(({ dueDate }) => dueDate === date);
 };
