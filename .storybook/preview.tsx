@@ -3,11 +3,11 @@ import "../src/components/components.scss";
 import "@danskernesdigitalebibliotek/dpl-design-system/build/css/base.css";
 import { setToken, TOKEN_LIBRARY_KEY, TOKEN_USER_KEY } from "../src/core/token";
 import "../src/core/mount";
-
 import React from "react";
 import { withErrorBoundary } from "react-error-boundary";
 import ErrorBoundaryAlert from "../src/components/error-boundary-alert/ErrorBoundaryAlert";
 import Store from "../src/components/store";
+
 
 const getSessionStorage = (type) => window.sessionStorage.getItem(type);
 const userToken =

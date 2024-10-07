@@ -68,6 +68,10 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchInputLabelText: string;
   advancedSearchInputPlaceholderText: string;
   advancedSearchRemoveRowText: string;
+  advancedSearchFilterLocationText: string;
+  advancedSearchFilterLocationDescriptionText: string;
+  advancedSearchFilterSublocationText: string;
+  advancedSearchFilterSublocationDescriptionText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {

@@ -70,8 +70,10 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     filters: {
       branchId: cleanBranches,
       status: onShelf ? [HoldingsStatus.OnShelf] : [],
-      ...(locationFilter?.location && { location: locationFilter.location }),
-      ...(locationFilter?.sublocation && {
+      ...(locationFilter?.location?.length && {
+        location: locationFilter.location
+      }),
+      ...(locationFilter?.sublocation?.length && {
         sublocation: locationFilter.sublocation
       })
     }
