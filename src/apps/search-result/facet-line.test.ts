@@ -48,7 +48,8 @@ describe("The facet line", () => {
       body: {}
     }).as("Material list service");
 
-    cy.visit("/iframe.html?id=apps-search-result--search-result");
+    cy.visit("/iframe.html?id=apps-search-result--primary");
+    cy.wait(["@Availability", "@Cover service", "@Material list service"]);
   });
 
   it("Renders facets with a single term as a button", () => {
@@ -177,8 +178,12 @@ describe("The facet line", () => {
     cy.url().should("include", "filters=usePersistedFilters");
 
     cy.visit(
-      "/iframe.html?args=q%3Alange+peter&id=apps-search-result--search-result"
+      "/iframe.html?args=q%3Alange+peter&id=apps-search-result--primary"
     );
+
+    // Wait for the iframe to load.
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(6000);
 
     cy.url().should("not.include", "filters=usePersistedFilters");
 

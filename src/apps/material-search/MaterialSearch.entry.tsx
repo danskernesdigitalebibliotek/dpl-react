@@ -31,6 +31,8 @@ export interface MaterialSearchEntryTextProps {
   materialSearchErrorWorkNotFoundText: string;
   materialSearchErrorHiddenInputsNotFoundHeadingText: string;
   materialSearchErrorHiddenInputsNotFoundDescriptionText: string;
+  materialSearchAriaButtonSelectWorkWithText: string;
+  materialSearchNoResultsText: string;
 }
 
 export interface MaterialSearchEntryProps {

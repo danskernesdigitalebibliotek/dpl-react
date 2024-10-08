@@ -9,6 +9,10 @@ import OpeningHours from "./OpeningHours";
 export interface OpeningHoursEntryProps {
   branchId: number;
   initialDate?: Date;
+  showOpeningHoursForWeekText: string;
+  weekText: string;
+  libraryIsClosedText: string;
+  openingHoursHeadingText: string;
 }
 
 const OpeningHoursEntry: React.FC<

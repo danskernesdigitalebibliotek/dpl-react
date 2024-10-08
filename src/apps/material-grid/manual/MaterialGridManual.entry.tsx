@@ -20,6 +20,7 @@ export interface MaterialGridManualEntryProps
   materials: string;
   title?: string;
   description?: string;
+  materialUrl: string;
 }
 
 const MaterialGridManualEntry: React.FC<MaterialGridManualEntryProps> = ({

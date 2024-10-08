@@ -175,7 +175,7 @@ interface MaterialEntryConfigProps {
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
   instantLoanConfig: string;
-  smsNotificationsForReservationsEnabledConfig: boolean;
+  smsNotificationsForReservationsEnabledConfig: string;
 }
 
 export interface MaterialEntryProps

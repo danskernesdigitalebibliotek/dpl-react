@@ -237,12 +237,11 @@ export const getInstantLoanBranchHoldings = (
   const filteredMaterials = consolidatedHoldings(filteredBranchHoldings)
     .map(({ branch, materials }) => {
       const filtered = materials.filter(({ materialGroup, available }) => {
-        // if a material group description contains any of the instant loan strings
+        // if a material group name contains any of the instant loan strings
         // and is available, it is an instant loan.
         return (
           instantLoanStrings.some(
-            (instantLoanString) =>
-              instantLoanString === materialGroup.description
+            (instantLoanString) => instantLoanString === materialGroup.name
           ) && available
         );
       });

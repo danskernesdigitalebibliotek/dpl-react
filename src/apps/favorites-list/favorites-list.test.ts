@@ -42,7 +42,7 @@ describe("Favorites list", () => {
       fixtureFilePath: "cover.json"
     });
 
-    cy.visit("/iframe.html?path=/story/apps-favorite-list--favorites-list");
+    cy.visit("/iframe.html?id=apps-favorite-list--primary&viewMode=story");
   });
 
   it("Favorites list basics", () => {
@@ -68,7 +68,7 @@ describe("Favorites list", () => {
   it("Favorites list paginates", () => {
     // 2.h it paginates
     cy.visit(
-      "/iframe.html?id=apps-favorite-list--favorites-list&args=pageSizeDesktop:2;pageSizeMobile:2"
+      "/iframe.html?id=apps-favorite-list--primary&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
     cy.get(".content-list-page")
       .find(".card-list-item")

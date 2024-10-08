@@ -2,10 +2,13 @@
 import React, { useState } from "react";
 import { useCombobox } from "downshift";
 import SearchBar, { SearchBarProps } from "./search-bar";
+import { withText } from "../../core/utils/text";
 
 export interface StorySearchBarProps {
   storybookArgs: SearchBarProps;
 }
+
+const WrappedSearchBar = withText(SearchBar);
 
 const StorySearchBar: React.FC<StorySearchBarProps> = ({ storybookArgs }) => {
   // We use the Header component and useState for context to the search
@@ -24,10 +27,24 @@ const StorySearchBar: React.FC<StorySearchBarProps> = ({ storybookArgs }) => {
     }
   });
 
+  // TODO: rewrite this and ensure it works correctly. This code below only got the story to work and is not tested.
+  const { getLabelProps } = useCombobox({
+    items: ["Item 1", "Item 2"],
+    inputValue: q,
+    defaultIsOpen: false,
+    onInputValueChange: ({ inputValue }) => {
+      setQ(inputValue);
+    }
+  });
+
   return (
     <div className="header__menu-second">
       <form action={searchHeaderUrl} className="header__menu-search">
-        <SearchBar {...storybookArgs} getInputProps={getInputProps} />
+        <WrappedSearchBar
+          {...storybookArgs}
+          getInputProps={getInputProps}
+          getLabelProps={getLabelProps}
+        />
       </form>
     </div>
   );

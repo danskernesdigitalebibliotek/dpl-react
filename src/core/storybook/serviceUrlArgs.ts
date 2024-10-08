@@ -1,45 +1,97 @@
 import { serviceUrlKeys } from "../utils/reduxMiddleware/extractServiceBaseUrls";
 
-export default {
+export const argTypes = {
   [serviceUrlKeys.fbs]: {
-    name: "Base url for the FBS API",
-    defaultValue: process.env.FBS_BASEURL ?? "https://fbs-openplatform.dbc.dk",
-    control: { type: "text" }
+    description: "Base url for the FBS API",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "https://fbs-openplatform.dbc.dk"
+      }
+    }
   },
   [serviceUrlKeys.publizon]: {
-    name: "Base url for the Publizon API",
-    defaultValue:
-      process.env.PUBLIZON_BASEURL ?? "https://pubhub-openplatform.dbc.dk",
-    control: { type: "text" }
+    description: "Base url for the Publizon API",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "https://pubhub-openplatform.dbc.dk"
+      }
+    }
   },
   [serviceUrlKeys.dplCms]: {
-    name: "Base url for the DPL CMS API",
-    defaultValue: process.env.CMS_BASEURL ?? "https://dpl-cms.docker",
-    control: { type: "text" }
+    description: "Base url for the DPL CMS API",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "https://dpl-cms.docker"
+      }
+    }
   },
   [serviceUrlKeys.cover]: {
-    name: "Base url for the cover service",
-    defaultValue: "https://cover.dandigbib.org",
-    control: { type: "text" }
+    description: "Base url for the cover service",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "https://cover.dandigbib.org"
+      }
+    }
   },
   [serviceUrlKeys.materialList]: {
-    name: "Base url for the material list service",
-    defaultValue: "https://prod.materiallist.dandigbib.org",
-    control: { type: "text" }
+    description: "Base url for the material list service",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "https://prod.materiallist.dandigbib.org"
+      }
+    }
   },
   [serviceUrlKeys.fbi]: {
-    name: "Base url for the FBI API",
-    defaultValue: "https://fbi-api.dbc.dk/next-present/graphql",
-    control: { type: "text" }
+    description: "Base url for the FBI API",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "https://fbi-api.dbc.dk/next-present/graphql"
+      }
+    }
   },
   [serviceUrlKeys.fbiLocal]: {
-    name: "Base url for the FBI API (local inventory)",
-    defaultValue: "https://fbi-api.dbc.dk/next/graphql",
-    control: { type: "text" }
+    description: "Base url for the FBI API (local inventory)",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "https://fbi-api.dbc.dk/next/graphql"
+      }
+    }
   },
   [serviceUrlKeys.fbiGlobal]: {
-    name: "Base url for the FBI API (global inventory)",
-    defaultValue: "https://fbi-api.dbc.dk/next-present/graphql",
-    control: { type: "text" }
+    description: "Base url for the FBI API (global inventory)",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "https://fbi-api.dbc.dk/next-present/graphql"
+      }
+    }
   }
+};
+
+export default {
+  [serviceUrlKeys.fbs]:
+    process.env.FBS_BASEURL ?? "https://fbs-openplatform.dbc.dk",
+  [serviceUrlKeys.publizon]:
+    process.env.PUBLIZON_BASEURL ?? "https://pubhub-openplatform.dbc.dk",
+  [serviceUrlKeys.dplCms]: process.env.CMS_BASEURL ?? "https://dpl-cms.docker",
+  [serviceUrlKeys.cover]: "https://cover.dandigbib.org",
+  [serviceUrlKeys.materialList]: "https://prod.materiallist.dandigbib.org",
+  [serviceUrlKeys.fbi]: "https://fbi-api.dbc.dk/next-present/graphql",
+  [serviceUrlKeys.fbiLocal]: "https://fbi-api.dbc.dk/next/graphql",
+  [serviceUrlKeys.fbiGlobal]: "https://fbi-api.dbc.dk/next-present/graphql"
 };

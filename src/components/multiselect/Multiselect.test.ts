@@ -1,7 +1,7 @@
 describe("Multiselect", () => {
   beforeEach(() => {
     cy.visit(
-      "/iframe.html?args=&id=components-multiselect--default&viewMode=story"
+      "/iframe.html?args=&id=components-multiselect--primary&viewMode=story"
     );
   });
 

@@ -19,6 +19,8 @@ export interface FindOnShelfModalProps {
   authors: Work["creators"];
   selectedPeriodical: PeriodicalEdition | null;
   setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
+  blacklistedPickupBranchesConfig?: string;
+  previouslySelectedMaterialType?: string;
 }
 
 const FindOnShelfModal: FC<FindOnShelfModalProps> = ({

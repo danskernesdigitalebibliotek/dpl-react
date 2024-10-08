@@ -60,6 +60,8 @@ export interface FeeListProps {
   feeListSeeYourOverdueLoansText: string;
   feeListSeeYourOverdueLoansAriaText: string;
   physicalLoansUrl: string;
+  feeListMaterialNumberText: string;
+  loansOverdueText: string;
 }
 
 const FeeListEntry: FC<

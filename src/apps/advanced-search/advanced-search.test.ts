@@ -238,9 +238,7 @@ describe("Search Result", () => {
   });
 
   beforeEach(() => {
-    cy.visit(
-      "/iframe.html?id=apps-advanced-search--advanced-search&viewMode=story"
-    );
+    cy.visit("/iframe.html?id=apps-advanced-search--primary&viewMode=story");
 
     // Intercept graphql search query.
     cy.interceptGraphql({
