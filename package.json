@@ -48,10 +48,10 @@
     "@babel/core": "^7.25.7",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
-    "@chromatic-com/storybook": "^1",
     "@babel/preset-env": "^7.25.7",
     "@babel/preset-react": "^7.25.7",
     "@babel/preset-typescript": "^7.25.7",
+    "@chromatic-com/storybook": "^1",
     "@csstools/postcss-sass": "^5.1.1",
     "@cypress/browserify-preprocessor": "^3.0.2",
     "@cypress/code-coverage": "^3.13.4",
@@ -145,7 +145,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.40.0-c006877c658f7b12d834a352487fc8ab333f83bc",
+    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.41.0-1ca7f9197d2f2f7a2865e34173fba6eca7f50edc",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",
