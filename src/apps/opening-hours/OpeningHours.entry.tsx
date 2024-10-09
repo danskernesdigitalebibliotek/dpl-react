@@ -1,14 +1,14 @@
 import React from "react";
-import GuardedApp from "../../components/guarded-app";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
 import OpeningHours from "./OpeningHours";
+import { getInitialDateFromUrl } from "../opening-hours-editor/helper";
 
 export interface OpeningHoursEntryProps {
   branchId: number;
-  initialDate?: Date;
+  initialDate?: string;
   showOpeningHoursForWeekText: string;
   weekText: string;
   libraryIsClosedText: string;
@@ -17,8 +17,14 @@ export interface OpeningHoursEntryProps {
 
 const OpeningHoursEntry: React.FC<
   OpeningHoursEntryProps & GlobalEntryTextProps
-> = ({ branchId, initialDate = new Date() }) => {
-  return <OpeningHours branchId={branchId} initialDate={initialDate} />;
+> = ({ branchId, initialDate }) => {
+  const initialDateParam = getInitialDateFromUrl();
+  return (
+    <OpeningHours
+      branchId={branchId}
+      initialDate={initialDate ?? initialDateParam}
+    />
+  );
 };
 
 export default withConfig(withUrls(withText(OpeningHoursEntry)));
