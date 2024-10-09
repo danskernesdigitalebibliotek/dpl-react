@@ -135,7 +135,8 @@ export const ReservationModalBody = ({
     reservableManifestations ?? [],
     !!selectedPeriodical
   );
-
+  const [reservationStatus, setReservationStatus] =
+    useState<RequestStatus>("idle");
   const {
     reservablePidsFromAnotherLibrary,
     materialIsReservableFromAnotherLibrary
@@ -162,6 +163,7 @@ export const ReservationModalBody = ({
 
   const saveReservation = () => {
     if (manifestationsToReserve?.length) {
+      setReservationStatus("pending");
       // Save reservation to FBS.
       mutateAddReservations(
         {
@@ -174,6 +176,7 @@ export const ReservationModalBody = ({
         },
         {
           onSuccess: (res) => {
+            setReservationStatus("success");
             // Track only if the reservation has been successfully saved.
             track("click", {
               id: statistics.reservation.id,
@@ -186,14 +189,17 @@ export const ReservationModalBody = ({
             queryClient.invalidateQueries(
               getGetHoldingsV3QueryKey({ recordid: faustIds })
             );
+          },
+          onError: () => {
+            setReservationStatus("error");
           }
         }
       );
     }
 
     if (materialIsReservableFromAnotherLibrary && patron) {
+      setReservationStatus("pending");
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
-
       // Save reservation to open order.
       mutateOpenOrder(
         {
@@ -214,7 +220,11 @@ export const ReservationModalBody = ({
         },
         {
           onSuccess: (res) => {
+            setReservationStatus("success");
             setOpenOrderResponse(res);
+          },
+          onError: () => {
+            setReservationStatus("error");
           }
         }
       );
@@ -280,7 +290,7 @@ export const ReservationModalBody = ({
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
-                disabled={false}
+                disabled={reservationStatus === "pending"}
                 collapsible={false}
                 size="small"
                 onClick={saveReservation}
