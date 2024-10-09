@@ -65,6 +65,7 @@ import configuration, { getConf } from "../../core/configuration";
 import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromAnotherLibrary";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import { Periods } from "./types";
+import { RequestStatus } from "../../core/utils/types/request";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -331,6 +332,7 @@ export const ReservationModalBody = ({
                       : selectedInterest
                   }
                   setSelectedInterest={setSelectedInterest}
+                  reservationStatus={reservationStatus}
                 />
               )}
 
