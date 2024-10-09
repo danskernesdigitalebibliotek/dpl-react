@@ -172,3 +172,10 @@ export const isOpeningHourWeeklyRepetition = (
     DplOpeningHoursListGET200ItemRepetitionType.weekly
   );
 };
+
+// This used for cypress testing in in cms where we test the complete flow of
+// opening hours between the editor (Admin) and the calendar (Frontend)
+export const getInitialDateFromUrl = (): string | null => {
+  const query = new URLSearchParams(window.location.search);
+  return query.get("initialDate");
+};
