@@ -15,10 +15,13 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import {
   getAvailabilityV3,
+  getExternalAgencyidCatalogHoldingsLogisticsV1,
   getHoldingsV3,
+  useGetExternalAgencyidCatalogHoldingsLogisticsV1,
   useGetHoldingsV3
 } from "../../core/fbs/fbs";
 import {
+  HoldingsForBibliographicalRecordLogisticsV1,
   HoldingsForBibliographicalRecordV3,
   HoldingsV3
 } from "../../core/fbs/model";
@@ -540,24 +543,98 @@ export const getAvailability = async ({
 }) =>
   getAvailabilityV3(getBlacklistedQueryArgs(faustIds, config, "availability"));
 
+type TransformHoldingsDataType = {
+  logisticsV1Data: HoldingsForBibliographicalRecordLogisticsV1[];
+  getHoldingsV3Data: HoldingsForBibliographicalRecordV3[];
+};
+
+const transformHoldingsData = ({
+  logisticsV1Data,
+  getHoldingsV3Data
+}: TransformHoldingsDataType) => {
+  const hasLogisticsPlacement = logisticsV1Data.some(({ holdings }) =>
+    holdings.some(({ logisticsPlacement }) => logisticsPlacement?.length)
+  );
+
+  const hasLmsPlacement = logisticsV1Data.some(({ holdings }) =>
+    holdings.some(({ lmsPlacement }) => lmsPlacement)
+  );
+
+  if (hasLogisticsPlacement) {
+    // Do something with logisticsPlacement
+  }
+
+  if (hasLmsPlacement) {
+    const extractedLmsPlacements = logisticsV1Data.map(({ holdings }) =>
+      holdings.map(({ lmsPlacement }) => lmsPlacement)
+    );
+
+    const holdingsWithLmsPlacements = getHoldingsV3Data.map(
+      ({ holdings, ...rest }, dataIndex) => ({
+        ...rest,
+        holdings: holdings.map((holdingItem, holdingIndex) => ({
+          ...holdingItem,
+          ...extractedLmsPlacements[dataIndex][holdingIndex]
+        }))
+      })
+    );
+
+    return holdingsWithLmsPlacements;
+  }
+
+  return getHoldingsV3Data;
+};
+
 export const useGetHoldings = ({
   faustIds,
   config,
   useAvailabilityBlacklist = false,
-  options
+  optionsGetHoldingsV3,
+  optionsLogisticsV1
 }: {
   faustIds: FaustId[];
   config: UseConfigFunction;
   useAvailabilityBlacklist?: boolean;
-  options?: {
+  optionsGetHoldingsV3?: {
     query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>>;
+  };
+  optionsLogisticsV1?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>
+    >;
   };
 }) => {
   const blacklistedBranches = useAvailabilityBlacklist ? "both" : "pickup";
-  const { data, isLoading, isError } = useGetHoldingsV3(
+
+  const {
+    data: logisticsV1Data,
+    isLoading: logisticsV1IsLoading,
+    isError: logisticsV1IsError
+  } = useGetExternalAgencyidCatalogHoldingsLogisticsV1(
     getBlacklistedQueryArgs(faustIds, config, blacklistedBranches),
-    options
+    optionsLogisticsV1
   );
+
+  const {
+    data: getHoldingsV3Data,
+    isLoading: getHoldingsV3IsLoading,
+    isError: getHoldingsV3IsError
+  } = useGetHoldingsV3(
+    getBlacklistedQueryArgs(faustIds, config, blacklistedBranches),
+    optionsGetHoldingsV3
+  );
+
+  const isDataReady = logisticsV1Data && getHoldingsV3Data;
+  const isLoading = logisticsV1IsLoading || getHoldingsV3IsLoading;
+  const isError = logisticsV1IsError || getHoldingsV3IsError;
+
+  const data =
+    isDataReady &&
+    transformHoldingsData({
+      logisticsV1Data,
+      getHoldingsV3Data
+    });
+
   return { data, isLoading, isError };
 };
 
