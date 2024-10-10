@@ -10,7 +10,7 @@ interface NoInterestAfterModalProps {
   selectedInterest: number;
   setSelectedInterest: (value: number) => void;
   saveCallback?: <TValue extends FormSelectValue>(value: TValue) => void;
-  reservationStatus?: RequestStatus;
+  reservationStatus: RequestStatus;
   setReservationStatus?: (status: RequestStatus) => void;
 }
 

@@ -31,7 +31,7 @@ export interface ModalReservationFormSelectProps<
   saveCallback?: <TSaveValue extends FormSelectValue>(
     value: TSaveValue
   ) => void;
-  reservationStatus?: RequestStatus;
+  reservationStatus: RequestStatus;
   setReservationStatus?: (status: RequestStatus) => void;
 }
 
@@ -129,6 +129,7 @@ const ModalReservationFormSelect = <TValue extends FormSelectValue>({
           title={header.title}
           description={header.description}
           onSubmit={onSubmit}
+          disabledButton={reservationStatus === "pending"}
           buttonLabel={
             reservationStatus === "pending" ? t("loadingText") : undefined
           }

@@ -10,7 +10,7 @@ export interface PickupModalProps {
   defaultBranch: string;
   selectBranchHandler: (value: string) => void;
   saveCallback?: <TValue extends FormSelectValue>(value: TValue) => void;
-  reservationStatus?: RequestStatus;
+  reservationStatus: RequestStatus;
   setReservationStatus?: (status: RequestStatus) => void;
 }
 

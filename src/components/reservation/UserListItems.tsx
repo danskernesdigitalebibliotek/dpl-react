@@ -23,6 +23,7 @@ import {
 import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
 import { Periods } from "./types";
+import { RequestStatus } from "../../core/utils/types/request";
 
 export interface UserListItemsProps {
   patron: PatronV5;
@@ -32,6 +33,7 @@ export interface UserListItemsProps {
   selectedInterest: number | null;
   setSelectedInterest: (value: number) => void;
   whitelistBranches: AgencyBranch[];
+  reservationStatus: RequestStatus;
 }
 
 const UserListItems: FC<UserListItemsProps> = ({
@@ -42,7 +44,8 @@ const UserListItems: FC<UserListItemsProps> = ({
   selectBranchHandler,
   selectedInterest,
   setSelectedInterest,
-  whitelistBranches
+  whitelistBranches,
+  reservationStatus
 }) => {
   const t = useText();
   const config = useConfig();
@@ -83,6 +86,7 @@ const UserListItems: FC<UserListItemsProps> = ({
               selectedInterest ?? interestPeriods.defaultInterestPeriod.value
             }
             setSelectedInterest={setSelectedInterest}
+            reservationStatus={reservationStatus}
           />
         </>
       )}
@@ -99,6 +103,7 @@ const UserListItems: FC<UserListItemsProps> = ({
             branches={whitelistBranches}
             defaultBranch={selectedBranch ?? preferredPickupBranch}
             selectBranchHandler={selectBranchHandler}
+            reservationStatus={reservationStatus}
           />
         </>
       )}
