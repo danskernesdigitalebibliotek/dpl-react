@@ -1344,7 +1344,7 @@ describe("Dashboard", () => {
       }
     ).as("renew");
 
-    cy.visit("/iframe.html?id=apps-dashboard--dashboard-entry&viewMode=story");
+    cy.visit("/iframe.html?id=apps-dashboard--primary&viewMode=story");
     cy.wait(["@fees", "@loans", "@reservations"]);
   });
 
@@ -1466,6 +1466,8 @@ describe("Dashboard", () => {
     cy.get("[type=checkbox]").each((checkbox) => {
       cy.wrap(checkbox).should("be.checked");
     });
+    // The length of the checkboxes should be 10 because there are 9 reservations plus the select all checkbox
+    cy.get("[type=checkbox]").should("have.length", 10).should("be.checked");
     validateReservationsRemovalButtonWithCount(9);
   });
 

@@ -21,37 +21,38 @@ export interface LoanListEntryUrlProps {
 }
 
 interface LoanListEntryTextProps {
+  etAlText: string;
+  groupModalHeaderText: string;
+  loanListAdditionalMaterialsText: string;
   loanListAriaLabelListButtonText: string;
   loanListAriaLabelStackButtonText: string;
   loanListDigitalLoansEmptyListText: string;
   loanListDigitalLoansTitleText: string;
   loanListDigitalPhysicalLoansEmptyListText: string;
-  loanListDueDateModalAriaLabelText: string;
   loanListDueDateModalAriaDescribeMobileText: string;
+  loanListDueDateModalAriaLabelText: string;
   loanListLateFeeDesktopText: string;
   loanListLateFeeMobileText: string;
   loanListMaterialDaysText: string;
-  loanListAdditionalMaterialsText: string;
+  loanListMaterialDayText: string;
+  loanListMaterialLateFeeText: string;
+  loanListNoItemsCanBeRenewedText: string;
   loanListPhysicalLoansEmptyListText: string;
   loanListPhysicalLoansTitleText: string;
   loanListRenewMultipleButtonExplanationText: string;
   loanListRenewMultipleButtonText: string;
-  loanListNoItemsCanBeRenewedText: string;
   loanListStatusBadgeDangerText: string;
   loanListStatusBadgeWarningText: string;
+  loanListStatusCircleAriaLabelText: string;
   loanListTitleText: string;
   loanListToBeDeliveredDigitalMaterialText: string;
   loanListToBeDeliveredText: string;
-  etAlText: string;
   materialAndAuthorText: string;
   materialByAuthorText: string;
   publizonAudioBookText: string;
   publizonEbookText: string;
   publizonPodcastText: string;
   resultPagerStatusText: string;
-  loanListMaterialLateFeeText: string;
-  loanListMaterialDayText: string;
-  loanListStatusCircleAriaLabelText: string;
 }
 
 export interface LoanListEntryWithPageSizeProps

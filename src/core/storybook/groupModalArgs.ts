@@ -1,60 +1,97 @@
-export default {
+export const argTypes = {
   groupModalDueDateLinkToPageWithFeesText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Read more about fees"
+    control: { type: "text" },
+    table: {
+      defaultValue: { summary: "Read more about fees" },
+      type: { summary: "text" }
+    }
   },
   groupModalDueDateMaterialText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "To be returned @date"
+    control: { type: "text" },
+    table: {
+      defaultValue: { summary: "To be returned @date" },
+      type: { summary: "text" }
+    }
   },
   groupModalDueDateDigitalMaterialText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Expires @date"
+    control: { type: "text" },
+    table: {
+      defaultValue: { summary: "Expires @date" },
+      type: { summary: "text" }
+    }
   },
   groupModalGoToMaterialText: {
-    defaultValue: "Go to material details",
-    control: { type: "text" }
+    control: { type: "text" },
+    table: {
+      defaultValue: { summary: "Go to material details" },
+      type: { summary: "text" }
+    }
   },
   groupModalDueDateHeaderText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Due date @date"
+    control: { type: "text" },
+    table: {
+      defaultValue: { summary: "Due date @date" },
+      type: { summary: "text" }
+    }
   },
   resultPagerStatusText: {
-    defaultValue: "Showing @itemsShown out of @hitcount elements",
-    control: { type: "text" }
+    control: { type: "text" },
+    table: {
+      defaultValue: {
+        summary: "Showing @itemsShown out of @hitcount elements"
+      },
+      type: { summary: "text" }
+    }
   },
   groupModalCheckboxText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Choose all"
+    control: { type: "text" },
+    table: {
+      defaultValue: { summary: "Choose all" },
+      type: { summary: "text" }
+    }
   },
   groupModalHiddenLabelCheckboxOnMaterialText: {
-    control: {
-      type: "text"
-    },
-    defaultValue: "Select @label"
+    control: { type: "text" },
+    table: {
+      defaultValue: { summary: "Select @label" },
+      type: { summary: "text" }
+    }
   },
   pageSizeDesktop: {
-    defaultValue: 10,
-    control: { type: "number" }
+    control: { type: "number" },
+    table: {
+      defaultValue: { summary: 10 },
+      type: { summary: "number" }
+    }
   },
   pageSizeMobile: {
-    defaultValue: 5,
-    control: { type: "number" }
+    control: { type: "number" },
+    table: {
+      defaultValue: { summary: 5 },
+      type: { summary: "number" }
+    }
   },
   showMoreText: {
-    defaultValue: "show more",
-    control: { type: "text" }
+    control: { type: "text" },
+    table: {
+      defaultValue: { summary: "show more" },
+      type: { summary: "text" }
+    }
   }
+};
+
+export default {
+  groupModalDueDateLinkToPageWithFeesText: "Read more about fees",
+  groupModalDueDateMaterialText: "To be returned @date",
+  groupModalDueDateDigitalMaterialText: "Expires @date",
+  groupModalGoToMaterialText: "Go to material details",
+  groupModalDueDateHeaderText: "Due date @date",
+  resultPagerStatusText: "Showing @itemsShown out of @hitcount elements",
+  groupModalCheckboxText: "Choose all",
+  groupModalHiddenLabelCheckboxOnMaterialText: "Select @label",
+  pageSizeDesktop: 10,
+  pageSizeMobile: 5,
+  showMoreText: "show more"
 };
 
 export interface GroupModalProps {

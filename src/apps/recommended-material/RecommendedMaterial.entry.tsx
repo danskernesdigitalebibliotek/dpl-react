@@ -11,6 +11,8 @@ import RecommendedMaterial from "./RecommendedMaterial";
 export interface RecommendedMaterialEntryProps {
   wid: WorkId;
   materialType?: ManifestationMaterialType;
+  materialUrl?: string;
+  etAlText?: string;
 }
 
 const RecommendedMaterialEntry: React.FC<

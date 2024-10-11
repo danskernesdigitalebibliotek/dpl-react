@@ -12,6 +12,8 @@ export interface RecommendationEntryProps extends GlobalEntryTextProps {
   wid: WorkId;
   materialType?: ManifestationMaterialType;
   positionImageRight?: boolean;
+  materialUrl: string;
+  etAlText: string;
 }
 
 const RecommendationEntry: React.FC<RecommendationEntryProps> = ({

@@ -15,7 +15,7 @@ describe("Recommendation Component", () => {
     });
   });
   it("displays material title and description after loading", () => {
-    cy.visit("/iframe.html?id=apps-recommendation--app&viewMode=story");
+    cy.visit("/iframe.html?id=apps-recommendation--default&viewMode=story");
     cy.getBySel("recommendation-title")
       .should("be.visible")
       .and("contain", "Brillebjørn");
@@ -28,7 +28,7 @@ describe("Recommendation Component", () => {
   });
   it("renders in the correct orientation based on positionImageRight prop", () => {
     cy.visit(
-      "/iframe.html?args=positionImageRight:true&id=apps-recommendation--app&viewMode=story"
+      "/iframe.html?args=positionImageRight:true&id=apps-recommendation--default&viewMode=story"
     );
     cy.getBySel("recommendation").should(
       "have.class",
@@ -36,7 +36,7 @@ describe("Recommendation Component", () => {
     );
   });
   it("link navigates to the correct material page", () => {
-    cy.visit("/iframe.html?id=apps-recommendation--app&viewMode=story");
+    cy.visit("/iframe.html?id=apps-recommendation--default&viewMode=story");
     cy.get(".recommendation__texts")
       .should("have.attr", "href")
       .should("match", /\/work\/work-of:\d+-basis:\d+/);

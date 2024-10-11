@@ -14,7 +14,7 @@ export interface SearchHeaderTextProps {
   stringSuggestionWorkText?: string;
   stringSuggestionTopicText?: string;
   searchHeaderDropdownText: string;
-  etAlText?: string;
+  etAlText: string;
   autosuggestBookCategoryText: string;
   autosuggestEbookCategoryText: string;
   autosuggestFilmCategoryText: string;

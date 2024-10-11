@@ -409,7 +409,7 @@ export const patronAgeValid = (cpr: string, minAge: number) => {
   if (cprDate === null) return false;
 
   const age = dayjs().diff(dayjs(cprDate), "year");
-  return age > minAge;
+  return age >= minAge;
 };
 
 // Create a string of authors with commas and a conjunction

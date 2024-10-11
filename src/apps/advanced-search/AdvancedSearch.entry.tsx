@@ -66,7 +66,12 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterNonFictionText: string;
   advancedSearchFilterHoldingStatusText: string;
   advancedSearchInputLabelText: string;
+  advancedSearchInputPlaceholderText: string;
   advancedSearchRemoveRowText: string;
+  advancedSearchFilterLocationText: string;
+  advancedSearchFilterLocationDescriptionText: string;
+  advancedSearchFilterSublocationText: string;
+  advancedSearchFilterSublocationDescriptionText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
@@ -81,8 +86,9 @@ export interface AdvancedSearchEntryProps
     GlobalEntryTextProps,
     AdvancedSearchEntryConfigProps,
     AdvancedSearchEntryTextProps {
-  pageSizeDesktop?: number;
-  pageSizeMobile?: number;
+  pageSizeDesktop: number;
+  pageSizeMobile: number;
+  showingMaterialsText: string;
 }
 
 const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({

@@ -60,6 +60,7 @@ export interface DashBoardProps {
   yourProfileText: string;
   dashboardLoansLinkText: string;
   dashboardReservationsLinkText: string;
+  reservationListLoanBeforeText: string;
 }
 
 const DashboardEntry: FC<

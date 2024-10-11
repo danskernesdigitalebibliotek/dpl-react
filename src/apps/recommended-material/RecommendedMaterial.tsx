@@ -16,7 +16,6 @@ import {
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
-
 import Link from "../../components/atoms/links/Link";
 import { WorkId } from "../../core/utils/types/ids";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
