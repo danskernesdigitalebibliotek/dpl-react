@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
 import serviceUrlArgs from "../../core/storybook/serviceUrlArgs";
 import { withConfig } from "../../core/utils/config";
 import { getCurrentLocation } from "../../core/utils/helpers/url";
@@ -8,6 +7,7 @@ import { withUrls } from "../../core/utils/url";
 import { AvailabilityLabel } from "./availability-label";
 import globalTextArgs from "../../core/storybook/globalTextArgs";
 import globalConfigArgs from "../../core/storybook/globalConfigArgs";
+import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 
 // The configuration below addresses the different variables,
 // their default values, and how they translate into storybook
@@ -49,7 +49,7 @@ const meta: Meta<typeof AvailabilityLabel> = {
     },
     accessTypes: {
       name: "Access types",
-      options: [...Object.values(AccessTypeCode)],
+      options: [...Object.values(AccessTypeCodeEnum)],
       control: { type: "check" }
     }
   },
@@ -108,6 +108,7 @@ export const Unavailable: Story = {
 export const EBogPrinsenHarry: Story = {
   args: {
     isbns: ["9788763844123"],
-    manifestText: "ebog"
+    manifestText: "ebog",
+    accessTypes: [AccessTypeCodeEnum.Online]
   }
 };

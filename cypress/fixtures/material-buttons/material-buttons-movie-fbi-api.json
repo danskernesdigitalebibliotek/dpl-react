@@ -16,7 +16,6 @@
         }
       ],
       "series": [],
-      "seriesMembers": [],
       "workYear": null,
       "genreAndForm": ["actionfilm"],
       "manifestations": {
@@ -165,13 +164,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "1 dvd-video ca. 109 min.",
-                "numberOfPages": null,
-                "playingTime": "ca. 109 min."
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "1 dvd-video ca. 109 min.",
+              "numberOfPages": null,
+              "materialUnits": [{ "extent": "ca. 109 min." }]
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -339,13 +336,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "1 disc (blu-ray) ca. 113 min.",
-                "numberOfPages": null,
-                "playingTime": "ca. 113 min."
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "1 disc (blu-ray) ca. 113 min.",
+              "numberOfPages": null,
+              "materialUnits": [{ "extent": "ca. 113 min." }]
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -509,13 +504,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "Ca. 113 min.",
-                "numberOfPages": null,
-                "playingTime": "Ca. 113 min."
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "Ca. 113 min.",
+              "numberOfPages": null,
+              "materialUnits": [{ "extent": "Ca. 113 min." }]
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -687,13 +680,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
-            {
-              "summary": "Ca. 113 min.",
-              "numberOfPages": null,
-              "playingTime": "Ca. 113 min."
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "Ca. 113 min.",
+            "numberOfPages": null,
+            "materialUnits": [{ "extent": "Ca. 113 min." }]
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -864,13 +855,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
-            {
-              "summary": "Ca. 113 min.",
-              "numberOfPages": null,
-              "playingTime": "Ca. 113 min."
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "Ca. 113 min.",
+            "numberOfPages": null,
+            "materialUnits": [{ "extent": "Ca. 113 min." }]
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [

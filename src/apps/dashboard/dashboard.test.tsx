@@ -1459,6 +1459,13 @@ describe("Dashboard", () => {
   it("should toggle all reservations using the select all button", () => {
     navigateToQueuedReservations();
     cy.getBySel("checkbox-select-all").first().click();
+    // We need this silly wait in order to make sure that the checkboxes
+    // have been rattached to the DOM after click.
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(1000);
+    cy.get("[type=checkbox]").each((checkbox) => {
+      cy.wrap(checkbox).should("be.checked");
+    });
     // The length of the checkboxes should be 10 because there are 9 reservations plus the select all checkbox
     cy.get("[type=checkbox]").should("have.length", 10).should("be.checked");
     validateReservationsRemovalButtonWithCount(9);

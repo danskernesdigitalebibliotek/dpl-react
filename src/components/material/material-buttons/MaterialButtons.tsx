@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import { AccessTypeCode } from "../../../core/dbc-gateway/generated/graphql";
+import { AccessTypeCodeEnum } from "../../../core/dbc-gateway/generated/graphql";
 import {
   getAllFaustIds,
   getManifestationType
@@ -50,7 +50,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
 
   return (
     <>
-      {hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
+      {hasCorrectAccessType(AccessTypeCodeEnum.Physical, manifestations) &&
         !isArticle(manifestations) && (
           <>
             <MaterialButtonsPhysical
@@ -65,7 +65,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
             />
           </>
         )}
-      {(hasCorrectAccessType(AccessTypeCode.Online, manifestations) ||
+      {(hasCorrectAccessType(AccessTypeCodeEnum.Online, manifestations) ||
         hasCorrectAccess("DigitalArticleService", manifestations)) && (
         <MaterialButtonsOnline
           manifestations={manifestations}
