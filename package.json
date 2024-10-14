@@ -124,7 +124,7 @@
     "replace-in-file": "^6.3.2",
     "sass": "^1.79.4",
     "source-map-support": "^0.5.21",
-    "storybook": "^8.2.9",
+    "storybook": "^8.3.5",
     "style-loader": "^4.0.0",
     "stylelint": "^15.11.0",
     "stylelint-config-prettier": "^9.0.5",
