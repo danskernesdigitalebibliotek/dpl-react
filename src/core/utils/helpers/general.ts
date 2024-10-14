@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import dayjs from "dayjs";
-import { first, uniq } from "lodash";
+import { first, orderBy, uniq } from "lodash";
 import { vi } from "vitest";
 import { CoverProps } from "../../../components/cover/cover";
 import { UseTextFunction } from "../text";
@@ -215,6 +215,35 @@ export const sortByReservationDate = (list: ReservationType[]) => {
       new Date(objA.dateOfReservation || new Date()).getTime() -
       new Date(objB.dateOfReservation || new Date()).getTime()
   );
+};
+
+export const sortByDueDate = (list: LoanType[]) => {
+  //  We use orderBy from lodash to avoid mutating the original list
+  return orderBy(
+    list,
+    (item) => (item.dueDate ? dayjs(item.dueDate).valueOf() : Infinity),
+    "asc"
+  );
+};
+
+export const sortByRenewable = (list: LoanType[]) => {
+  return orderBy(list, (item) => Number(!!item.isRenewable), "desc");
+};
+
+export const sortLoansByIsRenewableThenDueDate = (list: LoanType[]) => {
+  const sortedByDueDate = sortByDueDate(list);
+  return sortByRenewable(sortedByDueDate);
+};
+
+export const getDueDatesLoan = (list: LoanType[]) => {
+  return Array.from(
+    new Set(
+      list
+        .filter(({ dueDate }) => dueDate !== undefined && dueDate !== null)
+        .map(({ dueDate }) => dueDate)
+        .sort()
+    )
+  ) as string[];
 };
 
 export const getDueDatesForModal = (list: LoanType[], date: string) => {
