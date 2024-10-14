@@ -221,8 +221,7 @@ export const sortByDueDate = (list: LoanType[]) => {
   //  We use orderBy from lodash to avoid mutating the original list
   return orderBy(
     list,
-    (item) =>
-      item.dueDate ? dayjs(item.dueDate).startOf("day").valueOf() : Infinity,
+    (item) => (item.dueDate ? dayjs(item.dueDate).valueOf() : Infinity),
     "asc"
   );
 };
