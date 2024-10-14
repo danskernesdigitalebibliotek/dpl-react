@@ -512,23 +512,32 @@ export const getBlacklistedQueryArgs = (
   const args = {
     recordid: faustIds
   };
-  // Return query args with the either availability or pickup branches excluded.
-  if (blacklistType !== "both") {
+
+  if (blacklistType === "availability") {
     return {
       ...args,
-      ...formatBranches([branchesFromConfig(blacklistType, config)])
+      ...formatBranches([branchesFromConfig("availability", config)])
     };
   }
 
-  // If we want to blacklist both availability and pickup branches
-  // return query args with both blacklist types excluded.
-  return {
-    ...args,
-    ...formatBranches([
-      branchesFromConfig("availability", config),
-      branchesFromConfig("pickup", config)
-    ])
-  };
+  if (blacklistType === "pickup") {
+    return {
+      ...args,
+      ...formatBranches([branchesFromConfig("pickup", config)])
+    };
+  }
+
+  if (blacklistType === "both") {
+    return {
+      ...args,
+      ...formatBranches([
+        branchesFromConfig("availability", config),
+        branchesFromConfig("pickup", config)
+      ])
+    };
+  }
+
+  return args;
 };
 
 export const getAvailability = async ({
@@ -543,19 +552,18 @@ export const getAvailability = async ({
 export const useGetHoldings = ({
   faustIds,
   config,
-  useAvailabilityBlacklist = false,
+  blacklist,
   options
 }: {
   faustIds: FaustId[];
   config: UseConfigFunction;
-  useAvailabilityBlacklist?: boolean;
+  blacklist: BlacklistType;
   options?: {
     query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>>;
   };
 }) => {
-  const blacklistedBranches = useAvailabilityBlacklist ? "both" : "pickup";
   const { data, isLoading, isError } = useGetHoldingsV3(
-    getBlacklistedQueryArgs(faustIds, config, blacklistedBranches),
+    getBlacklistedQueryArgs(faustIds, config, blacklist),
     options
   );
   return { data, isLoading, isError };
