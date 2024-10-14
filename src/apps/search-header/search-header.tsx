@@ -28,6 +28,7 @@ import {
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
+import useFilterHandler from "../search-result/useFilterHandler";
 
 const SearchHeader: React.FC = () => {
   const t = useText();
@@ -46,7 +47,7 @@ const SearchHeader: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
-
+  const { clearFilter } = useFilterHandler();
   const {
     data,
     isLoading,
@@ -221,6 +222,8 @@ const SearchHeader: React.FC = () => {
         name: statistics.autosuggestClick.name,
         trackedData: selectedItem.work.titles.main.join(", ")
       }).then(() => {
+        // Before redirecting we need to clean persisted filters from previous search.
+        clearFilter();
         redirectTo(
           constructMaterialUrl(materialUrl, selectedItem.work?.workId as WorkId)
         );
@@ -245,7 +248,8 @@ const SearchHeader: React.FC = () => {
       }).then(() => {
         const { term, facet } =
           getAutosuggestCategoryList(t)[highlightedCategoryIndex];
-
+        // Before redirecting we need to clean persisted filters from previous search.
+        clearFilter();
         redirectTo(
           constructSearchUrlWithFilter({
             searchUrl,
@@ -262,6 +266,8 @@ const SearchHeader: React.FC = () => {
       name: statistics.autosuggestClick.name,
       trackedData: determineSuggestionTerm(selectedItem)
     }).then(() => {
+      // Before redirecting we need to clean persisted filters from previous search.
+      clearFilter();
       redirectTo(
         constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
       );
