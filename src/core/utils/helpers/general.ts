@@ -240,7 +240,7 @@ export const getDueDatesLoan = (list: LoanType[]) => {
   return Array.from(
     new Set(
       list
-        .filter(({ dueDate }) => dueDate !== (undefined || null))
+        .filter(({ dueDate }) => dueDate !== undefined && dueDate !== null)
         .map(({ dueDate }) => dueDate)
         .sort()
     )
