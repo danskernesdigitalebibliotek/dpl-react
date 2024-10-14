@@ -27,7 +27,7 @@ const meta: Meta<typeof OpeningHoursEditor> = {
     },
     initialDate: {
       description: "Initial date to show",
-      control: { type: "date" }
+      control: { type: "text" }
     },
     openingHoursEventFormCategoryText: {
       description: "Opening hours event form category",
@@ -108,7 +108,7 @@ export const Primary: Story = {
     openingHoursEditorCategoriesConfig:
       '[{"title":"\\u00c5bent","color":"#B3DC6C"},{"title":"Telefontid","color":"#FBE983"},{"title":"Borgerservice","color":"lightblue"}]',
     openingHoursBranchIdConfig: "12",
-    initialDate: new Date("2024-03-25"),
+    initialDate: "2024-03-25",
     openingHoursEventFormCategoryText: "Opening hour",
     openingHoursEventFormStartTimeText: "Start time",
     openingHoursEventFormEndTimeText: "End time",

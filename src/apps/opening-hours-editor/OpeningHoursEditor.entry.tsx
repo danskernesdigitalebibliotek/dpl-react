@@ -5,6 +5,7 @@ import OpeningHoursEditor, {
   OpeningHoursEditorType
 } from "./OpeningHoursEditor";
 import { withConfig } from "../../core/utils/config";
+import { getInitialDateFromUrl } from "./helper";
 
 interface OpeningHoursEditorEntryTextProps {
   openingHoursRemoveEventButtonText: string;
@@ -36,8 +37,9 @@ const OpeningHoursEditorEntry: React.FC<
   OpeningHoursEditorEntryTextProps &
     OpeningHoursEditorType &
     OpeningHoursEditorEntryConfigProps
-> = ({ initialDate = new Date() }) => {
-  return <OpeningHoursEditor initialDate={initialDate} />;
+> = ({ initialDate }) => {
+  const initialDateParam = getInitialDateFromUrl();
+  return <OpeningHoursEditor initialDate={initialDate ?? initialDateParam} />;
 };
 
 export default withConfig(withUrls(withText(OpeningHoursEditorEntry)));
