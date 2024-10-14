@@ -126,7 +126,11 @@ export const ReservationModalBody = ({
   const { mutate: mutateAddReservations } = useAddReservationsV2();
   const { mutate: mutateOpenOrder } = useOpenOrderMutation();
   const userResponse = usePatronData();
-  const holdingsResponse = useGetHoldings({ faustIds, config });
+  const holdingsResponse = useGetHoldings({
+    faustIds,
+    config,
+    blacklist: "availability"
+  });
   const { track } = useStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
     work,
