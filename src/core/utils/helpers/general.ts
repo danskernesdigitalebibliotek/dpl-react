@@ -227,19 +227,13 @@ export const sortByDueDate = (list: LoanType[]) => {
   );
 };
 
+export const sortByRenewable = (list: LoanType[]) => {
+  return orderBy(list, (item) => Number(!!item.isRenewable), "desc");
+};
+
 export const sortLoansByIsRenewableThenDueDate = (list: LoanType[]) => {
-  //  We use orderBy from lodash to avoid mutating the original list
-  return orderBy(
-    list,
-    [
-      // First criterion: isRenewable (Use "desc" to put renewable items first)
-      (item) => Number(!!item.isRenewable),
-      // Second criterion: dueDate (earlier dates first)
-      (item) =>
-        item.dueDate ? dayjs(item.dueDate).startOf("day").valueOf() : Infinity
-    ],
-    ["desc", "asc"]
-  );
+  const sortedByDueDate = sortByDueDate(list);
+  return sortByRenewable(sortedByDueDate);
 };
 
 export const getDueDatesLoan = (list: LoanType[]) => {
