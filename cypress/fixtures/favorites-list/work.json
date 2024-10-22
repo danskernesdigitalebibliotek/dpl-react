@@ -16,7 +16,6 @@
         }
       ],
       "series": [],
-      "seriesMembers": [],
       "workYear": null,
       "genreAndForm": ["rejseguides", "rejseførere"],
       "manifestations": {
@@ -74,13 +73,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 sider, tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -157,13 +154,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 sider: ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -243,13 +238,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 sider: ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -374,13 +367,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 sider: ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -460,13 +451,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 sider: ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -549,13 +538,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 sider, tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -632,13 +619,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 sider, tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -715,13 +700,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 sider, tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -798,13 +781,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 sider: ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -881,13 +862,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 sider: ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -969,13 +948,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 sider, tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1052,13 +1029,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 sider: ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1143,13 +1118,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 sider: ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1216,7 +1189,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [],
+            "physicalDescription": {},
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1290,13 +1263,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 sider: ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1376,13 +1347,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 sider: ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1465,13 +1434,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 sider: ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1553,13 +1520,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1641,13 +1606,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 side , tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1719,13 +1682,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 side , tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1807,13 +1768,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1898,13 +1857,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -1993,13 +1950,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2086,13 +2041,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2172,13 +2125,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2261,13 +2212,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 side , tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2344,13 +2293,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2427,13 +2374,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 side , tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2518,13 +2463,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2600,13 +2543,11 @@
                 "display": ["Rygtitel: Rom", "Tidligere: 19. udgave. 1996"]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2680,13 +2621,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill., kort",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill., kort",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2775,13 +2714,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2863,13 +2800,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -2950,13 +2885,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 side , tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3036,13 +2969,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3121,13 +3052,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3209,13 +3138,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3296,13 +3223,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver, kort",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver, kort",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3379,13 +3304,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 s.: ill.",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 s.: ill.",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3483,13 +3406,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3573,13 +3494,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 side , tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3659,13 +3578,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3746,13 +3663,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3828,13 +3743,11 @@
                 "display": ["Rygtitel: Rom"]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -3927,13 +3840,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -4059,13 +3970,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -4185,13 +4094,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -4272,13 +4179,11 @@
                 "display": ["Rygtitel: Rom", "Tidligere: 19. udgave. 1996"]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -4421,13 +4326,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -4548,13 +4451,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -4631,13 +4532,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side ",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -4754,13 +4653,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -4855,13 +4752,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -4986,13 +4881,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5069,13 +4962,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "128 sider, tavler: ill. (nogle i farver)",
-                "numberOfPages": 128,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "128 side , tavler: ill. (nogle i farver)",
+              "numberOfPages": 128,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5152,13 +5043,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5235,13 +5124,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5321,13 +5208,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5413,13 +5298,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5505,13 +5388,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5593,13 +5474,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5717,13 +5596,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5831,13 +5708,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -5932,13 +5807,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "80 min.",
-                "numberOfPages": null,
-                "playingTime": "80 min."
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "80 min.",
+              "numberOfPages": null,
+              "materialUnits": [{ "extent": "80 min." }]
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6041,7 +5914,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [],
+            "physicalDescription": {},
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6138,13 +6011,11 @@
                 "display": ["Med links"]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6236,13 +6107,11 @@
                 "display": ["Med links"]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6354,7 +6223,7 @@
                 "display": ["Med links"]
               }
             ],
-            "physicalDescriptions": [],
+            "physicalDescription": {},
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6441,13 +6310,11 @@
                 "display": ["Med links"]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6565,13 +6432,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6714,13 +6579,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6825,13 +6688,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "80 min.",
-                "numberOfPages": null,
-                "playingTime": "80 min."
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "80 min.",
+              "numberOfPages": null,
+              "materialUnits": [{ "extent": "80 min." }]
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6906,13 +6767,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "156 sider: ill. i farver",
-                "numberOfPages": 156,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "156 side : ill. i farver",
+              "numberOfPages": 156,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -6997,13 +6856,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -7116,13 +6973,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -7275,13 +7130,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -7361,13 +7214,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -7503,13 +7354,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
-            {
-              "summary": "168 sider: ill. i farver",
-              "numberOfPages": 168,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "168 side : ill. i farver",
+            "numberOfPages": 168,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -7637,13 +7486,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
-            {
-              "summary": "168 sider: ill. i farver",
-              "numberOfPages": 168,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "168 side : ill. i farver",
+            "numberOfPages": 168,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [

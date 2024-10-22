@@ -174,7 +174,7 @@ export const convertPostIdToFaustId = (postId: Pid) => {
   // in the last part after the colon, but it can also have a dash.
   // We are about to have clarified what the proper name of the element.
   // But for now we will call it faustId.
-  const matches = postId.match(/^[0-9]+-[a-z]+:([a-zA-Z0-9-_]+)$/);
+  const matches = postId.match(/^[0-9]+-[a-z]+:([a-zA-Z0-9-_.]+)$/);
   if (matches?.[1]) {
     return matches?.[1] as FaustId;
   }
@@ -409,7 +409,7 @@ export const patronAgeValid = (cpr: string, minAge: number) => {
   if (cprDate === null) return false;
 
   const age = dayjs().diff(dayjs(cprDate), "year");
-  return age > minAge;
+  return age >= minAge;
 };
 
 // Create a string of authors with commas and a conjunction

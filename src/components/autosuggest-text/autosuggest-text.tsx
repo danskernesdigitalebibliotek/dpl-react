@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
-import { SuggestionType } from "../../core/dbc-gateway/generated/graphql";
+import { SuggestionTypeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import AutosuggestTextItem from "./autosuggest-text-item";
 
@@ -13,7 +13,7 @@ export interface AutosuggestTextProps {
 
 export function itemToString(objectItem: Suggestion) {
   switch (objectItem.type) {
-    case SuggestionType.Composit:
+    case SuggestionTypeEnum.Composit:
       return objectItem.work?.titles.main[0] || "incomplete data";
     default:
       return objectItem.term;

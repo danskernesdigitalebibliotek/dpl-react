@@ -65,6 +65,7 @@ import configuration, { getConf } from "../../core/configuration";
 import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromAnotherLibrary";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import { Periods } from "./types";
+import { RequestStatus } from "../../core/utils/types/request";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -125,7 +126,11 @@ export const ReservationModalBody = ({
   const { mutate: mutateAddReservations } = useAddReservationsV2();
   const { mutate: mutateOpenOrder } = useOpenOrderMutation();
   const userResponse = usePatronData();
-  const holdingsResponse = useGetHoldings({ faustIds, config });
+  const holdingsResponse = useGetHoldings({
+    faustIds,
+    config,
+    blacklist: "availability"
+  });
   const { track } = useStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
     work,
@@ -135,7 +140,8 @@ export const ReservationModalBody = ({
     reservableManifestations ?? [],
     !!selectedPeriodical
   );
-
+  const [reservationStatus, setReservationStatus] =
+    useState<RequestStatus>("idle");
   const {
     reservablePidsFromAnotherLibrary,
     materialIsReservableFromAnotherLibrary
@@ -162,6 +168,7 @@ export const ReservationModalBody = ({
 
   const saveReservation = () => {
     if (manifestationsToReserve?.length) {
+      setReservationStatus("pending");
       // Save reservation to FBS.
       mutateAddReservations(
         {
@@ -174,6 +181,7 @@ export const ReservationModalBody = ({
         },
         {
           onSuccess: (res) => {
+            setReservationStatus("success");
             // Track only if the reservation has been successfully saved.
             track("click", {
               id: statistics.reservation.id,
@@ -186,14 +194,17 @@ export const ReservationModalBody = ({
             queryClient.invalidateQueries(
               getGetHoldingsV3QueryKey({ recordid: faustIds })
             );
+          },
+          onError: () => {
+            setReservationStatus("error");
           }
         }
       );
     }
 
     if (materialIsReservableFromAnotherLibrary && patron) {
+      setReservationStatus("pending");
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
-
       // Save reservation to open order.
       mutateOpenOrder(
         {
@@ -214,7 +225,11 @@ export const ReservationModalBody = ({
         },
         {
           onSuccess: (res) => {
+            setReservationStatus("success");
             setOpenOrderResponse(res);
+          },
+          onError: () => {
+            setReservationStatus("error");
           }
         }
       );
@@ -280,7 +295,7 @@ export const ReservationModalBody = ({
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
-                disabled={false}
+                disabled={reservationStatus === "pending"}
                 collapsible={false}
                 size="small"
                 onClick={saveReservation}
@@ -321,6 +336,7 @@ export const ReservationModalBody = ({
                       : selectedInterest
                   }
                   setSelectedInterest={setSelectedInterest}
+                  reservationStatus={reservationStatus}
                 />
               )}
 

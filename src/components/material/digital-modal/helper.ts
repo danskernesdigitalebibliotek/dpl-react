@@ -1,5 +1,5 @@
 import {
-  CopyRequestStatus,
+  CopyRequestStatusEnum,
   DigitalArticleService,
   PlaceCopyMutation
 } from "../../../core/dbc-gateway/generated/graphql";
@@ -33,7 +33,7 @@ export const getResponseMessage = (
   t: UseTextFunction
 ) => {
   return articleResponse
-    ? Object.values(CopyRequestStatus).reduce(
+    ? Object.values(CopyRequestStatusEnum).reduce(
         (acc: { [key: string]: string }, current) => {
           return {
             ...acc,

@@ -10,8 +10,8 @@ import {
   isArticle
 } from "../../components/material/material-buttons/helper";
 import {
-  AccessTypeCode,
-  WorkType
+  AccessTypeCodeEnum,
+  WorkTypeEnum
 } from "../../core/dbc-gateway/generated/graphql";
 import {
   getAvailabilityV3,
@@ -83,8 +83,11 @@ export const getManifestationsFromType = (
   return allManifestationsThatMatchType;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getManifestationPlayingTime = (manifestation: Manifestation) => {
-  return manifestation.physicalDescriptions?.[0]?.playingTime ?? "";
+  return "";
+  // TODO: solve missing playingTime.
+  // return manifestation.physicalDescription?.[0]?.playingTime ?? "";
 };
 
 export const getManifestationEdition = (manifestation: Manifestation) => {
@@ -104,8 +107,8 @@ export const getManifestationMaterialTypes = (manifestation: Manifestation) => {
 };
 
 export const getManifestationNumberOfPages = (manifestation: Manifestation) => {
-  return manifestation.physicalDescriptions?.[0]?.numberOfPages
-    ? String(manifestation.physicalDescriptions?.[0].numberOfPages)
+  return manifestation.physicalDescription?.numberOfPages
+    ? String(manifestation.physicalDescription?.numberOfPages)
     : "";
 };
 
@@ -204,7 +207,7 @@ export const getManifestationNotes = (manifestation: Manifestation) => {
 export const getManifestationPhysicalDescription = (
   manifestation: Manifestation
 ) => {
-  return manifestation.physicalDescriptions?.[0]?.summary ?? "";
+  return manifestation.physicalDescription?.summaryFull ?? "";
 };
 
 export const getManifestationHostPublication = (
@@ -452,12 +455,15 @@ export const reservationModalId = (faustIds: FaustId[]) => {
   return constructModalId("reservation-modal", faustIds.sort());
 };
 
+// TODO: Since the series has changed it structure and can have multiple members
+// we need to double check if we can only look at the first member entry.
 export const getNumberedSeries = (series: Work["series"]) =>
-  series.filter((seriesEntry) => seriesEntry.numberInSeries?.number);
+  series.filter((seriesEntry) => seriesEntry.members[0].numberInSeries);
 
 export const getUniqueMovies = (relations: Work["relations"]) => {
-  const movies = relations.hasAdaptation.filter((item) =>
-    item.ownerWork.workTypes.includes(WorkType.Movie)
+  const movies = relations.hasAdaptation.filter(
+    (item) => item.ownerWork.workTypes.includes(WorkTypeEnum.Movie)
+    // item.ownerWork.workTypeWorkTypeEnums.includes(WorkTypeEnum.Movie)
   );
 
   return uniqBy(movies, (item) => item.ownerWork.workId);
@@ -472,7 +478,7 @@ export const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
 
 export const isParallelReservation = (manifestations: Manifestation[]) =>
   manifestations.length > 1 &&
-  hasCorrectAccessType(AccessTypeCode.Physical, manifestations) &&
+  hasCorrectAccessType(AccessTypeCodeEnum.Physical, manifestations) &&
   !isArticle(manifestations);
 
 type BlacklistType = "availability" | "pickup" | "both";
@@ -543,19 +549,18 @@ export const getAvailability = async ({
 export const useGetHoldings = ({
   faustIds,
   config,
-  useAvailabilityBlacklist = false,
+  blacklist,
   options
 }: {
   faustIds: FaustId[];
   config: UseConfigFunction;
-  useAvailabilityBlacklist?: boolean;
+  blacklist: BlacklistType;
   options?: {
     query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>>;
   };
 }) => {
-  const blacklistedBranches = useAvailabilityBlacklist ? "both" : "pickup";
   const { data, isLoading, isError } = useGetHoldingsV3(
-    getBlacklistedQueryArgs(faustIds, config, blacklistedBranches),
+    getBlacklistedQueryArgs(faustIds, config, blacklist),
     options
   );
   return { data, isLoading, isError };

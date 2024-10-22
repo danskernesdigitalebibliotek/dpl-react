@@ -1030,6 +1030,13 @@ export const irregularFaustId2fairytale: Story = {
   }
 };
 
+export const irregularFaustId3NaxosMysicLibrary: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:150086-netmusik:8.660345-46"
+  }
+};
+
 export const Journal: Story = {
   args: {
     ...Default.args,

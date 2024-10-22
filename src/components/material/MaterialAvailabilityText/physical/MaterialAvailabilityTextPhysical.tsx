@@ -21,7 +21,8 @@ const MaterialAvailabilityTextPhysical: React.FC<
   const faustIds = convertPostIdsToFaustIds(pids);
   const { data, isLoading, isError } = useGetHoldings({
     faustIds,
-    config
+    config,
+    blacklist: "availability"
   });
 
   if (isLoading || isError || !data) return null;

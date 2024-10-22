@@ -1,7 +1,7 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { useText } from "../../core/utils/text";
-import { SuggestionType } from "../../core/dbc-gateway/generated/graphql";
+import { SuggestionTypeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 
@@ -44,16 +44,16 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
       >
         <p className="autosuggest__text text-body-medium-regular">
           {/* eslint-enable react/jsx-props-no-spreading */}
-          {item.type === SuggestionType.Creator
+          {item.type === SuggestionTypeEnum.Creator
             ? `${item.term} (${t("stringSuggestionAuthorText")})`
             : null}
-          {item.type === SuggestionType.Subject
+          {item.type === SuggestionTypeEnum.Subject
             ? `${item.term} (${t("stringSuggestionTopicText")})`
             : null}
-          {item.type === SuggestionType.Composit
+          {item.type === SuggestionTypeEnum.Composit
             ? `${item.work?.titles.main} (${t("stringSuggestionWorkText")})`
             : null}
-          {item.type === SuggestionType.Title
+          {item.type === SuggestionTypeEnum.Title
             ? `${item.term} (${t("stringSuggestionWorkText")})`
             : null}
         </p>

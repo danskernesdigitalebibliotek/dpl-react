@@ -19,7 +19,6 @@
             }
           ],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["erindringer", "biografier"],
           "manifestations": {
@@ -98,13 +97,11 @@
                   "ages": []
                 },
                 "notes": [],
-                "physicalDescriptions": [
-                  {
-                    "summary": "576 sider",
-                    "numberOfPages": 576,
-                    "playingTime": null
-                  }
-                ],
+                "physicalDescription": {
+                  "summaryFull": "576 sider",
+                  "numberOfPages": 576,
+                  "playingTime": null
+                },
                 "hostPublication": null,
                 "manifestationParts": null,
                 "accessTypes": [
@@ -208,13 +205,11 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescriptions": [
-                {
-                  "summary": "576 sider",
-                  "numberOfPages": 576,
-                  "playingTime": null
-                }
-              ],
+              "physicalDescription": {
+                "summaryFull": "576 sider",
+                "numberOfPages": 576,
+                "playingTime": null
+              },
               "hostPublication": null,
               "manifestationParts": null,
               "accessTypes": [
@@ -317,13 +312,11 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescriptions": [
-                {
-                  "summary": "576 sider",
-                  "numberOfPages": 576,
-                  "playingTime": null
-                }
-              ],
+              "physicalDescription": {
+                "summaryFull": "576 sider",
+                "numberOfPages": 576,
+                "playingTime": null
+              },
               "hostPublication": null,
               "manifestationParts": null,
               "accessTypes": [
@@ -370,7 +363,6 @@
             }
           ],
           "series": [],
-          "seriesMembers": [],
           "workYear": null,
           "genreAndForm": ["erindringer", "biografier"],
           "manifestations": {
@@ -428,13 +420,11 @@
                   "ages": []
                 },
                 "notes": [],
-                "physicalDescriptions": [
-                  {
-                    "summary": "410 sider: ill.",
-                    "numberOfPages": 410,
-                    "playingTime": null
-                  }
-                ],
+                "physicalDescription": {
+                  "summaryFull": "410 sider: ill.",
+                  "numberOfPages": 410,
+                  "playingTime": null
+                },
                 "hostPublication": null,
                 "manifestationParts": null,
                 "accessTypes": [
@@ -512,13 +502,11 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescriptions": [
-                {
-                  "summary": "410 sider: ill.",
-                  "numberOfPages": 410,
-                  "playingTime": null
-                }
-              ],
+              "physicalDescription": {
+                "summaryFull": "410 sider: ill.",
+                "numberOfPages": 410,
+                "playingTime": null
+              },
               "hostPublication": null,
               "manifestationParts": null,
               "accessTypes": [
@@ -595,13 +583,11 @@
                 "ages": []
               },
               "notes": [],
-              "physicalDescriptions": [
-                {
-                  "summary": "410 sider: ill.",
-                  "numberOfPages": 410,
-                  "playingTime": null
-                }
-              ],
+              "physicalDescription": {
+                "summaryFull": "410 sider: ill.",
+                "numberOfPages": 410,
+                "playingTime": null
+              },
               "hostPublication": null,
               "manifestationParts": null,
               "accessTypes": [
