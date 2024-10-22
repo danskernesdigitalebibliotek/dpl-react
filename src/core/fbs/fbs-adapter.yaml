@@ -223,6 +223,36 @@ paths:
       description: "\n Returns an array of holdings for each bibliographical record.\n The holdings lists the materials on each placement, and whether they are available on-shelf or lent out."
       operationId: getHoldingsV3
       summary: "Get placement holdings for bibliographical records."
+  /external/agencyid/catalog/holdingsLogistics/v1:
+    get:
+      summary: "Get placement holdings for bibliographical records."
+      description: "Returns an array of holdings for each bibliographical record. The holdings list the materials on each placement, and whether they are available on-shelf or lent out."
+      parameters:
+        - name: recordid
+          in: query
+          description: "Identifies the bibliographical records - The FAUST number."
+          required: true
+          type: array
+          items:
+            type: string
+        - name: exclude
+          in: query
+          description: "Identifies the branchIds which are excluded from the result."
+          required: false
+          type: array
+          items:
+            type: string
+      responses:
+        200:
+          description: "An array of holdings with updated logistics placement."
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/HoldingsForBibliographicalRecordLogisticsV1"
+        400:
+          description: "Bad request"
+        401:
+          description: "Unauthorized"
   /external/agencyid/patron/patronid/fees/v2:
     get:
       parameters:
@@ -869,6 +899,62 @@ definitions:
       - reservations
       - reservable
       - holdings
+  HoldingsForBibliographicalRecordLogisticsV1:
+    type: object
+    properties:
+      recordId:
+        type: string
+        description: "Identifies the bibliographical record for the available materials, The FAUST number"
+      reservations:
+        type: integer
+        description: "Total number of current active reservations for the bibliographical record"
+      reservable:
+        type: boolean
+        description: "True if there is any reservable materials"
+      holdings:
+        type: array
+        items:
+          $ref: "#/definitions/HoldingsLogisticsV1"
+    required:
+      - recordId
+      - holdings
+  HoldingsLogisticsV1:
+    properties:
+      branch:
+        $ref: "#/definitions/AgencyBranch"
+      lmsPlacement:
+        $ref: "#/definitions/PlacementV1"
+      logisticsPlacement:
+        type: array
+        items:
+          type: string
+        description: "Logistics placement information in an array of strings."
+      materials:
+        type: array
+        items:
+          $ref: "#/definitions/MaterialV3"
+    required:
+      - branch
+      - materials
+  PlacementV1:
+    properties:
+      section:
+        $ref: "#/definitions/AgencySection"
+      location:
+        $ref: "#/definitions/AgencyLocation"
+      sublocation:
+        $ref: "#/definitions/AgencySublocation"
+      department:
+        $ref: "#/definitions/AgencyDepartment"
+
+  AgencySection:
+    properties:
+      sectionId:
+        type: string
+        description: "Section identifier"
+      title:
+        type: string
+        description: "Name of the section"
   HoldingsV3:
     properties:
       branch:
