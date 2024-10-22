@@ -91,7 +91,7 @@ export default {
   [serviceUrlKeys.dplCms]: process.env.CMS_BASEURL ?? "https://dpl-cms.docker",
   [serviceUrlKeys.cover]: "https://cover.dandigbib.org",
   [serviceUrlKeys.materialList]: "https://prod.materiallist.dandigbib.org",
-  [serviceUrlKeys.fbi]: "https://fbi-api.dbc.dk/next-present/graphql",
-  [serviceUrlKeys.fbiLocal]: "https://fbi-api.dbc.dk/next/graphql",
-  [serviceUrlKeys.fbiGlobal]: "https://fbi-api.dbc.dk/next-present/graphql"
+  [serviceUrlKeys.fbi]: "https://temp.fbi-api.dbc.dk/next-present/graphql",
+  [serviceUrlKeys.fbiLocal]: "https://temp.fbi-api.dbc.dk/next/graphql",
+  [serviceUrlKeys.fbiGlobal]: "https://temp.fbi-api.dbc.dk/next-present/graphql"
 };

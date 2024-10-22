@@ -5,6 +5,17 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
 
+export const mapFacetToFilter = (facet: FacetFieldEnum) => {
+  switch (facet) {
+    case FacetFieldEnum.Materialtypesspecific:
+      return "materialTypesSpecific";
+    case FacetFieldEnum.Worktypes:
+      return "workTypes";
+    default:
+      return "invalid";
+  }
+};
+
 export const getFirstMaterialTypeFromFilters = (
   filters: Filter,
   manifestations: Manifestation[]
