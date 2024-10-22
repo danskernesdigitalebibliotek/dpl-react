@@ -71,7 +71,8 @@ exports[`formatFacetTerms > should format facet terms 1`] = `
 exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
 [
   {
-    "name": "materialTypesGeneral",
+    "name": "MATERIALTYPESGENERAL",
+    "type": "MATERIALTYPESGENERAL",
     "values": [
       {
         "key": "",
@@ -80,7 +81,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "creators",
+    "name": "CREATORS",
+    "type": "CREATORS",
     "values": [
       {
         "key": "",
@@ -89,7 +91,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "subjects",
+    "name": "SUBJECTS",
+    "type": "SUBJECTS",
     "values": [
       {
         "key": "",
@@ -98,7 +101,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "fictionNonfiction",
+    "name": "FICTIONNONFICTION",
+    "type": "FICTIONNONFICTION",
     "values": [
       {
         "key": "",
@@ -107,7 +111,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "childrenOrAdults",
+    "name": "CHILDRENORADULTS",
+    "type": "CHILDRENORADULTS",
     "values": [
       {
         "key": "",
@@ -116,7 +121,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "accessTypes",
+    "name": "ACCESSTYPES",
+    "type": "ACCESSTYPES",
     "values": [
       {
         "key": "",
@@ -125,7 +131,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "mainLanguages",
+    "name": "MAINLANGUAGES",
+    "type": "MAINLANGUAGES",
     "values": [
       {
         "key": "",
@@ -134,7 +141,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "genreAndForm",
+    "name": "GENREANDFORM",
+    "type": "GENREANDFORM",
     "values": [
       {
         "key": "",
@@ -143,7 +151,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "materialTypesSpecific",
+    "name": "MATERIALTYPESSPECIFIC",
+    "type": "MATERIALTYPESSPECIFIC",
     "values": [
       {
         "key": "",
@@ -152,7 +161,8 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
     ],
   },
   {
-    "name": "fictionalCharacters",
+    "name": "FICTIONALCHARACTERS",
+    "type": "FICTIONALCHARACTERS",
     "values": [
       {
         "key": "",

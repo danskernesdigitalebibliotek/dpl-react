@@ -1,6 +1,6 @@
 import { mapValues } from "lodash";
 import {
-  FacetField,
+  FacetFieldEnum,
   FacetResult,
   FacetValue,
   useSearchFacetQuery
@@ -8,23 +8,25 @@ import {
 import useGetCleanBranches from "../../core/utils/branches";
 import { Filter, FilterItemTerm } from "../../core/filter.slice";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
+import { Facets } from "../../core/utils/types/entities";
 
 export const allFacetFields = [
-  FacetField.MaterialTypesGeneral,
-  FacetField.Creators,
-  FacetField.Subjects,
-  FacetField.FictionNonfiction,
-  FacetField.ChildrenOrAdults,
-  FacetField.AccessTypes,
-  FacetField.MainLanguages,
-  FacetField.GenreAndForm,
-  FacetField.MaterialTypesSpecific,
-  FacetField.FictionalCharacters
+  FacetFieldEnum.Materialtypesgeneral,
+  FacetFieldEnum.Creators,
+  FacetFieldEnum.Subjects,
+  FacetFieldEnum.Fictionnonfiction,
+  FacetFieldEnum.Childrenoradults,
+  FacetFieldEnum.Accesstypes,
+  FacetFieldEnum.Mainlanguages,
+  FacetFieldEnum.Genreandform,
+  FacetFieldEnum.Materialtypesspecific,
+  FacetFieldEnum.Fictionalcharacters
 ];
 
 export const getPlaceHolderFacets = (facets: string[]) =>
   facets.map((facet) => ({
     name: facet,
+    type: facet as FacetFieldEnum,
     values: [
       {
         key: "",
@@ -103,35 +105,35 @@ export function getAllFilterPathsAsString(filterObject: {
   return allFilterPathsAsString;
 }
 
-export const getFacetFieldTranslation = (name: FacetField) => {
-  switch (name) {
-    case FacetField.AccessTypes:
+export const getFacetFieldTranslation = (name: FacetFieldEnum) => {
+  switch (name.toLowerCase()) {
+    case FacetFieldEnum.Accesstypes.toLowerCase():
       return "facetAccessTypesText";
-    case FacetField.CanAlwaysBeLoaned:
+    case FacetFieldEnum.Canalwaysbeloaned.toLowerCase():
       return "facetCanAlwaysBeLoanedText";
-    case FacetField.ChildrenOrAdults:
+    case FacetFieldEnum.Childrenoradults.toLowerCase():
       return "facetChildrenOrAdultsText";
-    case FacetField.Creators:
+    case FacetFieldEnum.Creators.toLowerCase():
       return "facetCreatorsText";
-    case FacetField.Dk5:
+    case FacetFieldEnum.Dk5.toLowerCase():
       return "facetDk5Text";
-    case FacetField.FictionNonfiction:
+    case FacetFieldEnum.Fictionnonfiction.toLowerCase():
       return "facetFictionNonfictionText";
-    case FacetField.FictionalCharacters:
+    case FacetFieldEnum.Fictionalcharacters.toLowerCase():
       return "facetFictionalCharactersText";
-    case FacetField.GenreAndForm:
+    case FacetFieldEnum.Genreandform.toLowerCase():
       return "facetGenreAndFormText";
-    case FacetField.MainLanguages:
+    case FacetFieldEnum.Mainlanguages.toLowerCase():
       return "facetMainLanguagesText";
-    case FacetField.MaterialTypesGeneral:
+    case FacetFieldEnum.Materialtypesspecific.toLowerCase():
       return "facetMaterialTypesGeneralText";
-    case FacetField.MaterialTypesSpecific:
+    case FacetFieldEnum.Materialtypesgeneral.toLowerCase():
       return "facetMaterialTypesSpecificText";
-    case FacetField.Subjects:
+    case FacetFieldEnum.Subjects.toLowerCase():
       return "facetSubjectsText";
-    case FacetField.WorkTypes:
+    case FacetFieldEnum.Worktypes.toLowerCase():
       return "facetWorkTypesText";
-    case FacetField.Year:
+    case FacetFieldEnum.Year.toLowerCase():
       return "facetYearText";
     default:
       return invalidSwitchCase<string>(name as never);
@@ -195,9 +197,10 @@ if (import.meta.vitest) {
     }
   };
 
-  const facetsTestData: FacetResult[] = [
+  const facetsTestData: Facets = [
     {
       name: "materialTypesGeneral",
+      type: FacetFieldEnum.Materialtypesgeneral,
       values: [
         {
           key: "computerspil",
@@ -208,6 +211,7 @@ if (import.meta.vitest) {
     },
     {
       name: "mainLanguages",
+      type: FacetFieldEnum.Mainlanguages,
       values: [
         {
           key: "dan",
@@ -223,6 +227,7 @@ if (import.meta.vitest) {
     },
     {
       name: "materialTypesGeneral",
+      type: FacetFieldEnum.Materialtypesgeneral,
       values: [
         {
           key: "artikler",

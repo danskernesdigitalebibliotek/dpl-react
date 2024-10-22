@@ -1,7 +1,5 @@
-import {
-  Access,
-  AccessTypeCode
-} from "../../core/dbc-gateway/generated/graphql";
+import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
+import { AccessTypes } from "../../core/utils/types/entities";
 import { FaustId } from "../../core/utils/types/ids";
 import { isOnline } from "./helper";
 import useOnlineAvailabilityData from "./useOnlineAvailabilityData";
@@ -14,8 +12,8 @@ const useAvailabilityData = ({
   manifestText,
   isbn
 }: {
-  accessTypes: AccessTypeCode[];
-  access: Access["__typename"][];
+  accessTypes: AccessTypeCodeEnum[];
+  access: AccessTypes[];
   faustIds: FaustId[];
   manifestText: string;
   isbn: string | null;

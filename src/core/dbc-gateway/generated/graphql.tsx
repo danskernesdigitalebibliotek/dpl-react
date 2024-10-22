@@ -27,29 +27,27 @@ export type Scalars = {
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: unknown;
   /** An integer in the range from 1 to 100 */
-  PaginationLimit: unknown;
+  PaginationLimitScalar: unknown;
 };
 
-export type Access =
+export type AccessType = {
+  __typename?: "AccessType";
+  code: AccessTypeCodeEnum;
+  display: Scalars["String"];
+};
+
+export enum AccessTypeCodeEnum {
+  Online = "ONLINE",
+  Physical = "PHYSICAL",
+  Unknown = "UNKNOWN"
+}
+
+export type AccessUnion =
   | AccessUrl
   | DigitalArticleService
   | Ereol
   | InfomediaService
   | InterLibraryLoan;
-
-export type AccessType = {
-  __typename?: "AccessType";
-  code: AccessTypeCode;
-  display: Scalars["String"];
-};
-
-export enum AccessTypeCode {
-  /** @deprecated No longer supported */
-  NotSpecified = "NOT_SPECIFIED",
-  Online = "ONLINE",
-  Physical = "PHYSICAL",
-  Unknown = "UNKNOWN"
-}
 
 export type AccessUrl = {
   __typename?: "AccessUrl";
@@ -60,14 +58,14 @@ export type AccessUrl = {
   /** The origin, e.g. "DBC Webarkiv" */
   origin: Scalars["String"];
   /** Status from linkcheck */
-  status: LinkStatus;
+  status: LinkStatusEnum;
   /** The type of content that can be found at this URL */
-  type?: Maybe<AccessUrlType>;
+  type?: Maybe<AccessUrlTypeEnum>;
   /** The url where manifestation is located */
   url: Scalars["String"];
 };
 
-export enum AccessUrlType {
+export enum AccessUrlTypeEnum {
   Image = "IMAGE",
   Other = "OTHER",
   Resource = "RESOURCE",
@@ -114,11 +112,11 @@ export type CatalogueCodes = {
 
 export type ChildOrAdult = {
   __typename?: "ChildOrAdult";
-  code: ChildOrAdultCode;
+  code: ChildOrAdultCodeEnum;
   display: Scalars["String"];
 };
 
-export enum ChildOrAdultCode {
+export enum ChildOrAdultCodeEnum {
   ForAdults = "FOR_ADULTS",
   ForChildren = "FOR_CHILDREN"
 }
@@ -132,7 +130,7 @@ export type Classification = {
   /** The dk5Heading for the classification (DK5 only) */
   dk5Heading?: Maybe<Scalars["String"]>;
   /** For DK5 only. The DK5 entry type: main entry, national entry, or additional entry */
-  entryType?: Maybe<EntryType>;
+  entryType?: Maybe<EntryTypeEnum>;
   /** Name of the classification system */
   system: Scalars["String"];
 };
@@ -152,7 +150,7 @@ export type ComplexSearchFacetValue = {
 };
 
 /** The supported facet fields */
-export enum ComplexSearchFacetTypes {
+export enum ComplexSearchFacetsEnum {
   Accesstype = "ACCESSTYPE",
   Ages = "AGES",
   Cataloguecode = "CATALOGUECODE",
@@ -185,6 +183,7 @@ export enum ComplexSearchFacetTypes {
   Publicationyear = "PUBLICATIONYEAR",
   Series = "SERIES",
   Setting = "SETTING",
+  Source = "SOURCE",
   Specificmaterialtype = "SPECIFICMATERIALTYPE",
   Spokenlanguage = "SPOKENLANGUAGE",
   Subject = "SUBJECT",
@@ -192,8 +191,14 @@ export enum ComplexSearchFacetTypes {
   Typeofscore = "TYPEOFSCORE"
 }
 
+/** The facets to ask for */
+export type ComplexSearchFacetsInput = {
+  facetLimit: Scalars["Int"];
+  facets?: InputMaybe<Array<ComplexSearchFacetsEnum>>;
+};
+
 /** Search Filters */
-export type ComplexSearchFilters = {
+export type ComplexSearchFiltersInput = {
   /** Id of agency. */
   agencyId?: InputMaybe<Array<Scalars["String"]>>;
   /** Name of the branch. */
@@ -209,7 +214,7 @@ export type ComplexSearchFilters = {
   /** Where is the book physically located  (eg. skønlitteratur). */
   location?: InputMaybe<Array<Scalars["String"]>>;
   /** Onloan or OnShelf. */
-  status?: InputMaybe<Array<HoldingsStatus>>;
+  status?: InputMaybe<Array<HoldingsStatusEnum>>;
   /** More specific location (eg. Fantasy). */
   sublocation?: InputMaybe<Array<Scalars["String"]>>;
 };
@@ -223,35 +228,15 @@ export type ComplexSearchResponse = {
   facets?: Maybe<Array<ComplexSearchFacetResponse>>;
   /** Total number of works found. May be used for pagination. */
   hitcount: Scalars["Int"];
-  /**
-   * Time for execution on solr
-   * @deprecated No longer supported
-   */
-  solrExecutionDurationInMs?: Maybe<Scalars["Int"]>;
-  /**
-   * filter applied to the query
-   * @deprecated No longer supported
-   */
-  solrFilter?: Maybe<Scalars["String"]>;
-  /**
-   * the query being executed
-   * @deprecated No longer supported
-   */
-  solrQuery?: Maybe<Scalars["String"]>;
-  /**
-   * Time to tokenize query
-   * @deprecated No longer supported
-   */
-  tokenizerDurationInMs?: Maybe<Scalars["Int"]>;
   /** The works matching the given search query. Use offset and limit for pagination. */
   works: Array<Work>;
 };
 
 /** The search response */
 export type ComplexSearchResponseWorksArgs = {
-  limit: Scalars["PaginationLimit"];
+  limit: Scalars["PaginationLimitScalar"];
   offset: Scalars["Int"];
-  sort?: InputMaybe<Array<Sort>>;
+  sort?: InputMaybe<Array<SortInput>>;
 };
 
 export type ComplexSearchSuggestion = {
@@ -269,21 +254,26 @@ export type ComplexSuggestResponse = {
   result: Array<ComplexSearchSuggestion>;
 };
 
-export enum ComplexSuggestionType {
-  Contributor = "contributor",
-  Contributorfunction = "contributorfunction",
-  Creator = "creator",
-  Creatorcontributor = "creatorcontributor",
-  Creatorcontributorfunction = "creatorcontributorfunction",
-  Creatorfunction = "creatorfunction",
-  Default = "default",
-  Fictionalcharacter = "fictionalcharacter",
-  Hostpublication = "hostpublication",
-  Publisher = "publisher",
-  Series = "series",
-  Subject = "subject",
-  Title = "title"
+export enum ComplexSuggestionTypeEnum {
+  Contributorfunction = "CONTRIBUTORFUNCTION",
+  Creator = "CREATOR",
+  Creatorcontributor = "CREATORCONTRIBUTOR",
+  Creatorcontributorfunction = "CREATORCONTRIBUTORFUNCTION",
+  Creatorfunction = "CREATORFUNCTION",
+  Default = "DEFAULT",
+  Fictionalcharacter = "FICTIONALCHARACTER",
+  Hostpublication = "HOSTPUBLICATION",
+  Publisher = "PUBLISHER",
+  Series = "SERIES",
+  Subject = "SUBJECT",
+  Title = "TITLE"
 }
+
+export type Complexity = {
+  __typename?: "Complexity";
+  class: Scalars["String"];
+  value: Scalars["String"];
+};
 
 export type CopyRequestInput = {
   authorOfComponent?: InputMaybe<Scalars["String"]>;
@@ -305,10 +295,10 @@ export type CopyRequestInput = {
 
 export type CopyRequestResponse = {
   __typename?: "CopyRequestResponse";
-  status: CopyRequestStatus;
+  status: CopyRequestStatusEnum;
 };
 
-export enum CopyRequestStatus {
+export enum CopyRequestStatusEnum {
   BorchkUserBlockedByAgency = "BORCHK_USER_BLOCKED_BY_AGENCY",
   BorchkUserNotVerified = "BORCHK_USER_NOT_VERIFIED",
   BorchkUserNoLongerExistOnAgency = "BORCHK_USER_NO_LONGER_EXIST_ON_AGENCY",
@@ -324,8 +314,8 @@ export enum CopyRequestStatus {
   UnknownUser = "UNKNOWN_USER"
 }
 
-export type Corporation = Creator &
-  Subject & {
+export type Corporation = CreatorInterface &
+  SubjectInterface & {
     __typename?: "Corporation";
     /** Added information about the corporation, like M. Folmer Andersen (firma) */
     attributeToName?: Maybe<Scalars["String"]>;
@@ -345,7 +335,7 @@ export type Corporation = Creator &
     roles: Array<Role>;
     /** Sub corporation or conference/meeting */
     sub?: Maybe<Scalars["String"]>;
-    type: SubjectType;
+    type: SubjectTypeEnum;
     /** Year of the conference */
     year?: Maybe<Scalars["String"]>;
   };
@@ -361,7 +351,7 @@ export type Cover = {
   thumbnail?: Maybe<Scalars["String"]>;
 };
 
-export type Creator = {
+export type CreatorInterface = {
   /** Name of the creator */
   display: Scalars["String"];
   /** Name of the creator which can be used to sort after  */
@@ -378,6 +368,11 @@ export type Dk5MainEntry = {
   display: Scalars["String"];
   /** The dk5Heading for the classification */
   dk5Heading: Scalars["String"];
+};
+
+export type Debug = {
+  __typename?: "Debug";
+  complexity: Complexity;
 };
 
 export type DidYouMean = {
@@ -418,7 +413,7 @@ export type ElbaServicesPlaceCopyRequestArgs = {
   input: CopyRequestInput;
 };
 
-export enum EntryType {
+export enum EntryTypeEnum {
   AdditionalEntry = "ADDITIONAL_ENTRY",
   MainEntry = "MAIN_ENTRY",
   NationalBibliographyAdditionalEntry = "NATIONAL_BIBLIOGRAPHY_ADDITIONAL_ENTRY",
@@ -438,26 +433,27 @@ export type Ereol = {
 };
 
 /** The supported facet fields */
-export enum FacetField {
-  AccessTypes = "accessTypes",
-  Age = "age",
-  CanAlwaysBeLoaned = "canAlwaysBeLoaned",
-  ChildrenOrAdults = "childrenOrAdults",
-  Creators = "creators",
-  Dk5 = "dk5",
-  FictionNonfiction = "fictionNonfiction",
-  FictionalCharacters = "fictionalCharacters",
-  GeneralAudience = "generalAudience",
-  GenreAndForm = "genreAndForm",
-  Let = "let",
-  LibraryRecommendation = "libraryRecommendation",
-  Lix = "lix",
-  MainLanguages = "mainLanguages",
-  MaterialTypesGeneral = "materialTypesGeneral",
-  MaterialTypesSpecific = "materialTypesSpecific",
-  Subjects = "subjects",
-  WorkTypes = "workTypes",
-  Year = "year"
+export enum FacetFieldEnum {
+  Accesstypes = "ACCESSTYPES",
+  Age = "AGE",
+  Canalwaysbeloaned = "CANALWAYSBELOANED",
+  Childrenoradults = "CHILDRENORADULTS",
+  Creators = "CREATORS",
+  Dk5 = "DK5",
+  Fictionalcharacters = "FICTIONALCHARACTERS",
+  Fictionnonfiction = "FICTIONNONFICTION",
+  Gameplatform = "GAMEPLATFORM",
+  Generalaudience = "GENERALAUDIENCE",
+  Genreandform = "GENREANDFORM",
+  Let = "LET",
+  Libraryrecommendation = "LIBRARYRECOMMENDATION",
+  Lix = "LIX",
+  Mainlanguages = "MAINLANGUAGES",
+  Materialtypesgeneral = "MATERIALTYPESGENERAL",
+  Materialtypesspecific = "MATERIALTYPESSPECIFIC",
+  Subjects = "SUBJECTS",
+  Worktypes = "WORKTYPES",
+  Year = "YEAR"
 }
 
 /** The result for a specific facet */
@@ -465,6 +461,8 @@ export type FacetResult = {
   __typename?: "FacetResult";
   /** The name of the facet. */
   name: Scalars["String"];
+  /** The enum type of the facet. */
+  type: FacetFieldEnum;
   /** The values of thie facet result */
   values: Array<FacetValue>;
 };
@@ -488,12 +486,12 @@ export type FacetValue = {
 export type FictionNonfiction = {
   __typename?: "FictionNonfiction";
   /** Binary code fiction/nonfiction used for filtering */
-  code: FictionNonfictionCode;
+  code: FictionNonfictionCodeEnum;
   /** Displayable overall category/genre. In Danish skønlitteratur/faglitteratur for literature, fiktion/nonfiktion for other types. */
   display: Scalars["String"];
 };
 
-export enum FictionNonfictionCode {
+export enum FictionNonfictionCodeEnum {
   Fiction = "FICTION",
   Nonfiction = "NONFICTION",
   NotSpecified = "NOT_SPECIFIED"
@@ -502,12 +500,12 @@ export enum FictionNonfictionCode {
 export type GeneralMaterialType = {
   __typename?: "GeneralMaterialType";
   /** code for materialType # @TODO - is this a finite list ?? - and where to get it */
-  code: GeneralMaterialTypeCode;
+  code: GeneralMaterialTypeCodeEnum;
   /** Ths string to display */
   display: Scalars["String"];
 };
 
-export enum GeneralMaterialTypeCode {
+export enum GeneralMaterialTypeCodeEnum {
   Articles = "ARTICLES",
   AudioBooks = "AUDIO_BOOKS",
   BoardGames = "BOARD_GAMES",
@@ -525,11 +523,11 @@ export enum GeneralMaterialTypeCode {
   TvSeries = "TV_SERIES"
 }
 
-export enum HoldingsStatus {
+export enum HoldingsStatusEnum {
   /** Holding is on loan */
-  OnLoan = "OnLoan",
+  Onloan = "ONLOAN",
   /** Holding is physically available at the branch */
-  OnShelf = "OnShelf"
+  Onshelf = "ONSHELF"
 }
 
 export type HostPublication = {
@@ -563,12 +561,12 @@ export type HostPublication = {
 export type Identifier = {
   __typename?: "Identifier";
   /** The type of identifier */
-  type: IdentifierType;
+  type: IdentifierTypeEnum;
   /** The actual identifier */
   value: Scalars["String"];
 };
 
-export enum IdentifierType {
+export enum IdentifierTypeEnum {
   Barcode = "BARCODE",
   Doi = "DOI",
   Isbn = "ISBN",
@@ -597,7 +595,7 @@ export type InfomediaArticle = {
   text?: Maybe<Scalars["String"]>;
 };
 
-export enum InfomediaError {
+export enum InfomediaErrorEnum {
   BorrowercheckNotAllowed = "BORROWERCHECK_NOT_ALLOWED",
   BorrowerNotFound = "BORROWER_NOT_FOUND",
   BorrowerNotInMunicipality = "BORROWER_NOT_IN_MUNICIPALITY",
@@ -614,7 +612,7 @@ export type InfomediaResponse = {
   __typename?: "InfomediaResponse";
   article?: Maybe<InfomediaArticle>;
   /** Infomedia error */
-  error?: Maybe<InfomediaError>;
+  error?: Maybe<InfomediaErrorEnum>;
 };
 
 export type InfomediaService = {
@@ -629,7 +627,34 @@ export type InterLibraryLoan = {
   loanIsPossible: Scalars["Boolean"];
 };
 
-export type KidRecommenderTags = {
+export type ItemIdResponse = {
+  __typename?: "ItemIdResponse";
+  /** ItemId response object. */
+  itemOrderEntity?: Maybe<ItemOrderEntity>;
+  /** Message field in case of an error. */
+  message?: Maybe<Scalars["String"]>;
+};
+
+export type ItemOrderEntity = {
+  __typename?: "ItemOrderEntity";
+  /** Item ID, the same value that was queried. */
+  itemId: Scalars["String"];
+  /** Key for the row in the database, can be ignored as it's only relevant for ORS. */
+  itemOrderKey: Scalars["Int"];
+  /** Order ID associated with the item ID. */
+  orderId: Scalars["String"];
+  /** Agency ID of the borrower of the material. */
+  requesterId: Scalars["String"];
+  /** Agency ID of the lender of the material. */
+  responderId: Scalars["String"];
+  /**
+   * Timestamp of when the row was created in the database.
+   * Example: "2024-09-09T07:32:24.081+00:00"
+   */
+  timestamp: Scalars["String"];
+};
+
+export type KidRecommenderTagsInput = {
   tag?: InputMaybe<Scalars["String"]>;
   weight?: InputMaybe<Scalars["Int"]>;
 };
@@ -642,9 +667,9 @@ export type Language = {
   isoCode: Scalars["String"];
 };
 
-export enum LanguageCode {
-  Da = "da",
-  En = "en"
+export enum LanguageCodeEnum {
+  Da = "DA",
+  En = "EN"
 }
 
 export type Languages = {
@@ -681,7 +706,7 @@ export type LinkCheckResponse = {
   __typename?: "LinkCheckResponse";
   brokenSince?: Maybe<Scalars["DateTime"]>;
   lastCheckedAt?: Maybe<Scalars["DateTime"]>;
-  status: LinkCheckStatus;
+  status: LinkCheckStatusEnum;
   url: Scalars["String"];
 };
 
@@ -694,26 +719,31 @@ export type LinkCheckServiceChecksArgs = {
   urls?: InputMaybe<Array<Scalars["String"]>>;
 };
 
-export enum LinkCheckStatus {
+export enum LinkCheckStatusEnum {
   Broken = "BROKEN",
   Gone = "GONE",
   Invalid = "INVALID",
   Ok = "OK"
 }
 
-export enum LinkStatus {
+export enum LinkStatusEnum {
   Broken = "BROKEN",
   Gone = "GONE",
   Invalid = "INVALID",
   Ok = "OK"
 }
+
+export type LocalSuggestResponse = {
+  __typename?: "LocalSuggestResponse";
+  result: Array<Suggestion>;
+};
 
 export type Manifestation = {
   __typename?: "Manifestation";
   /** Abstract of the entity */
   abstract: Array<Scalars["String"]>;
   /** Different options to access manifestation */
-  access: Array<Access>;
+  access: Array<AccessUnion>;
   /** Access type of this manifestation */
   accessTypes: Array<AccessType>;
   /** Different kinds of definitions of appropriate audience for this manifestation */
@@ -723,13 +753,13 @@ export type Manifestation = {
   /** Classification codes for this manifestation from any classification system */
   classifications: Array<Classification>;
   /** Contributors to the manifestation, actors, illustrators etc */
-  contributors: Array<Creator>;
+  contributors: Array<CreatorInterface>;
   /** Additional contributors of this manifestation as described on the publication. E.g. 'på dansk ved Vivi Berendt' */
   contributorsFromDescription: Array<Scalars["String"]>;
   /** Cover for this manifestation */
   cover: Cover;
   /** Primary creators of the manifestation e.g. authors, directors, musicians etc */
-  creators: Array<Creator>;
+  creators: Array<CreatorInterface>;
   /** Additional creators of this manifestation as described on the publication. E.g. 'tekst af William Warren' */
   creatorsFromDescription: Array<Scalars["String"]>;
   /** The year for the publication of the first edition for this work  */
@@ -757,12 +787,7 @@ export type Manifestation = {
   /** The work that this manifestation is part of */
   ownerWork: Work;
   /** Physical description  of this manifestation like extent (pages/minutes), illustrations etc. */
-  physicalDescription: PhysicalUnitDescription;
-  /**
-   * Physical description of this manifestation like extent (pages/minutes), illustrations etc.
-   * @deprecated Use 'physicalDescription' instead
-   */
-  physicalDescriptions: Array<PhysicalDescription>;
+  physicalDescription?: Maybe<PhysicalUnitDescription>;
   /** Unique identification of the manifestation e.g 870970-basis:54029519 */
   pid: Scalars["String"];
   /** Publisher of this manifestion */
@@ -789,17 +814,12 @@ export type Manifestation = {
   titles: ManifestationTitles;
   /** id of the manifestaion unit */
   unit?: Maybe<Unit>;
-  /**
-   * Universe for this manifestation
-   * @deprecated Use 'universes' instead
-   */
-  universe?: Maybe<Universe>;
   /** Universes for this manifestation */
   universes: Array<Universe>;
   /** Information about on which volume this manifestation is in multi volume work */
   volume?: Maybe<Scalars["String"]>;
   /** Worktypes for this manifestations work */
-  workTypes: Array<WorkType>;
+  workTypes: Array<WorkTypeEnum>;
   /** The year this manifestation was originally published or produced */
   workYear?: Maybe<PublicationYear>;
 };
@@ -811,18 +831,18 @@ export type ManifestationPart = {
   /** Contributors from description - additional contributor to this entry */
   contributorsFromDescription: Array<Scalars["String"]>;
   /** The creator of the music track or literary analysis */
-  creators: Array<Creator>;
+  creators: Array<CreatorInterface>;
   /** Additional creator or contributor to this entry (music track or literary analysis) as described on the publication. E.g. 'arr.: H. Cornell' */
   creatorsFromDescription: Array<Scalars["String"]>;
   /** The playing time for this specific part (i.e. the duration of a music track)  */
   playingTime?: Maybe<Scalars["String"]>;
   /** Subjects of this entry (music track or literary analysis) */
-  subjects?: Maybe<Array<Subject>>;
+  subjects?: Maybe<Array<SubjectInterface>>;
   /** The title of the entry (music track or title of a literary analysis) */
   title: Scalars["String"];
 };
 
-export enum ManifestationPartType {
+export enum ManifestationPartTypeEnum {
   MusicTracks = "MUSIC_TRACKS",
   NotSpecified = "NOT_SPECIFIED",
   PartsOfBook = "PARTS_OF_BOOK",
@@ -836,7 +856,7 @@ export type ManifestationParts = {
   /** The creator and title etc of the individual parts */
   parts: Array<ManifestationPart>;
   /** The type of manifestation parts, is this music tracks, book parts etc. */
-  type: ManifestationPartType;
+  type: ManifestationPartTypeEnum;
 };
 
 export type ManifestationReview = {
@@ -882,22 +902,10 @@ export type Manifestations = {
 
 export type MaterialType = {
   __typename?: "MaterialType";
-  /**
-   * The general type of material of the manifestation based on a grouping of bibliotek.dk material types, e.g. bøger, lydbøger etc.
-   * @TODO - this on is deprecated pr. 1/2 '24
-   * @deprecated Use 'materialTypeGenerel' instead
-   */
-  general: Scalars["String"];
   /** jed 1.1 - the general materialtype */
   materialTypeGeneral: GeneralMaterialType;
   /** jed 1.1 - the specific materialtType */
   materialTypeSpecific: SpecificMaterialType;
-  /**
-   * The type of material of the manifestation based on bibliotek.dk types
-   * @TODO - this on is deprecated pr. 1/2 '24
-   * @deprecated Use 'materialtTypeSpecific' instead
-   */
-  specific: Scalars["String"];
 };
 
 export type MediaCouncilAgeRestriction = {
@@ -908,20 +916,76 @@ export type MediaCouncilAgeRestriction = {
   minimumAge?: Maybe<Scalars["Int"]>;
 };
 
-export type Mood = Subject & {
+export type Mood = SubjectInterface & {
   __typename?: "Mood";
   display: Scalars["String"];
   language?: Maybe<Language>;
   local?: Maybe<Scalars["Boolean"]>;
-  type: SubjectType;
+  type: SubjectTypeEnum;
 };
 
-export type MoodKidsRecommendFilters = {
+export type MoodKidsRecommendFiltersInput = {
   difficulty?: InputMaybe<Array<Scalars["Int"]>>;
-  fictionNonfiction?: InputMaybe<FictionNonfictionCode>;
+  fictionNonfiction?: InputMaybe<FictionNonfictionCodeEnum>;
   illustrationsLevel?: InputMaybe<Array<Scalars["Int"]>>;
   length?: InputMaybe<Array<Scalars["Int"]>>;
   realisticVsFictional?: InputMaybe<Array<Scalars["Int"]>>;
+};
+
+export type MoodQueries = {
+  __typename?: "MoodQueries";
+  moodRecommendKids: MoodRecommendKidsResponse;
+  moodSearch: MoodSearchResponse;
+  moodSearchKids: MoodSearchKidsResponse;
+  moodSuggest: MoodSuggestResponse;
+  moodTagRecommend: Array<Maybe<MoodTagRecommendResponse>>;
+  moodWorkRecommend: Array<Maybe<MoodTagRecommendResponse>>;
+};
+
+export type MoodQueriesMoodRecommendKidsArgs = {
+  dislikes?: InputMaybe<Array<Scalars["String"]>>;
+  filters?: InputMaybe<MoodKidsRecommendFiltersInput>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  tags?: InputMaybe<Array<KidRecommenderTagsInput>>;
+  work?: InputMaybe<Scalars["String"]>;
+};
+
+export type MoodQueriesMoodSearchArgs = {
+  field?: InputMaybe<MoodSearchFieldValuesEnum>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  q: Scalars["String"];
+};
+
+export type MoodQueriesMoodSearchKidsArgs = {
+  field?: InputMaybe<MoodSearchFieldValuesEnum>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  q: Scalars["String"];
+};
+
+export type MoodQueriesMoodSuggestArgs = {
+  limit?: InputMaybe<Scalars["Int"]>;
+  q: Scalars["String"];
+};
+
+export type MoodQueriesMoodTagRecommendArgs = {
+  hasCover?: InputMaybe<Scalars["Boolean"]>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  minus?: InputMaybe<Array<Scalars["String"]>>;
+  plus?: InputMaybe<Array<Scalars["String"]>>;
+  tags: Array<Scalars["String"]>;
+};
+
+export type MoodQueriesMoodWorkRecommendArgs = {
+  dislikes?: InputMaybe<Array<Scalars["String"]>>;
+  hasCover?: InputMaybe<Scalars["Boolean"]>;
+  likes: Array<Scalars["String"]>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  maxAuthorRecommendations?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  threshold?: InputMaybe<Scalars["Float"]>;
 };
 
 /** The reponse from moodrecommenkids */
@@ -932,12 +996,12 @@ export type MoodRecommendKidsResponse = {
 
 /** The reponse from moodrecommenkids */
 export type MoodRecommendKidsResponseWorksArgs = {
-  limit: Scalars["PaginationLimit"];
+  limit: Scalars["PaginationLimitScalar"];
   offset: Scalars["Int"];
 };
 
 /** Supported fields for moodsearch request */
-export enum MoodSearchFieldValues {
+export enum MoodSearchFieldValuesEnum {
   All = "ALL",
   Alltags = "ALLTAGS",
   Creator = "CREATOR",
@@ -953,7 +1017,7 @@ export type MoodSearchKidsResponse = {
 
 /** The reponse from moodsearchkids */
 export type MoodSearchKidsResponseWorksArgs = {
-  limit: Scalars["PaginationLimit"];
+  limit: Scalars["PaginationLimitScalar"];
   offset: Scalars["Int"];
 };
 
@@ -966,22 +1030,33 @@ export type MoodSearchResponse = {
 
 /** The response from moodsearch */
 export type MoodSearchResponseWorksArgs = {
-  limit: Scalars["PaginationLimit"];
+  limit: Scalars["PaginationLimitScalar"];
   offset: Scalars["Int"];
 };
 
 /** Type of moodSuggest response */
-export enum MoodSuggest {
-  Creator = "creator",
-  Tag = "tag",
-  Title = "title"
+export enum MoodSuggestEnum {
+  Creator = "CREATOR",
+  Tag = "TAG",
+  Title = "TITLE"
 }
+
+/** MoodSuggest item */
+export type MoodSuggestItem = {
+  __typename?: "MoodSuggestItem";
+  /** Suggestion */
+  term: Scalars["String"];
+  /** The type of suggestion title/creator/tag */
+  type: MoodSuggestEnum;
+  /** A work associated with the suggestion */
+  work?: Maybe<Work>;
+};
 
 /** The response type for moodSuggest */
 export type MoodSuggestResponse = {
   __typename?: "MoodSuggestResponse";
-  /** Response is an array of moodSuggestResponse */
-  response: Array<MoodSuggestResponseElement>;
+  /** Response is an array of MoodSuggestResponse */
+  response: Array<MoodSuggestItem>;
 };
 
 /** Response type for moodTagRecommend */
@@ -995,8 +1070,6 @@ export type Mutation = {
   __typename?: "Mutation";
   elba: ElbaServices;
   submitOrder?: Maybe<SubmitOrder>;
-  /** @deprecated Use 'Elba.placeCopyRequest' instead */
-  submitPeriodicaArticleOrder: PeriodicaArticleOrderResponse;
 };
 
 export type MutationSubmitOrderArgs = {
@@ -1004,17 +1077,12 @@ export type MutationSubmitOrderArgs = {
   input: SubmitOrderInput;
 };
 
-export type MutationSubmitPeriodicaArticleOrderArgs = {
-  dryRun?: InputMaybe<Scalars["Boolean"]>;
-  input: PeriodicaArticleOrder;
-};
-
-export type NarrativeTechnique = Subject & {
+export type NarrativeTechnique = SubjectInterface & {
   __typename?: "NarrativeTechnique";
   display: Scalars["String"];
   language?: Maybe<Language>;
   local?: Maybe<Scalars["Boolean"]>;
-  type: SubjectType;
+  type: SubjectTypeEnum;
 };
 
 export type Note = {
@@ -1024,10 +1092,10 @@ export type Note = {
   /** Heading before note */
   heading?: Maybe<Scalars["String"]>;
   /** The type of note - e.g. note about language, genre etc, NOT_SPECIFIED if not known.  */
-  type: NoteType;
+  type: NoteTypeEnum;
 };
 
-export enum NoteType {
+export enum NoteTypeEnum {
   ConnectionToOtherWorks = "CONNECTION_TO_OTHER_WORKS",
   DescriptionOfMaterial = "DESCRIPTION_OF_MATERIAL",
   Dissertation = "DISSERTATION",
@@ -1045,15 +1113,7 @@ export enum NoteType {
   TypeOfScore = "TYPE_OF_SCORE"
 }
 
-export type NumberInSeries = {
-  __typename?: "NumberInSeries";
-  /** The number in the series as text, quoted form the publication, e.g. 'Vol. IX' */
-  display: Scalars["String"];
-  /** The number in the series as integer */
-  number?: Maybe<Array<Scalars["Int"]>>;
-};
-
-export enum OrderType {
+export enum OrderTypeEnum {
   Estimate = "ESTIMATE",
   Hold = "HOLD",
   Loan = "LOAN",
@@ -1061,6 +1121,16 @@ export enum OrderType {
   Normal = "NORMAL",
   StackRetrieval = "STACK_RETRIEVAL"
 }
+
+export type OrsQuery = {
+  __typename?: "OrsQuery";
+  /** Method to retrieve sender and receiver information from ORS based on an itemId. */
+  itemOrder: ItemIdResponse;
+};
+
+export type OrsQueryItemOrderArgs = {
+  itemId: Scalars["String"];
+};
 
 export type Pegi = {
   __typename?: "PEGI";
@@ -1070,35 +1140,8 @@ export type Pegi = {
   minimumAge?: Maybe<Scalars["Int"]>;
 };
 
-export type PeriodicaArticleOrder = {
-  authorOfComponent?: InputMaybe<Scalars["String"]>;
-  pagination?: InputMaybe<Scalars["String"]>;
-  pickUpBranch: Scalars["String"];
-  /** The pid of an article or periodica */
-  pid: Scalars["String"];
-  publicationDateOfComponent?: InputMaybe<Scalars["String"]>;
-  titleOfComponent?: InputMaybe<Scalars["String"]>;
-  userMail?: InputMaybe<Scalars["String"]>;
-  userName?: InputMaybe<Scalars["String"]>;
-  volume?: InputMaybe<Scalars["String"]>;
-};
-
-export type PeriodicaArticleOrderResponse = {
-  __typename?: "PeriodicaArticleOrderResponse";
-  status: PeriodicaArticleOrderStatus;
-};
-
-export enum PeriodicaArticleOrderStatus {
-  ErrorAgencyNotSubscribed = "ERROR_AGENCY_NOT_SUBSCRIBED",
-  ErrorInvalidPickupBranch = "ERROR_INVALID_PICKUP_BRANCH",
-  ErrorNoNameOrEmail = "ERROR_NO_NAME_OR_EMAIL",
-  ErrorPidNotReservable = "ERROR_PID_NOT_RESERVABLE",
-  ErrorUnauthorizedUser = "ERROR_UNAUTHORIZED_USER",
-  Ok = "OK"
-}
-
-export type Person = Creator &
-  Subject & {
+export type Person = CreatorInterface &
+  SubjectInterface & {
     __typename?: "Person";
     /** Creator aliases, creators behind used pseudonym */
     aliases: Array<Person>;
@@ -1120,40 +1163,18 @@ export type Person = Creator &
     roles: Array<Role>;
     /** A roman numeral added to the person, like Christian IV */
     romanNumeral?: Maybe<Scalars["String"]>;
-    type: SubjectType;
+    type: SubjectTypeEnum;
   };
-
-export type PhysicalDescription = {
-  __typename?: "PhysicalDescription";
-  /** Material that comes with the manifestation (bilag) */
-  accompanyingMaterial?: Maybe<Scalars["String"]>;
-  /** Additional physical description of the manifestation (e.g illustrations etc) */
-  additionalDescription?: Maybe<Scalars["String"]>;
-  /** Extent of the manifestation like pages and number of items */
-  extent?: Maybe<Scalars["String"]>;
-  /** Number of pages of the manifestation as number */
-  numberOfPages?: Maybe<Scalars["Int"]>;
-  /** Number of units, like 3 cassettes, or 1 score etc. */
-  numberOfUnits?: Maybe<Scalars["String"]>;
-  /** The playing time of the manifestation (e.g 2 hours 5 minutes) */
-  playingTime?: Maybe<Scalars["String"]>;
-  /** The necessary equipment to use the material */
-  requirements?: Maybe<Scalars["String"]>;
-  /** Size of the manifestation */
-  size?: Maybe<Scalars["String"]>;
-  /** A summary of the physical description of this manifestation like extent (pages/minutes), illustrations etc. */
-  summary: Scalars["String"];
-  /** Technical information about the manifestation (e.g blu-ray disc) */
-  technicalInformation?: Maybe<Scalars["String"]>;
-  /** Ratio of text vs. illustration from 1-5 as a number, where 1 means no illustrations and 5 means illustrations on all pages */
-  textVsIllustrations?: Maybe<Scalars["Int"]>;
-};
 
 export type PhysicalUnitDescription = {
   __typename?: "PhysicalUnitDescription";
+  /** Material that comes with the manifestation (bilag) */
   accompanyingMaterial?: Maybe<Scalars["String"]>;
+  /** List of units contained within the material */
   materialUnits?: Maybe<Array<UnitDescription>>;
+  /** Number of pages of the manifestation as number */
   numberOfPages?: Maybe<Scalars["Int"]>;
+  /** A summary of the physical description of this manifestation like extent (pages/minutes), illustrations etc. */
   summaryFull?: Maybe<Scalars["String"]>;
 };
 
@@ -1191,32 +1212,36 @@ export type Query = {
   __typename?: "Query";
   complexSearch: ComplexSearchResponse;
   complexSuggest: ComplexSuggestResponse;
+  debug?: Maybe<Debug>;
   infomedia: InfomediaResponse;
   linkCheck: LinkCheckService;
   localSuggest: LocalSuggestResponse;
   manifestation?: Maybe<Manifestation>;
   manifestations: Array<Maybe<Manifestation>>;
   mood: MoodQueries;
+  ors: OrsQuery;
   /** Get recommendations */
   recommend: RecommendationResponse;
   refWorks: Scalars["String"];
   relatedSubjects?: Maybe<Array<Scalars["String"]>>;
   ris: Scalars["String"];
   search: SearchResponse;
+  series?: Maybe<Series>;
   suggest: SuggestResponse;
+  universe?: Maybe<Universe>;
   work?: Maybe<Work>;
   works: Array<Maybe<Work>>;
 };
 
 export type QueryComplexSearchArgs = {
   cql: Scalars["String"];
-  facets?: InputMaybe<ComplexSearchFacets>;
-  filters?: InputMaybe<ComplexSearchFilters>;
+  facets?: InputMaybe<ComplexSearchFacetsInput>;
+  filters?: InputMaybe<ComplexSearchFiltersInput>;
 };
 
 export type QueryComplexSuggestArgs = {
   q: Scalars["String"];
-  type: ComplexSuggestionType;
+  type: ComplexSuggestionTypeEnum;
 };
 
 export type QueryInfomediaArgs = {
@@ -1227,7 +1252,7 @@ export type QueryLocalSuggestArgs = {
   branchId?: InputMaybe<Scalars["String"]>;
   limit?: InputMaybe<Scalars["Int"]>;
   q: Scalars["String"];
-  suggestType?: InputMaybe<Array<SuggestionType>>;
+  suggestType?: InputMaybe<Array<SuggestionTypeEnum>>;
 };
 
 export type QueryManifestationArgs = {
@@ -1262,23 +1287,32 @@ export type QueryRisArgs = {
 };
 
 export type QuerySearchArgs = {
-  filters?: InputMaybe<SearchFilters>;
-  q: SearchQuery;
+  filters?: InputMaybe<SearchFiltersInput>;
+  q: SearchQueryInput;
   search_exact?: InputMaybe<Scalars["Boolean"]>;
+};
+
+export type QuerySeriesArgs = {
+  seriesId: Scalars["String"];
 };
 
 export type QuerySuggestArgs = {
   limit?: InputMaybe<Scalars["Int"]>;
   q: Scalars["String"];
-  suggestType?: InputMaybe<SuggestionType>;
-  suggestTypes?: InputMaybe<Array<SuggestionType>>;
-  workType?: InputMaybe<WorkType>;
+  suggestType?: InputMaybe<SuggestionTypeEnum>;
+  suggestTypes?: InputMaybe<Array<SuggestionTypeEnum>>;
+  workType?: InputMaybe<WorkTypeEnum>;
+};
+
+export type QueryUniverseArgs = {
+  key?: InputMaybe<Scalars["String"]>;
+  universeId?: InputMaybe<Scalars["String"]>;
 };
 
 export type QueryWorkArgs = {
   faust?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
-  language?: InputMaybe<LanguageCode>;
+  language?: InputMaybe<LanguageCodeEnum>;
   oclc?: InputMaybe<Scalars["String"]>;
   pid?: InputMaybe<Scalars["String"]>;
 };
@@ -1286,7 +1320,7 @@ export type QueryWorkArgs = {
 export type QueryWorksArgs = {
   faust?: InputMaybe<Array<Scalars["String"]>>;
   id?: InputMaybe<Array<Scalars["String"]>>;
-  language?: InputMaybe<LanguageCode>;
+  language?: InputMaybe<LanguageCodeEnum>;
   oclc?: InputMaybe<Array<Scalars["String"]>>;
   pid?: InputMaybe<Array<Scalars["String"]>>;
 };
@@ -1393,10 +1427,10 @@ export type ReviewElement = {
   heading?: Maybe<Scalars["String"]>;
   /** Manifestations that can be used to generate and insert links into 'contentSubsitute'. */
   manifestations?: Maybe<Array<Maybe<Manifestation>>>;
-  type?: Maybe<ReviewElementType>;
+  type?: Maybe<ReviewElementTypeEnum>;
 };
 
-export enum ReviewElementType {
+export enum ReviewElementTypeEnum {
   Abstract = "ABSTRACT",
   AcquisitionRecommendations = "ACQUISITION_RECOMMENDATIONS",
   Audience = "AUDIENCE",
@@ -1416,17 +1450,17 @@ export type Role = {
 
 export type SchoolUse = {
   __typename?: "SchoolUse";
-  code: SchoolUseCode;
+  code: SchoolUseCodeEnum;
   display: Scalars["String"];
 };
 
-export enum SchoolUseCode {
+export enum SchoolUseCodeEnum {
   ForSchoolUse = "FOR_SCHOOL_USE",
   ForTeacher = "FOR_TEACHER"
 }
 
 /** Search Filters */
-export type SearchFilters = {
+export type SearchFiltersInput = {
   accessTypes?: InputMaybe<Array<Scalars["String"]>>;
   age?: InputMaybe<Array<Scalars["String"]>>;
   ageRange?: InputMaybe<Array<Scalars["String"]>>;
@@ -1447,7 +1481,7 @@ export type SearchFilters = {
   mainLanguages?: InputMaybe<Array<Scalars["String"]>>;
   materialTypesGeneral?: InputMaybe<Array<Scalars["String"]>>;
   materialTypesSpecific?: InputMaybe<Array<Scalars["String"]>>;
-  status?: InputMaybe<Array<HoldingsStatus>>;
+  status?: InputMaybe<Array<HoldingsStatusEnum>>;
   subjects?: InputMaybe<Array<Scalars["String"]>>;
   sublocation?: InputMaybe<Array<Scalars["String"]>>;
   workTypes?: InputMaybe<Array<Scalars["String"]>>;
@@ -1455,7 +1489,7 @@ export type SearchFilters = {
 };
 
 /** The supported fields to query */
-export type SearchQuery = {
+export type SearchQueryInput = {
   /**
    * Search for title, creator, subject or a combination.
    * This is typically used where a single search box is desired.
@@ -1494,7 +1528,7 @@ export type SearchResponseDidYouMeanArgs = {
 
 /** The simple search response */
 export type SearchResponseFacetsArgs = {
-  facets: Array<FacetField>;
+  facets: Array<FacetFieldEnum>;
 };
 
 /** The simple search response */
@@ -1504,7 +1538,7 @@ export type SearchResponseIntelligentFacetsArgs = {
 
 /** The simple search response */
 export type SearchResponseWorksArgs = {
-  limit: Scalars["PaginationLimit"];
+  limit: Scalars["PaginationLimitScalar"];
   offset: Scalars["Int"];
 };
 
@@ -1534,17 +1568,16 @@ export type Series = {
   mainLanguages: Array<Scalars["String"]>;
   /** Members of this serie.  */
   members: Array<SerieWork>;
-  /**
-   * The number in the series as text qoutation and a number
-   * @deprecated field 'NumberInSeries.number' is removed and only String value of 'NumberInSeries.display' is returned
-   */
-  numberInSeries?: Maybe<NumberInSeries>;
+  /** The number in the series as text qoutation */
+  numberInSeries?: Maybe<Scalars["String"]>;
   /** A parallel title to the main 'title' of the series, in a different language */
   parallelTitles: Array<Scalars["String"]>;
   /** Information about whether this work in the series should be read first */
   readThisFirst?: Maybe<Scalars["Boolean"]>;
   /** Information about whether this work in the series can be read without considering the order of the series, it can be read at any time */
   readThisWhenever?: Maybe<Scalars["Boolean"]>;
+  /** Identifier for the series */
+  seriesId?: Maybe<Scalars["String"]>;
   /** The title of the series */
   title: Scalars["String"];
   /** WorkTypes for the series */
@@ -1556,12 +1589,12 @@ export type SeriesMembersArgs = {
   offset?: InputMaybe<Scalars["Int"]>;
 };
 
-export type Setting = Subject & {
+export type Setting = SubjectInterface & {
   __typename?: "Setting";
   display: Scalars["String"];
   language?: Maybe<Language>;
   local?: Maybe<Scalars["Boolean"]>;
-  type: SubjectType;
+  type: SubjectTypeEnum;
 };
 
 export type Shelfmark = {
@@ -1572,12 +1605,12 @@ export type Shelfmark = {
   shelfmark: Scalars["String"];
 };
 
-export type Sort = {
+export type SortInput = {
   index: Scalars["String"];
-  order: SortOrder;
+  order: SortOrderEnum;
 };
 
-export enum SortOrder {
+export enum SortOrderEnum {
   Asc = "ASC",
   Desc = "DESC"
 }
@@ -1590,32 +1623,32 @@ export type SpecificMaterialType = {
   display: Scalars["String"];
 };
 
-export type Subject = {
+export type SubjectContainer = {
+  __typename?: "SubjectContainer";
+  /** All subjects */
+  all: Array<SubjectInterface>;
+  /** Only DBC verified subjects */
+  dbcVerified: Array<SubjectInterface>;
+};
+
+export type SubjectInterface = {
   display: Scalars["String"];
   /** Language of the subject - contains display and isoCode  */
   language?: Maybe<Language>;
   local?: Maybe<Scalars["Boolean"]>;
   /** The type of subject - 'location', 'time period' etc., 'topic' if not specific kind of subject term */
-  type: SubjectType;
+  type: SubjectTypeEnum;
 };
 
-export type SubjectContainer = {
-  __typename?: "SubjectContainer";
-  /** All subjects */
-  all: Array<Subject>;
-  /** Only DBC verified subjects */
-  dbcVerified: Array<Subject>;
-};
-
-export type SubjectText = Subject & {
+export type SubjectText = SubjectInterface & {
   __typename?: "SubjectText";
   display: Scalars["String"];
   language?: Maybe<Language>;
   local?: Maybe<Scalars["Boolean"]>;
-  type: SubjectType;
+  type: SubjectTypeEnum;
 };
 
-export enum SubjectType {
+export enum SubjectTypeEnum {
   Corporation = "CORPORATION",
   Environment = "ENVIRONMENT",
   FictionalCharacter = "FICTIONAL_CHARACTER",
@@ -1644,14 +1677,14 @@ export enum SubjectType {
   TopicChildren = "TOPIC_CHILDREN"
 }
 
-export type SubjectWithRating = Subject & {
+export type SubjectWithRating = SubjectInterface & {
   __typename?: "SubjectWithRating";
   display: Scalars["String"];
   language?: Maybe<Language>;
   local?: Maybe<Scalars["Boolean"]>;
   /** Expressed as integer on a scale from 1 to 5 */
   rating?: Maybe<Scalars["Int"]>;
-  type: SubjectType;
+  type: SubjectTypeEnum;
 };
 
 export type SubmitOrder = {
@@ -1662,7 +1695,7 @@ export type SubmitOrder = {
   ok?: Maybe<Scalars["Boolean"]>;
   orderId?: Maybe<Scalars["String"]>;
   orsId?: Maybe<Scalars["String"]>;
-  status: SubmitOrderStatus;
+  status: SubmitOrderStatusEnum;
 };
 
 export type SubmitOrderInput = {
@@ -1672,7 +1705,7 @@ export type SubmitOrderInput = {
   /** expires is required to be iso 8601 dateTime eg. "2024-03-15T12:24:32Z" */
   expires?: InputMaybe<Scalars["String"]>;
   key?: InputMaybe<Scalars["String"]>;
-  orderType?: InputMaybe<OrderType>;
+  orderType?: InputMaybe<OrderTypeEnum>;
   pagination?: InputMaybe<Scalars["String"]>;
   pickUpBranch: Scalars["String"];
   pids: Array<Scalars["String"]>;
@@ -1680,11 +1713,11 @@ export type SubmitOrderInput = {
   publicationDateOfComponent?: InputMaybe<Scalars["String"]>;
   title?: InputMaybe<Scalars["String"]>;
   titleOfComponent?: InputMaybe<Scalars["String"]>;
-  userParameters: SubmitOrderUserParameters;
+  userParameters: SubmitOrderUserParametersInput;
   volume?: InputMaybe<Scalars["String"]>;
 };
 
-export enum SubmitOrderStatus {
+export enum SubmitOrderStatusEnum {
   /** Authentication error */
   AuthenticationError = "AUTHENTICATION_ERROR",
   /** Borchk: User is blocked by agency */
@@ -1723,7 +1756,7 @@ export enum SubmitOrderStatus {
   UnknownUser = "UNKNOWN_USER"
 }
 
-export type SubmitOrderUserParameters = {
+export type SubmitOrderUserParametersInput = {
   barcode?: InputMaybe<Scalars["String"]>;
   cardno?: InputMaybe<Scalars["String"]>;
   cpr?: InputMaybe<Scalars["String"]>;
@@ -1747,12 +1780,12 @@ export type Suggestion = {
   /** The suggested term which can be searched for */
   term: Scalars["String"];
   /** The type of suggestion: creator, subject or title */
-  type: SuggestionType;
+  type: SuggestionTypeEnum;
   /** A work related to the term */
   work?: Maybe<Work>;
 };
 
-export enum SuggestionType {
+export enum SuggestionTypeEnum {
   Composit = "COMPOSIT",
   Creator = "CREATOR",
   Subject = "SUBJECT",
@@ -1766,13 +1799,13 @@ export type TableOfContent = {
   listOfContent?: Maybe<Array<TableOfContent>>;
 };
 
-export type TimePeriod = Subject & {
+export type TimePeriod = SubjectInterface & {
   __typename?: "TimePeriod";
   display: Scalars["String"];
   language?: Maybe<Language>;
   local?: Maybe<Scalars["Boolean"]>;
   period: Range;
-  type: SubjectType;
+  type: SubjectTypeEnum;
 };
 
 export type Translation = {
@@ -1815,11 +1848,17 @@ export type Unit = {
 
 export type UnitDescription = {
   __typename?: "UnitDescription";
+  /** Other physical description, eg. illustrations, color or b/w, mono/stereo, rpm */
   additionalDescription?: Maybe<Scalars["String"]>;
+  /** Number of pages, tab (books, articles etc.) or playingtime (cd, dvd etc.) */
   extent?: Maybe<Scalars["String"]>;
+  /** Technical formats, e.g. Playstation 4, blu-ray */
   numberAndType?: Maybe<Scalars["String"]>;
+  /** Size of the material unit */
   size?: Maybe<Scalars["String"]>;
+  /** Assemblance of the data from all the other properties, separated by a comma */
   summary: Scalars["String"];
+  /** Technical formats, e.g. Playstation 4, blu-ray */
   technicalInformation?: Maybe<Scalars["String"]>;
 };
 
@@ -1832,13 +1871,15 @@ export type Universe = {
   /** Description of the universe */
   description?: Maybe<Scalars["String"]>;
   /** A key that identifies a universe. */
-  key: Scalars["String"];
+  key?: Maybe<Scalars["String"]>;
   /** All series within the universe */
   series: Array<Series>;
   /** Literary/movie universe this work is part of e.g. Wizarding World, Marvel Cinematic Universe */
   title: Scalars["String"];
+  /** An id that identifies a universe. */
+  universeId?: Maybe<Scalars["String"]>;
   /** work types that are in this universe */
-  workTypes: Array<WorkType>;
+  workTypes: Array<WorkTypeEnum>;
   /** All works within the universe but not in any series */
   works: Array<Work>;
 };
@@ -1846,35 +1887,35 @@ export type Universe = {
 export type UniverseContentArgs = {
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  workType?: InputMaybe<WorkType>;
+  workType?: InputMaybe<WorkTypeEnum>;
 };
 
 export type UniverseSeriesArgs = {
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  workType?: InputMaybe<WorkType>;
+  workType?: InputMaybe<WorkTypeEnum>;
 };
 
 export type UniverseWorksArgs = {
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  workType?: InputMaybe<WorkType>;
+  workType?: InputMaybe<WorkTypeEnum>;
 };
-
-export type UniverseContent = Series | Work;
 
 export type UniverseContentResult = {
   __typename?: "UniverseContentResult";
-  entries: Array<UniverseContent>;
+  entries: Array<UniverseContentUnion>;
   hitcount: Scalars["Int"];
 };
+
+export type UniverseContentUnion = Series | Work;
 
 export type Work = {
   __typename?: "Work";
   /** Abstract of the entity */
   abstract?: Maybe<Array<Scalars["String"]>>;
   /** Creators */
-  creators: Array<Creator>;
+  creators: Array<CreatorInterface>;
   /** DK5 main entry for this work */
   dk5MainEntry?: Maybe<Dk5MainEntry>;
   /** Overall literary category/genre of this work. e.g. fiction or nonfiction. In Danish skønlitteratur/faglitteratur for literature, fiktion/nonfiktion for other types. */
@@ -1893,25 +1934,15 @@ export type Work = {
   relations: Relations;
   /** Series for this work */
   series: Array<Series>;
-  /**
-   * Members of a series that this work is part of
-   * @deprecated Use 'Work.series.members' instead
-   */
-  seriesMembers: Array<Work>;
   /** Subjects for this work */
   subjects: SubjectContainer;
   titles: WorkTitles;
-  /**
-   * Literary/movie universe this work is part of, e.g. Wizarding World, Marvel Universe
-   * @deprecated Use 'universes' instead
-   */
-  universe?: Maybe<Universe>;
   /** Literary/movie universes this work is part of, e.g. Wizarding World, Marvel Universe */
   universes: Array<Universe>;
   /** Unique identification of the work based on work-presentation id e.g work-of:870970-basis:54029519 */
   workId: Scalars["String"];
   /** Worktypes for this work - 'none' replaced by 'other' */
-  workTypes: Array<WorkType>;
+  workTypes: Array<WorkTypeEnum>;
   /** The year this work was originally published or produced */
   workYear?: Maybe<PublicationYear>;
 };
@@ -1938,7 +1969,7 @@ export type WorkTitles = {
   tvSeries?: Maybe<TvSeries>;
 };
 
-export enum WorkType {
+export enum WorkTypeEnum {
   Analysis = "ANALYSIS",
   Article = "ARTICLE",
   Bookdescription = "BOOKDESCRIPTION",
@@ -1954,84 +1985,6 @@ export enum WorkType {
   Sheetmusic = "SHEETMUSIC",
   Track = "TRACK"
 }
-
-/** The facets to ask for */
-export type ComplexSearchFacets = {
-  facetLimit: Scalars["Int"];
-  facets: Array<ComplexSearchFacetTypes>;
-};
-
-export type LocalSuggestResponse = {
-  __typename?: "localSuggestResponse";
-  result: Array<Suggestion>;
-};
-
-export type MoodQueries = {
-  __typename?: "moodQueries";
-  moodRecommendKids: MoodRecommendKidsResponse;
-  moodSearch: MoodSearchResponse;
-  moodSearchKids: MoodSearchKidsResponse;
-  moodSuggest: MoodSuggestResponse;
-  moodTagRecommend: Array<Maybe<MoodTagRecommendResponse>>;
-  moodWorkRecommend: Array<Maybe<MoodTagRecommendResponse>>;
-};
-
-export type MoodQueriesMoodRecommendKidsArgs = {
-  dislikes?: InputMaybe<Array<Scalars["String"]>>;
-  filters?: InputMaybe<MoodKidsRecommendFilters>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  tags?: InputMaybe<Array<KidRecommenderTags>>;
-  work?: InputMaybe<Scalars["String"]>;
-};
-
-export type MoodQueriesMoodSearchArgs = {
-  field?: InputMaybe<MoodSearchFieldValues>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  q: Scalars["String"];
-};
-
-export type MoodQueriesMoodSearchKidsArgs = {
-  field?: InputMaybe<MoodSearchFieldValues>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  q: Scalars["String"];
-};
-
-export type MoodQueriesMoodSuggestArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
-  q: Scalars["String"];
-};
-
-export type MoodQueriesMoodTagRecommendArgs = {
-  hasCover?: InputMaybe<Scalars["Boolean"]>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  minus?: InputMaybe<Array<Scalars["String"]>>;
-  plus?: InputMaybe<Array<Scalars["String"]>>;
-  tags: Array<Scalars["String"]>;
-};
-
-export type MoodQueriesMoodWorkRecommendArgs = {
-  dislikes?: InputMaybe<Array<Scalars["String"]>>;
-  hasCover?: InputMaybe<Scalars["Boolean"]>;
-  likes: Array<Scalars["String"]>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  maxAuthorRecommendations?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  threshold?: InputMaybe<Scalars["Float"]>;
-};
-
-/** Response type for moodSuggest */
-export type MoodSuggestResponseElement = {
-  __typename?: "moodSuggestResponse";
-  /** Suggestion */
-  term: Scalars["String"];
-  /** The type of suggestion title/creator/tag */
-  type: MoodSuggest;
-  /** A work associated with the suggestion */
-  work?: Maybe<Work>;
-};
 
 export type GetSmallWorkQueryVariables = Exact<{
   id: Scalars["String"];
@@ -2059,21 +2012,15 @@ export type GetSmallWorkQuery = {
       isPopular?: boolean | null;
       readThisFirst?: boolean | null;
       readThisWhenever?: boolean | null;
-      numberInSeries?: {
-        __typename?: "NumberInSeries";
-        display: string;
-        number?: Array<number> | null;
-      } | null;
-    }>;
-    seriesMembers: Array<{
-      __typename?: "Work";
-      workId: string;
-      titles: {
-        __typename?: "WorkTitles";
-        main: Array<string>;
-        full: Array<string>;
-        original?: Array<string> | null;
-      };
+      members: Array<{
+        __typename?: "SerieWork";
+        numberInSeries?: string | null;
+        work: {
+          __typename?: "Work";
+          workId: string;
+          titles: { __typename?: "WorkTitles"; main: Array<string> };
+        };
+      }>;
     }>;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
     manifestations: {
@@ -2092,7 +2039,7 @@ export type GetSmallWorkQuery = {
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
           display: string;
-          code: FictionNonfictionCode;
+          code: FictionNonfictionCodeEnum;
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
@@ -2152,12 +2099,11 @@ export type GetSmallWorkQuery = {
             isoCode: string;
           }> | null;
         } | null;
-        physicalDescriptions: Array<{
-          __typename?: "PhysicalDescription";
-          summary: string;
+        physicalDescription?: {
+          __typename?: "PhysicalUnitDescription";
+          summaryFull?: string | null;
           numberOfPages?: number | null;
-          playingTime?: string | null;
-        }>;
+        } | null;
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
@@ -2166,7 +2112,10 @@ export type GetSmallWorkQuery = {
           __typename?: "ManifestationParts";
           parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
-        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        accessTypes: Array<{
+          __typename?: "AccessType";
+          code: AccessTypeCodeEnum;
+        }>;
         access: Array<
           | {
               __typename: "AccessUrl";
@@ -2213,7 +2162,7 @@ export type GetSmallWorkQuery = {
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
           display: string;
-          code: FictionNonfictionCode;
+          code: FictionNonfictionCodeEnum;
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
@@ -2273,12 +2222,11 @@ export type GetSmallWorkQuery = {
             isoCode: string;
           }> | null;
         } | null;
-        physicalDescriptions: Array<{
-          __typename?: "PhysicalDescription";
-          summary: string;
+        physicalDescription?: {
+          __typename?: "PhysicalUnitDescription";
+          summaryFull?: string | null;
           numberOfPages?: number | null;
-          playingTime?: string | null;
-        }>;
+        } | null;
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
@@ -2287,7 +2235,10 @@ export type GetSmallWorkQuery = {
           __typename?: "ManifestationParts";
           parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
-        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        accessTypes: Array<{
+          __typename?: "AccessType";
+          code: AccessTypeCodeEnum;
+        }>;
         access: Array<
           | {
               __typename: "AccessUrl";
@@ -2334,7 +2285,7 @@ export type GetSmallWorkQuery = {
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
           display: string;
-          code: FictionNonfictionCode;
+          code: FictionNonfictionCodeEnum;
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
@@ -2394,12 +2345,11 @@ export type GetSmallWorkQuery = {
             isoCode: string;
           }> | null;
         } | null;
-        physicalDescriptions: Array<{
-          __typename?: "PhysicalDescription";
-          summary: string;
+        physicalDescription?: {
+          __typename?: "PhysicalUnitDescription";
+          summaryFull?: string | null;
           numberOfPages?: number | null;
-          playingTime?: string | null;
-        }>;
+        } | null;
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
@@ -2408,7 +2358,10 @@ export type GetSmallWorkQuery = {
           __typename?: "ManifestationParts";
           parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
-        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        accessTypes: Array<{
+          __typename?: "AccessType";
+          code: AccessTypeCodeEnum;
+        }>;
         access: Array<
           | {
               __typename: "AccessUrl";
@@ -2471,10 +2424,10 @@ export type ManifestationBasicDetailsFragment = {
   series: Array<{
     __typename?: "Series";
     title: string;
-    numberInSeries?: {
-      __typename?: "NumberInSeries";
-      number?: Array<number> | null;
-    } | null;
+    members: Array<{
+      __typename?: "SerieWork";
+      numberInSeries?: string | null;
+    }>;
   }>;
   languages?: {
     __typename?: "Languages";
@@ -2518,10 +2471,10 @@ export type GetManifestationViaMaterialByFaustQuery = {
     series: Array<{
       __typename?: "Series";
       title: string;
-      numberInSeries?: {
-        __typename?: "NumberInSeries";
-        number?: Array<number> | null;
-      } | null;
+      members: Array<{
+        __typename?: "SerieWork";
+        numberInSeries?: string | null;
+      }>;
     }>;
     languages?: {
       __typename?: "Languages";
@@ -2572,10 +2525,10 @@ export type GetManifestationViaBestRepresentationByFaustQuery = {
           series: Array<{
             __typename?: "Series";
             title: string;
-            numberInSeries?: {
-              __typename?: "NumberInSeries";
-              number?: Array<number> | null;
-            } | null;
+            members: Array<{
+              __typename?: "SerieWork";
+              numberInSeries?: string | null;
+            }>;
           }>;
           languages?: {
             __typename?: "Languages";
@@ -2644,7 +2597,7 @@ export type GetMaterialQuery = {
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
-      code: FictionNonfictionCode;
+      code: FictionNonfictionCodeEnum;
     } | null;
     dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
     relations: {
@@ -2655,7 +2608,7 @@ export type GetMaterialQuery = {
         ownerWork: {
           __typename?: "Work";
           workId: string;
-          workTypes: Array<WorkType>;
+          workTypes: Array<WorkTypeEnum>;
           titles: { __typename?: "WorkTitles"; main: Array<string> };
         };
       }>;
@@ -2671,21 +2624,15 @@ export type GetMaterialQuery = {
       isPopular?: boolean | null;
       readThisFirst?: boolean | null;
       readThisWhenever?: boolean | null;
-      numberInSeries?: {
-        __typename?: "NumberInSeries";
-        display: string;
-        number?: Array<number> | null;
-      } | null;
-    }>;
-    seriesMembers: Array<{
-      __typename?: "Work";
-      workId: string;
-      titles: {
-        __typename?: "WorkTitles";
-        main: Array<string>;
-        full: Array<string>;
-        original?: Array<string> | null;
-      };
+      members: Array<{
+        __typename?: "SerieWork";
+        numberInSeries?: string | null;
+        work: {
+          __typename?: "Work";
+          workId: string;
+          titles: { __typename?: "WorkTitles"; main: Array<string> };
+        };
+      }>;
     }>;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
     manifestations: {
@@ -2704,7 +2651,7 @@ export type GetMaterialQuery = {
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
           display: string;
-          code: FictionNonfictionCode;
+          code: FictionNonfictionCodeEnum;
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
@@ -2764,12 +2711,11 @@ export type GetMaterialQuery = {
             isoCode: string;
           }> | null;
         } | null;
-        physicalDescriptions: Array<{
-          __typename?: "PhysicalDescription";
-          summary: string;
+        physicalDescription?: {
+          __typename?: "PhysicalUnitDescription";
+          summaryFull?: string | null;
           numberOfPages?: number | null;
-          playingTime?: string | null;
-        }>;
+        } | null;
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
@@ -2778,7 +2724,10 @@ export type GetMaterialQuery = {
           __typename?: "ManifestationParts";
           parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
-        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        accessTypes: Array<{
+          __typename?: "AccessType";
+          code: AccessTypeCodeEnum;
+        }>;
         access: Array<
           | {
               __typename: "AccessUrl";
@@ -2825,7 +2774,7 @@ export type GetMaterialQuery = {
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
           display: string;
-          code: FictionNonfictionCode;
+          code: FictionNonfictionCodeEnum;
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
@@ -2885,12 +2834,11 @@ export type GetMaterialQuery = {
             isoCode: string;
           }> | null;
         } | null;
-        physicalDescriptions: Array<{
-          __typename?: "PhysicalDescription";
-          summary: string;
+        physicalDescription?: {
+          __typename?: "PhysicalUnitDescription";
+          summaryFull?: string | null;
           numberOfPages?: number | null;
-          playingTime?: string | null;
-        }>;
+        } | null;
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
@@ -2899,7 +2847,10 @@ export type GetMaterialQuery = {
           __typename?: "ManifestationParts";
           parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
-        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        accessTypes: Array<{
+          __typename?: "AccessType";
+          code: AccessTypeCodeEnum;
+        }>;
         access: Array<
           | {
               __typename: "AccessUrl";
@@ -2946,7 +2897,7 @@ export type GetMaterialQuery = {
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
           display: string;
-          code: FictionNonfictionCode;
+          code: FictionNonfictionCodeEnum;
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
@@ -3006,12 +2957,11 @@ export type GetMaterialQuery = {
             isoCode: string;
           }> | null;
         } | null;
-        physicalDescriptions: Array<{
-          __typename?: "PhysicalDescription";
-          summary: string;
+        physicalDescription?: {
+          __typename?: "PhysicalUnitDescription";
+          summaryFull?: string | null;
           numberOfPages?: number | null;
-          playingTime?: string | null;
-        }>;
+        } | null;
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
@@ -3020,7 +2970,10 @@ export type GetMaterialQuery = {
           __typename?: "ManifestationParts";
           parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
-        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        accessTypes: Array<{
+          __typename?: "AccessType";
+          code: AccessTypeCodeEnum;
+        }>;
         access: Array<
           | {
               __typename: "AccessUrl";
@@ -3110,7 +3063,7 @@ export type GetMaterialGloballyQuery = {
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
-      code: FictionNonfictionCode;
+      code: FictionNonfictionCodeEnum;
     } | null;
     dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
     relations: {
@@ -3121,7 +3074,7 @@ export type GetMaterialGloballyQuery = {
         ownerWork: {
           __typename?: "Work";
           workId: string;
-          workTypes: Array<WorkType>;
+          workTypes: Array<WorkTypeEnum>;
           titles: { __typename?: "WorkTitles"; main: Array<string> };
         };
       }>;
@@ -3137,21 +3090,15 @@ export type GetMaterialGloballyQuery = {
       isPopular?: boolean | null;
       readThisFirst?: boolean | null;
       readThisWhenever?: boolean | null;
-      numberInSeries?: {
-        __typename?: "NumberInSeries";
-        display: string;
-        number?: Array<number> | null;
-      } | null;
-    }>;
-    seriesMembers: Array<{
-      __typename?: "Work";
-      workId: string;
-      titles: {
-        __typename?: "WorkTitles";
-        main: Array<string>;
-        full: Array<string>;
-        original?: Array<string> | null;
-      };
+      members: Array<{
+        __typename?: "SerieWork";
+        numberInSeries?: string | null;
+        work: {
+          __typename?: "Work";
+          workId: string;
+          titles: { __typename?: "WorkTitles"; main: Array<string> };
+        };
+      }>;
     }>;
     workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
     manifestations: {
@@ -3170,7 +3117,7 @@ export type GetMaterialGloballyQuery = {
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
           display: string;
-          code: FictionNonfictionCode;
+          code: FictionNonfictionCodeEnum;
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
@@ -3230,12 +3177,11 @@ export type GetMaterialGloballyQuery = {
             isoCode: string;
           }> | null;
         } | null;
-        physicalDescriptions: Array<{
-          __typename?: "PhysicalDescription";
-          summary: string;
+        physicalDescription?: {
+          __typename?: "PhysicalUnitDescription";
+          summaryFull?: string | null;
           numberOfPages?: number | null;
-          playingTime?: string | null;
-        }>;
+        } | null;
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
@@ -3244,7 +3190,10 @@ export type GetMaterialGloballyQuery = {
           __typename?: "ManifestationParts";
           parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
-        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        accessTypes: Array<{
+          __typename?: "AccessType";
+          code: AccessTypeCodeEnum;
+        }>;
         access: Array<
           | {
               __typename: "AccessUrl";
@@ -3291,7 +3240,7 @@ export type GetMaterialGloballyQuery = {
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
           display: string;
-          code: FictionNonfictionCode;
+          code: FictionNonfictionCodeEnum;
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
@@ -3351,12 +3300,11 @@ export type GetMaterialGloballyQuery = {
             isoCode: string;
           }> | null;
         } | null;
-        physicalDescriptions: Array<{
-          __typename?: "PhysicalDescription";
-          summary: string;
+        physicalDescription?: {
+          __typename?: "PhysicalUnitDescription";
+          summaryFull?: string | null;
           numberOfPages?: number | null;
-          playingTime?: string | null;
-        }>;
+        } | null;
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
@@ -3365,7 +3313,10 @@ export type GetMaterialGloballyQuery = {
           __typename?: "ManifestationParts";
           parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
-        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        accessTypes: Array<{
+          __typename?: "AccessType";
+          code: AccessTypeCodeEnum;
+        }>;
         access: Array<
           | {
               __typename: "AccessUrl";
@@ -3412,7 +3363,7 @@ export type GetMaterialGloballyQuery = {
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
           display: string;
-          code: FictionNonfictionCode;
+          code: FictionNonfictionCodeEnum;
         } | null;
         materialTypes: Array<{
           __typename?: "MaterialType";
@@ -3472,12 +3423,11 @@ export type GetMaterialGloballyQuery = {
             isoCode: string;
           }> | null;
         } | null;
-        physicalDescriptions: Array<{
-          __typename?: "PhysicalDescription";
-          summary: string;
+        physicalDescription?: {
+          __typename?: "PhysicalUnitDescription";
+          summaryFull?: string | null;
           numberOfPages?: number | null;
-          playingTime?: string | null;
-        }>;
+        } | null;
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
@@ -3486,7 +3436,10 @@ export type GetMaterialGloballyQuery = {
           __typename?: "ManifestationParts";
           parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
-        accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+        accessTypes: Array<{
+          __typename?: "AccessType";
+          code: AccessTypeCodeEnum;
+        }>;
         access: Array<
           | {
               __typename: "AccessUrl";
@@ -3531,7 +3484,7 @@ export type GetInfomediaQuery = {
   __typename?: "Query";
   infomedia: {
     __typename?: "InfomediaResponse";
-    error?: InfomediaError | null;
+    error?: InfomediaErrorEnum | null;
     article?: {
       __typename?: "InfomediaArticle";
       headLine?: string | null;
@@ -3572,10 +3525,10 @@ export type GetReviewManifestationsQuery = {
       title: string;
       issue?: string | null;
     } | null;
-    physicalDescriptions: Array<{
-      __typename?: "PhysicalDescription";
-      summary: string;
-    }>;
+    physicalDescription?: {
+      __typename?: "PhysicalUnitDescription";
+      summaryFull?: string | null;
+    } | null;
     dateFirstEdition?: {
       __typename?: "PublicationYear";
       display: string;
@@ -3588,7 +3541,7 @@ export type GetReviewManifestationsQuery = {
         __typename?: "ReviewElement";
         content?: string | null;
         heading?: string | null;
-        type?: ReviewElementType | null;
+        type?: ReviewElementTypeEnum | null;
         manifestations?: Array<{
           __typename?: "Manifestation";
           pid: string;
@@ -3607,7 +3560,7 @@ export type OpenOrderMutation = {
   __typename?: "Mutation";
   submitOrder?: {
     __typename?: "SubmitOrder";
-    status: SubmitOrderStatus;
+    status: SubmitOrderStatusEnum;
     message?: string | null;
     orderId?: string | null;
   } | null;
@@ -3644,21 +3597,15 @@ export type RecommendFromFaustQuery = {
           isPopular?: boolean | null;
           readThisFirst?: boolean | null;
           readThisWhenever?: boolean | null;
-          numberInSeries?: {
-            __typename?: "NumberInSeries";
-            display: string;
-            number?: Array<number> | null;
-          } | null;
-        }>;
-        seriesMembers: Array<{
-          __typename?: "Work";
-          workId: string;
-          titles: {
-            __typename?: "WorkTitles";
-            main: Array<string>;
-            full: Array<string>;
-            original?: Array<string> | null;
-          };
+          members: Array<{
+            __typename?: "SerieWork";
+            numberInSeries?: string | null;
+            work: {
+              __typename?: "Work";
+              workId: string;
+              titles: { __typename?: "WorkTitles"; main: Array<string> };
+            };
+          }>;
         }>;
         workYear?: {
           __typename?: "PublicationYear";
@@ -3680,7 +3627,7 @@ export type RecommendFromFaustQuery = {
             fictionNonfiction?: {
               __typename?: "FictionNonfiction";
               display: string;
-              code: FictionNonfictionCode;
+              code: FictionNonfictionCodeEnum;
             } | null;
             materialTypes: Array<{
               __typename?: "MaterialType";
@@ -3740,12 +3687,11 @@ export type RecommendFromFaustQuery = {
                 isoCode: string;
               }> | null;
             } | null;
-            physicalDescriptions: Array<{
-              __typename?: "PhysicalDescription";
-              summary: string;
+            physicalDescription?: {
+              __typename?: "PhysicalUnitDescription";
+              summaryFull?: string | null;
               numberOfPages?: number | null;
-              playingTime?: string | null;
-            }>;
+            } | null;
             hostPublication?: {
               __typename?: "HostPublication";
               summary: string;
@@ -3756,7 +3702,7 @@ export type RecommendFromFaustQuery = {
             } | null;
             accessTypes: Array<{
               __typename?: "AccessType";
-              code: AccessTypeCode;
+              code: AccessTypeCodeEnum;
             }>;
             access: Array<
               | {
@@ -3804,7 +3750,7 @@ export type RecommendFromFaustQuery = {
             fictionNonfiction?: {
               __typename?: "FictionNonfiction";
               display: string;
-              code: FictionNonfictionCode;
+              code: FictionNonfictionCodeEnum;
             } | null;
             materialTypes: Array<{
               __typename?: "MaterialType";
@@ -3864,12 +3810,11 @@ export type RecommendFromFaustQuery = {
                 isoCode: string;
               }> | null;
             } | null;
-            physicalDescriptions: Array<{
-              __typename?: "PhysicalDescription";
-              summary: string;
+            physicalDescription?: {
+              __typename?: "PhysicalUnitDescription";
+              summaryFull?: string | null;
               numberOfPages?: number | null;
-              playingTime?: string | null;
-            }>;
+            } | null;
             hostPublication?: {
               __typename?: "HostPublication";
               summary: string;
@@ -3880,7 +3825,7 @@ export type RecommendFromFaustQuery = {
             } | null;
             accessTypes: Array<{
               __typename?: "AccessType";
-              code: AccessTypeCode;
+              code: AccessTypeCodeEnum;
             }>;
             access: Array<
               | {
@@ -3928,7 +3873,7 @@ export type RecommendFromFaustQuery = {
             fictionNonfiction?: {
               __typename?: "FictionNonfiction";
               display: string;
-              code: FictionNonfictionCode;
+              code: FictionNonfictionCodeEnum;
             } | null;
             materialTypes: Array<{
               __typename?: "MaterialType";
@@ -3988,12 +3933,11 @@ export type RecommendFromFaustQuery = {
                 isoCode: string;
               }> | null;
             } | null;
-            physicalDescriptions: Array<{
-              __typename?: "PhysicalDescription";
-              summary: string;
+            physicalDescription?: {
+              __typename?: "PhysicalUnitDescription";
+              summaryFull?: string | null;
               numberOfPages?: number | null;
-              playingTime?: string | null;
-            }>;
+            } | null;
             hostPublication?: {
               __typename?: "HostPublication";
               summary: string;
@@ -4004,7 +3948,7 @@ export type RecommendFromFaustQuery = {
             } | null;
             accessTypes: Array<{
               __typename?: "AccessType";
-              code: AccessTypeCode;
+              code: AccessTypeCodeEnum;
             }>;
             access: Array<
               | {
@@ -4045,10 +3989,10 @@ export type RecommendFromFaustQuery = {
 };
 
 export type SearchWithPaginationQueryVariables = Exact<{
-  q: SearchQuery;
+  q: SearchQueryInput;
   offset: Scalars["Int"];
-  limit: Scalars["PaginationLimit"];
-  filters?: InputMaybe<SearchFilters>;
+  limit: Scalars["PaginationLimitScalar"];
+  filters?: InputMaybe<SearchFiltersInput>;
 }>;
 
 export type SearchWithPaginationQuery = {
@@ -4076,21 +4020,15 @@ export type SearchWithPaginationQuery = {
         isPopular?: boolean | null;
         readThisFirst?: boolean | null;
         readThisWhenever?: boolean | null;
-        numberInSeries?: {
-          __typename?: "NumberInSeries";
-          display: string;
-          number?: Array<number> | null;
-        } | null;
-      }>;
-      seriesMembers: Array<{
-        __typename?: "Work";
-        workId: string;
-        titles: {
-          __typename?: "WorkTitles";
-          main: Array<string>;
-          full: Array<string>;
-          original?: Array<string> | null;
-        };
+        members: Array<{
+          __typename?: "SerieWork";
+          numberInSeries?: string | null;
+          work: {
+            __typename?: "Work";
+            workId: string;
+            titles: { __typename?: "WorkTitles"; main: Array<string> };
+          };
+        }>;
       }>;
       workYear?: {
         __typename?: "PublicationYear";
@@ -4112,7 +4050,7 @@ export type SearchWithPaginationQuery = {
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
             display: string;
-            code: FictionNonfictionCode;
+            code: FictionNonfictionCodeEnum;
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -4172,12 +4110,11 @@ export type SearchWithPaginationQuery = {
               isoCode: string;
             }> | null;
           } | null;
-          physicalDescriptions: Array<{
-            __typename?: "PhysicalDescription";
-            summary: string;
+          physicalDescription?: {
+            __typename?: "PhysicalUnitDescription";
+            summaryFull?: string | null;
             numberOfPages?: number | null;
-            playingTime?: string | null;
-          }>;
+          } | null;
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
@@ -4188,7 +4125,7 @@ export type SearchWithPaginationQuery = {
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
-            code: AccessTypeCode;
+            code: AccessTypeCodeEnum;
           }>;
           access: Array<
             | {
@@ -4236,7 +4173,7 @@ export type SearchWithPaginationQuery = {
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
             display: string;
-            code: FictionNonfictionCode;
+            code: FictionNonfictionCodeEnum;
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -4296,12 +4233,11 @@ export type SearchWithPaginationQuery = {
               isoCode: string;
             }> | null;
           } | null;
-          physicalDescriptions: Array<{
-            __typename?: "PhysicalDescription";
-            summary: string;
+          physicalDescription?: {
+            __typename?: "PhysicalUnitDescription";
+            summaryFull?: string | null;
             numberOfPages?: number | null;
-            playingTime?: string | null;
-          }>;
+          } | null;
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
@@ -4312,7 +4248,7 @@ export type SearchWithPaginationQuery = {
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
-            code: AccessTypeCode;
+            code: AccessTypeCodeEnum;
           }>;
           access: Array<
             | {
@@ -4360,7 +4296,7 @@ export type SearchWithPaginationQuery = {
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
             display: string;
-            code: FictionNonfictionCode;
+            code: FictionNonfictionCodeEnum;
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -4420,12 +4356,11 @@ export type SearchWithPaginationQuery = {
               isoCode: string;
             }> | null;
           } | null;
-          physicalDescriptions: Array<{
-            __typename?: "PhysicalDescription";
-            summary: string;
+          physicalDescription?: {
+            __typename?: "PhysicalUnitDescription";
+            summaryFull?: string | null;
             numberOfPages?: number | null;
-            playingTime?: string | null;
-          }>;
+          } | null;
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
@@ -4436,7 +4371,7 @@ export type SearchWithPaginationQuery = {
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
-            code: AccessTypeCode;
+            code: AccessTypeCodeEnum;
           }>;
           access: Array<
             | {
@@ -4478,8 +4413,8 @@ export type SearchWithPaginationQuery = {
 export type ComplexSearchWithPaginationWorkAccessQueryVariables = Exact<{
   cql: Scalars["String"];
   offset: Scalars["Int"];
-  limit: Scalars["PaginationLimit"];
-  filters: ComplexSearchFilters;
+  limit: Scalars["PaginationLimitScalar"];
+  filters: ComplexSearchFiltersInput;
 }>;
 
 export type ComplexSearchWithPaginationWorkAccessQuery = {
@@ -4497,7 +4432,7 @@ export type ComplexSearchWithPaginationWorkAccessQuery = {
           pid: string;
           identifiers: Array<{
             __typename?: "Identifier";
-            type: IdentifierType;
+            type: IdentifierTypeEnum;
             value: string;
           }>;
           access: Array<
@@ -4526,8 +4461,8 @@ export type ComplexSearchWithPaginationWorkAccessQuery = {
 export type ComplexSearchWithPaginationQueryVariables = Exact<{
   cql: Scalars["String"];
   offset: Scalars["Int"];
-  limit: Scalars["PaginationLimit"];
-  filters: ComplexSearchFilters;
+  limit: Scalars["PaginationLimitScalar"];
+  filters: ComplexSearchFiltersInput;
 }>;
 
 export type ComplexSearchWithPaginationQuery = {
@@ -4555,21 +4490,15 @@ export type ComplexSearchWithPaginationQuery = {
         isPopular?: boolean | null;
         readThisFirst?: boolean | null;
         readThisWhenever?: boolean | null;
-        numberInSeries?: {
-          __typename?: "NumberInSeries";
-          display: string;
-          number?: Array<number> | null;
-        } | null;
-      }>;
-      seriesMembers: Array<{
-        __typename?: "Work";
-        workId: string;
-        titles: {
-          __typename?: "WorkTitles";
-          main: Array<string>;
-          full: Array<string>;
-          original?: Array<string> | null;
-        };
+        members: Array<{
+          __typename?: "SerieWork";
+          numberInSeries?: string | null;
+          work: {
+            __typename?: "Work";
+            workId: string;
+            titles: { __typename?: "WorkTitles"; main: Array<string> };
+          };
+        }>;
       }>;
       workYear?: {
         __typename?: "PublicationYear";
@@ -4591,7 +4520,7 @@ export type ComplexSearchWithPaginationQuery = {
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
             display: string;
-            code: FictionNonfictionCode;
+            code: FictionNonfictionCodeEnum;
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -4651,12 +4580,11 @@ export type ComplexSearchWithPaginationQuery = {
               isoCode: string;
             }> | null;
           } | null;
-          physicalDescriptions: Array<{
-            __typename?: "PhysicalDescription";
-            summary: string;
+          physicalDescription?: {
+            __typename?: "PhysicalUnitDescription";
+            summaryFull?: string | null;
             numberOfPages?: number | null;
-            playingTime?: string | null;
-          }>;
+          } | null;
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
@@ -4667,7 +4595,7 @@ export type ComplexSearchWithPaginationQuery = {
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
-            code: AccessTypeCode;
+            code: AccessTypeCodeEnum;
           }>;
           access: Array<
             | {
@@ -4715,7 +4643,7 @@ export type ComplexSearchWithPaginationQuery = {
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
             display: string;
-            code: FictionNonfictionCode;
+            code: FictionNonfictionCodeEnum;
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -4775,12 +4703,11 @@ export type ComplexSearchWithPaginationQuery = {
               isoCode: string;
             }> | null;
           } | null;
-          physicalDescriptions: Array<{
-            __typename?: "PhysicalDescription";
-            summary: string;
+          physicalDescription?: {
+            __typename?: "PhysicalUnitDescription";
+            summaryFull?: string | null;
             numberOfPages?: number | null;
-            playingTime?: string | null;
-          }>;
+          } | null;
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
@@ -4791,7 +4718,7 @@ export type ComplexSearchWithPaginationQuery = {
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
-            code: AccessTypeCode;
+            code: AccessTypeCodeEnum;
           }>;
           access: Array<
             | {
@@ -4839,7 +4766,7 @@ export type ComplexSearchWithPaginationQuery = {
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
             display: string;
-            code: FictionNonfictionCode;
+            code: FictionNonfictionCodeEnum;
           } | null;
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -4899,12 +4826,11 @@ export type ComplexSearchWithPaginationQuery = {
               isoCode: string;
             }> | null;
           } | null;
-          physicalDescriptions: Array<{
-            __typename?: "PhysicalDescription";
-            summary: string;
+          physicalDescription?: {
+            __typename?: "PhysicalUnitDescription";
+            summaryFull?: string | null;
             numberOfPages?: number | null;
-            playingTime?: string | null;
-          }>;
+          } | null;
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
@@ -4915,7 +4841,7 @@ export type ComplexSearchWithPaginationQuery = {
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
-            code: AccessTypeCode;
+            code: AccessTypeCodeEnum;
           }>;
           access: Array<
             | {
@@ -4964,7 +4890,7 @@ export type SuggestionsFromQueryStringQuery = {
     __typename?: "SuggestResponse";
     result: Array<{
       __typename?: "Suggestion";
-      type: SuggestionType;
+      type: SuggestionTypeEnum;
       term: string;
       work?: {
         __typename?: "Work";
@@ -4996,10 +4922,10 @@ export type SuggestionsFromQueryStringQuery = {
 };
 
 export type SearchFacetQueryVariables = Exact<{
-  q: SearchQuery;
-  facets: Array<FacetField> | FacetField;
+  q: SearchQueryInput;
+  facets: Array<FacetFieldEnum> | FacetFieldEnum;
   facetLimit: Scalars["Int"];
-  filters?: InputMaybe<SearchFilters>;
+  filters?: InputMaybe<SearchFiltersInput>;
 }>;
 
 export type SearchFacetQuery = {
@@ -5009,6 +4935,7 @@ export type SearchFacetQuery = {
     facets: Array<{
       __typename?: "FacetResult";
       name: string;
+      type: FacetFieldEnum;
       values: Array<{
         __typename?: "FacetValue";
         key: string;
@@ -5020,10 +4947,10 @@ export type SearchFacetQuery = {
 };
 
 export type IntelligentFacetsQueryVariables = Exact<{
-  q: SearchQuery;
+  q: SearchQueryInput;
   facetsLimit: Scalars["Int"];
   valuesLimit: Scalars["Int"];
-  filters: SearchFilters;
+  filters: SearchFiltersInput;
 }>;
 
 export type IntelligentFacetsQuery = {
@@ -5033,6 +4960,7 @@ export type IntelligentFacetsQuery = {
     intelligentFacets: Array<{
       __typename?: "FacetResult";
       name: string;
+      type: FacetFieldEnum;
       values: Array<{
         __typename?: "FacetValue";
         key: string;
@@ -5053,7 +4981,7 @@ export type PlaceCopyMutation = {
     __typename?: "ElbaServices";
     placeCopyRequest: {
       __typename?: "CopyRequestResponse";
-      status: CopyRequestStatus;
+      status: CopyRequestStatusEnum;
     };
   };
 };
@@ -5074,7 +5002,7 @@ export type ManifestationsSimpleFragment = {
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
-      code: FictionNonfictionCode;
+      code: FictionNonfictionCodeEnum;
     } | null;
     materialTypes: Array<{
       __typename?: "MaterialType";
@@ -5134,12 +5062,11 @@ export type ManifestationsSimpleFragment = {
         isoCode: string;
       }> | null;
     } | null;
-    physicalDescriptions: Array<{
-      __typename?: "PhysicalDescription";
-      summary: string;
+    physicalDescription?: {
+      __typename?: "PhysicalUnitDescription";
+      summaryFull?: string | null;
       numberOfPages?: number | null;
-      playingTime?: string | null;
-    }>;
+    } | null;
     hostPublication?: {
       __typename?: "HostPublication";
       summary: string;
@@ -5148,7 +5075,7 @@ export type ManifestationsSimpleFragment = {
       __typename?: "ManifestationParts";
       parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
     } | null;
-    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCodeEnum }>;
     access: Array<
       | {
           __typename: "AccessUrl";
@@ -5192,7 +5119,7 @@ export type ManifestationsSimpleFragment = {
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
-      code: FictionNonfictionCode;
+      code: FictionNonfictionCodeEnum;
     } | null;
     materialTypes: Array<{
       __typename?: "MaterialType";
@@ -5252,12 +5179,11 @@ export type ManifestationsSimpleFragment = {
         isoCode: string;
       }> | null;
     } | null;
-    physicalDescriptions: Array<{
-      __typename?: "PhysicalDescription";
-      summary: string;
+    physicalDescription?: {
+      __typename?: "PhysicalUnitDescription";
+      summaryFull?: string | null;
       numberOfPages?: number | null;
-      playingTime?: string | null;
-    }>;
+    } | null;
     hostPublication?: {
       __typename?: "HostPublication";
       summary: string;
@@ -5266,7 +5192,7 @@ export type ManifestationsSimpleFragment = {
       __typename?: "ManifestationParts";
       parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
     } | null;
-    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCodeEnum }>;
     access: Array<
       | {
           __typename: "AccessUrl";
@@ -5310,7 +5236,7 @@ export type ManifestationsSimpleFragment = {
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
       display: string;
-      code: FictionNonfictionCode;
+      code: FictionNonfictionCodeEnum;
     } | null;
     materialTypes: Array<{
       __typename?: "MaterialType";
@@ -5370,12 +5296,11 @@ export type ManifestationsSimpleFragment = {
         isoCode: string;
       }> | null;
     } | null;
-    physicalDescriptions: Array<{
-      __typename?: "PhysicalDescription";
-      summary: string;
+    physicalDescription?: {
+      __typename?: "PhysicalUnitDescription";
+      summaryFull?: string | null;
       numberOfPages?: number | null;
-      playingTime?: string | null;
-    }>;
+    } | null;
     hostPublication?: {
       __typename?: "HostPublication";
       summary: string;
@@ -5384,7 +5309,7 @@ export type ManifestationsSimpleFragment = {
       __typename?: "ManifestationParts";
       parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
     } | null;
-    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+    accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCodeEnum }>;
     access: Array<
       | {
           __typename: "AccessUrl";
@@ -5423,7 +5348,7 @@ export type ManifestationsAccessFragment = {
     pid: string;
     identifiers: Array<{
       __typename?: "Identifier";
-      type: IdentifierType;
+      type: IdentifierTypeEnum;
       value: string;
     }>;
     access: Array<
@@ -5460,7 +5385,7 @@ export type ManifestationsSimpleFieldsFragment = {
   fictionNonfiction?: {
     __typename?: "FictionNonfiction";
     display: string;
-    code: FictionNonfictionCode;
+    code: FictionNonfictionCodeEnum;
   } | null;
   materialTypes: Array<{
     __typename?: "MaterialType";
@@ -5520,18 +5445,17 @@ export type ManifestationsSimpleFieldsFragment = {
       isoCode: string;
     }> | null;
   } | null;
-  physicalDescriptions: Array<{
-    __typename?: "PhysicalDescription";
-    summary: string;
+  physicalDescription?: {
+    __typename?: "PhysicalUnitDescription";
+    summaryFull?: string | null;
     numberOfPages?: number | null;
-    playingTime?: string | null;
-  }>;
+  } | null;
   hostPublication?: { __typename?: "HostPublication"; summary: string } | null;
   manifestationParts?: {
     __typename?: "ManifestationParts";
     parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
   } | null;
-  accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+  accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCodeEnum }>;
   access: Array<
     | {
         __typename: "AccessUrl";
@@ -5588,10 +5512,10 @@ export type ManifestationReviewFieldsFragment = {
     title: string;
     issue?: string | null;
   } | null;
-  physicalDescriptions: Array<{
-    __typename?: "PhysicalDescription";
-    summary: string;
-  }>;
+  physicalDescription?: {
+    __typename?: "PhysicalUnitDescription";
+    summaryFull?: string | null;
+  } | null;
   dateFirstEdition?: { __typename?: "PublicationYear"; display: string } | null;
   workYear?: { __typename?: "PublicationYear"; display: string } | null;
   review?: {
@@ -5601,7 +5525,7 @@ export type ManifestationReviewFieldsFragment = {
       __typename?: "ReviewElement";
       content?: string | null;
       heading?: string | null;
-      type?: ReviewElementType | null;
+      type?: ReviewElementTypeEnum | null;
       manifestations?: Array<{
         __typename?: "Manifestation";
         pid: string;
@@ -5617,11 +5541,15 @@ export type SeriesSimpleFragment = {
   isPopular?: boolean | null;
   readThisFirst?: boolean | null;
   readThisWhenever?: boolean | null;
-  numberInSeries?: {
-    __typename?: "NumberInSeries";
-    display: string;
-    number?: Array<number> | null;
-  } | null;
+  members: Array<{
+    __typename?: "SerieWork";
+    numberInSeries?: string | null;
+    work: {
+      __typename?: "Work";
+      workId: string;
+      titles: { __typename?: "WorkTitles"; main: Array<string> };
+    };
+  }>;
 };
 
 export type WorkAccessFragment = {
@@ -5634,7 +5562,7 @@ export type WorkAccessFragment = {
       pid: string;
       identifiers: Array<{
         __typename?: "Identifier";
-        type: IdentifierType;
+        type: IdentifierTypeEnum;
         value: string;
       }>;
       access: Array<
@@ -5678,21 +5606,15 @@ export type WorkSmallFragment = {
     isPopular?: boolean | null;
     readThisFirst?: boolean | null;
     readThisWhenever?: boolean | null;
-    numberInSeries?: {
-      __typename?: "NumberInSeries";
-      display: string;
-      number?: Array<number> | null;
-    } | null;
-  }>;
-  seriesMembers: Array<{
-    __typename?: "Work";
-    workId: string;
-    titles: {
-      __typename?: "WorkTitles";
-      main: Array<string>;
-      full: Array<string>;
-      original?: Array<string> | null;
-    };
+    members: Array<{
+      __typename?: "SerieWork";
+      numberInSeries?: string | null;
+      work: {
+        __typename?: "Work";
+        workId: string;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+      };
+    }>;
   }>;
   workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
   manifestations: {
@@ -5711,7 +5633,7 @@ export type WorkSmallFragment = {
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
         display: string;
-        code: FictionNonfictionCode;
+        code: FictionNonfictionCodeEnum;
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
@@ -5771,12 +5693,11 @@ export type WorkSmallFragment = {
           isoCode: string;
         }> | null;
       } | null;
-      physicalDescriptions: Array<{
-        __typename?: "PhysicalDescription";
-        summary: string;
+      physicalDescription?: {
+        __typename?: "PhysicalUnitDescription";
+        summaryFull?: string | null;
         numberOfPages?: number | null;
-        playingTime?: string | null;
-      }>;
+      } | null;
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
@@ -5785,7 +5706,10 @@ export type WorkSmallFragment = {
         __typename?: "ManifestationParts";
         parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
-      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      accessTypes: Array<{
+        __typename?: "AccessType";
+        code: AccessTypeCodeEnum;
+      }>;
       access: Array<
         | {
             __typename: "AccessUrl";
@@ -5832,7 +5756,7 @@ export type WorkSmallFragment = {
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
         display: string;
-        code: FictionNonfictionCode;
+        code: FictionNonfictionCodeEnum;
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
@@ -5892,12 +5816,11 @@ export type WorkSmallFragment = {
           isoCode: string;
         }> | null;
       } | null;
-      physicalDescriptions: Array<{
-        __typename?: "PhysicalDescription";
-        summary: string;
+      physicalDescription?: {
+        __typename?: "PhysicalUnitDescription";
+        summaryFull?: string | null;
         numberOfPages?: number | null;
-        playingTime?: string | null;
-      }>;
+      } | null;
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
@@ -5906,7 +5829,10 @@ export type WorkSmallFragment = {
         __typename?: "ManifestationParts";
         parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
-      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      accessTypes: Array<{
+        __typename?: "AccessType";
+        code: AccessTypeCodeEnum;
+      }>;
       access: Array<
         | {
             __typename: "AccessUrl";
@@ -5953,7 +5879,7 @@ export type WorkSmallFragment = {
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
         display: string;
-        code: FictionNonfictionCode;
+        code: FictionNonfictionCodeEnum;
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
@@ -6013,12 +5939,11 @@ export type WorkSmallFragment = {
           isoCode: string;
         }> | null;
       } | null;
-      physicalDescriptions: Array<{
-        __typename?: "PhysicalDescription";
-        summary: string;
+      physicalDescription?: {
+        __typename?: "PhysicalUnitDescription";
+        summaryFull?: string | null;
         numberOfPages?: number | null;
-        playingTime?: string | null;
-      }>;
+      } | null;
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
@@ -6027,7 +5952,10 @@ export type WorkSmallFragment = {
         __typename?: "ManifestationParts";
         parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
-      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      accessTypes: Array<{
+        __typename?: "AccessType";
+        code: AccessTypeCodeEnum;
+      }>;
       access: Array<
         | {
             __typename: "AccessUrl";
@@ -6110,7 +6038,7 @@ export type WorkMediumFragment = {
   fictionNonfiction?: {
     __typename?: "FictionNonfiction";
     display: string;
-    code: FictionNonfictionCode;
+    code: FictionNonfictionCodeEnum;
   } | null;
   dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
   relations: {
@@ -6121,7 +6049,7 @@ export type WorkMediumFragment = {
       ownerWork: {
         __typename?: "Work";
         workId: string;
-        workTypes: Array<WorkType>;
+        workTypes: Array<WorkTypeEnum>;
         titles: { __typename?: "WorkTitles"; main: Array<string> };
       };
     }>;
@@ -6137,21 +6065,15 @@ export type WorkMediumFragment = {
     isPopular?: boolean | null;
     readThisFirst?: boolean | null;
     readThisWhenever?: boolean | null;
-    numberInSeries?: {
-      __typename?: "NumberInSeries";
-      display: string;
-      number?: Array<number> | null;
-    } | null;
-  }>;
-  seriesMembers: Array<{
-    __typename?: "Work";
-    workId: string;
-    titles: {
-      __typename?: "WorkTitles";
-      main: Array<string>;
-      full: Array<string>;
-      original?: Array<string> | null;
-    };
+    members: Array<{
+      __typename?: "SerieWork";
+      numberInSeries?: string | null;
+      work: {
+        __typename?: "Work";
+        workId: string;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+      };
+    }>;
   }>;
   workYear?: { __typename?: "PublicationYear"; year?: number | null } | null;
   manifestations: {
@@ -6170,7 +6092,7 @@ export type WorkMediumFragment = {
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
         display: string;
-        code: FictionNonfictionCode;
+        code: FictionNonfictionCodeEnum;
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
@@ -6230,12 +6152,11 @@ export type WorkMediumFragment = {
           isoCode: string;
         }> | null;
       } | null;
-      physicalDescriptions: Array<{
-        __typename?: "PhysicalDescription";
-        summary: string;
+      physicalDescription?: {
+        __typename?: "PhysicalUnitDescription";
+        summaryFull?: string | null;
         numberOfPages?: number | null;
-        playingTime?: string | null;
-      }>;
+      } | null;
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
@@ -6244,7 +6165,10 @@ export type WorkMediumFragment = {
         __typename?: "ManifestationParts";
         parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
-      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      accessTypes: Array<{
+        __typename?: "AccessType";
+        code: AccessTypeCodeEnum;
+      }>;
       access: Array<
         | {
             __typename: "AccessUrl";
@@ -6291,7 +6215,7 @@ export type WorkMediumFragment = {
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
         display: string;
-        code: FictionNonfictionCode;
+        code: FictionNonfictionCodeEnum;
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
@@ -6351,12 +6275,11 @@ export type WorkMediumFragment = {
           isoCode: string;
         }> | null;
       } | null;
-      physicalDescriptions: Array<{
-        __typename?: "PhysicalDescription";
-        summary: string;
+      physicalDescription?: {
+        __typename?: "PhysicalUnitDescription";
+        summaryFull?: string | null;
         numberOfPages?: number | null;
-        playingTime?: string | null;
-      }>;
+      } | null;
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
@@ -6365,7 +6288,10 @@ export type WorkMediumFragment = {
         __typename?: "ManifestationParts";
         parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
-      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      accessTypes: Array<{
+        __typename?: "AccessType";
+        code: AccessTypeCodeEnum;
+      }>;
       access: Array<
         | {
             __typename: "AccessUrl";
@@ -6412,7 +6338,7 @@ export type WorkMediumFragment = {
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
         display: string;
-        code: FictionNonfictionCode;
+        code: FictionNonfictionCodeEnum;
       } | null;
       materialTypes: Array<{
         __typename?: "MaterialType";
@@ -6472,12 +6398,11 @@ export type WorkMediumFragment = {
           isoCode: string;
         }> | null;
       } | null;
-      physicalDescriptions: Array<{
-        __typename?: "PhysicalDescription";
-        summary: string;
+      physicalDescription?: {
+        __typename?: "PhysicalUnitDescription";
+        summaryFull?: string | null;
         numberOfPages?: number | null;
-        playingTime?: string | null;
-      }>;
+      } | null;
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
@@ -6486,7 +6411,10 @@ export type WorkMediumFragment = {
         __typename?: "ManifestationParts";
         parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
-      accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCode }>;
+      accessTypes: Array<{
+        __typename?: "AccessType";
+        code: AccessTypeCodeEnum;
+      }>;
       access: Array<
         | {
             __typename: "AccessUrl";
@@ -6567,8 +6495,8 @@ export const ManifestationBasicDetailsFragmentDoc = `
   }
   series {
     title
-    numberInSeries {
-      number
+    members {
+      numberInSeries
     }
   }
 }
@@ -6604,8 +6532,8 @@ export const ManifestationReviewFieldsFragmentDoc = `
   creators {
     display
   }
-  physicalDescriptions {
-    summary
+  physicalDescription {
+    summaryFull
   }
   dateFirstEdition {
     display
@@ -6674,9 +6602,14 @@ export const SeriesSimpleFragmentDoc = `
     fragment SeriesSimple on Series {
   title
   isPopular
-  numberInSeries {
-    display
-    number
+  members {
+    numberInSeries
+    work {
+      workId
+      titles {
+        main
+      }
+    }
   }
   readThisFirst
   readThisWhenever
@@ -6740,10 +6673,9 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   languages {
     notes
   }
-  physicalDescriptions {
-    summary
+  physicalDescription {
+    summaryFull
     numberOfPages
-    playingTime
   }
   hostPublication {
     summary
@@ -6818,14 +6750,6 @@ export const WorkSmallFragmentDoc = `
   }
   series {
     ...SeriesSimple
-  }
-  seriesMembers {
-    workId
-    titles {
-      main
-      full
-      original
-    }
   }
   workYear {
     year
@@ -7105,7 +7029,7 @@ export const useRecommendFromFaustQuery = <
     options
   );
 export const SearchWithPaginationDocument = `
-    query searchWithPagination($q: SearchQuery!, $offset: Int!, $limit: PaginationLimit!, $filters: SearchFilters) {
+    query searchWithPagination($q: SearchQueryInput!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: SearchFiltersInput) {
   search(q: $q, filters: $filters) {
     hitcount
     works(offset: $offset, limit: $limit) {
@@ -7130,7 +7054,7 @@ export const useSearchWithPaginationQuery = <
     options
   );
 export const ComplexSearchWithPaginationWorkAccessDocument = `
-    query complexSearchWithPaginationWorkAccess($cql: String!, $offset: Int!, $limit: PaginationLimit!, $filters: ComplexSearchFilters!) {
+    query complexSearchWithPaginationWorkAccess($cql: String!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: ComplexSearchFiltersInput!) {
   complexSearch(cql: $cql, filters: $filters) {
     hitcount
     works(offset: $offset, limit: $limit) {
@@ -7159,7 +7083,7 @@ export const useComplexSearchWithPaginationWorkAccessQuery = <
     options
   );
 export const ComplexSearchWithPaginationDocument = `
-    query complexSearchWithPagination($cql: String!, $offset: Int!, $limit: PaginationLimit!, $filters: ComplexSearchFilters!) {
+    query complexSearchWithPagination($cql: String!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: ComplexSearchFiltersInput!) {
   complexSearch(cql: $cql, filters: $filters) {
     hitcount
     works(offset: $offset, limit: $limit) {
@@ -7227,10 +7151,11 @@ export const useSuggestionsFromQueryStringQuery = <
     options
   );
 export const SearchFacetDocument = `
-    query searchFacet($q: SearchQuery!, $facets: [FacetField!]!, $facetLimit: Int!, $filters: SearchFilters) {
+    query searchFacet($q: SearchQueryInput!, $facets: [FacetFieldEnum!]!, $facetLimit: Int!, $filters: SearchFiltersInput) {
   search(q: $q, filters: $filters) {
     facets(facets: $facets) {
       name
+      type
       values(limit: $facetLimit) {
         key
         term
@@ -7253,10 +7178,11 @@ export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
     options
   );
 export const IntelligentFacetsDocument = `
-    query intelligentFacets($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFilters!) {
+    query intelligentFacets($q: SearchQueryInput!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFiltersInput!) {
   search(q: $q, filters: $filters) {
     intelligentFacets(limit: $facetsLimit) {
       name
+      type
       values(limit: $valuesLimit) {
         key
         term

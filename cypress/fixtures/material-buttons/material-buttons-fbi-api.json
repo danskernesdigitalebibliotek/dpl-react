@@ -19,78 +19,99 @@
         {
           "title": "De syv søstre-serien",
           "isPopular": true,
-          "numberInSeries": {
-            "display": "1",
-            "number": [1]
-          },
+          "members": [
+            {
+              "numberInSeries": "1",
+              "work": {
+                "workId": "work-of:870970-basis:52557240",
+                "titles": {
+                  "main": ["De syv søstre"],
+                  "full": ["De syv søstre : Maias historie"],
+                  "original": ["The seven sisters"]
+                }
+              }
+            },
+            {
+              "numberInSeries": "1",
+              "work": {
+                "workId": "work-of:870970-basis:52970628",
+                "titles": {
+                  "main": ["Stormsøsteren"],
+                  "full": ["Stormsøsteren : Allys historie"],
+                  "original": ["The storm sister"]
+                }
+              }
+            },
+            {
+              "numberInSeries": "1",
+              "work": {
+                "workId": "work-of:870970-basis:53280749",
+                "titles": {
+                  "main": ["Skyggesøsteren"],
+                  "full": ["Skyggesøsteren : Stars historie"],
+                  "original": ["The shadow sister"]
+                }
+              }
+            },
+
+            {
+              "numberInSeries": "1",
+              "work": {
+                "workId": "work-of:870970-basis:53802001",
+                "titles": {
+                  "main": ["Perlesøsteren"],
+                  "full": ["Perlesøsteren : CeCes historie"],
+                  "original": ["The pearl sister"]
+                }
+              }
+            },
+            {
+              "numberInSeries": "1",
+              "work": {
+                "workId": "work-of:870970-basis:54189141",
+                "titles": {
+                  "main": ["Månesøsteren"],
+                  "full": ["Månesøsteren : Tiggys historie"],
+                  "original": ["The moon sister"]
+                }
+              }
+            },
+            {
+              "numberInSeries": "1",
+              "work": {
+                "workId": "work-of:870970-basis:46656172",
+                "titles": {
+                  "main": ["Solsøsteren"],
+                  "full": ["Solsøsteren : Electras historie"],
+                  "original": ["The sun sister"]
+                }
+              }
+            },
+            {
+              "numberInSeries": "1",
+              "work": {
+                "workId": "work-of:870970-basis:38500775",
+                "titles": {
+                  "main": ["Den forsvundne søster"],
+                  "full": ["Den forsvundne søster"],
+                  "original": ["The missing sister"]
+                }
+              }
+            },
+            {
+              "numberInSeries": "1",
+              "work": {
+                "workId": "work-of:870970-basis:134823658",
+                "titles": {
+                  "main": ["Atlas"],
+                  "full": ["Atlas : historien om Pa Salt"],
+                  "original": ["Atlas (engelsk)"]
+                }
+              }
+            }
+          ],
           "readThisFirst": true,
           "readThisWhenever": null
-        }
-      ],
-      "seriesMembers": [
-        {
-          "workId": "work-of:870970-basis:52557240",
-          "titles": {
-            "main": ["De syv søstre"],
-            "full": ["De syv søstre : Maias historie"],
-            "original": ["The seven sisters"]
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:52970628",
-          "titles": {
-            "main": ["Stormsøsteren"],
-            "full": ["Stormsøsteren : Allys historie"],
-            "original": ["The storm sister"]
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:53280749",
-          "titles": {
-            "main": ["Skyggesøsteren"],
-            "full": ["Skyggesøsteren : Stars historie"],
-            "original": ["The shadow sister"]
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:53802001",
-          "titles": {
-            "main": ["Perlesøsteren"],
-            "full": ["Perlesøsteren : CeCes historie"],
-            "original": ["The pearl sister"]
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:54189141",
-          "titles": {
-            "main": ["Månesøsteren"],
-            "full": ["Månesøsteren : Tiggys historie"],
-            "original": ["The moon sister"]
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:46656172",
-          "titles": {
-            "main": ["Solsøsteren"],
-            "full": ["Solsøsteren : Electras historie"],
-            "original": ["The sun sister"]
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:38500775",
-          "titles": {
-            "main": ["Den forsvundne søster"],
-            "full": ["Den forsvundne søster"],
-            "original": ["The missing sister"]
-          }
-        },
-        {
-          "workId": "work-of:870970-basis:134823658",
-          "titles": {
-            "main": ["Atlas"],
-            "full": ["Atlas : historien om Pa Salt"],
-            "original": ["Atlas (engelsk)"]
-          }
         }
       ],
       "workYear": null,
@@ -161,13 +182,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "523 sider",
-                "numberOfPages": 523,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "523 sider ",
+              "numberOfPages": 523,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -255,7 +274,7 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [],
+            "physicalDescription": {},
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -367,13 +386,11 @@
                 ]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
-                "numberOfPages": null,
-                "playingTime": "16 t., 30 min."
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+              "numberOfPages": null,
+              "materialUnits": [{ "extent": "16 t., 30 min." }]
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -479,13 +496,11 @@
               ]
             }
           ],
-          "physicalDescriptions": [
-            {
-              "summary": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
-              "numberOfPages": null,
-              "playingTime": "16 t., 30 min."
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+            "numberOfPages": null,
+            "materialUnits": [{ "extent": "16 t., 30 min." }]
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -590,13 +605,11 @@
               ]
             }
           ],
-          "physicalDescriptions": [
-            {
-              "summary": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
-              "numberOfPages": null,
-              "playingTime": "16 t., 30 min."
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+            "numberOfPages": null,
+            "materialUnits": [{ "extent": "16 t., 30 min." }]
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [

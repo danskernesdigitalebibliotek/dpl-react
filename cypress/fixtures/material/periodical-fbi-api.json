@@ -9,7 +9,6 @@
       "abstract": [],
       "creators": [],
       "series": [],
-      "seriesMembers": [],
       "workYear": null,
       "genreAndForm": ["tidsskrift", "tíðarrit"],
       "manifestations": {
@@ -76,7 +75,7 @@
                 ]
               }
             ],
-            "physicalDescriptions": [],
+            "physicalDescription": {},
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -172,7 +171,7 @@
               ]
             }
           ],
-          "physicalDescriptions": [],
+          "physicalDescription": {},
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -267,7 +266,7 @@
               ]
             }
           ],
-          "physicalDescriptions": [],
+          "physicalDescription": {},
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [

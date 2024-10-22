@@ -16,7 +16,6 @@
         }
       ],
       "series": [],
-      "seriesMembers": [],
       "workYear": null,
       "genreAndForm": ["rejseguides", "rejseførere"],
       "manifestations": {
@@ -125,13 +124,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -223,13 +220,11 @@
                 "display": ["Med links"]
               }
             ],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -377,13 +372,11 @@
               "ages": []
             },
             "notes": [],
-            "physicalDescriptions": [
-              {
-                "summary": "168 sider: ill. i farver",
-                "numberOfPages": 168,
-                "playingTime": null
-              }
-            ],
+            "physicalDescription": {
+              "summaryFull": "168 side : ill. i farver",
+              "numberOfPages": 168,
+              "playingTime": null
+            },
             "hostPublication": null,
             "manifestationParts": null,
             "accessTypes": [
@@ -512,13 +505,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
-            {
-              "summary": "168 sider: ill. i farver",
-              "numberOfPages": 168,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "168 side : ill. i farver",
+            "numberOfPages": 168,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [
@@ -646,13 +637,11 @@
             "ages": []
           },
           "notes": [],
-          "physicalDescriptions": [
-            {
-              "summary": "168 sider: ill. i farver",
-              "numberOfPages": 168,
-              "playingTime": null
-            }
-          ],
+          "physicalDescription": {
+            "summaryFull": "168 side : ill. i farver",
+            "numberOfPages": 168,
+            "playingTime": null
+          },
           "hostPublication": null,
           "manifestationParts": null,
           "accessTypes": [

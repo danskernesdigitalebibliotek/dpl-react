@@ -418,7 +418,7 @@ describe("Reservation details modal", () => {
     // Serial number
     cy.get(".modal")
       .find("[data-cy='modal-series']")
-      .should("have.text", "Detektivbureau Nr. 2 1");
+      .should("have.text", "Harry Potter (bøger) Del 1");
 
     // ID 43 2.d. authors
     cy.get(".modal")

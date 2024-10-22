@@ -32,7 +32,7 @@ import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 import { isPeriodical, shouldShowMaterialAvailabilityText } from "./helper";
 import useAvailabilityData from "../availability-label/useAvailabilityData";
-import { AccessTypeCode } from "../../core/dbc-gateway/generated/graphql";
+import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -96,7 +96,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const { isAvailable } = useAvailabilityData({
     // "accessTypes" will always be physical here - shouldShowMaterialAvailabilityText() helper
     // rules out all online materials.
-    accessTypes: [AccessTypeCode.Physical],
+    accessTypes: [AccessTypeCodeEnum.Physical],
     access: [undefined],
     faustIds: getAllFaustIds(selectedManifestations),
     isbn: null, // Not needed for physical materials.

@@ -1,7 +1,8 @@
-query intelligentFacets ($q: SearchQuery!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFilters!) {
+query intelligentFacets ($q: SearchQueryInput!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFiltersInput!) {
   search(q: $q, filters: $filters) {
     intelligentFacets(limit: $facetsLimit) {
       name
+      type
       values(limit: $valuesLimit) {
         key
         term

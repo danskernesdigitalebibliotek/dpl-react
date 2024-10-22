@@ -1,12 +1,13 @@
 query searchFacet(
-  $q: SearchQuery!
-  $facets: [FacetField!]!
+  $q: SearchQueryInput!
+  $facets: [FacetFieldEnum!]!
   $facetLimit: Int!
-  $filters: SearchFilters
+  $filters: SearchFiltersInput
 ) {
   search(q: $q, filters: $filters) {
     facets(facets: $facets) {
       name
+      type
       values(limit: $facetLimit) {
         key
         term
