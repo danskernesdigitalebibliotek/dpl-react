@@ -512,32 +512,23 @@ export const getBlacklistedQueryArgs = (
   const args = {
     recordid: faustIds
   };
-
-  if (blacklistType === "availability") {
+  // Return query args with the either availability or pickup branches excluded.
+  if (blacklistType !== "both") {
     return {
       ...args,
-      ...formatBranches([branchesFromConfig("availability", config)])
+      ...formatBranches([branchesFromConfig(blacklistType, config)])
     };
   }
 
-  if (blacklistType === "pickup") {
-    return {
-      ...args,
-      ...formatBranches([branchesFromConfig("pickup", config)])
-    };
-  }
-
-  if (blacklistType === "both") {
-    return {
-      ...args,
-      ...formatBranches([
-        branchesFromConfig("availability", config),
-        branchesFromConfig("pickup", config)
-      ])
-    };
-  }
-
-  return args;
+  // If we want to blacklist both availability and pickup branches
+  // return query args with both blacklist types excluded.
+  return {
+    ...args,
+    ...formatBranches([
+      branchesFromConfig("availability", config),
+      branchesFromConfig("pickup", config)
+    ])
+  };
 };
 
 export const getAvailability = async ({
