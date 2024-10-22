@@ -33,27 +33,6 @@ const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
     );
   });
 };
-//
-const getDueDatesLoan = (list: LoanType[]) => {
-  return Array.from(
-    new Set(
-      list
-        .filter(({ dueDate }) => dueDate !== (undefined || null))
-        .map(({ dueDate }) => dueDate)
-        .sort()
-    )
-  ) as string[];
-};
-
-const sortByDueDate = (list: LoanType[]) => {
-  // Todo figure out what to do if loan does not have loan date
-  // For now, its at the bottom of the list
-  return list.sort(
-    (a, b) =>
-      new Date(a.dueDate || new Date()).getTime() -
-      new Date(b.dueDate || new Date()).getTime()
-  );
-};
 
 type Loans = {
   loans: LoanType[];
@@ -62,7 +41,6 @@ type Loans = {
   farFromOverdue: LoanType[];
   isLoading: boolean;
   isError: boolean;
-  stackedMaterialsDueDates?: string[];
 };
 
 type UseLoansType = {
@@ -73,6 +51,10 @@ type UseLoansType = {
 
 type UseLoans = () => UseLoansType;
 
+// useLoans is a custom hook that fetches loans from both FBS and Publizon
+// and combines them into lists. The loans are then divided into three
+// categories: overdue, soon overdue, and far from overdue.
+// The hook is NOT responsible for any sorting of the loans.
 const useLoans: UseLoans = () => {
   const {
     data: loansFbs,
@@ -100,15 +82,12 @@ const useLoans: UseLoans = () => {
     : [];
 
   // Combine all loans from both FBS and Publizon
-  const loans = sortByDueDate([...mappedLoansFbs, ...mappedLoansPublizon]);
+  const loans = [...mappedLoansFbs, ...mappedLoansPublizon];
 
   // Combine "overdue loans" from both FBS and Publizon
   const loansOverdueFBS = filterLoansOverdue(mappedLoansFbs);
   const LoansOverduePublizon = filterLoansOverdue(mappedLoansPublizon);
-  const loansOverdue = sortByDueDate([
-    ...loansOverdueFBS,
-    ...LoansOverduePublizon
-  ]);
+  const loansOverdue = [...loansOverdueFBS, ...LoansOverduePublizon];
 
   // combine "soon overdue" loans from both FBS and Publizon
   const loansSoonOverdueFBS = filterLoansSoonOverdue(
@@ -119,10 +98,10 @@ const useLoans: UseLoans = () => {
     mappedLoansPublizon,
     threshold.warning
   );
-  const loansSoonOverdue = sortByDueDate([
+  const loansSoonOverdue = [
     ...loansSoonOverdueFBS,
     ...loansSoonOverduePublizon
-  ]);
+  ];
 
   // combine "far from overdue" loans from both FBS and Publizon
   const loansFarFromOverdueFBS = filterLoansNotOverdue(
@@ -133,19 +112,11 @@ const useLoans: UseLoans = () => {
     mappedLoansPublizon,
     threshold.warning
   );
-  const loansFarFromOverdue = sortByDueDate([
+  const loansFarFromOverdue = [
     ...loansFarFromOverdueFBS,
     ...loansFarFromOverduePublizon
-  ]);
+  ];
 
-  // The due dates are used for the stacked materials
-  // The stacked materials view shows materials stacked by
-  // due date, and for this we need a unique list of due dates
-  const loansSortedByDateFbs = sortByDueDate(mappedLoansFbs);
-  const loansSortedByDatePublizon = sortByDueDate(mappedLoansPublizon);
-
-  // list of all due dates used for the stacked materials
-  const stackedMaterialsDueDatesFbs = getDueDatesLoan(mappedLoansFbs);
   return {
     all: {
       loans,
@@ -156,16 +127,15 @@ const useLoans: UseLoans = () => {
       isError: loansIsError
     },
     fbs: {
-      loans: loansSortedByDateFbs,
+      loans: mappedLoansFbs,
       overdue: loansOverdueFBS,
       soonOverdue: loansSoonOverdueFBS,
       farFromOverdue: loansFarFromOverdueFBS,
-      stackedMaterialsDueDates: stackedMaterialsDueDatesFbs,
       isLoading: isLoadingFbs,
       isError: isErrorFbs
     },
     publizon: {
-      loans: loansSortedByDatePublizon,
+      loans: mappedLoansPublizon,
       overdue: LoansOverduePublizon,
       soonOverdue: loansSoonOverduePublizon,
       farFromOverdue: loansFarFromOverduePublizon,

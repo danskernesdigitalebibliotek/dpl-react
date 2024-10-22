@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import {
   getAmountOfRenewableLoans,
-  getScrollClass
+  getDueDatesLoan,
+  getScrollClass,
+  sortByDueDate
 } from "../../../core/utils/helpers/general";
 import { getUrlQueryParam } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
@@ -54,13 +56,12 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
   const [dueDate, setDueDate] = useState<string | null>(null);
   const [modalLoan, setModalLoan] = useState<LoanType | null>(null);
   const {
-    fbs: {
-      loans: loansPhysical,
-      stackedMaterialsDueDates: stackedMaterialsDueDatesFbs,
-      isLoading: isLoadingFbs
-    },
-    publizon: { loans: loansDigital, isLoading: isLoadingPublizon }
+    fbs: { loans: fbsLoans, isLoading: isLoadingFbs },
+    publizon: { loans: publizonLoans, isLoading: isLoadingPublizon }
   } = useLoans();
+  const loansPhysical = sortByDueDate(fbsLoans);
+  const loansDigital = sortByDueDate(publizonLoans);
+  const stackedMaterialsDueDatesFbs = getDueDatesLoan(loansPhysical);
   const openLoanDetailsModal = useCallback(
     (loan: LoanType) => {
       setModalLoan(loan);
