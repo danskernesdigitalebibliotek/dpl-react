@@ -54,7 +54,7 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   );
   const { data, isLoading } = useGetHoldings({
     faustIds: faustIdArray,
-    useAvailabilityBlacklist: true,
+    blacklist: "availability",
     config
   });
   const author = creatorsToString(flattenCreators(authors), t);

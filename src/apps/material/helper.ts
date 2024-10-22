@@ -549,19 +549,18 @@ export const getAvailability = async ({
 export const useGetHoldings = ({
   faustIds,
   config,
-  useAvailabilityBlacklist = false,
+  blacklist,
   options
 }: {
   faustIds: FaustId[];
   config: UseConfigFunction;
-  useAvailabilityBlacklist?: boolean;
+  blacklist: BlacklistType;
   options?: {
     query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>>;
   };
 }) => {
-  const blacklistedBranches = useAvailabilityBlacklist ? "both" : "pickup";
   const { data, isLoading, isError } = useGetHoldingsV3(
-    getBlacklistedQueryArgs(faustIds, config, blacklistedBranches),
+    getBlacklistedQueryArgs(faustIds, config, blacklist),
     options
   );
   return { data, isLoading, isError };

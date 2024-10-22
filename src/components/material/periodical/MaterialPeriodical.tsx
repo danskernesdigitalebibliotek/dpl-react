@@ -22,7 +22,8 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
 
   const { data, isLoading, isError } = useGetHoldings({
     faustIds: [faustId],
-    config
+    config,
+    blacklist: "pickup"
   });
 
   if (isLoading || isError || !data) return null;
