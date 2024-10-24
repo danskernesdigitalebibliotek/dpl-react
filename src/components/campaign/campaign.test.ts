@@ -1,6 +1,6 @@
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
-export function isImageLoaded(cy: Cypress.cy & EventEmitter) {
+export function isImageLoaded(cy: Cypress.cy) {
   cy.getBySel("campaign-image")
     .should("be.visible")
     .and("have.prop", "naturalWidth")
