@@ -13,6 +13,7 @@ module.exports = defineConfig({
   e2e: {
     supportFile: "cypress/support/index.ts",
     specPattern: "./src/@(apps|components)/**/*.test.@(ts|tsx)",
-    baseUrl: "http://localhost:57021"
+    baseUrl: "http://localhost:57021",
+    testIsolation: false
   }
 });
