@@ -133,138 +133,142 @@ describe("Material", () => {
     cy.scrollTo("bottom");
     cy.getBySel("material-details-disclosure").click();
 
-    cy.get('[data-cy="list-description"]').within(() => {
-      // Verify "Language" field and its value
-      cy.get(".list-description__item")
-        .contains("Language")
-        .next()
-        .should("contain.text", "dansk");
+    cy.get('[data-cy="list-description"]')
+      .first()
+      .within(() => {
+        // Verify "Language" field and its value
+        cy.get(".list-description__item")
+          .contains("Language")
+          .next()
+          .should("contain.text", "dansk");
 
-      // Verify "Edition" field and its value
-      cy.get(".list-description__item")
-        .contains("Edition")
-        .next()
-        .should("contain.text", "1. udgave, 2016");
+        // Verify "Edition" field and its value
+        cy.get(".list-description__item")
+          .contains("Edition")
+          .next()
+          .should("contain.text", "1. udgave, 2016");
 
-      // Verify "Genre" field and its value
-      cy.get(".list-description__item")
-        .contains("Genre")
-        .next()
-        .should("contain.text", "roman / slægtsromaner");
+        // Verify "Genre" field and its value
+        cy.get(".list-description__item")
+          .contains("Genre")
+          .next()
+          .should("contain.text", "roman / slægtsromaner");
 
-      // Verify "Original title" field and its value
-      cy.get(".list-description__item")
-        .contains("Original title")
-        .next()
-        .should("contain.text", "The seven sisters");
+        // Verify "Original title" field and its value
+        cy.get(".list-description__item")
+          .contains("Original title")
+          .next()
+          .should("contain.text", "The seven sisters");
 
-      // Verify "Publisher" field and its value
-      cy.get(".list-description__item")
-        .contains("Publisher")
-        .next()
-        .should("contain.text", "Cicero");
+        // Verify "Publisher" field and its value
+        cy.get(".list-description__item")
+          .contains("Publisher")
+          .next()
+          .should("contain.text", "Cicero");
 
-      // Verify "Type" field and its value
-      cy.get(".list-description__item")
-        .contains("Type")
-        .next()
-        .should("contain.text", "bog");
+        // Verify "Type" field and its value
+        cy.get(".list-description__item")
+          .contains("Type")
+          .next()
+          .should("contain.text", "bog");
 
-      // Verify "Contributors" field and its value
-      cy.get(".list-description__item")
-        .contains("Contributors")
-        .next()
-        .should("contain.text", "Ulla Lauridsen (oversætter)");
+        // Verify "Contributors" field and its value
+        cy.get(".list-description__item")
+          .contains("Contributors")
+          .next()
+          .should("contain.text", "Ulla Lauridsen (oversætter)");
 
-      // Verify "Scope" field and its value
-      cy.get(".list-description__item")
-        .contains("Scope")
-        .next()
-        .should("contain.text", "523");
+        // Verify "Scope" field and its value
+        cy.get(".list-description__item")
+          .contains("Scope")
+          .next()
+          .should("contain.text", "523");
 
-      // Verify "Dimensions" field and its value
-      cy.get(".list-description__item")
-        .contains("Dimensions")
-        .next()
-        .should("contain.text", "523 sider");
-    });
+        // Verify "Dimensions" field and its value
+        cy.get(".list-description__item")
+          .contains("Dimensions")
+          .next()
+          .should("contain.text", "523 sider");
+      });
 
     cy.getBySel("material-editions-disclosure").click();
     cy.get(".material-manifestation-item__details").first().click();
 
-    cy.get('[data-cy="list-description"]').within(() => {
-      // Verify "Type" field and its value
-      cy.get(".list-description__item")
-        .contains("Type")
-        .next()
-        .should("contain.text", "bog");
+    cy.get('[data-cy="list-description"]')
+      .first()
+      .within(() => {
+        // Verify "Type" field and its value
+        cy.get(".list-description__item")
+          .contains("Type")
+          .next()
+          .should("contain.text", "bog");
 
-      // Verify "Language" field and its value
-      cy.get(".list-description__item")
-        .contains("Language")
-        .next()
-        .should("contain.text", "dansk");
+        // Verify "Language" field and its value
+        cy.get(".list-description__item")
+          .contains("Language")
+          .next()
+          .should("contain.text", "dansk");
 
-      // Verify "Genre" field and its value
-      cy.get(".list-description__item")
-        .contains("Genre")
-        .next()
-        .should("contain.text", "roman / slægtsromaner");
+        // Verify "Genre" field and its value
+        cy.get(".list-description__item")
+          .contains("Genre")
+          .next()
+          .should("contain.text", "roman / slægtsromaner");
 
-      // Verify "Contributors" field and its value
-      cy.get(".list-description__item")
-        .contains("Contributors")
-        .next()
-        .should("contain.text", "Ulla Lauridsen (oversætter)");
+        // Verify "Contributors" field and its value
+        cy.get(".list-description__item")
+          .contains("Contributors")
+          .next()
+          .should("contain.text", "Ulla Lauridsen (oversætter)");
 
-      // Verify "Original title" field and its value
-      cy.get(".list-description__item")
-        .contains("Original title")
-        .next()
-        .should("contain.text", "The seven sisters");
+        // Verify "Original title" field and its value
+        cy.get(".list-description__item")
+          .contains("Original title")
+          .next()
+          .should("contain.text", "The seven sisters");
 
-      // Verify "ISBN" field and its value
-      cy.get(".list-description__item")
-        .contains("ISBN")
-        .next()
-        .should("contain.text", "9788763844116");
+        // Verify "ISBN" field and its value
+        cy.get(".list-description__item")
+          .contains("ISBN")
+          .next()
+          .should("contain.text", "9788763844116");
 
-      // Verify "Edition" field and its value
-      cy.get(".list-description__item")
-        .contains("Edition")
-        .next()
-        .should("contain.text", "1. udgave, 2016");
+        // Verify "Edition" field and its value
+        cy.get(".list-description__item")
+          .contains("Edition")
+          .next()
+          .should("contain.text", "1. udgave, 2016");
 
-      // Verify "Scope" field and its value
-      cy.get(".list-description__item")
-        .contains("Scope")
-        .next()
-        .should("contain.text", "523");
+        // Verify "Scope" field and its value
+        cy.get(".list-description__item")
+          .contains("Scope")
+          .next()
+          .should("contain.text", "523");
 
-      // Verify "Publisher" field and its value
-      cy.get(".list-description__item")
-        .contains("Publisher")
-        .next()
-        .should("contain.text", "Cicero");
+        // Verify "Publisher" field and its value
+        cy.get(".list-description__item")
+          .contains("Publisher")
+          .next()
+          .should("contain.text", "Cicero");
 
-      // Verify "Authors" field and its value
-      cy.get(".list-description__item")
-        .contains("Authors")
-        .next()
-        .should("contain.text", "Lucinda Riley");
+        // Verify "Authors" field and its value
+        cy.get(".list-description__item")
+          .contains("Authors")
+          .next()
+          .should("contain.text", "Lucinda Riley");
 
-      // Verify "Dimensions" field and its value
-      cy.get(".list-description__item")
-        .contains("Dimensions")
-        .next()
-        .should("contain.text", "523 sider");
+        // Verify "Dimensions" field and its value
+        cy.get(".list-description__item")
+          .contains("Dimensions")
+          .next()
+          .should("contain.text", "523 sider");
 
-      // Verify "Source" field and its value
-      cy.get(".list-description__item")
-        .contains("Source")
-        .next()
-        .should("contain.text", "Bibliotekskatalog");
-    });
+        // Verify "Source" field and its value
+        cy.get(".list-description__item")
+          .contains("Source")
+          .next()
+          .should("contain.text", "Bibliotekskatalog");
+      });
   });
 
   it("Renders the correct details for infomedia", () => {
@@ -281,43 +285,45 @@ describe("Material", () => {
     cy.scrollTo("bottom");
     cy.getBySel("material-details-disclosure").click();
 
-    cy.get('[data-cy="list-description"]').within(() => {
-      // Verify "Language" field and its value
-      cy.get(".list-description__item")
-        .contains("Language")
-        .next()
-        .should("contain.text", "dansk");
+    cy.get('[data-cy="list-description"]')
+      .first()
+      .within(() => {
+        // Verify "Language" field and its value
+        cy.get(".list-description__item")
+          .contains("Language")
+          .next()
+          .should("contain.text", "dansk");
 
-      // Verify "Edition" field and its value
-      cy.get(".list-description__item")
-        .contains("Edition")
-        .next()
-        .should("contain.text", "2013");
+        // Verify "Edition" field and its value
+        cy.get(".list-description__item")
+          .contains("Edition")
+          .next()
+          .should("contain.text", "2013");
 
-      // Verify "Type" field and its value
-      cy.get(".list-description__item")
-        .contains("Type")
-        .next()
-        .should("contain.text", "artikel");
+        // Verify "Type" field and its value
+        cy.get(".list-description__item")
+          .contains("Type")
+          .next()
+          .should("contain.text", "artikel");
 
-      // Verify "Scope" field and its value
-      cy.get(".list-description__item")
-        .contains("Scope")
-        .next()
-        .should("contain.text", "2");
+        // Verify "Scope" field and its value
+        cy.get(".list-description__item")
+          .contains("Scope")
+          .next()
+          .should("contain.text", "2");
 
-      // Verify "Dimensions" field and its value
-      cy.get(".list-description__item")
-        .contains("Dimensions")
-        .next()
-        .should("contain.text", "Sektion 3, s. 6-7: ill.");
+        // Verify "Dimensions" field and its value
+        cy.get(".list-description__item")
+          .contains("Dimensions")
+          .next()
+          .should("contain.text", "Sektion 3, s. 6-7: ill.");
 
-      // Verify "Host Publication" field and its value
-      cy.get(".list-description__item")
-        .contains("Host Publication")
-        .next()
-        .should("contain.text", "Politiken, 2013-09-19");
-    });
+        // Verify "Host Publication" field and its value
+        cy.get(".list-description__item")
+          .contains("Host Publication")
+          .next()
+          .should("contain.text", "Politiken, 2013-09-19");
+      });
   });
 
   it("Renders the correct details for music", () => {
