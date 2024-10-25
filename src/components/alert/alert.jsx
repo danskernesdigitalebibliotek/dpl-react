@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// https://reacttraining.com/reach-ui/alert
-import ReachAlert from "@reach/alert";
+// https://reach.tech/alert
+import { Alert as ReachAlert } from "@reach/alert";
 
 /**
  * A simple alert that serves as the foundation of all alerts.
