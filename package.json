@@ -151,7 +151,7 @@
     "@fullcalendar/interaction": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
-    "@reach/alert": "^0.17.0",
+    "@reach/alert": "^0.18.0",
     "@reach/dialog": "^0.18.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/lodash": "^4.17.5",

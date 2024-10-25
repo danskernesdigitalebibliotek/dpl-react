@@ -2511,15 +2511,14 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@reach/alert@^0.17.0":
-  version "0.17.0"
-  resolved "https://registry.npmjs.org/@reach/alert/-/alert-0.17.0.tgz"
-  integrity sha512-O70K5LCRJNPMKSX2DVK9GL7VJnyqhV7nAOlcDyx0hGmJzDXUVDIxHAgXO8WHSRekWOaOlup+VeN+R9y+LFBpPA==
+"@reach/alert@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@reach/alert/-/alert-0.18.0.tgz#e286d396ebb48eeabd56c4e66a3493361f576daf"
+  integrity sha512-fGJgdtjts9FlQi5Xzyl4p5m3SEOLxX/TjLsIlPHC6Xkw9BhNcArkJMxeZgmIKZYwZYvDwUjyBWf6aLVSqXazrw==
   dependencies:
-    "@reach/utils" "0.17.0"
-    "@reach/visually-hidden" "0.17.0"
-    prop-types "^15.7.2"
-    tslib "^2.3.0"
+    "@reach/polymorphic" "0.18.0"
+    "@reach/utils" "0.18.0"
+    "@reach/visually-hidden" "0.18.0"
 
 "@reach/dialog@^0.18.0":
   version "0.18.0"
@@ -2544,26 +2543,17 @@
   dependencies:
     "@reach/utils" "0.18.0"
 
-"@reach/utils@0.17.0":
-  version "0.17.0"
-  resolved "https://registry.npmjs.org/@reach/utils/-/utils-0.17.0.tgz"
-  integrity sha512-M5y8fCBbrWeIsxedgcSw6oDlAMQDkl5uv3VnMVJ7guwpf4E48Xlh1v66z/1BgN/WYe2y8mB/ilFD2nysEfdGeA==
-  dependencies:
-    tiny-warning "^1.0.3"
-    tslib "^2.3.0"
-
 "@reach/utils@0.18.0":
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.18.0.tgz#4f3cebe093dd436eeaff633809bf0f68f4f9d2ee"
   integrity sha512-KdVMdpTgDyK8FzdKO9SCpiibuy/kbv3pwgfXshTI6tEcQT1OOwj7BAksnzGC0rPz0UholwC+AgkqEl3EJX3M1A==
 
-"@reach/visually-hidden@0.17.0":
-  version "0.17.0"
-  resolved "https://registry.npmjs.org/@reach/visually-hidden/-/visually-hidden-0.17.0.tgz"
-  integrity sha512-T6xF3Nv8vVnjVkGU6cm0+kWtvliLqPAo8PcZ+WxkKacZsaHTjaZb4v1PaCcyQHmuTNT/vtTVNOJLG0SjQOIb7g==
+"@reach/visually-hidden@0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@reach/visually-hidden/-/visually-hidden-0.18.0.tgz#17923c08acc5946624c2836b2b09d359b3aa8c27"
+  integrity sha512-NsJ3oeHJtPc6UOeV6MHMuzQ5sl1ouKhW85i3C0S7VM+klxVlYScBZ2J4UVnWB50A2c+evdVpCnld2YeuyYYwBw==
   dependencies:
-    prop-types "^15.7.2"
-    tslib "^2.3.0"
+    "@reach/polymorphic" "0.18.0"
 
 "@reduxjs/toolkit@^1.9.7":
   version "1.9.7"
@@ -14017,11 +14007,6 @@ tiny-invariant@^1.3.1, tiny-invariant@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.3.3.tgz#46680b7a873a0d5d10005995eb90a70d74d60127"
   integrity sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg==
-
-tiny-warning@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/tiny-warning/-/tiny-warning-1.0.3.tgz"
-  integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
 
 tinybench@^2.3.1:
   version "2.3.1"
