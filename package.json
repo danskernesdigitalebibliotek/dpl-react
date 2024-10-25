@@ -173,7 +173,7 @@
     "react-use": "^17.5.1",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
-    "unfetch": "^4.2.0"
+    "unfetch": "^5.0.0"
   },
   "peerDependencies": {
     "postcss": "^8.4.47"
