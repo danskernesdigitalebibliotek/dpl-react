@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { defineConfig } = require("cypress");
+const plugins = require("./cypress/plugins");
 
 module.exports = defineConfig({
   projectId: "4trcdv",
@@ -14,6 +15,9 @@ module.exports = defineConfig({
     supportFile: "cypress/support/index.ts",
     specPattern: "./src/@(apps|components)/**/*.test.@(ts|tsx)",
     baseUrl: "http://localhost:57021",
-    testIsolation: false
+    testIsolation: false,
+    setupNodeEvents(on, config) {
+      return plugins(on, config);
+    }
   }
 });
