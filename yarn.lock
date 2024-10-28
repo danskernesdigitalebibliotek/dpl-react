@@ -2311,10 +2311,10 @@
   resolved "https://registry.npmjs.org/@n1ru4l/graphql-live-query/-/graphql-live-query-0.9.0.tgz"
   integrity sha512-BTpWy1e+FxN82RnLz4x1+JcEewVdfmUhV1C6/XYD5AjS7PQp9QFF7K8bCD6gzPTr2l+prvqOyVueQhFJxB1vfg==
 
-"@namics/stylelint-bem@^10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@namics/stylelint-bem/-/stylelint-bem-10.0.1.tgz#fba10959354a4670fa3c5bda3b002a8f2634f148"
-  integrity sha512-9J21k7Rh7ywKv9MqzfYVbCEo0hTXRtvZ/Yi4sSfhgz/EEchgsSC5U4VMmUDgezeIEnb9zP6vOLslcVzhvWvyPQ==
+"@namics/stylelint-bem@^10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@namics/stylelint-bem/-/stylelint-bem-10.1.0.tgz#49e7717f441374617f13a142ef1dcd21894ab18a"
+  integrity sha512-h7XSb3dcn48Hx+cwijI6YTX+jal8wJtH/+qbinTyyUc8/Oy1Aa3FYlCDip9B8kAMbBhGfIuCo8z/cQDd5kj4AQ==
   dependencies:
     css-selector-parser "2.3.2"
     postcss-resolve-nested-selector "0.1.6"
