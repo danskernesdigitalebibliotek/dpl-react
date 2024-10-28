@@ -51,7 +51,7 @@
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.25.9",
     "@babel/preset-typescript": "^7.26.0",
-    "@chromatic-com/storybook": "^2",
+    "@chromatic-com/storybook": "^3",
     "@csstools/postcss-sass": "^5.1.1",
     "@cypress/browserify-preprocessor": "^3.0.2",
     "@cypress/code-coverage": "^3.13.4",

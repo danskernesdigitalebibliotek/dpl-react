@@ -1139,12 +1139,15 @@
   resolved "https://registry.npmjs.org/@base2/pretty-print-object/-/pretty-print-object-1.0.1.tgz"
   integrity sha512-4iri8i1AqYHJE2DstZYkyEprg6Pq6sKx3xn5FpySk9sNhH7qN2LLlHJCfDTZRILNwQNPD7mATWM0TBui7uC1pA==
 
-"@chromatic-com/storybook@^2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@chromatic-com/storybook/-/storybook-2.0.2.tgz#3e20de5a328165b66c4587dbed0843c6039400ce"
-  integrity sha512-7bPIliISedeIpnVKbzktysFYW5n56bN91kxuOj1XXKixmjbUHRUMvcXd4K2liN6MiR5ZqJtmtcPsZ6CebbGlEA==
+"@chromatic-com/storybook@^3":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@chromatic-com/storybook/-/storybook-3.1.0.tgz#c28f49d143cc6c80d7e56baea9944579d90ecfc9"
+  integrity sha512-AM8jDwoBNNwJKgmoWkHIOhu4ObsxvDtOzZC9tPCVEW6P+pFwg5xjSZAQglIE2c8/SsEPSduNdxBt31ES3iDwoA==
   dependencies:
-    chromatic "^11.4.0"
+    "@storybook/channels" "^8.3.0"
+    "@storybook/telemetry" "^8.3.0"
+    "@storybook/types" "^8.3.0"
+    chromatic "^11.15.0"
     filesize "^10.0.12"
     jsonfile "^6.1.0"
     react-confetti "^6.1.0"
@@ -2957,6 +2960,11 @@
     webpack-hot-middleware "^2.25.1"
     webpack-virtual-modules "^0.6.0"
 
+"@storybook/channels@^8.3.0":
+  version "8.3.6"
+  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-8.3.6.tgz#b19b1b00773ff1fbabf0e1bd7e00e1784f599a2e"
+  integrity sha512-6ahY0n1A19diR5cI63lhDEpMaDsq7LFtMOgWab2NwCsdXoEAl6anvDptyPWW60umN3HrDzSKFdpRx4imOEjlWw==
+
 "@storybook/components@^8.3.6":
   version "8.3.6"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-8.3.6.tgz#2f5e9a755a964c94f0bab3cd400cc7a71d0489d2"
@@ -3101,10 +3109,20 @@
     type-fest "~2.19"
     util-deprecate "^1.0.2"
 
+"@storybook/telemetry@^8.3.0":
+  version "8.3.6"
+  resolved "https://registry.yarnpkg.com/@storybook/telemetry/-/telemetry-8.3.6.tgz#8c108312fd6809a8d9d0a0e8553d067089d89ae2"
+  integrity sha512-fhpbZok7mPeujjFxAKo2vuqhfjhv5BO/mHH7Z8QtgsYqeR7px56arDRgV6CngBZWgFvrQ2wBS0HPV4nB6YWvJQ==
+
 "@storybook/theming@^8.3.6":
   version "8.3.6"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.3.6.tgz#57c5789903e50b84844aa8e7ce0e1f031e98a948"
   integrity sha512-LQjUk6GXRW9ELkoBKuqzQKFUW+ajfGPfVELcfs3/VQX61VhthJ4olov4bGPc04wsmmFMgN/qODxT485IwOHfPQ==
+
+"@storybook/types@^8.3.0":
+  version "8.3.6"
+  resolved "https://registry.yarnpkg.com/@storybook/types/-/types-8.3.6.tgz#8c5c15e8869dd3218a73748db75bb7ef709262b9"
+  integrity sha512-EY+bjIxxmKkFrL7CyDQb3EXbmy0+Y9OieaPrNNM7QXTfGgp81lXhfqMX3HLMMjplk+rcxVJLyzXSBx0nIn91fQ==
 
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
@@ -5236,10 +5254,10 @@ chokidar@^4.0.0:
   dependencies:
     readdirp "^4.0.1"
 
-chromatic@^11.4.0:
-  version "11.10.4"
-  resolved "https://registry.yarnpkg.com/chromatic/-/chromatic-11.10.4.tgz#22f01dc0c7d8c4a71f2aae1c15869738ea412359"
-  integrity sha512-nfgDpW5gQ4FtgV1lZXXfqLjONKDCh2K4vwI3dbZrtU1ObOL9THyAzpIdnK9LRcNSeisDLX+XFCryfMg1Ql2U2g==
+chromatic@^11.15.0:
+  version "11.16.1"
+  resolved "https://registry.yarnpkg.com/chromatic/-/chromatic-11.16.1.tgz#d3088cdbccb00f7b12e489d0d1439665aa0db0a9"
+  integrity sha512-pdpURz0tLp2EJSwfDUHJAf8xufkL/FGZmNuyebv03WkTOZPUAxBMZ19/Y6sFST6MQvUGy/2VI5eNWnfWLDLwhQ==
 
 chrome-trace-event@^1.0.2:
   version "1.0.2"
@@ -6724,26 +6742,6 @@ es-iterator-helpers@^1.1.0:
     iterator.prototype "^1.1.3"
     safe-array-concat "^1.1.2"
 
-es-iterator-helpers@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/es-iterator-helpers/-/es-iterator-helpers-1.1.0.tgz#f6d745d342aea214fe09497e7152170dc333a7a6"
-  integrity sha512-/SurEfycdyssORP/E+bj4sEu1CWw4EmLDsHynHwSXQ7utgbrMRWW195pTrCjFgFCddf/UkYm3oqKPRq5i8bJbw==
-  dependencies:
-    call-bind "^1.0.7"
-    define-properties "^1.2.1"
-    es-abstract "^1.23.3"
-    es-errors "^1.3.0"
-    es-set-tostringtag "^2.0.3"
-    function-bind "^1.1.2"
-    get-intrinsic "^1.2.4"
-    globalthis "^1.0.4"
-    has-property-descriptors "^1.0.2"
-    has-proto "^1.0.3"
-    has-symbols "^1.0.3"
-    internal-slot "^1.0.7"
-    iterator.prototype "^1.1.3"
-    safe-array-concat "^1.1.2"
-
 es-module-lexer@^1.2.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-1.4.1.tgz#41ea21b43908fe6a287ffcbe4300f790555331f5"
@@ -8039,14 +8037,6 @@ globalthis@^1.0.3, globalthis@^1.0.4:
     define-properties "^1.2.1"
     gopd "^1.0.1"
 
-globalthis@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/globalthis/-/globalthis-1.0.4.tgz#7430ed3a975d97bfb59bcce41f5cabbafa651236"
-  integrity sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==
-  dependencies:
-    define-properties "^1.2.1"
-    gopd "^1.0.1"
-
 globby@11.1.0, globby@^11.0.3, globby@^11.0.4, globby@^11.1.0:
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/globby/-/globby-11.1.0.tgz#bd4be98bb042f83d796f7e3811991fbe82a0d34b"
@@ -9181,17 +9171,6 @@ istanbul-reports@^3.0.2, istanbul-reports@^3.1.7:
   dependencies:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
-
-iterator.prototype@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/iterator.prototype/-/iterator.prototype-1.1.3.tgz#016c2abe0be3bbdb8319852884f60908ac62bf9c"
-  integrity sha512-FW5iMbeQ6rBGm/oKgzq2aW4KvAGpxPzYES8N4g4xNXUKpL1mclMvOe+76AcLDTvD+Ze+sOpVhgdAQEKF4L9iGQ==
-  dependencies:
-    define-properties "^1.2.1"
-    get-intrinsic "^1.2.1"
-    has-symbols "^1.0.3"
-    reflect.getprototypeof "^1.0.4"
-    set-function-name "^2.0.1"
 
 iterator.prototype@^1.1.3:
   version "1.1.3"
