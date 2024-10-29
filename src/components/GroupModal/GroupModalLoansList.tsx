@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useMemo } from "react";
 import SelectableMaterial from "../../apps/loan-list/materials/selectable-material/selectable-material";
 import { useText } from "../../core/utils/text";
 import { isLoanType, LoanType } from "../../core/utils/types/loan-type";
@@ -8,6 +8,7 @@ import StatusBadge from "../../apps/loan-list/materials/utils/status-badge";
 import { formatDate } from "../../core/utils/helpers/date";
 import { ListType } from "../../core/utils/types/list-type";
 import { getLoanDeliveryDate } from "../../apps/loan-list/utils/helpers";
+import { sortLoansByIsRenewableThenDueDate } from "../../core/utils/helpers/general";
 
 export interface GroupModalLoansListProps {
   materials: LoanType[];
@@ -24,9 +25,11 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
   selectMaterials,
   pageSize
 }) => {
-  // Show renewable materials first, then non-renewable
-  const groupedMaterials = materials.sort(
-    (a, b) => Number(!!b.isRenewable) - Number(!!a.isRenewable)
+  // Memoize groupedMaterials to prevent unnecessary re-computations
+  // Because groupedMaterials is a dependency of the useEffect hook
+  const groupedMaterials = useMemo(
+    () => sortLoansByIsRenewableThenDueDate(materials),
+    [materials]
   );
   const t = useText();
   const [displayedMaterials, setDisplayedMaterials] = useState<LoanType[]>([]);

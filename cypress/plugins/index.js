@@ -1,3 +1,6 @@
+// Cypress no longer natively supports plugins file, but we keep it for better code abstraction
+// https://docs.cypress.io/app/references/migration-guide#Plugins-File-Removed
+
 const task = require("@cypress/code-coverage/task");
 const browserify = require("@cypress/browserify-preprocessor");
 
