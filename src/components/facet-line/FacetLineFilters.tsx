@@ -2,8 +2,7 @@ import React, { memo } from "react";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import {
   FacetFieldEnum,
-  FacetValue
-  FacetField,
+  FacetValue,
   SearchSortingOption
 } from "../../core/dbc-gateway/generated/graphql";
 import { useModalButtonHandler } from "../../core/utils/modal";

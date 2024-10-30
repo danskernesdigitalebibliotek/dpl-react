@@ -96,9 +96,9 @@ export default {
   [serviceUrlKeys.publizon]:
     process.env.PUBLIZON_BASEURL ?? "https://pubhub-openplatform.dbc.dk",
   [serviceUrlKeys.dplCms]: process.env.CMS_BASEURL ?? "https://dpl-cms.docker",
-  [serviceUrlKeys.cover]: "https://cover.dandigbib.org",
+  [serviceUrlKeys.cover]: process.env.COVERS_BASEURL ?? "https://cover.dandigbib.org",
   [serviceUrlKeys.materialList]: "https://prod.materiallist.dandigbib.org",
-  [serviceUrlKeys.fbi]: "https://temp.fbi-api.dbc.dk/next-present/graphql",
-  [serviceUrlKeys.fbiLocal]: "https://temp.fbi-api.dbc.dk/next/graphql",
-  [serviceUrlKeys.fbiGlobal]: "https://temp.fbi-api.dbc.dk/next-present/graphql"
+  [serviceUrlKeys.fbi]: process.env.GRAPHQL_API_BASEURL ?? "https://temp.fbi-api.dbc.dk/next-present/graphql",
+  [serviceUrlKeys.fbiLocal]: process.env.GRAPHQL_API_BASEURL ?? "https://temp.fbi-api.dbc.dk/next/graphql",
+  [serviceUrlKeys.fbiGlobal]: process.env.GRAPHQL_API_BASEURL ?? "https://temp.fbi-api.dbc.dk/next-present/graphql"
 };
