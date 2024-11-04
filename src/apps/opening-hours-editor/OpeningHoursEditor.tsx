@@ -15,7 +15,7 @@ import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 
 export type OpeningHoursEditorType = {
-  initialDate?: string | Date | null;
+  initialDate?: Date;
 };
 
 const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
@@ -58,7 +58,7 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
       </Dialog>
 
       <FullCalendar
-        initialDate={initialDate ? new Date(initialDate) : undefined}
+        initialDate={initialDate ?? undefined}
         ref={fullCalendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{

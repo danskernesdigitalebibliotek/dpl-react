@@ -39,7 +39,11 @@ const OpeningHoursEditorEntry: React.FC<
     OpeningHoursEditorEntryConfigProps
 > = ({ initialDate }) => {
   const initialDateParam = getInitialDateFromUrl();
-  return <OpeningHoursEditor initialDate={initialDate ?? initialDateParam} />;
+  return (
+    <OpeningHoursEditor
+      initialDate={initialDate ?? (initialDateParam || new Date())}
+    />
+  );
 };
 
 export default withConfig(withUrls(withText(OpeningHoursEditorEntry)));

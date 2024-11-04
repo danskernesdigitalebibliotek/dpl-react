@@ -8,7 +8,7 @@ import { getInitialDateFromUrl } from "../opening-hours-editor/helper";
 
 export interface OpeningHoursEntryProps {
   branchId: number;
-  initialDate?: string;
+  initialDate?: Date;
   showOpeningHoursForWeekText: string;
   weekText: string;
   libraryIsClosedText: string;
@@ -22,7 +22,7 @@ const OpeningHoursEntry: React.FC<
   return (
     <OpeningHours
       branchId={branchId}
-      initialDate={initialDate ?? initialDateParam}
+      initialDate={initialDate ?? (initialDateParam || new Date())}
     />
   );
 };

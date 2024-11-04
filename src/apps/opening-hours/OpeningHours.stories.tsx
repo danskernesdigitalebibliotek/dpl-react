@@ -20,8 +20,8 @@ const meta: Meta<typeof OpeningHours> = {
     ...globalTextArgTypes,
     ...serviceUrlArgTypes,
     initialDate: {
-      defaultValue: "2024-03-25",
-      control: { type: "text" }
+      defaultValue: new Date("2024-03-25"),
+      control: { type: "date" }
     },
     branchId: {
       defaultValue: 12,
@@ -55,7 +55,7 @@ export const Primary: Story = {
     ...globalConfigArgs,
     ...globalTextArgs,
     ...serviceUrlArgs,
-    initialDate: "2024-03-25",
+    initialDate: new Date("2024-03-25"),
     branchId: 12,
     showOpeningHoursForWeekText: "Show opening hours for week",
     weekText: "Week",

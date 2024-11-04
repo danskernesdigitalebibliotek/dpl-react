@@ -12,21 +12,20 @@ import useOpeningHours from "./useOpeningHours";
 
 export type OpeningHoursProps = {
   branchId: number;
-  initialDate: string | Date | null;
+  initialDate: Date;
 };
 
 const OpeningHours: React.FC<OpeningHoursProps> = ({
   branchId,
   initialDate
 }) => {
-  const date = initialDate ? new Date(initialDate) : new Date();
   const {
     currentWeekRange,
     groupedOpeningHours,
     navigateToPreviousWeek,
     navigateToNextWeek,
     isLoading
-  } = useOpeningHours(date, branchId);
+  } = useOpeningHours(initialDate, branchId);
 
   const t = useText();
   const nextWeekDate = getNextWeek(currentWeekRange.start);
