@@ -1149,13 +1149,10 @@
     "@babel/helper-validator-identifier" "^7.25.9"
 
 "@chromatic-com/storybook@^3":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@chromatic-com/storybook/-/storybook-3.1.0.tgz#c28f49d143cc6c80d7e56baea9944579d90ecfc9"
-  integrity sha512-AM8jDwoBNNwJKgmoWkHIOhu4ObsxvDtOzZC9tPCVEW6P+pFwg5xjSZAQglIE2c8/SsEPSduNdxBt31ES3iDwoA==
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@chromatic-com/storybook/-/storybook-3.2.2.tgz#08754443de55618f802f88450c35266fd6d25db5"
+  integrity sha512-xmXt/GW0hAPbzNTrxYuVo43Adrtjue4DeVrsoIIEeJdGaPNNeNf+DHMlJKOBdlHmCnFUoe9R/0mLM9zUp5bKWw==
   dependencies:
-    "@storybook/channels" "^8.3.0"
-    "@storybook/telemetry" "^8.3.0"
-    "@storybook/types" "^8.3.0"
     chromatic "^11.15.0"
     filesize "^10.0.12"
     jsonfile "^6.1.0"
@@ -2967,11 +2964,6 @@
     webpack-hot-middleware "^2.25.1"
     webpack-virtual-modules "^0.6.0"
 
-"@storybook/channels@^8.3.0":
-  version "8.3.6"
-  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-8.3.6.tgz#b19b1b00773ff1fbabf0e1bd7e00e1784f599a2e"
-  integrity sha512-6ahY0n1A19diR5cI63lhDEpMaDsq7LFtMOgWab2NwCsdXoEAl6anvDptyPWW60umN3HrDzSKFdpRx4imOEjlWw==
-
 "@storybook/components@8.4.1":
   version "8.4.1"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-8.4.1.tgz#90b92e2a187af2e51bf6e8ad7e1c8b9c718a57ad"
@@ -3101,20 +3093,10 @@
     "@storybook/react-dom-shim" "8.4.1"
     "@storybook/theming" "8.4.1"
 
-"@storybook/telemetry@^8.3.0":
-  version "8.3.6"
-  resolved "https://registry.yarnpkg.com/@storybook/telemetry/-/telemetry-8.3.6.tgz#8c108312fd6809a8d9d0a0e8553d067089d89ae2"
-  integrity sha512-fhpbZok7mPeujjFxAKo2vuqhfjhv5BO/mHH7Z8QtgsYqeR7px56arDRgV6CngBZWgFvrQ2wBS0HPV4nB6YWvJQ==
-
 "@storybook/theming@8.4.1":
   version "8.4.1"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.4.1.tgz#483497e4853497555c233b7a0b4a92181f7aeb98"
   integrity sha512-Sz24isryVFZaVahXkjgnCsMAQqQeeKg41AtLsldlYdesIo6fr5tc6/SkTUy+CYadK4Dkhqp+vVRDnwToYYRGhA==
-
-"@storybook/types@^8.3.0":
-  version "8.3.6"
-  resolved "https://registry.yarnpkg.com/@storybook/types/-/types-8.3.6.tgz#8c5c15e8869dd3218a73748db75bb7ef709262b9"
-  integrity sha512-EY+bjIxxmKkFrL7CyDQb3EXbmy0+Y9OieaPrNNM7QXTfGgp81lXhfqMX3HLMMjplk+rcxVJLyzXSBx0nIn91fQ==
 
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
