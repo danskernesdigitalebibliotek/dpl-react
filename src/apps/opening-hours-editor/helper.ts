@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { isDate } from "lodash";
 import { EventInput } from "@fullcalendar/core";
 import { EventImpl } from "@fullcalendar/core/internal";
 import {
@@ -185,7 +184,7 @@ export const getInitialDateFromUrl = (): Date | null => {
   }
 
   const date = new Date(initialDateString);
-  if (isDate(date)) {
+  if (!Number.isNaN(date.getTime())) {
     return date;
   }
   // eslint-disable-next-line no-console
