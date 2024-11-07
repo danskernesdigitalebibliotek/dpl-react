@@ -45,7 +45,7 @@ describe("Material", () => {
 
     cy.getBySel("material-description-series-0")
       .should("be.visible")
-      .and("contain.text", "Nr. 1  in seriesDe syv søstre-serien");
+      .and("contain.text", "Del 1 in seriesDe syv søstre-serien");
   });
 
   it("Renders only first 3 horizontal lines items", () => {
