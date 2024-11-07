@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import clsx from "clsx";
 import Link from "../atoms/links/Link";
 import ButtonExpand from "../button-expand/ButtonExpand";
 
@@ -10,12 +11,14 @@ export interface HorizontalTermLineProps {
     term: string;
   }[];
   dataCy?: string;
+  classNames?: string;
 }
 
 const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   title,
   subTitle,
   linkList,
+  classNames,
   dataCy = "horizontal-term-line"
 }) => {
   const numberOfItemsToShow = 3;
@@ -30,7 +33,13 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   }
 
   return (
-    <div data-cy={dataCy} className="text-small-caption horizontal-term-line">
+    <div
+      data-cy={dataCy}
+      className={clsx(
+        "text-small-caption horizontal-term-line",
+        classNames || ""
+      )}
+    >
       <h3 className="text-label-bold">
         {title || ""}{" "}
         {subTitle && (
