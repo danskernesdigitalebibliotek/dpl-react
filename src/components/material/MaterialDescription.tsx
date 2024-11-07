@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  getNumberedSeries,
   getUniqueMovies,
   getDbcVerifiedSubjectsFirst
 } from "../../apps/material/helper";
@@ -15,6 +14,7 @@ import { Pid, WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 import { materialIsFiction } from "../../core/utils/helpers/general";
+import SeriesList from "../card-item-list/card-list-item/series-list";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
@@ -30,7 +30,6 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const { fictionNonfiction, series, subjects, relations, dk5MainEntry } = work;
 
   const isFiction = materialIsFiction(work);
-  const seriesList = getNumberedSeries(series);
 
   const seriesMembersList =
     (series &&
@@ -93,23 +92,12 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                 ]}
               />
             )}
-            {seriesList.map((item, i) => (
-              // TODO: Since the series has changed it structure and can have multiple members
-              // we need to double check if we can only look at the first member entry.
-              <HorizontalTermLine
-                title={`${t("numberDescriptionText")} ${
-                  item.members[0].numberInSeries
-                }`}
-                subTitle={t("inSeriesText")}
-                linkList={[
-                  {
-                    url: constructSearchUrl(searchUrl, item.title),
-                    term: item.title
-                  }
-                ]}
-                dataCy={`material-description-series-${i}`}
-              />
-            ))}
+            <SeriesList
+              series={series}
+              searchUrl={searchUrl}
+              t={t}
+              workId={work.workId}
+            />
             <HorizontalTermLine
               title={t("inSameSeriesText")}
               linkList={seriesMembersList}

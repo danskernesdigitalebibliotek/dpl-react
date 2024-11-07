@@ -18,11 +18,9 @@ import {
   getManifestationsPids
 } from "../../../core/utils/helpers/general";
 import CardListItemCover from "./card-list-item-cover";
-import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
 import { useUrls } from "../../../core/utils/url";
 import {
   constructMaterialUrl,
-  constructSearchUrl,
   redirectTo
 } from "../../../core/utils/helpers/url";
 import { TypedDispatch } from "../../../core/store";
@@ -38,7 +36,7 @@ import {
 import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 import SubjectNumber from "../../subject-number/SubjectNumber";
-import { getNumberInSeries } from "../helper";
+import SeriesList from "./series-list";
 
 export interface CardListItemProps {
   item: Work;
@@ -156,22 +154,12 @@ const CardListItem: React.FC<CardListItemProps> = ({
               addToListRequest={addToListRequest}
             />
           )}
-          {series.map((serie) => {
-            return (
-              !!getNumberInSeries(serie, workId) && (
-                <HorizontalTermLine
-                  title={getNumberInSeries(serie, workId) || ""}
-                  subTitle={t("inSeriesText")}
-                  linkList={[
-                    {
-                      url: constructSearchUrl(searchUrl, serie.title),
-                      term: serie.title
-                    }
-                  ]}
-                />
-              )
-            );
-          })}
+          <SeriesList
+            series={series}
+            searchUrl={searchUrl}
+            t={t}
+            workId={workId}
+          />
         </div>
         {!materialIsFiction(bestRepresentation) && shelfmark && (
           <SubjectNumber
