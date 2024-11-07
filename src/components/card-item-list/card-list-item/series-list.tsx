@@ -34,7 +34,6 @@ const SeriesList = ({
                   term: serie.title
                 }
               ]}
-              classNames="horizontal-term-line--no-wrap"
               dataCy={`${dataCy}-${index}`}
             />
           )
