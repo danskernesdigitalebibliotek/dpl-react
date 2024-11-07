@@ -10,12 +10,19 @@ type SeriesListProps = {
   workId: Work["workId"];
   searchUrl: URL;
   t: UseTextFunction;
+  dataCy?: string;
 };
 
-const SeriesList = ({ series, workId, searchUrl, t }: SeriesListProps) => {
+const SeriesList = ({
+  series,
+  workId,
+  searchUrl,
+  t,
+  dataCy = "series-list"
+}: SeriesListProps) => {
   return (
     <>
-      {series.map((serie) => {
+      {series.map((serie, index) => {
         return (
           !!getNumberInSeries(serie, workId) && (
             <HorizontalTermLine
@@ -28,6 +35,7 @@ const SeriesList = ({ series, workId, searchUrl, t }: SeriesListProps) => {
                 }
               ]}
               classNames="horizontal-term-line--no-wrap"
+              dataCy={`${dataCy}-${index}`}
             />
           )
         );

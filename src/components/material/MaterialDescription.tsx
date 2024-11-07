@@ -97,6 +97,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
               searchUrl={searchUrl}
               t={t}
               workId={work.workId}
+              dataCy="material-description-series"
             />
             <HorizontalTermLine
               title={t("inSameSeriesText")}
