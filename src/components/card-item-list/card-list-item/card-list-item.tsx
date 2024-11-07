@@ -33,12 +33,12 @@ import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
 import {
   getFirstBookManifestation,
-  getManifestationLanguageIsoCode,
-  getNumberedSeries
+  getManifestationLanguageIsoCode
 } from "../../../apps/material/helper";
 import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 import SubjectNumber from "../../subject-number/SubjectNumber";
+import { getNumberInSeries } from "../helper";
 
 export interface CardListItemProps {
   item: Work;
@@ -80,7 +80,6 @@ const CardListItem: React.FC<CardListItemProps> = ({
   const queryClient = useQueryClient();
   const author = creatorsToString(flattenCreators(creators), t);
   const manifestationPids = getManifestationsPids(manifestations);
-  const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(
     materialUrl,
     workId as WorkId,
@@ -157,24 +156,23 @@ const CardListItem: React.FC<CardListItemProps> = ({
               addToListRequest={addToListRequest}
             />
           )}
-          {/* TODO: Since the series has changed it structure and can have multiple members
-          we need to double check if we can only look at the first member entry. (firstItemInSeries.members[0]) */}
-          {firstItemInSeries && (
-            <HorizontalTermLine
-              title={`${t("numberDescriptionText")} ${
-                firstItemInSeries.members[0].numberInSeries ?? ""
-              }`}
-              subTitle={t("inSeriesText")}
-              linkList={[
-                {
-                  url: constructSearchUrl(searchUrl, firstItemInSeries.title),
-                  term: firstItemInSeries.title
-                }
-              ]}
-            />
-          )}
+          {series.map((serie) => {
+            return (
+              !!getNumberInSeries(serie, workId) && (
+                <HorizontalTermLine
+                  title={getNumberInSeries(serie, workId) || ""}
+                  subTitle={t("inSeriesText")}
+                  linkList={[
+                    {
+                      url: constructSearchUrl(searchUrl, serie.title),
+                      term: serie.title
+                    }
+                  ]}
+                />
+              )
+            );
+          })}
         </div>
-
         {!materialIsFiction(bestRepresentation) && shelfmark && (
           <SubjectNumber
             className="text-tags color-secondary-gray mt-8"
