@@ -35,10 +35,7 @@ const HorizontalTermLine: React.FC<HorizontalTermLineProps> = ({
   return (
     <div
       data-cy={dataCy}
-      className={clsx(
-        "text-small-caption horizontal-term-line",
-        classNames || ""
-      )}
+      className={clsx("text-small-caption horizontal-term-line", classNames)}
     >
       <h3 className="text-label-bold">
         {title || ""}{" "}
