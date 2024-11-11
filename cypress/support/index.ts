@@ -86,22 +86,18 @@ Cypress.Commands.add(
 
 // Data cy attribute selector helpers.
 const visible = (checkVisible: boolean) => (checkVisible ? ":visible" : "");
-Cypress.Commands.add("getBySel", (selector, checkVisible = false, ...args) => {
-  return cy.get(`[data-cy="${selector}"]${visible(checkVisible)}`, ...args);
+Cypress.Commands.add("getBySel", (selector, checkVisible = false) => {
+  return cy.get(`[data-cy="${selector}"]${visible(checkVisible)}`);
+});
+Cypress.Commands.add("getBySelLike", (selector, checkVisible = false) => {
+  return cy.get(`[data-cy*="${selector}"]${visible(checkVisible)}`);
 });
 Cypress.Commands.add(
-  "getBySelLike",
-  (selector, checkVisible = false, ...args) => {
-    return cy.get(`[data-cy*="${selector}"]${visible(checkVisible)}`, ...args);
-  }
-);
-Cypress.Commands.add(
   "getBySelStartEnd",
-  (startSelector, endSelector, checkVisible = false, ...args) => {
+  (startSelector, endSelector, checkVisible = false) => {
     const v = visible(checkVisible);
     return cy.get(
-      `[data-cy^="${startSelector}"]${v}[data-cy$="${endSelector}"]${v}`,
-      ...args
+      `[data-cy^="${startSelector}"]${v}[data-cy$="${endSelector}"]${v}`
     );
   }
 );
@@ -117,21 +113,12 @@ declare global {
       createFakeAuthenticatedSession(): void;
       interceptGraphql(prams: InterceptGraphqlParams): void;
       interceptRest(params: InterceptRestParams): void;
-      getBySel(
-        selector: string,
-        checkVisible?: boolean,
-        ...args: unknown[]
-      ): Chainable;
-      getBySelLike(
-        selector: string,
-        checkVisible?: boolean,
-        ...args: unknown[]
-      ): Chainable;
+      getBySel(selector: string, checkVisible?: boolean): Chainable;
+      getBySelLike(selector: string, checkVisible?: boolean): Chainable;
       getBySelStartEnd(
         startSelector: string,
         endSelector: string,
-        checkVisible?: boolean,
-        ...args: unknown[]
+        checkVisible?: boolean
       ): Chainable;
     }
   }
