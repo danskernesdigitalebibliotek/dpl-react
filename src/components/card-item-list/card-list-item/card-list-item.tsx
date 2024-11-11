@@ -18,11 +18,9 @@ import {
   getManifestationsPids
 } from "../../../core/utils/helpers/general";
 import CardListItemCover from "./card-list-item-cover";
-import HorizontalTermLine from "../../horizontal-term-line/HorizontalTermLine";
 import { useUrls } from "../../../core/utils/url";
 import {
   constructMaterialUrl,
-  constructSearchUrl,
   redirectTo
 } from "../../../core/utils/helpers/url";
 import { TypedDispatch } from "../../../core/store";
@@ -33,12 +31,12 @@ import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
 import {
   getFirstBookManifestation,
-  getManifestationLanguageIsoCode,
-  getNumberedSeries
+  getManifestationLanguageIsoCode
 } from "../../../apps/material/helper";
 import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 import SubjectNumber from "../../subject-number/SubjectNumber";
+import SeriesList from "./series-list";
 
 export interface CardListItemProps {
   item: Work;
@@ -80,7 +78,6 @@ const CardListItem: React.FC<CardListItemProps> = ({
   const queryClient = useQueryClient();
   const author = creatorsToString(flattenCreators(creators), t);
   const manifestationPids = getManifestationsPids(manifestations);
-  const firstItemInSeries = getNumberedSeries(series).shift();
   const materialFullUrl = constructMaterialUrl(
     materialUrl,
     workId as WorkId,
@@ -157,24 +154,13 @@ const CardListItem: React.FC<CardListItemProps> = ({
               addToListRequest={addToListRequest}
             />
           )}
-          {/* TODO: Since the series has changed it structure and can have multiple members
-          we need to double check if we can only look at the first member entry. (firstItemInSeries.members[0]) */}
-          {firstItemInSeries && (
-            <HorizontalTermLine
-              title={`${t("numberDescriptionText")} ${
-                firstItemInSeries.members[0].numberInSeries ?? ""
-              }`}
-              subTitle={t("inSeriesText")}
-              linkList={[
-                {
-                  url: constructSearchUrl(searchUrl, firstItemInSeries.title),
-                  term: firstItemInSeries.title
-                }
-              ]}
-            />
-          )}
+          <SeriesList
+            series={series}
+            searchUrl={searchUrl}
+            t={t}
+            workId={workId}
+          />
         </div>
-
         {!materialIsFiction(bestRepresentation) && shelfmark && (
           <SubjectNumber
             className="text-tags color-secondary-gray mt-8"
