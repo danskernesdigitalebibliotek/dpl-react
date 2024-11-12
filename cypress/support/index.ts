@@ -23,14 +23,6 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
   window.sessionStorage.setItem(TOKEN_USER_KEY, "999");
 });
 
-Cypress.Commands.add("createFakeLibrarySession", () => {
-  // Since the user token is shared in storybook by setting it in sessionStorage
-  // we can use that and fake that we have a inlogged user session
-  // by using the same principle.
-  // See userToken handling in .storybbok/preview.js.
-  window.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
-});
-
 /**
  * interceptGraphql is used to make a graphQLrequest that returns fixture data
  *
@@ -94,22 +86,18 @@ Cypress.Commands.add(
 
 // Data cy attribute selector helpers.
 const visible = (checkVisible: boolean) => (checkVisible ? ":visible" : "");
-Cypress.Commands.add("getBySel", (selector, checkVisible = false, ...args) => {
-  return cy.get(`[data-cy="${selector}"]${visible(checkVisible)}`, ...args);
+Cypress.Commands.add("getBySel", (selector, checkVisible = false) => {
+  return cy.get(`[data-cy="${selector}"]${visible(checkVisible)}`);
+});
+Cypress.Commands.add("getBySelLike", (selector, checkVisible = false) => {
+  return cy.get(`[data-cy*="${selector}"]${visible(checkVisible)}`);
 });
 Cypress.Commands.add(
-  "getBySelLike",
-  (selector, checkVisible = false, ...args) => {
-    return cy.get(`[data-cy*="${selector}"]${visible(checkVisible)}`, ...args);
-  }
-);
-Cypress.Commands.add(
   "getBySelStartEnd",
-  (startSelector, endSelector, checkVisible = false, ...args) => {
+  (startSelector, endSelector, checkVisible = false) => {
     const v = visible(checkVisible);
     return cy.get(
-      `[data-cy^="${startSelector}"]${v}[data-cy$="${endSelector}"]${v}`,
-      ...args
+      `[data-cy^="${startSelector}"]${v}[data-cy$="${endSelector}"]${v}`
     );
   }
 );
@@ -123,24 +111,14 @@ declare global {
        */
       createFakeLibrarySession(): void;
       createFakeAuthenticatedSession(): void;
-      createFakeLibrarySession(): void;
       interceptGraphql(prams: InterceptGraphqlParams): void;
       interceptRest(params: InterceptRestParams): void;
-      getBySel(
-        selector: string,
-        checkVisible?: boolean,
-        ...args: unknown[]
-      ): Chainable;
-      getBySelLike(
-        selector: string,
-        checkVisible?: boolean,
-        ...args: unknown[]
-      ): Chainable;
+      getBySel(selector: string, checkVisible?: boolean): Chainable;
+      getBySelLike(selector: string, checkVisible?: boolean): Chainable;
       getBySelStartEnd(
         startSelector: string,
         endSelector: string,
-        checkVisible?: boolean,
-        ...args: unknown[]
+        checkVisible?: boolean
       ): Chainable;
     }
   }

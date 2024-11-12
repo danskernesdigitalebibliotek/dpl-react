@@ -19,7 +19,9 @@ export const useUrls = () => {
     return urls[name];
   };
 };
-export const withUrls = <T,>(Component: React.ComponentType<T>) => {
+export const withUrls = <T extends object>(
+  Component: React.ComponentType<T>
+) => {
   return withSuffix(Component, "Url", addUrlEntries);
 };
 

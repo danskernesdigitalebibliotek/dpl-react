@@ -2,13 +2,14 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import React from "react";
 import { store } from "../store";
 
-export default <T,>(
+export default function withSuffix<T extends object>(
   Component: React.ComponentType<T>,
   suffix: string,
   reduxAction: ActionCreatorWithPayload<unknown, string>
-) => {
+) {
   return (props: T) => {
     const pattern = new RegExp(`.*${suffix}$`, "g");
+
     // Match all props that ends with suffix.
     const suffixEntries = Object.fromEntries(
       Object.entries(props).filter(([prop]) => {
@@ -30,10 +31,11 @@ export default <T,>(
         })
       );
     }
+
     // Since this is a High Order Functional Component
     // we do not know what props we are dealing with.
     // That is a part of the design.
     // eslint-disable-next-line react/jsx-props-no-spreading
     return <Component {...(nonSuffixEntries as T)} />;
   };
-};
+}
