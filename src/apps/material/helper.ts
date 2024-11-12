@@ -455,11 +455,6 @@ export const reservationModalId = (faustIds: FaustId[]) => {
   return constructModalId("reservation-modal", faustIds.sort());
 };
 
-// TODO: Since the series has changed it structure and can have multiple members
-// we need to double check if we can only look at the first member entry.
-export const getNumberedSeries = (series: Work["series"]) =>
-  series.filter((seriesEntry) => seriesEntry.members[0].numberInSeries);
-
 export const getUniqueMovies = (relations: Work["relations"]) => {
   const movies = relations.hasAdaptation.filter(
     (item) => item.ownerWork.workTypes.includes(WorkTypeEnum.Movie)

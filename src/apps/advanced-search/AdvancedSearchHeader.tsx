@@ -239,7 +239,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             type="button"
             className="link-tag advanced-search__back-button cursor-pointer"
             onClick={() => setIsFormMode(true)}
-            onKeyUp={(e) => e.key === "Enter" ?? setIsFormMode(!true)}
+            onKeyUp={(e) => e.key === "Enter" && setIsFormMode(!true)}
           >
             {t("toAdvancedSearchButtonText")}
           </button>

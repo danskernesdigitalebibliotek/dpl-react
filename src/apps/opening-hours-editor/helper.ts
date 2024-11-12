@@ -172,3 +172,25 @@ export const isOpeningHourWeeklyRepetition = (
     DplOpeningHoursListGET200ItemRepetitionType.weekly
   );
 };
+
+// This used for cypress testing in in cms where we test the complete flow of
+// opening hours between the editor (Admin) and the calendar (Frontend)
+export const getInitialDateFromUrl = (): Date | null => {
+  const query = new URLSearchParams(window.location.search);
+  const initialDateString = query.get("initialDate");
+
+  if (!initialDateString) {
+    return null;
+  }
+
+  const date = new Date(initialDateString);
+  if (!Number.isNaN(date.getTime())) {
+    return date;
+  }
+  // eslint-disable-next-line no-console
+  console.debug(
+    "Invalid date format in URL parameter: initialDate =",
+    initialDateString
+  );
+  return null;
+};

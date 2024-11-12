@@ -54,7 +54,7 @@
     "@chromatic-com/storybook": "^3",
     "@csstools/postcss-sass": "^5.1.1",
     "@cypress/browserify-preprocessor": "^3.0.2",
-    "@cypress/code-coverage": "^3.13.5",
+    "@cypress/code-coverage": "^3.13.6",
     "@graphql-codegen/add": "^3.1.1",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/introspection": "^2.1.1",
@@ -69,7 +69,7 @@
     "@storybook/addon-queryparams": "^7.0.1",
     "@storybook/addon-webpack5-compiler-babel": "^3.0.3",
     "@storybook/react": "^8.2.9",
-    "@storybook/react-webpack5": "^8.4.1",
+    "@storybook/react-webpack5": "^8.4.2",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/react": "^14.2.2",
     "@testing-library/react-hooks": "^8.0.1",
@@ -87,10 +87,10 @@
     "babel-plugin-istanbul": "^7.0.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "caniuse-lite": "^1.0.30001677",
+    "caniuse-lite": "^1.0.30001680",
     "change-case-all": "^2.1.0",
     "chokidar-cli": "^3.0.0",
-    "concurrently": "^9.0.1",
+    "concurrently": "^9.1.0",
     "core-js": "^3.39.0",
     "css-loader": "^7.1.2",
     "cssnano": "^7.0.6",
@@ -116,7 +116,7 @@
     "mutationobserver-shim": "^0.3.7",
     "nyc": "^17.1.0",
     "orval": "^6.26.0",
-    "postcss": "^8.4.47",
+    "postcss": "^8.4.48",
     "postcss-cli": "^11.0.0",
     "postcss-loader": "^8.1.1",
     "postcss-scss": "^4.0.9",
@@ -124,7 +124,7 @@
     "replace-in-file": "^6.3.2",
     "sass": "^1.80.6",
     "source-map-support": "^0.5.21",
-    "storybook": "^8.4.1",
+    "storybook": "^8.4.2",
     "style-loader": "^4.0.0",
     "stylelint": "^15.11.0",
     "stylelint-config-prettier": "^9.0.5",
@@ -134,7 +134,7 @@
     "stylelint-webpack-plugin": "^5.0.1",
     "svg-url-loader": "^8.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^4.6.4",
+    "typescript": "^5.6.0",
     "vitest": "^0.28.5",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
@@ -145,7 +145,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.45.0-61278e37e6e8fa118932c90aea48f0d491755b1f",
+    "@danskernesdigitalebibliotek/dpl-design-system": "^2024.46.0-26b569fe9286c99caa7d35dfffb9e4d176826c7a",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",
@@ -158,7 +158,7 @@
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "downshift": "^9.0.8",
-    "focus-trap-react": "^10.3.0",
+    "focus-trap-react": "^10.3.1",
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",
@@ -176,6 +176,6 @@
     "unfetch": "^5.0.0"
   },
   "peerDependencies": {
-    "postcss": "^8.4.47"
+    "postcss": "^8.4.48"
   }
 }

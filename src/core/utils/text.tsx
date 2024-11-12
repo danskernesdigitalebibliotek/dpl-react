@@ -147,6 +147,8 @@ export const useText = (): UseTextFunction => {
   };
 };
 
-export const withText = <T,>(Component: React.ComponentType<T>) => {
+export const withText = <T extends object>(
+  Component: React.ComponentType<T>
+) => {
   return withSuffix(Component, "Text", addTextEntries);
 };

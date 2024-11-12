@@ -58,7 +58,9 @@ export const useConfig = (): UseConfigFunction => {
   };
 };
 
-export const withConfig = <T,>(Component: React.ComponentType<T>) => {
+export const withConfig = <T extends object>(
+  Component: React.ComponentType<T>
+) => {
   return withSuffix(Component, "Config", addConfigEntries);
 };
 
