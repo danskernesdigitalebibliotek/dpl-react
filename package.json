@@ -12,8 +12,8 @@
   },
   "scripts": {
     "fmt": "prettier --config ./.prettierrc --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:js": "eslint . --max-warnings 0 --cache --cache-location \".cache/eslint/\"",
-    "lint:js:fix": "eslint . --fix",
+    "lint:js": "eslint 'src/**/*.{js,ts,tsx}' --max-warnings 0 --cache --cache-location \".cache/eslint/\"",
+    "lint:js:fix": "eslint 'src/**/*.{js,ts,tsx}' --fix",
     "lint:markdown": "markdownlint-cli2",
     "lint:markdown:fix": "markdownlint-cli2-fix",
     "lint:scss": "stylelint \"./src/**/*.scss\"",
