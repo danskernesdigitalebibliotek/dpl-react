@@ -2,7 +2,7 @@
   "id" : "a530c110-c4a9-42f4-a06f-9390744b8b00",
   "name" : "FBS holdings",
   "request" : {
-    "urlPath" : "/external/agencyid/catalog/holdings/v3",
+    "urlPath" : "/external/agencyid/catalog/holdingsLogistics/v1",
     "method" : "GET"
   },
   "response" : {
