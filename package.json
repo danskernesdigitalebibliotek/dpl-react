@@ -112,7 +112,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-webpack-plugin": "^4.2.0",
     "glob": "^8.0.1",
-    "globals": "^15.11.0",
+    "globals": "^15.12.0",
     "happy-dom": "^14.12.3",
     "istanbul-lib-coverage": "^3.2.2",
     "markdownlint-cli2": "^0.4.0",
@@ -181,12 +181,7 @@
   "peerDependencies": {
     "postcss": "^8.4.48"
   },
-  "overrides": {
-    "@eslint/eslintrc": {
-      "globals": ">=14"
-    },
-    "@babel/traverse": {
-      "globals": ">=14"
-    }
+  "resolutions": {
+    "globals": ">=15.12.0"
   }
 }
