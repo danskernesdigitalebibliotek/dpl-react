@@ -191,38 +191,6 @@ paths:
       description: "\n Returns an array of availability for each bibliographical record."
       operationId: getAvailabilityV3
       summary: "Get availability of bibliographical records."
-  /external/agencyid/catalog/holdings/v3:
-    get:
-      parameters:
-        - description: "Identifies the bibliographical records - The FAUST number."
-          in: query
-          items:
-            type: string
-          name: recordid
-          required: true
-          type: array
-        - description: "Identifies the branchIds which are excluded from the result"
-          in: query
-          items:
-            type: string
-          name: exclude
-          type: array
-      responses:
-        200:
-          description: "No response was specified"
-          schema:
-            items:
-              $ref: "#/definitions/HoldingsForBibliographicalRecordV3"
-            type: array
-        400:
-          description: "bad request"
-        401:
-          description: "client unauthorized"
-      tags:
-        - external_agencyid_catalog
-      description: "\n Returns an array of holdings for each bibliographical record.\n The holdings lists the materials on each placement, and whether they are available on-shelf or lent out."
-      operationId: getHoldingsV3
-      summary: "Get placement holdings for bibliographical records."
   /external/agencyid/catalog/holdingsLogistics/v1:
     get:
       summary: "Get placement holdings for bibliographical records."
@@ -877,28 +845,6 @@ definitions:
     required:
       - materials
       - branch
-  HoldingsForBibliographicalRecordV3:
-    properties:
-      holdings:
-        description: "An array of holdings for the materials matching the bibliographical record, as distributed across branches,\n departments and locations"
-        items:
-          $ref: "#/definitions/HoldingsV3"
-        type: array
-      recordId:
-        description: "Identifies the bibliographical record for the available materials,\n The FAUST number"
-        type: string
-      reservable:
-        description: "True if there is any reservable materials"
-        type: boolean
-      reservations:
-        description: "Total number of current active reservations for the bibliographical record"
-        format: int64
-        type: integer
-    required:
-      - recordId
-      - reservations
-      - reservable
-      - holdings
   HoldingsForBibliographicalRecordLogisticsV1:
     type: object
     properties:
@@ -955,28 +901,6 @@ definitions:
       title:
         type: string
         description: "Name of the section"
-  HoldingsV3:
-    properties:
-      branch:
-        $ref: "#/definitions/AgencyBranch"
-        description: "Placement branch"
-      department:
-        $ref: "#/definitions/AgencyDepartment"
-        description: "Placement department"
-      location:
-        $ref: "#/definitions/AgencyLocation"
-        description: "Placement location"
-      materials:
-        description: "Materials that belongs to this placement"
-        items:
-          $ref: "#/definitions/MaterialV3"
-        type: array
-      sublocation:
-        $ref: "#/definitions/AgencySublocation"
-        description: "Placement sublocation"
-    required:
-      - materials
-      - branch
   ILLBibliographicRecord:
     properties:
       author:

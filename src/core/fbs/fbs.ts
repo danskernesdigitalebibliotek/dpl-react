@@ -28,9 +28,7 @@ import type {
   GetBranchesParams,
   GetExternalAgencyidCatalogHoldingsLogisticsV1Params,
   GetFeesV2Params,
-  GetHoldingsV3Params,
   HoldingsForBibliographicalRecordLogisticsV1,
-  HoldingsForBibliographicalRecordV3,
   LoanV2,
   PatronWithGuardianRequest,
   RenewedLoanV2,
@@ -785,91 +783,6 @@ export const useGetAvailabilityV3 = <
   }
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
   const queryOptions = getGetAvailabilityV3QueryOptions(params, options);
-
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: QueryKey;
-  };
-
-  query.queryKey = queryOptions.queryKey;
-
-  return query;
-};
-
-/**
- * 
- Returns an array of holdings for each bibliographical record.
- The holdings lists the materials on each placement, and whether they are available on-shelf or lent out.
- * @summary Get placement holdings for bibliographical records.
- */
-export const getHoldingsV3 = (
-  params: GetHoldingsV3Params,
-  signal?: AbortSignal
-) => {
-  return fetcher<HoldingsForBibliographicalRecordV3[]>({
-    url: `/external/agencyid/catalog/holdings/v3`,
-    method: "GET",
-    params,
-    signal
-  });
-};
-
-export const getGetHoldingsV3QueryKey = (params: GetHoldingsV3Params) => {
-  return [
-    `/external/agencyid/catalog/holdings/v3`,
-    ...(params ? [params] : [])
-  ] as const;
-};
-
-export const getGetHoldingsV3QueryOptions = <
-  TData = Awaited<ReturnType<typeof getHoldingsV3>>,
-  TError = ErrorType<void>
->(
-  params: GetHoldingsV3Params,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof getHoldingsV3>>,
-      TError,
-      TData
-    >;
-  }
-) => {
-  const { query: queryOptions } = options ?? {};
-
-  const queryKey = queryOptions?.queryKey ?? getGetHoldingsV3QueryKey(params);
-
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getHoldingsV3>>> = ({
-    signal
-  }) => getHoldingsV3(params, signal);
-
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getHoldingsV3>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
-
-export type GetHoldingsV3QueryResult = NonNullable<
-  Awaited<ReturnType<typeof getHoldingsV3>>
->;
-export type GetHoldingsV3QueryError = ErrorType<void>;
-
-/**
- * @summary Get placement holdings for bibliographical records.
- */
-export const useGetHoldingsV3 = <
-  TData = Awaited<ReturnType<typeof getHoldingsV3>>,
-  TError = ErrorType<void>
->(
-  params: GetHoldingsV3Params,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof getHoldingsV3>>,
-      TError,
-      TData
-    >;
-  }
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getGetHoldingsV3QueryOptions(params, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
