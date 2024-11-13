@@ -12,8 +12,8 @@
   },
   "scripts": {
     "fmt": "prettier --config ./.prettierrc --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:js": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx --max-warnings 0 --cache  --cache-location \".cache/eslint/\" ./src",
-    "lint:js:fix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx --fix ./src",
+    "lint:js": "eslint 'src/**/*.{js,ts,tsx}' --max-warnings 0 --cache --cache-location \".cache/eslint/\"",
+    "lint:js:fix": "eslint 'src/**/*.{js,ts,tsx}' --fix",
     "lint:markdown": "markdownlint-cli2",
     "lint:markdown:fix": "markdownlint-cli2-fix",
     "lint:scss": "stylelint \"./src/**/*.scss\"",
@@ -55,6 +55,8 @@
     "@csstools/postcss-sass": "^5.1.1",
     "@cypress/browserify-preprocessor": "^3.0.2",
     "@cypress/code-coverage": "^3.13.6",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.13.0",
     "@graphql-codegen/add": "^3.1.1",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/introspection": "^2.1.1",
@@ -79,8 +81,8 @@
     "@types/react-dom": "^18.3.1",
     "@types/react-flatpickr": "^3.8.11",
     "@types/react-redux": "^7.1.24",
-    "@typescript-eslint/eslint-plugin": "^5.23.0",
-    "@typescript-eslint/parser": "^7.16.0",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
     "@vitest/coverage-istanbul": "^2.1.4",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
@@ -96,12 +98,12 @@
     "cssnano": "^7.0.6",
     "cypress": "^13.0.0",
     "dotenv": "^16.4.5",
-    "eslint": "^8.57.0",
+    "eslint": "^9.13.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-loader": "^4.0.2",
-    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-cypress": "^4.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-no-only-tests": "^3.3.0",
@@ -110,6 +112,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-webpack-plugin": "^4.2.0",
     "glob": "^8.0.1",
+    "globals": "^15.12.0",
     "happy-dom": "^14.12.3",
     "istanbul-lib-coverage": "^3.2.2",
     "markdownlint-cli2": "^0.4.0",
@@ -177,5 +180,8 @@
   },
   "peerDependencies": {
     "postcss": "^8.4.48"
+  },
+  "resolutions": {
+    "globals": ">=15.12.0"
   }
 }
