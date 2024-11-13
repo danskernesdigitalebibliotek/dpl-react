@@ -1,6 +1,6 @@
-import { AgencyBranch, HoldingsV3 } from "../../../core/fbs/model";
+import { AgencyBranch, HoldingsLogisticsV1 } from "../../../core/fbs/model";
 
-const branchHoldings: HoldingsV3[] = [
+const branchHoldings: HoldingsLogisticsV1[] = [
   {
     branch: {
       branchId: "DK-775140",

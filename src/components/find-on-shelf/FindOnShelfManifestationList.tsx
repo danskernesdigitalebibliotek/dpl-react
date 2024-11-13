@@ -46,9 +46,9 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
         return (
           <FindOnShelfManifestationListItem
             shelfmark={branchHolding.manifestation.shelfmark}
-            department={branchHolding.holding.department?.title}
-            location={branchHolding.holding.location?.title}
-            sublocation={branchHolding.holding.sublocation?.title}
+            department={branchHolding.holding.lmsPlacement?.department?.title}
+            location={branchHolding.holding.lmsPlacement?.location?.title}
+            sublocation={branchHolding.holding.lmsPlacement?.sublocation?.title}
             title={branchHolding.manifestation.titles.main.join(", ")}
             publicationYear={getManifestationPublicationYear(
               branchHolding.manifestation
