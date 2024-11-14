@@ -4,7 +4,7 @@ describe("Instant Loan", () => {
   beforeEach(() => {
     cy.interceptRest({
       aliasName: "holdings",
-      url: "**/agencyid/catalog/holdings/**",
+      url: "**/agencyid/catalog/holdingsLogistics/**",
       fixtureFilePath: "material/instant-loan/holdings.json"
     });
 
@@ -75,21 +75,18 @@ describe("Instant Loan", () => {
     cy.getBySel("instant-loan-branches")
       .scrollIntoView()
       .children()
-      .should("have.length", 18);
+      .should("have.length", 1);
   });
 
   it("should render InstantLoan branch", () => {
     cy.getBySel("instant-loan").scrollIntoView().click();
 
-    // Hovedbiblioteket contains 14 materials
-    // all with matching descriptions
-    // but only three is available.
     cy.getBySel("instant-loan-branches")
       .get("li")
-      .contains("li", "Hovedbiblioteket")
+      .contains("li", "Ørestad")
       .scrollIntoView()
-      .should("contain", "Hovedbiblioteket")
-      .and("contain", "3 stk");
+      .should("contain", "Ørestad")
+      .and("contain", "2 stk");
   });
 });
 
