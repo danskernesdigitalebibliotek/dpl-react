@@ -5,10 +5,20 @@
     "reservations": 48,
     "holdings": [
       {
-        "branch": { "branchId": "DK-775127", "title": "Tranbjerg" },
-        "department": { "departmentId": "vo", "title": "Voksen" },
-        "location": null,
-        "sublocation": null,
+        "branch": {
+          "branchId": "DK-775127",
+          "title": "Tranbjerg"
+        },
+        "lmsPlacement": {
+          "location": null,
+          "sublocation": null,
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null
+        },
+        "logisticsPlacement": [],
         "materials": [
           {
             "itemNumber": "5313131426",
@@ -27,10 +37,20 @@
         ]
       },
       {
-        "branch": { "branchId": "DK-775127", "title": "Tranbjerg" },
-        "department": { "departmentId": "vo", "title": "Voksen" },
-        "location": null,
-        "sublocation": null,
+        "branch": {
+          "branchId": "DK-775127",
+          "title": "Tranbjerg"
+        },
+        "lmsPlacement": {
+          "location": null,
+          "sublocation": null,
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null
+        },
+        "logisticsPlacement": [],
         "materials": [
           {
             "itemNumber": "5313137426",
@@ -49,10 +69,20 @@
         ]
       },
       {
-        "branch": { "branchId": "DK-775122", "title": "Beder-Malling" },
-        "department": { "departmentId": "vo", "title": "Voksen" },
-        "location": null,
-        "sublocation": null,
+        "branch": {
+          "branchId": "DK-775122",
+          "title": "Beder-Malling"
+        },
+        "lmsPlacement": {
+          "location": null,
+          "sublocation": null,
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null
+        },
+        "logisticsPlacement": [],
         "materials": [
           {
             "itemNumber": "5313131418",
@@ -71,10 +101,20 @@
         ]
       },
       {
-        "branch": { "branchId": "DK-775100", "title": "Hovedbiblioteket" },
-        "department": { "departmentId": "vo", "title": "Voksen" },
-        "location": null,
-        "sublocation": null,
+        "branch": {
+          "branchId": "DK-775100",
+          "title": "Hovedbiblioteket"
+        },
+        "lmsPlacement": {
+          "location": null,
+          "sublocation": null,
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null
+        },
+        "logisticsPlacement": [],
         "materials": [
           {
             "itemNumber": "5258721529",
@@ -93,10 +133,23 @@
         ]
       },
       {
-        "branch": { "branchId": "DK-775122", "title": "Beder-Malling" },
-        "department": { "departmentId": "vo", "title": "Voksen" },
-        "location": { "locationId": "læs", "title": "Læsesal" },
-        "sublocation": null,
+        "branch": {
+          "branchId": "DK-775122",
+          "title": "Beder-Malling"
+        },
+        "lmsPlacement": {
+          "location": {
+            "locationId": "læs",
+            "title": "Læsesal"
+          },
+          "sublocation": null,
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null
+        },
+        "logisticsPlacement": [],
         "materials": [
           {
             "itemNumber": "5313126015",
