@@ -28,7 +28,8 @@ describe("Material - Infomedia", () => {
 
     cy.interceptRest({
       aliasName: "periodical holdings",
-      url: "**/agencyid/catalog/holdings/**",
+      url: "**/agencyid/catalog/holdingsLogistics/**",
+      // I'm not sure why the test is being skipped, but when we decide to fix it, the material/periodical-holdings.json should be updated as well.
       fixtureFilePath: "material/periodical-holdings.json"
     });
 
