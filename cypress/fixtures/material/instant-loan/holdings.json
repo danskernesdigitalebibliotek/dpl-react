@@ -6,1800 +6,1645 @@
     "holdings": [
       {
         "branch": {
+          "dev_comment": "The branchID is manually added to have a branchId that is whitelisted",
           "branchId": "DK-775147",
-          "title": "Hasle"
+          "title": "Ørestad"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "lmsPlacement": null,
+        "logisticsPlacement": [
+          "Ørestad",
+          "Stuen",
+          "Voksen",
+          "Krimi & Spænding"
+        ],
         "materials": [
           {
-            "itemNumber": "5385203316",
-            "available": false,
+            "itemNumber": "5385205173",
+            "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           },
           {
-            "itemNumber": "5385203472",
-            "available": false,
+            "itemNumber": "5385205262",
+            "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775140",
-          "title": "Åby"
+          "branchId": "DK-710116",
+          "title": "Tingbjerg"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385202875",
-            "available": false,
+            "itemNumber": "5387825284",
+            "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385202883",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203030",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203057",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203138",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775150",
-          "title": "Tilst"
+          "branchId": "DK-710115",
+          "title": "Sydhavn"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385203081",
+            "itemNumber": "5385204975",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385202964",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775127",
-          "title": "Tranbjerg"
+          "branchId": "DK-710105",
+          "title": "Brønshøj"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385203278",
+            "itemNumber": "5385205289",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025679",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496736",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496612",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496639",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496515",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025741",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775122",
-          "title": "Beder-Malling"
+          "branchId": "DK-710118",
+          "title": "Vanløse"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Vanløse", "Voksen", "Krimi & Spænding"],
         "materials": [
           {
-            "itemNumber": "5387025695",
+            "itemNumber": "5385205017",
             "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203537",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203464",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775130",
-          "title": "Viby"
+          "branchId": "DK-710110",
+          "title": "Biblioteket Rentemestervej"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5387007492",
+            "itemNumber": "5385205130",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025660",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025709",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496744",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203405",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203367",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203383",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203197",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203200",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496671",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775100",
+          "branchId": "DK-710115",
+          "title": "Sydhavn"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Sydhavn", "Voksen", "Krimi & Spænding"],
+        "materials": [
+          {
+            "itemNumber": "5385205025",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710104",
+          "title": "Blågården"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": [
+          "Blågården",
+          "Stuen > Voksen",
+          "Krimi & Spænding"
+        ],
+        "materials": [
+          {
+            "itemNumber": "5385205335",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710119",
+          "title": "Vesterbro"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": [
+          "Vesterbro",
+          "Stuen",
+          "Voksen",
+          "Krimi & Spænding"
+        ],
+        "materials": [
+          {
+            "itemNumber": "5385205009",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710100",
           "title": "Hovedbiblioteket"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "lmsPlacement": null,
+        "logisticsPlacement": [
+          "Hovedbiblioteket",
+          "1. sal > LITT",
+          "Krimi og spænding"
+        ],
         "materials": [
           {
-            "itemNumber": "5385203189",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203413",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203529",
+            "itemNumber": "5385204940",
             "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           },
           {
-            "itemNumber": "5385203545",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025652",
+            "itemNumber": "5385204959",
             "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           },
           {
-            "itemNumber": "5387025725",
-            "available": false,
+            "itemNumber": "5385205157",
+            "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           },
           {
-            "itemNumber": "5387025768",
-            "available": false,
+            "itemNumber": "5385205165",
+            "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203243",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496760",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203421",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775120",
-          "title": "Højbjerg"
-        },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
-        "materials": [
-          {
-            "itemNumber": "5385203065",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385202956",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          }
-        ]
-      },
-      {
-        "branch": {
-          "branchId": "DK-775126",
-          "title": "Solbjerg"
-        },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
-        "materials": [
-          {
-            "itemNumber": "5387025644",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025784",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496655",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          }
-        ]
-      },
-      {
-        "branch": {
-          "branchId": "DK-775147",
-          "title": "Hasle"
-        },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
-        "materials": [
-          {
-            "itemNumber": "5385203154",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203162",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          }
-        ]
-      },
-      {
-        "branch": {
-          "branchId": "DK-775160",
-          "title": "Risskov"
-        },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
-        "materials": [
-          {
-            "itemNumber": "5387496566",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496507",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496647",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496663",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496698",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025628",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203359",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203294",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203375",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203510",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007484",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203235",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203324",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          }
-        ]
-      },
-      {
-        "branch": {
-          "branchId": "DK-775120",
-          "title": "Højbjerg"
-        },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
-        "materials": [
-          {
-            "itemNumber": "5385203499",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007433",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496752",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496558",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025806",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025814",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496582",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          }
-        ]
-      },
-      {
-        "branch": {
-          "branchId": "DK-775170",
-          "title": "Trige"
-        },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
-        "materials": [
-          {
-            "itemNumber": "5385202867",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          }
-        ]
-      },
-      {
-        "branch": {
-          "branchId": "DK-775100",
+          "branchId": "DK-710100",
           "title": "Hovedbiblioteket"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385203022",
+            "itemNumber": "5385204932",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385202921",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385202948",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007352",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775146",
-          "title": "Harlev"
+          "branchId": "DK-710113",
+          "title": "Sundby"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5387025687",
-            "available": true,
+            "itemNumber": "5385205378",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025571",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025903",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775133",
-          "title": "Bavnehøj"
+          "branchId": "DK-710117",
+          "title": "Valby"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385203332",
-            "available": true,
+            "itemNumber": "5385205092",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203553",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775170",
-          "title": "Trige"
+          "branchId": "DK-710109",
+          "title": "Øbro Jagtvej"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385203561",
-            "available": true,
+            "itemNumber": "5385204991",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007468",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203227",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775144",
-          "title": "Gellerup"
+          "branchId": "DK-710106",
+          "title": "Christianshavn"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385203103",
+            "itemNumber": "5385205114",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203073",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775160",
-          "title": "Risskov"
+          "branchId": "FBS-101003",
+          "title": "Fjernlager (cso)"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385202891",
+            "itemNumber": "5385205041",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203146",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203049",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007379",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007387",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775168",
-          "title": "Skødstrup"
+          "branchId": "DK-710114",
+          "title": "Bibliotekshuset"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": {
+            "locationId": "mordsg",
+            "title": "Nye mordsager og nervepirrende thrillers"
+          },
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": {
-          "sublocationId": "14 dage",
-          "title": "14 dags lån"
-        },
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385202972",
-            "available": true,
+            "itemNumber": "5385197146",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "14dag-",
-              "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              "name": "Udstilling",
+              "description": "voksen udstilling"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775168",
-          "title": "Skødstrup"
+          "branchId": "FBS-101010",
+          "title": "Fjernlager 3"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": {
+            "locationId": "mordsg",
+            "title": "Nye mordsager og nervepirrende thrillers"
+          },
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5387496523",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025857",
+            "itemNumber": "5385197030",
             "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025717",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007441",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203286",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Udstilling",
+              "description": "voksen udstilling"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775149",
-          "title": "Sabro"
+          "branchId": "DK-710117",
+          "title": "Valby"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Valby", "Voksen", "Krimi & Spænding"],
         "materials": [
           {
-            "itemNumber": "5387025822",
+            "itemNumber": "5385205300",
             "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203448",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203340",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775162",
-          "title": "Hjortshøj"
+          "branchId": "DK-710104",
+          "title": "Blågården"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385203596",
+            "itemNumber": "5385205327",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           },
           {
-            "itemNumber": "5387007514",
-            "available": true,
+            "itemNumber": "5385205394",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007522",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775167",
-          "title": "Lystrup"
+          "branchId": "DK-710114",
+          "title": "Bibliotekshuset"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385203480",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025601",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496574",
+            "itemNumber": "5385204983",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           },
           {
-            "itemNumber": "5387025873",
+            "itemNumber": "5385205211",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5385205270",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775130",
-          "title": "Viby"
+          "branchId": "DK-710108",
+          "title": "Islands Brygge"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Islands Brygge", "Voksen", "Krimi & Spænding"],
         "materials": [
           {
-            "itemNumber": "5387007344",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007301",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007328",
+            "itemNumber": "5385205203",
             "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           },
           {
-            "itemNumber": "5385202905",
-            "available": false,
+            "itemNumber": "5385205106",
+            "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203111",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775149",
-          "title": "Sabro"
+          "branchId": "DK-710121",
+          "title": "Østerbro"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385203006",
-            "available": true,
+            "itemNumber": "5385205254",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007409",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775146",
-          "title": "Harlev"
+          "branchId": "DK-710120",
+          "title": "Vigerslev"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Vigerslev", "Voksen", "Krimi & Spænding"],
         "materials": [
           {
-            "itemNumber": "5385202999",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007395",
+            "itemNumber": "5385204967",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5385205343",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775140",
-          "title": "Åby"
+          "branchId": "DK-710119",
+          "title": "Vesterbro"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5387025733",
+            "itemNumber": "5385205351",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496531",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496590",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025881",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025865",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203391",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203456",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203308",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203251",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775167",
-          "title": "Lystrup"
+          "branchId": "DK-710107",
+          "title": "Husum"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5387007425",
+            "itemNumber": "5385205246",
             "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385202980",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775144",
-          "title": "Gellerup"
+          "branchId": "DK-710118",
+          "title": "Vanløse"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5387007506",
-            "available": true,
+            "itemNumber": "5385205033",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           },
           {
-            "itemNumber": "5387025776",
-            "available": true,
+            "itemNumber": "5385205068",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           },
           {
-            "itemNumber": "5387496728",
-            "available": true,
+            "itemNumber": "5385205122",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775150",
-          "title": "Tilst"
+          "branchId": "DK-710108",
+          "title": "Islands Brygge"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": {
-          "sublocationId": "14 dage",
-          "title": "14 dags lån"
-        },
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5387007360",
-            "available": true,
+            "itemNumber": "5385205319",
+            "available": false,
             "periodical": null,
             "materialGroup": {
-              "name": "14dag-",
-              "description": "14 dages lån - bogligt (kan ikke reserveres)"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775150",
-          "title": "Tilst"
+          "branchId": "DK-710111",
+          "title": "Nørrebro"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
-        },
-        "location": {
-          "locationId": "krimi",
-          "title": "Krimi"
-        },
-        "sublocation": null,
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Nørrebro", "Voksen", "Krimi & Spænding"],
         "materials": [
           {
-            "itemNumber": "5387007476",
+            "itemNumber": "5385205149",
             "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5385203170",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025830",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496701",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387496779",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025792",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025598",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387025636",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007530",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
       },
       {
         "branch": {
-          "branchId": "DK-775127",
-          "title": "Tranbjerg"
+          "branchId": "FBS-101009",
+          "title": "Fjernlager 2"
         },
-        "department": {
-          "departmentId": "vo",
-          "title": "Voksen"
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "spænd",
+            "title": "Krimi og Spænding"
+          }
         },
-        "location": {
-          "locationId": "fikdu",
-          "title": "Fik du læst"
-        },
-        "sublocation": null,
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5385202913",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
-            }
-          },
-          {
-            "itemNumber": "5387007336",
+            "itemNumber": "5385205408",
             "available": true,
             "periodical": null,
             "materialGroup": {
-              "name": "standard",
-              "description": "31 dages lånetid til alm lånere"
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5385205416",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825292",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825306",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825314",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5385205386",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005104",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005112",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005120",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005139",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005147",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005155",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005163",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005171",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005198",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005201",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005228",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005236",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005244",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005252",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005260",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005279",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005287",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005295",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005309",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005317",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005325",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005333",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005341",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005368",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005376",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005384",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005392",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005406",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005414",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005422",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005430",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005449",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005457",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005465",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387005473",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385349",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385357",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385365",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385373",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385381",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385403",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385411",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385438",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385446",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5344537072",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385462",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385470",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385489",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385497",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385500",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385519",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385527",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385535",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385543",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387385551",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825101",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825128",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825136",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825144",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825152",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825160",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825179",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825187",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825195",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825209",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825217",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825225",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825233",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825241",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825268",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5387825276",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710121",
+          "title": "Østerbro"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Østerbro", "Voksen", "Krimi & Spænding"],
+        "materials": [
+          {
+            "itemNumber": "5385205297",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5385205076",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710112",
+          "title": "Solvang"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Solvang Centret", "Voksen", "Krimi & Spænding"],
+        "materials": [
+          {
+            "itemNumber": "5385205181",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
             }
           }
         ]
