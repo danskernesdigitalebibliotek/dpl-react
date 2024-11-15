@@ -7,7 +7,7 @@
 
 export interface AgencySection {
   /** Section identifier */
-  sectionId?: string;
+  sectionId: string;
   /** Name of the section */
-  title?: string;
+  title: string;
 }

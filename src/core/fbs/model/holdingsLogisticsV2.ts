@@ -6,13 +6,13 @@
  */
 import type { AgencyBranch } from "./agencyBranch";
 import type { PlacementV1 } from "./placementV1";
-import type { MaterialV3 } from "./materialV3";
+import type { MaterialV4 } from "./materialV4";
 
-export interface HoldingsLogisticsV1 {
+export interface HoldingsLogisticsV2 {
   branch: AgencyBranch;
   lmsPlacement?: PlacementV1;
   /** Logistics placement */
   logisticsPlacement?: string[];
   /** Materials that belongs to this placement */
-  materials: MaterialV3[];
+  materials: MaterialV4[];
 }

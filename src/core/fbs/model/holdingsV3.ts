@@ -5,14 +5,16 @@
  * OpenAPI spec version: 1.0
  */
 import type { AgencyBranch } from "./agencyBranch";
-import type { PlacementV1 } from "./placementV1";
+import type { AgencyDepartment } from "./agencyDepartment";
+import type { AgencyLocation } from "./agencyLocation";
 import type { MaterialV3 } from "./materialV3";
+import type { AgencySublocation } from "./agencySublocation";
 
-export interface HoldingsLogisticsV1 {
+export interface HoldingsV3 {
   branch: AgencyBranch;
-  lmsPlacement?: PlacementV1;
-  /** Logistics placement */
-  logisticsPlacement?: string[];
+  department?: AgencyDepartment;
+  location?: AgencyLocation;
   /** Materials that belongs to this placement */
   materials: MaterialV3[];
+  sublocation?: AgencySublocation;
 }

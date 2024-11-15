@@ -26,8 +26,8 @@ import type {
   FeeV2,
   GetAvailabilityV3Params,
   GetBranchesParams,
-  GetExternalAgencyidCatalogHoldingsLogisticsV1Params,
   GetFeesV2Params,
+  GetHoldingsLogisticsV1Params,
   HoldingsForBibliographicalRecordLogisticsV1,
   LoanV2,
   PatronWithGuardianRequest,
@@ -315,7 +315,7 @@ export const useGetReservations = <
      When making a reservation of a periodical, the values to put in the PeriodicalReservation structure can be obtained
      from the periodical information retrieved with the Catalog service.
  </p>
- <p><b>This method has been deprecated use /external/v1/{agencyid}/patrons/{patronid}/reservations/add instead</b></p>
+ <p><b>This method has been deprecated use /external/v1/{agencyid}/patrons/{patronid}/reservations/v2 instead</b></p>
  * @summary Create new reservations for the patron (DEPRECATED).
  */
 export const addReservationsDeprecated = (
@@ -612,6 +612,7 @@ export const useGetReservationsV2 = <
      <li>- no_reservable_materials</li>
      <li>- interlibrary_material_not_reservable</li>
      <li>- previously_loaned_by_homebound_patron</li>
+     <li>- exceeds_max_reservations</li>
  </ul>
  <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as an error.</p>
 
@@ -794,11 +795,13 @@ export const useGetAvailabilityV3 = <
 };
 
 /**
- * Returns an array of holdings for each bibliographical record. The holdings list the materials on each placement, and whether they are available on-shelf or lent out.
+ * 
+ Returns an array of holdings for each bibliographical record.
+ The holdings lists the materials on each placement, and whether they are available on-shelf or lent out.
  * @summary Get placement holdings for bibliographical records.
  */
-export const getExternalAgencyidCatalogHoldingsLogisticsV1 = (
-  params: GetExternalAgencyidCatalogHoldingsLogisticsV1Params,
+export const getHoldingsLogisticsV1 = (
+  params: GetHoldingsLogisticsV1Params,
   signal?: AbortSignal
 ) => {
   return fetcher<HoldingsForBibliographicalRecordLogisticsV1[]>({
@@ -809,8 +812,8 @@ export const getExternalAgencyidCatalogHoldingsLogisticsV1 = (
   });
 };
 
-export const getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryKey = (
-  params: GetExternalAgencyidCatalogHoldingsLogisticsV1Params
+export const getGetHoldingsLogisticsV1QueryKey = (
+  params: GetHoldingsLogisticsV1Params
 ) => {
   return [
     `/external/agencyid/catalog/holdingsLogistics/v1`,
@@ -818,16 +821,14 @@ export const getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryKey = (
   ] as const;
 };
 
-export const getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryOptions = <
-  TData = Awaited<
-    ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>
-  >,
+export const getGetHoldingsLogisticsV1QueryOptions = <
+  TData = Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
   TError = ErrorType<void>
 >(
-  params: GetExternalAgencyidCatalogHoldingsLogisticsV1Params,
+  params: GetHoldingsLogisticsV1Params,
   options?: {
     query?: UseQueryOptions<
-      Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>,
+      Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
       TError,
       TData
     >;
@@ -836,51 +837,41 @@ export const getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryOptions = <
   const { query: queryOptions } = options ?? {};
 
   const queryKey =
-    queryOptions?.queryKey ??
-    getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryKey(params);
+    queryOptions?.queryKey ?? getGetHoldingsLogisticsV1QueryKey(params);
 
   const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>
-  > = ({ signal }) =>
-    getExternalAgencyidCatalogHoldingsLogisticsV1(params, signal);
+    Awaited<ReturnType<typeof getHoldingsLogisticsV1>>
+  > = ({ signal }) => getHoldingsLogisticsV1(params, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>,
+    Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
     TError,
     TData
   > & { queryKey: QueryKey };
 };
 
-export type GetExternalAgencyidCatalogHoldingsLogisticsV1QueryResult =
-  NonNullable<
-    Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>
-  >;
-export type GetExternalAgencyidCatalogHoldingsLogisticsV1QueryError =
-  ErrorType<void>;
+export type GetHoldingsLogisticsV1QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getHoldingsLogisticsV1>>
+>;
+export type GetHoldingsLogisticsV1QueryError = ErrorType<void>;
 
 /**
  * @summary Get placement holdings for bibliographical records.
  */
-export const useGetExternalAgencyidCatalogHoldingsLogisticsV1 = <
-  TData = Awaited<
-    ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>
-  >,
+export const useGetHoldingsLogisticsV1 = <
+  TData = Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
   TError = ErrorType<void>
 >(
-  params: GetExternalAgencyidCatalogHoldingsLogisticsV1Params,
+  params: GetHoldingsLogisticsV1Params,
   options?: {
     query?: UseQueryOptions<
-      Awaited<ReturnType<typeof getExternalAgencyidCatalogHoldingsLogisticsV1>>,
+      Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
       TError,
       TData
     >;
   }
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions =
-    getGetExternalAgencyidCatalogHoldingsLogisticsV1QueryOptions(
-      params,
-      options
-    );
+  const queryOptions = getGetHoldingsLogisticsV1QueryOptions(params, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
@@ -1249,7 +1240,7 @@ export const useUpdateGuardian = <
  <p>
  If the materials could not be renewed, the return date will be unchanged.
  </p>
-
+ <p>
  The response field renewalStatus will contain a list of one or more of these values:
  <ul>
  <li>- renewed</li>

@@ -7,11 +7,14 @@
 import type { HoldingsLogisticsV1 } from "./holdingsLogisticsV1";
 
 export interface HoldingsForBibliographicalRecordLogisticsV1 {
+  /** An array of holdings for the materials matching the bibliographical record, as distributed across branches,
+ departments and locations */
   holdings: HoldingsLogisticsV1[];
-  /** Identifies the bibliographical record for the available materials, The FAUST number */
+  /** Identifies the bibliographical record for the available materials,
+ The FAUST number */
   recordId: string;
   /** True if there is any reservable materials */
-  reservable?: boolean;
+  reservable: boolean;
   /** Total number of current active reservations for the bibliographical record */
-  reservations?: number;
+  reservations: number;
 }
