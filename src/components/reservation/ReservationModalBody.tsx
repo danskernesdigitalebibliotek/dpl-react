@@ -15,7 +15,7 @@ import ReservationFormListItem from "./ReservationFormListItem";
 import {
   AgencyBranch,
   AuthenticatedPatronV6,
-  HoldingsForBibliographicalRecordV3,
+  HoldingsForBibliographicalRecordLogisticsV1,
   ReservationResponseV2
 } from "../../core/fbs/model";
 import UserListItems from "./UserListItems";
@@ -28,7 +28,7 @@ import {
   useGetHoldings
 } from "../../apps/material/helper";
 import {
-  getGetHoldingsV3QueryKey,
+  getGetHoldingsLogisticsV1QueryKey,
   useAddReservationsV2
 } from "../../core/fbs/fbs";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -153,7 +153,7 @@ export const ReservationModalBody = ({
   }
   const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
   const { data: holdingsData } = holdingsResponse as {
-    data: HoldingsForBibliographicalRecordV3[];
+    data: HoldingsForBibliographicalRecordLogisticsV1[];
   };
   const holdings = getTotalHoldings(holdingsData);
   const reservations = getTotalReservations(holdingsData);
@@ -192,7 +192,7 @@ export const ReservationModalBody = ({
             setReservationResponse(res);
             // Because after a successful reservation the holdings (reservations) are updated.
             queryClient.invalidateQueries(
-              getGetHoldingsV3QueryKey({ recordid: faustIds })
+              getGetHoldingsLogisticsV1QueryKey({ recordid: faustIds })
             );
           },
           onError: () => {

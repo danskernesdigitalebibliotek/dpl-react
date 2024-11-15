@@ -1,6 +1,5 @@
 import { mapValues, uniq } from "lodash";
-import { Periodical } from "../../../core/fbs/model";
-import { HoldingsV3 } from "../../../core/fbs/model/holdingsV3";
+import { HoldingsLogisticsV1, Periodical } from "../../../core/fbs/model";
 
 export type PeriodicalEdition = {
   displayText: string;
@@ -29,9 +28,11 @@ export const getLatestEditionFromYear = <T extends string>(
 };
 
 // This makes a array of all periodical editions
-export function makePeriodicalEditionsFromHoldings(holdings: HoldingsV3[]) {
+export function makePeriodicalEditionsFromHoldings(
+  holdings: HoldingsLogisticsV1[]
+) {
   return holdings
-    .map((holding: HoldingsV3) => {
+    .map((holding: HoldingsLogisticsV1) => {
       // Make all editions from holdings into one array
       return holding.materials.flat().map((material) => {
         // Return a object that contains editions + itemNumber

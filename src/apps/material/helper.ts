@@ -15,12 +15,12 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import {
   getAvailabilityV3,
-  getHoldingsV3,
-  useGetHoldingsV3
+  getHoldingsLogisticsV1,
+  useGetHoldingsLogisticsV1
 } from "../../core/fbs/fbs";
 import {
-  HoldingsForBibliographicalRecordV3,
-  HoldingsV3
+  HoldingsForBibliographicalRecordLogisticsV1,
+  HoldingsLogisticsV1
 } from "../../core/fbs/model";
 import { UseConfigFunction } from "../../core/utils/config";
 import {
@@ -315,7 +315,7 @@ export const getDetailsListData = ({
 };
 
 export const getTotalHoldings = (
-  holdings: HoldingsForBibliographicalRecordV3[]
+  holdings: HoldingsForBibliographicalRecordLogisticsV1[]
 ) => {
   return holdings.reduce((acc, curr) => {
     return (
@@ -328,14 +328,16 @@ export const getTotalHoldings = (
 };
 
 export const getTotalReservations = (
-  holdings: HoldingsForBibliographicalRecordV3[]
+  holdings: HoldingsForBibliographicalRecordLogisticsV1[]
 ) => {
   return holdings.reduce((acc, curr) => {
     return acc + curr.reservations;
   }, 0);
 };
 
-export const totalAvailableMaterials = (materials: HoldingsV3["materials"]) => {
+export const totalAvailableMaterials = (
+  materials: HoldingsLogisticsV1["materials"]
+) => {
   return materials.reduce((acc, curr) => (curr.available ? acc + 1 : acc), 0);
 };
 
@@ -551,10 +553,10 @@ export const useGetHoldings = ({
   config: UseConfigFunction;
   blacklist: BlacklistType;
   options?: {
-    query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsV3>>>;
+    query?: UseQueryOptions<Awaited<ReturnType<typeof getHoldingsLogisticsV1>>>;
   };
 }) => {
-  const { data, isLoading, isError } = useGetHoldingsV3(
+  const { data, isLoading, isError } = useGetHoldingsLogisticsV1(
     getBlacklistedQueryArgs(faustIds, config, blacklist),
     options
   );
