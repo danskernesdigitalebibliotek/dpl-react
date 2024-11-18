@@ -39,6 +39,7 @@ updates:
           - "redux-persist"
       storybook:
         patterns:
+          - "storybook"
           - "@storybook/*"
       testing-library:
         patterns:
