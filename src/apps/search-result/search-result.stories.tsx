@@ -131,6 +131,10 @@ const meta: Meta<typeof SearchResultEntry> = {
       description: "Genre and form text",
       control: { type: "text" }
     },
+    facetGamePlatformText: {
+      description: "Game platform text",
+      control: { type: "text" }
+    },
     facetMainLanguagesText: {
       description: "Main languages text",
       control: { type: "text" }
@@ -239,6 +243,7 @@ export const Primary: Story = {
     facetDk5Text: "Dk5",
     facetFictionalCharactersText: "Fictional characters",
     facetFictionNonfictionText: "Fiction or nonfiction",
+    facetGamePlatformText: "Game platform",
     facetGenreAndFormText: "Genre and form",
     facetMainLanguagesText: "Main languages",
     facetMaterialTypesText: "Material types",
