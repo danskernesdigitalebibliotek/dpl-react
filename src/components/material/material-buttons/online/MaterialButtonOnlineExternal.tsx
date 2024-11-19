@@ -10,6 +10,9 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import LinkButton from "../../../Buttons/LinkButton";
+import MaterialButtonReaderTeaser from "./MaterialButtonReaderTeaser";
+import { getManifestationIsbn } from "../../../../apps/material/helper";
+import { hasReaderTeaser } from "../../../reader-player/helper";
 
 export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
@@ -91,18 +94,26 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
     }
   };
   return (
-    <LinkButton
-      url={translatedUrl}
-      buttonType="external-link"
-      variant="filled"
-      size={size || "large"}
-      iconClassNames="invert"
-      trackClick={trackOnlineView}
-      dataCy={dataCy}
-      ariaLabelledBy={ariaLabelledBy}
-    >
-      {label(origin, getMaterialTypes(manifestations))}
-    </LinkButton>
+    <>
+      <LinkButton
+        url={translatedUrl}
+        buttonType="external-link"
+        variant="filled"
+        size={size || "large"}
+        iconClassNames="invert"
+        trackClick={trackOnlineView}
+        dataCy={dataCy}
+        ariaLabelledBy={ariaLabelledBy}
+      >
+        {label(origin, getMaterialTypes(manifestations))}
+      </LinkButton>
+
+      {hasReaderTeaser(manifestations) && (
+        <MaterialButtonReaderTeaser
+          identifier={getManifestationIsbn(manifestations[0])}
+        />
+      )}
+    </>
   );
 };
 
