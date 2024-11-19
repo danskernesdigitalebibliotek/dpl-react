@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useQueryClient } from "react-query";
 import LoadIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reload.svg";
+import { useQueryClient } from "react-query";
 import { IconFavourite } from "../icon-favourite/icon-favourite";
 import {
-  removeItem,
-  useHasItem
+  getGetListQueryKey,
+  useHasItem,
+  useRemoveItem
 } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
 import { Pid, WorkId } from "../../core/utils/types/ids";
@@ -25,20 +26,23 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   darkBackground,
   title
 }) => {
-  const queryClient = useQueryClient();
   const [fillState, setFillState] = useState<boolean>(false);
   const [isLoadingHeart, setIsLoadingHeart] = useState<boolean>(true);
   const t = useText();
-  const { mutate } = useHasItem();
+  const { mutate: hasItem } = useHasItem();
+  const { mutate: removeItem } = useRemoveItem();
   const { track } = useStatistics();
+  const queryClient = useQueryClient();
+
+  const listId = "default";
 
   useEffect(() => {
     // The heart icon needs to change into a loading icon while the material
     // is being removed from the favorite list
     setIsLoadingHeart(true);
-    mutate(
+    hasItem(
       {
-        listId: "default",
+        listId,
         itemId: id
       },
       {
@@ -55,13 +59,21 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
         }
       }
     );
-  }, [id, mutate]);
+  }, [id, hasItem]);
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       if (fillState) {
-        removeItem("default", id, queryClient);
         setFillState(false);
+        removeItem(
+          { listId, itemId: id },
+          {
+            onSuccess: () => {
+              // Invalidate the query to remove any faved materials from favorites list
+              queryClient.invalidateQueries(getGetListQueryKey(listId));
+            }
+          }
+        );
       } else {
         track("click", {
           id: statistics.addToFavorites.id,
@@ -75,7 +87,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
       // this wont interfere with their click handler.
       e.stopPropagation();
     },
-    [addToListRequest, fillState, id, queryClient, track]
+    [addToListRequest, fillState, id, removeItem, track, queryClient]
   );
 
   return (
