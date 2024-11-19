@@ -24,6 +24,7 @@ type ModalProps = {
   eventCallbacks?: {
     close?: () => void;
   };
+  isFullScreen?: boolean;
 };
 
 export interface ModalIdsProps {
@@ -40,10 +41,12 @@ function Modal({
   classNames,
   isSlider,
   dataCy = "modal",
-  eventCallbacks
+  eventCallbacks,
+  isFullScreen
 }: ModalProps) {
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
+
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -79,6 +82,10 @@ function Modal({
     }
     dispatch(closeModal({ modalId }));
   };
+
+  if (isFullScreen) {
+    return <div className="modal-fullscreen">{children}</div>;
+  }
 
   return (
     <FocusTrap
