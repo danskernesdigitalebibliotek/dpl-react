@@ -64,13 +64,13 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       if (fillState) {
+        setFillState(false);
         removeItem(
           { listId, itemId: id },
           {
             onSuccess: () => {
               // Invalidate the query to remove any faved materials from favorites list
               queryClient.invalidateQueries(getGetListQueryKey(listId));
-              setFillState(false);
             }
           }
         );
