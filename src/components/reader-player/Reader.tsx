@@ -36,6 +36,10 @@ const Reader = ({ identifier, orderId }: ReaderType) => {
         // @ts-ignore
         // eslint-disable-next-line react/no-unknown-property
         identifier={identifier}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        // eslint-disable-next-line react/no-unknown-property
+        close-href={`javascript:window.closeModal('reader-modal-${identifier}')`}
       />
     );
   }
