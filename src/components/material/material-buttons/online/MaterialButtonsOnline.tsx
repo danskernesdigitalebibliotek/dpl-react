@@ -13,8 +13,6 @@ import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArt
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
-import { getManifestationIsbn } from "../../../../apps/material/helper";
-import MaterialButtonReaderTeaser from "./MaterialButtonReaderTeaser";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -60,20 +58,15 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     }
 
     return (
-      <>
-        <MaterialButtonOnlineExternal
-          externalUrl={externalUrl}
-          origin={origin}
-          size={size}
-          trackOnlineView={trackOnlineView}
-          manifestations={manifestations}
-          dataCy={`${dataCy}-external`}
-          ariaLabelledBy={ariaLabelledBy}
-        />
-        <MaterialButtonReaderTeaser
-          identifier={getManifestationIsbn(manifestations[0])}
-        />
-      </>
+      <MaterialButtonOnlineExternal
+        externalUrl={externalUrl}
+        origin={origin}
+        size={size}
+        trackOnlineView={trackOnlineView}
+        manifestations={manifestations}
+        dataCy={`${dataCy}-external`}
+        ariaLabelledBy={ariaLabelledBy}
+      />
     );
   }
 
