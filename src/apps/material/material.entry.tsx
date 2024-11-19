@@ -100,6 +100,7 @@ interface MaterialEntryTextProps {
   okButtonText: string;
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
+  onlineMaterialTeaserText: string;
   openOrderAuthenticationErrorText: string;
   openOrderErrorMissingPincodeText: string;
   openOrderInvalidOrderText: string;
@@ -148,6 +149,7 @@ interface MaterialEntryTextProps {
   queueText: string;
   ratingIsText: string;
   readArticleText: string;
+  readerModalDescriptionText: string;
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
   reservableFromAnotherLibraryText: string;

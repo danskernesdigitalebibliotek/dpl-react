@@ -33,11 +33,13 @@ import {
   getBestMaterialTypeForWork,
   getDetailsListData,
   getInfomediaIds,
+  getManifestationIsbn,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation
 } from "./helper";
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
+import ReaderModal from "../../components/material/Reader-modal/ReaderModal";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -193,6 +195,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         )}
+        <ReaderModal
+          identifier={getManifestationIsbn(selectedManifestations[0])}
+        />
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       {/* Since we cannot trust the editions for global manifestations */}

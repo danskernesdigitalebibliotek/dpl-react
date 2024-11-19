@@ -47,6 +47,22 @@ function Modal({
   const dispatch = useDispatch();
   const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
 
+  useEffect(() => {
+    // Attach the closeModal function to the window object to be able to close the modal
+    // from the reader / player.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    window.closeModal = (modalId: string) => {
+      dispatch(closeModal({ modalId }));
+    };
+
+    return () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      delete window.closeModal;
+    };
+  }, [isFullScreen, modalId, dispatch]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
