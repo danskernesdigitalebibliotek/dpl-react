@@ -1,3 +1,7 @@
+import { getMaterialTypes } from "../../core/utils/helpers/general";
+import { Manifestation } from "../../core/utils/types/entities";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+
 type AssetType = {
   src: string;
   type: "script" | "link";
@@ -58,6 +62,17 @@ export const removeAppendedAssets = () => {
     }
     appendedAssets.delete(element);
   });
+};
+
+export const hasReaderTeaser = (manifestations: Manifestation[]) => {
+  const materialTypes = getMaterialTypes(manifestations);
+  return materialTypes.some(
+    (type) =>
+      type === ManifestationMaterialType.ebook ||
+      type === ManifestationMaterialType.pictureBookOnline ||
+      type === ManifestationMaterialType.animatedSeriesOnline ||
+      type === ManifestationMaterialType.yearBookOnline
+  );
 };
 
 export default {};
