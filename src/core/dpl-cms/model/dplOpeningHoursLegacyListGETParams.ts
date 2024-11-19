@@ -5,23 +5,23 @@
  * The REST API provide by the core REST module.
  * OpenAPI spec version: Versioning not supported
  */
-import type { DplOpeningHoursListGET_Format } from "./dplOpeningHoursListGETFormat";
+import type { DplOpeningHoursLegacyListGET_Format } from "./dplOpeningHoursLegacyListGETFormat";
 
-export type DplOpeningHoursListGETParams = {
+export type DplOpeningHoursLegacyListGETParams = {
   /**
    * Request format
    */
-  _format?: DplOpeningHoursListGET_Format;
-  /**
-   * The id of the branch for which to retrieve opening hours.
-   */
-  branch_id?: number;
+  _format?: DplOpeningHoursLegacyListGET_Format;
   /**
    * Retrieve opening hours which occur after and including the provided date. In ISO 8601 format.
    */
-  from_date?: string;
+  from_date: string;
   /**
    * Retrieve opening hours which occur before and including the provided date. In ISO 8601 format.
    */
-  to_date?: string;
+  to_date: string;
+  /**
+   * The id(s) of the branch(es) for which to retrieve opening hours. Can be a single id or a comma-separated list of ids.
+   */
+  nid: number[];
 };

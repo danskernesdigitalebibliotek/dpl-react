@@ -69,7 +69,7 @@
     "@storybook/addon-queryparams": "^7.0.1",
     "@storybook/addon-webpack5-compiler-babel": "^3.0.3",
     "@storybook/react": "^8.2.9",
-    "@storybook/react-webpack5": "^8.4.2",
+    "@storybook/react-webpack5": "^8.4.4",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/react": "^14.2.2",
     "@testing-library/react-hooks": "^8.0.1",
@@ -81,7 +81,7 @@
     "@types/react-redux": "^7.1.24",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^7.16.0",
-    "@vitest/coverage-istanbul": "^2.1.4",
+    "@vitest/coverage-istanbul": "^2.1.5",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
     "babel-plugin-istanbul": "^7.0.0",
@@ -115,22 +115,22 @@
     "markdownlint-cli2": "^0.4.0",
     "mutationobserver-shim": "^0.3.7",
     "nyc": "^17.1.0",
-    "orval": "^6.26.0",
-    "postcss": "^8.4.48",
+    "orval": "^7.2.0",
+    "postcss": "^8.4.49",
     "postcss-cli": "^11.0.0",
     "postcss-loader": "^8.1.1",
     "postcss-scss": "^4.0.9",
     "prettier": "^2.6.2",
     "replace-in-file": "^6.3.2",
-    "sass": "^1.80.6",
+    "sass": "^1.81.0",
     "source-map-support": "^0.5.21",
-    "storybook": "^8.4.2",
+    "storybook": "^8.4.4",
     "style-loader": "^4.0.0",
     "stylelint": "^15.11.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended-scss": "^6.0.0",
     "stylelint-prettier": "^2.0.0",
-    "stylelint-scss": "^6.8.1",
+    "stylelint-scss": "^6.9.0",
     "stylelint-webpack-plugin": "^5.0.1",
     "svg-url-loader": "^8.0.0",
     "ts-node": "^10.9.2",
@@ -176,6 +176,6 @@
     "unfetch": "^5.0.0"
   },
   "peerDependencies": {
-    "postcss": "^8.4.48"
+    "postcss": "^8.4.49"
   }
 }
