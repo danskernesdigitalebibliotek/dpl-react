@@ -21,6 +21,7 @@ interface SearchResultEntryTextProps {
   facetDk5Text: string;
   facetFictionalCharactersText: string;
   facetFictionNonfictionText: string;
+  facetGamePlatformText: string;
   facetGenreAndFormText: string;
   facetMainLanguagesText: string;
   facetMaterialTypesText: string;
