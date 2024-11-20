@@ -11,10 +11,6 @@ const Reader = ({ identifier, orderId }: ReaderType) => {
 
     return () => {
       removeAppendedAssets();
-      // TODO: Temporary workaround to reload the page when the reader is closed.
-      // The issue seems to be related to browser caching the reader, preventing it from properly refreshing.
-      // Replace this with a better solution in the future.
-      window.location.reload();
     };
   }, [identifier, orderId]);
 
