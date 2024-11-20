@@ -110,7 +110,9 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
 
       {hasReaderTeaser(manifestations) && (
         <MaterialButtonReaderTeaser
+          size={size || "large"}
           identifier={getManifestationIsbn(manifestations[0])}
+          dataCy={`${dataCy}-teaser`}
         />
       )}
     </>
