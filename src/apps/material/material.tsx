@@ -40,6 +40,7 @@ import {
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import ReaderModal from "../../components/material/Reader-modal/ReaderModal";
+import { hasReaderTeaser } from "../../components/reader-player/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -195,9 +196,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         )}
-        <ReaderModal
-          identifier={getManifestationIsbn(selectedManifestations[0])}
-        />
+        {hasReaderTeaser(selectedManifestations) && (
+          <ReaderModal
+            identifier={getManifestationIsbn(selectedManifestations[0])}
+          />
+        )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       {/* Since we cannot trust the editions for global manifestations */}
