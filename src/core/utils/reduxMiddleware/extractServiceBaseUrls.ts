@@ -48,7 +48,9 @@ const filterUrls = (
 const extractServiceBaseUrls: Middleware<
   Record<string, never>,
   EnhancedStore
-> = () => (next) => (action) => {
+  // we need to use any here because we don't know the action type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+> = () => (next) => (action: any) => {
   if (String(action.type) === "url/addUrlEntries") {
     const {
       payload: { entries }
