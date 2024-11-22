@@ -1,8 +1,7 @@
 import React from "react";
-import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
-import MaterialSecondaryButton from "../generic/MaterialSecondaryButton";
+import MaterialSecondaryLink from "../generic/MaterialSecondaryLink";
 
 type MaterialButtonOnlineTeaserType = {
   identifier: string;
@@ -16,19 +15,13 @@ const MaterialButtonReaderTeaser = ({
   dataCy = "material-buttons-reader-teaser"
 }: MaterialButtonOnlineTeaserType) => {
   const t = useText();
-  const { open } = useModalButtonHandler();
-
-  const onClick = () => {
-    open(`reader-modal-${identifier}`);
-  };
 
   return (
-    <MaterialSecondaryButton
+    <MaterialSecondaryLink
+      url={new URL(`/reader?identifier=${identifier}`, window.location.href)}
       label={t("onlineMaterialTeaserText")}
       size={size}
-      onClick={onClick}
       dataCy={dataCy}
-      ariaDescribedBy={t("onlineMaterialTeaserText")}
     />
   );
 };

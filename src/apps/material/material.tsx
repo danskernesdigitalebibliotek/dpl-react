@@ -33,14 +33,11 @@ import {
   getBestMaterialTypeForWork,
   getDetailsListData,
   getInfomediaIds,
-  getManifestationIsbn,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation
 } from "./helper";
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
-import ReaderModal from "../../components/material/Reader-modal/ReaderModal";
-import { hasReaderTeaser } from "../reader/helper";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -194,11 +191,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             selectedPeriodical={selectedPeriodical}
             work={work}
             setSelectedPeriodical={setSelectedPeriodical}
-          />
-        )}
-        {hasReaderTeaser(selectedManifestations) && (
-          <ReaderModal
-            identifier={getManifestationIsbn(selectedManifestations[0])}
           />
         )}
       </MaterialHeader>
