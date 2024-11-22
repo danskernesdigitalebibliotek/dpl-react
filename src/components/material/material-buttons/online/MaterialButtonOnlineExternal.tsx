@@ -12,7 +12,7 @@ import { ManifestationMaterialType } from "../../../../core/utils/types/material
 import LinkButton from "../../../Buttons/LinkButton";
 import MaterialButtonReaderTeaser from "./MaterialButtonReaderTeaser";
 import { getManifestationIsbn } from "../../../../apps/material/helper";
-import { hasReaderTeaser } from "../../../reader-player/helper";
+import { hasReaderTeaser } from "../../../../apps/reader/helper";
 
 export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
