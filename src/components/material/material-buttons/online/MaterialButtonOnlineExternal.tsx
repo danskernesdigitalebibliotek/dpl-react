@@ -10,7 +10,7 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import LinkButton from "../../../Buttons/LinkButton";
-import MaterialButtonReaderTeaser from "./MaterialButtonReaderTeaser";
+import MaterialSecondaryLink from "../generic/MaterialSecondaryLink";
 import { getManifestationIsbn } from "../../../../apps/material/helper";
 import { hasReaderTeaser } from "../../../../apps/reader/helper";
 
@@ -109,9 +109,15 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
       </LinkButton>
 
       {hasReaderTeaser(manifestations) && (
-        <MaterialButtonReaderTeaser
+        <MaterialSecondaryLink
+          label={t("onlineMaterialTeaserText")}
           size={size || "large"}
-          identifier={getManifestationIsbn(manifestations[0])}
+          url={
+            new URL(
+              `/reader?identifier=${getManifestationIsbn(manifestations[0])}`,
+              window.location.href
+            )
+          }
           dataCy={`${dataCy}-teaser`}
         />
       )}
