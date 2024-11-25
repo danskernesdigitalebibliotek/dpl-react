@@ -12,7 +12,13 @@ import { ManifestationMaterialType } from "../../../../core/utils/types/material
 import LinkButton from "../../../Buttons/LinkButton";
 import MaterialSecondaryLink from "../generic/MaterialSecondaryLink";
 import { getManifestationIsbn } from "../../../../apps/material/helper";
-import { hasReaderTeaser } from "../../../../apps/reader/helper";
+import {
+  hasPlayerTeaser,
+  hasReaderTeaser
+} from "../../../../apps/reader/helper";
+import { useModalButtonHandler } from "../../../../core/utils/modal";
+import MaterialSecondaryButton from "../generic/MaterialSecondaryButton";
+import { playerModalId } from "../../player-modal/helper";
 
 export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
@@ -53,6 +59,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   dataCy = "material-button-online-external",
   ariaLabelledBy
 }) => {
+  const { open } = useModalButtonHandler();
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
   const [urlWasTranslated, setUrlWasTranslated] = useState<boolean | null>(
     null
@@ -93,6 +100,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         return t("seeOnlineText");
     }
   };
+
   return (
     <>
       <LinkButton
@@ -119,6 +127,19 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
             )
           }
           dataCy={`${dataCy}-teaser`}
+        />
+      )}
+
+      {hasPlayerTeaser(manifestations) && (
+        <MaterialSecondaryButton
+          // Todo: make onlineMaterialTeaserText take a placeholder for the type
+          label={t("onlineMaterialTeaserText")}
+          size={size || "large"}
+          onClick={() => {
+            open(playerModalId(getManifestationIsbn(manifestations[0])));
+          }}
+          dataCy={dataCy}
+          ariaDescribedBy={t("onlineMaterialTeaserText")}
         />
       )}
     </>

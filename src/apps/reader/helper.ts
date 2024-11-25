@@ -72,6 +72,7 @@ export const removeAppendedAssets = () => {
   });
 };
 
+// Todo: correct the name of this function as it is not only for reader teaser
 export const hasReaderTeaser = (manifestations: Manifestation[]) => {
   const materialTypes = getMaterialTypes(manifestations);
   return materialTypes.some(
@@ -80,6 +81,18 @@ export const hasReaderTeaser = (manifestations: Manifestation[]) => {
       type === ManifestationMaterialType.pictureBookOnline ||
       type === ManifestationMaterialType.animatedSeriesOnline ||
       type === ManifestationMaterialType.yearBookOnline
+  );
+};
+
+// Todo: correct the name of this function as it is not only for player teaser
+export const hasPlayerTeaser = (manifestations: Manifestation[]) => {
+  const materialTypes = getMaterialTypes(manifestations);
+  return materialTypes.some(
+    (type) =>
+      type === ManifestationMaterialType.audioBook ||
+      type === ManifestationMaterialType.podcast ||
+      type === ManifestationMaterialType.musicOnline ||
+      type === ManifestationMaterialType.audioBookTape
   );
 };
 
