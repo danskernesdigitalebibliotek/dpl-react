@@ -67,6 +67,14 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Edition/Week",
       control: { type: "text" }
     },
+    playerModalCloseButtonText: {
+      description: "Close",
+      control: { type: "text" }
+    },
+    playerModalDescriptionText: {
+      description: "Player modal description text",
+      control: { type: "text" }
+    },
     reserveBookText: {
       description: "Reserve",
       control: { type: "text" }
@@ -716,6 +724,8 @@ const meta: Meta<typeof MaterialEntry> = {
     materialHeaderAuthorByText: "By",
     periodicalSelectYearText: "Year",
     periodicalSelectEditionText: "Edition",
+    playerModalDescriptionText: "Modal for player",
+    playerModalCloseButtonText: "Close",
     reserveBookText: "Reserve book",
     reserveText: "Reserve",
     reserveWithMaterialTypeText: "Reserve @materialType",

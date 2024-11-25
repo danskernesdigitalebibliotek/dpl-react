@@ -16,7 +16,10 @@ export const enum ManifestationMaterialType {
   magazine = "tidsskrift",
   pictureBookOnline = "billedbog (online)",
   animatedSeriesOnline = "tegneserie (online)",
-  yearBookOnline = "årbog (online)"
+  yearBookOnline = "årbog (online)",
+  podcast = "podcast",
+  musicOnline = "musik (online)",
+  audioBookTape = "lydbog (bånd)"
 }
 
 export const enum AutosuggestCategory {
