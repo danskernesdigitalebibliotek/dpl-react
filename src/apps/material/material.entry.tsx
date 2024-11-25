@@ -145,7 +145,8 @@ interface MaterialEntryTextProps {
   outOfText: string;
   periodicalSelectEditionText: string;
   periodicalSelectYearText: string;
-  reservationDetailsPickUpAtTitleText: string;
+  playerModalCloseButtonText: string;
+  playerModalDescriptionText: string;
   queueText: string;
   ratingIsText: string;
   readArticleText: string;
@@ -153,6 +154,7 @@ interface MaterialEntryTextProps {
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
   reservableFromAnotherLibraryText: string;
+  reservationDetailsPickUpAtTitleText: string;
   reservationErrorsDescriptionText: string;
   reservationErrorsTitleText: string;
   reservationModalCloseModalAriaLabelText: string;
