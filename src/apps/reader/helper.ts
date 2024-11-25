@@ -8,6 +8,14 @@ type AssetType = {
   id: string;
 };
 
+export const playerAssets: AssetType[] = [
+  {
+    src: "https://play.pubhub.dk/1.3.0/js/player-kernel.min.js",
+    type: "script",
+    id: "player-kernel-js"
+  }
+];
+
 export const readerAssets: AssetType[] = [
   {
     src: "https://reader.pubhub.dk/2.2.0/js/chunk-vendors.js",
