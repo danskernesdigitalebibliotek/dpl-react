@@ -118,7 +118,9 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
 
       {hasReaderManifestation(manifestations) && (
         <MaterialSecondaryLink
-          label={t("onlineMaterialTeaserText")}
+          label={t("onlineMaterialTeaserText", {
+            placeholders: { "@materialType": t("ebookText") }
+          })}
           size={size || "large"}
           url={
             new URL(
@@ -132,8 +134,9 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
 
       {hasPlayerManifestation(manifestations) && (
         <MaterialSecondaryButton
-          // Todo: make onlineMaterialTeaserText take a placeholder for the type
-          label={t("onlineMaterialTeaserText")}
+          label={t("onlineMaterialTeaserText", {
+            placeholders: { "@materialType": t("audiobookText") }
+          })}
           size={size || "large"}
           onClick={() => {
             open(playerModalId(getManifestationIsbn(manifestations[0])));

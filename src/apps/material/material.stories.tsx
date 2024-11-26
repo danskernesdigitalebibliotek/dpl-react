@@ -151,6 +151,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Details",
       control: { type: "text" }
     },
+    ebookText: {
+      description: "Ebook",
+      control: { type: "text" }
+    },
     reviewsText: {
       description: "Reviews",
       control: { type: "text" }
@@ -309,6 +313,10 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     approveReservationText: {
       description: "Approve reservation",
+      control: { type: "text" }
+    },
+    audiobookText: {
+      description: "Audiobook",
       control: { type: "text" }
     },
     shiftText: {
@@ -708,6 +716,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    audiobookText: "Audiobook",
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
@@ -746,6 +755,7 @@ const meta: Meta<typeof MaterialEntry> = {
     editionsText: "Editions",
     fictionNonfictionText: "Fictional",
     detailsText: "Details",
+    ebookText: "E-book",
     reviewsText: "Reviews",
     detailsListTypeText: "Type",
     detailsListLanguageText: "Language",
@@ -790,7 +800,7 @@ const meta: Meta<typeof MaterialEntry> = {
       "You have borrowed @count out of @limit possible e-books this month",
     onlineLimitMonthAudiobookInfoText:
       "You have borrowed @count out of @limit possible audio-books this month",
-    onlineMaterialTeaserText: "Try e-book",
+    onlineMaterialTeaserText: "Try @materialType",
     approveReservationText: "Approve reservation",
     shiftText: "Change",
     reservationDetailsPickUpAtTitleText: "Pick up at",
