@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  appendAsset,
-  playerAssets,
-  removeAppendedAssets
-} from "../../apps/reader/helper";
+import { appendAsset, playerAssets, removeAppendedAssets } from "./helper";
 
 export type PlayerType =
   | {

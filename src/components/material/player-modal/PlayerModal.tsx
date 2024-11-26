@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import Player, { PlayerType } from "../../player/Player";
+import Player, { PlayerType } from "../../reader-player/Player";
 import { playerModalId } from "./helper";
 
 const PlayerModal = ({ identifier, orderId }: PlayerType) => {
