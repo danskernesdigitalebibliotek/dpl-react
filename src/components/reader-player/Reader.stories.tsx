@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import Reader from "./Reader.entry";
+import Reader from "./Reader";
 
 const meta: Meta<typeof Reader> = {
-  title: "Apps / Reader",
+  title: "ReaderPlayer / Reader",
   component: Reader,
   argTypes: {
     identifier: {

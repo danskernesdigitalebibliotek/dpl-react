@@ -15,7 +15,7 @@ import { getManifestationIsbn } from "../../../../apps/material/helper";
 import {
   hasPlayerTeaser,
   hasReaderTeaser
-} from "../../../../apps/reader/helper";
+} from "../../../reader-player/helper";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import MaterialSecondaryButton from "../generic/MaterialSecondaryButton";
 import { playerModalId } from "../../player-modal/helper";
