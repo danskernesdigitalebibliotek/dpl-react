@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Player from "./Player";
 
 const meta: Meta<typeof Player> = {
-  title: "Components / Player",
+  title: "ReaderPlayer / Player",
   component: Player,
   argTypes: {
     identifier: {

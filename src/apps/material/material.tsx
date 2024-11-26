@@ -40,7 +40,7 @@ import {
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import PlayerModal from "../../components/material/player-modal/PlayerModal";
-import { hasPlayerTeaser } from "../reader/helper";
+import { hasPlayerTeaser } from "../../components/reader-player/helper";
 
 export interface MaterialProps {
   wid: WorkId;
