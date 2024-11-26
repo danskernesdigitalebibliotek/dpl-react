@@ -13,8 +13,8 @@ import LinkButton from "../../../Buttons/LinkButton";
 import MaterialSecondaryLink from "../generic/MaterialSecondaryLink";
 import { getManifestationIsbn } from "../../../../apps/material/helper";
 import {
-  hasPlayerTeaser,
-  hasReaderTeaser
+  hasPlayerManifestation,
+  hasReaderManifestation
 } from "../../../reader-player/helper";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import MaterialSecondaryButton from "../generic/MaterialSecondaryButton";
@@ -116,7 +116,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         {label(origin, getMaterialTypes(manifestations))}
       </LinkButton>
 
-      {hasReaderTeaser(manifestations) && (
+      {hasReaderManifestation(manifestations) && (
         <MaterialSecondaryLink
           label={t("onlineMaterialTeaserText")}
           size={size || "large"}
@@ -130,7 +130,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         />
       )}
 
-      {hasPlayerTeaser(manifestations) && (
+      {hasPlayerManifestation(manifestations) && (
         <MaterialSecondaryButton
           // Todo: make onlineMaterialTeaserText take a placeholder for the type
           label={t("onlineMaterialTeaserText")}
