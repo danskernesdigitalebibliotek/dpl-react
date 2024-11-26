@@ -20,18 +20,10 @@ export default meta;
 type Story = StoryObj<typeof Player>;
 
 export const WithIdentifier: Story = {
-  render: () => (
-    <div style={{ minHeight: "250px" }}>
-      <Player identifier="9788702366600" />
-    </div>
-  )
+  render: () => <Player identifier="9788702366600" />
 };
 
 // Works only if the matrial is reserved
 export const WithOrderId: Story = {
-  render: () => (
-    <div style={{ minHeight: "250px" }}>
-      <Player orderId="" />
-    </div>
-  )
+  render: () => <Player orderId="" />
 };
