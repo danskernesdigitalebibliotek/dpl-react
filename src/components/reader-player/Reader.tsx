@@ -3,29 +3,30 @@ import { appendAsset, readerAssets, removeAppendedAssets } from "./helper";
 
 export type ReaderType = {
   identifier?: string;
-  orderId?: string;
+  // orderid must be in lowercase bacause its comes from the url / Drupal
+  orderid?: string;
 };
 
-const Reader: React.FC<ReaderType> = ({ identifier, orderId }: ReaderType) => {
+const Reader: React.FC<ReaderType> = ({ identifier, orderid }: ReaderType) => {
   useEffect(() => {
     readerAssets.forEach(appendAsset);
 
     return () => {
       removeAppendedAssets();
     };
-  }, [identifier, orderId]);
+  }, [identifier, orderid]);
 
   const readerStyles: CSSProperties = {
     height: "100vh"
   };
 
-  if (orderId) {
+  if (orderid) {
     return (
       <div
         style={readerStyles}
         id="pubhub-reader"
         // eslint-disable-next-line react/no-unknown-property
-        order-id={orderId}
+        order-id={orderid}
         // eslint-disable-next-line react/no-unknown-property, no-script-url
         close-href="javascript:window.history.back()"
       />
@@ -48,7 +49,7 @@ const Reader: React.FC<ReaderType> = ({ identifier, orderId }: ReaderType) => {
   }
 
   // eslint-disable-next-line no-console
-  console.warn("No identifier or orderId provided for the Reader app.");
+  console.warn("No identifier or orderid provided for the Reader app.");
   return null;
 };
 
