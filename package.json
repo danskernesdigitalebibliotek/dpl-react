@@ -92,7 +92,6 @@
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.1.0",
     "core-js": "^3.39.0",
-    "css-loader": "^7.1.2",
     "cssnano": "^7.0.6",
     "cypress": "^13.0.0",
     "dotenv": "^16.4.5",
@@ -122,10 +121,8 @@
     "postcss-scss": "^4.0.9",
     "prettier": "^2.6.2",
     "replace-in-file": "^6.3.2",
-    "sass": "^1.81.0",
     "source-map-support": "^0.5.21",
     "storybook": "^8.4.4",
-    "style-loader": "^4.0.0",
     "stylelint": "^15.11.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended-scss": "^6.0.0",
@@ -174,7 +171,6 @@
     "react-use": "^17.5.1",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
-    "sass-loader": "^16.0.3",
     "unfetch": "^5.0.0"
   },
   "peerDependencies": {
