@@ -9,7 +9,7 @@ const meta: Meta<typeof Reader> = {
     identifier: {
       control: { type: "text" }
     },
-    orderId: {
+    orderid: {
       control: { type: "text" }
     }
   }
@@ -25,5 +25,5 @@ export const WithIdentifier: Story = {
 
 // Works only if the matrial is reserved
 export const WithOrderId: Story = {
-  render: () => <Reader orderId="97cb3a6f-e23b-41ad-97ca-e939541feba7" />
+  render: () => <Reader orderid="97cb3a6f-e23b-41ad-97ca-e939541feba7" />
 };
