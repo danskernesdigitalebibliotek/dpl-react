@@ -3,8 +3,14 @@
     display: flex;
     justify-content: space-between;
   }
+
   &__translations {
     border-left: 1px solid #dbdbdb;
+  }
+
+  &__menu-navigation-buttons {
+    display: flex;
+    justify-content: flex-end;
   }
 
   &__select-wrapper {
@@ -30,38 +36,6 @@
     -moz-appearance: none;
     appearance: none;
 
-    .goog-te-combo {
-      background: transparent;
-      border: none;
-      outline: none;
-      padding-top: 49px;
-      cursor: pointer;
-      text-align: center;
-      //text-transform: capitalize;
-
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-
-      font-family: "Noto Sans", sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 12px;
-      &::-ms-expand {
-        display: none;
-      }
-
-      option {
-        font-family: "Noto Sans", sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-      }
-    }
-
-    .goog-te-gadget .goog-te-combo {
-      margin-top: 0;
-    }
     &::-ms-expand {
       display: none;
     }
@@ -73,11 +47,35 @@
     }
   }
 
+  .goog-te-combo {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding-top: 47px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: capitalize;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    &::-ms-expand {
+      display: none;
+    }
+
+    option {
+      font-family: "Noto Sans", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+
   &__select-icon {
     width: 24px;
     height: 24px;
     position: absolute;
-    top: 25px;
+    top: 22px;
     z-index: -1;
   }
 }
