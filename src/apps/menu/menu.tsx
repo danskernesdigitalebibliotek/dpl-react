@@ -9,6 +9,7 @@ import TextLineSkeleton from "../../components/skeletons/TextLineSkeleton";
 import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 import MenuUserUnregistered from "./menu-user-unregistered/menu-user-unregistered";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
+import Translations from "./translations/Translations";
 
 interface MenuProps {
   pageSize: number;
@@ -49,8 +50,9 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
   */
   return (
     <>
+      <Translations />
       <button
-        className="header__button header__button--left-border btn-ui"
+        className="header__button btn-ui"
         data-cy="header-menu-profile-button"
         type="button"
         aria-label={getAriaLabel()}
@@ -72,6 +74,6 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
       <MenuNotLoggedInContent />
     </>
   );
-};
+}
 
 export default Menu;

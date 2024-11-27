@@ -129,6 +129,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
                 </li>
               </ul>
             </div>
+
             {userProfile || (
               <button type="button" className="header__button">
                 <img src={profileIcon} alt="Profile" />

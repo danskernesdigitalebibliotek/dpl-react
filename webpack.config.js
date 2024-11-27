@@ -86,6 +86,10 @@ module.exports = (_env, argv) => {
           use: ["style-loader", "css-loader"]
         },
         {
+          test: /\.scss$/,
+          use: ['style-loader', 'css-loader', 'sass-loader'],
+        },
+        {
           test: /\.svg$/,
           use: [
             {

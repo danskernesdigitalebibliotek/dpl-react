@@ -29,7 +29,6 @@ import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 import useFilterHandler from "../search-result/useFilterHandler";
-import Translations from "./translations/Translations";
 
 interface SearchHeaderProps {
   isEnabledAdvancedSearch: boolean;
