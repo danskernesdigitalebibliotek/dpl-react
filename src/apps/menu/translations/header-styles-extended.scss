@@ -1,0 +1,83 @@
+.header {
+  &__menu-first {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__translations {
+    border-left: 1px solid #dbdbdb;
+  }
+
+  &__select-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 110px;
+  }
+
+  &__select {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: "Noto Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    cursor: initial;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    .goog-te-combo {
+      background: transparent;
+      border: none;
+      outline: none;
+      padding-top: 49px;
+      cursor: pointer;
+      text-align: center;
+      //text-transform: capitalize;
+
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      font-family: "Noto Sans", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      &::-ms-expand {
+        display: none;
+      }
+
+      option {
+        font-family: "Noto Sans", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+
+    .goog-te-gadget .goog-te-combo {
+      margin-top: 0;
+    }
+    &::-ms-expand {
+      display: none;
+    }
+    span {
+      display: none;
+    }
+    .skiptranslate {
+      color: transparent;
+    }
+  }
+
+  &__select-icon {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 25px;
+    z-index: -1;
+  }
+}

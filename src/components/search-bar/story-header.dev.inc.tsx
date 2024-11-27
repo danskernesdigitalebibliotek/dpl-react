@@ -7,6 +7,7 @@ import watchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import crossIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross-medium.svg";
 import expandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { useEffect, useState } from "react";
+import { useText } from "../../core/utils/text";
 
 export interface StoryHeaderProps {
   search?: React.ReactNode;
@@ -23,6 +24,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
   // replaced by {children}
   const [isEnabledAdvancedSearch, setIsEnabledAdvancedSearch] = useState(true);
   const headerMenuRef = React.useRef<HTMLDivElement>(null);
+  const t = useText();
 
   useEffect(() => {
     if (headerMenuRef.current) {
