@@ -14,7 +14,7 @@
  </ul>
  */
 export type AuthenticatedPatronV6AuthenticateStatus =
-  typeof AuthenticatedPatronV6AuthenticateStatus[keyof typeof AuthenticatedPatronV6AuthenticateStatus];
+  (typeof AuthenticatedPatronV6AuthenticateStatus)[keyof typeof AuthenticatedPatronV6AuthenticateStatus];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const AuthenticatedPatronV6AuthenticateStatus = {

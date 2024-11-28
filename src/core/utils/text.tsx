@@ -124,6 +124,7 @@ export const useText = (): UseTextFunction => {
     }
     if (data[key] === undefined) {
       if (missingPhrases[key] == null) {
+        // eslint-disable-next-line no-console
         console.warn(`The translation for ${key} is not defined.`);
 
         missingPhrases[key] = true;

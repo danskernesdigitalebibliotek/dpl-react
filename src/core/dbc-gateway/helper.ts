@@ -3,7 +3,7 @@ import { beforeAll, vi } from "vitest";
 import { getServiceBaseUrl } from "../utils/reduxMiddleware/extractServiceBaseUrls";
 import queryMap from "./queryMap";
 
-type Baseurl = typeof queryMap[keyof typeof queryMap];
+type Baseurl = (typeof queryMap)[keyof typeof queryMap];
 
 export const resolveBaseUrl = (query?: string) => {
   if (!query) {

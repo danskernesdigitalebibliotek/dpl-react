@@ -85,7 +85,8 @@
         "additionalHooks": "useDeepCompareEffect"
       }
     ],
-    "no-only-tests/no-only-tests": "warn"
+    "no-only-tests/no-only-tests": "warn",
+    "cypress/unsafe-to-chain-command": "off"
   },
   "overrides": [
     {

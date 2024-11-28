@@ -33,6 +33,7 @@ interface SearchResultEntryTextProps {
   facetYearText: string;
   facetAgeText: string;
   filterListText: string;
+  searchSortingOptionText: string;
   inSeriesText: string;
   loadingText: string;
   numberDescriptionText: string;

@@ -1,7 +1,6 @@
 import React from "react";
 import { withText } from "../../core/utils/text";
 import DemoWayfinder from "./demo-wayfinder";
-import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 export interface DemoWayfinderLinkProps {
   branchId: string;
@@ -11,8 +10,8 @@ export interface DemoWayfinderLinkProps {
   shelfmark: string;
 }
 
-const DemoWayfinderEntry: React.FC<
-  DemoWayfinderLinkProps & GlobalEntryTextProps
-> = (props: DemoWayfinderLinkProps) => <DemoWayfinder />;
+const DemoWayfinderEntry: React.FC<DemoWayfinderLinkProps> = (props: DemoWayfinderLinkProps) => {
+  return <DemoWayfinder />;
+};
 
 export default withText(DemoWayfinderEntry);

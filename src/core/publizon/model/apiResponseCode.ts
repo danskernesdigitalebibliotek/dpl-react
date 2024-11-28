@@ -11,7 +11,7 @@ Orders/loans created in test environment will not be invoiced. Please request a 
  * 101 = Success, 105 = InvalidContentIdentifier, 118 = InvalidRequestIdentity, 120 = MaxConcurrentLoansPerBorrowerExceeded, 125 = MaxAmountPerMonthExceeded, 128 = ContentNotFound, 131 = NotLoanable, 134 = CardTemporarilyBlocked, 135 = MaxLoansOnTitleReached, 136 = InsufficientCopiesException, 137 = ReservationLimitReached, 138 = GenericFault, 139 = InvalidAgreement, 140 = AlreadyReserved, 141 = InvalidEmail, 142 = InvalidPhone, 143 = CostFreeLimitReached, 147 = CountryNotFound, 148 = InvalidInstitutionId, 149 = InvalidCardFormat, 150 = InvalidCardByCulr, 151 = CardNotFound, 152 = InvalidClientId, 153 = LoanNotFound
  */
 export type ApiResponseCode =
-  typeof ApiResponseCode[keyof typeof ApiResponseCode];
+  (typeof ApiResponseCode)[keyof typeof ApiResponseCode];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ApiResponseCode = {
