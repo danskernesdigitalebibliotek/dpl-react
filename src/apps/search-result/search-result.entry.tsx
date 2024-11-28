@@ -9,7 +9,6 @@ import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-prop
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface SearchResultEntryTextProps {
-  searchSortingOptionText: string;
   addMoreFiltersText: string;
   byAuthorText: string;
   etAlText: string;

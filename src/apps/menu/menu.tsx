@@ -49,7 +49,7 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
   for reduced flakyness.
   */
   return (
-    <>
+    <div className="header__profile-traslation-container">
       <Translations />
       <button
         className="header__button btn-ui"
@@ -72,7 +72,7 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
       <MenuLoggedIn pageSize={pageSize} />
       <MenuUserUnregistered />
       <MenuNotLoggedInContent />
-    </>
+    </div>
   );
 };
 
