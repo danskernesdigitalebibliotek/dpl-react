@@ -53,14 +53,14 @@ const Translations: React.FC = () => {
 
   return (
     <div className="header__translations">
-      <div className="header__select-wrapper header__button">
+      <div className="header__translations-wrapper header__button">
         <label className="header__translations-button">
           <img
             className="header__translations-icon"
             src={languageIcon}
             alt="language icon"
           />
-          <span id="google-translate-element-label">Select language</span>
+          <span className="header__translations-label" id="google-translate-element-label">Select language</span>
           <div className="header__translations-select" id="google-translate-element" />
         </label>
       </div>
