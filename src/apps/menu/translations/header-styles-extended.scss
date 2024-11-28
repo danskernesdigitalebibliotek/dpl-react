@@ -17,10 +17,12 @@
   &__translations-button {
     line-height: 1;
     text-align: center;
+    align-self: flex-end;
+    padding-bottom: 8px;
   }
 
   &__translations-icon {
-    margin: 0 auto;
+    margin: 0 auto 4px;
     width: 24px;
     height: 24px;
   }
@@ -38,5 +40,21 @@
   &__menu-navigation-buttons {
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+@media(max-width: 768px) {
+  .header__translations-label {
+    display: none;
+  }
+
+  .header__translations-button {
+    position: relative;
+    align-self: center;
+    top: 6px;
+  }
+
+  .header__profile-traslation-container {
+    width: 112px;
   }
 }
