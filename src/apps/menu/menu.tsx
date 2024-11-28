@@ -74,6 +74,6 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
       <MenuNotLoggedInContent />
     </>
   );
-}
+};
 
 export default Menu;

@@ -73,16 +73,24 @@ const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
 
           // re-login user to re-fetch new token (the LMS token will be changed on password change)
           try {
-            const userInfoEndpoint = document.querySelector("[data-userinfo-url]")?.getAttribute("data-userinfo-url") || "";
-            const isLMS_API = userInfoEndpoint.includes("lms") && userInfoEndpoint.includes("/oauth/userinfo");
+            const userInfoEndpoint =
+              document
+                .querySelector("[data-userinfo-url]")
+                ?.getAttribute("data-userinfo-url") || "";
+            const isLmsApi =
+              userInfoEndpoint.includes("lms") &&
+              userInfoEndpoint.includes("/oauth/userinfo");
 
-            if (isLMS_API) {
+            if (isLmsApi) {
               const logoutUrl = u("logoutUrl");
               const loginUrl = u("menuLoginUrl");
 
               await window.fetch(logoutUrl.toString());
 
-              loginUrl.searchParams.set("current-path", window.location.pathname)
+              loginUrl.searchParams.set(
+                "current-path",
+                window.location.pathname
+              );
               window.location.href = loginUrl.toString();
 
               return;

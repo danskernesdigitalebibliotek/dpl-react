@@ -1,9 +1,10 @@
-@import "reset";
-@import "../../node_modules/@reach/dialog/styles";
+@use "reset";
+@use "../../node_modules/@reach/dialog/styles";
 // Component specific styling should be included here:
 
-@import "../apps/search-result/no-results";
-@import "../apps/demo-wayfinder/demo-wayfinder";
-@import "./find-on-shelf/FindOnShelfManifestationListItem";
-@import "./wayfinder/wayfinder";
-@import "./modal-styles-override";
+@use "../apps/search-result/no-results";
+@use "../apps/demo-wayfinder/demo-wayfinder";
+@use "./find-on-shelf/FindOnShelfManifestationListItem";
+@use "./wayfinder/wayfinder";
+@use "./modal-styles-override";
+@use "../apps/menu/translations/header-styles-extended";

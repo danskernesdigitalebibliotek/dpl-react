@@ -142,29 +142,31 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
               <span className="header__button-text">Liked</span>
             </a>
           </nav>
-          {(React.isValidElement(search) &&
-            React.cloneElement(search, { isEnabledAdvancedSearch })) || (
-            <div className="header__menu-search">
-              <input
-                name="q"
-                className="header__menu-search-input text-body-medium-regular"
-                type="text"
-                autoComplete="off"
-                placeholder="Cannot search in this story"
-              />
-              <input
-                type="image"
-                src={searchIcon}
-                className="header__menu-search-icon"
-                alt="search icon"
-              />
-              <img
-                className="header__menu-dropdown-icon"
-                src={expandIcon}
-                alt="expand dropdown icon"
-              />
-            </div>
-          )}
+          {
+            /* @ts-ignore-next-line */
+            (React.isValidElement(search) && React.cloneElement(search, { isEnabledAdvancedSearch })) || (
+              <div className="header__menu-search">
+                <input
+                  name="q"
+                  className="header__menu-search-input text-body-medium-regular"
+                  type="text"
+                  autoComplete="off"
+                  placeholder="Cannot search in this story"
+                />
+                <input
+                  type="image"
+                  src={searchIcon}
+                  className="header__menu-search-icon"
+                  alt="search icon"
+                />
+                <img
+                  className="header__menu-dropdown-icon"
+                  src={expandIcon}
+                  alt="expand dropdown icon"
+                />
+              </div>
+            )
+          }
         </div>
         <div className="header__clock">
           <div className="pagefold-parent--medium">

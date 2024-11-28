@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import languageIcon from "../../../components/search-bar/icon/language-icon.svg";
-import "./header-styles-extended.scss";
 
 const googleTranslateElementInit = () => {
+  // eslint-disable-next-line no-new
   new window.google.translate.TranslateElement(
     {
       pageLanguage: "da",

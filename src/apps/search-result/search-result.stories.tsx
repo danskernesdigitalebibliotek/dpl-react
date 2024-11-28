@@ -163,12 +163,20 @@ const meta: Meta<typeof SearchResultEntry> = {
       description: "Year text",
       control: { type: "text" }
     },
+    facetAgeText: {
+      name: "Age text",
+      control: { type: "text" }
+    },
     showResultsText: {
       description: "Show results text",
       control: { type: "text" }
     },
     filterListText: {
       description: "Filter list text",
+      control: { type: "text" }
+    },
+    searchSortingOptionText: {
+      name: "Search sorting option text",
       control: { type: "text" }
     },
     addMoreFiltersText: {
@@ -197,6 +205,10 @@ const meta: Meta<typeof SearchResultEntry> = {
     },
     webSearchLinkText: {
       description: "Web search link text",
+      control: { type: "text" }
+    },
+    webSearchConfig: {
+      name: "Web search config",
       control: { type: "text" }
     }
   }
@@ -252,8 +264,10 @@ export const Primary: Story = {
     facetSubjectsText: "Subjects",
     facetWorkTypesText: "Work types",
     facetYearText: "Year",
+    facetAgeText: "Age",
     showResultsText: "Show results",
     filterListText: "Filter list",
+    searchSortingOptionText: "Search sorting option text",
     addMoreFiltersText: "+ more filters",
     loadingText: "Loading",
     invalidSearchText: "Invalid search",
