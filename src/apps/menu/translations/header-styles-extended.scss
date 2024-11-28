@@ -1,7 +1,7 @@
 .header {
   &__profile-traslation-container {
-    width: 140px;
     display: flex;
+    width: auto;
     justify-content: space-between;
   }
 
@@ -12,17 +12,27 @@
     font-size: 12px;
     cursor: initial;
     position: relative;
+    border-right: 1px solid #dbdbdb;;
+  }
+
+  &__translations-wrapper.header__button {
+    width: auto;
+    padding: 0 20px;
   }
 
   &__translations-button {
     line-height: 1;
     text-align: center;
     align-self: flex-end;
-    padding-bottom: 8px;
+    padding-bottom: 5px;
+  }
+
+  &__translations-label {
+    white-space: nowrap;
   }
 
   &__translations-icon {
-    margin: 0 auto 4px;
+    margin: 0 auto 7px;
     width: 24px;
     height: 24px;
   }
