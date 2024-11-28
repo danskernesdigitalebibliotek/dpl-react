@@ -42,10 +42,10 @@ export const argTypes = {
       defaultValue: { summary: "Expired" }
     }
   },
-  materialDetailsGoToEreolenText: {
+  materialDetailsGoToMaterialText: {
     table: {
       type: { summary: "text" },
-      defaultValue: { summary: "Go to eReolen" }
+      defaultValue: { summary: "Go to material" }
     },
     control: { type: "text" }
   },
@@ -77,10 +77,10 @@ export const argTypes = {
     },
     control: { type: "text" }
   },
-  ereolenMyPageUrl: {
+  materialUrl: {
     table: {
       type: { summary: "text" },
-      defaultValue: { summary: "https://unsplash.com/photos/wd6YQy0PJt8" } // open source image of a red panda
+      defaultValue: { summary: "work/:workid" }
     },
     control: { type: "text" }
   }
@@ -94,12 +94,12 @@ export default {
   materialDetailsMaterialNumberLabelText: "Material Item Number",
   materialDetailsLinkToPageWithFeesText: "Read more about fees",
   materialDetailsOverdueText: "Expired",
-  materialDetailsGoToEreolenText: "Go to eReolen",
+  materialDetailsGoToMaterialText: "Go to material",
   materialDetailsDigitalDueDateLabelText: "Expires",
   materialDetailsRenewLoanButtonText: "Renew your loan",
   feesPageUrl: "/user/me/fees",
   viewFeesAndCompensationRatesUrl: "https://unsplash.com/photos/wd6YQy0PJt8", // open source image of a red panda
-  ereolenMyPageUrl: "https://unsplash.com/photos/wd6YQy0PJt8" // open source image of a red panda
+  materialUrl: "work/:workid"
 };
 
 export interface MaterialDetailsModalProps {
@@ -110,8 +110,8 @@ export interface MaterialDetailsModalProps {
   materialDetailsLinkToPageWithFeesText: string;
   materialDetailsOverdueText: string;
   feesPageUrl: string;
-  ereolenMyPageUrl: string;
-  materialDetailsGoToEreolenText: string;
+  materialUrl: string;
+  materialDetailsGoToMaterialText: string;
   materialDetailsDigitalDueDateLabelText: string;
   materialDetailsRenewLoanButtonText: string;
 }
