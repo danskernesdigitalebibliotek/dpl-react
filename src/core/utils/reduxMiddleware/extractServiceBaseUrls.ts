@@ -17,6 +17,13 @@ export type ServiceBaseUrls =
   | Record<Api, ApiBaseUrlKey>
   | Record<string, never>;
 
+type Action = {
+  type: string;
+  payload: {
+    entries: ServiceBaseUrls;
+  };
+};
+
 type ServiceBaseUrlKey = keyof ServiceBaseUrls;
 
 export const serviceUrlKeys = {
@@ -43,13 +50,24 @@ const filterUrls = (
       return { ...obj, ...{ [key]: urls[key as Api] } };
     }, {});
 
+// Type guard Action
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isAction = (action: any): action is Action => {
+  return (
+    action &&
+    action.type === "url/addUrlEntries" &&
+    action.payload &&
+    typeof action.payload.entries === "object"
+  );
+};
+
 // Redux middleware that extracts the service base urls from the action
 // and stores them in the serviceBaseUrls "store".
 const extractServiceBaseUrls: Middleware<
   Record<string, never>,
   EnhancedStore
 > = () => (next) => (action) => {
-  if (String(action.type) === "url/addUrlEntries") {
+  if (isAction(action)) {
     const {
       payload: { entries }
     } = action;
