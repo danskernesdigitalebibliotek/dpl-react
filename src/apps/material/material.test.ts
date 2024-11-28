@@ -539,6 +539,34 @@ describe("Material", () => {
       .should("have.attr", "aria-pressed", "false");
   });
 
+  it("Can favorite a material", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    // Intercept like button to show it as filled
+    cy.intercept("PUT", "**/list/default/**", {
+      statusCode: 200
+    }).as("Favorite list service");
+
+    cy.createFakeAuthenticatedSession();
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    // Material should show an unfilled heart icon
+    cy.get(".icon-favourite").should(
+      "not.have.class",
+      "icon-favourite--filled"
+    );
+
+    // Favorite the material
+    cy.get(".button-favourite").click();
+
+    // Material should show a filled heart icon
+    cy.get(".icon-favourite").should("have.class", "icon-favourite--filled");
+  });
+
   beforeEach(() => {
     cy.interceptRest({
       httpMethod: "POST",
@@ -577,7 +605,7 @@ describe("Material", () => {
       fixtureFilePath: "material/availability.json"
     });
 
-    // Intercept like button
+    // Intercept like button to show it as unfilled
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404
     }).as("Favorite list service");
