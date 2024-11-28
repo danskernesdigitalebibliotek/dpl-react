@@ -4,7 +4,7 @@ import {
   AgencyBranch,
   CreateReservation,
   CreateReservationBatchV2,
-  HoldingsV3
+  HoldingsLogisticsV1
 } from "../../core/fbs/model";
 import {
   convertPostIdToFaustId,
@@ -199,10 +199,10 @@ export const getReservationModalTypeTranslation = (
   }
 };
 
-export const consolidatedHoldings = (branchHoldings: HoldingsV3[]) => {
+export const consolidatedHoldings = (branchHoldings: HoldingsLogisticsV1[]) => {
   const processedBranches = new Map<
     string,
-    Pick<HoldingsV3, "branch" | "materials">
+    Pick<HoldingsLogisticsV1, "branch" | "materials">
   >();
 
   branchHoldings.forEach(({ branch, materials }) => {
@@ -224,7 +224,7 @@ export const consolidatedHoldings = (branchHoldings: HoldingsV3[]) => {
 };
 
 export const getInstantLoanBranchHoldings = (
-  branchHoldings: HoldingsV3[],
+  branchHoldings: HoldingsLogisticsV1[],
   whitelist: AgencyBranch[],
   instantLoanStrings: string[]
 ) => {
@@ -255,7 +255,7 @@ export const getInstantLoanBranchHoldings = (
 };
 
 export const getInstantLoanBranchHoldingsAboveThreshold = (
-  instantLoanBranchHoldings: HoldingsV3[],
+  instantLoanBranchHoldings: HoldingsLogisticsV1[],
   instantLoanThresholdConfig: string | null
 ) =>
   instantLoanBranchHoldings.filter(

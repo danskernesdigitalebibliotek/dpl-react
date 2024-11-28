@@ -34,7 +34,7 @@ describe("Material - Periodical", () => {
 
     cy.interceptRest({
       aliasName: "periodical holdings",
-      url: "**/agencyid/catalog/holdings/**",
+      url: "**/agencyid/catalog/holdingsLogistics/**",
       fixtureFilePath: "material/periodical-holdings.json"
     });
 
@@ -49,16 +49,16 @@ describe("Material - Periodical", () => {
     );
   });
 
-  it("Render periodical + change to 2021, nr. 52 + Aprove resevation", () => {
+  it("Render periodical + change to 2021, 32 + Aprove resevation", () => {
     cy.getBySel("material-description").scrollIntoView();
     cy.get("#year").select("2021");
-    cy.get("#editions").should("have.value", "52");
+    cy.get("#editions").should("have.value", "32");
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve tidsskrift")
       .click();
 
-    cy.get("h2").should("contain", "2021, nr. 52");
+    cy.get("h2").should("contain", "2021, 32");
 
     cy.interceptRest({
       httpMethod: "POST",

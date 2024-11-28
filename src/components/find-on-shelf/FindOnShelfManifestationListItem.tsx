@@ -6,9 +6,7 @@ import { getFindOnShelfLocationText } from "./helper";
 
 export interface FindOnShelfManifestationListItemProps {
   shelfmark: Manifestation["shelfmark"];
-  department: string | undefined;
-  location: string | undefined;
-  sublocation: string | undefined;
+  locationArray: string[];
   title: string;
   publicationYear: string | null;
   numberAvailable: number;
@@ -19,9 +17,7 @@ const FindOnShelfManifestationListItem: FC<
   FindOnShelfManifestationListItemProps
 > = ({
   shelfmark,
-  department,
-  location,
-  sublocation,
+  locationArray,
   title,
   publicationYear,
   numberAvailable,
@@ -33,10 +29,8 @@ const FindOnShelfManifestationListItem: FC<
     ? `${shelfmark.shelfmark} ${shelfmark.postfix}`
     : undefined;
 
-  const locationArray = [
-    department,
-    location,
-    sublocation,
+  const locationArrayWithShelfmark = [
+    ...locationArray,
     shelfmarkFullText
   ].filter((el) => el);
 
@@ -47,7 +41,7 @@ const FindOnShelfManifestationListItem: FC<
         {publicationYear && ` (${publicationYear})`}
       </span>
       <span role="cell">
-        {locationArray.length
+        {locationArrayWithShelfmark.length
           ? getFindOnShelfLocationText(locationArray, author)
           : t("findOnShelfModalNoLocationSpecifiedText")}
       </span>

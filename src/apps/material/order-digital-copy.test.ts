@@ -36,7 +36,7 @@ describe("Material - Order digital copy", () => {
 
     cy.interceptRest({
       aliasName: "holdings",
-      url: "**/agencyid/catalog/holdings/**",
+      url: "**/agencyid/catalog/holdingsLogistics/**",
       fixtureFilePath: "material/holdings.json"
     });
 

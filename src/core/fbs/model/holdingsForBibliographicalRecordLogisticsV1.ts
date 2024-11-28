@@ -4,12 +4,12 @@
  * FBS Adapter
  * OpenAPI spec version: 1.0
  */
-import type { HoldingsV3 } from "./holdingsV3";
+import type { HoldingsLogisticsV1 } from "./holdingsLogisticsV1";
 
-export interface HoldingsForBibliographicalRecordV3 {
+export interface HoldingsForBibliographicalRecordLogisticsV1 {
   /** An array of holdings for the materials matching the bibliographical record, as distributed across branches,
  departments and locations */
-  holdings: HoldingsV3[];
+  holdings: HoldingsLogisticsV1[];
   /** Identifies the bibliographical record for the available materials,
  The FAUST number */
   recordId: string;

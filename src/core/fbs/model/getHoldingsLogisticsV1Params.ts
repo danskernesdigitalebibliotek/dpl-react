@@ -5,7 +5,7 @@
  * OpenAPI spec version: 1.0
  */
 
-export type GetHoldingsV3Params = {
+export type GetHoldingsLogisticsV1Params = {
   /**
    * Identifies the bibliographical records - The FAUST number.
    */
