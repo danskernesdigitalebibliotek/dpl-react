@@ -17,23 +17,30 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>;
 };
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never;
+    };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-  DateTime: unknown;
-  /** An integer in the range from 1 to 100 */
-  PaginationLimitScalar: unknown;
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  DateTime: { input: unknown; output: unknown };
+  PaginationLimitScalar: { input: unknown; output: unknown };
 };
 
 export type AccessType = {
   __typename?: "AccessType";
   code: AccessTypeCodeEnum;
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
 };
 
 export enum AccessTypeCodeEnum {
@@ -52,17 +59,17 @@ export type AccessUnion =
 export type AccessUrl = {
   __typename?: "AccessUrl";
   /** If the resource requires login */
-  loginRequired: Scalars["Boolean"];
+  loginRequired: Scalars["Boolean"]["output"];
   /** Notes for the resource */
-  note?: Maybe<Scalars["String"]>;
+  note?: Maybe<Scalars["String"]["output"]>;
   /** The origin, e.g. "DBC Webarkiv" */
-  origin: Scalars["String"];
+  origin: Scalars["String"]["output"];
   /** Status from linkcheck */
   status: LinkStatusEnum;
   /** The type of content that can be found at this URL */
   type?: Maybe<AccessUrlTypeEnum>;
   /** The url where manifestation is located */
-  url: Scalars["String"];
+  url: Scalars["String"]["output"];
 };
 
 export enum AccessUrlTypeEnum {
@@ -83,21 +90,21 @@ export type Audience = {
   /** Is this material for children or adults */
   childrenOrAdults: Array<ChildOrAdult>;
   /** Appropriate audience for this manifestation */
-  generalAudience: Array<Scalars["String"]>;
+  generalAudience: Array<Scalars["String"]["output"]>;
   /** LET number of this manifestion, defines the reability level, LET stands for læseegnethedstal */
-  let?: Maybe<Scalars["String"]>;
+  let?: Maybe<Scalars["String"]["output"]>;
   /** Level of difficulty, illustrations, length, and realism in children's literature */
   levelForChildren8to12?: Maybe<LevelForAudience>;
   /** Appropriate audience as recommended by the library */
-  libraryRecommendation?: Maybe<Scalars["String"]>;
+  libraryRecommendation?: Maybe<Scalars["String"]["output"]>;
   /** Lix number of this manifestion, defines the reability level, Lix stands for læsbarhedsindex */
-  lix?: Maybe<Scalars["String"]>;
+  lix?: Maybe<Scalars["String"]["output"]>;
   /** Media council age recommendation */
   mediaCouncilAgeRestriction?: Maybe<MediaCouncilAgeRestriction>;
   /** Number of players in the game. */
   players?: Maybe<Players>;
   /** Primary target audience for this manifestation */
-  primaryTarget: Array<Scalars["String"]>;
+  primaryTarget: Array<Scalars["String"]["output"]>;
   /** Is this material for use in schools (folkeskole/ungdomsuddannelse) or is this material for use in schools by the teacher (folkeskole only) */
   schoolUse: Array<SchoolUse>;
 };
@@ -105,15 +112,15 @@ export type Audience = {
 export type CatalogueCodes = {
   __typename?: "CatalogueCodes";
   /** CatalogueCodes from the national registers */
-  nationalBibliography: Array<Scalars["String"]>;
+  nationalBibliography: Array<Scalars["String"]["output"]>;
   /** CatalogueCodes from local bibliographies or catalogues that the manifestation belongs to */
-  otherCatalogues: Array<Scalars["String"]>;
+  otherCatalogues: Array<Scalars["String"]["output"]>;
 };
 
 export type ChildOrAdult = {
   __typename?: "ChildOrAdult";
   code: ChildOrAdultCodeEnum;
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
 };
 
 export enum ChildOrAdultCodeEnum {
@@ -124,29 +131,29 @@ export enum ChildOrAdultCodeEnum {
 export type Classification = {
   __typename?: "Classification";
   /** The classification code */
-  code: Scalars["String"];
+  code: Scalars["String"]["output"];
   /** Descriptive text for the classification code (DK5 only) */
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   /** The dk5Heading for the classification (DK5 only) */
-  dk5Heading?: Maybe<Scalars["String"]>;
+  dk5Heading?: Maybe<Scalars["String"]["output"]>;
   /** For DK5 only. The DK5 entry type: main entry, national entry, or additional entry */
   entryType?: Maybe<EntryTypeEnum>;
   /** Name of the classification system */
-  system: Scalars["String"];
+  system: Scalars["String"]["output"];
 };
 
 /** The complete facet in response */
 export type ComplexSearchFacetResponse = {
   __typename?: "ComplexSearchFacetResponse";
-  name?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars["String"]["output"]>;
   values?: Maybe<Array<ComplexSearchFacetValue>>;
 };
 
 /** A Facet value in response */
 export type ComplexSearchFacetValue = {
   __typename?: "ComplexSearchFacetValue";
-  key: Scalars["String"];
-  score: Scalars["Int"];
+  key: Scalars["String"]["output"];
+  score: Scalars["Int"]["output"];
 };
 
 /** The supported facet fields */
@@ -193,58 +200,60 @@ export enum ComplexSearchFacetsEnum {
 
 /** The facets to ask for */
 export type ComplexSearchFacetsInput = {
-  facetLimit: Scalars["Int"];
+  facetLimit: Scalars["Int"]["input"];
   facets?: InputMaybe<Array<ComplexSearchFacetsEnum>>;
 };
 
 /** Search Filters */
 export type ComplexSearchFiltersInput = {
   /** Id of agency. */
-  agencyId?: InputMaybe<Array<Scalars["String"]>>;
+  agencyId?: InputMaybe<Array<Scalars["String"]["input"]>>;
   /** Name of the branch. */
-  branch?: InputMaybe<Array<Scalars["String"]>>;
+  branch?: InputMaybe<Array<Scalars["String"]["input"]>>;
   /** BranchId.  */
-  branchId?: InputMaybe<Array<Scalars["String"]>>;
+  branchId?: InputMaybe<Array<Scalars["String"]["input"]>>;
   /** Overall location in library (eg. Voksne). */
-  department?: InputMaybe<Array<Scalars["String"]>>;
+  department?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  /** Date of first accession */
+  firstAccessionDate?: InputMaybe<Scalars["String"]["input"]>;
   /** Id of publishing issue. */
-  issueId?: InputMaybe<Array<Scalars["String"]>>;
+  issueId?: InputMaybe<Array<Scalars["String"]["input"]>>;
   /** Local id of the item. */
-  itemId?: InputMaybe<Array<Scalars["String"]>>;
+  itemId?: InputMaybe<Array<Scalars["String"]["input"]>>;
   /** Where is the book physically located  (eg. skønlitteratur). */
-  location?: InputMaybe<Array<Scalars["String"]>>;
+  location?: InputMaybe<Array<Scalars["String"]["input"]>>;
   /** Onloan or OnShelf. */
   status?: InputMaybe<Array<HoldingsStatusEnum>>;
   /** More specific location (eg. Fantasy). */
-  sublocation?: InputMaybe<Array<Scalars["String"]>>;
+  sublocation?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 /** The search response */
 export type ComplexSearchResponse = {
   __typename?: "ComplexSearchResponse";
   /** Error message, for instance if CQL is invalid */
-  errorMessage?: Maybe<Scalars["String"]>;
+  errorMessage?: Maybe<Scalars["String"]["output"]>;
   /** Facets for this response */
   facets?: Maybe<Array<ComplexSearchFacetResponse>>;
   /** Total number of works found. May be used for pagination. */
-  hitcount: Scalars["Int"];
+  hitcount: Scalars["Int"]["output"];
   /** The works matching the given search query. Use offset and limit for pagination. */
   works: Array<Work>;
 };
 
 /** The search response */
 export type ComplexSearchResponseWorksArgs = {
-  limit: Scalars["PaginationLimitScalar"];
-  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
+  offset: Scalars["Int"]["input"];
   sort?: InputMaybe<Array<SortInput>>;
 };
 
 export type ComplexSearchSuggestion = {
   __typename?: "ComplexSearchSuggestion";
   /** The suggested term which can be searched for */
-  term: Scalars["String"];
+  term: Scalars["String"]["output"];
   /** The type of suggestion */
-  type: Scalars["String"];
+  type: Scalars["String"]["output"];
   /** A work related to the term */
   work?: Maybe<Work>;
 };
@@ -271,26 +280,27 @@ export enum ComplexSuggestionTypeEnum {
 
 export type Complexity = {
   __typename?: "Complexity";
-  class: Scalars["String"];
-  value: Scalars["String"];
+  class: Scalars["String"]["output"];
+  max: Scalars["Int"]["output"];
+  value: Scalars["Int"]["output"];
 };
 
 export type CopyRequestInput = {
-  authorOfComponent?: InputMaybe<Scalars["String"]>;
-  issueOfComponent?: InputMaybe<Scalars["String"]>;
-  openURL?: InputMaybe<Scalars["String"]>;
-  pagesOfComponent?: InputMaybe<Scalars["String"]>;
-  pickUpAgencySubdivision?: InputMaybe<Scalars["String"]>;
+  authorOfComponent?: InputMaybe<Scalars["String"]["input"]>;
+  issueOfComponent?: InputMaybe<Scalars["String"]["input"]>;
+  openURL?: InputMaybe<Scalars["String"]["input"]>;
+  pagesOfComponent?: InputMaybe<Scalars["String"]["input"]>;
+  pickUpAgencySubdivision?: InputMaybe<Scalars["String"]["input"]>;
   /** The pid of an article or periodica */
-  pid: Scalars["String"];
-  publicationDateOfComponent?: InputMaybe<Scalars["String"]>;
-  publicationTitle?: InputMaybe<Scalars["String"]>;
-  publicationYearOfComponent?: InputMaybe<Scalars["String"]>;
-  titleOfComponent?: InputMaybe<Scalars["String"]>;
-  userInterestDate?: InputMaybe<Scalars["String"]>;
-  userMail?: InputMaybe<Scalars["String"]>;
-  userName?: InputMaybe<Scalars["String"]>;
-  volumeOfComponent?: InputMaybe<Scalars["String"]>;
+  pid: Scalars["String"]["input"];
+  publicationDateOfComponent?: InputMaybe<Scalars["String"]["input"]>;
+  publicationTitle?: InputMaybe<Scalars["String"]["input"]>;
+  publicationYearOfComponent?: InputMaybe<Scalars["String"]["input"]>;
+  titleOfComponent?: InputMaybe<Scalars["String"]["input"]>;
+  userInterestDate?: InputMaybe<Scalars["String"]["input"]>;
+  userMail?: InputMaybe<Scalars["String"]["input"]>;
+  userName?: InputMaybe<Scalars["String"]["input"]>;
+  volumeOfComponent?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type CopyRequestResponse = {
@@ -318,44 +328,44 @@ export type Corporation = CreatorInterface &
   SubjectInterface & {
     __typename?: "Corporation";
     /** Added information about the corporation, like M. Folmer Andersen (firma) */
-    attributeToName?: Maybe<Scalars["String"]>;
+    attributeToName?: Maybe<Scalars["String"]["output"]>;
     /** The full corporation or conference name */
-    display: Scalars["String"];
+    display: Scalars["String"]["output"];
     language?: Maybe<Language>;
-    local?: Maybe<Scalars["Boolean"]>;
+    local?: Maybe<Scalars["Boolean"]["output"]>;
     /** Location or jurisdiction of the corporation or conference, like Københavns Kommune, Statistisk Kontor */
-    location?: Maybe<Scalars["String"]>;
+    location?: Maybe<Scalars["String"]["output"]>;
     /** Main corporation or conference */
-    main?: Maybe<Scalars["String"]>;
+    main?: Maybe<Scalars["String"]["output"]>;
     /** The full corporation or conference name to sort after */
-    nameSort: Scalars["String"];
+    nameSort: Scalars["String"]["output"];
     /** Number of the conference */
-    number?: Maybe<Scalars["String"]>;
+    number?: Maybe<Scalars["String"]["output"]>;
     /** A list of which kinds of contributions this corporation made to this creation */
     roles: Array<Role>;
     /** Sub corporation or conference/meeting */
-    sub?: Maybe<Scalars["String"]>;
+    sub?: Maybe<Scalars["String"]["output"]>;
     type: SubjectTypeEnum;
     /** Year of the conference */
-    year?: Maybe<Scalars["String"]>;
+    year?: Maybe<Scalars["String"]["output"]>;
   };
 
 export type Cover = {
   __typename?: "Cover";
-  detail?: Maybe<Scalars["String"]>;
-  detail42?: Maybe<Scalars["String"]>;
-  detail117?: Maybe<Scalars["String"]>;
-  detail207?: Maybe<Scalars["String"]>;
-  detail500?: Maybe<Scalars["String"]>;
-  origin?: Maybe<Scalars["String"]>;
-  thumbnail?: Maybe<Scalars["String"]>;
+  detail?: Maybe<Scalars["String"]["output"]>;
+  detail42?: Maybe<Scalars["String"]["output"]>;
+  detail117?: Maybe<Scalars["String"]["output"]>;
+  detail207?: Maybe<Scalars["String"]["output"]>;
+  detail500?: Maybe<Scalars["String"]["output"]>;
+  origin?: Maybe<Scalars["String"]["output"]>;
+  thumbnail?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type CreatorInterface = {
   /** Name of the creator */
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   /** Name of the creator which can be used to sort after  */
-  nameSort: Scalars["String"];
+  nameSort: Scalars["String"]["output"];
   /** A list of which kinds of contributions this creator made to this creation */
   roles: Array<Role>;
 };
@@ -363,44 +373,51 @@ export type CreatorInterface = {
 export type Dk5MainEntry = {
   __typename?: "DK5MainEntry";
   /** Main DK5 classification code */
-  code: Scalars["String"];
+  code: Scalars["String"]["output"];
   /** Displayable main DK5 classification */
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   /** The dk5Heading for the classification */
-  dk5Heading: Scalars["String"];
+  dk5Heading: Scalars["String"]["output"];
 };
 
 export type Debug = {
   __typename?: "Debug";
   complexity: Complexity;
+  depth: Depth;
+};
+
+export type Depth = {
+  __typename?: "Depth";
+  max: Scalars["Int"]["output"];
+  value: Scalars["Int"]["output"];
 };
 
 export type DidYouMean = {
   __typename?: "DidYouMean";
   /** An alternative query */
-  query: Scalars["String"];
+  query: Scalars["String"]["output"];
   /** A probability score between 0-1 indicating how relevant the query is */
-  score: Scalars["Float"];
+  score: Scalars["Float"]["output"];
 };
 
 export type DigitalArticleService = {
   __typename?: "DigitalArticleService";
   /** Issn which can be used to order article through Digital Article Service */
-  issn: Scalars["String"];
+  issn: Scalars["String"]["output"];
 };
 
 export type Edition = {
   __typename?: "Edition";
   /** Quotation of contributor statements related to the edition */
-  contributors: Array<Scalars["String"]>;
+  contributors: Array<Scalars["String"]["output"]>;
   /** The edition number and name */
-  edition?: Maybe<Scalars["String"]>;
+  edition?: Maybe<Scalars["String"]["output"]>;
   /** A note about this specific edition */
-  note?: Maybe<Scalars["String"]>;
+  note?: Maybe<Scalars["String"]["output"]>;
   /** A year as displayable text and as number */
   publicationYear?: Maybe<PublicationYear>;
   /** Properties 'edition', 'contributorsToEdition' and 'publicationYear' as one string, e.g.: '3. udgave, revideret af Hugin Eide, 2005' */
-  summary: Scalars["String"];
+  summary: Scalars["String"]["output"];
 };
 
 export type ElbaServices = {
@@ -409,7 +426,7 @@ export type ElbaServices = {
 };
 
 export type ElbaServicesPlaceCopyRequestArgs = {
-  dryRun?: InputMaybe<Scalars["Boolean"]>;
+  dryRun?: InputMaybe<Scalars["Boolean"]["input"]>;
   input: CopyRequestInput;
 };
 
@@ -423,13 +440,13 @@ export enum EntryTypeEnum {
 export type Ereol = {
   __typename?: "Ereol";
   /** Is this a manifestation that always can be loaned on ereolen.dk even if you've run out of loans this month */
-  canAlwaysBeLoaned: Scalars["Boolean"];
+  canAlwaysBeLoaned: Scalars["Boolean"]["output"];
   /** Notes for the resource */
-  note?: Maybe<Scalars["String"]>;
+  note?: Maybe<Scalars["String"]["output"]>;
   /** The origin, e.g. "Ereolen" or "Ereolen Go" */
-  origin: Scalars["String"];
+  origin: Scalars["String"]["output"];
   /** The url where manifestation is located */
-  url: Scalars["String"];
+  url: Scalars["String"]["output"];
 };
 
 /** The supported facet fields */
@@ -460,7 +477,7 @@ export enum FacetFieldEnum {
 export type FacetResult = {
   __typename?: "FacetResult";
   /** The name of the facet. */
-  name: Scalars["String"];
+  name: Scalars["String"]["output"];
   /** The enum type of the facet. */
   type: FacetFieldEnum;
   /** The values of thie facet result */
@@ -469,18 +486,18 @@ export type FacetResult = {
 
 /** The result for a specific facet */
 export type FacetResultValuesArgs = {
-  limit: Scalars["Int"];
+  limit: Scalars["Int"]["input"];
 };
 
 /** A facet value consists of a term and a count. */
 export type FacetValue = {
   __typename?: "FacetValue";
   /** Use the key when applying filters */
-  key: Scalars["String"];
+  key: Scalars["String"]["output"];
   /** A score indicating relevance */
-  score?: Maybe<Scalars["Int"]>;
+  score?: Maybe<Scalars["Int"]["output"]>;
   /** A value of a facet field */
-  term: Scalars["String"];
+  term: Scalars["String"]["output"];
 };
 
 export type FictionNonfiction = {
@@ -488,7 +505,7 @@ export type FictionNonfiction = {
   /** Binary code fiction/nonfiction used for filtering */
   code: FictionNonfictionCodeEnum;
   /** Displayable overall category/genre. In Danish skønlitteratur/faglitteratur for literature, fiktion/nonfiktion for other types. */
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
 };
 
 export enum FictionNonfictionCodeEnum {
@@ -502,7 +519,7 @@ export type GeneralMaterialType = {
   /** code for materialType # @TODO - is this a finite list ?? - and where to get it */
   code: GeneralMaterialTypeCodeEnum;
   /** Ths string to display */
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
 };
 
 export enum GeneralMaterialTypeCodeEnum {
@@ -533,27 +550,27 @@ export enum HoldingsStatusEnum {
 export type HostPublication = {
   __typename?: "HostPublication";
   /** Creator of the host publication if host publication is book */
-  creator?: Maybe<Scalars["String"]>;
+  creator?: Maybe<Scalars["String"]["output"]>;
   /** Edition statement for the host publication */
-  edition?: Maybe<Scalars["String"]>;
+  edition?: Maybe<Scalars["String"]["output"]>;
   /** ISBN of the publication this manifestation can be found in */
-  isbn?: Maybe<Scalars["String"]>;
+  isbn?: Maybe<Scalars["String"]["output"]>;
   /** ISSN of the publication this manifestation can be found in */
-  issn?: Maybe<Scalars["String"]>;
+  issn?: Maybe<Scalars["String"]["output"]>;
   /** The issue of the publication this manifestation can be found in */
-  issue?: Maybe<Scalars["String"]>;
+  issue?: Maybe<Scalars["String"]["output"]>;
   /** Notes about the publication where this manifestation can be found in */
-  notes?: Maybe<Array<Scalars["String"]>>;
+  notes?: Maybe<Array<Scalars["String"]["output"]>>;
   /** The pages in the publication where this manifestation can be found in */
-  pages?: Maybe<Scalars["String"]>;
+  pages?: Maybe<Scalars["String"]["output"]>;
   /** The publisher of the publication where this manifestation can be found in */
-  publisher?: Maybe<Scalars["String"]>;
+  publisher?: Maybe<Scalars["String"]["output"]>;
   /** Series of the publication this manifestation can be found in */
   series?: Maybe<Series>;
   /** All details about the publication this manifestation can be found in */
-  summary: Scalars["String"];
+  summary: Scalars["String"]["output"];
   /** Publication this manifestation can be found in */
-  title: Scalars["String"];
+  title: Scalars["String"]["output"];
   /** The publication year of the publication this manifestation can be found in */
   year?: Maybe<PublicationYear>;
 };
@@ -563,7 +580,7 @@ export type Identifier = {
   /** The type of identifier */
   type: IdentifierTypeEnum;
   /** The actual identifier */
-  value: Scalars["String"];
+  value: Scalars["String"]["output"];
 };
 
 export enum IdentifierTypeEnum {
@@ -583,16 +600,16 @@ export enum IdentifierTypeEnum {
 
 export type InfomediaArticle = {
   __typename?: "InfomediaArticle";
-  byLine?: Maybe<Scalars["String"]>;
-  dateLine?: Maybe<Scalars["String"]>;
-  headLine?: Maybe<Scalars["String"]>;
-  hedLine?: Maybe<Scalars["String"]>;
-  html?: Maybe<Scalars["String"]>;
-  id: Scalars["String"];
-  logo?: Maybe<Scalars["String"]>;
-  paper?: Maybe<Scalars["String"]>;
-  subHeadLine?: Maybe<Scalars["String"]>;
-  text?: Maybe<Scalars["String"]>;
+  byLine?: Maybe<Scalars["String"]["output"]>;
+  dateLine?: Maybe<Scalars["String"]["output"]>;
+  headLine?: Maybe<Scalars["String"]["output"]>;
+  hedLine?: Maybe<Scalars["String"]["output"]>;
+  html?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["String"]["output"];
+  logo?: Maybe<Scalars["String"]["output"]>;
+  paper?: Maybe<Scalars["String"]["output"]>;
+  subHeadLine?: Maybe<Scalars["String"]["output"]>;
+  text?: Maybe<Scalars["String"]["output"]>;
 };
 
 export enum InfomediaErrorEnum {
@@ -618,13 +635,15 @@ export type InfomediaResponse = {
 export type InfomediaService = {
   __typename?: "InfomediaService";
   /** Infomedia ID which can be used to fetch article through Infomedia Service */
-  id: Scalars["String"];
+  id: Scalars["String"]["output"];
 };
 
 export type InterLibraryLoan = {
   __typename?: "InterLibraryLoan";
+  /** Is newly added - nice to know if there are no localizations */
+  accessNew: Scalars["Boolean"]["output"];
   /** Is true when manifestation can be borrowed via ill */
-  loanIsPossible: Scalars["Boolean"];
+  loanIsPossible: Scalars["Boolean"]["output"];
 };
 
 export type ItemIdResponse = {
@@ -632,39 +651,43 @@ export type ItemIdResponse = {
   /** ItemId response object. */
   itemOrderEntity?: Maybe<ItemOrderEntity>;
   /** Message field in case of an error. */
-  message?: Maybe<Scalars["String"]>;
+  message?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type ItemOrderEntity = {
   __typename?: "ItemOrderEntity";
   /** Item ID, the same value that was queried. */
-  itemId: Scalars["String"];
+  itemId: Scalars["String"]["output"];
   /** Key for the row in the database, can be ignored as it's only relevant for ORS. */
-  itemOrderKey: Scalars["Int"];
+  itemOrderKey: Scalars["Int"]["output"];
   /** Order ID associated with the item ID. */
-  orderId: Scalars["String"];
+  orderId: Scalars["String"]["output"];
   /** Agency ID of the borrower of the material. */
-  requesterId: Scalars["String"];
+  requesterId: Scalars["String"]["output"];
   /** Agency ID of the lender of the material. */
-  responderId: Scalars["String"];
+  responderId: Scalars["String"]["output"];
   /**
    * Timestamp of when the row was created in the database.
    * Example: "2024-09-09T07:32:24.081+00:00"
    */
-  timestamp: Scalars["String"];
+  timestamp: Scalars["String"]["output"];
 };
 
 export type KidRecommenderTagsInput = {
-  tag?: InputMaybe<Scalars["String"]>;
-  weight?: InputMaybe<Scalars["Int"]>;
+  tag?: InputMaybe<Scalars["String"]["input"]>;
+  weight?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 export type Language = {
   __typename?: "Language";
   /** Language as displayable text */
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
+  /** ISO639-1 language code (2 letters) */
+  iso639Set1: Scalars["String"]["output"];
+  /** ISO639-2 language code (3 letters) */
+  iso639Set2: Scalars["String"]["output"];
   /** ISO639-2 language code */
-  isoCode: Scalars["String"];
+  isoCode: Scalars["String"]["output"];
 };
 
 export enum LanguageCodeEnum {
@@ -679,7 +702,7 @@ export type Languages = {
   /** Main language of this manifestation */
   main?: Maybe<Array<Language>>;
   /** Notes of the languages that describe subtitles, spoken/written (original, dubbed/synchonized), visual interpretation, parallel (notes are written in Danish) */
-  notes?: Maybe<Array<Scalars["String"]>>;
+  notes?: Maybe<Array<Scalars["String"]["output"]>>;
   /** Original language of this manifestation */
   original?: Maybe<Array<Language>>;
   /** Parallel languages of this manifestation, if more languages are printed in the same book */
@@ -693,21 +716,21 @@ export type Languages = {
 export type LevelForAudience = {
   __typename?: "LevelForAudience";
   /** Level expressed as integer on a scale from 1 to 5 */
-  difficulty?: Maybe<Scalars["Int"]>;
+  difficulty?: Maybe<Scalars["Int"]["output"]>;
   /** Level expressed as integer on a scale from 1 to 5 */
-  illustrationsLevel?: Maybe<Scalars["Int"]>;
+  illustrationsLevel?: Maybe<Scalars["Int"]["output"]>;
   /** Level expressed as integer on a scale from 1 to 5 */
-  length?: Maybe<Scalars["Int"]>;
+  length?: Maybe<Scalars["Int"]["output"]>;
   /** Level expressed as integer on a scale from 1 to 5 */
-  realisticVsFictional?: Maybe<Scalars["Int"]>;
+  realisticVsFictional?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type LinkCheckResponse = {
   __typename?: "LinkCheckResponse";
-  brokenSince?: Maybe<Scalars["DateTime"]>;
-  lastCheckedAt?: Maybe<Scalars["DateTime"]>;
+  brokenSince?: Maybe<Scalars["DateTime"]["output"]>;
+  lastCheckedAt?: Maybe<Scalars["DateTime"]["output"]>;
   status: LinkCheckStatusEnum;
-  url: Scalars["String"];
+  url: Scalars["String"]["output"];
 };
 
 export type LinkCheckService = {
@@ -716,7 +739,7 @@ export type LinkCheckService = {
 };
 
 export type LinkCheckServiceChecksArgs = {
-  urls?: InputMaybe<Array<Scalars["String"]>>;
+  urls?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 export enum LinkCheckStatusEnum {
@@ -741,7 +764,7 @@ export type LocalSuggestResponse = {
 export type Manifestation = {
   __typename?: "Manifestation";
   /** Abstract of the entity */
-  abstract: Array<Scalars["String"]>;
+  abstract: Array<Scalars["String"]["output"]>;
   /** Different options to access manifestation */
   access: Array<AccessUnion>;
   /** Access type of this manifestation */
@@ -755,13 +778,13 @@ export type Manifestation = {
   /** Contributors to the manifestation, actors, illustrators etc */
   contributors: Array<CreatorInterface>;
   /** Additional contributors of this manifestation as described on the publication. E.g. 'på dansk ved Vivi Berendt' */
-  contributorsFromDescription: Array<Scalars["String"]>;
+  contributorsFromDescription: Array<Scalars["String"]["output"]>;
   /** Cover for this manifestation */
   cover: Cover;
   /** Primary creators of the manifestation e.g. authors, directors, musicians etc */
   creators: Array<CreatorInterface>;
   /** Additional creators of this manifestation as described on the publication. E.g. 'tekst af William Warren' */
-  creatorsFromDescription: Array<Scalars["String"]>;
+  creatorsFromDescription: Array<Scalars["String"]["output"]>;
   /** The year for the publication of the first edition for this work  */
   dateFirstEdition?: Maybe<PublicationYear>;
   /** Edition details for this manifestation */
@@ -769,7 +792,7 @@ export type Manifestation = {
   /** Overall literary category/genre of this manifestation. e.g. fiction or nonfiction. In Danish skønlitteratur/faglitteratur for literature, fiktion/nonfiktion for other types. */
   fictionNonfiction?: Maybe<FictionNonfiction>;
   /** The genre, (literary) form, type etc. of this manifestation */
-  genreAndForm: Array<Scalars["String"]>;
+  genreAndForm: Array<Scalars["String"]["output"]>;
   /** Details about the host publications of this manifestation */
   hostPublication?: Maybe<HostPublication>;
   /** Identifiers for this manifestation - often used for search indexes */
@@ -789,11 +812,11 @@ export type Manifestation = {
   /** Physical description  of this manifestation like extent (pages/minutes), illustrations etc. */
   physicalDescription?: Maybe<PhysicalUnitDescription>;
   /** Unique identification of the manifestation e.g 870970-basis:54029519 */
-  pid: Scalars["String"];
+  pid: Scalars["String"]["output"];
   /** Publisher of this manifestion */
-  publisher: Array<Scalars["String"]>;
+  publisher: Array<Scalars["String"]["output"]>;
   /** The creation date of the record describing this manifestation in the format YYYYMMDD */
-  recordCreationDate: Scalars["String"];
+  recordCreationDate: Scalars["String"]["output"];
   /** Notes about relations to this book/periodical/journal, - like previous names or related journals */
   relatedPublications: Array<RelatedPublication>;
   /** Relations to other manifestations */
@@ -805,7 +828,7 @@ export type Manifestation = {
   /** Information about on which shelf in the library this manifestation can be found */
   shelfmark?: Maybe<Shelfmark>;
   /** The source of the manifestation, e.g. own library catalogue (Bibliotekskatalog) or online source e.g. Filmstriben, Ebook Central, eReolen Global etc. */
-  source: Array<Scalars["String"]>;
+  source: Array<Scalars["String"]["output"]>;
   /** Subjects for this manifestation */
   subjects: SubjectContainer;
   /** Quotation of the manifestation's table of contents or a similar content list */
@@ -817,7 +840,7 @@ export type Manifestation = {
   /** Universes for this manifestation */
   universes: Array<Universe>;
   /** Information about on which volume this manifestation is in multi volume work */
-  volume?: Maybe<Scalars["String"]>;
+  volume?: Maybe<Scalars["String"]["output"]>;
   /** Worktypes for this manifestations work */
   workTypes: Array<WorkTypeEnum>;
   /** The year this manifestation was originally published or produced */
@@ -829,17 +852,17 @@ export type ManifestationPart = {
   /** Classification of this entry (music track or literary analysis) */
   classifications: Array<Classification>;
   /** Contributors from description - additional contributor to this entry */
-  contributorsFromDescription: Array<Scalars["String"]>;
+  contributorsFromDescription: Array<Scalars["String"]["output"]>;
   /** The creator of the music track or literary analysis */
   creators: Array<CreatorInterface>;
   /** Additional creator or contributor to this entry (music track or literary analysis) as described on the publication. E.g. 'arr.: H. Cornell' */
-  creatorsFromDescription: Array<Scalars["String"]>;
+  creatorsFromDescription: Array<Scalars["String"]["output"]>;
   /** The playing time for this specific part (i.e. the duration of a music track)  */
-  playingTime?: Maybe<Scalars["String"]>;
+  playingTime?: Maybe<Scalars["String"]["output"]>;
   /** Subjects of this entry (music track or literary analysis) */
   subjects?: Maybe<Array<SubjectInterface>>;
   /** The title of the entry (music track or title of a literary analysis) */
-  title: Scalars["String"];
+  title: Scalars["String"]["output"];
 };
 
 export enum ManifestationPartTypeEnum {
@@ -852,7 +875,7 @@ export enum ManifestationPartTypeEnum {
 export type ManifestationParts = {
   __typename?: "ManifestationParts";
   /** Heading for the music content note */
-  heading?: Maybe<Scalars["String"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
   /** The creator and title etc of the individual parts */
   parts: Array<ManifestationPart>;
   /** The type of manifestation parts, is this music tracks, book parts etc. */
@@ -861,32 +884,32 @@ export type ManifestationParts = {
 
 export type ManifestationReview = {
   __typename?: "ManifestationReview";
-  rating?: Maybe<Scalars["String"]>;
+  rating?: Maybe<Scalars["String"]["output"]>;
   reviewByLibrarians?: Maybe<Array<Maybe<ReviewElement>>>;
 };
 
 export type ManifestationTitles = {
   __typename?: "ManifestationTitles";
   /** Alternative titles for this manifestation e.g. a title in a different language */
-  alternative: Array<Scalars["String"]>;
+  alternative: Array<Scalars["String"]["output"]>;
   /** The full title(s) of the manifestation including subtitles etc */
-  full: Array<Scalars["String"]>;
+  full: Array<Scalars["String"]["output"]>;
   /** Information that distinguishes this manifestation from a similar manifestation with same title, e.g. 'illustrated by Ted Kirby' */
-  identifyingAddition?: Maybe<Scalars["String"]>;
+  identifyingAddition?: Maybe<Scalars["String"]["output"]>;
   /** The main title(s) of the work */
-  main: Array<Scalars["String"]>;
+  main: Array<Scalars["String"]["output"]>;
   /** The title of the work that this expression/manifestation is translated from or based on. The original title(s) of a film which has a different distribution title. */
-  original?: Maybe<Array<Scalars["String"]>>;
+  original?: Maybe<Array<Scalars["String"]["output"]>>;
   /** Titles (in other languages) parallel to the main 'title' of the manifestation */
-  parallel: Array<Scalars["String"]>;
+  parallel: Array<Scalars["String"]["output"]>;
   /** The sorted title of the entity */
-  sort: Scalars["String"];
+  sort: Scalars["String"]["output"];
   /** The standard title of the entity, used for music and movies */
-  standard?: Maybe<Scalars["String"]>;
+  standard?: Maybe<Scalars["String"]["output"]>;
   /** The title of the entity with the language of the entity in parenthesis after. This field is only generated for non-danish titles. */
-  titlePlusLanguage?: Maybe<Scalars["String"]>;
+  titlePlusLanguage?: Maybe<Scalars["String"]["output"]>;
   /** Danish translation of the main title */
-  translated?: Maybe<Array<Scalars["String"]>>;
+  translated?: Maybe<Array<Scalars["String"]["output"]>>;
   /** detailed title for tv series  */
   tvSeries?: Maybe<TvSeries>;
 };
@@ -911,25 +934,25 @@ export type MaterialType = {
 export type MediaCouncilAgeRestriction = {
   __typename?: "MediaCouncilAgeRestriction";
   /** Display string for minimum age */
-  display?: Maybe<Scalars["String"]>;
+  display?: Maybe<Scalars["String"]["output"]>;
   /** Minimum age */
-  minimumAge?: Maybe<Scalars["Int"]>;
+  minimumAge?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type Mood = SubjectInterface & {
   __typename?: "Mood";
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   language?: Maybe<Language>;
-  local?: Maybe<Scalars["Boolean"]>;
+  local?: Maybe<Scalars["Boolean"]["output"]>;
   type: SubjectTypeEnum;
 };
 
 export type MoodKidsRecommendFiltersInput = {
-  difficulty?: InputMaybe<Array<Scalars["Int"]>>;
+  difficulty?: InputMaybe<Array<Scalars["Int"]["input"]>>;
   fictionNonfiction?: InputMaybe<FictionNonfictionCodeEnum>;
-  illustrationsLevel?: InputMaybe<Array<Scalars["Int"]>>;
-  length?: InputMaybe<Array<Scalars["Int"]>>;
-  realisticVsFictional?: InputMaybe<Array<Scalars["Int"]>>;
+  illustrationsLevel?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  length?: InputMaybe<Array<Scalars["Int"]["input"]>>;
+  realisticVsFictional?: InputMaybe<Array<Scalars["Int"]["input"]>>;
 };
 
 export type MoodQueries = {
@@ -943,49 +966,49 @@ export type MoodQueries = {
 };
 
 export type MoodQueriesMoodRecommendKidsArgs = {
-  dislikes?: InputMaybe<Array<Scalars["String"]>>;
+  dislikes?: InputMaybe<Array<Scalars["String"]["input"]>>;
   filters?: InputMaybe<MoodKidsRecommendFiltersInput>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
   tags?: InputMaybe<Array<KidRecommenderTagsInput>>;
-  work?: InputMaybe<Scalars["String"]>;
+  work?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MoodQueriesMoodSearchArgs = {
   field?: InputMaybe<MoodSearchFieldValuesEnum>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  q: Scalars["String"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  q: Scalars["String"]["input"];
 };
 
 export type MoodQueriesMoodSearchKidsArgs = {
   field?: InputMaybe<MoodSearchFieldValuesEnum>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  q: Scalars["String"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  q: Scalars["String"]["input"];
 };
 
 export type MoodQueriesMoodSuggestArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
-  q: Scalars["String"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  q: Scalars["String"]["input"];
 };
 
 export type MoodQueriesMoodTagRecommendArgs = {
-  hasCover?: InputMaybe<Scalars["Boolean"]>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  minus?: InputMaybe<Array<Scalars["String"]>>;
-  plus?: InputMaybe<Array<Scalars["String"]>>;
-  tags: Array<Scalars["String"]>;
+  hasCover?: InputMaybe<Scalars["Boolean"]["input"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  minus?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  plus?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  tags: Array<Scalars["String"]["input"]>;
 };
 
 export type MoodQueriesMoodWorkRecommendArgs = {
-  dislikes?: InputMaybe<Array<Scalars["String"]>>;
-  hasCover?: InputMaybe<Scalars["Boolean"]>;
-  likes: Array<Scalars["String"]>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  maxAuthorRecommendations?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  threshold?: InputMaybe<Scalars["Float"]>;
+  dislikes?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  hasCover?: InputMaybe<Scalars["Boolean"]["input"]>;
+  likes: Array<Scalars["String"]["input"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  maxAuthorRecommendations?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  threshold?: InputMaybe<Scalars["Float"]["input"]>;
 };
 
 /** The reponse from moodrecommenkids */
@@ -996,8 +1019,8 @@ export type MoodRecommendKidsResponse = {
 
 /** The reponse from moodrecommenkids */
 export type MoodRecommendKidsResponseWorksArgs = {
-  limit: Scalars["PaginationLimitScalar"];
-  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
+  offset: Scalars["Int"]["input"];
 };
 
 /** Supported fields for moodsearch request */
@@ -1017,8 +1040,8 @@ export type MoodSearchKidsResponse = {
 
 /** The reponse from moodsearchkids */
 export type MoodSearchKidsResponseWorksArgs = {
-  limit: Scalars["PaginationLimitScalar"];
-  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
+  offset: Scalars["Int"]["input"];
 };
 
 /** The response from moodsearch */
@@ -1030,8 +1053,8 @@ export type MoodSearchResponse = {
 
 /** The response from moodsearch */
 export type MoodSearchResponseWorksArgs = {
-  limit: Scalars["PaginationLimitScalar"];
-  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
+  offset: Scalars["Int"]["input"];
 };
 
 /** Type of moodSuggest response */
@@ -1045,7 +1068,7 @@ export enum MoodSuggestEnum {
 export type MoodSuggestItem = {
   __typename?: "MoodSuggestItem";
   /** Suggestion */
-  term: Scalars["String"];
+  term: Scalars["String"]["output"];
   /** The type of suggestion title/creator/tag */
   type: MoodSuggestEnum;
   /** A work associated with the suggestion */
@@ -1062,7 +1085,7 @@ export type MoodSuggestResponse = {
 /** Response type for moodTagRecommend */
 export type MoodTagRecommendResponse = {
   __typename?: "MoodTagRecommendResponse";
-  similarity?: Maybe<Scalars["Float"]>;
+  similarity?: Maybe<Scalars["Float"]["output"]>;
   work: Work;
 };
 
@@ -1073,24 +1096,24 @@ export type Mutation = {
 };
 
 export type MutationSubmitOrderArgs = {
-  dryRun?: InputMaybe<Scalars["Boolean"]>;
+  dryRun?: InputMaybe<Scalars["Boolean"]["input"]>;
   input: SubmitOrderInput;
 };
 
 export type NarrativeTechnique = SubjectInterface & {
   __typename?: "NarrativeTechnique";
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   language?: Maybe<Language>;
-  local?: Maybe<Scalars["Boolean"]>;
+  local?: Maybe<Scalars["Boolean"]["output"]>;
   type: SubjectTypeEnum;
 };
 
 export type Note = {
   __typename?: "Note";
   /** The actual notes */
-  display: Array<Scalars["String"]>;
+  display: Array<Scalars["String"]["output"]>;
   /** Heading before note */
-  heading?: Maybe<Scalars["String"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
   /** The type of note - e.g. note about language, genre etc, NOT_SPECIFIED if not known.  */
   type: NoteTypeEnum;
 };
@@ -1129,15 +1152,15 @@ export type OrsQuery = {
 };
 
 export type OrsQueryItemOrderArgs = {
-  itemId: Scalars["String"];
+  itemId: Scalars["String"]["input"];
 };
 
 export type Pegi = {
   __typename?: "PEGI";
   /** Display string for PEGI minimum age */
-  display?: Maybe<Scalars["String"]>;
+  display?: Maybe<Scalars["String"]["output"]>;
   /** Minimum age to play the game. PEGI rating */
-  minimumAge?: Maybe<Scalars["Int"]>;
+  minimumAge?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type Person = CreatorInterface &
@@ -1146,66 +1169,66 @@ export type Person = CreatorInterface &
     /** Creator aliases, creators behind used pseudonym */
     aliases: Array<Person>;
     /** Added information about the person, like Henri, konge af Frankrig */
-    attributeToName?: Maybe<Scalars["String"]>;
+    attributeToName?: Maybe<Scalars["String"]["output"]>;
     /** Birth year of the person */
-    birthYear?: Maybe<Scalars["String"]>;
+    birthYear?: Maybe<Scalars["String"]["output"]>;
     /** The person's whole name in normal order */
-    display: Scalars["String"];
+    display: Scalars["String"]["output"];
     /** First name of the person */
-    firstName?: Maybe<Scalars["String"]>;
+    firstName?: Maybe<Scalars["String"]["output"]>;
     language?: Maybe<Language>;
     /** Last name of the person */
-    lastName?: Maybe<Scalars["String"]>;
-    local?: Maybe<Scalars["Boolean"]>;
+    lastName?: Maybe<Scalars["String"]["output"]>;
+    local?: Maybe<Scalars["Boolean"]["output"]>;
     /** The person's full name inverted */
-    nameSort: Scalars["String"];
+    nameSort: Scalars["String"]["output"];
     /** A list of which kinds of contributions this person made to this creation */
     roles: Array<Role>;
     /** A roman numeral added to the person, like Christian IV */
-    romanNumeral?: Maybe<Scalars["String"]>;
+    romanNumeral?: Maybe<Scalars["String"]["output"]>;
     type: SubjectTypeEnum;
   };
 
 export type PhysicalUnitDescription = {
   __typename?: "PhysicalUnitDescription";
   /** Material that comes with the manifestation (bilag) */
-  accompanyingMaterial?: Maybe<Scalars["String"]>;
+  accompanyingMaterial?: Maybe<Scalars["String"]["output"]>;
   /** List of units contained within the material */
   materialUnits?: Maybe<Array<UnitDescription>>;
   /** Number of pages of the manifestation as number */
-  numberOfPages?: Maybe<Scalars["Int"]>;
+  numberOfPages?: Maybe<Scalars["Int"]["output"]>;
   /** A summary of the physical description of this manifestation like extent (pages/minutes), illustrations etc. */
-  summaryFull?: Maybe<Scalars["String"]>;
+  summaryFull?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type Players = {
   __typename?: "Players";
   /** Number of players interval begin. */
-  begin?: Maybe<Scalars["Int"]>;
+  begin?: Maybe<Scalars["Int"]["output"]>;
   /** Display name for the number of players. */
-  display?: Maybe<Scalars["String"]>;
+  display?: Maybe<Scalars["String"]["output"]>;
   /** Number of players interval end. */
-  end?: Maybe<Scalars["Int"]>;
+  end?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type Printing = {
   __typename?: "Printing";
   /** The printing number and name */
-  printing: Scalars["String"];
+  printing: Scalars["String"]["output"];
   /** A year as displayable text and as number */
   publicationYear?: Maybe<PublicationYear>;
   /** Publisher of printing when other than the original publisher of the edition (260*b) */
-  publisher?: Maybe<Scalars["String"]>;
+  publisher?: Maybe<Scalars["String"]["output"]>;
   /** Properties 'printing' and 'publicationYear' as one string, e.g.: '11. oplag, 2020' */
-  summary: Scalars["String"];
+  summary: Scalars["String"]["output"];
 };
 
 export type PublicationYear = {
   __typename?: "PublicationYear";
-  display: Scalars["String"];
-  endYear?: Maybe<Scalars["Int"]>;
-  frequency?: Maybe<Scalars["String"]>;
-  year?: Maybe<Scalars["Int"]>;
+  display: Scalars["String"]["output"];
+  endYear?: Maybe<Scalars["Int"]["output"]>;
+  frequency?: Maybe<Scalars["String"]["output"]>;
+  year?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type Query = {
@@ -1222,9 +1245,9 @@ export type Query = {
   ors: OrsQuery;
   /** Get recommendations */
   recommend: RecommendationResponse;
-  refWorks: Scalars["String"];
-  relatedSubjects?: Maybe<Array<Scalars["String"]>>;
-  ris: Scalars["String"];
+  refWorks: Scalars["String"]["output"];
+  relatedSubjects?: Maybe<Array<Scalars["String"]["output"]>>;
+  ris: Scalars["String"]["output"];
   search: SearchResponse;
   series?: Maybe<Series>;
   suggest: SuggestResponse;
@@ -1234,102 +1257,102 @@ export type Query = {
 };
 
 export type QueryComplexSearchArgs = {
-  cql: Scalars["String"];
+  cql: Scalars["String"]["input"];
   facets?: InputMaybe<ComplexSearchFacetsInput>;
   filters?: InputMaybe<ComplexSearchFiltersInput>;
 };
 
 export type QueryComplexSuggestArgs = {
-  q: Scalars["String"];
+  q: Scalars["String"]["input"];
   type: ComplexSuggestionTypeEnum;
 };
 
 export type QueryInfomediaArgs = {
-  id: Scalars["String"];
+  id: Scalars["String"]["input"];
 };
 
 export type QueryLocalSuggestArgs = {
-  branchId?: InputMaybe<Scalars["String"]>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  q: Scalars["String"];
+  branchId?: InputMaybe<Scalars["String"]["input"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  q: Scalars["String"]["input"];
   suggestType?: InputMaybe<Array<SuggestionTypeEnum>>;
 };
 
 export type QueryManifestationArgs = {
-  faust?: InputMaybe<Scalars["String"]>;
-  pid?: InputMaybe<Scalars["String"]>;
+  faust?: InputMaybe<Scalars["String"]["input"]>;
+  pid?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type QueryManifestationsArgs = {
-  faust?: InputMaybe<Array<Scalars["String"]>>;
-  pid?: InputMaybe<Array<Scalars["String"]>>;
+  faust?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  pid?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 export type QueryRecommendArgs = {
-  branchId?: InputMaybe<Scalars["String"]>;
-  faust?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  pid?: InputMaybe<Scalars["String"]>;
+  branchId?: InputMaybe<Scalars["String"]["input"]>;
+  faust?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["String"]["input"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  pid?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type QueryRefWorksArgs = {
-  pids: Array<Scalars["String"]>;
+  pids: Array<Scalars["String"]["input"]>;
 };
 
 export type QueryRelatedSubjectsArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
-  q: Array<Scalars["String"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  q: Array<Scalars["String"]["input"]>;
 };
 
 export type QueryRisArgs = {
-  pids: Array<Scalars["String"]>;
+  pids: Array<Scalars["String"]["input"]>;
 };
 
 export type QuerySearchArgs = {
   filters?: InputMaybe<SearchFiltersInput>;
   q: SearchQueryInput;
-  search_exact?: InputMaybe<Scalars["Boolean"]>;
+  search_exact?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type QuerySeriesArgs = {
-  seriesId: Scalars["String"];
+  seriesId: Scalars["String"]["input"];
 };
 
 export type QuerySuggestArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
-  q: Scalars["String"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  q: Scalars["String"]["input"];
   suggestType?: InputMaybe<SuggestionTypeEnum>;
   suggestTypes?: InputMaybe<Array<SuggestionTypeEnum>>;
   workType?: InputMaybe<WorkTypeEnum>;
 };
 
 export type QueryUniverseArgs = {
-  key?: InputMaybe<Scalars["String"]>;
-  universeId?: InputMaybe<Scalars["String"]>;
+  key?: InputMaybe<Scalars["String"]["input"]>;
+  universeId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type QueryWorkArgs = {
-  faust?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["String"]>;
+  faust?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["String"]["input"]>;
   language?: InputMaybe<LanguageCodeEnum>;
-  oclc?: InputMaybe<Scalars["String"]>;
-  pid?: InputMaybe<Scalars["String"]>;
+  oclc?: InputMaybe<Scalars["String"]["input"]>;
+  pid?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type QueryWorksArgs = {
-  faust?: InputMaybe<Array<Scalars["String"]>>;
-  id?: InputMaybe<Array<Scalars["String"]>>;
+  faust?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  id?: InputMaybe<Array<Scalars["String"]["input"]>>;
   language?: InputMaybe<LanguageCodeEnum>;
-  oclc?: InputMaybe<Array<Scalars["String"]>>;
-  pid?: InputMaybe<Array<Scalars["String"]>>;
+  oclc?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  pid?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 export type Range = {
   __typename?: "Range";
-  begin?: Maybe<Scalars["Int"]>;
-  display: Scalars["String"];
-  end?: Maybe<Scalars["Int"]>;
+  begin?: Maybe<Scalars["Int"]["output"]>;
+  display: Scalars["String"]["output"];
+  end?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type Recommendation = {
@@ -1337,7 +1360,7 @@ export type Recommendation = {
   /** The recommended manifestation */
   manifestation: Manifestation;
   /** Info on how this recommendation was generated */
-  reader: Array<Scalars["String"]>;
+  reader: Array<Scalars["String"]["output"]>;
   /** The recommended work */
   work: Work;
 };
@@ -1350,19 +1373,19 @@ export type RecommendationResponse = {
 export type RelatedPublication = {
   __typename?: "RelatedPublication";
   /** Faust of the related publication */
-  faust?: Maybe<Scalars["String"]>;
+  faust?: Maybe<Scalars["String"]["output"]>;
   /** Notes describing the relation of the related periodical/journal/publication */
-  heading: Scalars["String"];
+  heading: Scalars["String"]["output"];
   /** ISBN of the related publication */
-  isbn?: Maybe<Scalars["String"]>;
+  isbn?: Maybe<Scalars["String"]["output"]>;
   /** ISSN of the related periodical/journal/publication */
-  issn?: Maybe<Scalars["String"]>;
+  issn?: Maybe<Scalars["String"]["output"]>;
   /** Title of the related periodical/journal */
-  title: Array<Scalars["String"]>;
+  title: Array<Scalars["String"]["output"]>;
   /** URL of the related publication */
-  url?: Maybe<Scalars["String"]>;
+  url?: Maybe<Scalars["String"]["output"]>;
   /** Note regarding the URL of the related publication */
-  urlText?: Maybe<Scalars["String"]>;
+  urlText?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type Relations = {
@@ -1417,14 +1440,14 @@ export type Relations = {
 
 export type ReviewElement = {
   __typename?: "ReviewElement";
-  content?: Maybe<Scalars["String"]>;
+  content?: Maybe<Scalars["String"]["output"]>;
   /**
    * This is a paragraph containing markup where links to manifestations
    * can be inserted. For instance '"Axel Steens nye job minder om [870970-basis:20307021] fra ...'.
    * Relevant manifestations are located in the manifestations field.
    */
-  contentSubstitute?: Maybe<Scalars["String"]>;
-  heading?: Maybe<Scalars["String"]>;
+  contentSubstitute?: Maybe<Scalars["String"]["output"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
   /** Manifestations that can be used to generate and insert links into 'contentSubsitute'. */
   manifestations?: Maybe<Array<Maybe<Manifestation>>>;
   type?: Maybe<ReviewElementTypeEnum>;
@@ -1445,13 +1468,13 @@ export type Role = {
   /** The type of creator/contributor as text in singular and plural in Danish, e.g. forfatter/forfattere, komponist/komponister etc */
   function: Translation;
   /** The code for the type of creator or contributor, e.g. 'aut' for author, 'ill' for illustrator etc */
-  functionCode: Scalars["String"];
+  functionCode: Scalars["String"]["output"];
 };
 
 export type SchoolUse = {
   __typename?: "SchoolUse";
   code: SchoolUseCodeEnum;
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
 };
 
 export enum SchoolUseCodeEnum {
@@ -1461,31 +1484,31 @@ export enum SchoolUseCodeEnum {
 
 /** Search Filters */
 export type SearchFiltersInput = {
-  accessTypes?: InputMaybe<Array<Scalars["String"]>>;
-  age?: InputMaybe<Array<Scalars["String"]>>;
-  ageRange?: InputMaybe<Array<Scalars["String"]>>;
-  branchId?: InputMaybe<Array<Scalars["String"]>>;
-  canAlwaysBeLoaned?: InputMaybe<Array<Scalars["String"]>>;
-  childrenOrAdults?: InputMaybe<Array<Scalars["String"]>>;
-  creators?: InputMaybe<Array<Scalars["String"]>>;
-  department?: InputMaybe<Array<Scalars["String"]>>;
-  dk5?: InputMaybe<Array<Scalars["String"]>>;
-  fictionNonfiction?: InputMaybe<Array<Scalars["String"]>>;
-  fictionalCharacters?: InputMaybe<Array<Scalars["String"]>>;
-  generalAudience?: InputMaybe<Array<Scalars["String"]>>;
-  genreAndForm?: InputMaybe<Array<Scalars["String"]>>;
-  letRange?: InputMaybe<Array<Scalars["String"]>>;
-  libraryRecommendation?: InputMaybe<Array<Scalars["String"]>>;
-  lixRange?: InputMaybe<Array<Scalars["String"]>>;
-  location?: InputMaybe<Array<Scalars["String"]>>;
-  mainLanguages?: InputMaybe<Array<Scalars["String"]>>;
-  materialTypesGeneral?: InputMaybe<Array<Scalars["String"]>>;
-  materialTypesSpecific?: InputMaybe<Array<Scalars["String"]>>;
+  accessTypes?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  age?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  ageRange?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  branchId?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  canAlwaysBeLoaned?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  childrenOrAdults?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  creators?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  department?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  dk5?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  fictionNonfiction?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  fictionalCharacters?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  generalAudience?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  genreAndForm?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  letRange?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  libraryRecommendation?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  lixRange?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  location?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  mainLanguages?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  materialTypesGeneral?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  materialTypesSpecific?: InputMaybe<Array<Scalars["String"]["input"]>>;
   status?: InputMaybe<Array<HoldingsStatusEnum>>;
-  subjects?: InputMaybe<Array<Scalars["String"]>>;
-  sublocation?: InputMaybe<Array<Scalars["String"]>>;
-  workTypes?: InputMaybe<Array<Scalars["String"]>>;
-  year?: InputMaybe<Array<Scalars["String"]>>;
+  subjects?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  sublocation?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  workTypes?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  year?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 /** The supported fields to query */
@@ -1494,13 +1517,13 @@ export type SearchQueryInput = {
    * Search for title, creator, subject or a combination.
    * This is typically used where a single search box is desired.
    */
-  all?: InputMaybe<Scalars["String"]>;
+  all?: InputMaybe<Scalars["String"]["input"]>;
   /** Search for creator */
-  creator?: InputMaybe<Scalars["String"]>;
+  creator?: InputMaybe<Scalars["String"]["input"]>;
   /** Search for specific subject */
-  subject?: InputMaybe<Scalars["String"]>;
+  subject?: InputMaybe<Scalars["String"]["input"]>;
   /** Search for specific title */
-  title?: InputMaybe<Scalars["String"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** The simple search response */
@@ -1514,7 +1537,7 @@ export type SearchResponse = {
    */
   facets: Array<FacetResult>;
   /** Total number of works found. May be used for pagination. */
-  hitcount: Scalars["Int"];
+  hitcount: Scalars["Int"]["output"];
   /** Will return the facets that best match the input query and filters */
   intelligentFacets: Array<FacetResult>;
   /** The works matching the given search query. Use offset and limit for pagination. */
@@ -1523,7 +1546,7 @@ export type SearchResponse = {
 
 /** The simple search response */
 export type SearchResponseDidYouMeanArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** The simple search response */
@@ -1533,23 +1556,23 @@ export type SearchResponseFacetsArgs = {
 
 /** The simple search response */
 export type SearchResponseIntelligentFacetsArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** The simple search response */
 export type SearchResponseWorksArgs = {
-  limit: Scalars["PaginationLimitScalar"];
-  offset: Scalars["Int"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
+  offset: Scalars["Int"]["input"];
 };
 
 export type SerieWork = {
   __typename?: "SerieWork";
   /** The number of work in the series as a number (as text) */
-  numberInSeries?: Maybe<Scalars["String"]>;
+  numberInSeries?: Maybe<Scalars["String"]["output"]>;
   /** Information about whether this work in the series should be read first */
-  readThisFirst?: Maybe<Scalars["Boolean"]>;
+  readThisFirst?: Maybe<Scalars["Boolean"]["output"]>;
   /** Information about whether this work in the series can be read without considering the order of the series, it can be read at any time */
-  readThisWhenever?: Maybe<Scalars["Boolean"]>;
+  readThisWhenever?: Maybe<Scalars["Boolean"]["output"]>;
   /** Work of a serieWork */
   work: Work;
 };
@@ -1557,56 +1580,56 @@ export type SerieWork = {
 export type Series = {
   __typename?: "Series";
   /** A alternative title to the main 'title' of the series */
-  alternativeTitles: Array<Scalars["String"]>;
+  alternativeTitles: Array<Scalars["String"]["output"]>;
   /** Description of the series */
-  description?: Maybe<Scalars["String"]>;
+  description?: Maybe<Scalars["String"]["output"]>;
   /** Additional information  */
-  identifyingAddition?: Maybe<Scalars["String"]>;
+  identifyingAddition?: Maybe<Scalars["String"]["output"]>;
   /** Whether this is a popular series or general series */
-  isPopular?: Maybe<Scalars["Boolean"]>;
+  isPopular?: Maybe<Scalars["Boolean"]["output"]>;
   /** MainLanguages of the series */
-  mainLanguages: Array<Scalars["String"]>;
+  mainLanguages: Array<Scalars["String"]["output"]>;
   /** Members of this serie.  */
   members: Array<SerieWork>;
   /** The number in the series as text qoutation */
-  numberInSeries?: Maybe<Scalars["String"]>;
+  numberInSeries?: Maybe<Scalars["String"]["output"]>;
   /** A parallel title to the main 'title' of the series, in a different language */
-  parallelTitles: Array<Scalars["String"]>;
+  parallelTitles: Array<Scalars["String"]["output"]>;
   /** Information about whether this work in the series should be read first */
-  readThisFirst?: Maybe<Scalars["Boolean"]>;
+  readThisFirst?: Maybe<Scalars["Boolean"]["output"]>;
   /** Information about whether this work in the series can be read without considering the order of the series, it can be read at any time */
-  readThisWhenever?: Maybe<Scalars["Boolean"]>;
+  readThisWhenever?: Maybe<Scalars["Boolean"]["output"]>;
   /** Identifier for the series */
-  seriesId?: Maybe<Scalars["String"]>;
+  seriesId?: Maybe<Scalars["String"]["output"]>;
   /** The title of the series */
-  title: Scalars["String"];
+  title: Scalars["String"]["output"];
   /** WorkTypes for the series */
-  workTypes: Array<Scalars["String"]>;
+  workTypes: Array<Scalars["String"]["output"]>;
 };
 
 export type SeriesMembersArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 export type Setting = SubjectInterface & {
   __typename?: "Setting";
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   language?: Maybe<Language>;
-  local?: Maybe<Scalars["Boolean"]>;
+  local?: Maybe<Scalars["Boolean"]["output"]>;
   type: SubjectTypeEnum;
 };
 
 export type Shelfmark = {
   __typename?: "Shelfmark";
   /** A postfix to the shelfmark, eg. 99.4 Christensen, Inger. f. 1935 */
-  postfix?: Maybe<Scalars["String"]>;
+  postfix?: Maybe<Scalars["String"]["output"]>;
   /** The actual shelfmark - e.g. information about on which shelf in the library this manifestation can be found, e.g. 99.4 */
-  shelfmark: Scalars["String"];
+  shelfmark: Scalars["String"]["output"];
 };
 
 export type SortInput = {
-  index: Scalars["String"];
+  index: Scalars["String"]["input"];
   order: SortOrderEnum;
 };
 
@@ -1618,9 +1641,9 @@ export enum SortOrderEnum {
 export type SpecificMaterialType = {
   __typename?: "SpecificMaterialType";
   /** code for materialType */
-  code: Scalars["String"];
+  code: Scalars["String"]["output"];
   /** Ths string to display */
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
 };
 
 export type SubjectContainer = {
@@ -1632,19 +1655,19 @@ export type SubjectContainer = {
 };
 
 export type SubjectInterface = {
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   /** Language of the subject - contains display and isoCode  */
   language?: Maybe<Language>;
-  local?: Maybe<Scalars["Boolean"]>;
+  local?: Maybe<Scalars["Boolean"]["output"]>;
   /** The type of subject - 'location', 'time period' etc., 'topic' if not specific kind of subject term */
   type: SubjectTypeEnum;
 };
 
 export type SubjectText = SubjectInterface & {
   __typename?: "SubjectText";
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   language?: Maybe<Language>;
-  local?: Maybe<Scalars["Boolean"]>;
+  local?: Maybe<Scalars["Boolean"]["output"]>;
   type: SubjectTypeEnum;
 };
 
@@ -1679,42 +1702,42 @@ export enum SubjectTypeEnum {
 
 export type SubjectWithRating = SubjectInterface & {
   __typename?: "SubjectWithRating";
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   language?: Maybe<Language>;
-  local?: Maybe<Scalars["Boolean"]>;
+  local?: Maybe<Scalars["Boolean"]["output"]>;
   /** Expressed as integer on a scale from 1 to 5 */
-  rating?: Maybe<Scalars["Int"]>;
+  rating?: Maybe<Scalars["Int"]["output"]>;
   type: SubjectTypeEnum;
 };
 
 export type SubmitOrder = {
   __typename?: "SubmitOrder";
-  deleted?: Maybe<Scalars["Boolean"]>;
-  message?: Maybe<Scalars["String"]>;
+  deleted?: Maybe<Scalars["Boolean"]["output"]>;
+  message?: Maybe<Scalars["String"]["output"]>;
   /** if order was submitted successfully */
-  ok?: Maybe<Scalars["Boolean"]>;
-  orderId?: Maybe<Scalars["String"]>;
-  orsId?: Maybe<Scalars["String"]>;
+  ok?: Maybe<Scalars["Boolean"]["output"]>;
+  orderId?: Maybe<Scalars["String"]["output"]>;
+  orsId?: Maybe<Scalars["String"]["output"]>;
   status: SubmitOrderStatusEnum;
 };
 
 export type SubmitOrderInput = {
-  author?: InputMaybe<Scalars["String"]>;
-  authorOfComponent?: InputMaybe<Scalars["String"]>;
-  exactEdition?: InputMaybe<Scalars["Boolean"]>;
+  author?: InputMaybe<Scalars["String"]["input"]>;
+  authorOfComponent?: InputMaybe<Scalars["String"]["input"]>;
+  exactEdition?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** expires is required to be iso 8601 dateTime eg. "2024-03-15T12:24:32Z" */
-  expires?: InputMaybe<Scalars["String"]>;
-  key?: InputMaybe<Scalars["String"]>;
+  expires?: InputMaybe<Scalars["String"]["input"]>;
+  key?: InputMaybe<Scalars["String"]["input"]>;
   orderType?: InputMaybe<OrderTypeEnum>;
-  pagination?: InputMaybe<Scalars["String"]>;
-  pickUpBranch: Scalars["String"];
-  pids: Array<Scalars["String"]>;
-  publicationDate?: InputMaybe<Scalars["String"]>;
-  publicationDateOfComponent?: InputMaybe<Scalars["String"]>;
-  title?: InputMaybe<Scalars["String"]>;
-  titleOfComponent?: InputMaybe<Scalars["String"]>;
+  pagination?: InputMaybe<Scalars["String"]["input"]>;
+  pickUpBranch: Scalars["String"]["input"];
+  pids: Array<Scalars["String"]["input"]>;
+  publicationDate?: InputMaybe<Scalars["String"]["input"]>;
+  publicationDateOfComponent?: InputMaybe<Scalars["String"]["input"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  titleOfComponent?: InputMaybe<Scalars["String"]["input"]>;
   userParameters: SubmitOrderUserParametersInput;
-  volume?: InputMaybe<Scalars["String"]>;
+  volume?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export enum SubmitOrderStatusEnum {
@@ -1757,17 +1780,17 @@ export enum SubmitOrderStatusEnum {
 }
 
 export type SubmitOrderUserParametersInput = {
-  barcode?: InputMaybe<Scalars["String"]>;
-  cardno?: InputMaybe<Scalars["String"]>;
-  cpr?: InputMaybe<Scalars["String"]>;
-  customId?: InputMaybe<Scalars["String"]>;
-  pincode?: InputMaybe<Scalars["String"]>;
-  userAddress?: InputMaybe<Scalars["String"]>;
-  userDateOfBirth?: InputMaybe<Scalars["String"]>;
-  userId?: InputMaybe<Scalars["String"]>;
-  userMail?: InputMaybe<Scalars["String"]>;
-  userName?: InputMaybe<Scalars["String"]>;
-  userTelephone?: InputMaybe<Scalars["String"]>;
+  barcode?: InputMaybe<Scalars["String"]["input"]>;
+  cardno?: InputMaybe<Scalars["String"]["input"]>;
+  cpr?: InputMaybe<Scalars["String"]["input"]>;
+  customId?: InputMaybe<Scalars["String"]["input"]>;
+  pincode?: InputMaybe<Scalars["String"]["input"]>;
+  userAddress?: InputMaybe<Scalars["String"]["input"]>;
+  userDateOfBirth?: InputMaybe<Scalars["String"]["input"]>;
+  userId?: InputMaybe<Scalars["String"]["input"]>;
+  userMail?: InputMaybe<Scalars["String"]["input"]>;
+  userName?: InputMaybe<Scalars["String"]["input"]>;
+  userTelephone?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type SuggestResponse = {
@@ -1778,7 +1801,7 @@ export type SuggestResponse = {
 export type Suggestion = {
   __typename?: "Suggestion";
   /** The suggested term which can be searched for */
-  term: Scalars["String"];
+  term: Scalars["String"]["output"];
   /** The type of suggestion: creator, subject or title */
   type: SuggestionTypeEnum;
   /** A work related to the term */
@@ -1794,16 +1817,16 @@ export enum SuggestionTypeEnum {
 
 export type TableOfContent = {
   __typename?: "TableOfContent";
-  content?: Maybe<Scalars["String"]>;
-  heading?: Maybe<Scalars["String"]>;
+  content?: Maybe<Scalars["String"]["output"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
   listOfContent?: Maybe<Array<TableOfContent>>;
 };
 
 export type TimePeriod = SubjectInterface & {
   __typename?: "TimePeriod";
-  display: Scalars["String"];
+  display: Scalars["String"]["output"];
   language?: Maybe<Language>;
-  local?: Maybe<Scalars["Boolean"]>;
+  local?: Maybe<Scalars["Boolean"]["output"]>;
   period: Range;
   type: SubjectTypeEnum;
 };
@@ -1811,73 +1834,73 @@ export type TimePeriod = SubjectInterface & {
 export type Translation = {
   __typename?: "Translation";
   /** Translation in plural form, e.g. forfattere, komponister, instruktører etc. */
-  plural: Scalars["String"];
+  plural: Scalars["String"]["output"];
   /** Translation in singular form, e.g. forfatter, komponist, instruktør */
-  singular: Scalars["String"];
+  singular: Scalars["String"]["output"];
 };
 
 export type TvSeries = {
   __typename?: "TvSeries";
   /** Dansih translated title of the tv serie */
-  danishLaunchTitle?: Maybe<Scalars["String"]>;
+  danishLaunchTitle?: Maybe<Scalars["String"]["output"]>;
   /** Detailed information about the disc */
   disc?: Maybe<TvSeriesDetails>;
   /** Detailed information about the episode */
   episode?: Maybe<TvSeriesDetails>;
   /** Episode titles */
-  episodeTitles?: Maybe<Array<Scalars["String"]>>;
+  episodeTitles?: Maybe<Array<Scalars["String"]["output"]>>;
   /** Detailed information about the season */
   season?: Maybe<TvSeriesDetails>;
   /** Title of the tv serie */
-  title?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]["output"]>;
   /** Detailed information about the volume */
   volume?: Maybe<TvSeriesDetails>;
 };
 
 export type TvSeriesDetails = {
   __typename?: "TvSeriesDetails";
-  display?: Maybe<Scalars["String"]>;
-  numbers?: Maybe<Array<Scalars["Int"]>>;
+  display?: Maybe<Scalars["String"]["output"]>;
+  numbers?: Maybe<Array<Scalars["Int"]["output"]>>;
 };
 
 export type Unit = {
   __typename?: "Unit";
-  id: Scalars["String"];
+  id: Scalars["String"]["output"];
   manifestations: Array<Manifestation>;
 };
 
 export type UnitDescription = {
   __typename?: "UnitDescription";
   /** Other physical description, eg. illustrations, color or b/w, mono/stereo, rpm */
-  additionalDescription?: Maybe<Scalars["String"]>;
+  additionalDescription?: Maybe<Scalars["String"]["output"]>;
   /** Number of pages, tab (books, articles etc.) or playingtime (cd, dvd etc.) */
-  extent?: Maybe<Scalars["String"]>;
+  extent?: Maybe<Scalars["String"]["output"]>;
   /** Technical formats, e.g. Playstation 4, blu-ray */
-  numberAndType?: Maybe<Scalars["String"]>;
+  numberAndType?: Maybe<Scalars["String"]["output"]>;
   /** Size of the material unit */
-  size?: Maybe<Scalars["String"]>;
+  size?: Maybe<Scalars["String"]["output"]>;
   /** Assemblance of the data from all the other properties, separated by a comma */
-  summary: Scalars["String"];
+  summary: Scalars["String"]["output"];
   /** Technical formats, e.g. Playstation 4, blu-ray */
-  technicalInformation?: Maybe<Scalars["String"]>;
+  technicalInformation?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type Universe = {
   __typename?: "Universe";
   /** A alternative title to the main 'title' of the universe */
-  alternativeTitles?: Maybe<Array<Scalars["String"]>>;
+  alternativeTitles?: Maybe<Array<Scalars["String"]["output"]>>;
   /** both series and works in a list */
   content: UniverseContentResult;
   /** Description of the universe */
-  description?: Maybe<Scalars["String"]>;
+  description?: Maybe<Scalars["String"]["output"]>;
   /** A key that identifies a universe. */
-  key?: Maybe<Scalars["String"]>;
+  key?: Maybe<Scalars["String"]["output"]>;
   /** All series within the universe */
   series: Array<Series>;
   /** Literary/movie universe this work is part of e.g. Wizarding World, Marvel Cinematic Universe */
-  title: Scalars["String"];
+  title: Scalars["String"]["output"];
   /** An id that identifies a universe. */
-  universeId?: Maybe<Scalars["String"]>;
+  universeId?: Maybe<Scalars["String"]["output"]>;
   /** work types that are in this universe */
   workTypes: Array<WorkTypeEnum>;
   /** All works within the universe but not in any series */
@@ -1885,27 +1908,27 @@ export type Universe = {
 };
 
 export type UniverseContentArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
   workType?: InputMaybe<WorkTypeEnum>;
 };
 
 export type UniverseSeriesArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
   workType?: InputMaybe<WorkTypeEnum>;
 };
 
 export type UniverseWorksArgs = {
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
   workType?: InputMaybe<WorkTypeEnum>;
 };
 
 export type UniverseContentResult = {
   __typename?: "UniverseContentResult";
   entries: Array<UniverseContentUnion>;
-  hitcount: Scalars["Int"];
+  hitcount: Scalars["Int"]["output"];
 };
 
 export type UniverseContentUnion = Series | Work;
@@ -1913,7 +1936,7 @@ export type UniverseContentUnion = Series | Work;
 export type Work = {
   __typename?: "Work";
   /** Abstract of the entity */
-  abstract?: Maybe<Array<Scalars["String"]>>;
+  abstract?: Maybe<Array<Scalars["String"]["output"]>>;
   /** Creators */
   creators: Array<CreatorInterface>;
   /** DK5 main entry for this work */
@@ -1921,9 +1944,9 @@ export type Work = {
   /** Overall literary category/genre of this work. e.g. fiction or nonfiction. In Danish skønlitteratur/faglitteratur for literature, fiktion/nonfiktion for other types. */
   fictionNonfiction?: Maybe<FictionNonfiction>;
   /** The genre, (literary) form, type etc. of this work */
-  genreAndForm: Array<Scalars["String"]>;
+  genreAndForm: Array<Scalars["String"]["output"]>;
   /** Date of latest publication */
-  latestPublicationDate?: Maybe<Scalars["String"]>;
+  latestPublicationDate?: Maybe<Scalars["String"]["output"]>;
   /** The main language(s) of the work's content */
   mainLanguages: Array<Language>;
   /** Details about the manifestations of this work */
@@ -1940,7 +1963,7 @@ export type Work = {
   /** Literary/movie universes this work is part of, e.g. Wizarding World, Marvel Universe */
   universes: Array<Universe>;
   /** Unique identification of the work based on work-presentation id e.g work-of:870970-basis:54029519 */
-  workId: Scalars["String"];
+  workId: Scalars["String"]["output"];
   /** Worktypes for this work - 'none' replaced by 'other' */
   workTypes: Array<WorkTypeEnum>;
   /** The year this work was originally published or produced */
@@ -1950,21 +1973,21 @@ export type Work = {
 export type WorkTitles = {
   __typename?: "WorkTitles";
   /** The full title(s) of the work including subtitles etc */
-  full: Array<Scalars["String"]>;
+  full: Array<Scalars["String"]["output"]>;
   /** The main title(s) of the work */
-  main: Array<Scalars["String"]>;
+  main: Array<Scalars["String"]["output"]>;
   /** The title of the work that this expression/manifestation is translated from or based on. The original title(s) of a film which has a different distribution title. */
-  original?: Maybe<Array<Scalars["String"]>>;
+  original?: Maybe<Array<Scalars["String"]["output"]>>;
   /** Titles (in other languages) parallel to the main 'title' of the work */
-  parallel: Array<Scalars["String"]>;
+  parallel: Array<Scalars["String"]["output"]>;
   /** The sorted title of the entity */
-  sort: Scalars["String"];
+  sort: Scalars["String"]["output"];
   /** The standard title of the entity, used for music and movies */
-  standard?: Maybe<Scalars["String"]>;
+  standard?: Maybe<Scalars["String"]["output"]>;
   /** The title of the entity with the language of the entity in parenthesis after. This field is only generated for non-danish titles. */
-  titlePlusLanguage?: Maybe<Scalars["String"]>;
+  titlePlusLanguage?: Maybe<Scalars["String"]["output"]>;
   /** Danish translation of the main title */
-  translated?: Maybe<Array<Scalars["String"]>>;
+  translated?: Maybe<Array<Scalars["String"]["output"]>>;
   /** detailed title for tv series  */
   tvSeries?: Maybe<TvSeries>;
 };
@@ -1987,7 +2010,7 @@ export enum WorkTypeEnum {
 }
 
 export type GetSmallWorkQueryVariables = Exact<{
-  id: Scalars["String"];
+  id: Scalars["String"]["input"];
 }>;
 
 export type GetSmallWorkQuery = {
@@ -2440,7 +2463,7 @@ export type ManifestationBasicDetailsFragment = {
 };
 
 export type GetManifestationViaMaterialByFaustQueryVariables = Exact<{
-  faust: Scalars["String"];
+  faust: Scalars["String"]["input"];
 }>;
 
 export type GetManifestationViaMaterialByFaustQuery = {
@@ -2488,7 +2511,7 @@ export type GetManifestationViaMaterialByFaustQuery = {
 };
 
 export type GetManifestationViaBestRepresentationByFaustQueryVariables = Exact<{
-  faust: Scalars["String"];
+  faust: Scalars["String"]["input"];
 }>;
 
 export type GetManifestationViaBestRepresentationByFaustQuery = {
@@ -2545,7 +2568,7 @@ export type GetManifestationViaBestRepresentationByFaustQuery = {
 };
 
 export type GetMaterialQueryVariables = Exact<{
-  wid: Scalars["String"];
+  wid: Scalars["String"]["input"];
 }>;
 
 export type GetMaterialQuery = {
@@ -3011,7 +3034,7 @@ export type GetMaterialQuery = {
 };
 
 export type GetMaterialGloballyQueryVariables = Exact<{
-  wid: Scalars["String"];
+  wid: Scalars["String"]["input"];
 }>;
 
 export type GetMaterialGloballyQuery = {
@@ -3477,7 +3500,7 @@ export type GetMaterialGloballyQuery = {
 };
 
 export type GetInfomediaQueryVariables = Exact<{
-  id: Scalars["String"];
+  id: Scalars["String"]["input"];
 }>;
 
 export type GetInfomediaQuery = {
@@ -3494,7 +3517,7 @@ export type GetInfomediaQuery = {
 };
 
 export type GetReviewManifestationsQueryVariables = Exact<{
-  pid: Array<Scalars["String"]> | Scalars["String"];
+  pid: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
 }>;
 
 export type GetReviewManifestationsQuery = {
@@ -3567,8 +3590,8 @@ export type OpenOrderMutation = {
 };
 
 export type RecommendFromFaustQueryVariables = Exact<{
-  faust: Scalars["String"];
-  limit: Scalars["Int"];
+  faust: Scalars["String"]["input"];
+  limit: Scalars["Int"]["input"];
 }>;
 
 export type RecommendFromFaustQuery = {
@@ -3990,8 +4013,8 @@ export type RecommendFromFaustQuery = {
 
 export type SearchWithPaginationQueryVariables = Exact<{
   q: SearchQueryInput;
-  offset: Scalars["Int"];
-  limit: Scalars["PaginationLimitScalar"];
+  offset: Scalars["Int"]["input"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
   filters?: InputMaybe<SearchFiltersInput>;
 }>;
 
@@ -4411,9 +4434,9 @@ export type SearchWithPaginationQuery = {
 };
 
 export type ComplexSearchWithPaginationWorkAccessQueryVariables = Exact<{
-  cql: Scalars["String"];
-  offset: Scalars["Int"];
-  limit: Scalars["PaginationLimitScalar"];
+  cql: Scalars["String"]["input"];
+  offset: Scalars["Int"]["input"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
   filters: ComplexSearchFiltersInput;
 }>;
 
@@ -4459,9 +4482,9 @@ export type ComplexSearchWithPaginationWorkAccessQuery = {
 };
 
 export type ComplexSearchWithPaginationQueryVariables = Exact<{
-  cql: Scalars["String"];
-  offset: Scalars["Int"];
-  limit: Scalars["PaginationLimitScalar"];
+  cql: Scalars["String"]["input"];
+  offset: Scalars["Int"]["input"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
   filters: ComplexSearchFiltersInput;
 }>;
 
@@ -4881,7 +4904,7 @@ export type ComplexSearchWithPaginationQuery = {
 };
 
 export type SuggestionsFromQueryStringQueryVariables = Exact<{
-  q: Scalars["String"];
+  q: Scalars["String"]["input"];
 }>;
 
 export type SuggestionsFromQueryStringQuery = {
@@ -4924,7 +4947,7 @@ export type SuggestionsFromQueryStringQuery = {
 export type SearchFacetQueryVariables = Exact<{
   q: SearchQueryInput;
   facets: Array<FacetFieldEnum> | FacetFieldEnum;
-  facetLimit: Scalars["Int"];
+  facetLimit: Scalars["Int"]["input"];
   filters?: InputMaybe<SearchFiltersInput>;
 }>;
 
@@ -4948,8 +4971,8 @@ export type SearchFacetQuery = {
 
 export type IntelligentFacetsQueryVariables = Exact<{
   q: SearchQueryInput;
-  facetsLimit: Scalars["Int"];
-  valuesLimit: Scalars["Int"];
+  facetsLimit: Scalars["Int"]["input"];
+  valuesLimit: Scalars["Int"]["input"];
   filters: SearchFiltersInput;
 }>;
 
@@ -6814,14 +6837,15 @@ export const GetSmallWorkDocument = `
   }
 }
     ${WorkSmallFragmentDoc}`;
+
 export const useGetSmallWorkQuery = <
   TData = GetSmallWorkQuery,
   TError = unknown
 >(
   variables: GetSmallWorkQueryVariables,
   options?: UseQueryOptions<GetSmallWorkQuery, TError, TData>
-) =>
-  useQuery<GetSmallWorkQuery, TError, TData>(
+) => {
+  return useQuery<GetSmallWorkQuery, TError, TData>(
     ["getSmallWork", variables],
     fetcher<GetSmallWorkQuery, GetSmallWorkQueryVariables>(
       GetSmallWorkDocument,
@@ -6829,6 +6853,8 @@ export const useGetSmallWorkQuery = <
     ),
     options
   );
+};
+
 export const GetManifestationViaMaterialByFaustDocument = `
     query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
@@ -6836,6 +6862,7 @@ export const GetManifestationViaMaterialByFaustDocument = `
   }
 }
     ${ManifestationBasicDetailsFragmentDoc}`;
+
 export const useGetManifestationViaMaterialByFaustQuery = <
   TData = GetManifestationViaMaterialByFaustQuery,
   TError = unknown
@@ -6846,8 +6873,8 @@ export const useGetManifestationViaMaterialByFaustQuery = <
     TError,
     TData
   >
-) =>
-  useQuery<GetManifestationViaMaterialByFaustQuery, TError, TData>(
+) => {
+  return useQuery<GetManifestationViaMaterialByFaustQuery, TError, TData>(
     ["getManifestationViaMaterialByFaust", variables],
     fetcher<
       GetManifestationViaMaterialByFaustQuery,
@@ -6855,6 +6882,8 @@ export const useGetManifestationViaMaterialByFaustQuery = <
     >(GetManifestationViaMaterialByFaustDocument, variables),
     options
   );
+};
+
 export const GetManifestationViaBestRepresentationByFaustDocument = `
     query getManifestationViaBestRepresentationByFaust($faust: String!) {
   manifestation(faust: $faust) {
@@ -6868,6 +6897,7 @@ export const GetManifestationViaBestRepresentationByFaustDocument = `
   }
 }
     ${ManifestationBasicDetailsFragmentDoc}`;
+
 export const useGetManifestationViaBestRepresentationByFaustQuery = <
   TData = GetManifestationViaBestRepresentationByFaustQuery,
   TError = unknown
@@ -6878,8 +6908,12 @@ export const useGetManifestationViaBestRepresentationByFaustQuery = <
     TError,
     TData
   >
-) =>
-  useQuery<GetManifestationViaBestRepresentationByFaustQuery, TError, TData>(
+) => {
+  return useQuery<
+    GetManifestationViaBestRepresentationByFaustQuery,
+    TError,
+    TData
+  >(
     ["getManifestationViaBestRepresentationByFaust", variables],
     fetcher<
       GetManifestationViaBestRepresentationByFaustQuery,
@@ -6887,6 +6921,8 @@ export const useGetManifestationViaBestRepresentationByFaustQuery = <
     >(GetManifestationViaBestRepresentationByFaustDocument, variables),
     options
   );
+};
+
 export const GetMaterialDocument = `
     query getMaterial($wid: String!) {
   work(id: $wid) {
@@ -6894,11 +6930,12 @@ export const GetMaterialDocument = `
   }
 }
     ${WorkMediumFragmentDoc}`;
+
 export const useGetMaterialQuery = <TData = GetMaterialQuery, TError = unknown>(
   variables: GetMaterialQueryVariables,
   options?: UseQueryOptions<GetMaterialQuery, TError, TData>
-) =>
-  useQuery<GetMaterialQuery, TError, TData>(
+) => {
+  return useQuery<GetMaterialQuery, TError, TData>(
     ["getMaterial", variables],
     fetcher<GetMaterialQuery, GetMaterialQueryVariables>(
       GetMaterialDocument,
@@ -6906,6 +6943,8 @@ export const useGetMaterialQuery = <TData = GetMaterialQuery, TError = unknown>(
     ),
     options
   );
+};
+
 export const GetMaterialGloballyDocument = `
     query getMaterialGlobally($wid: String!) {
   work(id: $wid) {
@@ -6913,14 +6952,15 @@ export const GetMaterialGloballyDocument = `
   }
 }
     ${WorkMediumFragmentDoc}`;
+
 export const useGetMaterialGloballyQuery = <
   TData = GetMaterialGloballyQuery,
   TError = unknown
 >(
   variables: GetMaterialGloballyQueryVariables,
   options?: UseQueryOptions<GetMaterialGloballyQuery, TError, TData>
-) =>
-  useQuery<GetMaterialGloballyQuery, TError, TData>(
+) => {
+  return useQuery<GetMaterialGloballyQuery, TError, TData>(
     ["getMaterialGlobally", variables],
     fetcher<GetMaterialGloballyQuery, GetMaterialGloballyQueryVariables>(
       GetMaterialGloballyDocument,
@@ -6928,6 +6968,8 @@ export const useGetMaterialGloballyQuery = <
     ),
     options
   );
+};
+
 export const GetInfomediaDocument = `
     query getInfomedia($id: String!) {
   infomedia(id: $id) {
@@ -6939,14 +6981,15 @@ export const GetInfomediaDocument = `
   }
 }
     `;
+
 export const useGetInfomediaQuery = <
   TData = GetInfomediaQuery,
   TError = unknown
 >(
   variables: GetInfomediaQueryVariables,
   options?: UseQueryOptions<GetInfomediaQuery, TError, TData>
-) =>
-  useQuery<GetInfomediaQuery, TError, TData>(
+) => {
+  return useQuery<GetInfomediaQuery, TError, TData>(
     ["getInfomedia", variables],
     fetcher<GetInfomediaQuery, GetInfomediaQueryVariables>(
       GetInfomediaDocument,
@@ -6954,6 +6997,8 @@ export const useGetInfomediaQuery = <
     ),
     options
   );
+};
+
 export const GetReviewManifestationsDocument = `
     query getReviewManifestations($pid: [String!]!) {
   manifestations(pid: $pid) {
@@ -6961,14 +7006,15 @@ export const GetReviewManifestationsDocument = `
   }
 }
     ${ManifestationReviewFieldsFragmentDoc}`;
+
 export const useGetReviewManifestationsQuery = <
   TData = GetReviewManifestationsQuery,
   TError = unknown
 >(
   variables: GetReviewManifestationsQueryVariables,
   options?: UseQueryOptions<GetReviewManifestationsQuery, TError, TData>
-) =>
-  useQuery<GetReviewManifestationsQuery, TError, TData>(
+) => {
+  return useQuery<GetReviewManifestationsQuery, TError, TData>(
     ["getReviewManifestations", variables],
     fetcher<
       GetReviewManifestationsQuery,
@@ -6976,6 +7022,8 @@ export const useGetReviewManifestationsQuery = <
     >(GetReviewManifestationsDocument, variables),
     options
   );
+};
+
 export const OpenOrderDocument = `
     mutation openOrder($input: SubmitOrderInput!) {
   submitOrder(input: $input, dryRun: false) {
@@ -6985,6 +7033,7 @@ export const OpenOrderDocument = `
   }
 }
     `;
+
 export const useOpenOrderMutation = <TError = unknown, TContext = unknown>(
   options?: UseMutationOptions<
     OpenOrderMutation,
@@ -6992,8 +7041,13 @@ export const useOpenOrderMutation = <TError = unknown, TContext = unknown>(
     OpenOrderMutationVariables,
     TContext
   >
-) =>
-  useMutation<OpenOrderMutation, TError, OpenOrderMutationVariables, TContext>(
+) => {
+  return useMutation<
+    OpenOrderMutation,
+    TError,
+    OpenOrderMutationVariables,
+    TContext
+  >(
     ["openOrder"],
     (variables?: OpenOrderMutationVariables) =>
       fetcher<OpenOrderMutation, OpenOrderMutationVariables>(
@@ -7002,6 +7056,8 @@ export const useOpenOrderMutation = <TError = unknown, TContext = unknown>(
       )(),
     options
   );
+};
+
 export const RecommendFromFaustDocument = `
     query recommendFromFaust($faust: String!, $limit: Int!) {
   recommend(faust: $faust, limit: $limit) {
@@ -7013,14 +7069,15 @@ export const RecommendFromFaustDocument = `
   }
 }
     ${WorkSmallFragmentDoc}`;
+
 export const useRecommendFromFaustQuery = <
   TData = RecommendFromFaustQuery,
   TError = unknown
 >(
   variables: RecommendFromFaustQueryVariables,
   options?: UseQueryOptions<RecommendFromFaustQuery, TError, TData>
-) =>
-  useQuery<RecommendFromFaustQuery, TError, TData>(
+) => {
+  return useQuery<RecommendFromFaustQuery, TError, TData>(
     ["recommendFromFaust", variables],
     fetcher<RecommendFromFaustQuery, RecommendFromFaustQueryVariables>(
       RecommendFromFaustDocument,
@@ -7028,6 +7085,8 @@ export const useRecommendFromFaustQuery = <
     ),
     options
   );
+};
+
 export const SearchWithPaginationDocument = `
     query searchWithPagination($q: SearchQueryInput!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: SearchFiltersInput) {
   search(q: $q, filters: $filters) {
@@ -7038,14 +7097,15 @@ export const SearchWithPaginationDocument = `
   }
 }
     ${WorkSmallFragmentDoc}`;
+
 export const useSearchWithPaginationQuery = <
   TData = SearchWithPaginationQuery,
   TError = unknown
 >(
   variables: SearchWithPaginationQueryVariables,
   options?: UseQueryOptions<SearchWithPaginationQuery, TError, TData>
-) =>
-  useQuery<SearchWithPaginationQuery, TError, TData>(
+) => {
+  return useQuery<SearchWithPaginationQuery, TError, TData>(
     ["searchWithPagination", variables],
     fetcher<SearchWithPaginationQuery, SearchWithPaginationQueryVariables>(
       SearchWithPaginationDocument,
@@ -7053,6 +7113,8 @@ export const useSearchWithPaginationQuery = <
     ),
     options
   );
+};
+
 export const ComplexSearchWithPaginationWorkAccessDocument = `
     query complexSearchWithPaginationWorkAccess($cql: String!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: ComplexSearchFiltersInput!) {
   complexSearch(cql: $cql, filters: $filters) {
@@ -7063,6 +7125,7 @@ export const ComplexSearchWithPaginationWorkAccessDocument = `
   }
 }
     ${WorkAccessFragmentDoc}`;
+
 export const useComplexSearchWithPaginationWorkAccessQuery = <
   TData = ComplexSearchWithPaginationWorkAccessQuery,
   TError = unknown
@@ -7073,8 +7136,8 @@ export const useComplexSearchWithPaginationWorkAccessQuery = <
     TError,
     TData
   >
-) =>
-  useQuery<ComplexSearchWithPaginationWorkAccessQuery, TError, TData>(
+) => {
+  return useQuery<ComplexSearchWithPaginationWorkAccessQuery, TError, TData>(
     ["complexSearchWithPaginationWorkAccess", variables],
     fetcher<
       ComplexSearchWithPaginationWorkAccessQuery,
@@ -7082,6 +7145,8 @@ export const useComplexSearchWithPaginationWorkAccessQuery = <
     >(ComplexSearchWithPaginationWorkAccessDocument, variables),
     options
   );
+};
+
 export const ComplexSearchWithPaginationDocument = `
     query complexSearchWithPagination($cql: String!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: ComplexSearchFiltersInput!) {
   complexSearch(cql: $cql, filters: $filters) {
@@ -7092,14 +7157,15 @@ export const ComplexSearchWithPaginationDocument = `
   }
 }
     ${WorkSmallFragmentDoc}`;
+
 export const useComplexSearchWithPaginationQuery = <
   TData = ComplexSearchWithPaginationQuery,
   TError = unknown
 >(
   variables: ComplexSearchWithPaginationQueryVariables,
   options?: UseQueryOptions<ComplexSearchWithPaginationQuery, TError, TData>
-) =>
-  useQuery<ComplexSearchWithPaginationQuery, TError, TData>(
+) => {
+  return useQuery<ComplexSearchWithPaginationQuery, TError, TData>(
     ["complexSearchWithPagination", variables],
     fetcher<
       ComplexSearchWithPaginationQuery,
@@ -7107,6 +7173,8 @@ export const useComplexSearchWithPaginationQuery = <
     >(ComplexSearchWithPaginationDocument, variables),
     options
   );
+};
+
 export const SuggestionsFromQueryStringDocument = `
     query suggestionsFromQueryString($q: String!) {
   suggest(q: $q) {
@@ -7135,14 +7203,15 @@ export const SuggestionsFromQueryStringDocument = `
   }
 }
     ${WithLanguagesFragmentDoc}`;
+
 export const useSuggestionsFromQueryStringQuery = <
   TData = SuggestionsFromQueryStringQuery,
   TError = unknown
 >(
   variables: SuggestionsFromQueryStringQueryVariables,
   options?: UseQueryOptions<SuggestionsFromQueryStringQuery, TError, TData>
-) =>
-  useQuery<SuggestionsFromQueryStringQuery, TError, TData>(
+) => {
+  return useQuery<SuggestionsFromQueryStringQuery, TError, TData>(
     ["suggestionsFromQueryString", variables],
     fetcher<
       SuggestionsFromQueryStringQuery,
@@ -7150,6 +7219,8 @@ export const useSuggestionsFromQueryStringQuery = <
     >(SuggestionsFromQueryStringDocument, variables),
     options
   );
+};
+
 export const SearchFacetDocument = `
     query searchFacet($q: SearchQueryInput!, $facets: [FacetFieldEnum!]!, $facetLimit: Int!, $filters: SearchFiltersInput) {
   search(q: $q, filters: $filters) {
@@ -7165,11 +7236,12 @@ export const SearchFacetDocument = `
   }
 }
     `;
+
 export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
   variables: SearchFacetQueryVariables,
   options?: UseQueryOptions<SearchFacetQuery, TError, TData>
-) =>
-  useQuery<SearchFacetQuery, TError, TData>(
+) => {
+  return useQuery<SearchFacetQuery, TError, TData>(
     ["searchFacet", variables],
     fetcher<SearchFacetQuery, SearchFacetQueryVariables>(
       SearchFacetDocument,
@@ -7177,6 +7249,8 @@ export const useSearchFacetQuery = <TData = SearchFacetQuery, TError = unknown>(
     ),
     options
   );
+};
+
 export const IntelligentFacetsDocument = `
     query intelligentFacets($q: SearchQueryInput!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFiltersInput!) {
   search(q: $q, filters: $filters) {
@@ -7192,14 +7266,15 @@ export const IntelligentFacetsDocument = `
   }
 }
     `;
+
 export const useIntelligentFacetsQuery = <
   TData = IntelligentFacetsQuery,
   TError = unknown
 >(
   variables: IntelligentFacetsQueryVariables,
   options?: UseQueryOptions<IntelligentFacetsQuery, TError, TData>
-) =>
-  useQuery<IntelligentFacetsQuery, TError, TData>(
+) => {
+  return useQuery<IntelligentFacetsQuery, TError, TData>(
     ["intelligentFacets", variables],
     fetcher<IntelligentFacetsQuery, IntelligentFacetsQueryVariables>(
       IntelligentFacetsDocument,
@@ -7207,6 +7282,8 @@ export const useIntelligentFacetsQuery = <
     ),
     options
   );
+};
+
 export const PlaceCopyDocument = `
     mutation placeCopy($input: CopyRequestInput!) {
   elba {
@@ -7216,6 +7293,7 @@ export const PlaceCopyDocument = `
   }
 }
     `;
+
 export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
   options?: UseMutationOptions<
     PlaceCopyMutation,
@@ -7223,8 +7301,13 @@ export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
     PlaceCopyMutationVariables,
     TContext
   >
-) =>
-  useMutation<PlaceCopyMutation, TError, PlaceCopyMutationVariables, TContext>(
+) => {
+  return useMutation<
+    PlaceCopyMutation,
+    TError,
+    PlaceCopyMutationVariables,
+    TContext
+  >(
     ["placeCopy"],
     (variables?: PlaceCopyMutationVariables) =>
       fetcher<PlaceCopyMutation, PlaceCopyMutationVariables>(
@@ -7233,3 +7316,4 @@ export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
       )(),
     options
   );
+};

@@ -14,7 +14,7 @@ export const fetcher = async <ResponseType>({
   data
 }: {
   url: string;
-  method: "get" | "post" | "put" | "delete" | "patch" | "head";
+  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD";
   params?: unknown;
   data?: BodyType<unknown>;
   signal?: AbortSignal;
@@ -55,7 +55,7 @@ export const fetcher = async <ResponseType>({
     }
 
     // Return the response body in JSON format if the method is GET.
-    if (method === "get") {
+    if (method === "GET") {
       try {
         return (await response.json()) as ResponseType;
       } catch (error) {
