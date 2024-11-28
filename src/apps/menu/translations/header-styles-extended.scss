@@ -1,81 +1,42 @@
 .header {
-  &__menu-first {
+  &__profile-traslation-container {
+    width: 140px;
     display: flex;
     justify-content: space-between;
   }
 
   &__translations {
-    border-left: 1px solid #dbdbdb;
-  }
-
-  &__menu-navigation-buttons {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  &__select-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    width: 110px;
-  }
-
-  &__select {
-    background: transparent;
-    border: none;
-    outline: none;
     font-family: "Noto Sans", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     cursor: initial;
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    &::-ms-expand {
-      display: none;
-    }
-    span {
-      display: none;
-    }
-    .skiptranslate {
-      color: transparent;
-    }
+    position: relative;
   }
 
-  .goog-te-combo {
-    background: transparent;
-    border: none;
-    outline: none;
-    padding-top: 47px;
-    cursor: pointer;
+  &__translations-button {
+    line-height: 1;
     text-align: center;
-    text-transform: capitalize;
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    &::-ms-expand {
-      display: none;
-    }
-
-    option {
-      font-family: "Noto Sans", sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 12px;
-    }
   }
 
-  &__select-icon {
+  &__translations-icon {
+    margin: 0 auto;
     width: 24px;
     height: 24px;
+  }
+
+  &__translations-select {
     position: absolute;
-    top: 22px;
-    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &__menu-navigation-buttons {
+    display: flex;
+    justify-content: flex-end;
   }
 }
