@@ -26,7 +26,6 @@ export interface SearchHeaderTextProps {
   loadingText: string;
   searchNoValidCharactersErrorText: string;
   headerDropdownItemAdvancedSearchText: string;
-  isEnabledAdvancedSearch: boolean;
 }
 
 export interface SearchHeaderEntryProps
@@ -35,10 +34,8 @@ export interface SearchHeaderEntryProps
     GlobalConfigProps,
     GlobalUrlEntryPropsInterface {}
 
-const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = ({
-  isEnabledAdvancedSearch
-}) => {
-  return <SearchHeader isEnabledAdvancedSearch={isEnabledAdvancedSearch} />;
+const SearchHeaderEntry: React.FC<SearchHeaderEntryProps> = () => {
+  return <SearchHeader />;
 };
 
 export default withUrls(withText(SearchHeaderEntry));
