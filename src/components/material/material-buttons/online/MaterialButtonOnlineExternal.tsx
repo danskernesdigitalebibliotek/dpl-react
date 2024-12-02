@@ -1,3 +1,4 @@
+// Todo: Rember to clean this up for all pats thats refere to ereolen
 import React, { useState, FC, useEffect } from "react";
 import {
   AccessUrl,
@@ -10,15 +11,6 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import LinkButton from "../../../Buttons/LinkButton";
-import MaterialSecondaryLink from "../generic/MaterialSecondaryLink";
-import { getManifestationIsbn } from "../../../../apps/material/helper";
-import {
-  hasPlayerManifestation,
-  hasReaderManifestation
-} from "../../../reader-player/helper";
-import { useModalButtonHandler } from "../../../../core/utils/modal";
-import MaterialSecondaryButton from "../generic/MaterialSecondaryButton";
-import { playerModalId } from "../../player-modal/helper";
 
 export interface MaterialButtonOnlineExternalProps {
   externalUrl: string;
@@ -59,7 +51,6 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   dataCy = "material-button-online-external",
   ariaLabelledBy
 }) => {
-  const { open } = useModalButtonHandler();
   const [translatedUrl, setTranslatedUrl] = useState<URL>(new URL(externalUrl));
   const [urlWasTranslated, setUrlWasTranslated] = useState<boolean | null>(
     null
@@ -102,50 +93,18 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   };
 
   return (
-    <>
-      <LinkButton
-        url={translatedUrl}
-        buttonType="external-link"
-        variant="filled"
-        size={size || "large"}
-        iconClassNames="invert"
-        trackClick={trackOnlineView}
-        dataCy={dataCy}
-        ariaLabelledBy={ariaLabelledBy}
-      >
-        {label(origin, getMaterialTypes(manifestations))}
-      </LinkButton>
-
-      {hasReaderManifestation(manifestations) && (
-        <MaterialSecondaryLink
-          label={t("onlineMaterialTeaserText", {
-            placeholders: { "@materialType": t("ebookText") }
-          })}
-          size={size || "large"}
-          url={
-            new URL(
-              `/reader?identifier=${getManifestationIsbn(manifestations[0])}`,
-              window.location.href
-            )
-          }
-          dataCy={`${dataCy}-teaser`}
-        />
-      )}
-
-      {hasPlayerManifestation(manifestations) && (
-        <MaterialSecondaryButton
-          label={t("onlineMaterialTeaserText", {
-            placeholders: { "@materialType": t("audiobookText") }
-          })}
-          size={size || "large"}
-          onClick={() => {
-            open(playerModalId(getManifestationIsbn(manifestations[0])));
-          }}
-          dataCy={dataCy}
-          ariaDescribedBy={t("onlineMaterialTeaserText")}
-        />
-      )}
-    </>
+    <LinkButton
+      url={translatedUrl}
+      buttonType="external-link"
+      variant="filled"
+      size={size || "large"}
+      iconClassNames="invert"
+      trackClick={trackOnlineView}
+      dataCy={dataCy}
+      ariaLabelledBy={ariaLabelledBy}
+    >
+      {label(origin, getMaterialTypes(manifestations))}
+    </LinkButton>
   );
 };
 
