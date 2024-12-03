@@ -9,6 +9,7 @@ const PlayerModal = ({ identifier, orderId }: PlayerType) => {
 
   return (
     <Modal
+      classNames="modal--center"
       dataCy="player-modal"
       // Todo: Find a better way to generate the modalId
       modalId={playerModalId(identifier || orderId || "")}
