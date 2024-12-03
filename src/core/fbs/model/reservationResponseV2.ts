@@ -9,6 +9,6 @@ import type { ReservationResultV2 } from "./reservationResultV2";
 export interface ReservationResponseV2 {
   /** Result of each reservation */
   reservationResults: ReservationResultV2[];
-  /** True if all reservation were create successfully otherwise false */
+  /** True if all reservations were created successfully otherwise false */
   success: boolean;
 }

@@ -1,9 +1,9 @@
 import React from "react";
-import { HoldingsV3 } from "../../core/fbs/model";
+import { HoldingsLogisticsV1 } from "../../core/fbs/model";
 import AvailabilityLabelVisual from "../availability-label/availability-label-visual";
 
 type InstantLoanBranchProps = {
-  branch: HoldingsV3;
+  branch: HoldingsLogisticsV1;
   materialType: string;
 };
 

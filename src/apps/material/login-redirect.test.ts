@@ -28,7 +28,7 @@ describe("Material", () => {
 
     cy.interceptRest({
       aliasName: "holdings",
-      url: "**/agencyid/catalog/holdings/**",
+      url: "**/agencyid/catalog/holdingsLogistics/**",
       fixtureFilePath: "material/holdings.json"
     });
 
@@ -79,7 +79,7 @@ describe("Material", () => {
 
     cy.interceptRest({
       aliasName: "holdings",
-      url: "**/agencyid/catalog/holdings/**",
+      url: "**/agencyid/catalog/holdingsLogistics/**",
       fixtureFilePath: "material/holdings.json"
     });
   });

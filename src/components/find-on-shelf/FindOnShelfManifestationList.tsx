@@ -5,6 +5,7 @@ import { useText } from "../../core/utils/text";
 import { ManifestationHoldings } from "./types";
 import FindOnShelfManifestationListItem from "./FindOnShelfManifestationListItem";
 import { getManifestationPublicationYear } from "../../core/utils/helpers/general";
+import { getLocationArray } from "./helper";
 
 export interface FindOnShelfManifestationListProps {
   libraryBranchHoldings: ManifestationHoldings;
@@ -46,9 +47,7 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
         return (
           <FindOnShelfManifestationListItem
             shelfmark={branchHolding.manifestation.shelfmark}
-            department={branchHolding.holding.department?.title}
-            location={branchHolding.holding.location?.title}
-            sublocation={branchHolding.holding.sublocation?.title}
+            locationArray={getLocationArray(branchHolding.holding)}
             title={branchHolding.manifestation.titles.main.join(", ")}
             publicationYear={getManifestationPublicationYear(
               branchHolding.manifestation

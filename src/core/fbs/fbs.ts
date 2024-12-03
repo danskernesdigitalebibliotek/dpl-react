@@ -27,8 +27,8 @@ import type {
   GetAvailabilityV3Params,
   GetBranchesParams,
   GetFeesV2Params,
-  GetHoldingsV3Params,
-  HoldingsForBibliographicalRecordV3,
+  GetHoldingsLogisticsV1Params,
+  HoldingsForBibliographicalRecordLogisticsV1,
   LoanV2,
   PatronWithGuardianRequest,
   RenewedLoanV2,
@@ -43,7 +43,7 @@ import { fetcher } from "./mutator/fetcher";
 import type { ErrorType, BodyType } from "./mutator/fetcher";
 
 /**
- * 
+ *
  Returns array of branches.
  <p>Can be used for giving the patron the option of choosing a preferred branch or where to pick up
  reservations.</p>
@@ -201,7 +201,7 @@ export const useDeleteReservations = <
 };
 
 /**
- * 
+ *
  Returns an array of reservation details.
  <p>When the patron picks up the reserved materials,
  the reservation will no longer be returned.
@@ -294,7 +294,7 @@ export function useGetReservations<
 }
 
 /**
- * 
+ *
  Returns an array of reservation details for the created reservations.
  <p></p>
  The response contains reservation state, which can be any of these values:
@@ -317,7 +317,7 @@ export function useGetReservations<
      When making a reservation of a periodical, the values to put in the PeriodicalReservation structure can be obtained
      from the periodical information retrieved with the Catalog service.
  </p>
- <p><b>This method has been deprecated use /external/v1/{agencyid}/patrons/{patronid}/reservations/add instead</b></p>
+ <p><b>This method has been deprecated use /external/v1/{agencyid}/patrons/{patronid}/reservations/v2 instead</b></p>
  * @summary Create new reservations for the patron (DEPRECATED).
  */
 export const addReservationsDeprecated = (
@@ -393,7 +393,7 @@ export const useAddReservationsDeprecated = <
 };
 
 /**
- * 
+ *
  Returns an array of the updated reservation details.
  <p></p>
  The response contains reservation state, which can be any of these values:
@@ -486,7 +486,7 @@ export const useUpdateReservations = <
 };
 
 /**
- * 
+ *
  Returns an array of reservation details.
  <p>When the patron picks up the reserved materials,
  the reservation will no longer be returned.
@@ -581,7 +581,7 @@ export function useGetReservationsV2<
 }
 
 /**
- * 
+ *
  <p>Given a CreateReservationBatch, it creates a list of reservations and returns a ReservationResponse.</p>
  <p>The CreateReservationBatch.type indicates the reservation type of the request. If left out the request will be considered of type
  normal. The type can be any of the following values:</p>
@@ -615,6 +615,7 @@ export function useGetReservationsV2<
      <li>- no_reservable_materials</li>
      <li>- interlibrary_material_not_reservable</li>
      <li>- previously_loaned_by_homebound_patron</li>
+     <li>- exceeds_max_reservations</li>
  </ul>
  <p>The values are subject to change. If an unrecognized value is encountered, it should be treated as an error.</p>
 
@@ -710,7 +711,7 @@ export const useAddReservationsV2 = <
 };
 
 /**
- * 
+ *
  Returns an array of availability for each bibliographical record.
  * @summary Get availability of bibliographical records.
  */
@@ -798,38 +799,40 @@ export function useGetAvailabilityV3<
 }
 
 /**
- * 
+ *
  Returns an array of holdings for each bibliographical record.
  The holdings lists the materials on each placement, and whether they are available on-shelf or lent out.
  * @summary Get placement holdings for bibliographical records.
  */
-export const getHoldingsV3 = (
-  params: GetHoldingsV3Params,
+export const getHoldingsLogisticsV1 = (
+  params: GetHoldingsLogisticsV1Params,
   signal?: AbortSignal
 ) => {
-  return fetcher<HoldingsForBibliographicalRecordV3[]>({
-    url: `/external/agencyid/catalog/holdings/v3`,
+  return fetcher<HoldingsForBibliographicalRecordLogisticsV1[]>({
+    url: `/external/agencyid/catalog/holdingsLogistics/v1`,
     method: "GET",
     params,
     signal
   });
 };
 
-export const getGetHoldingsV3QueryKey = (params: GetHoldingsV3Params) => {
+export const getGetHoldingsLogisticsV1QueryKey = (
+  params: GetHoldingsLogisticsV1Params
+) => {
   return [
-    `/external/agencyid/catalog/holdings/v3`,
+    `/external/agencyid/catalog/holdingsLogistics/v1`,
     ...(params ? [params] : [])
   ] as const;
 };
 
-export const getGetHoldingsV3QueryOptions = <
-  TData = Awaited<ReturnType<typeof getHoldingsV3>>,
+export const getGetHoldingsLogisticsV1QueryOptions = <
+  TData = Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
   TError = ErrorType<void>
 >(
-  params: GetHoldingsV3Params,
+  params: GetHoldingsLogisticsV1Params,
   options?: {
     query?: UseQueryOptions<
-      Awaited<ReturnType<typeof getHoldingsV3>>,
+      Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
       TError,
       TData
     >;
@@ -837,42 +840,42 @@ export const getGetHoldingsV3QueryOptions = <
 ) => {
   const { query: queryOptions } = options ?? {};
 
-  const queryKey = queryOptions?.queryKey ?? getGetHoldingsV3QueryKey(params);
+  const queryKey =
+    queryOptions?.queryKey ?? getGetHoldingsLogisticsV1QueryKey(params);
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getHoldingsV3>>> = ({
-    signal
-  }) => getHoldingsV3(params, signal);
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getHoldingsLogisticsV1>>
+  > = ({ signal }) => getHoldingsLogisticsV1(params, signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getHoldingsV3>>,
+    Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
     TError,
     TData
   > & { queryKey: QueryKey };
 };
 
-export type GetHoldingsV3QueryResult = NonNullable<
-  Awaited<ReturnType<typeof getHoldingsV3>>
+export type GetHoldingsLogisticsV1QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getHoldingsLogisticsV1>>
 >;
-export type GetHoldingsV3QueryError = ErrorType<void>;
+export type GetHoldingsLogisticsV1QueryError = ErrorType<void>;
 
 /**
  * @summary Get placement holdings for bibliographical records.
  */
-
-export function useGetHoldingsV3<
-  TData = Awaited<ReturnType<typeof getHoldingsV3>>,
+export const useGetHoldingsLogisticsV1 = <
+  TData = Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
   TError = ErrorType<void>
 >(
-  params: GetHoldingsV3Params,
+  params: GetHoldingsLogisticsV1Params,
   options?: {
     query?: UseQueryOptions<
-      Awaited<ReturnType<typeof getHoldingsV3>>,
+      Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
       TError,
       TData
     >;
   }
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-  const queryOptions = getGetHoldingsV3QueryOptions(params, options);
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+  const queryOptions = getGetHoldingsLogisticsV1QueryOptions(params, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
@@ -884,7 +887,7 @@ export function useGetHoldingsV3<
 }
 
 /**
- * 
+ *
  Returns array of fees.
  <p>If the fee covers loaned materials, information about the materials is returned.
  Each fee in the response includes a 'type', which is used to distinguish between different types of
@@ -978,7 +981,7 @@ export function useGetFeesV2<
 }
 
 /**
- * 
+ *
  When a patron doesn't have a patron account in the library system, but logs in using a trusted authentication
  source (e.g NemId), the patron account can be created using this service. Name and address will be automatically
  fetched from CPR-Registry, and cannot be supplied by the client. If the CPR-Registry is not authorized to
@@ -1068,7 +1071,7 @@ export const useCreateV4 = <
 };
 
 /**
- * 
+ *
 
  Returns the id of the patron if the request succeeds.
  Name and address will be automatically fetched from the CPR-Registry.
@@ -1153,7 +1156,7 @@ export const useCreateWithGuardian = <
 };
 
 /**
- * 
+ *
  If the person doesn't have a guardian, a new one is created with the information provided.
 
  Returns the id of the patron if the request succeeds.
@@ -1237,12 +1240,12 @@ export const useUpdateGuardian = <
 };
 
 /**
- * 
+ *
  Returns an array of the updated loans.
  <p>
  If the materials could not be renewed, the return date will be unchanged.
  </p>
-
+ <p>
  The response field renewalStatus will contain a list of one or more of these values:
  <ul>
  <li>- renewed</li>
@@ -1338,7 +1341,7 @@ export const useRenewLoansV2 = <
 };
 
 /**
- * 
+ *
  Returns an array of loans.
  <p>
  </p>
@@ -1438,7 +1441,7 @@ export function useGetLoansV2<
 }
 
 /**
- * 
+ *
  <p></p>
  If a patron is blocked the reason is available as a code:
  <ul>
@@ -1519,7 +1522,7 @@ export function useGetPatronInformationByPatronIdV2<
 }
 
 /**
- * 
+ *
  The name and address cannot be supplied by the client. If the CPR-Registry is not authorized to provide
  information about the patron, then the name and address will not be updated.
  <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>

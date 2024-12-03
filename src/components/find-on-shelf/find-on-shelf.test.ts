@@ -3,10 +3,14 @@ describe("Find on shelf modal - default", () => {
     // Intercept holdings data call.
     cy.fixture("material/find-on-shelf-holdings.json")
       .then((result) => {
-        cy.intercept("GET", "**/external/agencyid/catalog/holdings/**", {
-          statusCode: 200,
-          body: result
-        });
+        cy.intercept(
+          "GET",
+          "**/external/agencyid/catalog/holdingsLogistics/**",
+          {
+            statusCode: 200,
+            body: result
+          }
+        );
       })
       .as("Find on shelf holdings");
     // Intercept availability data call.
@@ -39,10 +43,14 @@ describe("Find on shelf modal - periodical", () => {
     // Intercept holdings data call.
     cy.fixture("material/find-on-shelf-holdings.json")
       .then((result) => {
-        cy.intercept("GET", "**/external/agencyid/catalog/holdings/**", {
-          statusCode: 200,
-          body: result
-        });
+        cy.intercept(
+          "GET",
+          "**/external/agencyid/catalog/holdingsLogistics/**",
+          {
+            statusCode: 200,
+            body: result
+          }
+        );
       })
       .as("Find on shelf holdings");
     // Intercept availability data call.
