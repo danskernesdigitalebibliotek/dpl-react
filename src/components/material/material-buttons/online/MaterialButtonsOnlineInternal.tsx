@@ -12,13 +12,13 @@ import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 
-type MaterialButtonOnlinePublizonType = {
+type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
   manifestations: Manifestation[];
   dataCy?: string;
 };
 
-const MaterialButtonOnlinePublizon: FC<MaterialButtonOnlinePublizonType> = ({
+const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   size,
   manifestations,
   dataCy = "material-button-online-publizon"
@@ -62,4 +62,4 @@ const MaterialButtonOnlinePublizon: FC<MaterialButtonOnlinePublizonType> = ({
   );
 };
 
-export default MaterialButtonOnlinePublizon;
+export default MaterialButtonsOnlineInternal;
