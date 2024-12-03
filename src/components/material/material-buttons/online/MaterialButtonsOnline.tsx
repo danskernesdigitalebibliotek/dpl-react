@@ -13,7 +13,7 @@ import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArt
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
-import MaterialButtonOnlinePublizon from "./MaterialButtonOnlinePublizon";
+import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -41,7 +41,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
   // Todo: Move logic for Player / Reader buttons / Links to here.
   // if (condition) {
-  //   return <MaterialButtonOnlinePublizon manifestations={manifestations} />;
+  //   return <MaterialButtonsOnlineInternal manifestations={manifestations} />;
   // }
 
   // Find 'Ereol' object or default to the first 'access' object
@@ -74,8 +74,8 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
           dataCy={`${dataCy}-external`}
           ariaLabelledBy={ariaLabelledBy}
         />
-        {/* Todo: MaterialButtonOnlinePublizon should be in the todo at line 44  */}
-        <MaterialButtonOnlinePublizon
+        {/* Todo: MaterialButtonsOnlineInternal should be in the todo at line 44  */}
+        <MaterialButtonsOnlineInternal
           size={size}
           manifestations={manifestations}
           dataCy={`${dataCy}-publizon`}

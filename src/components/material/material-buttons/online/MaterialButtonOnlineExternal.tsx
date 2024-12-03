@@ -1,4 +1,4 @@
-// Todo: Rember to clean this up for all pats thats refere to ereolen
+// TODO: Remember to clean this up for all paths that refer to eReolen
 import React, { useState, FC, useEffect } from "react";
 import {
   AccessUrl,
