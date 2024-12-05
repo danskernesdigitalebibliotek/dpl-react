@@ -1446,6 +1446,22 @@
             "deprecationReason": null
           },
           {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this suggestion. \nIt is generated in the response and should be included in subsequent\nAPI calls when this suggestion is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": "The type of suggestion",
             "args": [],
@@ -5066,6 +5082,18 @@
             "deprecationReason": null
           },
           {
+            "name": "marc",
+            "description": "Field for presenting bibliographic records in MARC format",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MarcRecord",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "materialTypes",
             "description": "The type of material of the manifestation based on bibliotek.dk types",
             "args": [],
@@ -5347,6 +5375,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "ManifestationTitles",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this manifestation. \nIt is generated in the response and should be included in subsequent\nAPI calls when this manifestation is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -6048,6 +6092,155 @@
                     "ofType": null
                   }
                 }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Marc",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "getMarcByRecordId",
+            "description": "Gets the MARC record collection for the given record identifier, containing either standalone or head and/or section and volume records.",
+            "args": [
+              {
+                "name": "recordId",
+                "description": "The marc record identifier",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MarcRecord",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MarcRecord",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "agencyId",
+            "description": "The library agency",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bibliographicRecordId",
+            "description": "The bibliographic record identifier",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "content",
+            "description": "The MARC record collection content as marcXchange XML string",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contentSerializationFormat",
+            "description": "The serialization format of the MARC record content. Defaults to 'marcXchange'",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "deleted",
+            "description": "Flag indicating whether or not the record is deleted",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The marc record identifier",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               }
             },
             "isDeprecated": false,
@@ -7509,6 +7702,12 @@
             "deprecationReason": null
           },
           {
+            "name": "EXPECTED_PUBLICATION_DATE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "FREQUENCY",
             "description": null,
             "isDeprecated": false,
@@ -8505,6 +8704,22 @@
                   "name": "Manifestation",
                   "ofType": null
                 }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "marc",
+            "description": "Field for presenting bibliographic records in MARC format",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Marc",
+                "ofType": null
               }
             },
             "isDeprecated": false,
@@ -10445,6 +10660,26 @@
           },
           {
             "name": "fictionalCharacters",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "gamePlatform",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -12682,6 +12917,22 @@
             "deprecationReason": null
           },
           {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this suggestion. \nIt is generated in the response and should be included in subsequent\nAPI calls when this suggestion is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": "The type of suggestion: creator, subject or title",
             "args": [],
@@ -13737,6 +13988,18 @@
             "deprecationReason": null
           },
           {
+            "name": "marc",
+            "description": "Field for presenting bibliographic records in MARC format",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MarcRecord",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "materialTypes",
             "description": "The type of material of the manifestation based on bibliotek.dk types",
             "args": [],
@@ -13826,6 +14089,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "WorkTitles",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this work.\nIt is generated in the response and should be included in subsequent\nAPI calls when this work is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },

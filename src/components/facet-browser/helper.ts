@@ -136,7 +136,7 @@ export const getFacetFieldTranslation = (name: FacetFieldEnum) => {
     case FacetFieldEnum.Year.toLowerCase():
       return "facetYearText";
     // TODO: Replace this case when FBI API specs have updated
-    case "gameplatform":
+    case FacetFieldEnum.Gameplatform.toLowerCase():
       return "facetGamePlatformText";
     default:
       return invalidSwitchCase<string>(name as never);

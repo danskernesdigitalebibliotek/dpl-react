@@ -252,6 +252,12 @@ export type ComplexSearchSuggestion = {
   __typename?: "ComplexSearchSuggestion";
   /** The suggested term which can be searched for */
   term: Scalars["String"]["output"];
+  /**
+   * A unique identifier for tracking user interactions with this suggestion.
+   * It is generated in the response and should be included in subsequent
+   * API calls when this suggestion is selected.
+   */
+  traceId: Scalars["String"]["output"];
   /** The type of suggestion */
   type: Scalars["String"]["output"];
   /** A work related to the term */
@@ -803,6 +809,8 @@ export type Manifestation = {
   latestPrinting?: Maybe<Printing>;
   /** Tracks on music album, sheet music content, or articles/short stories etc. in this manifestation */
   manifestationParts?: Maybe<ManifestationParts>;
+  /** Field for presenting bibliographic records in MARC format */
+  marc?: Maybe<MarcRecord>;
   /** The type of material of the manifestation based on bibliotek.dk types */
   materialTypes: Array<MaterialType>;
   /** Notes about the manifestation */
@@ -835,6 +843,12 @@ export type Manifestation = {
   tableOfContents?: Maybe<TableOfContent>;
   /** Different kinds of titles for this work */
   titles: ManifestationTitles;
+  /**
+   * A unique identifier for tracking user interactions with this manifestation.
+   * It is generated in the response and should be included in subsequent
+   * API calls when this manifestation is selected.
+   */
+  traceId: Scalars["String"]["output"];
   /** id of the manifestaion unit */
   unit?: Maybe<Unit>;
   /** Universes for this manifestation */
@@ -921,6 +935,32 @@ export type Manifestations = {
   first: Manifestation;
   latest: Manifestation;
   mostRelevant: Array<Manifestation>;
+};
+
+export type Marc = {
+  __typename?: "Marc";
+  /** Gets the MARC record collection for the given record identifier, containing either standalone or head and/or section and volume records. */
+  getMarcByRecordId?: Maybe<MarcRecord>;
+};
+
+export type MarcGetMarcByRecordIdArgs = {
+  recordId: Scalars["String"]["input"];
+};
+
+export type MarcRecord = {
+  __typename?: "MarcRecord";
+  /** The library agency */
+  agencyId: Scalars["String"]["output"];
+  /** The bibliographic record identifier */
+  bibliographicRecordId: Scalars["String"]["output"];
+  /** The MARC record collection content as marcXchange XML string */
+  content: Scalars["String"]["output"];
+  /** The serialization format of the MARC record content. Defaults to 'marcXchange' */
+  contentSerializationFormat: Scalars["String"]["output"];
+  /** Flag indicating whether or not the record is deleted */
+  deleted: Scalars["Boolean"]["output"];
+  /** The marc record identifier */
+  id: Scalars["String"]["output"];
 };
 
 export type MaterialType = {
@@ -1124,6 +1164,7 @@ export enum NoteTypeEnum {
   Dissertation = "DISSERTATION",
   Edition = "EDITION",
   EstimatedPlayingTimeForGames = "ESTIMATED_PLAYING_TIME_FOR_GAMES",
+  ExpectedPublicationDate = "EXPECTED_PUBLICATION_DATE",
   Frequency = "FREQUENCY",
   MusicalEnsembleOrCast = "MUSICAL_ENSEMBLE_OR_CAST",
   NotSpecified = "NOT_SPECIFIED",
@@ -1241,6 +1282,8 @@ export type Query = {
   localSuggest: LocalSuggestResponse;
   manifestation?: Maybe<Manifestation>;
   manifestations: Array<Maybe<Manifestation>>;
+  /** Field for presenting bibliographic records in MARC format */
+  marc: Marc;
   mood: MoodQueries;
   ors: OrsQuery;
   /** Get recommendations */
@@ -1495,6 +1538,7 @@ export type SearchFiltersInput = {
   dk5?: InputMaybe<Array<Scalars["String"]["input"]>>;
   fictionNonfiction?: InputMaybe<Array<Scalars["String"]["input"]>>;
   fictionalCharacters?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  gamePlatform?: InputMaybe<Array<Scalars["String"]["input"]>>;
   generalAudience?: InputMaybe<Array<Scalars["String"]["input"]>>;
   genreAndForm?: InputMaybe<Array<Scalars["String"]["input"]>>;
   letRange?: InputMaybe<Array<Scalars["String"]["input"]>>;
@@ -1802,6 +1846,12 @@ export type Suggestion = {
   __typename?: "Suggestion";
   /** The suggested term which can be searched for */
   term: Scalars["String"]["output"];
+  /**
+   * A unique identifier for tracking user interactions with this suggestion.
+   * It is generated in the response and should be included in subsequent
+   * API calls when this suggestion is selected.
+   */
+  traceId: Scalars["String"]["output"];
   /** The type of suggestion: creator, subject or title */
   type: SuggestionTypeEnum;
   /** A work related to the term */
@@ -1951,6 +2001,8 @@ export type Work = {
   mainLanguages: Array<Language>;
   /** Details about the manifestations of this work */
   manifestations: Manifestations;
+  /** Field for presenting bibliographic records in MARC format */
+  marc?: Maybe<MarcRecord>;
   /** The type of material of the manifestation based on bibliotek.dk types */
   materialTypes: Array<MaterialType>;
   /** Relations to other manifestations */
@@ -1960,6 +2012,12 @@ export type Work = {
   /** Subjects for this work */
   subjects: SubjectContainer;
   titles: WorkTitles;
+  /**
+   * A unique identifier for tracking user interactions with this work.
+   * It is generated in the response and should be included in subsequent
+   * API calls when this work is selected.
+   */
+  traceId: Scalars["String"]["output"];
   /** Literary/movie universes this work is part of, e.g. Wizarding World, Marvel Universe */
   universes: Array<Universe>;
   /** Unique identification of the work based on work-presentation id e.g work-of:870970-basis:54029519 */
