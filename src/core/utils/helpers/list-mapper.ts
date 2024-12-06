@@ -33,19 +33,22 @@ function getSeriesString(series: ManifestationBasicDetailsFragment["series"]) {
 // so digital/physical loans/reservations can use the same components,
 // as their UI is often quite similar
 export const mapPublizonLoanToLoanType = (list: Loan[]): LoanType[] => {
-  return list.map(({ loanExpireDateUtc, orderDateUtc, libraryBook }) => {
-    return {
-      dueDate: loanExpireDateUtc,
-      loanDate: orderDateUtc,
-      isRenewable: false,
-      materialItemNumber: libraryBook?.identifier || "",
-      renewalStatusList: [],
-      loanType: null,
-      identifier: libraryBook?.identifier || null,
-      faust: null,
-      loanId: null
-    };
-  });
+  return list.map(
+    ({ loanExpireDateUtc, orderDateUtc, libraryBook, orderId }) => {
+      return {
+        dueDate: loanExpireDateUtc,
+        loanDate: orderDateUtc,
+        isRenewable: false,
+        materialItemNumber: libraryBook?.identifier || "",
+        renewalStatusList: [],
+        loanType: null,
+        identifier: libraryBook?.identifier || null,
+        faust: null,
+        loanId: null,
+        orderId
+      };
+    }
+  );
 };
 
 // LoanV2 is a loan from FBS, and is the equivalent

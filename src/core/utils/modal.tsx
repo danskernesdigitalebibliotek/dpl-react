@@ -82,6 +82,8 @@ function Modal({
 
   return (
     <FocusTrap
+      // TODO: Remove this when the focus trap issue is fixed
+      active={false}
       focusTrapOptions={{
         // Set fallbackFocus when running vitest to avoid focus trap errors.
         fallbackFocus: isVitestEnvironment ? "body" : undefined
