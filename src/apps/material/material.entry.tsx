@@ -152,7 +152,6 @@ interface MaterialEntryTextProps {
   queueText: string;
   ratingIsText: string;
   readArticleText: string;
-  readerModalDescriptionText: string;
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
   reservableFromAnotherLibraryText: string;

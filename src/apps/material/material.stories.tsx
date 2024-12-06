@@ -243,10 +243,6 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Read article",
       control: { type: "text" }
     },
-    readerModalDescriptionText: {
-      description: "Reader modal description text",
-      control: { type: "text" }
-    },
     loadingText: {
       description: "Loading",
       control: { type: "text" }
@@ -778,7 +774,6 @@ const meta: Meta<typeof MaterialEntry> = {
     detailsListPartsText: "Contents",
     editionText: "Edition",
     readArticleText: "Read article",
-    readerModalDescriptionText: "Modal for Reader",
     loadingText: "Loading",
     getOnlineText: "Get online",
     seeOnlineText: "See online",
