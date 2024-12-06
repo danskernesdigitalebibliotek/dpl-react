@@ -1,3 +1,4 @@
+// TODO: Remember to clean this up for all paths that refer to eReolen
 import React, { useState, FC, useEffect } from "react";
 import {
   AccessUrl,
@@ -90,6 +91,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         return t("seeOnlineText");
     }
   };
+
   return (
     <LinkButton
       url={translatedUrl}
