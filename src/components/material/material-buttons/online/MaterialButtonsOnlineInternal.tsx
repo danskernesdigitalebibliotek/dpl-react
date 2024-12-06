@@ -11,6 +11,11 @@ import { getManifestationIsbn } from "../../../../apps/material/helper";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
+import useReaderPlayerButtons from "../../../../core/utils/useReaderPlayerButtons";
+import LinkButton from "../../../Buttons/LinkButton";
+import { Button } from "../../../Buttons/Button";
+import PlayerModal from "../../player-modal/PlayerModal";
+// import { getManifestationType } from "../../../../core/utils/helpers/general";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -25,12 +30,60 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
+  const { type, orderId, identifier, isLoading } =
+    useReaderPlayerButtons(manifestations);
 
-  return (
-    <>
-      {/* Todo: add logic for the reservation / loan / Read / Listen buttons here */}
+  // const testType = getManifestationType(manifestations);
 
-      {hasReaderManifestation(manifestations) && (
+  const renderReaderButton = () => {
+    if (orderId && type === "reader") {
+      return (
+        <LinkButton
+          url={new URL(`/reader?orderId=${orderId}`, window.location.href)}
+          buttonType="none"
+          variant="filled"
+          size={size || "large"}
+          dataCy={`${dataCy}-reader`}
+        >
+          {t("onlineMaterialReaderText", {
+            placeholders: { "@materialType": t("ebookText") }
+          })}
+        </LinkButton>
+      );
+    }
+
+    return null;
+  };
+
+  const renderPlayerButton = () => {
+    if (orderId && type === "player") {
+      return (
+        <>
+          <Button
+            dataCy={`${dataCy}-player`}
+            label={t("onlineMaterialPlayerText", {
+              placeholders: { "@materialType": t("audiobookText") }
+            })}
+            buttonType="none"
+            variant="filled"
+            size={size || "large"}
+            onClick={() => open(playerModalId(orderId))}
+            disabled={false}
+            collapsible={false}
+          />
+          <PlayerModal orderId={orderId} />
+        </>
+      );
+    }
+
+    return null;
+  };
+
+  if (hasReaderManifestation(manifestations)) {
+    return (
+      <>
+        {renderReaderButton()}
+
         <MaterialSecondaryLink
           label={t("onlineMaterialTeaserText", {
             placeholders: { "@materialType": t("ebookText") }
@@ -44,8 +97,15 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           }
           dataCy={`${dataCy}-reader-teaser`}
         />
-      )}
-      {hasPlayerManifestation(manifestations) && (
+      </>
+    );
+  }
+
+  if (hasPlayerManifestation(manifestations)) {
+    return (
+      <>
+        {renderPlayerButton()}
+
         <MaterialSecondaryButton
           label={t("onlineMaterialTeaserText", {
             placeholders: { "@materialType": t("audiobookText") }
@@ -57,9 +117,13 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           dataCy={`${dataCy}-player-teaser`}
           ariaDescribedBy={t("onlineMaterialTeaserText")}
         />
-      )}
-    </>
-  );
+
+        <PlayerModal identifier={identifier} />
+      </>
+    );
+  }
+
+  return null;
 };
 
 export default MaterialButtonsOnlineInternal;

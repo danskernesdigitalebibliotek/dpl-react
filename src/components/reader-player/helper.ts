@@ -1,5 +1,6 @@
 import { getMaterialTypes } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
+import { LoanType } from "../../core/utils/types/loan-type";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 type AssetType = {
@@ -92,6 +93,25 @@ export const hasPlayerManifestation = (manifestations: Manifestation[]) => {
       type === ManifestationMaterialType.musicOnline ||
       type === ManifestationMaterialType.audioBookTape
   );
+};
+
+export const getOrderIdByIdentifier = ({
+  loans,
+  identifier
+}: {
+  loans: LoanType[];
+  identifier: string;
+}) => {
+  const loanWithIdentifier = loans.find((i) => i.identifier === identifier);
+  return loanWithIdentifier ? loanWithIdentifier.orderId : null;
+};
+
+export const getReaderPlayerType = (
+  manifestations: Manifestation[]
+): "reader" | "player" | null => {
+  if (hasReaderManifestation(manifestations)) return "reader";
+  if (hasPlayerManifestation(manifestations)) return "player";
+  return null;
 };
 
 export default {};
