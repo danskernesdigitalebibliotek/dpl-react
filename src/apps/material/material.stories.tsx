@@ -239,6 +239,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Edition",
       control: { type: "text" }
     },
+    expirationWarningDaysBeforeConfig: {
+      description: "Expiration warning days before",
+      control: { type: "text" }
+    },
     readArticleText: {
       description: "Read article",
       control: { type: "text" }
@@ -301,6 +305,14 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     onlineLimitMonthAudiobookInfoText: {
       description: "Online limit info text",
+      control: { type: "text" }
+    },
+    onlineMaterialPlayerText: {
+      description: "Material button online player text",
+      control: { type: "text" }
+    },
+    onlineMaterialReaderText: {
+      description: "Material button online reader text",
       control: { type: "text" }
     },
     onlineMaterialTeaserText: {
@@ -773,6 +785,7 @@ const meta: Meta<typeof MaterialEntry> = {
     detailsListSourceText: "Source",
     detailsListPartsText: "Contents",
     editionText: "Edition",
+    expirationWarningDaysBeforeConfig: "6",
     readArticleText: "Read article",
     loadingText: "Loading",
     getOnlineText: "Get online",
@@ -795,6 +808,8 @@ const meta: Meta<typeof MaterialEntry> = {
       "You have borrowed @count out of @limit possible e-books this month",
     onlineLimitMonthAudiobookInfoText:
       "You have borrowed @count out of @limit possible audio-books this month",
+    onlineMaterialPlayerText: "Listen to @materialType",
+    onlineMaterialReaderText: "Read @materialType",
     onlineMaterialTeaserText: "Try @materialType",
     approveReservationText: "Approve reservation",
     shiftText: "Change",

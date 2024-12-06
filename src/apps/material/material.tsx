@@ -196,11 +196,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         )}
-        {hasPlayerManifestation(selectedManifestations) && (
-          <PlayerModal
-            identifier={getManifestationIsbn(selectedManifestations[0])}
-          />
-        )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       {/* Since we cannot trust the editions for global manifestations */}
