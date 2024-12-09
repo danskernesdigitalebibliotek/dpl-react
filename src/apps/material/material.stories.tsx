@@ -686,6 +686,14 @@ const meta: Meta<typeof MaterialEntry> = {
     openOrderErrorMissingPincodeText: {
       description: "Open order error missing pincode text",
       control: { type: "text" }
+    },
+    shareOnFacebookText: {
+      description: "Share on Facebook",
+      control: { type: "text" }
+    },
+    copyLinkText: {
+      description: "Copy link",
+      control: { type: "text" }
     }
   },
   args: {
@@ -901,7 +909,9 @@ const meta: Meta<typeof MaterialEntry> = {
     openOrderUnknownErrorText: "An unknown error occurred",
     openOrderUnknownPickupagencyText: "Specified pickup agency not found",
     openOrderUnknownUserText: "User not found",
-    openOrderErrorMissingPincodeText: "Missing pincode"
+    openOrderErrorMissingPincodeText: "Missing pincode",
+    shareOnFacebookText: "Share on Facebook",
+    copyLinkText: "Copy link"
   }
 };
 
