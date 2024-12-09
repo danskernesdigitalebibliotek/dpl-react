@@ -52,7 +52,7 @@ const EventForm: React.FC<EventFormProps> = ({
   const [startTime, setStartTime] = useState(initialStartTime);
   const [endTime, setEndTime] = useState(initialEndTime);
   const [category, setCategory] = useState(initialCategory);
-  const isSameTime = startTime === endTime;
+  const isSameTime = startTime === endTime && startTime !== "00:00";
   const [isRepeated, setIsRepeated] = useState(false);
   const [repeatedEndDate, setRepeatedEndDate] = useState<null | string>(null);
 
