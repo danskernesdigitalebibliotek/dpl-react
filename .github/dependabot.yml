@@ -30,6 +30,12 @@ updates:
           - "@graphql-typed-document-node/core"
           - "replace-in-file"
           - "typescript-graphql-typed-files-modules"
+      react:
+        patterns:
+          - "react"
+          - "@types/react"
+          - "react-dom"
+          - "@types/react-dom"
       redux:
         patterns:
           - "@reduxjs/toolkit"
