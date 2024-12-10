@@ -18,7 +18,7 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
   const copyButtonAreaLabel = "Copy this page to clipboard";
 
   const [showFixedButtons, setShowFixedButtons] = useState(true);
-  const shareButton = useRef<HTMLAnchorElement>(null);
+  const shareButtonRef = useRef<HTMLAnchorElement>(null);
 
   const onShareButtonClick = () => {
     navigator.clipboard.writeText(href);
@@ -38,13 +38,15 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
       { threshold: 1 }
     );
 
-    if (shareButton.current) {
-      observer.observe(shareButton.current);
+    const shareButton = shareButtonRef.current;
+
+    if (shareButton) {
+      observer.observe(shareButton);
     }
 
     return () => {
-      if (shareButton.current) {
-        observer.unobserve(shareButton.current);
+      if (shareButton) {
+        observer.unobserve(shareButton);
       }
     };
   }, []);
@@ -71,7 +73,7 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
         </div>
       )}
       <a
-        ref={shareButton}
+        ref={shareButtonRef}
         href={shareUrl}
         aria-label={shareButtonAreaLabel}
         className="button-share__button"
