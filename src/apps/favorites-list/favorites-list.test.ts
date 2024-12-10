@@ -52,7 +52,7 @@ describe("Favorites list", () => {
   });
 
   // Test that the list of favorites is displayed with materials correctly
-  it("Favorites list basics", () => {
+  it("Favorites list render as expected", () => {
     // Wait for element not in skeleton screen to prevent testing prematurely.
     cy.get(".cover").should("be.visible");
 
