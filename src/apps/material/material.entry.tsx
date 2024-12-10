@@ -102,6 +102,8 @@ interface MaterialEntryTextProps {
   okButtonText: string;
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
+  onlineMaterialPlayerText: string;
+  onlineMaterialReaderText: string;
   onlineMaterialTeaserText: string;
   openOrderAuthenticationErrorText: string;
   openOrderErrorMissingPincodeText: string;
@@ -179,6 +181,7 @@ interface MaterialEntryConfigProps {
   blacklistedInstantLoanBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
+  expirationWarningDaysBeforeConfig: string;
   instantLoanConfig: string;
   smsNotificationsForReservationsEnabledConfig: string;
 }
