@@ -39,7 +39,7 @@ import {
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import PlayerModal from "../../components/material/player-modal/PlayerModal";
-import useReaderPlayerButtons from "../../core/utils/useReaderPlayerButtons";
+import useReaderPlayer from "../../core/utils/useReaderPlayer";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -60,7 +60,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     type: readerPlayerType,
     identifier,
     orderId
-  } = useReaderPlayerButtons(selectedManifestations);
+  } = useReaderPlayer(selectedManifestations);
 
   useEffect(() => {
     setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));
