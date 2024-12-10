@@ -6,10 +6,17 @@ import {
   getReaderPlayerType
 } from "../../components/reader-player/helper";
 
-const useReaderPlayerButtons = (manifestations: Manifestation[]) => {
+const useReaderPlayerButtons = (manifestations: Manifestation[] | null) => {
   const {
-    publizon: { loans, isLoading }
+    publizon: { loans }
   } = useLoans();
+
+  if (!manifestations)
+    return {
+      type: null,
+      identifier: null,
+      orderId: null
+    };
 
   const identifier = getManifestationIsbn(manifestations[0]);
   const type = getReaderPlayerType(manifestations);
@@ -21,8 +28,7 @@ const useReaderPlayerButtons = (manifestations: Manifestation[]) => {
   return {
     type,
     identifier,
-    orderId,
-    isLoading
+    orderId
   };
 };
 

@@ -33,7 +33,6 @@ import {
   getBestMaterialTypeForWork,
   getDetailsListData,
   getInfomediaIds,
-  getManifestationIsbn,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation
 } from "./helper";
@@ -41,6 +40,7 @@ import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import { hasPlayerManifestation } from "../../components/reader-player/helper";
+import useReaderPlayerButtons from "../../core/utils/useReaderPlayerButtons";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -57,6 +57,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data: userData } = usePatronData();
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
   const { track } = useStatistics();
+  const { identifier, orderId } = useReaderPlayerButtons(
+    selectedManifestations
+  );
 
   useEffect(() => {
     setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));
@@ -173,6 +176,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         ))}
+        {hasPlayerManifestation(selectedManifestations) && (
+          <>
+            {identifier && <PlayerModal identifier={identifier} />}
+            {orderId && <PlayerModal orderId={orderId} />}
+          </>
+        )}
 
         {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
           <InfomediaModal
