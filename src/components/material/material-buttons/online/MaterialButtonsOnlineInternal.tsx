@@ -1,9 +1,5 @@
 import React, { FC } from "react";
 import { Manifestation } from "../../../../core/utils/types/entities";
-import {
-  hasPlayerManifestation,
-  hasReaderManifestation
-} from "../../../reader-player/helper";
 import MaterialSecondaryLink from "../generic/MaterialSecondaryLink";
 import MaterialSecondaryButton from "../generic/MaterialSecondaryButton";
 import { playerModalId } from "../../player-modal/helper";
@@ -73,7 +69,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     return null;
   };
 
-  if (hasReaderManifestation(manifestations) && identifier) {
+  if (type === "reader" && identifier) {
     return (
       <>
         {renderReaderButton()}
@@ -92,7 +88,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     );
   }
 
-  if (hasPlayerManifestation(manifestations) && identifier) {
+  if (type === "player" && identifier) {
     return (
       <>
         {renderPlayerButton()}

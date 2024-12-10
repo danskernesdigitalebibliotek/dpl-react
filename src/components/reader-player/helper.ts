@@ -73,28 +73,6 @@ export const removeAppendedAssets = () => {
   });
 };
 
-export const hasReaderManifestation = (manifestations: Manifestation[]) => {
-  const materialTypes = getMaterialTypes(manifestations);
-  return materialTypes.some(
-    (type) =>
-      type === ManifestationMaterialType.ebook ||
-      type === ManifestationMaterialType.pictureBookOnline ||
-      type === ManifestationMaterialType.animatedSeriesOnline ||
-      type === ManifestationMaterialType.yearBookOnline
-  );
-};
-
-export const hasPlayerManifestation = (manifestations: Manifestation[]) => {
-  const materialTypes = getMaterialTypes(manifestations);
-  return materialTypes.some(
-    (type) =>
-      type === ManifestationMaterialType.audioBook ||
-      type === ManifestationMaterialType.podcast ||
-      type === ManifestationMaterialType.musicOnline ||
-      type === ManifestationMaterialType.audioBookTape
-  );
-};
-
 export const getOrderIdByIdentifier = ({
   loans,
   identifier
@@ -109,8 +87,25 @@ export const getOrderIdByIdentifier = ({
 export const getReaderPlayerType = (
   manifestations: Manifestation[]
 ): "reader" | "player" | null => {
-  if (hasReaderManifestation(manifestations)) return "reader";
-  if (hasPlayerManifestation(manifestations)) return "player";
+  const materialTypes = getMaterialTypes(manifestations);
+
+  const readerTypes = [
+    ManifestationMaterialType.ebook,
+    ManifestationMaterialType.pictureBookOnline,
+    ManifestationMaterialType.animatedSeriesOnline,
+    ManifestationMaterialType.yearBookOnline
+  ];
+
+  const playerTypes = [
+    ManifestationMaterialType.audioBook,
+    ManifestationMaterialType.podcast,
+    ManifestationMaterialType.musicOnline,
+    ManifestationMaterialType.audioBookTape
+  ];
+
+  if (readerTypes.some((type) => materialTypes.includes(type))) return "reader";
+  if (playerTypes.some((type) => materialTypes.includes(type))) return "player";
+
   return null;
 };
 
