@@ -6,7 +6,7 @@ import { playerModalId } from "../../player-modal/helper";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
-import useReaderPlayerButtons from "../../../../core/utils/useReaderPlayerButtons";
+import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 import LinkButton from "../../../Buttons/LinkButton";
 import { Button } from "../../../Buttons/Button";
 
@@ -23,7 +23,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const { type, orderId, identifier } = useReaderPlayerButtons(manifestations);
+  const { type, orderId, identifier } = useReaderPlayer(manifestations);
 
   const renderReaderButton = () => {
     if (orderId && type === "reader") {
