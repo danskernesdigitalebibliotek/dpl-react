@@ -9,7 +9,6 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import useReaderPlayerButtons from "../../../../core/utils/useReaderPlayerButtons";
 import LinkButton from "../../../Buttons/LinkButton";
 import { Button } from "../../../Buttons/Button";
-// import { getManifestationType } from "../../../../core/utils/helpers/general";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -25,8 +24,6 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const t = useText();
   const { open } = useModalButtonHandler();
   const { type, orderId, identifier } = useReaderPlayerButtons(manifestations);
-
-  // const testType = getManifestationType(manifestations);
 
   const renderReaderButton = () => {
     if (orderId && type === "reader") {

@@ -177,13 +177,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         ))}
-        {readerPlayerType === "player" && (
-          <>
-            {identifier && <PlayerModal identifier={identifier} />}
-            {orderId && <PlayerModal orderId={orderId} />}
-          </>
-        )}
-
         {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
           <InfomediaModal
             selectedManifestations={selectedManifestations}
@@ -205,6 +198,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             work={work}
             setSelectedPeriodical={setSelectedPeriodical}
           />
+        )}
+        {readerPlayerType === "player" && (
+          <>
+            {identifier && <PlayerModal identifier={identifier} />}
+            {orderId && <PlayerModal orderId={orderId} />}
+          </>
         )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
