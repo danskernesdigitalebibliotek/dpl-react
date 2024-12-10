@@ -16,9 +16,6 @@ const PlayerModal: FC<PlayerType> = ({ identifier, orderId }) => {
         screenReaderModalDescriptionText={t("playerModalDescriptionText")}
         closeModalAriaLabelText={t("playerModalCloseButtonText")}
       >
-        {/* <div>
-          <a href="/">test</a>
-        </div> */}
         <Player orderId={orderId} />
       </Modal>
     );
@@ -33,15 +30,12 @@ const PlayerModal: FC<PlayerType> = ({ identifier, orderId }) => {
         screenReaderModalDescriptionText={t("playerModalDescriptionText")}
         closeModalAriaLabelText={t("playerModalCloseButtonText")}
       >
-        {/* <div>
-          <a href="/">test</a>
-        </div> */}
         <Player identifier={identifier} />
       </Modal>
     );
   }
 
-  return <p>Something went wrong</p>;
+  return null;
 };
 
 export default PlayerModal;
