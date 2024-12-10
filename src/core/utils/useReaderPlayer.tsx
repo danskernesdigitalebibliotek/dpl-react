@@ -6,7 +6,7 @@ import {
   getReaderPlayerType
 } from "../../components/reader-player/helper";
 
-const useReaderPlayerButtons = (manifestations: Manifestation[] | null) => {
+const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   const {
     publizon: { loans }
   } = useLoans();
@@ -32,4 +32,4 @@ const useReaderPlayerButtons = (manifestations: Manifestation[] | null) => {
   };
 };
 
-export default useReaderPlayerButtons;
+export default useReaderPlayer;
