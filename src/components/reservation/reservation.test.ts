@@ -41,6 +41,12 @@ describe("Reservation", () => {
       url: "**/dpl-url-proxy?url=**",
       fixtureFilePath: "material/dpl-url-proxy.json"
     });
+    // Intercept patrons loans
+    cy.interceptRest({
+      aliasName: "patrons loans",
+      url: "**/external/agencyid/patrons/patronid/loans/v2",
+      fixtureFilePath: "patrons-patronid-loans-empty.json"
+    });
   });
 
   it("Renders a reservation modal for fiction", () => {
