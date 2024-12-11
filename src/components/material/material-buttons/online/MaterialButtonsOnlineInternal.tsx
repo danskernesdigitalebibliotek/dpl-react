@@ -29,7 +29,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     if (orderId && type === "reader") {
       return (
         <LinkButton
-          url={new URL(`/reader?orderId=${orderId}`, window.location.href)}
+          url={new URL(`/reader?orderid=${orderId}`, window.location.href)}
           buttonType="none"
           variant="filled"
           size={size || "large"}
