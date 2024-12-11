@@ -14,8 +14,8 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
   const facebookShareUrl = "https://www.facebook.com/sharer/sharer.php";
   const shareUrl = `${facebookShareUrl}?u=${href}`;
 
-  const shareButtonAreaLabel = "Share this page on Facebook";
-  const copyButtonAreaLabel = "Copy this page to clipboard";
+  const shareButtonAreaLabel = t("shareOnFacebookAriaLabelText");
+  const copyButtonAreaLabel = t("copyLinkAriaLabelText");
 
   const [showFixedButtons, setShowFixedButtons] = useState(true);
   const shareButtonRef = useRef<HTMLAnchorElement>(null);

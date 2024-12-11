@@ -691,8 +691,16 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Share on Facebook",
       control: { type: "text" }
     },
+    shareOnFacebookAriaLabelText: {
+      description: "Share this page on Facebook",
+      control: { type: "text" }
+    },
     copyLinkText: {
       description: "Copy link",
+      control: { type: "text" }
+    },
+    copyLinkAriaLabelText: {
+      description: "Copy this page URL to clipboard",
       control: { type: "text" }
     }
   },
@@ -911,7 +919,9 @@ const meta: Meta<typeof MaterialEntry> = {
     openOrderUnknownUserText: "User not found",
     openOrderErrorMissingPincodeText: "Missing pincode",
     shareOnFacebookText: "Share on Facebook",
-    copyLinkText: "Copy link"
+    shareOnFacebookAriaLabelText: "Share this page on Facebook",
+    copyLinkText: "Copy link",
+    copyLinkAriaLabelText: "Copy this page URL to clipboard"
   }
 };
 
