@@ -239,10 +239,6 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Edition",
       control: { type: "text" }
     },
-    expirationWarningDaysBeforeConfig: {
-      description: "Expiration warning days before",
-      control: { type: "text" }
-    },
     readArticleText: {
       description: "Read article",
       control: { type: "text" }
@@ -785,7 +781,6 @@ const meta: Meta<typeof MaterialEntry> = {
     detailsListSourceText: "Source",
     detailsListPartsText: "Contents",
     editionText: "Edition",
-    expirationWarningDaysBeforeConfig: "6",
     readArticleText: "Read article",
     loadingText: "Loading",
     getOnlineText: "Get online",

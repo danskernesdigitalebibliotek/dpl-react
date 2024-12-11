@@ -181,7 +181,6 @@ interface MaterialEntryConfigProps {
   blacklistedInstantLoanBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
-  expirationWarningDaysBeforeConfig: string;
   instantLoanConfig: string;
   smsNotificationsForReservationsEnabledConfig: string;
 }
