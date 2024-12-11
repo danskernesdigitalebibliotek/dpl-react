@@ -26,7 +26,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const { type, orderId, identifier } = useReaderPlayer(manifestations);
 
   const renderReaderButton = () => {
-    if (orderId && type === "reader") {
+    if (orderId) {
       return (
         <LinkButton
           url={new URL(`/reader?orderid=${orderId}`, window.location.href)}
@@ -45,8 +45,28 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     return null;
   };
 
+  const renderReaderTeaserButton = () => {
+    if (orderId) return null;
+
+    if (identifier) {
+      return (
+        <MaterialSecondaryLink
+          label={t("onlineMaterialTeaserText", {
+            placeholders: { "@materialType": t("ebookText") }
+          })}
+          size={size || "large"}
+          url={
+            new URL(`/reader?identifier=${identifier}`, window.location.href)
+          }
+          dataCy={`${dataCy}-reader-teaser`}
+        />
+      );
+    }
+    return null;
+  };
+
   const renderPlayerButton = () => {
-    if (orderId && type === "player") {
+    if (orderId) {
       return (
         <Button
           dataCy={`${dataCy}-player`}
@@ -66,30 +86,11 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     return null;
   };
 
-  if (type === "reader" && identifier) {
-    return (
-      <>
-        {renderReaderButton()}
+  const renderPlayerTeaserButton = () => {
+    if (orderId) return null;
 
-        <MaterialSecondaryLink
-          label={t("onlineMaterialTeaserText", {
-            placeholders: { "@materialType": t("ebookText") }
-          })}
-          size={size || "large"}
-          url={
-            new URL(`/reader?identifier=${identifier}`, window.location.href)
-          }
-          dataCy={`${dataCy}-reader-teaser`}
-        />
-      </>
-    );
-  }
-
-  if (type === "player" && identifier) {
-    return (
-      <>
-        {renderPlayerButton()}
-
+    if (identifier) {
+      return (
         <MaterialSecondaryButton
           label={t("onlineMaterialTeaserText", {
             placeholders: { "@materialType": t("audiobookText") }
@@ -101,6 +102,25 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           dataCy={`${dataCy}-player-teaser`}
           ariaDescribedBy={t("onlineMaterialTeaserText")}
         />
+      );
+    }
+    return null;
+  };
+
+  if (type === "reader") {
+    return (
+      <>
+        {renderReaderButton()}
+        {renderReaderTeaserButton()}
+      </>
+    );
+  }
+
+  if (type === "player") {
+    return (
+      <>
+        {renderPlayerButton()}
+        {renderPlayerTeaserButton()}
       </>
     );
   }
