@@ -57,6 +57,8 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
         <div className="button-share button-share--fixed">
           <a
             href={shareUrl}
+            target="_blank"
+            rel="noreferrer"
             aria-label={shareButtonAreaLabel}
             className="button-share__button button-share__button--fixed"
           >
@@ -75,6 +77,8 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
       <a
         ref={shareButtonRef}
         href={shareUrl}
+        target="_blank"
+        rel="noreferrer"
         aria-label={shareButtonAreaLabel}
         className="button-share__button"
       >
