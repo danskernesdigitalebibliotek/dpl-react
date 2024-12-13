@@ -13,7 +13,13 @@ export const enum ManifestationMaterialType {
   earticle = "artikel",
   boardGame = "spil",
   cdRom = "cd",
-  magazine = "tidsskrift"
+  magazine = "tidsskrift",
+  pictureBookOnline = "billedbog (online)",
+  animatedSeriesOnline = "tegneserie (online)",
+  yearBookOnline = "årbog (online)",
+  podcast = "podcast",
+  musicOnline = "musik (online)",
+  audioBookTape = "lydbog (bånd)"
 }
 
 export const enum AutosuggestCategory {
