@@ -18,6 +18,7 @@ export type ButtonProps = {
   id?: string;
   classNames?: string;
   dataCy?: string;
+  ariaDescribedBy?: string;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -31,7 +32,8 @@ export const Button: React.FC<ButtonProps> = ({
   iconClassNames,
   id,
   classNames,
-  dataCy
+  dataCy,
+  ariaDescribedBy
 }) => {
   return (
     <button
@@ -43,6 +45,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       onClick={onClick}
       id={id}
+      aria-describedby={ariaDescribedBy}
     >
       {label}
       <ButtonIcon

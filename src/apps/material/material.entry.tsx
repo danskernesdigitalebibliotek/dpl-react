@@ -11,6 +11,7 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 interface MaterialEntryTextProps {
   alreadyReservedText: string;
   approveReservationText: string;
+  audiobookText: string;
   blockedButtonText: string;
   cantReserveText: string;
   cantViewReviewText: string;
@@ -43,6 +44,7 @@ interface MaterialEntryTextProps {
   detailsListTypeText: string;
   detailsOfTheMaterialText: string;
   detailsText: string;
+  ebookText: string;
   editionsText: string;
   editionText: string;
   etAlText: string;
@@ -100,6 +102,7 @@ interface MaterialEntryTextProps {
   okButtonText: string;
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
+  onlineMaterialTeaserText: string;
   openOrderAuthenticationErrorText: string;
   openOrderErrorMissingPincodeText: string;
   openOrderInvalidOrderText: string;
@@ -144,13 +147,15 @@ interface MaterialEntryTextProps {
   outOfText: string;
   periodicalSelectEditionText: string;
   periodicalSelectYearText: string;
-  reservationDetailsPickUpAtTitleText: string;
+  playerModalCloseButtonText: string;
+  playerModalDescriptionText: string;
   queueText: string;
   ratingIsText: string;
   readArticleText: string;
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
   reservableFromAnotherLibraryText: string;
+  reservationDetailsPickUpAtTitleText: string;
   reservationErrorsDescriptionText: string;
   reservationErrorsTitleText: string;
   reservationModalCloseModalAriaLabelText: string;
