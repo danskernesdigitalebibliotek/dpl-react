@@ -102,6 +102,8 @@ interface MaterialEntryTextProps {
   okButtonText: string;
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
+  onlineMaterialPlayerText: string;
+  onlineMaterialReaderText: string;
   onlineMaterialTeaserText: string;
   openOrderAuthenticationErrorText: string;
   openOrderErrorMissingPincodeText: string;
