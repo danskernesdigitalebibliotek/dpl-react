@@ -303,6 +303,14 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Online limit info text",
       control: { type: "text" }
     },
+    onlineMaterialPlayerText: {
+      description: "Material button online player text",
+      control: { type: "text" }
+    },
+    onlineMaterialReaderText: {
+      description: "Material button online reader text",
+      control: { type: "text" }
+    },
     onlineMaterialTeaserText: {
       description: "Material button online teaser text",
       control: { type: "text" }
@@ -795,6 +803,8 @@ const meta: Meta<typeof MaterialEntry> = {
       "You have borrowed @count out of @limit possible e-books this month",
     onlineLimitMonthAudiobookInfoText:
       "You have borrowed @count out of @limit possible audio-books this month",
+    onlineMaterialPlayerText: "Listen to @materialType",
+    onlineMaterialReaderText: "Read @materialType",
     onlineMaterialTeaserText: "Try @materialType",
     approveReservationText: "Approve reservation",
     shiftText: "Change",

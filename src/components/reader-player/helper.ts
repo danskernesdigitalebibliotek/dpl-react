@@ -1,5 +1,6 @@
 import { getMaterialTypes } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
+import { LoanType } from "../../core/utils/types/loan-type";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 type AssetType = {
@@ -72,26 +73,40 @@ export const removeAppendedAssets = () => {
   });
 };
 
-export const hasReaderManifestation = (manifestations: Manifestation[]) => {
-  const materialTypes = getMaterialTypes(manifestations);
-  return materialTypes.some(
-    (type) =>
-      type === ManifestationMaterialType.ebook ||
-      type === ManifestationMaterialType.pictureBookOnline ||
-      type === ManifestationMaterialType.animatedSeriesOnline ||
-      type === ManifestationMaterialType.yearBookOnline
-  );
+export const getOrderIdByIdentifier = ({
+  loans,
+  identifier
+}: {
+  loans: LoanType[];
+  identifier: string;
+}) => {
+  const loanWithIdentifier = loans.find((i) => i.identifier === identifier);
+  return loanWithIdentifier ? loanWithIdentifier.orderId : null;
 };
 
-export const hasPlayerManifestation = (manifestations: Manifestation[]) => {
+export const getReaderPlayerType = (
+  manifestations: Manifestation[]
+): "reader" | "player" | null => {
   const materialTypes = getMaterialTypes(manifestations);
-  return materialTypes.some(
-    (type) =>
-      type === ManifestationMaterialType.audioBook ||
-      type === ManifestationMaterialType.podcast ||
-      type === ManifestationMaterialType.musicOnline ||
-      type === ManifestationMaterialType.audioBookTape
-  );
+
+  const readerTypes = [
+    ManifestationMaterialType.ebook,
+    ManifestationMaterialType.pictureBookOnline,
+    ManifestationMaterialType.animatedSeriesOnline,
+    ManifestationMaterialType.yearBookOnline
+  ];
+
+  const playerTypes = [
+    ManifestationMaterialType.audioBook,
+    ManifestationMaterialType.podcast,
+    ManifestationMaterialType.musicOnline,
+    ManifestationMaterialType.audioBookTape
+  ];
+
+  if (readerTypes.some((type) => materialTypes.includes(type))) return "reader";
+  if (playerTypes.some((type) => materialTypes.includes(type))) return "player";
+
+  return null;
 };
 
 export default {};

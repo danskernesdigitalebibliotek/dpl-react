@@ -33,14 +33,13 @@ import {
   getBestMaterialTypeForWork,
   getDetailsListData,
   getInfomediaIds,
-  getManifestationIsbn,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation
 } from "./helper";
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import PlayerModal from "../../components/material/player-modal/PlayerModal";
-import { hasPlayerManifestation } from "../../components/reader-player/helper";
+import useReaderPlayer from "../../core/utils/useReaderPlayer";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -57,6 +56,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data: userData } = usePatronData();
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
   const { track } = useStatistics();
+  const {
+    type: readerPlayerType,
+    identifier,
+    orderId
+  } = useReaderPlayer(selectedManifestations);
 
   useEffect(() => {
     setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));
@@ -173,7 +177,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         ))}
-
         {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
           <InfomediaModal
             selectedManifestations={selectedManifestations}
@@ -196,10 +199,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         )}
-        {hasPlayerManifestation(selectedManifestations) && (
-          <PlayerModal
-            identifier={getManifestationIsbn(selectedManifestations[0])}
-          />
+        {readerPlayerType === "player" && (
+          <>
+            {identifier && <PlayerModal identifier={identifier} />}
+            {orderId && <PlayerModal orderId={orderId} />}
+          </>
         )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
