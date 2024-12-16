@@ -1,4 +1,5 @@
 import * as React from "react";
+import { first } from "lodash";
 import {
   useGetV1LibraryProfile,
   useGetV1ProductsIdentifier,
@@ -18,7 +19,16 @@ const MaterialAvailabilityTextOnline: React.FC<
   MaterialAvailabilityTextOnlineProps
 > = ({ isbns, materialType }) => {
   const t = useText();
-  const { data: productsData } = useGetV1ProductsIdentifier(isbns[0]);
+  const { data: productsData } = useGetV1ProductsIdentifier(
+    first(isbns) || "",
+    {
+      query: {
+        // We never want to pass an empty string to the API
+        // So we only enable the query if we have an isbn
+        enabled: !!first(isbns)
+      }
+    }
+  );
   const { data: libraryProfileData } = useGetV1LibraryProfile();
   const { data: loansData } = useGetV1UserLoans();
 

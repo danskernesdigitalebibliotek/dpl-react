@@ -22,11 +22,13 @@ const useOnlineAvailabilityData = ({
 
   // Find out if the material is cost free.
   const { isLoading: isLoadingIdentifier, data: dataIdentifier } =
+    // We never want to pass an empty string to the API
+    // So we only enable the query if we have an isbn
     useGetV1ProductsIdentifier(isbn ?? "", {
       query: {
         // Publizon / useGetV1ProductsIdentifier is responsible for online
         // materials. It requires an ISBN to do lookups.
-        enabled: enabled && isAvailable === null && isbn !== null
+        enabled: enabled && isAvailable === null && !!isbn
       }
     });
 
