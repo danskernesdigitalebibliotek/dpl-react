@@ -14,6 +14,7 @@ import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
+import isVisible from "../../../../core/utils/featureFlag";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -74,12 +75,13 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
           dataCy={`${dataCy}-external`}
           ariaLabelledBy={ariaLabelledBy}
         />
-        {/* Todo: MaterialButtonsOnlineInternal should be in the todo at line 44  */}
-        <MaterialButtonsOnlineInternal
-          size={size}
-          manifestations={manifestations}
-          dataCy={`${dataCy}-publizon`}
-        />
+        {isVisible("readerPlayer") && (
+          <MaterialButtonsOnlineInternal
+            size={size}
+            manifestations={manifestations}
+            dataCy={`${dataCy}-publizon`}
+          />
+        )}
       </>
     );
   }
