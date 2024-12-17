@@ -13,6 +13,8 @@ import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArt
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
+import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
+import isVisible from "../../../../core/utils/featureFlag";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -38,6 +40,11 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     });
   };
 
+  // Todo: Move logic for Player / Reader buttons / Links to here.
+  // if (condition) {
+  //   return <MaterialButtonsOnlineInternal manifestations={manifestations} />;
+  // }
+
   // Find 'Ereol' object or default to the first 'access' object
   const accessElement =
     manifestations[0].access.find((item) => item.__typename === "Ereol") ||
@@ -58,15 +65,24 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     }
 
     return (
-      <MaterialButtonOnlineExternal
-        externalUrl={externalUrl}
-        origin={origin}
-        size={size}
-        trackOnlineView={trackOnlineView}
-        manifestations={manifestations}
-        dataCy={`${dataCy}-external`}
-        ariaLabelledBy={ariaLabelledBy}
-      />
+      <>
+        <MaterialButtonOnlineExternal
+          externalUrl={externalUrl}
+          origin={origin}
+          size={size}
+          trackOnlineView={trackOnlineView}
+          manifestations={manifestations}
+          dataCy={`${dataCy}-external`}
+          ariaLabelledBy={ariaLabelledBy}
+        />
+        {isVisible("readerPlayer") && (
+          <MaterialButtonsOnlineInternal
+            size={size}
+            manifestations={manifestations}
+            dataCy={`${dataCy}-publizon`}
+          />
+        )}
+      </>
     );
   }
 

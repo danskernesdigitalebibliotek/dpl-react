@@ -22,6 +22,8 @@ import { RequestStatus } from "../../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
 import { formatDate } from "../../../core/utils/helpers/date";
+import useGetWorkUrlFromIdentifier from "../../../core/utils/useGetWorkUrlFromIdentifier";
+import isVisible from "../../../core/utils/featureFlag";
 
 interface MaterialDetailsProps {
   loan: LoanType | null;
@@ -33,6 +35,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   material,
   modalId
 }) => {
+  const { workUrl } = useGetWorkUrlFromIdentifier(loan?.identifier);
   const [renewingStatus, setRenewingStatus] = useState<RequestStatus>("idle");
   const [renewingResponse, setRenewingResponse] = useState<
     RenewedLoanV2[] | null
@@ -40,7 +43,6 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 
   const t = useText();
   const u = useUrls();
-  const ereolenMyPageUrl = u("ereolenMyPageUrl");
   const viewFeesAndCompensationRatesUrl = u("viewFeesAndCompensationRatesUrl");
 
   if (!loan) {
@@ -119,20 +121,32 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {isDigital(loan) && (
+          {isVisible("readerPlayer") && isDigital(loan) && workUrl ? (
             <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
               <Link
-                href={ereolenMyPageUrl}
+                href={workUrl}
                 className="btn-primary btn-filled btn-small arrow__hover--right-small"
               >
-                {t("materialDetailsGoToEreolenText")}
-                <img
-                  src={ExternalLinkIcon}
-                  className="btn-icon invert"
-                  alt=""
-                />
+                {t("materialDetailsGoToMaterialText")}
               </Link>
             </div>
+          ) : (
+            // Todo: Delete this else block after the readerPlayer feature flag is removed
+            isDigital(loan) && (
+              <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
+                <Link
+                  href={new URL("https://ereolen.dk/user/me")}
+                  className="btn-primary btn-filled btn-small arrow__hover--right-small"
+                >
+                  Gå til eReolen
+                  <img
+                    src={ExternalLinkIcon}
+                    className="btn-icon invert"
+                    alt=""
+                  />
+                </Link>
+              </div>
+            )
           )}
           {dueDate && materialIsOverdue(dueDate) && (
             <div className="modal-details__warning">
@@ -186,20 +200,32 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {isDigital(loan) && (
+          {isVisible("readerPlayer") && isDigital(loan) && workUrl ? (
             <div className="modal-details__buttons">
               <Link
-                href={ereolenMyPageUrl}
+                href={workUrl}
                 className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
               >
-                {t("materialDetailsGoToEreolenText")}
-                <img
-                  src={ExternalLinkIcon}
-                  className="btn-icon invert"
-                  alt=""
-                />
+                {t("materialDetailsGoToMaterialText")}
               </Link>
             </div>
+          ) : (
+            // Todo: Delete this else block after the readerPlayer feature flag is removed
+            isDigital(loan) && (
+              <div className="modal-details__buttons">
+                <Link
+                  href={new URL("https://ereolen.dk/user/me")}
+                  className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
+                >
+                  Gå til eReolen test
+                  <img
+                    src={ExternalLinkIcon}
+                    className="btn-icon invert"
+                    alt=""
+                  />
+                </Link>
+              </div>
+            )
           )}
         </div>
       )}

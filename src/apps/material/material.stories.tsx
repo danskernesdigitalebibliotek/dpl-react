@@ -67,6 +67,14 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Edition/Week",
       control: { type: "text" }
     },
+    playerModalCloseButtonText: {
+      description: "Close",
+      control: { type: "text" }
+    },
+    playerModalDescriptionText: {
+      description: "Player modal description text",
+      control: { type: "text" }
+    },
     reserveBookText: {
       description: "Reserve",
       control: { type: "text" }
@@ -141,6 +149,10 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     detailsText: {
       description: "Details",
+      control: { type: "text" }
+    },
+    ebookText: {
+      description: "Ebook",
       control: { type: "text" }
     },
     reviewsText: {
@@ -291,8 +303,24 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Online limit info text",
       control: { type: "text" }
     },
+    onlineMaterialPlayerText: {
+      description: "Material button online player text",
+      control: { type: "text" }
+    },
+    onlineMaterialReaderText: {
+      description: "Material button online reader text",
+      control: { type: "text" }
+    },
+    onlineMaterialTeaserText: {
+      description: "Material button online teaser text",
+      control: { type: "text" }
+    },
     approveReservationText: {
       description: "Approve reservation",
+      control: { type: "text" }
+    },
+    audiobookText: {
+      description: "Audiobook",
       control: { type: "text" }
     },
     shiftText: {
@@ -692,6 +720,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    audiobookText: "Audiobook",
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
@@ -708,6 +737,8 @@ const meta: Meta<typeof MaterialEntry> = {
     materialHeaderAuthorByText: "By",
     periodicalSelectYearText: "Year",
     periodicalSelectEditionText: "Edition",
+    playerModalDescriptionText: "Modal for player",
+    playerModalCloseButtonText: "Close",
     reserveBookText: "Reserve book",
     reserveText: "Reserve",
     reserveWithMaterialTypeText: "Reserve @materialType",
@@ -728,6 +759,7 @@ const meta: Meta<typeof MaterialEntry> = {
     editionsText: "Editions",
     fictionNonfictionText: "Fictional",
     detailsText: "Details",
+    ebookText: "E-book",
     reviewsText: "Reviews",
     detailsListTypeText: "Type",
     detailsListLanguageText: "Language",
@@ -771,6 +803,9 @@ const meta: Meta<typeof MaterialEntry> = {
       "You have borrowed @count out of @limit possible e-books this month",
     onlineLimitMonthAudiobookInfoText:
       "You have borrowed @count out of @limit possible audio-books this month",
+    onlineMaterialPlayerText: "Listen to @materialType",
+    onlineMaterialReaderText: "Read @materialType",
+    onlineMaterialTeaserText: "Try @materialType",
     approveReservationText: "Approve reservation",
     shiftText: "Change",
     reservationDetailsPickUpAtTitleText: "Pick up at",
