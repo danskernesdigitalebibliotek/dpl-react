@@ -1118,9 +1118,9 @@
     "@babel/helper-validator-identifier" "^7.25.9"
 
 "@chromatic-com/storybook@^3":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@chromatic-com/storybook/-/storybook-3.2.2.tgz#08754443de55618f802f88450c35266fd6d25db5"
-  integrity sha512-xmXt/GW0hAPbzNTrxYuVo43Adrtjue4DeVrsoIIEeJdGaPNNeNf+DHMlJKOBdlHmCnFUoe9R/0mLM9zUp5bKWw==
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@chromatic-com/storybook/-/storybook-3.2.3.tgz#0f4d167ac80fcb38293a92c230c43446049b6758"
+  integrity sha512-3+hfANx79kIjP1qrOSLxpoAXOiYUA0S7A0WI0A24kASrv7USFNNW8etR5TjUilMb0LmqKUn3wDwUK2h6aceQ9g==
   dependencies:
     chromatic "^11.15.0"
     filesize "^10.0.12"
