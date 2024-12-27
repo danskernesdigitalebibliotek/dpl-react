@@ -6,7 +6,7 @@ module.exports = (ctx) => {
   const production = ctx.env === "production";
   return {
     parser: "postcss-scss",
-    map: ctx.options.map,
+    map: ctx?.options?.map,
     plugins: [
       postcssSass({
         // We always want to inject all of our variables and mixins.
