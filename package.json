@@ -128,7 +128,7 @@
     "style-loader": "^4.0.0",
     "stylelint": "^15.11.0",
     "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-recommended-scss": "^6.0.0",
+    "stylelint-config-recommended-scss": "7.0.0",
     "stylelint-prettier": "^2.0.0",
     "stylelint-scss": "^6.10.0",
     "stylelint-webpack-plugin": "^5.0.1",
