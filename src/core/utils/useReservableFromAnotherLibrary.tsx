@@ -27,8 +27,9 @@ const useReservableFromAnotherLibrary = (
   }
 
   const reservablePidsFromAnotherLibrary = manifestations
-    .filter(({ catalogueCodes }) =>
-      catalogueCodes?.otherCatalogues.some((code) => code.startsWith("OVE"))
+    .filter(
+      ({ catalogueCodes }) =>
+        catalogueCodes?.otherCatalogues.some((code) => code.startsWith("OVE"))
     )
     .map(({ pid }) => pid);
 
