@@ -56,41 +56,35 @@ describe("The Facet Browser", () => {
   });
 
   it("Renders all facets", () => {
-    cy.getBySel("facet-browser-mainLanguages")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-mainLanguages").scrollIntoView();
+    cy.getBySel("facet-browser-mainLanguages").should("be.visible");
 
-    cy.getBySel("facet-browser-accessTypes")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-accessTypes").scrollIntoView();
+    cy.getBySel("facet-browser-accessTypes").should("be.visible");
 
-    cy.getBySel("facet-browser-childrenOrAdults")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-childrenOrAdults").scrollIntoView();
+    cy.getBySel("facet-browser-childrenOrAdults").should("be.visible");
 
-    cy.getBySel("facet-browser-creators").scrollIntoView().should("be.visible");
+    cy.getBySel("facet-browser-creators").scrollIntoView();
+    cy.getBySel("facet-browser-creators").should("be.visible");
 
-    cy.getBySel("facet-browser-fictionNonfiction")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-fictionNonfiction").scrollIntoView();
+    cy.getBySel("facet-browser-fictionNonfiction").should("be.visible");
 
-    cy.getBySel("facet-browser-fictionNonfiction")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-fictionNonfiction").scrollIntoView();
+    cy.getBySel("facet-browser-fictionNonfiction").should("be.visible");
 
-    cy.getBySel("facet-browser-genreAndForm")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-genreAndForm").scrollIntoView();
+    cy.getBySel("facet-browser-genreAndForm").should("be.visible");
 
-    cy.getBySel("facet-browser-materialTypes")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-materialTypes").scrollIntoView();
+    cy.getBySel("facet-browser-materialTypes").should("be.visible");
 
-    cy.getBySel("facet-browser-subjects").scrollIntoView().should("be.visible");
+    cy.getBySel("facet-browser-subjects").scrollIntoView();
+    cy.getBySel("facet-browser-subjects").should("be.visible");
 
-    cy.getBySel("facet-browser-workTypes")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-workTypes").scrollIntoView();
+    cy.getBySel("facet-browser-workTypes").should("be.visible");
   });
 
   it("Renders all terms in a facet when clicked", () => {
@@ -172,9 +166,13 @@ describe("The Facet Browser", () => {
 
     cy.getBySel("facet-browser-creators-Joanne K. Rowling")
       .should("be.visible")
-      .and("have.attr", "aria-pressed", "true")
-      .click()
-      .should("have.attr", "aria-pressed", "false");
+      .and("have.attr", "aria-pressed", "true");
+    cy.getBySel("facet-browser-creators-Joanne K. Rowling").click();
+    cy.getBySel("facet-browser-creators-Joanne K. Rowling").should(
+      "have.attr",
+      "aria-pressed",
+      "false"
+    );
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
 

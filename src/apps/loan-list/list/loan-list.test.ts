@@ -374,9 +374,13 @@ describe("Loan list", () => {
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
-      .scrollIntoView()
-      .find(".list-reservation__information div a")
-      .should("exist");
+      .scrollIntoView();
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(0)
+      .within(() => {
+        cy.get(".list-reservation__information div a").should("exist");
+      });
 
     // 2.b.iv.3.c. Only shown if loan is overdue
     cy.get(".list-reservation-container")
