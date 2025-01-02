@@ -12,8 +12,8 @@ describe("Material", () => {
     cy.scrollTo("bottom");
     cy.getBySel("material-description").scrollIntoView();
 
+    cy.getBySel("material-header-buttons-physical").scrollIntoView();
     cy.getBySel("material-header-buttons-physical")
-      .scrollIntoView()
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
@@ -39,9 +39,9 @@ describe("Material", () => {
     cy.scrollTo("bottom");
     cy.getBySel("material-description").scrollIntoView();
 
+    cy.getBySel("material-header-buttons-physical").scrollIntoView();
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
-      .scrollIntoView()
       .and("contain", "Reserve bog")
       .click();
 

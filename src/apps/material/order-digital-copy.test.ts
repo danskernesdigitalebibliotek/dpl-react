@@ -86,9 +86,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -112,9 +112,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -139,9 +139,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -166,9 +166,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -193,9 +193,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -220,9 +220,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
