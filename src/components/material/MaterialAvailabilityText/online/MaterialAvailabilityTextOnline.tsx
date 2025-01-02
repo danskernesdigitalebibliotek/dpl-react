@@ -44,26 +44,26 @@ const MaterialAvailabilityTextOnline: React.FC<
   } = libraryProfileData;
 
   const availabilityTextMap: AvailabilityTextMap = {
-    ...Object.fromEntries(
-      readerTypes.map((type) => [
-        type,
-        {
+    ...readerTypes.reduce((acc, type) => {
+      return {
+        ...acc,
+        [type]: {
           text: "onlineLimitMonthEbookInfoText",
           count: totalEbookLoans,
           limit: maxConcurrentEbookLoansPerBorrower
         }
-      ])
-    ),
-    ...Object.fromEntries(
-      playerTypes.map((type) => [
-        type,
-        {
+      };
+    }, {}),
+    ...playerTypes.reduce((acc, type) => {
+      return {
+        ...acc,
+        [type]: {
           text: "onlineLimitMonthAudiobookInfoText",
           count: totalAudioLoans,
           limit: maxConcurrentAudioLoansPerBorrower
         }
-      ])
-    ),
+      };
+    }, {}),
     materialIsIncluded: {
       text: "materialIsIncludedText"
     }
