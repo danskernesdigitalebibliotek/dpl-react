@@ -10,6 +10,8 @@ export const enum ManifestationMaterialType {
   article = "artikel",
   paperArticle = "avisartikel",
   onlineArticle = "artikel (online)",
+  // TODO: fix the enum value below
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   earticle = "artikel",
   boardGame = "spil",
   cdRom = "cd",
