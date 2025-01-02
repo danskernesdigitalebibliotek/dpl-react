@@ -1,4 +1,5 @@
 //  Todo: Fix infinite loop in MaterialDetailsModal
+//  Please see https://reload.atlassian.net/browse/DDFBRA-303
 import React, { FC, ReactNode } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
@@ -34,7 +35,6 @@ const MaterialDetailsModal: FC<MaterialDetailsModalProps> = ({
   children
 }) => {
   const t = useText();
-  // console.log("Rendering MaterialDetailsModal:");
 
   if (!modalId) {
     return null;
