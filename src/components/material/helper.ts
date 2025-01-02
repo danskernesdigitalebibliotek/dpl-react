@@ -29,15 +29,15 @@ export const isMaterialButtonsOnlineInternal = (
 export const shouldShowMaterialAvailabilityText = (
   manifestations: Manifestation[]
 ) => {
-  const isOnlineMaterial =
+  const shouldShowOnlineAvailability =
     !isAnonymous() && isMaterialButtonsOnlineInternal(manifestations);
 
-  const isPhysicalMaterial =
+  const shouldShowPhysicalAvailability =
     isPhysical(manifestations) &&
     !isPeriodical(manifestations) &&
     !isArticle(manifestations);
 
-  return isOnlineMaterial || isPhysicalMaterial;
+  return shouldShowOnlineAvailability || shouldShowPhysicalAvailability;
 };
 
 export default {};
