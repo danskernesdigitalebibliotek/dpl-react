@@ -67,7 +67,7 @@
     "@namics/stylelint-bem": "^10.1.0",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-queryparams": "^7.0.1",
-    "@storybook/addon-webpack5-compiler-babel": "^3.0.3",
+    "@storybook/addon-webpack5-compiler-babel": "^3.0.5",
     "@storybook/react": "^8.2.9",
     "@storybook/react-webpack5": "^8.4.7",
     "@testing-library/dom": "^9.3.4",
@@ -85,7 +85,6 @@
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
     "babel-plugin-istanbul": "^7.0.0",
-    "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "caniuse-lite": "^1.0.30001688",
     "change-case-all": "^2.1.0",
@@ -138,7 +137,7 @@
     "vitest": "^2.1.8",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
-    "webpack-version-file-plugin": "^0.4.0"
+    "webpack-version-file-plugin": "0.5.0"
   },
   "//dependencies": {
     "@danskernesdigitalebibliotek/dpl-design-system": "Is being used for being able to see the dpl-design-system styling in Storybook and potentially use icons",
@@ -177,5 +176,8 @@
   },
   "peerDependencies": {
     "postcss": "^8.4.49"
+  },
+  "resolutions": {
+    "@babel/runtime": "^7.26.0"
   }
 }

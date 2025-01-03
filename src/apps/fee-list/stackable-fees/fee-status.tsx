@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import React, { FC } from "react";
-import { dateFormatDefault } from "../../../core/configuration/date-format.json";
+import dateFormat from "../../../core/configuration/date-format.json";
 import { useText } from "../../../core/utils/text";
 
 interface FeeStatusProps {
@@ -10,7 +10,7 @@ interface FeeStatusProps {
 
 const FeeStatus: FC<FeeStatusProps> = ({ dueDate, reasonMessage }) => {
   const t = useText();
-  const dueDateFormatted = dayjs(dueDate).format(dateFormatDefault);
+  const dueDateFormatted = dayjs(dueDate).format(dateFormat.dateFormatDefault);
   return (
     <div>
       <div className="list-reservation__deadline">

@@ -31,12 +31,14 @@ module.exports = (_env, argv) => {
   ];
 
   if (process.env.VERSION_FILE_NAME && process.env.VERSION_FILE_VERSION) {
+    const currentTime = new Date().toISOString();
     plugins.push(
       new VersionFile({
         template: path.join(__dirname, ".version.json.ejs"),
         outputFile: path.join(__dirname, "dist/version.json"),
         name: process.env.VERSION_FILE_NAME,
         version: process.env.VERSION_FILE_VERSION,
+        currentTime, // Required
         // We intentionally do not use any information from package.json but
         // VersionFile require that we provide it.
         packageFile: path.join(__dirname, "package.json")

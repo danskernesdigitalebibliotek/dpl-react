@@ -1,19 +1,20 @@
 import dayjs from "dayjs";
-import { dateFormatDayjs } from "../../../core/configuration/date-format.json";
-import {
-  faustIdentifierLength,
-  digitalMaterialIdentifierLength
-} from "../../../core/configuration/identifier-lengths.json";
+import dates from "../../../core/configuration/date-format.json";
+import identifierLengths from "../../../core/configuration/identifier-lengths.json";
 
-export const yesterday = dayjs().subtract(1, "day").format(dateFormatDayjs);
-export const soon = dayjs().add(7, "days").format(dateFormatDayjs);
-export const longer = dayjs().add(1, "year").format(dateFormatDayjs);
+export const yesterday = dayjs()
+  .subtract(1, "day")
+  .format(dates.dateFormatDayjs);
+export const soon = dayjs().add(7, "days").format(dates.dateFormatDayjs);
+export const longer = dayjs().add(1, "year").format(dates.dateFormatDayjs);
 
 export const getReservationType = (reservationId: string) => {
-  if (reservationId.length === faustIdentifierLength) {
+  if (reservationId.length === identifierLengths.faustIdentifierLength) {
     return "physical";
   }
-  if (reservationId.length === digitalMaterialIdentifierLength) {
+  if (
+    reservationId.length === identifierLengths.digitalMaterialIdentifierLength
+  ) {
     return "digital";
   }
   return "invalid input";

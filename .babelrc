@@ -1,8 +1,7 @@
 {
   "plugins": [
     "@babel/plugin-proposal-optional-chaining",
-    "@babel/plugin-proposal-class-properties",
-    "lodash"
+    "@babel/plugin-proposal-class-properties"
   ],
   "presets": [
     "@babel/preset-env",
@@ -36,9 +35,7 @@
           }
         ]
       ],
-      "plugins": [
-        "istanbul"
-      ]
+      "plugins": ["istanbul"]
     }
   }
 }
