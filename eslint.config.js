@@ -1,4 +1,3 @@
-const typescriptRecommended = require("@typescript-eslint/eslint-plugin/dist/configs/recommended");
 const prettier = require("eslint-config-prettier");
 const airbnbBase = require("eslint-config-airbnb");
 const airbnbTypeScript = require("eslint-config-airbnb-typescript");
@@ -6,25 +5,38 @@ const airbnbHooks = require("eslint-config-airbnb/hooks");
 const prettierRecommended = require("eslint-plugin-prettier").configs
   .recommended;
 const cypress = require("eslint-plugin-cypress").configs.recommended;
+// Include the recommended settings for @typescript-eslint
+const typescriptRecommended = {
+  plugins: {
+    "@typescript-eslint": require("@typescript-eslint/eslint-plugin")
+  },
+  rules: {
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
+};
 
+// ESLint configuration using flat config
 module.exports = [
   {
     files: ["**/*.{ts,tsx,js,jsx}"],
     languageOptions: {
-      parser: "@typescript-eslint/parser",
+      parser: require("@typescript-eslint/parser"),
       parserOptions: {
-        project: "./tsconfig.json",
+        project: "./tsconfig.json", // Specify the TypeScript project configuration
         sourceType: "module",
         ecmaFeatures: {
-          jsx: true
+          jsx: true // Enable JSX support
         }
       }
     },
     settings: {
       react: {
-        version: "16.11.0"
+        version: "16.11.0" // React version for linting
       },
-      // Since we use vitest alongside our production code we have to instruct eslint
+      // Since we use vitest alongside our production code, we have to instruct ESLint
       // not to throw the import/no-extraneous-dependencies error when doing so.
       "import/core-modules": ["vitest"]
     },
@@ -39,6 +51,7 @@ module.exports = [
       prettier: require("eslint-plugin-prettier")
     },
     rules: {
+      // Extend rules from airbnb, prettier, cypress, and @typescript-eslint plugins
       ...airbnbBase.rules,
       ...airbnbTypeScript.rules,
       ...airbnbHooks.rules,
@@ -46,6 +59,8 @@ module.exports = [
       ...prettierRecommended.rules,
       ...cypress.rules,
       ...typescriptRecommended.rules,
+      // Custom rules
+      "@typescript-eslint/consistent-type-imports": "off",
       "prefer-arrow-callback": [
         "error",
         {
@@ -57,7 +72,7 @@ module.exports = [
         "error",
         {
           props: true,
-          ignorePropertyModificationsFor: ["state"]
+          ignorePropertyModificationsFor: ["state"] // Ignore state reassignment
         }
       ],
       "import/no-extraneous-dependencies": [
@@ -83,9 +98,11 @@ module.exports = [
           ]
         }
       ],
+      // Needed until new TypeScript versions are supported
+      "@typescript-eslint/no-empty-function": "off",
       // We like to use arrow function syntax also for functional components.
       "react/function-component-definition": "off",
-      // No complaints about missing trailing comma
+      // No complaints about missing trailing commas
       "@typescript-eslint/comma-dangle": "off",
       "react-hooks/exhaustive-deps": [
         "warn",
@@ -93,15 +110,16 @@ module.exports = [
           additionalHooks: "useDeepCompareEffect"
         }
       ],
-      "no-only-tests/no-only-tests": "warn"
+      "no-only-tests/no-only-tests": "warn" // Warn on `.only` in tests
     }
   },
+  // JS/JSX-specific rules
   {
     files: ["*.js", "*.jsx"],
     rules: {
-      // These rules were triggered on the former non-typescript codebase.
-      // We are planning to use only ts/tsx in the future
-      // Therefor we can seperate them by only being ignored on js/jsx files.
+      // These rules were triggered on the former non-TypeScript codebase.
+      // We are planning to use only ts/tsx in the future.
+      // Therefore, we can separate them by only being ignored on js/jsx files.
       // Start - ddb-react former code
       "react/jsx-no-bind": "off",
       "react/function-component-definition": "off",
@@ -110,19 +128,21 @@ module.exports = [
       "@typescript-eslint/return-await": "off",
       "no-param-reassign": "off",
       "@typescript-eslint/no-var-requires": "off"
+      // End - ddb-react former code
     }
   },
+  // TS/TSX-specific rules
   {
     files: ["*.tsx", "*.ts"],
     rules: {
-      // We do not use prop-types in ts.
+      // We do not use prop-types in TypeScript.
       "react/prop-types": "off",
       "react/require-default-props": "off",
       "react/no-unused-prop-types": "off",
       "no-underscore-dangle": [
         "error",
         {
-          allow: ["__typename"]
+          allow: ["__typename"] // Allow specific underscores
         }
       ],
       "react/forbid-elements": [
@@ -132,28 +152,30 @@ module.exports = [
             {
               element: "main",
               message:
-                "dpl-cms provide a <main> to render react in, therefore you must use <section> to avoid duplicate main"
+                "dpl-cms provides a <main> to render React in, therefore you must use <section> to avoid duplicate <main>"
             }
           ]
         }
       ]
     }
   },
+  // Storybook development rules
   {
     files: ["*.dev.jsx", "*.dev.tsx"],
     rules: {
-      // We need a simple way of passing args in stories via object spreading.
+      // Allow spreading props in stories
       "react/jsx-props-no-spreading": "off"
     }
   },
+  // Entry point rules
   {
     files: ["*.entry.tsx"],
     rules: {
-      // Since we use High Order Functional Component in entries for text props
-      // and want to show the props being used we disable this rule.
+      // Disable unused vars rule for entry points
       "@typescript-eslint/no-unused-vars": "off"
     }
   },
+  // Ignore specific files
   {
     ignores: [
       "src/core/cover-service-api/model/*",
