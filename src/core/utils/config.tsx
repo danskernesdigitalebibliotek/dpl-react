@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RootState, useSelector } from "../store";
 import { addConfigEntries } from "../config.slice";
 import withSuffix from "./withSuffix";

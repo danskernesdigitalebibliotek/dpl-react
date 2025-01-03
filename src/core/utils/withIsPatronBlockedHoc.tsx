@@ -21,6 +21,7 @@ type InputProps = {
 // and explanation for the user.
 const withIsPatronBlockedHoc =
   <P extends object>(Component: ComponentType<P>): FC<P & InputProps> =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ redirectOnBlocked, ...props }) => {
     // Used to check whether the modal has been opened by another component,
     // the modal should really only be showed once.

@@ -158,6 +158,7 @@ export const isUrlValid = (text: string) => {
     const url = new URL(text);
     return url.protocol === "http:" || url.protocol === "https:";
   } catch (err) {
+    console.log(err);
     return false;
   }
 };

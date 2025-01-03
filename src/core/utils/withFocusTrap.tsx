@@ -4,6 +4,7 @@ import React, { FC } from "react";
 export default <P extends object>(
     Component: React.ComponentType<P>
   ): FC<P & { withFocusTrap?: boolean }> =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ withFocusTrap, ...props }) => (
     <FocusTrap
       focusTrapOptions={{

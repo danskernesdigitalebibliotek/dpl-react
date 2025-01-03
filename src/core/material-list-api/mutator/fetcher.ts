@@ -59,7 +59,7 @@ export const fetcher = async <ResponseType>({
       try {
         return (await response.json()) as ResponseType;
       } catch (error) {
-        throw new Error("The response body contains invalid JSON");
+        throw new Error("The response body contains invalid JSON" + error);
       }
     }
   } catch (error) {
