@@ -31,7 +31,7 @@ module.exports = (_env, argv) => {
   ];
 
   if (process.env.VERSION_FILE_NAME && process.env.VERSION_FILE_VERSION) {
-    const currentTime = new Date().toISOString();
+    const currentTime = new Date();
     plugins.push(
       new VersionFile({
         template: path.join(__dirname, ".version.json.ejs"),
