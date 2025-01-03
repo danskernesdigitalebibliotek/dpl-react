@@ -6,21 +6,17 @@
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
     "plugin:cypress/recommended",
-    "plugin:prettier/recommended",
-    "prettier"
+    "prettier",
+    "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "no-only-tests"
-  ],
+  "plugins": ["no-only-tests"],
   "settings": {
     "react": {
       "version": "16.11.0"
     },
     // Since we use vitest alongside our production code we have to instruct eslint
     // not to throw the import/no-extraneous-dependencies error when doing so.
-    "import/core-modules": [
-      "vitest"
-    ]
+    "import/core-modules": ["vitest"]
   },
   "env": {
     "browser": true,
@@ -31,7 +27,7 @@
     "allowImportExportEverywhere": false,
     "ecmaFeatures": {
       "jsx": true,
-      "globalReturn": false,
+      "globalReturn": false
     },
     "project": "./tsconfig.json"
   },
@@ -47,9 +43,7 @@
       "error",
       {
         "props": true,
-        "ignorePropertyModificationsFor": [
-          "state"
-        ]
+        "ignorePropertyModificationsFor": ["state"]
       }
     ],
     "import/no-extraneous-dependencies": [
@@ -89,10 +83,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
+      "files": ["*.js", "*.jsx"],
       "rules": {
         // These rules were triggered on the former non-typescript codebase.
         // We are planning to use only ts/tsx in the future
@@ -109,10 +100,7 @@
       }
     },
     {
-      "files": [
-        "*.tsx",
-        "*.ts"
-      ],
+      "files": ["*.tsx", "*.ts"],
       "rules": {
         // We do not use prop-types in ts.
         "react/prop-types": "off",
@@ -121,9 +109,7 @@
         "no-underscore-dangle": [
           "error",
           {
-            "allow": [
-              "__typename"
-            ]
+            "allow": ["__typename"]
           }
         ],
         "react/forbid-elements": [
@@ -140,19 +126,14 @@
       }
     },
     {
-      "files": [
-        "*.dev.jsx",
-        "*.dev.tsx"
-      ],
+      "files": ["*.dev.jsx", "*.dev.tsx"],
       "rules": {
         // We need a simple way of passing args in stories via object spreading.
-        "react/jsx-props-no-spreading": "off",
+        "react/jsx-props-no-spreading": "off"
       }
     },
     {
-      "files": [
-        "*.entry.tsx"
-      ],
+      "files": ["*.entry.tsx"],
       "rules": {
         // Since we use High Order Functional Component in entries for text props
         // and want to show the props being used we disable this rule.
