@@ -12,7 +12,7 @@ export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
 }
 
-type InputProps = {
+export type InputProps = {
   // This should be a redirect to the front page.
   redirectOnBlocked: string;
 };
