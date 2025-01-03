@@ -1,22 +1,24 @@
+const typescriptRecommended = require("@typescript-eslint/eslint-plugin/dist/configs/recommended");
+const prettier = require("eslint-config-prettier");
+const airbnbBase = require("eslint-config-airbnb");
+const airbnbTypeScript = require("eslint-config-airbnb-typescript");
+const airbnbHooks = require("eslint-config-airbnb/hooks");
+const prettierRecommended = require("eslint-plugin-prettier").configs
+  .recommended;
+const cypress = require("eslint-plugin-cypress").configs.recommended;
+
 module.exports = {
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: "./tsconfig.json",
-    sourceType: "module",
-    ecmaFeatures: {
-      jsx: true
+  files: ["**/*.{ts,tsx,js,jsx}"],
+  languageOptions: {
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+      project: "./tsconfig.json",
+      sourceType: "module",
+      ecmaFeatures: {
+        jsx: true
+      }
     }
   },
-  extends: [
-    "airbnb",
-    "airbnb-typescript",
-    "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:cypress/recommended",
-    "prettier",
-    "plugin:prettier/recommended"
-  ],
-  plugins: ["no-only-tests"],
   settings: {
     react: {
       version: "16.11.0"
@@ -25,20 +27,25 @@ module.exports = {
     // not to throw the import/no-extraneous-dependencies error when doing so.
     "import/core-modules": ["vitest"]
   },
-  env: {
-    browser: true,
-    es6: true
-  },
-  parserOptions: {
-    sourceType: "module",
-    allowImportExportEverywhere: false,
-    ecmaFeatures: {
-      jsx: true,
-      globalReturn: false
-    },
-    project: "./tsconfig.json"
+  plugins: {
+    "@typescript-eslint": require("@typescript-eslint/eslint-plugin"),
+    cypress: require("eslint-plugin-cypress"),
+    "react-hooks": require("eslint-plugin-react-hooks"),
+    react: require("eslint-plugin-react"),
+    import: require("eslint-plugin-import"),
+    "jsx-a11y": require("eslint-plugin-jsx-a11y"),
+    "no-only-tests": require("eslint-plugin-no-only-tests"),
+    prettier: require("eslint-plugin-prettier")
   },
   rules: {
+    ...airbnbBase.rules,
+    "no-only-tests/no-only-tests": "warn",
+    ...airbnbTypeScript.rules,
+    ...airbnbHooks.rules,
+    ...prettier.rules,
+    ...prettierRecommended.rules,
+    ...cypress.rules,
+    ...typescriptRecommended.rules,
     "prefer-arrow-callback": [
       "error",
       {
@@ -103,7 +110,6 @@ module.exports = {
         "@typescript-eslint/return-await": "off",
         "no-param-reassign": "off",
         "@typescript-eslint/no-var-requires": "off"
-        // End - ddb-react former code
       }
     },
     {
