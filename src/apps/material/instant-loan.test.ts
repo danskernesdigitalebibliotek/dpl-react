@@ -48,16 +48,16 @@ describe("Instant Loan", () => {
     cy.visit(
       "/iframe.html?&id=apps-material--instant-loan&viewMode=story&type=bog"
     ).scrollTo("bottom");
+    cy.getBySel("material-header-buttons-physical").scrollIntoView();
     cy.getBySel("material-header-buttons-physical")
-      .scrollIntoView()
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
   });
 
   it("should render InstantLoan summary with title and cover", () => {
+    cy.getBySel("instant-loan").scrollIntoView();
     cy.getBySel("instant-loan")
-      .scrollIntoView()
       .should("have.attr", "aria-expanded", "false")
       .and("contain", "Hent bogen nu")
       .find("img")
@@ -66,25 +66,23 @@ describe("Instant Loan", () => {
   });
 
   it("should render InstantLoan branches", () => {
-    cy.getBySel("instant-loan").scrollIntoView().click();
+    cy.getBySel("instant-loan").scrollIntoView();
+    cy.getBySel("instant-loan").click();
 
-    cy.getBySel("instant-loan")
-      .scrollIntoView()
-      .should("have.attr", "aria-expanded", "true");
+    cy.getBySel("instant-loan").should("have.attr", "aria-expanded", "true");
 
-    cy.getBySel("instant-loan-branches")
-      .scrollIntoView()
-      .children()
-      .should("have.length", 1);
+    cy.getBySel("instant-loan-branches").scrollIntoView();
+    cy.getBySel("instant-loan-branches").children().should("have.length", 1);
   });
 
   it("should render InstantLoan branch", () => {
-    cy.getBySel("instant-loan").scrollIntoView().click();
+    cy.getBySel("instant-loan").scrollIntoView();
+    cy.getBySel("instant-loan").click();
 
+    cy.getBySel("instant-loan-branches").scrollIntoView();
     cy.getBySel("instant-loan-branches")
       .get("li")
       .contains("li", "Ørestad")
-      .scrollIntoView()
       .should("contain", "Ørestad")
       .and("contain", "2 stk");
   });

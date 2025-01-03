@@ -12,16 +12,20 @@ describe("Search Result", () => {
   });
 
   it("Should translate typed in query-index into valid CQL", () => {
-    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
-    cy.getBySel("advanced-search-header-row").eq(1).click().type("Prince");
+    cy.getBySel("advanced-search-header-row").first().click();
+    cy.getBySel("advanced-search-header-row").first().type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(1).click();
+    cy.getBySel("advanced-search-header-row").eq(1).type("Prince");
     cy.getBySel("preview-section")
       .first()
       .should("contain", "'Harry' AND 'Prince'");
   });
 
   it("Should reflect operator changes in the translated CQL", () => {
-    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
-    cy.getBySel("advanced-search-header-row").eq(1).click().type("Prince");
+    cy.getBySel("advanced-search-header-row").first().click();
+    cy.getBySel("advanced-search-header-row").first().type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(1).click();
+    cy.getBySel("advanced-search-header-row").eq(1).type("Prince");
     cy.getBySel("advanced-search-header-row")
       .eq(1)
       .getBySel("clauses")
@@ -33,11 +37,13 @@ describe("Search Result", () => {
   });
 
   it("Should translate filters into CQL", () => {
-    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
-    cy.getBySel("advanced-search-header-row").eq(1).click().type("Prince");
+    cy.getBySel("advanced-search-header-row").first().click();
+    cy.getBySel("advanced-search-header-row").first().type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(1).click();
+    cy.getBySel("advanced-search-header-row").eq(1).type("Prince");
+    cy.getBySel("advanced-search-material-types").first().click();
     cy.getBySel("advanced-search-material-types")
       .first()
-      .click()
       .find("li")
       .eq(1)
       .should("contain", "Book")
@@ -47,9 +53,9 @@ describe("Search Result", () => {
       "contain",
       "'Harry' AND 'Prince' AND term.generalmaterialtype='bøger'"
     );
+    cy.getBySel("advanced-search-accessibility").first().click();
     cy.getBySel("advanced-search-accessibility")
       .first()
-      .click()
       .find("li")
       .eq(2)
       .should("contain", "Online")
@@ -63,38 +69,36 @@ describe("Search Result", () => {
 
   it("Should reset the form upon reset button click", () => {
     // Setup the search query.
-    cy.getBySel("advanced-search-header-row").eq(0).click().type("Harry");
+    cy.getBySel("advanced-search-header-row").first().click();
+    cy.getBySel("advanced-search-header-row").first().type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(1).click();
     cy.getBySel("advanced-search-header-row")
       .eq(1)
-      .click()
       .within(() => {
         cy.get("input").type("Rowling");
         cy.get("select").select(1);
       });
     cy.getBySel("advanced-search-add-row").click();
+    cy.getBySel("advanced-search-header-row").eq(2).click();
     cy.getBySel("advanced-search-header-row")
       .eq(2)
-      .click()
       .within(() => {
         cy.get("input").type("Magi");
         cy.get("select").select(2);
       });
-    cy.getBySel("advanced-search-material-types")
-      .click()
-      .within(() => {
-        cy.get("[role=option]").eq(1).click();
-        cy.get("[role=option]").eq(2).click();
-      });
-    cy.getBySel("advanced-search-fiction")
-      .click()
-      .within(() => {
-        cy.get("[role=option]").eq(1).click();
-      });
-    cy.getBySel("advanced-search-accessibility")
-      .click()
-      .within(() => {
-        cy.get("[role=option]").eq(1).click();
-      });
+    cy.getBySel("advanced-search-material-types").click();
+    cy.getBySel("advanced-search-material-types").within(() => {
+      cy.get("[role=option]").eq(1).click();
+      cy.get("[role=option]").eq(2).click();
+    });
+    cy.getBySel("advanced-search-fiction").click();
+    cy.getBySel("advanced-search-fiction").within(() => {
+      cy.get("[role=option]").eq(1).click();
+    });
+    cy.getBySel("advanced-search-accessibility").click();
+    cy.getBySel("advanced-search-accessibility").within(() => {
+      cy.get("[role=option]").eq(1).click();
+    });
 
     cy.getBySel("advanced-search-reset", true).click();
 
@@ -127,36 +131,35 @@ describe("Search Result", () => {
   });
 
   it("Should enable the search button if at least one input is filled out", () => {
-    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("advanced-search-header-row").first().click();
+    cy.getBySel("advanced-search-header-row").first().type("Harry");
     cy.getBySel("search-button").should("be.enabled");
   });
 
   it("Should persist advanced search query in url", () => {
     // Setup the search query.
-    cy.getBySel("advanced-search-header-row").eq(0).click().type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(0).click();
+    cy.getBySel("advanced-search-header-row").eq(0).type("Harry");
+    cy.getBySel("advanced-search-header-row").eq(1).click();
     cy.getBySel("advanced-search-header-row")
       .eq(1)
-      .click()
       .within(() => {
         cy.get("input").type("Rowling");
         cy.get("select").select(1);
       });
-    cy.getBySel("advanced-search-material-types")
-      .click()
-      .within(() => {
-        cy.get("[role=option]").eq(1).click();
-        cy.get("[role=option]").eq(2).click();
-      });
-    cy.getBySel("advanced-search-fiction")
-      .click()
-      .within(() => {
-        cy.get("[role=option]").eq(1).click();
-      });
-    cy.getBySel("advanced-search-accessibility")
-      .click()
-      .within(() => {
-        cy.get("[role=option]").eq(1).click();
-      });
+    cy.getBySel("advanced-search-material-types").click();
+    cy.getBySel("advanced-search-material-types").within(() => {
+      cy.get("[role=option]").eq(1).click();
+      cy.get("[role=option]").eq(2).click();
+    });
+    cy.getBySel("advanced-search-fiction").click();
+    cy.getBySel("advanced-search-fiction").within(() => {
+      cy.get("[role=option]").eq(1).click();
+    });
+    cy.getBySel("advanced-search-accessibility").click();
+    cy.getBySel("advanced-search-accessibility").within(() => {
+      cy.get("[role=option]").eq(1).click();
+    });
 
     // Perform the search to persist it in the url.
     cy.getBySel("search-button").click();
@@ -217,7 +220,8 @@ describe("Search Result", () => {
   });
 
   it("Should show search results upon submitting the form", () => {
-    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("advanced-search-header-row").first().click();
+    cy.getBySel("advanced-search-header-row").first().type("Harry");
     cy.getBySel("search-button").click();
     cy.wait("@complexSearchWithPagination GraphQL operation");
     cy.getBySel("search-result-list").should("exist");
@@ -226,12 +230,14 @@ describe("Search Result", () => {
   });
 
   it("Updates search string after initial search is executed", () => {
-    cy.getBySel("advanced-search-header-row").first().click().type("Harry");
+    cy.getBySel("advanced-search-header-row").first().click();
+    cy.getBySel("advanced-search-header-row").first().type("Harry");
     cy.getBySel("preview-section").first().should("contain", "'Harry'");
     cy.getBySel("search-button").click();
     cy.wait("@complexSearchWithPagination GraphQL operation");
     cy.getBySel("search-result-list").should("exist");
-    cy.getBySel("advanced-search-header-row").eq(1).click().type("Potter");
+    cy.getBySel("advanced-search-header-row").eq(1).click();
+    cy.getBySel("advanced-search-header-row").eq(1).type("Potter");
     cy.getBySel("preview-section")
       .first()
       .should("contain", "'Harry' AND 'Potter'");
