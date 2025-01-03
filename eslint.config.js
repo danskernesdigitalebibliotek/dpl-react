@@ -1,6 +1,13 @@
-{
-  "parser": "@typescript-eslint/parser",
-  "extends": [
+module.exports = {
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "./tsconfig.json",
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
+  extends: [
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
@@ -9,47 +16,47 @@
     "prettier",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["no-only-tests"],
-  "settings": {
-    "react": {
-      "version": "16.11.0"
+  plugins: ["no-only-tests"],
+  settings: {
+    react: {
+      version: "16.11.0"
     },
     // Since we use vitest alongside our production code we have to instruct eslint
     // not to throw the import/no-extraneous-dependencies error when doing so.
     "import/core-modules": ["vitest"]
   },
-  "env": {
-    "browser": true,
-    "es6": true
+  env: {
+    browser: true,
+    es6: true
   },
-  "parserOptions": {
-    "sourceType": "module",
-    "allowImportExportEverywhere": false,
-    "ecmaFeatures": {
-      "jsx": true,
-      "globalReturn": false
+  parserOptions: {
+    sourceType: "module",
+    allowImportExportEverywhere: false,
+    ecmaFeatures: {
+      jsx: true,
+      globalReturn: false
     },
-    "project": "./tsconfig.json"
+    project: "./tsconfig.json"
   },
-  "rules": {
+  rules: {
     "prefer-arrow-callback": [
       "error",
       {
-        "allowNamedFunctions": false,
-        "allowUnboundThis": true
+        allowNamedFunctions: false,
+        allowUnboundThis: true
       }
     ],
     "no-param-reassign": [
       "error",
       {
-        "props": true,
-        "ignorePropertyModificationsFor": ["state"]
+        props: true,
+        ignorePropertyModificationsFor: ["state"]
       }
     ],
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
+        devDependencies: [
           "/**/*.dev.jsx",
           "/**/*.dev.tsx",
           "/**/*.test.js",
@@ -76,15 +83,15 @@
     "react-hooks/exhaustive-deps": [
       "warn",
       {
-        "additionalHooks": "useDeepCompareEffect"
+        additionalHooks: "useDeepCompareEffect"
       }
     ],
     "no-only-tests/no-only-tests": "warn"
   },
-  "overrides": [
+  overrides: [
     {
-      "files": ["*.js", "*.jsx"],
-      "rules": {
+      files: ["*.js", "*.jsx"],
+      rules: {
         // These rules were triggered on the former non-typescript codebase.
         // We are planning to use only ts/tsx in the future
         // Therefor we can seperate them by only being ignored on js/jsx files.
@@ -100,8 +107,8 @@
       }
     },
     {
-      "files": ["*.tsx", "*.ts"],
-      "rules": {
+      files: ["*.tsx", "*.ts"],
+      rules: {
         // We do not use prop-types in ts.
         "react/prop-types": "off",
         "react/require-default-props": "off",
@@ -109,16 +116,17 @@
         "no-underscore-dangle": [
           "error",
           {
-            "allow": ["__typename"]
+            allow: ["__typename"]
           }
         ],
         "react/forbid-elements": [
           1,
           {
-            "forbid": [
+            forbid: [
               {
-                "element": "main",
-                "message": "dpl-cms provide a <main> to render react in, therefore you must use <section> to avoid duplicate main"
+                element: "main",
+                message:
+                  "dpl-cms provide a <main> to render react in, therefore you must use <section> to avoid duplicate main"
               }
             ]
           }
@@ -126,19 +134,29 @@
       }
     },
     {
-      "files": ["*.dev.jsx", "*.dev.tsx"],
-      "rules": {
+      files: ["*.dev.jsx", "*.dev.tsx"],
+      rules: {
         // We need a simple way of passing args in stories via object spreading.
         "react/jsx-props-no-spreading": "off"
       }
     },
     {
-      "files": ["*.entry.tsx"],
-      "rules": {
+      files: ["*.entry.tsx"],
+      rules: {
         // Since we use High Order Functional Component in entries for text props
         // and want to show the props being used we disable this rule.
         "@typescript-eslint/no-unused-vars": "off"
       }
+    },
+    {
+      ignores: [
+        "src/core/cover-service-api/model/*",
+        "src/core/cover-service-api/cover-service.ts",
+        "src/core/dpl-cms/model/*",
+        "src/core/dpl-cms/dpl-cms.ts",
+        "src/core/fbs/fbs.ts",
+        "src/core/publizon/publizon.ts"
+      ]
     }
   ]
-}
+};
