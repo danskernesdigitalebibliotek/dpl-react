@@ -40,7 +40,6 @@ module.exports = [
     },
     rules: {
       ...airbnbBase.rules,
-      "no-only-tests/no-only-tests": "warn",
       ...airbnbTypeScript.rules,
       ...airbnbHooks.rules,
       ...prettier.rules,
@@ -95,76 +94,74 @@ module.exports = [
         }
       ],
       "no-only-tests/no-only-tests": "warn"
-    },
-    overrides: [
-      {
-        files: ["*.js", "*.jsx"],
-        rules: {
-          // These rules were triggered on the former non-typescript codebase.
-          // We are planning to use only ts/tsx in the future
-          // Therefor we can seperate them by only being ignored on js/jsx files.
-          // Start - ddb-react former code
-          "react/jsx-no-bind": "off",
-          "react/function-component-definition": "off",
-          "react/forbid-prop-types": "off",
-          "react/destructuring-assignment": "off",
-          "@typescript-eslint/return-await": "off",
-          "no-param-reassign": "off",
-          "@typescript-eslint/no-var-requires": "off"
+    }
+  },
+  {
+    files: ["*.js", "*.jsx"],
+    rules: {
+      // These rules were triggered on the former non-typescript codebase.
+      // We are planning to use only ts/tsx in the future
+      // Therefor we can seperate them by only being ignored on js/jsx files.
+      // Start - ddb-react former code
+      "react/jsx-no-bind": "off",
+      "react/function-component-definition": "off",
+      "react/forbid-prop-types": "off",
+      "react/destructuring-assignment": "off",
+      "@typescript-eslint/return-await": "off",
+      "no-param-reassign": "off",
+      "@typescript-eslint/no-var-requires": "off"
+    }
+  },
+  {
+    files: ["*.tsx", "*.ts"],
+    rules: {
+      // We do not use prop-types in ts.
+      "react/prop-types": "off",
+      "react/require-default-props": "off",
+      "react/no-unused-prop-types": "off",
+      "no-underscore-dangle": [
+        "error",
+        {
+          allow: ["__typename"]
         }
-      },
-      {
-        files: ["*.tsx", "*.ts"],
-        rules: {
-          // We do not use prop-types in ts.
-          "react/prop-types": "off",
-          "react/require-default-props": "off",
-          "react/no-unused-prop-types": "off",
-          "no-underscore-dangle": [
-            "error",
+      ],
+      "react/forbid-elements": [
+        1,
+        {
+          forbid: [
             {
-              allow: ["__typename"]
-            }
-          ],
-          "react/forbid-elements": [
-            1,
-            {
-              forbid: [
-                {
-                  element: "main",
-                  message:
-                    "dpl-cms provide a <main> to render react in, therefore you must use <section> to avoid duplicate main"
-                }
-              ]
+              element: "main",
+              message:
+                "dpl-cms provide a <main> to render react in, therefore you must use <section> to avoid duplicate main"
             }
           ]
         }
-      },
-      {
-        files: ["*.dev.jsx", "*.dev.tsx"],
-        rules: {
-          // We need a simple way of passing args in stories via object spreading.
-          "react/jsx-props-no-spreading": "off"
-        }
-      },
-      {
-        files: ["*.entry.tsx"],
-        rules: {
-          // Since we use High Order Functional Component in entries for text props
-          // and want to show the props being used we disable this rule.
-          "@typescript-eslint/no-unused-vars": "off"
-        }
-      },
-      {
-        ignores: [
-          "src/core/cover-service-api/model/*",
-          "src/core/cover-service-api/cover-service.ts",
-          "src/core/dpl-cms/model/*",
-          "src/core/dpl-cms/dpl-cms.ts",
-          "src/core/fbs/fbs.ts",
-          "src/core/publizon/publizon.ts"
-        ]
-      }
+      ]
+    }
+  },
+  {
+    files: ["*.dev.jsx", "*.dev.tsx"],
+    rules: {
+      // We need a simple way of passing args in stories via object spreading.
+      "react/jsx-props-no-spreading": "off"
+    }
+  },
+  {
+    files: ["*.entry.tsx"],
+    rules: {
+      // Since we use High Order Functional Component in entries for text props
+      // and want to show the props being used we disable this rule.
+      "@typescript-eslint/no-unused-vars": "off"
+    }
+  },
+  {
+    ignores: [
+      "src/core/cover-service-api/model/*",
+      "src/core/cover-service-api/cover-service.ts",
+      "src/core/dpl-cms/model/*",
+      "src/core/dpl-cms/dpl-cms.ts",
+      "src/core/fbs/fbs.ts",
+      "src/core/publizon/publizon.ts"
     ]
   }
 ];
