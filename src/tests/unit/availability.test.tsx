@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { renderHook } from "@testing-library/react-hooks";
 import {
   afterEach,

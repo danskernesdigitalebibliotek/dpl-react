@@ -93,7 +93,6 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
       ...args,
       selectedPeriodical: storySelectedPeriodical
     };
-    /* eslint-enable no-param-reassign */
     const {
       manifestations: [{ pid }]
     } = args;

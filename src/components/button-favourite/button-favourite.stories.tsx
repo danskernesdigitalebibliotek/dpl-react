@@ -45,7 +45,6 @@ export default meta;
 type Story = StoryObj<typeof WrappedButtonFavourite>;
 
 export const favourite: Story = {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   render: (args: ButtonFavouriteProps) => {
     const addToListRequest = () => {};
 

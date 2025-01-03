@@ -2,7 +2,6 @@ import * as React from "react";
 import { FC } from "react";
 // Do not understand why eslint is complaining about this import
 // It is for sure listed in the dependencies of package.json.
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Flatpickr from "react-flatpickr";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import "flatpickr/dist/flatpickr.css";
