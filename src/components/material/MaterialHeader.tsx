@@ -74,8 +74,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     );
   };
   const author = creatorsToString(flattenCreators(creators), t);
-  const containsDanish = mainLanguages.some(
-    (language) => language?.isoCode.toLowerCase().includes("dan")
+  const containsDanish = mainLanguages.some((language) =>
+    language?.isoCode.toLowerCase().includes("dan")
   );
   const allLanguages = mainLanguages
     .map((language) => language.display)

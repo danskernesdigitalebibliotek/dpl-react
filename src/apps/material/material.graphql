@@ -10,8 +10,7 @@ query getMaterialGlobally($wid: String!) {
   }
 }
 
-
-query getInfomedia ($id: String!) {
+query getInfomedia($id: String!) {
   infomedia(id: $id) {
     error
     article {
@@ -21,7 +20,7 @@ query getInfomedia ($id: String!) {
   }
 }
 
-query getReviewManifestations ($pid: [String!]!) {
+query getReviewManifestations($pid: [String!]!) {
   manifestations(pid: $pid) {
     ...ManifestationReviewFields
   }
