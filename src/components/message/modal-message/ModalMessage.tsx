@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
 import { FC } from "react";
 import withFocusTrap from "../../../core/utils/withFocusTrap";

@@ -187,7 +187,7 @@ export const getInitialDateFromUrl = (): Date | null => {
   if (!Number.isNaN(date.getTime())) {
     return date;
   }
-  // eslint-disable-next-line no-console
+
   console.debug(
     "Invalid date format in URL parameter: initialDate =",
     initialDateString

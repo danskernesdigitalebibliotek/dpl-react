@@ -31,7 +31,7 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
   const didAuthenticate = getUrlQueryParam(AUTH_PARAM);
 
   // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.
-  // eslint-disable-next-line no-console
+
   console.debug("PERSISTED REQUEST:", persistedRequest);
 
   useEffect(() => {
@@ -40,11 +40,11 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
     }
 
     // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.
-    // eslint-disable-next-line no-console
+
     console.debug("HAS REQUEST EXPIRED?", hasRequestExpired(persistedRequest));
-    // eslint-disable-next-line no-console
+
     console.debug("CURRENT TIMESTAMP", getCurrentUnixTime());
-    // eslint-disable-next-line no-console
+
     console.debug("EXPIRE TIMESTAMP", persistedRequest.expire);
 
     // If request has expired remove it.
@@ -67,7 +67,7 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
 
     // TODO: For some reason the type is not right in the redux type system.
     // It needs to be solved but I do not have the proper solution right now.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore
     dispatch(reRunRequest(persistedRequest));
 
@@ -83,7 +83,7 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
 
   // This is a special case. We need to return a JSX element
   // and children is not a JSX element.
-  // eslint-disable-next-line react/jsx-no-useless-fragment
+
   return <>{children}</>;
 };
 

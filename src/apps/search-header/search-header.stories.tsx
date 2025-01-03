@@ -17,7 +17,7 @@ import globalConfigArgs, {
 const meta: Meta<typeof SearchHeaderEntry> = {
   title: "Apps / Header",
   component: SearchHeaderEntry,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
   // @ts-ignore: can't figure out how to type globalConfigArgTypes, serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
     ...serviceUrlArgTypes,
@@ -151,7 +151,6 @@ export const Search: Story = {
   // It is the Header that creates the Search bar's design -
   // - without it, the Search bar loses its shape.
   render: (args: SearchHeaderEntryProps) => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <StoryHeader search={<SearchHeaderEntry {...args} />} />
   )
 };

@@ -45,7 +45,6 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
     endTime
   }: EventFormOnSubmitType) => {
     if (!eventInfo.start || !eventInfo.end) {
-      // eslint-disable-next-line no-alert
       alert(t("openingHoursInvalidEventText"));
       return;
     }
@@ -77,7 +76,7 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
             ...cmsEvent,
             // Workaround for a bug caused by the orval tool, which incorrectly requires the repetition ID.
             // Ideally, the repetition ID should be optional according to the API specifications.
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
             // @ts-ignore: Unreachable code error
             repetition: {
               type: DplOpeningHoursListGET200ItemRepetitionType.weekly,
@@ -93,7 +92,7 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
       } else {
         // Workaround for a bug caused by the orval tool, which incorrectly requires the repetition ID.
         // Ideally, the repetition ID should be optional according to the API specifications.
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
         // @ts-ignore: Unreachable code error
         handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
         closeDialog();
@@ -112,7 +111,7 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
     } else {
       // Workaround for a bug caused by the orval tool, which incorrectly requires the repetition ID.
       // Ideally, the repetition ID should be optional according to the API specifications.
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
       // @ts-ignore: Unreachable code error
       handleEventEditing(formatFullCalendarEventToCmsEventEdit(cmsEvent));
       closeEditDialog();
@@ -120,7 +119,6 @@ const DialogFormEdit: React.FC<DialogFormEditProps> = ({
   };
 
   if (!eventInfo.start || !eventInfo.end) {
-    // eslint-disable-next-line no-alert
     alert(t("openingHoursInvalidEventText"));
     return null;
   }

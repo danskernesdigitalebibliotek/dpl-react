@@ -13,7 +13,7 @@ import AdvancedSearchEntry from "./AdvancedSearch.entry";
 const meta: Meta<typeof AdvancedSearchEntry> = {
   title: "Apps / Advanced Search",
   component: AdvancedSearchEntry,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
   // @ts-ignore: can't figure out how to type serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
     ...serviceUrlArgTypes,

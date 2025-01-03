@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { renderHook } from "@testing-library/react-hooks";
 import {
   afterEach,
@@ -33,7 +32,7 @@ describe("usePhysicalAvailability tests", () => {
     // In that way we do not have any blacklisted branches (they are not needed for the test).
     // Typescript does not understand our mocked hook.
     // So we gracefully ignore the error :).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useConfig.mockReturnValue(() => [""]);
   });
@@ -49,7 +48,7 @@ describe("usePhysicalAvailability tests", () => {
   it("Test that if one material is a book and is available, the hook returns that the material is available", () => {
     // Typescript does not understand our mocked hook.
     // So we gracefully ignore the error :).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetAvailabilityV3.mockReturnValue({
       data: [
@@ -89,7 +88,7 @@ describe("usePhysicalAvailability tests", () => {
   it("Test that if the material is a book amd no material is available the hook returns that it is unavailable", async () => {
     // Typescript does not understand our mocked hook.
     // So we gracefully ignore the error :).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetAvailabilityV3.mockReturnValue({
       data: [
@@ -129,7 +128,7 @@ describe("usePhysicalAvailability tests", () => {
   it("Test that if the material is an article it will always be available even though the remote service tells otherwise", () => {
     // Typescript does not understand our mocked hook.
     // So we gracefully ignore the error :).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetAvailabilityV3.mockReturnValue({
       data: [
@@ -169,7 +168,7 @@ describe("usePhysicalAvailability tests", () => {
   it("Test that if the material is an article it will always be available even though the remote service tells otherwise", () => {
     // Typescript does not understand our mocked hook.
     // So we gracefully ignore the error :).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetAvailabilityV3.mockReturnValue({
       data: [
@@ -209,7 +208,7 @@ describe("usePhysicalAvailability tests", () => {
   it("Test that if the hook is not enabled it should return null statuses", () => {
     // Typescript does not understand our mocked hook.
     // So we gracefully ignore the error :).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetAvailabilityV3.mockReturnValue({
       data: undefined,
@@ -242,7 +241,7 @@ describe("useOnlineAvailabilityData tests", () => {
       return {
         // No need for the ts check here.
         // We want to partially mock the module and this is the way to do it.
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
         // @ts-ignore
         ...actual,
         useGetV1ProductsIdentifier: vi.fn(),
@@ -254,7 +253,7 @@ describe("useOnlineAvailabilityData tests", () => {
     // In that way we do not have any blacklisted branches (they are not needed for the test).
     // Typescript does not understand our mocked hook.
     // So we gracefully ignore the error :).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     // useConfig.mockReturnValue(() => [""]);
   });
@@ -272,7 +271,7 @@ describe("useOnlineAvailabilityData tests", () => {
 
     // Typescript does not understand our mocked hooks.
     // So we gracefully ignore the errors:).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetV1ProductsIdentifier.mockReturnValue({
       isLoading: false,
@@ -287,7 +286,7 @@ describe("useOnlineAvailabilityData tests", () => {
      * First test:
      * Publizon product status: 4
      */
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetV1LoanstatusIdentifier.mockReturnValue({
       isLoading: false,
@@ -319,7 +318,7 @@ describe("useOnlineAvailabilityData tests", () => {
      * Second test:
      * Publizon product status: 5
      */
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetV1LoanstatusIdentifier.mockReturnValue({
       isLoading: false,
@@ -350,7 +349,7 @@ describe("useOnlineAvailabilityData tests", () => {
      * Third test:
      * Publizon product status: 2
      */
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetV1LoanstatusIdentifier.mockReturnValue({
       isLoading: false,
@@ -379,7 +378,6 @@ describe("useOnlineAvailabilityData tests", () => {
   });
 
   it("Test that if the material is cost free nothing else matters", () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore-next-line
     useGetV1ProductsIdentifier.mockReturnValue({
       isLoading: false,
@@ -391,7 +389,7 @@ describe("useOnlineAvailabilityData tests", () => {
     });
 
     // If the material is cost free no data is being loaded from this service.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetV1LoanstatusIdentifier.mockReturnValue({
       isLoading: false,
@@ -417,7 +415,7 @@ describe("useOnlineAvailabilityData tests", () => {
 
   it("Test that if the hook is not enabled it should return null statuses", () => {
     // If the hook is not enabled no data is being loaded from this service.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetV1ProductsIdentifier.mockReturnValue({
       isLoading: false,
@@ -425,7 +423,7 @@ describe("useOnlineAvailabilityData tests", () => {
     });
 
     // If the hook is not enabled no data is being loaded from this service.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetV1LoanstatusIdentifier.mockReturnValue({
       isLoading: false,

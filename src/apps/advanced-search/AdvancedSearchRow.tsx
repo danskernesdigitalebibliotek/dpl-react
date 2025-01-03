@@ -40,7 +40,7 @@ const AdvancedSearchRow: React.FC<AdvancedSearchRowProps> = ({
     updateData: (data: AdvancedSearchQuery) => void
   ) => {
     const newData = { ...data };
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line I wasn't able to match the update type with the rowAspect type
     // but the values match and it all works.
     newData.rows[rowIndex][rowAspect] = update;

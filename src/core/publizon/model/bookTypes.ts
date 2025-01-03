@@ -12,7 +12,6 @@ Orders/loans created in test environment will not be invoiced. Please request a 
  */
 export type BookTypes = (typeof BookTypes)[keyof typeof BookTypes];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 export const BookTypes = {
   NUMBER_0: 0,
   NUMBER_1: 1

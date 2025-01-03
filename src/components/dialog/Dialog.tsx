@@ -1,6 +1,5 @@
 // The dialog element allready has keyboard support
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import React, { forwardRef } from "react";
 import clsx from "clsx";
 import iconCross from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross.svg";

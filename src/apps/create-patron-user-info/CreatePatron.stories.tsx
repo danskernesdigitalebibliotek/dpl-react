@@ -24,7 +24,6 @@ export default meta;
 type Story = StoryObj<typeof CreatePatron>;
 
 export const Primary: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: can't figure out how to type pincodeArgTypes, serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
     ...pincodeArgTypes,

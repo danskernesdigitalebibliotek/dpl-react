@@ -5,7 +5,6 @@ import { RequestStatus } from "./types/request";
 // and the status of the request is needed.
 export const useMultipleRequestsWithStatus = <
   // We deliberately use Function because any function shape goes here.
-  // eslint-disable-next-line @typescript-eslint/ban-types
   TRequest extends Function,
   TParams,
   TResponse
@@ -68,7 +67,7 @@ export const useMultipleRequestsWithStatus = <
 // and the status of the request is needed.
 export const useSingleRequestWithStatus = <
   // We deliberately use Function because any function shape goes here.
-  // eslint-disable-next-line @typescript-eslint/ban-types
+
   TRequest extends Function,
   TParams,
   TResponse

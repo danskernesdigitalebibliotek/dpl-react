@@ -13,7 +13,6 @@ Orders/loans created in test environment will not be invoiced. Please request a 
 export type ApiResponseCode =
   (typeof ApiResponseCode)[keyof typeof ApiResponseCode];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ApiResponseCode = {
   NUMBER_101: 101,
   NUMBER_105: 105,

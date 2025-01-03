@@ -21,7 +21,6 @@ const Template: StoryFn<typeof ModalMessage> = (props) => {
       classNames="modal-cta modal-padding"
     >
       <ModalMessage
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
         ctaButton={{ modalId: "modal-message", text: "Man" }}
       >
@@ -49,7 +48,6 @@ const meta: Meta<typeof ModalMessage> = {
     subTitle: "This is a subtitle"
   },
   render: (args) => {
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <Template {...args} />;
   }
 };

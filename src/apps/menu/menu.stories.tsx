@@ -42,7 +42,7 @@ const WrappedStoryHeader = withText(withUrls(withConfig(StoryHeader)));
 const meta: Meta<typeof WrappedMenu> = {
   title: "Apps / Header",
   component: WrappedMenu,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
   // @ts-ignore: can't figure out how to type this
   argTypes: {
     ...serviceUrlArgTypes,
@@ -218,7 +218,6 @@ export const UserMenu: Story = {
     searchHeaderFavoritesText: "Liked"
   },
   render: (args) => {
-    // eslint-disable-next-line react/jsx-props-no-spreading
     const menu = <WrappedMenu {...args} />;
     // We use the Header component as context to the search bar.
     // It is the Header that creates the Search bar's design -

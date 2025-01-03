@@ -45,11 +45,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <>
       {/* The downshift combobox uses prop spreading by design & associated control is destructured too */}
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control, react/jsx-props-no-spreading */}
+      {}
       <label className="hide-visually" {...getLabelProps()}>
         {t("searchHeaderInputLabelText")}
       </label>
-      {/* eslint-disable react/jsx-props-no-spreading */}
+      {}
       <input
         required
         pattern=".*\S+.*"
@@ -72,7 +72,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           }
         })}
       />
-      {/* eslint-enable react/jsx-props-no-spreading */}
+      {}
       <input
         type="image"
         src={searchIcon}

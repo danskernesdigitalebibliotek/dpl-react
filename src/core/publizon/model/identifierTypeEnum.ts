@@ -10,7 +10,6 @@ Orders/loans created in test environment will not be invoiced. Please request a 
 export type IdentifierTypeEnum =
   (typeof IdentifierTypeEnum)[keyof typeof IdentifierTypeEnum];
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
 export const IdentifierTypeEnum = {
   NUMBER_2: 2,
   NUMBER_3: 3,

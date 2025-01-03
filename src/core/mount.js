@@ -36,7 +36,7 @@ function mount(context) {
               FallbackComponent: ErrorBoundaryAlert,
               onError(error, info) {
                 // Logging should be acceptable in an error handler.
-                // eslint-disable-next-line no-console
+
                 console.error(error, info);
 
                 forwardError(error, info);

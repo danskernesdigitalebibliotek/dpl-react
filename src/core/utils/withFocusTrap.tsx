@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import FocusTrap from "focus-trap-react";
 import React, { FC } from "react";
 

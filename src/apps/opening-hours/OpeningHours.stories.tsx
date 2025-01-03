@@ -13,7 +13,7 @@ import OpeningHours from "./OpeningHours.entry";
 const meta: Meta<typeof OpeningHours> = {
   title: "Apps / Opening Hours",
   component: OpeningHours,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
   // @ts-ignore: can't figure out how to type globalConfigArgTypes, globalTextArgTypes and serviceUrlArgTypes
   argTypes: {
     ...globalConfigArgTypes,

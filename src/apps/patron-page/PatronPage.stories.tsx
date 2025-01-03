@@ -19,7 +19,7 @@ import globalConfigArgs, {
 const meta: Meta<typeof PatronPage> = {
   title: "Apps / Patron page",
   component: PatronPage,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
   // @ts-ignore: can't figure out how to type globalConfigArgTypes, serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
     ...serviceUrlArgTypes,

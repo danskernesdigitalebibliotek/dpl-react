@@ -50,7 +50,7 @@ describe("useReservableFromAnotherLibrary", () => {
   it("should return reservable pids from another library", async () => {
     // Typescript does not understand our mocked hook.
     // So we gracefully ignore the error :).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetHoldings.mockReturnValue({
       data: [
@@ -83,7 +83,7 @@ describe("useReservableFromAnotherLibrary", () => {
   it("should return an empty array if useGetHoldings does return reservable items", async () => {
     // Typescript does not understand our mocked hook.
     // So we gracefully ignore the error :).
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore-next-line
     useGetHoldings.mockReturnValue({
       data: [

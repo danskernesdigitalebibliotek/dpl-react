@@ -70,12 +70,7 @@ const withIsPatronBlockedHoc =
         {blockedStatus !== BlockedTypes.unknown && (
           <BlockedModal blockedStatus={blockedStatus} />
         )}
-        {!blockedFromViewingContent && (
-          <Component
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
-            {...(props as P)}
-          />
-        )}
+        {!blockedFromViewingContent && <Component {...(props as P)} />}
       </>
     );
   };

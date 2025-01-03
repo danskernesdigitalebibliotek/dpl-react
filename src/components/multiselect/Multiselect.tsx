@@ -129,7 +129,7 @@ const Multiselect: FC<MultiselectProps> = ({
     <>
       {caption && <div className="multiselect__caption">{caption}</div>}
       <div className="multiselect" ref={ref} data-cy={dataCy}>
-        {/* eslint-disable react/jsx-props-no-spreading */}
+        {}
         {/* The downshift combobox works this way by design */}
         <button
           type="button"
@@ -184,7 +184,7 @@ const Multiselect: FC<MultiselectProps> = ({
                   )
                 }
               >
-                {/* eslint-enable react/jsx-props-no-spreading */}
+                {}
                 <span id={`multiselect-label-${downshiftProps.id}`}>
                   {t(item.item)}
                 </span>

@@ -27,7 +27,6 @@
 
 // This function is used to check if all the cases are covered in a switch statement
 function invalidSwitchCase<T>(x: never): T {
-  // eslint-disable-next-line no-console
   console.error(`Invalid case for ${x}`);
   return x;
 }

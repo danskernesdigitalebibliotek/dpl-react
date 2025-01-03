@@ -23,7 +23,7 @@ import globalTextArgs, {
 const meta: Meta<typeof ReservationList> = {
   title: "Apps / Reservation list",
   component: ReservationList,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
   // @ts-ignore: can't figure out how to type serviceUrlArgTypes, deleteReservationModalArgTypes, reservationMaterialDetailsPropTypes, blockedArgTypes, reservationListArgTypes, globalTextArgTypes and globalTextArgTypes
   argTypes: {
     // Config

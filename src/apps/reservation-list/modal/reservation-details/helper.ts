@@ -29,7 +29,7 @@ export const findEreolAccessLinkFromManifestations = (
     (access) => access.__typename === "Ereol"
   );
   // TODO: Find out why TS doesn't understand that ereolAccess will always exist
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
   // @ts-ignore-next-line
   return ereolAccess?.url;
 };

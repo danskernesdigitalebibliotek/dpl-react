@@ -36,7 +36,6 @@ export function useStatistics() {
   if (!window.wts) {
     window.wts = {
       push(trackingProps: [EventAction, EventType, EventData]) {
-        // eslint-disable-next-line no-console
         console.log(
           `Tracking: ${trackingProps[0]}, ${trackingProps[1]}, ${JSON.stringify(
             trackingProps[2]
