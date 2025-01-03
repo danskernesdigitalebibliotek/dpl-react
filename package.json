@@ -13,7 +13,7 @@
   "scripts": {
     "fmt": "prettier --config ./.prettierrc --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:js": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --max-warnings 0 --cache  --cache-location \".cache/eslint/\"",
-    "lint:js:fix": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx --fix ./src",
+    "lint:js:fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:markdown": "markdownlint-cli2",
     "lint:markdown:fix": "markdownlint-cli2-fix",
     "lint:scss": "stylelint \"./src/**/*.scss\"",

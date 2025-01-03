@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
-import { dateFormatDayjs } from "../../../core/configuration/date-format.json";
+import { dateFormatDayjs } from "../../../core/configuration/date-format";
 import {
   faustIdentifierLength,
   digitalMaterialIdentifierLength
-} from "../../../core/configuration/identifier-lengths.json";
+} from "../../../core/configuration/identifier-lengths";
 
 export const yesterday = dayjs().subtract(1, "day").format(dateFormatDayjs);
 export const soon = dayjs().add(7, "days").format(dateFormatDayjs);

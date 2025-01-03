@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import React, { FC } from "react";
-import { dateFormatDefault } from "../../../core/configuration/date-format.json";
+import { dateFormatDefault } from "../../../core/configuration/date-format";
 import { useText } from "../../../core/utils/text";
 
 interface FeeStatusProps {
