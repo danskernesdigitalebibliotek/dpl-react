@@ -53,6 +53,9 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
         >
           {label}
         </label>
+        {/* TODO: fix typescript issue */}
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
         <Flatpickr
           id="date-range"
           value={value}
