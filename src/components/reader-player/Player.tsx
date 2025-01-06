@@ -41,7 +41,7 @@ const Player: React.FC<PlayerType> = ({ identifier, orderId }) => {
   }
 
   // eslint-disable-next-line no-console
-  console.warn("No identifier or orderId provided for the Player app.");
+  console.error("No identifier or orderId provided for the Player app.");
   return null;
 };
 
