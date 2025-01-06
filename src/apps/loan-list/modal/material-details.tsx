@@ -22,7 +22,7 @@ import { RequestStatus } from "../../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
 import { formatDate } from "../../../core/utils/helpers/date";
-import useGetWorkUrlFromPublizonIdentifier from "../../../core/utils/useGetWorkUrlFromIdentifier";
+import useGetWorkUrlFromPublizonIdentifier from "../../../core/utils/useGetWorkUrlFromPublizonIdentifier";
 import isVisible from "../../../core/utils/featureFlag";
 
 interface MaterialDetailsProps {
