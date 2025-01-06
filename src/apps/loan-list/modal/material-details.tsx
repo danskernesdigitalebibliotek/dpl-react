@@ -22,7 +22,7 @@ import { RequestStatus } from "../../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
 import { formatDate } from "../../../core/utils/helpers/date";
-import useGetWorkUrlFromIdentifier from "../../../core/utils/useGetWorkUrlFromIdentifier";
+import useGetWorkUrlFromPublizonIdentifier from "../../../core/utils/useGetWorkUrlFromIdentifier";
 import isVisible from "../../../core/utils/featureFlag";
 
 interface MaterialDetailsProps {
@@ -35,7 +35,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   material,
   modalId
 }) => {
-  const { workUrl } = useGetWorkUrlFromIdentifier(loan?.identifier);
+  const { workUrl } = useGetWorkUrlFromPublizonIdentifier(loan?.identifier);
   const [renewingStatus, setRenewingStatus] = useState<RequestStatus>("idle");
   const [renewingResponse, setRenewingResponse] = useState<
     RenewedLoanV2[] | null

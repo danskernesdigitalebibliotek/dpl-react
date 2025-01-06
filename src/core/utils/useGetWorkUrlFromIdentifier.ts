@@ -6,15 +6,15 @@ import { WorkId } from "./types/ids";
 import { getMaterialTypes } from "./helpers/general";
 import { Manifestation } from "./types/entities";
 
-type UseGetWorkUrlFromIdentifierResult = {
+type GetWorkUrlFromPublizonIdentifierResultType = {
   workUrl: URL | null;
   isLoading: boolean;
   isError: boolean;
 };
 
-const useGetWorkUrlFromIdentifier = (
+const useGetWorkUrlFromPublizonIdentifier = (
   identifier: string | undefined | null
-): UseGetWorkUrlFromIdentifierResult => {
+): GetWorkUrlFromPublizonIdentifierResultType => {
   const u = useUrls();
   const materialUrl = u("materialUrl");
 
@@ -55,4 +55,4 @@ const useGetWorkUrlFromIdentifier = (
   return { workUrl, isLoading, isError };
 };
 
-export default useGetWorkUrlFromIdentifier;
+export default useGetWorkUrlFromPublizonIdentifier;
