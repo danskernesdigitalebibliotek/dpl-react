@@ -86,7 +86,7 @@
     "babel-loader": "^9.2.1",
     "babel-plugin-istanbul": "^7.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "caniuse-lite": "^1.0.30001688",
+    "caniuse-lite": "^1.0.30001690",
     "change-case-all": "^2.1.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.1.2",
