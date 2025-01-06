@@ -67,7 +67,7 @@
     "@namics/stylelint-bem": "^10.1.0",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-queryparams": "^7.0.1",
-    "@storybook/addon-webpack5-compiler-babel": "^3.0.3",
+    "@storybook/addon-webpack5-compiler-babel": "^3.0.5",
     "@storybook/react": "^8.2.9",
     "@storybook/react-webpack5": "^8.4.7",
     "@testing-library/dom": "^9.3.4",
