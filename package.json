@@ -139,7 +139,7 @@
     "vitest": "^2.1.8",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
-    "webpack-version-file-plugin": "^0.4.0"
+    "webpack-version-file-plugin": "0.5.0"
   },
   "//dependencies": {
     "@danskernesdigitalebibliotek/dpl-design-system": "Is being used for being able to see the dpl-design-system styling in Storybook and potentially use icons",
@@ -178,5 +178,8 @@
   },
   "peerDependencies": {
     "postcss": "^8.4.49"
+  },
+  "resolutions": {
+    "@babel/runtime": "^7.26.0"
   }
 }
