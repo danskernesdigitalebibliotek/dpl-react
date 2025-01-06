@@ -326,7 +326,6 @@ const SearchHeader: React.FC = () => {
   return (
     <div className="header__menu-second">
       {/* The downshift combobox uses prop spreading by design */}
-      {}
       <div className="header__menu-search">
         <SearchBar
           q={q}

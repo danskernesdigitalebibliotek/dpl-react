@@ -76,7 +76,6 @@ const MaterialSearchHiddenInputs = ({
           />
         </label>
       </div>
-      {}
       <MaterialSearch uniqueIdentifier={uniqueIdentifier} {...args} />
     </div>
   );

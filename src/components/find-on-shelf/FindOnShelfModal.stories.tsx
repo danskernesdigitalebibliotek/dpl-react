@@ -105,7 +105,6 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
           size="small"
           faustIds={[convertPostIdToFaustId(pid)]}
         />
-        {}
         <WrappedFindOnShelfModal {...modifiedArgs} />
       </>
     );

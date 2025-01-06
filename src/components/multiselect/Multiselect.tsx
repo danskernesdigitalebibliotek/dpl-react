@@ -129,7 +129,6 @@ const Multiselect: FC<MultiselectProps> = ({
     <>
       {caption && <div className="multiselect__caption">{caption}</div>}
       <div className="multiselect" ref={ref} data-cy={dataCy}>
-        {}
         {/* The downshift combobox works this way by design */}
         <button
           type="button"
@@ -184,7 +183,6 @@ const Multiselect: FC<MultiselectProps> = ({
                   )
                 }
               >
-                {}
                 <span id={`multiselect-label-${downshiftProps.id}`}>
                   {t(item.item)}
                 </span>

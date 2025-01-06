@@ -33,7 +33,6 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   const t = useText();
   return (
     <>
-      {}
       {/* The downshift combobox works this way by design */}
       <li
         className={classes.textSuggestion}
@@ -43,7 +42,6 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
         lang={isoLang}
       >
         <p className="autosuggest__text text-body-medium-regular">
-          {}
           {item.type === SuggestionTypeEnum.Creator
             ? `${item.term} (${t("stringSuggestionAuthorText")})`
             : null}

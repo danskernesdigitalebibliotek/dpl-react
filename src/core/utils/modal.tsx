@@ -90,7 +90,6 @@ function Modal({
       <div>
         {/* The backdrop doesn't have a role or keyboard listener because it barely duplicates
           the close button's functionality which possesses both. */}
-        {}
         <div
           className="modal-backdrop"
           style={{
@@ -104,7 +103,6 @@ function Modal({
             close();
           }}
         />
-        {}
         <div
           className={clsx(
             "modal",
