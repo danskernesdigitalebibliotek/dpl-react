@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { defineConfig } = require("cypress");
-const plugins = require("./cypress/plugins");
+const plugins = require("./cypress/plugins").default;
 
 module.exports = defineConfig({
   projectId: "4trcdv",

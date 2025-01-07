@@ -1,7 +1,7 @@
-const task = require("@cypress/code-coverage/task");
-const webpackPreprocessor = require("@cypress/webpack-preprocessor");
+import task from "@cypress/code-coverage/task";
+import webpackPreprocessor from "@cypress/webpack-preprocessor";
 
-module.exports = (on, config) => {
+export default (on, config) => {
   task(on, config);
 
   const options = {
