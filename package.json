@@ -138,7 +138,6 @@
     "svg-url-loader": "^8.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.0",
-    "vitest": "^2.1.8",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
     "webpack-version-file-plugin": "^0.4.0"
@@ -174,6 +173,7 @@
     "react-use": "^17.6.0",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
+    "vitest": "^2.1.8",
     "unfetch": "^5.0.0"
   },
   "peerDependencies": {

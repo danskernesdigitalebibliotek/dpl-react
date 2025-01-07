@@ -37,7 +37,12 @@ const ContactInfoInputs: FC<ContactInfoInputsProps> = ({
         const childClassName = clsx("patron__input--desktop", {
           "mr-16": i < renderableChildren.length - 1
         });
-        return <div className={childClassName}>{child}</div>;
+        return (
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={i} className={childClassName}>
+            {child}
+          </div>
+        );
       })}
     </div>
   );
