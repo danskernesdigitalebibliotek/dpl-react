@@ -4,3 +4,5 @@ src/core/dpl-cms/model
 src/core/dpl-cms/dpl-cms.ts
 src/core/fbs/fbs.ts
 src/core/publizon/publizon.ts
+*.test.ts
+*.test.tsx

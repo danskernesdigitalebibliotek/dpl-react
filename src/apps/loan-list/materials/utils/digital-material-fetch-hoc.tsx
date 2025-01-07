@@ -35,7 +35,13 @@ const fetchDigitalMaterial =
         data: productsData,
         isSuccess: isSuccessDigital,
         isLoading
-      } = useGetV1ProductsIdentifier(item.identifier);
+      } = useGetV1ProductsIdentifier(item.identifier, {
+        query: {
+          // We never want to pass an empty string to the API
+          // So we only enable the query if we have an isbn
+          enabled: !!item.identifier
+        }
+      });
 
       useEffect(() => {
         if (productsData && isSuccessDigital && productsData.product) {
