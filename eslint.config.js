@@ -58,10 +58,10 @@ module.exports = [
       ...airbnbTypeScript.rules,
       ...airbnbHooks.rules,
       ...prettier.rules,
-      ...prettierRecommended.rules,
       ...cypress.rules,
       ...typescriptRecommended.rules,
       ...jsxA11yRecommended.rules,
+      ...prettierRecommended.rules,
       // Custom rules
       "@typescript-eslint/consistent-type-imports": "off",
       "prefer-arrow-callback": [
@@ -121,6 +121,13 @@ module.exports = [
           "ts-expect-error": true, // flag all `@ts-expect-error` comments
           "ts-nocheck": true, // flag all `@ts-nocheck` comments
           "ts-check": true // flag all `@ts-check` comments
+        }
+      ],
+      "prettier/prettier": [
+        "error",
+        {
+          // Needed to avoid conflicts with Prettier
+          "parser": "flow"
         }
       ]
     }
