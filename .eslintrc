@@ -84,6 +84,9 @@
   "overrides": [
     {
       "files": ["*.js", "*.jsx"],
+      "parserOptions": {
+        "project": null
+      },
       "rules": {
         // These rules were triggered on the former non-typescript codebase.
         // We are planning to use only ts/tsx in the future
@@ -95,7 +98,12 @@
         "react/destructuring-assignment": "off",
         "@typescript-eslint/return-await": "off",
         "no-param-reassign": "off",
-        "@typescript-eslint/no-var-requires": "off"
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/no-implied-eval": "off",
+        "@typescript-eslint/no-throw-literal": "off"
         // End - ddb-react former code
       }
     },
