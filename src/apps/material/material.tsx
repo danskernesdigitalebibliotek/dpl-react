@@ -200,12 +200,13 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         )}
-        {featureFlag.isActive("readerPlayer") && readerPlayerType === "player" && (
-          <>
-            {identifier && <PlayerModal identifier={identifier} />}
-            {orderId && <PlayerModal orderId={orderId} />}
-          </>
-        )}
+        {featureFlag.isActive("readerPlayer") &&
+          readerPlayerType === "player" && (
+            <>
+              {identifier && <PlayerModal identifier={identifier} />}
+              {orderId && <PlayerModal orderId={orderId} />}
+            </>
+          )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       {/* Since we cannot trust the editions for global manifestations */}

@@ -1,4 +1,3 @@
-// Test Fix Lint Javascript
 const allowedUrls = ["dpl-", "dapple-cms"];
 
 const features = [
@@ -6,7 +5,7 @@ const features = [
   { name: "readerPlayer", active: true }
 ] as const;
 
-type FeatureNameType = typeof features[number]["name"];
+type FeatureNameType = (typeof features)[number]["name"];
 
 const featureFlag = {
   features,

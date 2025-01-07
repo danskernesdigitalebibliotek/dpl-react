@@ -1,4 +1,3 @@
-// Test Fix Lint Javascript
 import React, { FC } from "react";
 import { Button } from "../../../Buttons/Button";
 import { ButtonSize } from "../../../../core/utils/types/button";
