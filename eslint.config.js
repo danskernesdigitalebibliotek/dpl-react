@@ -189,8 +189,8 @@ module.exports = [
       "src/core/dpl-cms/dpl-cms.ts",
       "src/core/fbs/fbs.ts",
       "src/core/publizon/publizon.ts",
-      "*.test.ts",
-      "*.test.tsx"
+      "src/**/*.test.ts",
+      "src/**/*.test.tsx"
     ]
   }
 ];
