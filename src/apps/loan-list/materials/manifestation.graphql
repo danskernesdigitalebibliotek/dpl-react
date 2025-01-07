@@ -26,7 +26,6 @@ fragment ManifestationBasicDetails on Manifestation {
   }
 }
 
-
 query getManifestationViaMaterialByFaust($faust: String!) {
   manifestation(faust: $faust) {
     ...ManifestationBasicDetails
