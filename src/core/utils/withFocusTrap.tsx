@@ -5,13 +5,12 @@ import React, { FC } from "react";
 export default <P extends object>(
     Component: React.ComponentType<P>
   ): FC<P & { withFocusTrap?: boolean }> =>
-  ({ withFocusTrap, ...props }) =>
-    (
-      <FocusTrap
-        focusTrapOptions={{
-          allowOutsideClick: true
-        }}
-      >
-        <Component {...(props as P)} />
-      </FocusTrap>
-    );
+  ({ withFocusTrap, ...props }) => (
+    <FocusTrap
+      focusTrapOptions={{
+        allowOutsideClick: true
+      }}
+    >
+      <Component {...(props as P)} />
+    </FocusTrap>
+  );

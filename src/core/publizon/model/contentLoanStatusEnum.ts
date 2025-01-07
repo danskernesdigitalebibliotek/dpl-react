@@ -8,7 +8,7 @@ Orders/loans created in test environment will not be invoiced. Please request a 
  */
 
 export type ContentLoanStatusEnum =
-  typeof ContentLoanStatusEnum[keyof typeof ContentLoanStatusEnum];
+  (typeof ContentLoanStatusEnum)[keyof typeof ContentLoanStatusEnum];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ContentLoanStatusEnum = {

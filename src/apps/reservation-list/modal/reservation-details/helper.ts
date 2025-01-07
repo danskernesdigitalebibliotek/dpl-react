@@ -46,7 +46,7 @@ export const getReservationsForSaving = ({
   selectedBranch: string;
 }) => {
   const getSelectedExpiryDate = (value: FormSelectValue) =>
-    typeof value === "number" ? getFutureDateString(value) : expiryDate ?? "";
+    typeof value === "number" ? getFutureDateString(value) : (expiryDate ?? "");
   const getSelectedPickupBranch = (value: FormSelectValue) =>
     typeof value === "string" ? value : selectedBranch;
 
