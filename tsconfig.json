@@ -3,27 +3,12 @@
   "compilerOptions": {
     "jsx": "react",
     "types": ["cypress", "node", "vitest/importMeta"],
-    "target": "es6",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["src/*"]
-    },
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": false
+    "target": "es6"
   },
   "ts-node": {
+    // these options are overrides used only by ts-node
     "compilerOptions": {
       "module": "commonjs"
     }
-  },
-  "include": ["src"]
+  }
 }
