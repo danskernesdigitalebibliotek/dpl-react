@@ -1,8 +1,8 @@
-import autoprefixer from "autoprefixer";
-import cssnano from "cssnano";
-import postcssSass from "@csstools/postcss-sass";
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
+const postcssSass = require("@csstools/postcss-sass");
 
-export default (ctx) => {
+module.exports = (ctx) => {
   const production = ctx.env === "production";
   return {
     parser: "postcss-scss",
