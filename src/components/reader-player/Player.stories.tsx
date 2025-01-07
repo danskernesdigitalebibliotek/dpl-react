@@ -1,4 +1,3 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import Player from "./Player";
 
@@ -7,10 +6,14 @@ const meta: Meta<typeof Player> = {
   component: Player,
   argTypes: {
     identifier: {
-      control: { type: "text" }
+      control: { type: "text" },
+      description:
+        "Publizon identifier for a material (Do not use both identifier and orderId)"
     },
     orderId: {
-      control: { type: "text" }
+      control: { type: "text" },
+      description:
+        "Place order id for a allready ordered material (Do not use both identifier and orderId)"
     }
   }
 };
@@ -20,10 +23,14 @@ export default meta;
 type Story = StoryObj<typeof Player>;
 
 export const WithIdentifier: Story = {
-  render: () => <Player identifier="9788702366600" />
+  args: {
+    identifier: "9788702366600"
+  }
 };
 
 // Works only if the matrial is reserved
 export const WithOrderId: Story = {
-  render: () => <Player orderId="" />
+  args: {
+    orderId: ""
+  }
 };
