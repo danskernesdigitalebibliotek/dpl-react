@@ -116,9 +116,6 @@ module.exports = [
   // JS/JSX-specific rules
   {
     files: ["*.js", "*.jsx"],
-    parserOptions: {
-      "project": null
-    },
     rules: {
       // These rules were triggered on the former non-TypeScript codebase.
       // We are planning to use only ts/tsx in the future.
