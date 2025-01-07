@@ -1,13 +1,25 @@
-type FeatureFlagType = "readerPlayer";
+const allowedUrls = ["dpl-", "dapple-cms"];
 
-const isVisible = (name: FeatureFlagType): boolean => {
-  const allowedUrls = ["dpl-", "dapple-cms"];
+const features = [
+  { name: "exampleFeature", active: false },
+  { name: "readerPlayer", active: true }
+] as const;
 
-  if (name === "readerPlayer") {
-    return allowedUrls.some((url) => window.location.href.includes(url));
+type FeatureNameType = typeof features[number]["name"];
+
+const featureFlag = {
+  features,
+
+  isActive(name: FeatureNameType): boolean {
+    const feature = this.features.find((f) => f.name === name);
+    if (!feature) return false;
+
+    const isAllowedUrl = allowedUrls.some((url) =>
+      window.location.href.includes(url)
+    );
+
+    return feature.active && isAllowedUrl;
   }
-
-  return false;
 };
 
-export default isVisible;
+export default featureFlag;

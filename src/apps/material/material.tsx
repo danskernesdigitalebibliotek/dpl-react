@@ -40,7 +40,7 @@ import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
-import isVisible from "../../core/utils/featureFlag";
+import featureFlag from "../../core/utils/featureFlag";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -200,7 +200,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         )}
-        {isVisible("readerPlayer") && readerPlayerType === "player" && (
+        {featureFlag.isActive("readerPlayer") && readerPlayerType === "player" && (
           <>
             {identifier && <PlayerModal identifier={identifier} />}
             {orderId && <PlayerModal orderId={orderId} />}

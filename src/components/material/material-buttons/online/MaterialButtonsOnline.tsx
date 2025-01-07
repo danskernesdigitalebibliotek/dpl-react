@@ -14,7 +14,7 @@ import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
-import isVisible from "../../../../core/utils/featureFlag";
+import featureFlag from "../../../../core/utils/featureFlag";
 import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 
 export interface MaterialButtonsOnlineProps {
@@ -80,7 +80,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
             ariaLabelledBy={ariaLabelledBy}
           />
         )}
-        {isVisible("readerPlayer") && (
+        {featureFlag.isActive("readerPlayer") && (
           <MaterialButtonsOnlineInternal
             size={size}
             manifestations={manifestations}

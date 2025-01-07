@@ -23,7 +23,7 @@ import { RenewedLoanV2 } from "../../../core/fbs/model";
 import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
 import { formatDate } from "../../../core/utils/helpers/date";
 import useGetWorkUrlFromPublizonIdentifier from "../../../core/utils/useGetWorkUrlFromPublizonIdentifier";
-import isVisible from "../../../core/utils/featureFlag";
+import featureFlag from "../../../core/utils/featureFlag";
 
 interface MaterialDetailsProps {
   loan: LoanType | null;
@@ -121,7 +121,9 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {isVisible("readerPlayer") && isDigital(loan) && workUrl ? (
+          {featureFlag.isActive("readerPlayer") &&
+          isDigital(loan) &&
+          workUrl ? (
             <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
               <Link
                 href={workUrl}
@@ -200,7 +202,9 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {isVisible("readerPlayer") && isDigital(loan) && workUrl ? (
+          {featureFlag.isActive("readerPlayer") &&
+          isDigital(loan) &&
+          workUrl ? (
             <div className="modal-details__buttons">
               <Link
                 href={workUrl}
@@ -211,7 +215,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
             </div>
           ) : (
             // Todo: Delete this else block after the readerPlayer feature flag is removed
-            !isVisible("readerPlayer") &&
+            !featureFlag.isActive("readerPlayer") &&
             isDigital(loan) && (
               <div className="modal-details__buttons">
                 <Link
