@@ -42,7 +42,7 @@ const WrappedStoryHeader = withText(withUrls(withConfig(StoryHeader)));
 const meta: Meta<typeof WrappedMenu> = {
   title: "Apps / Header",
   component: WrappedMenu,
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: can't figure out how to type this
   argTypes: {
     ...serviceUrlArgTypes,

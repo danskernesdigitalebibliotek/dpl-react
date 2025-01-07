@@ -110,7 +110,16 @@ module.exports = [
           additionalHooks: "useDeepCompareEffect"
         }
       ],
-      "no-only-tests/no-only-tests": "warn" // Warn on `.only` in tests
+      "no-only-tests/no-only-tests": "warn", // Warn on `.only` in tests
+      "@typescript-eslint/ban-ts-comment": [
+        "error",
+        {
+          "ts-ignore": true, // flag all `@ts-ignore` comments
+          "ts-expect-error": true, // flag all `@ts-expect-error` comments
+          "ts-nocheck": true, // flag all `@ts-nocheck` comments
+          "ts-check": true // flag all `@ts-check` comments
+        }
+      ]
     }
   },
   // JS/JSX-specific rules
@@ -190,7 +199,8 @@ module.exports = [
       "src/core/fbs/fbs.ts",
       "src/core/publizon/publizon.ts",
       "src/**/*.test.ts",
-      "src/**/*.test.tsx"
+      "src/**/*.test.tsx",
+      "eslint.config.js"
     ]
   }
 ];

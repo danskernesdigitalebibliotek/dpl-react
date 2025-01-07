@@ -14,7 +14,7 @@ import { ManifestationMaterialType } from "../../core/utils/types/material-type"
 const meta: Meta<typeof RecommendedMaterial> = {
   title: "Apps / Recommended Material",
   component: RecommendedMaterial,
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: can't figure out how to type globalTextArgTypes
   argTypes: {
     ...globalTextArgTypes,

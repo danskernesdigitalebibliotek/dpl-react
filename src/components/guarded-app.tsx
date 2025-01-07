@@ -67,7 +67,7 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
 
     // TODO: For some reason the type is not right in the redux type system.
     // It needs to be solved but I do not have the proper solution right now.
-
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     dispatch(reRunRequest(persistedRequest));
 

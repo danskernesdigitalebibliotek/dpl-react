@@ -17,7 +17,7 @@ import globalConfigArgs, {
 const meta: Meta<typeof SearchHeaderEntry> = {
   title: "Apps / Header",
   component: SearchHeaderEntry,
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: can't figure out how to type globalConfigArgTypes, serviceUrlArgTypes and globalTextArgTypes
   argTypes: {
     ...serviceUrlArgTypes,

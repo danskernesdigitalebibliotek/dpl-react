@@ -40,7 +40,7 @@ import blockedArgs, {
 const meta: Meta<typeof DashBoard> = {
   title: "Apps / Dashboard",
   component: DashBoard,
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: can't figure out how to type this
   argTypes: {
     ...blockedArgTypes,

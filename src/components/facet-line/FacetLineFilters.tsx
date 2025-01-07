@@ -30,7 +30,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   // summer 2024, a lot of changes has been introduced
   // which implies refactoring of facet types/functionality.
   // Something here needs to be looked at.
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const facetMap = createFacetsMap(facets);
 

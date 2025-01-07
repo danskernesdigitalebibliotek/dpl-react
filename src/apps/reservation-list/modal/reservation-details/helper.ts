@@ -29,7 +29,7 @@ export const findEreolAccessLinkFromManifestations = (
     (access) => access.__typename === "Ereol"
   );
   // TODO: Find out why TS doesn't understand that ereolAccess will always exist
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore-next-line
   return ereolAccess?.url;
 };
@@ -46,7 +46,7 @@ export const getReservationsForSaving = ({
   selectedBranch: string;
 }) => {
   const getSelectedExpiryDate = (value: FormSelectValue) =>
-    typeof value === "number" ? getFutureDateString(value) : (expiryDate ?? "");
+    typeof value === "number" ? getFutureDateString(value) : expiryDate ?? "";
   const getSelectedPickupBranch = (value: FormSelectValue) =>
     typeof value === "string" ? value : selectedBranch;
 

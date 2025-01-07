@@ -29,7 +29,7 @@ import blockedArgs, {
 const meta: Meta<typeof LoanList> = {
   title: "Apps / Loan list",
   component: LoanList,
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: can't figure out how to type this
   argTypes: {
     ...serviceUrlArgTypes,
