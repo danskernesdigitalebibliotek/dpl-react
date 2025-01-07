@@ -1,28 +1,45 @@
-// Cypress no longer natively supports plugins file, but we keep it for better code abstraction
-// https://docs.cypress.io/app/references/migration-guide#Plugins-File-Removed
-
 const task = require("@cypress/code-coverage/task");
-const browserify = require("@cypress/browserify-preprocessor");
-
-// In order to use both babelrc and typescript in browserify
-// we copy the functionality from @cypress/code-coverage/use-babelrc
-// and merge it with the typescript setting.
-// The plugin @cypress/code-coverage/use-babelrc basically
-// sets babelrc: true in the browserify options.
-const { browserifyOptions } = browserify.defaultOptions;
-browserifyOptions.transform[1][1].babelrc = true;
+const webpackPreprocessor = require("@cypress/webpack-preprocessor");
 
 module.exports = (on, config) => {
   task(on, config);
-  on(
-    "file:preprocessor",
-    browserify({
-      typescript: require.resolve("typescript"),
-      browserifyOptions: {
-        extensions: [".js", ".ts"],
-        ...browserifyOptions
+
+  const options = {
+    webpackOptions: {
+      resolve: {
+        extensions: [".ts", ".tsx", ".js", ".jsx"],
+        modules: ["node_modules", "src"]
+      },
+      module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            use: [
+              {
+                loader: "ts-loader",
+                options: {
+                  transpileOnly: true,
+                  compilerOptions: {
+                    module: "esnext",
+                    target: "es5",
+                    lib: ["es5", "dom"],
+                    jsx: "react",
+                    allowJs: true,
+                    esModuleInterop: true,
+                    allowSyntheticDefaultImports: true,
+                    noEmit: false
+                  }
+                }
+              }
+            ],
+            exclude: /node_modules/
+          }
+        ]
       }
-    })
-  );
+    }
+  };
+
+  on("file:preprocessor", webpackPreprocessor(options));
+
   return config;
 };

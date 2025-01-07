@@ -53,7 +53,6 @@
     "@babel/preset-typescript": "^7.26.0",
     "@chromatic-com/storybook": "^3",
     "@csstools/postcss-sass": "^5.1.1",
-    "@cypress/browserify-preprocessor": "^3.0.2",
     "@cypress/code-coverage": "^3.13.9",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.17.0",
@@ -136,6 +135,7 @@
     "stylelint-scss": "^6.10.0",
     "stylelint-webpack-plugin": "^5.0.1",
     "svg-url-loader": "^8.0.0",
+    "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.0",
     "webpack": "^5.97.1",
@@ -147,6 +147,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
+    "@cypress/webpack-preprocessor": "^6.0.2",
     "@danskernesdigitalebibliotek/dpl-design-system": "^2024.49.0-6c2891c7ad8ebebab5a41646dc217693f0b49284",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
@@ -173,8 +174,8 @@
     "react-use": "^17.6.0",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
-    "vitest": "^2.1.8",
-    "unfetch": "^5.0.0"
+    "unfetch": "^5.0.0",
+    "vitest": "^2.1.8"
   },
   "peerDependencies": {
     "postcss": "^8.4.49"
