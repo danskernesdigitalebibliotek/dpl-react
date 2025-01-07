@@ -121,7 +121,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
     // You cannot have nested links so onClick handlers and stopping event propagation
     // is necessary.
     //
-
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
       ref={itemRef}
       data-cy={dataCy}

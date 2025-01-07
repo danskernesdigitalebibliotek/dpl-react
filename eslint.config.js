@@ -17,6 +17,8 @@ const typescriptRecommended = {
     "@typescript-eslint/explicit-module-boundary-types": "off"
   }
 };
+const jsxA11yRecommended = require("eslint-plugin-jsx-a11y").configs
+  .recommended;
 
 // ESLint configuration using flat config
 module.exports = [
@@ -59,6 +61,7 @@ module.exports = [
       ...prettierRecommended.rules,
       ...cypress.rules,
       ...typescriptRecommended.rules,
+      ...jsxA11yRecommended.rules,
       // Custom rules
       "@typescript-eslint/consistent-type-imports": "off",
       "prefer-arrow-callback": [
