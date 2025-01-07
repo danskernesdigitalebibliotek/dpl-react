@@ -1,7 +1,7 @@
 import { describe, expect, it, vi, beforeAll } from "vitest";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import React, { ReactElement, act } from "react";
+import React, { ReactNode, act } from "react";
 import { renderHook } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromAnotherLibrary";
@@ -33,7 +33,7 @@ const mockedManifestations = [
   }
 ] as unknown as Manifestation[];
 
-const Wrapper = ({ children }: { children: ReactElement }) => (
+const Wrapper = ({ children }: { children: ReactNode }) => (
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>{children}</Provider>
   </QueryClientProvider>
