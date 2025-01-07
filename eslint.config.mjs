@@ -22,7 +22,8 @@ export default [
       "src/core/dpl-cms/model",
       "src/core/dpl-cms/dpl-cms.ts",
       "src/core/fbs/fbs.ts",
-      "src/core/publizon/publizon.ts"
+      "src/core/publizon/publizon.ts",
+      "postcss.config.js"
     ]
   },
   ...compat.extends(
