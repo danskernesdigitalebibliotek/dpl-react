@@ -15,6 +15,7 @@ import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomedi
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
 import isVisible from "../../../../core/utils/featureFlag";
+import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -39,6 +40,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       trackedData: workId
     });
   };
+  const { orderId } = useReaderPlayer(manifestations);
 
   // Todo: Move logic for Player / Reader buttons / Links to here.
   // if (condition) {
@@ -66,15 +68,18 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
     return (
       <>
-        <MaterialButtonOnlineExternal
-          externalUrl={externalUrl}
-          origin={origin}
-          size={size}
-          trackOnlineView={trackOnlineView}
-          manifestations={manifestations}
-          dataCy={`${dataCy}-external`}
-          ariaLabelledBy={ariaLabelledBy}
-        />
+        {/* Display MaterialButtonOnlineExternal if the material is not part of the user's loans */}
+        {!orderId && (
+          <MaterialButtonOnlineExternal
+            externalUrl={externalUrl}
+            origin={origin}
+            size={size}
+            trackOnlineView={trackOnlineView}
+            manifestations={manifestations}
+            dataCy={`${dataCy}-external`}
+            ariaLabelledBy={ariaLabelledBy}
+          />
+        )}
         {isVisible("readerPlayer") && (
           <MaterialButtonsOnlineInternal
             size={size}
