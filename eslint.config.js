@@ -116,6 +116,9 @@ module.exports = [
   // JS/JSX-specific rules
   {
     files: ["*.js", "*.jsx"],
+    parserOptions: {
+      "project": null
+    },
     rules: {
       // These rules were triggered on the former non-TypeScript codebase.
       // We are planning to use only ts/tsx in the future.
@@ -127,7 +130,12 @@ module.exports = [
       "react/destructuring-assignment": "off",
       "@typescript-eslint/return-await": "off",
       "no-param-reassign": "off",
-      "@typescript-eslint/no-var-requires": "off"
+      "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/naming-convention": "off",
+      "@typescript-eslint/dot-notation": "off",
+      "@typescript-eslint/no-implied-eval": "off",
+      "@typescript-eslint/no-throw-literal": "off"
       // End - ddb-react former code
     }
   },
@@ -183,7 +191,9 @@ module.exports = [
       "src/core/dpl-cms/model/*",
       "src/core/dpl-cms/dpl-cms.ts",
       "src/core/fbs/fbs.ts",
-      "src/core/publizon/publizon.ts"
+      "src/core/publizon/publizon.ts",
+      "*.test.ts",
+      "*.test.tsx"
     ]
   }
 ];
