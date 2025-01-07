@@ -56,7 +56,7 @@ export default [
           globalReturn: false
         },
 
-        project: "./tsconfig.json"
+        project: ["./tsconfig.json", "cypress/tsconfig.json"]
       }
     },
 
