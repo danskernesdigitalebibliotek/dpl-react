@@ -211,6 +211,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
             </div>
           ) : (
             // Todo: Delete this else block after the readerPlayer feature flag is removed
+            !isVisible("readerPlayer") &&
             isDigital(loan) && (
               <div className="modal-details__buttons">
                 <Link
