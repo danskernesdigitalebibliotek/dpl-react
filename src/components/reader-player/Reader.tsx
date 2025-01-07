@@ -25,6 +25,8 @@ const Reader: React.FC<ReaderType> = ({ identifier, orderid }: ReaderType) => {
       <div
         style={readerStyles}
         id="pubhub-reader"
+        // The iframe that is created by the reader app has order-id and close-href attribute
+        // that are not valid HTML attributes. This is why we have to use the @ts-ignore
         // eslint-disable-next-line react/no-unknown-property
         order-id={orderid}
         // eslint-disable-next-line react/no-unknown-property, no-script-url
