@@ -176,8 +176,7 @@
     "react-use": "^17.6.0",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
-    "unfetch": "^5.0.0",
-    "vitest": "^2.1.8"
+    "unfetch": "^5.0.0"
   },
   "peerDependencies": {
     "postcss": "^8.4.49"
