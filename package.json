@@ -54,6 +54,7 @@
     "@chromatic-com/storybook": "^3",
     "@csstools/postcss-sass": "^5.1.1",
     "@cypress/code-coverage": "^3.13.9",
+    "@cypress/webpack-preprocessor": "^6.0.2",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.17.0",
     "@graphql-codegen/add": "^5.0.3",
@@ -77,8 +78,8 @@
     "@tsconfig/create-react-app": "^2.0.5",
     "@types/node": "^22.10.5",
     "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@types/react-flatpickr": "^3.8.11",
     "@types/react-redux": "^7.1.34",
     "@typescript-eslint/eslint-plugin": "^8.19.0",
@@ -139,6 +140,7 @@
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.0",
+    "vitest": "^2.1.8",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
     "webpack-version-file-plugin": "0.5.0"
@@ -148,7 +150,6 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@cypress/webpack-preprocessor": "^6.0.2",
     "@danskernesdigitalebibliotek/dpl-design-system": "^2024.49.0-6c2891c7ad8ebebab5a41646dc217693f0b49284",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
