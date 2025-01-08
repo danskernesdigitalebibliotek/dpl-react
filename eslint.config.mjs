@@ -63,9 +63,8 @@ export default [
 
     settings: {
       react: {
-        version: "16.11.0"
+        version: "detect" // Automatically detect the React version
       },
-
       "import/core-modules": ["vitest"]
     },
 
