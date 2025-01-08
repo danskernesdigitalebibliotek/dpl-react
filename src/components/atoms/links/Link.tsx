@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { getLinkHandler } from "./getLinkHandler";
 
 export interface LinkProps {
@@ -28,6 +28,8 @@ const Link: React.FC<LinkProps> = ({
   stopPropagation = false,
   isHiddenFromScreenReaders
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleClick = getLinkHandler({
     type: "click",
     isNewTab,
@@ -45,11 +47,20 @@ const Link: React.FC<LinkProps> = ({
   });
 
   const onclickHandler = onClick
-    ? (
+    ? async (
         e:
           | React.MouseEvent<HTMLAnchorElement>
           | React.KeyboardEvent<HTMLAnchorElement>
-      ) => onClick().then(() => handleClick(e))
+      ) => {
+        if (isLoading) return; // Prevent further clicks
+        setIsLoading(true); // Set loading state to true
+        try {
+          await onClick(); // Await the provided onClick
+          handleClick(e); // Call handleClick after onClick resolves
+        } finally {
+          setIsLoading(false); // Reset loading state
+        }
+      }
     : handleClick;
 
   return (
