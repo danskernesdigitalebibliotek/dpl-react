@@ -1,29 +1,28 @@
 {
   "plugins": [
     "@babel/plugin-proposal-optional-chaining",
-    "@babel/plugin-proposal-class-properties",
-    "lodash"
+    "@babel/plugin-proposal-class-properties"
   ],
   "presets": [
-    "@babel/preset-env",
+    [
+      "@babel/preset-env",
+      {
+        "modules": false, // Ensures ES modules are not transpiled to CommonJS
+        "useBuiltIns": "usage",
+        "corejs": {
+          "version": 3,
+          "proposals": true
+        }
+      }
+    ],
     "@babel/preset-react",
     "@babel/preset-typescript"
   ],
   "env": {
     "production": {
-      "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "useBuiltIns": "usage",
-            "corejs": {
-              "version": 3,
-              "proposals": true
-            }
-          }
-        ]
-      ],
-      "plugins": []
+      "plugins": [
+        "lodash" // Retain Lodash plugin for additional optimization
+      ]
     },
     "test": {
       "presets": [

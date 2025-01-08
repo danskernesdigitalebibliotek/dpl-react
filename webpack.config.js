@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const { getWebPackEnvVariables } = require("./webpack.helpers");
 
 module.exports = (_env, argv) => {
@@ -27,6 +28,17 @@ module.exports = (_env, argv) => {
       files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
       context: path.resolve(__dirname, "./src"),
       useEslintrc: true
+    }),
+    // Add LodashModuleReplacementPlugin for Lodash optimizations - enables only the necessary optimizations
+    new LodashModuleReplacementPlugin({
+      paths: true, // Enable path-based operations (e.g., `_.set`)
+      collections: true, // Enable collection-based utilities (e.g., `_.map`, `_.groupBy`, `_.reduce`)
+      guards: true, // Enable guards like `_.isEmpty` and `_.isEqual`
+      coercions: true, // Enable type coercion utilities (e.g., `_.upperFirst`)
+      flattening: false, // Not needed since you're not using flattening functions like `_.flatten`
+      memoizing: false, // Not needed since you're not using memoization (e.g., `_.memoize`)
+      currying: false, // Not needed since you're not using `_.curry`
+      placeholders: false // Not needed since you're not using placeholders in curried functions
     })
   ];
 
@@ -40,7 +52,7 @@ module.exports = (_env, argv) => {
         version: process.env.VERSION_FILE_VERSION,
         currentTime, // Required
         // We intentionally do not use any information from package.json but
-        // VersionFile require that we provide it.
+        // VersionFile requires that we provide it.
         packageFile: path.join(__dirname, "package.json")
       })
     );
@@ -70,7 +82,9 @@ module.exports = (_env, argv) => {
       splitChunks: {
         name: () => "bundle",
         chunks: "all"
-      }
+      },
+      // Enable tree-shaking to remove unused Lodash methods
+      usedExports: true
     },
     resolve: {
       extensions: [".js", ".jsx", ".tsx", ".ts", ".json"]
