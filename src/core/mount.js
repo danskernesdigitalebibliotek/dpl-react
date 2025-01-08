@@ -1,4 +1,4 @@
-import { createRoot } from "react-dom/client";
+import { createRoot } from "react-dom";
 import { createElement } from "react";
 import { withErrorBoundary } from "react-error-boundary";
 import { setToken } from "./token";
