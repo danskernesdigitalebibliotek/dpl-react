@@ -78,39 +78,35 @@ describe("useMultipleRequestsWithStatus", () => {
     });
   });
 
-  // it("should handle erroneous requests", async () => {
-  //   const { result } = renderHook(() =>
-  //     useMultipleRequestsWithStatus({
-  //       requests: [
-  //         {
-  //           params: { message: "Hello" },
-  //           operation: createRequest({ throwError: false })
-  //         },
-  //         {
-  //           params: { message: "World" },
-  //           operation: createRequest({ throwError: true })
-  //         }
-  //       ],
-  //       onError: () => {
-  //         result.current.setRequestStatus("error");
-  //         waitFor(() => {
-  //           expect(result.current.requestStatus).toBe("error");
-  //         });
-  //       },
-  //       onSuccess: (operationResult) => {
-  //         expect(operationResult).toEqual(["Hello", "World"]);
-  //         expect(result.current.requestStatus).toBe("success");
-  //       }
-  //     })
-  //   );
+  it("should handle erroneous requests", async () => {
+    const { result } = renderHook(() =>
+      useMultipleRequestsWithStatus({
+        requests: [
+          {
+            params: { message: "Hello" },
+            operation: createRequest({ throwError: false })
+          },
+          {
+            params: { message: "World" },
+            operation: createRequest({ throwError: true })
+          }
+        ],
+        onSuccess: (operationResult) => {
+          expect(operationResult).toEqual(["Hello", "World"]);
+          expect(result.current.requestStatus).toBe("success");
+        }
+      })
+    );
 
-  //   act(() => {
-  //     expect(result.current.requestStatus).toBe("idle");
-  //     result.current.handler();
-  //   });
+    act(() => {
+      expect(result.current.requestStatus).toBe("idle");
+      result.current.handler();
+    });
 
-  //   vi.runAllTimers();
+    vi.runAllTimers();
 
-  //   expect(result.current.requestStatus).toBe("error");
-  // });
+    waitFor(() => {
+      expect(result.current.requestStatus).toBe("error");
+    });
+  });
 });
