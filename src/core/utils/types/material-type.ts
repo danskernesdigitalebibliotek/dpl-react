@@ -10,7 +10,7 @@ export const enum ManifestationMaterialType {
   article = "artikel",
   paperArticle = "avisartikel",
   onlineArticle = "artikel (online)",
-  // TODO: fix the enum value below
+  // This is not fixable at this point. Both (physical) articles and digital articles map to the same string
   // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
   earticle = "artikel",
   boardGame = "spil",
