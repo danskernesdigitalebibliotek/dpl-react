@@ -30,8 +30,8 @@ export default [
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended",
     "prettier",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:cypress/recommended"
   ),
