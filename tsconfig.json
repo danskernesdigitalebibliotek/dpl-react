@@ -5,7 +5,13 @@
     "types": ["cypress", "node", "vitest/importMeta"],
     "target": "es6"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "cypress/**/*.ts"
+  ],
   "ts-node": {
     // these options are overrides used only by ts-node
     "compilerOptions": {
