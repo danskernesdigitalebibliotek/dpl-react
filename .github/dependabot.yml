@@ -53,8 +53,6 @@ updates:
       eslint:
         patterns:
           - "eslint"
-          - "eslint-config-airbnb"
-          - "eslint-config-airbnb-typescript"
           - "eslint-config-prettier"
           - "eslint-loader"
           - "eslint-plugin-cypress"
