@@ -1,4 +1,3 @@
-// import type { CyHttpMessages } from "../../node_modules/cypress/types/net-stubbing.js";
 import { CyHttpMessages } from "../support/types/net-stubbing";
 
 // Utility to match GraphQL mutation based on the operation name
