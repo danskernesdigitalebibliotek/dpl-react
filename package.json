@@ -15,7 +15,7 @@
     "lint:js": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --max-warnings 0 --cache  --cache-location \".cache/eslint/\"",
     "lint:js:fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:markdown": "markdownlint-cli2",
-    "lint:markdown:fix": "markdownlint-cli2-fix",
+    "lint:markdown:fix": "markdownlint-cli2 --fix \"**/*.md'\"",
     "lint:scss": "stylelint \"./src/**/*.scss\"",
     "lint:scss:fix": "stylelint --fix \"./src/**/*.scss\"",
     "lint": "yarn lint:js && yarn lint:scss && yarn lint:markdown",
