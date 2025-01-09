@@ -11,6 +11,7 @@ generates:
         func: "../graphql-fetcher#fetcher"
       namingConvention: "./scripts/dbc-gateway.codegen.naming"
       defaultScalarType: unknown
+      legacyMode: true
     plugins:
       - "typescript"
       - "typescript-operations"
