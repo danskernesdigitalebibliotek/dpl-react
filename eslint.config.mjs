@@ -27,10 +27,10 @@ export default [
     ]
   },
   ...compat.extends(
-    "airbnb",
-    "airbnb-typescript",
-    "airbnb/hooks",
     "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:cypress/recommended"
