@@ -24,6 +24,7 @@ const useGetHiddenInputs = (uniqueIdentifier: string): HiddenInputsResult => {
     ) as HTMLInputElement | null;
 
     if (!workElement) {
+      // eslint-disable-next-line no-console
       console.debug(
         `Could not find input for work ID with unique identifier: ${uniqueIdentifier}`
       );
@@ -33,6 +34,7 @@ const useGetHiddenInputs = (uniqueIdentifier: string): HiddenInputsResult => {
     }
 
     if (!materialElement) {
+      // eslint-disable-next-line no-console
       console.debug(
         `Could not find input for material type with unique identifier: ${uniqueIdentifier}`
       );

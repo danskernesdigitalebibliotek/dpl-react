@@ -109,6 +109,7 @@ export const guardedRequest = createAsyncThunk(
     }
 
     // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.
+    // eslint-disable-next-line no-console
     console.debug("PERFORMING REQUEST CALLBACK");
     // The user is authorized to perform callback. Let's do it!
     const requestCallback = getRequestCallback(type);
@@ -125,6 +126,7 @@ export const reRunRequest = createAsyncThunk(
     if (requestCallbackExists(type)) {
       const requestCallback = getRequestCallback(type);
       // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.
+      // eslint-disable-next-line no-console
       console.debug("RERUNNING REQUEST");
       return requestCallback(args);
     }
