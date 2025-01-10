@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from "react";
 import { useCombobox } from "downshift";
 import SearchBar, { SearchBarProps } from "./search-bar";

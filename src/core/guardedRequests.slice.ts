@@ -3,7 +3,6 @@ import { addItem } from "./material-list-api/material-list";
 // TODO: Fix dependency cycle problem
 // There is not an obvious solution but we need access to the persistor
 // in the guardedRequest thunk.
-// eslint-disable-next-line import/no-cycle
 import { persistor } from "./store";
 import type { RootState } from "./store";
 import getCurrentUnixTime from "./utils/helpers/date";
@@ -110,7 +109,6 @@ export const guardedRequest = createAsyncThunk(
     }
 
     // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.
-    // eslint-disable-next-line no-console
     console.debug("PERFORMING REQUEST CALLBACK");
     // The user is authorized to perform callback. Let's do it!
     const requestCallback = getRequestCallback(type);
@@ -127,7 +125,6 @@ export const reRunRequest = createAsyncThunk(
     if (requestCallbackExists(type)) {
       const requestCallback = getRequestCallback(type);
       // We'll leave this debugging here temporarily also in the testing phase for troubleshooting.
-      // eslint-disable-next-line no-console
       console.debug("RERUNNING REQUEST");
       return requestCallback(args);
     }

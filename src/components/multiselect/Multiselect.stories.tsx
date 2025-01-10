@@ -51,7 +51,6 @@ const meta: Meta<typeof WrappedMultiselect> = {
     options
   },
   render: (args) => {
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <WrappedMultiselect {...args} />;
   }
 };

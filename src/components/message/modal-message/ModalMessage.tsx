@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
 import { FC } from "react";
 import withFocusTrap from "../../../core/utils/withFocusTrap";
@@ -23,6 +22,7 @@ interface ModalMessageProps extends MessageProps {
   } & (RequiredModalId | RequireCloseAllModals);
 }
 
+// eslint-disable-next-line react/display-name
 const ModalMessage: FC<ModalMessageProps> = React.forwardRef((props) => {
   const { close, closeAll } = useModalButtonHandler();
   const { ctaButton, ...messageProps } = props;

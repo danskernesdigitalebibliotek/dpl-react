@@ -25,7 +25,6 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
   const t = useText();
   return (
     <>
-      {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design (line 43) */}
       {categoryData.map((item, incorrectIndex) => {
         // incorrectIndex because in the whole of autosuggest dropdown it is

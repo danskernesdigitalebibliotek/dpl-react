@@ -1,6 +1,4 @@
-// The dialog element allready has keyboard support
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+// The dialog element already has keyboard support
 import React, { forwardRef } from "react";
 import clsx from "clsx";
 import iconCross from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross.svg";
@@ -12,10 +10,12 @@ type DialogType = {
   isSidebar?: boolean;
 };
 
+// eslint-disable-next-line react/display-name
 const Dialog = forwardRef<HTMLDialogElement, DialogType>(
   ({ children, closeDialog, isSidebar }, ref) => {
     useEscapeKey({ closeDialog });
     return (
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
       <dialog
         className={clsx("dialog", { "dialog--sidebar": isSidebar })}
         ref={ref}

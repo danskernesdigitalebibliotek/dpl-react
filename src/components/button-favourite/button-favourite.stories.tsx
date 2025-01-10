@@ -49,7 +49,6 @@ export const favourite: Story = {
     const addToListRequest = () => {};
 
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <WrappedButtonFavourite {...args} addToListRequest={addToListRequest} />
     );
   }

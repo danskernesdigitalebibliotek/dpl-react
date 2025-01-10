@@ -33,8 +33,8 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
           We'll show 5 items which should cover most screens.
         */}
       {!worksAreLoaded &&
-        [...Array(5)].map(() => (
-          <li className="content-list__item">
+        [...Array(5)].map((_, index) => (
+          <li key={index} className="content-list__item">
             <CardListItemSkeleton />
           </li>
         ))}

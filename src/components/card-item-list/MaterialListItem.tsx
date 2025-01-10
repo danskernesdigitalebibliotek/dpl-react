@@ -5,6 +5,7 @@ export interface MaterialListItemProps {
   className?: string;
 }
 
+// eslint-disable-next-line react/display-name
 const MaterialListItem = forwardRef<HTMLLIElement, MaterialListItemProps>(
   ({ children, className }, ref) => {
     return (

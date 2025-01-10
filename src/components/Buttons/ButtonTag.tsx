@@ -11,6 +11,7 @@ type ButtonTagProps = {
   dataCy?: string;
 };
 
+// eslint-disable-next-line react/display-name
 const ButtonTag = React.forwardRef<HTMLButtonElement, ButtonTagProps>(
   ({ onClick, selected, children, size, removable = false, dataCy }, ref) => {
     const className = clsx(

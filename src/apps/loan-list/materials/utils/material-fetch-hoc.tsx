@@ -23,17 +23,13 @@ const fetchMaterial =
     Component: ComponentType<P & MaterialProps>,
     FallbackComponent?: ComponentType
   ): FC<P & InputProps> =>
+  // TODO: rewrite the code below and remove the eslint-disable-next-line react/display-name comment
+  // eslint-disable-next-line react/display-name
   ({ item, ...props }: InputProps) => {
     // If this is a digital book, another HOC fetches the data and this
     // HOC just returns the component
     if (item?.identifier) {
-      return (
-        <Component
-          /* eslint-disable-next-line react/jsx-props-no-spreading */
-          {...(props as P)}
-          item={item}
-        />
-      );
+      return <Component {...(props as P)} item={item} />;
     }
 
     if (item?.faust) {
@@ -77,14 +73,7 @@ const fetchMaterial =
       // in cases where the material is not found we return null, else we would load forever
       if (!material) return null;
 
-      return (
-        <Component
-          /* eslint-disable-next-line react/jsx-props-no-spreading */
-          {...(props as P)}
-          item={item}
-          material={material}
-        />
-      );
+      return <Component {...(props as P)} item={item} material={material} />;
     }
     return null;
   };

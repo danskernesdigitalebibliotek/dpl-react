@@ -21,7 +21,9 @@ export default [
       "src/core/cover-service-api/cover-service.ts",
       "src/core/dpl-cms/model",
       "src/core/dpl-cms/dpl-cms.ts",
+      "src/core/fbs/model",
       "src/core/fbs/fbs.ts",
+      "src/core/publizon/model",
       "src/core/publizon/publizon.ts",
       "postcss.config.js"
     ]
@@ -33,7 +35,12 @@ export default [
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "plugin:cypress/recommended"
+    "plugin:cypress/recommended",
+    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:jsx-a11y/recommended"
   ),
   {
     plugins: {
@@ -65,7 +72,16 @@ export default [
       react: {
         version: "detect" // Automatically detect the React version
       },
-      "import/core-modules": ["vitest"]
+      "import/core-modules": ["vitest"],
+      "import/resolver": [
+        "webpack",
+        {
+          node: {
+            extensions: [".ts", ".tsx", ".js", ".jsx"],
+            moduleDirectory: ["src", "node_modules"]
+          }
+        }
+      ]
     },
 
     rules: {

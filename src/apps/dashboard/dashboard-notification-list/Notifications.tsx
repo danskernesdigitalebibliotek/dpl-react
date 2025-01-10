@@ -34,8 +34,8 @@ const Notifications: FC<NotificationsProps> = ({
   if (isLoading && displayedNotifications.length === 0) {
     return (
       <>
-        {[0, 1].map(() => {
-          return <NotificationSkeleton />;
+        {[0, 1].map((number) => {
+          return <NotificationSkeleton key={number} />;
         })}
       </>
     );

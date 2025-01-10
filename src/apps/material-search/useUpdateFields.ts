@@ -41,7 +41,6 @@ const useUpdateFields = ({
       }
 
       // Leaving a debug message hif the input element is not found.
-      // eslint-disable-next-line no-console
       console.debug(
         `Could not find input element to update with ID: ${uniqueIdentifier}`
       );

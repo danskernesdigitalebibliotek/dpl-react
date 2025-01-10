@@ -1,11 +1,9 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import FocusTrap from "focus-trap-react";
+import { FocusTrap } from "focus-trap-react";
 import React, { FC } from "react";
 
-export default <P extends object>(
-    Component: React.ComponentType<P>
-  ): FC<P & { withFocusTrap?: boolean }> =>
-  ({ withFocusTrap, ...props }) => (
+export default <P extends object>(Component: React.ComponentType<P>): FC<P> =>
+  // eslint-disable-next-line react/display-name
+  ({ ...props }) => (
     <FocusTrap
       focusTrapOptions={{
         allowOutsideClick: true

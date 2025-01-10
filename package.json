@@ -101,6 +101,7 @@
     "dotenv": "^16.4.7",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-cypress": "^4.1.0",
     "eslint-plugin-import": "^2.31.0",

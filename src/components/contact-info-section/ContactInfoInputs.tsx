@@ -38,7 +38,6 @@ const ContactInfoInputs: FC<ContactInfoInputsProps> = ({
           "mr-16": i < renderableChildren.length - 1
         });
         return (
-          // eslint-disable-next-line react/no-array-index-key
           <div key={i} className={childClassName}>
             {child}
           </div>

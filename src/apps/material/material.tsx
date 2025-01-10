@@ -163,6 +163,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.map((manifestation) => (
           <ReservationFindOnShelfModals
+            key={manifestation.pid}
             patron={userData?.patron}
             manifestations={[manifestation]}
             selectedPeriodical={selectedPeriodical}
