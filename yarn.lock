@@ -1668,6 +1668,15 @@
     "@graphql-codegen/visitor-plugin-common" "^5.0.0"
     tslib "~2.6.0"
 
+"@graphql-codegen/named-operations-object@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/named-operations-object/-/named-operations-object-3.1.0.tgz#25b79f725b17928501396179b8bfaff25b38aaa8"
+  integrity sha512-+k3dx91S7kVetRc2ZKBhQ22oIlcWPfdpyZMtUoLusWAdJ5G4Oyu324Sqq32yaUKHfrq5KSMIq7qv/wJUBmkEKQ==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "^3.0.0"
+    change-case-all "1.0.15"
+    tslib "~2.6.0"
+
 "@graphql-codegen/plugin-helpers@^2.7.2":
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-2.7.2.tgz#6544f739d725441c826a8af6a49519f588ff9bed"

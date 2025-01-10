@@ -11,11 +11,14 @@ generates:
         func: "../graphql-fetcher#fetcher"
       namingConvention: "./scripts/dbc-gateway.codegen.naming"
       defaultScalarType: unknown
+      identifierName: operationNames
+      useConsts: true
       legacyMode: true
     plugins:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-query"
+      - "named-operations-object"
     hooks:
       afterOneFileWrite:
         - yarn post-process-generated-graphql
