@@ -1,7 +1,7 @@
-import { config } from "dotenv";
+const dotenv = require("dotenv");
 
 const getEnvVariables = () => {
-  return config().parsed;
+  return dotenv.config().parsed;
 };
 const convertEnvVariablesToWebpack = (env) =>
   Object.keys(env).reduce(
@@ -12,7 +12,7 @@ const convertEnvVariablesToWebpack = (env) =>
     {}
   );
 
-export function getWebPackEnvVariables() {
+exports.getWebPackEnvVariables = () => {
   const variables = getEnvVariables();
   return variables ? convertEnvVariablesToWebpack(variables) : null;
-}
+};
