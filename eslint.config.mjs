@@ -25,7 +25,8 @@ export default [
       "src/core/fbs/fbs.ts",
       "src/core/publizon/model",
       "src/core/publizon/publizon.ts",
-      "eslint.config.mjs"
+      "*.config.js",
+      "*.config.mjs"
     ]
   },
   ...compat.extends(
