@@ -12,6 +12,7 @@ query intelligentFacets(
         key
         term
         score
+        traceId
       }
     }
   }
