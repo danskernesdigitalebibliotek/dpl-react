@@ -25,7 +25,7 @@ export default [
       "src/core/fbs/fbs.ts",
       "src/core/publizon/model",
       "src/core/publizon/publizon.ts",
-      "postcss.config.js"
+      "eslint.config.mjs"
     ]
   },
   ...compat.extends(
@@ -57,6 +57,8 @@ export default [
       sourceType: "module",
 
       parserOptions: {
+        files: ["*.ts", "*.tsx", "*.js", "*.jsx"],
+
         allowImportExportEverywhere: false,
 
         ecmaFeatures: {
@@ -64,7 +66,10 @@ export default [
           globalReturn: false
         },
 
-        project: ["./tsconfig.json", "cypress/tsconfig.json"]
+        project: [
+          path.resolve(__dirname, "./tsconfig.json"),
+          path.resolve(__dirname, "cypress/tsconfig.json")
+        ]
       }
     },
 
@@ -78,7 +83,7 @@ export default [
         {
           node: {
             extensions: [".ts", ".tsx", ".js", ".jsx"],
-            moduleDirectory: ["src", "node_modules"]
+            moduleDirectory: ["/", "src", "node_modules"]
           }
         }
       ]

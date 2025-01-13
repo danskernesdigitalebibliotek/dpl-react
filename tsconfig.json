@@ -3,15 +3,10 @@
   "compilerOptions": {
     "jsx": "react",
     "types": ["cypress", "node", "vitest/importMeta"],
-    "target": "es6"
+    "target": "es6",
+    "allowJs": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "cypress/**/*.ts"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
   "ts-node": {
     // these options are overrides used only by ts-node
     "compilerOptions": {
