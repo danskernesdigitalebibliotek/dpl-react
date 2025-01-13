@@ -56,8 +56,10 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
               <p className="text-small-caption">{label}</p>
             )}
             {Array.isArray(label) &&
-              label.map((localLabel) => (
-                <p className="text-small-caption">{localLabel}</p>
+              label.map((localLabel, index) => (
+                <p key={index} className="text-small-caption">
+                  {localLabel}
+                </p>
               ))}
           </div>
         </div>

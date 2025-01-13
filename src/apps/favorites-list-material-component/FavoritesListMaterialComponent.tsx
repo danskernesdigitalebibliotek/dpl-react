@@ -40,7 +40,12 @@ const FavoritesListMaterialComponent: FC = () => {
       </div>
       <ul className="recommender__grid">
         {materials.map((pid) => (
-          <SimpleMaterialAdapter app="favorites-list-mc" bright pid={pid} />
+          <SimpleMaterialAdapter
+            key={pid}
+            app="favorites-list-mc"
+            bright
+            pid={pid}
+          />
         ))}
       </ul>
     </div>

@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { defineConfig } = require("cypress");
-const plugins = require("./cypress/plugins");
+import { defineConfig } from "cypress";
+import plugins from "./cypress/plugins";
 
-module.exports = defineConfig({
+export default defineConfig({
   projectId: "4trcdv",
   defaultCommandTimeout: 10000,
   pageLoadTimeout: 10000,

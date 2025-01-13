@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import clsx from "clsx";
-import FocusTrap from "focus-trap-react";
+import { FocusTrap } from "focus-trap-react";
 import { closeAllModals, closeModal, openModal } from "../modal.slice";
 import { isAnonymous } from "./helpers/user";
 import {
@@ -90,8 +90,7 @@ function Modal({
       <div>
         {/* The backdrop doesn't have a role or keyboard listener because it barely duplicates
           the close button's functionality which possesses both. */}
-        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-        <div
+        <button
           className="modal-backdrop"
           style={{
             // Some elements are designed with z-index which means they pop up over the modal
@@ -104,7 +103,6 @@ function Modal({
             close();
           }}
         />
-        {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(
             "modal",

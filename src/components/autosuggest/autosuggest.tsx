@@ -43,7 +43,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
 
   return (
     <>
-      {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design */}
       <ul
         className="autosuggest pb-16"
@@ -51,8 +50,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
         style={!isOpen ? { display: "none" } : {}}
         data-cy={dataCy}
       >
-        {/* eslint-enable react/jsx-props-no-spreading */}
-
         <AutosuggestText
           textData={textData}
           highlightedIndex={highlightedIndex}

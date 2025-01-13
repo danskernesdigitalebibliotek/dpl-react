@@ -52,7 +52,7 @@ const modalSlice = createSlice({
   reducers: {
     openModal(state: StateProps, action: PayloadProps) {
       // Disables background scrolling whilst the Modal is open
-      if (typeof window && window.document) {
+      if (typeof window !== "undefined" && window.document) {
         document.body.style.overflow = "hidden";
       }
       // If there is a modalid in the payload, and if this modalid is not saved

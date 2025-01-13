@@ -45,6 +45,7 @@ export const AutosuggestText: React.FC<AutosuggestTextProps> = ({
         };
         return (
           <AutosuggestTextItem
+            key={index}
             classes={classes}
             item={item}
             index={index}

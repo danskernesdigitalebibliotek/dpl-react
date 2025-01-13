@@ -19,7 +19,6 @@ import blockModalReducer from "./blockedModal.slice";
 // TODO: Fix dependency cycle problem
 // There is not an obvious solution but we need access to the persistor
 // in the guardedRequest thunk.
-// eslint-disable-next-line import/no-cycle
 import guardedRequestsReducer from "./guardedRequests.slice";
 import extractServiceBaseUrls from "./utils/reduxMiddleware/extractServiceBaseUrls";
 
@@ -31,7 +30,11 @@ const persistConfig = {
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().prepend(extractServiceBaseUrls as Middleware),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"]
+      }
+    }).prepend(extractServiceBaseUrls as Middleware),
   reducer: persistReducer(
     persistConfig,
     combineReducers({

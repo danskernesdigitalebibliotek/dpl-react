@@ -88,7 +88,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
                   };
 
                   return (
-                    <li>
+                    <li key={termItem.key}>
                       <ButtonTag
                         key={term}
                         onClick={handleAddOrRemoveFilter}

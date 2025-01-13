@@ -83,7 +83,6 @@ const GuardedApp = ({ app, children }: GuardedAppProps) => {
 
   // This is a special case. We need to return a JSX element
   // and children is not a JSX element.
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;
 };
 

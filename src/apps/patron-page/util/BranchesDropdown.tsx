@@ -58,6 +58,7 @@ const BranchesDropdown: FC<BranchesDropdownProps> = ({
               )}
               {branches.map(({ branchId, title }) => (
                 <option
+                  key={branchId}
                   value={branchId}
                   selected={selected === branchId}
                   className="dropdown__option"

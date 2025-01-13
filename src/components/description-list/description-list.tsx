@@ -17,10 +17,10 @@ const DescriptionList: React.FC<DescriptionListProps> = ({
       className={`list-description ${classNames ?? ""}`}
       data-cy="list-description"
     >
-      {data.map((item) => {
+      {data.map((item, index) => {
         const { label, value } = item;
         return (
-          <div className="list-description__item">
+          <div key={index} className="list-description__item">
             <dt className="list-description__key">{label}</dt>
             <dd className="list-description__value">{value}</dd>
           </div>

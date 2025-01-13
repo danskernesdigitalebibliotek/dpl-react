@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { FC, ReactNode } from "react";
 import clsx from "clsx";
 import { useText } from "../../../../core/utils/text";

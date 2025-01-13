@@ -26,11 +26,25 @@ const ReviewHearts: React.FC<ReviewHeartsProps> = ({ amountOfHearts }) => {
   });
   return (
     <div className="mb-4" role="figure" aria-label={ariaLabel}>
-      {filledHeartsArray.map(() => {
-        return <img src={HeartIconFilled} className="review__heart" alt="" />;
+      {filledHeartsArray.map((_, index) => {
+        return (
+          <img
+            key={index}
+            src={HeartIconFilled}
+            className="review__heart"
+            alt=""
+          />
+        );
       })}
-      {emptyHeartsArray.map(() => {
-        return <img src={HeartIconGrey} className="review__heart" alt="" />;
+      {emptyHeartsArray.map((_, index) => {
+        return (
+          <img
+            key={index}
+            src={HeartIconGrey}
+            className="review__heart"
+            alt=""
+          />
+        );
       })}
     </div>
   );

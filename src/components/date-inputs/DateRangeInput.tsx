@@ -2,7 +2,6 @@ import * as React from "react";
 import { FC } from "react";
 // Do not understand why eslint is complaining about this import
 // It is for sure listed in the dependencies of package.json.
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Flatpickr from "react-flatpickr";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import "flatpickr/dist/flatpickr.css";
@@ -54,6 +53,9 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
         >
           {label}
         </label>
+        {/* TODO: fix typescript issue */}
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
         <Flatpickr
           id="date-range"
           value={value}

@@ -3,7 +3,7 @@ import * as React from "react";
 import { FC } from "react";
 import { FeeV2 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
-import dateFormat from "../../../core/configuration/date-format.json";
+import { dateFormatCustom } from "../../../core/configuration/date-format";
 import StackableFeesList from "./stackable-fees-list";
 import GroupModalContent from "../../../components/GroupModal/GroupModalContent";
 import { formatCurrency } from "../../../core/utils/helpers/currency";
@@ -20,9 +20,7 @@ const FeeDetailsContent: FC<FeeDetailsContentProps> = ({ feeDetailsData }) => {
     materials = [],
     reasonMessage
   } = feeDetailsData;
-  const creationDateFormatted = dayjs(creationDate).format(
-    dateFormat.dateFormatCustom
-  );
+  const creationDateFormatted = dayjs(creationDate).format(dateFormatCustom);
 
   return (
     <div className="modal-loan__container">

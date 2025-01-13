@@ -5,12 +5,12 @@ import {
 } from "./helpers/list-mapper";
 import { getReadyForPickup } from "../../apps/reservation-list/utils/helpers";
 import { ReservationType } from "./types/reservation-type";
-import apiStrings from "../configuration/api-strings.json";
+import { dashboardReservedApiValueText } from "../configuration/api-strings";
 import useGetReservationGroups from "./useGetReservationGroups";
 
 const getQueuedReservations = (list: ReservationType[]) => {
   return [...list].filter(
-    ({ state }) => state === apiStrings.dashboardReservedApiValueText
+    ({ state }) => state === dashboardReservedApiValueText
   );
 };
 

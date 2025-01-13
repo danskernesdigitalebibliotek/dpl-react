@@ -1,6 +1,3 @@
-// I dont know why eslint is complaining about label-has-associated-control
-// as the label is associated with the input field. I will disable it for now.
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
 import { OpeningHoursCategoriesType } from "./types";
 import { useText } from "../../core/utils/text";

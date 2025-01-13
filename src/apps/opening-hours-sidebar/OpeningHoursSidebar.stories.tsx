@@ -56,6 +56,5 @@ export default meta;
 type Story = StoryObj<typeof OpeningHoursSidebar>;
 
 export const App: Story = {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   render: (args) => <OpeningHoursSidebar {...args} />
 };
