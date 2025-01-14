@@ -1,8 +1,7 @@
-mutation placeCopy ($input: CopyRequestInput!) {
+mutation placeCopy($input: CopyRequestInput!) {
   elba {
     placeCopyRequest(input: $input) {
       status
     }
   }
 }
-

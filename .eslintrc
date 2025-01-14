@@ -5,9 +5,9 @@
     "airbnb-typescript",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
+    "plugin:cypress/recommended",
     "prettier",
-    "plugin:prettier/recommended",
-    "plugin:cypress/recommended"
+    "plugin:prettier/recommended"
   ],
   "plugins": ["no-only-tests"],
   "settings": {
