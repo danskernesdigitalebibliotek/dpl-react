@@ -7468,3 +7468,41 @@ export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
     options
   );
 };
+
+export const operationNames = {
+  Query: {
+    getSmallWork: "getSmallWork" as const,
+    getManifestationViaMaterialByFaust:
+      "getManifestationViaMaterialByFaust" as const,
+    getManifestationViaBestRepresentationByFaust:
+      "getManifestationViaBestRepresentationByFaust" as const,
+    getMaterial: "getMaterial" as const,
+    getMaterialGlobally: "getMaterialGlobally" as const,
+    getInfomedia: "getInfomedia" as const,
+    getReviewManifestations: "getReviewManifestations" as const,
+    recommendFromFaust: "recommendFromFaust" as const,
+    searchWithPagination: "searchWithPagination" as const,
+    complexSearchWithPaginationWorkAccess:
+      "complexSearchWithPaginationWorkAccess" as const,
+    complexSearchWithPagination: "complexSearchWithPagination" as const,
+    suggestionsFromQueryString: "suggestionsFromQueryString" as const,
+    searchFacet: "searchFacet" as const,
+    intelligentFacets: "intelligentFacets" as const
+  },
+  Mutation: {
+    openOrder: "openOrder" as const,
+    placeCopy: "placeCopy" as const
+  },
+  Fragment: {
+    ManifestationBasicDetails: "ManifestationBasicDetails" as const,
+    ManifestationsSimple: "ManifestationsSimple" as const,
+    ManifestationsAccess: "ManifestationsAccess" as const,
+    ManifestationsSimpleFields: "ManifestationsSimpleFields" as const,
+    ManifestationReviewFields: "ManifestationReviewFields" as const,
+    SeriesSimple: "SeriesSimple" as const,
+    WorkAccess: "WorkAccess" as const,
+    WorkSmall: "WorkSmall" as const,
+    WorkMedium: "WorkMedium" as const,
+    WithLanguages: "WithLanguages" as const
+  }
+};
