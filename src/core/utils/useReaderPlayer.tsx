@@ -17,7 +17,7 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     }
   );
 
-  if (!manifestations || !data?.loans) {
+  if (!manifestations || manifestations.length === 0) {
     return {
       type: null,
       identifier: null,
@@ -36,8 +36,11 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     };
   }
 
-  const loans = mapPublizonLoanToLoanType(data.loans);
-  const orderId = getOrderIdByIdentifier({ loans, identifier });
+  // No need to check for data.userData here since the "useGetV1UserLoans" query
+  // is disabled for anonymous users. Additionally, we still want to return
+  // the identifier even if the user is anonymous.
+  const loans = data?.loans ? mapPublizonLoanToLoanType(data.loans) : null;
+  const orderId = loans ? getOrderIdByIdentifier({ loans, identifier }) : null;
 
   return {
     type,
