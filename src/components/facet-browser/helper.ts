@@ -30,7 +30,8 @@ export const getPlaceHolderFacets = (facets: string[]) =>
     values: [
       {
         key: "",
-        term: ""
+        term: "",
+        traceId: ""
       }
     ]
   }));
@@ -182,19 +183,22 @@ if (import.meta.vitest) {
       Dansk: {
         key: "dan",
         term: "Dansk",
-        score: 295
+        score: 295,
+        traceId: "1"
       },
       Engelsk: {
         key: "eng",
         term: "Engelsk",
-        score: 9
+        score: 9,
+        traceId: "2"
       }
     },
     accessTypes: {
       Fysisk: {
         key: "PHYSICAL",
         term: "Fysisk",
-        score: 356
+        score: 356,
+        traceId: "3"
       }
     }
   };
@@ -207,7 +211,8 @@ if (import.meta.vitest) {
         {
           key: "computerspil",
           term: "computerspil",
-          score: 26
+          score: 26,
+          traceId: "1"
         }
       ]
     },
@@ -218,12 +223,14 @@ if (import.meta.vitest) {
         {
           key: "dan",
           term: "Dansk",
-          score: 427
+          score: 427,
+          traceId: "2"
         },
         {
           key: "eng",
           term: "Engelsk",
-          score: 82
+          score: 82,
+          traceId: "3"
         }
       ]
     },
@@ -234,27 +241,32 @@ if (import.meta.vitest) {
         {
           key: "artikler",
           term: "artikler",
-          score: 346
+          score: 346,
+          traceId: "4"
         },
         {
           key: "bøger",
           term: "bøger",
-          score: 74
+          score: 74,
+          traceId: "5"
         },
         {
           key: "e-bøger",
           term: "e-bøger",
-          score: 38
+          score: 38,
+          traceId: "6"
         },
         {
           key: "computerspil",
           term: "computerspil",
-          score: 26
+          score: 26,
+          traceId: "7"
         },
         {
           key: "film",
           term: "film",
-          score: 9
+          score: 9,
+          traceId: "8"
         }
       ]
     }

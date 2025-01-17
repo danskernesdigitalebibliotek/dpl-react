@@ -6,36 +6,43 @@ exports[`createFacetsMap 1`] = `
     "key": "dan",
     "score": 427,
     "term": "Dansk",
+    "traceId": "2",
   },
   "mainLanguages:eng": {
     "key": "eng",
     "score": 82,
     "term": "Engelsk",
+    "traceId": "3",
   },
   "materialTypesGeneral:artikler": {
     "key": "artikler",
     "score": 346,
     "term": "artikler",
+    "traceId": "4",
   },
   "materialTypesGeneral:bøger": {
     "key": "bøger",
     "score": 74,
     "term": "bøger",
+    "traceId": "5",
   },
   "materialTypesGeneral:computerspil": {
     "key": "computerspil",
     "score": 26,
     "term": "computerspil",
+    "traceId": "7",
   },
   "materialTypesGeneral:e-bøger": {
     "key": "e-bøger",
     "score": 38,
     "term": "e-bøger",
+    "traceId": "6",
   },
   "materialTypesGeneral:film": {
     "key": "film",
     "score": 9,
     "term": "film",
+    "traceId": "8",
   },
 }
 `;
@@ -77,6 +84,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
@@ -87,6 +95,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
@@ -97,6 +106,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
@@ -107,6 +117,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
@@ -117,6 +128,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
@@ -127,6 +139,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
@@ -137,6 +150,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
@@ -147,6 +161,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
@@ -157,6 +172,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
@@ -167,6 +183,7 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       {
         "key": "",
         "term": "",
+        "traceId": "",
       },
     ],
   },
