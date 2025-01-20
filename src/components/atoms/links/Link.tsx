@@ -13,6 +13,7 @@ export interface LinkProps {
   ariaLabelledBy?: string;
   stopPropagation?: boolean;
   isHiddenFromScreenReaders?: boolean;
+  canOnlyBeClickedOnce?: boolean;
 }
 
 const Link: React.FC<LinkProps> = ({
@@ -26,7 +27,8 @@ const Link: React.FC<LinkProps> = ({
   dataCy,
   ariaLabelledBy,
   stopPropagation = false,
-  isHiddenFromScreenReaders
+  isHiddenFromScreenReaders,
+  canOnlyBeClickedOnce = false
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -52,13 +54,13 @@ const Link: React.FC<LinkProps> = ({
           | React.MouseEvent<HTMLAnchorElement>
           | React.KeyboardEvent<HTMLAnchorElement>
       ) => {
-        if (isLoading) return; // Prevent further clicks
-        setIsLoading(true); // Set loading state to true
+        if (canOnlyBeClickedOnce && isLoading) return; // Prevent further clicks
+        if (canOnlyBeClickedOnce) setIsLoading(true);
         try {
           await onClick(); // Await the provided onClick
           handleClick(e); // Call handleClick after onClick resolves
         } finally {
-          setIsLoading(false); // Reset loading state
+          if (canOnlyBeClickedOnce) setIsLoading(false);
         }
       }
     : handleClick;
