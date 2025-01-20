@@ -53,6 +53,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       dataCy={dataCy}
       ariaLabelledBy={ariaLabelledBy}
       id={id}
+      canOnlyBeClickedOnce
     >
       {children}
       <ButtonIcon buttonType={buttonType} iconClassNames={iconClassNames} />

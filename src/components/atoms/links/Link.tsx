@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { getLinkHandler } from "./getLinkHandler";
 
 export interface LinkProps {
@@ -13,6 +13,7 @@ export interface LinkProps {
   ariaLabelledBy?: string;
   stopPropagation?: boolean;
   isHiddenFromScreenReaders?: boolean;
+  canOnlyBeClickedOnce?: boolean;
 }
 
 const Link: React.FC<LinkProps> = ({
@@ -26,8 +27,11 @@ const Link: React.FC<LinkProps> = ({
   dataCy,
   ariaLabelledBy,
   stopPropagation = false,
-  isHiddenFromScreenReaders
+  isHiddenFromScreenReaders,
+  canOnlyBeClickedOnce = false
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleClick = getLinkHandler({
     type: "click",
     isNewTab,
@@ -45,11 +49,20 @@ const Link: React.FC<LinkProps> = ({
   });
 
   const onclickHandler = onClick
-    ? (
+    ? async (
         e:
           | React.MouseEvent<HTMLAnchorElement>
           | React.KeyboardEvent<HTMLAnchorElement>
-      ) => onClick().then(() => handleClick(e))
+      ) => {
+        if (canOnlyBeClickedOnce && isLoading) return; // Prevent further clicks
+        if (canOnlyBeClickedOnce) setIsLoading(true);
+        try {
+          await onClick(); // Await the provided onClick
+          handleClick(e); // Call handleClick after onClick resolves
+        } finally {
+          if (canOnlyBeClickedOnce) setIsLoading(false);
+        }
+      }
     : handleClick;
 
   return (
