@@ -1,5 +1,5 @@
 const path = require("path");
-const glob = require("glob");
+const { glob } = require("glob");
 const webpack = require("webpack");
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
@@ -16,7 +16,7 @@ module.exports = (_env, argv) => {
       const distPath = entryPath
         .replace(/src\/apps\/.+\//, "")
         .replace(".mount.ts", "");
-      acc[distPath] = entryPath;
+      acc[distPath] = `./${entryPath}`;
       return acc;
     }, {});
 
