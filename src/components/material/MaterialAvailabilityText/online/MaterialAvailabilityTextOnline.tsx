@@ -9,6 +9,7 @@ import { useText } from "../../../../core/utils/text";
 import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTextParagraph";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import { AvailabilityTextMap, getAvailabilityText } from "./helper";
+import { playerTypes, readerTypes } from "../../../reader-player/helper";
 
 interface MaterialAvailabilityTextOnlineProps {
   isbns: string[];
@@ -43,16 +44,26 @@ const MaterialAvailabilityTextOnline: React.FC<
   } = libraryProfileData;
 
   const availabilityTextMap: AvailabilityTextMap = {
-    [ManifestationMaterialType.ebook]: {
-      text: "onlineLimitMonthEbookInfoText",
-      count: totalEbookLoans,
-      limit: maxConcurrentEbookLoansPerBorrower
-    },
-    [ManifestationMaterialType.audioBook]: {
-      text: "onlineLimitMonthAudiobookInfoText",
-      count: totalAudioLoans,
-      limit: maxConcurrentAudioLoansPerBorrower
-    },
+    ...readerTypes.reduce((acc, type) => {
+      return {
+        ...acc,
+        [type]: {
+          text: "onlineLimitMonthEbookInfoText",
+          count: totalEbookLoans,
+          limit: maxConcurrentEbookLoansPerBorrower
+        }
+      };
+    }, {}),
+    ...playerTypes.reduce((acc, type) => {
+      return {
+        ...acc,
+        [type]: {
+          text: "onlineLimitMonthAudiobookInfoText",
+          count: totalAudioLoans,
+          limit: maxConcurrentAudioLoansPerBorrower
+        }
+      };
+    }, {}),
     materialIsIncluded: {
       text: "materialIsIncludedText"
     }
