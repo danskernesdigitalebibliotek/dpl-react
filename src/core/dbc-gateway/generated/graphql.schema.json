@@ -1,10 +1,12 @@
 {
   "__schema": {
     "queryType": {
-      "name": "Query"
+      "name": "Query",
+      "kind": "OBJECT"
     },
     "mutationType": {
-      "name": "Mutation"
+      "name": "Mutation",
+      "kind": "OBJECT"
     },
     "subscriptionType": null,
     "types": [
@@ -787,6 +789,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -817,6 +831,18 @@
           },
           {
             "name": "CATALOGUECODE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CHAMBERMUSICTYPE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CHOIRTYPE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -895,6 +921,12 @@
           },
           {
             "name": "HOSTPUBLICATION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "INSTRUMENT",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -2539,6 +2571,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this didYouMean value. \nIt is generated in the response and should be included in subsequent\nAPI calls when this manifestation is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -3081,6 +3129,22 @@
           {
             "name": "term",
             "description": "A value of a facet field",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this facet value. \nIt is generated in the response and should be included in subsequent\nAPI calls when this manifestation is selected.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5070,6 +5134,18 @@
             "deprecationReason": null
           },
           {
+            "name": "localId",
+            "description": "Identification of the local id of this manifestation",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "manifestationParts",
             "description": "Tracks on music album, sheet music content, or articles/short stories etc. in this manifestation",
             "args": [],
@@ -5297,6 +5373,18 @@
                   }
                 }
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sheetMusicCategories",
+            "description": "Material that can be identified as sheet music",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SheetMusicCategory",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7346,6 +7434,22 @@
             "deprecationReason": null
           },
           {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this suggestion. \nIt is generated in the response and should be included in subsequent\nAPI calls when this manifestation is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": "The type of suggestion title/creator/tag",
             "args": [],
@@ -7443,6 +7547,58 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "Work",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MusicalExercise",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "display",
+            "description": "The types of instrument 'schools' intended to practise with",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "forExercise",
+            "description": "Information whether material is intended for practising and in combination with an instrument",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -8835,6 +8991,22 @@
             "deprecationReason": null
           },
           {
+            "name": "recommendations",
+            "description": "Access to various types of recommendations.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Recommendations",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "refWorks",
             "description": null,
             "args": [
@@ -8929,8 +9101,8 @@
                 }
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'Recommendations.subjects' instead expires: 01/03-2025"
           },
           {
             "name": "ris",
@@ -9521,6 +9693,75 @@
                     "name": "Recommendation",
                     "ofType": null
                   }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Recommendations",
+        "description": "Get different kinds of recommendations",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "subjects",
+            "description": "Retrieve subject-based recommendations based on a list of query strings and an optional limit.\n- q: An array of strings used to generate subject recommendations.\n- limit: The maximum number of recommendations to return.",
+            "args": [
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "q",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "String",
+                        "ofType": null
+                      }
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SubjectRecommendation",
+                  "ofType": null
                 }
               }
             },
@@ -11543,6 +11784,22 @@
             "deprecationReason": null
           },
           {
+            "name": "traceId",
+            "description": "Traceid for tracking",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "workTypes",
             "description": "WorkTypes for the series",
             "args": [],
@@ -11643,6 +11900,126 @@
             "ofType": null
           }
         ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SheetMusicCategory",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "chamberMusicTypes",
+            "description": "The types of chamber music material covers",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "choirTypes",
+            "description": "The types of choir material covers",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "instruments",
+            "description": "The types of instruments material covers",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "musicalExercises",
+            "description": "Material intended to practice with",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MusicalExercise",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orchestraTypes",
+            "description": "The types of orchestra material covers",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -11977,6 +12354,50 @@
             "ofType": null
           }
         ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SubjectRecommendation",
+        "description": "Details about a single subject recommendation.",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "subject",
+            "description": "The recommended subject.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this subject recommendation. \nIt is generated in the response and should be included in subsequent\nAPI calls when this suggestion is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
       },
       {
         "kind": "OBJECT",
@@ -13647,6 +14068,22 @@
           {
             "name": "title",
             "description": "Literary/movie universe this work is part of e.g. Wizarding World, Marvel Cinematic Universe",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this universe.\nIt is generated in the response and should be included in subsequent\nAPI calls when this work is selected.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
