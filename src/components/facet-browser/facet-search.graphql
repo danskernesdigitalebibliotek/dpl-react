@@ -12,6 +12,7 @@ query searchFacet(
         key
         term
         score
+        traceId
       }
     }
   }

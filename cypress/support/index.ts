@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import "@cypress/code-coverage/support";
 import { hasOperationName } from "../utils/graphql-test-utils";
+import { Operations } from "../../src/core/dbc-gateway/types";
 
 const TOKEN_LIBRARY_KEY = "library";
 const TOKEN_USER_KEY = "user";
@@ -26,12 +27,12 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
 /**
  * interceptGraphql is used to make a graphQLrequest that returns fixture data
  *
- * @param {string} operationName The name of the operation to be mocked.
+ * @param {Operations} operationName The name of the operation to be mocked.
  * @param {string} fixtureFilePath The path to the fixture file to use as response
  *
  */
 type InterceptGraphqlParams = {
-  operationName: string;
+  operationName: Operations;
   fixtureFilePath?: string;
   statusCode?: number;
 };

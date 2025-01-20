@@ -5,16 +5,20 @@ schema:
         Authorization: "Bearer ${STORYBOOK_LIBRARY_TOKEN}"
 documents: "src/**/*.graphql"
 generates:
-  src/core/dbc-gateway/generated/graphql.tsx:
+  src/core/dbc-gateway/generated/graphql.ts:
     config:
       fetcher:
         func: "../graphql-fetcher#fetcher"
       namingConvention: "./scripts/dbc-gateway.codegen.naming"
       defaultScalarType: unknown
+      identifierName: operationNames
+      useConsts: true
+      legacyMode: true
     plugins:
       - "typescript"
       - "typescript-operations"
       - "typescript-react-query"
+      - "named-operations-object"
     hooks:
       afterOneFileWrite:
         - yarn post-process-generated-graphql

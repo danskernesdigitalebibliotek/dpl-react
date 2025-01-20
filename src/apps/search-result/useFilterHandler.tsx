@@ -47,9 +47,10 @@ const useFilterHandler = () => {
     const urlFilter = getUrlQueryParam(mapFacetToFilter(facet));
     if (urlFilter) {
       // We only use term from the url, therefore key is not important here.
+      // We dont have a traceId, so we just use a placeholder.
       addToFilter({
         facet: mapFacetToFilter(facet),
-        term: { key: "key", term: urlFilter }
+        term: { key: "key", term: urlFilter, traceId: "traceId" }
       });
     }
   };

@@ -34,7 +34,7 @@ export const advancedSearchIndexTranslations = {
   "term.isbn": "advancedSearchIdentifierText"
 } as const;
 
-export type AdvancedSearchIndex = typeof advancedSearchIndexes[number];
+export type AdvancedSearchIndex = (typeof advancedSearchIndexes)[number];
 
 export type AdvancedSearchClause = {
   value: "AND" | "OR" | "NOT";
