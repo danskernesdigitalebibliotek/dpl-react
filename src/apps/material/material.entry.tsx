@@ -11,7 +11,6 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 interface MaterialEntryTextProps {
   alreadyReservedText: string;
   approveReservationText: string;
-  audiobookText: string;
   blockedButtonText: string;
   cantReserveText: string;
   cantViewReviewText: string;
@@ -44,7 +43,6 @@ interface MaterialEntryTextProps {
   detailsListTypeText: string;
   detailsOfTheMaterialText: string;
   detailsText: string;
-  ebookText: string;
   editionsText: string;
   editionText: string;
   etAlText: string;
@@ -77,6 +75,7 @@ interface MaterialEntryTextProps {
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
+  loanWithMaterialTypeText: string;
   loginToSeeReviewText: string;
   materialHeaderAllEditionsText: string;
   materialHeaderAuthorByText: string;

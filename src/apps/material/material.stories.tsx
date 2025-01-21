@@ -151,10 +151,6 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Details",
       control: { type: "text" }
     },
-    ebookText: {
-      description: "Ebook",
-      control: { type: "text" }
-    },
     reviewsText: {
       description: "Reviews",
       control: { type: "text" }
@@ -247,6 +243,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Loading",
       control: { type: "text" }
     },
+    loanWithMaterialTypeText: {
+      description: "Loan with material type text",
+      control: { type: "text" }
+    },
     getOnlineText: {
       description: "Get online",
       control: { type: "text" }
@@ -317,10 +317,6 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     approveReservationText: {
       description: "Approve reservation",
-      control: { type: "text" }
-    },
-    audiobookText: {
-      description: "Audiobook",
       control: { type: "text" }
     },
     shiftText: {
@@ -720,7 +716,6 @@ const meta: Meta<typeof MaterialEntry> = {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
-    audiobookText: "Audiobook",
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
@@ -759,7 +754,6 @@ const meta: Meta<typeof MaterialEntry> = {
     editionsText: "Editions",
     fictionNonfictionText: "Fictional",
     detailsText: "Details",
-    ebookText: "E-book",
     reviewsText: "Reviews",
     detailsListTypeText: "Type",
     detailsListLanguageText: "Language",
@@ -783,6 +777,7 @@ const meta: Meta<typeof MaterialEntry> = {
     editionText: "Edition",
     readArticleText: "Read article",
     loadingText: "Loading",
+    loanWithMaterialTypeText: "Loan @materialType",
     getOnlineText: "Get online",
     seeOnlineText: "See online",
     listenOnlineText: "Listen online",

@@ -13,6 +13,7 @@ import {
   usePostV1UserLoansIdentifier,
   usePostV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
+import { getManifestationType } from "../../../../core/utils/helpers/general";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -38,6 +39,25 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     showReserveButton
   } = useReaderPlayer(manifestations);
 
+  const manifestationType = getManifestationType(manifestations);
+  const reseveLabel =
+    size === "small"
+      ? t("reserveText")
+      : `${t("reserveWithMaterialTypeText", {
+          placeholders: { "@materialType": manifestationType }
+        })}`;
+
+  const loanLabel =
+    size === "small"
+      ? t("reserveText")
+      : `${t("loanWithMaterialTypeText", {
+          placeholders: { "@materialType": manifestationType }
+        })}`;
+
+  const tryLabel = t("onlineMaterialTeaserText", {
+    placeholders: { "@materialType": manifestationType }
+  });
+
   const renderReaderButton = () => {
     if (!identifier) return null;
 
@@ -51,7 +71,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           dataCy={`${dataCy}-reader`}
         >
           {t("onlineMaterialReaderText", {
-            placeholders: { "@materialType": t("ebookText") }
+            placeholders: { "@materialType": manifestationType }
           })}
         </LinkButton>
       );
@@ -61,7 +81,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       return (
         <Button
           dataCy={`${dataCy}-reader`}
-          label="Lån"
+          label={loanLabel}
           buttonType="none"
           variant="filled"
           size={size || "large"}
@@ -76,7 +96,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       return (
         <Button
           dataCy={`${dataCy}-reader`}
-          label="Reserver"
+          label={reseveLabel}
           buttonType="none"
           variant="filled"
           size={size || "large"}
@@ -104,9 +124,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     if (identifier) {
       return (
         <MaterialSecondaryLink
-          label={t("onlineMaterialTeaserText", {
-            placeholders: { "@materialType": t("ebookText") }
-          })}
+          label={tryLabel}
           size={size || "large"}
           url={
             new URL(`/reader?identifier=${identifier}`, window.location.href)
@@ -126,7 +144,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
         <Button
           dataCy={`${dataCy}-player`}
           label={t("onlineMaterialPlayerText", {
-            placeholders: { "@materialType": t("audiobookText") }
+            placeholders: { "@materialType": manifestationType }
           })}
           buttonType="none"
           variant="filled"
@@ -142,7 +160,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       return (
         <Button
           dataCy={`${dataCy}-player`}
-          label="Lån"
+          label={loanLabel}
           buttonType="none"
           variant="filled"
           size={size || "large"}
@@ -157,7 +175,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       return (
         <Button
           dataCy={`${dataCy}-player`}
-          label="Reserver"
+          label={reseveLabel}
           buttonType="none"
           variant="filled"
           size={size || "large"}
@@ -185,9 +203,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     if (identifier) {
       return (
         <MaterialSecondaryButton
-          label={t("onlineMaterialTeaserText", {
-            placeholders: { "@materialType": t("audiobookText") }
-          })}
+          label={tryLabel}
           size={size || "large"}
           onClick={() => {
             open(playerModalId(identifier));
