@@ -22,7 +22,6 @@ interface ModalMessageProps extends MessageProps {
   } & (RequiredModalId | RequireCloseAllModals);
 }
 
-// eslint-disable-next-line react/display-name
 const ModalMessage: FC<ModalMessageProps> = React.forwardRef((props) => {
   const { close, closeAll } = useModalButtonHandler();
   const { ctaButton, ...messageProps } = props;
@@ -58,4 +57,5 @@ const ModalMessage: FC<ModalMessageProps> = React.forwardRef((props) => {
   );
 });
 
+ModalMessage.displayName = "ModalMessage";
 export default withFocusTrap(ModalMessage);

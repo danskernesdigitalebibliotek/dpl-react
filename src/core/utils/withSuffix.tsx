@@ -7,8 +7,7 @@ export default function withSuffix<T extends object>(
   suffix: string,
   reduxAction: ActionCreatorWithPayload<unknown, string>
 ) {
-  // eslint-disable-next-line react/display-name
-  return (props: T) => {
+  const component = (props: T) => {
     const pattern = new RegExp(`.*${suffix}$`, "g");
 
     // Match all props that ends with suffix.
@@ -38,4 +37,6 @@ export default function withSuffix<T extends object>(
     // That is a part of the design.
     return <Component {...(nonSuffixEntries as T)} />;
   };
+
+  return component;
 }

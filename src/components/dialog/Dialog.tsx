@@ -10,7 +10,6 @@ type DialogType = {
   isSidebar?: boolean;
 };
 
-// eslint-disable-next-line react/display-name
 const Dialog = forwardRef<HTMLDialogElement, DialogType>(
   ({ children, closeDialog, isSidebar }, ref) => {
     useEscapeKey({ closeDialog });
@@ -38,4 +37,6 @@ const Dialog = forwardRef<HTMLDialogElement, DialogType>(
     );
   }
 );
+
+Dialog.displayName = "Dialog";
 export default Dialog;
