@@ -99,6 +99,12 @@ interface MaterialEntryTextProps {
   numberDescriptionText: string;
   numberInQueueText: string;
   okButtonText: string;
+  onlineInternalModalCloseModalAriaLabelText: string;
+  onlineInternalModalScreenReaderModalDescriptionText: string;
+  onlineInternalResponseTitleText: string;
+  onlineInternalErrorsText: string;
+  onlineInternalSuccessLoanedText: string;
+  onlineInternalSuccessReservedText: string;
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
   onlineMaterialPlayerText: string;

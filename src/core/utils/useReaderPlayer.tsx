@@ -18,7 +18,7 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     ? getManifestationIsbn(manifestations[0])
     : null;
 
-  const { data } = useGetV1UserLoans(
+  const { data: userData } = useGetV1UserLoans(
     {},
     {
       query: { enabled: !isUserAnonymous && !!identifier }
@@ -26,33 +26,37 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   );
 
   const availabilityData = useOnlineAvailabilityData({
-    enabled: !isUserAnonymous && !!identifier,
+    enabled: !!identifier,
     isbn: identifier,
     access: [undefined],
     faustIds: null
   });
+
   const isAvailable = availabilityData?.isLoading
     ? false
     : availabilityData?.isAvailable;
 
-  // No need to check for data.userData here since the "useGetV1UserLoans" query
+  // No need to check for userData.userData here since the "useGetV1UserLoans" query
   // is disabled for anonymous users. Additionally, we still want to return
   // the identifier even if the user is anonymous.
-  const loans = data?.loans ? mapPublizonLoanToLoanType(data.loans) : null;
+  const loans = userData?.loans
+    ? mapPublizonLoanToLoanType(userData.loans)
+    : null;
   const orderId =
     loans && identifier ? getOrderIdByIdentifier({ loans, identifier }) : null;
 
-  const showMaterialButton = !!orderId;
-  const showLoanButton = isUserAnonymous || isAvailable;
-  const showReserveButton = !isUserAnonymous && !isAvailable;
+  const isMaterialLoanedButtonVisible = !!orderId;
+  const isLoanButtonVisible = isUserAnonymous || isAvailable;
+  const isReserveButtonVisible = !isAvailable;
+  // Todo: What if the matrial is allready reserved?
 
   return {
     type,
     identifier,
     orderId,
-    showMaterialButton,
-    showLoanButton,
-    showReserveButton
+    isMaterialLoanedButtonVisible,
+    isLoanButtonVisible,
+    isReserveButtonVisible
   };
 };
 

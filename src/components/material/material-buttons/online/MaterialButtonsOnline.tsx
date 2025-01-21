@@ -82,6 +82,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         )}
         {featureFlag.isActive("readerPlayer") && (
           <MaterialButtonsOnlineInternal
+            openModal
             size={size}
             manifestations={manifestations}
             dataCy={`${dataCy}-publizon`}

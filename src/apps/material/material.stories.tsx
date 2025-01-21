@@ -371,6 +371,30 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Ok button text",
       control: { type: "text" }
     },
+    onlineInternalModalCloseModalAriaLabelText: {
+      description: "Close reader/player modal",
+      control: { type: "text" }
+    },
+    onlineInternalModalScreenReaderModalDescriptionText: {
+      description: "reader/player modal screen reader description",
+      control: { type: "text" }
+    },
+    onlineInternalResponseTitleText: {
+      description: "reader/player Loan/reservation response title",
+      control: { type: "text" }
+    },
+    onlineInternalErrorsText: {
+      description: "reader/player Loan/reservation error text",
+      control: { type: "text" }
+    },
+    onlineInternalSuccessLoanedText: {
+      description: "E-material is loaned",
+      control: { type: "text" }
+    },
+    onlineInternalSuccessReservedText: {
+      description: "E-material is reserved",
+      control: { type: "text" }
+    },
     missingDataText: {
       description: "Missing data text",
       control: { type: "text" }
@@ -819,6 +843,14 @@ const meta: Meta<typeof MaterialEntry> = {
       "We're sorry. Unfortunately, there has been an error. Try again, please.",
     tryAginButtonText: "Try again",
     okButtonText: "Ok",
+    onlineInternalModalCloseModalAriaLabelText: "Close reader/player modal",
+    onlineInternalModalScreenReaderModalDescriptionText:
+      "Modal for reader/player material",
+    onlineInternalResponseTitleText:
+      "Online material loan/reservation response",
+    onlineInternalErrorsText: "something went wrong",
+    onlineInternalSuccessLoanedText: "E-material is loaned",
+    onlineInternalSuccessReservedText: "E-material is reserved",
     missingDataText: "Missing data",
     reservationModalScreenReaderModalDescriptionText: "Modal for reservation",
     reservationModalCloseModalAriaLabelText: "Close reservation modal",
