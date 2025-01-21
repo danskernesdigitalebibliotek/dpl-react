@@ -7,45 +7,52 @@ import {
 } from "../../components/reader-player/helper";
 import { mapPublizonLoanToLoanType } from "./helpers/list-mapper";
 import { isAnonymous } from "./helpers/user";
+import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
 
 const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   const isUserAnonymous = isAnonymous();
+  const hasManifestations = !!manifestations?.length;
+
+  const type = hasManifestations ? getReaderPlayerType(manifestations) : null;
+  const identifier = hasManifestations
+    ? getManifestationIsbn(manifestations[0])
+    : null;
+
   const { data } = useGetV1UserLoans(
     {},
     {
-      query: { enabled: !isUserAnonymous }
+      query: { enabled: !isUserAnonymous && !!identifier }
     }
   );
 
-  if (!manifestations || manifestations.length === 0) {
-    return {
-      type: null,
-      identifier: null,
-      orderId: null
-    };
-  }
-
-  const identifier = getManifestationIsbn(manifestations[0]);
-  const type = getReaderPlayerType(manifestations);
-
-  if (isUserAnonymous) {
-    return {
-      type,
-      identifier,
-      orderId: null
-    };
-  }
+  const availabilityData = useOnlineAvailabilityData({
+    enabled: !isUserAnonymous && !!identifier,
+    isbn: identifier,
+    access: [undefined],
+    faustIds: null
+  });
+  const isAvailable = availabilityData?.isLoading
+    ? false
+    : availabilityData?.isAvailable;
 
   // No need to check for data.userData here since the "useGetV1UserLoans" query
   // is disabled for anonymous users. Additionally, we still want to return
   // the identifier even if the user is anonymous.
   const loans = data?.loans ? mapPublizonLoanToLoanType(data.loans) : null;
-  const orderId = loans ? getOrderIdByIdentifier({ loans, identifier }) : null;
+  const orderId =
+    loans && identifier ? getOrderIdByIdentifier({ loans, identifier }) : null;
+
+  const showMaterialButton = !!orderId;
+  const showLoanButton = isUserAnonymous || isAvailable;
+  const showReserveButton = !isUserAnonymous && !isAvailable;
 
   return {
     type,
     identifier,
-    orderId
+    orderId,
+    showMaterialButton,
+    showLoanButton,
+    showReserveButton
   };
 };
 

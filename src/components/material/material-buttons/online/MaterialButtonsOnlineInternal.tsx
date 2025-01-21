@@ -9,6 +9,10 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 import LinkButton from "../../../Buttons/LinkButton";
 import { Button } from "../../../Buttons/Button";
+import {
+  usePostV1UserLoansIdentifier,
+  usePostV1UserReservationsIdentifier
+} from "../../../../core/publizon/publizon";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -23,10 +27,21 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const { type, orderId, identifier } = useReaderPlayer(manifestations);
+  const { mutate: mutateLoan } = usePostV1UserLoansIdentifier();
+  const { mutate: mutateReservation } = usePostV1UserReservationsIdentifier();
+  const {
+    type,
+    orderId,
+    identifier,
+    showMaterialButton,
+    showLoanButton,
+    showReserveButton
+  } = useReaderPlayer(manifestations);
 
   const renderReaderButton = () => {
-    if (orderId) {
+    if (!identifier) return null;
+
+    if (showMaterialButton && orderId) {
       return (
         <LinkButton
           url={new URL(`/reader?orderid=${orderId}`, window.location.href)}
@@ -42,11 +57,49 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       );
     }
 
+    if (showLoanButton) {
+      return (
+        <Button
+          dataCy={`${dataCy}-reader`}
+          label="Lån"
+          buttonType="none"
+          variant="filled"
+          size={size || "large"}
+          onClick={() => mutateLoan({ identifier })}
+          disabled={false}
+          collapsible={false}
+        />
+      );
+    }
+
+    if (showReserveButton) {
+      return (
+        <Button
+          dataCy={`${dataCy}-reader`}
+          label="Reserver"
+          buttonType="none"
+          variant="filled"
+          size={size || "large"}
+          onClick={() =>
+            mutateReservation({
+              identifier,
+              data: {
+                email: "",
+                phoneNumber: "+45"
+              }
+            })
+          }
+          disabled={false}
+          collapsible={false}
+        />
+      );
+    }
+
     return null;
   };
 
   const renderReaderTeaserButton = () => {
-    if (orderId) return null;
+    if (showMaterialButton) return null;
 
     if (identifier) {
       return (
@@ -66,7 +119,9 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   };
 
   const renderPlayerButton = () => {
-    if (orderId) {
+    if (!identifier) return null;
+
+    if (showMaterialButton && orderId) {
       return (
         <Button
           dataCy={`${dataCy}-player`}
@@ -83,11 +138,49 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       );
     }
 
+    if (showLoanButton) {
+      return (
+        <Button
+          dataCy={`${dataCy}-player`}
+          label="Lån"
+          buttonType="none"
+          variant="filled"
+          size={size || "large"}
+          onClick={() => mutateLoan({ identifier })}
+          disabled={false}
+          collapsible={false}
+        />
+      );
+    }
+
+    if (showReserveButton) {
+      return (
+        <Button
+          dataCy={`${dataCy}-player`}
+          label="Reserver"
+          buttonType="none"
+          variant="filled"
+          size={size || "large"}
+          onClick={() =>
+            mutateReservation({
+              identifier,
+              data: {
+                email: "",
+                phoneNumber: "+45"
+              }
+            })
+          }
+          disabled={false}
+          collapsible={false}
+        />
+      );
+    }
+
     return null;
   };
 
   const renderPlayerTeaserButton = () => {
-    if (orderId) return null;
+    if (showMaterialButton) return null;
 
     if (identifier) {
       return (
