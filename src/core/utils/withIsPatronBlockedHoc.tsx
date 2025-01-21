@@ -21,6 +21,7 @@ type InputProps = {
 // and explanation for the user.
 const withIsPatronBlockedHoc =
   <P extends object>(Component: ComponentType<P>): FC<P & InputProps> =>
+  // TODO: rewrite the code below and remove the eslint-disable-next-line react/display-name comment
   // eslint-disable-next-line react/display-name
   ({ ...props }) => {
     // Used to check whether the modal has been opened by another component,
