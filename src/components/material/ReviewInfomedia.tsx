@@ -126,6 +126,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
       {infomedia.article?.text && (
         <p
           className="review__body mb-8"
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: infomedia.article?.text }}
         />
       )}
