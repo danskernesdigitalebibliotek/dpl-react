@@ -88,10 +88,9 @@ function Modal({
       }}
     >
       <div>
-        {/* The backdrop doesn't have a role or keyboard listener because it barely duplicates
-          the close button's functionality which possesses both. */}
         <button
           className="modal-backdrop"
+          aria-label={closeModalAriaLabelText}
           style={{
             // Some elements are designed with z-index which means they pop up over the modal
             // so we add 20 to the z-index of the modal (20 is the highest z-index - header).
