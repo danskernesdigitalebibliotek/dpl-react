@@ -26,6 +26,8 @@ function mount(context) {
     if (isValidMount) {
       const root = createRoot(container);
 
+      // After the update, ensure that prefixes (identifierPrefix) are specified for all apps.
+      // This will guarantee unique IDs everywhere useID() is utilized.
       root.render(
         createElement(
           Store,

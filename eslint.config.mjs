@@ -109,6 +109,7 @@ export default [
         }
       ],
 
+      "import/no-cycle": "error",
       "import/no-extraneous-dependencies": [
         "error",
         {
