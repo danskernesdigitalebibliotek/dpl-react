@@ -154,6 +154,7 @@ export type ComplexSearchFacetValue = {
   __typename?: "ComplexSearchFacetValue";
   key: Scalars["String"]["output"];
   score: Scalars["Int"]["output"];
+  traceId?: Maybe<Scalars["String"]["output"]>;
 };
 
 /** The supported facet fields */
@@ -161,6 +162,8 @@ export enum ComplexSearchFacetsEnum {
   Accesstype = "ACCESSTYPE",
   Ages = "AGES",
   Cataloguecode = "CATALOGUECODE",
+  Chambermusictype = "CHAMBERMUSICTYPE",
+  Choirtype = "CHOIRTYPE",
   Contributor = "CONTRIBUTOR",
   Contributorfunction = "CONTRIBUTORFUNCTION",
   Creator = "CREATOR",
@@ -174,6 +177,7 @@ export enum ComplexSearchFacetsEnum {
   Generalmaterialtype = "GENERALMATERIALTYPE",
   Genreandform = "GENREANDFORM",
   Hostpublication = "HOSTPUBLICATION",
+  Instrument = "INSTRUMENT",
   Issue = "ISSUE",
   Language = "LANGUAGE",
   Let = "LET",
@@ -404,6 +408,12 @@ export type DidYouMean = {
   query: Scalars["String"]["output"];
   /** A probability score between 0-1 indicating how relevant the query is */
   score: Scalars["Float"]["output"];
+  /**
+   * A unique identifier for tracking user interactions with this didYouMean value.
+   * It is generated in the response and should be included in subsequent
+   * API calls when this manifestation is selected.
+   */
+  traceId: Scalars["String"]["output"];
 };
 
 export type DigitalArticleService = {
@@ -504,6 +514,12 @@ export type FacetValue = {
   score?: Maybe<Scalars["Int"]["output"]>;
   /** A value of a facet field */
   term: Scalars["String"]["output"];
+  /**
+   * A unique identifier for tracking user interactions with this facet value.
+   * It is generated in the response and should be included in subsequent
+   * API calls when this manifestation is selected.
+   */
+  traceId: Scalars["String"]["output"];
 };
 
 export type FictionNonfiction = {
@@ -807,6 +823,8 @@ export type Manifestation = {
   languages?: Maybe<Languages>;
   /** Details about the latest printing of this manifestation */
   latestPrinting?: Maybe<Printing>;
+  /** Identification of the local id of this manifestation */
+  localId?: Maybe<Scalars["String"]["output"]>;
   /** Tracks on music album, sheet music content, or articles/short stories etc. in this manifestation */
   manifestationParts?: Maybe<ManifestationParts>;
   /** Field for presenting bibliographic records in MARC format */
@@ -833,6 +851,8 @@ export type Manifestation = {
   review?: Maybe<ManifestationReview>;
   /** Series for this manifestation */
   series: Array<Series>;
+  /** Material that can be identified as sheet music */
+  sheetMusicCategories?: Maybe<SheetMusicCategory>;
   /** Information about on which shelf in the library this manifestation can be found */
   shelfmark?: Maybe<Shelfmark>;
   /** The source of the manifestation, e.g. own library catalogue (Bibliotekskatalog) or online source e.g. Filmstriben, Ebook Central, eReolen Global etc. */
@@ -1109,6 +1129,12 @@ export type MoodSuggestItem = {
   __typename?: "MoodSuggestItem";
   /** Suggestion */
   term: Scalars["String"]["output"];
+  /**
+   * A unique identifier for tracking user interactions with this suggestion.
+   * It is generated in the response and should be included in subsequent
+   * API calls when this manifestation is selected.
+   */
+  traceId: Scalars["String"]["output"];
   /** The type of suggestion title/creator/tag */
   type: MoodSuggestEnum;
   /** A work associated with the suggestion */
@@ -1127,6 +1153,14 @@ export type MoodTagRecommendResponse = {
   __typename?: "MoodTagRecommendResponse";
   similarity?: Maybe<Scalars["Float"]["output"]>;
   work: Work;
+};
+
+export type MusicalExercise = {
+  __typename?: "MusicalExercise";
+  /** The types of instrument 'schools' intended to practise with */
+  display: Array<Scalars["String"]["output"]>;
+  /** Information whether material is intended for practising and in combination with an instrument */
+  forExercise: Scalars["Boolean"]["output"];
 };
 
 export type Mutation = {
@@ -1288,7 +1322,10 @@ export type Query = {
   ors: OrsQuery;
   /** Get recommendations */
   recommend: RecommendationResponse;
+  /** Access to various types of recommendations. */
+  recommendations: Recommendations;
   refWorks: Scalars["String"]["output"];
+  /** @deprecated Use 'Recommendations.subjects' instead expires: 01/03-2025 */
   relatedSubjects?: Maybe<Array<Scalars["String"]["output"]>>;
   ris: Scalars["String"]["output"];
   search: SearchResponse;
@@ -1411,6 +1448,23 @@ export type Recommendation = {
 export type RecommendationResponse = {
   __typename?: "RecommendationResponse";
   result: Array<Recommendation>;
+};
+
+/** Get different kinds of recommendations */
+export type Recommendations = {
+  __typename?: "Recommendations";
+  /**
+   * Retrieve subject-based recommendations based on a list of query strings and an optional limit.
+   * - q: An array of strings used to generate subject recommendations.
+   * - limit: The maximum number of recommendations to return.
+   */
+  subjects?: Maybe<Array<SubjectRecommendation>>;
+};
+
+/** Get different kinds of recommendations */
+export type RecommendationsSubjectsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  q: Array<Scalars["String"]["input"]>;
 };
 
 export type RelatedPublication = {
@@ -1647,6 +1701,8 @@ export type Series = {
   seriesId?: Maybe<Scalars["String"]["output"]>;
   /** The title of the series */
   title: Scalars["String"]["output"];
+  /** Traceid for tracking */
+  traceId: Scalars["String"]["output"];
   /** WorkTypes for the series */
   workTypes: Array<Scalars["String"]["output"]>;
 };
@@ -1662,6 +1718,20 @@ export type Setting = SubjectInterface & {
   language?: Maybe<Language>;
   local?: Maybe<Scalars["Boolean"]["output"]>;
   type: SubjectTypeEnum;
+};
+
+export type SheetMusicCategory = {
+  __typename?: "SheetMusicCategory";
+  /** The types of chamber music material covers */
+  chamberMusicTypes: Array<Scalars["String"]["output"]>;
+  /** The types of choir material covers */
+  choirTypes: Array<Scalars["String"]["output"]>;
+  /** The types of instruments material covers */
+  instruments: Array<Scalars["String"]["output"]>;
+  /** Material intended to practice with */
+  musicalExercises?: Maybe<MusicalExercise>;
+  /** The types of orchestra material covers */
+  orchestraTypes: Array<Scalars["String"]["output"]>;
 };
 
 export type Shelfmark = {
@@ -1705,6 +1775,19 @@ export type SubjectInterface = {
   local?: Maybe<Scalars["Boolean"]["output"]>;
   /** The type of subject - 'location', 'time period' etc., 'topic' if not specific kind of subject term */
   type: SubjectTypeEnum;
+};
+
+/** Details about a single subject recommendation. */
+export type SubjectRecommendation = {
+  __typename?: "SubjectRecommendation";
+  /** The recommended subject. */
+  subject: Scalars["String"]["output"];
+  /**
+   * A unique identifier for tracking user interactions with this subject recommendation.
+   * It is generated in the response and should be included in subsequent
+   * API calls when this suggestion is selected.
+   */
+  traceId: Scalars["String"]["output"];
 };
 
 export type SubjectText = SubjectInterface & {
@@ -1949,6 +2032,12 @@ export type Universe = {
   series: Array<Series>;
   /** Literary/movie universe this work is part of e.g. Wizarding World, Marvel Cinematic Universe */
   title: Scalars["String"]["output"];
+  /**
+   * A unique identifier for tracking user interactions with this universe.
+   * It is generated in the response and should be included in subsequent
+   * API calls when this work is selected.
+   */
+  traceId: Scalars["String"]["output"];
   /** An id that identifies a universe. */
   universeId?: Maybe<Scalars["String"]["output"]>;
   /** work types that are in this universe */
@@ -5022,6 +5111,7 @@ export type SearchFacetQuery = {
         key: string;
         term: string;
         score?: number | null;
+        traceId: string;
       }>;
     }>;
   };
@@ -5047,6 +5137,7 @@ export type IntelligentFacetsQuery = {
         key: string;
         term: string;
         score?: number | null;
+        traceId: string;
       }>;
     }>;
   };
@@ -7289,6 +7380,7 @@ export const SearchFacetDocument = `
         key
         term
         score
+        traceId
       }
     }
   }
@@ -7319,6 +7411,7 @@ export const IntelligentFacetsDocument = `
         key
         term
         score
+        traceId
       }
     }
   }
@@ -7374,4 +7467,42 @@ export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
       )(),
     options
   );
+};
+
+export const operationNames = {
+  Query: {
+    getSmallWork: "getSmallWork" as const,
+    getManifestationViaMaterialByFaust:
+      "getManifestationViaMaterialByFaust" as const,
+    getManifestationViaBestRepresentationByFaust:
+      "getManifestationViaBestRepresentationByFaust" as const,
+    getMaterial: "getMaterial" as const,
+    getMaterialGlobally: "getMaterialGlobally" as const,
+    getInfomedia: "getInfomedia" as const,
+    getReviewManifestations: "getReviewManifestations" as const,
+    recommendFromFaust: "recommendFromFaust" as const,
+    searchWithPagination: "searchWithPagination" as const,
+    complexSearchWithPaginationWorkAccess:
+      "complexSearchWithPaginationWorkAccess" as const,
+    complexSearchWithPagination: "complexSearchWithPagination" as const,
+    suggestionsFromQueryString: "suggestionsFromQueryString" as const,
+    searchFacet: "searchFacet" as const,
+    intelligentFacets: "intelligentFacets" as const
+  },
+  Mutation: {
+    openOrder: "openOrder" as const,
+    placeCopy: "placeCopy" as const
+  },
+  Fragment: {
+    ManifestationBasicDetails: "ManifestationBasicDetails" as const,
+    ManifestationsSimple: "ManifestationsSimple" as const,
+    ManifestationsAccess: "ManifestationsAccess" as const,
+    ManifestationsSimpleFields: "ManifestationsSimpleFields" as const,
+    ManifestationReviewFields: "ManifestationReviewFields" as const,
+    SeriesSimple: "SeriesSimple" as const,
+    WorkAccess: "WorkAccess" as const,
+    WorkSmall: "WorkSmall" as const,
+    WorkMedium: "WorkMedium" as const,
+    WithLanguages: "WithLanguages" as const
+  }
 };

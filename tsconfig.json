@@ -6,7 +6,13 @@
     "target": "es6",
     "allowJs": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "cypress"
+  ],
   "ts-node": {
     // these options are overrides used only by ts-node
     "compilerOptions": {

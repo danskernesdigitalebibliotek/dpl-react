@@ -92,12 +92,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   );
   // We need availability in order to show availability text under action buttons
   const { isAvailable } = useAvailabilityData({
-    // "accessTypes" will always be physical here - shouldShowMaterialAvailabilityText() helper
-    // rules out all online materials.
-    accessTypes: [AccessTypeCodeEnum.Physical],
+    accessTypes: [AccessTypeCodeEnum.Physical, AccessTypeCodeEnum.Online],
     access: [undefined],
     faustIds: getAllFaustIds(selectedManifestations),
-    isbn: null, // Not needed for physical materials.
+    isbn: null, // Not needed.
     // "manifestText" is used inside the availability hook to check whether the material is an article
     // which we check inside shouldShowMaterialAvailabilityText() helper here.
     manifestText: "NOT AN ARTICLE"
@@ -179,6 +177,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                   />
                 </div>
                 {/* MaterialAvailabilityText is only shown for:
+                    - Online manifestations if the user is logged in
                     - physical manifestations
                     - that are not periodical or articles
                     - that are available in at least one local library branch

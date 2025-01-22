@@ -13,6 +13,9 @@ import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArt
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
+import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
+import featureFlag from "../../../../core/utils/featureFlag";
+import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -37,6 +40,12 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       trackedData: workId
     });
   };
+  const { orderId } = useReaderPlayer(manifestations);
+
+  // Todo: Move logic for Player / Reader buttons / Links to here.
+  // if (condition) {
+  //   return <MaterialButtonsOnlineInternal manifestations={manifestations} />;
+  // }
 
   // Find 'Ereol' object or default to the first 'access' object
   const accessElement =
@@ -58,15 +67,27 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     }
 
     return (
-      <MaterialButtonOnlineExternal
-        externalUrl={externalUrl}
-        origin={origin}
-        size={size}
-        trackOnlineView={trackOnlineView}
-        manifestations={manifestations}
-        dataCy={`${dataCy}-external`}
-        ariaLabelledBy={ariaLabelledBy}
-      />
+      <>
+        {/* Display MaterialButtonOnlineExternal if the material is not part of the user's loans */}
+        {!orderId && (
+          <MaterialButtonOnlineExternal
+            externalUrl={externalUrl}
+            origin={origin}
+            size={size}
+            trackOnlineView={trackOnlineView}
+            manifestations={manifestations}
+            dataCy={`${dataCy}-external`}
+            ariaLabelledBy={ariaLabelledBy}
+          />
+        )}
+        {featureFlag.isActive("readerPlayer") && (
+          <MaterialButtonsOnlineInternal
+            size={size}
+            manifestations={manifestations}
+            dataCy={`${dataCy}-publizon`}
+          />
+        )}
+      </>
     );
   }
 
