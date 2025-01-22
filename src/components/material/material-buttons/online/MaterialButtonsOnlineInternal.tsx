@@ -40,19 +40,13 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   } = useReaderPlayer(manifestations);
 
   const manifestationType = getManifestationType(manifestations);
-  const reseveLabel =
-    size === "small"
-      ? t("reserveText")
-      : `${t("reserveWithMaterialTypeText", {
-          placeholders: { "@materialType": manifestationType }
-        })}`;
+  const reseveLabel = `${t("reserveWithMaterialTypeText", {
+    placeholders: { "@materialType": manifestationType }
+  })}`;
 
-  const loanLabel =
-    size === "small"
-      ? t("reserveText")
-      : `${t("loanWithMaterialTypeText", {
-          placeholders: { "@materialType": manifestationType }
-        })}`;
+  const loanLabel = `${t("loanWithMaterialTypeText", {
+    placeholders: { "@materialType": manifestationType }
+  })}`;
 
   const tryLabel = t("onlineMaterialTeaserText", {
     placeholders: { "@materialType": manifestationType }
