@@ -10,6 +10,7 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 
 interface MaterialEntryTextProps {
   alreadyReservedText: string;
+  approveLoanText: string;
   approveReservationText: string;
   blockedButtonText: string;
   cantReserveText: string;

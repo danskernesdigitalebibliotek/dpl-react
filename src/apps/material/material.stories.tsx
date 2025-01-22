@@ -315,6 +315,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Material button online teaser text",
       control: { type: "text" }
     },
+    approveLoanText: {
+      description: "Approve loan",
+      control: { type: "text" }
+    },
     approveReservationText: {
       description: "Approve reservation",
       control: { type: "text" }
@@ -825,6 +829,7 @@ const meta: Meta<typeof MaterialEntry> = {
     onlineMaterialPlayerText: "Listen to @materialType",
     onlineMaterialReaderText: "Read @materialType",
     onlineMaterialTeaserText: "Try @materialType",
+    approveLoanText: "Approve loan",
     approveReservationText: "Approve reservation",
     shiftText: "Change",
     reservationDetailsPickUpAtTitleText: "Pick up at",

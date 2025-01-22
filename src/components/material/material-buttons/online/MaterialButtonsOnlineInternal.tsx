@@ -113,13 +113,17 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   };
 
   const manifestationType = getManifestationType(manifestations);
-  const reseveLabel = `${t("reserveWithMaterialTypeText", {
-    placeholders: { "@materialType": manifestationType }
-  })}`;
+  const reseveLabel = openModal
+    ? t("reserveWithMaterialTypeText", {
+        placeholders: { "@materialType": manifestationType }
+      })
+    : t("approveReservationText");
 
-  const loanLabel = `${t("loanWithMaterialTypeText", {
-    placeholders: { "@materialType": manifestationType }
-  })}`;
+  const loanLabel = openModal
+    ? t("loanWithMaterialTypeText", {
+        placeholders: { "@materialType": manifestationType }
+      })
+    : t("approveLoanText");
 
   const tryLabel = t("onlineMaterialTeaserText", {
     placeholders: { "@materialType": manifestationType }
@@ -163,7 +167,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   };
 
   const renderReaderTeaserButton = () => {
-    if (isMaterialLoanedButtonVisible) return null;
+    if (isMaterialLoanedButtonVisible || !openModal) return null;
 
     if (identifier) {
       return (
@@ -219,7 +223,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   };
 
   const renderPlayerTeaserButton = () => {
-    if (isMaterialLoanedButtonVisible) return null;
+    if (isMaterialLoanedButtonVisible || !openModal) return null;
 
     if (identifier) {
       return (
