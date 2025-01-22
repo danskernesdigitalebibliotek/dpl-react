@@ -8,7 +8,11 @@ export default <P extends object>(Component: React.ComponentType<P>): FC<P> => {
         allowOutsideClick: true
       }}
     >
-      <Component {...(props as P)} />
+      <Component
+        // TODO: Explicitly define prop types for better clarity
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...(props as P)}
+      />
     </FocusTrap>
   );
 

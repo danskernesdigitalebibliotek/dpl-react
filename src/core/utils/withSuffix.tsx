@@ -35,7 +35,13 @@ export default function withSuffix<T extends object>(
     // Since this is a High Order Functional Component
     // we do not know what props we are dealing with.
     // That is a part of the design.
-    return <Component {...(nonSuffixEntries as T)} />;
+    return (
+      <Component
+        // TODO: Explicitly define prop types for better clarity
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...(nonSuffixEntries as T)}
+      />
+    );
   };
 
   return component;

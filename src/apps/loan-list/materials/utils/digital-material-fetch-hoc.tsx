@@ -20,6 +20,7 @@ const fetchDigitalMaterial =
     // If this is a physical book, another HOC fetches the data and this
     // HOC just returns the component
     if (item.faust) {
+      // eslint-disable-next-line react/jsx-props-no-spreading
       return <Component {...(props as P)} item={item} />;
     }
 
@@ -55,6 +56,7 @@ const fetchDigitalMaterial =
       if (!digitalMaterial) return null;
 
       return (
+        // eslint-disable-next-line react/jsx-props-no-spreading
         <Component {...(props as P)} item={item} material={digitalMaterial} />
       );
     }

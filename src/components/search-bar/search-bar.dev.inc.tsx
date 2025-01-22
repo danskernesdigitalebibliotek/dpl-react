@@ -40,6 +40,8 @@ const StorySearchBar: React.FC<StorySearchBarProps> = ({ storybookArgs }) => {
     <div className="header__menu-second">
       <form action={searchHeaderUrl} className="header__menu-search">
         <WrappedSearchBar
+          // TODO: Explicitly define prop types for better clarity
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...storybookArgs}
           getInputProps={getInputProps}
           getLabelProps={getLabelProps}

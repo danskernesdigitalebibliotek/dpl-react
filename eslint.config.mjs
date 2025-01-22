@@ -135,6 +135,7 @@ export default [
 
       "react/function-component-definition": "off",
       "react/no-danger": "error",
+      "react/jsx-props-no-spreading": "error",
 
       "@typescript-eslint/comma-dangle": "off",
       "@typescript-eslint/lines-between-class-members": "off",

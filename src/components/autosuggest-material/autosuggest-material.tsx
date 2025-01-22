@@ -67,6 +67,8 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 highlightedIndex === index
             })}
             key={workId}
+            // TODO: Explicitly define prop types for better clarity
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...getItemProps({ item, index })}
             data-cy={dataCy}
           >

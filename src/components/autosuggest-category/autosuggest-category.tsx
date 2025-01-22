@@ -40,6 +40,8 @@ const AutosuggestCategory: FC<AutosuggestCategoryProps> = ({
               }
             )}
             key={`${item.term}-${index}`}
+            // TODO: Explicitly define prop types for better clarity
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...getItemProps({ item, index })}
             data-cy={dataCy}
           >

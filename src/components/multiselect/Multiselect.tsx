@@ -133,6 +133,8 @@ const Multiselect: FC<MultiselectProps> = ({
         <button
           type="button"
           className="multiselect focus-styling"
+          // TODO: Explicitly define prop types for better clarity
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...getToggleButtonProps(
             getDropdownProps({ preventKeyAction: isDropdownOpen })
           )}
@@ -162,6 +164,8 @@ const Multiselect: FC<MultiselectProps> = ({
         </button>
         <ul
           className="multiselect__options"
+          // TODO: Explicitly define prop types for better clarity
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...getMenuProps()}
           style={!isDropdownOpen ? { display: "none" } : {}}
         >
@@ -175,6 +179,8 @@ const Multiselect: FC<MultiselectProps> = ({
                   "multiselect__option--highlighted": highlightedIndex === index
                 })}
                 key={`${item.value}${item.item}`}
+                // TODO: Explicitly define prop types for better clarity
+                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...getItemProps({ item, index })}
                 role="option"
                 aria-selected={

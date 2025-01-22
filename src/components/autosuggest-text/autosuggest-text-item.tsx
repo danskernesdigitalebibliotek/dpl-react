@@ -37,6 +37,8 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
       <li
         className={classes.textSuggestion}
         key={generateItemId(item)}
+        // TODO: Explicitly define prop types for better clarity
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...getItemProps({ item, index })}
         data-cy={dataCy}
         lang={isoLang}

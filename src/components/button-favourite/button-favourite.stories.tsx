@@ -49,6 +49,8 @@ export const favourite: Story = {
     const addToListRequest = () => {};
 
     return (
+      // TODO: Explicitly define prop types for better clarity
+      // eslint-disable-next-line react/jsx-props-no-spreading
       <WrappedButtonFavourite {...args} addToListRequest={addToListRequest} />
     );
   }

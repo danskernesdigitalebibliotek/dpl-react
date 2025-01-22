@@ -48,6 +48,8 @@ const WrappedErrorBoundaryAlertBody = withText(
 export const Primary: Story = {
   render: (args: ErrorBoundaryAlertBodyProps) => (
     <WrappedErrorBoundaryAlertBody
+      // TODO: Explicitly define prop types for better clarity
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...args}
       resetErrorBoundary={() => {
         // We just want to confirm that the click handler works and show it in storybook.
