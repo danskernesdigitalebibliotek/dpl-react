@@ -60,8 +60,6 @@ type Story = StoryObj<typeof Cover>;
 export const Item: Story = {
   render: (args) => {
     const WrappedCover = withUrls(Cover);
-    // TODO: Explicitly define prop types for better clarity
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <WrappedCover {...args} />;
   }
 };

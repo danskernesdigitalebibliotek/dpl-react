@@ -21,8 +21,6 @@ const ModalTemplate: StoryFn<typeof ModalMessage> = (props) => {
       classNames="modal-cta modal-padding"
     >
       <ModalMessage
-        // TODO: Explicitly define prop types for better clarity
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
         ctaButton={{ modalId: "modal-message", text: "Man" }}
       >

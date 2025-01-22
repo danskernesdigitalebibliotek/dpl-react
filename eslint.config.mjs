@@ -194,7 +194,7 @@ export default [
     }
   },
   {
-    files: ["**/*.dev.jsx", "**/*.dev.tsx"],
+    files: ["**/*.stories.jsx", "**/*.stories.tsx"],
 
     rules: {
       "react/jsx-props-no-spreading": "off"

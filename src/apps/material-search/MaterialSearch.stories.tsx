@@ -76,8 +76,6 @@ const MaterialSearchHiddenInputs = ({
           />
         </label>
       </div>
-      {/* TODO: Explicitly define prop types for better clarity */}
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <MaterialSearch uniqueIdentifier={uniqueIdentifier} {...args} />
     </div>
   );
@@ -248,8 +246,6 @@ export const WithPreviouslySelectedValues: Story = {
     const defaultMaterialType = previouslySelectedMaterialType;
     const modifiedProps = { ...args, defaultWorkId, defaultMaterialType };
 
-    // TODO: Explicitly define prop types for better clarity
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <MaterialSearchHiddenInputs {...modifiedProps} />;
   }
 };
@@ -263,8 +259,6 @@ export const materialWithInvalidType: Story = {
     const defaultMaterialType = "invalid-type";
     const modifiedProps = { ...args, defaultWorkId, defaultMaterialType };
 
-    // TODO: Explicitly define prop types for better clarity
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <MaterialSearchHiddenInputs {...modifiedProps} />;
   }
 };
@@ -278,8 +272,6 @@ export const materialWithInvalidWorkId: Story = {
     const defaultMaterialType = previouslySelectedMaterialType;
     const modifiedProps = { ...args, defaultWorkId, defaultMaterialType };
 
-    // TODO: Explicitly define prop types for better clarity
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <MaterialSearchHiddenInputs {...modifiedProps} />;
   }
 };

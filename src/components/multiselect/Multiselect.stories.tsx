@@ -51,8 +51,6 @@ const meta: Meta<typeof WrappedMultiselect> = {
     options
   },
   render: (args) => {
-    // TODO: Explicitly define prop types for better clarity
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <WrappedMultiselect {...args} />;
   }
 };

@@ -100,18 +100,12 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
     return (
       <>
         <WrappedMaterialButtonsFindOnShelf
-          // TODO: Explicitly define prop types for better clarity
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...modifiedArgs}
           size="small"
           faustIds={[convertPostIdToFaustId(pid)]}
         />
 
-        <WrappedFindOnShelfModal
-          // TODO: Explicitly define prop types for better clarity
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...modifiedArgs}
-        />
+        <WrappedFindOnShelfModal {...modifiedArgs} />
       </>
     );
   }
