@@ -92,6 +92,7 @@ export default [
 
     rules: {
       "no-console": ["error", { allow: ["error"] }],
+      "no-alert": "error",
       "prefer-arrow-callback": [
         "error",
         {

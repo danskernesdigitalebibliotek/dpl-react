@@ -51,6 +51,7 @@ export const Primary: Story = {
       {...args}
       resetErrorBoundary={() => {
         // We just want to confirm that the click handler works and show it in storybook.
+        // eslint-disable-next-line no-alert
         alert("Close button clicked!");
       }}
     />

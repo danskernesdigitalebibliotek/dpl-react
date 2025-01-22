@@ -56,6 +56,7 @@ const useOpeningHoursEditor = () => {
   };
 
   const onError = (message: string) => {
+    // eslint-disable-next-line no-alert
     alert(message);
     // reload page to get the latest data
     window.location.reload();
