@@ -88,11 +88,6 @@ const OnlineInternalModalBody = ({
         <ModalMessage
           title={t("onlineInternalResponseTitleText")}
           subTitle={manifestation.titles.main[0]}
-          ctaButton={{
-            text: t("okButtonText"),
-            modalId: onlineInternalModalId(faustIds),
-            dataCy: "online-internal-close-button"
-          }}
         >
           <p
             data-cy="open-oprder-response-status-text"
@@ -100,6 +95,10 @@ const OnlineInternalModalBody = ({
           >
             {t("onlineInternalSuccessLoanedText")}
           </p>
+          <MaterialButtonsOnlineInternal
+            openModal={false}
+            manifestations={selectedManifestations}
+          />
         </ModalMessage>
       )}
 

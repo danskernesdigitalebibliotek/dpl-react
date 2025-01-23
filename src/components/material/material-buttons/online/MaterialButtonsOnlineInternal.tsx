@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useQueryClient } from "react-query";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialSecondaryLink from "../generic/MaterialSecondaryLink";
 import MaterialSecondaryButton from "../generic/MaterialSecondaryButton";
@@ -10,6 +11,7 @@ import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 import LinkButton from "../../../Buttons/LinkButton";
 import { Button } from "../../../Buttons/Button";
 import {
+  getGetV1UserLoansQueryKey,
   usePostV1UserLoansIdentifier,
   usePostV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
@@ -37,6 +39,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   openModal,
   setReservationStatus
 }) => {
+  const queryClient = useQueryClient();
   const t = useText();
   const u = useUrls();
   const authUrl = u("authUrl");
@@ -67,6 +70,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
         { identifier },
         {
           onSuccess: () => {
+            // Ensure that the button is updated after a successful loan
+            queryClient.invalidateQueries(getGetV1UserLoansQueryKey());
             if (setReservationStatus) {
               setReservationStatus("loaned");
             }
