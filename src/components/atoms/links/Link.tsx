@@ -48,6 +48,9 @@ const Link: React.FC<LinkProps> = ({
     trackClick
   });
 
+  // We need to use a custom onClick & onKeyUp handlers as opposed to just native <a> behaviour
+  // because we in some cases have to track these clicks. So we need to wait to fire a call
+  // before we can redirect the user.
   const onclickHandler = onClick
     ? async (
         e:
