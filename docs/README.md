@@ -78,13 +78,14 @@ Workflow:
 
 #### JavaScript + JSX
 
-For static code analysis, we use the recommended ESLint rules included in the ESLint package,
-and for formatting we make use of [Prettier](https://github.com/prettier/prettier)
-with the default configuration. The above choices have been influenced by a
-multitude of factors:
+For static code analysis, we use the recommended ESLint rules included in the
+ESLint package, and for formatting we make use of
+[Prettier](https://github.com/prettier/prettier) with the default configuration.
+The above choices have been influenced by a multitude of factors:
 
 - Historically Drupal core have been making use of the Airbnb JavaScript Style Guide.
-- We previously used Airbnb for linting. This change is documented in [ADR-009: Remove Airbnb Lint Rules](../docs/adr/adr-009-remove-airbnb-lint-rules.md).
+- We previously used Airbnb for linting. This change is documented in
+  [ADR-009: Remove Airbnb Lint Rules](../docs/adr/adr-009-remove-airbnb-lint-rules.md).
 
 This makes future adoption easier for onboarding contributors and support is to
 be expected for a long time.
