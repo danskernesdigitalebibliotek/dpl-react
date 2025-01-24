@@ -49,7 +49,7 @@ const LoanListItems: FC<LoanListItemProps> = ({
           );
           const loan = loansUniqueDueDate[0] || {};
           return (
-            <ul>
+            <ul key={i}>
               {loan && (
                 <StackableMaterial
                   focused={i === indexOfFocus}

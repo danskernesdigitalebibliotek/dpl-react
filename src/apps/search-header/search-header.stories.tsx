@@ -151,7 +151,6 @@ export const Search: Story = {
   // It is the Header that creates the Search bar's design -
   // - without it, the Search bar loses its shape.
   render: (args: SearchHeaderEntryProps) => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <StoryHeader search={<SearchHeaderEntry {...args} />} />
   )
 };

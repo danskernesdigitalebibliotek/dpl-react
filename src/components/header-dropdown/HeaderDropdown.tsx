@@ -4,7 +4,7 @@ import { useText } from "../../core/utils/text";
 interface HeaderDropdownprops {
   redirectTo: (url: URL) => void;
   setIsHeaderDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  headerDropdownRef: React.RefObject<HTMLAnchorElement>;
+  headerDropdownRef: React.RefObject<HTMLAnchorElement | null>;
   advancedSearchUrl: URL;
 }
 const HeaderDropdown: React.FC<HeaderDropdownprops> = ({

@@ -30,8 +30,12 @@ const ReservationForm = ({
           <h3 className="text-header-h3 mb-35" data-cy={`${cyData}-title`}>
             {title}
           </h3>
-          {description.map((paragraph) => (
-            <p className="text-body-large" data-cy={`${cyData}-description`}>
+          {description.map((paragraph, index) => (
+            <p
+              key={index}
+              className="text-body-large"
+              data-cy={`${cyData}-description`}
+            >
               {paragraph}
             </p>
           ))}

@@ -129,11 +129,12 @@ const Multiselect: FC<MultiselectProps> = ({
     <>
       {caption && <div className="multiselect__caption">{caption}</div>}
       <div className="multiselect" ref={ref} data-cy={dataCy}>
-        {/* eslint-disable react/jsx-props-no-spreading */}
         {/* The downshift combobox works this way by design */}
         <button
           type="button"
           className="multiselect focus-styling"
+          // TODO: Explicitly define prop types for better clarity
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...getToggleButtonProps(
             getDropdownProps({ preventKeyAction: isDropdownOpen })
           )}
@@ -163,6 +164,8 @@ const Multiselect: FC<MultiselectProps> = ({
         </button>
         <ul
           className="multiselect__options"
+          // TODO: Explicitly define prop types for better clarity
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...getMenuProps()}
           style={!isDropdownOpen ? { display: "none" } : {}}
         >
@@ -176,6 +179,8 @@ const Multiselect: FC<MultiselectProps> = ({
                   "multiselect__option--highlighted": highlightedIndex === index
                 })}
                 key={`${item.value}${item.item}`}
+                // TODO: Explicitly define prop types for better clarity
+                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...getItemProps({ item, index })}
                 role="option"
                 aria-selected={
@@ -184,7 +189,6 @@ const Multiselect: FC<MultiselectProps> = ({
                   )
                 }
               >
-                {/* eslint-enable react/jsx-props-no-spreading */}
                 <span id={`multiselect-label-${downshiftProps.id}`}>
                   {t(item.item)}
                 </span>

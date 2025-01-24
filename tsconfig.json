@@ -3,7 +3,8 @@
   "compilerOptions": {
     "jsx": "react",
     "types": ["cypress", "node", "vitest/importMeta"],
-    "target": "es6"
+    "target": "es6",
+    "allowJs": true
   },
   "include": [
     "src/**/*.ts",

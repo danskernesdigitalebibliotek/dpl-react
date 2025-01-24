@@ -21,7 +21,9 @@ type InputProps = {
 // and explanation for the user.
 const withIsPatronBlockedHoc =
   <P extends object>(Component: ComponentType<P>): FC<P & InputProps> =>
-  ({ redirectOnBlocked, ...props }) => {
+  // TODO: rewrite the code below and remove the eslint-disable-next-line react/display-name comment
+  // eslint-disable-next-line react/display-name
+  ({ ...props }) => {
     // Used to check whether the modal has been opened by another component,
     // the modal should really only be showed once.
     const hasBeenVisible = useBlockedModalHasBeenVisible();
@@ -72,7 +74,8 @@ const withIsPatronBlockedHoc =
         )}
         {!blockedFromViewingContent && (
           <Component
-            /* eslint-disable-next-line react/jsx-props-no-spreading */
+            // TODO: Explicitly define prop types for better clarity
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...(props as P)}
           />
         )}

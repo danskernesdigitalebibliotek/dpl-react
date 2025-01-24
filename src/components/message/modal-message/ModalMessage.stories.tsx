@@ -6,7 +6,7 @@ import globalTextArgs, {
   argTypes as globalConfigArgTypes
 } from "../../../core/storybook/globalTextArgs";
 
-const Template: StoryFn<typeof ModalMessage> = (props) => {
+const ModalTemplate: StoryFn<typeof ModalMessage> = (props) => {
   const { open } = useModalButtonHandler();
 
   useEffect(() => {
@@ -21,7 +21,6 @@ const Template: StoryFn<typeof ModalMessage> = (props) => {
       classNames="modal-cta modal-padding"
     >
       <ModalMessage
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
         ctaButton={{ modalId: "modal-message", text: "Man" }}
       >
@@ -48,10 +47,7 @@ const meta: Meta<typeof ModalMessage> = {
     title: "This is a title",
     subTitle: "This is a subtitle"
   },
-  render: (args) => {
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    return <Template {...args} />;
-  }
+  render: ModalTemplate
 };
 
 export default meta;

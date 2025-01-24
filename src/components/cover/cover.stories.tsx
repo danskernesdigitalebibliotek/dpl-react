@@ -60,7 +60,6 @@ type Story = StoryObj<typeof Cover>;
 export const Item: Story = {
   render: (args) => {
     const WrappedCover = withUrls(Cover);
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <WrappedCover {...args} />;
   }
 };

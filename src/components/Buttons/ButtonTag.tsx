@@ -37,4 +37,5 @@ const ButtonTag = React.forwardRef<HTMLButtonElement, ButtonTagProps>(
   }
 );
 
+ButtonTag.displayName = "ButtonTag";
 export default ButtonTag;
