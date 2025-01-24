@@ -14,7 +14,6 @@ import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
-import featureFlag from "../../../../core/utils/featureFlag";
 import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 
 export interface MaterialButtonsOnlineProps {
@@ -40,23 +39,22 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       trackedData: workId
     });
   };
-  const { orderId } = useReaderPlayer(manifestations);
+  const { type: readerPlayerType } = useReaderPlayer(manifestations);
 
-  // Todo: Move logic for Player / Reader buttons / Links to here.
-  // if (condition) {
-  //   return <MaterialButtonsOnlineInternal manifestations={manifestations} />;
-  // }
+  if (readerPlayerType === "player" || readerPlayerType === "reader") {
+    return (
+      <MaterialButtonsOnlineInternal
+        openModal
+        size={size}
+        manifestations={manifestations}
+        dataCy={`${dataCy}-online-internal`}
+      />
+    );
+  }
 
-  // Find 'Ereol' object or default to the first 'access' object
-  const accessElement =
-    manifestations[0].access.find((item) => item.__typename === "Ereol") ||
-    manifestations[0].access[0];
-
-  // If the access type is an external type we'll show corresponding button.
-  if (
-    hasCorrectAccess("Ereol", manifestations) ||
-    hasCorrectAccess("AccessUrl", manifestations)
-  ) {
+  // Check if the access type is external (e.g., Filmstriben or eReolen Global).
+  if (hasCorrectAccess("AccessUrl", manifestations)) {
+    const accessElement = manifestations[0].access[0];
     const { origin, url: externalUrl } = accessElement as AccessUrl;
 
     //  We have experienced that externalUrl is not always valid.
@@ -67,28 +65,15 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     }
 
     return (
-      <>
-        {/* Display MaterialButtonOnlineExternal if the material is not part of the user's loans */}
-        {!orderId && (
-          <MaterialButtonOnlineExternal
-            externalUrl={externalUrl}
-            origin={origin}
-            size={size}
-            trackOnlineView={trackOnlineView}
-            manifestations={manifestations}
-            dataCy={`${dataCy}-external`}
-            ariaLabelledBy={ariaLabelledBy}
-          />
-        )}
-        {featureFlag.isActive("readerPlayer") && (
-          <MaterialButtonsOnlineInternal
-            openModal
-            size={size}
-            manifestations={manifestations}
-            dataCy={`${dataCy}-publizon`}
-          />
-        )}
-      </>
+      <MaterialButtonOnlineExternal
+        externalUrl={externalUrl}
+        origin={origin}
+        size={size}
+        trackOnlineView={trackOnlineView}
+        manifestations={manifestations}
+        dataCy={`${dataCy}-external`}
+        ariaLabelledBy={ariaLabelledBy}
+      />
     );
   }
 

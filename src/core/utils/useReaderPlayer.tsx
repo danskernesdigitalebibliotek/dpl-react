@@ -9,12 +9,16 @@ import {
 } from "../../components/reader-player/helper";
 import { isAnonymous } from "./helpers/user";
 import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
+import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
 
 const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   const isUserAnonymous = isAnonymous();
   const hasManifestations = !!manifestations?.length;
 
-  const type = hasManifestations ? getReaderPlayerType(manifestations) : null;
+  const type =
+    hasManifestations && hasCorrectAccess("Ereol", manifestations)
+      ? getReaderPlayerType(manifestations)
+      : null;
   const identifier = hasManifestations
     ? getManifestationIsbn(manifestations[0])
     : null;
