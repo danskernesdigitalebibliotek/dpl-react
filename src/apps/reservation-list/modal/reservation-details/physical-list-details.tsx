@@ -83,6 +83,7 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   const saveChanges = (formSelectValue: FormSelectValue) => {
     setReservationStatus("pending");
     if (!reservationIds || reservationIds.length === 0 || !selectedBranch) {
+      // eslint-disable-next-line no-console
       console.error("Missing reservationId or selectedBranch");
       setReservationStatus("error");
       return;

@@ -91,8 +91,9 @@ export default [
     },
 
     rules: {
-      "no-console": ["error", { allow: ["error"] }],
+      "no-console": "error",
       "no-alert": "error",
+      "no-script-url": "error",
       "prefer-arrow-callback": [
         "error",
         {
