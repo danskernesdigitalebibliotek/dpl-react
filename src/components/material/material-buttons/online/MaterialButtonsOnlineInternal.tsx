@@ -12,6 +12,7 @@ import LinkButton from "../../../Buttons/LinkButton";
 import { Button } from "../../../Buttons/Button";
 import {
   getGetV1UserLoansQueryKey,
+  getGetV1UserReservationsQueryKey,
   usePostV1UserLoansIdentifier,
   usePostV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
@@ -43,6 +44,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const t = useText();
   const u = useUrls();
   const authUrl = u("authUrl");
+  const reservationsUrl = u("reservationsUrl");
   const { open, openGuarded } = useModalButtonHandler();
   const { mutate: mutateLoan } = usePostV1UserLoansIdentifier();
   const { mutate: mutateReservation } = usePostV1UserReservationsIdentifier();
@@ -50,6 +52,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     type,
     orderId,
     identifier,
+    isAllReadyReservedButtonVisible,
     isMaterialLoanedButtonVisible,
     isLoanButtonVisible,
     isReserveButtonVisible
@@ -103,6 +106,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
         },
         {
           onSuccess: () => {
+            // Ensure that the button is updated after a successful reservation
+            queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
             if (setReservationStatus) {
               setReservationStatus("reserved");
             }
@@ -136,6 +141,20 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
 
   const renderReaderButton = () => {
     if (!identifier) return null;
+
+    if (isAllReadyReservedButtonVisible) {
+      return (
+        <LinkButton
+          dataCy=""
+          url={reservationsUrl}
+          buttonType="none"
+          size={size || "large"}
+          variant="filled"
+        >
+          {t("onlineMaterialAlreadyReservedText")}
+        </LinkButton>
+      );
+    }
 
     if (isMaterialLoanedButtonVisible && orderId) {
       return (

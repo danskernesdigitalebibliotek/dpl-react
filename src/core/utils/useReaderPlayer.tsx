@@ -1,11 +1,12 @@
-import { useGetV1UserLoans } from "../publizon/publizon";
+import useLoans from "./useLoans";
+import useReservations from "./useReservations";
 import { Manifestation } from "./types/entities";
 import { getManifestationIsbn } from "../../apps/material/helper";
 import {
   getOrderIdByIdentifier,
-  getReaderPlayerType
+  getReaderPlayerType,
+  isIdentifierReserved
 } from "../../components/reader-player/helper";
-import { mapPublizonLoanToLoanType } from "./helpers/list-mapper";
 import { isAnonymous } from "./helpers/user";
 import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
 
@@ -18,12 +19,13 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     ? getManifestationIsbn(manifestations[0])
     : null;
 
-  const { data: userData } = useGetV1UserLoans(
-    {},
-    {
-      query: { enabled: !isUserAnonymous && !!identifier }
-    }
-  );
+  const {
+    publizon: { loans }
+  } = useLoans();
+
+  const {
+    publizon: { reservations }
+  } = useReservations();
 
   const availabilityData = useOnlineAvailabilityData({
     enabled: !!identifier,
@@ -36,24 +38,20 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     ? false
     : availabilityData?.isAvailable;
 
-  // No need to check for userData.userData here since the "useGetV1UserLoans" query
-  // is disabled for anonymous users. Additionally, we still want to return
-  // the identifier even if the user is anonymous.
-  const loans = userData?.loans
-    ? mapPublizonLoanToLoanType(userData.loans)
-    : null;
   const orderId =
     loans && identifier ? getOrderIdByIdentifier({ loans, identifier }) : null;
 
+  const isAllReadyReservedButtonVisible =
+    identifier && isIdentifierReserved(identifier, reservations);
   const isMaterialLoanedButtonVisible = !!orderId;
   const isLoanButtonVisible = isUserAnonymous || isAvailable;
   const isReserveButtonVisible = !isAvailable;
-  // Todo: What if the matrial is allready reserved?
 
   return {
     type,
     identifier,
     orderId,
+    isAllReadyReservedButtonVisible,
     isMaterialLoanedButtonVisible,
     isLoanButtonVisible,
     isReserveButtonVisible

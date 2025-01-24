@@ -108,6 +108,7 @@ interface MaterialEntryTextProps {
   onlineInternalSuccessReservedText: string;
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
+  onlineMaterialAlreadyReservedText: string;
   onlineMaterialPlayerText: string;
   onlineMaterialReaderText: string;
   onlineMaterialTeaserText: string;

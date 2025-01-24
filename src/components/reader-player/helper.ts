@@ -2,6 +2,7 @@ import { getMaterialTypes } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import { ReservationType } from "../../core/utils/types/reservation-type";
 
 type AssetType = {
   src: string;
@@ -108,5 +109,14 @@ export const getReaderPlayerType = (
 
   return null;
 };
+
+export const isIdentifierReserved = (
+  identifier: string,
+  reservations: ReservationType[]
+) =>
+  reservations.some(
+    (reservation) =>
+      reservation.identifier === identifier && reservation.state === "reserved"
+  );
 
 export default {};
