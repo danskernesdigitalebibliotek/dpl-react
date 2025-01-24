@@ -10,7 +10,7 @@ export interface ReservationDetailsRedirectProps {
   openReservationDeleteModal: (deleteReservation: ReservationType) => void;
   className?: string;
   linkClassNames?: string;
-  externalLink: URL;
+  workUrl: URL;
 }
 
 const ReservationDetailsRedirect: FC<
@@ -20,7 +20,7 @@ const ReservationDetailsRedirect: FC<
   openReservationDeleteModal,
   className,
   linkClassNames,
-  externalLink
+  workUrl
 }) => {
   const t = useText();
 
@@ -38,15 +38,15 @@ const ReservationDetailsRedirect: FC<
         dataCy="remove-digital-reservation-button"
       />
       <LinkButton
-        dataCy="go-to-ereolen-button"
+        dataCy="go-to-material-button"
         size="small"
-        url={externalLink}
+        url={workUrl}
         variant="filled"
-        id="go-to-ereolen-button"
+        id="go-to-material-button"
         iconClassNames="btn-icon invert"
         buttonType="external-link"
       >
-        {t("reservationDetailsDigitalReservationGoToEreolenText")}
+        {t("materialDetailsGoToMaterialText")}
       </LinkButton>
     </div>
   );

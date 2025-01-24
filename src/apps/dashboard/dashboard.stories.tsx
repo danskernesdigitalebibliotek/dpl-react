@@ -62,9 +62,6 @@ const meta: Meta<typeof DashBoard> = {
     reservationsUrl: {
       control: { type: "text" }
     },
-    ereolenHomepageUrl: {
-      control: { type: "text" }
-    },
     yourProfileText: {
       control: { type: "text" }
     },
@@ -172,7 +169,6 @@ export const Primary: Story = {
     ...globalConfigArgs,
     physicalLoansUrl: "/user/me/loans",
     reservationsUrl: "/user/me/reservations",
-    ereolenHomepageUrl: "https://ereolen.dk/",
     yourProfileText: "Your profile",
     feesText: "Fees",
     totalOwedText: "You owe in total",
