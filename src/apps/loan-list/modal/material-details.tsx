@@ -23,7 +23,6 @@ import { RenewedLoanV2 } from "../../../core/fbs/model";
 import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
 import { formatDate } from "../../../core/utils/helpers/date";
 import useGetWorkUrlFromPublizonIdentifier from "../../../core/utils/useGetWorkUrlFromPublizonIdentifier";
-import featureFlag from "../../../core/utils/featureFlag";
 
 interface MaterialDetailsProps {
   loan: LoanType | null;
@@ -121,9 +120,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {featureFlag.isActive("readerPlayer") &&
-          isDigital(loan) &&
-          workUrl ? (
+          {isDigital(loan) && workUrl ? (
             <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
               <Link
                 href={workUrl}
@@ -202,9 +199,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {featureFlag.isActive("readerPlayer") &&
-          isDigital(loan) &&
-          workUrl ? (
+          {isDigital(loan) && workUrl && (
             <div className="modal-details__buttons">
               <Link
                 href={workUrl}
@@ -213,24 +208,6 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
                 {t("materialDetailsGoToMaterialText")}
               </Link>
             </div>
-          ) : (
-            // Todo: Delete this else block after the readerPlayer feature flag is removed
-            !featureFlag.isActive("readerPlayer") &&
-            isDigital(loan) && (
-              <div className="modal-details__buttons">
-                <Link
-                  href={new URL("https://ereolen.dk/user/me")}
-                  className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
-                >
-                  Gå til eReolen test
-                  <img
-                    src={ExternalLinkIcon}
-                    className="btn-icon invert"
-                    alt=""
-                  />
-                </Link>
-              </div>
-            )
           )}
         </div>
       )}
