@@ -37,110 +37,116 @@ const OnlineInternalModalBody = ({
     selectedManifestations
   );
 
-  return (
-    <>
-      {reservationStatus === "idle" && (
-        <section className="reservation-modal">
-          <header className="reservation-modal-header">
-            <Cover ids={[manifestation.pid]} size="medium" animate />
-            <div className="reservation-modal-description">
-              <div className="reservation-modal-tag">
-                {getManifestationType(selectedManifestations)}
-              </div>
-              <h2 className="text-header-h2 mt-22 mb-8">
-                {manifestation.titles.main}
-              </h2>
-              {authorLine && (
-                <p className="text-body-medium-regular">{authorLine}</p>
-              )}
+  if (reservationStatus === "idle") {
+    return (
+      <section className="reservation-modal">
+        <header className="reservation-modal-header">
+          <Cover ids={[manifestation.pid]} size="medium" animate />
+          <div className="reservation-modal-description">
+            <div className="reservation-modal-tag">
+              {getManifestationType(selectedManifestations)}
             </div>
-          </header>
-
-          <div>
-            <div className="reservation-modal-submit">
-              {identifier && (
-                <MaterialAvailabilityTextOnline
-                  isbns={[identifier]}
-                  materialType={manifestationType}
-                />
-              )}
-              <MaterialButtonsOnlineInternal
-                openModal={false}
-                manifestations={selectedManifestations}
-                setReservationStatus={setReservationStatus}
-              />
-            </div>
-            {isReserveButtonVisible && (
-              <div className="reservation-modal-list">
-                {userData?.patron && (
-                  <OnlineInternalModalUserListItems
-                    patron={userData.patron}
-                    reservationStatus={reservationStatus}
-                  />
-                )}
-              </div>
+            <h2 className="text-header-h2 mt-22 mb-8">
+              {manifestation.titles.main}
+            </h2>
+            {authorLine && (
+              <p className="text-body-medium-regular">{authorLine}</p>
             )}
           </div>
-        </section>
-      )}
+        </header>
 
-      {reservationStatus === "loaned" && (
-        <ModalMessage
-          title={t("onlineInternalResponseTitleText")}
-          subTitle={manifestation.titles.main[0]}
-        >
-          <p
-            data-cy="open-oprder-response-status-text"
-            className="text-body-medium-regular pt-24"
-          >
-            {t("onlineInternalSuccessLoanedText")}
-          </p>
-          <MaterialButtonsOnlineInternal
-            openModal={false}
-            manifestations={selectedManifestations}
-          />
-        </ModalMessage>
-      )}
+        <div>
+          <div className="reservation-modal-submit">
+            {identifier && (
+              <MaterialAvailabilityTextOnline
+                isbns={[identifier]}
+                materialType={manifestationType}
+              />
+            )}
+            <MaterialButtonsOnlineInternal
+              openModal={false}
+              manifestations={selectedManifestations}
+              setReservationStatus={setReservationStatus}
+            />
+          </div>
+          {isReserveButtonVisible && (
+            <div className="reservation-modal-list">
+              {userData?.patron && (
+                <OnlineInternalModalUserListItems
+                  patron={userData.patron}
+                  reservationStatus={reservationStatus}
+                />
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
 
-      {reservationStatus === "reserved" && (
-        <ModalMessage
-          title={t("onlineInternalResponseTitleText")}
-          subTitle={manifestation.titles.main[0]}
-          ctaButton={{
-            text: t("okButtonText"),
-            modalId: onlineInternalModalId(faustIds),
-            dataCy: "online-internal-close-button"
-          }}
+  if (reservationStatus === "loaned") {
+    return (
+      <ModalMessage
+        title={t("onlineInternalResponseTitleText")}
+        subTitle={manifestation.titles.main[0]}
+      >
+        <p
+          data-cy="open-oprder-response-status-text"
+          className="text-body-medium-regular pt-24"
         >
-          <p
-            data-cy="open-oprder-response-status-text"
-            className="text-body-medium-regular pt-24"
-          >
-            {t("onlineInternalSuccessReservedText")}
-          </p>
-        </ModalMessage>
-      )}
+          {t("onlineInternalSuccessLoanedText")}
+        </p>
+        <MaterialButtonsOnlineInternal
+          openModal={false}
+          manifestations={selectedManifestations}
+        />
+      </ModalMessage>
+    );
+  }
 
-      {reservationStatus === "error" && (
-        <ModalMessage
-          title={t("onlineInternalResponseTitleText")}
-          subTitle={manifestation.titles.main[0]}
-          ctaButton={{
-            text: t("tryAginButtonText"),
-            modalId: onlineInternalModalId(faustIds),
-            dataCy: "online-internal-close-button"
-          }}
+  if (reservationStatus === "reserved") {
+    return (
+      <ModalMessage
+        title={t("onlineInternalResponseTitleText")}
+        subTitle={manifestation.titles.main[0]}
+        ctaButton={{
+          text: t("okButtonText"),
+          modalId: onlineInternalModalId(faustIds),
+          dataCy: "online-internal-close-button"
+        }}
+      >
+        <p
+          data-cy="open-oprder-response-status-text"
+          className="text-body-medium-regular pt-24"
         >
-          <p
-            data-cy="open-oprder-response-status-text"
-            className="text-body-medium-regular pt-24"
-          >
-            {t("onlineInternalErrorsText")}
-          </p>
-        </ModalMessage>
-      )}
-    </>
-  );
+          {t("onlineInternalSuccessReservedText")}
+        </p>
+      </ModalMessage>
+    );
+  }
+
+  if (reservationStatus === "error") {
+    return (
+      <ModalMessage
+        title={t("onlineInternalResponseTitleText")}
+        subTitle={manifestation.titles.main[0]}
+        ctaButton={{
+          text: t("tryAginButtonText"),
+          modalId: onlineInternalModalId(faustIds),
+          dataCy: "online-internal-close-button"
+        }}
+      >
+        <p
+          data-cy="open-oprder-response-status-text"
+          className="text-body-medium-regular pt-24"
+        >
+          {t("onlineInternalErrorsText")}
+        </p>
+      </ModalMessage>
+    );
+  }
+
+  return null;
 };
 
 export default OnlineInternalModalBody;
