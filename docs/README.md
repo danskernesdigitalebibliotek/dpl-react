@@ -43,7 +43,7 @@ If you want to enable step debugging you need to:
 
 - Copy .vscode.example/launch.json into .vscode/
 - Mark 1 or more breakpoints on a line in the left gutter on an open file
-- In the top menu in VS Code choose:  Run -> Start Debugging
+- In the top menu in VS Code choose: Run -> Start Debugging
 - Type in your user password if ask to
 - Start debugging 🤖∿💻
 
@@ -58,7 +58,7 @@ obtained from your library partner or directly from DBC, the company responsible
 for running Adgangsplatformen and OpenPlatform.
 
 This project include a client id that matches the storybook setup which can be
-used for development purposes.  You can use the `/auth` story to sign in to
+used for development purposes. You can use the `/auth` story to sign in to
 Adgangsplatformen for the storybook context.
 
 (Note: if you enter Adgangsplatformen again after signing it, you will get
@@ -78,48 +78,16 @@ Workflow:
 
 #### JavaScript + JSX
 
-For static code analysis we make use of the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+For static code analysis, we use the recommended ESLint rules included in the ESLint package,
 and for formatting we make use of [Prettier](https://github.com/prettier/prettier)
 with the default configuration. The above choices have been influenced by a
 multitude of factors:
 
-- Historically Drupal core have been making use of the Airbnb JavaScript Style
-  Guide.
-- Airbnb's standard is comparatively the [best known](https://github.com/airbnb/javascript/stargazers)
-  and one of the [most used](https://github.com/airbnb/javascript/network/dependents?package_id=UGFja2FnZS0xODIxMTAxOA%3D%3D)
-  in the JavaScript coding standard landscape.
+- Historically Drupal core have been making use of the Airbnb JavaScript Style Guide.
+- We previously used Airbnb for linting. This change is documented in [ADR-009: Remove Airbnb Lint Rules](../docs/adr/adr-009-remove-airbnb-lint-rules.md).
 
 This makes future adoption easier for onboarding contributors and support is to
 be expected for a long time.
-
-##### Named functions Vs. Anonymous arrow functions
-
-AirBnB's only guideline towards this is that anonymous arrow function are
-preferred over the normal anonymous function notation.
-
-When you must use an anonymous function (as when passing an inline callback),
-use arrow function notation.
-
-> Why? It creates a version of the function that executes in the context of
-> this, which is usually what you want, and is a more concise syntax.
->
-> Why not? If you have a fairly complicated function, you might move that logic
-> out into its own named function expression.
-
-[Reference](https://github.com/airbnb/javascript#arrows--use-them)
-
-This project stick to the above guideline as well. If we need to pass a function
-as part of a callback or in a promise chain and we on top of that need to pass
-some contextual variables that is not passed implicit from either the callback
-or the previous link in the promise chain we want to make use of an anonymous
-arrow function as our default.
-
-This comes with the build in disclaimer that if an anonymous function isn't
-required the implementer should heavily consider moving the logic out into it's
-own named function expression.
-
-The named function is primarily desired due to it's easier to debug nature in
-stacktraces.
 
 ### Create a new application
 
@@ -132,9 +100,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export function MyNewApplication({ text }) {
-  return (
-      <h2>{text}</h2>
-  );
+  return <h2>{text}</h2>;
 }
 
 MyNewApplication.defaultProps = {
@@ -163,7 +129,7 @@ import MyNewApplication from "./my-new-application";
 // set on the DOM element. See the section on "Naive app mount." for
 // an example.
 export function MyNewApplicationEntry(props) {
-  return <MyNewApplication text='Might be from a server?' />;
+  return <MyNewApplication text="Might be from a server?" />;
 }
 
 export default MyNewApplicationEntry;
@@ -204,7 +170,6 @@ export function WithoutData() {
   // Play around with the application itself without server side data.
   return <MyNewApplication />;
 }
-
 ```
 
 </details>
@@ -224,7 +189,7 @@ OR depending on your dev environment (docker or not)
 
 </details>
 
-__Voila!__ You browser should have opened and a storybook environment is ready
+**Voila!** You browser should have opened and a storybook environment is ready
 for you to tinker around.
 
 #### Application state-machine
@@ -232,8 +197,8 @@ for you to tinker around.
 Most applications will have multiple internal states, so to aid consistency,
 it's recommended to:
 
-``` javascript
-  const [status, setStatus] = useState("<initial state>");
+```javascript
+const [status, setStatus] = useState("<initial state>");
 ```
 
 and use the following states where appropriate:
@@ -286,9 +251,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export function MyNewApplication({ text }) {
-  return (
-      <h2 className='warm'>{text}</h2>
-  );
+  return <h2 className="warm">{text}</h2>;
 }
 
 MyNewApplication.defaultProps = {
@@ -313,7 +276,7 @@ import React from "react";
 import MyNewApplicationEntry from "./my-new-application.entry";
 import MyNewApplication from "./my-new-application";
 
-import './my-new-application.scss';
+import "./my-new-application.scss";
 
 export default { title: "Apps|My new application" };
 
@@ -330,7 +293,7 @@ export function WithoutData() {
 
 </details>
 
-__Cowabunga!__ You now got styling in your application
+**Cowabunga!** You now got styling in your application
 
 ### Style using the DPL design system
 
@@ -404,7 +367,7 @@ some structural differences might be needed.
 ```javascript
 // ./src/components/atoms/my-new-atom/my-new-atom.jsx
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 /**
  * A simple button.
@@ -420,11 +383,11 @@ export function MyNewAtom({ className, children }) {
 MyNewAtom.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired
-}
+};
 
 MyNewAtom.defaultProps = {
   className: ""
-}
+};
 
 export default MyNewAtom;
 ```
@@ -437,7 +400,7 @@ export default MyNewAtom;
 ```scss
 // ./src/components/atoms/my-new-atom/my-new-atom.scss
 .dpl-btn {
-    color: blue;
+  color: blue;
 }
 ```
 
@@ -448,8 +411,8 @@ export default MyNewAtom;
 
 ```scss
 // ./src/components/components.scss
-@import 'atoms/button/button.scss';
-@import 'atoms/my-new-atom/my-new-atom.scss';
+@import "atoms/button/button.scss";
+@import "atoms/my-new-atom/my-new-atom.scss";
 ```
 
 </details>
@@ -477,17 +440,17 @@ you would want to use it</summary>
 
 ```javascript
 // ./src/apps/my-new-application/my-new-application.jsx
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
-import MyNewAtom from "../../components/atom/my-new-atom/my-new-atom"
+import MyNewAtom from "../../components/atom/my-new-atom/my-new-atom";
 
 export function MyNewApplication({ text }) {
   return (
-      <Fragment>
-        <h2 className='warm'>{text}</h2>
-        <MyNewAtom className='additional-class' />
-      </Fragment>
+    <Fragment>
+      <h2 className="warm">{text}</h2>
+      <MyNewAtom className="additional-class" />
+    </Fragment>
   );
 }
 
@@ -504,7 +467,7 @@ export default MyNewApplication;
 
 </details>
 
-__Finito!__ You now know how to share code across applications
+**Finito!** You now know how to share code across applications
 
 #### Creating a component
 
@@ -549,21 +512,24 @@ this:
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Naive mount</title>
     <!-- Include CSS files to provide default styling -->
-    <link rel="stylesheet" href="/dist/components.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/dist/components.css" />
+  </head>
+  <body>
     <b>Here be dragons!</b>
     <!-- Data attributes will be camelCased on the react side aka.
          props.errorText and props.text -->
-    <div data-dpl-app='add-to-checklist' data-text="Chromatic dragon"
-         data-error-text="Minor mistake"></div>
-    <div data-dpl-app='a-none-existing-app'></div>
+    <div
+      data-dpl-app="add-to-checklist"
+      data-text="Chromatic dragon"
+      data-error-text="Minor mistake"
+    ></div>
+    <div data-dpl-app="a-none-existing-app"></div>
 
     <!-- Load order og scripts is of importance here -->
     <script src="/dist/runtime.js"></script>
@@ -574,15 +540,15 @@ this:
     <script>
       // For making successful requests to the different services we need one or
       // more valid tokens.
-     window.dplReact.setToken("user","XXXXXXXXXXXXXXXXXXXXXX");
-     window.dplReact.setToken("library","YYYYYYYYYYYYYYYYYYYYYY");
+      window.dplReact.setToken("user", "XXXXXXXXXXXXXXXXXXXXXX");
+      window.dplReact.setToken("library", "YYYYYYYYYYYYYYYYYYYYYY");
 
       // If this function isn't called no apps will display.
       // An app will only be displayed if there is a container for it
       // and a corresponding application loaded.
       window.dplReact.mount(document);
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -598,7 +564,7 @@ To mount the application you need an HTML element with the correct data
 attribute.
 
 ```html
-<div data-dpl-app='add-to-checklist'></div>
+<div data-dpl-app="add-to-checklist"></div>
 ```
 
 The name of the data attribute should be `data-dpl-app` and the value should be
@@ -613,8 +579,11 @@ can be passed if necessary. Examples would be contextual ids etc. Normally these
 would be passed in by the serverside platform e.g. Drupal, Wordpress etc.
 
 ```html
-<div data-dpl-app='add-to-checklist' data-id="870970-basis:54172613"
-     data-error-text="A mistake was made"></div>
+<div
+  data-dpl-app="add-to-checklist"
+  data-id="870970-basis:54172613"
+  data-error-text="A mistake was made"
+></div>
 ```
 
 The above `data-id` would be accessed as `props.id` and `data-error-text` as
@@ -665,7 +634,6 @@ export function WithoutData() {
   // Play around with the application itself without server side data.
   return <MyNewApplication />;
 }
-
 ```
 
 </details>
