@@ -36,7 +36,7 @@ type MaterialButtonsOnlineInternalType = {
 const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   size,
   manifestations,
-  dataCy = "material-button-online-publizon",
+  dataCy = "material-button-online-internal",
   openModal,
   setReservationStatus
 }) => {
@@ -145,7 +145,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     if (isAllReadyReservedButtonVisible) {
       return (
         <LinkButton
-          dataCy=""
+          dataCy={`${dataCy}-reader`}
           url={reservationsUrl}
           buttonType="none"
           size={size || "large"}

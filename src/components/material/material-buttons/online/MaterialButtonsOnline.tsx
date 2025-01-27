@@ -47,7 +47,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         openModal
         size={size}
         manifestations={manifestations}
-        dataCy={`${dataCy}-online-internal`}
+        dataCy={`${dataCy}-internal`}
       />
     );
   }

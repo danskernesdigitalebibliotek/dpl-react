@@ -63,13 +63,15 @@ describe("Material buttons", () => {
       .and("contain", "Can't be reserved");
   });
 
-  it("Renders the correct action button for ebooks from ereolen", () => {
+  it("Renders the correct action button for ebooks", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
       .scrollIntoView();
 
     cy.getBySel("availability-label").contains("e-bog").first().click();
-    cy.getBySel("material-buttons-online-external").contains("Go to ereolen");
+    cy.getBySel("material-header-buttons-online-internal-reader").contains(
+      "Loan e-bog"
+    );
   });
 
   it("Renders the correct action button for movies from filmstriben", () => {
