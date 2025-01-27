@@ -44,8 +44,12 @@ export const removeQueryParametersFromUrl = (parameter: string) => {
   replaceCurrentLocation(processedUrl);
 };
 
-export const redirectTo = (url: URL): void => {
-  window.location.assign(String(url));
+export const redirectTo = (url: URL, isNewTab?: boolean): void => {
+  if (isNewTab) {
+    window.open(String(url), "_blank");
+  } else {
+    window.location.assign(String(url));
+  }
 };
 
 export const constructUrlWithPlaceholder = (
