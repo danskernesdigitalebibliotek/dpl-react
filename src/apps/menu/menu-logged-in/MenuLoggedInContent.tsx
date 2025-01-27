@@ -14,6 +14,8 @@ import useReservations from "../../../core/utils/useReservations";
 import useLoans from "../../../core/utils/useLoans";
 import { usePatronData } from "../../../core/utils/helpers/usePatronData";
 import { resetPersistedData } from "../../../core/store";
+import { Button } from "../../../components/Buttons/Button";
+import { redirectTo } from "../../../core/utils/helpers/url";
 
 interface MenuLoggedInContentProps {
   pageSize: number;
@@ -111,13 +113,18 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
           </ul>
         </nav>
         <div className="modal-profile__btn-logout mx-32">
-          <Link
-            className="btn-primary btn-filled btn-large arrow__hover--right-small"
-            onClick={() => resetPersistedData()}
-            href={logoutUrl}
-          >
-            {t("menuLogOutText")}
-          </Link>
+          <Button
+            label={t("menuLogOutText")}
+            buttonType="none"
+            size="large"
+            variant="filled"
+            collapsible={false}
+            onClick={() => {
+              resetPersistedData();
+              redirectTo(logoutUrl);
+            }}
+            canOnlyBeClickedOnce
+          />
         </div>
       </div>
     </div>

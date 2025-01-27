@@ -1,16 +1,15 @@
-import clsx from "clsx";
 import React from "react";
 import {
   ButtonSize,
   ButtonType,
   ButtonVariant
 } from "../../core/utils/types/button";
-import Link from "../atoms/links/Link";
-import { ButtonIcon } from "./ButtonIcon";
+import { Button } from "./Button";
+import { redirectTo } from "../../core/utils/helpers/url";
 
 export interface LinkButtonProps {
   buttonType?: ButtonType;
-  children: React.ReactNode;
+  children: string;
   classNames?: string;
   dataCy?: string;
   iconClassNames?: string;
@@ -38,26 +37,23 @@ const LinkButton: React.FC<LinkButtonProps> = ({
   id
 }) => {
   return (
-    <Link
-      href={url}
-      isNewTab={isNewTab}
-      className={clsx(
-        "btn-primary",
-        `btn-${variant}`,
-        `btn-${size}`,
-        "arrow__hover--right-small",
-        "hide-linkstyle",
-        classNames
-      )}
-      trackClick={trackClick}
+    <Button
+      variant={variant}
+      size={size}
+      buttonType={buttonType || "none"}
+      classNames={classNames}
+      iconClassNames={iconClassNames}
+      onClick={() => {
+        if (trackClick) trackClick?.().then(() => redirectTo(url, isNewTab));
+        if (!trackClick) redirectTo(url, isNewTab);
+      }}
       dataCy={dataCy}
-      ariaLabelledBy={ariaLabelledBy}
+      ariaDescribedBy={ariaLabelledBy}
       id={id}
       canOnlyBeClickedOnce
-    >
-      {children}
-      <ButtonIcon buttonType={buttonType} iconClassNames={iconClassNames} />
-    </Link>
+      label={children}
+      collapsible={false}
+    />
   );
 };
 

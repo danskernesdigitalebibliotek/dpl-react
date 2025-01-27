@@ -76,7 +76,7 @@ const WarningBar: FC<WarningBarProps> = ({
                 variant="filled"
                 ariaLabelledBy={labelId}
               >
-                {rightButtonText}
+                {rightButtonText || ""}
               </LinkButton>
             </>
           )}
