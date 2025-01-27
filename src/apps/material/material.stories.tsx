@@ -355,6 +355,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Reservation Success title",
       control: { type: "text" }
     },
+    reservationsUrl: {
+      description: "Reservations URL",
+      control: { type: "text" }
+    },
     reservationSuccesIsReservedForYouText: {
       description: "Reservation Success Title",
       control: { type: "text" }
@@ -660,6 +664,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Instant loan underline description",
       control: { type: "text" }
     },
+    expirationWarningDaysBeforeConfig: {
+      description: "Expiration warning days before",
+      control: { type: "text" }
+    },
     instantLoanConfig: {
       description: "Instant loan config",
       control: { type: "text" }
@@ -845,6 +853,7 @@ const meta: Meta<typeof MaterialEntry> = {
     reservationDetailsNoInterestAfterTitleText: "Have no interest after",
     daysText: "Days",
     reservationSuccesTitleText: "Material is available and reserved for you!",
+    reservationsUrl: "/user/me/reservations",
     reservationSuccesIsReservedForYouText: "is reserved for you",
     reservationSuccessPreferredPickupBranchText:
       "Material is available and you will get a message when it is ready for pickup - pickup at @branch",
@@ -945,6 +954,7 @@ const meta: Meta<typeof MaterialEntry> = {
     instantLoanSubTitleText: "Spring køen over og hent bogen nu på",
     instantLoanUnderlineDescriptionText:
       "Bogen er tilgængelig på disse biblioteker nær dig",
+    expirationWarningDaysBeforeConfig: "1",
     instantLoanConfig:
       '{ "threshold": "1", "matchStrings": ["Standard"], "enabled": "true" }',
     interestPeriodsConfig:

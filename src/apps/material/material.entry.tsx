@@ -172,6 +172,7 @@ interface MaterialEntryTextProps {
   reservationSuccesIsReservedForYouText: string;
   reservationSuccessPreferredPickupBranchText: string;
   reservationSuccesTitleText: string;
+  reservationsUrl: string;
   reserveBookText: string;
   reserveText: string;
   reserveWithMaterialTypeText: string;
@@ -188,6 +189,7 @@ interface MaterialEntryConfigProps {
   blacklistedInstantLoanBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
+  expirationWarningDaysBeforeConfig: string;
   instantLoanConfig: string;
   smsNotificationsForReservationsEnabledConfig: string;
 }
