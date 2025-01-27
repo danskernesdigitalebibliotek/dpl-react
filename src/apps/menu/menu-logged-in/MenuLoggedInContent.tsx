@@ -124,6 +124,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
               redirectTo(logoutUrl);
             }}
             canOnlyBeClickedOnce
+            dataCy="menu-logout-button"
           />
         </div>
       </div>
