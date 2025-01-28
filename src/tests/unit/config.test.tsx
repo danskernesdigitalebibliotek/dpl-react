@@ -2,7 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import React, { ReactNode } from "react";
 import { Provider } from "react-redux";
 import { expect, test } from "vitest";
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook, act } from "@testing-library/react";
 import configReducer from "../../core/config.slice";
 import { useConfig } from "../../core/utils/config";
 

@@ -101,6 +101,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
           <ul className="modal-profile__links">
             {menuNavigationData.map((menuNavigationItem) => (
               <MenuNavigationItem
+                key={menuNavigationItem.dataId}
                 menuNavigationItem={menuNavigationItem}
                 loansCount={loans.length}
                 reservationCount={reservations.length}

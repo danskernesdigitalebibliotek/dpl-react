@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import * as React from "react";
 import { FC } from "react";
 import withFocusTrap from "../../../core/utils/withFocusTrap";
@@ -28,7 +27,11 @@ const ModalMessage: FC<ModalMessageProps> = React.forwardRef((props) => {
   const { ctaButton, ...messageProps } = props;
   return (
     <div className="modal-cta__container">
-      <Message {...messageProps} />
+      <Message
+        // TODO: Explicitly define prop types for better clarity
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...messageProps}
+      />
       <div className="modal-cta__buttons mt-48">
         {ctaButton && (
           <Button
@@ -58,4 +61,5 @@ const ModalMessage: FC<ModalMessageProps> = React.forwardRef((props) => {
   );
 });
 
+ModalMessage.displayName = "ModalMessage";
 export default withFocusTrap(ModalMessage);

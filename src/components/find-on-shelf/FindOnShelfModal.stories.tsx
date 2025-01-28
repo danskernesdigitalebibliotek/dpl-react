@@ -93,7 +93,6 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
       ...args,
       selectedPeriodical: storySelectedPeriodical
     };
-    /* eslint-enable no-param-reassign */
     const {
       manifestations: [{ pid }]
     } = args;
@@ -101,12 +100,11 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
     return (
       <>
         <WrappedMaterialButtonsFindOnShelf
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...modifiedArgs}
           size="small"
           faustIds={[convertPostIdToFaustId(pid)]}
         />
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+
         <WrappedFindOnShelfModal {...modifiedArgs} />
       </>
     );

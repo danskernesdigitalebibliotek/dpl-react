@@ -5,7 +5,7 @@
 
 // Todo: Find out to format this file correctly. Possibly as a ts file.
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { pascalCase } = require("change-case-all");
+import { pascalCase } from "change-case-all";
 
 /**
  * This function is used to convert the typescript symbols to pascal case
@@ -26,4 +26,4 @@ function PascalCaseMostly(str) {
   return pascalCase(str) || str;
 }
 
-module.exports = PascalCaseMostly;
+export default PascalCaseMostly;

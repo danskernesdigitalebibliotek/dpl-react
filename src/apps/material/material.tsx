@@ -38,6 +38,9 @@ import {
 } from "./helper";
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
+import PlayerModal from "../../components/material/player-modal/PlayerModal";
+import useReaderPlayer from "../../core/utils/useReaderPlayer";
+import featureFlag from "../../core/utils/featureFlag";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -54,6 +57,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data: userData } = usePatronData();
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
   const { track } = useStatistics();
+  const {
+    type: readerPlayerType,
+    identifier,
+    orderId
+  } = useReaderPlayer(selectedManifestations);
 
   useEffect(() => {
     setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));
@@ -163,6 +171,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       >
         {manifestations.map((manifestation) => (
           <ReservationFindOnShelfModals
+            key={manifestation.pid}
             patron={userData?.patron}
             manifestations={[manifestation]}
             selectedPeriodical={selectedPeriodical}
@@ -170,7 +179,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         ))}
-
         {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
           <InfomediaModal
             selectedManifestations={selectedManifestations}
@@ -193,6 +201,13 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         )}
+        {featureFlag.isActive("readerPlayer") &&
+          readerPlayerType === "player" && (
+            <>
+              {identifier && <PlayerModal identifier={identifier} />}
+              {orderId && <PlayerModal orderId={orderId} />}
+            </>
+          )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       {/* Since we cannot trust the editions for global manifestations */}

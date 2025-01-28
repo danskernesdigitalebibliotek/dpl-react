@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import "dayjs/locale/da";
 import weekOfYear from "dayjs/plugin/weekOfYear";
-import lodash from "lodash";
+import { upperFirst } from "lodash";
 import { DplOpeningHoursListGET200Item as OpeningHoursItem } from "../../core/dpl-cms/model";
 
 dayjs.locale("da");
@@ -34,7 +34,7 @@ export const formatWeekString = (
 };
 
 const capitalizeString = (string: string): string => {
-  return lodash.upperFirst(string);
+  return upperFirst(string);
 };
 
 export const formatDateToWeekday = (date: Date): string => {

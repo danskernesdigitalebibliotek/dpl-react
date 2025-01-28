@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { act, renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor, act } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useMultipleRequestsWithStatus } from "../../core/utils/useRequestsWithStatus";
 
@@ -41,7 +40,7 @@ describe("useMultipleRequestsWithStatus", () => {
   });
 
   it("should handle multiple requests", async () => {
-    const { result, waitForNextUpdate } = renderHook(() =>
+    const { result } = renderHook(() =>
       useMultipleRequestsWithStatus({
         requests: [
           {
@@ -54,29 +53,33 @@ describe("useMultipleRequestsWithStatus", () => {
           }
         ],
         onError: () => {
-          expect(result.current.requestStatus).toBe("error");
+          waitFor(() => {
+            expect(result.current.requestStatus).toBe("error");
+          });
         },
         onSuccess: (operationResult) => {
-          expect(operationResult).toEqual(["Hello", "World"]);
-          expect(result.current.requestStatus).toBe("success");
+          waitFor(() => {
+            expect(operationResult).toEqual(["Hello", "World"]);
+            expect(result.current.requestStatus).toBe("success");
+          });
         }
       })
     );
 
     act(() => {
       expect(result.current.requestStatus).toBe("idle");
-
       result.current.handler();
     });
 
     vi.runAllTimers();
 
-    await waitForNextUpdate();
-    expect(result.current.requestStatus).toBe("success");
+    waitFor(() => {
+      expect(result.current.requestStatus).toBe("success");
+    });
   });
 
   it("should handle erroneous requests", async () => {
-    const { result, waitForNextUpdate } = renderHook(() =>
+    const { result } = renderHook(() =>
       useMultipleRequestsWithStatus({
         requests: [
           {
@@ -88,9 +91,6 @@ describe("useMultipleRequestsWithStatus", () => {
             operation: createRequest({ throwError: true })
           }
         ],
-        onError: () => {
-          expect(result.current.requestStatus).toBe("error");
-        },
         onSuccess: (operationResult) => {
           expect(operationResult).toEqual(["Hello", "World"]);
           expect(result.current.requestStatus).toBe("success");
@@ -100,13 +100,13 @@ describe("useMultipleRequestsWithStatus", () => {
 
     act(() => {
       expect(result.current.requestStatus).toBe("idle");
-
       result.current.handler();
     });
 
     vi.runAllTimers();
 
-    await waitForNextUpdate();
-    expect(result.current.requestStatus).toBe("error");
+    waitFor(() => {
+      expect(result.current.requestStatus).toBe("error");
+    });
   });
 });

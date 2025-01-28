@@ -22,4 +22,6 @@ const MaterialListItem = forwardRef<HTMLLIElement, MaterialListItemProps>(
   }
 );
 
+MaterialListItem.displayName = "MaterialListItem";
+
 export default MaterialListItem;

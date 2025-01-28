@@ -2,6 +2,7 @@ import { RootState, useSelector } from "../store";
 import { addConfigEntries } from "../config.slice";
 import withSuffix from "./withSuffix";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function config(key: string): string;
 
 function config<T>(
