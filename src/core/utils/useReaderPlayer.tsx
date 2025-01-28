@@ -1,5 +1,3 @@
-import useLoans from "./useLoans";
-import useReservations from "./useReservations";
 import { Manifestation } from "./types/entities";
 import { getManifestationIsbn } from "../../apps/material/helper";
 import {
@@ -10,6 +8,14 @@ import {
 import { isAnonymous } from "./helpers/user";
 import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
 import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
+import {
+  useGetV1UserLoans,
+  useGetV1UserReservations
+} from "../publizon/publizon";
+import {
+  mapPublizonLoanToLoanType,
+  mapPublizonReservationToReservationType
+} from "./helpers/list-mapper";
 
 const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   const isUserAnonymous = isAnonymous();
@@ -23,13 +29,19 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     ? getManifestationIsbn(manifestations[0])
     : null;
 
-  const {
-    publizon: { loans }
-  } = useLoans();
-
-  const {
-    publizon: { reservations }
-  } = useReservations();
+  const { data: loansPublizon } = useGetV1UserLoans(
+    {},
+    { query: { enabled: !isUserAnonymous } }
+  );
+  const loans = loansPublizon?.loans
+    ? mapPublizonLoanToLoanType(loansPublizon.loans)
+    : null;
+  const { data: reservationsPublizon } = useGetV1UserReservations({
+    query: { enabled: !isUserAnonymous }
+  });
+  const reservations = reservationsPublizon?.reservations
+    ? mapPublizonReservationToReservationType(reservationsPublizon.reservations)
+    : null;
 
   const availabilityData = useOnlineAvailabilityData({
     enabled: !!identifier,
@@ -46,7 +58,9 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     loans && identifier ? getOrderIdByIdentifier({ loans, identifier }) : null;
 
   const isAllReadyReservedButtonVisible =
-    identifier && isIdentifierReserved(identifier, reservations);
+    identifier && reservations
+      ? isIdentifierReserved(identifier, reservations)
+      : false;
   const isMaterialLoanedButtonVisible = !!orderId;
   const isLoanButtonVisible = isUserAnonymous || isAvailable;
   const isReserveButtonVisible = !isAvailable;
