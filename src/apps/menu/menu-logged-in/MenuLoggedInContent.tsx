@@ -69,6 +69,11 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
     loansSoonOverdue.length !== 0 ||
     reservations.length !== 0;
 
+  const handleOnClick = () => {
+    resetPersistedData();
+    redirectTo(logoutUrl);
+  };
+
   return (
     <div className="modal-login modal-login--authenticated">
       <div className="modal-login__container">
@@ -119,10 +124,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
             size="large"
             variant="filled"
             collapsible={false}
-            onClick={() => {
-              resetPersistedData();
-              redirectTo(logoutUrl);
-            }}
+            onClick={handleOnClick}
             canOnlyBeClickedOnce
             dataCy="menu-logout-button"
           />
