@@ -110,11 +110,11 @@ export const getReaderPlayerType = (
   return null;
 };
 
-export const isIdentifierReserved = (
+export const getReservedReservation = (
   identifier: string,
   reservations: ReservationType[]
 ) =>
-  reservations.some(
+  reservations.find(
     (reservation) =>
       reservation.identifier === identifier && reservation.state === "reserved"
   );

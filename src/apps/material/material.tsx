@@ -41,6 +41,9 @@ import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
+import DeleteReservationModal, {
+  deleteReservationModalId
+} from "../reservation-list/modal/delete-reservation/delete-reservation-modal";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -60,7 +63,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const {
     type: readerPlayerType,
     identifier,
-    orderId
+    orderId,
+    resevation: publizonReservation
   } = useReaderPlayer(selectedManifestations);
 
   useEffect(() => {
@@ -207,10 +211,15 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             {orderId && <PlayerModal orderId={orderId} />}
           </>
         )}
-
         {(readerPlayerType === "reader" || readerPlayerType === "player") && (
           <OnlineInternalModal
             selectedManifestations={selectedManifestations}
+          />
+        )}
+        {publizonReservation && (
+          <DeleteReservationModal
+            modalId={deleteReservationModalId(publizonReservation)}
+            reservations={[publizonReservation]}
           />
         )}
       </MaterialHeader>

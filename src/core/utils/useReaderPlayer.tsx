@@ -3,7 +3,7 @@ import { getManifestationIsbn } from "../../apps/material/helper";
 import {
   getOrderIdByIdentifier,
   getReaderPlayerType,
-  isIdentifierReserved
+  getReservedReservation
 } from "../../components/reader-player/helper";
 import { isAnonymous } from "./helpers/user";
 import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
@@ -57,10 +57,12 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   const orderId =
     loans && identifier ? getOrderIdByIdentifier({ loans, identifier }) : null;
 
-  const isAllReadyReservedButtonVisible =
+  const resevation =
     identifier && reservations
-      ? isIdentifierReserved(identifier, reservations)
-      : false;
+      ? getReservedReservation(identifier, reservations)
+      : null;
+
+  const isAllReadyReservedButtonVisible = !!resevation;
   const isMaterialLoanedButtonVisible = !!orderId;
   const isLoanButtonVisible = isUserAnonymous || isAvailable;
   const isReserveButtonVisible = !isAvailable;
@@ -72,7 +74,8 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     isAllReadyReservedButtonVisible,
     isMaterialLoanedButtonVisible,
     isLoanButtonVisible,
-    isReserveButtonVisible
+    isReserveButtonVisible,
+    resevation
   };
 };
 

@@ -9,6 +9,9 @@ import globalTextArgs, {
 import globalConfigArgs, {
   argTypes as globalConfigArgTypes
 } from "../../core/storybook/globalConfigArgs";
+import deleteReservationModalArgs, {
+  argTypes as deleteReservationModalArgTypes
+} from "../../core/storybook/deleteReservationModalArgs";
 
 const meta: Meta<typeof MaterialEntry> = {
   title: "Apps / Material",
@@ -19,6 +22,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
+    ...deleteReservationModalArgTypes,
     searchUrl: {
       description: "Path to the search result page",
       control: { type: "text" }
@@ -353,10 +357,6 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     reservationSuccesTitleText: {
       description: "Reservation Success title",
-      control: { type: "text" }
-    },
-    reservationsUrl: {
-      description: "Reservations URL",
       control: { type: "text" }
     },
     reservationSuccesIsReservedForYouText: {
@@ -752,6 +752,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    ...deleteReservationModalArgs,
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
@@ -849,7 +850,6 @@ const meta: Meta<typeof MaterialEntry> = {
     reservationDetailsNoInterestAfterTitleText: "Have no interest after",
     daysText: "Days",
     reservationSuccesTitleText: "Material is available and reserved for you!",
-    reservationsUrl: "/user/me/reservations",
     reservationSuccesIsReservedForYouText: "is reserved for you",
     reservationSuccessPreferredPickupBranchText:
       "Material is available and you will get a message when it is ready for pickup - pickup at @branch",

@@ -24,6 +24,7 @@ import { useUrls } from "../../../../core/utils/url";
 import { onlineInternalModalId } from "../../../../apps/material/helper";
 import { usePatronData } from "../../../../core/utils/helpers/usePatronData";
 import { OnlineInternalRequestStatus } from "../../../../core/utils/types/request";
+import { deleteReservationModalId } from "../../../../apps/reservation-list/modal/delete-reservation/delete-reservation-modal";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -44,7 +45,6 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const t = useText();
   const u = useUrls();
   const authUrl = u("authUrl");
-  const reservationsUrl = u("reservationsUrl");
   const { open, openGuarded } = useModalButtonHandler();
   const { mutate: mutateLoan } = usePostV1UserLoansIdentifier();
   const { mutate: mutateReservation } = usePostV1UserReservationsIdentifier();
@@ -55,7 +55,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     isAllReadyReservedButtonVisible,
     isMaterialLoanedButtonVisible,
     isLoanButtonVisible,
-    isReserveButtonVisible
+    isReserveButtonVisible,
+    resevation
   } = useReaderPlayer(manifestations);
   const { data: userData } = usePatronData();
 
@@ -142,17 +143,20 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const renderReaderButton = () => {
     if (!identifier) return null;
 
-    if (isAllReadyReservedButtonVisible) {
+    if (isAllReadyReservedButtonVisible && resevation) {
       return (
-        <LinkButton
-          dataCy={`${dataCy}-reader`}
-          url={reservationsUrl}
+        <Button
+          dataCy="remove-digital-reservation-button"
+          label={t("reservationDetailsRemoveDigitalReservationText")}
           buttonType="none"
           size={size || "large"}
           variant="filled"
-        >
-          {t("onlineMaterialAlreadyReservedText")}
-        </LinkButton>
+          collapsible={false}
+          disabled={false}
+          onClick={() => {
+            open(deleteReservationModalId(resevation));
+          }}
+        />
       );
     }
 

@@ -7,6 +7,7 @@ import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
 
 interface MaterialEntryTextProps {
   alreadyReservedText: string;
@@ -172,7 +173,6 @@ interface MaterialEntryTextProps {
   reservationSuccesIsReservedForYouText: string;
   reservationSuccessPreferredPickupBranchText: string;
   reservationSuccesTitleText: string;
-  reservationsUrl: string;
   reserveBookText: string;
   reserveText: string;
   reserveWithMaterialTypeText: string;
@@ -197,7 +197,8 @@ export interface MaterialEntryProps
   extends GlobalUrlEntryPropsInterface,
     MaterialEntryTextProps,
     GlobalEntryTextProps,
-    MaterialEntryConfigProps {
+    MaterialEntryConfigProps,
+    DeleteReservationModalArgs {
   wid: WorkId;
 }
 
