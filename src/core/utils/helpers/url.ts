@@ -2,6 +2,10 @@ import { WorkId } from "../types/ids";
 
 export const getCurrentLocation = () => String(window.location);
 
+export const getQueryParams = (url: URL): Record<string, string> => {
+  return Object.fromEntries(url.searchParams);
+};
+
 export const appendQueryParametersToUrl = (
   url: URL,
   parameters: { [key: string]: string }
