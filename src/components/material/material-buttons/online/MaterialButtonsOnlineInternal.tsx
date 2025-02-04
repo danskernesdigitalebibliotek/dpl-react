@@ -25,6 +25,7 @@ import { onlineInternalModalId } from "../../../../apps/material/helper";
 import { usePatronData } from "../../../../core/utils/helpers/usePatronData";
 import { OnlineInternalRequestStatus } from "../../../../core/utils/types/request";
 import { deleteReservationModalId } from "../../../../apps/reservation-list/modal/delete-reservation/delete-reservation-modal";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -32,6 +33,7 @@ type MaterialButtonsOnlineInternalType = {
   dataCy?: string;
   openModal: boolean;
   setReservationStatus?: (status: OnlineInternalRequestStatus) => void;
+  setReservationToDelete: (reservationForModal: ReservationType) => void;
 };
 
 const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
@@ -39,7 +41,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   manifestations,
   dataCy = "material-button-online-internal",
   openModal,
-  setReservationStatus
+  setReservationStatus,
+  setReservationToDelete
 }) => {
   const queryClient = useQueryClient();
   const t = useText();
@@ -56,7 +59,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     isMaterialLoanedButtonVisible,
     isLoanButtonVisible,
     isReserveButtonVisible,
-    resevation
+    reservation
   } = useReaderPlayer(manifestations);
   const { data: userData } = usePatronData();
 
@@ -143,7 +146,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const renderReaderButton = () => {
     if (!identifier) return null;
 
-    if (isAllReadyReservedButtonVisible && resevation) {
+    if (isAllReadyReservedButtonVisible && reservation) {
       return (
         <Button
           dataCy="remove-digital-reservation-button"
@@ -154,7 +157,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           collapsible={false}
           disabled={false}
           onClick={() => {
-            open(deleteReservationModalId(resevation));
+            setReservationToDelete(reservation);
+            open(deleteReservationModalId(reservation));
           }}
         />
       );

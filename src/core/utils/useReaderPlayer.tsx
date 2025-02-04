@@ -57,12 +57,12 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   const orderId =
     loans && identifier ? getOrderIdByIdentifier({ loans, identifier }) : null;
 
-  const resevation =
+  const reservation =
     identifier && reservations
       ? getReservedReservation(identifier, reservations)
       : null;
 
-  const isAllReadyReservedButtonVisible = !!resevation;
+  const isAllReadyReservedButtonVisible = !!reservation;
   const isMaterialLoanedButtonVisible = !!orderId;
   const isLoanButtonVisible = isUserAnonymous || isAvailable;
   const isReserveButtonVisible = !isAvailable;
@@ -75,7 +75,7 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     isMaterialLoanedButtonVisible,
     isLoanButtonVisible,
     isReserveButtonVisible,
-    resevation
+    reservation
   };
 };
 

@@ -32,6 +32,7 @@ import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 import { isPeriodical, shouldShowMaterialAvailabilityText } from "./helper";
 import useAvailabilityData from "../availability-label/useAvailabilityData";
 import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
+import { ReservationType } from "../../core/utils/types/reservation-type";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -42,6 +43,7 @@ interface MaterialHeaderProps {
   selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
   children: React.ReactNode;
   isGlobalMaterial: boolean;
+  setReservationToDelete: (reservationForModal: ReservationType) => void;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -58,7 +60,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   selectedPeriodical,
   selectPeriodicalHandler,
   children,
-  isGlobalMaterial = false
+  isGlobalMaterial = false,
+  setReservationToDelete
 }) => {
   const materialTitleId = useId();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
@@ -174,6 +177,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                     workId={wid}
                     dataCy="material-header-buttons"
                     materialTitleId={materialTitleId}
+                    setReservationToDelete={setReservationToDelete}
                   />
                 </div>
                 {/* MaterialAvailabilityText is only shown for:

@@ -15,6 +15,7 @@ import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomedi
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
 import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -22,6 +23,7 @@ export interface MaterialButtonsOnlineProps {
   workId: WorkId;
   dataCy?: string;
   ariaLabelledBy: string;
+  setReservationToDelete: (reservationForModal: ReservationType) => void;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
@@ -29,7 +31,8 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   size,
   workId,
   dataCy = "material-buttons-online",
-  ariaLabelledBy
+  ariaLabelledBy,
+  setReservationToDelete
 }) => {
   const { track } = useStatistics();
   const trackOnlineView = () => {
@@ -48,6 +51,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         size={size}
         manifestations={manifestations}
         dataCy={`${dataCy}-internal`}
+        setReservationToDelete={setReservationToDelete}
       />
     );
   }
