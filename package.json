@@ -113,8 +113,8 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-webpack-plugin": "^4.2.0",
-    "globals": "^15.14.0",
     "glob": "11.0.1",
+    "globals": "^15.14.0",
     "happy-dom": "^16.8.1",
     "istanbul-lib-coverage": "^3.2.2",
     "markdownlint-cli2": "^0.16.0",
@@ -151,7 +151,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "^2025.3.0-8b43a6f3ed6ae3eb85e7ca687ac7bcb8886bc0a8",
+    "@danskernesdigitalebibliotek/dpl-design-system": "^2025.6.0-36f712576fe66e978382ee702a46c66379395d95",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",
