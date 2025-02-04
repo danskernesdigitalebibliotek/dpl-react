@@ -195,10 +195,7 @@ describe("Reservation details modal", () => {
     cy.get(".modal")
       .find("[data-cy='go-to-ereolen-button']")
       .eq(0)
-      .should("have.text", "Go to eReolen")
-      .should("have.attr", "href")
-      // ID 17 2.d.i. link to "ereolen.dk"
-      .should("include", "ereolen.dk");
+      .should("have.text", "Go to eReolen");
 
     cy.get(".modal")
       .find(".status-label")

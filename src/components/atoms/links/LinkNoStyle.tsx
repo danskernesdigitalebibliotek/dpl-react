@@ -6,7 +6,6 @@ export interface LinkNoStyleProps {
   children: React.ReactNode;
   isNewTab?: boolean;
   className?: string;
-  trackClick?: () => Promise<unknown>;
   dataCy?: string;
   ariaLabelledBy?: string;
   isHiddenFromScreenReaders?: boolean;
@@ -17,7 +16,6 @@ const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
   children,
   isNewTab = false,
   className,
-  trackClick,
   dataCy = "link-no-style",
   ariaLabelledBy,
   isHiddenFromScreenReaders
@@ -27,7 +25,6 @@ const LinkNoStyle: React.FC<LinkNoStyleProps> = ({
       href={url}
       isNewTab={isNewTab}
       className={`hide-linkstyle ${className || ""}`}
-      trackClick={trackClick}
       dataCy={dataCy}
       ariaLabelledBy={ariaLabelledBy}
       isHiddenFromScreenReaders={isHiddenFromScreenReaders}

@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
 import { useText } from "../../../../core/utils/text";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
@@ -44,9 +43,10 @@ const ReservationDetailsRedirect: FC<
         url={externalLink}
         variant="filled"
         id="go-to-ereolen-button"
+        iconClassNames="btn-icon invert"
+        buttonType="external-link"
       >
         {t("reservationDetailsDigitalReservationGoToEreolenText")}
-        <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
       </LinkButton>
     </div>
   );

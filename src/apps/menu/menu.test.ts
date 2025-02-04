@@ -322,8 +322,7 @@ describe("Menu (authenticated))", () => {
       .and("have.text", "2");
 
     // 2.e. “Log ud” knappen. Engelsk tekst: "Log out"
-    cy.get(".modal-profile__btn-logout")
-      .find("a")
+    cy.getBySel("menu-logout-button")
       .should("exist")
       .and("have.text", "Log out");
   });
