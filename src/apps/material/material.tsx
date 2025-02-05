@@ -41,10 +41,6 @@ import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
-import DeleteReservationModal, {
-  deleteReservationModalId
-} from "../reservation-list/modal/delete-reservation/delete-reservation-modal";
-import { ReservationType } from "../../core/utils/types/reservation-type";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -66,8 +62,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     identifier,
     orderId
   } = useReaderPlayer(selectedManifestations);
-  const [reservationToDelete, setReservationToDelete] =
-    useState<ReservationType | null>(null);
 
   useEffect(() => {
     setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));
@@ -174,7 +168,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         selectedPeriodical={selectedPeriodical}
         selectPeriodicalHandler={setSelectedPeriodical}
         isGlobalMaterial={workType === "global"}
-        setReservationToDelete={setReservationToDelete}
       >
         {manifestations.map((manifestation) => (
           <ReservationFindOnShelfModals
@@ -217,12 +210,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         {(readerPlayerType === "reader" || readerPlayerType === "player") && (
           <OnlineInternalModal
             selectedManifestations={selectedManifestations}
-          />
-        )}
-        {reservationToDelete && (
-          <DeleteReservationModal
-            modalId={deleteReservationModalId(reservationToDelete)}
-            reservations={[reservationToDelete]}
           />
         )}
       </MaterialHeader>

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useQueryClient } from "react-query";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialSecondaryLink from "../generic/MaterialSecondaryLink";
@@ -24,7 +24,9 @@ import { useUrls } from "../../../../core/utils/url";
 import { onlineInternalModalId } from "../../../../apps/material/helper";
 import { usePatronData } from "../../../../core/utils/helpers/usePatronData";
 import { OnlineInternalRequestStatus } from "../../../../core/utils/types/request";
-import { deleteReservationModalId } from "../../../../apps/reservation-list/modal/delete-reservation/delete-reservation-modal";
+import DeleteReservationModal, {
+  deleteReservationModalId
+} from "../../../../apps/reservation-list/modal/delete-reservation/delete-reservation-modal";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 
 type MaterialButtonsOnlineInternalType = {
@@ -33,7 +35,6 @@ type MaterialButtonsOnlineInternalType = {
   dataCy?: string;
   openModal: boolean;
   setReservationStatus?: (status: OnlineInternalRequestStatus) => void;
-  setReservationToDelete: (reservationForModal: ReservationType) => void;
 };
 
 const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
@@ -41,8 +42,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   manifestations,
   dataCy = "material-button-online-internal",
   openModal,
-  setReservationStatus,
-  setReservationToDelete
+  setReservationStatus
 }) => {
   const queryClient = useQueryClient();
   const t = useText();
@@ -62,6 +62,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     reservation
   } = useReaderPlayer(manifestations);
   const { data: userData } = usePatronData();
+  const [reservationToDelete, setReservationToDelete] =
+    useState<ReservationType | null>(null);
 
   const handleModalLoanReservation = () => {
     if (openModal) {
@@ -148,19 +150,21 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
 
     if (isAllReadyReservedButtonVisible && reservation) {
       return (
-        <Button
-          dataCy="remove-digital-reservation-button"
-          label={t("reservationDetailsRemoveDigitalReservationText")}
-          buttonType="none"
-          size={size || "large"}
-          variant="filled"
-          collapsible={false}
-          disabled={false}
-          onClick={() => {
-            setReservationToDelete(reservation);
-            open(deleteReservationModalId(reservation));
-          }}
-        />
+        <>
+          <Button
+            dataCy="remove-digital-reservation-button"
+            label={t("reservationDetailsRemoveDigitalReservationText")}
+            buttonType="none"
+            size={size || "large"}
+            variant="filled"
+            collapsible={false}
+            disabled={false}
+            onClick={() => {
+              setReservationToDelete(reservation);
+              open(deleteReservationModalId(reservation));
+            }}
+          />
+        </>
       );
     }
 
@@ -273,11 +277,23 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     return null;
   };
 
+  const renderDeleteReservationModal = () => {
+    if (!reservationToDelete) return null;
+
+    return (
+      <DeleteReservationModal
+        modalId={deleteReservationModalId(reservationToDelete)}
+        reservations={[reservationToDelete]}
+      />
+    );
+  };
+
   if (type === "reader") {
     return (
       <>
         {renderReaderButton()}
         {renderReaderTeaserButton()}
+        {renderDeleteReservationModal()}
       </>
     );
   }
@@ -287,6 +303,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       <>
         {renderPlayerButton()}
         {renderPlayerTeaserButton()}
+        {renderDeleteReservationModal()}
       </>
     );
   }

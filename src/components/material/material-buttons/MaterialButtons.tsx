@@ -14,7 +14,6 @@ import MaterialButtonsFindOnShelf from "./physical/MaterialButtonsFindOnShelf";
 import MaterialButtonsPhysical from "./physical/MaterialButtonsPhysical";
 import MaterialButtonReservableFromAnotherLibrary from "./physical/MaterialButtonReservableFromAnotherLibrary";
 import useReservableFromAnotherLibrary from "../../../core/utils/useReservableFromAnotherLibrary";
-import { ReservationType } from "../../../core/utils/types/reservation-type";
 
 export interface MaterialButtonsProps {
   manifestations: Manifestation[];
@@ -22,7 +21,6 @@ export interface MaterialButtonsProps {
   workId: WorkId;
   dataCy?: string;
   materialTitleId: string;
-  setReservationToDelete: (reservationForModal: ReservationType) => void;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
@@ -30,8 +28,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   size,
   workId,
   dataCy = "material-buttons",
-  materialTitleId,
-  setReservationToDelete
+  materialTitleId
 }) => {
   const faustIds = getAllFaustIds(manifestations);
   // We don't want to show physical buttons/find on shelf for articles because
@@ -76,7 +73,6 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
           workId={workId}
           dataCy={`${dataCy}-online`}
           ariaLabelledBy={materialTitleId}
-          setReservationToDelete={setReservationToDelete}
         />
       )}
     </>
