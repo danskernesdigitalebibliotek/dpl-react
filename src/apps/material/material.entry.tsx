@@ -101,8 +101,8 @@ interface MaterialEntryTextProps {
   numberDescriptionText: string;
   numberInQueueText: string;
   okButtonText: string;
-  onlineInternalModalCloseModalAriaLabelText: string;
-  onlineInternalModalScreenReaderModalDescriptionText: string;
+  onlineInternalModalCloseAriaLabelText: string;
+  onlineInternalModalScreenReaderDescriptionText: string;
   onlineInternalResponseTitleText: string;
   onlineInternalErrorsText: string;
   onlineInternalSuccessLoanedText: string;

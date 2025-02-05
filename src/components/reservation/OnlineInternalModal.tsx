@@ -22,9 +22,9 @@ const OnlineInternalModal = ({
     <Modal
       modalId={onlineInternalModalId(faustIds)}
       screenReaderModalDescriptionText={t(
-        "onlineInternalModalScreenReaderModalDescriptionText"
+        "onlineInternalModalScreenReaderDescriptionText"
       )}
-      closeModalAriaLabelText={t("onlineInternalModalCloseModalAriaLabelText")}
+      closeModalAriaLabelText={t("onlineInternalModalCloseAriaLabelText")}
       dataCy={dataCy || "online-internal-modal"}
       classNames="modal-cta"
     >

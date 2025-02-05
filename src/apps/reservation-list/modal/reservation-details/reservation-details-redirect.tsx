@@ -38,15 +38,15 @@ const ReservationDetailsRedirect: FC<
         dataCy="remove-digital-reservation-button"
       />
       <LinkButton
-        dataCy="go-to-material-button"
+        dataCy="view-material-button"
         size="small"
         url={workUrl}
         variant="filled"
-        id="go-to-material-button"
+        id="view-material-button"
         iconClassNames="btn-icon invert"
         buttonType="external-link"
       >
-        {t("materialDetailsGoToMaterialText")}
+        {t("viewMaterialText")}
       </LinkButton>
     </div>
   );

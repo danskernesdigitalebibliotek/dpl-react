@@ -96,7 +96,7 @@ const meta: Meta<typeof ReservationList> = {
     materialByAuthorText: {
       control: { type: "text" }
     },
-    materialDetailsGoToMaterialText: {
+    viewMaterialText: {
       control: { type: "text" }
     },
     materialUrl: {
@@ -242,7 +242,7 @@ export const Default: Story = {
     reservationListDigitalReservationsEmptyText:
       "At the moment you have 0 reservations on digital items",
     materialByAuthorText: "By",
-    materialDetailsGoToMaterialText: "Go to material",
+    viewMaterialText: "View material",
     materialUrl: "/work/:workid",
     materialAndAuthorText: "and",
     etAlText: "et al.",

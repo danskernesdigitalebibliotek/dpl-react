@@ -30,7 +30,7 @@ export interface ReservationListTextProps {
   expiresSoonText: string;
   materialAndAuthorText: string;
   materialByAuthorText: string;
-  materialDetailsGoToMaterialText: string;
+  viewMaterialText: string;
   materialUrl: string;
   pauseReservationModalBodyText: string;
   pauseReservationModalCancelButtonLabelText: string;

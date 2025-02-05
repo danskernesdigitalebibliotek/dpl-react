@@ -383,11 +383,11 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Ok button text",
       control: { type: "text" }
     },
-    onlineInternalModalCloseModalAriaLabelText: {
+    onlineInternalModalCloseAriaLabelText: {
       description: "Close reader/player modal",
       control: { type: "text" }
     },
-    onlineInternalModalScreenReaderModalDescriptionText: {
+    onlineInternalModalScreenReaderDescriptionText: {
       description: "reader/player modal screen reader description",
       control: { type: "text" }
     },
@@ -858,8 +858,8 @@ const meta: Meta<typeof MaterialEntry> = {
       "We're sorry. Unfortunately, there has been an error. Try again, please.",
     tryAginButtonText: "Try again",
     okButtonText: "Ok",
-    onlineInternalModalCloseModalAriaLabelText: "Close reader/player modal",
-    onlineInternalModalScreenReaderModalDescriptionText:
+    onlineInternalModalCloseAriaLabelText: "Close reader/player modal",
+    onlineInternalModalScreenReaderDescriptionText:
       "Modal for reader/player material",
     onlineInternalResponseTitleText:
       "Online material loan/reservation response",

@@ -126,7 +126,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
                 href={workUrl}
                 className="btn-primary btn-filled btn-small arrow__hover--right-small"
               >
-                {t("materialDetailsGoToMaterialText")}
+                {t("viewMaterialText")}
               </Link>
             </div>
           ) : (
@@ -205,7 +205,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
                 href={workUrl}
                 className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
               >
-                {t("materialDetailsGoToMaterialText")}
+                {t("viewMaterialText")}
               </Link>
             </div>
           )}
