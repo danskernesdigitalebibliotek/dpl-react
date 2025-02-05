@@ -62,19 +62,19 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
       ? getReservedReservation(identifier, reservations)
       : null;
 
-  const isAllReadyReservedButtonVisible = !!reservation;
-  const isMaterialLoanedButtonVisible = !!orderId;
-  const isLoanButtonVisible = isUserAnonymous || isAvailable;
-  const isReserveButtonVisible = !isAvailable;
+  const isAlreadyReserved = !!reservation;
+  const isAlreadyLoaned = !!orderId;
+  const canBeLoaned = isUserAnonymous || isAvailable;
+  const canBeReserved = !isAvailable;
 
   return {
     type,
     identifier,
     orderId,
-    isAllReadyReservedButtonVisible,
-    isMaterialLoanedButtonVisible,
-    isLoanButtonVisible,
-    isReserveButtonVisible,
+    isAlreadyReserved,
+    isAlreadyLoaned,
+    canBeLoaned,
+    canBeReserved,
     reservation
   };
 };

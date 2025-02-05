@@ -33,9 +33,7 @@ const OnlineInternalModalBody = ({
   const authorLine = getAuthorLine(manifestation, t);
 
   const { data: userData } = usePatronData();
-  const { identifier, isReserveButtonVisible } = useReaderPlayer(
-    selectedManifestations
-  );
+  const { identifier, canBeReserved } = useReaderPlayer(selectedManifestations);
 
   if (reservationStatus === "idle") {
     return (
@@ -69,7 +67,7 @@ const OnlineInternalModalBody = ({
               setReservationStatus={setReservationStatus}
             />
           </div>
-          {isReserveButtonVisible && (
+          {canBeReserved && (
             <div className="reservation-modal-list">
               {userData?.patron && (
                 <OnlineInternalModalUserListItems

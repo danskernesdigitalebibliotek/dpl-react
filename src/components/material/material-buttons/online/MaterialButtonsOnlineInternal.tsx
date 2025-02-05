@@ -55,10 +55,10 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     type,
     orderId,
     identifier,
-    isAllReadyReservedButtonVisible,
-    isMaterialLoanedButtonVisible,
-    isLoanButtonVisible,
-    isReserveButtonVisible,
+    isAlreadyReserved,
+    isAlreadyLoaned,
+    canBeLoaned,
+    canBeReserved,
     reservation
   } = useReaderPlayer(manifestations);
   const { data: userData } = usePatronData();
@@ -74,7 +74,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       return;
     }
 
-    if (isLoanButtonVisible && identifier) {
+    if (canBeLoaned && identifier) {
       mutateLoan(
         { identifier },
         {
@@ -95,7 +95,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       return;
     }
 
-    if (isReserveButtonVisible && identifier && userData?.patron) {
+    if (canBeReserved && identifier && userData?.patron) {
       mutateReservation(
         {
           identifier,
@@ -148,7 +148,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const renderReaderButton = () => {
     if (!identifier) return null;
 
-    if (isAllReadyReservedButtonVisible && reservation) {
+    if (isAlreadyReserved && reservation) {
       return (
         <>
           <Button
@@ -168,7 +168,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       );
     }
 
-    if (isMaterialLoanedButtonVisible && orderId) {
+    if (isAlreadyLoaned && orderId) {
       return (
         <LinkButton
           url={new URL(`/reader?orderid=${orderId}`, window.location.href)}
@@ -184,11 +184,11 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       );
     }
 
-    if (isReserveButtonVisible || isLoanButtonVisible) {
+    if (canBeReserved || canBeLoaned) {
       return (
         <Button
           dataCy={`${dataCy}-reader`}
-          label={isReserveButtonVisible ? reseveLabel : loanLabel}
+          label={canBeReserved ? reseveLabel : loanLabel}
           buttonType="none"
           variant="filled"
           size={size || "large"}
@@ -203,7 +203,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   };
 
   const renderReaderTeaserButton = () => {
-    if (isMaterialLoanedButtonVisible || !openModal) return null;
+    if (isAlreadyLoaned || !openModal) return null;
 
     if (identifier) {
       return (
@@ -223,7 +223,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const renderPlayerButton = () => {
     if (!identifier) return null;
 
-    if (isMaterialLoanedButtonVisible && orderId) {
+    if (isAlreadyLoaned && orderId) {
       return (
         <Button
           dataCy={`${dataCy}-player`}
@@ -240,11 +240,11 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       );
     }
 
-    if (isReserveButtonVisible || isLoanButtonVisible) {
+    if (canBeReserved || canBeLoaned) {
       return (
         <Button
           dataCy={`${dataCy}-player`}
-          label={isReserveButtonVisible ? reseveLabel : loanLabel}
+          label={canBeReserved ? reseveLabel : loanLabel}
           buttonType="none"
           variant="filled"
           size={size || "large"}
@@ -259,7 +259,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   };
 
   const renderPlayerTeaserButton = () => {
-    if (isMaterialLoanedButtonVisible || !openModal) return null;
+    if (isAlreadyLoaned || !openModal) return null;
 
     if (identifier) {
       return (
