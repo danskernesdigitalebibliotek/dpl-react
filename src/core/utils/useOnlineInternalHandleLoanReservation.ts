@@ -13,17 +13,20 @@ import { onlineInternalModalId } from "../../apps/material/helper";
 import { getAllFaustIds } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { OnlineInternalRequestStatus } from "../../core/utils/types/request";
+import { CreateLoanResult } from "../publizon/model";
 
 type useOnlineInternalHandleLoanReservationType = {
   manifestations: Manifestation[];
   openModal: boolean;
   setReservationStatus?: (status: OnlineInternalRequestStatus) => void;
+  setLoanResponse?: (response: CreateLoanResult | null) => void;
 };
 
 const useOnlineInternalHandleLoanReservation = ({
   manifestations,
   openModal,
-  setReservationStatus
+  setReservationStatus,
+  setLoanResponse
 }: useOnlineInternalHandleLoanReservationType) => {
   const queryClient = useQueryClient();
   const u = useUrls();
@@ -50,11 +53,14 @@ const useOnlineInternalHandleLoanReservation = ({
       mutateLoan(
         { identifier },
         {
-          onSuccess: () => {
+          onSuccess: (res) => {
             // Ensure that the button is updated after a successful loan
             queryClient.invalidateQueries(getGetV1UserLoansQueryKey());
             if (setReservationStatus) {
               setReservationStatus("loaned");
+            }
+            if (setLoanResponse) {
+              setLoanResponse(res);
             }
           },
           onError: () => {

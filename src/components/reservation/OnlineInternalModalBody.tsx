@@ -15,6 +15,8 @@ import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModalUserListItems from "./OnlineInternalModalUserListItems";
 import MaterialButtonsOnlineInternal from "../material/material-buttons/online/MaterialButtonsOnlineInternal";
 import { onlineInternalModalId } from "../../apps/material/helper";
+import { CreateLoanResult } from "../../core/publizon/model";
+import { formatDate } from "../../core/utils/helpers/date";
 
 type OnlineInternalModalBodyProps = {
   selectedManifestations: Manifestation[];
@@ -26,6 +28,9 @@ const OnlineInternalModalBody = ({
   const t = useText();
   const [reservationStatus, setReservationStatus] =
     useState<OnlineInternalRequestStatus>("idle");
+  const [loanResponse, setLoanResponse] = useState<CreateLoanResult | null>(
+    null
+  );
 
   const manifestationType = getManifestationType(selectedManifestations);
   const faustIds = getAllFaustIds(selectedManifestations);
@@ -65,6 +70,7 @@ const OnlineInternalModalBody = ({
               openModal={false}
               manifestations={selectedManifestations}
               setReservationStatus={setReservationStatus}
+              setLoanResponse={setLoanResponse}
             />
           </div>
           {canBeReserved && (
@@ -82,17 +88,23 @@ const OnlineInternalModalBody = ({
     );
   }
 
-  if (reservationStatus === "loaned") {
+  if (reservationStatus === "loaned" && loanResponse?.expirationDateUtc) {
     return (
       <ModalMessage
-        title={t("onlineInternalResponseTitleText")}
-        subTitle={manifestation.titles.main[0]}
+        title={t("onlineInternalResponseLoanedTitleText")}
+        subTitle={t("onlineInternalResponseLoanedSubtitleText", {
+          placeholders: { "@title": manifestation.titles.main[0] }
+        })}
       >
         <p
           data-cy="open-oprder-response-status-text"
-          className="text-body-medium-regular pt-24"
+          className="text-body-medium-regular pt-24 mb-24"
         >
-          {t("onlineInternalSuccessLoanedText")}
+          {t("onlineInternalSuccessLoanedText", {
+            placeholders: {
+              "@expirationDate": formatDate(loanResponse.expirationDateUtc)
+            }
+          })}
         </p>
         <MaterialButtonsOnlineInternal
           openModal={false}
@@ -105,8 +117,10 @@ const OnlineInternalModalBody = ({
   if (reservationStatus === "reserved") {
     return (
       <ModalMessage
-        title={t("onlineInternalResponseTitleText")}
-        subTitle={manifestation.titles.main[0]}
+        title={t("onlineInternalResponseReservedTitleText")}
+        subTitle={t("onlineInternalResponseReservedSubtitleText", {
+          placeholders: { "@title": manifestation.titles.main[0] }
+        })}
         ctaButton={{
           text: t("okButtonText"),
           modalId: onlineInternalModalId(faustIds),
@@ -126,8 +140,10 @@ const OnlineInternalModalBody = ({
   if (reservationStatus === "error") {
     return (
       <ModalMessage
-        title={t("onlineInternalResponseTitleText")}
-        subTitle={manifestation.titles.main[0]}
+        title={t("onlineInternalResponseErrorTitleText")}
+        subTitle={t("onlineInternalResponseErrorSubtitleText", {
+          placeholders: { "@title": manifestation.titles.main[0] }
+        })}
         ctaButton={{
           text: t("tryAginButtonText"),
           modalId: onlineInternalModalId(faustIds),

@@ -391,8 +391,28 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "reader/player modal screen reader description",
       control: { type: "text" }
     },
-    onlineInternalResponseTitleText: {
-      description: "reader/player Loan/reservation response title",
+    onlineInternalResponseErrorSubtitleText: {
+      description: "reader/player Error subtitle",
+      control: { type: "text" }
+    },
+    onlineInternalResponseErrorTitleText: {
+      description: "reader/player Error title",
+      control: { type: "text" }
+    },
+    onlineInternalResponseLoanedSubtitleText: {
+      description: "reader/player Loan response subtitle",
+      control: { type: "text" }
+    },
+    onlineInternalResponseLoanedTitleText: {
+      description: "reader/player Loan response title",
+      control: { type: "text" }
+    },
+    onlineInternalResponseReservedSubtitleText: {
+      description: "reader/player reservation response subtitle",
+      control: { type: "text" }
+    },
+    onlineInternalResponseReservedTitleText: {
+      description: "reader/player reservation response title",
       control: { type: "text" }
     },
     onlineInternalErrorsText: {
@@ -861,11 +881,20 @@ const meta: Meta<typeof MaterialEntry> = {
     onlineInternalModalCloseAriaLabelText: "Close reader/player modal",
     onlineInternalModalScreenReaderDescriptionText:
       "Modal for reader/player material",
-    onlineInternalResponseTitleText:
-      "Online material loan/reservation response",
+    onlineInternalResponseErrorSubtitleText:
+      "@title could not be borrowed or reserved",
+    onlineInternalResponseErrorTitleText: "Something went wrong.",
+    onlineInternalResponseLoanedSubtitleText: "@title is lent to you",
+    onlineInternalResponseLoanedTitleText:
+      "You have now borrowed the material!",
+    onlineInternalResponseReservedSubtitleText: "@title is reserved for you",
+    onlineInternalResponseReservedTitleText:
+      "The material is now reserved for you!",
     onlineInternalErrorsText: "something went wrong",
-    onlineInternalSuccessLoanedText: "E-material is loaned",
-    onlineInternalSuccessReservedText: "E-material is reserved",
+    onlineInternalSuccessLoanedText:
+      "You can read/listen to the material until @expirationDate",
+    onlineInternalSuccessReservedText:
+      "You will receive a message when reservation is met and the material is lent to you.",
     missingDataText: "Missing data",
     reservationModalScreenReaderModalDescriptionText: "Modal for reservation",
     reservationModalCloseModalAriaLabelText: "Close reservation modal",
