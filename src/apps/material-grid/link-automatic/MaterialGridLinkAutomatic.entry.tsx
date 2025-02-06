@@ -36,7 +36,7 @@ const MaterialGridLinkAutomaticEntry: React.FC<
 }) => (
   <GuardedApp app="material-grid-automatic">
     <MaterialGridLinkAutomatic
-      link={link}
+      link={new URL(link)}
       title={title}
       description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}

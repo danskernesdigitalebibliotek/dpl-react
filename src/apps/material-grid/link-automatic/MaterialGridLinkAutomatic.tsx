@@ -9,7 +9,7 @@ import { getQueryParams } from "../../../core/utils/helpers/url";
 import { commaSeparatedStringToArray } from "../../advanced-search/helpers";
 
 export type MaterialGridLinkAutomaticProps = {
-  link: string;
+  link: URL;
   title?: string;
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
@@ -23,9 +23,7 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
   selectedAmountOfMaterialsForDisplay
 }) => {
   const cleanBranches = useGetCleanBranches();
-  const { advancedSearchCql, location, sublocation } = getQueryParams(
-    new URL(link)
-  );
+  const { advancedSearchCql, location, sublocation } = getQueryParams(link);
 
   const { data, isLoading } = useComplexSearchWithPaginationQuery(
     {
