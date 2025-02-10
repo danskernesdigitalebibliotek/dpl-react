@@ -127,7 +127,7 @@
     "postcss-scss": "^4.0.9",
     "prettier": "^3.4.2",
     "replace-in-file": "^6.3.2",
-    "sass": "^1.83.4",
+    "sass": "^1.84.0",
     "source-map-support": "^0.5.21",
     "storybook": "^8.5.3",
     "style-loader": "^4.0.0",
