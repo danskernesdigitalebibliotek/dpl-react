@@ -3,8 +3,7 @@ import { EventImpl } from "@fullcalendar/core/internal";
 import {
   adjustEndDateBasedOnStartDate,
   formatFullCalendarEventToCmsEventEdit,
-  isOpeningHourWeeklyRepetition,
-  updateDateTime
+  isOpeningHourWeeklyRepetition
 } from "./helper";
 import EventForm, { EventFormOnSubmitType } from "./EventForm";
 import { useText } from "../../core/utils/text";
@@ -16,6 +15,7 @@ import {
 import useDialog from "../../components/dialog/useDialog";
 import Dialog from "../../components/dialog/Dialog";
 import ConfirmEditRepeatedOpeningHour from "./ConfirmEditRepeatedOpeningHour";
+import { updateDateTime } from "../../core/utils/helpers/date";
 
 type DialogFormEditProps = {
   eventInfo: EventImpl;
