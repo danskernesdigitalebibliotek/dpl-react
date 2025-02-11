@@ -125,7 +125,7 @@ describe("Fee list", () => {
       .find(".list-reservation__deadline")
       .find(".text-small-caption")
       .should("exist")
-      .should("have.text", "Fees charged 06. 04. 2022");
+      .should("have.text", "Fees charged 6. april 2022");
 
     // 3. e Label: reason
     cy.getBySel("fee-list-page")
@@ -171,7 +171,7 @@ describe("Fee list", () => {
       .find("div")
       .find(".modal-loan__title")
       .should("exist")
-      .should("have.text", "Turned in 18. October 2019");
+      .should("have.text", "Turned in 18. oktober 2019");
 
     // book list
     cy.get(".modal-loan__list-materials")
