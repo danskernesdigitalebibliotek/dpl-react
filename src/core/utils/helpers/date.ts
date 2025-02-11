@@ -56,4 +56,15 @@ export const getNextWeekDate = () =>
 export const getNextYearDate = () =>
   dayjs().add(1, "year").format(dateFormatDayjs);
 
+// Date calculation functions: Get future dates
+export const getFutureDateString = (num: number) => {
+  const futureDate = dayjs().add(num, "day").format(dateFormatDayjs);
+  return futureDate;
+};
+
+export const getFutureDateStringISO = (num: number) => {
+  const futureDate = dayjs().add(num, "day").format("YYYY-MM-DDTHH:mm:ssZ");
+  return futureDate;
+};
+
 export default getCurrentUnixTime;
