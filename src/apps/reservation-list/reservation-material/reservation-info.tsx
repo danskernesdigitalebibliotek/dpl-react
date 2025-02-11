@@ -3,10 +3,8 @@ import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/ba
 import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
-import {
-  getColors,
-  daysBetweenTodayAndDate
-} from "../../../core/utils/helpers/general";
+import { getColors } from "../../../core/utils/helpers/general";
+import { calculateRoundedUpDaysUntil } from "../../../core/utils/helpers/date";
 import { getPreferredBranch } from "../../../components/reservation/helper";
 import ReservationStatus from "./reservation-status";
 import { useGetBranches } from "../../../core/utils/branches";
@@ -138,16 +136,19 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   }
 
   if (state === "reserved" && !pickupBranch && pickupDeadline) {
-    const daysBetweenTodayAndPickup = daysBetweenTodayAndDate(pickupDeadline);
+    const daysBetweenTodayAndPickup =
+      calculateRoundedUpDaysUntil(pickupDeadline);
     const reservationAvailableLabel = showStatusCircleIcon
       ? t("reservationListAvailableInText", {
-          placeholders: { "@count": daysBetweenTodayAndDate(pickupDeadline) }
+          placeholders: {
+            "@count": calculateRoundedUpDaysUntil(pickupDeadline)
+          }
         })
       : "";
 
     return (
       <ReservationStatus
-        percent={daysBetweenTodayAndDate(pickupDeadline) / 100}
+        percent={calculateRoundedUpDaysUntil(pickupDeadline) / 100}
         label={reservationAvailableLabel}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
@@ -160,7 +161,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
           {/* if somehow it is possible to break text in one div into two lines */}
           {/* where the first line has another font size AND is only the first "word" */}
           {/* then this should be changed to do that */}
-          {daysBetweenTodayAndDate(pickupDeadline) > 0
+          {calculateRoundedUpDaysUntil(pickupDeadline) > 0
             ? daysBetweenTodayAndPickup
             : 0}{" "}
         </span>

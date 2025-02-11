@@ -142,25 +142,6 @@ export const getRecommenderMaterialLimits = () => {
   return getConf("recommenderMaterialLimits", configuration);
 };
 
-export const daysBetweenTodayAndDate = (date: string) => {
-  const inputDate = dayjs(new Date(date));
-  const today = dayjs(new Date());
-
-  // Math.ceil 0 diff last param true is because "diff()" rounds the number down
-  // and we need it to be rounded up
-  // todo figure out if ceil is correct (talk to ddb)
-  return Math.ceil(inputDate.diff(today, "day", true));
-};
-export const daysBetweenDates = (firstDate: string, secondDate: string) => {
-  const inputFirstDate = dayjs(new Date(firstDate));
-  const inputSecondDate = dayjs(new Date(secondDate));
-
-  // Math.ceil 0 diff last param true is because "diff()" rounds the number down
-  // and we need it to be rounded up
-  // todo figure out if ceil is correct (talk to ddb)
-  return Math.ceil(inputFirstDate.diff(inputSecondDate, "day", true));
-};
-
 export const usePrevious = <Type>(value: Type) => {
   const ref = useRef<Type>(null);
   useEffect(() => {

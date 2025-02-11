@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check.svg";
 import StatusCircleIcon from "./status-circle-icon";
+import { getColors } from "../../../../core/utils/helpers/general";
 import {
-  getColors,
-  daysBetweenTodayAndDate,
-  daysBetweenDates
-} from "../../../../core/utils/helpers/general";
+  calculateRoundedUpDaysDifference,
+  calculateRoundedUpDaysUntil
+} from "../../../../core/utils/helpers/date";
 import { useText } from "../../../../core/utils/text";
 import useLoanThresholds from "../../../../core/utils/useLoanThresholds";
 
@@ -24,8 +24,8 @@ const StatusCircle: FC<StatusCircleProps> = ({ loanDate, dueDate }) => {
   let daysBetweenTodayAndDue = null;
   let daysBetweenLoanAndDue = null;
   if (dueDate) {
-    daysBetweenTodayAndDue = daysBetweenTodayAndDate(dueDate);
-    daysBetweenLoanAndDue = daysBetweenDates(dueDate, loanDate);
+    daysBetweenTodayAndDue = calculateRoundedUpDaysUntil(dueDate);
+    daysBetweenLoanAndDue = calculateRoundedUpDaysDifference(dueDate, loanDate);
 
     percent = 100 - (daysBetweenTodayAndDue / daysBetweenLoanAndDue) * 100;
     if (percent < 0) {
