@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import dayjs from "dayjs";
 import { first, orderBy, uniq } from "lodash";
 import { vi } from "vitest";
 import { CoverProps } from "../../../components/cover/cover";
@@ -21,6 +20,11 @@ import { ManifestationMaterialType } from "../types/material-type";
 import { store } from "../../store";
 import { constructModalId } from "./modal-helpers";
 import { formatCurrency } from "./currency";
+import {
+  dateHasPassed,
+  calculateDateYearsDifference,
+  getDateValueOf
+} from "./date";
 
 export const capitalizeFirstLetters = (str: string) => {
   return str
@@ -202,7 +206,7 @@ export const sortByDueDate = (list: LoanType[]) => {
   //  We use orderBy from lodash to avoid mutating the original list
   return orderBy(
     list,
-    (item) => (item.dueDate ? dayjs(item.dueDate).valueOf() : Infinity),
+    (item) => (item.dueDate ? getDateValueOf(item.dueDate) : Infinity),
     "asc"
   );
 };
@@ -331,7 +335,7 @@ export const pageSizeGlobal = (
 };
 
 export const materialIsOverdue = (date: string | undefined | null) =>
-  dayjs().isAfter(dayjs(date), "day");
+  date ? dateHasPassed(date) : false;
 
 export const loansOverdue = (loans: LoanType[]): boolean => {
   return loans.every((loan) => materialIsOverdue(loan.dueDate));
@@ -418,7 +422,7 @@ export const patronAgeValid = (cpr: string, minAge: number) => {
   const cprDate = getDateFromCpr(cpr);
   if (cprDate === null) return false;
 
-  const age = dayjs().diff(dayjs(cprDate), "year");
+  const age = calculateDateYearsDifference(cprDate);
   return age >= minAge;
 };
 

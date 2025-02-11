@@ -7,6 +7,10 @@ import {
 
 const getCurrentUnixTime = () => Math.floor(Date.now() / 1000);
 
+export const getDateValueOf = (date: string) => {
+  return dayjs(date).valueOf();
+};
+
 // Date comparison functions
 export const dateHasPassed = (date: string) => {
   return dayjs().isAfter(date, "day");
@@ -17,6 +21,10 @@ export const calculateDateDayDifference = (
   endDate: string
 ) => {
   return dayjs(startDate).diff(dayjs(endDate), "day");
+};
+
+export const calculateDateYearsDifference = (date: string | Date) => {
+  return dayjs().diff(dayjs(date), "year");
 };
 
 export const calculateRoundedUpDaysUntil = (date: string) => {
