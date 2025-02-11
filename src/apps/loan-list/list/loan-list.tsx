@@ -1,6 +1,5 @@
 import React, { useEffect, useState, FC, useCallback } from "react";
 import { useSelector } from "react-redux";
-import dayjs from "dayjs";
 import {
   getAmountOfRenewableLoans,
   getDueDatesLoan,
@@ -39,7 +38,7 @@ import LoansGroupModal from "../../../components/GroupModal/LoansGroupModal";
 import SimpleModalHeader from "../../../components/GroupModal/SimpleModalHeader";
 import StatusCircleModalHeader from "../../../components/GroupModal/StatusCircleModalHeader";
 import StatusCircle from "../materials/utils/status-circle";
-import { formatDate } from "../../../core/utils/helpers/date";
+import { formatDate, getMonthAgoDate } from "../../../core/utils/helpers/date";
 import useLoans from "../../../core/utils/useLoans";
 import LoanListSkeleton from "./loan-list-skeleton";
 
@@ -214,10 +213,7 @@ const LoanList: FC<LoanListProps> = ({ pageSize }) => {
               })}
               dueDate={dueDate}
               statusCircleComponent={
-                <StatusCircle
-                  loanDate={dayjs().subtract(1, "month").format("YYYY-MM-DD")}
-                  dueDate={dueDate}
-                />
+                <StatusCircle loanDate={getMonthAgoDate()} dueDate={dueDate} />
               }
             />
           )}
