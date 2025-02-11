@@ -1,4 +1,6 @@
 import dayjs from "dayjs";
+import "dayjs/locale/da";
+import { dateFormatDayjs } from "../../configuration/date-format";
 
 const getCurrentUnixTime = () => Math.floor(Date.now() / 1000);
 
@@ -22,5 +24,14 @@ export const formatDateDependingOnDigitalMaterial = ({
 }) => {
   return isDigital ? formatDateTime(date) : formatDate(date);
 };
+
+export const getYesterdayDate = () =>
+  dayjs().subtract(1, "day").format(dateFormatDayjs);
+
+export const getNextWeekDate = () =>
+  dayjs().add(7, "days").format(dateFormatDayjs);
+
+export const getNextYearDate = () =>
+  dayjs().add(1, "year").format(dateFormatDayjs);
 
 export default getCurrentUnixTime;
