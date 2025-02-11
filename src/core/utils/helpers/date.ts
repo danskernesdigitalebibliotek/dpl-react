@@ -48,6 +48,8 @@ export const getMonthAgoDate = () =>
 export const getYesterdayDate = () =>
   dayjs().subtract(1, "day").format(dateFormatDayjs);
 
+export const getTodayDate = () => dayjs().format(dateFormatDayjs);
+
 export const getNextWeekDate = () =>
   dayjs().add(7, "days").format(dateFormatDayjs);
 
