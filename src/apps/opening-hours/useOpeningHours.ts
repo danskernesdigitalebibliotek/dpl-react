@@ -2,12 +2,14 @@ import { useCallback, useEffect, useState } from "react";
 import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
 import {
   GroupedOpeningHours,
+  groupOpeningHoursByWeekday
+} from "./OpeningHoursHelpers";
+import {
   formatDateForAPI,
   getNextWeek,
   getPreviousWeek,
-  getWeekStartAndEndDate,
-  groupOpeningHoursByWeekday
-} from "./OpeningHoursHelpers";
+  getWeekStartAndEndDate
+} from "../../core/utils/helpers/date";
 
 interface UseOpeningHoursReturn {
   groupedOpeningHours: GroupedOpeningHours;

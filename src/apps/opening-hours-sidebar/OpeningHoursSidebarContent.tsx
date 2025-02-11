@@ -3,8 +3,9 @@ import iconWatch from "@danskernesdigitalebibliotek/dpl-design-system/build/icon
 import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 import OpeningHoursSidebarSummary from "./OpeningHoursSidebarSummary";
 import OpeningHoursSidebarDetails from "./OpeningHoursSidebarDetails";
-import { LibraryType, toDayString } from "./helper";
+import { LibraryType } from "./helper";
 import { useText } from "../../core/utils/text";
+import { toDayString } from "../../core/utils/helpers/date";
 
 const OpeningHoursSidebarContent: FC<{ libraries: LibraryType[] }> = ({
   libraries

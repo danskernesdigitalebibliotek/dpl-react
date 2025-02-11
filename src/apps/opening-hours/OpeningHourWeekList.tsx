@@ -1,13 +1,12 @@
-import dayjs from "dayjs";
-import "dayjs/locale/da";
 import React from "react";
 import { useText } from "../../core/utils/text";
 import OpeningHourWeekListSkeleton from "./OpeningHourWeekListSkeleton";
 import OpeningHoursDayEntry from "./OpeningHoursDayEntry";
+import { GroupedOpeningHours } from "./OpeningHoursHelpers";
 import {
-  GroupedOpeningHours,
-  formatDateToWeekday
-} from "./OpeningHoursHelpers";
+  formatDateToWeekday,
+  formatDayMonth
+} from "../../core/utils/helpers/date";
 
 interface OpeningHoursWeekListProps {
   data: GroupedOpeningHours;
@@ -26,7 +25,7 @@ const OpeningHoursWeekList: React.FC<OpeningHoursWeekListProps> = ({
     <ul className="opening-hours__content" data-cy="opening-hours-week-list">
       {data.map(({ dateTime, openingHourEntries }) => {
         const dateAsWeekday = formatDateToWeekday(dateTime);
-        const formattedDateForDisplay = dayjs(dateTime).format("DD/MM");
+        const formattedDateForDisplay = formatDayMonth(dateTime);
 
         return (
           <li key={formattedDateForDisplay} className="opening-hours__row">
