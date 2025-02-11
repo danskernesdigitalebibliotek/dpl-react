@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { daysBetweenTodayAndDate } from "../../../../core/utils/helpers/general";
+import { calculateRoundedUpDaysUntil } from "../../../../core/utils/helpers/date";
 import useLoanThresholds from "../../../../core/utils/useLoanThresholds";
 import StatusBadgeContent from "./status-badge-content";
 
@@ -24,7 +24,7 @@ const StatusBadge: FC<StatusBadgeProps> = ({
 }) => {
   const threshold = useLoanThresholds();
   const daysBetweenTodayAndDue = badgeDate
-    ? daysBetweenTodayAndDate(badgeDate)
+    ? calculateRoundedUpDaysUntil(badgeDate)
     : 0;
 
   if (daysBetweenTodayAndDue < threshold.danger && dangerText) {
