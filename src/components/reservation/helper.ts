@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { UseTextFunction } from "../../core/utils/text";
 import {
   AgencyBranch,
@@ -42,16 +41,6 @@ export const getNoInterestAfter = (
     return interestPeriodFound.label;
   }
   return `${days} ${t("daysText")}`;
-};
-
-export const getFutureDateString = (num: number) => {
-  const futureDate = dayjs().add(num, "day").format("YYYY-MM-DD");
-  return futureDate;
-};
-
-export const getFutureDateStringISO = (num: number) => {
-  const futureDate = dayjs().add(num, "day").format("YYYY-MM-DDTHH:mm:ssZ");
-  return futureDate;
 };
 
 type Periodical = Pick<
