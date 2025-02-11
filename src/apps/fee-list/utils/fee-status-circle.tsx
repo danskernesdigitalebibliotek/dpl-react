@@ -1,8 +1,8 @@
-import dayjs from "dayjs";
 import React, { FC } from "react";
 import { getColors } from "../../../core/utils/helpers/general";
 import { useText } from "../../../core/utils/text";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
+import { calculateDateDayDifference } from "../../../core/utils/helpers/date";
 
 interface FeeStatusCircleProps {
   dueDate: string;
@@ -15,9 +15,9 @@ const FeeStatusCircle: FC<FeeStatusCircleProps> = ({
 }) => {
   const t = useText();
   const colors = getColors();
-  const daysBetweenDueAndDelivered = dayjs(dueDate).diff(
-    feeCreationDate,
-    "day"
+  const daysBetweenDueAndDelivered = calculateDateDayDifference(
+    dueDate,
+    feeCreationDate
   );
 
   return (
