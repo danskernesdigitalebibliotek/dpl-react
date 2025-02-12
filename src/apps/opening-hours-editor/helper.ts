@@ -12,6 +12,10 @@ const formatDateTimeString = (date: string, time: string): string => {
   return `${date}T${time}:00`;
 };
 
+const convertMidnightTo24 = (end_time: string) => {
+  return end_time === "00:00" ? "24:00" : end_time;
+};
+
 export const formatCmsEventsToFullCalendar = (
   data: DplOpeningHoursListGET200Item[]
 ): EventInput[] => {
@@ -21,7 +25,7 @@ export const formatCmsEventsToFullCalendar = (
         id: id.toString(),
         title: category.title,
         start: formatDateTimeString(date, start_time),
-        end: formatDateTimeString(date, end_time),
+        end: formatDateTimeString(date, convertMidnightTo24(end_time)),
         color: category.color,
         repetition
       };
