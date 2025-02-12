@@ -1,13 +1,16 @@
-import dayjs from "dayjs";
-import { dateFormatDayjs } from "../../../core/configuration/date-format";
 import {
   faustIdentifierLength,
   digitalMaterialIdentifierLength
 } from "../../../core/configuration/identifier-lengths";
+import {
+  getNextWeekDate,
+  getNextYearDate,
+  getYesterdayDate
+} from "../../../core/utils/helpers/date";
 
-export const yesterday = dayjs().subtract(1, "day").format(dateFormatDayjs);
-export const soon = dayjs().add(7, "days").format(dateFormatDayjs);
-export const longer = dayjs().add(1, "year").format(dateFormatDayjs);
+export const yesterday = getYesterdayDate();
+export const soon = getNextWeekDate();
+export const longer = getNextYearDate();
 
 export const getReservationType = (reservationId: string) => {
   if (reservationId.length === faustIdentifierLength) {

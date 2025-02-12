@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { EventInput } from "@fullcalendar/core";
 import { EventImpl } from "@fullcalendar/core/internal";
 import {
@@ -7,6 +6,12 @@ import {
   DplOpeningHoursUpdatePATCH200Item,
   DplOpeningHoursListGET200ItemRepetitionType
 } from "../../core/dpl-cms/model";
+import {
+  convertToDayJs,
+  extractTime,
+  formatDateStringISO,
+  formatDateForAPI
+} from "../../core/utils/helpers/date";
 
 const formatDateTimeString = (date: string, time: string): string => {
   return `${date}T${time}:00`;
@@ -37,8 +42,8 @@ export const formatFullCalendarEventToCmsEventAdd = (
     throw new Error("Invalid event format");
   }
 
-  const startDate = dayjs(event.startStr);
-  const endDate = dayjs(event.endStr);
+  const startDate = event.startStr;
+  const endDate = event.endStr;
 
   return {
     id: Number(event.id),
@@ -46,9 +51,9 @@ export const formatFullCalendarEventToCmsEventAdd = (
       title: event.title,
       color: event.color
     },
-    date: startDate.format("YYYY-MM-DD"),
-    start_time: startDate.format("HH:mm"),
-    end_time: endDate.format("HH:mm"),
+    date: formatDateForAPI(startDate),
+    start_time: extractTime(startDate),
+    end_time: extractTime(endDate),
     repetition: event.repetition,
     // set to id 0 to because the API requires a branch_id.
     // This will be overwritten when the event is added or edited in the useOpeningHoursEditor hook
@@ -63,8 +68,8 @@ export const formatFullCalendarEventToCmsEventEdit = (
     throw new Error("Invalid event format");
   }
 
-  const startDate = dayjs(event.startStr);
-  const endDate = dayjs(event.endStr);
+  const startDate = event.startStr;
+  const endDate = event.endStr;
 
   return {
     id: Number(event.id),
@@ -72,9 +77,9 @@ export const formatFullCalendarEventToCmsEventEdit = (
       title: event.title,
       color: event.backgroundColor
     },
-    date: startDate.format("YYYY-MM-DD"),
-    start_time: startDate.format("HH:mm"),
-    end_time: endDate.format("HH:mm"),
+    date: formatDateForAPI(startDate),
+    start_time: extractTime(startDate),
+    end_time: extractTime(endDate),
     repetition: event.repetition,
     // set to id 0 to because the API requires a branch_id.
     // This will be overwritten when the event is added or edited in the useOpeningHoursEditor hook
@@ -82,13 +87,9 @@ export const formatFullCalendarEventToCmsEventEdit = (
   };
 };
 
-export const formatDateStr = (date: Date) => {
-  return dayjs(date).format("YYYY-MM-DDTHH:mm:ssZ");
-};
-
 export const adjustEndDateBasedOnStartDate = (startDay: Date, endDay: Date) => {
-  const start = dayjs(startDay);
-  const end = dayjs(endDay);
+  const start = convertToDayJs(startDay);
+  const end = convertToDayJs(endDay);
 
   // Check if the start and end dates are on the same day no adjustment is needed
   if (start.isSame(end, "day")) {
@@ -108,8 +109,8 @@ export const adjustEndDateToStartDayTimeGridWeek = (
   endDay: Date
 ) => {
   let adjustedEndDay;
-  const start = dayjs(startDay);
-  const end = dayjs(endDay);
+  const start = convertToDayJs(startDay);
+  const end = convertToDayJs(endDay);
 
   // If startDay and endDay are the same, no adjustment is needed
   if (start.isSame(end, "day")) {
@@ -121,7 +122,7 @@ export const adjustEndDateToStartDayTimeGridWeek = (
 
   return {
     end: adjustedEndDay.toDate(),
-    endStr: formatDateStr(adjustedEndDay.toDate())
+    endStr: formatDateStringISO(adjustedEndDay.toDate())
   };
 };
 
@@ -133,29 +134,8 @@ export const adjustEndDateToStartDayGridMonth = (
 
   return {
     end: adjustedEndDay,
-    endStr: formatDateStr(adjustedEndDay)
+    endStr: formatDateStringISO(adjustedEndDay)
   };
-};
-
-export const extractTime = (date: Date) => {
-  return dayjs(date).format("HH:mm");
-};
-
-export const updateDateTime = (date: Date, timeStr: string): Date => {
-  const [hours, minutes] = timeStr.split(":").map(Number);
-  return dayjs(date).hour(hours).minute(minutes).toDate();
-};
-
-export const getWeekDayName = (date: Date) => {
-  return dayjs(date).format("dddd");
-};
-
-export const getDateString = (date: Date) => {
-  return dayjs(date).format("DD-MM-YYYY");
-};
-
-export const getStringForDateInput = (date: Date) => {
-  return dayjs(date).format("YYYY-MM-DD");
 };
 
 export const isOpeningHourWeeklyRepetition = (
