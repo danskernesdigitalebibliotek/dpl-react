@@ -2172,6 +2172,14 @@ export type GetSmallWorkQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -2788,6 +2796,14 @@ export type GetMaterialQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     series: Array<{
       __typename?: "Series";
@@ -3254,6 +3270,14 @@ export type GetMaterialGloballyQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     series: Array<{
       __typename?: "Series";
@@ -3757,6 +3781,14 @@ export type RecommendFromFaustQuery = {
           __typename?: "WorkTitles";
           full: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         creators: Array<
           | { __typename: "Corporation"; display: string }
@@ -4180,6 +4212,14 @@ export type SearchWithPaginationQuery = {
         __typename?: "WorkTitles";
         full: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -4650,6 +4690,14 @@ export type ComplexSearchWithPaginationQuery = {
         __typename?: "WorkTitles";
         full: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -5768,6 +5816,14 @@ export type WorkSmallFragment = {
     __typename?: "WorkTitles";
     full: Array<string>;
     original?: Array<string> | null;
+    tvSeries?: {
+      __typename?: "TvSeries";
+      title?: string | null;
+      season?: {
+        __typename?: "TvSeriesDetails";
+        display?: string | null;
+      } | null;
+    } | null;
   };
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -6231,6 +6287,14 @@ export type WorkMediumFragment = {
     __typename?: "WorkTitles";
     full: Array<string>;
     original?: Array<string> | null;
+    tvSeries?: {
+      __typename?: "TvSeries";
+      title?: string | null;
+      season?: {
+        __typename?: "TvSeriesDetails";
+        display?: string | null;
+      } | null;
+    } | null;
   };
   series: Array<{
     __typename?: "Series";
@@ -6915,6 +6979,12 @@ export const WorkSmallFragmentDoc = `
   titles {
     full
     original
+    tvSeries {
+      title
+      season {
+        display
+      }
+    }
   }
   abstract
   creators {
