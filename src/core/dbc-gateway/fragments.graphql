@@ -12,7 +12,7 @@ fragment ManifestationsSimple on Manifestations {
 
 fragment ManifestationsAccess on Manifestations {
   all {
-    pid,
+    pid
     identifiers {
       type
       value
@@ -50,6 +50,12 @@ fragment ManifestationsSimpleFields on Manifestation {
   titles {
     main
     original
+    tvSeries {
+      title
+      season {
+        display
+      }
+    }
   }
   fictionNonfiction {
     display
@@ -233,6 +239,12 @@ fragment WorkSmall on Work {
   titles {
     full
     original
+    tvSeries {
+      title
+      season {
+        display
+      }
+    }
   }
   abstract
   creators {

@@ -2172,6 +2172,14 @@ export type GetSmallWorkQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -2206,6 +2214,14 @@ export type GetSmallWorkQuery = {
           __typename?: "ManifestationTitles";
           main: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
@@ -2329,6 +2345,14 @@ export type GetSmallWorkQuery = {
           __typename?: "ManifestationTitles";
           main: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
@@ -2452,6 +2476,14 @@ export type GetSmallWorkQuery = {
           __typename?: "ManifestationTitles";
           main: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
@@ -2788,6 +2820,14 @@ export type GetMaterialQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     series: Array<{
       __typename?: "Series";
@@ -2818,6 +2858,14 @@ export type GetMaterialQuery = {
           __typename?: "ManifestationTitles";
           main: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
@@ -2941,6 +2989,14 @@ export type GetMaterialQuery = {
           __typename?: "ManifestationTitles";
           main: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
@@ -3064,6 +3120,14 @@ export type GetMaterialQuery = {
           __typename?: "ManifestationTitles";
           main: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
@@ -3254,6 +3318,14 @@ export type GetMaterialGloballyQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     series: Array<{
       __typename?: "Series";
@@ -3284,6 +3356,14 @@ export type GetMaterialGloballyQuery = {
           __typename?: "ManifestationTitles";
           main: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
@@ -3407,6 +3487,14 @@ export type GetMaterialGloballyQuery = {
           __typename?: "ManifestationTitles";
           main: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
@@ -3530,6 +3618,14 @@ export type GetMaterialGloballyQuery = {
           __typename?: "ManifestationTitles";
           main: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         fictionNonfiction?: {
           __typename?: "FictionNonfiction";
@@ -3757,6 +3853,14 @@ export type RecommendFromFaustQuery = {
           __typename?: "WorkTitles";
           full: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         creators: Array<
           | { __typename: "Corporation"; display: string }
@@ -3794,6 +3898,14 @@ export type RecommendFromFaustQuery = {
               __typename?: "ManifestationTitles";
               main: Array<string>;
               original?: Array<string> | null;
+              tvSeries?: {
+                __typename?: "TvSeries";
+                title?: string | null;
+                season?: {
+                  __typename?: "TvSeriesDetails";
+                  display?: string | null;
+                } | null;
+              } | null;
             };
             fictionNonfiction?: {
               __typename?: "FictionNonfiction";
@@ -3917,6 +4029,14 @@ export type RecommendFromFaustQuery = {
               __typename?: "ManifestationTitles";
               main: Array<string>;
               original?: Array<string> | null;
+              tvSeries?: {
+                __typename?: "TvSeries";
+                title?: string | null;
+                season?: {
+                  __typename?: "TvSeriesDetails";
+                  display?: string | null;
+                } | null;
+              } | null;
             };
             fictionNonfiction?: {
               __typename?: "FictionNonfiction";
@@ -4040,6 +4160,14 @@ export type RecommendFromFaustQuery = {
               __typename?: "ManifestationTitles";
               main: Array<string>;
               original?: Array<string> | null;
+              tvSeries?: {
+                __typename?: "TvSeries";
+                title?: string | null;
+                season?: {
+                  __typename?: "TvSeriesDetails";
+                  display?: string | null;
+                } | null;
+              } | null;
             };
             fictionNonfiction?: {
               __typename?: "FictionNonfiction";
@@ -4180,6 +4308,14 @@ export type SearchWithPaginationQuery = {
         __typename?: "WorkTitles";
         full: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -4217,6 +4353,14 @@ export type SearchWithPaginationQuery = {
             __typename?: "ManifestationTitles";
             main: Array<string>;
             original?: Array<string> | null;
+            tvSeries?: {
+              __typename?: "TvSeries";
+              title?: string | null;
+              season?: {
+                __typename?: "TvSeriesDetails";
+                display?: string | null;
+              } | null;
+            } | null;
           };
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
@@ -4340,6 +4484,14 @@ export type SearchWithPaginationQuery = {
             __typename?: "ManifestationTitles";
             main: Array<string>;
             original?: Array<string> | null;
+            tvSeries?: {
+              __typename?: "TvSeries";
+              title?: string | null;
+              season?: {
+                __typename?: "TvSeriesDetails";
+                display?: string | null;
+              } | null;
+            } | null;
           };
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
@@ -4463,6 +4615,14 @@ export type SearchWithPaginationQuery = {
             __typename?: "ManifestationTitles";
             main: Array<string>;
             original?: Array<string> | null;
+            tvSeries?: {
+              __typename?: "TvSeries";
+              title?: string | null;
+              season?: {
+                __typename?: "TvSeriesDetails";
+                display?: string | null;
+              } | null;
+            } | null;
           };
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
@@ -4650,6 +4810,14 @@ export type ComplexSearchWithPaginationQuery = {
         __typename?: "WorkTitles";
         full: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -4687,6 +4855,14 @@ export type ComplexSearchWithPaginationQuery = {
             __typename?: "ManifestationTitles";
             main: Array<string>;
             original?: Array<string> | null;
+            tvSeries?: {
+              __typename?: "TvSeries";
+              title?: string | null;
+              season?: {
+                __typename?: "TvSeriesDetails";
+                display?: string | null;
+              } | null;
+            } | null;
           };
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
@@ -4810,6 +4986,14 @@ export type ComplexSearchWithPaginationQuery = {
             __typename?: "ManifestationTitles";
             main: Array<string>;
             original?: Array<string> | null;
+            tvSeries?: {
+              __typename?: "TvSeries";
+              title?: string | null;
+              season?: {
+                __typename?: "TvSeriesDetails";
+                display?: string | null;
+              } | null;
+            } | null;
           };
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
@@ -4933,6 +5117,14 @@ export type ComplexSearchWithPaginationQuery = {
             __typename?: "ManifestationTitles";
             main: Array<string>;
             original?: Array<string> | null;
+            tvSeries?: {
+              __typename?: "TvSeries";
+              title?: string | null;
+              season?: {
+                __typename?: "TvSeriesDetails";
+                display?: string | null;
+              } | null;
+            } | null;
           };
           fictionNonfiction?: {
             __typename?: "FictionNonfiction";
@@ -5171,6 +5363,14 @@ export type ManifestationsSimpleFragment = {
       __typename?: "ManifestationTitles";
       main: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
@@ -5288,6 +5488,14 @@ export type ManifestationsSimpleFragment = {
       __typename?: "ManifestationTitles";
       main: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
@@ -5405,6 +5613,14 @@ export type ManifestationsSimpleFragment = {
       __typename?: "ManifestationTitles";
       main: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     fictionNonfiction?: {
       __typename?: "FictionNonfiction";
@@ -5554,6 +5770,14 @@ export type ManifestationsSimpleFieldsFragment = {
     __typename?: "ManifestationTitles";
     main: Array<string>;
     original?: Array<string> | null;
+    tvSeries?: {
+      __typename?: "TvSeries";
+      title?: string | null;
+      season?: {
+        __typename?: "TvSeriesDetails";
+        display?: string | null;
+      } | null;
+    } | null;
   };
   fictionNonfiction?: {
     __typename?: "FictionNonfiction";
@@ -5768,6 +5992,14 @@ export type WorkSmallFragment = {
     __typename?: "WorkTitles";
     full: Array<string>;
     original?: Array<string> | null;
+    tvSeries?: {
+      __typename?: "TvSeries";
+      title?: string | null;
+      season?: {
+        __typename?: "TvSeriesDetails";
+        display?: string | null;
+      } | null;
+    } | null;
   };
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -5802,6 +6034,14 @@ export type WorkSmallFragment = {
         __typename?: "ManifestationTitles";
         main: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
@@ -5925,6 +6165,14 @@ export type WorkSmallFragment = {
         __typename?: "ManifestationTitles";
         main: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
@@ -6048,6 +6296,14 @@ export type WorkSmallFragment = {
         __typename?: "ManifestationTitles";
         main: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
@@ -6231,6 +6487,14 @@ export type WorkMediumFragment = {
     __typename?: "WorkTitles";
     full: Array<string>;
     original?: Array<string> | null;
+    tvSeries?: {
+      __typename?: "TvSeries";
+      title?: string | null;
+      season?: {
+        __typename?: "TvSeriesDetails";
+        display?: string | null;
+      } | null;
+    } | null;
   };
   series: Array<{
     __typename?: "Series";
@@ -6261,6 +6525,14 @@ export type WorkMediumFragment = {
         __typename?: "ManifestationTitles";
         main: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
@@ -6384,6 +6656,14 @@ export type WorkMediumFragment = {
         __typename?: "ManifestationTitles";
         main: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
@@ -6507,6 +6787,14 @@ export type WorkMediumFragment = {
         __typename?: "ManifestationTitles";
         main: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       fictionNonfiction?: {
         __typename?: "FictionNonfiction";
@@ -6797,6 +7085,12 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   titles {
     main
     original
+    tvSeries {
+      title
+      season {
+        display
+      }
+    }
   }
   fictionNonfiction {
     display
@@ -6915,6 +7209,12 @@ export const WorkSmallFragmentDoc = `
   titles {
     full
     original
+    tvSeries {
+      title
+      season {
+        display
+      }
+    }
   }
   abstract
   creators {
