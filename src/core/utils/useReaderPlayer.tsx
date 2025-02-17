@@ -1,51 +1,81 @@
-import { useGetV1UserLoans } from "../publizon/publizon";
 import { Manifestation } from "./types/entities";
 import { getManifestationIsbn } from "../../apps/material/helper";
 import {
   getOrderIdByIdentifier,
-  getReaderPlayerType
+  getReaderPlayerType,
+  getReservedReservation
 } from "../../components/reader-player/helper";
-import { mapPublizonLoanToLoanType } from "./helpers/list-mapper";
 import { isAnonymous } from "./helpers/user";
+import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
+import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
+import {
+  useGetV1UserLoans,
+  useGetV1UserReservations
+} from "../publizon/publizon";
+import {
+  mapPublizonLoanToLoanType,
+  mapPublizonReservationToReservationType
+} from "./helpers/list-mapper";
 
 const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   const isUserAnonymous = isAnonymous();
-  const { data } = useGetV1UserLoans(
+  const hasManifestations = !!manifestations?.length;
+
+  const type =
+    hasManifestations && hasCorrectAccess("Ereol", manifestations)
+      ? getReaderPlayerType(manifestations)
+      : null;
+  const identifier = hasManifestations
+    ? getManifestationIsbn(manifestations[0])
+    : null;
+
+  const { data: loansPublizon } = useGetV1UserLoans(
     {},
-    {
-      query: { enabled: !isUserAnonymous }
-    }
+    { query: { enabled: !isUserAnonymous } }
   );
+  const loans = loansPublizon?.loans
+    ? mapPublizonLoanToLoanType(loansPublizon.loans)
+    : null;
+  const { data: reservationsPublizon } = useGetV1UserReservations({
+    query: { enabled: !isUserAnonymous }
+  });
+  const reservations = reservationsPublizon?.reservations
+    ? mapPublizonReservationToReservationType(reservationsPublizon.reservations)
+    : null;
 
-  if (!manifestations || manifestations.length === 0) {
-    return {
-      type: null,
-      identifier: null,
-      orderId: null
-    };
-  }
+  const availabilityData = useOnlineAvailabilityData({
+    enabled: !!identifier,
+    isbn: identifier,
+    access: [undefined],
+    faustIds: null
+  });
 
-  const identifier = getManifestationIsbn(manifestations[0]);
-  const type = getReaderPlayerType(manifestations);
+  const isAvailable = availabilityData?.isLoading
+    ? false
+    : availabilityData?.isAvailable;
 
-  if (isUserAnonymous) {
-    return {
-      type,
-      identifier,
-      orderId: null
-    };
-  }
+  const orderId =
+    loans && identifier ? getOrderIdByIdentifier({ loans, identifier }) : null;
 
-  // No need to check for data.userData here since the "useGetV1UserLoans" query
-  // is disabled for anonymous users. Additionally, we still want to return
-  // the identifier even if the user is anonymous.
-  const loans = data?.loans ? mapPublizonLoanToLoanType(data.loans) : null;
-  const orderId = loans ? getOrderIdByIdentifier({ loans, identifier }) : null;
+  const reservation =
+    identifier && reservations
+      ? getReservedReservation(identifier, reservations)
+      : null;
+
+  const isAlreadyReserved = !!reservation;
+  const isAlreadyLoaned = !!orderId;
+  const canBeLoaned = isUserAnonymous || isAvailable;
+  const canBeReserved = !isAvailable;
 
   return {
     type,
     identifier,
-    orderId
+    orderId,
+    isAlreadyReserved,
+    isAlreadyLoaned,
+    canBeLoaned,
+    canBeReserved,
+    reservation
   };
 };
 

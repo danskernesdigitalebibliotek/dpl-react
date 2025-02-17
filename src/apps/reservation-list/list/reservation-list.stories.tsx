@@ -96,6 +96,12 @@ const meta: Meta<typeof ReservationList> = {
     materialByAuthorText: {
       control: { type: "text" }
     },
+    viewMaterialText: {
+      control: { type: "text" }
+    },
+    materialUrl: {
+      control: { type: "text" }
+    },
     materialAndAuthorText: {
       control: { type: "text" }
     },
@@ -236,6 +242,8 @@ export const Default: Story = {
     reservationListDigitalReservationsEmptyText:
       "At the moment you have 0 reservations on digital items",
     materialByAuthorText: "By",
+    viewMaterialText: "View material",
+    materialUrl: "/work/:workid",
     materialAndAuthorText: "and",
     etAlText: "et al.",
     reservationListNumberInQueueText:

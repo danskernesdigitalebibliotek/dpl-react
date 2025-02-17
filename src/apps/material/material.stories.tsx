@@ -9,6 +9,9 @@ import globalTextArgs, {
 import globalConfigArgs, {
   argTypes as globalConfigArgTypes
 } from "../../core/storybook/globalConfigArgs";
+import deleteReservationModalArgs, {
+  argTypes as deleteReservationModalArgTypes
+} from "../../core/storybook/deleteReservationModalArgs";
 
 const meta: Meta<typeof MaterialEntry> = {
   title: "Apps / Material",
@@ -19,6 +22,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
+    ...deleteReservationModalArgTypes,
     searchUrl: {
       description: "Path to the search result page",
       control: { type: "text" }
@@ -151,10 +155,6 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Details",
       control: { type: "text" }
     },
-    ebookText: {
-      description: "Ebook",
-      control: { type: "text" }
-    },
     reviewsText: {
       description: "Reviews",
       control: { type: "text" }
@@ -247,6 +247,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Loading",
       control: { type: "text" }
     },
+    loanWithMaterialTypeText: {
+      description: "Loan with material type text",
+      control: { type: "text" }
+    },
     getOnlineText: {
       description: "Get online",
       control: { type: "text" }
@@ -303,6 +307,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Online limit info text",
       control: { type: "text" }
     },
+    onlineMaterialAlreadyReservedText: {
+      description: "Material already reserved",
+      control: { type: "text" }
+    },
     onlineMaterialPlayerText: {
       description: "Material button online player text",
       control: { type: "text" }
@@ -315,12 +323,12 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Material button online teaser text",
       control: { type: "text" }
     },
-    approveReservationText: {
-      description: "Approve reservation",
+    approveLoanText: {
+      description: "Approve loan",
       control: { type: "text" }
     },
-    audiobookText: {
-      description: "Audiobook",
+    approveReservationText: {
+      description: "Approve reservation",
       control: { type: "text" }
     },
     shiftText: {
@@ -373,6 +381,50 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     okButtonText: {
       description: "Ok button text",
+      control: { type: "text" }
+    },
+    onlineInternalModalCloseAriaLabelText: {
+      description: "Close reader/player modal",
+      control: { type: "text" }
+    },
+    onlineInternalModalScreenReaderDescriptionText: {
+      description: "reader/player modal screen reader description",
+      control: { type: "text" }
+    },
+    onlineInternalResponseErrorSubtitleText: {
+      description: "reader/player Error subtitle",
+      control: { type: "text" }
+    },
+    onlineInternalResponseErrorTitleText: {
+      description: "reader/player Error title",
+      control: { type: "text" }
+    },
+    onlineInternalResponseLoanedSubtitleText: {
+      description: "reader/player Loan response subtitle",
+      control: { type: "text" }
+    },
+    onlineInternalResponseLoanedTitleText: {
+      description: "reader/player Loan response title",
+      control: { type: "text" }
+    },
+    onlineInternalResponseReservedSubtitleText: {
+      description: "reader/player reservation response subtitle",
+      control: { type: "text" }
+    },
+    onlineInternalResponseReservedTitleText: {
+      description: "reader/player reservation response title",
+      control: { type: "text" }
+    },
+    onlineInternalErrorsText: {
+      description: "reader/player Loan/reservation error text",
+      control: { type: "text" }
+    },
+    onlineInternalSuccessLoanedText: {
+      description: "E-material is loaned",
+      control: { type: "text" }
+    },
+    onlineInternalSuccessReservedText: {
+      description: "E-material is reserved",
       control: { type: "text" }
     },
     missingDataText: {
@@ -720,7 +772,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
-    audiobookText: "Audiobook",
+    ...deleteReservationModalArgs,
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
@@ -759,7 +811,6 @@ const meta: Meta<typeof MaterialEntry> = {
     editionsText: "Editions",
     fictionNonfictionText: "Fictional",
     detailsText: "Details",
-    ebookText: "E-book",
     reviewsText: "Reviews",
     detailsListTypeText: "Type",
     detailsListLanguageText: "Language",
@@ -783,6 +834,7 @@ const meta: Meta<typeof MaterialEntry> = {
     editionText: "Edition",
     readArticleText: "Read article",
     loadingText: "Loading",
+    loanWithMaterialTypeText: "Loan @materialType",
     getOnlineText: "Get online",
     seeOnlineText: "See online",
     listenOnlineText: "Listen online",
@@ -803,9 +855,11 @@ const meta: Meta<typeof MaterialEntry> = {
       "You have borrowed @count out of @limit possible e-books this month",
     onlineLimitMonthAudiobookInfoText:
       "You have borrowed @count out of @limit possible audio-books this month",
+    onlineMaterialAlreadyReservedText: "E-material is already reserved",
     onlineMaterialPlayerText: "Listen to @materialType",
     onlineMaterialReaderText: "Read @materialType",
     onlineMaterialTeaserText: "Try @materialType",
+    approveLoanText: "Approve loan",
     approveReservationText: "Approve reservation",
     shiftText: "Change",
     reservationDetailsPickUpAtTitleText: "Pick up at",
@@ -824,6 +878,23 @@ const meta: Meta<typeof MaterialEntry> = {
       "We're sorry. Unfortunately, there has been an error. Try again, please.",
     tryAginButtonText: "Try again",
     okButtonText: "Ok",
+    onlineInternalModalCloseAriaLabelText: "Close reader/player modal",
+    onlineInternalModalScreenReaderDescriptionText:
+      "Modal for reader/player material",
+    onlineInternalResponseErrorSubtitleText:
+      "@title could not be borrowed or reserved",
+    onlineInternalResponseErrorTitleText: "Something went wrong.",
+    onlineInternalResponseLoanedSubtitleText: "@title is lent to you",
+    onlineInternalResponseLoanedTitleText:
+      "You have now borrowed the material!",
+    onlineInternalResponseReservedSubtitleText: "@title is reserved for you",
+    onlineInternalResponseReservedTitleText:
+      "The material is now reserved for you!",
+    onlineInternalErrorsText: "something went wrong",
+    onlineInternalSuccessLoanedText:
+      "You can read/listen to the material until @expirationDate",
+    onlineInternalSuccessReservedText:
+      "You will receive a message when reservation is met and the material is lent to you.",
     missingDataText: "Missing data",
     reservationModalScreenReaderModalDescriptionText: "Modal for reservation",
     reservationModalCloseModalAriaLabelText: "Close reservation modal",

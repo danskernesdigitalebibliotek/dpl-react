@@ -1,28 +1,41 @@
 {
   "data": {
     "complexSearch": {
-      "hitcount": 1,
       "works": [
         {
-          "workId": "work-of:870970-basis:22677780",
+          "workId": "work-of:870970-basis:25197887",
           "manifestations": {
             "all": [
               {
-                "pid": "870970-basis:22677780",
+                "pid": "710100-katalog:22677780",
                 "identifiers": [
                   {
-                    "type": "ISBN",
-                    "value": "9788702319361"
+                    "value": "9788700459946"
                   },
                   {
-                    "type": "ISBN",
                     "value": "87-00-45994-1"
                   }
                 ],
-                "access": [
+                "materialTypes": [
                   {
-                    "__typename": "Ereol",
-                    "url": "https://ereolen.dk/ting/object/870970-basis:51412656"
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ]
+              },
+              {
+                "pid": "870970-basis:25254031",
+                "identifiers": [
+                  {
+                    "value": "87-02-02780-1"
+                  }
+                ],
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd)"
+                    }
                   }
                 ]
               },
@@ -30,14 +43,14 @@
                 "pid": "870970-basis:27639097",
                 "identifiers": [
                   {
-                    "type": "ISBN",
                     "value": "9788702075397"
                   }
                 ],
-                "access": [
+                "materialTypes": [
                   {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd-mp3)"
+                    }
                   }
                 ]
               },
@@ -45,14 +58,14 @@
                 "pid": "870970-basis:29316945",
                 "identifiers": [
                   {
-                    "type": "ISBN",
                     "value": "9788702114331"
                   }
                 ],
-                "access": [
+                "materialTypes": [
                   {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
                   }
                 ]
               },
@@ -60,14 +73,14 @@
                 "pid": "870970-basis:51980239",
                 "identifiers": [
                   {
-                    "type": "ISBN",
                     "value": "9788702173239"
                   }
                 ],
-                "access": [
+                "materialTypes": [
                   {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
                   }
                 ]
               },
@@ -75,14 +88,14 @@
                 "pid": "870970-basis:52652219",
                 "identifiers": [
                   {
-                    "type": "ISBN",
                     "value": "9788702204681"
                   }
                 ],
-                "access": [
+                "materialTypes": [
                   {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
                   }
                 ]
               },
@@ -90,14 +103,14 @@
                 "pid": "870970-basis:54871929",
                 "identifiers": [
                   {
-                    "type": "ISBN",
                     "value": "9788702272444"
                   }
                 ],
-                "access": [
+                "materialTypes": [
                   {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
                   }
                 ]
               },
@@ -105,14 +118,14 @@
                 "pid": "870970-basis:61636935",
                 "identifiers": [
                   {
-                    "type": "ISBN",
                     "value": "9788702319361"
                   }
                 ],
-                "access": [
+                "materialTypes": [
                   {
-                    "__typename": "InterLibraryLoan",
-                    "loanIsPossible": true
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
                   }
                 ]
               }

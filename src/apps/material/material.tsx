@@ -40,7 +40,7 @@ import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
-import featureFlag from "../../core/utils/featureFlag";
+import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -201,13 +201,17 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             setSelectedPeriodical={setSelectedPeriodical}
           />
         )}
-        {featureFlag.isActive("readerPlayer") &&
-          readerPlayerType === "player" && (
-            <>
-              {identifier && <PlayerModal identifier={identifier} />}
-              {orderId && <PlayerModal orderId={orderId} />}
-            </>
-          )}
+        {readerPlayerType === "player" && (
+          <>
+            {identifier && <PlayerModal identifier={identifier} />}
+            {orderId && <PlayerModal orderId={orderId} />}
+          </>
+        )}
+        {(readerPlayerType === "reader" || readerPlayerType === "player") && (
+          <OnlineInternalModal
+            selectedManifestations={selectedManifestations}
+          />
+        )}
       </MaterialHeader>
       <MaterialDescription pid={pid} work={work} />
       {/* Since we cannot trust the editions for global manifestations */}
