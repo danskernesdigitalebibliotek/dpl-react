@@ -7,7 +7,7 @@ import {
   formatWeekString,
   getNextWeek,
   getPreviousWeek
-} from "./OpeningHoursHelpers";
+} from "../../core/utils/helpers/date";
 import useOpeningHours from "./useOpeningHours";
 
 export type OpeningHoursProps = {
