@@ -11599,6 +11599,22 @@
             "deprecationReason": null
           },
           {
+            "name": "hitcount",
+            "description": "The number of members in the series",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "identifyingAddition",
             "description": "Additional information ",
             "args": [],
