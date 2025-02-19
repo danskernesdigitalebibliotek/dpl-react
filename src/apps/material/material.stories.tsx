@@ -1079,9 +1079,9 @@ export const Journal: Story = {
   }
 };
 
-export const gameOfThronesSeason1: Story = {
+export const gameOfThronesSeason7: Story = {
   args: {
     ...Default.args,
-    wid: "work-of:870970-basis:29273405"
+    wid: "work-of:870970-basis:53795633"
   }
 };

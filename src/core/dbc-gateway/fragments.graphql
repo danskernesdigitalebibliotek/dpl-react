@@ -50,12 +50,6 @@ fragment ManifestationsSimpleFields on Manifestation {
   titles {
     main
     original
-    tvSeries {
-      title
-      season {
-        display
-      }
-    }
   }
   fictionNonfiction {
     display

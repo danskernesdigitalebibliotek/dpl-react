@@ -181,16 +181,6 @@ export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
 };
 
 export const getManifestationTitle = ({ titles }: Manifestation): string => {
-  if (titles.tvSeries?.title && titles.tvSeries?.season?.display) {
-    const { title, season } = titles.tvSeries;
-    return `${title} - ${season.display}`;
-  }
-
-  if (titles.tvSeries?.title) {
-    const { title } = titles.tvSeries;
-    return title;
-  }
-
   if (titles.main.length) {
     const { main } = titles;
     return main[0];
@@ -776,46 +766,25 @@ if (import.meta.vitest) {
   });
 
   describe("getManifestationTitle", () => {
-    it("returns tvSeries title and season if both exist", () => {
+    it("returns main title", () => {
       const manifestation = {
         titles: {
-          main: ["Game of thrones"],
-          original: [],
-          tvSeries: {
-            title: "Game of thrones",
-            season: {
-              display: "sæson 1"
-            }
-          }
+          main: ["Game of thrones (Sæson 7). Disc 1, episodes 1-3"],
+          original: ["Game of thrones (Season 7). Disc 1, episodes 1-3"]
         }
       } as unknown as Manifestation;
 
       const title = getManifestationTitle(manifestation);
-      expect(title).toMatchInlineSnapshot(`"Game of thrones - sæson 1"`);
+      expect(title).toMatchInlineSnapshot(
+        `"Game of thrones (Sæson 7). Disc 1, episodes 1-3"`
+      );
     });
 
-    it("returns tvSeries title if season is undefined", () => {
-      const manifestation = {
-        titles: {
-          main: ["Some Main Title"],
-          original: [],
-          tvSeries: {
-            title: "Some TV Show",
-            season: null
-          }
-        }
-      } as unknown as Manifestation;
-
-      const title = getManifestationTitle(manifestation);
-      expect(title).toMatchInlineSnapshot(`"Some TV Show"`);
-    });
-
-    it("returns the first main title if no tvSeries info", () => {
+    it("returns the first main title if multiple main titles", () => {
       const manifestation = {
         titles: {
           main: ["Global Adventures", "Another Title"],
-          original: ["Original Global Adventures"],
-          tvSeries: null
+          original: ["Global Adventures (Original)", "Another Title (Original)"]
         }
       } as unknown as Manifestation;
 
@@ -823,12 +792,11 @@ if (import.meta.vitest) {
       expect(title).toMatchInlineSnapshot(`"Global Adventures"`);
     });
 
-    it("returns the first original title if no tvSeries info and no main titles", () => {
+    it("returns the first original title if no main titles", () => {
       const manifestation = {
         titles: {
           main: [],
-          original: ["Some Original Title", "Another Original Title"],
-          tvSeries: null
+          original: ["Some Original Title", "Another Original Title"]
         }
       } as unknown as Manifestation;
 
@@ -836,25 +804,11 @@ if (import.meta.vitest) {
       expect(title).toMatchInlineSnapshot(`"Some Original Title"`);
     });
 
-    it("returns the first main title if no tvSeries info and no original titles", () => {
-      const manifestation = {
-        titles: {
-          main: ["Title 1", "Title 2", "Title 3"],
-          original: [],
-          tvSeries: null
-        }
-      } as unknown as Manifestation;
-
-      const title = getManifestationTitle(manifestation);
-      expect(title).toMatchInlineSnapshot(`"Title 1"`);
-    });
-
     it("returns 'Unknown title' when no data is available", () => {
       const manifestation = {
         titles: {
           main: [],
-          original: [],
-          tvSeries: null
+          original: []
         }
       } as unknown as Manifestation;
 
