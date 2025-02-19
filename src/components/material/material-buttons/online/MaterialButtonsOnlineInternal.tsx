@@ -10,7 +10,7 @@ import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 import LinkButton from "../../../Buttons/LinkButton";
 import { Button } from "../../../Buttons/Button";
 import { getManifestationType } from "../../../../core/utils/helpers/general";
-import { OnlineInternalRequestStatus } from "../../../../core/utils/types/request";
+import { RequestStatus } from "../../../../core/utils/types/request";
 import DeleteReservationModal, {
   deleteReservationModalId
 } from "../../../../apps/reservation-list/modal/delete-reservation/delete-reservation-modal";
@@ -23,8 +23,9 @@ type MaterialButtonsOnlineInternalType = {
   manifestations: Manifestation[];
   dataCy?: string;
   openModal: boolean;
-  setReservationStatus?: (status: OnlineInternalRequestStatus) => void;
+  setReservationStatus?: (status: RequestStatus) => void;
   setLoanResponse?: (response: CreateLoanResult | null) => void;
+  setLoanStatus?: (status: RequestStatus) => void;
 };
 
 const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
@@ -33,7 +34,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   dataCy = "material-button-online-internal",
   openModal,
   setReservationStatus,
-  setLoanResponse
+  setLoanResponse,
+  setLoanStatus
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -51,7 +53,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     manifestations,
     openModal,
     setReservationStatus,
-    setLoanResponse
+    setLoanResponse,
+    setLoanStatus
   });
   const [reservationToDelete, setReservationToDelete] =
     useState<ReservationType | null>(null);

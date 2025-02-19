@@ -15,21 +15,23 @@ import {
   getAllFaustIds
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
-import { OnlineInternalRequestStatus } from "../../core/utils/types/request";
+import { RequestStatus } from "../../core/utils/types/request";
 import { CreateLoanResult } from "../publizon/model";
 
 type useOnlineInternalHandleLoanReservationType = {
   manifestations: Manifestation[];
   openModal: boolean;
-  setReservationStatus?: (status: OnlineInternalRequestStatus) => void;
+  setReservationStatus?: (status: RequestStatus) => void;
   setLoanResponse?: (response: CreateLoanResult | null) => void;
+  setLoanStatus?: (status: RequestStatus) => void;
 };
 
 const useOnlineInternalHandleLoanReservation = ({
   manifestations,
   openModal,
   setReservationStatus,
-  setLoanResponse
+  setLoanResponse,
+  setLoanStatus
 }: useOnlineInternalHandleLoanReservationType) => {
   const queryClient = useQueryClient();
   const u = useUrls();
@@ -59,16 +61,16 @@ const useOnlineInternalHandleLoanReservation = ({
           onSuccess: (res) => {
             // Ensure that the button is updated after a successful loan
             queryClient.invalidateQueries(getGetV1UserLoansQueryKey());
-            if (setReservationStatus) {
-              setReservationStatus("loaned");
+            if (setLoanStatus) {
+              setLoanStatus("success");
             }
             if (setLoanResponse) {
               setLoanResponse(res);
             }
           },
           onError: () => {
-            if (setReservationStatus) {
-              setReservationStatus("error");
+            if (setLoanStatus) {
+              setLoanStatus("error");
             }
           }
         }
@@ -92,7 +94,7 @@ const useOnlineInternalHandleLoanReservation = ({
             // Ensure that the button is updated after a successful reservation
             queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
             if (setReservationStatus) {
-              setReservationStatus("reserved");
+              setReservationStatus("success");
             }
           },
           onError: () => {

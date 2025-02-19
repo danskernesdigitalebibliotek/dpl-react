@@ -9,7 +9,7 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { getAuthorLine } from "./helper";
 import ModalMessage from "../message/modal-message/ModalMessage";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
-import { OnlineInternalRequestStatus } from "../../core/utils/types/request";
+import { RequestStatus } from "../../core/utils/types/request";
 import MaterialAvailabilityTextOnline from "../material/MaterialAvailabilityText/online/MaterialAvailabilityTextOnline";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModalUserListItems from "./OnlineInternalModalUserListItems";
@@ -26,8 +26,9 @@ const OnlineInternalModalBody = ({
   selectedManifestations
 }: OnlineInternalModalBodyProps) => {
   const t = useText();
+  const [loanStatus, setloanStatus] = useState<RequestStatus>("idle");
   const [reservationStatus, setReservationStatus] =
-    useState<OnlineInternalRequestStatus>("idle");
+    useState<RequestStatus>("idle");
   const [loanResponse, setLoanResponse] = useState<CreateLoanResult | null>(
     null
   );
@@ -40,7 +41,7 @@ const OnlineInternalModalBody = ({
   const { data: userData } = usePatronData();
   const { identifier, canBeReserved } = useReaderPlayer(selectedManifestations);
 
-  if (reservationStatus === "idle") {
+  if (reservationStatus === "idle" || loanStatus === "idle") {
     return (
       <section className="reservation-modal">
         <header className="reservation-modal-header">
@@ -70,6 +71,7 @@ const OnlineInternalModalBody = ({
               openModal={false}
               manifestations={selectedManifestations}
               setReservationStatus={setReservationStatus}
+              setLoanStatus={setloanStatus}
               setLoanResponse={setLoanResponse}
             />
           </div>
@@ -88,7 +90,7 @@ const OnlineInternalModalBody = ({
     );
   }
 
-  if (reservationStatus === "loaned" && loanResponse?.expirationDateUtc) {
+  if (loanStatus === "success" && loanResponse?.expirationDateUtc) {
     return (
       <ModalMessage
         title={t("onlineInternalResponseLoanedTitleText")}
@@ -114,7 +116,7 @@ const OnlineInternalModalBody = ({
     );
   }
 
-  if (reservationStatus === "reserved") {
+  if (reservationStatus === "success") {
     return (
       <ModalMessage
         title={t("onlineInternalResponseReservedTitleText")}
@@ -137,7 +139,7 @@ const OnlineInternalModalBody = ({
     );
   }
 
-  if (reservationStatus === "error") {
+  if (reservationStatus === "error" || loanStatus === "error") {
     return (
       <ModalMessage
         title={t("onlineInternalResponseErrorTitleText")}
