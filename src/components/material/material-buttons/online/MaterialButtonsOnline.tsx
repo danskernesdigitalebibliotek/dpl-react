@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
+import { first } from "lodash";
 import { AccessUrl } from "../../../../core/dbc-gateway/generated/graphql";
 import InvalidUrlError from "../../../../core/errors/InvalidUrlError";
 import { statistics } from "../../../../core/statistics/statistics";
@@ -54,7 +55,11 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
   // Check if the access type is external (e.g., Filmstriben or eReolen Global).
   if (hasCorrectAccess("AccessUrl", manifestations)) {
-    const accessElement = manifestations[0].access[0];
+    const accessElement = first(first(manifestations)?.access);
+
+    if (!accessElement) {
+      throw new Error("No access element found.");
+    }
     const { origin, url: externalUrl } = accessElement as AccessUrl;
 
     //  We have experienced that externalUrl is not always valid.
