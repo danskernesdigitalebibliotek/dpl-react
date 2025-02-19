@@ -44,7 +44,6 @@ const ReservationDetailsRedirect: FC<
         variant="filled"
         id="view-material-button"
         iconClassNames="btn-icon invert"
-        buttonType="external-link"
       >
         {t("viewMaterialText")}
       </LinkButton>
