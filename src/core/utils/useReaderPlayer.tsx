@@ -3,7 +3,7 @@ import { getManifestationIsbn } from "../../apps/material/helper";
 import {
   getOrderIdByIdentifier,
   getReaderPlayerType,
-  getReservedReservation
+  findReservedReservation
 } from "../../components/reader-player/helper";
 import { isAnonymous } from "./helpers/user";
 import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
@@ -55,7 +55,7 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
 
   const reservation =
     identifier && reservations
-      ? getReservedReservation(identifier, reservations)
+      ? findReservedReservation(identifier, reservations)
       : null;
 
   const isAlreadyReserved = !!reservation;

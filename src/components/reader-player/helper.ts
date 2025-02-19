@@ -113,7 +113,7 @@ export const getReaderPlayerType = (
   return null;
 };
 
-export const getReservedReservation = (
+export const findReservedReservation = (
   identifier: string,
   reservations: ReservationType[]
 ) =>
