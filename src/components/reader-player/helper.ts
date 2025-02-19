@@ -3,6 +3,7 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { ReservationType } from "../../core/utils/types/reservation-type";
+import { hasCorrectAccess } from "../material/material-buttons/helper";
 
 type AssetType = {
   src: string;
@@ -100,8 +101,10 @@ export const playerTypes = [
 ];
 
 export const getReaderPlayerType = (
-  manifestations: Manifestation[]
+  manifestations: Manifestation[] | null
 ): "reader" | "player" | null => {
+  if (!manifestations || !manifestations.length) return null;
+  if (!hasCorrectAccess("Ereol", manifestations)) return null;
   const materialTypes = getMaterialTypes(manifestations);
 
   if (readerTypes.some((type) => materialTypes.includes(type))) return "reader";

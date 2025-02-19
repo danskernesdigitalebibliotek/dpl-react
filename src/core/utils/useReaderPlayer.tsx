@@ -7,7 +7,6 @@ import {
 } from "../../components/reader-player/helper";
 import { isAnonymous } from "./helpers/user";
 import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
-import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
 import {
   useGetV1UserLoans,
   useGetV1UserReservations
@@ -21,10 +20,7 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   const isUserAnonymous = isAnonymous();
   const hasManifestations = !!manifestations?.length;
 
-  const type =
-    hasManifestations && hasCorrectAccess("Ereol", manifestations)
-      ? getReaderPlayerType(manifestations)
-      : null;
+  const type = getReaderPlayerType(manifestations);
   const identifier = hasManifestations
     ? getManifestationIsbn(manifestations[0])
     : null;
