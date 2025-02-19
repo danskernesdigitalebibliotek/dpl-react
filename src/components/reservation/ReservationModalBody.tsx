@@ -22,6 +22,7 @@ import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
 import {
+  getManifestationTitle,
   getTotalHoldings,
   getTotalReservations,
   reservationModalId,
@@ -270,7 +271,7 @@ export const ReservationModalBody = ({
                 {getMaterialTypes(selectedManifestations)[0]}
               </div>
               <h2 className="text-header-h2 mt-22 mb-8">
-                {manifestation.titles.main}
+                {getManifestationTitle(manifestation)}
                 {selectedPeriodical && ` ${selectedPeriodical.displayText}`}
               </h2>
               {authorLine && (
@@ -379,7 +380,7 @@ export const ReservationModalBody = ({
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
           modalId={reservationModalId(faustIds)}
-          title={manifestation.titles.main[0]}
+          title={getManifestationTitle(manifestation)}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
             branches

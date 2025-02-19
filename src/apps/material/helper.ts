@@ -180,6 +180,35 @@ export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
   return manifestation.titles?.original?.[0] ?? "";
 };
 
+export const getManifestationTitle = ({ titles }: Manifestation): string => {
+  if (titles.tvSeries?.title && titles.tvSeries?.season?.display) {
+    const { title, season } = titles.tvSeries;
+    return `${title} - ${season.display}`;
+  }
+
+  if (titles.tvSeries?.title) {
+    const { title } = titles.tvSeries;
+    return title;
+  }
+
+  if (titles.main.length) {
+    const { main } = titles;
+    return main[0];
+  }
+
+  if (titles?.original?.length) {
+    const { original } = titles;
+    return original[0];
+  }
+
+  // This should never happen, so therefore ist not translated.
+  return "Unknown title";
+};
+
+export const getManifestationTitles = ({ titles }: Manifestation) => {
+  return titles.main.join(", ") ?? "Unknown titles";
+};
+
 export const getManifestationContributors = (manifestation: Manifestation) => {
   return (
     manifestation.contributors
@@ -592,6 +621,37 @@ export const getManifestationBasedOnType = (
   return bestRepresentation;
 };
 
+export const getWorkTitle = ({ titles, mainLanguages }: Work): string => {
+  if (titles.tvSeries?.title && titles.tvSeries?.season?.display) {
+    const { title, season } = titles.tvSeries;
+    return `${title} - ${season.display}`;
+  }
+
+  if (titles.tvSeries?.title) {
+    return titles.tvSeries.title;
+  }
+
+  const containsDanish = mainLanguages.some(({ isoCode }) =>
+    isoCode?.toLowerCase().includes("dan")
+  );
+
+  if (containsDanish && titles.full?.length) {
+    return titles.full[0];
+  }
+
+  if (titles.full.length) {
+    const allLanguages = mainLanguages.map(({ display }) => display).join(", ");
+    return `${titles.full.join(", ")} (${allLanguages})`;
+  }
+
+  if (titles?.original?.length) {
+    return titles.original[0];
+  }
+
+  // This should never happen, so therefore ist not translated.
+  return "Unknown title";
+};
+
 // ************** VITEST ***************
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
@@ -606,6 +666,200 @@ if (import.meta.vitest) {
         divideManifestationsByMaterialType(manifestations);
 
       expect(dividedManifestations).toMatchSnapshot();
+    });
+  });
+
+  describe("getWorkTitle", () => {
+    it("returns tvSeries title and season if both exist", () => {
+      const work = {
+        titles: {
+          full: ["Game of thrones"],
+          original: [],
+          tvSeries: {
+            title: "Game of thrones",
+            season: {
+              display: "sæson 1"
+            }
+          }
+        },
+        mainLanguages: [
+          {
+            display: "engelsk",
+            isoCode: "eng"
+          }
+        ]
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Game of thrones - sæson 1"`);
+    });
+
+    it("returns tvSeries title if season is undefined", () => {
+      const work = {
+        titles: {
+          full: ["Some Full Title"],
+          original: ["Original Title"],
+          tvSeries: {
+            title: "Another TV Show",
+            season: []
+          }
+        },
+        mainLanguages: [
+          {
+            display: "English",
+            isoCode: "eng"
+          }
+        ]
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Another TV Show"`);
+    });
+
+    it("returns the first full title if main language is Danish", () => {
+      const work = {
+        titles: {
+          full: ["De syv søstre : Maias historie"],
+          original: ["The seven sisters"],
+          tvSeries: null
+        },
+        mainLanguages: [
+          {
+            display: "dansk",
+            isoCode: "dan"
+          }
+        ]
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"De syv søstre : Maias historie"`);
+    });
+
+    it("returns the first full title plus languages in parentheses if not Danish", () => {
+      const work = {
+        titles: {
+          full: ["Global Adventures"],
+          original: ["Original Global Adventures"],
+          tvSeries: null
+        },
+        mainLanguages: [
+          {
+            display: "English",
+            isoCode: "eng"
+          },
+          {
+            display: "German",
+            isoCode: "ger"
+          }
+        ]
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(
+        `"Global Adventures (English, German)"`
+      );
+    });
+
+    it("returns 'Unknown title' when no data is available", () => {
+      const work = {
+        titles: {
+          full: [],
+          original: [],
+          tvSeries: null
+        },
+        mainLanguages: []
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Unknown title"`);
+    });
+  });
+
+  describe("getManifestationTitle", () => {
+    it("returns tvSeries title and season if both exist", () => {
+      const manifestation = {
+        titles: {
+          main: ["Game of thrones"],
+          original: [],
+          tvSeries: {
+            title: "Game of thrones",
+            season: {
+              display: "sæson 1"
+            }
+          }
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(`"Game of thrones - sæson 1"`);
+    });
+
+    it("returns tvSeries title if season is undefined", () => {
+      const manifestation = {
+        titles: {
+          main: ["Some Main Title"],
+          original: [],
+          tvSeries: {
+            title: "Some TV Show",
+            season: null
+          }
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(`"Some TV Show"`);
+    });
+
+    it("returns the first main title if no tvSeries info", () => {
+      const manifestation = {
+        titles: {
+          main: ["Global Adventures", "Another Title"],
+          original: ["Original Global Adventures"],
+          tvSeries: null
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(`"Global Adventures"`);
+    });
+
+    it("returns the first original title if no tvSeries info and no main titles", () => {
+      const manifestation = {
+        titles: {
+          main: [],
+          original: ["Some Original Title", "Another Original Title"],
+          tvSeries: null
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(`"Some Original Title"`);
+    });
+
+    it("returns the first main title if no tvSeries info and no original titles", () => {
+      const manifestation = {
+        titles: {
+          main: ["Title 1", "Title 2", "Title 3"],
+          original: [],
+          tvSeries: null
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(`"Title 1"`);
+    });
+
+    it("returns 'Unknown title' when no data is available", () => {
+      const manifestation = {
+        titles: {
+          main: [],
+          original: [],
+          tvSeries: null
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(`"Unknown title"`);
     });
   });
 }
