@@ -10,7 +10,10 @@ import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import { useUrls } from "../../core/utils/url";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { onlineInternalModalId } from "../../apps/material/helper";
-import { getAllFaustIds } from "../../core/utils/helpers/general";
+import {
+  formatDanishPhoneNumber,
+  getAllFaustIds
+} from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { OnlineInternalRequestStatus } from "../../core/utils/types/request";
 import { CreateLoanResult } from "../publizon/model";
@@ -79,12 +82,8 @@ const useOnlineInternalHandleLoanReservation = ({
           identifier,
           data: {
             email: userData.patron.emailAddress,
-            // Only add phone number if it exists
-            // Still waiting for the API to support optional phoneNumber
             ...(userData.patron.phoneNumber && {
-              phoneNumber: userData.patron.phoneNumber.match(/^\+\d{2}/)
-                ? userData.patron.phoneNumber // Keep the number unchanged if it already starts with +XX
-                : `+45${userData.patron.phoneNumber}` // Prepend +45 if no country code is present
+              phoneNumber: formatDanishPhoneNumber(userData.patron.phoneNumber)
             })
           }
         },
