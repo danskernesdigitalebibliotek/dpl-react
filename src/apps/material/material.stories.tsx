@@ -879,7 +879,7 @@ const meta: Meta<typeof MaterialEntry> = {
     onlineInternalResponseErrorSubtitleText:
       "@title could not be borrowed or reserved",
     onlineInternalResponseErrorTitleText: "Something went wrong.",
-    onlineInternalResponseLoanedSubtitleText: "@title is lent to you",
+    onlineInternalResponseLoanedSubtitleText: "@title is borrowed to you",
     onlineInternalResponseLoanedTitleText:
       "You have now borrowed the material!",
     onlineInternalResponseReservedSubtitleText: "@title is reserved for you",
@@ -889,7 +889,7 @@ const meta: Meta<typeof MaterialEntry> = {
     onlineInternalSuccessLoanedText:
       "You can read/listen to the material until @expirationDate",
     onlineInternalSuccessReservedText:
-      "You will receive a message when reservation is met and the material is lent to you.",
+      "You will receive a message when reservation is met and the material is borrowed to you.",
     missingDataText: "Missing data",
     reservationModalScreenReaderModalDescriptionText: "Modal for reservation",
     reservationModalCloseModalAriaLabelText: "Close reservation modal",
