@@ -1,5 +1,6 @@
 import { useQueryClient } from "react-query";
 import {
+  getGetV1LoanstatusIdentifierQueryKey,
   getGetV1UserLoansQueryKey,
   getGetV1UserReservationsQueryKey,
   usePostV1UserLoansIdentifier,
@@ -61,6 +62,9 @@ const useOnlineInternalHandleLoanReservation = ({
           onSuccess: (res) => {
             // Ensure that the button is updated after a successful loan
             queryClient.invalidateQueries(getGetV1UserLoansQueryKey());
+            queryClient.invalidateQueries(
+              getGetV1LoanstatusIdentifierQueryKey(identifier)
+            );
             if (setLoanStatus) {
               setLoanStatus("success");
             }
@@ -93,6 +97,9 @@ const useOnlineInternalHandleLoanReservation = ({
           onSuccess: () => {
             // Ensure that the button is updated after a successful reservation
             queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
+            queryClient.invalidateQueries(
+              getGetV1LoanstatusIdentifierQueryKey(identifier)
+            );
             if (setReservationStatus) {
               setReservationStatus("success");
             }

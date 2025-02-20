@@ -6,8 +6,8 @@ import {
   findReservedReservation
 } from "../../components/reader-player/helper";
 import { isAnonymous } from "./helpers/user";
-import useOnlineAvailabilityData from "../../components/availability-label/useOnlineAvailabilityData";
 import {
+  useGetV1LoanstatusIdentifier,
   useGetV1UserLoans,
   useGetV1UserReservations
 } from "../publizon/publizon";
@@ -15,6 +15,7 @@ import {
   mapPublizonLoanToLoanType,
   mapPublizonReservationToReservationType
 } from "./helpers/list-mapper";
+import { getLoanStatus } from "../../components/availability-label/types";
 
 const useReaderPlayer = (manifestations: Manifestation[] | null) => {
   const isUserAnonymous = isAnonymous();
@@ -39,16 +40,10 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
     ? mapPublizonReservationToReservationType(reservationsPublizon.reservations)
     : null;
 
-  const availabilityData = useOnlineAvailabilityData({
-    enabled: !!identifier,
-    isbn: identifier,
-    access: [undefined],
-    faustIds: null
+  // Save to use identifier! because the hook is not enabled if there is no identifier
+  const { data: dataLoanStatus } = useGetV1LoanstatusIdentifier(identifier!, {
+    enabled: !!identifier
   });
-
-  const isAvailable = availabilityData?.isLoading
-    ? false
-    : availabilityData?.isAvailable;
 
   const orderId =
     loans && identifier ? getOrderIdByIdentifier({ loans, identifier }) : null;
@@ -58,10 +53,13 @@ const useReaderPlayer = (manifestations: Manifestation[] | null) => {
       ? findReservedReservation(identifier, reservations)
       : null;
 
-  const isAlreadyReserved = !!reservation;
-  const isAlreadyLoaned = !!orderId;
-  const canBeLoaned = isUserAnonymous || isAvailable;
-  const canBeReserved = !isAvailable;
+  const { loaned, reserved, redeemable, loanable, reservable } =
+    getLoanStatus(dataLoanStatus);
+
+  const isAlreadyReserved = reserved;
+  const isAlreadyLoaned = loaned;
+  const canBeLoaned = isUserAnonymous || redeemable || loanable;
+  const canBeReserved = reservable;
 
   return {
     type,

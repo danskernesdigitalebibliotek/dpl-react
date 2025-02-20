@@ -41,55 +41,6 @@ const OnlineInternalModalBody = ({
   const { data: userData } = usePatronData();
   const { identifier, canBeReserved } = useReaderPlayer(selectedManifestations);
 
-  if (reservationStatus === "idle" || loanStatus === "idle") {
-    return (
-      <section className="reservation-modal">
-        <header className="reservation-modal-header">
-          <Cover ids={[manifestation.pid]} size="medium" animate />
-          <div className="reservation-modal-description">
-            <div className="reservation-modal-tag">
-              {getManifestationType(selectedManifestations)}
-            </div>
-            <h2 className="text-header-h2 mt-22 mb-8">
-              {manifestation.titles.main}
-            </h2>
-            {authorLine && (
-              <p className="text-body-medium-regular">{authorLine}</p>
-            )}
-          </div>
-        </header>
-
-        <div>
-          <div className="reservation-modal-submit">
-            {identifier && (
-              <MaterialAvailabilityTextOnline
-                isbns={[identifier]}
-                materialType={manifestationType}
-              />
-            )}
-            <MaterialButtonsOnlineInternal
-              openModal={false}
-              manifestations={selectedManifestations}
-              setReservationStatus={setReservationStatus}
-              setLoanStatus={setloanStatus}
-              setLoanResponse={setLoanResponse}
-            />
-          </div>
-          {canBeReserved && (
-            <div className="reservation-modal-list">
-              {userData?.patron && (
-                <OnlineInternalModalUserListItems
-                  patron={userData.patron}
-                  reservationStatus={reservationStatus}
-                />
-              )}
-            </div>
-          )}
-        </div>
-      </section>
-    );
-  }
-
   if (loanStatus === "success" && loanResponse?.expirationDateUtc) {
     return (
       <ModalMessage
@@ -159,6 +110,55 @@ const OnlineInternalModalBody = ({
           {t("onlineInternalErrorsText")}
         </p>
       </ModalMessage>
+    );
+  }
+
+  if (reservationStatus === "idle" || loanStatus === "idle") {
+    return (
+      <section className="reservation-modal">
+        <header className="reservation-modal-header">
+          <Cover ids={[manifestation.pid]} size="medium" animate />
+          <div className="reservation-modal-description">
+            <div className="reservation-modal-tag">
+              {getManifestationType(selectedManifestations)}
+            </div>
+            <h2 className="text-header-h2 mt-22 mb-8">
+              {manifestation.titles.main}
+            </h2>
+            {authorLine && (
+              <p className="text-body-medium-regular">{authorLine}</p>
+            )}
+          </div>
+        </header>
+
+        <div>
+          <div className="reservation-modal-submit">
+            {identifier && (
+              <MaterialAvailabilityTextOnline
+                isbns={[identifier]}
+                materialType={manifestationType}
+              />
+            )}
+            <MaterialButtonsOnlineInternal
+              openModal={false}
+              manifestations={selectedManifestations}
+              setReservationStatus={setReservationStatus}
+              setLoanStatus={setloanStatus}
+              setLoanResponse={setLoanResponse}
+            />
+          </div>
+          {canBeReserved && (
+            <div className="reservation-modal-list">
+              {userData?.patron && (
+                <OnlineInternalModalUserListItems
+                  patron={userData.patron}
+                  reservationStatus={reservationStatus}
+                />
+              )}
+            </div>
+          )}
+        </div>
+      </section>
     );
   }
 

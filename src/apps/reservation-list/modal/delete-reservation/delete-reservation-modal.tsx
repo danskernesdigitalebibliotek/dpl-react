@@ -8,6 +8,7 @@ import {
   useDeleteReservations
 } from "../../../../core/fbs/fbs";
 import {
+  getGetV1LoanstatusIdentifierQueryKey,
   getGetV1UserReservationsQueryKey,
   useDeleteV1UserReservationsIdentifier
 } from "../../../../core/publizon/publizon";
@@ -81,6 +82,15 @@ const DeleteReservationModal: FC<DeleteReservationModalProps> = ({
       // Invalidate queries to update the UI.
       queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
       queryClient.invalidateQueries(getGetReservationsV2QueryKey());
+      if (reservations.length) {
+        reservations.forEach((res) => {
+          if (res.identifier) {
+            queryClient.invalidateQueries(
+              getGetV1LoanstatusIdentifierQueryKey(res.identifier)
+            );
+          }
+        });
+      }
     }
   });
 

@@ -154,6 +154,26 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const renderPlayerButton = () => {
     if (!identifier) return null;
 
+    if (isAlreadyReserved && reservation) {
+      return (
+        <>
+          <Button
+            dataCy="remove-digital-reservation-button"
+            label={t("reservationDetailsRemoveDigitalReservationText")}
+            buttonType="none"
+            size={size || "large"}
+            variant="filled"
+            collapsible={false}
+            disabled={false}
+            onClick={() => {
+              setReservationToDelete(reservation);
+              open(deleteReservationModalId(reservation));
+            }}
+          />
+        </>
+      );
+    }
+
     if (isAlreadyLoaned && orderId) {
       return (
         <Button
