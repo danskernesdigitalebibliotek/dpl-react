@@ -103,6 +103,7 @@ interface MaterialEntryTextProps {
   okButtonText: string;
   onlineInternalModalCloseAriaLabelText: string;
   onlineInternalModalScreenReaderDescriptionText: string;
+  onlineInternalModalEnsureNotificationText: string;
   onlineInternalResponseErrorSubtitleText: string;
   onlineInternalResponseErrorTitleText: string;
   onlineInternalResponseLoanedSubtitleText: string;

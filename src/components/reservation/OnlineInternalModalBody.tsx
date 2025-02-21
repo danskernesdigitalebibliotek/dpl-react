@@ -148,14 +148,19 @@ const OnlineInternalModalBody = ({
             />
           </div>
           {canBeReserved && (
-            <div className="reservation-modal-list">
-              {userData?.patron && (
-                <OnlineInternalModalUserListItems
-                  patron={userData.patron}
-                  reservationStatus={reservationStatus}
-                />
-              )}
-            </div>
+            <>
+              <div className="reservation-modal-list">
+                {userData?.patron && (
+                  <OnlineInternalModalUserListItems
+                    patron={userData.patron}
+                    reservationStatus={reservationStatus}
+                  />
+                )}
+              </div>
+              <p className="mt-16 text-small-caption">
+                {t("onlineInternalModalEnsureNotificationText")}
+              </p>
+            </>
           )}
         </div>
       </section>

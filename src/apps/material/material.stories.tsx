@@ -387,6 +387,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "reader/player modal screen reader description",
       control: { type: "text" }
     },
+    onlineInternalModalEnsureNotificationText: {
+      description: "Ensure notification",
+      control: { type: "text" }
+    },
     onlineInternalResponseErrorSubtitleText: {
       description: "reader/player Error subtitle",
       control: { type: "text" }
@@ -876,6 +880,8 @@ const meta: Meta<typeof MaterialEntry> = {
     onlineInternalModalCloseAriaLabelText: "Close reader/player modal",
     onlineInternalModalScreenReaderDescriptionText:
       "Modal for reader/player material",
+    onlineInternalModalEnsureNotificationText:
+      "If you wish to receive notifications when the material is ready for loan, you need to add your email address or phone number.",
     onlineInternalResponseErrorSubtitleText:
       "@title could not be borrowed or reserved",
     onlineInternalResponseErrorTitleText: "Something went wrong.",
