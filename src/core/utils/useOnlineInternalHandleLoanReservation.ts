@@ -87,7 +87,9 @@ const useOnlineInternalHandleLoanReservation = ({
         {
           identifier,
           data: {
-            email: userData.patron.emailAddress,
+            ...(userData.patron.emailAddress && {
+              email: userData.patron.emailAddress
+            }),
             ...(userData.patron.phoneNumber && {
               phoneNumber: formatDanishPhoneNumber(userData.patron.phoneNumber)
             })
