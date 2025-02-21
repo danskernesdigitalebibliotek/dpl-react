@@ -18,6 +18,8 @@ import {
 import { Manifestation } from "../../core/utils/types/entities";
 import { RequestStatus } from "../../core/utils/types/request";
 import { CreateLoanResult } from "../publizon/model";
+import PublizonServiceHttpError from "../publizon/mutator/PublizonServiceHttpError";
+import { PublizonErrorType } from "./helpers/publizon";
 
 type useOnlineInternalHandleLoanReservationType = {
   manifestations: Manifestation[];
@@ -25,6 +27,7 @@ type useOnlineInternalHandleLoanReservationType = {
   setReservationStatus?: (status: RequestStatus) => void;
   setLoanResponse?: (response: CreateLoanResult | null) => void;
   setLoanStatus?: (status: RequestStatus) => void;
+  setReservationOrLoanErrorResponse?: (error: PublizonErrorType) => void;
 };
 
 const useOnlineInternalHandleLoanReservation = ({
@@ -32,7 +35,8 @@ const useOnlineInternalHandleLoanReservation = ({
   openModal,
   setReservationStatus,
   setLoanResponse,
-  setLoanStatus
+  setLoanStatus,
+  setReservationOrLoanErrorResponse
 }: useOnlineInternalHandleLoanReservationType) => {
   const queryClient = useQueryClient();
   const u = useUrls();
@@ -72,7 +76,15 @@ const useOnlineInternalHandleLoanReservation = ({
               setLoanResponse(res);
             }
           },
-          onError: () => {
+          onError: (err) => {
+            if (err instanceof PublizonServiceHttpError) {
+              if (setReservationOrLoanErrorResponse) {
+                setReservationOrLoanErrorResponse(
+                  err.responseBody as PublizonErrorType
+                );
+              }
+            }
+
             if (setLoanStatus) {
               setLoanStatus("error");
             }
@@ -106,7 +118,14 @@ const useOnlineInternalHandleLoanReservation = ({
               setReservationStatus("success");
             }
           },
-          onError: () => {
+          onError: (err) => {
+            if (err instanceof PublizonServiceHttpError) {
+              if (setReservationOrLoanErrorResponse) {
+                setReservationOrLoanErrorResponse(
+                  err.responseBody as PublizonErrorType
+                );
+              }
+            }
             if (setReservationStatus) {
               setReservationStatus("error");
             }

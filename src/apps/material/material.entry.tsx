@@ -8,6 +8,7 @@ import Material from "./material";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
+import { PublizonErrorArgs } from "../../core/storybook/publizonErrorArgs";
 
 interface MaterialEntryTextProps {
   alreadyReservedText: string;
@@ -203,7 +204,8 @@ export interface MaterialEntryProps
     MaterialEntryTextProps,
     GlobalEntryTextProps,
     MaterialEntryConfigProps,
-    DeleteReservationModalArgs {
+    DeleteReservationModalArgs,
+    PublizonErrorArgs {
   wid: WorkId;
 }
 

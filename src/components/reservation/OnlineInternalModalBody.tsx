@@ -17,6 +17,10 @@ import MaterialButtonsOnlineInternal from "../material/material-buttons/online/M
 import { onlineInternalModalId } from "../../apps/material/helper";
 import { CreateLoanResult } from "../../core/publizon/model";
 import { formatDate } from "../../core/utils/helpers/date";
+import {
+  getPublizonErrorStatusText,
+  PublizonErrorType
+} from "../../core/utils/helpers/publizon";
 
 type OnlineInternalModalBodyProps = {
   selectedManifestations: Manifestation[];
@@ -32,6 +36,8 @@ const OnlineInternalModalBody = ({
   const [loanResponse, setLoanResponse] = useState<CreateLoanResult | null>(
     null
   );
+  const [reservationOrLoanErrorResponse, setReservationOrLoanErrorResponse] =
+    useState<PublizonErrorType | null>(null);
 
   const manifestationType = getManifestationType(selectedManifestations);
   const faustIds = getAllFaustIds(selectedManifestations);
@@ -107,7 +113,11 @@ const OnlineInternalModalBody = ({
           data-cy="open-oprder-response-status-text"
           className="text-body-medium-regular pt-24"
         >
-          {t("onlineInternalErrorsText")}
+          {reservationOrLoanErrorResponse ? (
+            <>{getPublizonErrorStatusText(reservationOrLoanErrorResponse, t)}</>
+          ) : (
+            <>{t("onlineInternalErrorsText")}</>
+          )}
         </p>
       </ModalMessage>
     );
@@ -145,6 +155,9 @@ const OnlineInternalModalBody = ({
               setReservationStatus={setReservationStatus}
               setLoanStatus={setloanStatus}
               setLoanResponse={setLoanResponse}
+              setReservationOrLoanErrorResponse={
+                setReservationOrLoanErrorResponse
+              }
             />
           </div>
           {canBeReserved && (

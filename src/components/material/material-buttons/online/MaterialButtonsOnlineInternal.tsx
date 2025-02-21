@@ -17,6 +17,7 @@ import DeleteReservationModal, {
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import useOnlineInternalHandleLoanReservation from "../../../../core/utils/useOnlineInternalHandleLoanReservation";
 import { CreateLoanResult } from "../../../../core/publizon/model";
+import { PublizonErrorType } from "../../../../core/utils/helpers/publizon";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -26,6 +27,7 @@ type MaterialButtonsOnlineInternalType = {
   setReservationStatus?: (status: RequestStatus) => void;
   setLoanResponse?: (response: CreateLoanResult | null) => void;
   setLoanStatus?: (status: RequestStatus) => void;
+  setReservationOrLoanErrorResponse?: (error: PublizonErrorType) => void;
 };
 
 const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
@@ -35,7 +37,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   openModal,
   setReservationStatus,
   setLoanResponse,
-  setLoanStatus
+  setLoanStatus,
+  setReservationOrLoanErrorResponse
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
@@ -54,7 +57,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     openModal,
     setReservationStatus,
     setLoanResponse,
-    setLoanStatus
+    setLoanStatus,
+    setReservationOrLoanErrorResponse
   });
   const [reservationToDelete, setReservationToDelete] =
     useState<ReservationType | null>(null);

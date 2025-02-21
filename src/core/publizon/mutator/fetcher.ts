@@ -44,10 +44,20 @@ export const fetcher = async <ResponseType>({
     });
 
     if (!response.ok) {
+      let errorBody = null;
+      try {
+        errorBody = await response.json();
+      } catch (e) {
+        if (!(e instanceof SyntaxError)) {
+          throw e;
+        }
+      }
+
       throw new PublizonServiceHttpError(
         response.status,
         response.statusText,
-        serviceUrl
+        serviceUrl,
+        errorBody
       );
     }
 
