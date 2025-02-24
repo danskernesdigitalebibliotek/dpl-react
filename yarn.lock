@@ -7491,10 +7491,10 @@ graphql@^16.10.0:
   resolved "https://registry.npmjs.org/graphql/-/graphql-16.10.0.tgz"
   integrity sha512-AjqGKbDGUFRKIRCP9tCKiIGHyriz2oHEbPIbEtcSLSs4YjReZOIPQQWek4+6hjw62H9QShXHyaGivGiYVLeYFQ==
 
-happy-dom@^17.1.0:
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-17.1.0.tgz#5260c3ae19b3b3487b2cc057dbc9dc1d9c4f73e2"
-  integrity sha512-9tUhXyePCjzUMycaHS/IzrIpF69xiq/laAT7golk4MtZ6t8ft5+Rv7U3lfrs2b4NMH0JTL3EhZzjfahrPmOnaQ==
+happy-dom@^17.1.4:
+  version "17.1.4"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-17.1.4.tgz#08b16e1cbdc64c106257c05105abba9d19410255"
+  integrity sha512-cMxE0HP45kLIgWdI0PFfnitNb95Cv8kG8moqI7CK6kcEcfV7xoYVVvSmJ7EuGfDatSKWtjhG/czVooqEV0L4rA==
   dependencies:
     webidl-conversions "^7.0.0"
     whatwg-mimetype "^3.0.0"
