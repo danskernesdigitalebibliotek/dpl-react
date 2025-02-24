@@ -43,31 +43,27 @@ export const fetcher = async <ResponseType>({
       body
     });
 
-    if (!response.ok) {
-      let errorBody = null;
-      try {
-        errorBody = await response.json();
-      } catch (e) {
-        if (!(e instanceof SyntaxError)) {
-          throw e;
-        }
-      }
+    let responseBody: ResponseType | null = null;
 
+    try {
+      responseBody = await response.json();
+    } catch (e) {
+      if (e instanceof SyntaxError) {
+        return null;
+      }
+      throw e;
+    }
+
+    if (!response.ok) {
       throw new PublizonServiceHttpError(
         response.status,
         response.statusText,
-        serviceUrl,
-        errorBody
+        responseBody,
+        serviceUrl
       );
     }
 
-    try {
-      return (await response.json()) as ResponseType;
-    } catch (e) {
-      if (!(e instanceof SyntaxError)) {
-        throw e;
-      }
-    }
+    return responseBody ?? null;
   } catch (error: unknown) {
     if (error instanceof PublizonServiceHttpError) {
       throw error;
