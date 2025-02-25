@@ -240,15 +240,6 @@ fragment WorkSmall on Work {
       }
     }
   }
-  mainLanguages {
-    display
-    isoCode
-  }
-  materialTypes {
-    materialTypeSpecific {
-      display
-    }
-  }
   abstract
   creators {
     display
@@ -268,8 +259,17 @@ fragment WorkSmall on Work {
 
 fragment WorkMedium on Work {
   ...WorkSmall
+  materialTypes {
+    materialTypeSpecific {
+      display
+    }
+  }
   creators {
     nameSort
+  }
+  mainLanguages {
+    display
+    isoCode
   }
   subjects {
     all {

@@ -2148,18 +2148,6 @@ export type GetSmallWorkQuery = {
         } | null;
       } | null;
     };
-    mainLanguages: Array<{
-      __typename?: "Language";
-      display: string;
-      isoCode: string;
-    }>;
-    materialTypes: Array<{
-      __typename?: "MaterialType";
-      materialTypeSpecific: {
-        __typename?: "SpecificMaterialType";
-        display: string;
-      };
-    }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
@@ -2713,10 +2701,22 @@ export type GetMaterialQuery = {
     workId: string;
     abstract?: Array<string> | null;
     genreAndForm: Array<string>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     creators: Array<
       | { __typename: "Corporation"; nameSort: string; display: string }
       | { __typename: "Person"; nameSort: string; display: string }
     >;
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
     subjects: {
       __typename?: "SubjectContainer";
       all: Array<
@@ -2772,18 +2772,6 @@ export type GetMaterialQuery = {
         } | null;
       } | null;
     };
-    mainLanguages: Array<{
-      __typename?: "Language";
-      display: string;
-      isoCode: string;
-    }>;
-    materialTypes: Array<{
-      __typename?: "MaterialType";
-      materialTypeSpecific: {
-        __typename?: "SpecificMaterialType";
-        display: string;
-      };
-    }>;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -3187,10 +3175,22 @@ export type GetMaterialGloballyQuery = {
     workId: string;
     abstract?: Array<string> | null;
     genreAndForm: Array<string>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     creators: Array<
       | { __typename: "Corporation"; nameSort: string; display: string }
       | { __typename: "Person"; nameSort: string; display: string }
     >;
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
     subjects: {
       __typename?: "SubjectContainer";
       all: Array<
@@ -3246,18 +3246,6 @@ export type GetMaterialGloballyQuery = {
         } | null;
       } | null;
     };
-    mainLanguages: Array<{
-      __typename?: "Language";
-      display: string;
-      isoCode: string;
-    }>;
-    materialTypes: Array<{
-      __typename?: "MaterialType";
-      materialTypeSpecific: {
-        __typename?: "SpecificMaterialType";
-        display: string;
-      };
-    }>;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -3769,18 +3757,6 @@ export type RecommendFromFaustQuery = {
             } | null;
           } | null;
         };
-        mainLanguages: Array<{
-          __typename?: "Language";
-          display: string;
-          isoCode: string;
-        }>;
-        materialTypes: Array<{
-          __typename?: "MaterialType";
-          materialTypeSpecific: {
-            __typename?: "SpecificMaterialType";
-            display: string;
-          };
-        }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
@@ -4212,18 +4188,6 @@ export type SearchWithPaginationQuery = {
           } | null;
         } | null;
       };
-      mainLanguages: Array<{
-        __typename?: "Language";
-        display: string;
-        isoCode: string;
-      }>;
-      materialTypes: Array<{
-        __typename?: "MaterialType";
-        materialTypeSpecific: {
-          __typename?: "SpecificMaterialType";
-          display: string;
-        };
-      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -4702,18 +4666,6 @@ export type ComplexSearchWithPaginationQuery = {
           } | null;
         } | null;
       };
-      mainLanguages: Array<{
-        __typename?: "Language";
-        display: string;
-        isoCode: string;
-      }>;
-      materialTypes: Array<{
-        __typename?: "MaterialType";
-        materialTypeSpecific: {
-          __typename?: "SpecificMaterialType";
-          display: string;
-        };
-      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -5840,18 +5792,6 @@ export type WorkSmallFragment = {
       } | null;
     } | null;
   };
-  mainLanguages: Array<{
-    __typename?: "Language";
-    display: string;
-    isoCode: string;
-  }>;
-  materialTypes: Array<{
-    __typename?: "MaterialType";
-    materialTypeSpecific: {
-      __typename?: "SpecificMaterialType";
-      display: string;
-    };
-  }>;
   creators: Array<
     | { __typename: "Corporation"; display: string }
     | { __typename: "Person"; display: string }
@@ -6252,10 +6192,22 @@ export type WorkMediumFragment = {
   workId: string;
   abstract?: Array<string> | null;
   genreAndForm: Array<string>;
+  materialTypes: Array<{
+    __typename?: "MaterialType";
+    materialTypeSpecific: {
+      __typename?: "SpecificMaterialType";
+      display: string;
+    };
+  }>;
   creators: Array<
     | { __typename: "Corporation"; nameSort: string; display: string }
     | { __typename: "Person"; nameSort: string; display: string }
   >;
+  mainLanguages: Array<{
+    __typename?: "Language";
+    display: string;
+    isoCode: string;
+  }>;
   subjects: {
     __typename?: "SubjectContainer";
     all: Array<
@@ -6311,18 +6263,6 @@ export type WorkMediumFragment = {
       } | null;
     } | null;
   };
-  mainLanguages: Array<{
-    __typename?: "Language";
-    display: string;
-    isoCode: string;
-  }>;
-  materialTypes: Array<{
-    __typename?: "MaterialType";
-    materialTypeSpecific: {
-      __typename?: "SpecificMaterialType";
-      display: string;
-    };
-  }>;
   series: Array<{
     __typename?: "Series";
     title: string;
@@ -7013,15 +6953,6 @@ export const WorkSmallFragmentDoc = `
       }
     }
   }
-  mainLanguages {
-    display
-    isoCode
-  }
-  materialTypes {
-    materialTypeSpecific {
-      display
-    }
-  }
   abstract
   creators {
     display
@@ -7043,8 +6974,17 @@ ${ManifestationsSimpleFragmentDoc}`;
 export const WorkMediumFragmentDoc = `
     fragment WorkMedium on Work {
   ...WorkSmall
+  materialTypes {
+    materialTypeSpecific {
+      display
+    }
+  }
   creators {
     nameSort
+  }
+  mainLanguages {
+    display
+    isoCode
   }
   subjects {
     all {
