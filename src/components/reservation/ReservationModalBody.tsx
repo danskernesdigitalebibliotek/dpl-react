@@ -315,7 +315,9 @@ export const ReservationModalBody = ({
                   type="info"
                   text={t("materialIsAvailableInAnotherEditionText", {
                     placeholders: {
-                      "@title": otherManifestationPreferred.titles.main[0],
+                      "@title": getManifestationTitle(
+                        otherManifestationPreferred
+                      ),
                       "@authorAndYear":
                         getAuthorLine(otherManifestationPreferred, t) ?? "",
                       "@reservations": otherManifestationPreferred.reservations

@@ -672,33 +672,6 @@ export type InterLibraryLoan = {
   loanIsPossible: Scalars["Boolean"]["output"];
 };
 
-export type ItemIdResponse = {
-  __typename?: "ItemIdResponse";
-  /** ItemId response object. */
-  itemOrderEntity?: Maybe<ItemOrderEntity>;
-  /** Message field in case of an error. */
-  message?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type ItemOrderEntity = {
-  __typename?: "ItemOrderEntity";
-  /** Item ID, the same value that was queried. */
-  itemId: Scalars["String"]["output"];
-  /** Key for the row in the database, can be ignored as it's only relevant for ORS. */
-  itemOrderKey: Scalars["Int"]["output"];
-  /** Order ID associated with the item ID. */
-  orderId: Scalars["String"]["output"];
-  /** Agency ID of the borrower of the material. */
-  requesterId: Scalars["String"]["output"];
-  /** Agency ID of the lender of the material. */
-  responderId: Scalars["String"]["output"];
-  /**
-   * Timestamp of when the row was created in the database.
-   * Example: "2024-09-09T07:32:24.081+00:00"
-   */
-  timestamp: Scalars["String"]["output"];
-};
-
 export type KidRecommenderTagsInput = {
   tag?: InputMaybe<Scalars["String"]["input"]>;
   weight?: InputMaybe<Scalars["Int"]["input"]>;
@@ -1224,16 +1197,6 @@ export enum OrderTypeEnum {
   StackRetrieval = "STACK_RETRIEVAL"
 }
 
-export type OrsQuery = {
-  __typename?: "OrsQuery";
-  /** Method to retrieve sender and receiver information from ORS based on an itemId. */
-  itemOrder: ItemIdResponse;
-};
-
-export type OrsQueryItemOrderArgs = {
-  itemId: Scalars["String"]["input"];
-};
-
 export type Pegi = {
   __typename?: "PEGI";
   /** Display string for PEGI minimum age */
@@ -1323,7 +1286,6 @@ export type Query = {
   /** Field for presenting bibliographic records in MARC format */
   marc: Marc;
   mood: MoodQueries;
-  ors: OrsQuery;
   /** Get recommendations */
   recommend: RecommendationResponse;
   /** Access to various types of recommendations. */
@@ -2186,6 +2148,18 @@ export type GetSmallWorkQuery = {
         } | null;
       } | null;
     };
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
@@ -2739,22 +2713,10 @@ export type GetMaterialQuery = {
     workId: string;
     abstract?: Array<string> | null;
     genreAndForm: Array<string>;
-    materialTypes: Array<{
-      __typename?: "MaterialType";
-      materialTypeSpecific: {
-        __typename?: "SpecificMaterialType";
-        display: string;
-      };
-    }>;
     creators: Array<
       | { __typename: "Corporation"; nameSort: string; display: string }
       | { __typename: "Person"; nameSort: string; display: string }
     >;
-    mainLanguages: Array<{
-      __typename?: "Language";
-      display: string;
-      isoCode: string;
-    }>;
     subjects: {
       __typename?: "SubjectContainer";
       all: Array<
@@ -2810,6 +2772,18 @@ export type GetMaterialQuery = {
         } | null;
       } | null;
     };
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -3213,22 +3187,10 @@ export type GetMaterialGloballyQuery = {
     workId: string;
     abstract?: Array<string> | null;
     genreAndForm: Array<string>;
-    materialTypes: Array<{
-      __typename?: "MaterialType";
-      materialTypeSpecific: {
-        __typename?: "SpecificMaterialType";
-        display: string;
-      };
-    }>;
     creators: Array<
       | { __typename: "Corporation"; nameSort: string; display: string }
       | { __typename: "Person"; nameSort: string; display: string }
     >;
-    mainLanguages: Array<{
-      __typename?: "Language";
-      display: string;
-      isoCode: string;
-    }>;
     subjects: {
       __typename?: "SubjectContainer";
       all: Array<
@@ -3284,6 +3246,18 @@ export type GetMaterialGloballyQuery = {
         } | null;
       } | null;
     };
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
+    materialTypes: Array<{
+      __typename?: "MaterialType";
+      materialTypeSpecific: {
+        __typename?: "SpecificMaterialType";
+        display: string;
+      };
+    }>;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -3795,6 +3769,18 @@ export type RecommendFromFaustQuery = {
             } | null;
           } | null;
         };
+        mainLanguages: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }>;
+        materialTypes: Array<{
+          __typename?: "MaterialType";
+          materialTypeSpecific: {
+            __typename?: "SpecificMaterialType";
+            display: string;
+          };
+        }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
@@ -4226,6 +4212,18 @@ export type SearchWithPaginationQuery = {
           } | null;
         } | null;
       };
+      mainLanguages: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }>;
+      materialTypes: Array<{
+        __typename?: "MaterialType";
+        materialTypeSpecific: {
+          __typename?: "SpecificMaterialType";
+          display: string;
+        };
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -4704,6 +4702,18 @@ export type ComplexSearchWithPaginationQuery = {
           } | null;
         } | null;
       };
+      mainLanguages: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }>;
+      materialTypes: Array<{
+        __typename?: "MaterialType";
+        materialTypeSpecific: {
+          __typename?: "SpecificMaterialType";
+          display: string;
+        };
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -5830,6 +5840,18 @@ export type WorkSmallFragment = {
       } | null;
     } | null;
   };
+  mainLanguages: Array<{
+    __typename?: "Language";
+    display: string;
+    isoCode: string;
+  }>;
+  materialTypes: Array<{
+    __typename?: "MaterialType";
+    materialTypeSpecific: {
+      __typename?: "SpecificMaterialType";
+      display: string;
+    };
+  }>;
   creators: Array<
     | { __typename: "Corporation"; display: string }
     | { __typename: "Person"; display: string }
@@ -6230,22 +6252,10 @@ export type WorkMediumFragment = {
   workId: string;
   abstract?: Array<string> | null;
   genreAndForm: Array<string>;
-  materialTypes: Array<{
-    __typename?: "MaterialType";
-    materialTypeSpecific: {
-      __typename?: "SpecificMaterialType";
-      display: string;
-    };
-  }>;
   creators: Array<
     | { __typename: "Corporation"; nameSort: string; display: string }
     | { __typename: "Person"; nameSort: string; display: string }
   >;
-  mainLanguages: Array<{
-    __typename?: "Language";
-    display: string;
-    isoCode: string;
-  }>;
   subjects: {
     __typename?: "SubjectContainer";
     all: Array<
@@ -6301,6 +6311,18 @@ export type WorkMediumFragment = {
       } | null;
     } | null;
   };
+  mainLanguages: Array<{
+    __typename?: "Language";
+    display: string;
+    isoCode: string;
+  }>;
+  materialTypes: Array<{
+    __typename?: "MaterialType";
+    materialTypeSpecific: {
+      __typename?: "SpecificMaterialType";
+      display: string;
+    };
+  }>;
   series: Array<{
     __typename?: "Series";
     title: string;
@@ -6991,6 +7013,15 @@ export const WorkSmallFragmentDoc = `
       }
     }
   }
+  mainLanguages {
+    display
+    isoCode
+  }
+  materialTypes {
+    materialTypeSpecific {
+      display
+    }
+  }
   abstract
   creators {
     display
@@ -7012,17 +7043,8 @@ ${ManifestationsSimpleFragmentDoc}`;
 export const WorkMediumFragmentDoc = `
     fragment WorkMedium on Work {
   ...WorkSmall
-  materialTypes {
-    materialTypeSpecific {
-      display
-    }
-  }
   creators {
     nameSort
-  }
-  mainLanguages {
-    display
-    isoCode
   }
   subjects {
     all {

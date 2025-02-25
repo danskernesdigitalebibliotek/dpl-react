@@ -7,7 +7,8 @@ import {
 } from "../../components/material/MaterialDetailsList";
 import {
   hasCorrectAccessType,
-  isArticle
+  isArticle,
+  isMovie
 } from "../../components/material/material-buttons/helper";
 import {
   AccessTypeCodeEnum,
@@ -177,26 +178,24 @@ export const getWorkFirstEditionYear = (work: Work) => {
 };
 
 export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
-  return manifestation.titles?.original?.[0] ?? "";
-};
-
-export const getManifestationTitle = ({ titles }: Manifestation): string => {
-  if (titles.main.length) {
-    const { main } = titles;
-    return main[0];
+  if (manifestation.titles?.original?.length) {
+    return manifestation.titles.original.join(", ");
   }
-
-  if (titles?.original?.length) {
-    const { original } = titles;
-    return original[0];
-  }
-
   // This should never happen, so therefore ist not translated.
   return "Unknown title";
 };
 
-export const getManifestationTitles = ({ titles }: Manifestation) => {
-  return titles.main.join(", ") ?? "Unknown titles";
+export const getManifestationTitle = ({ titles }: Manifestation): string => {
+  if (titles.main.length) {
+    return titles.main.join(", ");
+  }
+
+  if (titles?.original?.length) {
+    return titles.original.join(", ");
+  }
+
+  // This should never happen, so therefore ist not translated.
+  return "Unknown title";
 };
 
 export const getManifestationContributors = (manifestation: Manifestation) => {
@@ -611,7 +610,26 @@ export const getManifestationBasedOnType = (
   return bestRepresentation;
 };
 
-export const getWorkTitle = ({ titles, mainLanguages }: Work): string => {
+export const getWorkTitle = ({
+  titles,
+  mainLanguages,
+  manifestations
+}: Work): string => {
+  // If the work is a movie, we prefer using the translated full title.
+  // Avoid showing language details here as it might lead users to think there are no subtitles.
+  if (
+    manifestations?.all &&
+    isMovie(manifestations.all) &&
+    (titles.full.length ||
+      (Array.isArray(titles.original) && titles.original.length))
+  ) {
+    // We already checked that titles.original has a value in the 'if',
+    // so it's safe to assert non-null here.
+    return titles.full.join(", ") || titles.original!.join(", ");
+  }
+
+  // If the work is a TV series, show "Title - Season X" if available,
+  // or just the series title if the season is missing.
   if (titles.tvSeries?.title && titles.tvSeries?.season?.display) {
     const { title, season } = titles.tvSeries;
     return `${title} - ${season.display}`;
@@ -621,21 +639,26 @@ export const getWorkTitle = ({ titles, mainLanguages }: Work): string => {
     return titles.tvSeries.title;
   }
 
+  // If Danish is among the main languages and a full title exists,
+  // we prefer showing the full title because it is translated.
   const containsDanish = mainLanguages.some(({ isoCode }) =>
     isoCode?.toLowerCase().includes("dan")
   );
 
-  if (containsDanish && titles.full?.length) {
-    return titles.full[0];
+  if (containsDanish && titles.full) {
+    return titles.full.join(", ");
   }
 
+  // If there's a full title but no Danish language, we stil show the full title
+  // but append the languages in parentheses, e.g. "My Title (English, Spanish)".
   if (titles.full.length) {
     const allLanguages = mainLanguages.map(({ display }) => display).join(", ");
     return `${titles.full.join(", ")} (${allLanguages})`;
   }
 
-  if (titles?.original?.length) {
-    return titles.original[0];
+  // If there’s only an original title, use that.
+  if (titles.original?.length) {
+    return titles.original.join(", ");
   }
 
   // This should never happen, so therefore ist not translated.
@@ -660,6 +683,65 @@ if (import.meta.vitest) {
   });
 
   describe("getWorkTitle", () => {
+    it("returns full title if work is a movie and full title exists", () => {
+      const work = {
+        titles: {
+          full: ["Dødens gab"],
+          original: ["Jaws"],
+          tvSeries: null
+        },
+        mainLanguages: [
+          {
+            display: "engelsk",
+            isoCode: "eng"
+          }
+        ],
+        manifestations: {
+          all: [
+            {
+              materialTypes: [
+                {
+                  materialTypeSpecific: {
+                    display: ManifestationMaterialType.movieBluRay
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Dødens gab"`);
+    });
+
+    it("returns original title if work is a movie and full title does not exist", () => {
+      const work = {
+        titles: {
+          full: [],
+          original: ["Jaws"],
+          tvSeries: null
+        },
+        mainLanguages: [],
+        manifestations: {
+          all: [
+            {
+              materialTypes: [
+                {
+                  materialTypeSpecific: {
+                    display: ManifestationMaterialType.movieBluRay
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Jaws"`);
+    });
+
     it("returns tvSeries title and season if both exist", () => {
       const work = {
         titles: {
@@ -780,7 +862,7 @@ if (import.meta.vitest) {
       );
     });
 
-    it("returns the first main title if multiple main titles", () => {
+    it("returns the main titles joined by a comma if multiple main titles", () => {
       const manifestation = {
         titles: {
           main: ["Global Adventures", "Another Title"],
@@ -789,10 +871,10 @@ if (import.meta.vitest) {
       } as unknown as Manifestation;
 
       const title = getManifestationTitle(manifestation);
-      expect(title).toMatchInlineSnapshot(`"Global Adventures"`);
+      expect(title).toMatchInlineSnapshot(`"Global Adventures, Another Title"`);
     });
 
-    it("returns the first original title if no main titles", () => {
+    it("returns the original titles joined by a comma if no main titles", () => {
       const manifestation = {
         titles: {
           main: [],
@@ -801,7 +883,9 @@ if (import.meta.vitest) {
       } as unknown as Manifestation;
 
       const title = getManifestationTitle(manifestation);
-      expect(title).toMatchInlineSnapshot(`"Some Original Title"`);
+      expect(title).toMatchInlineSnapshot(
+        `"Some Original Title, Another Original Title"`
+      );
     });
 
     it("returns 'Unknown title' when no data is available", () => {
