@@ -48,10 +48,9 @@ export const fetcher = async <ResponseType>({
     try {
       responseBody = await response.json();
     } catch (e) {
-      if (e instanceof SyntaxError) {
-        return null;
+      if (!(e instanceof SyntaxError)) {
+        throw e;
       }
-      throw e;
     }
 
     if (!response.ok) {
