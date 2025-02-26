@@ -900,7 +900,7 @@ const meta: Meta<typeof MaterialEntry> = {
     onlineInternalSuccessLoanedText:
       "You can read/listen to the material until @expirationDate",
     onlineInternalSuccessReservedText:
-      "You will receive a message when reservation is met and the material is borrowed to you.",
+      "You have reserved the material. If you have provided an phonenumber or email during the reservation, you will receive a notification when the material is ready. Please note that the loan does not happen automatically – you must manually borrow the digital material yourself within 48 hours.",
     missingDataText: "Missing data",
     reservationModalScreenReaderModalDescriptionText: "Modal for reservation",
     reservationModalCloseModalAriaLabelText: "Close reservation modal",
