@@ -17,7 +17,7 @@ export const convertToDayJs = (date: string | Date) => {
   return dayjs(date);
 };
 
-export const getDateValueOf = (date: string) => {
+export const getUnixTimestamp = (date: string) => {
   return dayjs(date).valueOf();
 };
 

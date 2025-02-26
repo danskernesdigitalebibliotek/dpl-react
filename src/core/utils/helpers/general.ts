@@ -23,7 +23,7 @@ import { formatCurrency } from "./currency";
 import {
   dateHasPassed,
   calculateDateYearsDifference,
-  getDateValueOf
+  getUnixTimestamp
 } from "./date";
 
 export const capitalizeFirstLetters = (str: string) => {
@@ -206,7 +206,7 @@ export const sortByDueDate = (list: LoanType[]) => {
   //  We use orderBy from lodash to avoid mutating the original list
   return orderBy(
     list,
-    (item) => (item.dueDate ? getDateValueOf(item.dueDate) : Infinity),
+    (item) => (item.dueDate ? getUnixTimestamp(item.dueDate) : Infinity),
     "asc"
   );
 };
