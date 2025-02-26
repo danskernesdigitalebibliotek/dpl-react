@@ -1155,15 +1155,3 @@ export const Journal: Story = {
     wid: "work-of:870970-basis:01007556"
   }
 };
-export const Kongeord: Story = {
-  args: {
-    ...Default.args,
-    wid: "work-of:870970-basis:137757451"
-  }
-};
-export const Harry: Story = {
-  args: {
-    ...Default.args,
-    wid: "work-of:870970-basis:138374319"
-  }
-};
