@@ -15,12 +15,9 @@ import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModalUserListItems from "./OnlineInternalModalUserListItems";
 import MaterialButtonsOnlineInternal from "../material/material-buttons/online/MaterialButtonsOnlineInternal";
 import { onlineInternalModalId } from "../../apps/material/helper";
-import { CreateLoanResult } from "../../core/publizon/model";
+import { ApiResult, CreateLoanResult } from "../../core/publizon/model";
 import { formatDate } from "../../core/utils/helpers/date";
-import {
-  getPublizonErrorStatusText,
-  PublizonErrorType
-} from "../../core/utils/helpers/publizon";
+import { getPublizonErrorStatusText } from "../../core/utils/helpers/publizon";
 
 type OnlineInternalModalBodyProps = {
   selectedManifestations: Manifestation[];
@@ -37,7 +34,7 @@ const OnlineInternalModalBody = ({
     null
   );
   const [reservationOrLoanErrorResponse, setReservationOrLoanErrorResponse] =
-    useState<PublizonErrorType | null>(null);
+    useState<ApiResult | null>(null);
 
   const manifestationType = getManifestationType(selectedManifestations);
   const faustIds = getAllFaustIds(selectedManifestations);

@@ -1,12 +1,8 @@
+import { ApiResult } from "../../publizon/model";
 import { UseTextFunction } from "../text";
 
-export type PublizonErrorType = {
-  code: number;
-  message: string;
-};
-
 export const getPublizonErrorStatusText = (
-  error: PublizonErrorType,
+  error: ApiResult,
   t: UseTextFunction
 ): string => {
   const statusMessages: { [key: number]: string } = {
@@ -39,5 +35,8 @@ export const getPublizonErrorStatusText = (
   };
 
   // Return the matching error text or a generic unknown error if code is missing
-  return statusMessages[error.code] || t("publizonErrorStatusUnknownErrorText");
+  return (
+    (error?.code && statusMessages[error.code]) ||
+    t("publizonErrorStatusUnknownErrorText")
+  );
 };

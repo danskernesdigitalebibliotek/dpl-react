@@ -17,9 +17,8 @@ import {
 } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { RequestStatus } from "../../core/utils/types/request";
-import { CreateLoanResult } from "../publizon/model";
-import PublizonServiceHttpError from "../publizon/mutator/PublizonServiceHttpError";
-import { PublizonErrorType } from "./helpers/publizon";
+import { ApiResult, CreateLoanResult } from "../publizon/model";
+import PublizonServiceError from "../publizon/mutator/PublizonServiceError";
 
 type useOnlineInternalHandleLoanReservationType = {
   manifestations: Manifestation[];
@@ -27,7 +26,7 @@ type useOnlineInternalHandleLoanReservationType = {
   setReservationStatus?: (status: RequestStatus) => void;
   setLoanResponse?: (response: CreateLoanResult | null) => void;
   setLoanStatus?: (status: RequestStatus) => void;
-  setReservationOrLoanErrorResponse?: (error: PublizonErrorType) => void;
+  setReservationOrLoanErrorResponse?: (error: ApiResult) => void;
 };
 
 const useOnlineInternalHandleLoanReservation = ({
@@ -77,11 +76,9 @@ const useOnlineInternalHandleLoanReservation = ({
             }
           },
           onError: (err) => {
-            if (err instanceof PublizonServiceHttpError) {
+            if (err instanceof PublizonServiceError) {
               if (setReservationOrLoanErrorResponse) {
-                setReservationOrLoanErrorResponse(
-                  err.responseBody as PublizonErrorType
-                );
+                setReservationOrLoanErrorResponse(err.responseBody);
               }
             }
 
@@ -119,11 +116,9 @@ const useOnlineInternalHandleLoanReservation = ({
             }
           },
           onError: (err) => {
-            if (err instanceof PublizonServiceHttpError) {
+            if (err instanceof PublizonServiceError) {
               if (setReservationOrLoanErrorResponse) {
-                setReservationOrLoanErrorResponse(
-                  err.responseBody as PublizonErrorType
-                );
+                setReservationOrLoanErrorResponse(err.responseBody);
               }
             }
             if (setReservationStatus) {
