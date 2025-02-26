@@ -4,8 +4,14 @@ import "dayjs/locale/da";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import {
   dateFormatCustom,
+  dateFormatDash,
+  dateFormatDashWithTime,
   dateFormatDayjs,
-  dateFormatIso
+  dateFormatIso,
+  dateFormatSlashDayMonth,
+  dateFormatWeekday,
+  dateFormatWeekdayMonth,
+  timeFormat
 } from "../../configuration/date-format";
 
 dayjs.locale("da");
@@ -66,27 +72,27 @@ export const calculateRoundedUpDaysDifference = (
 
 // Date formatting functions
 export const toDayString = (): string => {
-  return dayjs().format("dddd D. MMMM");
+  return dayjs().format(dateFormatWeekdayMonth);
 };
 
 export const formatDate = (date: string | Date) => {
-  return dayjs(date).format("DD-MM-YYYY");
+  return dayjs(date).format(dateFormatDash);
 };
 
 export const formatDateTime = (date: string) => {
-  return dayjs(date).format("DD-MM-YYYY HH:mm");
+  return dayjs(date).format(dateFormatDashWithTime);
 };
 
 export const formatDayMonth = (date: string | Date) => {
-  return dayjs(date).format("DD/MM");
+  return dayjs(date).format(dateFormatSlashDayMonth);
 };
 
 export const formatWeekday = (date: string | Date) => {
-  return dayjs(date).format("dddd");
+  return dayjs(date).format(dateFormatWeekday);
 };
 
 export const formatDateForAPI = (date: Date): string => {
-  return dayjs(date).format("YYYY-MM-DD");
+  return dayjs(date).format(dateFormatDayjs);
 };
 
 export const formatDateStringISO = (date: Date) => {
@@ -173,7 +179,7 @@ export const getFutureDateStringISO = (num: number) => {
 };
 
 export const extractTime = (date: Date) => {
-  return dayjs(date).format("HH:mm");
+  return dayjs(date).format(timeFormat);
 };
 
 export const updateDateTime = (date: Date, timeStr: string): Date => {
