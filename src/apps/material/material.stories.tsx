@@ -431,6 +431,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "E-material is reserved",
       control: { type: "text" }
     },
+    onlineInternalSuccessManualBorrowingNoticeText: {
+      description: "Manual borrowing notice",
+      control: { type: "text" }
+    },
     missingDataText: {
       description: "Missing data text",
       control: { type: "text" }
@@ -900,7 +904,9 @@ const meta: Meta<typeof MaterialEntry> = {
     onlineInternalSuccessLoanedText:
       "You can read/listen to the material until @expirationDate",
     onlineInternalSuccessReservedText:
-      "You have reserved the material. If you have provided an phonenumber or email during the reservation, you will receive a notification when the material is ready. Please note that the loan does not happen automatically – you must manually borrow the digital material yourself within 48 hours.",
+      "You have reserved the material. If you have provided an phonenumber or email during the reservation, you will receive a notification when the material is ready.",
+    onlineInternalSuccessManualBorrowingNoticeText:
+      "Please note that the loan does not happen automatically. You must manually borrow the digital material yourself within 48 hours",
     missingDataText: "Missing data",
     reservationModalScreenReaderModalDescriptionText: "Modal for reservation",
     reservationModalCloseModalAriaLabelText: "Close reservation modal",

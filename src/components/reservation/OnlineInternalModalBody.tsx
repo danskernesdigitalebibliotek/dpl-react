@@ -89,6 +89,12 @@ const OnlineInternalModalBody = ({
         >
           {t("onlineInternalSuccessReservedText")}
         </p>
+        <p
+          data-cy="open-oprder-response-status-text"
+          className="text-body-medium-regular pt-24"
+        >
+          {t("onlineInternalSuccessManualBorrowingNoticeText")}
+        </p>
       </ModalMessage>
     );
   }
