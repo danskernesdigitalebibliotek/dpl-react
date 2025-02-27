@@ -3,9 +3,7 @@ import { useIntersection } from "react-use";
 
 export const useItemHasBeenVisible = () => {
   const itemRef = useRef(null);
-  // TODO: Fix the typescript error for useIntersection
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  // @ts-expect-error: react-use does not yet support React 19, and TS will throw an error until it has been fixed
   const intersection = useIntersection(itemRef, {
     root: null,
     rootMargin: "0%",
