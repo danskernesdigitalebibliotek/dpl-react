@@ -10,7 +10,10 @@ import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import { useUrls } from "../../core/utils/url";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import { onlineInternalModalId } from "../../apps/material/helper";
+import {
+  getFirstManifestation,
+  onlineInternalModalId
+} from "../../apps/material/helper";
 import {
   formatDanishPhoneNumber,
   getAllFaustIds
@@ -46,8 +49,9 @@ const useOnlineInternalHandleLoanReservation = ({
   const { mutate: mutateReservation } = usePostV1UserReservationsIdentifier();
   const { data: userData } = usePatronData();
 
-  const { canBeLoaned, canBeReserved, identifier } =
-    useReaderPlayer(manifestations);
+  const { canBeLoaned, canBeReserved, identifier } = useReaderPlayer(
+    getFirstManifestation(manifestations)
+  );
 
   const handleModalLoanReservation = () => {
     if (openModal) {

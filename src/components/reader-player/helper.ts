@@ -101,11 +101,11 @@ export const playerTypes = [
 ];
 
 export const getReaderPlayerType = (
-  manifestations: Manifestation[] | null
+  manifestation: Manifestation | null
 ): "reader" | "player" | null => {
-  if (!manifestations || !manifestations.length) return null;
-  if (!hasCorrectAccess("Ereol", manifestations)) return null;
-  const materialTypes = getMaterialTypes(manifestations);
+  if (!manifestation) return null;
+  if (!hasCorrectAccess("Ereol", [manifestation])) return null;
+  const materialTypes = getMaterialTypes([manifestation]);
 
   if (readerTypes.some((type) => materialTypes.includes(type))) return "reader";
   if (playerTypes.some((type) => materialTypes.includes(type))) return "player";

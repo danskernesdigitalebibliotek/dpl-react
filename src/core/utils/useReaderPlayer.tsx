@@ -17,14 +17,11 @@ import {
 } from "./helpers/list-mapper";
 import { getLoanStatus } from "../../components/availability-label/types";
 
-const useReaderPlayer = (manifestations: Manifestation[] | null) => {
+const useReaderPlayer = (manifestation: Manifestation | null) => {
   const isUserAnonymous = isAnonymous();
-  const hasManifestations = !!manifestations?.length;
 
-  const type = getReaderPlayerType(manifestations);
-  const identifier = hasManifestations
-    ? getManifestationIsbn(manifestations[0])
-    : null;
+  const type = getReaderPlayerType(manifestation);
+  const identifier = manifestation ? getManifestationIsbn(manifestation) : null;
 
   const { data: loansPublizon } = useGetV1UserLoans(
     {},

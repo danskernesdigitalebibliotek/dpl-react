@@ -14,7 +14,10 @@ import MaterialAvailabilityTextOnline from "../material/MaterialAvailabilityText
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModalUserListItems from "./OnlineInternalModalUserListItems";
 import MaterialButtonsOnlineInternal from "../material/material-buttons/online/MaterialButtonsOnlineInternal";
-import { onlineInternalModalId } from "../../apps/material/helper";
+import {
+  getFirstManifestation,
+  onlineInternalModalId
+} from "../../apps/material/helper";
 import { ApiResult, CreateLoanResult } from "../../core/publizon/model";
 import { formatDate } from "../../core/utils/helpers/date";
 import { getPublizonErrorStatusText } from "../../core/utils/helpers/publizon";
@@ -42,7 +45,9 @@ const OnlineInternalModalBody = ({
   const authorLine = getAuthorLine(manifestation, t);
 
   const { data: userData } = usePatronData();
-  const { identifier, canBeReserved } = useReaderPlayer(selectedManifestations);
+  const { identifier, canBeReserved } = useReaderPlayer(
+    getFirstManifestation(selectedManifestations)
+  );
 
   if (loanStatus === "success" && loanResponse?.expirationDateUtc) {
     return (

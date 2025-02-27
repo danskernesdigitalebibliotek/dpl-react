@@ -32,6 +32,7 @@ import {
   divideManifestationsByMaterialType,
   getBestMaterialTypeForWork,
   getDetailsListData,
+  getFirstManifestation,
   getInfomediaIds,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation
@@ -61,7 +62,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     type: readerPlayerType,
     identifier,
     orderId
-  } = useReaderPlayer(selectedManifestations);
+  } = useReaderPlayer(getFirstManifestation(selectedManifestations || []));
 
   useEffect(() => {
     setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));

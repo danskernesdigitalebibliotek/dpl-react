@@ -1,3 +1,4 @@
+import { getFirstManifestation } from "../../apps/material/helper";
 import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { isAnonymous } from "../../core/utils/helpers/user";
 import { Manifestation } from "../../core/utils/types/entities";
@@ -21,16 +22,19 @@ export const isPeriodical = (manifestations: Manifestation[]) => {
 };
 
 export const isMaterialButtonsOnlineInternal = (
-  manifestations: Manifestation[]
+  manifestation: Manifestation
 ) => {
-  return Boolean(getReaderPlayerType(manifestations));
+  return Boolean(getReaderPlayerType(manifestation));
 };
 
 export const shouldShowMaterialAvailabilityText = (
   manifestations: Manifestation[]
 ) => {
+  const firstManifestation = getFirstManifestation(manifestations);
   const shouldShowOnlineAvailability =
-    !isAnonymous() && isMaterialButtonsOnlineInternal(manifestations);
+    !isAnonymous() &&
+    firstManifestation &&
+    isMaterialButtonsOnlineInternal(firstManifestation);
 
   const shouldShowPhysicalAvailability =
     isPhysical(manifestations) &&
