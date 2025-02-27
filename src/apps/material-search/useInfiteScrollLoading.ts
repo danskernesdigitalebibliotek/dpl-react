@@ -47,9 +47,6 @@ const useInfiniteScrollLoading = ({
     };
   }, [handleScroll]);
 
-  // TODO: Fix the typescript error for useIntersection
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   // Handle intersection to load more items when the last item becomes visible using useIntersection
   const intersection = useIntersection(lastItemRef, {
     root: containerRef.current,

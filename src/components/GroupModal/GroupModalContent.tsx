@@ -24,10 +24,7 @@ const GroupModalContent: FC<GroupModalContentProps> = ({
 }) => {
   const t = useText();
 
-  const intersectionRef = useRef(null);
-  // TODO: Fix the typescript error for useIntersection
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  const intersectionRef = useRef<HTMLDivElement | null>(null);
   const intersection = useIntersection(intersectionRef, {
     threshold: 0
   });
