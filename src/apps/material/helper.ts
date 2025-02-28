@@ -186,6 +186,10 @@ export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
 };
 
 export const getManifestationTitle = ({ titles }: Manifestation): string => {
+  // For manifestations, we use the main title if available, as it is translated.
+  // Otherwise, we fall back to the original title.
+  // Unlike getWorkTitle, we don't use the full title here because the main title is more specific.
+  // Example: "Game of Thrones (Season 7), Disc 1, Episodes 1-3".
   if (titles.main.length) {
     return titles.main.join(", ");
   }
@@ -617,15 +621,13 @@ export const getWorkTitle = ({
 }: Work): string => {
   // If the work is a movie, we prefer using the translated full title.
   // Avoid showing language details here as it might lead users to think there are no subtitles.
-  if (
-    manifestations?.all &&
-    isMovie(manifestations.all) &&
-    (titles.full.length ||
-      (Array.isArray(titles.original) && titles.original.length))
-  ) {
-    // We already checked that titles.original has a value in the 'if',
-    // so it's safe to assert non-null here.
-    return titles.full.join(", ") || titles.original!.join(", ");
+  if (manifestations?.all && isMovie(manifestations.all)) {
+    if (titles.full.length) {
+      return titles.full.join(", ");
+    }
+    if (titles.original?.length) {
+      return titles.original.join(", ");
+    }
   }
 
   // If the work is a TV series, show "Title - Season X" if available,
