@@ -15,7 +15,7 @@ import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
-import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
+import { getReaderPlayerType } from "../../../reader-player/helper";
 import { getFirstManifestation } from "../../../../apps/material/helper";
 
 export interface MaterialButtonsOnlineProps {
@@ -41,7 +41,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       trackedData: workId
     });
   };
-  const { type: readerPlayerType } = useReaderPlayer(
+  const readerPlayerType = getReaderPlayerType(
     getFirstManifestation(manifestations)
   );
 
