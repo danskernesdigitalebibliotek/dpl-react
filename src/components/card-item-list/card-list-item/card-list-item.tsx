@@ -147,7 +147,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
         <div className="card-list-item__meta">
           {showItem && (
             <ButtonFavourite
-              title={fullTitle[0]}
+              title={fullTitle.join(", ")}
               id={preferredId || workId}
               addToListRequest={addToListRequest}
             />
@@ -173,7 +173,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
           id={searchTitleId}
         >
           <Link href={materialFullUrl} stopPropagation>
-            {fullTitle}
+            {fullTitle.join(", ")}
           </Link>
         </h2>
 

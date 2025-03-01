@@ -7,7 +7,8 @@ import {
 } from "../../components/material/MaterialDetailsList";
 import {
   hasCorrectAccessType,
-  isArticle
+  isArticle,
+  isMovie
 } from "../../components/material/material-buttons/helper";
 import {
   AccessTypeCodeEnum,
@@ -181,7 +182,28 @@ export const getWorkFirstEditionYear = (work: Work) => {
 };
 
 export const getManifestationOriginalTitle = (manifestation: Manifestation) => {
-  return manifestation.titles?.original?.[0] ?? "";
+  if (manifestation.titles?.original?.length) {
+    return manifestation.titles.original.join(", ");
+  }
+  // This should never happen, so therefore ist not translated.
+  return "Unknown title";
+};
+
+export const getManifestationTitle = ({ titles }: Manifestation): string => {
+  // For manifestations, we use the main title if available, as it is translated.
+  // Otherwise, we fall back to the original title.
+  // Unlike getWorkTitle, we don't use the full title here because the main title is more specific.
+  // Example: "Game of Thrones (Season 7), Disc 1, Episodes 1-3".
+  if (titles.main.length) {
+    return titles.main.join(", ");
+  }
+
+  if (titles?.original?.length) {
+    return titles.original.join(", ");
+  }
+
+  // This should never happen, so therefore ist not translated.
+  return "Unknown title";
 };
 
 export const getManifestationContributors = (manifestation: Manifestation) => {
@@ -600,6 +622,59 @@ export const getManifestationBasedOnType = (
   return bestRepresentation;
 };
 
+export const getWorkTitle = ({
+  titles,
+  mainLanguages,
+  manifestations
+}: Work): string => {
+  // If the work is a movie, we prefer using the translated full title.
+  // Avoid showing language details here as it might lead users to think there are no subtitles.
+  if (manifestations?.all && isMovie(manifestations.all)) {
+    if (titles.full.length) {
+      return titles.full.join(", ");
+    }
+    if (titles.original?.length) {
+      return titles.original.join(", ");
+    }
+  }
+
+  // If the work is a TV series, show "Title - Season X" if available,
+  // or just the series title if the season is missing.
+  if (titles.tvSeries?.title && titles.tvSeries?.season?.display) {
+    const { title, season } = titles.tvSeries;
+    return `${title} - ${season.display}`;
+  }
+
+  if (titles.tvSeries?.title) {
+    return titles.tvSeries.title;
+  }
+
+  // If Danish is among the main languages and a full title exists,
+  // we prefer showing the full title because it is translated.
+  const containsDanish = mainLanguages.some(({ isoCode }) =>
+    isoCode?.toLowerCase().includes("dan")
+  );
+
+  if (containsDanish && titles.full) {
+    return titles.full.join(", ");
+  }
+
+  // If there's a full title but no Danish language, we stil show the full title
+  // but append the languages in parentheses, e.g. "My Title (English, Spanish)".
+  if (titles.full.length) {
+    const allLanguages = mainLanguages.map(({ display }) => display).join(", ");
+    return `${titles.full.join(", ")} (${allLanguages})`;
+  }
+
+  // If there’s only an original title, use that.
+  if (titles.original?.length) {
+    return titles.original.join(", ");
+  }
+
+  // This should never happen, so therefore ist not translated.
+  return "Unknown title";
+};
+
 // ************** VITEST ***************
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
@@ -614,6 +689,225 @@ if (import.meta.vitest) {
         divideManifestationsByMaterialType(manifestations);
 
       expect(dividedManifestations).toMatchSnapshot();
+    });
+  });
+
+  describe("getWorkTitle", () => {
+    it("returns full title if work is a movie and full title exists", () => {
+      const work = {
+        titles: {
+          full: ["Dødens gab"],
+          original: ["Jaws"],
+          tvSeries: null
+        },
+        mainLanguages: [
+          {
+            display: "engelsk",
+            isoCode: "eng"
+          }
+        ],
+        manifestations: {
+          all: [
+            {
+              materialTypes: [
+                {
+                  materialTypeSpecific: {
+                    display: ManifestationMaterialType.movieBluRay
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Dødens gab"`);
+    });
+
+    it("returns original title if work is a movie and full title does not exist", () => {
+      const work = {
+        titles: {
+          full: [],
+          original: ["Jaws"],
+          tvSeries: null
+        },
+        mainLanguages: [],
+        manifestations: {
+          all: [
+            {
+              materialTypes: [
+                {
+                  materialTypeSpecific: {
+                    display: ManifestationMaterialType.movieBluRay
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Jaws"`);
+    });
+
+    it("returns tvSeries title and season if both exist", () => {
+      const work = {
+        titles: {
+          full: ["Game of thrones"],
+          original: [],
+          tvSeries: {
+            title: "Game of thrones",
+            season: {
+              display: "sæson 1"
+            }
+          }
+        },
+        mainLanguages: [
+          {
+            display: "engelsk",
+            isoCode: "eng"
+          }
+        ]
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Game of thrones - sæson 1"`);
+    });
+
+    it("returns tvSeries title if season is undefined", () => {
+      const work = {
+        titles: {
+          full: ["Some Full Title"],
+          original: ["Original Title"],
+          tvSeries: {
+            title: "Another TV Show",
+            season: []
+          }
+        },
+        mainLanguages: [
+          {
+            display: "English",
+            isoCode: "eng"
+          }
+        ]
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Another TV Show"`);
+    });
+
+    it("returns the first full title if main language is Danish", () => {
+      const work = {
+        titles: {
+          full: ["De syv søstre : Maias historie"],
+          original: ["The seven sisters"],
+          tvSeries: null
+        },
+        mainLanguages: [
+          {
+            display: "dansk",
+            isoCode: "dan"
+          }
+        ]
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"De syv søstre : Maias historie"`);
+    });
+
+    it("returns the first full title plus languages in parentheses if not Danish", () => {
+      const work = {
+        titles: {
+          full: ["Global Adventures"],
+          original: ["Original Global Adventures"],
+          tvSeries: null
+        },
+        mainLanguages: [
+          {
+            display: "English",
+            isoCode: "eng"
+          },
+          {
+            display: "German",
+            isoCode: "ger"
+          }
+        ]
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(
+        `"Global Adventures (English, German)"`
+      );
+    });
+
+    it("returns 'Unknown title' when no data is available", () => {
+      const work = {
+        titles: {
+          full: [],
+          original: [],
+          tvSeries: null
+        },
+        mainLanguages: []
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Unknown title"`);
+    });
+  });
+
+  describe("getManifestationTitle", () => {
+    it("returns main title", () => {
+      const manifestation = {
+        titles: {
+          main: ["Game of thrones (Sæson 7). Disc 1, episodes 1-3"],
+          original: ["Game of thrones (Season 7). Disc 1, episodes 1-3"]
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(
+        `"Game of thrones (Sæson 7). Disc 1, episodes 1-3"`
+      );
+    });
+
+    it("returns the main titles joined by a comma if multiple main titles", () => {
+      const manifestation = {
+        titles: {
+          main: ["Global Adventures", "Another Title"],
+          original: ["Global Adventures (Original)", "Another Title (Original)"]
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(`"Global Adventures, Another Title"`);
+    });
+
+    it("returns the original titles joined by a comma if no main titles", () => {
+      const manifestation = {
+        titles: {
+          main: [],
+          original: ["Some Original Title", "Another Original Title"]
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(
+        `"Some Original Title, Another Original Title"`
+      );
+    });
+
+    it("returns 'Unknown title' when no data is available", () => {
+      const manifestation = {
+        titles: {
+          main: [],
+          original: []
+        }
+      } as unknown as Manifestation;
+
+      const title = getManifestationTitle(manifestation);
+      expect(title).toMatchInlineSnapshot(`"Unknown title"`);
     });
   });
 }

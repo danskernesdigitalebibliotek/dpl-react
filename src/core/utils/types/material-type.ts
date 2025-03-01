@@ -2,6 +2,8 @@ export const enum ManifestationMaterialType {
   book = "bog",
   ebook = "e-bog",
   movie = "film",
+  movieBluRay = "film (blu-ray)",
+  movieDvd = "film (dvd)",
   audioBook = "lydbog (online)",
   audioBookGeneric = "lydbog",
   music = "node",

@@ -33,7 +33,7 @@ export const findOnShelfModalId = (faustIds: FaustId[]) => {
 
 export interface FindOnShelfModalBodyProps {
   manifestations: Manifestation[];
-  workTitles: string[];
+  workTitle: string;
   authors: Work["creators"];
   selectedPeriodical: PeriodicalEdition | null;
   setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
@@ -41,7 +41,7 @@ export interface FindOnShelfModalBodyProps {
 
 const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   manifestations,
-  workTitles,
+  workTitle,
   authors,
   selectedPeriodical,
   setSelectedPeriodical
@@ -64,7 +64,6 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
       creatorsToString(flattenCreatorsLastNameFirst(authors), t)
     )
   );
-  const title = workTitles.join(", ");
   const isPeriodical = manifestations.some((manifestation) => {
     return manifestation.materialTypes.some((materialType) => {
       return materialType.materialTypeSpecific.display === "tidsskrift";
@@ -186,7 +185,7 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   return (
     <>
       <h2 className="text-header-h2 modal-find-on-shelf__headline">
-        {title}
+        {workTitle}
         {author && ` / ${author}`}
       </h2>
       {isPeriodical && selectedPeriodical && (

@@ -28,7 +28,10 @@ import { PeriodicalEdition } from "./periodical/helper";
 import { useStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
-import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
+import {
+  getManifestationLanguageIsoCode,
+  getWorkTitle
+} from "../../apps/material/helper";
 import { isPeriodical, shouldShowMaterialAvailabilityText } from "./helper";
 import useAvailabilityData from "../availability-label/useAvailabilityData";
 import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
@@ -46,10 +49,8 @@ interface MaterialHeaderProps {
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   work: {
-    titles: { full: fullTitle },
     creators,
     manifestations: { all: manifestations, bestRepresentation },
-    mainLanguages,
     workId: wid
   },
   work,
@@ -74,13 +75,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     );
   };
   const author = creatorsToString(flattenCreators(creators), t);
-  const containsDanish = mainLanguages.some((language) =>
-    language?.isoCode.toLowerCase().includes("dan")
-  );
-  const allLanguages = mainLanguages
-    .map((language) => language.display)
-    .join(", ");
-  const title = containsDanish ? fullTitle : `${fullTitle} (${allLanguages})`;
+  const title = getWorkTitle(work);
   const pid = getWorkPid(work);
   const coverPids = getManifestationsPids(selectedManifestations);
   const { track } = useStatistics();

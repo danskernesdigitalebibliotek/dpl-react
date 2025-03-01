@@ -2,6 +2,7 @@ import { AvailabilityV3 } from "../../../core/fbs/model/availabilityV3";
 import { Manifestation } from "../../../core/utils/types/entities";
 import articleTypes from "../../../core/utils/types/article-types";
 import { AccessTypeCodeEnum } from "../../../core/dbc-gateway/generated/graphql";
+import movieTypes from "../../../core/utils/types/movie-types";
 
 export const hasCorrectAccess = (
   // TODO: This should be an enum or something more precise.
@@ -56,6 +57,12 @@ export const hasCorrectPartialMaterialType = (
 
 export const isArticle = (manifestations: Manifestation[]) => {
   return articleTypes.some((type) =>
+    hasCorrectMaterialType(type, manifestations)
+  );
+};
+
+export const isMovie = (manifestations: Manifestation[]) => {
+  return movieTypes.some((type) =>
     hasCorrectMaterialType(type, manifestations)
   );
 };

@@ -27,7 +27,8 @@ import {
   getManifestationOriginalTitle,
   getManifestationPhysicalDescription,
   getManifestationPublisher,
-  getManifestationSource
+  getManifestationSource,
+  getManifestationTitle
 } from "../../apps/material/helper";
 
 export interface MaterialMainfestationItemProps {
@@ -36,7 +37,7 @@ export interface MaterialMainfestationItemProps {
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
-  manifestation: { materialTypes, pid, titles, creators, identifiers, edition },
+  manifestation: { materialTypes, pid, creators, identifiers, edition },
   manifestation,
   workId
 }) => {
@@ -133,7 +134,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           id={mainfestationTitleId}
           className="material-manifestation-item__title text-header-h4"
         >
-          {titles?.main[0]}
+          {getManifestationTitle(manifestation)}
         </h3>
         <p className="text-small-caption">
           {t("materialHeaderAuthorByText")} {author}

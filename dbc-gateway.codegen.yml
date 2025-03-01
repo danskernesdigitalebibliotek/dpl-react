@@ -9,7 +9,6 @@ generates:
     config:
       fetcher:
         func: "../graphql-fetcher#fetcher"
-      namingConvention: "./scripts/dbc-gateway.codegen.naming"
       defaultScalarType: unknown
       identifierName: operationNames
       useConsts: true

@@ -1161,3 +1161,10 @@ export const Journal: Story = {
     wid: "work-of:870970-basis:01007556"
   }
 };
+
+export const gameOfThronesSeason7: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:53795633"
+  }
+};
