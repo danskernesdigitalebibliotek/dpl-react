@@ -1,4 +1,3 @@
-// TODO: Remember to clean this up for all paths that refer to eReolen
 import React, { useState, FC, useEffect } from "react";
 import {
   AccessUrl,
@@ -26,9 +25,6 @@ export const getOnlineMaterialType = (
   sourceName: AccessUrl["origin"],
   materialTypes: MaterialType["materialTypeSpecific"]["display"][]
 ) => {
-  if (sourceName.toLowerCase().includes("ereol")) {
-    return "ebook";
-  }
   if (sourceName.toLowerCase().includes("filmstriben")) {
     return "emovie";
   }
@@ -81,8 +77,6 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   ) => {
     const onlineMaterialType = getOnlineMaterialType(sourceName, materialTypes);
     switch (onlineMaterialType) {
-      case "ebook":
-        return t("goToText", { placeholders: { "@source": "ereolen" } });
       case "emovie":
         return t("goToText", { placeholders: { "@source": "filmstriben" } });
       case "audiobook":

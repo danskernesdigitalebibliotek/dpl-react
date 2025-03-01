@@ -42,10 +42,10 @@ export const argTypes = {
       defaultValue: { summary: "Expired" }
     }
   },
-  materialDetailsGoToMaterialText: {
+  viewMaterialText: {
     table: {
       type: { summary: "text" },
-      defaultValue: { summary: "Go to material" }
+      defaultValue: { summary: "View material" }
     },
     control: { type: "text" }
   },
@@ -94,7 +94,7 @@ export default {
   materialDetailsMaterialNumberLabelText: "Material Item Number",
   materialDetailsLinkToPageWithFeesText: "Read more about fees",
   materialDetailsOverdueText: "Expired",
-  materialDetailsGoToMaterialText: "Go to material",
+  viewMaterialText: "View material",
   materialDetailsDigitalDueDateLabelText: "Expires",
   materialDetailsRenewLoanButtonText: "Renew your loan",
   feesPageUrl: "/user/me/fees",
@@ -111,7 +111,7 @@ export interface MaterialDetailsModalProps {
   materialDetailsOverdueText: string;
   feesPageUrl: string;
   materialUrl: string;
-  materialDetailsGoToMaterialText: string;
+  viewMaterialText: string;
   materialDetailsDigitalDueDateLabelText: string;
   materialDetailsRenewLoanButtonText: string;
 }

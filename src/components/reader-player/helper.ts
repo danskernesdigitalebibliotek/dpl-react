@@ -2,6 +2,8 @@ import { getMaterialTypes } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import { ReservationType } from "../../core/utils/types/reservation-type";
+import { hasCorrectAccess } from "../material/material-buttons/helper";
 
 type AssetType = {
   src: string;
@@ -99,14 +101,25 @@ export const playerTypes = [
 ];
 
 export const getReaderPlayerType = (
-  manifestations: Manifestation[]
+  manifestation: Manifestation | null
 ): "reader" | "player" | null => {
-  const materialTypes = getMaterialTypes(manifestations);
+  if (!manifestation) return null;
+  if (!hasCorrectAccess("Ereol", [manifestation])) return null;
+  const materialTypes = getMaterialTypes([manifestation]);
 
   if (readerTypes.some((type) => materialTypes.includes(type))) return "reader";
   if (playerTypes.some((type) => materialTypes.includes(type))) return "player";
 
   return null;
 };
+
+export const findReservedReservation = (
+  identifier: string,
+  reservations: ReservationType[]
+) =>
+  reservations.find(
+    (reservation) =>
+      reservation.identifier === identifier && reservation.state === "reserved"
+  );
 
 export default {};

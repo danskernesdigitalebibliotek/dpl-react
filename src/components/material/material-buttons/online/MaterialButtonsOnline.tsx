@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
+import { first } from "lodash";
 import { AccessUrl } from "../../../../core/dbc-gateway/generated/graphql";
 import InvalidUrlError from "../../../../core/errors/InvalidUrlError";
 import { statistics } from "../../../../core/statistics/statistics";
@@ -14,8 +15,8 @@ import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
-import featureFlag from "../../../../core/utils/featureFlag";
-import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
+import { getReaderPlayerType } from "../../../reader-player/helper";
+import { getFirstManifestation } from "../../../../apps/material/helper";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -40,23 +41,28 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       trackedData: workId
     });
   };
-  const { orderId } = useReaderPlayer(manifestations);
+  const readerPlayerType = getReaderPlayerType(
+    getFirstManifestation(manifestations)
+  );
 
-  // Todo: Move logic for Player / Reader buttons / Links to here.
-  // if (condition) {
-  //   return <MaterialButtonsOnlineInternal manifestations={manifestations} />;
-  // }
+  if (readerPlayerType === "player" || readerPlayerType === "reader") {
+    return (
+      <MaterialButtonsOnlineInternal
+        openModal
+        size={size}
+        manifestations={manifestations}
+        dataCy={`${dataCy}-internal`}
+      />
+    );
+  }
 
-  // Find 'Ereol' object or default to the first 'access' object
-  const accessElement =
-    manifestations[0].access.find((item) => item.__typename === "Ereol") ||
-    manifestations[0].access[0];
+  // Check if the access type is external (e.g., Filmstriben or eReolen Global).
+  if (hasCorrectAccess("AccessUrl", manifestations)) {
+    const accessElement = first(first(manifestations)?.access);
 
-  // If the access type is an external type we'll show corresponding button.
-  if (
-    hasCorrectAccess("Ereol", manifestations) ||
-    hasCorrectAccess("AccessUrl", manifestations)
-  ) {
+    if (!accessElement) {
+      throw new Error("No access element found.");
+    }
     const { origin, url: externalUrl } = accessElement as AccessUrl;
 
     //  We have experienced that externalUrl is not always valid.
@@ -67,27 +73,15 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     }
 
     return (
-      <>
-        {/* Display MaterialButtonOnlineExternal if the material is not part of the user's loans */}
-        {!orderId && (
-          <MaterialButtonOnlineExternal
-            externalUrl={externalUrl}
-            origin={origin}
-            size={size}
-            trackOnlineView={trackOnlineView}
-            manifestations={manifestations}
-            dataCy={`${dataCy}-external`}
-            ariaLabelledBy={ariaLabelledBy}
-          />
-        )}
-        {featureFlag.isActive("readerPlayer") && (
-          <MaterialButtonsOnlineInternal
-            size={size}
-            manifestations={manifestations}
-            dataCy={`${dataCy}-publizon`}
-          />
-        )}
-      </>
+      <MaterialButtonOnlineExternal
+        externalUrl={externalUrl}
+        origin={origin}
+        size={size}
+        trackOnlineView={trackOnlineView}
+        manifestations={manifestations}
+        dataCy={`${dataCy}-external`}
+        ariaLabelledBy={ariaLabelledBy}
+      />
     );
   }
 
