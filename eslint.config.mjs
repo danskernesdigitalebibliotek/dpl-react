@@ -173,6 +173,7 @@ export default [
       "react/prop-types": "off",
       "react/require-default-props": "off",
       "react/no-unused-prop-types": "off",
+      "react/display-name": "off",
 
       "no-underscore-dangle": [
         "error",
