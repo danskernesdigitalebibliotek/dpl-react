@@ -1,6 +1,7 @@
 import { useGetLoansV2 } from "../fbs/fbs";
 import { useGetV1UserLoans } from "../publizon/publizon";
-import { daysBetweenTodayAndDate, materialIsOverdue } from "./helpers/general";
+import { calculateRoundedUpDaysUntil } from "./helpers/date";
+import { materialIsOverdue } from "./helpers/general";
 import {
   mapFBSLoanToLoanType,
   mapPublizonLoanToLoanType
@@ -12,7 +13,7 @@ import useLoanThresholds from "./useLoanThresholds";
 const filterLoansNotOverdue = (loans: LoanType[], warning: number) => {
   return loans.filter(({ dueDate }) => {
     const due: string = dueDate || "";
-    const daysUntilExpiration = daysBetweenTodayAndDate(due);
+    const daysUntilExpiration = calculateRoundedUpDaysUntil(due);
     return daysUntilExpiration - warning > 0;
   });
 };
@@ -26,7 +27,7 @@ const filterLoansOverdue = (loans: LoanType[]) => {
 const filterLoansSoonOverdue = (loans: LoanType[], warning: number) => {
   return loans.filter(({ dueDate }) => {
     const due: string = dueDate || "";
-    const daysUntilExpiration = daysBetweenTodayAndDate(due);
+    const daysUntilExpiration = calculateRoundedUpDaysUntil(due);
     return (
       daysUntilExpiration - warning <= 0 &&
       daysUntilExpiration - warning >= -warning

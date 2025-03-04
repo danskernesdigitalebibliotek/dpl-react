@@ -1,8 +1,4 @@
-import dayjs from "dayjs";
-import "dayjs/locale/da";
 import { DplOpeningHoursListGET200Item } from "../../core/dpl-cms/model";
-
-dayjs.locale("da");
 
 type OpeningHoursDataType = {
   term: string;
@@ -74,8 +70,3 @@ export const convertBranchesToLibraries = (
     };
   });
 };
-
-export const formatDateForAPI = (date: Date): string =>
-  dayjs(date).format("YYYY-MM-DD");
-
-export const toDayString = (): string => dayjs().format("dddd D. MMMM");

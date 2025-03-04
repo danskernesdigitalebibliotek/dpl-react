@@ -34,7 +34,6 @@ import {
 } from "../../core/fbs/fbs";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import {
-  getFutureDateString,
   getPreferredBranch,
   constructReservationData,
   getAuthorLine,
@@ -42,8 +41,7 @@ import {
   getInstantLoanBranchHoldings,
   getInstantLoanBranchHoldingsAboveThreshold,
   removePrefixFromBranchId,
-  translateOpenOrderStatus,
-  getFutureDateStringISO
+  translateOpenOrderStatus
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -67,6 +65,10 @@ import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromA
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import { Periods } from "./types";
 import { RequestStatus } from "../../core/utils/types/request";
+import {
+  getFutureDateString,
+  getFutureDateStringISO
+} from "../../core/utils/helpers/date";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];

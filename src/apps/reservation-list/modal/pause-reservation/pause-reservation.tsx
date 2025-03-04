@@ -1,5 +1,4 @@
 import React, { FC, useCallback, useState, useEffect, useId } from "react";
-import dayjs from "dayjs";
 import Link from "../../../../components/atoms/links/Link";
 import Modal, { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
@@ -8,6 +7,7 @@ import { getModalIds } from "../../../../core/utils/helpers/modal-helpers";
 import DateRangeInput from "../../../../components/date-inputs/DateRangeInput";
 import useSavePatron from "../../../../core/utils/useSavePatron";
 import { Patron } from "../../../../core/utils/types/entities";
+import { getTodayDate } from "../../../../core/utils/helpers/date";
 
 interface PauseReservationProps {
   id: string;
@@ -36,7 +36,7 @@ const PauseReservation: FC<PauseReservationProps> = ({ id, user }) => {
     }
   });
   const saveFormId = useId();
-  const currentDate = dayjs().format("YYYY-MM-DD");
+  const currentDate = getTodayDate();
   const [startDate, setStartDate] = useState<string>(currentDate);
   const [endDate, setEndDate] = useState<string>("");
   const pauseActive = user?.onHold?.from && user?.onHold?.to;
