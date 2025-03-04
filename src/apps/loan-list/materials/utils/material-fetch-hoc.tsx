@@ -23,8 +23,6 @@ const fetchMaterial =
     Component: ComponentType<P & MaterialProps>,
     FallbackComponent?: ComponentType
   ): FC<P & InputProps> =>
-  // TODO: rewrite the code below and remove the eslint-disable-next-line react/display-name comment
-  // eslint-disable-next-line react/display-name
   ({ item, ...props }: InputProps) => {
     // If this is a digital book, another HOC fetches the data and this
     // HOC just returns the component
