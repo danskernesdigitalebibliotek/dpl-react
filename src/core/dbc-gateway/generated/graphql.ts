@@ -5,7 +5,6 @@ import {
   UseMutationOptions
 } from "react-query";
 import { fetcher } from "../graphql-fetcher";
-
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -83,7 +82,10 @@ export enum AccessUrlTypeEnum {
 
 export type Audience = {
   __typename?: "Audience";
-  /** PEGI age rating for games  */
+  /**
+   * PEGI age rating for games
+   * @deprecated Use 'Audience.pegi' instead expires: 01/06-2025
+   */
   PEGI?: Maybe<Pegi>;
   /** Range of numbers with either beginning of range or end of range or both e.g. 6-10, 1980-1999 */
   ages: Array<Range>;
@@ -101,6 +103,8 @@ export type Audience = {
   lix?: Maybe<Scalars["String"]["output"]>;
   /** Media council age recommendation */
   mediaCouncilAgeRestriction?: Maybe<MediaCouncilAgeRestriction>;
+  /** PEGI age rating for games  */
+  pegi?: Maybe<Pegi>;
   /** Number of players in the game. */
   players?: Maybe<Players>;
   /** Primary target audience for this manifestation */
@@ -668,33 +672,6 @@ export type InterLibraryLoan = {
   loanIsPossible: Scalars["Boolean"]["output"];
 };
 
-export type ItemIdResponse = {
-  __typename?: "ItemIdResponse";
-  /** ItemId response object. */
-  itemOrderEntity?: Maybe<ItemOrderEntity>;
-  /** Message field in case of an error. */
-  message?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type ItemOrderEntity = {
-  __typename?: "ItemOrderEntity";
-  /** Item ID, the same value that was queried. */
-  itemId: Scalars["String"]["output"];
-  /** Key for the row in the database, can be ignored as it's only relevant for ORS. */
-  itemOrderKey: Scalars["Int"]["output"];
-  /** Order ID associated with the item ID. */
-  orderId: Scalars["String"]["output"];
-  /** Agency ID of the borrower of the material. */
-  requesterId: Scalars["String"]["output"];
-  /** Agency ID of the lender of the material. */
-  responderId: Scalars["String"]["output"];
-  /**
-   * Timestamp of when the row was created in the database.
-   * Example: "2024-09-09T07:32:24.081+00:00"
-   */
-  timestamp: Scalars["String"]["output"];
-};
-
 export type KidRecommenderTagsInput = {
   tag?: InputMaybe<Scalars["String"]["input"]>;
   weight?: InputMaybe<Scalars["Int"]["input"]>;
@@ -1220,16 +1197,6 @@ export enum OrderTypeEnum {
   StackRetrieval = "STACK_RETRIEVAL"
 }
 
-export type OrsQuery = {
-  __typename?: "OrsQuery";
-  /** Method to retrieve sender and receiver information from ORS based on an itemId. */
-  itemOrder: ItemIdResponse;
-};
-
-export type OrsQueryItemOrderArgs = {
-  itemId: Scalars["String"]["input"];
-};
-
 export type Pegi = {
   __typename?: "PEGI";
   /** Display string for PEGI minimum age */
@@ -1319,7 +1286,6 @@ export type Query = {
   /** Field for presenting bibliographic records in MARC format */
   marc: Marc;
   mood: MoodQueries;
-  ors: OrsQuery;
   /** Get recommendations */
   recommend: RecommendationResponse;
   /** Access to various types of recommendations. */
@@ -1681,6 +1647,8 @@ export type Series = {
   alternativeTitles: Array<Scalars["String"]["output"]>;
   /** Description of the series */
   description?: Maybe<Scalars["String"]["output"]>;
+  /** The number of members in the series */
+  hitcount: Scalars["Int"]["output"];
   /** Additional information  */
   identifyingAddition?: Maybe<Scalars["String"]["output"]>;
   /** Whether this is a popular series or general series */
@@ -2171,6 +2139,14 @@ export type GetSmallWorkQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -2787,6 +2763,14 @@ export type GetMaterialQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     series: Array<{
       __typename?: "Series";
@@ -3253,6 +3237,14 @@ export type GetMaterialGloballyQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
+      tvSeries?: {
+        __typename?: "TvSeries";
+        title?: string | null;
+        season?: {
+          __typename?: "TvSeriesDetails";
+          display?: string | null;
+        } | null;
+      } | null;
     };
     series: Array<{
       __typename?: "Series";
@@ -3756,6 +3748,14 @@ export type RecommendFromFaustQuery = {
           __typename?: "WorkTitles";
           full: Array<string>;
           original?: Array<string> | null;
+          tvSeries?: {
+            __typename?: "TvSeries";
+            title?: string | null;
+            season?: {
+              __typename?: "TvSeriesDetails";
+              display?: string | null;
+            } | null;
+          } | null;
         };
         creators: Array<
           | { __typename: "Corporation"; display: string }
@@ -4179,6 +4179,14 @@ export type SearchWithPaginationQuery = {
         __typename?: "WorkTitles";
         full: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -4649,6 +4657,14 @@ export type ComplexSearchWithPaginationQuery = {
         __typename?: "WorkTitles";
         full: Array<string>;
         original?: Array<string> | null;
+        tvSeries?: {
+          __typename?: "TvSeries";
+          title?: string | null;
+          season?: {
+            __typename?: "TvSeriesDetails";
+            display?: string | null;
+          } | null;
+        } | null;
       };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -5767,6 +5783,14 @@ export type WorkSmallFragment = {
     __typename?: "WorkTitles";
     full: Array<string>;
     original?: Array<string> | null;
+    tvSeries?: {
+      __typename?: "TvSeries";
+      title?: string | null;
+      season?: {
+        __typename?: "TvSeriesDetails";
+        display?: string | null;
+      } | null;
+    } | null;
   };
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -6230,6 +6254,14 @@ export type WorkMediumFragment = {
     __typename?: "WorkTitles";
     full: Array<string>;
     original?: Array<string> | null;
+    tvSeries?: {
+      __typename?: "TvSeries";
+      title?: string | null;
+      season?: {
+        __typename?: "TvSeriesDetails";
+        display?: string | null;
+      } | null;
+    } | null;
   };
   series: Array<{
     __typename?: "Series";
@@ -6914,6 +6946,12 @@ export const WorkSmallFragmentDoc = `
   titles {
     full
     original
+    tvSeries {
+      title
+      season {
+        display
+      }
+    }
   }
   abstract
   creators {

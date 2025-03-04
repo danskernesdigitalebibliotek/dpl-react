@@ -5,7 +5,7 @@ import {
   getServiceBaseUrl,
   serviceUrlKeys
 } from "../../utils/reduxMiddleware/extractServiceBaseUrls";
-import PublizonServiceHttpError from "./PublizonServiceHttpError";
+import PublizonServiceError from "./PublizonServiceError";
 
 export const fetcher = async <ResponseType>({
   url,
@@ -43,34 +43,35 @@ export const fetcher = async <ResponseType>({
       body
     });
 
-    if (!response.ok) {
-      throw new PublizonServiceHttpError(
-        response.status,
-        response.statusText,
-        serviceUrl
-      );
-    }
-
+    // Json decode the response.
     try {
-      return (await response.json()) as ResponseType;
+      const responseBody = await response.json();
+      if (!response.ok) {
+        throw new PublizonServiceError(
+          response.status,
+          response.statusText,
+          responseBody,
+          serviceUrl
+        );
+      }
+      return (responseBody as ResponseType) ?? null;
+      // If the response is not JSON, we catch the error and throw a syntax error.
     } catch (e) {
       if (!(e instanceof SyntaxError)) {
         throw e;
       }
     }
+    // Errors at this point are critical and should be handled by the error boundary.
   } catch (error: unknown) {
-    if (error instanceof PublizonServiceHttpError) {
+    if (error instanceof PublizonServiceError) {
       throw error;
     }
 
     const message = error instanceof Error ? error.message : "Unknown error";
     throw new FetchFailedCriticalError(message, serviceUrl);
   }
-
-  // Do nothing. Some of our responses are intentionally empty and thus
-  // cannot be converted to JSON. Fetch API and TypeScript has no clean
-  // way for us to identify empty responses, so instead we swallow
-  // syntax errors during decoding.
+  // We did not succeed in fetching the data.
+  // and we return null to indicate that.
   return null;
 };
 

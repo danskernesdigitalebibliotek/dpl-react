@@ -15,7 +15,7 @@ export const findOnShelfModalId = (faustIds: FaustId[]) => {
 
 export interface FindOnShelfModalProps {
   manifestations: Manifestation[];
-  workTitles: string[];
+  workTitle: string;
   authors: Work["creators"];
   selectedPeriodical: PeriodicalEdition | null;
   setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
@@ -25,7 +25,7 @@ export interface FindOnShelfModalProps {
 
 const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
   manifestations,
-  workTitles,
+  workTitle,
   authors,
   selectedPeriodical,
   setSelectedPeriodical
@@ -47,7 +47,7 @@ const FindOnShelfModal: FC<FindOnShelfModalProps> = ({
     >
       <FindOnShelfModalBody
         manifestations={manifestations}
-        workTitles={workTitles}
+        workTitle={workTitle}
         authors={authors}
         selectedPeriodical={selectedPeriodical}
         setSelectedPeriodical={setSelectedPeriodical}

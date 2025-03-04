@@ -1,51 +1,72 @@
-import { useGetV1UserLoans } from "../publizon/publizon";
 import { Manifestation } from "./types/entities";
 import { getManifestationIsbn } from "../../apps/material/helper";
 import {
   getOrderIdByIdentifier,
-  getReaderPlayerType
+  getReaderPlayerType,
+  findReservedReservation
 } from "../../components/reader-player/helper";
-import { mapPublizonLoanToLoanType } from "./helpers/list-mapper";
 import { isAnonymous } from "./helpers/user";
+import {
+  useGetV1LoanstatusIdentifier,
+  useGetV1UserLoans,
+  useGetV1UserReservations
+} from "../publizon/publizon";
+import {
+  mapPublizonLoanToLoanType,
+  mapPublizonReservationToReservationType
+} from "./helpers/list-mapper";
+import { getLoanStatus } from "../../components/availability-label/types";
 
-const useReaderPlayer = (manifestations: Manifestation[] | null) => {
+const useReaderPlayer = (manifestation: Manifestation | null) => {
   const isUserAnonymous = isAnonymous();
-  const { data } = useGetV1UserLoans(
+
+  const type = getReaderPlayerType(manifestation);
+  const identifier = manifestation ? getManifestationIsbn(manifestation) : null;
+
+  const { data: loansPublizon } = useGetV1UserLoans(
     {},
-    {
-      query: { enabled: !isUserAnonymous }
-    }
+    { query: { enabled: !isUserAnonymous } }
   );
+  const loans = loansPublizon?.loans
+    ? mapPublizonLoanToLoanType(loansPublizon.loans)
+    : null;
+  const { data: reservationsPublizon } = useGetV1UserReservations({
+    query: { enabled: !isUserAnonymous }
+  });
+  const reservations = reservationsPublizon?.reservations
+    ? mapPublizonReservationToReservationType(reservationsPublizon.reservations)
+    : null;
 
-  if (!manifestations || manifestations.length === 0) {
-    return {
-      type: null,
-      identifier: null,
-      orderId: null
-    };
-  }
+  // Save to use identifier! because the hook is not enabled if there is no identifier
+  const { data: dataLoanStatus } = useGetV1LoanstatusIdentifier(identifier!, {
+    enabled: !!identifier
+  });
 
-  const identifier = getManifestationIsbn(manifestations[0]);
-  const type = getReaderPlayerType(manifestations);
+  const orderId =
+    loans && identifier ? getOrderIdByIdentifier({ loans, identifier }) : null;
 
-  if (isUserAnonymous) {
-    return {
-      type,
-      identifier,
-      orderId: null
-    };
-  }
+  const reservation =
+    identifier && reservations
+      ? findReservedReservation(identifier, reservations)
+      : null;
 
-  // No need to check for data.userData here since the "useGetV1UserLoans" query
-  // is disabled for anonymous users. Additionally, we still want to return
-  // the identifier even if the user is anonymous.
-  const loans = data?.loans ? mapPublizonLoanToLoanType(data.loans) : null;
-  const orderId = loans ? getOrderIdByIdentifier({ loans, identifier }) : null;
+  const { loaned, reserved, redeemable, loanable, reservable } =
+    getLoanStatus(dataLoanStatus);
+
+  const isAlreadyReserved = reserved;
+  const isAlreadyLoaned = loaned;
+  const canBeLoaned = isUserAnonymous || redeemable || loanable;
+  const canBeReserved = reservable;
 
   return {
     type,
     identifier,
-    orderId
+    orderId,
+    isAlreadyReserved,
+    isAlreadyLoaned,
+    canBeLoaned,
+    canBeReserved,
+    reservation
   };
 };
 

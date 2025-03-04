@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import MaterialSecondaryLink from "../generic/MaterialSecondaryLink";
 import MaterialSecondaryButton from "../generic/MaterialSecondaryButton";
@@ -9,24 +9,101 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 import LinkButton from "../../../Buttons/LinkButton";
 import { Button } from "../../../Buttons/Button";
+import { getManifestationType } from "../../../../core/utils/helpers/general";
+import { RequestStatus } from "../../../../core/utils/types/request";
+import DeleteReservationModal, {
+  deleteReservationModalId
+} from "../../../../apps/reservation-list/modal/delete-reservation/delete-reservation-modal";
+import { ReservationType } from "../../../../core/utils/types/reservation-type";
+import useOnlineInternalHandleLoanReservation from "../../../../core/utils/useOnlineInternalHandleLoanReservation";
+import { ApiResult, CreateLoanResult } from "../../../../core/publizon/model";
+import { getFirstManifestation } from "../../../../apps/material/helper";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
   manifestations: Manifestation[];
   dataCy?: string;
+  openModal: boolean;
+  setReservationStatus?: (status: RequestStatus) => void;
+  setLoanResponse?: (response: CreateLoanResult | null) => void;
+  setLoanStatus?: (status: RequestStatus) => void;
+  setReservationOrLoanErrorResponse?: (error: ApiResult) => void;
 };
 
 const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   size,
   manifestations,
-  dataCy = "material-button-online-publizon"
+  dataCy = "material-button-online-internal",
+  openModal,
+  setReservationStatus,
+  setLoanResponse,
+  setLoanStatus,
+  setReservationOrLoanErrorResponse
 }) => {
   const t = useText();
   const { open } = useModalButtonHandler();
-  const { type, orderId, identifier } = useReaderPlayer(manifestations);
+  const {
+    type,
+    orderId,
+    identifier,
+    isAlreadyReserved,
+    isAlreadyLoaned,
+    canBeLoaned,
+    canBeReserved,
+    reservation
+  } = useReaderPlayer(getFirstManifestation(manifestations));
+  const handleModalLoanReservation = useOnlineInternalHandleLoanReservation({
+    manifestations,
+    openModal,
+    setReservationStatus,
+    setLoanResponse,
+    setLoanStatus,
+    setReservationOrLoanErrorResponse
+  });
+  const [reservationToDelete, setReservationToDelete] =
+    useState<ReservationType | null>(null);
+
+  const manifestationType = getManifestationType(manifestations);
+  const reseveLabel = openModal
+    ? t("reserveWithMaterialTypeText", {
+        placeholders: { "@materialType": manifestationType }
+      })
+    : t("approveReservationText");
+
+  const loanLabel = openModal
+    ? t("loanWithMaterialTypeText", {
+        placeholders: { "@materialType": manifestationType }
+      })
+    : t("approveLoanText");
+
+  const tryLabel = t("onlineMaterialTeaserText", {
+    placeholders: { "@materialType": manifestationType }
+  });
 
   const renderReaderButton = () => {
-    if (orderId) {
+    if (!identifier) return null;
+
+    if (isAlreadyReserved && reservation) {
+      return (
+        <>
+          <Button
+            dataCy="remove-digital-reservation-button"
+            label={t("reservationDetailsRemoveDigitalReservationText")}
+            buttonType="none"
+            size={size || "large"}
+            variant="filled"
+            collapsible={false}
+            disabled={false}
+            onClick={() => {
+              setReservationToDelete(reservation);
+              open(deleteReservationModalId(reservation));
+            }}
+          />
+        </>
+      );
+    }
+
+    if (isAlreadyLoaned && orderId) {
       return (
         <LinkButton
           url={new URL(`/reader?orderid=${orderId}`, window.location.href)}
@@ -36,9 +113,24 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           dataCy={`${dataCy}-reader`}
         >
           {t("onlineMaterialReaderText", {
-            placeholders: { "@materialType": t("ebookText") }
+            placeholders: { "@materialType": manifestationType }
           })}
         </LinkButton>
+      );
+    }
+
+    if (canBeReserved || canBeLoaned) {
+      return (
+        <Button
+          dataCy={`${dataCy}-reader`}
+          label={canBeReserved ? reseveLabel : loanLabel}
+          buttonType="none"
+          variant="filled"
+          size={size || "large"}
+          onClick={handleModalLoanReservation}
+          disabled={false}
+          collapsible={false}
+        />
       );
     }
 
@@ -46,14 +138,12 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   };
 
   const renderReaderTeaserButton = () => {
-    if (orderId) return null;
+    if (isAlreadyLoaned || !openModal) return null;
 
     if (identifier) {
       return (
         <MaterialSecondaryLink
-          label={t("onlineMaterialTeaserText", {
-            placeholders: { "@materialType": t("ebookText") }
-          })}
+          label={tryLabel}
           size={size || "large"}
           url={
             new URL(`/reader?identifier=${identifier}`, window.location.href)
@@ -66,12 +156,34 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   };
 
   const renderPlayerButton = () => {
-    if (orderId) {
+    if (!identifier) return null;
+
+    if (isAlreadyReserved && reservation) {
+      return (
+        <>
+          <Button
+            dataCy="remove-digital-reservation-button"
+            label={t("reservationDetailsRemoveDigitalReservationText")}
+            buttonType="none"
+            size={size || "large"}
+            variant="filled"
+            collapsible={false}
+            disabled={false}
+            onClick={() => {
+              setReservationToDelete(reservation);
+              open(deleteReservationModalId(reservation));
+            }}
+          />
+        </>
+      );
+    }
+
+    if (isAlreadyLoaned && orderId) {
       return (
         <Button
           dataCy={`${dataCy}-player`}
           label={t("onlineMaterialPlayerText", {
-            placeholders: { "@materialType": t("audiobookText") }
+            placeholders: { "@materialType": manifestationType }
           })}
           buttonType="none"
           variant="filled"
@@ -83,18 +195,31 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       );
     }
 
+    if (canBeReserved || canBeLoaned) {
+      return (
+        <Button
+          dataCy={`${dataCy}-player`}
+          label={canBeReserved ? reseveLabel : loanLabel}
+          buttonType="none"
+          variant="filled"
+          size={size || "large"}
+          onClick={handleModalLoanReservation}
+          disabled={false}
+          collapsible={false}
+        />
+      );
+    }
+
     return null;
   };
 
   const renderPlayerTeaserButton = () => {
-    if (orderId) return null;
+    if (isAlreadyLoaned || !openModal) return null;
 
     if (identifier) {
       return (
         <MaterialSecondaryButton
-          label={t("onlineMaterialTeaserText", {
-            placeholders: { "@materialType": t("audiobookText") }
-          })}
+          label={tryLabel}
           size={size || "large"}
           onClick={() => {
             open(playerModalId(identifier));
@@ -107,11 +232,23 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     return null;
   };
 
+  const renderDeleteReservationModal = () => {
+    if (!reservationToDelete) return null;
+
+    return (
+      <DeleteReservationModal
+        modalId={deleteReservationModalId(reservationToDelete)}
+        reservations={[reservationToDelete]}
+      />
+    );
+  };
+
   if (type === "reader") {
     return (
       <>
         {renderReaderButton()}
         {renderReaderTeaserButton()}
+        {renderDeleteReservationModal()}
       </>
     );
   }
@@ -121,6 +258,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       <>
         {renderPlayerButton()}
         {renderPlayerTeaserButton()}
+        {renderDeleteReservationModal()}
       </>
     );
   }

@@ -42,7 +42,7 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
       name: "Manifestations",
       control: { type: "object" }
     },
-    workTitles: {
+    workTitle: {
       name: "Work title(s)",
       control: { type: "object" }
     },
@@ -69,7 +69,7 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
     ...globalTextArgs,
     ...globalConfigArgs,
     manifestations: mockedManifestationData,
-    workTitles: ["Title 1", "Title 2"],
+    workTitle: "Title 1, Title 2",
     authors: [
       { __typename: "Person", nameSort: "", display: "author 1" },
       { __typename: "Person", nameSort: "", display: "author 2" },

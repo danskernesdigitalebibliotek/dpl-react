@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 import ReservationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
-import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
 import { useText } from "../../../core/utils/text";
 import { isDigital } from "../utils/helpers";
 import { materialIsOverdue } from "../../../core/utils/helpers/general";
@@ -23,7 +22,6 @@ import { RenewedLoanV2 } from "../../../core/fbs/model";
 import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
 import { formatDate } from "../../../core/utils/helpers/date";
 import useGetWorkUrlFromPublizonIdentifier from "../../../core/utils/useGetWorkUrlFromPublizonIdentifier";
-import featureFlag from "../../../core/utils/featureFlag";
 
 interface MaterialDetailsProps {
   loan: LoanType | null;
@@ -121,34 +119,15 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {featureFlag.isActive("readerPlayer") &&
-          isDigital(loan) &&
-          workUrl ? (
+          {isDigital(loan) && workUrl && (
             <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
               <Link
                 href={workUrl}
                 className="btn-primary btn-filled btn-small arrow__hover--right-small"
               >
-                {t("materialDetailsGoToMaterialText")}
+                {t("viewMaterialText")}
               </Link>
             </div>
-          ) : (
-            // Todo: Delete this else block after the readerPlayer feature flag is removed
-            isDigital(loan) && (
-              <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
-                <Link
-                  href={new URL("https://ereolen.dk/user/me")}
-                  className="btn-primary btn-filled btn-small arrow__hover--right-small"
-                >
-                  Gå til eReolen
-                  <img
-                    src={ExternalLinkIcon}
-                    className="btn-icon invert"
-                    alt=""
-                  />
-                </Link>
-              </div>
-            )
           )}
           {dueDate && materialIsOverdue(dueDate) && (
             <div className="modal-details__warning">
@@ -202,35 +181,15 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {featureFlag.isActive("readerPlayer") &&
-          isDigital(loan) &&
-          workUrl ? (
+          {isDigital(loan) && workUrl && (
             <div className="modal-details__buttons">
               <Link
                 href={workUrl}
                 className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
               >
-                {t("materialDetailsGoToMaterialText")}
+                {t("viewMaterialText")}
               </Link>
             </div>
-          ) : (
-            // Todo: Delete this else block after the readerPlayer feature flag is removed
-            !featureFlag.isActive("readerPlayer") &&
-            isDigital(loan) && (
-              <div className="modal-details__buttons">
-                <Link
-                  href={new URL("https://ereolen.dk/user/me")}
-                  className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
-                >
-                  Gå til eReolen test
-                  <img
-                    src={ExternalLinkIcon}
-                    className="btn-icon invert"
-                    alt=""
-                  />
-                </Link>
-              </div>
-            )
           )}
         </div>
       )}

@@ -5,6 +5,8 @@ import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
 import { PatronV5 } from "../../core/fbs/model";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
+import { getManifestationTitle, getWorkTitle } from "./helper";
+import { first } from "lodash";
 
 export interface ReservationFindOnShelfModalsProps {
   patron: PatronV5 | undefined;
@@ -26,10 +28,10 @@ const ReservationFindOnShelfModals: React.FC<
   work
 }) => {
   const isUserBlocked = !!(patron && isBlocked(patron));
-  const titles =
+  const title =
     manifestations.length > 1
-      ? work.titles.full
-      : manifestations[0].titles.main;
+      ? getWorkTitle(work)
+      : getManifestationTitle(first(manifestations)!);
   const authors =
     manifestations.length > 1 ? work.creators : manifestations[0].creators;
 
@@ -47,7 +49,7 @@ const ReservationFindOnShelfModals: React.FC<
       )}
       <FindOnShelfModal
         manifestations={manifestations}
-        workTitles={titles}
+        workTitle={title}
         authors={authors}
         selectedPeriodical={selectedPeriodical}
         setSelectedPeriodical={setSelectedPeriodical}
