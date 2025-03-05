@@ -21,7 +21,6 @@ interface PatronPageConfigProps {
 export interface PatronPageUrlProps {
   deletePatronUrl: string;
   pauseReservationInfoUrl: string;
-  alwaysLoanableEreolenUrl: string;
 }
 
 interface PatronPageTextProps {
@@ -54,7 +53,6 @@ interface PatronPageTextProps {
   patronPageSaveButtonText: string;
   patronPageStatusSectionBodyText: string;
   patronPageStatusSectionHeaderText: string;
-  patronPageStatusSectionLinkText: string;
   patronPageStatusSectionLoanHeaderText: string;
   patronPageStatusSectionLoansAudioBooksText: string;
   patronPageStatusSectionLoansEbooksText: string;
@@ -73,7 +71,6 @@ interface PatronPageTextProps {
   pauseReservationModalSaveButtonLabelText: string;
   pickupBranchesDropdownLabelText: string;
   pickupBranchesDropdownNothingSelectedText: string;
-  alwaysAvailableEreolenUrl: string;
 }
 
 export interface PatronPageProps

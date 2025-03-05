@@ -12,7 +12,6 @@ import { DeleteReservationModalArgs } from "../../../core/storybook/deleteReserv
 import { GlobalEntryTextProps } from "../../../core/storybook/globalTextArgs";
 
 export interface ReservationListUrlProps {
-  ereolenMyPageUrl: string;
   expirationWarningDaysBeforeConfig: string;
   pauseReservationInfoUrl: string;
 }
