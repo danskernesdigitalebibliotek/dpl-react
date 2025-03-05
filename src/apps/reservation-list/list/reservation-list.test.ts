@@ -479,6 +479,44 @@ describe("Reservation list", () => {
       .should("exist");
   });
 
+  it("should display the E-book reservation that is ready for pickup properly", () => {
+    cy.visit(
+      "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
+    );
+    cy.wait("@user");
+
+    cy.getBySel("reservation-material")
+      .eq(2)
+      .within(() => {
+        cy.get(".status-label.status-label--outline").should(
+          "have.text",
+          "E-book"
+        );
+
+        cy.get(".list-reservation__header__text").should(
+          "have.text",
+          "Mordet i det blå tog"
+        );
+
+        cy.getBySel("reservation-about-author").should(
+          "have.text",
+          "By Agatha Christie and Jutta Larsen (2014)"
+        );
+
+        cy.get(".counter__label").should("have.text", "Ready");
+
+        cy.getBySel("info-label").should(
+          "have.text",
+          "Borrow before 27-01-2023 20:37"
+        );
+
+        cy.get(".list-reservation__deadline .text-small-caption").should(
+          "have.text",
+          "Online access"
+        );
+      });
+  });
+
   it("Reservations list ready for pickup empty", () => {
     cy.intercept(
       "GET",
