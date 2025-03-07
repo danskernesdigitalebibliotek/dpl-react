@@ -236,6 +236,18 @@ export type ComplexSearchFiltersInput = {
   sublocation?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
+export type ComplexSearchIndex = {
+  __typename?: "ComplexSearchIndex";
+  /** Can be used for faceting */
+  facet: Scalars["Boolean"]["output"];
+  /** The name of a Complex Search index */
+  index: Scalars["String"]["output"];
+  /** Can be used for searching */
+  search: Scalars["Boolean"]["output"];
+  /** Can be used for sorting */
+  sort: Scalars["Boolean"]["output"];
+};
+
 /** The search response */
 export type ComplexSearchResponse = {
   __typename?: "ComplexSearchResponse";
@@ -371,8 +383,19 @@ export type Cover = {
   detail117?: Maybe<Scalars["String"]["output"]>;
   detail207?: Maybe<Scalars["String"]["output"]>;
   detail500?: Maybe<Scalars["String"]["output"]>;
+  large?: Maybe<CoverDetails>;
+  medium?: Maybe<CoverDetails>;
   origin?: Maybe<Scalars["String"]["output"]>;
+  small?: Maybe<CoverDetails>;
   thumbnail?: Maybe<Scalars["String"]["output"]>;
+  xSmall?: Maybe<CoverDetails>;
+};
+
+export type CoverDetails = {
+  __typename?: "CoverDetails";
+  height?: Maybe<Scalars["Int"]["output"]>;
+  url?: Maybe<Scalars["String"]["output"]>;
+  width?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type CreatorInterface = {
@@ -929,19 +952,18 @@ export type Manifestations = {
   __typename?: "Manifestations";
   all: Array<Manifestation>;
   bestRepresentation: Manifestation;
+  bestRepresentations: Array<Manifestation>;
   first: Manifestation;
   latest: Manifestation;
   mostRelevant: Array<Manifestation>;
-};
-
-export type Marc = {
-  __typename?: "Marc";
-  /** Gets the MARC record collection for the given record identifier, containing either standalone or head and/or section and volume records. */
-  getMarcByRecordId?: Maybe<MarcRecord>;
-};
-
-export type MarcGetMarcByRecordIdArgs = {
-  recordId: Scalars["String"]["input"];
+  /**
+   * A list of manifestations that matched the search query.
+   *
+   * This field is populated only when a work is retrieved within a search context.
+   * Each entry is a SearchHit object representing a manifestation that matched the search criteria.
+   * Only one manifestation per unit is returned.
+   */
+  searchHits?: Maybe<Array<SearchHit>>;
 };
 
 export type MarcRecord = {
@@ -1143,12 +1165,6 @@ export type MusicalExercise = {
 export type Mutation = {
   __typename?: "Mutation";
   elba: ElbaServices;
-  submitOrder?: Maybe<SubmitOrder>;
-};
-
-export type MutationSubmitOrderArgs = {
-  dryRun?: InputMaybe<Scalars["Boolean"]["input"]>;
-  input: SubmitOrderInput;
 };
 
 export type NarrativeTechnique = SubjectInterface & {
@@ -1171,6 +1187,7 @@ export type Note = {
 
 export enum NoteTypeEnum {
   ConnectionToOtherWorks = "CONNECTION_TO_OTHER_WORKS",
+  ContainsAiGeneratedContent = "CONTAINS_AI_GENERATED_CONTENT",
   DescriptionOfMaterial = "DESCRIPTION_OF_MATERIAL",
   Dissertation = "DISSERTATION",
   Edition = "EDITION",
@@ -1185,16 +1202,8 @@ export enum NoteTypeEnum {
   References = "REFERENCES",
   RestrictionsOnUse = "RESTRICTIONS_ON_USE",
   TechnicalRequirements = "TECHNICAL_REQUIREMENTS",
-  TypeOfScore = "TYPE_OF_SCORE"
-}
-
-export enum OrderTypeEnum {
-  Estimate = "ESTIMATE",
-  Hold = "HOLD",
-  Loan = "LOAN",
-  NonReturnableCopy = "NON_RETURNABLE_COPY",
-  Normal = "NORMAL",
-  StackRetrieval = "STACK_RETRIEVAL"
+  TypeOfScore = "TYPE_OF_SCORE",
+  WithdrawnPublication = "WITHDRAWN_PUBLICATION"
 }
 
 export type Pegi = {
@@ -1276,6 +1285,8 @@ export type PublicationYear = {
 export type Query = {
   __typename?: "Query";
   complexSearch: ComplexSearchResponse;
+  /** All indexes in complex search */
+  complexSearchIndexes?: Maybe<Array<ComplexSearchIndex>>;
   complexSuggest: ComplexSuggestResponse;
   debug?: Maybe<Debug>;
   infomedia: InfomediaResponse;
@@ -1283,8 +1294,6 @@ export type Query = {
   localSuggest: LocalSuggestResponse;
   manifestation?: Maybe<Manifestation>;
   manifestations: Array<Maybe<Manifestation>>;
-  /** Field for presenting bibliographic records in MARC format */
-  marc: Marc;
   mood: MoodQueries;
   /** Get recommendations */
   recommend: RecommendationResponse;
@@ -1575,6 +1584,13 @@ export type SearchFiltersInput = {
   year?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
+/** A search hit that encapsulates a matched manifestation from a search query. */
+export type SearchHit = {
+  __typename?: "SearchHit";
+  /** The manifestation that was matched during the search. */
+  match?: Maybe<Manifestation>;
+};
+
 /** The supported fields to query */
 export type SearchQueryInput = {
   /**
@@ -1803,89 +1819,6 @@ export type SubjectWithRating = SubjectInterface & {
   /** Expressed as integer on a scale from 1 to 5 */
   rating?: Maybe<Scalars["Int"]["output"]>;
   type: SubjectTypeEnum;
-};
-
-export type SubmitOrder = {
-  __typename?: "SubmitOrder";
-  deleted?: Maybe<Scalars["Boolean"]["output"]>;
-  message?: Maybe<Scalars["String"]["output"]>;
-  /** if order was submitted successfully */
-  ok?: Maybe<Scalars["Boolean"]["output"]>;
-  orderId?: Maybe<Scalars["String"]["output"]>;
-  orsId?: Maybe<Scalars["String"]["output"]>;
-  status: SubmitOrderStatusEnum;
-};
-
-export type SubmitOrderInput = {
-  author?: InputMaybe<Scalars["String"]["input"]>;
-  authorOfComponent?: InputMaybe<Scalars["String"]["input"]>;
-  exactEdition?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** expires is required to be iso 8601 dateTime eg. "2024-03-15T12:24:32Z" */
-  expires?: InputMaybe<Scalars["String"]["input"]>;
-  key?: InputMaybe<Scalars["String"]["input"]>;
-  orderType?: InputMaybe<OrderTypeEnum>;
-  pagination?: InputMaybe<Scalars["String"]["input"]>;
-  pickUpBranch: Scalars["String"]["input"];
-  pids: Array<Scalars["String"]["input"]>;
-  publicationDate?: InputMaybe<Scalars["String"]["input"]>;
-  publicationDateOfComponent?: InputMaybe<Scalars["String"]["input"]>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
-  titleOfComponent?: InputMaybe<Scalars["String"]["input"]>;
-  userParameters: SubmitOrderUserParametersInput;
-  volume?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export enum SubmitOrderStatusEnum {
-  /** Authentication error */
-  AuthenticationError = "AUTHENTICATION_ERROR",
-  /** Borchk: User is blocked by agency */
-  BorchkUserBlockedByAgency = "BORCHK_USER_BLOCKED_BY_AGENCY",
-  /** Borchk: User could not be verified */
-  BorchkUserNotVerified = "BORCHK_USER_NOT_VERIFIED",
-  /** Borchk: User is no longer loaner at the provided pickupbranch */
-  BorchkUserNoLongerExistOnAgency = "BORCHK_USER_NO_LONGER_EXIST_ON_AGENCY",
-  /** Pincode was not found in arguments */
-  ErrorMissingPincode = "ERROR_MISSING_PINCODE",
-  /** Order does not validate */
-  InvalidOrder = "INVALID_ORDER",
-  /** Item not available at pickupAgency, item localised for ILL */
-  NotOwnedIllLoc = "NOT_OWNED_ILL_LOC",
-  /** Item not available at pickupAgency, item not localised for ILL */
-  NotOwnedNoIllLoc = "NOT_OWNED_NO_ILL_LOC",
-  /** Item not available at pickupAgency, ILL of mediumType not accepted */
-  NotOwnedWrongIllMediumtype = "NOT_OWNED_WRONG_ILL_MEDIUMTYPE",
-  /** ServiceRequester is obligatory */
-  NoServicerequester = "NO_SERVICEREQUESTER",
-  /** Error sending order to ORS */
-  OrsError = "ORS_ERROR",
-  /** Item available at pickupAgency, order accepted */
-  OwnedAccepted = "OWNED_ACCEPTED",
-  /** Item available at pickupAgency, item may be ordered through the library's catalogue */
-  OwnedOwnCatalogue = "OWNED_OWN_CATALOGUE",
-  /** Item available at pickupAgency, order of mediumType not accepted */
-  OwnedWrongMediumtype = "OWNED_WRONG_MEDIUMTYPE",
-  /** Service unavailable */
-  ServiceUnavailable = "SERVICE_UNAVAILABLE",
-  /** Unknown error occured, status is unknown */
-  UnknownError = "UNKNOWN_ERROR",
-  /** PickupAgency not found */
-  UnknownPickupagency = "UNKNOWN_PICKUPAGENCY",
-  /** User not found */
-  UnknownUser = "UNKNOWN_USER"
-}
-
-export type SubmitOrderUserParametersInput = {
-  barcode?: InputMaybe<Scalars["String"]["input"]>;
-  cardno?: InputMaybe<Scalars["String"]["input"]>;
-  cpr?: InputMaybe<Scalars["String"]["input"]>;
-  customId?: InputMaybe<Scalars["String"]["input"]>;
-  pincode?: InputMaybe<Scalars["String"]["input"]>;
-  userAddress?: InputMaybe<Scalars["String"]["input"]>;
-  userDateOfBirth?: InputMaybe<Scalars["String"]["input"]>;
-  userId?: InputMaybe<Scalars["String"]["input"]>;
-  userMail?: InputMaybe<Scalars["String"]["input"]>;
-  userName?: InputMaybe<Scalars["String"]["input"]>;
-  userTelephone?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type SuggestResponse = {
@@ -2148,6 +2081,11 @@ export type GetSmallWorkQuery = {
         } | null;
       } | null;
     };
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
     creators: Array<
       | { __typename: "Corporation"; display: string }
       | { __typename: "Person"; display: string }
@@ -2712,11 +2650,6 @@ export type GetMaterialQuery = {
       | { __typename: "Corporation"; nameSort: string; display: string }
       | { __typename: "Person"; nameSort: string; display: string }
     >;
-    mainLanguages: Array<{
-      __typename?: "Language";
-      display: string;
-      isoCode: string;
-    }>;
     subjects: {
       __typename?: "SubjectContainer";
       all: Array<
@@ -2772,6 +2705,11 @@ export type GetMaterialQuery = {
         } | null;
       } | null;
     };
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -3186,11 +3124,6 @@ export type GetMaterialGloballyQuery = {
       | { __typename: "Corporation"; nameSort: string; display: string }
       | { __typename: "Person"; nameSort: string; display: string }
     >;
-    mainLanguages: Array<{
-      __typename?: "Language";
-      display: string;
-      isoCode: string;
-    }>;
     subjects: {
       __typename?: "SubjectContainer";
       all: Array<
@@ -3246,6 +3179,11 @@ export type GetMaterialGloballyQuery = {
         } | null;
       } | null;
     };
+    mainLanguages: Array<{
+      __typename?: "Language";
+      display: string;
+      isoCode: string;
+    }>;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -3714,20 +3652,6 @@ export type GetReviewManifestationsQuery = {
   } | null>;
 };
 
-export type OpenOrderMutationVariables = Exact<{
-  input: SubmitOrderInput;
-}>;
-
-export type OpenOrderMutation = {
-  __typename?: "Mutation";
-  submitOrder?: {
-    __typename?: "SubmitOrder";
-    status: SubmitOrderStatusEnum;
-    message?: string | null;
-    orderId?: string | null;
-  } | null;
-};
-
 export type RecommendFromFaustQueryVariables = Exact<{
   faust: Scalars["String"]["input"];
   limit: Scalars["Int"]["input"];
@@ -3757,6 +3681,11 @@ export type RecommendFromFaustQuery = {
             } | null;
           } | null;
         };
+        mainLanguages: Array<{
+          __typename?: "Language";
+          display: string;
+          isoCode: string;
+        }>;
         creators: Array<
           | { __typename: "Corporation"; display: string }
           | { __typename: "Person"; display: string }
@@ -4188,6 +4117,11 @@ export type SearchWithPaginationQuery = {
           } | null;
         } | null;
       };
+      mainLanguages: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -4666,6 +4600,11 @@ export type ComplexSearchWithPaginationQuery = {
           } | null;
         } | null;
       };
+      mainLanguages: Array<{
+        __typename?: "Language";
+        display: string;
+        isoCode: string;
+      }>;
       creators: Array<
         | { __typename: "Corporation"; display: string }
         | { __typename: "Person"; display: string }
@@ -5792,6 +5731,11 @@ export type WorkSmallFragment = {
       } | null;
     } | null;
   };
+  mainLanguages: Array<{
+    __typename?: "Language";
+    display: string;
+    isoCode: string;
+  }>;
   creators: Array<
     | { __typename: "Corporation"; display: string }
     | { __typename: "Person"; display: string }
@@ -6203,11 +6147,6 @@ export type WorkMediumFragment = {
     | { __typename: "Corporation"; nameSort: string; display: string }
     | { __typename: "Person"; nameSort: string; display: string }
   >;
-  mainLanguages: Array<{
-    __typename?: "Language";
-    display: string;
-    isoCode: string;
-  }>;
   subjects: {
     __typename?: "SubjectContainer";
     all: Array<
@@ -6263,6 +6202,11 @@ export type WorkMediumFragment = {
       } | null;
     } | null;
   };
+  mainLanguages: Array<{
+    __typename?: "Language";
+    display: string;
+    isoCode: string;
+  }>;
   series: Array<{
     __typename?: "Series";
     title: string;
@@ -6953,6 +6897,10 @@ export const WorkSmallFragmentDoc = `
       }
     }
   }
+  mainLanguages {
+    display
+    isoCode
+  }
   abstract
   creators {
     display
@@ -6981,10 +6929,6 @@ export const WorkMediumFragmentDoc = `
   }
   creators {
     nameSort
-  }
-  mainLanguages {
-    display
-    isoCode
   }
   subjects {
     all {
@@ -7207,40 +7151,6 @@ export const useGetReviewManifestationsQuery = <
       GetReviewManifestationsQuery,
       GetReviewManifestationsQueryVariables
     >(GetReviewManifestationsDocument, variables),
-    options
-  );
-};
-
-export const OpenOrderDocument = `
-    mutation openOrder($input: SubmitOrderInput!) {
-  submitOrder(input: $input, dryRun: false) {
-    status
-    message
-    orderId
-  }
-}
-    `;
-
-export const useOpenOrderMutation = <TError = unknown, TContext = unknown>(
-  options?: UseMutationOptions<
-    OpenOrderMutation,
-    TError,
-    OpenOrderMutationVariables,
-    TContext
-  >
-) => {
-  return useMutation<
-    OpenOrderMutation,
-    TError,
-    OpenOrderMutationVariables,
-    TContext
-  >(
-    ["openOrder"],
-    (variables?: OpenOrderMutationVariables) =>
-      fetcher<OpenOrderMutation, OpenOrderMutationVariables>(
-        OpenOrderDocument,
-        variables
-      )(),
     options
   );
 };
@@ -7528,7 +7438,6 @@ export const operationNames = {
     intelligentFacets: "intelligentFacets" as const
   },
   Mutation: {
-    openOrder: "openOrder" as const,
     placeCopy: "placeCopy" as const
   },
   Fragment: {

@@ -240,6 +240,10 @@ fragment WorkSmall on Work {
       }
     }
   }
+  mainLanguages {
+    display
+    isoCode
+  }
   abstract
   creators {
     display
@@ -266,10 +270,6 @@ fragment WorkMedium on Work {
   }
   creators {
     nameSort
-  }
-  mainLanguages {
-    display
-    isoCode
   }
   subjects {
     all {
