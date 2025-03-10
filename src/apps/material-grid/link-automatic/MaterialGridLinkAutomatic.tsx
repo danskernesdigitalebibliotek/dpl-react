@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../../core/utils/branches";
-import { Work } from "../../../core/utils/types/entities";
 import MaterialGrid from "../MaterialGrid";
 import MaterialGridSkeleton from "../MaterialGridSkeleton";
 import { ValidSelectedIncrements } from "../materiel-grid-util";
 import { getQueryParams } from "../../../core/utils/helpers/url";
 import { commaSeparatedStringToArray } from "../../advanced-search/helpers";
+import { WorkId } from "../../../core/utils/types/ids";
 
 export type MaterialGridLinkAutomaticProps = {
   link: URL;
@@ -49,10 +49,10 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
     return <MaterialGridSkeleton title={title} />;
   }
 
-  const resultWorks: Work[] = data.complexSearch.works as Work[];
+  const resultWorks = data.complexSearch.works;
   const materials = resultWorks.map((work) => {
     return {
-      wid: work.workId
+      wid: work.workId as WorkId
     };
   });
 

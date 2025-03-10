@@ -6,8 +6,6 @@ import { flattenCreators } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import useInfiniteScrollLoading from "./useInfiteScrollLoading";
 import { SearchWithPaginationQuery } from "../../core/dbc-gateway/generated/graphql";
-import { Work } from "../../core/utils/types/entities";
-import { getWorkTitle } from "../material/helper";
 
 type MaterialSearchListResultsProps = {
   data: SearchWithPaginationQuery["search"]["works"];
@@ -52,7 +50,7 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
   }
 
   if (!data || data.length === 0) return null;
-  const works = data as Work[];
+  const works = data;
 
   return (
     <div className="material-search-list" ref={containerRef}>
@@ -84,7 +82,7 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
                 }}
                 onFocus={(e) => handleFocus(index, e.currentTarget)}
                 aria-label={t("materialSearchAriaButtonSelectWorkWithText", {
-                  placeholders: { "@title": `${getWorkTitle(work)}` }
+                  placeholders: { "@title": `${work.titles.full}` }
                 })}
               >
                 <Cover
@@ -99,7 +97,7 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
                       {t("materialSearchPreviewTitleText")}:
                     </span>
                     <span className="material-search-list__detail">
-                      {getWorkTitle(work)}
+                      {work.titles.full}
                     </span>
                   </div>
                   <div className="material-search-list__detail-item">

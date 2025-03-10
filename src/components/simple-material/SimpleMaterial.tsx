@@ -5,7 +5,6 @@ import ButtonFavourite, {
   ButtonFavouriteId
 } from "../button-favourite/button-favourite";
 import { Cover } from "../cover/cover";
-import { Work } from "../../core/utils/types/entities";
 import { getContributors, getWorkPid } from "../../core/utils/helpers/general";
 import { TypedDispatch } from "../../core/store";
 import { guardedRequest } from "../../core/guardedRequests.slice";
@@ -13,9 +12,10 @@ import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import Link from "../atoms/links/Link";
 import { useUrls } from "../../core/utils/url";
 import { GuardedAppId } from "../../core/utils/types/ids";
+import { WorkSmall } from "../../core/utils/types/entities";
 
 export interface SimpleMaterialProps {
-  work: Work;
+  work: WorkSmall;
   bright?: boolean;
   app: GuardedAppId;
 }

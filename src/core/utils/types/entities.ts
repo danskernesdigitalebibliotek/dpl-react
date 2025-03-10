@@ -8,7 +8,8 @@ import {
   ManifestationReviewFieldsFragment,
   ManifestationsSimpleFieldsFragment,
   Relations,
-  WorkMediumFragment
+  WorkMediumFragment,
+  WorkSmallFragment
 } from "../../dbc-gateway/generated/graphql";
 import { PatronV5 } from "../../fbs/model";
 import { Pid, WorkId } from "./ids";
@@ -22,6 +23,16 @@ export type ReviewManifestation = Omit<
   "pid"
 > & {
   pid: Pid;
+};
+
+export type WorkSmall = Omit<WorkSmallFragment, "workId" | "manifestations"> & {
+  workId: WorkId;
+  manifestations: {
+    all: Manifestation[];
+    first: Manifestation;
+    latest: Manifestation;
+    bestRepresentation: Manifestation;
+  };
 };
 
 export type Work = Omit<
