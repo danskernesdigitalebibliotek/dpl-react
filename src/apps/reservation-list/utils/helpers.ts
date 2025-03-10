@@ -1,6 +1,8 @@
 import { ReservationDetailsV2 } from "../../../core/fbs/model";
-import { formatDateDependingOnDigitalMaterial } from "../../../core/utils/helpers/date";
-import { daysBetweenTodayAndDate } from "../../../core/utils/helpers/general";
+import {
+  calculateRoundedUpDaysUntil,
+  formatDateDependingOnDigitalMaterial
+} from "../../../core/utils/helpers/date";
 import { UseTextFunction } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 
@@ -72,7 +74,7 @@ export const getStatusText = (
 
     return t("reservationListAvailableInText", {
       placeholders: {
-        "@count": daysBetweenTodayAndDate(pickupDeadline)
+        "@count": calculateRoundedUpDaysUntil(pickupDeadline)
       }
     });
   }

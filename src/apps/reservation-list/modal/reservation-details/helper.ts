@@ -1,6 +1,6 @@
 import { FormSelectValue } from "../../../../components/reservation/forms/types";
-import { getFutureDateString } from "../../../../components/reservation/helper";
 import { ComplexSearchWithPaginationWorkAccessQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import { getFutureDateString } from "../../../../core/utils/helpers/date";
 
 type AccessManifestations =
   ComplexSearchWithPaginationWorkAccessQuery["complexSearch"]["works"][0]["manifestations"]["all"];
