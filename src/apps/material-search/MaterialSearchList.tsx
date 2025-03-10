@@ -6,7 +6,6 @@ import { flattenCreators } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import useInfiniteScrollLoading from "./useInfiteScrollLoading";
 import { SearchWithPaginationQuery } from "../../core/dbc-gateway/generated/graphql";
-import { Work } from "../../core/utils/types/entities";
 
 type MaterialSearchListResultsProps = {
   data: SearchWithPaginationQuery["search"]["works"];
@@ -51,7 +50,7 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
   }
 
   if (!data || data.length === 0) return null;
-  const works = data as Work[];
+  const works = data;
 
   return (
     <div className="material-search-list" ref={containerRef}>
