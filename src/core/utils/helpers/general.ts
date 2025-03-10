@@ -9,15 +9,12 @@ import configuration, {
   getConf,
   getDeviceConf
 } from "../../configuration";
-import { Manifestation, Work } from "../types/entities";
+import { Manifestation, Work, WorkSmall } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
 import { ListType } from "../types/list-type";
-import {
-  ManifestationReviewFieldsFragment,
-  WorkSmallFragment
-} from "../../dbc-gateway/generated/graphql";
+import { ManifestationReviewFieldsFragment } from "../../dbc-gateway/generated/graphql";
 import { FeeV2 } from "../../fbs/model/feeV2";
 import { ReservationType } from "../types/reservation-type";
 import { ManifestationMaterialType } from "../types/material-type";
@@ -52,7 +49,7 @@ export const orderManifestationsByYear = (
   });
 };
 
-export const flattenCreators = (creators: WorkSmallFragment["creators"]) =>
+export const flattenCreators = (creators: WorkSmall["creators"]) =>
   creators.map((creator) => {
     return creator.display;
   });
