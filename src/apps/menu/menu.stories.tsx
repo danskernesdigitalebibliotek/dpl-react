@@ -148,9 +148,6 @@ const meta: Meta<typeof WrappedMenu> = {
     menuSignUpUrl: {
       control: { type: "text" }
     },
-    ereolenHomepageUrl: {
-      control: { type: "text" }
-    },
     expirationWarningDaysBeforeConfig: {
       control: { type: "text" }
     },
@@ -212,7 +209,6 @@ export const UserMenu: Story = {
     menuLoginUrl: "/Login",
     menuSignUpText: "Sign up",
     menuSignUpUrl: "/Signup",
-    ereolenHomepageUrl: "https://ereolen.dk/",
     expirationWarningDaysBeforeConfig: "6",
     searchHeaderLoginText: "Login",
     searchHeaderFavoritesText: "Liked"
