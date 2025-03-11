@@ -3,7 +3,6 @@ interface GlobalUrlEntryPropsInterface {
   searchUrl: string;
   advancedSearchUrl: string;
   fbsBaseUrl: string;
-  loanListEreolenUrl: string;
   feesPageUrl: string;
   publizonBaseUrl: string;
   dplCmsBaseUrl: string;
@@ -13,7 +12,6 @@ interface GlobalUrlEntryPropsInterface {
   fbiLocalBaseUrl: string;
   fbiGlobalBaseUrl: string;
   authUrl: string;
-  ereolenHomepageUrl: string;
   materialListBaseUrl: string;
 }
 

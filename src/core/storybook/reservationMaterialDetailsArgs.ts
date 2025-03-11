@@ -109,15 +109,6 @@ export const argTypes = {
     },
     control: { type: "text" }
   },
-  reservationDetailsDigitalReservationGoToEreolenText: {
-    table: {
-      type: { summary: "text" },
-      defaultValue: {
-        summary: "Go to eReolen"
-      }
-    },
-    control: { type: "text" }
-  },
   reservationDetailsReadyForLoanText: {
     table: {
       type: { summary: "text" },
@@ -289,7 +280,6 @@ export default {
   reservationDetailsButtonRemoveText: "Remove your reservation",
   reservationDetailsStatusTitleText: "Status",
   reservationDetailsBorrowBeforeText: "Borrow before @date",
-  reservationDetailsDigitalReservationGoToEreolenText: "Go to eReolen",
   reservationDetailsReadyForLoanText: "Ready for pickup",
   reservationDetailsPickupDeadlineTitleText: "Pickup deadline",
   interestPeriodsConfig:
@@ -327,7 +317,6 @@ export interface ReservationMaterialDetailsProps {
   reservationDetailsButtonRemoveText: string;
   reservationDetailsStatusTitleText: string;
   reservationDetailsBorrowBeforeText: string;
-  reservationDetailsDigitalReservationGoToEreolenText: string;
   reservationDetailsReadyForLoanText: string;
   reservationDetailsPickupDeadlineTitleText: string;
   interestPeriodsConfig: string;
