@@ -521,7 +521,8 @@
                 "__typename": "AccessUrl",
                 "origin": "www.filmstriben.dk",
                 "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
-                "loginRequired": false
+                "loginRequired": false,
+                "status": "OK"
               }
             ],
             "shelfmark": {
@@ -697,7 +698,8 @@
               "__typename": "AccessUrl",
               "origin": "www.filmstriben.dk",
               "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
-              "loginRequired": false
+              "loginRequired": false,
+              "status": "OK"
             }
           ],
           "shelfmark": {
@@ -872,7 +874,8 @@
               "__typename": "AccessUrl",
               "origin": "www.filmstriben.dk",
               "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
-              "loginRequired": false
+              "loginRequired": false,
+              "status": "OK"
             }
           ],
           "shelfmark": {

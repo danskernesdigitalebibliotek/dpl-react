@@ -121,6 +121,7 @@ fragment ManifestationsSimpleFields on Manifestation {
       origin
       url
       loginRequired
+      status
     }
     ... on InfomediaService {
       id
