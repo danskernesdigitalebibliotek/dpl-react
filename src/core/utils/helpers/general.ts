@@ -8,7 +8,7 @@ import configuration, {
   getConf,
   getDeviceConf
 } from "../../configuration";
-import { Manifestation, Work } from "../types/entities";
+import { Manifestation, Work, WorkSmall } from "../types/entities";
 import { FaustId, Pid } from "../types/ids";
 import { getUrlQueryParam } from "./url";
 import { LoanType } from "../types/loan-type";
@@ -53,8 +53,8 @@ export const orderManifestationsByYear = (
   });
 };
 
-export const flattenCreators = (creators: Work["creators"]) =>
-  creators.map((creator: Work["creators"][0]) => {
+export const flattenCreators = (creators: WorkSmall["creators"]) =>
+  creators.map((creator) => {
     return creator.display;
   });
 
@@ -124,7 +124,7 @@ export const getFirstPublishedYear = (manifestations: Manifestation[]) => {
 };
 
 // This function is used to find the most representative pid of a work.
-export const getWorkPid = (work: Work) => {
+export const getWorkPid = (work: WorkSmall) => {
   return work.manifestations.bestRepresentation.pid || null;
 };
 
