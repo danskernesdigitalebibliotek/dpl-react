@@ -4,7 +4,6 @@ import { useQueryClient } from "react-query";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
-  getMaterialTypes,
   getManifestationType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
@@ -169,7 +168,7 @@ export const ReservationModalBody = ({
   const interestPeriod =
     selectedInterest || interestPeriods.defaultInterestPeriod.value;
   const expiryDate = getFutureDateString(interestPeriod);
-  const materialType = getMaterialTypes(selectedManifestations)[0];
+  const materialType = getManifestationType(selectedManifestations);
 
   const saveReservation = () => {
     if (manifestationsToReserve?.length) {
