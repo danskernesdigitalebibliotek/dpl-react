@@ -3,7 +3,7 @@ import { useComplexSearchWithPaginationQuery } from "../dbc-gateway/generated/gr
 import { useUrls } from "./url";
 import { constructMaterialUrl } from "./helpers/url";
 import { WorkId } from "./types/ids";
-import { getMaterialTypes } from "./helpers/general";
+import { getManifestationsTypes } from "./helpers/general";
 import { Manifestation } from "./types/entities";
 
 type GetWorkUrlFromPublizonIdentifierResultType = {
@@ -42,7 +42,9 @@ const useGetWorkUrlFromPublizonIdentifier = (
         manifestation.identifiers?.some((id) => id.value === identifier)
     );
     const materialType = manifestationWithSameIdentifier
-      ? getMaterialTypes([manifestationWithSameIdentifier] as Manifestation[])
+      ? getManifestationsTypes([
+          manifestationWithSameIdentifier
+        ] as Manifestation[])
       : undefined;
 
     return constructMaterialUrl(

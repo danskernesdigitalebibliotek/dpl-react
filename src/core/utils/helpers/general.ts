@@ -349,7 +349,7 @@ export const tallyUpFees = (fees: FeeV2[]) => {
   return formatCurrency(fees.reduce((total, { amount }) => total + amount, 0));
 };
 
-export const getMaterialTypes = (
+export const getManifestationsTypes = (
   manifestations: Manifestation[],
   onlyFirstType = true
 ) => {
@@ -379,8 +379,10 @@ export const getMaterialTypes = (
   ) as ManifestationMaterialType[];
 };
 
+// Todo: Consider merging this function with getManifestationsTypes
+// as they are very similar.
 export const getManifestationType = (manifestations: Manifestation[]) => {
-  const uniqueTypes = getMaterialTypes(manifestations);
+  const uniqueTypes = getManifestationsTypes(manifestations);
   const firstUniqueType = first(uniqueTypes);
   if (firstUniqueType) {
     return firstUniqueType;
@@ -558,7 +560,7 @@ export default {};
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 
-  describe("getMaterialTypes", () => {
+  describe("getManifestationsTypes", () => {
     const manifestations = [
       {
         materialTypes: [
@@ -577,12 +579,12 @@ if (import.meta.vitest) {
     ] as Manifestation[];
 
     it("should be able to return only first entry material types from manifestations (default)", () => {
-      const types = getMaterialTypes(manifestations);
+      const types = getManifestationsTypes(manifestations);
       expect(types).toEqual(["artikel"]);
     });
 
     it("should be able to return all available material types from manifestations", () => {
-      const types = getMaterialTypes(manifestations, false);
+      const types = getManifestationsTypes(manifestations, false);
       expect(types).toEqual(["artikel", "artikel (online)"]);
     });
   });

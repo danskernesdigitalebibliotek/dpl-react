@@ -4,7 +4,7 @@ import {
   MaterialType
 } from "../../../../core/dbc-gateway/generated/graphql";
 import { useProxyUrlGET } from "../../../../core/dpl-cms/dpl-cms";
-import { getMaterialTypes } from "../../../../core/utils/helpers/general";
+import { getManifestationsTypes } from "../../../../core/utils/helpers/general";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
@@ -97,7 +97,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
       dataCy={dataCy}
       ariaLabelledBy={ariaLabelledBy}
     >
-      {label(origin, getMaterialTypes(manifestations))}
+      {label(origin, getManifestationsTypes(manifestations))}
     </LinkButton>
   );
 };

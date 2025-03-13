@@ -2,7 +2,7 @@ import React from "react";
 import {
   getAllFaustIds,
   getManifestationType,
-  getMaterialTypes
+  getManifestationsTypes
 } from "../../core/utils/helpers/general";
 import {
   constructMaterialUrl,
@@ -33,7 +33,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
 }) => {
   const u = useUrls();
   const materialUrl = u("materialUrl");
-  const allMaterialTypes = getMaterialTypes(manifestations);
+  const allMaterialTypes = getManifestationsTypes(manifestations);
   const manifestationsByMaterialType =
     divideManifestationsByMaterialType(manifestations);
 
