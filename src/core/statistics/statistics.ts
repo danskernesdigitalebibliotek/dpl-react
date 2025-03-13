@@ -8,7 +8,6 @@ export const statistics: Statistics = {
   // Search flow
   searchQuery: { id: 10, name: "OSS" },
   searchResultCount: { id: 11, name: "OSS Results" },
-  findOnShelf: { id: 16, name: "Klik på ”Find på hylden”" },
   searchFacets: { id: 20, name: "Søgning Facet" },
   materialType: { id: 24, name: "Materialetype" },
   materialGenre: { id: 25, name: "Materiale Genre" },
@@ -28,7 +27,10 @@ export const statistics: Statistics = {
   // Loaner status, user profile
   renewSelectedMaterials: { id: 55, name: "Forny valgte materialer" },
   renewAllMaterials: { id: 56, name: "Forny alle materialer" },
-  addToFavorites: { id: 61, name: "Tilføj til liste" }
+  addToFavorites: { id: 61, name: "Tilføj til liste" },
+
+  // Material
+  findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" }
 };
 
 export default {};
