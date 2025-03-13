@@ -1,4 +1,5 @@
 import { UseTextFunction } from "../../core/utils/text";
+import { first } from "lodash";
 import {
   AgencyBranch,
   CreateReservation,
@@ -137,6 +138,18 @@ export const getAuthorLine = (
   return !author
     ? null
     : [t("materialHeaderAuthorByText"), author, year].join(" ");
+};
+
+export const getFirstAuthorLine = (
+  selectedManifestations: Manifestation[],
+  t: UseTextFunction
+) => {
+  const firstSelectedManifestation = first(selectedManifestations);
+  if (firstSelectedManifestation) {
+    return getAuthorLine(firstSelectedManifestation, t);
+  }
+  // This should never happen. Therefore, it’s not translated.
+  return "Unknown";
 };
 
 export const getManifestationsToReserve = (

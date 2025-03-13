@@ -41,7 +41,8 @@ import {
   getInstantLoanBranchHoldings,
   getInstantLoanBranchHoldingsAboveThreshold,
   removePrefixFromBranchId,
-  translateOpenOrderStatus
+  translateOpenOrderStatus,
+  getFirstAuthorLine
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -161,7 +162,7 @@ export const ReservationModalBody = ({
   const holdings = getTotalHoldings(holdingsData);
   const reservations = getTotalReservations(holdingsData);
   const { patron } = userData;
-  const authorLine = getAuthorLine(selectedManifestations[0], t);
+  const authorLine = getFirstAuthorLine(selectedManifestations, t);
   const interestPeriods = config<Periods>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
