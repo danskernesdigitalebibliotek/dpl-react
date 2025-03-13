@@ -4,7 +4,6 @@ import { useQueryClient } from "react-query";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
-  getMaterialTypes,
   getManifestationType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
@@ -41,7 +40,8 @@ import {
   getInstantLoanBranchHoldings,
   getInstantLoanBranchHoldingsAboveThreshold,
   removePrefixFromBranchId,
-  translateOpenOrderStatus
+  translateOpenOrderStatus,
+  getFirstAuthorLine
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -161,13 +161,14 @@ export const ReservationModalBody = ({
   const holdings = getTotalHoldings(holdingsData);
   const reservations = getTotalReservations(holdingsData);
   const { patron } = userData;
-  const authorLine = getAuthorLine(selectedManifestations[0], t);
+  const authorLine = getFirstAuthorLine(selectedManifestations, t);
   const interestPeriods = config<Periods>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
   const interestPeriod =
     selectedInterest || interestPeriods.defaultInterestPeriod.value;
   const expiryDate = getFutureDateString(interestPeriod);
+  const materialType = getManifestationType(selectedManifestations);
 
   const saveReservation = () => {
     if (manifestationsToReserve?.length) {
@@ -189,7 +190,7 @@ export const ReservationModalBody = ({
             track("click", {
               id: statistics.reservation.id,
               name: statistics.reservation.name,
-              trackedData: work.workId
+              trackedData: `${work.workId} ${materialType}`
             });
             // This state is used to show the success or error modal.
             setReservationResponse(res);
@@ -269,9 +270,7 @@ export const ReservationModalBody = ({
           <header className="reservation-modal-header">
             <Cover ids={[manifestation.pid]} size="medium" animate />
             <div className="reservation-modal-description">
-              <div className="reservation-modal-tag">
-                {getMaterialTypes(selectedManifestations)[0]}
-              </div>
+              <div className="reservation-modal-tag">{materialType}</div>
               <h2 className="text-header-h2 mt-22 mb-8">
                 {getManifestationTitle(manifestation)}
                 {selectedPeriodical && ` ${selectedPeriodical.displayText}`}
