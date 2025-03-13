@@ -8,6 +8,7 @@ export const statistics: Statistics = {
   // Search flow
   searchQuery: { id: 10, name: "OSS" },
   searchResultCount: { id: 11, name: "OSS Results" },
+  findOnShelf: { id: 16, name: "Klik på ”Find på hylden”" },
   searchFacets: { id: 20, name: "Søgning Facet" },
   materialType: { id: 24, name: "Materialetype" },
   materialGenre: { id: 25, name: "Materiale Genre" },
