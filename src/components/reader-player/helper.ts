@@ -1,4 +1,4 @@
-import { getMaterialTypes } from "../../core/utils/helpers/general";
+import { getManifestationsTypes } from "../../core/utils/helpers/general";
 import { Manifestation } from "../../core/utils/types/entities";
 import { LoanType } from "../../core/utils/types/loan-type";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
@@ -105,7 +105,7 @@ export const getReaderPlayerType = (
 ): "reader" | "player" | null => {
   if (!manifestation) return null;
   if (!hasCorrectAccess("Ereol", [manifestation])) return null;
-  const materialTypes = getMaterialTypes([manifestation]);
+  const materialTypes = getManifestationsTypes([manifestation]);
 
   if (readerTypes.some((type) => materialTypes.includes(type))) return "reader";
   if (playerTypes.some((type) => materialTypes.includes(type))) return "player";

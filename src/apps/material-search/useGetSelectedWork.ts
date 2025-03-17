@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useGetMaterialQuery } from "../../core/dbc-gateway/generated/graphql";
-import { getMaterialTypes } from "../../core/utils/helpers/general";
+import { getManifestationsTypes } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
@@ -44,7 +44,7 @@ const useGetSelectedWork = (): UseGetSelectedMaterialReturn => {
           const work = responseData.work as Work;
 
           const availableMaterialTypes = work
-            ? getMaterialTypes(work.manifestations.all, false)
+            ? getManifestationsTypes(work.manifestations.all, false)
             : null;
 
           if (
@@ -69,7 +69,7 @@ const useGetSelectedWork = (): UseGetSelectedMaterialReturn => {
   const work = (data?.work as Work) ?? null;
 
   const availableMaterialTypes = work
-    ? getMaterialTypes(work.manifestations.all, false)
+    ? getManifestationsTypes(work.manifestations.all, false)
     : null;
 
   return {
