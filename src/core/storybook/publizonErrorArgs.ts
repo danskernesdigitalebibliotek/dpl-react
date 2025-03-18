@@ -118,7 +118,7 @@ export default {
   publizonErrorStatusLibraryServerNotRespondingText:
     "The library's server is not responding – try logging in again later.",
   publizonErrorStatusNoAccessBecauseNotResidentText:
-    "You do not have access to eReolen from this library as you are not registered as a resident in the municipality. Contact the library.",
+    "You do not have access to publizon from this library as you are not registered as a resident in the municipality. Contact the library.",
   publizonErrorStatusNoCountryFoundWithGivenCountryCodeText:
     "No country could be found with the given country code",
   publizonErrorStatusUnknownErrorText: "Unknown error."
