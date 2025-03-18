@@ -27,7 +27,10 @@ export const statistics: Statistics = {
   // Loaner status, user profile
   renewSelectedMaterials: { id: 55, name: "Forny valgte materialer" },
   renewAllMaterials: { id: 56, name: "Forny alle materialer" },
-  addToFavorites: { id: 61, name: "Tilføj til liste" }
+  addToFavorites: { id: 61, name: "Tilføj til liste" },
+
+  // Material
+  findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" }
 };
 
 export default {};

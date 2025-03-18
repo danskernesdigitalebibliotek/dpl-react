@@ -101,6 +101,7 @@ const meta: Meta<typeof WrappedFindOnShelfModal> = {
       <>
         <WrappedMaterialButtonsFindOnShelf
           {...modifiedArgs}
+          workId="work-of:870970-basis:52557240"
           size="small"
           faustIds={[convertPostIdToFaustId(pid)]}
         />
