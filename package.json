@@ -171,7 +171,7 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^5.0.0",
-    "react-flatpickr": "^3.10.13",
+    "react-flatpickr": "^4.0.0",
     "react-query": "^3.39.3",
     "react-redux": "^9.2.0",
     "react-use": "^17.6.0",
