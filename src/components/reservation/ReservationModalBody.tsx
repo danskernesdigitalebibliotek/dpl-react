@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { first } from "lodash";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
 import {
@@ -40,8 +41,7 @@ import {
   getInstantLoanBranchHoldings,
   getInstantLoanBranchHoldingsAboveThreshold,
   removePrefixFromBranchId,
-  translateOpenOrderStatus,
-  getFirstAuthorLine
+  translateOpenOrderStatus
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
@@ -161,7 +161,7 @@ export const ReservationModalBody = ({
   const holdings = getTotalHoldings(holdingsData);
   const reservations = getTotalReservations(holdingsData);
   const { patron } = userData;
-  const authorLine = getFirstAuthorLine(selectedManifestations, t);
+  const authorLine = getAuthorLine(first(selectedManifestations), t);
   const interestPeriods = config<Periods>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });

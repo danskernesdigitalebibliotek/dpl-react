@@ -1,5 +1,4 @@
 import { UseTextFunction } from "../../core/utils/text";
-import { first } from "lodash";
 import {
   AgencyBranch,
   CreateReservation,
@@ -121,9 +120,16 @@ export const constructReservationData = ({
 };
 
 export const getAuthorLine = (
-  manifestation: Manifestation,
+  manifestation: Manifestation | undefined,
   t: UseTextFunction
 ) => {
+  // Manifestation may be undefined if it is retrieved from an array which might
+  // be empty.
+  if (manifestation === undefined) {
+    // This should never happen. Therefore, it’s not translated.
+    return [t("materialHeaderAuthorByText"), "Unknown"].join(" ");
+  }
+
   const { creators } = manifestation;
   const publicationYear = getManifestationPublicationYear(manifestation);
   const author = creatorsToString(flattenCreators(creators), t) || null;
@@ -138,18 +144,6 @@ export const getAuthorLine = (
   return !author
     ? null
     : [t("materialHeaderAuthorByText"), author, year].join(" ");
-};
-
-export const getFirstAuthorLine = (
-  selectedManifestations: Manifestation[],
-  t: UseTextFunction
-) => {
-  const firstSelectedManifestation = first(selectedManifestations);
-  if (firstSelectedManifestation) {
-    return getAuthorLine(firstSelectedManifestation, t);
-  }
-  // This should never happen. Therefore, it’s not translated.
-  return "Unknown";
 };
 
 export const getManifestationsToReserve = (
