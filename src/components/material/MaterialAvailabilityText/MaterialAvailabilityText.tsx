@@ -3,7 +3,7 @@ import { getAllIdentifiers } from "../../../apps/material/helper";
 import { AccessTypeCodeEnum } from "../../../core/dbc-gateway/generated/graphql";
 import {
   getAllPids,
-  getManifestationType
+  getMaterialType
 } from "../../../core/utils/helpers/general";
 import { Manifestation } from "../../../core/utils/types/entities";
 import { hasCorrectAccessType } from "../material-buttons/helper";
@@ -19,7 +19,7 @@ interface Props {
 
 const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
   const t = useText();
-  const materialType = getManifestationType(manifestations);
+  const materialType = getMaterialType(manifestations);
   const isbns = getAllIdentifiers(manifestations);
   const { materialIsReservableFromAnotherLibrary } =
     useReservableFromAnotherLibrary(manifestations);

@@ -379,7 +379,7 @@ export const getMaterialTypes = (
   ) as ManifestationMaterialType[];
 };
 
-export const getManifestationType = (manifestations: Manifestation[]) => {
+export const getMaterialType = (manifestations: Manifestation[]) => {
   const uniqueTypes = getMaterialTypes(manifestations);
   const firstUniqueType = first(uniqueTypes);
   if (firstUniqueType) {

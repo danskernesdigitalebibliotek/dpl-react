@@ -5,7 +5,7 @@ import { useQueryClient } from "react-query";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
-  getManifestationType,
+  getMaterialType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -112,7 +112,7 @@ export const ReservationModalBody = ({
     blacklistBranchesInstantLoan.concat(blacklistPickupBranches)
   );
 
-  const mainManifestationType = getManifestationType(selectedManifestations);
+  const mainManifestationType = getMaterialType(selectedManifestations);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations: selectedManifestations,
     type: mainManifestationType
@@ -168,7 +168,7 @@ export const ReservationModalBody = ({
   const interestPeriod =
     selectedInterest || interestPeriods.defaultInterestPeriod.value;
   const expiryDate = getFutureDateString(interestPeriod);
-  const materialType = getManifestationType(selectedManifestations);
+  const materialType = getMaterialType(selectedManifestations);
 
   const saveReservation = () => {
     if (manifestationsToReserve?.length) {

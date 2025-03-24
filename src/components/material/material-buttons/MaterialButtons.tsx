@@ -3,7 +3,7 @@ import { FC } from "react";
 import { AccessTypeCodeEnum } from "../../../core/dbc-gateway/generated/graphql";
 import {
   getAllFaustIds,
-  getManifestationType
+  getMaterialType
 } from "../../../core/utils/helpers/general";
 import { ButtonSize } from "../../../core/utils/types/button";
 import { Manifestation } from "../../../core/utils/types/entities";
@@ -42,7 +42,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
     return (
       <MaterialButtonReservableFromAnotherLibrary
         size={size}
-        manifestationMaterialType={getManifestationType(manifestations)}
+        manifestationMaterialType={getMaterialType(manifestations)}
         faustIds={faustIds}
       />
     );
