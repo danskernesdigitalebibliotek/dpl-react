@@ -32,11 +32,11 @@ const useOnlineAvailabilityData = ({
       }
     });
 
-  // Ereol request.
-  const { isLoading: isLoadingEreolData, data: dataEreol } =
+  // Publizon request.
+  const { isLoading: isLoadingPublizonData, data: dataPublizon } =
     useGetV1LoanstatusIdentifier(isbn || "", {
       // Publizon / useGetV1LoanstatusIdentifier shows loan status per material.
-      // This status is only available for products found on Ereol. Other online
+      // This status is only available for products found on Publizon. Other online
       // materials are always supposed to be shown as "available"
       enabled:
         enabled &&
@@ -44,7 +44,7 @@ const useOnlineAvailabilityData = ({
         !!isbn &&
         // If the material is free (I think it is called blue material btw.)
         // we should not load the loan status because then we know that it is available.
-        // So If the material is not free and we know it is an "Ereol" material we should load the loan status.
+        // So If the material is not free and we know it is an "Publizon" material we should load the loan status.
         dataIdentifier?.product?.costFree === false &&
         access.some((acc) => acc === "Ereol")
     });
@@ -54,22 +54,24 @@ const useOnlineAvailabilityData = ({
       !enabled ||
       isAvailable !== null ||
       isLoadingIdentifier !== false ||
-      isLoadingEreolData !== false
+      isLoadingPublizonData !== false
     ) {
       return;
     }
 
-    // If we have ereol data, we can use that to determine the availability.
-    if (dataEreol && dataEreol.loanStatus) {
-      setIsAvailable(publizonProductStatuses[dataEreol.loanStatus].isAvailable);
+    // If we have Publizon data, we can use that to determine the availability.
+    if (dataPublizon && dataPublizon.loanStatus) {
+      setIsAvailable(
+        publizonProductStatuses[dataPublizon.loanStatus].isAvailable
+      );
     }
   }, [
     isLoadingIdentifier,
     isAvailable,
     faustIds,
     enabled,
-    dataEreol,
-    isLoadingEreolData
+    dataPublizon,
+    isLoadingPublizonData
   ]);
 
   // If hook is not enabled make it clear that the loading and availability status is unknown.
@@ -90,7 +92,7 @@ const useOnlineAvailabilityData = ({
 
   // Return the availability status.
   return {
-    isLoading: isLoadingIdentifier && isLoadingEreolData,
+    isLoading: isLoadingIdentifier && isLoadingPublizonData,
     isAvailable
   };
 };
