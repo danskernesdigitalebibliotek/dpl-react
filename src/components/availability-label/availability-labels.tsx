@@ -1,6 +1,7 @@
 import React from "react";
 import {
   getAllFaustIds,
+  getMaterialType,
   getMaterialTypes
 } from "../../core/utils/helpers/general";
 import {
@@ -69,7 +70,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
             access={access}
             selected={
               selectedManifestations &&
-              materialType === getMaterialTypes(selectedManifestations)[0]
+              materialType === getMaterialType(selectedManifestations)
             }
             handleSelectManifestation={
               setSelectedManifestations

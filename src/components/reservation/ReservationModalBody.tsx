@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { first } from "lodash";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
-  getMaterialTypes,
-  getManifestationType,
+  getMaterialType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -112,7 +112,7 @@ export const ReservationModalBody = ({
     blacklistBranchesInstantLoan.concat(blacklistPickupBranches)
   );
 
-  const mainManifestationType = getManifestationType(selectedManifestations);
+  const mainManifestationType = getMaterialType(selectedManifestations);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations: selectedManifestations,
     type: mainManifestationType
@@ -161,13 +161,14 @@ export const ReservationModalBody = ({
   const holdings = getTotalHoldings(holdingsData);
   const reservations = getTotalReservations(holdingsData);
   const { patron } = userData;
-  const authorLine = getAuthorLine(selectedManifestations[0], t);
+  const authorLine = getAuthorLine(first(selectedManifestations), t);
   const interestPeriods = config<Periods>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
   const interestPeriod =
     selectedInterest || interestPeriods.defaultInterestPeriod.value;
   const expiryDate = getFutureDateString(interestPeriod);
+  const materialType = getMaterialType(selectedManifestations);
 
   const saveReservation = () => {
     if (manifestationsToReserve?.length) {
@@ -189,7 +190,7 @@ export const ReservationModalBody = ({
             track("click", {
               id: statistics.reservation.id,
               name: statistics.reservation.name,
-              trackedData: work.workId
+              trackedData: `${work.workId} ${materialType}`
             });
             // This state is used to show the success or error modal.
             setReservationResponse(res);
@@ -269,9 +270,7 @@ export const ReservationModalBody = ({
           <header className="reservation-modal-header">
             <Cover ids={[manifestation.pid]} size="medium" animate />
             <div className="reservation-modal-description">
-              <div className="reservation-modal-tag">
-                {getMaterialTypes(selectedManifestations)[0]}
-              </div>
+              <div className="reservation-modal-tag">{materialType}</div>
               <h2 className="text-header-h2 mt-22 mb-8">
                 {getManifestationTitle(manifestation)}
                 {selectedPeriodical && ` ${selectedPeriodical.displayText}`}

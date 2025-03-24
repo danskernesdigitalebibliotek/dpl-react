@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   getAllFaustIds,
-  getManifestationType
+  getMaterialType
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import { Cover } from "../cover/cover";
@@ -39,7 +39,7 @@ const OnlineInternalModalBody = ({
   const [reservationOrLoanErrorResponse, setReservationOrLoanErrorResponse] =
     useState<ApiResult | null>(null);
 
-  const manifestationType = getManifestationType(selectedManifestations);
+  const manifestationType = getMaterialType(selectedManifestations);
   const faustIds = getAllFaustIds(selectedManifestations);
   const manifestation = selectedManifestations[0];
   const authorLine = getAuthorLine(manifestation, t);
@@ -138,7 +138,7 @@ const OnlineInternalModalBody = ({
           <Cover ids={[manifestation.pid]} size="medium" animate />
           <div className="reservation-modal-description">
             <div className="reservation-modal-tag">
-              {getManifestationType(selectedManifestations)}
+              {getMaterialType(selectedManifestations)}
             </div>
             <h2 className="text-header-h2 mt-22 mb-8">
               {manifestation.titles.main}
