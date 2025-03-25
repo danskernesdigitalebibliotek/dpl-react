@@ -30,7 +30,11 @@ export const statistics: Statistics = {
   addToFavorites: { id: 61, name: "Tilføj til liste" },
 
   // Material
-  findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" }
+  findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" },
+
+  // Publizon
+  publizonLoan: { id: 72, name: "Klik på Lån (Publizon)" },
+  publizonReserve: { id: 999, name: "Klik på Reservér (Publizon)" }, // Todo: This is not the right id
 };
 
 export default {};
