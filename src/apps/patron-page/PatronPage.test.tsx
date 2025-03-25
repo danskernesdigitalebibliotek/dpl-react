@@ -115,7 +115,7 @@ describe("Patron page", () => {
     // ID 36 2.b. Digital loans - quota
     cy.get(".dpl-patron-page .dpl-status-loans")
       .find("h2")
-      .should("have.text", "Digital loans (eReolen)");
+      .should("have.text", "Digital loans");
 
     // ID 36 2.b.i. Number of digital loans (ebook - audiobooks) the patron has left in "this" month
     cy.get(".dpl-patron-page .dpl-status-loans")

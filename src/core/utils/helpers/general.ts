@@ -379,9 +379,14 @@ export const getMaterialTypes = (
   ) as ManifestationMaterialType[];
 };
 
-export const getManifestationType = (manifestations: Manifestation[]) => {
+export const getMaterialType = (manifestations: Manifestation[]) => {
   const uniqueTypes = getMaterialTypes(manifestations);
-  return uniqueTypes[0];
+  const firstUniqueType = first(uniqueTypes);
+  if (firstUniqueType) {
+    return firstUniqueType;
+  }
+  // This should never happen.
+  return "Unknown" as ManifestationMaterialType;
 };
 
 export const getAllPids = (manifestations: Manifestation[]) => {

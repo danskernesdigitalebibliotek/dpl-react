@@ -26,7 +26,7 @@ import {
 import { UseConfigFunction } from "../../core/utils/config";
 import {
   flattenCreators,
-  getManifestationType,
+  getMaterialType,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
 import { constructModalId } from "../../core/utils/helpers/modal-helpers";
@@ -68,7 +68,7 @@ export const getManifestationsOrderByTypeAndYear = (
 export const filterManifestationsByType = (
   type: string,
   manifestations: Manifestation[]
-) => manifestations.filter((item) => getManifestationType([item]) === type);
+) => manifestations.filter((item) => getMaterialType([item]) === type);
 
 export const getManifestationsFromType = (
   type: string,

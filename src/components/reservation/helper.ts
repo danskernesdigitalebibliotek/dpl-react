@@ -120,9 +120,16 @@ export const constructReservationData = ({
 };
 
 export const getAuthorLine = (
-  manifestation: Manifestation,
+  manifestation: Manifestation | undefined,
   t: UseTextFunction
 ) => {
+  // Manifestation may be undefined if it is retrieved from an array which might
+  // be empty.
+  if (manifestation === undefined) {
+    // This should never happen. Therefore, it’s not translated.
+    return [t("materialHeaderAuthorByText"), "Unknown"].join(" ");
+  }
+
   const { creators } = manifestation;
   const publicationYear = getManifestationPublicationYear(manifestation);
   const author = creatorsToString(flattenCreators(creators), t) || null;

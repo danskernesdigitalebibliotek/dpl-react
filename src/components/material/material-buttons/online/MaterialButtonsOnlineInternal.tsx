@@ -9,7 +9,7 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import useReaderPlayer from "../../../../core/utils/useReaderPlayer";
 import LinkButton from "../../../Buttons/LinkButton";
 import { Button } from "../../../Buttons/Button";
-import { getManifestationType } from "../../../../core/utils/helpers/general";
+import { getMaterialType } from "../../../../core/utils/helpers/general";
 import { RequestStatus } from "../../../../core/utils/types/request";
 import DeleteReservationModal, {
   deleteReservationModalId
@@ -63,7 +63,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   const [reservationToDelete, setReservationToDelete] =
     useState<ReservationType | null>(null);
 
-  const manifestationType = getManifestationType(manifestations);
+  const manifestationType = getMaterialType(manifestations);
   const reseveLabel = openModal
     ? t("reserveWithMaterialTypeText", {
         placeholders: { "@materialType": manifestationType }

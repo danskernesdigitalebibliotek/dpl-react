@@ -59,13 +59,7 @@ const meta: Meta<typeof ReservationList> = {
       control: { type: "number" }
     },
     // Urls
-    ereolenMyPageUrl: {
-      control: { type: "text" }
-    },
     pauseReservationInfoUrl: {
-      control: { type: "text" }
-    },
-    ereolenHomepageUrl: {
       control: { type: "text" }
     },
     // Texts
@@ -225,10 +219,8 @@ export const Default: Story = {
     pageSizeDesktop: 20,
     pageSizeMobile: 10,
     // Urls
-    ereolenMyPageUrl: "https://ereolen.dk/user/me/",
     pauseReservationInfoUrl:
       "https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80",
-    ereolenHomepageUrl: "https://ereolen.dk/",
     // Texts
     reservationListHeaderText: "Your reservations",
     reservationListPhysicalReservationsHeaderText: "Physical reservations",

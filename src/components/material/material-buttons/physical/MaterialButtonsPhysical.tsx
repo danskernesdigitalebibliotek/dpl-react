@@ -1,7 +1,7 @@
 import React from "react";
 import {
   getAllFaustIds,
-  getManifestationType
+  getMaterialType
 } from "../../../../core/utils/helpers/general";
 import { isBlocked } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -64,7 +64,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return (
       <MaterialButtonReservePhysical
         dataCy={dataCy}
-        manifestationMaterialType={getManifestationType(manifestations)}
+        manifestationMaterialType={getMaterialType(manifestations)}
         faustIds={faustIds}
         size={size}
       />
