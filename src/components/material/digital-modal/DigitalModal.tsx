@@ -45,8 +45,8 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
         onSuccess: () => {
           // Track only if the reservation has been successfully saved.
           track("click", {
-            id: statistics.reservation.id,
-            name: statistics.reservation.name,
+            id: statistics.orderDigitalCopy.id,
+            name: statistics.orderDigitalCopy.name,
             trackedData: workId
           });
         }

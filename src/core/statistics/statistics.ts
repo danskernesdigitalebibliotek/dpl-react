@@ -30,6 +30,7 @@ export const statistics: Statistics = {
   addToFavorites: { id: 61, name: "Tilføj til liste" },
 
   // Material
+  orderDigitalCopy: { id: 35, name: "Bestil digital kopi" },
   findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" }
 };
 
