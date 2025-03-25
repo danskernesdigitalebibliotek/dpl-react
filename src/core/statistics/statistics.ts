@@ -30,7 +30,8 @@ export const statistics: Statistics = {
   addToFavorites: { id: 61, name: "Tilføj til liste" },
 
   // Material
-  findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" }
+  findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" },
+  specificManifestation: { id: 109, name: "Klik på specifik manifestation" }
 };
 
 export default {};
