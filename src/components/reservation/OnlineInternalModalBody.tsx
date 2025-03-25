@@ -21,13 +21,16 @@ import {
 import { ApiResult, CreateLoanResult } from "../../core/publizon/model";
 import { formatDate } from "../../core/utils/helpers/date";
 import { getPublizonErrorStatusText } from "../../core/utils/helpers/publizon";
+import { WorkId } from "../../core/utils/types/ids";
 
 type OnlineInternalModalBodyProps = {
   selectedManifestations: Manifestation[];
+  workId: WorkId;
 };
 
 const OnlineInternalModalBody = ({
-  selectedManifestations
+  selectedManifestations,
+  workId
 }: OnlineInternalModalBodyProps) => {
   const t = useText();
   const [loanStatus, setloanStatus] = useState<RequestStatus>("idle");
@@ -70,6 +73,7 @@ const OnlineInternalModalBody = ({
         <MaterialButtonsOnlineInternal
           openModal={false}
           manifestations={selectedManifestations}
+          workId={workId}
         />
       </ModalMessage>
     );
@@ -158,6 +162,7 @@ const OnlineInternalModalBody = ({
               />
             )}
             <MaterialButtonsOnlineInternal
+              workId={workId}
               openModal={false}
               manifestations={selectedManifestations}
               setReservationStatus={setReservationStatus}

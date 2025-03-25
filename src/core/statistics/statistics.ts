@@ -151,7 +151,20 @@ export const statistics: Statistics = {
     id: 67,
     name: "Materiale målgruppe",
     parameterName: "p_mat_audience"
-  }
+  },
+  // Publizon
+  publizonLoan: { id: 72, name: "Klik på Lån (Publizon)", parameterName: "" },
+  publizonReserve: {
+    id: 999, // Todo: This is not the right id
+    name: "Klik på Reservér (Publizon)",
+    parameterName: ""
+  },
+  publizonReadListen: {
+    id: 73,
+    name: "Klik på LÆS/LYT (Publizon)",
+    parameterName: ""
+  },
+  publizonTry: { id: 84, name: "Klik på Prøv (Publizon)", parameterName: "" }
 };
 
 export default {};
