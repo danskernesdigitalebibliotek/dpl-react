@@ -35,6 +35,7 @@ export const statistics: Statistics = {
   // Publizon
   publizonLoan: { id: 72, name: "Klik på Lån (Publizon)" },
   publizonReserve: { id: 999, name: "Klik på Reservér (Publizon)" }, // Todo: This is not the right id
+  publizonReadListen: { id: 73, name: "Klik på LÆS/LYT (Publizon)" },
   publizonTry: { id: 84, name: "Klik på Prøv (Publizon)" }
 };
 

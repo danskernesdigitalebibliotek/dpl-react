@@ -118,6 +118,13 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           variant="filled"
           size={size || "large"}
           dataCy={`${dataCy}-reader`}
+          trackClick={() =>
+            track("click", {
+              id: statistics.publizonReadListen.id,
+              name: statistics.publizonReadListen.name,
+              trackedData: workId
+            })
+          }
         >
           {t("onlineMaterialReaderText", {
             placeholders: { "@materialType": manifestationType }
@@ -202,7 +209,14 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           buttonType="none"
           variant="filled"
           size={size || "large"}
-          onClick={() => open(playerModalId(orderId))}
+          onClick={() => {
+            track("click", {
+              id: statistics.publizonReadListen.id,
+              name: statistics.publizonReadListen.name,
+              trackedData: workId
+            });
+            open(playerModalId(orderId));
+          }}
           disabled={false}
           collapsible={false}
         />
