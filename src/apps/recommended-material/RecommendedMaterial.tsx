@@ -22,6 +22,8 @@ import { ManifestationMaterialType } from "../../core/utils/types/material-type"
 import { useUrls } from "../../core/utils/url";
 import { getManifestationBasedOnType } from "../material/helper";
 import RecommendedMaterialSkeleton from "./RecommendedMaterialSkeleton";
+import { useStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 export type RecommendedMaterialProps = {
   wid: WorkId;
@@ -36,6 +38,7 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
 }) => {
   const t = useText();
   const u = useUrls();
+  const { track } = useStatistics();
   const materialUrl = u("materialUrl");
   const dispatch = useDispatch<TypedDispatch>();
   const queryClient = useQueryClient();
@@ -77,6 +80,13 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
     );
   };
 
+  const trackData = () =>
+    track("click", {
+      id: statistics.recommendedMaterial.id,
+      name: statistics.recommendedMaterial.name,
+      trackedData: wid
+    });
+
   return (
     <div
       className={clsx(
@@ -98,12 +108,14 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
         animate
         alt=""
         shadow="medium"
+        trackClick={trackData}
       />
       <div className="recommended-material__texts">
         <Link
           href={materialFullUrl}
           className="recommended-material__description"
           dataCy="recommended-description"
+          trackClick={trackData}
         >
           {fullTitle}
         </Link>
@@ -111,6 +123,7 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
           href={materialFullUrl}
           className="recommended-material__author"
           dataCy="recommended-author"
+          trackClick={trackData}
         >
           {author}
         </Link>

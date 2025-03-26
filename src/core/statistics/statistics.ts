@@ -36,7 +36,10 @@ export const statistics: Statistics = {
   reserveSpecificManifestation: {
     id: 109,
     name: "Klik på specifik manifestation"
-  }
+  },
+
+  // Paragraphs
+  recommendedMaterial: { id: 74, name: "Klik på recommended material" }
 };
 
 export default {};
