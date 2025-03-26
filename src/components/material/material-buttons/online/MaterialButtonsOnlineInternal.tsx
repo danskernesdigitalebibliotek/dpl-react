@@ -156,6 +156,13 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
             new URL(`/reader?identifier=${identifier}`, window.location.href)
           }
           dataCy={`${dataCy}-reader-teaser`}
+          trackClick={() =>
+            track("click", {
+              id: statistics.publizonTry.id,
+              name: statistics.publizonTry.name,
+              trackedData: workId
+            })
+          }
         />
       );
     }
@@ -229,6 +236,11 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           label={tryLabel}
           size={size || "large"}
           onClick={() => {
+            track("click", {
+              id: statistics.publizonTry.id,
+              name: statistics.publizonTry.name,
+              trackedData: workId
+            });
             open(playerModalId(identifier));
           }}
           dataCy={`${dataCy}-player-teaser`}
