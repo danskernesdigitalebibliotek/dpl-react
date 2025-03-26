@@ -8,13 +8,15 @@ interface MaterialSecondaryLinkProps {
   size: ButtonSize;
   url: URL;
   dataCy?: string;
+  trackClick?: () => Promise<unknown>;
 }
 
 const MaterialSecondaryLink: FC<MaterialSecondaryLinkProps> = ({
   label,
   size,
   url,
-  dataCy
+  dataCy,
+  trackClick
 }) => {
   if (size !== "small") {
     return (
@@ -24,6 +26,7 @@ const MaterialSecondaryLink: FC<MaterialSecondaryLinkProps> = ({
         variant="outline"
         size="large"
         dataCy={dataCy}
+        trackClick={trackClick}
       >
         {label}
       </LinkButton>
@@ -35,6 +38,7 @@ const MaterialSecondaryLink: FC<MaterialSecondaryLinkProps> = ({
       href={url}
       className="link-tag text-small-caption material-manifestation-item__find capitalize-all btn-ui"
       data-cy={dataCy}
+      trackClick={trackClick}
     >
       {label}
     </Link>

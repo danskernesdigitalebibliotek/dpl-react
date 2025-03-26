@@ -35,6 +35,7 @@ export const statistics: Statistics = {
   // Publizon
   publizonLoan: { id: 72, name: "Klik på Lån (Publizon)" },
   publizonReserve: { id: 999, name: "Klik på Reservér (Publizon)" }, // Todo: This is not the right id
+  publizonTry: { id: 84, name: "Klik på Prøv (Publizon)" }
 };
 
 export default {};

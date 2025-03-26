@@ -19,6 +19,8 @@ import useOnlineInternalHandleLoanReservation from "../../../../core/utils/useOn
 import { ApiResult, CreateLoanResult } from "../../../../core/publizon/model";
 import { getFirstManifestation } from "../../../../apps/material/helper";
 import { WorkId } from "../../../../core/utils/types/ids";
+import { useStatistics } from "../../../../core/statistics/useStatistics";
+import { statistics } from "../../../../core/statistics/statistics";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -43,6 +45,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   setReservationOrLoanErrorResponse,
   workId
 }) => {
+  const { track } = useStatistics();
   const t = useText();
   const { open } = useModalButtonHandler();
   const {
@@ -153,6 +156,13 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
             new URL(`/reader?identifier=${identifier}`, window.location.href)
           }
           dataCy={`${dataCy}-reader-teaser`}
+          trackClick={() =>
+            track("click", {
+              id: statistics.publizonTry.id,
+              name: statistics.publizonTry.name,
+              trackedData: workId
+            })
+          }
         />
       );
     }
@@ -226,6 +236,11 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           label={tryLabel}
           size={size || "large"}
           onClick={() => {
+            track("click", {
+              id: statistics.publizonTry.id,
+              name: statistics.publizonTry.name,
+              trackedData: workId
+            });
             open(playerModalId(identifier));
           }}
           dataCy={`${dataCy}-player-teaser`}
