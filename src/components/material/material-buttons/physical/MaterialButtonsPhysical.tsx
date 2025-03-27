@@ -69,7 +69,6 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
       <MaterialButtonReservePhysical
         dataCy={dataCy}
         manifestationMaterialType={getMaterialType(manifestations)}
-        faustIds={faustIds}
         size={size}
         isSpecificManifestation={isSpecificManifestation}
         pids={pids}

@@ -3,17 +3,18 @@ import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { reservationModalId } from "../../../../apps/material/helper";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
-import { FaustId, Pid } from "../../../../core/utils/types/ids";
+import { Pid } from "../../../../core/utils/types/ids";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { useStatistics } from "../../../../core/statistics/useStatistics";
 import { statistics } from "../../../../core/statistics/statistics";
 import { first } from "lodash";
+import { convertPostIdsToFaustIds } from "../../../../core/utils/helpers/general";
 
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   size?: ButtonSize;
-  faustIds: FaustId[];
+
   dataCy?: string;
   isSpecificManifestation?: boolean;
   pids: Pid[];
@@ -21,7 +22,6 @@ export interface MaterialButtonPhysicalProps {
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   manifestationMaterialType,
-  faustIds,
   size,
   dataCy = "material-button-physical",
   isSpecificManifestation,
@@ -31,7 +31,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   const t = useText();
   const u = useUrls();
   const authUrl = u("authUrl");
-
+  const faustIds = convertPostIdsToFaustIds(pids);
   const { openGuarded } = useModalButtonHandler();
 
   const onClick = () => {
