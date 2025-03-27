@@ -37,8 +37,8 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   const onClick = () => {
     if (isSpecificManifestation && first(pids)) {
       track("click", {
-        id: statistics.specificManifestation.id,
-        name: statistics.specificManifestation.name,
+        id: statistics.reserveSpecificManifestation.id,
+        name: statistics.reserveSpecificManifestation.name,
         trackedData: `${first(pids)}`
       });
     }

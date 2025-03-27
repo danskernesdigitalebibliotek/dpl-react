@@ -31,7 +31,10 @@ export const statistics: Statistics = {
 
   // Material
   findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" },
-  specificManifestation: { id: 109, name: "Klik på specifik manifestation" }
+  reserveSpecificManifestation: {
+    id: 109,
+    name: "Klik på specifik manifestation"
+  }
 };
 
 export default {};
