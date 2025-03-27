@@ -5,6 +5,9 @@
 type Statistics = Record<string, { id: number; name: string }>;
 
 export const statistics: Statistics = {
+  // advanced search
+  advancedSearchTerm: { id: 9, name: "Avanceret søgning søgeterm" },
+
   // Search flow
   searchQuery: { id: 10, name: "OSS" },
   searchResultCount: { id: 11, name: "OSS Results" },
