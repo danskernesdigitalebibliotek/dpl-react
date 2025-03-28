@@ -30,6 +30,7 @@ export const statistics: Statistics = {
   addToFavorites: { id: 61, name: "Tilføj til liste" },
 
   // Material
+  orderFromAnotherLibrary: { id: 70, name: "Bestil fra andet bibliotek" },
   findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" },
   reserveSpecificManifestation: {
     id: 109,

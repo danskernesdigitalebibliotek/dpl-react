@@ -43,6 +43,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   if (materialIsReservableFromAnotherLibrary) {
     return (
       <MaterialButtonReservableFromAnotherLibrary
+        workId={workId}
         size={size}
         manifestationMaterialType={getMaterialType(manifestations)}
         faustIds={faustIds}
