@@ -31,6 +31,7 @@ export const statistics: Statistics = {
 
   // Material
   orderFromAnotherLibrary: { id: 70, name: "Bestil fra andet bibliotek" },
+  orderDigitalCopy: { id: 35, name: "Bestil digital kopi" },
   findOnShelf: { id: 108, name: "Klik på ”Find på hylden”" },
   reserveSpecificManifestation: {
     id: 109,
