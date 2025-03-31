@@ -15,6 +15,12 @@ import deleteReservationModalArgs, {
 import publizonErrorArgs, {
   argTypes as publizonErrorArgTypes
 } from "../../core/storybook/publizonErrorArgs";
+import reservationMaterialDetailsProps, {
+  argTypes as reservationMaterialDetailsPropsArgTypes
+} from "../../core/storybook/reservationMaterialDetailsArgs";
+import reservationListArgs, {
+  argTypes as reservationListArgTypes
+} from "../../core/storybook/reservationListArgs";
 
 const meta: Meta<typeof MaterialEntry> = {
   title: "Apps / Material",
@@ -27,6 +33,8 @@ const meta: Meta<typeof MaterialEntry> = {
     ...globalConfigArgTypes,
     ...deleteReservationModalArgTypes,
     ...publizonErrorArgTypes,
+    ...reservationMaterialDetailsPropsArgTypes,
+    ...reservationListArgTypes,
     searchUrl: {
       description: "Path to the search result page",
       control: { type: "text" }
@@ -782,6 +790,8 @@ const meta: Meta<typeof MaterialEntry> = {
     ...globalConfigArgs,
     ...deleteReservationModalArgs,
     ...publizonErrorArgs,
+    ...reservationMaterialDetailsProps,
+    ...reservationListArgs,
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
