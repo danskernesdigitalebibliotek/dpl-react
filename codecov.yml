@@ -14,3 +14,8 @@ coverage:
         # Use informational status checks as we do not have a hard policy
         # regarding code coverage at the moment.
         informational: true
+    patch:
+      default:
+        # Use informational status checks as we do not have a hard policy
+        # regarding code coverage at the moment.
+        informational: true
