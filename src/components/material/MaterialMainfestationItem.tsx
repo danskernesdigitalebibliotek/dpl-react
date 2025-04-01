@@ -176,6 +176,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           size="small"
           workId={workId}
           materialTitleId={mainfestationTitleId}
+          isSpecificManifestation
         />
       </div>
     </div>
