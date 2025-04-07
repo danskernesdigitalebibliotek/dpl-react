@@ -55,11 +55,19 @@ jobs:
         with:
           name: cypress-videos-${{ matrix.containers }}
           path: cypress/videos
+      - name: Check if code coverage data exists
+        id: check_nyc_output
+        run: |
+          if [ -d ".nyc_output" ]; then
+            echo "coverage_exists=true" >> $GITHUB_ENV
+          else
+            echo "coverage_exists=false" >> $GITHUB_ENV
+          fi
       - name: Generate code coverage report
-        if: ${{ exists('.nyc_output') }}
+        if: ${{ env.coverage_exists == 'true' }}
         run: yarn run nyc report --reporter=clover --reporter=text --report-dir=./coverage
       - name: Upload coverage to Codecov
-        if: ${{ exists('.nyc_output') }}
+        if: ${{ env.coverage_exists == 'true' }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
