@@ -56,8 +56,10 @@ jobs:
           name: cypress-videos-${{ matrix.containers }}
           path: cypress/videos
       - name: Generate code coverage report
+        if: ${{ exists('.nyc_output') }}
         run: yarn run nyc report --reporter=clover --reporter=text --report-dir=./coverage
       - name: Upload coverage to Codecov
+        if: ${{ exists('.nyc_output') }}
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
