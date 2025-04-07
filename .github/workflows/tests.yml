@@ -65,7 +65,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage/
           flags: integration
-          fail_ci_if_error: false
+          fail_ci_if_error: true
 
   unit:
     name: Unit test
