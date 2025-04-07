@@ -7127,7 +7127,7 @@ flat@^5.0.2:
   resolved "https://registry.yarnpkg.com/flat/-/flat-5.0.2.tgz#8ca6fe332069ffa9d324c327198c598259ceb241"
   integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
 
-flatpickr@^4.0.6, flatpickr@^4.6.2:
+flatpickr@^4.0.6, flatpickr@^4.6.13:
   version "4.6.13"
   resolved "https://registry.npmjs.org/flatpickr/-/flatpickr-4.6.13.tgz"
   integrity sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==
@@ -10466,7 +10466,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.8.1:
+prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -10626,13 +10626,13 @@ react-error-boundary@^5.0.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-react-flatpickr@^3.10.13:
-  version "3.10.13"
-  resolved "https://registry.npmjs.org/react-flatpickr/-/react-flatpickr-3.10.13.tgz"
-  integrity sha512-4m+K1K8jhvRFI8J/AHmQfA5hLALzhebEtEK8mLevXjX24MV3u502crzBn+EGFIBOfNUtrL5PId9FsGwgtuz/og==
+react-flatpickr@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-flatpickr/-/react-flatpickr-4.0.1.tgz#7ef954510b27514d3379f11468f6137d22dd16b4"
+  integrity sha512-Cb0HgzTodiiX4nr0WsuN2egeA8KLM3/s05wjoFHVA58OZnDfZTY/Y0TrRTH31PYnlQxdIj4qOI8ioBqSe/8S6Q==
   dependencies:
-    flatpickr "^4.6.2"
-    prop-types "^15.5.10"
+    flatpickr "^4.6.13"
+    prop-types "^15.8.1"
 
 react-is@18.2.0:
   version "18.2.0"
