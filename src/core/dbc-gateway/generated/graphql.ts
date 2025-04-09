@@ -121,6 +121,24 @@ export type CatalogueCodes = {
   otherCatalogues: Array<Scalars["String"]["output"]>;
 };
 
+export type CataloguedPublicationStatus = {
+  __typename?: "CataloguedPublicationStatus";
+  /** The code representing the catalogued publication status. */
+  code: CataloguedPublicationStatusEnum;
+  /** The display text corresponding to the publication status code. */
+  display: Scalars["String"]["output"];
+};
+
+/** Represents the publication status of a catalogued manifestation. */
+export enum CataloguedPublicationStatusEnum {
+  /** New title */
+  Nt = "NT",
+  /** New edition */
+  Nu = "NU",
+  /** New print run */
+  Op = "OP"
+}
+
 export type ChildOrAdult = {
   __typename?: "ChildOrAdult";
   code: ChildOrAdultCodeEnum;
@@ -238,6 +256,8 @@ export type ComplexSearchFiltersInput = {
 
 export type ComplexSearchIndex = {
   __typename?: "ComplexSearchIndex";
+  /** Aliases for this index */
+  aliases?: Maybe<Array<Scalars["String"]["output"]>>;
   /** Can be used for faceting */
   facet: Scalars["Boolean"]["output"];
   /** The name of a Complex Search index */
@@ -795,6 +815,8 @@ export type Manifestation = {
   audience?: Maybe<Audience>;
   /** CatalogueCodes divided in codes from the national bibliography and other codes */
   catalogueCodes: CatalogueCodes;
+  /** The publication status of a catalogued manifestation. */
+  cataloguedPublicationStatus?: Maybe<CataloguedPublicationStatus>;
   /** Classification codes for this manifestation from any classification system */
   classifications: Array<Classification>;
   /** Contributors to the manifestation, actors, illustrators etc */
@@ -5156,6 +5178,39 @@ export type SuggestionsFromQueryStringQuery = {
   };
 };
 
+export type GetCoverByPidQueryVariables = Exact<{
+  pid: Scalars["String"]["input"];
+}>;
+
+export type GetCoverByPidQuery = {
+  __typename?: "Query";
+  manifestation?: {
+    __typename?: "Manifestation";
+    pid: string;
+    cover: {
+      __typename?: "Cover";
+      small?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+      medium?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+      large?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+    };
+  } | null;
+};
+
 export type SearchFacetQueryVariables = Exact<{
   q: SearchQueryInput;
   facets: Array<FacetFieldEnum> | FacetFieldEnum;
@@ -7468,6 +7523,48 @@ export const useSuggestionsFromQueryStringQuery = <
   );
 };
 
+export const GetCoverByPidDocument = `
+    query GetCoverByPid($pid: String!) {
+  manifestation(pid: $pid) {
+    pid
+    cover {
+      small {
+        url
+        width
+        height
+      }
+      medium {
+        url
+        width
+        height
+      }
+      large {
+        url
+        width
+        height
+      }
+    }
+  }
+}
+    `;
+
+export const useGetCoverByPidQuery = <
+  TData = GetCoverByPidQuery,
+  TError = unknown
+>(
+  variables: GetCoverByPidQueryVariables,
+  options?: UseQueryOptions<GetCoverByPidQuery, TError, TData>
+) => {
+  return useQuery<GetCoverByPidQuery, TError, TData>(
+    ["GetCoverByPid", variables],
+    fetcher<GetCoverByPidQuery, GetCoverByPidQueryVariables>(
+      GetCoverByPidDocument,
+      variables
+    ),
+    options
+  );
+};
+
 export const SearchFacetDocument = `
     query searchFacet($q: SearchQueryInput!, $facets: [FacetFieldEnum!]!, $facetLimit: Int!, $filters: SearchFiltersInput) {
   search(q: $q, filters: $filters) {
@@ -7584,6 +7681,7 @@ export const operationNames = {
       "complexSearchWithPaginationWorkAccess" as const,
     complexSearchWithPagination: "complexSearchWithPagination" as const,
     suggestionsFromQueryString: "suggestionsFromQueryString" as const,
+    GetCoverByPid: "GetCoverByPid" as const,
     searchFacet: "searchFacet" as const,
     intelligentFacets: "intelligentFacets" as const
   },

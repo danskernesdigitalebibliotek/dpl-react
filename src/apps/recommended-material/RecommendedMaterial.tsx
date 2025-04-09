@@ -2,6 +2,7 @@ import clsx from "clsx";
 import * as React from "react";
 import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
+import Link from "../../components/atoms/links/Link";
 import ButtonFavourite, {
   ButtonFavouriteId
 } from "../../components/button-favourite/button-favourite";
@@ -16,7 +17,6 @@ import {
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
-import Link from "../../components/atoms/links/Link";
 import { WorkId } from "../../core/utils/types/ids";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { useUrls } from "../../core/utils/url";
@@ -51,16 +51,17 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
   const {
     work: {
       titles: { full: fullTitle },
-      manifestations: { bestRepresentation },
+
       creators
     }
   } = data;
 
   const work = data.work as Work;
 
-  const materialManifestationForDisplay = materialType
-    ? getManifestationBasedOnType(work, materialType)
-    : bestRepresentation;
+  const materialManifestationForDisplay = getManifestationBasedOnType(
+    work,
+    materialType
+  );
 
   const { pid } = materialManifestationForDisplay;
 
@@ -92,7 +93,7 @@ const RecommendedMaterial: React.FC<RecommendedMaterialProps> = ({
         />
       </div>
       <Cover
-        ids={[pid]}
+        pid={pid}
         url={materialFullUrl}
         size="large"
         animate
