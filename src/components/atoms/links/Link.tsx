@@ -11,6 +11,7 @@ export interface LinkProps {
   ariaLabelledBy?: string;
   stopPropagation?: boolean;
   isHiddenFromScreenReaders?: boolean;
+  trackClick?: () => Promise<unknown>;
 }
 
 const Link: React.FC<LinkProps> = ({
@@ -22,13 +23,23 @@ const Link: React.FC<LinkProps> = ({
   dataCy,
   ariaLabelledBy,
   stopPropagation = false,
-  isHiddenFromScreenReaders
+  isHiddenFromScreenReaders,
+  trackClick
 }) => {
   const handleKeyUp = getLinkHandler({
     type: "keyup",
     isNewTab,
     stopPropagation,
-    url: href
+    url: href,
+    trackClick
+  });
+
+  const handleClick = getLinkHandler({
+    type: "click",
+    isNewTab,
+    stopPropagation,
+    url: href,
+    trackClick
   });
 
   return (
@@ -40,6 +51,7 @@ const Link: React.FC<LinkProps> = ({
       rel="noreferrer"
       className={className}
       onKeyUp={handleKeyUp}
+      onClick={handleClick}
       aria-labelledby={ariaLabelledBy}
       tabIndex={isHiddenFromScreenReaders ? -1 : 0}
       aria-hidden={isHiddenFromScreenReaders}
