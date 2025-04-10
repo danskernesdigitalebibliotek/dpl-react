@@ -65,7 +65,8 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
     );
 
     if (!accessElement) {
-      throw new Error("No access element found.");
+      // If there is no active access element, don't render anything.
+      return null;
     }
     const { origin, url: externalUrl } = accessElement as AccessUrl;
 
