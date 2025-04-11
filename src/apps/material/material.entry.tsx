@@ -82,6 +82,7 @@ interface MaterialEntryTextProps {
   loginToSeeReviewText: string;
   materialHeaderAllEditionsText: string;
   materialHeaderAuthorByText: string;
+  materialGridRelatedTitleText: string;
   materialIsAvailableInAnotherEditionText: string;
   materialIsIncludedText: string;
   materialIsLoanedOutText: string;
