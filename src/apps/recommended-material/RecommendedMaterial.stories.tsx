@@ -7,8 +7,8 @@ import serviceUrlArgs, {
   argTypes as serviceUrlArgTypes
 } from "../../core/storybook/serviceUrlArgs";
 import RecommendedMaterial from "./RecommendedMaterial.entry";
-import RecommendedMaterialSkeleton from "./RecommendedMaterialSkeleton";
-import DisplayMaterialTypeOptions from "./recommendedMaterialDisplayTypeData";
+import RecommendedMaterialSkeleton from "../../components/recommended-material/RecommendedMaterialSkeleton";
+import DisplayMaterialTypeOptions from "../../components/recommended-material/recommendedMaterialDisplayTypeData";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 const meta: Meta<typeof RecommendedMaterial> = {

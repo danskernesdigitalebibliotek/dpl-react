@@ -9,7 +9,7 @@ import serviceUrlArgs, {
 } from "../../../core/storybook/serviceUrlArgs";
 
 import MaterialGridManual from "./MaterialGridManual.entry";
-import MaterialGridSkeleton from "../MaterialGridSkeleton";
+import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
 
 // 31 materials. Intentionally not using 32 in order to demonstrate the
 // logic for only displaying intervals of 4 materials.

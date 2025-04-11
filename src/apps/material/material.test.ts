@@ -6,6 +6,7 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
+
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get(".text-header-h1").should("be.visible");
   });
@@ -41,7 +42,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-header-content").scrollIntoView();
+    cy.getBySel("material-header-content").scrollIntoView({ duration: 100 });
 
     cy.getBySel("material-description-series-0")
       .should("be.visible")
@@ -84,7 +85,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-header-content").scrollIntoView();
+    cy.getBySel("material-header-content").scrollIntoView({ duration: 100 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -100,7 +101,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -422,14 +423,14 @@ describe("Material", () => {
     cy.createFakeAuthenticatedSession();
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
     cy.getBySel("reservation-modal-list-item-text")
       .should("be.visible")
@@ -451,18 +452,16 @@ describe("Material", () => {
       fixtureFilePath: "material/fbi-api.json"
     });
     cy.createFakeAuthenticatedSession();
-    cy.visit(
-      "/iframe.html?id=apps-material--default&viewMode=story&type=bog"
-    ).scrollTo("bottom");
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
     cy.getBySel("reservation-modal-submit-button", true)
       .should("be.visible")
@@ -513,7 +512,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -530,7 +529,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -591,6 +590,11 @@ describe("Material", () => {
       aliasName: "user",
       url: "**/agencyid/patrons/patronid/v2",
       fixtureFilePath: "material/user.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-recommendations.json"
     });
 
     cy.interceptRest({

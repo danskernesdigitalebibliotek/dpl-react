@@ -1,11 +1,11 @@
 import * as React from "react";
+import MaterialGrid from "../../../components/material-grid/MaterialGrid";
+import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
+import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
 import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../../core/utils/branches";
-import MaterialGrid from "../MaterialGrid";
-import MaterialGridSkeleton from "../MaterialGridSkeleton";
-import { ValidSelectedIncrements } from "../materiel-grid-util";
+import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
-
 export type MaterialGridAutomaticProps = {
   cql: string;
   title?: string;
@@ -20,7 +20,10 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   description,
   selectedAmountOfMaterialsForDisplay
 }) => {
+  const t = useText();
+  const buttonText = t("buttonText");
   const cleanBranches = useGetCleanBranches();
+
   const { data, isLoading } = useComplexSearchWithPaginationQuery({
     cql,
     offset: 0,
@@ -47,6 +50,7 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
       materials={materials}
       description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
+      buttonText={buttonText}
     />
   );
 };
