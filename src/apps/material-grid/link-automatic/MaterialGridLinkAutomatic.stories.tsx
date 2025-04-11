@@ -7,7 +7,7 @@ import serviceUrlArgs, {
   argTypes as serviceUrlArgTypes
 } from "../../../core/storybook/serviceUrlArgs";
 import MaterialGridLinkAutomatic from "./MaterialGridLinkAutomatic.entry";
-import MaterialGridSkeleton from "../MaterialGridSkeleton";
+import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
 
 const meta: Meta<typeof MaterialGridLinkAutomatic> = {
   title: "Apps / Material Grid Link / Automatic",
