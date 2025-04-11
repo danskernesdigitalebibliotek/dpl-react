@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import RecommendedMaterialSkeleton from "../recommended-material/RecommendedMaterialSkeleton";
+import RecommendedMaterialSkeleton from "../../components/recommended-material/RecommendedMaterialSkeleton";
 
 export type RecommendationSkeletonProps = {
   positionImageRight?: boolean;
