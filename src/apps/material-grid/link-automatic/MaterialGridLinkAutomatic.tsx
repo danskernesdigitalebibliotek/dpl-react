@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../../core/utils/branches";
-import MaterialGrid from "../MaterialGrid";
-import MaterialGridSkeleton from "../MaterialGridSkeleton";
-import { ValidSelectedIncrements } from "../materiel-grid-util";
+import MaterialGrid from "../../../components/material-grid/MaterialGrid";
+import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
+import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
 import { getQueryParams } from "../../../core/utils/helpers/url";
 import { commaSeparatedStringToArray } from "../../advanced-search/helpers";
 import { WorkId } from "../../../core/utils/types/ids";
