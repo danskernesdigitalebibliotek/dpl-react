@@ -7,5 +7,6 @@
     "src/core/fbs/**/*.*",
     "src/core/material-list-api/**/*.*",
     "src/core/publizon/**/*.*"
-  ]
+  ],
+  "report-dir": ".nyc_output"
 }
