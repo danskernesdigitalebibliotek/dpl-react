@@ -9,8 +9,7 @@ describe("Material", () => {
     cy.wait("@getMaterial GraphQL operation");
 
     // Activate lazy loading
-    cy.scrollTo("bottom");
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("material-header-buttons-physical").scrollIntoView();
     cy.getBySel("material-header-buttons-physical")
@@ -36,10 +35,11 @@ describe("Material", () => {
     cy.wait("@getMaterial GraphQL operation");
 
     // Activate lazy loading
-    cy.scrollTo("bottom");
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
-    cy.getBySel("material-header-buttons-physical").scrollIntoView();
+    cy.getBySel("material-header-buttons-physical").scrollIntoView({
+      duration: 500
+    });
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
@@ -52,6 +52,10 @@ describe("Material", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
+    });
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
     });
     cy.interceptRest({
       aliasName: "Cover",
