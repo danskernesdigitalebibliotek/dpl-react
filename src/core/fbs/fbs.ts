@@ -43,7 +43,7 @@ import { fetcher } from "./mutator/fetcher";
 import type { ErrorType, BodyType } from "./mutator/fetcher";
 
 /**
- *
+ * 
  Returns array of branches.
  <p>Can be used for giving the patron the option of choosing a preferred branch or where to pick up
  reservations.</p>
@@ -201,7 +201,7 @@ export const useDeleteReservations = <
 };
 
 /**
- *
+ * 
  Returns an array of reservation details.
  <p>When the patron picks up the reserved materials,
  the reservation will no longer be returned.
@@ -294,7 +294,7 @@ export function useGetReservations<
 }
 
 /**
- *
+ * 
  Returns an array of reservation details for the created reservations.
  <p></p>
  The response contains reservation state, which can be any of these values:
@@ -393,7 +393,7 @@ export const useAddReservationsDeprecated = <
 };
 
 /**
- *
+ * 
  Returns an array of the updated reservation details.
  <p></p>
  The response contains reservation state, which can be any of these values:
@@ -486,7 +486,7 @@ export const useUpdateReservations = <
 };
 
 /**
- *
+ * 
  Returns an array of reservation details.
  <p>When the patron picks up the reserved materials,
  the reservation will no longer be returned.
@@ -581,7 +581,7 @@ export function useGetReservationsV2<
 }
 
 /**
- *
+ * 
  <p>Given a CreateReservationBatch, it creates a list of reservations and returns a ReservationResponse.</p>
  <p>The CreateReservationBatch.type indicates the reservation type of the request. If left out the request will be considered of type
  normal. The type can be any of the following values:</p>
@@ -711,7 +711,7 @@ export const useAddReservationsV2 = <
 };
 
 /**
- *
+ * 
  Returns an array of availability for each bibliographical record.
  * @summary Get availability of bibliographical records.
  */
@@ -799,7 +799,7 @@ export function useGetAvailabilityV3<
 }
 
 /**
- *
+ * 
  Returns an array of holdings for each bibliographical record.
  The holdings lists the materials on each placement, and whether they are available on-shelf or lent out.
  * @summary Get placement holdings for bibliographical records.
@@ -862,7 +862,8 @@ export type GetHoldingsLogisticsV1QueryError = ErrorType<void>;
 /**
  * @summary Get placement holdings for bibliographical records.
  */
-export const useGetHoldingsLogisticsV1 = <
+
+export function useGetHoldingsLogisticsV1<
   TData = Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
   TError = ErrorType<void>
 >(
@@ -874,7 +875,7 @@ export const useGetHoldingsLogisticsV1 = <
       TData
     >;
   }
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
   const queryOptions = getGetHoldingsLogisticsV1QueryOptions(params, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
@@ -887,7 +888,7 @@ export const useGetHoldingsLogisticsV1 = <
 }
 
 /**
- *
+ * 
  Returns array of fees.
  <p>If the fee covers loaned materials, information about the materials is returned.
  Each fee in the response includes a 'type', which is used to distinguish between different types of
@@ -981,7 +982,7 @@ export function useGetFeesV2<
 }
 
 /**
- *
+ * 
  When a patron doesn't have a patron account in the library system, but logs in using a trusted authentication
  source (e.g NemId), the patron account can be created using this service. Name and address will be automatically
  fetched from CPR-Registry, and cannot be supplied by the client. If the CPR-Registry is not authorized to
@@ -1071,7 +1072,7 @@ export const useCreateV4 = <
 };
 
 /**
- *
+ * 
 
  Returns the id of the patron if the request succeeds.
  Name and address will be automatically fetched from the CPR-Registry.
@@ -1156,7 +1157,7 @@ export const useCreateWithGuardian = <
 };
 
 /**
- *
+ * 
  If the person doesn't have a guardian, a new one is created with the information provided.
 
  Returns the id of the patron if the request succeeds.
@@ -1240,7 +1241,7 @@ export const useUpdateGuardian = <
 };
 
 /**
- *
+ * 
  Returns an array of the updated loans.
  <p>
  If the materials could not be renewed, the return date will be unchanged.
@@ -1341,7 +1342,7 @@ export const useRenewLoansV2 = <
 };
 
 /**
- *
+ * 
  Returns an array of loans.
  <p>
  </p>
@@ -1441,7 +1442,7 @@ export function useGetLoansV2<
 }
 
 /**
- *
+ * 
  <p></p>
  If a patron is blocked the reason is available as a code:
  <ul>
@@ -1522,7 +1523,7 @@ export function useGetPatronInformationByPatronIdV2<
 }
 
 /**
- *
+ * 
  The name and address cannot be supplied by the client. If the CPR-Registry is not authorized to provide
  information about the patron, then the name and address will not be updated.
  <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>
