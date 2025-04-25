@@ -8,10 +8,6 @@ describe("Patron page", () => {
       url: "**/external/agencyid/patrons/patronid/v5"
     }).as("PUT-patron");
 
-    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
-      blockStatus: null
-    });
-
     cy.intercept("GET", "**/v1/library/profile", {
       id: 816,
       name: "Aarhus Bibliotek",
