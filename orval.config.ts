@@ -1,4 +1,5 @@
 import { defineConfig } from "orval";
+import {getPersonTypePatronInformationV2} from "./src/core/fbs/fbs";
 
 export default defineConfig({
   materialList: {
@@ -67,8 +68,8 @@ export default defineConfig({
         },
         operations: {
           // The reason why we add this here is to be able to use "enabled" option in the
-          // getPatronInformationByPatronIdV2 query. This lets us call it conditionally.
-          getPatronInformationByPatronIdV2: {
+          // getPersonTypePatronInformationV2 query. This lets us call it conditionally.
+          getPersonTypePatronInformationV2: {
             requestOptions: false
           }
         }
