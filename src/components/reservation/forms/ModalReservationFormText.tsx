@@ -1,6 +1,5 @@
 import { isEqual } from "lodash";
 import React, { memo, useState } from "react";
-import { PatronV5 } from "../../../core/fbs/model";
 import { stringifyValue } from "../../../core/utils/helpers/general";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import { useText, UseTextFunction } from "../../../core/utils/text";
@@ -13,6 +12,7 @@ import {
 import ReservationForm from "./ReservationForm";
 import useSavePatron from "../../../core/utils/useSavePatron";
 import TextInput from "../../forms/input/TextInput";
+import { Patron } from "../../../core/utils/types/entities";
 
 export interface ModalReservationFormTextProps {
   type: ModalReservationFormTextType;
@@ -25,7 +25,7 @@ export interface ModalReservationFormTextProps {
     description: string;
     label: string;
   };
-  patron: PatronV5;
+  patron: Patron;
 }
 
 const modalProps = (

@@ -1,20 +1,20 @@
 import React from "react";
-import { PatronV5 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
 import ModalReservationFormText from "./ModalReservationFormText";
+import { Patron } from "../../../core/utils/types/entities";
 
 export interface EmailModalProps {
-  patron: PatronV5;
+  patron: Patron;
 }
 
 export const EmailModalId = "reservation-form-email";
 
-const EmailModal = ({ patron, patron: { emailAddress } }: EmailModalProps) => {
+const EmailModal = ({ patron }: EmailModalProps) => {
   const t = useText();
   return (
     <ModalReservationFormText
       type="email"
-      defaultText={emailAddress}
+      defaultText={patron.emailAddress}
       header={{
         title: t("modalReservationFormEmailHeaderTitleText"),
         description: [t("modalReservationFormEmailHeaderDescriptionText")]

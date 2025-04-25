@@ -1,5 +1,6 @@
 import { PatronV5 } from "../../../core/fbs/model";
 import useSavePatron from "../../../core/utils/useSavePatron";
+import { Patron } from "../../../core/utils/types/entities";
 
 export type ModalReservationFormTextType =
   | "email"
@@ -13,19 +14,11 @@ export const modalReservationFormId = (type: ModalReservationFormTextType) =>
 export const constructPatronSaveData = ({
   type,
   value,
-  patron: {
-    preferredPickupBranch,
-    preferredLanguage,
-    receiveSms,
-    receivePostalMail,
-    receiveEmail,
-    emailAddress,
-    phoneNumber
-  }
+  patron: { preferredPickupBranch, preferredLanguage, receivePostalMail }
 }: {
   type: string;
   value: string;
-  patron: PatronV5;
+  patron: Patron;
 }) => {
   const defaultData = {
     preferredPickupBranch,
@@ -58,7 +51,7 @@ type SaveText = {
   type: ModalReservationFormTextType;
   changedText: string;
   savedText?: string;
-  patron: PatronV5;
+  patron: Patron;
   savePatron: ReturnType<typeof useSavePatron>["savePatron"];
 };
 

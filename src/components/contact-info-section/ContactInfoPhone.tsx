@@ -1,13 +1,18 @@
 import * as React from "react";
 import { FC } from "react";
-import { PatronSettingsV3, PatronV5 } from "../../core/fbs/model";
+import { PatronSettingsV6 } from "../../core/fbs/model";
 import CheckBox from "../checkbox/Checkbox";
 import { useText } from "../../core/utils/text";
 import { ChangePatronProps } from "./types";
 import TextInput from "../forms/input/TextInput";
+import { Patron } from "../../core/utils/types/entities";
+import {
+  patronPhoneNumber,
+  patronReceiveSms
+} from "../../core/utils/helpers/patron";
 
 export interface ContactInfoPhoneProps {
-  patron: PatronV5 | PatronSettingsV3 | null;
+  patron: Patron | PatronSettingsV6 | null;
   changePatron: ChangePatronProps;
   showCheckboxes: boolean;
   className?: string;
@@ -34,7 +39,7 @@ const ContactInfoPhone: FC<ContactInfoPhoneProps> = ({
         onChange={(newPhoneNumber) =>
           changePatron(newPhoneNumber, "phoneNumber")
         }
-        value={patron?.phoneNumber}
+        value={patron ? patronPhoneNumber(patron) : ""}
         label={t("patronContactPhoneLabelText")}
       />
       {showCheckboxes && (
@@ -44,7 +49,7 @@ const ContactInfoPhone: FC<ContactInfoPhoneProps> = ({
             changePatron(newReceiveSms, "receiveSms")
           }
           id="phone-messages"
-          selected={patron?.receiveSms}
+          selected={patron ? patronReceiveSms(patron) : false}
           disabled={false}
           label={t("patronContactPhoneCheckboxText")}
         />

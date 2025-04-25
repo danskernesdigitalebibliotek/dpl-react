@@ -22,6 +22,7 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { RequestStatus } from "../../core/utils/types/request";
 import { ApiResult, CreateLoanResult } from "../publizon/model";
 import PublizonServiceError from "../publizon/mutator/PublizonServiceError";
+import { patronPhoneNumber } from "./helpers/patron";
 
 type useOnlineInternalHandleLoanReservationType = {
   manifestations: Manifestation[];
@@ -103,8 +104,8 @@ const useOnlineInternalHandleLoanReservation = ({
             ...(userData.emailAddresses && {
               email: userData.emailAddresses
             }),
-            ...(userData.phoneNumbers && {
-              phoneNumber: formatDanishPhoneNumber(userData.phoneNumbers)
+            ...(patronPhoneNumber(userData) && {
+              phoneNumber: formatDanishPhoneNumber(patronPhoneNumber(userData))
             })
           }
         },

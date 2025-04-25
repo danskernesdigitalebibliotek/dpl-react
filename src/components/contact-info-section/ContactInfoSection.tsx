@@ -1,14 +1,15 @@
 import React, { FC } from "react";
 import clsx from "clsx";
-import { PatronV5, PatronSettingsV3 } from "../../core/fbs/model";
+import { PatronSettingsV3 } from "../../core/fbs/model";
 import { useConfig } from "../../core/utils/config";
 import ContactInfoInputs from "./ContactInfoInputs";
 import ContactInfoPhone from "./ContactInfoPhone";
 import ContactInfoEmail from "./ContactInfoEmail";
 import { ChangePatronProps } from "./types";
+import { Patron } from "../../core/utils/types/entities";
 
 interface ContactInfoSectionProps {
-  patron: PatronV5 | PatronSettingsV3 | null;
+  patron: Patron | PatronSettingsV3 | null;
   inLine?: boolean;
   isDouble?: boolean;
   changePatron: ChangePatronProps;

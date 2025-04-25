@@ -16,6 +16,10 @@ import { isConfigValueOne } from "./helper";
 
 import { RequestStatus } from "../../core/utils/types/request";
 import { Patron } from "../../core/utils/types/entities";
+import {
+  patronEmail,
+  patronPhoneNumber
+} from "../../core/utils/helpers/patron";
 
 export interface OnlineInternalModalUserListItemsProps {
   patron: Patron;
@@ -24,7 +28,7 @@ export interface OnlineInternalModalUserListItemsProps {
 
 const OnlineInternalModalUserListItems: FC<
   OnlineInternalModalUserListItemsProps
-> = ({ patron, patron: { phoneNumber, emailAddress } }) => {
+> = ({ patron }) => {
   const t = useText();
   const config = useConfig();
 
@@ -42,7 +46,7 @@ const OnlineInternalModalUserListItems: FC<
           <ReservationFormListItem
             icon={SubtitlesIcon}
             title={t("receiveSmsWhenMaterialReadyText")}
-            text={stringifyValue(phoneNumber)}
+            text={stringifyValue(patronPhoneNumber(patron))}
             changeHandler={openModal("sms")}
             buttonAriaLabel={t("changeSmsNumberText")}
           />
@@ -52,7 +56,7 @@ const OnlineInternalModalUserListItems: FC<
       <ReservationFormListItem
         icon={MessageIcon}
         title={t("receiveEmailWhenMaterialReadyText")}
-        text={stringifyValue(emailAddress)}
+        text={stringifyValue(patronEmail(patron))}
         changeHandler={openModal("email")}
         buttonAriaLabel={t("changeEmailText")}
       />

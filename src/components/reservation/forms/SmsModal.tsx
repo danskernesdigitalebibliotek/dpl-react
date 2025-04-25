@@ -2,17 +2,19 @@ import React from "react";
 import { PatronV5 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
 import ModalReservationFormText from "./ModalReservationFormText";
+import { Patron } from "../../../core/utils/types/entities";
+import { patronPhoneNumber } from "../../../core/utils/helpers/patron";
 
 export interface SmsModalProps {
-  patron: PatronV5;
+  patron: Patron;
 }
 
-const SmsModal = ({ patron, patron: { phoneNumber } }: SmsModalProps) => {
+const SmsModal = ({ patron }: SmsModalProps) => {
   const t = useText();
   return (
     <ModalReservationFormText
       type="sms"
-      defaultText={phoneNumber}
+      defaultText={patronPhoneNumber(patron)}
       header={{
         title: t("modalReservationFormSmsHeaderTitleText"),
         description: [t("modalReservationFormSmsHeaderDescriptionText")]

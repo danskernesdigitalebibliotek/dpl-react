@@ -1,14 +1,19 @@
 import * as React from "react";
 import { FC } from "react";
-import { PatronSettingsV3, PatronV5 } from "../../core/fbs/model";
+import { PatronSettingsV6 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
 import CheckBox from "../checkbox/Checkbox";
 import { ChangePatronProps } from "./types";
 import TextInput from "../forms/input/TextInput";
+import { Patron } from "../../core/utils/types/entities";
+import {
+  patronEmail,
+  patronRecieveEmail
+} from "../../core/utils/helpers/patron";
 
 export interface ContactInfoEmailProps {
   className?: string;
-  patron: PatronV5 | PatronSettingsV3 | null;
+  patron: Patron | PatronSettingsV6 | null;
   changePatron: ChangePatronProps;
   showCheckboxes: boolean;
   isRequired?: boolean;
@@ -30,7 +35,7 @@ const ContactInfoEmail: FC<ContactInfoEmailProps> = ({
         type="email"
         required={isRequired}
         onChange={(newEmail) => changePatron(newEmail, "emailAddress")}
-        value={patron?.emailAddress}
+        value={patron ? patronEmail(patron) : ""}
         label={t("patronContactEmailLabelText")}
       />
       {showCheckboxes && (
@@ -40,7 +45,7 @@ const ContactInfoEmail: FC<ContactInfoEmailProps> = ({
             changePatron(newReceiveEmail, "receiveEmail")
           }
           id="email-messages"
-          selected={patron?.receiveEmail}
+          selected={patron ? patronRecieveEmail(patron) : false}
           disabled={false}
           label={t("patronContactEmailCheckboxText")}
         />

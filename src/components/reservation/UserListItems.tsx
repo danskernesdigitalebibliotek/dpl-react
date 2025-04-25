@@ -25,6 +25,10 @@ import NoInterestAfterModal from "./forms/NoInterestAfterModal";
 import { Periods } from "./types";
 import { RequestStatus } from "../../core/utils/types/request";
 import { Patron } from "../../core/utils/types/entities";
+import {
+  patronEmail,
+  patronPhoneNumber
+} from "../../core/utils/helpers/patron";
 
 export interface UserListItemsProps {
   patron: Patron;
@@ -39,7 +43,6 @@ export interface UserListItemsProps {
 
 const UserListItems: FC<UserListItemsProps> = ({
   patron,
-  patron: { preferredPickupBranch, phoneNumber, emailAddress },
   branches,
   selectedBranch,
   selectBranchHandler,
@@ -116,7 +119,7 @@ const UserListItems: FC<UserListItemsProps> = ({
             <ReservationFormListItem
               icon={SubtitlesIcon}
               title={t("receiveSmsWhenMaterialReadyText")}
-              text={stringifyValue(phoneNumber)}
+              text={stringifyValue(patronPhoneNumber(patron))}
               changeHandler={openModal("sms")}
               buttonAriaLabel={t("changeSmsNumberText")}
             />
@@ -126,7 +129,7 @@ const UserListItems: FC<UserListItemsProps> = ({
         <ReservationFormListItem
           icon={MessageIcon}
           title={t("receiveEmailWhenMaterialReadyText")}
-          text={stringifyValue(emailAddress)}
+          text={stringifyValue(patronEmail(patron))}
           changeHandler={openModal("email")}
           buttonAriaLabel={t("changeEmailText")}
         />
