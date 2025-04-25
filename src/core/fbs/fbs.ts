@@ -1013,15 +1013,13 @@ export const getGetPersonTypePatronInformationV2QueryKey = () => {
 export const getGetPersonTypePatronInformationV2QueryOptions = <
   TData = Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>,
   TError = ErrorType<void>
->(options?: {
-  query?: UseQueryOptions<
+>(
+  queryOptions?: UseQueryOptions<
     Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>,
     TError,
     TData
-  >;
-}) => {
-  const { query: queryOptions } = options ?? {};
-
+  >
+) => {
   const queryKey =
     queryOptions?.queryKey ?? getGetPersonTypePatronInformationV2QueryKey();
 
@@ -1048,20 +1046,20 @@ export type GetPersonTypePatronInformationV2QueryError = ErrorType<void>;
 export function useGetPersonTypePatronInformationV2<
   TData = Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>,
   TError = ErrorType<void>
->(options?: {
-  query?: UseQueryOptions<
+>(
+  queryOptions?: UseQueryOptions<
     Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>,
     TError,
     TData
-  >;
-}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-  const queryOptions = getGetPersonTypePatronInformationV2QueryOptions(options);
+  >
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const options = getGetPersonTypePatronInformationV2QueryOptions(queryOptions);
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+  const query = useQuery(options) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
   };
 
-  query.queryKey = queryOptions.queryKey;
+  query.queryKey = options.queryKey;
 
   return query;
 }

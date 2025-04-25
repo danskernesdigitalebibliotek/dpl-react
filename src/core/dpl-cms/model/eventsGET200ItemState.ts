@@ -10,7 +10,7 @@
  * The state of the event.
  */
 export type EventsGET200ItemState =
-  typeof EventsGET200ItemState[keyof typeof EventsGET200ItemState];
+  (typeof EventsGET200ItemState)[keyof typeof EventsGET200ItemState];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const EventsGET200ItemState = {

@@ -58,8 +58,8 @@ const PatronPage: FC = () => {
   });
 
   useEffect(() => {
-    if (patronData && patronData.patron) {
-      setPatron(patronData.patron);
+    if (patronData) {
+      setPatron(patronData);
     }
   }, [patronData]);
 

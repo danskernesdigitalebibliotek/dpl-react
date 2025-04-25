@@ -4,7 +4,7 @@ import Link from "../../../components/atoms/links/Link";
 import MenuNavigationItem, {
   MenuNavigationDataType
 } from "../menu-navigation-list/MenuNavigationItem";
-import { AuthenticatedPatronV6, FeeV2 } from "../../../core/fbs/model";
+import { FeeV2 } from "../../../core/fbs/model";
 import { useUrls } from "../../../core/utils/url";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { useConfig } from "../../../core/utils/config";
@@ -16,6 +16,7 @@ import { usePatronData } from "../../../core/utils/helpers/usePatronData";
 import { resetPersistedData } from "../../../core/store";
 import { Button } from "../../../components/Buttons/Button";
 import { redirectTo } from "../../../core/utils/helpers/url";
+import { Patron } from "../../../core/utils/types/entities";
 
 interface MenuLoggedInContentProps {
   pageSize: number;
@@ -47,9 +48,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
       transformer: "jsonParse"
     }
   );
-  const [userData, setUserData] = useState<
-    AuthenticatedPatronV6 | null | undefined
-  >();
+  const [userData, setUserData] = useState<Patron | null | undefined>();
   const [feeCount, setFeeCount] = useState<number>(0);
 
   // Set user data
@@ -87,7 +86,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
             className="modal-header__name text-header-h4"
             data-cy="menu-patron-name"
           >
-            {userData?.patron?.name}
+            {userData?.name}
           </div>
           <Link
             href={userProfileUrl}

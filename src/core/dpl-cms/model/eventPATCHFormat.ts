@@ -7,7 +7,7 @@
  */
 
 export type EventPATCH_Format =
-  typeof EventPATCH_Format[keyof typeof EventPATCH_Format];
+  (typeof EventPATCH_Format)[keyof typeof EventPATCH_Format];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const EventPATCH_Format = {

@@ -30,10 +30,10 @@ const MaterialButtonOnlineDigitalArticle: FC<
   const { openGuarded } = useModalButtonHandler();
 
   useDeepCompareEffect(() => {
-    if (!userData || !userData.patron) {
+    if (!userData) {
       return;
     }
-    setIsUserResident(isResident(userData?.patron));
+    setIsUserResident(isResident(userData));
   }, [userData]);
 
   const onClick = () => {

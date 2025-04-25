@@ -7,7 +7,7 @@
  */
 
 export type DplOpeningHoursDeleteDELETE_Format =
-  typeof DplOpeningHoursDeleteDELETE_Format[keyof typeof DplOpeningHoursDeleteDELETE_Format];
+  (typeof DplOpeningHoursDeleteDELETE_Format)[keyof typeof DplOpeningHoursDeleteDELETE_Format];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const DplOpeningHoursDeleteDELETE_Format = {

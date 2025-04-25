@@ -10,7 +10,7 @@
  * The state of the event.
  */
 export type EventPATCHBodyState =
-  typeof EventPATCHBodyState[keyof typeof EventPATCHBodyState];
+  (typeof EventPATCHBodyState)[keyof typeof EventPATCHBodyState];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const EventPATCHBodyState = {

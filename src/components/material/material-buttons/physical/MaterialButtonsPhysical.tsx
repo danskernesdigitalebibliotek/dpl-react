@@ -46,7 +46,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     manifestations
   });
   const { data: userData, isLoading } = usePatronData();
-  const isUserBlocked = !!(userData?.patron && isBlocked(userData?.patron));
+  const isUserBlocked = !!(userData && isBlocked(userData));
 
   if (isLoading || isLoadingAvailability) {
     return <MaterialButtonLoading />;

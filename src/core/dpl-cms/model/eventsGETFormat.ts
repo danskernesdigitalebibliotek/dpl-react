@@ -7,7 +7,7 @@
  */
 
 export type EventsGET_Format =
-  typeof EventsGET_Format[keyof typeof EventsGET_Format];
+  (typeof EventsGET_Format)[keyof typeof EventsGET_Format];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const EventsGET_Format = {

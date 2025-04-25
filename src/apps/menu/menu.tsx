@@ -38,7 +38,7 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
     if (isLoading) {
       return t("searchHeaderLoginText");
     }
-    return userData?.patron
+    return userData
       ? t("menuUserIconAriaLabelText")
       : t("menuUserIconAriaLabelLoggedOutText");
   };
@@ -63,7 +63,7 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
           {isLoading ? (
             <TextLineSkeleton width={50} />
           ) : (
-            userData?.patron?.name || t("searchHeaderLoginText")
+            userData?.name || t("searchHeaderLoginText")
           )}
         </span>
       </button>

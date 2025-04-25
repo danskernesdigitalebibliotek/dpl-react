@@ -14,7 +14,6 @@ import { Cover } from "../cover/cover";
 import ReservationFormListItem from "./ReservationFormListItem";
 import {
   AgencyBranch,
-  AuthenticatedPatronV6,
   HoldingsForBibliographicalRecordLogisticsV1,
   ReservationResponseV2
 } from "../../core/fbs/model";
@@ -154,13 +153,12 @@ export const ReservationModalBody = ({
   if (!userResponse.data || !holdingsResponse.data) {
     return null;
   }
-  const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
+  const { data: patron } = userResponse;
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordLogisticsV1[];
   };
   const holdings = getTotalHoldings(holdingsData);
   const reservations = getTotalReservations(holdingsData);
-  const { patron } = userData;
   const authorLine = getAuthorLine(first(selectedManifestations), t);
   const interestPeriods = config<Periods>("interestPeriodsConfig", {
     transformer: "jsonParse"
@@ -208,7 +206,8 @@ export const ReservationModalBody = ({
 
     if (materialIsReservableFromAnotherLibrary && patron) {
       setReservationStatus("pending");
-      const { patronId, name, emailAddress, preferredPickupBranch } = patron;
+      const { patronId, name, emailAddresses, preferredPickupBranch } = patron;
+      const emailAddress = first(emailAddresses)?.emailAddress || null;
       // Save reservation to open order.
       mutateOpenOrder(
         {

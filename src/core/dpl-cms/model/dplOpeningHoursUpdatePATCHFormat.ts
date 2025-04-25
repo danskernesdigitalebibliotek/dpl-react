@@ -7,7 +7,7 @@
  */
 
 export type DplOpeningHoursUpdatePATCH_Format =
-  typeof DplOpeningHoursUpdatePATCH_Format[keyof typeof DplOpeningHoursUpdatePATCH_Format];
+  (typeof DplOpeningHoursUpdatePATCH_Format)[keyof typeof DplOpeningHoursUpdatePATCH_Format];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const DplOpeningHoursUpdatePATCH_Format = {

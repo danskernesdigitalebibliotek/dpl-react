@@ -65,7 +65,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   } = useReaderPlayer(getFirstManifestation(selectedManifestations || []));
 
   useEffect(() => {
-    setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));
+    setIsUserBlocked(!!(userData && isBlocked(userData)));
   }, [userData]);
 
   useDeepCompareEffect(() => {
@@ -173,7 +173,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         {manifestations.map((manifestation) => (
           <ReservationFindOnShelfModals
             key={manifestation.pid}
-            patron={userData?.patron}
+            patron={userData ?? undefined}
             manifestations={[manifestation]}
             selectedPeriodical={selectedPeriodical}
             work={work}
@@ -195,7 +195,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         Online materials lead to external links, or to same modals as are created for singular editions. */}
         {isParallelReservation(selectedManifestations) && (
           <ReservationFindOnShelfModals
-            patron={userData?.patron}
+            patron={userData ?? undefined}
             manifestations={selectedManifestations}
             selectedPeriodical={selectedPeriodical}
             work={work}

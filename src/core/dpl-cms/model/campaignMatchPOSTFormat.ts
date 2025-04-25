@@ -7,7 +7,7 @@
  */
 
 export type CampaignMatchPOST_Format =
-  typeof CampaignMatchPOST_Format[keyof typeof CampaignMatchPOST_Format];
+  (typeof CampaignMatchPOST_Format)[keyof typeof CampaignMatchPOST_Format];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const CampaignMatchPOST_Format = {

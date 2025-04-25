@@ -10,7 +10,7 @@ Authentication is done via OAuth2 against auth.dbc.dk. To obtain a valid token f
  */
 
 export type GetCoverCollectionType =
-  typeof GetCoverCollectionType[keyof typeof GetCoverCollectionType];
+  (typeof GetCoverCollectionType)[keyof typeof GetCoverCollectionType];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const GetCoverCollectionType = {

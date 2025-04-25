@@ -2,14 +2,14 @@ import React, { useEffect, useState, ComponentType, FC } from "react";
 import BlockedModal, {
   getBlockedModalId
 } from "../../components/blocked-patron/blocked-modal/BlockedModal";
-import { AuthenticatedPatronV6 } from "../fbs/model";
+import { AuthenticatedPatronV10 } from "../fbs/model";
 import { useModalButtonHandler } from "./modal";
 import BlockedTypes from "./types/BlockedTypes";
 import { getBlockedStatus, usePatronData } from "./helpers/usePatronData";
 import { useBlockedModalHasBeenVisible } from "../../components/blocked-patron/helper";
 
 export interface PatronProps {
-  patron: AuthenticatedPatronV6 | null | undefined;
+  patron: AuthenticatedPatronV10 | null | undefined;
 }
 
 type InputProps = {
@@ -36,11 +36,11 @@ const withIsPatronBlockedHoc =
       boolean | null
     >(null);
     const { data: patronData } = usePatronData();
-    const blockedStatus = getBlockedStatus(patronData?.patron);
+    const blockedStatus = getBlockedStatus(patronData);
 
     useEffect(() => {
       // If we do not know the blocked status, we do not have to do anything.
-      if (!patronData?.patron) {
+      if (!patronData) {
         return;
       }
 
@@ -62,7 +62,7 @@ const withIsPatronBlockedHoc =
       blockedStatus,
       hasBeenVisible,
       open,
-      patronData?.patron
+      patronData
     ]);
 
     return (

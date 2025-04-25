@@ -7,7 +7,7 @@
  */
 
 export type DplOpeningHoursLegacyListGET_Format =
-  typeof DplOpeningHoursLegacyListGET_Format[keyof typeof DplOpeningHoursLegacyListGET_Format];
+  (typeof DplOpeningHoursLegacyListGET_Format)[keyof typeof DplOpeningHoursLegacyListGET_Format];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const DplOpeningHoursLegacyListGET_Format = {

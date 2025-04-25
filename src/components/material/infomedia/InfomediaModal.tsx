@@ -28,8 +28,8 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
   const { data: patronData, isLoading: isLoadingPatron } = usePatronData();
 
   useEffect(() => {
-    if (patronData?.patron?.resident !== undefined) {
-      setShouldFetchData(patronData.patron.resident);
+    if (patronData?.resident !== undefined) {
+      setShouldFetchData(patronData.resident);
     }
   }, [patronData]);
 

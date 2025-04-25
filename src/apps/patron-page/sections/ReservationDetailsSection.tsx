@@ -1,14 +1,14 @@
 import React, { FC } from "react";
-import { PatronV5 } from "../../../core/fbs/model";
 import BranchesDropdown from "../util/BranchesDropdown";
 import { useText } from "../../../core/utils/text";
+import { Patron } from "../../../core/utils/types/entities";
 
 export interface ChangePatronProps {
   (newValue: string | boolean, key: string): void;
 }
 
 interface ReservationDetailsSectionProps {
-  patron: PatronV5;
+  patron: Patron;
   changePatron: ChangePatronProps;
 }
 

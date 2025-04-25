@@ -7,7 +7,7 @@
  */
 
 export type DplOpeningHoursCreatePOST_Format =
-  typeof DplOpeningHoursCreatePOST_Format[keyof typeof DplOpeningHoursCreatePOST_Format];
+  (typeof DplOpeningHoursCreatePOST_Format)[keyof typeof DplOpeningHoursCreatePOST_Format];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const DplOpeningHoursCreatePOST_Format = {

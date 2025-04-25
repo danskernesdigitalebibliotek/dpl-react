@@ -7,7 +7,7 @@
  */
 
 export type ProxyUrlGET_Format =
-  typeof ProxyUrlGET_Format[keyof typeof ProxyUrlGET_Format];
+  (typeof ProxyUrlGET_Format)[keyof typeof ProxyUrlGET_Format];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ProxyUrlGET_Format = {

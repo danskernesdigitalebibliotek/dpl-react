@@ -5,7 +5,7 @@ import MessageIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import LoanHistoryIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/LoanHistory.svg";
 import { useText } from "../../core/utils/text";
 import ReservationFormListItem from "./ReservationFormListItem";
-import { AgencyBranch, PatronV5 } from "../../core/fbs/model";
+import { AgencyBranch } from "../../core/fbs/model";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import EmailModal from "./forms/EmailModal";
 import {
@@ -24,9 +24,10 @@ import PickupModal from "./forms/PickupModal";
 import NoInterestAfterModal from "./forms/NoInterestAfterModal";
 import { Periods } from "./types";
 import { RequestStatus } from "../../core/utils/types/request";
+import { Patron } from "../../core/utils/types/entities";
 
 export interface UserListItemsProps {
-  patron: PatronV5;
+  patron: Patron;
   branches: AgencyBranch[];
   selectedBranch: string | null;
   selectBranchHandler: (value: string) => void;

@@ -171,9 +171,9 @@ const OnlineInternalModalBody = ({
           {canBeReserved && (
             <>
               <div className="reservation-modal-list">
-                {userData?.patron && (
+                {userData && (
                   <OnlineInternalModalUserListItems
-                    patron={userData.patron}
+                    patron={userData}
                     reservationStatus={reservationStatus}
                   />
                 )}

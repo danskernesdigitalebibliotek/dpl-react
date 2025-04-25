@@ -9,7 +9,7 @@ Authentication is done via OAuth2 against auth.dbc.dk. To obtain a valid token f
  * OpenAPI spec version: 2.0
  */
 
-export type CoverType = typeof CoverType[keyof typeof CoverType];
+export type CoverType = (typeof CoverType)[keyof typeof CoverType];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const CoverType = {

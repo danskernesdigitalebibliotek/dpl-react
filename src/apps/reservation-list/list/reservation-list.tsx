@@ -112,7 +112,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
           </div>
         )}
 
-        {userData?.patron && <ReservationPauseToggler user={userData.patron} />}
+        {userData && <ReservationPauseToggler user={userData} />}
 
         {isLoading && allReservations.length === 0 && (
           <ReservationListSkeleton />
@@ -129,11 +129,8 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       </div>
 
       {/* Modals */}
-      {userData?.patron && (
-        <PauseReservation
-          user={userData?.patron}
-          id={pauseReservation as string}
-        />
+      {userData && (
+        <PauseReservation user={userData} id={pauseReservation as string} />
       )}
       {reservationToDelete && (
         <DeleteReservationModal

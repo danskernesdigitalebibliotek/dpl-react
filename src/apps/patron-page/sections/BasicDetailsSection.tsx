@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { PatronV5 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
+import { Patron } from "../../../core/utils/types/entities";
 
 interface BasicDetailsSectionProps {
-  patron: PatronV5;
+  patron: Patron;
 }
 
 const BasicDetailsSection: FC<BasicDetailsSectionProps> = ({ patron }) => {

@@ -32,8 +32,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
 
   const { isLoading, data: userData } = usePatronData();
   const { openGuarded } = useModalButtonHandler();
-  const isUserResident =
-    userData && userData?.patron ? isResident(userData.patron) : null;
+  const isUserResident = userData && userData ? isResident(userData) : null;
 
   if (manifestations.length < 1) {
     return null;

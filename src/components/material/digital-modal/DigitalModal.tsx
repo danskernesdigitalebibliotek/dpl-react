@@ -59,8 +59,8 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
 
   useEffect(() => {
     if (!patronData) return;
-    if (patronData.patron?.emailAddress) {
-      setUserEmail(patronData.patron.emailAddress);
+    if (patronData.emailAddress) {
+      setUserEmail(patronData.emailAddress);
       return;
     }
     setUserEmail("");

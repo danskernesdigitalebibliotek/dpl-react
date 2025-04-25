@@ -95,16 +95,16 @@ const useOnlineInternalHandleLoanReservation = ({
       return;
     }
 
-    if (canBeReserved && identifier && userData?.patron) {
+    if (canBeReserved && identifier && userData) {
       mutateReservation(
         {
           identifier,
           data: {
-            ...(userData.patron.emailAddress && {
-              email: userData.patron.emailAddress
+            ...(userData.emailAddresses && {
+              email: userData.emailAddresses
             }),
-            ...(userData.patron.phoneNumber && {
-              phoneNumber: formatDanishPhoneNumber(userData.patron.phoneNumber)
+            ...(userData.phoneNumbers && {
+              phoneNumber: formatDanishPhoneNumber(userData.phoneNumbers)
             })
           }
         },
