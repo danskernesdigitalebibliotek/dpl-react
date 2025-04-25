@@ -25,10 +25,8 @@ describe("Patron page", () => {
   });
 
   it("Patron not blocked", () => {
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      patron: {
-        blockStatus: null
-      }
+    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
+      blockStatus: null
     });
     cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
     cy.get(".modal").should("not.exist");
@@ -38,16 +36,14 @@ describe("Patron page", () => {
   // Blocked types:
   // https://github.com/itk-dev/dpl-react/blob/develop/src/core/utils/types/BlockedTypes.ts
   it("Patron blocked E", () => {
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      patron: {
-        blockStatus: [
-          {
-            blockedReason: "E",
-            blockedSince: "",
-            message: ""
-          }
-        ]
-      }
+    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
+      blockStatus: [
+        {
+          blockedReason: "E",
+          blockedSince: "",
+          message: ""
+        }
+      ]
     });
     cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
     cy.getBySel("modal").should("exist");
@@ -57,7 +53,7 @@ describe("Patron page", () => {
   });
 
   it("Does NOT show the blocked modal again once it has been shown", () => {
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
       patron: {
         blockStatus: [
           {
@@ -78,16 +74,14 @@ describe("Patron page", () => {
   it("Patron blocked U", () => {
     // To make sure that the modal is shown, we need to reset the persisted data.
     resetPersistedData();
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      patron: {
-        blockStatus: [
-          {
-            blockedReason: "U",
-            blockedSince: "",
-            message: ""
-          }
-        ]
-      }
+    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
+      blockStatus: [
+        {
+          blockedReason: "U",
+          blockedSince: "",
+          message: ""
+        }
+      ]
     });
     cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
     cy.getBySel("modal").should("exist");
@@ -103,16 +97,14 @@ describe("Patron page", () => {
   it("Patron blocked W", () => {
     // To make sure that the modal is shown, we need to reset the persisted data.
     resetPersistedData();
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      patron: {
-        blockStatus: [
-          {
-            blockedReason: "W",
-            blockedSince: "",
-            message: ""
-          }
-        ]
-      }
+    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
+      blockStatus: [
+        {
+          blockedReason: "W",
+          blockedSince: "",
+          message: ""
+        }
+      ]
     });
     cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
     cy.getBySel("modal").should("exist");

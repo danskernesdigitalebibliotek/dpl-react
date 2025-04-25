@@ -18,10 +18,8 @@ describe("Fee list", () => {
       cy.clock(wednesday20220603).then((clock: any) => clock.bind(window));
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
 
-      cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-        patron: {
-          blockStatus: null
-        }
+      cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
+        blockStatus: null
       }).as("patronInfo");
     });
 

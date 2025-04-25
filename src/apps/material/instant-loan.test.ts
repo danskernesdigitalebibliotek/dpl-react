@@ -10,7 +10,7 @@ describe("Instant Loan", () => {
 
     cy.interceptRest({
       aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
+      url: "**/agencyid/patrons/person/patronid/v2",
       fixtureFilePath: "material/user.json"
     });
 

@@ -17,10 +17,8 @@ describe("Reservation list", () => {
       fixtureFilePath: "reservation-list/work.json"
     });
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      patron: {
-        blockStatus: null
-      }
+    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
+      blockStatus: null
     });
 
     cy.interceptRest({
@@ -225,35 +223,35 @@ describe("Reservation list", () => {
       }
     ).as("physical_reservations");
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
       statusCode: 200,
       body: {
-        authenticateStatus: "VALID",
-        patron: {
-          address: {
-            coName: null,
-            street: "Hack Kampmanns Plads 2",
-            postalCode: "8000",
-            city: "Aarhus C",
-            country: "DK"
-          },
-          allowBookings: false,
-          birthday: "1990-05-07",
-          blockStatus: null,
-          defaultInterestPeriod: 180,
-          emailAddress: "test@test.dk",
-          name: "Testkort ITK CMS Merkur",
-          notificationProtocols: ["DIGITAL_POST"],
-          patronId: 10101010,
-          phoneNumber: null,
-          preferredLanguage: "da",
-          preferredPickupBranch: "DK-775100",
-          receiveEmail: true,
-          receivePostalMail: false,
-          receiveSms: false,
-          resident: true,
-          secondaryAddress: null
-        }
+        address: {
+          coName: null,
+          street: "Hack Kampmanns Plads 2",
+          postalCode: "8000",
+          city: "Aarhus C",
+          country: "DK"
+        },
+        allowBookings: false,
+        birthday: "1990-05-07",
+        blockStatus: null,
+        defaultInterestPeriod: 180,
+        emailAddresses: [
+          {
+            emailAddress: "test@test.dk",
+            receiveNotification: true
+          }
+        ],
+        name: "Testkort ITK CMS Merkur",
+        notificationProtocols: ["DIGITAL_POST"],
+        patronId: 10101010,
+        phoneNumbers: [],
+        preferredLanguage: "da",
+        preferredPickupBranch: "DK-775100",
+        receivePostalMail: false,
+        resident: true,
+        secondaryAddress: null
       }
     }).as("user");
 

@@ -8,10 +8,8 @@ describe("Patron page", () => {
       url: "**/external/agencyid/patrons/patronid/v5"
     }).as("PUT-patron");
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      patron: {
-        blockStatus: null
-      }
+    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
+      blockStatus: null
     });
 
     cy.intercept("GET", "**/v1/library/profile", {
@@ -67,37 +65,42 @@ describe("Patron page", () => {
       message: "OK"
     }).as("Loans");
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
-      authenticateStatus: "VALID",
-      patron: {
-        address: {
-          coName: null,
-          street: "Hack Kampmanns Plads 2",
-          postalCode: "8000",
-          city: "Aarhus C",
-          country: "DK"
-        },
-        allowBookings: false,
-        birthday: "1990-05-07",
-        blockStatus: null,
-        defaultInterestPeriod: 180,
-        emailAddress: "itkdev@mkb.aarhus.dk",
-        name: "Testkort ITK CMS Merkur",
-        notificationProtocols: ["DIGITAL_POST"],
-        onHold: {
-          from: "2022-10-21",
-          to: "2022-10-23"
-        },
-        patronId: 10101010,
-        phoneNumber: "1234567890",
-        preferredLanguage: "da",
-        preferredPickupBranch: "DK-775100",
-        receiveEmail: true,
-        receivePostalMail: false,
-        receiveSms: false,
-        resident: true,
-        secondaryAddress: null
-      }
+    cy.intercept("GET", "**/external/agencyid/patrons/person/patronid/v2**", {
+      address: {
+        coName: null,
+        street: "Hack Kampmanns Plads 2",
+        postalCode: "8000",
+        city: "Aarhus C",
+        country: "DK"
+      },
+      allowBookings: false,
+      birthday: "1990-05-07",
+      blockStatus: null,
+      defaultInterestPeriod: 180,
+      emailAddresses: [
+        {
+          emailAddress: "itkdev@mkb.aarhus.dk",
+          receiveNotification: true
+        }
+      ],
+      name: "Testkort ITK CMS Merkur",
+      notificationProtocols: ["DIGITAL_POST"],
+      onHold: {
+        from: "2022-10-21",
+        to: "2022-10-23"
+      },
+      patronId: 10101010,
+      phoneNumbers: [
+        {
+          phoneNumber: "1234567890",
+          receiveNotification: false
+        }
+      ],
+      preferredLanguage: "da",
+      preferredPickupBranch: "DK-775100",
+      receivePostalMail: false,
+      resident: true,
+      secondaryAddress: null
     }).as("User");
     cy.visit("/iframe.html?path=/story/apps-patron-page--patron-page-entry");
     cy.wait(["@LibraryProfile", "@Loans", "@User"]);
