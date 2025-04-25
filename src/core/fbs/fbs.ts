@@ -31,6 +31,7 @@ import type {
   HoldingsForBibliographicalRecordLogisticsV1,
   LoanV2,
   PatronWithGuardianRequest,
+  PersonPatronV2,
   RenewedLoanV2,
   ReservationDetails,
   ReservationDetailsV2,
@@ -983,6 +984,91 @@ export function useGetFeesV2<
 
 /**
  * 
+ <p></p>
+ If a patron is blocked the reason is available as a code:
+ <ul>
+     <li>- 'O': library card stolen</li>
+     <li>- 'U': exclusion</li>
+     <li>- 'F': extended exclusion</li>
+     <li>- 'S': blocked by self service automaton</li>
+     <li>- 'W': self created at website</li>
+     <li>- 'E': maximum amount of allowed debt exceeded</li>
+     <li>- 'D': deceased</li>
+ </ul>
+ <p>The codes are informational, and can be used for looking up end user messages by the client system. However,
+ the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>
+ * @summary Returns the patron details for a person patron
+ */
+export const getPersonTypePatronInformationV2 = (signal?: AbortSignal) => {
+  return fetcher<PersonPatronV2>({
+    url: `/external/agencyid/patrons/person/patronid/v2`,
+    method: "GET",
+    signal
+  });
+};
+
+export const getGetPersonTypePatronInformationV2QueryKey = () => {
+  return [`/external/agencyid/patrons/person/patronid/v2`] as const;
+};
+
+export const getGetPersonTypePatronInformationV2QueryOptions = <
+  TData = Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>,
+  TError = ErrorType<void>
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>,
+    TError,
+    TData
+  >;
+}) => {
+  const { query: queryOptions } = options ?? {};
+
+  const queryKey =
+    queryOptions?.queryKey ?? getGetPersonTypePatronInformationV2QueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>
+  > = ({ signal }) => getPersonTypePatronInformationV2(signal);
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetPersonTypePatronInformationV2QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>
+>;
+export type GetPersonTypePatronInformationV2QueryError = ErrorType<void>;
+
+/**
+ * @summary Returns the patron details for a person patron
+ */
+
+export function useGetPersonTypePatronInformationV2<
+  TData = Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>,
+  TError = ErrorType<void>
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getPersonTypePatronInformationV2>>,
+    TError,
+    TData
+  >;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetPersonTypePatronInformationV2QueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
+}
+
+/**
+ * 
  When a patron doesn't have a patron account in the library system, but logs in using a trusted authentication
  source (e.g NemId), the patron account can be created using this service. Name and address will be automatically
  fetched from CPR-Registry, and cannot be supplied by the client. If the CPR-Registry is not authorized to
@@ -1437,87 +1523,6 @@ export function useGetLoansV2<
   };
 
   query.queryKey = queryOptions.queryKey;
-
-  return query;
-}
-
-/**
- * 
- <p></p>
- If a patron is blocked the reason is available as a code:
- <ul>
-     <li>- 'O': library card stolen</li>
-     <li>- 'U': exclusion</li>
-     <li>- 'F': extended exclusion</li>
-     <li>- 'S': blocked by self service automaton</li>
-     <li>- 'W': self created at website</li>
- </ul>
- <p>The codes are informational, and can be used for looking up end user messages by the client system. However,
- the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>
- * @summary Returns the patron details
- */
-export const getPatronInformationByPatronIdV2 = (signal?: AbortSignal) => {
-  return fetcher<AuthenticatedPatronV6>({
-    url: `/external/agencyid/patrons/patronid/v2`,
-    method: "GET",
-    signal
-  });
-};
-
-export const getGetPatronInformationByPatronIdV2QueryKey = () => {
-  return [`/external/agencyid/patrons/patronid/v2`] as const;
-};
-
-export const getGetPatronInformationByPatronIdV2QueryOptions = <
-  TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
-  TError = ErrorType<void>
->(
-  queryOptions?: UseQueryOptions<
-    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
-    TError,
-    TData
-  >
-) => {
-  const queryKey =
-    queryOptions?.queryKey ?? getGetPatronInformationByPatronIdV2QueryKey();
-
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>
-  > = ({ signal }) => getPatronInformationByPatronIdV2(signal);
-
-  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
-    TError,
-    TData
-  > & { queryKey: QueryKey };
-};
-
-export type GetPatronInformationByPatronIdV2QueryResult = NonNullable<
-  Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>
->;
-export type GetPatronInformationByPatronIdV2QueryError = ErrorType<void>;
-
-/**
- * @summary Returns the patron details
- */
-
-export function useGetPatronInformationByPatronIdV2<
-  TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
-  TError = ErrorType<void>
->(
-  queryOptions?: UseQueryOptions<
-    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
-    TError,
-    TData
-  >
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-  const options = getGetPatronInformationByPatronIdV2QueryOptions(queryOptions);
-
-  const query = useQuery(options) as UseQueryResult<TData, TError> & {
-    queryKey: QueryKey;
-  };
-
-  query.queryKey = options.queryKey;
 
   return query;
 }
