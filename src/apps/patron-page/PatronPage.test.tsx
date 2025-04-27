@@ -5,7 +5,7 @@ describe("Patron page", () => {
 
     cy.intercept({
       method: "PUT",
-      url: "**/external/agencyid/patrons/patronid/v5"
+      url: "**/external/agencyid/patrons/patronid/v8"
     }).as("PUT-patron");
 
     cy.intercept("GET", "**/v1/library/profile", {
