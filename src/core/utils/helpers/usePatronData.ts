@@ -4,7 +4,7 @@ import { Patron } from "../types/entities";
 import { isAnonymous } from "./user";
 import type { QueryKey, UseQueryResult } from "react-query";
 import type { ErrorType } from "../../fbs/mutator/fetcher";
-import { AuthenticatedPatronV6 } from "../../fbs/model";
+import { AuthenticatedPatronV6 } from "../types/legacy";
 
 export const usePatronData = (): UseQueryResult<
   Awaited<Promise<AuthenticatedPatronV6 | null>>,
