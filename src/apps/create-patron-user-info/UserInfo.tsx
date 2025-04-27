@@ -59,10 +59,7 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
         {
           data: {
             personIdentifier: cpr,
-            patron: {
-              ...convertPatronSettingsV4toV6(patron),
-              guardianVisibility: false
-            },
+            patron: convertPatronSettingsV4toV6(patron),
             pincode: pin
           }
         },
