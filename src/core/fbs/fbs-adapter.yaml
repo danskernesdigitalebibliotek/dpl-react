@@ -419,6 +419,10 @@ paths:
       responses:
         200:
           description: 'No response was specified'
+        # Leave this commented out. Our tools will not be able to resolve a
+        # generic response.
+        #  schema:
+        #    $ref: '#/definitions/Response'
         204:
           description: 'no content'
         400:
