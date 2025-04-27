@@ -4,12 +4,9 @@ import { Patron } from "../types/entities";
 import { isAnonymous } from "./user";
 import type { QueryKey, UseQueryResult } from "react-query";
 import type { ErrorType } from "../../fbs/mutator/fetcher";
-import {
-  AuthenticatedPatronV6,
-  PatronV5,
-  PersonPatronV2
-} from "../../fbs/model";
+import { PatronV5, PersonPatronV2 } from "../../fbs/model";
 import { first } from "lodash";
+import { AuthenticatedPatronV6 } from "../types/legacy";
 
 // Explicitly return the data structure of previous versions of the underlying
 // generated hook from FBS.
