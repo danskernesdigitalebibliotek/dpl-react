@@ -105,9 +105,15 @@ const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
   return { savePatron, savePincode };
 };
 
-const convertPatronSettingsV4toV6 = (
+export function convertPatronSettingsV4toV6(
+  patronSettings: PatronSettingsV4
+): PatronSettingsV6;
+export function convertPatronSettingsV4toV6(
   patronSettings: Partial<PatronSettingsV4>
-): Partial<PatronSettingsV6> => {
+): Partial<PatronSettingsV6>;
+export function convertPatronSettingsV4toV6(
+  patronSettings: Partial<PatronSettingsV4> | PatronSettingsV4
+): Partial<PatronSettingsV6> | PatronSettingsV6 {
   return {
     ...patronSettings,
     // PatronSettingsV6 supports multiple email addresses and phone numbers with
@@ -130,6 +136,6 @@ const convertPatronSettingsV4toV6 = (
         ]
       : []
   };
-};
+}
 
 export default useSavePatron;
