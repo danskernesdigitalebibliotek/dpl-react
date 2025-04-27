@@ -263,7 +263,7 @@ paths:
       description: "\n Returns array of fees.\n <p>If the fee covers loaned materials, information about the materials is returned.\n Each fee in the response includes a 'type', which is used to distinguish between different types of\n fees.</p>\n <p>If the material exists no more, which is the case for fees that are related to closed interlibraryloans,\n then the fee is still returned, but without material information</p>\n The list of available types currently is\n <ul>\n <li>fee</li>\n <li>compensation</li>\n </ul>\n <p>While the type can be used by client systems to look up a suitable display message for the end user, it is\n important that unrecognized types are treated as 'other'.</p>"
       operationId: getFeesV2
       summary: 'List of fees in FBS for the patron with all available information about the fee.'
-  /external/agencyid/patrons/v4:
+  /external/agencyid/patrons/v9:
     post:
       parameters:
         -
@@ -272,12 +272,12 @@ paths:
           name: createPatronRequest
           required: true
           schema:
-            $ref: '#/definitions/CreatePatronRequestV3'
+            $ref: '#/definitions/CreatePatronRequestV7'
       responses:
         200:
           description: 'No response was specified'
           schema:
-            $ref: '#/definitions/AuthenticatedPatronV4'
+            $ref: '#/definitions/AuthenticatedPatronV10'
         400:
           description: 'bad request'
         401:
@@ -286,8 +286,8 @@ paths:
           description: 'Data not found'
       tags:
         - external_agencyid_patrons
-      description: "\n When a patron doesn't have a patron account in the library system, but logs in using a trusted authentication\n source (e.g NemId), the patron account can be created using this service. Name and address will be automatically\n fetched from CPR-Registry, and cannot be supplied by the client. If the CPR-Registry is not authorized to\n provide information about the patron, then repsonse message 404 will be sent back\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
-      operationId: createV4
+      description: "\n When a patron doesn't have a patron account in the library system, but logs in using a trusted authentication\n source (e.g NemId), the patron account can be created using this service. Name and address will be automatically\n fetched from configured person registry, and cannot be supplied by the client. If the configured person registry is not authorized to\n provide information about the patron, then response message 404 will be sent back\n <p>Multiple email addresses and phone numbers can be stored for a patron.</p>\n <p>If multiple email addresses are supplied having receiveNotification as true, then only one of them will be randomly stored\n as preferred and the rest will be stored as not preferred.</p>\n <p>If multiple phone numbers are supplied having receiveNotification as true, then only one of them will be randomly stored\n as preferred and the rest will be stored as not preferred.</p>\n <p>\n This version includes a possibility of including a BlockStatus in the request.\n The reason of the blockstatus must be one of the following one-letter choices\n <ul>\n <li>- 'O': library card stolen</li></li>\n <li>- 'F': extended exclusion</li>\n <li>- 'U': exclusion</li>\n <li>- 'S': blocked by self service automaton</li>\n <li>- 'W': self created at website</li>\n <li>- 'E': maximum amount of allowed debt exceeded</li>\n <li>- 'D': deceased</li>\n </ul>\n\n <p>If the request includes a blockstatus for the patron, and the blockedSince date is not given or in the wrong format, or the blockedReason is not one of the one-letter choices shown above, then response message 400 will be sent back.\n </p>"
+      operationId: createV9
       summary: 'Create a new patron who is a person.'
   /external/agencyid/patrons/withGuardian/v1:
     post:
@@ -616,6 +616,20 @@ definitions:
     required:
       - title
       - sublocationId
+  AuthenticatedPatronV10:
+    properties:
+      authenticateStatus:
+        description: "AuthenticateStatus:\n <ul>\n     <li>- 'VALID': successfully authenticated</li>\n     <li>- 'INVALID': either the user is not known in the system, or an invalid combination of authentication parameters has been used.</li>\n     <li>- 'LOANER_LOCKED_OUT': user has been blocked temporary because of too many failed login attempts</li>\n </ul>"
+        enum:
+          - VALID
+          - INVALID
+          - LOANER_LOCKED_OUT
+        type: string
+      patron:
+        $ref: '#/definitions/PatronV9'
+        description: 'Only available if patron exists in FBS and was succesfully authenticated.'
+    required:
+      - authenticateStatus
   AuthenticatedPatronV4:
     properties:
       authenticated:
@@ -787,18 +801,20 @@ definitions:
       - automaticForwardLoan
       - requestedFromBranchId
       - deliverBranchId
-  CreatePatronRequestV3:
+  CreatePatronRequestV7:
     properties:
-      cprNumber:
-        type: string
+      blockStatusRequest:
+        $ref: '#/definitions/BlockStatusRequest'
       patron:
-        $ref: '#/definitions/PatronSettingsV3'
+        $ref: '#/definitions/PatronSettingsV6'
+      personIdentifier:
+        type: string
       pincode:
         type: string
     required:
-      - cprNumber
       - pincode
       - patron
+      - personIdentifier
   CreateReservation:
     properties:
       expiryDate:
