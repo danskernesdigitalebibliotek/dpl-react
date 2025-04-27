@@ -47,10 +47,7 @@ const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
           },
           patron: {
             ...patron,
-            ...convertPatronSettingsV4toV6(data),
-            // Assume guardian visibility is false as we are not dealing with
-            // child patrons in this client.
-            guardianVisibility: false
+            ...convertPatronSettingsV4toV6(data)
           }
         }
       },
@@ -110,10 +107,12 @@ export function convertPatronSettingsV4toV6(
 ): PatronSettingsV6;
 export function convertPatronSettingsV4toV6(
   patronSettings: Partial<PatronSettingsV4>
-): Partial<PatronSettingsV6>;
+): Partial<PatronSettingsV6> & { guardianVisibility: boolean };
 export function convertPatronSettingsV4toV6(
   patronSettings: Partial<PatronSettingsV4> | PatronSettingsV4
-): Partial<PatronSettingsV6> | PatronSettingsV6 {
+):
+  | (Partial<PatronSettingsV6> & { guardianVisibility: boolean })
+  | PatronSettingsV6 {
   return {
     ...patronSettings,
     // PatronSettingsV6 supports multiple email addresses and phone numbers with
@@ -134,7 +133,10 @@ export function convertPatronSettingsV4toV6(
             receiveNotification: patronSettings.receiveSms || false
           }
         ]
-      : []
+      : [],
+    // Assume guardian visibility is false as we are not dealing with
+    // child patrons in this client.
+    guardianVisibility: false
   };
 }
 
