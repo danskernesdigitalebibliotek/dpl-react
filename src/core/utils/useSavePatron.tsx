@@ -97,9 +97,15 @@ const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
   return { savePatron, savePincode };
 };
 
-const convertPatronSettingsV4toV6 = (
+export function convertPatronSettingsV4toV6(
+  patronSettings: PatronSettingsV4
+): PatronSettingsV6;
+export function convertPatronSettingsV4toV6(
   patronSettings: Partial<PatronSettingsV4>
-): Partial<PatronSettingsV6> => {
+): Partial<PatronSettingsV6>;
+export function convertPatronSettingsV4toV6(
+  patronSettings: Partial<PatronSettingsV4> | PatronSettingsV4
+): Partial<PatronSettingsV6> | PatronSettingsV6 {
   return {
     // PatronSettingsV6 supports multiple email addresses and phone numbers with
     // individual notifications. Convert the current PatronSettingsV4 with
@@ -122,6 +128,6 @@ const convertPatronSettingsV4toV6 = (
       : [],
     ...patronSettings
   };
-};
+}
 
 export default useSavePatron;
