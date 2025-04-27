@@ -406,7 +406,7 @@ paths:
       description: "\n Returns an array of loans.\n <p>\n </p>\n If a loan is not renewable then the field renewalStatus will contain a list of one or more of these values:\n <ul>\n <li>- deniedReserved</li>\n <li>- deniedMaxRenewalsReached</li>\n <li>- deniedLoanerIsBlocked</li>\n <li>- deniedMaterialIsNotLoanable</li>\n <li>- deniedMaterialIsNotFound</li>\n <li>- deniedLoanerNotFound</li>\n <li>- deniedLoaningProfileNotFound</li>\n <li>- deniedOtherReason</li>\n </ul>\n <p>\n If any other value is encountered then it must be treated as 'deniedOtherReason'.\n </p>\n The response contains the field loanDetails.loanType, which can be any of these values:\n <ul>\n <li>- loan</li>\n <li>- interLibraryLoan</li>\n </ul>\n <p>\n The values are subject to change. If an unrecognized value is encountered, it should be treated as 'other' .\n </p>\n <p>\n NOTE: Cicero can decide to skip evaluation of the returned loans to minimize response time for loaners with\n many loans. In that case isRenewable will have the value true, as if it were a successful validation.\n </p>"
       operationId: getLoansV2
       summary: 'Get list of current loans by the patron.'
-  /external/agencyid/patrons/patronid/v5:
+  /external/agencyid/patrons/patronid/v8:
     put:
       parameters:
         -
@@ -415,12 +415,12 @@ paths:
           name: updatePatron
           required: true
           schema:
-            $ref: '#/definitions/UpdatePatronRequestV4'
+            $ref: '#/definitions/UpdatePatronRequestV6'
       responses:
         200:
           description: 'No response was specified'
-          schema:
-            $ref: '#/definitions/AuthenticatedPatronV6'
+        204:
+          description: 'no content'
         400:
           description: 'bad request'
         401:
@@ -429,8 +429,8 @@ paths:
           description: 'patron not found'
       tags:
         - external_agencyid_patrons
-      description: "\n The name and address cannot be supplied by the client. If the CPR-Registry is not authorized to provide\n information about the patron, then the name and address will not be updated.\n <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
-      operationId: updateV5
+      description: "\n The name and address cannot be supplied by the client. If the configured person registry is not authorized to provide\n information about the patron, then the name and address will not be updated.\n <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>\n <p>Multiple email addresses and phone numbers can be stored for a patron.</p>\n <p>If multiple email addresses are supplied having receiveNotification as true, then only one of them will be randomly stored\n as preferred and the rest will be stored as not preferred.</p>\n <p>If multiple phone numbers are supplied having receiveNotification as true, then only one of them will be randomly stored\n as preferred and the rest will be stored as not preferred.</p>\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
+      operationId: updateV8
       summary: 'Update information about the patron.'
 securityDefinitions:
   oauth:
@@ -596,20 +596,6 @@ definitions:
         description: 'Only available if patron exists in FBS and was succesfully authenticated.'
     required:
       - authenticated
-  AuthenticatedPatronV6:
-    properties:
-      authenticateStatus:
-        description: "AuthenticateStatus:\n <ul>\n     <li>- 'VALID': successfully authenticated</li>\n     <li>- 'INVALID': either the user is not known in the system, or an invalid combination of authentication parameters has been used.</li>\n     <li>- 'LOANER_LOCKED_OUT': user has been blocked temporary because of too many failed login attempts</li>\n </ul>"
-        enum:
-          - VALID
-          - INVALID
-          - LOANER_LOCKED_OUT
-        type: string
-      patron:
-        $ref: '#/definitions/PatronV5'
-        description: 'Only available if patron exists in FBS and was succesfully authenticated.'
-    required:
-      - authenticateStatus
   AvailabilityV3:
     properties:
       available:
@@ -2645,10 +2631,10 @@ definitions:
         type: integer
     required:
       - guardian
-  UpdatePatronRequestV4:
+  UpdatePatronRequestV6:
     properties:
       patron:
-        $ref: '#/definitions/PatronSettingsV4'
+        $ref: '#/definitions/PatronSettingsV6'
         description: 'Set this if patron details are to be changed'
       pincodeChange:
         $ref: '#/definitions/PincodeChange'
