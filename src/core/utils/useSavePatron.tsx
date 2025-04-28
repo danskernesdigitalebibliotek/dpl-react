@@ -9,6 +9,7 @@ import {
   getGetPersonTypePatronInformationV2QueryKey,
   useUpdateV8
 } from "../fbs/fbs";
+import { UserInfoData } from "../adgangsplatformen/useUserInfo";
 
 export interface FetchHandlers {
   onSuccess?: () => void;
@@ -16,6 +17,7 @@ export interface FetchHandlers {
 }
 
 interface UseSavePatron {
+  userInfo?: UserInfoData | null;
   patron?: Patron;
   fetchHandlers?: {
     savePatron?: FetchHandlers;
@@ -23,20 +25,24 @@ interface UseSavePatron {
   };
 }
 
-const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
+const useSavePatron = ({ patron, fetchHandlers, userInfo }: UseSavePatron) => {
   const { mutate } = useUpdateV8();
   const queryClient = useQueryClient();
 
   const savePatron = (data: Partial<PatronSettingsV4>) => {
     const { onSuccess, onError } = fetchHandlers?.savePatron || {};
 
-    if (!patron) {
+    if (!patron || !userInfo) {
       return;
     }
 
     mutate(
       {
         data: {
+          pincodeChange: {
+            pincode: userInfo.attributes.pincode,
+            libraryCardNumber: patron.patronId.toString()
+          },
           patron: {
             ...patron,
             ...convertPatronSettingsV4toV6(data),
@@ -101,6 +107,7 @@ const convertPatronSettingsV4toV6 = (
   patronSettings: Partial<PatronSettingsV4>
 ): Partial<PatronSettingsV6> => {
   return {
+    ...patronSettings,
     // PatronSettingsV6 supports multiple email addresses and phone numbers with
     // individual notifications. Convert the current PatronSettingsV4 with
     // single values to an array.
@@ -119,8 +126,7 @@ const convertPatronSettingsV4toV6 = (
             receiveNotification: patronSettings.receiveSms || false
           }
         ]
-      : [],
-    ...patronSettings
+      : []
   };
 };
 
