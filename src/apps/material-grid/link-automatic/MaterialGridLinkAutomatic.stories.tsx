@@ -10,7 +10,7 @@ import MaterialGridLinkAutomatic from "./MaterialGridLinkAutomatic.entry";
 import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
 
 const meta: Meta<typeof MaterialGridLinkAutomatic> = {
-  title: "Apps / Material Grid Link / Automatic",
+  title: "Apps / Material Grid / Link Automatic",
   component: MaterialGridLinkAutomatic,
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: can't figure out how to type this
