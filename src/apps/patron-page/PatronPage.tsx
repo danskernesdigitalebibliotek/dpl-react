@@ -13,14 +13,12 @@ import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import PatronPageSkeleton from "./PatronPageSkeleton";
 import useSavePatron from "../../core/utils/useSavePatron";
 import { Patron } from "../../core/utils/types/entities";
-import useUserInfo from "../../core/adgangsplatformen/useUserInfo";
 
 const PatronPage: FC = () => {
   const t = useText();
   const u = useUrls();
   const deletePatronUrl = u("deletePatronUrl");
   const { data: patronData, isLoading } = usePatronData();
-  const { data: userInfo } = useUserInfo();
   const [patron, setPatron] = useState<Patron | null>(null);
   const [pin, setPin] = useState<string | null>(null);
   const [isPinChangeValid, setIsPinChangeValid] = useState<boolean>(true);
@@ -31,7 +29,6 @@ const PatronPage: FC = () => {
   const [NotificationComponent, handleNotificationMessage] =
     useNotificationMessage();
   const { savePatron, savePincode } = useSavePatron({
-    userInfo,
     patron: patron || undefined,
     fetchHandlers: {
       savePatron: {

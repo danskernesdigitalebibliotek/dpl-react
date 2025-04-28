@@ -9,7 +9,7 @@ import {
   getGetPatronInformationByPatronIdV4QueryKey,
   useUpdateV8
 } from "../fbs/fbs";
-import { UserInfoData } from "../adgangsplatformen/useUserInfo";
+import useUserInfo from "../adgangsplatformen/useUserInfo";
 
 export interface FetchHandlers {
   onSuccess?: () => void;
@@ -17,7 +17,6 @@ export interface FetchHandlers {
 }
 
 interface UseSavePatron {
-  userInfo?: UserInfoData | null;
   patron?: Patron;
   fetchHandlers?: {
     savePatron?: FetchHandlers;
@@ -25,7 +24,8 @@ interface UseSavePatron {
   };
 }
 
-const useSavePatron = ({ patron, fetchHandlers, userInfo }: UseSavePatron) => {
+const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
+  const { data: userInfo } = useUserInfo();
   const { mutate } = useUpdateV8();
   const queryClient = useQueryClient();
 
@@ -33,6 +33,8 @@ const useSavePatron = ({ patron, fetchHandlers, userInfo }: UseSavePatron) => {
     const { onSuccess, onError } = fetchHandlers?.savePatron || {};
 
     if (!patron || !userInfo) {
+      // eslint-disable-next-line no-console
+      console.error("Patron or userInfo is not defined");
       return;
     }
 
