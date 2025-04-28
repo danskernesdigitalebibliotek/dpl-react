@@ -20,7 +20,7 @@ describe("Menu (authenticated))", () => {
       }
     ).as("physical_reservations");
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       statusCode: 200,
       body: {
         authenticateStatus: "VALID",
