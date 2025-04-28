@@ -10,7 +10,7 @@ describe("Pause reservation modal test", () => {
     // Sets time to a specific date
     cy.clock(clockDate);
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: null
       }
@@ -32,7 +32,7 @@ describe("Pause reservation modal test", () => {
       message: "OK"
     }).as("update-user");
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       statusCode: 200,
       body: {
         authenticateStatus: "VALID",
@@ -93,7 +93,7 @@ describe("Pause reservation modal test", () => {
         "https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
       );
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       statusCode: 200,
       body: {
         authenticateStatus: "VALID",
