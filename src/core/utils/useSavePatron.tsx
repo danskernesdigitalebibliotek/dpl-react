@@ -2,7 +2,7 @@ import { useQueryClient } from "react-query";
 import { Patron } from "./types/entities";
 import { PatronSettingsV4, PincodeChange } from "../fbs/model";
 import {
-  getGetPatronInformationByPatronIdV2QueryKey,
+  getGetPatronInformationByPatronIdV4QueryKey,
   useUpdateV5
 } from "../fbs/fbs";
 
@@ -37,7 +37,7 @@ const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries(
-            getGetPatronInformationByPatronIdV2QueryKey()
+            getGetPatronInformationByPatronIdV4QueryKey()
           );
           if (onSuccess) {
             onSuccess();
@@ -66,7 +66,7 @@ const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries(
-            getGetPatronInformationByPatronIdV2QueryKey()
+            getGetPatronInformationByPatronIdV4QueryKey()
           );
           if (onSuccess) {
             onSuccess();
