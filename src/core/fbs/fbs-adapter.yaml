@@ -431,7 +431,7 @@ paths:
       description: "\n The name and address cannot be supplied by the client. If the CPR-Registry is not authorized to provide\n information about the patron, then the name and address will not be updated.\n <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
       operationId: updateV4
       summary: 'Update information about the patron.'
-  /external/agencyid/patrons/patronid/v5:
+  /external/agencyid/patrons/patronid/v8:
     put:
       parameters:
         -
@@ -440,12 +440,17 @@ paths:
           name: updatePatron
           required: true
           schema:
-            $ref: '#/definitions/UpdatePatronRequestV4'
+            $ref: '#/definitions/UpdatePatronRequestV6'
       responses:
         200:
           description: 'No response was specified'
-          schema:
-            $ref: '#/definitions/AuthenticatedPatronV6'
+          # Leave this commented out. For whatever reason our toolchain
+          # generates this with a generic response. This causes problems down
+          # the line so comment it out.
+          # schema:
+          #  $ref: '#/definitions/Response'
+        204:
+          description: 'no content'
         400:
           description: 'bad request'
         401:
@@ -454,8 +459,8 @@ paths:
           description: 'patron not found'
       tags:
         - external_agencyid_patrons
-      description: "\n The name and address cannot be supplied by the client. If the CPR-Registry is not authorized to provide\n information about the patron, then the name and address will not be updated.\n <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
-      operationId: updateV5
+      description: "\n The name and address cannot be supplied by the client. If the configured person registry is not authorized to provide\n information about the patron, then the name and address will not be updated.\n <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>\n <p>Multiple email addresses and phone numbers can be stored for a patron.</p>\n <p>If multiple email addresses are supplied having receiveNotification as true, then only one of them will be randomly stored\n as preferred and the rest will be stored as not preferred.</p>\n <p>If multiple phone numbers are supplied having receiveNotification as true, then only one of them will be randomly stored\n as preferred and the rest will be stored as not preferred.</p>\n <p></p>\n If a patron is blocked the reason is available as a code:\n <ul>\n     <li>- 'O': library card stolen</li>\n     <li>- 'U': exclusion</li>\n     <li>- 'F': extended exclusion</li>\n     <li>- 'S': blocked by self service automaton</li>\n     <li>- 'W': self created at website</li>\n </ul>\n <p>The codes are informational, and can be used for looking up end user messages by the client system. However,\n the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>"
+      operationId: updateV8
       summary: 'Update information about the patron.'
 securityDefinitions:
   oauth:
@@ -621,20 +626,6 @@ definitions:
         description: 'Only available if patron exists in FBS and was succesfully authenticated.'
     required:
       - authenticated
-  AuthenticatedPatronV6:
-    properties:
-      authenticateStatus:
-        description: "AuthenticateStatus:\n <ul>\n     <li>- 'VALID': successfully authenticated</li>\n     <li>- 'INVALID': either the user is not known in the system, or an invalid combination of authentication parameters has been used.</li>\n     <li>- 'LOANER_LOCKED_OUT': user has been blocked temporary because of too many failed login attempts</li>\n </ul>"
-        enum:
-          - VALID
-          - INVALID
-          - LOANER_LOCKED_OUT
-        type: string
-      patron:
-        $ref: '#/definitions/PatronV5'
-        description: 'Only available if patron exists in FBS and was succesfully authenticated.'
-    required:
-      - authenticateStatus
   AuthenticatedPatronV8:
     properties:
       authenticateStatus:
@@ -845,6 +836,25 @@ definitions:
         type: string
     required:
       - reservations
+  CreateReservationV2:
+    properties:
+      activationDate:
+        description: 'Sets the activation date. From this date, the reservation can be fulfilled.'
+        type: string
+      expiryDate:
+        description: "The date where the patron is no longer interested in the reserved material.\n If not set, a date will be calculated from the agency default interest period"
+        type: string
+      periodical:
+        $ref: '#/definitions/PeriodicalReservation'
+        description: 'Present if making reservation on a periodical'
+      pickupBranch:
+        description: "ISIL-number of pickup branch.\n If not set, will default to patrons preferred pickup branch"
+        type: string
+      recordId:
+        description: 'Identifies the bibliographical record to reserve - The FAUST number'
+        type: string
+    required:
+      - recordId
   EmailAddressV1:
     properties:
       emailAddress:
@@ -1411,6 +1421,65 @@ definitions:
       - returnDate
       - materialGroup
       - available
+  NewsletterGroupCategoryV1:
+    properties:
+      id:
+        description: 'The preference id stored in Mailchimp'
+        type: string
+      interests:
+        description: 'The preference name stored in Mailchimp'
+        items:
+          $ref: '#/definitions/NewsletterGroupNameV1'
+        type: array
+      title:
+        description: 'The preference name stored in Mailchimp'
+        type: string
+    required:
+      - id
+      - title
+  NewsletterGroupNameV1:
+    properties:
+      id:
+        description: 'The preference id stored in Mailchimp'
+        type: string
+      name:
+        description: 'The preference name stored in Mailchimp'
+        type: string
+    required:
+      - name
+      - id
+  NewsletterTagV1:
+    properties:
+      id:
+        description: 'The preference id stored in Mailchimp'
+        type: string
+      name:
+        description: 'The preference name stored in Mailchimp'
+        type: string
+    required:
+      - name
+      - id
+  NewsletterV1:
+    properties:
+      tags:
+        description: 'The newsletter preferences'
+        items:
+          $ref: '#/definitions/NewsletterTagV1'
+        type: array
+      interestCategories:
+        description: 'The newsletter preferences'
+        items:
+          $ref: '#/definitions/NewsletterGroupCategoryV1'
+        type: array
+      listId:
+        description: 'Newsletter contact list id'
+        type: string
+      name:
+        description: 'The newslatter name'
+        type: string
+    required:
+      - listId
+      - name
   Patron:
     properties:
       address:
@@ -2177,6 +2246,14 @@ definitions:
         type: string
     required:
       - displayText
+  PeriodicalInformation:
+    properties:
+      number:
+        type: string
+      volume:
+        type: string
+      year:
+        type: string
   PeriodicalReservation:
     properties:
       volume:
@@ -2326,6 +2403,114 @@ definitions:
       - reservationId
       - reservationType
       - state
+  ReservationDetailsV3:
+    properties:
+      activationDate:
+        description: 'Sets the activation date. From this date, the reservation can be fulfilled.'
+        type: string
+      dateOfReservation:
+        type: string
+      expiryDate:
+        description: 'The date when the patron is no longer interested in the reserved material'
+        type: string
+      ilBibliographicRecord:
+        $ref: '#/definitions/ILLBibliographicRecord'
+        description: 'Additional bibliographic information for inter-library loans'
+      numberInQueue:
+        description: 'The number in the reservation queue.'
+        format: int32
+        type: integer
+      periodical:
+        $ref: '#/definitions/Periodical'
+        description: 'Present if material is a periodical'
+      pickupBranch:
+        description: 'ISIL-number of pickup branch'
+        type: string
+      pickupDeadline:
+        description: 'Set if reserved material is available for loan'
+        type: string
+      pickupNumber:
+        description: "The reservation number. Will be present if the reservation is ready for pickup (the state is 'readyForPickup')"
+        type: string
+      recordId:
+        description: 'The FAUST number'
+        type: string
+      reservationId:
+        description: 'Identifies the reservation for use when updating or deleting the reservation'
+        format: int64
+        type: integer
+      reservationType:
+        type: string
+      state:
+        type: string
+      transactionId:
+        description: 'Identifies the transaction of reservations'
+        type: string
+    required:
+      - pickupBranch
+      - dateOfReservation
+      - transactionId
+      - recordId
+      - expiryDate
+      - reservationId
+      - reservationType
+      - state
+  ReservationDetailsV4:
+    properties:
+      activationDate:
+        description: 'Sets the activation date. From this date, the reservation can be fulfilled.'
+        type: string
+      dateOfReservation:
+        type: string
+      estimatedDaysUntilReservation:
+        description: 'Provides an estimated approximate queue time on reservation in days'
+        format: int64
+        type: integer
+      expiryDate:
+        description: 'The date when the patron is no longer interested in the reserved material'
+        type: string
+      ilBibliographicRecord:
+        $ref: '#/definitions/ILLBibliographicRecord'
+        description: 'Additional bibliographic information for inter-library loans'
+      numberInQueue:
+        description: 'The number in the reservation queue.'
+        format: int32
+        type: integer
+      periodical:
+        $ref: '#/definitions/Periodical'
+        description: 'Present if material is a periodical'
+      pickupBranch:
+        description: 'ISIL-number of pickup branch'
+        type: string
+      pickupDeadline:
+        description: 'Set if reserved material is available for loan'
+        type: string
+      pickupNumber:
+        description: "The reservation number. Will be present if the reservation is ready for pickup (the state is 'readyForPickup')"
+        type: string
+      recordId:
+        description: 'The FAUST number'
+        type: string
+      reservationId:
+        description: 'Identifies the reservation for use when updating or deleting the reservation'
+        format: int64
+        type: integer
+      reservationType:
+        type: string
+      state:
+        type: string
+      transactionId:
+        description: 'Identifies the transaction of reservations'
+        type: string
+    required:
+      - pickupBranch
+      - dateOfReservation
+      - transactionId
+      - recordId
+      - expiryDate
+      - reservationId
+      - reservationType
+      - state
   ReservationResponseV2:
     properties:
       reservationResults:
@@ -2373,6 +2558,40 @@ definitions:
     required:
       - recordId
       - result
+  ReservationResultV3:
+    properties:
+      periodical:
+        $ref: '#/definitions/PeriodicalReservation'
+        description: 'Periodical information of the reservation'
+      recordId:
+        description: 'Recordid of the record to reserve'
+        type: string
+      reservationDetails:
+        $ref: '#/definitions/ReservationDetailsV3'
+        description: 'The reservation data as returned by the create/update operation'
+      result:
+        description: 'The reservation result'
+        type: string
+    required:
+      - recordId
+      - result
+  ReservationResultV4:
+    properties:
+      periodical:
+        $ref: '#/definitions/PeriodicalReservation'
+        description: 'Periodical information of the reservation'
+      recordId:
+        description: 'Recordid of the record to reserve'
+        type: string
+      reservationDetails:
+        $ref: '#/definitions/ReservationDetailsV4'
+        description: 'The reservation data as returned by the create/update operation'
+      result:
+        description: 'The reservation result'
+        type: string
+    required:
+      - recordId
+      - result
   UpdateGuardianRequest:
     properties:
       cprNumber:
@@ -2393,10 +2612,10 @@ definitions:
       pincodeChange:
         $ref: '#/definitions/PincodeChange'
         description: 'Set this if pincode is to be changed'
-  UpdatePatronRequestV4:
+  UpdatePatronRequestV6:
     properties:
       patron:
-        $ref: '#/definitions/PatronSettingsV4'
+        $ref: '#/definitions/PatronSettingsV6'
         description: 'Set this if patron details are to be changed'
       pincodeChange:
         $ref: '#/definitions/PincodeChange'
@@ -2404,10 +2623,10 @@ definitions:
   UpdateReservation:
     properties:
       expiryDate:
-        description: "The date where the patron is no longer interested in the reserved material.\n If not set, a date will be calculated from the libraries default interest period"
+        description: "The date where the patron is no longer interested in the reserved material.\n If not set, the reservation will keep the original date."
         type: string
       pickupBranch:
-        description: "ISIL-number of pickup branch.\n If not set, will default to patrons preferred pickup branch"
+        description: "ISIL-number of pickup branch.\n If not set, the reservation will keep the original pickup branch."
         type: string
       reservationId:
         description: 'Identifies the reservation'
@@ -2423,3 +2642,20 @@ definitions:
         type: array
     required:
       - reservations
+  UpdateReservationV2:
+    properties:
+      activationDate:
+        description: 'Sets the activation date. From this date, the reservation can be fulfilled.'
+        type: string
+      expiryDate:
+        description: "The date where the patron is no longer interested in the reserved material.\n If not set, the reservation will keep the original date."
+        type: string
+      pickupBranch:
+        description: "ISIL-number of pickup branch.\n If not set, the reservation will keep the original pickup branch."
+        type: string
+      reservationId:
+        description: 'Identifies the reservation'
+        format: int64
+        type: integer
+    required:
+      - reservationId
