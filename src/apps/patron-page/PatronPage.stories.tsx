@@ -28,6 +28,9 @@ const meta: Meta<typeof PatronPage> = {
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
     // Config
+    userinfoUrl: {
+      control: { type: "text" }
+    },
     pauseReservationStartDateConfig: {
       control: { type: "text" }
     },
@@ -198,6 +201,9 @@ const meta: Meta<typeof PatronPage> = {
     ...globalTextArgs,
     ...globalConfigArgs,
     // Config
+    // The  userinfoUrl is not a part of serviceUrlArgs because of historic reasons
+    // and because it is not a serviceUrl, but a url to the userinfo endpoint
+    userinfoUrl: "https://login.bib.dk/userinfo",
     pauseReservationStartDateConfig: "2022-06-30",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",

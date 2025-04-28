@@ -71,6 +71,7 @@ interface PatronPageTextProps {
   pauseReservationModalSaveButtonLabelText: string;
   pickupBranchesDropdownLabelText: string;
   pickupBranchesDropdownNothingSelectedText: string;
+  userinfoUrl: string;
 }
 
 export interface PatronPageProps
