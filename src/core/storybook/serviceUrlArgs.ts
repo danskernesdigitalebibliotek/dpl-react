@@ -80,6 +80,16 @@ export const argTypes = {
         summary: "https://temp.fbi-api.dbc.dk/next-present/graphql"
       }
     }
+  },
+  userinfoUrl: {
+    description: "Adgangsplatfomen userinfo url",
+    control: { type: "text" },
+    table: {
+      type: { summary: "text" },
+      defaultValue: {
+        summary: "https://login.bib.dk/userinfo"
+      }
+    }
   }
 };
 
@@ -93,5 +103,7 @@ export default {
   [serviceUrlKeys.materialList]: "https://prod.materiallist.dandigbib.org",
   [serviceUrlKeys.fbi]: "https://temp.fbi-api.dbc.dk/next-present/graphql",
   [serviceUrlKeys.fbiLocal]: "https://temp.fbi-api.dbc.dk/next/graphql",
-  [serviceUrlKeys.fbiGlobal]: "https://temp.fbi-api.dbc.dk/next-present/graphql"
+  [serviceUrlKeys.fbiGlobal]:
+    "https://temp.fbi-api.dbc.dk/next-present/graphql",
+  userinfoUrl: "https://login.bib.dk/userinfo"
 };

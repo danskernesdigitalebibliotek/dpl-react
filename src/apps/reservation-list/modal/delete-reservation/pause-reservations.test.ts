@@ -15,6 +15,12 @@ describe("Pause reservation modal test", () => {
         blockStatus: null
       }
     });
+
+    cy.intercept("GET", "**/userinfo", {
+      attributes: {
+        pincode: "1234"
+      }
+    }).as("userInfo");
   });
 
   it("It shows pause modal", () => {
