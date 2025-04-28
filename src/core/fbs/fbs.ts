@@ -17,7 +17,6 @@ import type {
 import type {
   AgencyBranch,
   AuthenticatedPatronV4,
-  AuthenticatedPatronV6,
   AuthenticatedPatronV8,
   AvailabilityV3,
   CreatePatronRequestV3,
@@ -38,7 +37,7 @@ import type {
   ReservationResponseV2,
   UpdateGuardianRequest,
   UpdatePatronRequestV3,
-  UpdatePatronRequestV4,
+  UpdatePatronRequestV6,
   UpdateReservationBatch
 } from "./model";
 import { fetcher } from "./mutator/fetcher";
@@ -1615,9 +1614,14 @@ export const useUpdateV4 = <
 
 /**
  * 
- The name and address cannot be supplied by the client. If the CPR-Registry is not authorized to provide
+ The name and address cannot be supplied by the client. If the configured person registry is not authorized to provide
  information about the patron, then the name and address will not be updated.
  <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>
+ <p>Multiple email addresses and phone numbers can be stored for a patron.</p>
+ <p>If multiple email addresses are supplied having receiveNotification as true, then only one of them will be randomly stored
+ as preferred and the rest will be stored as not preferred.</p>
+ <p>If multiple phone numbers are supplied having receiveNotification as true, then only one of them will be randomly stored
+ as preferred and the rest will be stored as not preferred.</p>
  <p></p>
  If a patron is blocked the reason is available as a code:
  <ul>
@@ -1631,73 +1635,73 @@ export const useUpdateV4 = <
  the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>
  * @summary Update information about the patron.
  */
-export const updateV5 = (
-  updatePatronRequestV4: BodyType<UpdatePatronRequestV4>
+export const updateV8 = (
+  updatePatronRequestV6: BodyType<UpdatePatronRequestV6>
 ) => {
-  return fetcher<AuthenticatedPatronV6>({
-    url: `/external/agencyid/patrons/patronid/v5`,
+  return fetcher<void>({
+    url: `/external/agencyid/patrons/patronid/v8`,
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    data: updatePatronRequestV4
+    data: updatePatronRequestV6
   });
 };
 
-export const getUpdateV5MutationOptions = <
+export const getUpdateV8MutationOptions = <
   TError = ErrorType<void>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof updateV5>>,
+    Awaited<ReturnType<typeof updateV8>>,
     TError,
-    { data: BodyType<UpdatePatronRequestV4> },
+    { data: BodyType<UpdatePatronRequestV6> },
     TContext
   >;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof updateV5>>,
+  Awaited<ReturnType<typeof updateV8>>,
   TError,
-  { data: BodyType<UpdatePatronRequestV4> },
+  { data: BodyType<UpdatePatronRequestV6> },
   TContext
 > => {
   const { mutation: mutationOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof updateV5>>,
-    { data: BodyType<UpdatePatronRequestV4> }
+    Awaited<ReturnType<typeof updateV8>>,
+    { data: BodyType<UpdatePatronRequestV6> }
   > = (props) => {
     const { data } = props ?? {};
 
-    return updateV5(data);
+    return updateV8(data);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type UpdateV5MutationResult = NonNullable<
-  Awaited<ReturnType<typeof updateV5>>
+export type UpdateV8MutationResult = NonNullable<
+  Awaited<ReturnType<typeof updateV8>>
 >;
-export type UpdateV5MutationBody = BodyType<UpdatePatronRequestV4>;
-export type UpdateV5MutationError = ErrorType<void>;
+export type UpdateV8MutationBody = BodyType<UpdatePatronRequestV6>;
+export type UpdateV8MutationError = ErrorType<void>;
 
 /**
  * @summary Update information about the patron.
  */
-export const useUpdateV5 = <
+export const useUpdateV8 = <
   TError = ErrorType<void>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof updateV5>>,
+    Awaited<ReturnType<typeof updateV8>>,
     TError,
-    { data: BodyType<UpdatePatronRequestV4> },
+    { data: BodyType<UpdatePatronRequestV6> },
     TContext
   >;
 }): UseMutationResult<
-  Awaited<ReturnType<typeof updateV5>>,
+  Awaited<ReturnType<typeof updateV8>>,
   TError,
-  { data: BodyType<UpdatePatronRequestV4> },
+  { data: BodyType<UpdatePatronRequestV6> },
   TContext
 > => {
-  const mutationOptions = getUpdateV5MutationOptions(options);
+  const mutationOptions = getUpdateV8MutationOptions(options);
 
   return useMutation(mutationOptions);
 };
