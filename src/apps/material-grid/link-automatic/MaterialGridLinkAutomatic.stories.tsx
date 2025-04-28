@@ -79,7 +79,7 @@ export const Primary: Story = {
     title: "Recommended materials",
     description:
       "This is a long description of the materials selected, or whatever else you want to put in here",
-    link: "https://dapple-cms.docker/advanced-search?sublocation=fantasy&advancedSearchCql=%27harry%27&linked=true",
+    link: "https://dapple-cms.docker/advanced-search?advancedSearchCql=%27harry%27&linked=true",
     selectedAmountOfMaterialsForDisplay: 12,
     buttonText: "Show all",
     materialUrl: "/work/:workid",
