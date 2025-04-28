@@ -1,4 +1,4 @@
-import { useGetPatronInformationByPatronIdV2 } from "../../fbs/fbs";
+import { useGetPatronInformationByPatronIdV4 } from "../../fbs/fbs";
 import BlockedTypes from "../types/BlockedTypes";
 import { Patron } from "../types/entities";
 import { isAnonymous } from "./user";
@@ -10,7 +10,7 @@ export const usePatronData = (): UseQueryResult<
   Awaited<Promise<AuthenticatedPatronV6 | null>>,
   ErrorType<void>
 > & { queryKey: QueryKey } => {
-  return useGetPatronInformationByPatronIdV2({
+  return useGetPatronInformationByPatronIdV4({
     enabled: !isAnonymous()
   });
 };
