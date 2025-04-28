@@ -25,7 +25,7 @@ describe("Patron page", () => {
   });
 
   it("Patron not blocked", () => {
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: null
       }
@@ -38,7 +38,7 @@ describe("Patron page", () => {
   // Blocked types:
   // https://github.com/itk-dev/dpl-react/blob/develop/src/core/utils/types/BlockedTypes.ts
   it("Patron blocked E", () => {
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: [
           {
@@ -57,7 +57,7 @@ describe("Patron page", () => {
   });
 
   it("Does NOT show the blocked modal again once it has been shown", () => {
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: [
           {
@@ -78,7 +78,7 @@ describe("Patron page", () => {
   it("Patron blocked U", () => {
     // To make sure that the modal is shown, we need to reset the persisted data.
     resetPersistedData();
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: [
           {
@@ -103,7 +103,7 @@ describe("Patron page", () => {
   it("Patron blocked W", () => {
     // To make sure that the modal is shown, we need to reset the persisted data.
     resetPersistedData();
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: [
           {
