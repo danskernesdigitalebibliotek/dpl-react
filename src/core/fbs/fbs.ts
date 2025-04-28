@@ -1473,15 +1473,13 @@ export const getGetPatronInformationByPatronIdV4QueryKey = () => {
 export const getGetPatronInformationByPatronIdV4QueryOptions = <
   TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>,
   TError = ErrorType<void>
->(options?: {
-  query?: UseQueryOptions<
+>(
+  queryOptions?: UseQueryOptions<
     Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>,
     TError,
     TData
-  >;
-}) => {
-  const { query: queryOptions } = options ?? {};
-
+  >
+) => {
   const queryKey =
     queryOptions?.queryKey ?? getGetPatronInformationByPatronIdV4QueryKey();
 
@@ -1508,20 +1506,20 @@ export type GetPatronInformationByPatronIdV4QueryError = ErrorType<void>;
 export function useGetPatronInformationByPatronIdV4<
   TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>,
   TError = ErrorType<void>
->(options?: {
-  query?: UseQueryOptions<
+>(
+  queryOptions?: UseQueryOptions<
     Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>,
     TError,
     TData
-  >;
-}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-  const queryOptions = getGetPatronInformationByPatronIdV4QueryOptions(options);
+  >
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const options = getGetPatronInformationByPatronIdV4QueryOptions(queryOptions);
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+  const query = useQuery(options) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
   };
 
-  query.queryKey = queryOptions.queryKey;
+  query.queryKey = options.queryKey;
 
   return query;
 }
