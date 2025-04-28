@@ -163,7 +163,7 @@
     "dayjs": "^1.11.13",
     "downshift": "^9.0.8",
     "focus-trap-react": "^11.0.3",
-    "graphql": "^16.10.0",
+    "graphql": "^16.11.0",
     "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
