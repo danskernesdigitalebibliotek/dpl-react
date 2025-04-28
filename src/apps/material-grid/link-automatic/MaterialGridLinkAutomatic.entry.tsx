@@ -21,26 +21,18 @@ export interface MaterialGridLinkAutomaticEntryProps
   title?: string;
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
-  buttonText: string;
   materialUrl: string;
 }
 
 const MaterialGridLinkAutomaticEntry: React.FC<
   MaterialGridLinkAutomaticEntryProps
-> = ({
-  link,
-  title,
-  description,
-  selectedAmountOfMaterialsForDisplay,
-  buttonText
-}) => (
+> = ({ link, title, description, selectedAmountOfMaterialsForDisplay }) => (
   <GuardedApp app="material-grid-automatic">
     <MaterialGridLinkAutomatic
       link={new URL(link)}
       title={title}
       description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
-      buttonText={buttonText}
     />
   </GuardedApp>
 );

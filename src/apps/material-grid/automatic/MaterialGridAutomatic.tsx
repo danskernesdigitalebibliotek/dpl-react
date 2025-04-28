@@ -11,7 +11,6 @@ export type MaterialGridAutomaticProps = {
   title?: string;
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
-  buttonText: string;
 };
 
 const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({

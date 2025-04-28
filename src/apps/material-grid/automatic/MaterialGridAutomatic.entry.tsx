@@ -29,8 +29,7 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   cql,
   title,
   description,
-  selectedAmountOfMaterialsForDisplay,
-  buttonText
+  selectedAmountOfMaterialsForDisplay
 }) => (
   <GuardedApp app="material-grid-automatic">
     <MaterialGridAutomatic
@@ -38,7 +37,6 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
       title={title}
       description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
-      buttonText={buttonText}
     />
   </GuardedApp>
 );
