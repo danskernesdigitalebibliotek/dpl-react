@@ -52,6 +52,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         size={size}
         manifestations={manifestations}
         dataCy={`${dataCy}-internal`}
+        workId={workId}
       />
     );
   }
