@@ -22,7 +22,7 @@ describe("Reservation details modal", () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cy.clock(clockDate).then((clock: any) => clock.bind(window));
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       statusCode: 200,
       body: {
         authenticateStatus: "VALID",

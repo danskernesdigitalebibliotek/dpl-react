@@ -14,6 +14,7 @@ import { GlobalEntryTextProps } from "../../../core/storybook/globalTextArgs";
 export interface ReservationListUrlProps {
   expirationWarningDaysBeforeConfig: string;
   pauseReservationInfoUrl: string;
+  userinfoUrl: string;
 }
 
 export interface ReservationListConfigProps {

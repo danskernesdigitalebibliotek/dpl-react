@@ -5,9 +5,9 @@
  * OpenAPI spec version: 1.0
  */
 import type { PatronSettingsV3 } from "./patronSettingsV3";
+import type { PincodeChange } from "./pincodeChange";
 
-export interface CreatePatronRequestV3 {
-  cprNumber: string;
-  patron: PatronSettingsV3;
-  pincode: string;
+export interface UpdatePatronRequestV3 {
+  patron?: PatronSettingsV3;
+  pincodeChange?: PincodeChange;
 }

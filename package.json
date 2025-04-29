@@ -142,7 +142,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8",
-    "webpack": "^5.99.6",
+    "webpack": "^5.99.7",
     "webpack-cli": "^6.0.1",
     "webpack-version-file-plugin": "0.5.0"
   },
@@ -151,7 +151,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "^2025.17.0-f1f64474cd985572604f6311fcfba9a66fb2bec1",
+    "@danskernesdigitalebibliotek/dpl-design-system": "^2025.18.0-dfd3d9f70d849c24d25a713b3b1369331019ad75",
     "@fullcalendar/core": "^6.1.17",
     "@fullcalendar/daygrid": "^6.1.17",
     "@fullcalendar/interaction": "^6.1.17",
@@ -163,7 +163,7 @@
     "dayjs": "^1.11.13",
     "downshift": "^9.0.8",
     "focus-trap-react": "^11.0.3",
-    "graphql": "^16.10.0",
+    "graphql": "^16.11.0",
     "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
@@ -171,7 +171,7 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "^19.1.0",
     "react-error-boundary": "^5.0.0",
-    "react-flatpickr": "^3.10.13",
+    "react-flatpickr": "^4.0.9",
     "react-query": "^3.39.3",
     "react-redux": "^9.2.0",
     "react-use": "^17.6.0",

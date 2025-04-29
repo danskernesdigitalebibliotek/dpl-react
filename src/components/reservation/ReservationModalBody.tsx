@@ -14,7 +14,6 @@ import { Cover } from "../cover/cover";
 import ReservationFormListItem from "./ReservationFormListItem";
 import {
   AgencyBranch,
-  AuthenticatedPatronV6,
   HoldingsForBibliographicalRecordLogisticsV1,
   ReservationResponseV2
 } from "../../core/fbs/model";
@@ -32,7 +31,11 @@ import {
   getGetHoldingsLogisticsV1QueryKey,
   useAddReservationsV2
 } from "../../core/fbs/fbs";
-import { Manifestation, Work } from "../../core/utils/types/entities";
+import {
+  AuthenticatedPatron,
+  Manifestation,
+  Work
+} from "../../core/utils/types/entities";
 import {
   getPreferredBranch,
   constructReservationData,
@@ -154,7 +157,7 @@ export const ReservationModalBody = ({
   if (!userResponse.data || !holdingsResponse.data) {
     return null;
   }
-  const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
+  const { data: userData } = userResponse as { data: AuthenticatedPatron };
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordLogisticsV1[];
   };
