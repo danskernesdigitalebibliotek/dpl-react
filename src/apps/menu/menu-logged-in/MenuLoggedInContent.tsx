@@ -16,7 +16,7 @@ import { usePatronData } from "../../../core/utils/helpers/usePatronData";
 import { resetPersistedData } from "../../../core/store";
 import { Button } from "../../../components/Buttons/Button";
 import { redirectTo } from "../../../core/utils/helpers/url";
-import { AuthenticatedPatronV6 } from "../../../core/utils/types/legacy";
+import { AuthenticatedPatron } from "../../../core/utils/types/entities";
 
 interface MenuLoggedInContentProps {
   pageSize: number;
@@ -49,7 +49,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
     }
   );
   const [userData, setUserData] = useState<
-    AuthenticatedPatronV6 | null | undefined
+    AuthenticatedPatron | null | undefined
   >();
   const [feeCount, setFeeCount] = useState<number>(0);
 

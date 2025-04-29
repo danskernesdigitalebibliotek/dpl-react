@@ -11,7 +11,7 @@ import {
   WorkMediumFragment,
   WorkSmallFragment
 } from "../../dbc-gateway/generated/graphql";
-import { PatronV5 } from "../../fbs/model";
+import { AuthenticatedPatronV8, PatronV5 } from "../../fbs/model";
 import { Pid, WorkId } from "./ids";
 
 export type Manifestation = Omit<ManifestationsSimpleFieldsFragment, "pid"> & {
@@ -59,6 +59,8 @@ export type Work = Omit<
 };
 
 export type Patron = PatronV5;
+
+export type AuthenticatedPatron = AuthenticatedPatronV8;
 
 export type Facets = FacetResult[] | null;
 

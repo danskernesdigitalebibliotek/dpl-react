@@ -6,10 +6,10 @@ import { useModalButtonHandler } from "./modal";
 import BlockedTypes from "./types/BlockedTypes";
 import { getBlockedStatus, usePatronData } from "./helpers/usePatronData";
 import { useBlockedModalHasBeenVisible } from "../../components/blocked-patron/helper";
-import { AuthenticatedPatronV6 } from "./types/legacy";
+import { AuthenticatedPatron } from "./types/entities";
 
 export interface PatronProps {
-  patron: AuthenticatedPatronV6 | null | undefined;
+  patron: AuthenticatedPatron | null | undefined;
 }
 
 type InputProps = {

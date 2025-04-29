@@ -1,13 +1,12 @@
 import { useGetPatronInformationByPatronIdV4 } from "../../fbs/fbs";
 import BlockedTypes from "../types/BlockedTypes";
-import { Patron } from "../types/entities";
+import { AuthenticatedPatron, Patron } from "../types/entities";
 import { isAnonymous } from "./user";
-import type { QueryKey, UseQueryResult } from "react-query";
-import type { ErrorType } from "../../fbs/mutator/fetcher";
-import { AuthenticatedPatronV6 } from "../types/legacy";
+import { QueryKey, UseQueryResult } from "react-query";
+import { ErrorType } from "../../fbs/mutator/fetcher";
 
 export const usePatronData = (): UseQueryResult<
-  Awaited<Promise<AuthenticatedPatronV6 | null>>,
+  Awaited<Promise<AuthenticatedPatron | null>>,
   ErrorType<void>
 > & { queryKey: QueryKey } => {
   return useGetPatronInformationByPatronIdV4({
