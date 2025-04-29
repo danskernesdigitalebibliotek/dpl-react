@@ -2,15 +2,16 @@ import React, { FC, useState, useRef, FormEvent } from "react";
 import { set } from "lodash";
 import PincodeSection from "../patron-page/sections/PincodeSection";
 import BranchesDropdown from "../patron-page/util/BranchesDropdown";
-import { PatronSettingsV3 } from "../../core/fbs/model";
+import { PatronSettingsV4 } from "../../core/fbs/model";
 import { useText } from "../../core/utils/text";
 import ContactInfoSection from "../../components/contact-info-section/ContactInfoSection";
-import { useCreateV4 } from "../../core/fbs/fbs";
+import { useCreateV9 } from "../../core/fbs/fbs";
 import { patronAgeValid } from "../../core/utils/helpers/general";
 import { useConfig } from "../../core/utils/config";
 import { useUrls } from "../../core/utils/url";
 import Link from "../../components/atoms/links/Link";
 import { getSubmitButtonText } from "./helper";
+import { convertPatronSettingsV4toV6 } from "../../core/utils/useSavePatron";
 
 export interface UserInfoProps {
   cpr: string;
@@ -26,8 +27,8 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
   const [pin, setPin] = useState<string | null>(null);
   const minAge = parseInt(config("minAgeConfig"), 10);
   const [validCpr] = useState<boolean>(patronAgeValid(cpr, minAge));
-  const { mutate } = useCreateV4();
-  const [patron, setPatron] = useState<PatronSettingsV3>({
+  const { mutate } = useCreateV9();
+  const [patron, setPatron] = useState<PatronSettingsV4>({
     preferredPickupBranch: "",
     receiveEmail: true,
     receivePostalMail: false,
@@ -56,7 +57,11 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
     if (pin && preferredPickupBranch && emailAddress) {
       mutate(
         {
-          data: { cprNumber: cpr, patron, pincode: pin }
+          data: {
+            personIdentifier: cpr,
+            patron: convertPatronSettingsV4toV6(patron),
+            pincode: pin
+          }
         },
         {
           onSuccess: () => {

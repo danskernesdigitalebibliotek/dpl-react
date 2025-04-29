@@ -14,7 +14,6 @@ import { Cover } from "../cover/cover";
 import ReservationFormListItem from "./ReservationFormListItem";
 import {
   AgencyBranch,
-  AuthenticatedPatronV6,
   HoldingsForBibliographicalRecordLogisticsV1,
   ReservationResponseV2
 } from "../../core/fbs/model";
@@ -69,6 +68,7 @@ import {
   getFutureDateString,
   getFutureDateStringISO
 } from "../../core/utils/helpers/date";
+import { AuthenticatedPatronV6 } from "../../core/utils/types/legacy";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];

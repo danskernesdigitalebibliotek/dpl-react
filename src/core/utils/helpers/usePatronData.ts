@@ -1,12 +1,19 @@
-import { useGetPatronInformationByPatronIdV2 } from "../../fbs/fbs";
+import { useGetPatronInformationByPatronIdV4 } from "../../fbs/fbs";
 import BlockedTypes from "../types/BlockedTypes";
 import { Patron } from "../types/entities";
 import { isAnonymous } from "./user";
+import type { QueryKey, UseQueryResult } from "react-query";
+import type { ErrorType } from "../../fbs/mutator/fetcher";
+import { AuthenticatedPatronV6 } from "../types/legacy";
 
-export const usePatronData = () =>
-  useGetPatronInformationByPatronIdV2({
+export const usePatronData = (): UseQueryResult<
+  Awaited<Promise<AuthenticatedPatronV6 | null>>,
+  ErrorType<void>
+> & { queryKey: QueryKey } => {
+  return useGetPatronInformationByPatronIdV4({
     enabled: !isAnonymous()
   });
+};
 
 export const getBlockedStatus = (patron?: Patron) => {
   // TODO: Investigate if we need to consider multiple
