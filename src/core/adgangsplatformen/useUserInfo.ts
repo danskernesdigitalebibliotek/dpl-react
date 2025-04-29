@@ -9,7 +9,7 @@ import { ErrorType, fetcher } from "./fetcher";
 import { useUrls } from "../utils/url";
 import { getUserToken } from "../utils/helpers/user";
 
-type UserInfoData = {
+export type UserInfoData = {
   attributes: {
     cpr: number;
     userId: string;
@@ -21,6 +21,7 @@ type UserInfoData = {
     }[];
     municipality: `${number}`;
     municipalityAgencyId: `${number}`;
+    pincode: string;
   };
 };
 

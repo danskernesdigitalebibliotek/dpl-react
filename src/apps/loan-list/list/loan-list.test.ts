@@ -12,7 +12,7 @@ describe("Loan list", () => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: null
       }

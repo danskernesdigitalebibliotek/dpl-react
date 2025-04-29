@@ -5,7 +5,8 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface EmailAddressV1 {
-  emailAddress: string;
-  receiveNotification: boolean;
+export interface PeriodicalInformation {
+  number?: string;
+  volume?: string;
+  year?: string;
 }
