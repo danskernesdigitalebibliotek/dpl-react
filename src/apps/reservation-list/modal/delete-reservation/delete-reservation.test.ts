@@ -12,7 +12,7 @@ describe("Delete reservation modal", () => {
     // Sets time to a specific date
     cy.clock(clockDate);
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: null
       }

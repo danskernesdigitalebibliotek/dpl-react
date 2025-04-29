@@ -5,7 +5,9 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface UpdateReservation {
+export interface UpdateReservationV2 {
+  /** Sets the activation date. From this date, the reservation can be fulfilled. */
+  activationDate?: string;
   /** The date where the patron is no longer interested in the reserved material.
  If not set, the reservation will keep the original date. */
   expiryDate?: string;

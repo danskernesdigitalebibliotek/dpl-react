@@ -148,7 +148,7 @@ describe("Material buttons", () => {
   it("Renders a disabled button for blocked users for physical works", () => {
     cy.interceptRest({
       aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
+      url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user-blocked.json"
     });
     cy.createFakeAuthenticatedSession();
@@ -184,7 +184,7 @@ describe("Material buttons", () => {
 
     cy.interceptRest({
       aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
+      url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
     });
 

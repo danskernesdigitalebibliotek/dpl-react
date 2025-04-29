@@ -1,10 +1,15 @@
 import { useQueryClient } from "react-query";
 import { Patron } from "./types/entities";
-import { PatronSettingsV4, PincodeChange } from "../fbs/model";
 import {
-  getGetPatronInformationByPatronIdV2QueryKey,
-  useUpdateV5
+  PatronSettingsV4,
+  PatronSettingsV6,
+  PincodeChange
+} from "../fbs/model";
+import {
+  getGetPatronInformationByPatronIdV4QueryKey,
+  useUpdateV8
 } from "../fbs/fbs";
+import useUserInfo from "../adgangsplatformen/useUserInfo";
 
 export interface FetchHandlers {
   onSuccess?: () => void;
@@ -20,24 +25,36 @@ interface UseSavePatron {
 }
 
 const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
-  const { mutate } = useUpdateV5();
+  const { data: userInfo } = useUserInfo();
+  const { mutate } = useUpdateV8();
   const queryClient = useQueryClient();
 
   const savePatron = (data: Partial<PatronSettingsV4>) => {
     const { onSuccess, onError } = fetchHandlers?.savePatron || {};
 
-    if (!patron) {
+    if (!patron || !userInfo) {
+      // eslint-disable-next-line no-console
+      console.error("Patron or userInfo is not defined");
       return;
     }
 
     mutate(
       {
-        data: { patron: { ...patron, ...data } }
+        data: {
+          pincodeChange: {
+            pincode: userInfo.attributes.pincode,
+            libraryCardNumber: patron.patronId.toString()
+          },
+          patron: {
+            ...patron,
+            ...convertPatronSettingsV4toV6(data)
+          }
+        }
       },
       {
         onSuccess: () => {
           queryClient.invalidateQueries(
-            getGetPatronInformationByPatronIdV2QueryKey()
+            getGetPatronInformationByPatronIdV4QueryKey()
           );
           if (onSuccess) {
             onSuccess();
@@ -66,7 +83,7 @@ const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries(
-            getGetPatronInformationByPatronIdV2QueryKey()
+            getGetPatronInformationByPatronIdV4QueryKey()
           );
           if (onSuccess) {
             onSuccess();
@@ -84,5 +101,43 @@ const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
 
   return { savePatron, savePincode };
 };
+
+export function convertPatronSettingsV4toV6(
+  patronSettings: PatronSettingsV4
+): PatronSettingsV6;
+export function convertPatronSettingsV4toV6(
+  patronSettings: Partial<PatronSettingsV4>
+): Partial<PatronSettingsV6> & { guardianVisibility: boolean };
+export function convertPatronSettingsV4toV6(
+  patronSettings: Partial<PatronSettingsV4> | PatronSettingsV4
+):
+  | (Partial<PatronSettingsV6> & { guardianVisibility: boolean })
+  | PatronSettingsV6 {
+  return {
+    ...patronSettings,
+    // PatronSettingsV6 supports multiple email addresses and phone numbers with
+    // individual notifications. Convert the current PatronSettingsV4 with
+    // single values to an array.
+    emailAddresses: patronSettings.emailAddress
+      ? [
+          {
+            emailAddress: patronSettings.emailAddress,
+            receiveNotification: patronSettings.receiveEmail || false
+          }
+        ]
+      : [],
+    phoneNumbers: patronSettings.phoneNumber
+      ? [
+          {
+            phoneNumber: patronSettings.phoneNumber,
+            receiveNotification: patronSettings.receiveSms || false
+          }
+        ]
+      : [],
+    // Assume guardian visibility is false as we are not dealing with
+    // child patrons in this client.
+    guardianVisibility: false
+  };
+}
 
 export default useSavePatron;

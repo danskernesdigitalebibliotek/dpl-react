@@ -2,11 +2,11 @@ import React, { useEffect, useState, ComponentType, FC } from "react";
 import BlockedModal, {
   getBlockedModalId
 } from "../../components/blocked-patron/blocked-modal/BlockedModal";
-import { AuthenticatedPatronV6 } from "../fbs/model";
 import { useModalButtonHandler } from "./modal";
 import BlockedTypes from "./types/BlockedTypes";
 import { getBlockedStatus, usePatronData } from "./helpers/usePatronData";
 import { useBlockedModalHasBeenVisible } from "../../components/blocked-patron/helper";
+import { AuthenticatedPatronV6 } from "./types/legacy";
 
 export interface PatronProps {
   patron: AuthenticatedPatronV6 | null | undefined;
