@@ -4,7 +4,7 @@ const navigateToMaterial = () => {
   cy.createFakeAuthenticatedSession();
   cy.visit(
     "/iframe.html?args=&id=apps-material--overbygnings-matriale"
-  ).scrollTo("bottom");
+  ).scrollTo("bottom", { duration: 1500 });
   cy.getBySel("material-description").scrollIntoView();
   cy.getBySel("material-button-reservable-on-another-library")
     .first()
@@ -84,6 +84,11 @@ describe("Open Order Functionality", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/open-order/fbi-api.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
     });
 
     cy.interceptRest({

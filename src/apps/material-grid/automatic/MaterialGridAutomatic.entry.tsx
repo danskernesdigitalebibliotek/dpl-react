@@ -5,7 +5,7 @@ import { withConfig } from "../../../core/utils/config";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import MaterialGridAutomatic from "./MaterialGridAutomatic";
-import { ValidSelectedIncrements } from "../materiel-grid-util";
+import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
 
 interface MaterialGridAutomaticEntryConfigProps {
   blacklistedAvailabilityBranchesConfig: string;
@@ -29,8 +29,7 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   cql,
   title,
   description,
-  selectedAmountOfMaterialsForDisplay,
-  buttonText
+  selectedAmountOfMaterialsForDisplay
 }) => (
   <GuardedApp app="material-grid-automatic">
     <MaterialGridAutomatic
@@ -38,7 +37,6 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
       title={title}
       description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
-      buttonText={buttonText}
     />
   </GuardedApp>
 );

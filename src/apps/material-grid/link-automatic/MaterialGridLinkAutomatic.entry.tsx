@@ -5,7 +5,7 @@ import { withConfig } from "../../../core/utils/config";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import MaterialGridLinkAutomatic from "./MaterialGridLinkAutomatic";
-import { ValidSelectedIncrements } from "../materiel-grid-util";
+import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
 
 interface MaterialGridLinkAutomaticEntryConfigProps {
   blacklistedAvailabilityBranchesConfig: string;
@@ -21,26 +21,18 @@ export interface MaterialGridLinkAutomaticEntryProps
   title?: string;
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
-  buttonText: string;
   materialUrl: string;
 }
 
 const MaterialGridLinkAutomaticEntry: React.FC<
   MaterialGridLinkAutomaticEntryProps
-> = ({
-  link,
-  title,
-  description,
-  selectedAmountOfMaterialsForDisplay,
-  buttonText
-}) => (
+> = ({ link, title, description, selectedAmountOfMaterialsForDisplay }) => (
   <GuardedApp app="material-grid-automatic">
     <MaterialGridLinkAutomatic
       link={new URL(link)}
       title={title}
       description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
-      buttonText={buttonText}
     />
   </GuardedApp>
 );

@@ -8,7 +8,11 @@ type MaterialGridSkeletonType = {
 const MaterialGridSkeleton: FC<MaterialGridSkeletonType> = ({ title }) => {
   return (
     <div className="material-grid">
-      {title && <div className="material-grid__title">{title}</div>}
+      {title && (
+        <div className="material-grid__text-wrapper">
+          <div className="material-grid__title">{title}</div>
+        </div>
+      )}
       <div className="material-grid__items">
         {[...Array(4)].map((_, index) => (
           <div key={index} className="material-grid__item">

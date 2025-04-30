@@ -7,10 +7,10 @@ import serviceUrlArgs, {
   argTypes as serviceUrlArgTypes
 } from "../../../core/storybook/serviceUrlArgs";
 import MaterialGridLinkAutomatic from "./MaterialGridLinkAutomatic.entry";
-import MaterialGridSkeleton from "../MaterialGridSkeleton";
+import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
 
 const meta: Meta<typeof MaterialGridLinkAutomatic> = {
-  title: "Apps / Material Grid Link / Automatic",
+  title: "Apps / Material Grid / Link Automatic",
   component: MaterialGridLinkAutomatic,
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: can't figure out how to type this
@@ -79,7 +79,7 @@ export const Primary: Story = {
     title: "Recommended materials",
     description:
       "This is a long description of the materials selected, or whatever else you want to put in here",
-    link: "https://dapple-cms.docker/advanced-search?sublocation=fantasy&advancedSearchCql=%27harry%27&linked=true",
+    link: "https://dapple-cms.docker/advanced-search?advancedSearchCql=%27harry%27&linked=true",
     selectedAmountOfMaterialsForDisplay: 12,
     buttonText: "Show all",
     materialUrl: "/work/:workid",

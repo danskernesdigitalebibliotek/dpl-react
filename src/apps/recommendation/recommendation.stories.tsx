@@ -7,7 +7,7 @@ import serviceUrlArgs, {
   argTypes as serviceUrlArgTypes
 } from "../../core/storybook/serviceUrlArgs";
 
-import DisplayMaterialTypeOptions from "../recommended-material/recommendedMaterialDisplayTypeData";
+import DisplayMaterialTypeOptions from "../../components/recommended-material/recommendedMaterialDisplayTypeData";
 import RecommendationSkeleton from "./RecommendationSkeleton";
 import Recommendation from "./recommendation.entry";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
