@@ -609,6 +609,12 @@ describe("Material", () => {
       fixtureFilePath: "material/material-grid-related-recommendations.json"
     });
 
+    cy.interceptGraphql({
+      operationName: "complexSearchWithPagination",
+      fixtureFilePath:
+        "material/material-grid-related-author-recommendations.json"
+    });
+
     cy.interceptRest({
       aliasName: "Cover",
       url: "**/api/v2/covers?**",
