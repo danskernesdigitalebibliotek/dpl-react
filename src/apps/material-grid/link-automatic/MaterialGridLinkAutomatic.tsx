@@ -1,13 +1,16 @@
 import * as React from "react";
-import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import useGetCleanBranches from "../../../core/utils/branches";
 import MaterialGrid from "../../../components/material-grid/MaterialGrid";
 import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
 import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
+import {
+  HoldingsStatusEnum,
+  useComplexSearchWithPaginationQuery
+} from "../../../core/dbc-gateway/generated/graphql";
+import useGetCleanBranches from "../../../core/utils/branches";
 import { getQueryParams } from "../../../core/utils/helpers/url";
-import { commaSeparatedStringToArray } from "../../advanced-search/helpers";
-import { WorkId } from "../../../core/utils/types/ids";
 import { useText } from "../../../core/utils/text";
+import { WorkId } from "../../../core/utils/types/ids";
+import { commaSeparatedStringToArray } from "../../advanced-search/helpers";
 
 export type MaterialGridLinkAutomaticProps = {
   link: URL;
@@ -25,7 +28,8 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
   const t = useText();
   const buttonText = t("buttonText");
   const cleanBranches = useGetCleanBranches();
-  const { advancedSearchCql, location, sublocation } = getQueryParams(link);
+  const { advancedSearchCql, location, sublocation, onshelf } =
+    getQueryParams(link);
 
   const { data, isLoading } = useComplexSearchWithPaginationQuery(
     {
@@ -39,7 +43,8 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
           : {}),
         ...(sublocation
           ? { sublocation: commaSeparatedStringToArray(sublocation) }
-          : {})
+          : {}),
+        ...(onshelf === "true" ? { status: [HoldingsStatusEnum.Onshelf] } : {})
       }
     },
     {
