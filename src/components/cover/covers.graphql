@@ -1,0 +1,22 @@
+query GetCoverByPid($pid: String!) {
+  manifestation(pid: $pid) {
+    pid
+    cover {
+      small {
+        url
+        width
+        height
+      }
+      medium {
+        url
+        width
+        height
+      }
+      large {
+        url
+        width
+        height
+      }
+    }
+  }
+}
