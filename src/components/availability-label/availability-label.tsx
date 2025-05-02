@@ -64,10 +64,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
         trackedData: availabilityText
       });
     }
-    // We only want to track if the faustIds change (once - on load), or the selected
-    // status changes (on select of the availability button)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [faustIds, selected]);
+  }, [availabilityText, collectPageStatistics, faustIds, isLoading, selected]);
 
   const availabilityLabel = (
     <AvailabilityLabelInside
