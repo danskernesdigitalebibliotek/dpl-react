@@ -39,7 +39,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   isbns,
   isVisualOnly
 }) => {
-  const { track } = useStatistics();
+  const { collectPageStatistics } = useStatistics();
   const t = useText();
 
   const { isLoading, isAvailable } = useAvailabilityData({
@@ -58,10 +58,9 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     // Track material availability (status) if the button is active - also meaning
     // it is displayed on the material page and represent the active manifestation
     // material type
-    if (selected) {
-      track("click", {
-        id: statistics.materialStatus.id,
-        name: statistics.materialStatus.name,
+    if (selected && !isLoading) {
+      collectPageStatistics({
+        ...statistics.materialStatus,
         trackedData: availabilityText
       });
     }

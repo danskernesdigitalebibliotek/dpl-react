@@ -58,7 +58,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data, isLoading, workType } = useGetWork(wid);
   const { data: userData } = usePatronData();
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
-  const { track } = useStatistics();
+  const { collectPageStatistics } = useStatistics();
   const {
     type: readerPlayerType,
     identifier,
@@ -71,42 +71,37 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
 
   useDeepCompareEffect(() => {
     if (data?.work?.genreAndForm) {
-      track("click", {
-        id: statistics.materialGenre.id,
-        name: statistics.materialGenre.name,
+      collectPageStatistics({
+        ...statistics.materialGenre,
         trackedData: data.work.genreAndForm.join(", ")
       });
     }
     if (data?.work?.mainLanguages) {
-      track("click", {
-        id: statistics.materialLanguage.id,
-        name: statistics.materialLanguage.name,
+      collectPageStatistics({
+        ...statistics.materialLanguage,
         trackedData: data.work.mainLanguages
           .map((language) => language.display)
           .join(", ")
       });
     }
     if (data?.work?.dk5MainEntry) {
-      track("click", {
-        id: statistics.materialTopicNumber.id,
-        name: statistics.materialTopicNumber.name,
+      collectPageStatistics({
+        ...statistics.materialTopicNumber,
         trackedData: data.work.dk5MainEntry.display
       });
     }
     // We can afford to only check the latest manifestation because audience doesn't
     // vary between a specific work's manifestations (information provided by DDF).
     if (data?.work?.manifestations.latest.audience?.generalAudience) {
-      track("click", {
-        id: statistics.materialTopicNumber.id,
-        name: statistics.materialTopicNumber.name,
+      collectPageStatistics({
+        ...statistics.materialTopicNumber,
         trackedData:
           data.work.manifestations.latest.audience.generalAudience.join(", ")
       });
     }
     if (data?.work?.fictionNonfiction) {
-      track("click", {
-        id: statistics.materialFictionNonFiction.id,
-        name: statistics.materialFictionNonFiction.name,
+      collectPageStatistics({
+        ...statistics.materialFictionNonFiction,
         trackedData: data.work.fictionNonfiction.display
       });
     }
