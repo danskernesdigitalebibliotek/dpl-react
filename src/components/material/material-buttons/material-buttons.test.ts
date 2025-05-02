@@ -100,6 +100,22 @@ describe("Material buttons", () => {
     );
   });
 
+  it("Renders the correct action button for articles", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material-buttons/material-buttons-article-fbi-api.json"
+    });
+
+    cy.visit(
+      "/iframe.html?id=apps-material--infomedia&viewMode=story&type=artikel+%28online%29"
+    )
+      .getBySel("material-description")
+      .scrollIntoView({ duration: 300 });
+
+    cy.getBySel("availability-label").contains("artikel (online)");
+    cy.getBySel("material-buttons-online-external").contains("See online");
+  });
+
   it.skip("Renders the correct action button for online audio books", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog")
       .getBySel("material-description")
