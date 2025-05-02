@@ -42,7 +42,8 @@
     "codegen:client:cover": "rm -rf src/core/cover-service-api/model/*.* && orval --project coverService",
     "codegen:client:publizon": "rm -rf src/core/publizon/model/*.* && orval --project publizonAdapter",
     "codegen:client:dpl-cms": "rm -rf src/core/dpl-cms/model/*.* && orval --project dplCms",
-    "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
+    "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts",
+    "check:types": "tsc --noEmit"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",

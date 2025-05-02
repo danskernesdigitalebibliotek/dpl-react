@@ -1,11 +1,12 @@
 import React, { FC } from "react";
-import { WorkId } from "../../core/utils/types/ids";
 import { Cover } from "../../components/cover/cover";
-import MaterialSearchLoading from "./MaterialSearchLoading";
+import { assertIsValidPid } from "../../components/cover/helper";
+import { SearchWithPaginationQuery } from "../../core/dbc-gateway/generated/graphql";
 import { flattenCreators } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
+import { WorkId } from "../../core/utils/types/ids";
+import MaterialSearchLoading from "./MaterialSearchLoading";
 import useInfiniteScrollLoading from "./useInfiteScrollLoading";
-import { SearchWithPaginationQuery } from "../../core/dbc-gateway/generated/graphql";
 
 type MaterialSearchListResultsProps = {
   data: SearchWithPaginationQuery["search"]["works"];
@@ -61,7 +62,9 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
         {works.map((work, index) => {
           const authors = flattenCreators(work.creators);
           const isLastItem = index === data.length - 1;
-
+          const pid = assertIsValidPid(
+            work.manifestations.bestRepresentation.pid
+          );
           return (
             <li
               className={`material-search-list__item ${
@@ -85,12 +88,7 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
                   placeholders: { "@title": `${work.titles.full}` }
                 })}
               >
-                <Cover
-                  size="large"
-                  displaySize="2xsmall"
-                  ids={[work.manifestations.bestRepresentation.pid]}
-                  animate
-                />
+                <Cover size="large" displaySize="2xsmall" pid={pid} animate />
                 <div>
                   <div className="material-search-list__detail-item">
                     <span className="material-search-list__term">

@@ -82,7 +82,7 @@ const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
     <div className="material-search__preview">
       <div className="material-search__preview-material">
         <Cover
-          ids={[materialForDisplay.pid]}
+          pid={materialForDisplay.pid}
           size="large"
           displaySize="small"
           animate

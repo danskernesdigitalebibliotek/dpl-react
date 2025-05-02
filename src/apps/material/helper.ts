@@ -595,9 +595,12 @@ export const useGetHoldings = ({
 
 export const getManifestationBasedOnType = (
   work: Work,
-  materialType: ManifestationMaterialType
+  materialType?: ManifestationMaterialType
 ): Manifestation => {
   const { bestRepresentation, all } = work.manifestations;
+
+  // If no type is provided, just return bestRepresentation
+  if (!materialType) return bestRepresentation;
 
   const bestRepresentationMaterialType =
     getManifestationMaterialTypes(bestRepresentation);
@@ -605,23 +608,18 @@ export const getManifestationBasedOnType = (
   if (materialType === bestRepresentationMaterialType) {
     return bestRepresentation;
   }
-  // Filters and sorts the manifestations if the best representation does not match.
+
+  // Try to find a matching one
   const sortedManifestations = getManifestationsOrderByTypeAndYear(all);
   const filteredAndSortedManifestations = filterManifestationsByType(
     materialType,
     sortedManifestations
   );
-  const newestFilteredAndSortedManifestation = first(
-    filteredAndSortedManifestations
-  );
 
-  if (newestFilteredAndSortedManifestation) {
-    return newestFilteredAndSortedManifestation;
-  }
-  // Fallback returning best representation.
-  return bestRepresentation;
+  const fallback = first(filteredAndSortedManifestations);
+
+  return fallback ?? bestRepresentation;
 };
-
 export const getWorkTitle = ({
   titles,
   mainLanguages,

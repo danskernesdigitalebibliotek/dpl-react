@@ -4,6 +4,7 @@ import {
   Cover as CoverType
 } from "../../core/cover-service-api/model";
 import { Manifestation } from "../../core/utils/types/entities";
+import { Pid } from "../../core/utils/types/ids";
 
 type CoverServiceSizes = keyof CoverImageUrls;
 type CoverData = CoverType[] | null | undefined;
@@ -73,6 +74,81 @@ export const getCoverUrl = ({
 };
 
 export default {};
+
+export const COVER_SIZES = ["small", "medium", "large"] as const;
+export type CoverSizes = (typeof COVER_SIZES)[number];
+
+type CoverDetails = {
+  url?: string | null;
+  width?: number | null;
+  height?: number | null;
+};
+
+export type CoverMap = {
+  small?: CoverDetails | null;
+  medium?: CoverDetails | null;
+  large?: CoverDetails | null;
+};
+const pidPattern = /^\d+-[^:]+:[^:]+$/;
+
+/**
+ * Asserts that the given value is a valid Pid and returns it typed as Pid.
+ * Throws an error in development if not valid.
+ */
+export function assertIsValidPid(value: unknown): Pid {
+  if (typeof value !== "string" || !pidPattern.test(value)) {
+    if (process.env.NODE_ENV !== "production") {
+      throw new Error(
+        `Invalid PID in function [assertIsValidPid]: ${String(value)}`
+      );
+    }
+  }
+
+  return value as Pid;
+}
+export function getUseableCover(
+  cover: CoverMap | undefined | null,
+  requested: CoverSizes
+): CoverDetails | null {
+  if (!cover) return null;
+
+  console.log(`[getBestCover] Requested size: ${requested}`);
+
+  const fallbackOrder: CoverSizes[] = [requested, "large", "medium", "small"];
+  const seen = new Set<CoverSizes>();
+
+  for (const size of fallbackOrder) {
+    if (seen.has(size)) continue;
+    seen.add(size);
+
+    const candidate = cover[size];
+    if (isValidCoverUrl(candidate)) {
+      if (size !== requested) {
+        console.log(
+          `[getBestCover] Requested size '${requested}' not available. Falling back to '${size}'.`
+        );
+      } else {
+        console.log(`[getBestCover] Using requested size '${requested}'.`);
+      }
+      return candidate!;
+    }
+  }
+
+  console.log("[getBestCover] No valid cover URL available in any size.");
+  return null;
+}
+
+function isValidCoverUrl(coverDetail?: CoverDetails | null): boolean {
+  const isValid =
+    typeof coverDetail?.url === "string" && coverDetail.url.trim().length > 0;
+
+  if (!isValid) {
+    console.log("[isValidCoverUrl] Invalid or missing URL:", coverDetail);
+  }
+
+  console.log("[isValidCoverUrl] isValid:", isValid);
+  return isValid;
+}
 
 // ************** VITEST ***************
 if (import.meta.vitest) {
