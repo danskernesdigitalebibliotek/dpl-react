@@ -78,7 +78,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const title = getWorkTitle(work);
   const pid = getWorkPid(work);
   const coverPids = getManifestationsPids(selectedManifestations);
-  const { track } = useStatistics();
+  const { collectPageStatistics } = useStatistics();
   // This is used to track whether the user is changing between material types or just clicking the same button over
   const manifestationMaterialTypes = getMaterialTypes(selectedManifestations);
 
@@ -97,14 +97,12 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   });
 
   useDeepCompareEffect(() => {
-    track("click", {
-      id: statistics.materialType.id,
-      name: statistics.materialType.name,
+    collectPageStatistics({
+      ...statistics.materialType,
       trackedData: manifestationMaterialTypes.join(", ")
     });
-    track("click", {
-      id: statistics.materialSource.id,
-      name: statistics.materialSource.name,
+    collectPageStatistics({
+      ...statistics.materialSource,
       trackedData: selectedManifestations
         .map((manifestation) => manifestation.source.join(", "))
         .join(", ")

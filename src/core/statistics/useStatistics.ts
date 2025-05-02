@@ -1,6 +1,14 @@
+/* eslint-disable no-underscore-dangle */
+import { injectMappScript } from "./tiLoader.min";
 // Useful resources for Mapp tracking:
 // https://documentation.mapp.com/1.0/en/manual-track-request-25105181.html
 // https://documentation.mapp.com/1.0/en/how-to-send-manual-tracking-requests-page-updates-7240681.html
+
+declare global {
+  interface Window {
+    _ti: Record<string, unknown>;
+  }
+}
 
 export interface EventData {
   [key: string]: string | number | Record<string, unknown>;
@@ -14,7 +22,6 @@ export interface EventDataWithCustomClickParameter extends EventData {
 // 2. click - for measuring actions that don't cause page load;
 // 3. link - clicking a link that triggers a new page load
 // 4. pageupdate - information on the page changes without a new page load
-// We currently only support click and link, as we don't track any page or pageupdate data.
 export type EventType = "click" | "link";
 
 export type TrackParameters = {
@@ -43,6 +50,27 @@ export function useStatistics() {
   }
 
   return {
+    collectPageStatistics: ({ parameterName, trackedData }: EventData) => {
+      window._ti = window._ti || {};
+      window._ti[parameterName as string] = trackedData;
+    },
+    sendPageStatistics: ({ domain, id }: { domain: string; id: string }) => {
+      // Delay sending the stats and loading script to allow DOM/data to stabilize
+      setTimeout(() => {
+        if (!domain || !id) {
+          // eslint-disable-next-line no-console
+          console.warn("⚠️ Mapp Domain or ID is not defined");
+          // This is to simulate the tracking request like the code in above for
+          // click events. Because domain and id are set as empty strings in Storybook
+          // The tracking script are not enabled. And therefore we console log the data
+          // eslint-disable-next-line no-console
+          console.log("Tracking: send, page", JSON.stringify(window._ti));
+          return;
+        }
+
+        injectMappScript({ domain, id });
+      }, 5000);
+    },
     track: (eventType: EventType, trackParameters: TrackParameters) => {
       const eventData: EventDataWithCustomClickParameter = {
         linkId: trackParameters.name,

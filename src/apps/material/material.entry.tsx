@@ -9,6 +9,8 @@ import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-prop
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
 import { PublizonErrorArgs } from "../../core/storybook/publizonErrorArgs";
+import { MappArgs } from "../../core/storybook/mappArgs";
+import usePageStatistics from "../../core/statistics/usePageStatistics";
 
 interface MaterialEntryTextProps {
   alreadyReservedText: string;
@@ -207,14 +209,18 @@ export interface MaterialEntryProps
     GlobalEntryTextProps,
     MaterialEntryConfigProps,
     DeleteReservationModalArgs,
-    PublizonErrorArgs {
+    PublizonErrorArgs,
+    MappArgs {
   wid: WorkId;
 }
 
-const WrappedMaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => (
-  <GuardedApp app="material">
-    <Material wid={wid} />
-  </GuardedApp>
-);
+const WrappedMaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => {
+  usePageStatistics();
+  return (
+    <GuardedApp app="material">
+      <Material wid={wid} />
+    </GuardedApp>
+  );
+};
 
 export default withConfig(withUrls(withText(WrappedMaterialEntry)));
