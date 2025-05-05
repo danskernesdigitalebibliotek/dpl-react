@@ -35,6 +35,7 @@ import {
 import { isPeriodical, shouldShowMaterialAvailabilityText } from "./helper";
 import useAvailabilityData from "../availability-label/useAvailabilityData";
 import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
+import { first } from "lodash";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -103,9 +104,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     });
     collectPageStatistics({
       ...statistics.materialSource,
-      trackedData: selectedManifestations
-        .map((manifestation) => manifestation.source.join(", "))
-        .join(", ")
+      trackedData: first(first(selectedManifestations)?.source) ?? "No source"
     });
     // We just want to track if the currently selected manifestation changes (which should be once - on initial render)
     // and when the currently selected manifestation's material type changes - on availability button click.
