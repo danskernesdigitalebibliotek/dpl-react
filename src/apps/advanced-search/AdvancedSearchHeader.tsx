@@ -85,7 +85,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     key: keyof AdvancedSearchFilterData;
     value: MultiselectOption[];
   }) => {
-    if (!internalSearchObject?.filters[filtersUpdate.key].length) {
+    if (!internalSearchObject.filters[filtersUpdate.key].length) {
       return;
     }
     const newSearchObject = { ...internalSearchObject };

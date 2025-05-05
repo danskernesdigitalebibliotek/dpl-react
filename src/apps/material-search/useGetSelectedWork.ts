@@ -40,17 +40,15 @@ const useGetSelectedWork = (): UseGetSelectedMaterialReturn => {
           return;
         }
 
-        if (selectedMaterialType && responseData.work) {
+        if (selectedMaterialType) {
           const work = responseData.work as Work;
 
-          const availableMaterialTypes = work
-            ? getMaterialTypes(work.manifestations.all, false)
-            : null;
+          const availableMaterialTypes = getMaterialTypes(
+            work.manifestations.all,
+            false
+          );
 
-          if (
-            availableMaterialTypes &&
-            !availableMaterialTypes.includes(selectedMaterialType)
-          ) {
+          if (!availableMaterialTypes.includes(selectedMaterialType)) {
             setErrorState(ErrorState.MaterialTypeError);
             return;
           }
@@ -66,11 +64,12 @@ const useGetSelectedWork = (): UseGetSelectedMaterialReturn => {
     }
   }, [selectedWorkId, selectedMaterialType, refetch]);
 
-  const work = (data?.work as Work) ?? null;
+  const work = data?.work as Work;
 
-  const availableMaterialTypes = work
-    ? getMaterialTypes(work.manifestations.all, false)
-    : null;
+  const availableMaterialTypes = getMaterialTypes(
+    work.manifestations.all,
+    false
+  );
 
   return {
     work,

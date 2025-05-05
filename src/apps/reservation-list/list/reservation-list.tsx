@@ -71,7 +71,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     const resDetails = reservationDetails as string;
     if (modalUrlParam && modalUrlParam.includes(resDetails as string)) {
       const queryReservationId = getDetailsModalId(modalUrlParam, resDetails);
-      if (queryReservationId && allReservations) {
+      if (queryReservationId) {
         const reservationFromQuery = allReservations
           .filter((reservation) => {
             return reservationId(reservation) === queryReservationId;
@@ -86,7 +86,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
     const deleteRes = deleteReservation as string;
     if (modalUrlParam && modalUrlParam.includes(deleteRes as string)) {
       const queryReservationId = getDetailsModalId(modalUrlParam, deleteRes);
-      if (queryReservationId && allReservations) {
+      if (queryReservationId) {
         const reservationFromQuery = allReservations
           .filter((reservation) => {
             return reservationId(reservation) === queryReservationId;
@@ -131,7 +131,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       {/* Modals */}
       {userData?.patron && (
         <PauseReservation
-          user={userData?.patron}
+          user={userData.patron}
           id={pauseReservation as string}
         />
       )}

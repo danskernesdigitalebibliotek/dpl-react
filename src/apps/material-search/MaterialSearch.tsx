@@ -49,12 +49,12 @@ const MaterialSearch: FC<MaterialSearchProps> = ({ uniqueIdentifier }) => {
 
   useEffect(() => {
     if (workIdElement && workIdElement.value) {
-      setSelectedWorkId(workIdElement?.value);
+      setSelectedWorkId(workIdElement.value);
     }
 
     if (materialTypeElement && materialTypeElement.value) {
       setSelectedMaterialType(
-        materialTypeElement?.value as ManifestationMaterialType
+        materialTypeElement.value as ManifestationMaterialType
       );
     }
   }, [
