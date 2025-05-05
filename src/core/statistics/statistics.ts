@@ -64,7 +64,7 @@ export const statistics: Statistics = {
   materialFictionNonFiction: {
     id: 33,
     name: "Materiale Fiktion/nonfiktion",
-    parameterName: "p_mat_category"
+    parameterName: "p_mat_ficnonfic"
   },
   materialStatus: {
     id: 38,
