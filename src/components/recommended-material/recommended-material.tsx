@@ -51,15 +51,16 @@ const RecommendedMaterialComp: React.FC<RecommendedMaterialProps> = ({
   const {
     work: {
       titles: { full: fullTitle },
-      manifestations: { bestRepresentation },
       creators
     }
   } = data;
 
   const work = data.work as Work;
-  const materialManifestationForDisplay = materialType
-    ? getManifestationBasedOnType(work, materialType)
-    : bestRepresentation;
+
+  const materialManifestationForDisplay = getManifestationBasedOnType(
+    work,
+    materialType
+  );
 
   const { pid } = materialManifestationForDisplay;
 
@@ -91,7 +92,7 @@ const RecommendedMaterialComp: React.FC<RecommendedMaterialProps> = ({
         />
       </div>
       <Cover
-        ids={[pid]}
+        pid={pid}
         url={materialFullUrl}
         size="large"
         animate

@@ -1,11 +1,11 @@
 import React, { FC, ReactNode } from "react";
 import AuthorYear from "../../../../components/author-year/authorYear";
 import { Cover } from "../../../../components/cover/cover";
+import { assertIsValidPid } from "../../../../components/cover/helper";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
 
 interface MaterialInfoProps {
   material: BasicDetailsType;
-  isbnForCover: string;
   periodical?: string | null;
   children?: ReactNode;
   openDetailsModal: () => void;
@@ -15,7 +15,6 @@ interface MaterialInfoProps {
 
 const MaterialInfo: FC<MaterialInfoProps> = ({
   material,
-  isbnForCover,
   periodical,
   openDetailsModal,
   focused,
@@ -32,18 +31,18 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
     series,
     lang
   } = material || {};
-  const coverId = pid || isbnForCover;
+
   const handleDetailsModal = (event: React.SyntheticEvent) => {
     event.stopPropagation();
     openDetailsModal();
   };
 
+  const validPid = assertIsValidPid(pid);
   return (
     <div className="list-reservation__material">
       <div>
         <Cover
-          ids={[coverId]}
-          idType={pid ? "pid" : "isbn"}
+          pid={validPid}
           size="small"
           animate={false}
           alt={description || ""}

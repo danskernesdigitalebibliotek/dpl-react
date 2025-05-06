@@ -2,6 +2,11 @@ query GetCoverByPid($pid: String!) {
   manifestation(pid: $pid) {
     pid
     cover {
+      xSmall {
+        url
+        width
+        height
+      }
       small {
         url
         width
