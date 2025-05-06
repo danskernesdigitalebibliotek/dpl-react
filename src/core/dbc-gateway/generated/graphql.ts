@@ -69,6 +69,8 @@ export type AccessUrl = {
   type?: Maybe<AccessUrlTypeEnum>;
   /** The url where manifestation is located */
   url: Scalars["String"]["output"];
+  /** Description/type of URL */
+  urlText?: Maybe<Scalars["String"]["output"]>;
 };
 
 export enum AccessUrlTypeEnum {
@@ -1176,14 +1178,6 @@ export type MoodTagRecommendResponse = {
   work: Work;
 };
 
-export type MusicalExercise = {
-  __typename?: "MusicalExercise";
-  /** The types of instrument 'schools' intended to practise with */
-  display: Array<Scalars["String"]["output"]>;
-  /** Information whether material is intended for practising and in combination with an instrument */
-  forExercise: Scalars["Boolean"]["output"];
-};
-
 export type Mutation = {
   __typename?: "Mutation";
   elba: ElbaServices;
@@ -1211,6 +1205,8 @@ export type Note = {
   heading?: Maybe<Scalars["String"]["output"]>;
   /** The type of note - e.g. note about language, genre etc, NOT_SPECIFIED if not known.  */
   type: NoteTypeEnum;
+  /** A link and possible link text */
+  urls?: Maybe<Array<Maybe<AccessUrl>>>;
 };
 
 export enum NoteTypeEnum {
@@ -1491,10 +1487,12 @@ export type RelatedPublication = {
   issn?: Maybe<Scalars["String"]["output"]>;
   /** Title of the related periodical/journal */
   title: Array<Scalars["String"]["output"]>;
-  /** URL of the related publication */
+  /** The first URL of the urls in related publications */
   url?: Maybe<Scalars["String"]["output"]>;
   /** Note regarding the URL of the related publication */
   urlText?: Maybe<Scalars["String"]["output"]>;
+  /** Alle urls of the related publication */
+  urls: Array<Maybe<Scalars["String"]["output"]>>;
 };
 
 export type Relations = {
@@ -1747,10 +1745,10 @@ export type SheetMusicCategory = {
   chamberMusicTypes: Array<Scalars["String"]["output"]>;
   /** The types of choir material covers */
   choirTypes: Array<Scalars["String"]["output"]>;
+  /** I this node for exercises */
+  forMusicalExercise?: Maybe<Scalars["Boolean"]["output"]>;
   /** The types of instruments material covers */
   instruments: Array<Scalars["String"]["output"]>;
-  /** Material intended to practice with */
-  musicalExercises?: Maybe<MusicalExercise>;
   /** The types of orchestra material covers */
   orchestraTypes: Array<Scalars["String"]["output"]>;
 };
@@ -5189,6 +5187,12 @@ export type GetCoverByPidQuery = {
     pid: string;
     cover: {
       __typename?: "Cover";
+      xSmall?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
       small?: {
         __typename?: "CoverDetails";
         url?: string | null;
@@ -7552,6 +7556,11 @@ export const GetCoverByPidDocument = `
   manifestation(pid: $pid) {
     pid
     cover {
+      xSmall {
+        url
+        width
+        height
+      }
       small {
         url
         width
