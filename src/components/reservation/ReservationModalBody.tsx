@@ -49,7 +49,7 @@ import {
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useTrackStatistics } from "../../core/statistics/useStatistics";
 import StockAndReservationInfo from "../material/StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
 import { statistics } from "../../core/statistics/statistics";
@@ -137,7 +137,7 @@ export const ReservationModalBody = ({
     config,
     blacklist: "availability"
   });
-  const { track } = useStatistics();
+  const { track } = useTrackStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
     work,
     allPids

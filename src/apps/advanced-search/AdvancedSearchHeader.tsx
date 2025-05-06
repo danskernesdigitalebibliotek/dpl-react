@@ -23,7 +23,7 @@ import {
 import { Button } from "../../components/Buttons/Button";
 import CheckBox from "../../components/checkbox/Checkbox";
 import { LocationFilter } from "./LocationFilter";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useTrackStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 
 export type AdvancedSearchHeaderProps = {
@@ -52,7 +52,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   locationFilter
 }) => {
   const t = useText();
-  const { track } = useStatistics();
+  const { track } = useTrackStatistics();
   const [isFormMode, setIsFormMode] = useState<boolean>(true);
   // Keep an internal copy of the search object in a separate state. We only
   // want to update the outer state and perform a search when the user clicks
