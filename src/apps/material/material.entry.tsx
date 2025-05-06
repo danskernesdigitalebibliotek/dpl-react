@@ -10,7 +10,7 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
 import { PublizonErrorArgs } from "../../core/storybook/publizonErrorArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { usePageStatistics } from "../../core/statistics/useStatistics";
 import { useEffectOnce } from "react-use";
 
 interface MaterialEntryTextProps {
@@ -216,7 +216,7 @@ export interface MaterialEntryProps
 }
 
 const WrappedMaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => {
-  const { sendPageStatistics } = useStatistics();
+  const { sendPageStatistics } = usePageStatistics();
   useEffectOnce(() => {
     sendPageStatistics();
   });

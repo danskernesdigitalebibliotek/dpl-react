@@ -38,20 +38,10 @@ export type TrackParameters = {
 
 export type EventAction = "send";
 
-export function useStatistics() {
+export function usePageStatistics() {
   const config = useConfig();
   const domain = config("mappDomainConfig");
   const id = config("mappIdConfig");
-  // If the global wts object doesn't exist, it means we are in dev environment.
-  // Here instead of actually tracking we just log the data to the console.
-  if (!window.wts) {
-    window.wts = {
-      push([action, type, data]: [EventAction, EventType, EventData]) {
-        // eslint-disable-next-line no-console
-        console.log(`Tracking: ${action}, ${type}, ${JSON.stringify(data)}`);
-      }
-    };
-  }
 
   const collectPageStatistics = ({ parameterName, trackedData }: EventData) => {
     window._ti = window._ti || {};
@@ -81,6 +71,25 @@ export function useStatistics() {
     sendPageStatistics();
   };
 
+  return {
+    collectPageStatistics,
+    sendPageStatistics,
+    updatePageStatistics
+  };
+}
+
+export const useTrackStatistics = () => {
+  // If the global wts object doesn't exist, it means we are in dev environment.
+  // Here instead of actually tracking we just log the data to the console.
+  if (!window.wts) {
+    window.wts = {
+      push([action, type, data]: [EventAction, EventType, EventData]) {
+        // eslint-disable-next-line no-console
+        console.log(`Tracking: ${action}, ${type}, ${JSON.stringify(data)}`);
+      }
+    };
+  }
+
   const track = (eventType: EventType, trackParameters: TrackParameters) => {
     const eventData: EventDataWithCustomClickParameter = {
       linkId: trackParameters.name,
@@ -98,11 +107,8 @@ export function useStatistics() {
   };
 
   return {
-    collectPageStatistics,
-    sendPageStatistics,
-    updatePageStatistics,
     track
   };
-}
+};
 
 export default {};

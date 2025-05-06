@@ -8,7 +8,7 @@ import SearchResult from "./search-result";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { usePageStatistics } from "../../core/statistics/useStatistics";
 import { useEffectOnce } from "react-use";
 
 interface SearchResultEntryTextProps {
@@ -73,7 +73,7 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   pageSizeDesktop,
   pageSizeMobile
 }) => {
-  const { sendPageStatistics } = useStatistics();
+  const { sendPageStatistics } = usePageStatistics();
   useEffectOnce(() => {
     sendPageStatistics();
   });
