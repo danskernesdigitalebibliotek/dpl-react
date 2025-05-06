@@ -2,7 +2,7 @@ import CreateIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 import Receipt from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Receipt.svg";
 import VariousIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import React, { useEffect, useState } from "react";
-import { useDeepCompareEffect } from "react-use";
+import { useDeepCompareEffect, useUpdateEffect } from "react-use";
 import DisclosureControllable from "../../components/Disclosures/DisclosureControllable";
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import DigitalModal from "../../components/material/digital-modal/DigitalModal";
@@ -43,6 +43,8 @@ import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
+import { removeMappScript } from "../../core/statistics/tiLoader.min";
+import { useConfig } from "../../core/utils/config";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -64,6 +66,32 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     identifier,
     orderId
   } = useReaderPlayer(getFirstManifestation(selectedManifestations || []));
+
+  const config = useConfig();
+  const domain = config("mappDomainConfig");
+  const id = config("mappIdConfig");
+  const { sendPageStatistics } = useStatistics();
+
+  useUpdateEffect(() => {
+    // if (selectedManifestations?.length) {
+    console.group("selectedManifestations change");
+    console.log("selectedManifestations", selectedManifestations);
+    console.log("🚀 ~ useStatistics ~ window._ti:", window._ti);
+    console.groupEnd();
+
+    removeMappScript();
+
+    const script = document.getElementById("tiLoader");
+    console.log("🚀 ~ useUpdateEffect ~ script:", script);
+
+    // if (!script) {
+    sendPageStatistics({
+      domain,
+      id
+    });
+    // }
+    // }
+  }, [selectedManifestations, selectedPeriodical]);
 
   useEffect(() => {
     setIsUserBlocked(!!(userData?.patron && isBlocked(userData.patron)));

@@ -68,7 +68,10 @@ export function useStatistics() {
           return;
         }
 
-        injectMappScript({ domain, id });
+        const script = document.getElementById("tiLoader");
+        if (!script) {
+          injectMappScript({ domain, id });
+        }
       }, 5000);
     },
     track: (eventType: EventType, trackParameters: TrackParameters) => {
