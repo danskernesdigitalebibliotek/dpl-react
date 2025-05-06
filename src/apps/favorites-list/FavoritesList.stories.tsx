@@ -9,6 +9,9 @@ import globalTextArgs, {
 import globalConfigArgs, {
   argTypes as globalConfigArgTypes
 } from "../../core/storybook/globalConfigArgs";
+import mappArgs, {
+  argTypes as mappArgTypes
+} from "../../core/storybook/mappArgs";
 
 const meta: Meta<typeof FavoritesListEntry> = {
   title: "Apps / Favorite list",
@@ -19,6 +22,7 @@ const meta: Meta<typeof FavoritesListEntry> = {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
+    ...mappArgTypes,
     pageSizeDesktop: {
       description: "Number of favorite items on desktop",
       control: { type: "number" }
@@ -82,6 +86,7 @@ export const Primary: Story = {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    ...mappArgs,
     pageSizeDesktop: 50,
     blacklistedAvailabilityBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",

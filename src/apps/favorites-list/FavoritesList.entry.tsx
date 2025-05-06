@@ -6,6 +6,7 @@ import { withUrls } from "../../core/utils/url";
 import FavoritesList from "./FavoritesList";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { MappArgs } from "../../core/storybook/mappArgs";
 
 interface FavoritesListConfigEntryProps {
   blacklistedAvailabilityBranchesConfig: string;
@@ -27,7 +28,8 @@ export interface FavoritesListEntryProps
   extends FavoritesListConfigEntryProps,
     FavoritesListTextEntryProps,
     GlobalEntryTextProps,
-    GlobalUrlEntryPropsInterface {
+    GlobalUrlEntryPropsInterface,
+    MappArgs {
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }
