@@ -70,27 +70,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const config = useConfig();
   const domain = config("mappDomainConfig");
   const id = config("mappIdConfig");
-  const { sendPageStatistics } = useStatistics();
+  const { updatePageStatistics } = useStatistics();
 
   useUpdateEffect(() => {
-    // if (selectedManifestations?.length) {
-    console.group("selectedManifestations change");
-    console.log("selectedManifestations", selectedManifestations);
-    console.log("🚀 ~ useStatistics ~ window._ti:", window._ti);
-    console.groupEnd();
-
-    removeMappScript();
-
-    const script = document.getElementById("tiLoader");
-    console.log("🚀 ~ useUpdateEffect ~ script:", script);
-
-    // if (!script) {
-    sendPageStatistics({
-      domain,
-      id
-    });
-    // }
-    // }
+    updatePageStatistics({ domain, id });
   }, [selectedManifestations, selectedPeriodical]);
 
   useEffect(() => {
