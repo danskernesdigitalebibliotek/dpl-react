@@ -58,14 +58,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data, isLoading, workType } = useGetWork(wid);
   const { data: userData } = usePatronData();
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
-  const { collectPageStatistics } = usePageStatistics();
+  const { collectPageStatistics, updatePageStatistics } = usePageStatistics();
   const {
     type: readerPlayerType,
     identifier,
     orderId
   } = useReaderPlayer(getFirstManifestation(selectedManifestations || []));
-
-  const { updatePageStatistics } = usePageStatistics();
 
   useUpdateEffect(() => {
     updatePageStatistics();
