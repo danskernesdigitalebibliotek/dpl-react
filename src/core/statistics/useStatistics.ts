@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { injectMappScript } from "./tiLoader.min";
+import { injectMappScript, removeMappScript } from "./tiLoader.min";
 // Useful resources for Mapp tracking:
 // https://documentation.mapp.com/1.0/en/manual-track-request-25105181.html
 // https://documentation.mapp.com/1.0/en/how-to-send-manual-tracking-requests-page-updates-7240681.html
@@ -49,46 +49,67 @@ export function useStatistics() {
     };
   }
 
-  return {
-    collectPageStatistics: ({ parameterName, trackedData }: EventData) => {
-      window._ti = window._ti || {};
-      window._ti[parameterName as string] = trackedData;
-    },
-    sendPageStatistics: ({ domain, id }: { domain: string; id: string }) => {
-      // Delay sending the stats and loading script to allow DOM/data to stabilize
+  const collectPageStatistics = ({ parameterName, trackedData }: EventData) => {
+    window._ti = window._ti || {};
+    window._ti[parameterName as string] = trackedData;
+  };
+
+  const sendPageStatistics = ({
+    domain,
+    id
+  }: {
+    domain: string;
+    id: string;
+  }) => {
+    setTimeout(() => {
+      if (!domain || !id) {
+        // eslint-disable-next-line no-console
+        console.warn("⚠️ Mapp Domain or ID is not defined");
+        // This is to simulate the tracking request like the code in above for
+        // click events. Because domain and id are set as empty strings in Storybook
+        // The tracking script are not enabled. And therefore we console log the data
+        // eslint-disable-next-line no-console
+        console.log("Tracking: send, page", JSON.stringify(window._ti));
+        return;
+      }
+      if (!document.getElementById("tiLoader")) {
+        injectMappScript({ domain, id });
+      }
+    }, 5000);
+  };
+
+  const updatePageStatistics = ({
+    domain,
+    id
+  }: {
+    domain: string;
+    id: string;
+  }) => {
+    removeMappScript();
+    sendPageStatistics({ domain, id });
+  };
+
+  const track = (eventType: EventType, trackParameters: TrackParameters) => {
+    const eventData: EventDataWithCustomClickParameter = {
+      linkId: trackParameters.name,
+      customClickParameter: {}
+    };
+    eventData.customClickParameter[trackParameters.id] =
+      trackParameters.trackedData;
+    window.wts.push(["send", eventType, eventData]);
+
+    return new Promise((resolve) => {
       setTimeout(() => {
-        if (!domain || !id) {
-          // eslint-disable-next-line no-console
-          console.warn("⚠️ Mapp Domain or ID is not defined");
-          // This is to simulate the tracking request like the code in above for
-          // click events. Because domain and id are set as empty strings in Storybook
-          // The tracking script are not enabled. And therefore we console log the data
-          // eslint-disable-next-line no-console
-          console.log("Tracking: send, page", JSON.stringify(window._ti));
-          return;
-        }
+        resolve("resolved");
+      }, 500);
+    });
+  };
 
-        const script = document.getElementById("tiLoader");
-        if (!script) {
-          injectMappScript({ domain, id });
-        }
-      }, 5000);
-    },
-    track: (eventType: EventType, trackParameters: TrackParameters) => {
-      const eventData: EventDataWithCustomClickParameter = {
-        linkId: trackParameters.name,
-        customClickParameter: {}
-      };
-      eventData.customClickParameter[trackParameters.id] =
-        trackParameters.trackedData;
-      window.wts.push(["send", eventType, eventData]);
-
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve("resolved");
-        }, 500);
-      });
-    }
+  return {
+    collectPageStatistics,
+    sendPageStatistics,
+    updatePageStatistics,
+    track
   };
 }
 
