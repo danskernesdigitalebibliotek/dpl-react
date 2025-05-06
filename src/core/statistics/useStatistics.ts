@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+import { useConfig } from "../utils/config";
 import { injectMappScript, removeMappScript } from "./tiLoader.min";
 // Useful resources for Mapp tracking:
 // https://documentation.mapp.com/1.0/en/manual-track-request-25105181.html
@@ -38,6 +39,9 @@ export type TrackParameters = {
 export type EventAction = "send";
 
 export function useStatistics() {
+  const config = useConfig();
+  const domain = config("mappDomainConfig");
+  const id = config("mappIdConfig");
   // If the global wts object doesn't exist, it means we are in dev environment.
   // Here instead of actually tracking we just log the data to the console.
   if (!window.wts) {
@@ -54,13 +58,7 @@ export function useStatistics() {
     window._ti[parameterName as string] = trackedData;
   };
 
-  const sendPageStatistics = ({
-    domain,
-    id
-  }: {
-    domain: string;
-    id: string;
-  }) => {
+  const sendPageStatistics = () => {
     setTimeout(() => {
       if (!domain || !id) {
         // eslint-disable-next-line no-console
@@ -78,15 +76,9 @@ export function useStatistics() {
     }, 5000);
   };
 
-  const updatePageStatistics = ({
-    domain,
-    id
-  }: {
-    domain: string;
-    id: string;
-  }) => {
+  const updatePageStatistics = () => {
     removeMappScript();
-    sendPageStatistics({ domain, id });
+    sendPageStatistics();
   };
 
   const track = (eventType: EventType, trackParameters: TrackParameters) => {
