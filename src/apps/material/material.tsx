@@ -43,8 +43,6 @@ import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
-import { removeMappScript } from "../../core/statistics/tiLoader.min";
-import { useConfig } from "../../core/utils/config";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -67,13 +65,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     orderId
   } = useReaderPlayer(getFirstManifestation(selectedManifestations || []));
 
-  const config = useConfig();
-  const domain = config("mappDomainConfig");
-  const id = config("mappIdConfig");
   const { updatePageStatistics } = useStatistics();
 
   useUpdateEffect(() => {
-    updatePageStatistics({ domain, id });
+    updatePageStatistics();
   }, [selectedManifestations, selectedPeriodical]);
 
   useEffect(() => {
