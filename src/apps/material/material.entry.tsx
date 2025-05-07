@@ -83,6 +83,11 @@ interface MaterialEntryTextProps {
   materialHeaderAllEditionsText: string;
   materialHeaderAuthorByText: string;
   materialGridRelatedTitleText: string;
+  materialGridRelatedRecommendationsDataLabelText: string;
+  materialGridRelatedSeriesDataLabelText: string;
+  materialGridRelatedAuthorDataLabelText: string;
+  materialGridRelatedSelectAriaLabelText: string;
+  materialGridRelatedInlineFiltersAriaLabelText: string;
   materialIsAvailableInAnotherEditionText: string;
   materialIsIncludedText: string;
   materialIsLoanedOutText: string;

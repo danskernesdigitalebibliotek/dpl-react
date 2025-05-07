@@ -1,0 +1,4956 @@
+{
+  "data": {
+    "complexSearch": {
+      "hitcount": 29,
+      "works": [
+        {
+          "workId": "work-of:870970-basis:38500775",
+          "titles": {
+            "full": ["Den forsvundne søster"],
+            "original": ["The missing sister"],
+            "tvSeries": null
+          },
+          "abstract": [
+            "Pa Salt er død og søstrene forbereder en fælles sejlads for at mindes ham. Da familiens advokat afslører, at der muligvis findes endnu en søster, starter en jordomspændende eftersøgning i kapløb med tiden, mens en dyster familiehistorie trækker tråde fra New Zealand til Irland. For læsere af slægtshistorier og kærlighedsromaner."
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "series": [
+            {
+              "title": "De syv søstre-serien",
+              "isPopular": true,
+              "members": [
+                {
+                  "numberInSeries": "Del 1",
+                  "work": {
+                    "workId": "work-of:870970-basis:52557240",
+                    "titles": {
+                      "main": ["De syv søstre"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 2",
+                  "work": {
+                    "workId": "work-of:870970-basis:53247806",
+                    "titles": {
+                      "main": ["Stormsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 3",
+                  "work": {
+                    "workId": "work-of:870970-basis:53557791",
+                    "titles": {
+                      "main": ["Skyggesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 4",
+                  "work": {
+                    "workId": "work-of:870970-basis:53802001",
+                    "titles": {
+                      "main": ["Perlesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 5",
+                  "work": {
+                    "workId": "work-of:870970-basis:45942570",
+                    "titles": {
+                      "main": ["Månesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 6",
+                  "work": {
+                    "workId": "work-of:870970-basis:46656172",
+                    "titles": {
+                      "main": ["Solsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 7",
+                  "work": {
+                    "workId": "work-of:870970-basis:38500775",
+                    "titles": {
+                      "main": ["Den forsvundne søster"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 8",
+                  "work": {
+                    "workId": "work-of:870970-basis:134823658",
+                    "titles": {
+                      "main": ["Atlas"]
+                    }
+                  }
+                }
+              ],
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
+          "workYear": null,
+          "genreAndForm": ["romaner", "slægtsromaner"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:38500775",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Den forsvundne søster"],
+                  "original": ["The missing sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763861649"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2021",
+                  "publicationYear": {
+                    "display": "2021"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2021",
+                  "year": 2021
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [],
+                "physicalDescription": {
+                  "summaryFull": "727 sider",
+                  "numberOfPages": 727
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF202126"],
+                  "otherCatalogues": [
+                    "ACT202118",
+                    "BKX202125",
+                    "ACF202050",
+                    "ACC202123",
+                    "BKM202126"
+                  ]
+                }
+              },
+              {
+                "pid": "870970-basis:61886575",
+                "genreAndForm": ["slægtsromaner", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Den forsvundne søster (mp3)"],
+                  "original": ["The missing sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd-mp3)"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [
+                  {
+                    "value": "9788702343755"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Maria Stokholm",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "indlæser"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "2020",
+                  "publicationYear": {
+                    "display": "2020"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2021",
+                  "year": 2021
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": [
+                      "Gengivelse af bogen",
+                      "Indlæst efter 1. udgave. 2021. ISBN: 9788763861649"
+                    ]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "2 cd'er i 1 mappe (mp3, 21 t., 23 min.)",
+                  "numberOfPages": null
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DLF202152"],
+                  "otherCatalogues": ["BKM202152"]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:61886575",
+              "genreAndForm": ["slægtsromaner", "romaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Den forsvundne søster (mp3)"],
+                "original": ["The missing sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "lydbog (cd-mp3)"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Gyldendal"],
+              "identifiers": [
+                {
+                  "value": "9788702343755"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Maria Stokholm",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "indlæser"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "2020",
+                "publicationYear": {
+                  "display": "2020"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2021",
+                "year": 2021
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": [
+                    "Gengivelse af bogen",
+                    "Indlæst efter 1. udgave. 2021. ISBN: 9788763861649"
+                  ]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "2 cd'er i 1 mappe (mp3, 21 t., 23 min.)",
+                "numberOfPages": null
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DLF202152"],
+                "otherCatalogues": ["BKM202152"]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:38500775",
+              "genreAndForm": ["romaner", "slægtsromaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Den forsvundne søster"],
+                "original": ["The missing sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763861649"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2021",
+                "publicationYear": {
+                  "display": "2021"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2021",
+                "year": 2021
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescription": {
+                "summaryFull": "727 sider",
+                "numberOfPages": 727
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202126"],
+                "otherCatalogues": [
+                  "ACT202118",
+                  "BKX202125",
+                  "ACF202050",
+                  "ACC202123",
+                  "BKM202126"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "workId": "work-of:870970-basis:134823658",
+          "titles": {
+            "full": ["Atlas : historien om Pa Salt"],
+            "original": ["Atlas (engelsk)"],
+            "tvSeries": null
+          },
+          "abstract": [
+            "De syv søstre er endelig samlet for at tage afsked med deres elskede Pa Salt. Men der er stadig mange ubesvarede spørgsmål om deres opvækst og den fare, som deres adoptivfar kæmpede så hårdt for at beskytte dem imod. For læsere af historiske romaner og slægtsromaner."
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            },
+            {
+              "display": "Harry Whittaker",
+              "__typename": "Person"
+            }
+          ],
+          "series": [
+            {
+              "title": "De syv søstre-serien",
+              "isPopular": true,
+              "members": [
+                {
+                  "numberInSeries": "Del 1",
+                  "work": {
+                    "workId": "work-of:870970-basis:52557240",
+                    "titles": {
+                      "main": ["De syv søstre"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 2",
+                  "work": {
+                    "workId": "work-of:870970-basis:53247806",
+                    "titles": {
+                      "main": ["Stormsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 3",
+                  "work": {
+                    "workId": "work-of:870970-basis:53557791",
+                    "titles": {
+                      "main": ["Skyggesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 4",
+                  "work": {
+                    "workId": "work-of:870970-basis:53802001",
+                    "titles": {
+                      "main": ["Perlesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 5",
+                  "work": {
+                    "workId": "work-of:870970-basis:45942570",
+                    "titles": {
+                      "main": ["Månesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 6",
+                  "work": {
+                    "workId": "work-of:870970-basis:46656172",
+                    "titles": {
+                      "main": ["Solsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 7",
+                  "work": {
+                    "workId": "work-of:870970-basis:38500775",
+                    "titles": {
+                      "main": ["Den forsvundne søster"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 8",
+                  "work": {
+                    "workId": "work-of:870970-basis:134823658",
+                    "titles": {
+                      "main": ["Atlas"]
+                    }
+                  }
+                }
+              ],
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
+          "workYear": null,
+          "genreAndForm": ["slægtsromaner", "historiske romaner", "romaner"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:134823658",
+                "genreAndForm": [
+                  "romaner",
+                  "slægtsromaner",
+                  "historiske romaner"
+                ],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Atlas"],
+                  "original": ["Atlas (engelsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Harry Whittaker",
+                    "nameSort": "whittaker harry",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763865708"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Birgitte Brix",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2023",
+                  "publicationYear": {
+                    "display": "2023"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2023",
+                  "year": 2023
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [],
+                "physicalDescription": {
+                  "summaryFull": "656 sider",
+                  "numberOfPages": 656
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF202322"],
+                  "otherCatalogues": [
+                    "ACF202242",
+                    "ACC202319",
+                    "BKM202322",
+                    "BKX202321"
+                  ]
+                }
+              },
+              {
+                "pid": "870970-basis:137288524",
+                "genreAndForm": [
+                  "slægtsromaner",
+                  "historiske romaner",
+                  "romaner"
+                ],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Atlas (mp3)"],
+                  "original": ["Atlas (engelsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd-mp3)"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  },
+                  {
+                    "display": "Harry Whittaker",
+                    "nameSort": "whittaker harry",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [
+                  {
+                    "value": "9788702411799"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Maria Stokholm",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "indlæser"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Birgitte Brix",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "2023",
+                  "publicationYear": {
+                    "display": "2023"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2023",
+                  "year": 2023
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": [
+                      "Gengivelse af bogen",
+                      "Indlæst efter 1. udgave. 2023. ISBN: 9788763865708"
+                    ]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "2 cd'er i 1 mappe (mp3, 19 t., 45 min.)",
+                  "numberOfPages": null
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DLF202345"],
+                  "otherCatalogues": ["BKM202345"]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:137288524",
+              "genreAndForm": [
+                "slægtsromaner",
+                "historiske romaner",
+                "romaner"
+              ],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Atlas (mp3)"],
+                "original": ["Atlas (engelsk)"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "lydbog (cd-mp3)"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                },
+                {
+                  "display": "Harry Whittaker",
+                  "nameSort": "whittaker harry",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Gyldendal"],
+              "identifiers": [
+                {
+                  "value": "9788702411799"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Maria Stokholm",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "indlæser"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Birgitte Brix",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2023",
+                "year": 2023
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": [
+                    "Gengivelse af bogen",
+                    "Indlæst efter 1. udgave. 2023. ISBN: 9788763865708"
+                  ]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "2 cd'er i 1 mappe (mp3, 19 t., 45 min.)",
+                "numberOfPages": null
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DLF202345"],
+                "otherCatalogues": ["BKM202345"]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:134823658",
+              "genreAndForm": [
+                "romaner",
+                "slægtsromaner",
+                "historiske romaner"
+              ],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Atlas"],
+                "original": ["Atlas (engelsk)"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                },
+                {
+                  "display": "Harry Whittaker",
+                  "nameSort": "whittaker harry",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763865708"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Birgitte Brix",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2023",
+                "year": 2023
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescription": {
+                "summaryFull": "656 sider",
+                "numberOfPages": 656
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202322"],
+                "otherCatalogues": [
+                  "ACF202242",
+                  "ACC202319",
+                  "BKM202322",
+                  "BKX202321"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "workId": "work-of:870970-basis:52557240",
+          "titles": {
+            "full": ["De syv søstre : Maias historie"],
+            "original": ["The seven sisters"],
+            "tvSeries": null
+          },
+          "abstract": [
+            "Pa Salt dør og hans seks adoptivdøtre står tilbage med muligheden for at finde deres ophav."
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "series": [
+            {
+              "title": "De syv søstre-serien",
+              "isPopular": true,
+              "members": [
+                {
+                  "numberInSeries": "Del 1",
+                  "work": {
+                    "workId": "work-of:870970-basis:52557240",
+                    "titles": {
+                      "main": ["De syv søstre"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 2",
+                  "work": {
+                    "workId": "work-of:870970-basis:53247806",
+                    "titles": {
+                      "main": ["Stormsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 3",
+                  "work": {
+                    "workId": "work-of:870970-basis:53557791",
+                    "titles": {
+                      "main": ["Skyggesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 4",
+                  "work": {
+                    "workId": "work-of:870970-basis:53802001",
+                    "titles": {
+                      "main": ["Perlesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 5",
+                  "work": {
+                    "workId": "work-of:870970-basis:45942570",
+                    "titles": {
+                      "main": ["Månesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 6",
+                  "work": {
+                    "workId": "work-of:870970-basis:46656172",
+                    "titles": {
+                      "main": ["Solsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 7",
+                  "work": {
+                    "workId": "work-of:870970-basis:38500775",
+                    "titles": {
+                      "main": ["Den forsvundne søster"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 8",
+                  "work": {
+                    "workId": "work-of:870970-basis:134823658",
+                    "titles": {
+                      "main": ["Atlas"]
+                    }
+                  }
+                }
+              ],
+              "readThisFirst": true,
+              "readThisWhenever": null
+            }
+          ],
+          "workYear": null,
+          "genreAndForm": ["romaner", "slægtsromaner"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:52590302",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["eReolen"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["De syv søstre"],
+                  "original": ["The seven sisters"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "e-bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763844123"
+                  },
+                  {
+                    "value": "9788763844123"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. eBogsudgave, 2016",
+                  "publicationYear": {
+                    "display": "2016"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2016",
+                  "year": 2016
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [],
+                "physicalDescription": null,
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "ONLINE"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "Ereol",
+                    "origin": "eReolen",
+                    "url": "https://ereolen.dk/ting/object/870970-basis:52590302",
+                    "canAlwaysBeLoaned": false
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201639"],
+                  "otherCatalogues": [
+                    "ACC201636",
+                    "BKM201639",
+                    "ERE202235",
+                    "DAT201713"
+                  ]
+                }
+              },
+              {
+                "pid": "870970-basis:53292968",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["De syv søstre"],
+                  "original": ["The seven sisters"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763849630"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "2. udgave, 2017",
+                  "publicationYear": {
+                    "display": "2017"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2016",
+                  "year": 2016
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [],
+                "physicalDescription": {
+                  "summaryFull": "523 sider",
+                  "numberOfPages": 523
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF202510"],
+                  "otherCatalogues": ["ACC201727", "BKM202510"]
+                }
+              },
+              {
+                "pid": "870970-basis:52557240",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["De syv søstre"],
+                  "original": ["The seven sisters"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763844116"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2016",
+                  "publicationYear": {
+                    "display": "2016"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2016",
+                  "year": 2016
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [],
+                "physicalDescription": {
+                  "summaryFull": "523 sider",
+                  "numberOfPages": 523
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201835"],
+                  "otherCatalogues": ["ACC201634", "BKM201835"]
+                }
+              },
+              {
+                "pid": "870970-basis:52643414",
+                "genreAndForm": ["slægtsromaner", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["De syv søstre (mp3)"],
+                  "original": ["The seven sisters"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd-mp3)"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Rosinante"],
+                "identifiers": [
+                  {
+                    "value": "9788763850636"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Maria Stokholm",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "indlæser"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. lydbogsudgave, 2016",
+                  "publicationYear": {
+                    "display": "2016"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2016",
+                  "year": 2016
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": [
+                      "Gengivelse af bogen",
+                      "Indlæst efter 1. udgave. 2016. ISBN: 9788763844116"
+                    ]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "1 cd i 1 mappe (mp3, 16 t., 30 min.)",
+                  "numberOfPages": null
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DLF201642"],
+                  "otherCatalogues": ["BKM201642", "DAT201713"]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:53292968",
+              "genreAndForm": ["romaner", "slægtsromaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["De syv søstre"],
+                "original": ["The seven sisters"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763849630"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "2. udgave, 2017",
+                "publicationYear": {
+                  "display": "2017"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2016",
+                "year": 2016
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescription": {
+                "summaryFull": "523 sider",
+                "numberOfPages": 523
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202510"],
+                "otherCatalogues": ["ACC201727", "BKM202510"]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:53292968",
+              "genreAndForm": ["romaner", "slægtsromaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["De syv søstre"],
+                "original": ["The seven sisters"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763849630"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "2. udgave, 2017",
+                "publicationYear": {
+                  "display": "2017"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2016",
+                "year": 2016
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescription": {
+                "summaryFull": "523 sider",
+                "numberOfPages": 523
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202510"],
+                "otherCatalogues": ["ACC201727", "BKM202510"]
+              }
+            }
+          }
+        },
+        {
+          "workId": "work-of:870970-basis:53802001",
+          "titles": {
+            "full": ["Perlesøsteren : CeCes historie"],
+            "original": ["The pearl sister"],
+            "tvSeries": null
+          },
+          "abstract": [
+            "CeCes søgen efter sine biologiske forældre fører hende til Australien, hvor historien om præstedatteren Kitty MacBride udfolder sig. Kitty bliver gift med den rige Andrew Mercer, som driver en stor perleindustri, men en tragedie ændrer alt."
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "series": [
+            {
+              "title": "De syv søstre-serien",
+              "isPopular": true,
+              "members": [
+                {
+                  "numberInSeries": "Del 1",
+                  "work": {
+                    "workId": "work-of:870970-basis:52557240",
+                    "titles": {
+                      "main": ["De syv søstre"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 2",
+                  "work": {
+                    "workId": "work-of:870970-basis:53247806",
+                    "titles": {
+                      "main": ["Stormsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 3",
+                  "work": {
+                    "workId": "work-of:870970-basis:53557791",
+                    "titles": {
+                      "main": ["Skyggesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 4",
+                  "work": {
+                    "workId": "work-of:870970-basis:53802001",
+                    "titles": {
+                      "main": ["Perlesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 5",
+                  "work": {
+                    "workId": "work-of:870970-basis:45942570",
+                    "titles": {
+                      "main": ["Månesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 6",
+                  "work": {
+                    "workId": "work-of:870970-basis:46656172",
+                    "titles": {
+                      "main": ["Solsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 7",
+                  "work": {
+                    "workId": "work-of:870970-basis:38500775",
+                    "titles": {
+                      "main": ["Den forsvundne søster"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 8",
+                  "work": {
+                    "workId": "work-of:870970-basis:134823658",
+                    "titles": {
+                      "main": ["Atlas"]
+                    }
+                  }
+                }
+              ],
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
+          "workYear": null,
+          "genreAndForm": ["romaner", "slægtsromaner"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:53987427",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["eReolen"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Perlesøsteren"],
+                  "original": ["The pearl sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "e-bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763854474"
+                  },
+                  {
+                    "value": "9788763854474"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. Ebogsudgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2018",
+                  "year": 2018
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": null,
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "ONLINE"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "Ereol",
+                    "origin": "eReolen",
+                    "url": "https://ereolen.dk/ting/object/870970-basis:53987427",
+                    "canAlwaysBeLoaned": false
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201815"],
+                  "otherCatalogues": ["ACC201808", "BKM201815", "ERE202230"]
+                }
+              },
+              {
+                "pid": "870970-basis:53802001",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Perlesøsteren"],
+                  "original": ["The pearl sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763854467"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2018",
+                  "year": 2018
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "587 sider",
+                  "numberOfPages": 587
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201904"],
+                  "otherCatalogues": ["ACC201750", "BKM201904"]
+                }
+              },
+              {
+                "pid": "870970-basis:54088558",
+                "genreAndForm": ["slægtsromaner", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Perlesøsteren (mp3)"],
+                  "original": ["The pearl sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd-mp3)"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
+                "identifiers": [
+                  {
+                    "value": "9788763899796"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Maria Stokholm",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "indlæser"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2018",
+                  "year": 2018
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": [
+                      "Gengivelse af bogen",
+                      "Indlæst efter 1. udgave. 2018. ISBN: 9788763854467"
+                    ]
+                  },
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "1 cd i 1 mappe (mp3, 17 t., 48 min.)",
+                  "numberOfPages": null
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DLF201817"],
+                  "otherCatalogues": ["BKM201817"]
+                }
+              },
+              {
+                "pid": "870970-basis:46615735",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Perlesøsteren"],
+                  "original": ["The pearl sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763862653"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "2. udgave, 2019",
+                  "publicationYear": {
+                    "display": "2019"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2018",
+                  "year": 2018
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "587 sider",
+                  "numberOfPages": 587
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF202511"],
+                  "otherCatalogues": ["ACC201921", "BKM202511"]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:46615735",
+              "genreAndForm": ["romaner", "slægtsromaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Perlesøsteren"],
+                "original": ["The pearl sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763862653"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "2. udgave, 2019",
+                "publicationYear": {
+                  "display": "2019"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2018",
+                "year": 2018
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "587 sider",
+                "numberOfPages": 587
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202511"],
+                "otherCatalogues": ["ACC201921", "BKM202511"]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:46615735",
+              "genreAndForm": ["romaner", "slægtsromaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Perlesøsteren"],
+                "original": ["The pearl sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763862653"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "2. udgave, 2019",
+                "publicationYear": {
+                  "display": "2019"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2018",
+                "year": 2018
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "587 sider",
+                "numberOfPages": 587
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202511"],
+                "otherCatalogues": ["ACC201921", "BKM202511"]
+              }
+            }
+          }
+        },
+        {
+          "workId": "work-of:870970-basis:46656172",
+          "titles": {
+            "full": ["Solsøsteren : Electras historie"],
+            "original": ["The sun sister"],
+            "tvSeries": null
+          },
+          "abstract": [
+            "Electra arbejder i New York som supermodel, hvor hun dulmer sine kærestesorger med sprut og stoffer. Hendes adoptivfar opfordrede inden sin død døtrene til at opsøge deres biologiske ophav. Endelig kommer også Electra på sporet af sine rødder, der går tilbage til Kenya."
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "series": [
+            {
+              "title": "De syv søstre-serien",
+              "isPopular": true,
+              "members": [
+                {
+                  "numberInSeries": "Del 1",
+                  "work": {
+                    "workId": "work-of:870970-basis:52557240",
+                    "titles": {
+                      "main": ["De syv søstre"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 2",
+                  "work": {
+                    "workId": "work-of:870970-basis:53247806",
+                    "titles": {
+                      "main": ["Stormsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 3",
+                  "work": {
+                    "workId": "work-of:870970-basis:53557791",
+                    "titles": {
+                      "main": ["Skyggesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 4",
+                  "work": {
+                    "workId": "work-of:870970-basis:53802001",
+                    "titles": {
+                      "main": ["Perlesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 5",
+                  "work": {
+                    "workId": "work-of:870970-basis:45942570",
+                    "titles": {
+                      "main": ["Månesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 6",
+                  "work": {
+                    "workId": "work-of:870970-basis:46656172",
+                    "titles": {
+                      "main": ["Solsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 7",
+                  "work": {
+                    "workId": "work-of:870970-basis:38500775",
+                    "titles": {
+                      "main": ["Den forsvundne søster"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 8",
+                  "work": {
+                    "workId": "work-of:870970-basis:134823658",
+                    "titles": {
+                      "main": ["Atlas"]
+                    }
+                  }
+                }
+              ],
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
+          "workYear": null,
+          "genreAndForm": ["romaner", "slægtsromaner"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:47801966",
+                "genreAndForm": ["slægtsromaner", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Solsøsteren (mp3)"],
+                  "original": ["The sun sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd-mp3)"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [
+                  {
+                    "value": "9788763864695"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Maria Stokholm",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "indlæser"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "2020",
+                  "publicationYear": {
+                    "display": "2020"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2019",
+                  "year": 2019
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": [
+                      "Gengivelse af bogen",
+                      "Indlæst efter 1. udgave. 2019. ISBN: 9788763861182"
+                    ]
+                  },
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "2 cd'er i 1 mappe (mp3, 23 t., 33 min.)",
+                  "numberOfPages": null
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DLF202010"],
+                  "otherCatalogues": ["BKM202010"]
+                }
+              },
+              {
+                "pid": "870970-basis:47328276",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["eReolen"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Solsøsteren"],
+                  "original": ["The sun sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "e-bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763864671"
+                  },
+                  {
+                    "value": "9788763864671"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. eBogsudgave, 2019",
+                  "publicationYear": {
+                    "display": "2019"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2019",
+                  "year": 2019
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": null,
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "ONLINE"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "Ereol",
+                    "origin": "eReolen",
+                    "url": "https://ereolen.dk/ting/object/870970-basis:47328276",
+                    "canAlwaysBeLoaned": false
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201949"],
+                  "otherCatalogues": [
+                    "ACC201944",
+                    "BKX201948",
+                    "BKM201949",
+                    "ERE202230"
+                  ]
+                }
+              },
+              {
+                "pid": "870970-basis:46656172",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Solsøsteren"],
+                  "original": ["The sun sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763861182"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2019",
+                  "publicationYear": {
+                    "display": "2019"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2019",
+                  "year": 2019
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "757 sider",
+                  "numberOfPages": 757
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF202015"],
+                  "otherCatalogues": ["ACC201947", "BKM202015"]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:47801966",
+              "genreAndForm": ["slægtsromaner", "romaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Solsøsteren (mp3)"],
+                "original": ["The sun sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "lydbog (cd-mp3)"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Gyldendal"],
+              "identifiers": [
+                {
+                  "value": "9788763864695"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Maria Stokholm",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "indlæser"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "2020",
+                "publicationYear": {
+                  "display": "2020"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2019",
+                "year": 2019
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": [
+                    "Gengivelse af bogen",
+                    "Indlæst efter 1. udgave. 2019. ISBN: 9788763861182"
+                  ]
+                },
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "2 cd'er i 1 mappe (mp3, 23 t., 33 min.)",
+                "numberOfPages": null
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DLF202010"],
+                "otherCatalogues": ["BKM202010"]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:46656172",
+              "genreAndForm": ["romaner", "slægtsromaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Solsøsteren"],
+                "original": ["The sun sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763861182"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2019",
+                "publicationYear": {
+                  "display": "2019"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2019",
+                "year": 2019
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "757 sider",
+                "numberOfPages": 757
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202015"],
+                "otherCatalogues": ["ACC201947", "BKM202015"]
+              }
+            }
+          }
+        },
+        {
+          "workId": "work-of:870970-basis:45942570",
+          "titles": {
+            "full": ["Månesøsteren : Tiggys historie"],
+            "original": ["The moon sister"],
+            "tvSeries": null
+          },
+          "abstract": [
+            "Tiggi tager til et skotsk gods for at passe vildkatte og her møder hun den charmerende men gifte Charlie. Ånder fortæller hende, at hun skal finde sit ophav i Spanien og Tiggi drager dertil."
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "series": [
+            {
+              "title": "De syv søstre-serien",
+              "isPopular": true,
+              "members": [
+                {
+                  "numberInSeries": "Del 1",
+                  "work": {
+                    "workId": "work-of:870970-basis:52557240",
+                    "titles": {
+                      "main": ["De syv søstre"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 2",
+                  "work": {
+                    "workId": "work-of:870970-basis:53247806",
+                    "titles": {
+                      "main": ["Stormsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 3",
+                  "work": {
+                    "workId": "work-of:870970-basis:53557791",
+                    "titles": {
+                      "main": ["Skyggesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 4",
+                  "work": {
+                    "workId": "work-of:870970-basis:53802001",
+                    "titles": {
+                      "main": ["Perlesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 5",
+                  "work": {
+                    "workId": "work-of:870970-basis:45942570",
+                    "titles": {
+                      "main": ["Månesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 6",
+                  "work": {
+                    "workId": "work-of:870970-basis:46656172",
+                    "titles": {
+                      "main": ["Solsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 7",
+                  "work": {
+                    "workId": "work-of:870970-basis:38500775",
+                    "titles": {
+                      "main": ["Den forsvundne søster"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 8",
+                  "work": {
+                    "workId": "work-of:870970-basis:134823658",
+                    "titles": {
+                      "main": ["Atlas"]
+                    }
+                  }
+                }
+              ],
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
+          "workYear": null,
+          "genreAndForm": ["romaner", "slægtsromaner"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:45942600",
+                "genreAndForm": ["slægtsromaner", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Månesøsteren (mp3)"],
+                  "original": ["The moon sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd-mp3)"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
+                "identifiers": [
+                  {
+                    "value": "9788763897174"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Maria Stokholm",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "indlæser"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2018",
+                  "year": 2018
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": [
+                      "Gengivelse af bogen",
+                      "Indlæst efter 1. udgave. 2018. ISBN: 9788763855099"
+                    ]
+                  },
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "2 cd'er i 1 mappe (mp3, 20 t., 15 min.)",
+                  "numberOfPages": null
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DLF201850"],
+                  "otherCatalogues": ["BKM201850"]
+                }
+              },
+              {
+                "pid": "870970-basis:54979037",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["eReolen"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Månesøsteren"],
+                  "original": ["The moon sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "e-bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763859059"
+                  },
+                  {
+                    "value": "9788763859059"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. eBogsudgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2018",
+                  "year": 2018
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": null,
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "ONLINE"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "Ereol",
+                    "origin": "eReolen",
+                    "url": "https://ereolen.dk/ting/object/870970-basis:54979037",
+                    "canAlwaysBeLoaned": false
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201847"],
+                  "otherCatalogues": ["ACC201842", "BKM201847", "ERE202230"]
+                }
+              },
+              {
+                "pid": "870970-basis:54189141",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Månesøsteren"],
+                  "original": ["The moon sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763855099"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2018",
+                  "publicationYear": {
+                    "display": "2018"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2018",
+                  "year": 2018
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "636 sider",
+                  "numberOfPages": 636
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201908"],
+                  "otherCatalogues": ["ACC201822", "BKM201908"]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:45942600",
+              "genreAndForm": ["slægtsromaner", "romaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Månesøsteren (mp3)"],
+                "original": ["The moon sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "lydbog (cd-mp3)"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
+              "identifiers": [
+                {
+                  "value": "9788763897174"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Maria Stokholm",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "indlæser"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2018",
+                "publicationYear": {
+                  "display": "2018"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2018",
+                "year": 2018
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": [
+                    "Gengivelse af bogen",
+                    "Indlæst efter 1. udgave. 2018. ISBN: 9788763855099"
+                  ]
+                },
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "2 cd'er i 1 mappe (mp3, 20 t., 15 min.)",
+                "numberOfPages": null
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DLF201850"],
+                "otherCatalogues": ["BKM201850"]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:54189141",
+              "genreAndForm": ["romaner", "slægtsromaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Månesøsteren"],
+                "original": ["The moon sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763855099"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2018",
+                "publicationYear": {
+                  "display": "2018"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2018",
+                "year": 2018
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "636 sider",
+                "numberOfPages": 636
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF201908"],
+                "otherCatalogues": ["ACC201822", "BKM201908"]
+              }
+            }
+          }
+        },
+        {
+          "workId": "work-of:870970-basis:53247806",
+          "titles": {
+            "full": ["Stormsøsteren : Allys historie"],
+            "original": ["The storm sister"],
+            "tvSeries": null
+          },
+          "abstract": [
+            "Da Allys adoptivfar Pa Salt dør, får Ally og hendes fem søstre hver især en ledetråd til at finde deres biologiske ophav. I Stormsøsteren føres Ally til Norge, hvor hendes historie er viklet ind i en stor slægt af klassiske musikeres historie."
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "series": [
+            {
+              "title": "De syv søstre-serien",
+              "isPopular": true,
+              "members": [
+                {
+                  "numberInSeries": "Del 1",
+                  "work": {
+                    "workId": "work-of:870970-basis:52557240",
+                    "titles": {
+                      "main": ["De syv søstre"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 2",
+                  "work": {
+                    "workId": "work-of:870970-basis:53247806",
+                    "titles": {
+                      "main": ["Stormsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 3",
+                  "work": {
+                    "workId": "work-of:870970-basis:53557791",
+                    "titles": {
+                      "main": ["Skyggesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 4",
+                  "work": {
+                    "workId": "work-of:870970-basis:53802001",
+                    "titles": {
+                      "main": ["Perlesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 5",
+                  "work": {
+                    "workId": "work-of:870970-basis:45942570",
+                    "titles": {
+                      "main": ["Månesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 6",
+                  "work": {
+                    "workId": "work-of:870970-basis:46656172",
+                    "titles": {
+                      "main": ["Solsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 7",
+                  "work": {
+                    "workId": "work-of:870970-basis:38500775",
+                    "titles": {
+                      "main": ["Den forsvundne søster"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 8",
+                  "work": {
+                    "workId": "work-of:870970-basis:134823658",
+                    "titles": {
+                      "main": ["Atlas"]
+                    }
+                  }
+                }
+              ],
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
+          "workYear": null,
+          "genreAndForm": ["slægtsromaner", "romaner"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:53247768",
+                "genreAndForm": ["slægtsromaner", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Stormsøsteren (mp3)"],
+                  "original": ["The storm sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd-mp3)"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763899628"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Maria Stokholm",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "indlæser"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2017",
+                  "publicationYear": {
+                    "display": "2017"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2017",
+                  "year": 2017
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": [
+                      "Gengivelse af bogen",
+                      "Indlæst efter 1. udgave. 2017. ISBN: 9788763844130"
+                    ]
+                  },
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "1 cd i 1 mappe (mp3, 18 t., 22 min.)",
+                  "numberOfPages": null
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DLF201726"],
+                  "otherCatalogues": ["BKM201726", "DAT201728"]
+                }
+              },
+              {
+                "pid": "870970-basis:52970601",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["eReolen"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Stormsøsteren"],
+                  "original": ["The storm sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "e-bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763844147"
+                  },
+                  {
+                    "value": "9788763844147"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. eBogsudgave, 2017",
+                  "publicationYear": {
+                    "display": "2017"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2017",
+                  "year": 2017
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": null,
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "ONLINE"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "Ereol",
+                    "origin": "eReolen",
+                    "url": "https://ereolen.dk/ting/object/870970-basis:52970601",
+                    "canAlwaysBeLoaned": false
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201714"],
+                  "otherCatalogues": [
+                    "ACC201708",
+                    "BKX201713",
+                    "BKM201714",
+                    "ERE202305"
+                  ]
+                }
+              },
+              {
+                "pid": "870970-basis:52970628",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Stormsøsteren"],
+                  "original": ["The storm sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763844130"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2017",
+                  "publicationYear": {
+                    "display": "2017"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2017",
+                  "year": 2017
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "581 sider",
+                  "numberOfPages": 581
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201835"],
+                  "otherCatalogues": ["ACC201709", "BKM201835"]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:53247768",
+              "genreAndForm": ["slægtsromaner", "romaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Stormsøsteren (mp3)"],
+                "original": ["The storm sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "lydbog (cd-mp3)"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763899628"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Maria Stokholm",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "indlæser"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2017",
+                "publicationYear": {
+                  "display": "2017"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2017",
+                "year": 2017
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": [
+                    "Gengivelse af bogen",
+                    "Indlæst efter 1. udgave. 2017. ISBN: 9788763844130"
+                  ]
+                },
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "1 cd i 1 mappe (mp3, 18 t., 22 min.)",
+                "numberOfPages": null
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DLF201726"],
+                "otherCatalogues": ["BKM201726", "DAT201728"]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:52970628",
+              "genreAndForm": ["romaner", "slægtsromaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Stormsøsteren"],
+                "original": ["The storm sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763844130"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2017",
+                "publicationYear": {
+                  "display": "2017"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2017",
+                "year": 2017
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "581 sider",
+                "numberOfPages": 581
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF201835"],
+                "otherCatalogues": ["ACC201709", "BKM201835"]
+              }
+            }
+          }
+        },
+        {
+          "workId": "work-of:870970-basis:53557791",
+          "titles": {
+            "full": ["Skyggesøsteren : Stars historie"],
+            "original": ["The shadow sister"],
+            "tvSeries": null
+          },
+          "abstract": [
+            "Star er adopteret og får af sin adoptivfar en ledetråd til at finde sine biologiske forældre. Hendes vej krydser en gammel engelsk slægt, som har en fortryllende historie at fortælle."
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "series": [
+            {
+              "title": "De syv søstre-serien",
+              "isPopular": true,
+              "members": [
+                {
+                  "numberInSeries": "Del 1",
+                  "work": {
+                    "workId": "work-of:870970-basis:52557240",
+                    "titles": {
+                      "main": ["De syv søstre"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 2",
+                  "work": {
+                    "workId": "work-of:870970-basis:53247806",
+                    "titles": {
+                      "main": ["Stormsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 3",
+                  "work": {
+                    "workId": "work-of:870970-basis:53557791",
+                    "titles": {
+                      "main": ["Skyggesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 4",
+                  "work": {
+                    "workId": "work-of:870970-basis:53802001",
+                    "titles": {
+                      "main": ["Perlesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 5",
+                  "work": {
+                    "workId": "work-of:870970-basis:45942570",
+                    "titles": {
+                      "main": ["Månesøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 6",
+                  "work": {
+                    "workId": "work-of:870970-basis:46656172",
+                    "titles": {
+                      "main": ["Solsøsteren"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 7",
+                  "work": {
+                    "workId": "work-of:870970-basis:38500775",
+                    "titles": {
+                      "main": ["Den forsvundne søster"]
+                    }
+                  }
+                },
+                {
+                  "numberInSeries": "Del 8",
+                  "work": {
+                    "workId": "work-of:870970-basis:134823658",
+                    "titles": {
+                      "main": ["Atlas"]
+                    }
+                  }
+                }
+              ],
+              "readThisFirst": null,
+              "readThisWhenever": null
+            }
+          ],
+          "workYear": null,
+          "genreAndForm": ["romaner", "slægtsromaner"],
+          "manifestations": {
+            "all": [
+              {
+                "pid": "870970-basis:53410413",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["eReolen"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Skyggesøsteren"],
+                  "original": ["The shadow sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "e-bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763852470"
+                  },
+                  {
+                    "value": "9788763852470"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. eBogsudgave, 2017",
+                  "publicationYear": {
+                    "display": "2017"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2017",
+                  "year": 2017
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": null,
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "ONLINE"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "Ereol",
+                    "origin": "eReolen",
+                    "url": "https://ereolen.dk/ting/object/870970-basis:53410413",
+                    "canAlwaysBeLoaned": false
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201740"],
+                  "otherCatalogues": [
+                    "ACC201734",
+                    "BKM201740",
+                    "BKX201739",
+                    "ERE202230"
+                  ]
+                }
+              },
+              {
+                "pid": "870970-basis:53557813",
+                "genreAndForm": ["slægtsromaner", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Skyggesøsteren (mp3)"],
+                  "original": ["The shadow sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "lydbog (cd-mp3)"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
+                "identifiers": [
+                  {
+                    "value": "9788763899390"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Maria Stokholm",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "indlæser"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2017",
+                  "publicationYear": {
+                    "display": "2017"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2017",
+                  "year": 2017
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": [
+                      "Gengivelse af bogen",
+                      "Indlæst efter 1. udgave. 2017. ISBN: 9788763850209"
+                    ]
+                  },
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "1 cd i 1 mappe (mp3, 18 t., 26 min,)",
+                  "numberOfPages": null
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DLF201743"],
+                  "otherCatalogues": ["BKM201743"]
+                }
+              },
+              {
+                "pid": "870970-basis:53280749",
+                "genreAndForm": ["romaner", "slægtsromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [
+                    {
+                      "display": "dansk",
+                      "isoCode": "dan"
+                    }
+                  ],
+                  "notes": []
+                },
+                "titles": {
+                  "main": ["Skyggesøsteren"],
+                  "original": ["The shadow sister"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  {
+                    "materialTypeSpecific": {
+                      "display": "bog"
+                    }
+                  }
+                ],
+                "creators": [
+                  {
+                    "display": "Lucinda Riley",
+                    "nameSort": "riley lucinda",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Cicero"],
+                "identifiers": [
+                  {
+                    "value": "9788763850209"
+                  }
+                ],
+                "contributors": [
+                  {
+                    "display": "Ulla Lauridsen",
+                    "roles": [
+                      {
+                        "function": {
+                          "singular": "oversætter"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2017",
+                  "publicationYear": {
+                    "display": "2017"
+                  }
+                },
+                "dateFirstEdition": {
+                  "display": "2017",
+                  "year": 2017
+                },
+                "audience": {
+                  "generalAudience": [],
+                  "ages": []
+                },
+                "notes": [
+                  {
+                    "display": ["Med litteraturhenvisninger"]
+                  }
+                ],
+                "physicalDescription": {
+                  "summaryFull": "567 sider",
+                  "numberOfPages": 567
+                },
+                "hostPublication": null,
+                "manifestationParts": null,
+                "accessTypes": [
+                  {
+                    "code": "PHYSICAL"
+                  }
+                ],
+                "access": [
+                  {
+                    "__typename": "InterLibraryLoan",
+                    "loanIsPossible": true
+                  }
+                ],
+                "shelfmark": null,
+                "workYear": null,
+                "catalogueCodes": {
+                  "nationalBibliography": ["DBF201810"],
+                  "otherCatalogues": ["ACC201726", "BKM201810"]
+                }
+              }
+            ],
+            "latest": {
+              "pid": "870970-basis:53557813",
+              "genreAndForm": ["slægtsromaner", "romaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Skyggesøsteren (mp3)"],
+                "original": ["The shadow sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "lydbog (cd-mp3)"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
+              "identifiers": [
+                {
+                  "value": "9788763899390"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Maria Stokholm",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "indlæser"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2017",
+                "publicationYear": {
+                  "display": "2017"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2017",
+                "year": 2017
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": [
+                    "Gengivelse af bogen",
+                    "Indlæst efter 1. udgave. 2017. ISBN: 9788763850209"
+                  ]
+                },
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "1 cd i 1 mappe (mp3, 18 t., 26 min,)",
+                "numberOfPages": null
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DLF201743"],
+                "otherCatalogues": ["BKM201743"]
+              }
+            },
+            "bestRepresentation": {
+              "pid": "870970-basis:53280749",
+              "genreAndForm": ["romaner", "slægtsromaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Skyggesøsteren"],
+                "original": ["The shadow sister"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Lucinda Riley",
+                  "nameSort": "riley lucinda",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Cicero"],
+              "identifiers": [
+                {
+                  "value": "9788763850209"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Ulla Lauridsen",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2017",
+                "publicationYear": {
+                  "display": "2017"
+                }
+              },
+              "dateFirstEdition": {
+                "display": "2017",
+                "year": 2017
+              },
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [
+                {
+                  "display": ["Med litteraturhenvisninger"]
+                }
+              ],
+              "physicalDescription": {
+                "summaryFull": "567 sider",
+                "numberOfPages": 567
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": null,
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF201810"],
+                "otherCatalogues": ["ACC201726", "BKM201810"]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
