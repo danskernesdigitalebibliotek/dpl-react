@@ -131,7 +131,7 @@ const ReservationList: FC<ReservationListProps> = ({ pageSize }) => {
       {/* Modals */}
       {userData?.patron && (
         <PauseReservation
-          user={userData?.patron}
+          user={userData.patron}
           id={pauseReservation as string}
         />
       )}
