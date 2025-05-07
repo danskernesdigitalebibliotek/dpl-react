@@ -41,6 +41,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     pageSize
   });
   const [cql, setCql] = useState<string>(q);
+  console.log("🚀 ~ cql:", cql);
   const [, copy] = useCopyToClipboard();
 
   useEffect(() => {
