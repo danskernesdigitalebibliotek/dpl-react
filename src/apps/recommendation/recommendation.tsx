@@ -7,8 +7,9 @@ import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { useUrls } from "../../core/utils/url";
-import RecommendedMaterial from "../recommended-material/RecommendedMaterial";
+
 import RecommendationMaterialSkeleton from "./RecommendationSkeleton";
+import RecommendedMaterial from "../../components/recommended-material/recommended-material";
 
 export type RecommendationProps = {
   wid: WorkId;

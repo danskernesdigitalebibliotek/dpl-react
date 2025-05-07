@@ -42,6 +42,7 @@ import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
+import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -160,112 +161,119 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
   return (
-    <section className="material-page">
-      <MaterialHeader
-        wid={wid}
-        work={work}
-        selectedManifestations={selectedManifestations}
-        setSelectedManifestations={setSelectedManifestations}
-        selectedPeriodical={selectedPeriodical}
-        selectPeriodicalHandler={setSelectedPeriodical}
-        isGlobalMaterial={workType === "global"}
-      >
-        {manifestations.map((manifestation) => (
-          <ReservationFindOnShelfModals
-            key={manifestation.pid}
-            patron={userData?.patron}
-            manifestations={[manifestation]}
-            selectedPeriodical={selectedPeriodical}
-            work={work}
-            setSelectedPeriodical={setSelectedPeriodical}
-          />
-        ))}
-        {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
-          <InfomediaModal
-            selectedManifestations={selectedManifestations}
-            infoMediaId={infomediaIds[0]}
-          />
-        )}
-        {hasCorrectAccess("DigitalArticleService", selectedManifestations) &&
-          !isAnonymous() &&
-          !isUserBlocked && (
-            <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
-          )}
-        {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
-        Online materials lead to external links, or to same modals as are created for singular editions. */}
-        {isParallelReservation(selectedManifestations) && (
-          <ReservationFindOnShelfModals
-            patron={userData?.patron}
-            manifestations={selectedManifestations}
-            selectedPeriodical={selectedPeriodical}
-            work={work}
-            setSelectedPeriodical={setSelectedPeriodical}
-          />
-        )}
-        {readerPlayerType === "player" && (
-          <>
-            {identifier && <PlayerModal identifier={identifier} />}
-            {orderId && <PlayerModal orderId={orderId} />}
-          </>
-        )}
-        {(readerPlayerType === "reader" || readerPlayerType === "player") && (
-          <OnlineInternalModal
-            selectedManifestations={selectedManifestations}
-          />
-        )}
-      </MaterialHeader>
-      <MaterialDescription pid={pid} work={work} />
-      {/* Since we cannot trust the editions for global manifestations */}
-      {/* we limit them to only occur if the loaded work is global */}
-      {workType === "local" && (
-        <MaterialDisclosure
-          title={`${t("editionsText")} (${manifestations.length})`}
-          icon={VariousIcon}
-          dataCy="material-editions-disclosure"
+    <>
+      <section className="material-page">
+        <MaterialHeader
+          wid={wid}
+          work={work}
+          selectedManifestations={selectedManifestations}
+          setSelectedManifestations={setSelectedManifestations}
+          selectedPeriodical={selectedPeriodical}
+          selectPeriodicalHandler={setSelectedPeriodical}
+          isGlobalMaterial={workType === "global"}
         >
-          <>
-            {getManifestationsOrderByTypeAndYear(manifestations).map(
-              (manifestation: Manifestation) => {
-                return (
-                  <MaterialMainfestationItem
-                    key={manifestation.pid}
-                    manifestation={manifestation}
-                    workId={wid}
-                  />
-                );
-              }
-            )}
-          </>
-        </MaterialDisclosure>
-      )}
-      <MaterialDisclosure
-        dataCy="material-details-disclosure"
-        title={t("detailsText")}
-        icon={Receipt}
-      >
-        <MaterialDetailsList
-          id={`material-details-${wid}`}
-          className="pl-80 pb-48"
-          data={detailsListData}
-        />
-      </MaterialDisclosure>
-      {hasReview && hasReview.length > 0 && (
-        <DisclosureControllable
-          detailsClassName="disclosure text-body-large"
-          id="reviews"
-          showContent={shouldOpenReviewDisclosure}
-          cyData="material-reviews-disclosure"
-          summary={
-            <DisclosureSummary
-              title={t("reviewsText")}
-              mainIconPath={CreateIcon}
+          {manifestations.map((manifestation) => (
+            <ReservationFindOnShelfModals
+              key={manifestation.pid}
+              patron={userData?.patron}
+              manifestations={[manifestation]}
+              selectedPeriodical={selectedPeriodical}
+              work={work}
+              setSelectedPeriodical={setSelectedPeriodical}
             />
-          }
+          ))}
+          {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
+            <InfomediaModal
+              selectedManifestations={selectedManifestations}
+              infoMediaId={infomediaIds[0]}
+            />
+          )}
+          {hasCorrectAccess("DigitalArticleService", selectedManifestations) &&
+            !isAnonymous() &&
+            !isUserBlocked && (
+              <DigitalModal pid={selectedManifestations[0].pid} workId={wid} />
+            )}
+          {/* Only create a main version of "reservation" & "find on shelf" modal for physical materials with multiple editions.
+        Online materials lead to external links, or to same modals as are created for singular editions. */}
+          {isParallelReservation(selectedManifestations) && (
+            <ReservationFindOnShelfModals
+              patron={userData?.patron}
+              manifestations={selectedManifestations}
+              selectedPeriodical={selectedPeriodical}
+              work={work}
+              setSelectedPeriodical={setSelectedPeriodical}
+            />
+          )}
+          {readerPlayerType === "player" && (
+            <>
+              {identifier && <PlayerModal identifier={identifier} />}
+              {orderId && <PlayerModal orderId={orderId} />}
+            </>
+          )}
+          {(readerPlayerType === "reader" || readerPlayerType === "player") && (
+            <OnlineInternalModal
+              selectedManifestations={selectedManifestations}
+            />
+          )}
+        </MaterialHeader>
+        <MaterialDescription pid={pid} work={work} />
+        {/* Since we cannot trust the editions for global manifestations */}
+        {/* we limit them to only occur if the loaded work is global */}
+        {workType === "local" && (
+          <MaterialDisclosure
+            title={`${t("editionsText")} (${manifestations.length})`}
+            icon={VariousIcon}
+            dataCy="material-editions-disclosure"
+          >
+            <>
+              {getManifestationsOrderByTypeAndYear(manifestations).map(
+                (manifestation: Manifestation) => {
+                  return (
+                    <MaterialMainfestationItem
+                      key={manifestation.pid}
+                      manifestation={manifestation}
+                      workId={wid}
+                    />
+                  );
+                }
+              )}
+            </>
+          </MaterialDisclosure>
+        )}
+        <MaterialDisclosure
+          dataCy="material-details-disclosure"
+          title={t("detailsText")}
+          icon={Receipt}
         >
-          <MaterialReviews pids={hasReview.map((review) => review.pid)} />
-        </DisclosureControllable>
+          <MaterialDetailsList
+            id={`material-details-${wid}`}
+            className="pl-80 pb-48"
+            data={detailsListData}
+          />
+        </MaterialDisclosure>
+        {hasReview && hasReview.length > 0 && (
+          <DisclosureControllable
+            detailsClassName="disclosure text-body-large"
+            id="reviews"
+            showContent={shouldOpenReviewDisclosure}
+            cyData="material-reviews-disclosure"
+            summary={
+              <DisclosureSummary
+                title={t("reviewsText")}
+                mainIconPath={CreateIcon}
+              />
+            }
+          >
+            <MaterialReviews pids={hasReview.map((review) => review.pid)} />
+          </DisclosureControllable>
+        )}
+      </section>
+      {work && (
+        <section>
+          <MaterialGridRelated work={work} />
+        </section>
       )}
-    </section>
+    </>
   );
 };
 

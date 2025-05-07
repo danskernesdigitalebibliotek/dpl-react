@@ -7,6 +7,10 @@ describe("Reservation", () => {
       url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
     });
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
+    });
     cy.interceptRest({
       aliasName: "holdings",
       url: "**/agencyid/catalog/holdingsLogistics/**",
@@ -57,9 +61,11 @@ describe("Reservation", () => {
 
     // We simulate that the user is logged in so that we can open the modal.
     cy.createFakeAuthenticatedSession();
-    cy.visit("/iframe.html?id=apps-material--default&type=bog");
+    cy.visit("/iframe.html?id=apps-material--default&type=bog").scrollTo(
+      "bottom",
+      { duration: 500 }
+    );
 
-    cy.scrollTo("bottom");
     // eslint-disable-next-line
     cy.wait(10000);
     cy.getBySel("material-header-buttons-physical")
@@ -87,11 +93,10 @@ describe("Reservation", () => {
 
     // We simulate that the user is logged in so that we can open the modal.
     cy.createFakeAuthenticatedSession();
-    cy.visit("/iframe.html?id=apps-material--turen-gar-til-rom&type=bog");
+    cy.visit(
+      "/iframe.html?id=apps-material--turen-gar-til-rom&type=bog"
+    ).scrollTo("bottom", { duration: 500 });
 
-    cy.scrollTo("bottom");
-    // eslint-disable-next-line
-    cy.wait(10000);
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")

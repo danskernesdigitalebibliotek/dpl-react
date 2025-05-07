@@ -1,13 +1,11 @@
 import clsx from "clsx";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import MaterialListItem from "../../components/card-item-list/MaterialListItem";
-import { useText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
-import RecommendedMaterial from "../recommended-material/RecommendedMaterial";
+import MaterialListItem from "../card-item-list/MaterialListItem";
+import RecommendedMaterial from "../../apps/recommended-material/RecommendedMaterial";
 import {
-  MaterialGridValidIncrements,
   ValidSelectedIncrements,
   calculateAmountToDisplay
 } from "./materiel-grid-util";
@@ -22,17 +20,22 @@ export type MaterialGridProps = {
   title?: string;
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
+  buttonText?: string;
+  initialMaximumDisplay?: ValidSelectedIncrements;
 };
+
+const defaultIncrement: ValidSelectedIncrements = 4;
+
 const MaterialGrid: React.FC<MaterialGridProps> = ({
   materials,
   title,
   description,
-  selectedAmountOfMaterialsForDisplay
+  selectedAmountOfMaterialsForDisplay,
+  buttonText,
+  initialMaximumDisplay = defaultIncrement
 }) => {
-  const t = useText();
   const firstNewItemRef = React.useRef<HTMLLIElement>(null);
 
-  const initialMaximumDisplay = MaterialGridValidIncrements[0];
   const maximumCalculatedDisplay = calculateAmountToDisplay(
     materials.length,
     selectedAmountOfMaterialsForDisplay
@@ -97,7 +100,7 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
             );
           })}
       </ul>
-      {moreMaterialsThanInitialMaximum && !showAllMaterials && (
+      {moreMaterialsThanInitialMaximum && !showAllMaterials && buttonText && (
         <button
           className="material-grid__show-more btn-primary btn-outline btn-medium"
           data-show-more
@@ -105,7 +108,7 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
           type="button"
           onClick={() => handleShowAllMaterials()}
         >
-          {t("buttonText")}
+          {buttonText}
         </button>
       )}
     </div>

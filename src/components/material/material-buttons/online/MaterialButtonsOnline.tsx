@@ -58,11 +58,20 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
 
   // Check if the access type is external (e.g., Filmstriben or eReolen Global).
   if (hasCorrectAccess("AccessUrl", manifestations)) {
-    // Get the first manifestation and return the first active access element.
+    // Get the first manifestation
     const manifestation = first(manifestations);
-    const accessElement = manifestation?.access?.find(
-      (access) => access.__typename === "AccessUrl" && access.status === "OK"
-    );
+
+    // Get the first active access element, but prefer DBC Webarkiv.
+    const accessElement =
+      manifestation?.access?.find(
+        (access) =>
+          access.__typename === "AccessUrl" &&
+          access.status === "OK" &&
+          access.origin === "DBC Webarkiv"
+      ) ||
+      manifestation?.access?.find(
+        (access) => access.__typename === "AccessUrl" && access.status === "OK"
+      );
 
     if (!accessElement) {
       // If there is no active access element, don't render anything.

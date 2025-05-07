@@ -1,19 +1,19 @@
 import * as React from "react";
 import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../../core/utils/branches";
-import MaterialGrid from "../MaterialGrid";
-import MaterialGridSkeleton from "../MaterialGridSkeleton";
-import { ValidSelectedIncrements } from "../materiel-grid-util";
+import MaterialGrid from "../../../components/material-grid/MaterialGrid";
+import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
+import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
 import { getQueryParams } from "../../../core/utils/helpers/url";
 import { commaSeparatedStringToArray } from "../../advanced-search/helpers";
 import { WorkId } from "../../../core/utils/types/ids";
+import { useText } from "../../../core/utils/text";
 
 export type MaterialGridLinkAutomaticProps = {
   link: URL;
   title?: string;
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
-  buttonText: string;
 };
 
 const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
@@ -22,6 +22,8 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
   description,
   selectedAmountOfMaterialsForDisplay
 }) => {
+  const t = useText();
+  const buttonText = t("buttonText");
   const cleanBranches = useGetCleanBranches();
   const { advancedSearchCql, location, sublocation } = getQueryParams(link);
 
@@ -65,6 +67,7 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
         selectedAmountOfMaterialsForDisplay={
           selectedAmountOfMaterialsForDisplay
         }
+        buttonText={buttonText}
       />
     </>
   );

@@ -570,6 +570,80 @@
       },
       {
         "kind": "OBJECT",
+        "name": "CataloguedPublicationStatus",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "code",
+            "description": "The code representing the catalogued publication status.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "CataloguedPublicationStatusEnum",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "display",
+            "description": "The display text corresponding to the publication status code.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "CataloguedPublicationStatusEnum",
+        "description": "Represents the publication status of a catalogued manifestation.",
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "NT",
+            "description": "New title",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NU",
+            "description": "New edition",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "OP",
+            "description": "New print run",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ChildOrAdult",
         "description": null,
         "isOneOf": null,
@@ -1336,6 +1410,26 @@
         "description": null,
         "isOneOf": null,
         "fields": [
+          {
+            "name": "aliases",
+            "description": "Aliases for this index",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "facet",
             "description": "Can be used for faceting",
@@ -4913,6 +5007,18 @@
                 "name": "CatalogueCodes",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "cataloguedPublicationStatus",
+            "description": "The publication status of a catalogued manifestation.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CataloguedPublicationStatus",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null

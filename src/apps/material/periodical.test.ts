@@ -50,7 +50,7 @@ describe("Material - Periodical", () => {
   });
 
   it("Render periodical + change to 2021, 32 + Aprove resevation", () => {
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 200 });
     cy.get("#year").select("2021");
     cy.get("#editions").should("have.value", "32");
     cy.getBySel("material-header-buttons-physical")

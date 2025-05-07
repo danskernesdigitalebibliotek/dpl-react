@@ -121,6 +121,24 @@ export type CatalogueCodes = {
   otherCatalogues: Array<Scalars["String"]["output"]>;
 };
 
+export type CataloguedPublicationStatus = {
+  __typename?: "CataloguedPublicationStatus";
+  /** The code representing the catalogued publication status. */
+  code: CataloguedPublicationStatusEnum;
+  /** The display text corresponding to the publication status code. */
+  display: Scalars["String"]["output"];
+};
+
+/** Represents the publication status of a catalogued manifestation. */
+export enum CataloguedPublicationStatusEnum {
+  /** New title */
+  Nt = "NT",
+  /** New edition */
+  Nu = "NU",
+  /** New print run */
+  Op = "OP"
+}
+
 export type ChildOrAdult = {
   __typename?: "ChildOrAdult";
   code: ChildOrAdultCodeEnum;
@@ -238,6 +256,8 @@ export type ComplexSearchFiltersInput = {
 
 export type ComplexSearchIndex = {
   __typename?: "ComplexSearchIndex";
+  /** Aliases for this index */
+  aliases?: Maybe<Array<Scalars["String"]["output"]>>;
   /** Can be used for faceting */
   facet: Scalars["Boolean"]["output"];
   /** The name of a Complex Search index */
@@ -795,6 +815,8 @@ export type Manifestation = {
   audience?: Maybe<Audience>;
   /** CatalogueCodes divided in codes from the national bibliography and other codes */
   catalogueCodes: CatalogueCodes;
+  /** The publication status of a catalogued manifestation. */
+  cataloguedPublicationStatus?: Maybe<CataloguedPublicationStatus>;
   /** Classification codes for this manifestation from any classification system */
   classifications: Array<Classification>;
   /** Contributors to the manifestation, actors, illustrators etc */
@@ -5208,6 +5230,30 @@ export type IntelligentFacetsQuery = {
   };
 };
 
+export type WorkRecommendationsQueryVariables = Exact<{
+  pid: Scalars["String"]["input"];
+  limit: Scalars["Int"]["input"];
+}>;
+
+export type WorkRecommendationsQuery = {
+  __typename?: "Query";
+  recommend: {
+    __typename?: "RecommendationResponse";
+    result: Array<{
+      __typename?: "Recommendation";
+      work: {
+        __typename?: "Work";
+        workId: string;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+        creators: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Person"; display: string }
+        >;
+      };
+    }>;
+  };
+};
+
 export type PlaceCopyMutationVariables = Exact<{
   input: CopyRequestInput;
 }>;
@@ -7533,6 +7579,41 @@ export const useIntelligentFacetsQuery = <
   );
 };
 
+export const WorkRecommendationsDocument = `
+    query WorkRecommendations($pid: String!, $limit: Int!) {
+  recommend(pid: $pid, limit: $limit) {
+    result {
+      work {
+        workId
+        titles {
+          main
+        }
+        creators {
+          display
+        }
+      }
+    }
+  }
+}
+    `;
+
+export const useWorkRecommendationsQuery = <
+  TData = WorkRecommendationsQuery,
+  TError = unknown
+>(
+  variables: WorkRecommendationsQueryVariables,
+  options?: UseQueryOptions<WorkRecommendationsQuery, TError, TData>
+) => {
+  return useQuery<WorkRecommendationsQuery, TError, TData>(
+    ["WorkRecommendations", variables],
+    fetcher<WorkRecommendationsQuery, WorkRecommendationsQueryVariables>(
+      WorkRecommendationsDocument,
+      variables
+    ),
+    options
+  );
+};
+
 export const PlaceCopyDocument = `
     mutation placeCopy($input: CopyRequestInput!) {
   elba {
@@ -7585,7 +7666,8 @@ export const operationNames = {
     complexSearchWithPagination: "complexSearchWithPagination" as const,
     suggestionsFromQueryString: "suggestionsFromQueryString" as const,
     searchFacet: "searchFacet" as const,
-    intelligentFacets: "intelligentFacets" as const
+    intelligentFacets: "intelligentFacets" as const,
+    WorkRecommendations: "WorkRecommendations" as const
   },
   Mutation: {
     openOrder: "openOrder" as const,

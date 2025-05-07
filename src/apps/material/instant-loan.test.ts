@@ -47,7 +47,7 @@ describe("Instant Loan", () => {
     cy.createFakeAuthenticatedSession();
     cy.visit(
       "/iframe.html?&id=apps-material--instant-loan&viewMode=story&type=bog"
-    ).scrollTo("bottom");
+    ).scrollTo("bottom", { duration: 500 });
     cy.getBySel("material-header-buttons-physical").scrollIntoView();
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
@@ -71,7 +71,7 @@ describe("Instant Loan", () => {
 
     cy.getBySel("instant-loan").should("have.attr", "aria-expanded", "true");
 
-    cy.getBySel("instant-loan-branches").scrollIntoView();
+    cy.getBySel("instant-loan-branches").scrollIntoView({ duration: 500 });
     cy.getBySel("instant-loan-branches").children().should("have.length", 1);
   });
 

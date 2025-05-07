@@ -41,7 +41,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-header-content").scrollIntoView();
+    cy.getBySel("material-header-content").scrollIntoView({ duration: 100 });
 
     cy.getBySel("material-description-series-0")
       .should("be.visible")
@@ -84,7 +84,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-header-content").scrollIntoView();
+    cy.getBySel("material-header-content").scrollIntoView({ duration: 100 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -100,7 +100,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -422,14 +422,14 @@ describe("Material", () => {
     cy.createFakeAuthenticatedSession();
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("reservation-modal-list-item-text")
       .should("be.visible")
@@ -451,18 +451,16 @@ describe("Material", () => {
       fixtureFilePath: "material/fbi-api.json"
     });
     cy.createFakeAuthenticatedSession();
-    cy.visit(
-      "/iframe.html?id=apps-material--default&viewMode=story&type=bog"
-    ).scrollTo("bottom");
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("reservation-modal-submit-button", true)
       .should("be.visible")
@@ -513,7 +511,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -530,7 +528,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -567,6 +565,19 @@ describe("Material", () => {
     cy.get(".icon-favourite").should("have.class", "icon-favourite--filled");
   });
 
+  it("displays 8 recommended materials in the related grid", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.getBySel("material-grid-related").should("exist");
+
+    cy.get('[data-cy="material-grid-related"] li').should("have.length", 8);
+  });
+
   beforeEach(() => {
     cy.interceptRest({
       httpMethod: "POST",
@@ -591,6 +602,11 @@ describe("Material", () => {
       aliasName: "user",
       url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
     });
 
     cy.interceptRest({
