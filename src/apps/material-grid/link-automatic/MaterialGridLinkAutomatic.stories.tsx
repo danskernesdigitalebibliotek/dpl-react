@@ -95,6 +95,24 @@ export const Primary: Story = {
   }
 };
 
+export const WithoutOnshelf: Story = {
+  args: {
+    ...Primary.args,
+    title: "All Availability",
+    description: "Includes materials regardless of on-shelf status",
+    link: "https://dapple-cms.docker/advanced-search?advancedSearchCql=%28lix%3D2+OR+lix%3D3+OR+lix%3D4+OR+lix%3D5+OR+let%3D8+OR+let%3D9+OR+let%3D10%29+AND+term.childrenoradults%3D%22til+b%C3%B8rn%22&linked=true"
+  }
+};
+
+export const WithOnshelfTrue: Story = {
+  args: {
+    ...Primary.args,
+    title: "On-Shelf Only",
+    description: "Filtered to show only materials currently on shelf",
+    link: "https://dapple-cms.docker/advanced-search?advancedSearchCql=%28lix%3D2+OR+lix%3D3+OR+lix%3D4+OR+lix%3D5+OR+let%3D8+OR+let%3D9+OR+let%3D10%29+AND+term.childrenoradults%3D%22til+b%C3%B8rn%22&onshelf=true&linked=true"
+  }
+};
+
 export const Skeleton: Story = {
   render: () => <MaterialGridSkeleton />
 };
