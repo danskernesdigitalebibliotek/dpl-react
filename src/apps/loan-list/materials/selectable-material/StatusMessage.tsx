@@ -17,17 +17,16 @@ const StatusMessage: FC<StatusMessageProps> = ({
 
   return (
     <>
-      {renewalStatusList &&
-        renewalStatusList.map((text, index) => {
-          if (text !== "deniedOtherReason") {
-            return (
-              <span key={index} className={className}>
-                {getStatusText(text, t)}
-              </span>
-            );
-          }
-          return null;
-        })}
+      {renewalStatusList.map((text, index) => {
+        if (text !== "deniedOtherReason") {
+          return (
+            <span key={index} className={className}>
+              {getStatusText(text, t)}
+            </span>
+          );
+        }
+        return null;
+      })}
       {loanType === "interLibraryLoan" && (
         <span className={className}>
           {t("groupModalRenewLoanDeniedInterLibraryLoanText")}

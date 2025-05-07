@@ -38,8 +38,8 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   // since onLocationChange expects a comma-separated string,
   // while locationFilter location and sublocation are provided as arrays.
   const [inputValues, setInputValues] = useState({
-    location: locationFilter?.location?.join(", ") ?? "",
-    sublocation: locationFilter?.sublocation?.join(", ") ?? ""
+    location: locationFilter.location?.join(", ") ?? "",
+    sublocation: locationFilter.sublocation?.join(", ") ?? ""
   });
 
   const handleInputChange = (
