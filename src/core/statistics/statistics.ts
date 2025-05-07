@@ -140,6 +140,11 @@ export const statistics: Statistics = {
     id: 109,
     name: "Klik på specifik manifestation",
     parameterName: ""
+  },
+  materialAudience: {
+    id: 67,
+    name: "Materiale målgruppe",
+    parameterName: "p_mat_audience"
   }
 };
 
