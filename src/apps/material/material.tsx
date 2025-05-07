@@ -34,6 +34,7 @@ import {
   getDetailsListData,
   getFirstManifestation,
   getInfomediaIds,
+  getManifestationAudience,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation
 } from "./helper";
@@ -43,6 +44,7 @@ import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
+import { first } from "lodash";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -94,13 +96,13 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         trackedData: data.work.dk5MainEntry.display
       });
     }
-    // We can afford to only check the latest manifestation because audience doesn't
-    // vary between a specific work's manifestations (information provided by DDF).
-    if (data?.work?.manifestations.latest.audience?.generalAudience) {
+    if (data?.work?.manifestations.bestRepresentation.audience) {
       collectPageStatistics({
-        ...statistics.materialTopicNumber,
-        trackedData:
-          data.work.manifestations.latest.audience.generalAudience.join(", ")
+        ...statistics.materialAudience,
+        trackedData: getManifestationAudience(
+          data.work.manifestations.bestRepresentation as Manifestation,
+          t
+        )
       });
     }
     if (data?.work?.fictionNonfiction) {
@@ -112,6 +114,18 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     // In this case we only want to track once - on work data load
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  useUpdateEffect(() => {
+    if (first(selectedManifestations)) {
+      collectPageStatistics({
+        ...statistics.materialAudience,
+        trackedData: getManifestationAudience(
+          first(selectedManifestations) as Manifestation,
+          t
+        )
+      });
+    }
+  }, [selectedManifestations]);
 
   useEffect(() => {
     if (!data?.work) return;
