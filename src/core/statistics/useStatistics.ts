@@ -48,7 +48,7 @@ export function usePageStatistics() {
     window._ti[parameterName as string] = trackedData;
   };
 
-  const sendPageStatistics = () => {
+  const sendPageStatistics = ({ waitTime }: { waitTime: number }) => {
     setTimeout(() => {
       if (!domain || !id) {
         // eslint-disable-next-line no-console
@@ -63,12 +63,12 @@ export function usePageStatistics() {
       if (!document.getElementById("tiLoader")) {
         injectMappScript({ domain, id });
       }
-    }, 5000);
+    }, waitTime);
   };
 
-  const updatePageStatistics = () => {
+  const updatePageStatistics = ({ waitTime }: { waitTime: number }) => {
     removeMappScript();
-    sendPageStatistics();
+    sendPageStatistics({ waitTime });
   };
 
   return {
