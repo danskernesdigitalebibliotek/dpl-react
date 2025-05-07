@@ -7,6 +7,7 @@ import { withUrls } from "../../core/utils/url";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import AdvancedSearch from "./AdvancedSearch";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { MappArgs } from "../../core/storybook/mappArgs";
 
 interface AdvancedSearchEntryTextProps {
   byAuthorText: string;
@@ -85,7 +86,8 @@ export interface AdvancedSearchEntryProps
   extends GlobalUrlEntryPropsInterface,
     GlobalEntryTextProps,
     AdvancedSearchEntryConfigProps,
-    AdvancedSearchEntryTextProps {
+    AdvancedSearchEntryTextProps,
+    MappArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
   showingMaterialsText: string;

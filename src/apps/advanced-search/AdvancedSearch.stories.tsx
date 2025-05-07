@@ -9,6 +9,9 @@ import globalConfigArgs, {
   argTypes as globalConfigArgTypes
 } from "../../core/storybook/globalConfigArgs";
 import AdvancedSearchEntry from "./AdvancedSearch.entry";
+import mappArgs, {
+  argTypes as mappArgTypes
+} from "../../core/storybook/mappArgs";
 
 const meta: Meta<typeof AdvancedSearchEntry> = {
   title: "Apps / Advanced Search",
@@ -19,6 +22,7 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
+    ...mappArgTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
       control: { type: "number" },
@@ -328,6 +332,7 @@ export const Primary: Story = {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    ...mappArgs,
     pageSizeDesktop: 50,
     pageSizeMobile: 20,
     materialUrl: "/work/:workid",
