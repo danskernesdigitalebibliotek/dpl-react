@@ -75,7 +75,7 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
 }) => {
   const { sendPageStatistics } = usePageStatistics();
   useEffectOnce(() => {
-    sendPageStatistics();
+    sendPageStatistics({ waitTime: 2500 });
   });
   // If a q string has been defined as a data attribute use that
   // otherwise use the one from the url query parameter.

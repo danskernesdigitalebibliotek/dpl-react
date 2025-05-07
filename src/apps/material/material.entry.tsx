@@ -218,7 +218,7 @@ export interface MaterialEntryProps
 const WrappedMaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => {
   const { sendPageStatistics } = usePageStatistics();
   useEffectOnce(() => {
-    sendPageStatistics();
+    sendPageStatistics({ waitTime: 5000 });
   });
 
   return (

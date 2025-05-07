@@ -66,7 +66,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   } = useReaderPlayer(getFirstManifestation(selectedManifestations || []));
 
   useUpdateEffect(() => {
-    updatePageStatistics();
+    updatePageStatistics({ waitTime: 2500 });
   }, [selectedManifestations, selectedPeriodical]);
 
   useEffect(() => {
