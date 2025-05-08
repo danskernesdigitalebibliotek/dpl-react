@@ -14,7 +14,11 @@ export const statistics: Statistics = {
     name: "Avanceret søgning søgeterm",
     parameterName: "p_oss_adv"
   },
-
+  advancedSearchCql: {
+    id: 63,
+    name: "Avanceret søgning CQL",
+    parameterName: "p_oss_cql"
+  },
   // Search flow
   searchQuery: {
     id: 10,

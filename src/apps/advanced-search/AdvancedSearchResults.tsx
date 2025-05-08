@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useCopyToClipboard, useEffectOnce, useUpdateEffect } from "react-use";
+import { useCopyToClipboard } from "react-use";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
@@ -15,8 +15,6 @@ import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";
-import { usePageStatistics } from "../../core/statistics/useStatistics";
-import { statistics } from "../../core/statistics/statistics";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -42,30 +40,12 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     hitcount,
     pageSize
   });
-  const { collectPageStatistics, sendPageStatistics, updatePageStatistics } =
-    usePageStatistics();
   const [cql, setCql] = useState<string>(q);
   const [, copy] = useCopyToClipboard();
 
-  useEffectOnce(() => {
-    sendPageStatistics({
-      waitTime: 5000
-    });
-  });
-
-  useUpdateEffect(() => {
-    updatePageStatistics({
-      waitTime: 2500
-    });
-  }, [cql]);
-
   useEffect(() => {
-    collectPageStatistics({
-      ...statistics.advancedSearchTerm,
-      trackedData: q
-    });
     setCql(q);
-  }, [collectPageStatistics, q]);
+  }, [q]);
 
   // On every render we take the url parameter and set it as sql search query.
   useEffect(() => {
