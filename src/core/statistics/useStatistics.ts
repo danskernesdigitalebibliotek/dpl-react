@@ -77,7 +77,7 @@ export function usePageStatistics() {
       }
 
       const hasCollectedData = window._ti
-        ? Object.values(window._ti).every(
+        ? Object.values(window._ti).some(
             (val) => typeof val === "string" && val.trim() !== ""
           )
         : false;
