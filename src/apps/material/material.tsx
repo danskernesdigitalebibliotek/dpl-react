@@ -16,7 +16,10 @@ import { MaterialReviews } from "../../components/material/MaterialReviews";
 import MaterialSkeleton from "../../components/material/MaterialSkeleton";
 import { PeriodicalEdition } from "../../components/material/periodical/helper";
 import { statistics } from "../../core/statistics/statistics";
-import { usePageStatistics } from "../../core/statistics/useStatistics";
+import {
+  useCollectPageStatistics,
+  usePageStatistics
+} from "../../core/statistics/useStatistics";
 import { getWorkPid } from "../../core/utils/helpers/general";
 import {
   getUrlQueryParam,
@@ -60,7 +63,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { data, isLoading, workType } = useGetWork(wid);
   const { data: userData } = usePatronData();
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
-  const { collectPageStatistics, updatePageStatistics } = usePageStatistics();
+  const { updatePageStatistics } = usePageStatistics();
+  const { collectPageStatistics } = useCollectPageStatistics();
   const {
     type: readerPlayerType,
     identifier,

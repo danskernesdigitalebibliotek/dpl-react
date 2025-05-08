@@ -13,7 +13,7 @@ import {
   createFilters,
   useGetFacets
 } from "../../components/facet-browser/helper";
-import { usePageStatistics } from "../../core/statistics/useStatistics";
+import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
 import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
 import {
   CampaignMatchPOST200,
@@ -59,7 +59,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     setResultItems([]);
   }, [q, pageSize, filters]);
 
-  const { collectPageStatistics } = usePageStatistics();
+  const { collectPageStatistics } = useCollectPageStatistics();
   useEffect(() => {
     collectPageStatistics({
       ...statistics.searchQuery,
