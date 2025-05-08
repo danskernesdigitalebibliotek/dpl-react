@@ -23,6 +23,9 @@ import {
 import { Button } from "../../components/Buttons/Button";
 import CheckBox from "../../components/checkbox/Checkbox";
 import { LocationFilter } from "./LocationFilter";
+import { usePageStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
+import { useEffectOnce } from "react-use";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;
@@ -61,6 +64,11 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   const [previewCql, setPreviewCql] = useState<string>(searchQuery || "");
   const [rawCql, setRawCql] = useState<string>("");
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
+  const {
+    updatePageStatistics,
+    resetAndCollectPageStatistics,
+    sendPageStatistics
+  } = usePageStatistics();
 
   const handleOnShelfChange = (checked: boolean) => {
     setOnShelf(checked);
@@ -103,6 +111,11 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   };
   const handleSearchButtonClick = () => {
     if (rawCql.trim() !== "" && !isFormMode) {
+      resetAndCollectPageStatistics({
+        ...statistics.advancedSearchCql,
+        trackedData: rawCql
+      });
+      updatePageStatistics({ waitTime: 1000 });
       setSearchQuery(rawCql);
       // Half a second makes sure search result is rendered before scrolling to it.
       setTimeout(() => {
@@ -110,6 +123,11 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       }, 500);
       return;
     }
+    resetAndCollectPageStatistics({
+      ...statistics.advancedSearchTerm,
+      trackedData: translatedCql
+    });
+    updatePageStatistics({ waitTime: 1000 });
 
     setSearchObject(internalSearchObject);
     // Half a second makes sure search result is rendered before scrolling to it.
@@ -136,6 +154,28 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       )
     );
   }, [internalSearchObject, rawCql, isFormMode]);
+
+  useEffect(() => {
+    if (!isFormMode) {
+      resetAndCollectPageStatistics({
+        ...statistics.advancedSearchCql,
+        trackedData: rawCql
+      });
+    }
+
+    if (isFormMode) {
+      resetAndCollectPageStatistics({
+        ...statistics.advancedSearchTerm,
+        trackedData: translatedCql
+      });
+    }
+  }, [isFormMode, rawCql, resetAndCollectPageStatistics, translatedCql]);
+
+  useEffectOnce(() => {
+    sendPageStatistics({
+      waitTime: 2500
+    });
+  });
 
   return (
     <>

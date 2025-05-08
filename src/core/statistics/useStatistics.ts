@@ -48,6 +48,14 @@ export function usePageStatistics() {
     window._ti[parameterName as string] = trackedData;
   };
 
+  const resetAndCollectPageStatistics = ({
+    parameterName,
+    trackedData
+  }: EventData) => {
+    window._ti = {};
+    collectPageStatistics({ parameterName, trackedData });
+  };
+
   const sendPageStatistics = ({ waitTime }: { waitTime: number }) => {
     setTimeout(() => {
       if (!domain || !id) {
@@ -73,6 +81,7 @@ export function usePageStatistics() {
 
   return {
     collectPageStatistics,
+    resetAndCollectPageStatistics,
     sendPageStatistics,
     updatePageStatistics
   };
