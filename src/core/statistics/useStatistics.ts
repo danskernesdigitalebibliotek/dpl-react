@@ -68,7 +68,14 @@ export function usePageStatistics() {
         console.log("Tracking: send, page", JSON.stringify(window._ti));
         return;
       }
-      if (!document.getElementById("tiLoader")) {
+
+      const hasCollectedData = window._ti
+        ? Object.values(window._ti).every(
+            (val) => typeof val === "string" && val.trim() !== ""
+          )
+        : false;
+
+      if (!document.getElementById("tiLoader") && hasCollectedData) {
         injectMappScript({ domain, id });
       }
     }, waitTime);
