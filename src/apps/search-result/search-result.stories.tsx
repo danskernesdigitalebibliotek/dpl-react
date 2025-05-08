@@ -9,6 +9,9 @@ import globalTextArgs, {
 import globalConfigArgs, {
   argTypes as globalConfigArgTypes
 } from "../../core/storybook/globalConfigArgs";
+import mappArgs, {
+  argTypes as mappArgTypes
+} from "../../core/storybook/mappArgs";
 
 const meta: Meta<typeof SearchResultEntry> = {
   title: "Apps / Search Result",
@@ -19,6 +22,7 @@ const meta: Meta<typeof SearchResultEntry> = {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
+    ...mappArgTypes,
     q: {
       description: "Search string",
       control: { type: "text" }
@@ -211,6 +215,7 @@ export const Primary: Story = {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    ...mappArgs,
     q: "harry",
     pageSizeDesktop: 50,
     pageSizeMobile: 20,

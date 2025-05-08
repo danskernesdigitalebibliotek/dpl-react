@@ -9,7 +9,7 @@ import {
 } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
 import { Pid, WorkId } from "../../core/utils/types/ids";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useTrackStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 
 export type ButtonFavouriteId = WorkId | Pid;
@@ -31,7 +31,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   const t = useText();
   const { mutate: hasItem } = useHasItem();
   const { mutate: removeItem } = useRemoveItem();
-  const { track } = useStatistics();
+  const { track } = useTrackStatistics();
   const queryClient = useQueryClient();
 
   const listId = "default";
