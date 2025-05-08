@@ -38,11 +38,7 @@ export type TrackParameters = {
 
 export type EventAction = "send";
 
-export function usePageStatistics() {
-  const config = useConfig();
-  const domain = config("mappDomainConfig");
-  const id = config("mappIdConfig");
-
+export const useCollectPageStatistics = () => {
   const collectPageStatistics = ({ parameterName, trackedData }: EventData) => {
     window._ti = window._ti || {};
     window._ti[parameterName as string] = trackedData;
@@ -55,6 +51,17 @@ export function usePageStatistics() {
     window._ti = {};
     collectPageStatistics({ parameterName, trackedData });
   };
+
+  return {
+    collectPageStatistics,
+    resetAndCollectPageStatistics
+  };
+};
+
+export function usePageStatistics() {
+  const config = useConfig();
+  const domain = config("mappDomainConfig");
+  const id = config("mappIdConfig");
 
   const sendPageStatistics = ({ waitTime }: { waitTime: number }) => {
     setTimeout(() => {
@@ -87,8 +94,6 @@ export function usePageStatistics() {
   };
 
   return {
-    collectPageStatistics,
-    resetAndCollectPageStatistics,
     sendPageStatistics,
     updatePageStatistics
   };

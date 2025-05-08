@@ -3,7 +3,7 @@ import { first } from "lodash";
 import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../core/utils/text";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
-import { usePageStatistics } from "../../core/statistics/useStatistics";
+import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { getParentAvailabilityLabelClass } from "./helper";
 import AvailabilityLabelInside from "./availability-label-inside";
@@ -39,7 +39,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   isbns,
   isVisualOnly
 }) => {
-  const { collectPageStatistics } = usePageStatistics();
+  const { collectPageStatistics } = useCollectPageStatistics();
   const t = useText();
 
   const { isLoading, isAvailable } = useAvailabilityData({

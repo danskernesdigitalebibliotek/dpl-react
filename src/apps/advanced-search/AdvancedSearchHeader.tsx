@@ -23,7 +23,10 @@ import {
 import { Button } from "../../components/Buttons/Button";
 import CheckBox from "../../components/checkbox/Checkbox";
 import { LocationFilter } from "./LocationFilter";
-import { usePageStatistics } from "../../core/statistics/useStatistics";
+import {
+  useCollectPageStatistics,
+  usePageStatistics
+} from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useEffectOnce } from "react-use";
 
@@ -64,11 +67,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   const [previewCql, setPreviewCql] = useState<string>(searchQuery || "");
   const [rawCql, setRawCql] = useState<string>("");
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
-  const {
-    updatePageStatistics,
-    resetAndCollectPageStatistics,
-    sendPageStatistics
-  } = usePageStatistics();
+  const { updatePageStatistics, sendPageStatistics } = usePageStatistics();
+  const { resetAndCollectPageStatistics } = useCollectPageStatistics();
 
   const handleOnShelfChange = (checked: boolean) => {
     setOnShelf(checked);
