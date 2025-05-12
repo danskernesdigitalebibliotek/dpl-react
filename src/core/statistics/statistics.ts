@@ -7,6 +7,8 @@ type Statistics = Record<
   { id: number; name: string; parameterName: string }
 >;
 
+// Most `parameterName` values are empty strings because they are only used
+// in the `collectPageStatistics` function, which only works with `parameterName`.
 export const statistics: Statistics = {
   // advanced search
   advancedSearchTerm: {
