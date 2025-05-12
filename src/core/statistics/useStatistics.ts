@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { useConfig } from "../utils/config";
 import { injectMappScript, removeMappScript } from "./tiLoader.min";
 // Useful resources for Mapp tracking:
@@ -40,7 +39,9 @@ export type EventAction = "send";
 
 export const useCollectPageStatistics = () => {
   const collectPageStatistics = ({ parameterName, trackedData }: EventData) => {
+    // eslint-disable-next-line no-underscore-dangle
     window._ti = window._ti || {};
+    // eslint-disable-next-line no-underscore-dangle
     window._ti[parameterName as string] = trackedData;
   };
 
@@ -48,6 +49,7 @@ export const useCollectPageStatistics = () => {
     parameterName,
     trackedData
   }: EventData) => {
+    // eslint-disable-next-line no-underscore-dangle
     window._ti = {};
     collectPageStatistics({ parameterName, trackedData });
   };
@@ -71,13 +73,15 @@ export function usePageStatistics() {
         // This is to simulate the tracking request like the code in above for
         // click events. Because domain and id are set as empty strings in Storybook
         // The tracking script are not enabled. And therefore we console log the data
-        // eslint-disable-next-line no-console
+        // eslint-disable-next-line no-console, no-underscore-dangle
         console.log("Tracking: send, page", JSON.stringify(window._ti));
         return;
       }
 
+      // eslint-disable-next-line no-underscore-dangle
       const hasCollectedData = window._ti
-        ? Object.values(window._ti).some(
+        ? // eslint-disable-next-line no-underscore-dangle
+          Object.values(window._ti).some(
             (val) => typeof val === "string" && val.trim() !== ""
           )
         : false;
