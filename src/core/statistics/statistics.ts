@@ -164,7 +164,13 @@ export const statistics: Statistics = {
     name: "Klik på LÆS/LYT (Publizon)",
     parameterName: ""
   },
-  publizonTry: { id: 84, name: "Klik på Prøv (Publizon)", parameterName: "" }
+  publizonTry: { id: 84, name: "Klik på Prøv (Publizon)", parameterName: "" },
+  // Paragraphs
+  recommendedMaterial: {
+    id: 74,
+    name: "Klik på recommended material",
+    parameterName: ""
+  }
 };
 
 export default {};
