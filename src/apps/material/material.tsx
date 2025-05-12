@@ -119,6 +119,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
+  // Track the audience whenever the selected manifestation changes
   useUpdateEffect(() => {
     if (first(selectedManifestations)) {
       collectPageStatistics({
