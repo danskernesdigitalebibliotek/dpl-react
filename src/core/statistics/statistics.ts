@@ -155,7 +155,7 @@ export const statistics: Statistics = {
   // Publizon
   publizonLoan: { id: 72, name: "Klik på Lån (Publizon)", parameterName: "" },
   publizonReserve: {
-    id: 999, // Todo: This is not the right id
+    id: 50,
     name: "Klik på Reservér (Publizon)",
     parameterName: ""
   },
