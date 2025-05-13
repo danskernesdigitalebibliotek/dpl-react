@@ -66,6 +66,8 @@ export function usePageStatistics() {
   const id = config("mappIdConfig");
 
   const sendPageStatistics = ({ waitTime }: { waitTime: number }) => {
+    // Wait time based on intuition — not strictly calculated.
+    // I've used 1000, 2500, and even 5000ms on the work page
     setTimeout(() => {
       if (!domain || !id) {
         // eslint-disable-next-line no-console
