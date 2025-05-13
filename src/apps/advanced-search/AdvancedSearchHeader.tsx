@@ -28,7 +28,6 @@ import {
   usePageStatistics
 } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import { useEffectOnce } from "react-use";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;
@@ -67,7 +66,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   const [previewCql, setPreviewCql] = useState<string>(searchQuery || "");
   const [rawCql, setRawCql] = useState<string>("");
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
-  const { updatePageStatistics, sendPageStatistics } = usePageStatistics();
+  const { updatePageStatistics } = usePageStatistics();
   const { resetAndCollectPageStatistics } = useCollectPageStatistics();
 
   const handleOnShelfChange = (checked: boolean) => {
@@ -170,12 +169,6 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       });
     }
   }, [isFormMode, rawCql, resetAndCollectPageStatistics, translatedCql]);
-
-  useEffectOnce(() => {
-    sendPageStatistics({
-      waitTime: 2500
-    });
-  });
 
   return (
     <>

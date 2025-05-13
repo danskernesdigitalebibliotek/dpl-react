@@ -8,8 +8,7 @@ import SearchResult from "./search-result";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
-import { usePageStatistics } from "../../core/statistics/useStatistics";
-import { useEffectOnce } from "react-use";
+import withPageStatistics from "../../core/statistics/withPageStatistics";
 
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
@@ -73,10 +72,6 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   pageSizeDesktop,
   pageSizeMobile
 }) => {
-  const { sendPageStatistics } = usePageStatistics();
-  useEffectOnce(() => {
-    sendPageStatistics({ waitTime: 2500 });
-  });
   // If a q string has been defined as a data attribute use that
   // otherwise use the one from the url query parameter.
   const { q: searchQuery } = getParams({ q });
@@ -100,4 +95,6 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   );
 };
 
-export default withConfig(withUrls(withText(SearchResultEntry)));
+export default withConfig(
+  withUrls(withText(withPageStatistics(SearchResultEntry)))
+);
