@@ -230,6 +230,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           )}
           {(readerPlayerType === "reader" || readerPlayerType === "player") && (
             <OnlineInternalModal
+              workId={wid}
               selectedManifestations={selectedManifestations}
             />
           )}

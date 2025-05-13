@@ -22,6 +22,9 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { RequestStatus } from "../../core/utils/types/request";
 import { ApiResult, CreateLoanResult } from "../publizon/model";
 import PublizonServiceError from "../publizon/mutator/PublizonServiceError";
+import { useEventStatistics } from "../statistics/useStatistics";
+import { statistics } from "../statistics/statistics";
+import { WorkId } from "./types/ids";
 
 type useOnlineInternalHandleLoanReservationType = {
   manifestations: Manifestation[];
@@ -30,6 +33,7 @@ type useOnlineInternalHandleLoanReservationType = {
   setLoanResponse?: (response: CreateLoanResult | null) => void;
   setLoanStatus?: (status: RequestStatus) => void;
   setReservationOrLoanErrorResponse?: (error: ApiResult) => void;
+  workId: WorkId;
 };
 
 const useOnlineInternalHandleLoanReservation = ({
@@ -38,13 +42,14 @@ const useOnlineInternalHandleLoanReservation = ({
   setReservationStatus,
   setLoanResponse,
   setLoanStatus,
-  setReservationOrLoanErrorResponse
+  setReservationOrLoanErrorResponse,
+  workId
 }: useOnlineInternalHandleLoanReservationType) => {
   const queryClient = useQueryClient();
   const u = useUrls();
   const authUrl = u("authUrl");
   const { openGuarded } = useModalButtonHandler();
-
+  const { track } = useEventStatistics();
   const { mutate: mutateLoan } = usePostV1UserLoansIdentifier();
   const { mutate: mutateReservation } = usePostV1UserReservationsIdentifier();
   const { data: userData } = usePatronData();
@@ -67,6 +72,11 @@ const useOnlineInternalHandleLoanReservation = ({
         { identifier },
         {
           onSuccess: (res) => {
+            track("click", {
+              id: statistics.publizonLoan.id,
+              name: statistics.publizonLoan.name,
+              trackedData: workId
+            });
             // Ensure that the button is updated after a successful loan
             queryClient.invalidateQueries(getGetV1UserLoansQueryKey());
             queryClient.invalidateQueries(
@@ -110,6 +120,11 @@ const useOnlineInternalHandleLoanReservation = ({
         },
         {
           onSuccess: () => {
+            track("click", {
+              id: statistics.publizonReserve.id,
+              name: statistics.publizonReserve.name,
+              trackedData: workId
+            });
             // Ensure that the button is updated after a successful reservation
             queryClient.invalidateQueries(getGetV1UserReservationsQueryKey());
             queryClient.invalidateQueries(
