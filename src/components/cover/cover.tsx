@@ -23,6 +23,7 @@ export type CoverProps = {
   idType?: GetCoverCollectionType;
   shadow?: "small" | "medium";
   linkAriaLabelledBy?: string;
+  trackClick?: () => Promise<unknown>;
 };
 
 export const Cover = ({
@@ -36,7 +37,8 @@ export const Cover = ({
   bestRepresentation,
   idType = "pid",
   shadow,
-  linkAriaLabelledBy
+  linkAriaLabelledBy,
+  trackClick
 }: CoverProps) => {
   const [imageLoaded, setImageLoaded] = useState<boolean | null>(null);
   const handleSetImageLoaded = useCallback(() => {
@@ -92,6 +94,7 @@ export const Cover = ({
         url={url}
         ariaLabelledBy={linkAriaLabelledBy}
         isHiddenFromScreenReaders={!alt}
+        trackClick={trackClick}
       >
         {coverSrc && (
           <CoverImage
