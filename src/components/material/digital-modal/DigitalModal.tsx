@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { usePlaceCopyMutation } from "../../../core/dbc-gateway/generated/graphql";
 import { statistics } from "../../../core/statistics/statistics";
-import { useStatistics } from "../../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../../core/statistics/useStatistics";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
 import { Pid, WorkId } from "../../../core/utils/types/ids";
@@ -23,7 +23,7 @@ const DigitalModal: React.FunctionComponent<DigitalModalProps> = ({
   const modalId = createDigitalModalId(pid);
   const t = useText();
   const [userEmail, setUserEmail] = useState<string | null>(null);
-  const { track } = useStatistics();
+  const { track } = useEventStatistics();
 
   const {
     mutate: articleOrder,

@@ -1,6 +1,14 @@
+import { useConfig } from "../utils/config";
+import { injectMappScript, removeMappScript } from "./tiLoader.min";
 // Useful resources for Mapp tracking:
 // https://documentation.mapp.com/1.0/en/manual-track-request-25105181.html
 // https://documentation.mapp.com/1.0/en/how-to-send-manual-tracking-requests-page-updates-7240681.html
+
+declare global {
+  interface Window {
+    _ti: Record<string, unknown>;
+  }
+}
 
 export interface EventData {
   [key: string]: string | number | Record<string, unknown>;
@@ -14,7 +22,6 @@ export interface EventDataWithCustomClickParameter extends EventData {
 // 2. click - for measuring actions that don't cause page load;
 // 3. link - clicking a link that triggers a new page load
 // 4. pageupdate - information on the page changes without a new page load
-// We currently only support click and link, as we don't track any page or pageupdate data.
 export type EventType = "click" | "link";
 
 export type TrackParameters = {
@@ -30,39 +37,105 @@ export type TrackParameters = {
 
 export type EventAction = "send";
 
-export function useStatistics() {
+export const useCollectPageStatistics = () => {
+  const collectPageStatistics = ({ parameterName, trackedData }: EventData) => {
+    // eslint-disable-next-line no-underscore-dangle
+    window._ti = window._ti || {};
+    // eslint-disable-next-line no-underscore-dangle
+    window._ti[parameterName as string] = trackedData;
+  };
+
+  const resetAndCollectPageStatistics = ({
+    parameterName,
+    trackedData
+  }: EventData) => {
+    // eslint-disable-next-line no-underscore-dangle
+    window._ti = {};
+    collectPageStatistics({ parameterName, trackedData });
+  };
+
+  return {
+    collectPageStatistics,
+    resetAndCollectPageStatistics
+  };
+};
+
+export function usePageStatistics() {
+  const config = useConfig();
+  const domain = config("mappDomainConfig");
+  const id = config("mappIdConfig");
+
+  const sendPageStatistics = ({ waitTime }: { waitTime: number }) => {
+    // Wait time based on intuition — not strictly calculated.
+    // I've used 1000, 2500, and even 5000ms on the work page
+    setTimeout(() => {
+      if (!domain || !id) {
+        // eslint-disable-next-line no-console
+        console.warn("⚠️ Mapp Domain or ID is not defined");
+        // This is to simulate the tracking request like the code in above for
+        // click events. Because domain and id are set as empty strings in Storybook
+        // The tracking script are not enabled. And therefore we console log the data
+        // eslint-disable-next-line no-console, no-underscore-dangle
+        console.log("Tracking: send, page", JSON.stringify(window._ti));
+        return;
+      }
+
+      // eslint-disable-next-line no-underscore-dangle
+      const hasCollectedData = window._ti
+        ? // eslint-disable-next-line no-underscore-dangle
+          Object.values(window._ti).some(
+            (val) => typeof val === "string" && val.trim() !== ""
+          )
+        : false;
+
+      if (!document.getElementById("tiLoader") && hasCollectedData) {
+        injectMappScript({ domain, id });
+      }
+    }, waitTime);
+  };
+
+  const updatePageStatistics = ({ waitTime }: { waitTime: number }) => {
+    removeMappScript();
+    sendPageStatistics({ waitTime });
+  };
+
+  return {
+    sendPageStatistics,
+    updatePageStatistics
+  };
+}
+
+export const useEventStatistics = () => {
   // If the global wts object doesn't exist, it means we are in dev environment.
   // Here instead of actually tracking we just log the data to the console.
   if (!window.wts) {
     window.wts = {
-      push(trackingProps: [EventAction, EventType, EventData]) {
+      push([action, type, data]: [EventAction, EventType, EventData]) {
         // eslint-disable-next-line no-console
-        console.log(
-          `Tracking: ${trackingProps[0]}, ${trackingProps[1]}, ${JSON.stringify(
-            trackingProps[2]
-          )}`
-        );
+        console.log(`Tracking: ${action}, ${type}, ${JSON.stringify(data)}`);
       }
     };
   }
 
-  return {
-    track: (eventType: EventType, trackParameters: TrackParameters) => {
-      const eventData: EventDataWithCustomClickParameter = {
-        linkId: trackParameters.name,
-        customClickParameter: {}
-      };
-      eventData.customClickParameter[trackParameters.id] =
-        trackParameters.trackedData;
-      window.wts.push(["send", eventType, eventData]);
+  const track = (eventType: EventType, trackParameters: TrackParameters) => {
+    const eventData: EventDataWithCustomClickParameter = {
+      linkId: trackParameters.name,
+      customClickParameter: {}
+    };
+    eventData.customClickParameter[trackParameters.id] =
+      trackParameters.trackedData;
+    window.wts.push(["send", eventType, eventData]);
 
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve("resolved");
-        }, 500);
-      });
-    }
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("resolved");
+      }, 500);
+    });
   };
-}
+
+  return {
+    track
+  };
+};
 
 export default {};
