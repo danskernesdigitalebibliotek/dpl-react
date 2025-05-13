@@ -22,7 +22,7 @@ import { Manifestation } from "../../core/utils/types/entities";
 import { RequestStatus } from "../../core/utils/types/request";
 import { ApiResult, CreateLoanResult } from "../publizon/model";
 import PublizonServiceError from "../publizon/mutator/PublizonServiceError";
-import { useTrackStatistics } from "../statistics/useStatistics";
+import { useEventStatistics } from "../statistics/useStatistics";
 import { statistics } from "../statistics/statistics";
 import { WorkId } from "./types/ids";
 
@@ -49,7 +49,7 @@ const useOnlineInternalHandleLoanReservation = ({
   const u = useUrls();
   const authUrl = u("authUrl");
   const { openGuarded } = useModalButtonHandler();
-  const { track } = useTrackStatistics();
+  const { track } = useEventStatistics();
   const { mutate: mutateLoan } = usePostV1UserLoansIdentifier();
   const { mutate: mutateReservation } = usePostV1UserReservationsIdentifier();
   const { data: userData } = usePatronData();

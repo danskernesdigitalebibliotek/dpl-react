@@ -19,7 +19,7 @@ import useOnlineInternalHandleLoanReservation from "../../../../core/utils/useOn
 import { ApiResult, CreateLoanResult } from "../../../../core/publizon/model";
 import { getFirstManifestation } from "../../../../apps/material/helper";
 import { WorkId } from "../../../../core/utils/types/ids";
-import { useTrackStatistics } from "../../../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../../../core/statistics/useStatistics";
 import { statistics } from "../../../../core/statistics/statistics";
 
 type MaterialButtonsOnlineInternalType = {
@@ -45,7 +45,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   setReservationOrLoanErrorResponse,
   workId
 }) => {
-  const { track } = useTrackStatistics();
+  const { track } = useEventStatistics();
   const t = useText();
   const { open } = useModalButtonHandler();
   const {
