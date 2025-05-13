@@ -18,6 +18,9 @@ import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import useOnlineInternalHandleLoanReservation from "../../../../core/utils/useOnlineInternalHandleLoanReservation";
 import { ApiResult, CreateLoanResult } from "../../../../core/publizon/model";
 import { getFirstManifestation } from "../../../../apps/material/helper";
+import { WorkId } from "../../../../core/utils/types/ids";
+import { useEventStatistics } from "../../../../core/statistics/useStatistics";
+import { statistics } from "../../../../core/statistics/statistics";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -28,6 +31,7 @@ type MaterialButtonsOnlineInternalType = {
   setLoanResponse?: (response: CreateLoanResult | null) => void;
   setLoanStatus?: (status: RequestStatus) => void;
   setReservationOrLoanErrorResponse?: (error: ApiResult) => void;
+  workId: WorkId;
 };
 
 const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
@@ -38,8 +42,10 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   setReservationStatus,
   setLoanResponse,
   setLoanStatus,
-  setReservationOrLoanErrorResponse
+  setReservationOrLoanErrorResponse,
+  workId
 }) => {
+  const { track } = useEventStatistics();
   const t = useText();
   const { open } = useModalButtonHandler();
   const {
@@ -58,7 +64,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     setReservationStatus,
     setLoanResponse,
     setLoanStatus,
-    setReservationOrLoanErrorResponse
+    setReservationOrLoanErrorResponse,
+    workId
   });
   const [reservationToDelete, setReservationToDelete] =
     useState<ReservationType | null>(null);
@@ -111,6 +118,13 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           variant="filled"
           size={size || "large"}
           dataCy={`${dataCy}-reader`}
+          trackClick={() =>
+            track("click", {
+              id: statistics.publizonReadListen.id,
+              name: statistics.publizonReadListen.name,
+              trackedData: workId
+            })
+          }
         >
           {t("onlineMaterialReaderText", {
             placeholders: { "@materialType": manifestationType }
@@ -149,6 +163,13 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
             new URL(`/reader?identifier=${identifier}`, window.location.href)
           }
           dataCy={`${dataCy}-reader-teaser`}
+          trackClick={() =>
+            track("click", {
+              id: statistics.publizonTry.id,
+              name: statistics.publizonTry.name,
+              trackedData: workId
+            })
+          }
         />
       );
     }
@@ -188,7 +209,14 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           buttonType="none"
           variant="filled"
           size={size || "large"}
-          onClick={() => open(playerModalId(orderId))}
+          onClick={() => {
+            track("click", {
+              id: statistics.publizonReadListen.id,
+              name: statistics.publizonReadListen.name,
+              trackedData: workId
+            });
+            open(playerModalId(orderId));
+          }}
           disabled={false}
           collapsible={false}
         />
@@ -222,6 +250,11 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
           label={tryLabel}
           size={size || "large"}
           onClick={() => {
+            track("click", {
+              id: statistics.publizonTry.id,
+              name: statistics.publizonTry.name,
+              trackedData: workId
+            });
             open(playerModalId(identifier));
           }}
           dataCy={`${dataCy}-player-teaser`}

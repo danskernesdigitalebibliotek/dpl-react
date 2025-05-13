@@ -3,7 +3,7 @@ import { first } from "lodash";
 import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../core/utils/text";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { getParentAvailabilityLabelClass } from "./helper";
 import AvailabilityLabelInside from "./availability-label-inside";
@@ -39,7 +39,7 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
   isbns,
   isVisualOnly
 }) => {
-  const { track } = useStatistics();
+  const { collectPageStatistics } = useCollectPageStatistics();
   const t = useText();
 
   const { isLoading, isAvailable } = useAvailabilityData({
@@ -58,17 +58,13 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     // Track material availability (status) if the button is active - also meaning
     // it is displayed on the material page and represent the active manifestation
     // material type
-    if (selected) {
-      track("click", {
-        id: statistics.materialStatus.id,
-        name: statistics.materialStatus.name,
+    if (selected && !isLoading) {
+      collectPageStatistics({
+        ...statistics.materialStatus,
         trackedData: availabilityText
       });
     }
-    // We only want to track if the faustIds change (once - on load), or the selected
-    // status changes (on select of the availability button)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [faustIds, selected]);
+  }, [availabilityText, collectPageStatistics, faustIds, isLoading, selected]);
 
   const availabilityLabel = (
     <AvailabilityLabelInside

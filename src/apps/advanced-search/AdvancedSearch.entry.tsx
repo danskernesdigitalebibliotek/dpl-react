@@ -7,6 +7,8 @@ import { withUrls } from "../../core/utils/url";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import AdvancedSearch from "./AdvancedSearch";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { MappArgs } from "../../core/storybook/mappArgs";
+import withPageStatistics from "../../core/statistics/withPageStatistics";
 
 interface AdvancedSearchEntryTextProps {
   byAuthorText: string;
@@ -85,7 +87,8 @@ export interface AdvancedSearchEntryProps
   extends GlobalUrlEntryPropsInterface,
     GlobalEntryTextProps,
     AdvancedSearchEntryConfigProps,
-    AdvancedSearchEntryTextProps {
+    AdvancedSearchEntryTextProps,
+    MappArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
   showingMaterialsText: string;
@@ -112,4 +115,6 @@ const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({
   );
 };
 
-export default withConfig(withUrls(withText(AdvancedSearchEntry)));
+export default withConfig(
+  withUrls(withText(withPageStatistics(AdvancedSearchEntry)))
+);

@@ -25,7 +25,7 @@ import MaterialButtons from "./material-buttons/MaterialButtons";
 import MaterialPeriodical from "./periodical/MaterialPeriodical";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "./periodical/helper";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
@@ -35,6 +35,7 @@ import {
 import { isPeriodical, shouldShowMaterialAvailabilityText } from "./helper";
 import useAvailabilityData from "../availability-label/useAvailabilityData";
 import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
+import { first } from "lodash";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -78,7 +79,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const title = getWorkTitle(work);
   const pid = getWorkPid(work);
   const coverPids = getManifestationsPids(selectedManifestations);
-  const { track } = useStatistics();
+  const { collectPageStatistics } = useCollectPageStatistics();
   // This is used to track whether the user is changing between material types or just clicking the same button over
   const manifestationMaterialTypes = getMaterialTypes(selectedManifestations);
 
@@ -97,17 +98,13 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   });
 
   useDeepCompareEffect(() => {
-    track("click", {
-      id: statistics.materialType.id,
-      name: statistics.materialType.name,
+    collectPageStatistics({
+      ...statistics.materialType,
       trackedData: manifestationMaterialTypes.join(", ")
     });
-    track("click", {
-      id: statistics.materialSource.id,
-      name: statistics.materialSource.name,
-      trackedData: selectedManifestations
-        .map((manifestation) => manifestation.source.join(", "))
-        .join(", ")
+    collectPageStatistics({
+      ...statistics.materialSource,
+      trackedData: first(first(selectedManifestations)?.source) ?? "No source"
     });
     // We just want to track if the currently selected manifestation changes (which should be once - on initial render)
     // and when the currently selected manifestation's material type changes - on availability button click.

@@ -25,7 +25,7 @@ import {
 import { TypedDispatch } from "../../../core/store";
 import { guardedRequest } from "../../../core/guardedRequests.slice";
 import { Work } from "../../../core/utils/types/entities";
-import { useStatistics } from "../../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
 import {
@@ -83,7 +83,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
   );
   const languageIsoCode = getManifestationLanguageIsoCode(manifestations);
   const { shelfmark } = bestRepresentation;
-  const { track } = useStatistics();
+  const { track } = useEventStatistics();
   // We use hasBeenVisible to determine if the search result
   // is, or has been, visible in the viewport.
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();

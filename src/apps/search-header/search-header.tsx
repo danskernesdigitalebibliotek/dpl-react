@@ -25,7 +25,7 @@ import {
   getAutosuggestCategoryList,
   isDisplayedAsWorkSuggestion
 } from "./helpers";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 import useFilterHandler from "../search-result/useFilterHandler";
@@ -67,7 +67,7 @@ const SearchHeader: React.FC = () => {
   const [highlightedIndexAfterClick, setHighlightedIndexAfterClick] = useState<
     number | null
   >(null);
-  const { track } = useStatistics();
+  const { track } = useEventStatistics();
 
   // Make sure to only assign the data once.
   useEffect(() => {

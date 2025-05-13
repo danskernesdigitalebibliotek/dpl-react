@@ -23,7 +23,10 @@ import {
 import { Button } from "../../components/Buttons/Button";
 import CheckBox from "../../components/checkbox/Checkbox";
 import { LocationFilter } from "./LocationFilter";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import {
+  useCollectPageStatistics,
+  usePageStatistics
+} from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 
 export type AdvancedSearchHeaderProps = {
@@ -52,7 +55,6 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   locationFilter
 }) => {
   const t = useText();
-  const { track } = useStatistics();
   const [isFormMode, setIsFormMode] = useState<boolean>(true);
   // Keep an internal copy of the search object in a separate state. We only
   // want to update the outer state and perform a search when the user clicks
@@ -64,6 +66,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   const [previewCql, setPreviewCql] = useState<string>(searchQuery || "");
   const [rawCql, setRawCql] = useState<string>("");
   const [focusedRow, setFocusedRow] = useState<number | null>(null);
+  const { updatePageStatistics } = usePageStatistics();
+  const { resetAndCollectPageStatistics } = useCollectPageStatistics();
 
   const handleOnShelfChange = (checked: boolean) => {
     setOnShelf(checked);
@@ -106,11 +110,11 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   };
   const handleSearchButtonClick = () => {
     if (rawCql.trim() !== "" && !isFormMode) {
-      track("click", {
-        id: statistics.advancedSearchTerm.id,
-        name: statistics.advancedSearchTerm.name,
+      resetAndCollectPageStatistics({
+        ...statistics.advancedSearchCql,
         trackedData: rawCql
       });
+      updatePageStatistics({ waitTime: 1000 });
       setSearchQuery(rawCql);
       // Half a second makes sure search result is rendered before scrolling to it.
       setTimeout(() => {
@@ -118,11 +122,12 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       }, 500);
       return;
     }
-    track("click", {
-      id: statistics.advancedSearchTerm.id,
-      name: statistics.advancedSearchTerm.name,
-      trackedData: previewCql
+    resetAndCollectPageStatistics({
+      ...statistics.advancedSearchTerm,
+      trackedData: translatedCql
     });
+    updatePageStatistics({ waitTime: 1000 });
+
     setSearchObject(internalSearchObject);
     // Half a second makes sure search result is rendered before scrolling to it.
     setTimeout(() => {
@@ -148,6 +153,22 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       )
     );
   }, [internalSearchObject, rawCql, isFormMode]);
+
+  useEffect(() => {
+    if (!isFormMode) {
+      resetAndCollectPageStatistics({
+        ...statistics.advancedSearchCql,
+        trackedData: rawCql
+      });
+    }
+
+    if (isFormMode) {
+      resetAndCollectPageStatistics({
+        ...statistics.advancedSearchTerm,
+        trackedData: translatedCql
+      });
+    }
+  }, [isFormMode, rawCql, resetAndCollectPageStatistics, translatedCql]);
 
   return (
     <>
