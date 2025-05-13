@@ -5,7 +5,7 @@ import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
 import DisclosureControllable from "../Disclosures/DisclosureControllable";
-import { useTrackStatistics } from "../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
 import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
@@ -24,7 +24,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
 
   const t = useText();
   const { close } = useModalButtonHandler();
-  const { track } = useTrackStatistics();
+  const { track } = useEventStatistics();
 
   useDeepCompareEffect(() => {
     if (isEmpty(filters)) {

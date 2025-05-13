@@ -5,7 +5,7 @@ import { ButtonSize } from "../../../../core/utils/types/button";
 import { FaustId, WorkId } from "../../../../core/utils/types/ids";
 import MaterialSecondaryButton from "../generic/MaterialSecondaryButton";
 import { findOnShelfModalId } from "../../../find-on-shelf/FindOnShelfModal";
-import { useTrackStatistics } from "../../../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../../../core/statistics/useStatistics";
 import { statistics } from "../../../../core/statistics/statistics";
 
 export interface MaterialButtonsFindOnShelfProps {
@@ -21,7 +21,7 @@ const MaterialButtonsFindOnShelf: FC<MaterialButtonsFindOnShelfProps> = ({
   dataCy = "material-buttons-find-on-shelf",
   workId
 }) => {
-  const { track } = useTrackStatistics();
+  const { track } = useEventStatistics();
 
   const t = useText();
   const { open } = useModalButtonHandler();

@@ -2,7 +2,7 @@ import * as React from "react";
 import { FC } from "react";
 import { CampaignMatchPOST200Data } from "../../core/dpl-cms/model";
 import { statistics } from "../../core/statistics/statistics";
-import { useTrackStatistics } from "../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { redirectTo } from "../../core/utils/helpers/url";
 
 export interface CampaignProps {
@@ -10,7 +10,7 @@ export interface CampaignProps {
 }
 
 const Campaign: FC<CampaignProps> = ({ campaignData }) => {
-  const { track } = useTrackStatistics();
+  const { track } = useEventStatistics();
   if (!campaignData.title) {
     return null;
   }

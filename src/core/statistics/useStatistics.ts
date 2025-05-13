@@ -103,7 +103,7 @@ export function usePageStatistics() {
   };
 }
 
-export const useTrackStatistics = () => {
+export const useEventStatistics = () => {
   // If the global wts object doesn't exist, it means we are in dev environment.
   // Here instead of actually tracking we just log the data to the console.
   if (!window.wts) {
