@@ -149,7 +149,7 @@ export const useEventStatistics = () => {
 // URL tracking
 // This function redirects to a campaign URL with a specified parameter `u_navigatedby` and value.
 // When the Mapp script is loaded, this URL parameter will automatically be captured
-// and sent in the same way as page parameters.s
+// and sent in the same way as page parameters
 export const useUrlStatistics = () => {
   const redirectWithUrlTracking = ({
     campaignUrl,
