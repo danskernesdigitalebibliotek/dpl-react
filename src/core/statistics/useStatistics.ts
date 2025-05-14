@@ -1,4 +1,5 @@
 import { useConfig } from "../utils/config";
+import { isUrlValid, redirectTo } from "../utils/helpers/url";
 import { injectMappScript, removeMappScript } from "./tiLoader.min";
 // Useful resources for Mapp tracking:
 // https://documentation.mapp.com/1.0/en/manual-track-request-25105181.html
@@ -143,6 +144,35 @@ export const useEventStatistics = () => {
   return {
     track
   };
+};
+
+// URL tracking
+// This function redirects to a campaign URL with a specified parameter `u_navigatedby` and value.
+// When the Mapp script is loaded, this URL parameter will automatically be captured
+// and sent in the same way as page parameters.s
+export const useUrlStatistics = () => {
+  const redirectWithUrlTracking = ({
+    campaignUrl,
+    parameterValue,
+    openInNewTab = true
+  }: {
+    campaignUrl: string;
+    parameterValue: string;
+    openInNewTab?: boolean;
+  }) => {
+    if (!isUrlValid(campaignUrl)) {
+      return;
+    }
+
+    const url = new URL(campaignUrl);
+    const params = new URLSearchParams(url.search);
+    params.set("u_navigatedby", parameterValue);
+    url.search = params.toString();
+
+    redirectTo(url, openInNewTab);
+  };
+
+  return { redirectWithUrlTracking };
 };
 
 export default {};

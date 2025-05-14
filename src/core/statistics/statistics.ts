@@ -82,11 +82,6 @@ export const statistics: Statistics = {
     name: "Søgning - Resultatnummer klik",
     parameterName: ""
   },
-  campaignClick: {
-    id: 48,
-    name: "Kampagneklik",
-    parameterName: ""
-  },
   reservation: {
     id: 50,
     name: "Reserver",
