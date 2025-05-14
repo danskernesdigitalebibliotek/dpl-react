@@ -103,12 +103,10 @@ export const statistics: Statistics = {
     parameterName: ""
   },
   campaignShown: {
-    // This may be worng: see https://reload.atlassian.net/browse/DDFSAL-62
-    id: 62,
+    id: 69,
     name: "KampagnePlus Titel",
-    parameterName: "u_navigatedby_kp"
+    parameterName: "p_campaign_show"
   },
-
   // Loaner status, user profile
   renewSelectedMaterials: {
     id: 55,
@@ -125,7 +123,6 @@ export const statistics: Statistics = {
     name: "Tilføj til liste",
     parameterName: ""
   },
-
   // Material
   orderFromAnotherLibrary: {
     id: 70,
