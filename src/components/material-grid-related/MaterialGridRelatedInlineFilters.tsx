@@ -27,6 +27,7 @@ export function MaterialGridRelatedInlineFilters({
       {options.map(({ label, value, count }) => (
         <button
           key={value}
+          data-cy="material-grid-related-filter-button"
           className={`material-grid-related__filter-button ${
             filter === value
               ? "material-grid-related__filter-button--active"

@@ -598,15 +598,18 @@ describe("Material", () => {
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
     // Check if there are 3 filters render
-    cy.get(".material-grid-related__filter-button").should("have.length", 3);
+    cy.get('[data-cy="material-grid-related-filter-button"]').should(
+      "have.length",
+      3
+    );
 
     cy.contains(
-      ".material-grid-related__filter-button",
+      '[data-cy="material-grid-related-filter-button"]',
       "By same author"
     ).click();
 
     cy.contains(
-      ".material-grid-related__filter-button",
+      '[data-cy="material-grid-related-filter-button"]',
       "In same series"
     ).click();
   });
