@@ -214,6 +214,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "urlText",
+            "description": "Description/type of URL",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -7710,58 +7722,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "MusicalExercise",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "display",
-            "description": "The types of instrument 'schools' intended to practise with",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "forExercise",
-            "description": "Information whether material is intended for practising and in combination with an instrument",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "Mutation",
         "description": null,
         "isOneOf": null,
@@ -7955,6 +7915,22 @@
               "ofType": {
                 "kind": "ENUM",
                 "name": "NoteTypeEnum",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "urls",
+            "description": "A link and possible link text",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AccessUrl",
                 "ofType": null
               }
             },
@@ -9962,7 +9938,7 @@
           },
           {
             "name": "url",
-            "description": "URL of the related publication",
+            "description": "The first URL of the urls in related publications",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -9980,6 +9956,26 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "urls",
+            "description": "Alle urls of the related publication",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -12102,6 +12098,18 @@
             "deprecationReason": null
           },
           {
+            "name": "forMusicalExercise",
+            "description": "I this node for exercises",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "instruments",
             "description": "The types of instruments material covers",
             "args": [],
@@ -12121,18 +12129,6 @@
                   }
                 }
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "musicalExercises",
-            "description": "Material intended to practice with",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "MusicalExercise",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
