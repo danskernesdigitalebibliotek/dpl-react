@@ -37,7 +37,7 @@ export function MaterialGridRelatedInlineFilters({
           onClick={() => onChange(value)}
         >
           <span className="material-grid-related__filter-text">{label}</span>
-          <sup>{count}</sup>
+          <sup className="material-grid-related__filter-sup">{count}</sup>
         </button>
       ))}
     </div>
