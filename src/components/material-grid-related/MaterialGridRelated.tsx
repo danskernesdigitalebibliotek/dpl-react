@@ -12,17 +12,17 @@ import MaterialGrid, {
 import MaterialGridSkeleton from "../material-grid/MaterialGridSkeleton";
 
 import { first } from "lodash";
+import { FC, useEffect, useMemo, useState } from "react";
 import { flattenCreators, getWorkPid } from "../../core/utils/helpers/general";
 import {
-  extractAuthorMaterials,
-  extractRecommendationMaterials,
-  extractSeriesMaterials,
+  extractMaterialsFromComplexSearch,
+  extractMaterialsFromRecommendations,
   getPreferredFallback,
   prepareCreatorCql
 } from "./helper";
+import { MaterialGridFilterType } from "./MaterialGridRelated.types";
 import { MaterialGridRelatedInlineFilters } from "./MaterialGridRelatedInlineFilters";
 import { MaterialGridRelatedSelect } from "./MaterialGridRelatedSelect";
-import { MaterialGridFilterType } from "./MaterialGridRelated.types";
 
 type MaterialGridRelatedOption = {
   label: string;
@@ -34,7 +34,7 @@ export type MaterialGridRelatedProps = {
   work: Work;
 };
 
-const MaterialGridRelated: React.FC<MaterialGridRelatedProps> = ({ work }) => {
+const MaterialGridRelated: FC<MaterialGridRelatedProps> = ({ work }) => {
   const t = useText();
   const title = t("materialGridRelatedTitleText");
 
@@ -47,39 +47,50 @@ const MaterialGridRelated: React.FC<MaterialGridRelatedProps> = ({ work }) => {
   const creatorCqlString = prepareCreatorCql(flattenedCreators);
 
   const { data: recommendationData, isLoading: recommendationLoading } =
-    useWorkRecommendationsQuery({
-      pid,
-      limit: 8
-    });
+    useWorkRecommendationsQuery(
+      {
+        pid,
+        limit: 8
+      },
+      { enabled: !!pid }
+    );
 
   const { data: creatorData, isLoading: creatorLoading } =
-    useComplexSearchWithPaginationQuery({
-      cql: creatorCqlString,
-      limit: 8,
-      offset: 0,
-      filters: {}
-    });
+    useComplexSearchWithPaginationQuery(
+      {
+        cql: creatorCqlString,
+        limit: 8,
+        offset: 0,
+        filters: {}
+      },
+      {
+        enabled: !!creatorCqlString
+      }
+    );
 
   const { data: seriesData, isLoading: seriesLoading } =
-    useComplexSearchWithPaginationQuery({
-      cql: `term.series='${seriesObject?.title}'`,
-      limit: 8,
-      offset: 0,
-      filters: {}
-    });
+    useComplexSearchWithPaginationQuery(
+      {
+        cql: `term.series='${seriesObject?.title}'`,
+        limit: 8,
+        offset: 0,
+        filters: {}
+      },
+      { enabled: !!seriesObject?.title }
+    );
 
   const [filter, setFilter] =
-    React.useState<MaterialGridFilterType>("recommendation");
+    useState<MaterialGridFilterType>("recommendation");
 
   const allQueriesLoaded =
     !recommendationLoading && !creatorLoading && !seriesLoading;
 
   const recommendationMaterials =
-    extractRecommendationMaterials(recommendationData);
-  const seriesMaterials = extractSeriesMaterials(seriesData);
-  const authorMaterials = extractAuthorMaterials(creatorData);
+    extractMaterialsFromRecommendations(recommendationData);
+  const seriesMaterials = extractMaterialsFromComplexSearch(seriesData);
+  const authorMaterials = extractMaterialsFromComplexSearch(creatorData);
 
-  const options = React.useMemo<MaterialGridRelatedOption[]>(() => {
+  const options = useMemo<MaterialGridRelatedOption[]>(() => {
     if (!allQueriesLoaded) return [];
 
     const opts: MaterialGridRelatedOption[] = [];
@@ -117,7 +128,7 @@ const MaterialGridRelated: React.FC<MaterialGridRelatedProps> = ({ work }) => {
     t
   ]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (
       allQueriesLoaded &&
       !options.some((o) => o.value === filter) &&

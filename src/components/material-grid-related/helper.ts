@@ -9,15 +9,12 @@ import {
   MaterialGridFilterType
 } from "./MaterialGridRelated.types";
 
-export function prepareCreatorCql(
-  creators: string[] | undefined | null
-): string {
-  if (!creators || creators.length === 0) return "";
-
+export function prepareCreatorCql(creators: string[]): string {
+  if (creators.length === 0) return "";
   return creators.map((name) => `term.creator='${name}'`).join(" OR ");
 }
 
-export function extractRecommendationMaterials(
+export function extractMaterialsFromRecommendations(
   data?: WorkRecommendationsQuery
 ): MaterialGridItemProps[] {
   if (!data?.recommend?.result) return [];
@@ -25,8 +22,7 @@ export function extractRecommendationMaterials(
     wid: work.workId as WorkId
   }));
 }
-
-export function extractSeriesMaterials(
+export function extractMaterialsFromComplexSearch(
   data?: ComplexSearchWithPaginationQuery
 ): MaterialGridItemProps[] {
   if (!data?.complexSearch?.works) return [];
@@ -34,16 +30,6 @@ export function extractSeriesMaterials(
     wid: work.workId as WorkId
   }));
 }
-
-export function extractAuthorMaterials(
-  data?: ComplexSearchWithPaginationQuery
-): MaterialGridItemProps[] {
-  if (!data?.complexSearch?.works) return [];
-  return data.complexSearch.works.map((work) => ({
-    wid: work.workId as WorkId
-  }));
-}
-
 export function getPreferredFallback(
   options: MaterialGridFilterOption[]
 ): MaterialGridFilterType | undefined {
