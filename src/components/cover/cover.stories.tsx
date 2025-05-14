@@ -39,15 +39,20 @@ const meta: Meta<typeof Cover> = {
     alt: {
       name: "Alt text",
       control: { type: "text" }
+    },
+    pid: {
+      name: "PID",
+      control: { type: "text" }
     }
   },
   args: {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
-    size: "small",
+    size: "xSmall",
     animate: true,
     tint: "120",
+    pid: "870970-basis:52557240",
     url: new URL("/", getCurrentLocation()),
     alt: "alt text for the image"
   }

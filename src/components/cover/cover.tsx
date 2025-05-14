@@ -1,26 +1,20 @@
-import React, { useCallback, useState } from "react";
 import clsx from "clsx";
-import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
-import { GetCoverCollectionType } from "../../core/cover-service-api/model";
+import React, { useCallback, useState } from "react";
+import { useGetCoverByPidQuery } from "../../core/dbc-gateway/generated/graphql";
 import { Pid } from "../../core/utils/types/ids";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import CoverImage from "./cover-image";
-import { Manifestation } from "../../core/utils/types/entities";
-import { getCoverUrl } from "./helper";
-
-type Sizes = "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
-type DisplaySizes = "2xsmall" | Sizes;
+import { CoverImageSizeKey, DisplaySize } from "./cover.types";
+import { getCoverDisplaySize, getCoverUrl } from "./helper";
 
 export type CoverProps = {
   animate: boolean;
-  size: Sizes;
-  displaySize?: DisplaySizes;
+  pid: Pid;
+  size: CoverImageSizeKey;
+  displaySize?: DisplaySize;
   tint?: "20" | "40" | "80" | "100" | "120";
-  ids: (Pid | string)[];
-  bestRepresentation?: Manifestation;
   alt?: string;
   url?: URL;
-  idType?: GetCoverCollectionType;
   shadow?: "small" | "medium";
   linkAriaLabelledBy?: string;
 };
@@ -32,39 +26,35 @@ export const Cover = ({
   displaySize,
   animate,
   tint,
-  ids,
-  bestRepresentation,
-  idType = "pid",
   shadow,
-  linkAriaLabelledBy
+  linkAriaLabelledBy,
+  pid
 }: CoverProps) => {
   const [imageLoaded, setImageLoaded] = useState<boolean | null>(null);
+
   const handleSetImageLoaded = useCallback(() => {
     setImageLoaded(true);
   }, []);
 
-  let dataSize: CoverProps["size"] = size;
-  if (dataSize === "xsmall") {
-    dataSize = "small";
-  } else if (dataSize === "xlarge") {
-    dataSize = "large";
-  }
+  const { data: coverData } = useGetCoverByPidQuery({ pid: pid });
 
-  const { data } = useGetCoverCollection({
-    type: idType,
-    identifiers: ids,
-    sizes: [dataSize]
+  console.log("coverData", coverData);
+  const cover = coverData?.manifestation?.cover ?? null;
+
+  const coverUrl = getCoverUrl(cover, size);
+  const coverDisplaySize = getCoverDisplaySize({
+    displaySize,
+    size
   });
 
-  const coverSrc = getCoverUrl({
-    coverData: data,
-    bestRepresentation,
-    size: dataSize
-  });
+  console.log("Using cover size", size, "for display size", coverDisplaySize);
+
+  console.log("coverUrl", coverUrl);
 
   type TintClassesType = {
     [key: string]: string;
   };
+
   const tintClasses: TintClassesType = {
     default: "bg-identity-tint-120",
     "120": "bg-identity-tint-120",
@@ -73,8 +63,6 @@ export const Cover = ({
     "40": "bg-identity-tint-40",
     "20": "bg-identity-tint-20"
   };
-
-  const coverDisplaySize = displaySize || size;
 
   const classes = {
     wrapper: clsx(
@@ -93,10 +81,10 @@ export const Cover = ({
         ariaLabelledBy={linkAriaLabelledBy}
         isHiddenFromScreenReaders={!alt}
       >
-        {coverSrc && (
+        {coverUrl && (
           <CoverImage
             setImageLoaded={handleSetImageLoaded}
-            src={coverSrc}
+            src={coverUrl}
             altText={alt}
             animate={animate}
             shadow={shadow}
@@ -108,10 +96,10 @@ export const Cover = ({
 
   return (
     <div className={classes.wrapper}>
-      {coverSrc && (
+      {coverUrl && (
         <CoverImage
           setImageLoaded={handleSetImageLoaded}
-          src={coverSrc}
+          src={coverUrl}
           altText={alt}
           animate={animate}
           shadow={shadow}

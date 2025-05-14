@@ -1,29 +1,25 @@
-[
-  {
-    "id": "870970-basis:45234401",
-    "type": "pid",
-    "imageUrls": {
-      "original": {
-        "url": "https:res.cloudinary.com/dandigbib/image/upload/v1605727140/bogportalen.dk/9781848485532.jpg",
-        "format": "jpeg",
-        "size": "original"
-      },
-      "small": {
-        "url": "https:res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1605727140/bogportalen.dk/9781848485532.jpg",
-        "format": "jpeg",
-        "size": "small"
-      },
-      "medium": {
-        "url": "https:res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_medium/v1605727140/bogportalen.dk/9781848485532.jpg",
-        "format": "jpeg",
-
-        "size": "medium"
-      },
-      "large": {
-        "url": "https:res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_large/v1605727140/bogportalen.dk/9781848485532.jpg",
-        "format": "jpeg",
-        "size": "large"
+{
+  "data": {
+    "manifestation": {
+      "pid": "870970-basis:52557240",
+      "cover": {
+        "xSmall": null,
+        "small": {
+          "url": "https://fbiinfo-present.dbc.dk/images/fqQUCHhgRESy6YUbqwImuQ/240px!AH5dN1m-qZdHin3coYuZtXSJ20_3Z9qVWW3AXHVo4B8gPA",
+          "width": 240,
+          "height": 377
+        },
+        "medium": {
+          "url": "https://fbiinfo-present.dbc.dk/images/fqQUCHhgRESy6YUbqwImuQ/480px!AH7Pm6IQwQwifW3y9LX8dw157u10Mbg8lFAquSfoksBpiA",
+          "width": 480,
+          "height": 754
+        },
+        "large": {
+          "url": "https://fbiinfo-present.dbc.dk/images/fqQUCHhgRESy6YUbqwImuQ/960px!AH4Bk_tNuPyiLxLT-hjGqsfpHN__fU1H9-AfE-d_eYRSbw",
+          "width": 500,
+          "height": 785
+        }
       }
     }
   }
-]
+}

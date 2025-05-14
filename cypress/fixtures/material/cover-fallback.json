@@ -1,0 +1,25 @@
+{
+  "data": {
+    "manifestation": {
+      "pid": "870970-basis:52557240",
+      "cover": {
+        "xSmall": {
+          "url": null,
+          "width": null,
+          "height": null
+        },
+        "small": {
+          "url": null,
+          "width": null,
+          "height": null
+        },
+        "medium": {
+          "url": "https://fbiinfo-present.dbc.dk/images/fqQUCHhgRESy6YUbqwImuQ/480px!AH7Pm6IQwQwifW3y9LX8dw157u10Mbg8lFAquSfoksBpiA",
+          "width": 300,
+          "height": 400
+        },
+        "large": null
+      }
+    }
+  }
+}

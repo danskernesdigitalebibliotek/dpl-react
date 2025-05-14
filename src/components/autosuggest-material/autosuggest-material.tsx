@@ -12,6 +12,7 @@ import {
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 import { Manifestation } from "../../core/utils/types/entities";
+import { assertIsValidPid } from "../cover/helper";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -57,7 +58,8 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
         const coverPids = getManifestationsPids(
           (allManifestations ?? []) as Manifestation[]
         );
-
+        const { pid } = bestRepresentation;
+        const validPid = assertIsValidPid(pid);
         return (
           <li
             className={clsx("autosuggest__material-item", {
@@ -75,9 +77,9 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
             <div className="autosuggest__material-card">
               <Cover
                 animate
-                size="xsmall"
-                ids={coverPids}
-                bestRepresentation={bestRepresentation as Manifestation}
+                size="small"
+                displaySize="xsmall"
+                pid={validPid}
                 shadow="small"
               />
               <div className="autosuggest__info">
