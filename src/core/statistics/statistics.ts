@@ -108,7 +108,11 @@ export const statistics: Statistics = {
     name: "KampagnePlus Titel",
     parameterName: "u_navigatedby_kp"
   },
-
+  facetsByFacetLineClick: {
+    id: 104,
+    name: "Filtrering vha facetbånd",
+    parameterName: ""
+  },
   // Loaner status, user profile
   renewSelectedMaterials: {
     id: 55,

@@ -15,8 +15,11 @@ import {
 } from "../../core/utils/helpers/url";
 import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
 import { mapFacetToFilter } from "./helper";
+import { useEventStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 
 const useFilterHandler = () => {
+  const { track } = useEventStatistics();
   const dispatch = useDispatch();
   const filters = useSelector((state: RootState) => state.filter) as Filter;
 
@@ -33,9 +36,15 @@ const useFilterHandler = () => {
         });
       }
 
+      track("click", {
+        id: statistics.facetsByFacetLineClick.id,
+        name: statistics.facetsByFacetLineClick.name,
+        trackedData: `${payload.facet} ${payload.term.term}`
+      });
+
       dispatch(add(payload));
     },
-    [dispatch]
+    [dispatch, track]
   );
 
   const removeFromFilter = useCallback(
