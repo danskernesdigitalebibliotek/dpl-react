@@ -6,7 +6,7 @@ import {
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../core/utils/branches";
-import { Filter, FilterItemTerm } from "../../core/filter.slice";
+import { FacetOrigin, Filter, FilterItemTerm } from "../../core/filter.slice";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 import { Facets } from "../../core/utils/types/entities";
 
@@ -85,14 +85,17 @@ export function useGetFacets(query: string, filters: Filter) {
 
 export const FacetBrowserModalId = "facet-browser-modal";
 
-export function getAllFilterPathsAsString(filterObject: {
-  [key: string]: { [key: string]: FilterItemTerm };
-}) {
+export function getAllFilterPathsAsString(
+  filterObject: Filter,
+  origin: FacetOrigin
+) {
   const mappedFilterValues = mapValues(filterObject, (filter) => {
-    return Object.keys(filter);
+    return Object.keys(filter).filter((term) => filter[term].origin === origin);
   });
+
   const filterNames = Object.keys(mappedFilterValues);
   let allFilterPathsAsString = "";
+
   filterNames.forEach((filterName) => {
     mappedFilterValues[filterName].forEach((filterValue) => {
       if (allFilterPathsAsString !== "") {
@@ -103,6 +106,7 @@ export function getAllFilterPathsAsString(filterObject: {
       );
     });
   });
+
   return allFilterPathsAsString;
 }
 
