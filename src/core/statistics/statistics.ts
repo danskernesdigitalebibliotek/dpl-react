@@ -34,7 +34,7 @@ export const statistics: Statistics = {
   },
   searchFacets: {
     id: 20,
-    name: "Søgning Facet",
+    name: "Filtrering vha facetbrowser",
     parameterName: ""
   },
   materialType: {
