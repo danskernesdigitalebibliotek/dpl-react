@@ -134,6 +134,16 @@ export const getManifestationAudience = (
     : generalAudience || formattedAges;
 };
 
+export const getManifestationChildrenOrAdults = (
+  manifestation: Manifestation
+) => {
+  return (
+    first(manifestation.audience?.childrenOrAdults)?.display ||
+    // This should never happen, so it's only for debugging.
+    `No 'childrenOrAdults' data available for ${manifestation.pid}`
+  );
+};
+
 export const getManifestationIsbn = (manifestation: Manifestation) => {
   return manifestation.identifiers?.[0]?.value ?? "";
 };

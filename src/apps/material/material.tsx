@@ -37,7 +37,7 @@ import {
   getDetailsListData,
   getFirstManifestation,
   getInfomediaIds,
-  getManifestationAudience,
+  getManifestationChildrenOrAdults,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation
 } from "./helper";
@@ -47,7 +47,6 @@ import PlayerModal from "../../components/material/player-modal/PlayerModal";
 import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
-import { first } from "lodash";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -100,12 +99,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
         trackedData: data.work.dk5MainEntry.display
       });
     }
-    if (data?.work?.manifestations.bestRepresentation.audience) {
+    if (data?.work?.manifestations.bestRepresentation) {
       collectPageStatistics({
         ...statistics.materialAudience,
-        trackedData: getManifestationAudience(
-          data.work.manifestations.bestRepresentation as Manifestation,
-          t
+        trackedData: getManifestationChildrenOrAdults(
+          data.work.manifestations.bestRepresentation as Manifestation
         )
       });
     }
@@ -118,19 +116,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     // In this case we only want to track once - on work data load
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
-
-  // Track the audience whenever the selected manifestation changes
-  useUpdateEffect(() => {
-    if (first(selectedManifestations)) {
-      collectPageStatistics({
-        ...statistics.materialAudience,
-        trackedData: getManifestationAudience(
-          first(selectedManifestations) as Manifestation,
-          t
-        )
-      });
-    }
-  }, [selectedManifestations]);
 
   useEffect(() => {
     if (!data?.work) return;

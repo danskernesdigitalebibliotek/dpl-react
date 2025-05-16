@@ -65,7 +65,8 @@ export const mockedManifestationData: Manifestation[] = [
     },
     audience: {
       generalAudience: [],
-      ages: []
+      ages: [],
+      childrenOrAdults: []
     },
     notes: [],
     physicalDescription: {
@@ -159,7 +160,8 @@ export const mockedManifestationData: Manifestation[] = [
     },
     audience: {
       generalAudience: [],
-      ages: []
+      ages: [],
+      childrenOrAdults: []
     },
     notes: [
       {
@@ -236,7 +238,8 @@ export const mockedPeriodicalManifestationData: Manifestation[] = [
     },
     audience: {
       generalAudience: [],
-      ages: []
+      ages: [],
+      childrenOrAdults: []
     },
     notes: [
       {

@@ -17,6 +17,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       ],
       "audience": {
         "ages": [],
+        "childrenOrAdults": [],
         "generalAudience": [],
       },
       "catalogueCodes": {
@@ -110,6 +111,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       ],
       "audience": {
         "ages": [],
+        "childrenOrAdults": [],
         "generalAudience": [
           "Text Difficulty 3 - Text Difficulty 5",
           "UG/Upper grades (9th-12)",
@@ -208,6 +210,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       ],
       "audience": {
         "ages": [],
+        "childrenOrAdults": [],
         "generalAudience": [
           "Text Difficulty 3 - Text Difficulty 4",
           "820. Lexile",
@@ -308,6 +311,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       ],
       "audience": {
         "ages": [],
+        "childrenOrAdults": [],
         "generalAudience": [],
       },
       "catalogueCodes": {

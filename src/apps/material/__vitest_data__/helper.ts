@@ -69,7 +69,8 @@ export default {
         },
         audience: {
           generalAudience: [],
-          ages: []
+          ages: [],
+          childrenOrAdults: []
         },
         notes: [
           {
@@ -162,7 +163,8 @@ export default {
             "820. Lexile",
             "6.1. ATOS Level"
           ],
-          ages: []
+          ages: [],
+          childrenOrAdults: []
         },
         notes: [
           {
@@ -256,7 +258,8 @@ export default {
             "Text Difficulty 3 - Text Difficulty 4",
             "820. Lexile"
           ],
-          ages: []
+          ages: [],
+          childrenOrAdults: []
         },
         notes: [
           {
@@ -341,7 +344,8 @@ export default {
         dateFirstEdition: null,
         audience: {
           generalAudience: [],
-          ages: []
+          ages: [],
+          childrenOrAdults: []
         },
         notes: [],
         physicalDescription: {
