@@ -109,7 +109,7 @@ export const statistics: Statistics = {
     parameterName: "u_navigatedby_kp"
   },
   facetsByFacetLineClick: {
-    id: 104,
+    id: 91,
     name: "Filtrering vha facetbånd",
     parameterName: ""
   },
