@@ -70,10 +70,10 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     filters: {
       branchId: cleanBranches,
       status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
-      ...(locationFilter?.location?.length && {
+      ...(locationFilter.location?.length && {
         location: locationFilter.location
       }),
-      ...(locationFilter?.sublocation?.length && {
+      ...(locationFilter.sublocation?.length && {
         sublocation: locationFilter.sublocation
       })
     }
@@ -100,7 +100,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     setResultItems(resultWorks);
   }, [data, locationFilter, page]);
 
-  const shouldShowSearchResults = isLoading || (!isLoading && hitcount > 0);
+  const shouldShowSearchResults = isLoading || hitcount > 0;
   const shouldShowResultHeadline = !!(hitcount && !isLoading);
 
   useEffect(() => {
