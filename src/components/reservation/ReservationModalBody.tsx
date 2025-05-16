@@ -290,7 +290,7 @@ export const ReservationModalBody = ({
               <MaterialAvailabilityTextParagraph>
                 {materialIsReservableFromAnotherLibrary ? (
                   userHasEmail ? (
-                    t("reservableFromAnotherLibraryText")
+                    t("reservableFromAnotherLibraryExtraInfoText")
                   ) : (
                     t("reservableFromAnotherLibraryMissingEmailText")
                   )
