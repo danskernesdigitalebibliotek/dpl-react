@@ -1,14 +1,11 @@
 import React from "react";
-import { isEmpty, upperFirst } from "lodash";
-import { useDeepCompareEffect } from "react-use";
+import { upperFirst } from "lodash";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
 import DisclosureControllable from "../Disclosures/DisclosureControllable";
-import { useEventStatistics } from "../../core/statistics/useStatistics";
-import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
+import { FacetBrowserModalId } from "./helper";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import DisclosureSummary from "../Disclosures/DisclosureSummary";
 import { Facets } from "../../core/utils/types/entities";
@@ -24,20 +21,6 @@ const FacetBrowserModalBody: React.FunctionComponent<
 
   const t = useText();
   const { close } = useModalButtonHandler();
-  const { track } = useEventStatistics();
-
-  useDeepCompareEffect(() => {
-    if (isEmpty(filters)) {
-      return;
-    }
-    track("click", {
-      id: statistics.searchFacets.id,
-      name: statistics.searchFacets.name,
-      trackedData: getAllFilterPathsAsString(filters)
-    });
-    // We only want to track when filters change value.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
 
   return (
     <section className="facet-browser">
@@ -84,7 +67,11 @@ const FacetBrowserModalBody: React.FunctionComponent<
                     e.stopPropagation();
                     return selected
                       ? removeFromFilter({ facet: name, term: termItem })
-                      : addToFilter({ facet: name, term: termItem });
+                      : addToFilter({
+                          facet: name,
+                          term: termItem,
+                          origin: "facetBrowser"
+                        });
                   };
 
                   return (
