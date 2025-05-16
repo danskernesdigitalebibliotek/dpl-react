@@ -565,7 +565,7 @@ describe("Material", () => {
     cy.get(".icon-favourite").should("have.class", "icon-favourite--filled");
   });
 
-  it("displays 8 recommended materials in the related grid", () => {
+  it("Displays 8 recommended materials in the related grid", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -576,6 +576,42 @@ describe("Material", () => {
     cy.getBySel("material-grid-related").should("exist");
 
     cy.get('[data-cy="material-grid-related"] li').should("have.length", 8);
+  });
+
+  it("Renders 3 filter buttons and can click author and series filters", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "complexSearchWithPagination",
+      fixtureFilePath:
+        "material/material-grid-related-author-recommendations.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    // Check if there are 3 filters render
+    cy.get('[data-cy="material-grid-related-filter-button"]').should(
+      "have.length",
+      3
+    );
+
+    cy.contains(
+      '[data-cy="material-grid-related-filter-button"]',
+      "By same author"
+    ).click();
+
+    cy.contains(
+      '[data-cy="material-grid-related-filter-button"]',
+      "In same series"
+    ).click();
   });
 
   beforeEach(() => {
@@ -607,6 +643,12 @@ describe("Material", () => {
     cy.interceptGraphql({
       operationName: "WorkRecommendations",
       fixtureFilePath: "material/material-grid-related-recommendations.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "complexSearchWithPagination",
+      fixtureFilePath:
+        "material/material-grid-related-author-recommendations.json"
     });
 
     cy.interceptRest({
