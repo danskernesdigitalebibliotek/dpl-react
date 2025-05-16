@@ -179,6 +179,8 @@ interface MaterialEntryTextProps {
   readArticleText: string;
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
+  reservableFromAnotherLibraryMissingEmailText: string;
+  reservableFromAnotherLibraryExtraInfoText: string;
   reservableFromAnotherLibraryText: string;
   reservationDetailsPickUpAtTitleText: string;
   reservationErrorsDescriptionText: string;

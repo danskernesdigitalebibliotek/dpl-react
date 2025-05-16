@@ -131,6 +131,14 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Reserve",
       control: { type: "text" }
     },
+    reservableFromAnotherLibraryMissingEmailText: {
+      description: "Reservable on another library - need to add email",
+      control: { type: "text" }
+    },
+    reservableFromAnotherLibraryExtraInfoText: {
+      description: "Reservable on another library - extra info",
+      control: { type: "text" }
+    },
     reservableFromAnotherLibraryText: {
       description: "Reservable on another library",
       control: { type: "text" }
@@ -848,6 +856,10 @@ const meta: Meta<typeof MaterialEntry> = {
     reserveBookText: "Reserve book",
     reserveText: "Reserve",
     reserveWithMaterialTypeText: "Reserve @materialType",
+    reservableFromAnotherLibraryMissingEmailText:
+      "You need to add an email address to reserve from another library.",
+    reservableFromAnotherLibraryExtraInfoText:
+      "NOTE! This material is ordered from another library. Therefore, it may take a few days before it appears on your list of reservations.",
     reservableFromAnotherLibraryText: "Ordered from another library.",
     findOnBookshelfText: "Find on shelf",
     descriptionHeadlineText: "Description",
