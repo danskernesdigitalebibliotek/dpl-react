@@ -266,6 +266,8 @@ export const ReservationModalBody = ({
       instantLoanThreshold
     );
 
+  const userHasEmail = Boolean(patron?.emailAddress);
+
   return (
     <>
       {!reservationResults && !openOrderResponse && (
@@ -287,7 +289,11 @@ export const ReservationModalBody = ({
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
                 {materialIsReservableFromAnotherLibrary ? (
-                  t("reservableFromAnotherLibraryText")
+                  userHasEmail ? (
+                    t("reservableFromAnotherLibraryText")
+                  ) : (
+                    t("reservableFromAnotherLibraryMissingEmailText")
+                  )
                 ) : (
                   <StockAndReservationInfo
                     stockCount={holdings}
@@ -300,7 +306,10 @@ export const ReservationModalBody = ({
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
-                disabled={reservationStatus === "pending"}
+                disabled={
+                  reservationStatus === "pending" ||
+                  (materialIsReservableFromAnotherLibrary && !userHasEmail)
+                }
                 collapsible={false}
                 size="small"
                 onClick={saveReservation}
