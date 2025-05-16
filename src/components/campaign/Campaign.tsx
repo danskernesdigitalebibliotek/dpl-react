@@ -1,34 +1,29 @@
 import * as React from "react";
 import { FC } from "react";
 import { CampaignMatchPOST200Data } from "../../core/dpl-cms/model";
-import { statistics } from "../../core/statistics/statistics";
-import { useEventStatistics } from "../../core/statistics/useStatistics";
-import { redirectTo } from "../../core/utils/helpers/url";
+import { useUrlStatistics } from "../../core/statistics/useStatistics";
 
 export interface CampaignProps {
   campaignData: CampaignMatchPOST200Data;
 }
 
 const Campaign: FC<CampaignProps> = ({ campaignData }) => {
-  const { track } = useEventStatistics();
+  const { redirectWithUrlTracking } = useUrlStatistics();
   if (!campaignData.title) {
     return null;
   }
   // campaignData.title will always be defined because we exit the component if
   // not, but Typescript still thinks it might so we assign it with "as string"
-  const trackClick = () => {
-    return track("click", {
-      id: statistics.campaignClick.id,
-      name: statistics.campaignClick.name,
-      trackedData: campaignData.title as string
-    });
-  };
 
   const onClick = () => {
-    if (campaignData.url) {
-      const url = new URL(campaignData.url);
-      trackClick().then(() => redirectTo(url, true));
+    if (!campaignData.url) {
+      return;
     }
+
+    redirectWithUrlTracking({
+      campaignUrl: campaignData.url,
+      parameterValue: campaignData.title as string
+    });
   };
 
   const onKeyUp = (event: React.KeyboardEvent) => {
