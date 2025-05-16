@@ -142,7 +142,7 @@ export const statistics: Statistics = {
     parameterName: ""
   },
   findOnShelf: {
-    id: 108,
+    id: 92,
     name: "Klik på ”Find på hylden”",
     parameterName: ""
   },
