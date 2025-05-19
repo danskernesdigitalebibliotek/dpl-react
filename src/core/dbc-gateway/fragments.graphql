@@ -92,6 +92,10 @@ fragment ManifestationsSimpleFields on Manifestation {
     ages {
       display
     }
+    childrenOrAdults {
+      display
+      code
+    }
   }
   notes {
     display
