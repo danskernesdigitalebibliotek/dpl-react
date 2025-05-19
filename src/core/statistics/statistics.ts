@@ -57,11 +57,6 @@ export const statistics: Statistics = {
     name: "Materiale Kilde",
     parameterName: "p_mat_source"
   },
-  materialTargetAudience: {
-    id: 31,
-    name: "Materiale Målgruppe",
-    parameterName: ""
-  },
   materialTopicNumber: {
     id: 32,
     name: "Materiale - DK5-nummer (Emnetal)",
