@@ -197,6 +197,10 @@ interface MaterialEntryTextProps {
   shiftText: string;
   subjectNumberText: string;
   tryAginButtonText: string;
+  shareOnFacebookText: string;
+  shareOnFacebookAriaLabelText: string;
+  copyLinkText: string;
+  copyLinkAriaLabelText: string;
 }
 
 interface MaterialEntryConfigProps {
