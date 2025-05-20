@@ -83,6 +83,26 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Material grid related title",
       control: { type: "text" }
     },
+    materialGridRelatedRecommendationsDataLabelText: {
+      description: "Recommendation data label",
+      control: { type: "text" }
+    },
+    materialGridRelatedSeriesDataLabelText: {
+      description: "Series data label",
+      control: { type: "text" }
+    },
+    materialGridRelatedAuthorDataLabelText: {
+      description: "Author data label",
+      control: { type: "text" }
+    },
+    materialGridRelatedInlineFiltersAriaLabelText: {
+      description: "Filter displayed materials",
+      control: { type: "text" }
+    },
+    materialGridRelatedSelectAriaLabelText: {
+      description: "Select material filter",
+      control: { type: "text" }
+    },
     periodicalSelectYearText: {
       description: "Year",
       control: { type: "text" }
@@ -816,6 +836,11 @@ const meta: Meta<typeof MaterialEntry> = {
     materialHeaderAllEditionsText: "All editions",
     materialHeaderAuthorByText: "By",
     materialGridRelatedTitleText: "Other materials",
+    materialGridRelatedRecommendationsDataLabelText: "Recommendations",
+    materialGridRelatedSeriesDataLabelText: "In same series",
+    materialGridRelatedAuthorDataLabelText: "By same author",
+    materialGridRelatedInlineFiltersAriaLabelText: "Filter displayed materials",
+    materialGridRelatedSelectAriaLabelText: "Select material filter",
     periodicalSelectYearText: "Year",
     periodicalSelectEditionText: "Edition",
     playerModalDescriptionText: "Modal for player",

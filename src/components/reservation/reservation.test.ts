@@ -11,6 +11,11 @@ describe("Reservation", () => {
       operationName: "WorkRecommendations",
       fixtureFilePath: "material/material-grid-related-recommendations.json"
     });
+    cy.interceptGraphql({
+      operationName: "complexSearchWithPagination",
+      fixtureFilePath:
+        "material/material-grid-related-author-recommendations.json"
+    });
     cy.interceptRest({
       aliasName: "holdings",
       url: "**/agencyid/catalog/holdingsLogistics/**",

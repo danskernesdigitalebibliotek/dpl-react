@@ -34,7 +34,7 @@ export const statistics: Statistics = {
   },
   searchFacets: {
     id: 20,
-    name: "Søgning Facet",
+    name: "Filtrering vha facetbrowser",
     parameterName: ""
   },
   materialType: {
@@ -82,11 +82,6 @@ export const statistics: Statistics = {
     name: "Søgning - Resultatnummer klik",
     parameterName: ""
   },
-  campaignClick: {
-    id: 48,
-    name: "Kampagneklik",
-    parameterName: ""
-  },
   reservation: {
     id: 50,
     name: "Reserver",
@@ -103,12 +98,15 @@ export const statistics: Statistics = {
     parameterName: ""
   },
   campaignShown: {
-    // This may be worng: see https://reload.atlassian.net/browse/DDFSAL-62
-    id: 62,
+    id: 69,
     name: "KampagnePlus Titel",
-    parameterName: "u_navigatedby_kp"
+    parameterName: "p_campaign_show"
   },
-
+  facetsByFacetLineClick: {
+    id: 91,
+    name: "Filtrering vha facetbånd",
+    parameterName: ""
+  },
   // Loaner status, user profile
   renewSelectedMaterials: {
     id: 55,
@@ -125,7 +123,6 @@ export const statistics: Statistics = {
     name: "Tilføj til liste",
     parameterName: ""
   },
-
   // Material
   orderFromAnotherLibrary: {
     id: 70,
@@ -138,7 +135,7 @@ export const statistics: Statistics = {
     parameterName: ""
   },
   findOnShelf: {
-    id: 108,
+    id: 92,
     name: "Klik på ”Find på hylden”",
     parameterName: ""
   },
