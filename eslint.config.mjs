@@ -134,7 +134,6 @@ export default [
           ]
         }
       ],
-
       "react/function-component-definition": "off",
       "react/no-danger": "error",
       "react/jsx-props-no-spreading": "error",
@@ -142,14 +141,13 @@ export default [
       "@typescript-eslint/comma-dangle": "off",
       "@typescript-eslint/lines-between-class-members": "off",
       "@typescript-eslint/no-throw-literal": "off",
-
+      "@typescript-eslint/no-unnecessary-condition": "error",
       "react-hooks/exhaustive-deps": [
         "warn",
         {
           additionalHooks: "useDeepCompareEffect"
         }
       ],
-
       "no-only-tests/no-only-tests": "warn"
     }
   },
