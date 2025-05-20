@@ -53,7 +53,8 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
 
     addToFilter({
       facet,
-      term
+      term,
+      origin: "facetLine"
     });
   };
 
@@ -99,7 +100,8 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
                   const onClickHandler = () =>
                     addToFilter({
                       facet: name,
-                      term: termObj
+                      term: termObj,
+                      origin: "facetLine"
                     });
 
                   // Removes the selected term from the filter line because it is now displayed in the selected line

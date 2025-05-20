@@ -34,7 +34,7 @@ export const statistics: Statistics = {
   },
   searchFacets: {
     id: 20,
-    name: "Søgning Facet",
+    name: "Filtrering vha facetbrowser",
     parameterName: ""
   },
   materialType: {
@@ -102,6 +102,11 @@ export const statistics: Statistics = {
     name: "KampagnePlus Titel",
     parameterName: "p_campaign_show"
   },
+  facetsByFacetLineClick: {
+    id: 91,
+    name: "Filtrering vha facetbånd",
+    parameterName: ""
+  },
   // Loaner status, user profile
   renewSelectedMaterials: {
     id: 55,
@@ -130,7 +135,7 @@ export const statistics: Statistics = {
     parameterName: ""
   },
   findOnShelf: {
-    id: 108,
+    id: 92,
     name: "Klik på ”Find på hylden”",
     parameterName: ""
   },
