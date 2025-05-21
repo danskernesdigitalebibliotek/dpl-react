@@ -1,4 +1,4 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
+import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 
 describe("Material", () => {
   it("Renders a title", () => {
@@ -15,9 +15,10 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
+
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.get("img").should("have.attr", "src").and("match", coverUrlPattern);
+    cy.get("img").should("have.attr", "src").and("match", FbiCoverUrlPattern);
   });
 
   it("Renders favorite buttons", () => {
@@ -652,12 +653,6 @@ describe("Material", () => {
     });
 
     cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
-    });
-
-    cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
       fixtureFilePath: "material/availability.json"
@@ -668,20 +663,16 @@ describe("Material", () => {
       statusCode: 404
     }).as("Favorite list service");
 
-    // Intercept covers.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
     // Intercept url "translation".
     cy.interceptRest({
       aliasName: "UrlProxy",
       url: "**/dpl-url-proxy?url=**",
       fixtureFilePath: "material/dpl-url-proxy.json"
+    });
+    // Intercept covers
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover.json"
     });
   });
 });
