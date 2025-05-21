@@ -4,9 +4,8 @@ describe("Recommendation Component", () => {
       operationName: "getMaterial",
       fixtureFilePath: "recommendation/fbi-api.json"
     });
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
       fixtureFilePath: "cover.json"
     });
     // To fill the heart
