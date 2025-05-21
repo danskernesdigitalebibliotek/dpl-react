@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 export function isImageLoaded(cy: Cypress.cy) {
   cy.getBySel("campaign-image")
     .should("be.visible")
@@ -21,19 +19,9 @@ describe("Campaign", () => {
       fixtureFilePath: "search-result/facet-query-result"
     });
 
-    // Intercept all images from Cloudinary.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    ).as("Harry Potter cover");
     // Intercept covers.
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
       fixtureFilePath: "cover.json"
     });
 
