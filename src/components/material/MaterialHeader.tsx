@@ -120,7 +120,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         <Cover
           ids={coverPids}
           bestRepresentation={bestRepresentation}
-          size="xlarge"
+          size="large"
+          displaySize="xlarge"
           animate
           shadow="small"
         />
