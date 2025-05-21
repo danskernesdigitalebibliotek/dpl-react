@@ -1,26 +1,37 @@
-import React, { useCallback, useState } from "react";
 import clsx from "clsx";
-import { useGetCoverCollection } from "../../core/cover-service-api/cover-service";
-import { GetCoverCollectionType } from "../../core/cover-service-api/model";
+import React, { useCallback, useState } from "react";
+import {
+  useGetBestRepresentationPidByIsbnQuery,
+  useGetCoversByPidsQuery
+} from "../../core/dbc-gateway/generated/graphql";
+import { Manifestation } from "../../core/utils/types/entities";
 import { Pid } from "../../core/utils/types/ids";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import CoverImage from "./cover-image";
-import { Manifestation } from "../../core/utils/types/entities";
-import { getCoverUrl } from "./helper";
-
-type Sizes = "xsmall" | "small" | "medium" | "large" | "xlarge" | "original";
-type DisplaySizes = "2xsmall" | Sizes;
+import {
+  CoverIdType,
+  FbiCoverImageSizeKey,
+  DisplaySize,
+  displaySizeToGraphQLKey
+} from "./cover.types";
+import {
+  createIsbnCql,
+  filterNonNullManifestations,
+  getCoverDisplaySize,
+  getCoverUrl,
+  resolveCoverPids
+} from "./helper";
 
 export type CoverProps = {
   animate: boolean;
-  size: Sizes;
-  displaySize?: DisplaySizes;
+  size: FbiCoverImageSizeKey;
+  displaySize?: DisplaySize;
   tint?: "20" | "40" | "80" | "100" | "120";
   ids: (Pid | string)[];
   bestRepresentation?: Manifestation;
   alt?: string;
   url?: URL;
-  idType?: GetCoverCollectionType;
+  idType?: CoverIdType;
   shadow?: "small" | "medium";
   linkAriaLabelledBy?: string;
 };
@@ -38,26 +49,44 @@ export const Cover = ({
   shadow,
   linkAriaLabelledBy
 }: CoverProps) => {
-  const [imageLoaded, setImageLoaded] = useState<boolean | null>(null);
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const handleSetImageLoaded = useCallback(() => {
     setImageLoaded(true);
   }, []);
+  const isIsbn = idType === "isbn";
+  const hasIds = ids && ids.length > 0;
 
-  let dataSize: CoverProps["size"] = size;
-  if (dataSize === "xsmall") {
-    dataSize = "small";
-  } else if (dataSize === "xlarge") {
-    dataSize = "large";
-  }
+  const { data: isbnData } = useGetBestRepresentationPidByIsbnQuery(
+    {
+      cql: createIsbnCql(ids),
+      offset: 0,
+      limit: 1,
+      filters: {}
+    },
 
-  const { data } = useGetCoverCollection({
-    type: idType,
-    identifiers: ids,
-    sizes: [dataSize]
-  });
+    { enabled: isIsbn && hasIds }
+  );
+
+  const resolvedIsbnPid =
+    isbnData?.complexSearch?.works?.[0]?.manifestations?.bestRepresentation
+      ?.pid;
+
+  const pidsToQuery = resolveCoverPids({ idType, ids, resolvedIsbnPid });
+
+  const { data: coverResult } = useGetCoversByPidsQuery(
+    { pids: pidsToQuery },
+    { enabled: pidsToQuery.length > 0 }
+  );
+
+  const coverData = filterNonNullManifestations(coverResult?.manifestations);
+
+  // Convert display size to valid GraphQL key like "xSmall"
+  // This ensures we get the right image AND apply the right layout class
+  const layoutSize = getCoverDisplaySize({ displaySize, size });
+  const dataSize = displaySizeToGraphQLKey[layoutSize];
 
   const coverSrc = getCoverUrl({
-    coverData: data,
+    coverData,
     bestRepresentation,
     size: dataSize
   });
@@ -65,6 +94,7 @@ export const Cover = ({
   type TintClassesType = {
     [key: string]: string;
   };
+
   const tintClasses: TintClassesType = {
     default: "bg-identity-tint-120",
     "120": "bg-identity-tint-120",
@@ -74,13 +104,11 @@ export const Cover = ({
     "20": "bg-identity-tint-20"
   };
 
-  const coverDisplaySize = displaySize || size;
-
   const classes = {
     wrapper: clsx(
       "cover",
-      `cover--size-${coverDisplaySize}`,
-      `cover--aspect-${coverDisplaySize}`,
+      `cover--size-${layoutSize}`,
+      `cover--aspect-${layoutSize}`,
       imageLoaded || tintClasses[tint || "default"]
     )
   };
