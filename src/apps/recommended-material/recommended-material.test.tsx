@@ -1,15 +1,11 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
+const coverUrlPattern =
+  /^https:\/\/[^/]+\.dbc\.dk\/images\/.+\/\d+px![A-Za-z0-9_-]+$/;
 
 describe("Recommended Material", () => {
   beforeEach(() => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "recommendation/fbi-api.json"
-    });
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
     });
     // To fill the heart
     cy.intercept("HEAD", "**list/default/work-of**", {
