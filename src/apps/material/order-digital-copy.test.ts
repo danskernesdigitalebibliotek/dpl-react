@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("Material - Order digital copy", () => {
   beforeEach(() => {
     cy.interceptGraphql({
@@ -7,26 +5,16 @@ describe("Material - Order digital copy", () => {
       fixtureFilePath: "material/order-digital-copy/order-digital-fbi-api"
     });
 
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover.json"
+    });
+
     cy.interceptRest({
       aliasName: "user",
       url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
     });
-
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
-    });
-
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
 
     cy.interceptRest({
       aliasName: "Availability",
