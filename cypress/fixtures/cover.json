@@ -1,33 +1,31 @@
-[
-  {
-    "id": "870970-basis:22629344",
-    "type": "pid",
-    "imageUrls": {
-      "original": {
-        "url": "https:\/\/res.cloudinary.com\/dandigbib\/image\/upload\/t_ddb_cover_small\/v1543886053\/bogportalen.dk\/9788700398368.jpg",
-        "format": "jpeg",
-        "size": "original"
-      },
-      "small": {
-        "url": "https:\/\/res.cloudinary.com\/dandigbib\/image\/upload\/t_ddb_cover_small\/v1543886053\/bogportalen.dk\/9788700398368.jpg",
-        "format": "jpeg",
-        "size": "small"
-      },
-      "medium": {
-        "url": "https:\/\/res.cloudinary.com\/dandigbib\/image\/upload\/t_ddb_cover_small\/v1543886053\/bogportalen.dk\/9788700398368.jpg",
-        "format": "jpeg",
-        "size": "medium"
-      },
-      "large": {
-        "url": "https:\/\/res.cloudinary.com\/dandigbib\/image\/upload\/t_ddb_cover_small\/v1543886053\/bogportalen.dk\/9788700398368.jpg",
-        "format": "jpeg",
-        "size": "large"
-      },
-      "xlarge": {
-        "url": "https:\/\/res.cloudinary.com\/dandigbib\/image\/upload\/t_ddb_cover_small\/v1543886053\/bogportalen.dk\/9788700398368.jpg",
-        "format": "jpeg",
-        "size": "xlarge"
+{
+  "data": {
+    "manifestations": [
+      {
+        "pid": "870970-basis:53292968",
+        "cover": {
+          "xSmall": {
+            "url": "https://fbiinfo-present.dbc.dk/images/OFkgpMOxSKmmt25AzzxAVw/120px!AIw2BkPOLypFEqL1vHy1yBKouHF-HNcXWWoIyBuG00fdtw",
+            "width": 120,
+            "height": 188
+          },
+          "small": {
+            "url": "https://fbiinfo-present.dbc.dk/images/OFkgpMOxSKmmt25AzzxAVw/240px!AIw-TQ9oCb7zdDSJjkBiw6jkSDQS8nTg5n_uSZweQTK12Q",
+            "width": 240,
+            "height": 377
+          },
+          "medium": {
+            "url": "https://fbiinfo-present.dbc.dk/images/OFkgpMOxSKmmt25AzzxAVw/480px!AIyr0djl0iG3rFEf29ecuiCXPXmHQPBheE83TYngKX_OHQ",
+            "width": 480,
+            "height": 754
+          },
+          "large": {
+            "url": "https://fbiinfo-present.dbc.dk/images/OFkgpMOxSKmmt25AzzxAVw/960px!AIwcwpzg_AMmUzDNPm_6frtTRgiUYiSpIQY0GBRgMjTI0A",
+            "width": 500,
+            "height": 785
+          }
+        }
       }
-    }
+    ]
   }
-]
+}
