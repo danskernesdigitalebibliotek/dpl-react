@@ -42,9 +42,8 @@ describe("Favorites list", () => {
       aliasName: "work"
     });
 
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
       fixtureFilePath: "cover.json"
     });
 
