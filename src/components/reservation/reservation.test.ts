@@ -11,6 +11,10 @@ describe("Reservation", () => {
       operationName: "WorkRecommendations",
       fixtureFilePath: "material/material-grid-related-recommendations.json"
     });
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover.json"
+    });
     cy.interceptRest({
       aliasName: "holdings",
       url: "**/agencyid/catalog/holdingsLogistics/**",
@@ -30,11 +34,7 @@ describe("Reservation", () => {
         fixture: "images/cover.jpg"
       }
     );
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
-    });
+
     // Intercept like button
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404
