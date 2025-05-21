@@ -2,9 +2,8 @@ const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material - Infomedia", () => {
   beforeEach(() => {
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
       fixtureFilePath: "cover.json"
     });
     cy.intercept(
