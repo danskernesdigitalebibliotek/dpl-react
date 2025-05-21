@@ -69,6 +69,8 @@ export type AccessUrl = {
   type?: Maybe<AccessUrlTypeEnum>;
   /** The url where manifestation is located */
   url: Scalars["String"]["output"];
+  /** Description/type of URL */
+  urlText?: Maybe<Scalars["String"]["output"]>;
 };
 
 export enum AccessUrlTypeEnum {
@@ -1176,14 +1178,6 @@ export type MoodTagRecommendResponse = {
   work: Work;
 };
 
-export type MusicalExercise = {
-  __typename?: "MusicalExercise";
-  /** The types of instrument 'schools' intended to practise with */
-  display: Array<Scalars["String"]["output"]>;
-  /** Information whether material is intended for practising and in combination with an instrument */
-  forExercise: Scalars["Boolean"]["output"];
-};
-
 export type Mutation = {
   __typename?: "Mutation";
   elba: ElbaServices;
@@ -1211,6 +1205,8 @@ export type Note = {
   heading?: Maybe<Scalars["String"]["output"]>;
   /** The type of note - e.g. note about language, genre etc, NOT_SPECIFIED if not known.  */
   type: NoteTypeEnum;
+  /** A link and possible link text */
+  urls?: Maybe<Array<Maybe<AccessUrl>>>;
 };
 
 export enum NoteTypeEnum {
@@ -1491,10 +1487,12 @@ export type RelatedPublication = {
   issn?: Maybe<Scalars["String"]["output"]>;
   /** Title of the related periodical/journal */
   title: Array<Scalars["String"]["output"]>;
-  /** URL of the related publication */
+  /** The first URL of the urls in related publications */
   url?: Maybe<Scalars["String"]["output"]>;
   /** Note regarding the URL of the related publication */
   urlText?: Maybe<Scalars["String"]["output"]>;
+  /** Alle urls of the related publication */
+  urls: Array<Maybe<Scalars["String"]["output"]>>;
 };
 
 export type Relations = {
@@ -1747,10 +1745,10 @@ export type SheetMusicCategory = {
   chamberMusicTypes: Array<Scalars["String"]["output"]>;
   /** The types of choir material covers */
   choirTypes: Array<Scalars["String"]["output"]>;
+  /** I this node for exercises */
+  forMusicalExercise?: Maybe<Scalars["Boolean"]["output"]>;
   /** The types of instruments material covers */
   instruments: Array<Scalars["String"]["output"]>;
-  /** Material intended to practice with */
-  musicalExercises?: Maybe<MusicalExercise>;
   /** The types of orchestra material covers */
   orchestraTypes: Array<Scalars["String"]["output"]>;
 };
@@ -5178,6 +5176,67 @@ export type SuggestionsFromQueryStringQuery = {
   };
 };
 
+export type GetCoversByPidsQueryVariables = Exact<{
+  pids: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
+}>;
+
+export type GetCoversByPidsQuery = {
+  __typename?: "Query";
+  manifestations: Array<{
+    __typename?: "Manifestation";
+    pid: string;
+    cover: {
+      __typename?: "Cover";
+      xSmall?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+      small?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+      medium?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+      large?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+    };
+  } | null>;
+};
+
+export type GetBestRepresentationPidByIsbnQueryVariables = Exact<{
+  cql: Scalars["String"]["input"];
+  offset: Scalars["Int"]["input"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
+  filters: ComplexSearchFiltersInput;
+}>;
+
+export type GetBestRepresentationPidByIsbnQuery = {
+  __typename?: "Query";
+  complexSearch: {
+    __typename?: "ComplexSearchResponse";
+    works: Array<{
+      __typename?: "Work";
+      workId: string;
+      manifestations: {
+        __typename?: "Manifestations";
+        bestRepresentation: { __typename?: "Manifestation"; pid: string };
+      };
+    }>;
+  };
+};
+
 export type SearchFacetQueryVariables = Exact<{
   q: SearchQueryInput;
   facets: Array<FacetFieldEnum> | FacetFieldEnum;
@@ -7514,6 +7573,85 @@ export const useSuggestionsFromQueryStringQuery = <
   );
 };
 
+export const GetCoversByPidsDocument = `
+    query GetCoversByPids($pids: [String!]!) {
+  manifestations(pid: $pids) {
+    pid
+    cover {
+      xSmall {
+        url
+        width
+        height
+      }
+      small {
+        url
+        width
+        height
+      }
+      medium {
+        url
+        width
+        height
+      }
+      large {
+        url
+        width
+        height
+      }
+    }
+  }
+}
+    `;
+
+export const useGetCoversByPidsQuery = <
+  TData = GetCoversByPidsQuery,
+  TError = unknown
+>(
+  variables: GetCoversByPidsQueryVariables,
+  options?: UseQueryOptions<GetCoversByPidsQuery, TError, TData>
+) => {
+  return useQuery<GetCoversByPidsQuery, TError, TData>(
+    ["GetCoversByPids", variables],
+    fetcher<GetCoversByPidsQuery, GetCoversByPidsQueryVariables>(
+      GetCoversByPidsDocument,
+      variables
+    ),
+    options
+  );
+};
+
+export const GetBestRepresentationPidByIsbnDocument = `
+    query GetBestRepresentationPidByIsbn($cql: String!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: ComplexSearchFiltersInput!) {
+  complexSearch(cql: $cql, filters: $filters) {
+    works(offset: $offset, limit: $limit) {
+      workId
+      manifestations {
+        bestRepresentation {
+          pid
+        }
+      }
+    }
+  }
+}
+    `;
+
+export const useGetBestRepresentationPidByIsbnQuery = <
+  TData = GetBestRepresentationPidByIsbnQuery,
+  TError = unknown
+>(
+  variables: GetBestRepresentationPidByIsbnQueryVariables,
+  options?: UseQueryOptions<GetBestRepresentationPidByIsbnQuery, TError, TData>
+) => {
+  return useQuery<GetBestRepresentationPidByIsbnQuery, TError, TData>(
+    ["GetBestRepresentationPidByIsbn", variables],
+    fetcher<
+      GetBestRepresentationPidByIsbnQuery,
+      GetBestRepresentationPidByIsbnQueryVariables
+    >(GetBestRepresentationPidByIsbnDocument, variables),
+    options
+  );
+};
+
 export const SearchFacetDocument = `
     query searchFacet($q: SearchQueryInput!, $facets: [FacetFieldEnum!]!, $facetLimit: Int!, $filters: SearchFiltersInput) {
   search(q: $q, filters: $filters) {
@@ -7665,6 +7803,8 @@ export const operationNames = {
       "complexSearchWithPaginationWorkAccess" as const,
     complexSearchWithPagination: "complexSearchWithPagination" as const,
     suggestionsFromQueryString: "suggestionsFromQueryString" as const,
+    GetCoversByPids: "GetCoversByPids" as const,
+    GetBestRepresentationPidByIsbn: "GetBestRepresentationPidByIsbn" as const,
     searchFacet: "searchFacet" as const,
     intelligentFacets: "intelligentFacets" as const,
     WorkRecommendations: "WorkRecommendations" as const
