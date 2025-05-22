@@ -58,6 +58,7 @@ describe("Campaign", () => {
 
     isImageLoaded(cy);
     cy.getBySel("campaign-image").should("have.attr", "alt");
+    cy.getBySel("campaign-body").scrollIntoView({ duration: 500 });
     cy.getBySel("campaign-body").should("be.visible").contains("Harry Potter");
   });
 
