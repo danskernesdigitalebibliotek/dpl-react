@@ -1,3 +1,5 @@
+import { FbiCoverUrlPattern } from "../../../../cypress/fixtures/fixture.types";
+
 describe("Reservation list", () => {
   beforeEach(() => {
     cy.createFakeAuthenticatedSession();
@@ -304,11 +306,14 @@ describe("Reservation list", () => {
     }).as("digital_reservations");
 
     // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("cover");
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover.json"
+    });
+    cy.interceptGraphql({
+      operationName: "GetBestRepresentationPidByIsbn",
+      fixtureFilePath: "cover-get-best-representation-by-isbn.json"
+    });
   });
 
   it("Reservations list", () => {
@@ -349,17 +354,12 @@ describe("Reservation list", () => {
       .find(".status-label")
       .should("exist");
 
-    cy.wait(["@cover"]);
-
     // ID 11 2.b.iii.1. Every reservation ready for pickup is shown with
     // ID 42 2.a. Material cover
     cy.getBySel("list-reservation-container")
       .find(".list-reservation .cover img")
       .should("have.attr", "src")
-      .should(
-        "include",
-        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
-      );
+      .and("match", FbiCoverUrlPattern);
 
     // ID 42 2.b. Material types including accessibility of material
     cy.getBySel("list-reservation-container")
@@ -829,7 +829,7 @@ describe("Reservation list", () => {
       .should("have.text", "At the moment you have 0 reservations");
   });
 
-  it("Reservations list shows parallel reservation", () => {
+  it.only("Reservations list shows parallel reservation", () => {
     cy.intercept(
       "GET",
       "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
@@ -885,10 +885,8 @@ describe("Reservation list", () => {
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
     );
 
-    cy.interceptRest({
-      aliasName: "work-bestrepresentation",
-      httpMethod: "POST",
-      url: "**/next*/**",
+    cy.interceptGraphql({
+      operationName: "getManifestationViaBestRepresentationByFaust",
       fixtureFilePath: "reservation-list/work-bestrepresentation.json"
     });
 
@@ -910,6 +908,10 @@ describe("Reservation list", () => {
       .find(".modal-details__title")
       // Details should also contain the best representation title.
       .should("contain", "Best representation of dummy title");
+    cy.getBySel("modal-details__header")
+      .find("img")
+      .should("have.attr", "src")
+      .and("match", FbiCoverUrlPattern);
   });
 
   it("Reservations list falls back on interlibrary record when work is not found", () => {
@@ -927,6 +929,7 @@ describe("Reservation list", () => {
             pickupDeadline: null,
             expiryDate: "2022-09-21",
             dateOfReservation: "2022-06-14T09:00:50.059",
+            //  identifier: "9781844135417", //
             numberInQueue: 1,
             periodical: null,
             pickupNumber: null,
@@ -965,12 +968,10 @@ describe("Reservation list", () => {
 
     // No works are found. This should make the reservation use data from the
     // ilBibliographicRecord property.
-    cy.intercept("POST", "**/next*/**", {
-      statusCode: 200,
-      body: {
-        data: {}
-      }
-    }).as("work_not_found");
+    cy.interceptGraphql({
+      operationName: "getManifestationViaMaterialByFaust",
+      fixtureFilePath: "empty.json"
+    });
 
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-entry"
@@ -991,6 +992,11 @@ describe("Reservation list", () => {
       .find(".modal-details__title")
       // Details should also contain the ilBibliographicRecord title.
       .should("contain", "Supermac : the life of Harold Macmillan");
+
+    cy.getBySel("modal-details__header")
+      .find("img")
+      .should("have.attr", "src")
+      .and("match", FbiCoverUrlPattern);
   });
 });
 
