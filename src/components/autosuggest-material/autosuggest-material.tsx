@@ -75,7 +75,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
             <div className="autosuggest__material-card">
               <Cover
                 animate
-                size="xsmall"
+                size="xSmall"
                 ids={coverPids}
                 bestRepresentation={bestRepresentation as Manifestation}
                 shadow="small"

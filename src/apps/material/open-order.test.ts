@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 const navigateToMaterial = () => {
   cy.createFakeAuthenticatedSession();
   cy.visit(
@@ -91,6 +89,11 @@ describe("Open Order Functionality", () => {
       fixtureFilePath: "material/material-grid-related-recommendations.json"
     });
 
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover.json"
+    });
+
     cy.interceptRest({
       aliasName: "holdings",
       url: "**/agencyid/catalog/holdingsLogistics/**",
@@ -110,12 +113,6 @@ describe("Open Order Functionality", () => {
     });
 
     cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
-    });
-
-    cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
       fixtureFilePath: "material/open-order/availability.json"
@@ -126,15 +123,6 @@ describe("Open Order Functionality", () => {
       statusCode: 404
     }).as("Favorite list service");
 
-    // Intercept covers.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
     // Intercept url "translation".
     cy.interceptRest({
       aliasName: "UrlProxy",
