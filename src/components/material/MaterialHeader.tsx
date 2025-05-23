@@ -36,6 +36,8 @@ import { isPeriodical, shouldShowMaterialAvailabilityText } from "./helper";
 import useAvailabilityData from "../availability-label/useAvailabilityData";
 import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { first } from "lodash";
+import { hasCorrectMaterialType } from "./material-buttons/helper";
+import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -96,6 +98,15 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     // which we check inside shouldShowMaterialAvailabilityText() helper here.
     manifestText: "NOT AN ARTICLE"
   });
+  const isYearbook =
+    hasCorrectMaterialType(
+      ManifestationMaterialType.yearBook,
+      manifestations
+    ) ||
+    hasCorrectMaterialType(
+      ManifestationMaterialType.yearBookOnline,
+      manifestations
+    );
 
   useDeepCompareEffect(() => {
     collectPageStatistics({
@@ -156,6 +167,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                 faustId={convertPostIdToFaustId(pid)}
                 selectedPeriodical={selectedPeriodical}
                 selectPeriodicalHandler={selectPeriodicalHandler}
+                isYearbook={isYearbook}
               />
             )}
             {selectedManifestations && (

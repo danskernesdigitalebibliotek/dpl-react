@@ -13,12 +13,14 @@ interface MaterialPeriodicalSelectProps {
   groupList: GroupList;
   selectedPeriodical: PeriodicalEdition | null;
   selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
+  isReleasedYearly?: boolean;
 }
 
 const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
   groupList,
   selectedPeriodical,
-  selectPeriodicalHandler
+  selectPeriodicalHandler,
+  isReleasedYearly = false
 }) => {
   const t = useText();
   const lastYear = Object.keys(groupList).sort().pop() || "";
@@ -35,12 +37,16 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
     if (firstFullPeriodicalEdition) {
       selectPeriodicalHandler(firstFullPeriodicalEdition);
     }
+    if (isReleasedYearly) {
+      selectPeriodicalHandler(groupList[year][0]);
+    }
   }, [
     selectPeriodicalHandler,
     selectedPeriodical,
     year,
     periodicalEditions,
-    groupList
+    groupList,
+    isReleasedYearly
   ]);
 
   const handleYearSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -79,7 +85,7 @@ const MaterialPeriodicalSelect: React.FC<MaterialPeriodicalSelectProps> = ({
         </div>
       </div>
 
-      {year && (
+      {year && !isReleasedYearly && (
         <div className="material-periodical-select">
           <label htmlFor="editions">{t("periodicalSelectEditionText")}</label>
           <div className="material-periodical-select__border-container">

@@ -15,9 +15,20 @@ export const isPhysical = (manifestations: Manifestation[]) => {
 };
 
 export const isPeriodical = (manifestations: Manifestation[]) => {
-  return hasCorrectMaterialType(
-    ManifestationMaterialType.magazine,
-    manifestations
+  return (
+    hasCorrectMaterialType(
+      ManifestationMaterialType.magazine,
+      manifestations
+    ) ||
+    hasCorrectMaterialType(
+      ManifestationMaterialType.yearBook,
+      manifestations
+    ) ||
+    hasCorrectMaterialType(
+      ManifestationMaterialType.yearBookOnline,
+      manifestations
+    ) ||
+    hasCorrectMaterialType(ManifestationMaterialType.newspaper, manifestations)
   );
 };
 

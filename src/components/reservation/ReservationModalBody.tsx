@@ -114,7 +114,6 @@ export const ReservationModalBody = ({
     branches,
     blacklistBranchesInstantLoan.concat(blacklistPickupBranches)
   );
-
   const mainManifestationType = getMaterialType(selectedManifestations);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations: selectedManifestations,
