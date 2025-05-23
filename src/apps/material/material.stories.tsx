@@ -1081,6 +1081,13 @@ export const Periodical: Story = {
   }
 };
 
+export const periodicalMultipleAccesses: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:07664400"
+  }
+};
+
 export const Infomedia: Story = {
   args: {
     ...Default.args,

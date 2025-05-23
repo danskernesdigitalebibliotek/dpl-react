@@ -71,15 +71,16 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
           </>
         )}
       {(hasCorrectAccessType(AccessTypeCodeEnum.Online, manifestations) ||
-        hasCorrectAccess("DigitalArticleService", manifestations)) && (
-        <MaterialButtonsOnline
-          manifestations={manifestations}
-          size={size}
-          workId={workId}
-          dataCy={`${dataCy}-online`}
-          ariaLabelledBy={materialTitleId}
-        />
-      )}
+        hasCorrectAccess("DigitalArticleService", manifestations)) &&
+        !hasCorrectAccessType(AccessTypeCodeEnum.Physical, manifestations) && (
+          <MaterialButtonsOnline
+            manifestations={manifestations}
+            size={size}
+            workId={workId}
+            dataCy={`${dataCy}-online`}
+            ariaLabelledBy={materialTitleId}
+          />
+        )}
     </>
   );
 };
