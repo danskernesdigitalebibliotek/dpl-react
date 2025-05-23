@@ -1081,6 +1081,20 @@ export const Periodical: Story = {
   }
 };
 
+export const yearbookPeriodical: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:49236115"
+  }
+};
+
+export const newspaperPeriodical: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:49294182"
+  }
+};
+
 export const Infomedia: Story = {
   args: {
     ...Default.args,
