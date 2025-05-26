@@ -70,17 +70,24 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
             />
           </>
         )}
+      {/* Show online material buttons if, either the material has an online access type or it has
+      a DigitalArticleService access, online access type, but not physical access type. This way
+      we avoid showing both physical and online action buttons at one, which shouldn't happen */}
       {(hasCorrectAccessType(AccessTypeCodeEnum.Online, manifestations) ||
-        hasCorrectAccess("DigitalArticleService", manifestations)) &&
-        !hasCorrectAccessType(AccessTypeCodeEnum.Physical, manifestations) && (
-          <MaterialButtonsOnline
-            manifestations={manifestations}
-            size={size}
-            workId={workId}
-            dataCy={`${dataCy}-online`}
-            ariaLabelledBy={materialTitleId}
-          />
-        )}
+        (hasCorrectAccess("DigitalArticleService", manifestations) &&
+          hasCorrectAccessType(AccessTypeCodeEnum.Online, manifestations) &&
+          !hasCorrectAccessType(
+            AccessTypeCodeEnum.Physical,
+            manifestations
+          ))) && (
+        <MaterialButtonsOnline
+          manifestations={manifestations}
+          size={size}
+          workId={workId}
+          dataCy={`${dataCy}-online`}
+          ariaLabelledBy={materialTitleId}
+        />
+      )}
     </>
   );
 };
