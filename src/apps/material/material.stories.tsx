@@ -1186,6 +1186,13 @@ export const DigitalArticle: Story = {
   }
 };
 
+export const DigitalArticlePhysicalAccess: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870971-tsart:34310815"
+  }
+};
+
 export const irregularFaustId1InLargeSameSeries: Story = {
   args: {
     ...Default.args,
