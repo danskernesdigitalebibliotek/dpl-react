@@ -5,6 +5,7 @@ import { constructMaterialUrl } from "./helpers/url";
 import { WorkId } from "./types/ids";
 import { getMaterialTypes } from "./helpers/general";
 import { Manifestation } from "./types/entities";
+import { first } from "lodash";
 
 type GetWorkUrlFromPublizonIdentifierResultType = {
   workUrl: URL | null;
@@ -33,13 +34,13 @@ const useGetWorkUrlFromPublizonIdentifier = (
   const workUrl = useMemo(() => {
     if (!data || !identifier) return null;
 
-    const work = data.complexSearch?.works?.[0];
+    const work = first(data.complexSearch.works);
     if (!work) return null;
 
     const workId = work.workId as WorkId;
-    const manifestationWithSameIdentifier = work.manifestations?.all?.find(
+    const manifestationWithSameIdentifier = work.manifestations.all.find(
       (manifestation) =>
-        manifestation.identifiers?.some((id) => id.value === identifier)
+        manifestation.identifiers.some((id) => id.value === identifier)
     );
     const materialType = manifestationWithSameIdentifier
       ? getMaterialTypes([manifestationWithSameIdentifier] as Manifestation[])
