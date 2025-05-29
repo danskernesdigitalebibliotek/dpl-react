@@ -11,12 +11,14 @@ export interface MaterialPeriodicalProps {
   faustId: FaustId;
   selectedPeriodical: PeriodicalEdition | null;
   selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
+  isYearbook?: boolean;
 }
 
 const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
   faustId,
   selectedPeriodical,
-  selectPeriodicalHandler
+  selectPeriodicalHandler,
+  isYearbook = false
 }) => {
   const config = useConfig();
 
@@ -58,6 +60,7 @@ const MaterialPeriodical: FC<MaterialPeriodicalProps> = ({
       groupList={groupByVolumeYear as GroupList}
       selectedPeriodical={selectedPeriodical}
       selectPeriodicalHandler={selectPeriodicalHandler}
+      isReleasedYearly={isYearbook}
     />
   );
 };
