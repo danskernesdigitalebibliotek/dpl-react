@@ -1093,6 +1093,13 @@ export const Periodical: Story = {
   }
 };
 
+export const periodicalMultipleAccesses: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:07664400"
+  }
+};
+
 export const yearbookPeriodical: Story = {
   args: {
     ...Default.args,
@@ -1202,6 +1209,13 @@ export const DigitalArticle: Story = {
   args: {
     ...Default.args,
     wid: "work-of:870971-tsart:36297484"
+  }
+};
+
+export const DigitalArticlePhysicalAccess: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870971-tsart:34310815"
   }
 };
 

@@ -50,28 +50,36 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
       />
     );
   }
+  const showPhysicalButtons =
+    hasCorrectAccessType(AccessTypeCodeEnum.Physical, manifestations) &&
+    !isArticle(manifestations);
+  // Show online material buttons if, either the material has an online access type or it has
+  // a DigitalArticleService access & at the same time is an article. This way
+  // we avoid showing both physical and online action buttons at one, which shouldn't happen
+  const showOnlineButtons =
+    hasCorrectAccessType(AccessTypeCodeEnum.Online, manifestations) ||
+    (hasCorrectAccess("DigitalArticleService", manifestations) &&
+      isArticle(manifestations));
 
   return (
     <>
-      {hasCorrectAccessType(AccessTypeCodeEnum.Physical, manifestations) &&
-        !isArticle(manifestations) && (
-          <>
-            <MaterialButtonsPhysical
-              manifestations={manifestations}
-              size={size}
-              dataCy={`${dataCy}-physical`}
-              isSpecificManifestation={isSpecificManifestation}
-            />
-            <MaterialButtonsFindOnShelf
-              size={size}
-              faustIds={faustIds}
-              dataCy={`${dataCy}-find-on-shelf`}
-              workId={workId}
-            />
-          </>
-        )}
-      {(hasCorrectAccessType(AccessTypeCodeEnum.Online, manifestations) ||
-        hasCorrectAccess("DigitalArticleService", manifestations)) && (
+      {showPhysicalButtons && (
+        <>
+          <MaterialButtonsPhysical
+            manifestations={manifestations}
+            size={size}
+            dataCy={`${dataCy}-physical`}
+            isSpecificManifestation={isSpecificManifestation}
+          />
+          <MaterialButtonsFindOnShelf
+            size={size}
+            faustIds={faustIds}
+            dataCy={`${dataCy}-find-on-shelf`}
+            workId={workId}
+          />
+        </>
+      )}
+      {showOnlineButtons && (
         <MaterialButtonsOnline
           manifestations={manifestations}
           size={size}
