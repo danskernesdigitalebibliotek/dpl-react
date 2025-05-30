@@ -3367,18 +3367,10 @@
     "@types/eslint" "*"
     "@types/estree" "*"
 
-"@types/eslint@*":
+"@types/eslint@*", "@types/eslint@^9.6.1":
   version "9.6.1"
   resolved "https://registry.npmjs.org/@types/eslint/-/eslint-9.6.1.tgz"
   integrity sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag==
-  dependencies:
-    "@types/estree" "*"
-    "@types/json-schema" "*"
-
-"@types/eslint@^8.56.10":
-  version "8.56.10"
-  resolved "https://registry.npmjs.org/@types/eslint/-/eslint-8.56.10.tgz"
-  integrity sha512-Shavhk87gCtY2fhXDctcfS3e6FdxWkCx1iUZ9eEUbh7rTqlZT0/IzOkCOVt0fCjcFuZ9FPYfuezTBImfHCDBGQ==
   dependencies:
     "@types/estree" "*"
     "@types/json-schema" "*"
@@ -6498,10 +6490,10 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-eslint-config-prettier@^10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-10.0.1.tgz#fbb03bfc8db0651df9ce4e8b7150d11c5fe3addf"
-  integrity sha512-lZBts941cyJyeaooiKxAtzoPHTN+GbQTJFAIdQbRhA4/8whaAraEh47Whw/ZFfrjNSnlAxqfm9i0XVAEkULjCw==
+eslint-config-prettier@^10.1.5:
+  version "10.1.5"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-10.1.5.tgz#00c18d7225043b6fbce6a665697377998d453782"
+  integrity sha512-zc1UmCpNltmVY34vuLRV61r1K27sWuX39E+uyUnY8xS2Bex88VV9cugG+UZbRSRGtGyFboj+D8JODyme1plMpw==
 
 eslint-import-resolver-node@^0.3.9:
   version "0.3.9"
@@ -6613,10 +6605,10 @@ eslint-plugin-prettier@^5.2.1:
     prettier-linter-helpers "^1.0.0"
     synckit "^0.9.1"
 
-eslint-plugin-react-hooks@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-5.1.0.tgz#3d34e37d5770866c34b87d5b499f5f0b53bf0854"
-  integrity sha512-mpJRtPgHN2tNAvZ35AMfqeB3Xqeo273QxrHJsbBEPWODRM4r0yB6jfoROqKEYrOn27UtRPpcpHc2UqyBSuUNTw==
+eslint-plugin-react-hooks@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-5.2.0.tgz#1be0080901e6ac31ce7971beed3d3ec0a423d9e3"
+  integrity sha512-+f15FfK64YQwZdJNELETdn5ibXEUQmW1DZL6KXhNnc2heoy/sg9VJJeT7n8TlMWouzWqSWavFkIhHyIbIAEapg==
 
 eslint-plugin-react@^7.37.4:
   version "7.37.4"
@@ -6668,16 +6660,16 @@ eslint-visitor-keys@^4.2.0:
   resolved "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-4.2.0.tgz"
   integrity sha512-UyLnSehNt62FFhSwjZlHmeokpRK59rcz29j+F1/aDgbkbRTk7wIc9XzdoasMUbRNKDM0qQt/+BJ4BrpFeABemw==
 
-eslint-webpack-plugin@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.npmjs.org/eslint-webpack-plugin/-/eslint-webpack-plugin-4.2.0.tgz"
-  integrity sha512-rsfpFQ01AWQbqtjgPRr2usVRxhWDuG0YDYcG8DJOteD3EFnpeuYuOwk0PQiN7PRBTqS6ElNdtPZPggj8If9WnA==
+eslint-webpack-plugin@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-webpack-plugin/-/eslint-webpack-plugin-5.0.1.tgz#411ea796918e26659e3aef3a776527609e837817"
+  integrity sha512-Ur100Vi+z0uP7j4Z8Ccah0pXmNHhl3f7P2hCYZj3mZCOSc33G5c1R/vZ4KCapwWikPgRyD4dkangx6JW3KaVFQ==
   dependencies:
-    "@types/eslint" "^8.56.10"
+    "@types/eslint" "^9.6.1"
     jest-worker "^29.7.0"
-    micromatch "^4.0.5"
+    micromatch "^4.0.8"
     normalize-path "^3.0.0"
-    schema-utils "^4.2.0"
+    schema-utils "^4.3.0"
 
 eslint@^9.17.0:
   version "9.17.0"
