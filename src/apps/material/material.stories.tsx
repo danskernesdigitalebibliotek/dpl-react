@@ -131,6 +131,14 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Reserve",
       control: { type: "text" }
     },
+    reservableFromAnotherLibraryMissingEmailText: {
+      description: "Reservable on another library - need to add email",
+      control: { type: "text" }
+    },
+    reservableFromAnotherLibraryExtraInfoText: {
+      description: "Reservable on another library - extra info",
+      control: { type: "text" }
+    },
     reservableFromAnotherLibraryText: {
       description: "Reservable on another library",
       control: { type: "text" }
@@ -848,6 +856,10 @@ const meta: Meta<typeof MaterialEntry> = {
     reserveBookText: "Reserve book",
     reserveText: "Reserve",
     reserveWithMaterialTypeText: "Reserve @materialType",
+    reservableFromAnotherLibraryMissingEmailText:
+      "You need to add an email address to reserve from another library.",
+    reservableFromAnotherLibraryExtraInfoText:
+      "NOTE! This material is ordered from another library. Therefore, it may take a few days before it appears on your list of reservations.",
     reservableFromAnotherLibraryText: "Ordered from another library.",
     findOnBookshelfText: "Find on shelf",
     descriptionHeadlineText: "Description",
@@ -1081,6 +1093,27 @@ export const Periodical: Story = {
   }
 };
 
+export const periodicalMultipleAccesses: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:07664400"
+  }
+};
+
+export const yearbookPeriodical: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:49236115"
+  }
+};
+
+export const newspaperPeriodical: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:49294182"
+  }
+};
+
 export const Infomedia: Story = {
   args: {
     ...Default.args,
@@ -1176,6 +1209,13 @@ export const DigitalArticle: Story = {
   args: {
     ...Default.args,
     wid: "work-of:870971-tsart:36297484"
+  }
+};
+
+export const DigitalArticlePhysicalAccess: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870971-tsart:34310815"
   }
 };
 
