@@ -325,7 +325,6 @@ const SearchHeader: React.FC = () => {
 
   return (
     <>
-      {isAutosuggestOpen && <div className="autosuggest-backdrop" />}
       <div className="header__menu-second">
         <div className="header__menu-search">
           <SearchBar

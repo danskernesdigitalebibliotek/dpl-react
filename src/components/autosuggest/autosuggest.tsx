@@ -43,6 +43,7 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
 
   return (
     <>
+      {isOpen && <div className="autosuggest-backdrop" />}
       {/* The downshift combobox works this way by design */}
       <ul
         className="autosuggest pb-16"
