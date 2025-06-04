@@ -13,7 +13,7 @@ import mappArgs, {
   argTypes as mappArgTypes
 } from "../../core/storybook/mappArgs";
 import advancedSortSelectArgs, {
-  argTypes as AdvancedSortSelectArgsTypes
+  argTypes as advancedSortSelectArgsTypes
 } from "../../core/storybook/AdvancedSortSelect";
 
 const meta: Meta<typeof AdvancedSearchEntry> = {
@@ -26,7 +26,7 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
     ...mappArgTypes,
-    ...AdvancedSortSelectArgsTypes,
+    ...advancedSortSelectArgsTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
       control: { type: "number" },
