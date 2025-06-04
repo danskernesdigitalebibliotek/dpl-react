@@ -15,6 +15,10 @@ import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";
+import AdvancedSortSelect, {
+  advancedSortMap,
+  AdvancedSortMapStrings
+} from "./AdvancedSortSelect";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -41,6 +45,9 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     pageSize
   });
   const [cql, setCql] = useState<string>(q);
+  const [advancedSort, setAdvancedSortSort] = useState<AdvancedSortMapStrings>(
+    AdvancedSortMapStrings.Relevance
+  );
   const [, copy] = useCopyToClipboard();
 
   useEffect(() => {
@@ -67,6 +74,9 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     cql,
     offset: page * pageSize,
     limit: pageSize,
+    sort: advancedSortMap[advancedSort]
+      ? [advancedSortMap[advancedSort]]
+      : undefined,
     filters: {
       branchId: cleanBranches,
       status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
@@ -156,6 +166,12 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
         )}
         {shouldShowSearchResults && (
           <>
+            <ul className="content-list-page__filters">
+              <AdvancedSortSelect
+                sort={advancedSort}
+                setSort={setAdvancedSortSort}
+              />
+            </ul>
             <SearchResultList
               resultItems={resultItems}
               page={page}
