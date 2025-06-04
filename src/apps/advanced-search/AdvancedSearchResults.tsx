@@ -24,6 +24,8 @@ interface AdvancedSearchResultProps {
   showContentOnly: boolean;
   onShelf: boolean;
   locationFilter: LocationFilter;
+  sort: AdvancedSortMapStrings;
+  setSort: (value: AdvancedSortMapStrings) => void;
 }
 
 const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
@@ -31,7 +33,9 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   pageSize,
   showContentOnly,
   onShelf,
-  locationFilter
+  locationFilter,
+  sort,
+  setSort
 }) => {
   const t = useText();
   const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
@@ -43,9 +47,6 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     pageSize
   });
   const [cql, setCql] = useState<string>(q);
-  const [advancedSort, setAdvancedSortSort] = useState<AdvancedSortMapStrings>(
-    AdvancedSortMapStrings.Relevance
-  );
   const [, copy] = useCopyToClipboard();
 
   useEffect(() => {
@@ -72,9 +73,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     cql,
     offset: page * pageSize,
     limit: pageSize,
-    sort: advancedSortMap[advancedSort]
-      ? [advancedSortMap[advancedSort]]
-      : undefined,
+    sort: advancedSortMap[sort] ? [advancedSortMap[sort]] : undefined,
     filters: {
       branchId: cleanBranches,
       status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
@@ -165,10 +164,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
         {shouldShowSearchResults && (
           <>
             <ul className="content-list-page__filters">
-              <AdvancedSortSelect
-                sort={advancedSort}
-                setSort={setAdvancedSortSort}
-              />
+              <AdvancedSortSelect sort={sort} setSort={setSort} />
             </ul>
             <SearchResultList
               resultItems={resultItems}
