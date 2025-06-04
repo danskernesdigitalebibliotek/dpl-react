@@ -15,10 +15,8 @@ import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";
-import AdvancedSortSelect, {
-  advancedSortMap,
-  AdvancedSortMapStrings
-} from "./AdvancedSortSelect";
+import AdvancedSortSelect from "./AdvancedSortSelect";
+import { advancedSortMap, AdvancedSortMapStrings } from "./types";
 
 interface AdvancedSearchResultProps {
   q: string;
