@@ -849,7 +849,10 @@ export type Manifestation = {
   latestPrinting?: Maybe<Printing>;
   /** Identification of the local id of this manifestation */
   localId?: Maybe<Scalars["String"]["output"]>;
-  /** Tracks on music album, sheet music content, or articles/short stories etc. in this manifestation */
+  /**
+   * Tracks on music album, sheet music content, or articles/short stories etc. in this manifestation
+   * @deprecated Use 'Manifestation.contents' instead expires: 01/11-2025
+   */
   manifestationParts?: Maybe<ManifestationParts>;
   /** Field for presenting bibliographic records in MARC format */
   marc?: Maybe<MarcRecord>;
@@ -883,7 +886,10 @@ export type Manifestation = {
   source: Array<Scalars["String"]["output"]>;
   /** Subjects for this manifestation */
   subjects: SubjectContainer;
-  /** Quotation of the manifestation's table of contents or a similar content list */
+  /**
+   * Quotation of the manifestation's table of contents or a similar content list
+   * @deprecated Use 'Manifestation.contents' instead expires: 01/11-2025
+   */
   tableOfContents?: Maybe<TableOfContent>;
   /** Different kinds of titles for this work */
   titles: ManifestationTitles;
@@ -4782,6 +4788,7 @@ export type ComplexSearchWithPaginationQueryVariables = Exact<{
   offset: Scalars["Int"]["input"];
   limit: Scalars["PaginationLimitScalar"]["input"];
   filters: ComplexSearchFiltersInput;
+  sort?: InputMaybe<Array<SortInput> | SortInput>;
 }>;
 
 export type ComplexSearchWithPaginationQuery = {
@@ -7583,10 +7590,10 @@ export const useComplexSearchWithPaginationWorkAccessQuery = <
 };
 
 export const ComplexSearchWithPaginationDocument = `
-    query complexSearchWithPagination($cql: String!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: ComplexSearchFiltersInput!) {
+    query complexSearchWithPagination($cql: String!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: ComplexSearchFiltersInput!, $sort: [SortInput!]) {
   complexSearch(cql: $cql, filters: $filters) {
     hitcount
-    works(offset: $offset, limit: $limit) {
+    works(offset: $offset, limit: $limit, sort: $sort) {
       ...WorkSmall
     }
   }
