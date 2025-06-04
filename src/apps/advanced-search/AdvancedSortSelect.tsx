@@ -1,6 +1,7 @@
 import React from "react";
 import { SortOrderEnum } from "../../core/dbc-gateway/generated/graphql";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import { useText } from "../../core/utils/text";
 
 export const enum AdvancedSortMapStrings {
   Relevance = "relevance",
@@ -51,12 +52,13 @@ type SortSelectProps = {
 };
 
 const AdvancedSortSelect: React.FC<SortSelectProps> = ({ sort, setSort }) => {
+  const t = useText();
   return (
     <li className="content-list-page__filter">
       <div>
         <label className="input-label" htmlFor="advanced-sort-select">
-          Sortér efter
-        </label>{" "}
+          {t("advancedSearchSortLabelText")}
+        </label>
         <div className="dropdown dropdown--grey-borders">
           <select
             className="dropdown__select dropdown__select--grey"
@@ -65,28 +67,30 @@ const AdvancedSortSelect: React.FC<SortSelectProps> = ({ sort, setSort }) => {
             onChange={(e) => setSort(e.target.value as AdvancedSortMapStrings)}
           >
             <option value={AdvancedSortMapStrings.Relevance}>
-              Bedste match
+              {t("advancedSearchSortRelevanceText")}
             </option>
-            <optgroup label="Publiceringsdato">
+            <optgroup label={t("advancedSearchSortLatestPubDateText")}>
               <option value={AdvancedSortMapStrings.LatestPubDateDesc}>
-                Nyeste først
+                {t("advancedSearchSortLatestPubDateDescText")}
               </option>
               <option value={AdvancedSortMapStrings.LatestPubDateAsc}>
-                Ældste først
+                {t("advancedSearchSortLatestPubDateAscText")}
               </option>
             </optgroup>
-            <optgroup label="Forfatter/Ophav">
+            <optgroup label={t("advancedSearchSortCreatorText")}>
               <option value={AdvancedSortMapStrings.CreatorAsc}>
-                Forfatter/ophav a-å
+                {t("advancedSearchSortCreatorAscText")}
               </option>
               <option value={AdvancedSortMapStrings.CreatorDesc}>
-                Forfatter/ophav å-a
+                {t("advancedSearchSortCreatorDescText")}
               </option>
             </optgroup>
-            <optgroup label="Titel">
-              <option value={AdvancedSortMapStrings.TitleAsc}>Titel a-å</option>
+            <optgroup label={t("advancedSearchSortTitleText")}>
+              <option value={AdvancedSortMapStrings.TitleAsc}>
+                {t("advancedSearchSortTitleAscText")}
+              </option>
               <option value={AdvancedSortMapStrings.TitleDesc}>
-                Titel å-a
+                {t("advancedSearchSortTitleDescText")}
               </option>
             </optgroup>
           </select>

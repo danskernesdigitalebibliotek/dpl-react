@@ -12,6 +12,9 @@ import AdvancedSearchEntry from "./AdvancedSearch.entry";
 import mappArgs, {
   argTypes as mappArgTypes
 } from "../../core/storybook/mappArgs";
+import advancedSortSelectArgs, {
+  argTypes as AdvancedSortSelectArgsTypes
+} from "../../core/storybook/AdvancedSortSelect";
 
 const meta: Meta<typeof AdvancedSearchEntry> = {
   title: "Apps / Advanced Search",
@@ -23,6 +26,7 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
     ...mappArgTypes,
+    ...AdvancedSortSelectArgsTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
       control: { type: "number" },
@@ -333,6 +337,7 @@ export const Primary: Story = {
     ...globalTextArgs,
     ...globalConfigArgs,
     ...mappArgs,
+    ...advancedSortSelectArgs,
     pageSizeDesktop: 50,
     pageSizeMobile: 20,
     materialUrl: "/work/:workid",
