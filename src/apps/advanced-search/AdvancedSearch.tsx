@@ -6,7 +6,7 @@ import {
   commaSeparatedStringToArray,
   translateSearchObjectToCql
 } from "./helpers";
-import { AdvancedSearchQuery } from "./types";
+import { AdvancedSearchQuery, AdvancedSortMapStrings } from "./types";
 import {
   getUrlQueryParam,
   removeQueryParametersFromUrl,
@@ -34,6 +34,10 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
 
   const [locationFilter, setLocationFilter] = useState<LocationFilter>({});
 
+  const [sort, setSort] = useState<AdvancedSortMapStrings>(
+    AdvancedSortMapStrings.Relevance
+  );
+
   const handleLocationChange = (location: string) => {
     setLocationFilter((prevFilter) => ({
       ...prevFilter,
@@ -56,6 +60,11 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     } else {
       removeQueryParametersFromUrl("sublocation");
     }
+  };
+
+  const handleSortChange = (value: AdvancedSortMapStrings) => {
+    setSort(value);
+    setQueryParametersInUrl({ sort: value });
   };
 
   const [onShelf, setOnShelf] = useState(false);
@@ -114,6 +123,11 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
         sublocation: commaSeparatedStringToArray(sublocationParam)
       }));
     }
+
+    const sortParam = getUrlQueryParam("sort");
+    if (sortParam) {
+      setSort(sortParam as AdvancedSortMapStrings);
+    }
   });
 
   useEffect(() => {
@@ -161,6 +175,8 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           showContentOnly={showResultOnly}
           onShelf={onShelf}
           locationFilter={locationFilter}
+          sort={sort}
+          setSort={handleSortChange}
         />
       )}
     </div>

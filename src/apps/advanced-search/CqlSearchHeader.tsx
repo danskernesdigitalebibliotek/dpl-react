@@ -74,7 +74,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           className="advanced-search-cql-form__input focus-styling__input"
           cols={100}
           rows={5}
-          placeholder="e.g. 'harry potter'"
+          placeholder="e.g. term.title=snemand*”"
           dataCy={`${dataCy}-input`}
           onChange={(e) => setCql(e.target.value)}
           defaultValue={initialCql}
