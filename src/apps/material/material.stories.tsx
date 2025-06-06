@@ -1253,3 +1253,10 @@ export const gameOfThronesSeason7: Story = {
     wid: "work-of:870970-basis:53795633"
   }
 };
+
+export const denTavse: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:47684056"
+  }
+};
