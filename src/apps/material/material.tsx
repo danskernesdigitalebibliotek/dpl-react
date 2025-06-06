@@ -35,7 +35,6 @@ import {
   divideManifestationsByMaterialType,
   getBestMaterialTypeForWork,
   getDetailsListData,
-  getFirstManifestation,
   getInfomediaIds,
   getManifestationChildrenOrAdults,
   getManifestationsOrderByTypeAndYear,
@@ -43,8 +42,6 @@ import {
 } from "./helper";
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
-import PlayerModal from "../../components/material/player-modal/PlayerModal";
-import useReaderPlayer from "../../core/utils/useReaderPlayer";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
 
@@ -64,11 +61,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
   const { updatePageStatistics } = usePageStatistics();
   const { collectPageStatistics } = useCollectPageStatistics();
-  const {
-    type: readerPlayerType,
-    identifier,
-    orderId
-  } = useReaderPlayer(getFirstManifestation(selectedManifestations || []));
 
   useUpdateEffect(() => {
     updatePageStatistics({ waitTime: 2500 });
@@ -176,14 +168,20 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           isGlobalMaterial={workType === "global"}
         >
           {manifestations.map((manifestation) => (
-            <ReservationFindOnShelfModals
-              key={manifestation.pid}
-              patron={userData?.patron}
-              manifestations={[manifestation]}
-              selectedPeriodical={selectedPeriodical}
-              work={work}
-              setSelectedPeriodical={setSelectedPeriodical}
-            />
+            <>
+              <ReservationFindOnShelfModals
+                key={manifestation.pid}
+                patron={userData?.patron}
+                manifestations={[manifestation]}
+                selectedPeriodical={selectedPeriodical}
+                work={work}
+                setSelectedPeriodical={setSelectedPeriodical}
+              />
+              <OnlineInternalModal
+                workId={wid}
+                selectedManifestations={[manifestation]}
+              />
+            </>
           ))}
           {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
             <InfomediaModal
@@ -205,18 +203,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               selectedPeriodical={selectedPeriodical}
               work={work}
               setSelectedPeriodical={setSelectedPeriodical}
-            />
-          )}
-          {readerPlayerType === "player" && (
-            <>
-              {identifier && <PlayerModal identifier={identifier} />}
-              {orderId && <PlayerModal orderId={orderId} />}
-            </>
-          )}
-          {(readerPlayerType === "reader" || readerPlayerType === "player") && (
-            <OnlineInternalModal
-              workId={wid}
-              selectedManifestations={selectedManifestations}
             />
           )}
         </MaterialHeader>
