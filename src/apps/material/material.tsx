@@ -176,14 +176,20 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           isGlobalMaterial={workType === "global"}
         >
           {manifestations.map((manifestation) => (
-            <ReservationFindOnShelfModals
-              key={manifestation.pid}
-              patron={userData?.patron}
-              manifestations={[manifestation]}
-              selectedPeriodical={selectedPeriodical}
-              work={work}
-              setSelectedPeriodical={setSelectedPeriodical}
-            />
+            <>
+              <ReservationFindOnShelfModals
+                key={manifestation.pid}
+                patron={userData?.patron}
+                manifestations={[manifestation]}
+                selectedPeriodical={selectedPeriodical}
+                work={work}
+                setSelectedPeriodical={setSelectedPeriodical}
+              />
+              <OnlineInternalModal
+                workId={wid}
+                selectedManifestations={[manifestation]}
+              />
+            </>
           ))}
           {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
             <InfomediaModal
@@ -212,12 +218,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               {identifier && <PlayerModal identifier={identifier} />}
               {orderId && <PlayerModal orderId={orderId} />}
             </>
-          )}
-          {(readerPlayerType === "reader" || readerPlayerType === "player") && (
-            <OnlineInternalModal
-              workId={wid}
-              selectedManifestations={selectedManifestations}
-            />
           )}
         </MaterialHeader>
         <MaterialDescription pid={pid} work={work} />
