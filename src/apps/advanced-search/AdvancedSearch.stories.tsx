@@ -323,6 +323,10 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     advancedSearchFilterSublocationDescriptionText: {
       description: "Advanced search filter - sublocation description",
       control: { type: "text" }
+    },
+    cqlSearchExternalHelpLinkText: {
+      description: "CQL search external help link text",
+      control: { type: "text" }
     }
   }
 };
@@ -415,6 +419,7 @@ export const Primary: Story = {
       "Add a comma separated list for multiple locations",
     advancedSearchFilterSublocationText: "Sublocation",
     advancedSearchFilterSublocationDescriptionText:
-      "Add a comma separated list for multiple sublocations"
+      "Add a comma separated list for multiple sublocations",
+    cqlSearchExternalHelpLinkText: "Find out more about CQL search"
   }
 };
