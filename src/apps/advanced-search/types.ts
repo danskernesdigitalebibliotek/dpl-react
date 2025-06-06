@@ -124,6 +124,7 @@ type AdvancedSortMapType = Record<
 >;
 
 export const advancedSortMap: AdvancedSortMapType = {
+  // AdvancedSortMapStrings.Relevance is undefined to indicate default sorting (no explicit sort parameter sent)
   [AdvancedSortMapStrings.Relevance]: undefined,
   [AdvancedSortMapStrings.TitleAsc]: {
     index: "sort.title",
