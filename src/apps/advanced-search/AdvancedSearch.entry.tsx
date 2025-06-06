@@ -82,6 +82,7 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterEarlierThanText: string;
   advancedSearchFirstAccessionDateDescriptionText: string;
   advancedSearchFirstAccessionDateSpecifyDateText: string;
+  cqlSearchExternalHelpLinkText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {

@@ -6,6 +6,7 @@ import Textarea from "../../components/forms/textarea/Textarea";
 import TextInput from "../../components/forms/input/TextInput";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import { FirstAccessionOperatorFilter } from "./types";
+import Link from "../../components/atoms/links/Link";
 
 export type CqlSearchHeaderProps = {
   dataCy?: string;
@@ -96,17 +97,26 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
         {t("cqlSearchTitleText")}
       </h1>
       <div className="advanced-search-cql-form">
-        <Textarea
-          id="cql"
-          label="CQL"
-          className="advanced-search-cql-form__input focus-styling__input"
-          cols={100}
-          rows={5}
-          placeholder="e.g. term.title=snemand*”"
-          dataCy={`${dataCy}-input`}
-          onChange={(e) => setCql(e.target.value)}
-          defaultValue={initialCql}
-        />
+        <div>
+          <Textarea
+            id="cql"
+            label="CQL"
+            className="advanced-search-cql-form__input focus-styling__input"
+            cols={100}
+            rows={5}
+            placeholder="e.g. term.title=snemand*”"
+            dataCy={`${dataCy}-input`}
+            onChange={(e) => setCql(e.target.value)}
+            defaultValue={initialCql}
+          />
+          <Link
+            className="link-tag"
+            href={new URL("https://danbib.dk/soegekoder-complex-search")}
+            isNewTab
+          >
+            {t("cqlSearchExternalHelpLinkText")}
+          </Link>
+        </div>
         <TextInput
           id="location"
           label={t("advancedSearchFilterLocationText")}
