@@ -33,18 +33,25 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const t = useText();
   const config = useConfig();
   const faustIds = getAllFaustIds(manifestations);
+  // console.group("MaterialButtonsPhysical");
+  // console.log("🚀 ~ faustIds:", faustIds);
   const pids = getAllPids(manifestations);
+  // console.log("🚀 ~ pids:", pids);
   // We extract loading of Availability here, as it isn't possible within
   // UseReservableManifestations. React query uses cached version of the data
   // so we can determine if the request inside UseReservableManifestations is
   // loading this way.
-  const { isLoading: isLoadingAvailability } = useGetAvailability({
-    faustIds,
-    config
-  });
+  const { data: dataAvailability, isLoading: isLoadingAvailability } =
+    useGetAvailability({
+      faustIds,
+      config
+    });
+  // console.log("🚀 ~ dataAvailability:", dataAvailability);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations
   });
+  // console.log("🚀 ~ reservableManifestations:", reservableManifestations);
+  // console.groupEnd();
   const { data: userData, isLoading } = usePatronData();
   const isUserBlocked = !!(userData?.patron && isBlocked(userData?.patron));
 

@@ -36,6 +36,7 @@ const UseReservableManifestations = ({
     const fetchAvailability = async (m: Manifestation[]) => {
       // Fetch availability data.
       const data = await getAvailability({ faustIds, config });
+      console.log("🚀 ~ fetchAvailability ~ data:", data);
 
       // If we for some reason do not get any data, we return empty arrays.
       if (!data) {
