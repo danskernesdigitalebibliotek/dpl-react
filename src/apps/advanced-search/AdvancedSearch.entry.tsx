@@ -75,6 +75,7 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterLocationDescriptionText: string;
   advancedSearchFilterSublocationText: string;
   advancedSearchFilterSublocationDescriptionText: string;
+  cqlSearchExternalHelpLinkText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
