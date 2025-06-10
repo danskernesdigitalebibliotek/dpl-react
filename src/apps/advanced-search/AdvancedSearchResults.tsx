@@ -73,7 +73,6 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     cql,
     offset: page * pageSize,
     limit: pageSize,
-    sort: advancedSortMap[sort] ? [advancedSortMap[sort]] : undefined,
     filters: {
       branchId: cleanBranches,
       status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
@@ -83,7 +82,8 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       ...(locationFilter?.sublocation?.length && {
         sublocation: locationFilter.sublocation
       })
-    }
+    },
+    ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
   });
 
   useEffect(() => {
