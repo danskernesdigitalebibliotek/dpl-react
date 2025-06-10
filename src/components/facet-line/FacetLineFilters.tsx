@@ -95,7 +95,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
             return (
               <>
                 {values.map((termObj) => {
-                  const { term, score } = termObj;
+                  const { term } = termObj;
 
                   const onClickHandler = () =>
                     addToFilter({
@@ -115,7 +115,7 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
                         selected={false}
                         dataCy={`facet-line-term-${term}`}
                       >
-                        {`${term} (${score})`}
+                        {`${term}`}
                       </ButtonTag>
                     </li>
                   );
