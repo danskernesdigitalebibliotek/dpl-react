@@ -18,6 +18,10 @@ export interface MaterialGridAutomaticEntryProps
   extends GlobalEntryTextProps,
     MaterialGridAutomaticEntryConfigProps {
   cql: string;
+  location?: string;
+  sublocation?: string;
+  onshelf?: boolean;
+  sort?: string;
   title?: string;
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
@@ -27,6 +31,10 @@ export interface MaterialGridAutomaticEntryProps
 
 const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   cql,
+  location,
+  sublocation,
+  onshelf,
+  sort,
   title,
   description,
   selectedAmountOfMaterialsForDisplay
@@ -34,6 +42,10 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   <GuardedApp app="material-grid-automatic">
     <MaterialGridAutomatic
       cql={cql}
+      location={location}
+      sublocation={sublocation}
+      onshelf={onshelf}
+      sort={sort}
       title={title}
       description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}

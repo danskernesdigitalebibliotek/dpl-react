@@ -8,6 +8,7 @@ import serviceUrlArgs, {
 } from "../../../core/storybook/serviceUrlArgs";
 import MaterialGridAutomatic from "./MaterialGridAutomatic.entry";
 import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
+import { AdvancedSortMapStrings } from "../../advanced-search/types";
 
 const meta: Meta<typeof MaterialGridAutomatic> = {
   title: "Apps / Material Grid / Automatic",
@@ -29,6 +30,43 @@ const meta: Meta<typeof MaterialGridAutomatic> = {
       control: { type: "text" },
       description:
         "CQL search string to use for the material grid, search for a result and copy the CQL string from an advanced search"
+    },
+    location: {
+      description: "Location filter",
+      control: { type: "text" }
+    },
+    sublocation: {
+      description: "Sublocation filter",
+      control: { type: "text" }
+    },
+    onshelf: {
+      description: "On shelf filter",
+      control: { type: "boolean" }
+    },
+
+    sort: {
+      description: "Sort order",
+      control: {
+        type: "select"
+      },
+      options: [
+        AdvancedSortMapStrings.Relevance,
+        AdvancedSortMapStrings.TitleAsc,
+        AdvancedSortMapStrings.TitleDesc,
+        AdvancedSortMapStrings.CreatorAsc,
+        AdvancedSortMapStrings.CreatorDesc,
+        AdvancedSortMapStrings.LatestPubDateAsc,
+        AdvancedSortMapStrings.LatestPubDateDesc
+      ],
+      labels: {
+        [AdvancedSortMapStrings.Relevance]: "Relevance",
+        [AdvancedSortMapStrings.TitleAsc]: "Title A-Z",
+        [AdvancedSortMapStrings.TitleDesc]: "Title Z-A",
+        [AdvancedSortMapStrings.CreatorAsc]: "Creator A-Z",
+        [AdvancedSortMapStrings.CreatorDesc]: "Creator Z-A",
+        [AdvancedSortMapStrings.LatestPubDateAsc]: "Oldest First",
+        [AdvancedSortMapStrings.LatestPubDateDesc]: "Newest First"
+      }
     },
     selectedAmountOfMaterialsForDisplay: {
       description: "Amount of materials to show",
@@ -80,6 +118,10 @@ export const Primary: Story = {
     description:
       "This is a long description of the materials selected, or whatever else you want to put in here",
     cql: "'heste' OR 'PIPPI'",
+    location: "",
+    sublocation: "",
+    onshelf: false,
+    sort: AdvancedSortMapStrings.Relevance,
     selectedAmountOfMaterialsForDisplay: 12,
     buttonText: "Show all",
     materialUrl: "/work/:workid",
