@@ -199,7 +199,7 @@ describe("The Facet Browser", () => {
     cy.wait(["@Material list service"]);
 
     cy.visit("/iframe.html?id=apps-search-result--primary");
-    cy.contains("button", "+ more filters").click();
+    cy.contains("button", "More filters").click();
   });
 });
 

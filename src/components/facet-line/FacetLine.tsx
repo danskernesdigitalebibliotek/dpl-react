@@ -16,7 +16,7 @@ const FacetLine: React.FunctionComponent<FacetLineProps> = ({ q }) => {
   const cleanBranches = useGetCleanBranches();
   const { data, isLoading } = useIntelligentFacetsQuery({
     q: { all: q },
-    facetsLimit: 6,
+    facetsLimit: 5,
     valuesLimit: 50,
     filters: createFilters(filters, cleanBranches)
   });
