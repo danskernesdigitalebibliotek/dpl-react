@@ -67,7 +67,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
       >
         {t("cqlSearchTitleText")}
       </h1>
-      <form className="advanced-search-cql-form">
+      <div className="advanced-search-cql-form">
         <Textarea
           id="cql"
           label="CQL"
@@ -103,7 +103,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           onChecked={handleOnShelfChange}
           label={t("advancedSearchFilterHoldingStatusText")}
         />
-      </form>
+      </div>
     </>
   );
 };

@@ -108,7 +108,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const handleSearchButtonClick = () => {
+  const handleSearch = () => {
     if (rawCql.trim() !== "" && !isFormMode) {
       resetAndCollectPageStatistics({
         ...statistics.advancedSearchCql,
@@ -171,7 +171,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   }, [isFormMode, rawCql, resetAndCollectPageStatistics, translatedCql]);
 
   return (
-    <>
+    <form action={handleSearch}>
       {isFormMode && (
         <>
           <h1 className="text-header-h2 advanced-search__title capitalize-first">
@@ -281,16 +281,16 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
         <Button
           dataCy="search-button"
           buttonType="none"
+          type="submit"
           disabled={isSearchButtonDisabled}
           size="xlarge"
           variant="filled"
           classNames="advanced-search__search-button"
           collapsible
           label={t("advancedSearchSearchButtonText")}
-          onClick={handleSearchButtonClick}
         />
       </section>
-    </>
+    </form>
   );
 };
 

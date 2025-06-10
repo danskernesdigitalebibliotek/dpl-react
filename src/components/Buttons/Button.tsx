@@ -9,6 +9,7 @@ import { ButtonIcon } from "./ButtonIcon";
 export type ButtonProps = {
   label: string;
   buttonType: ButtonType;
+  type?: "button" | "submit" | "reset";
   collapsible: boolean;
   size: ButtonSize;
   variant: ButtonVariant;
@@ -25,6 +26,7 @@ export type ButtonProps = {
 export const Button: React.FC<ButtonProps> = ({
   label,
   buttonType,
+  type = "button",
   collapsible,
   size,
   variant,
@@ -47,7 +49,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       data-cy={dataCy || "button"}
-      type="button"
+      type={type}
       className={`btn-primary btn-${variant} btn-${size} ${
         disabled ? "btn-outline" : ""
       } arrow__hover--right-small ${classNames ?? ""}`}
