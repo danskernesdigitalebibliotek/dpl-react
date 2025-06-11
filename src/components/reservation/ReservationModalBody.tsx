@@ -315,6 +315,15 @@ export const ReservationModalBody = ({
               />
             </div>
             <div className="reservation-modal-list">
+              {instantLoanEnabled &&
+                instantLoanBranchHoldingsAboveThreshold.length > 0 && (
+                  <InstantLoan
+                    manifestation={manifestation}
+                    instantLoanBranchHoldings={
+                      instantLoanBranchHoldingsAboveThreshold
+                    }
+                  />
+                )}
               <ReservationFormListItem
                 icon={Various}
                 title={t("editionText")}
@@ -354,16 +363,6 @@ export const ReservationModalBody = ({
                   reservationStatus={reservationStatus}
                 />
               )}
-
-              {instantLoanEnabled &&
-                instantLoanBranchHoldingsAboveThreshold.length > 0 && (
-                  <InstantLoan
-                    manifestation={manifestation}
-                    instantLoanBranchHoldings={
-                      instantLoanBranchHoldingsAboveThreshold
-                    }
-                  />
-                )}
             </div>
           </div>
         </section>
