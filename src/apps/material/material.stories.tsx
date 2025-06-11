@@ -834,13 +834,12 @@ const meta: Meta<typeof MaterialEntry> = {
     wid: "work-of:870970-basis:52557240",
     smsNotificationsForReservationsEnabledConfig: "1",
     blacklistedPickupBranchesConfig:
-      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
-    blacklistedAvailabilityBranchesConfig:
-      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
-    blacklistedInstantLoanBranchesConfig:
-      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
+      "DK-714705,DK-714706,FBS-147001,FBS-147002",
+    blacklistedAvailabilityBranchesConfig: "DK-714705,FBS-147002",
+    // Why is this empty in drupal?    'blacklisted-instant-loan-branches-config' => "",
+    blacklistedInstantLoanBranchesConfig: "",
     branchesConfig:
-      '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
+      '[\n  {"branchId": "DK-714706", "title": "Frederiksberg Rådhus"},\n  {"branchId": "DK-714705", "title": "Biblioteket KU.BE"},\n  {"branchId": "FBS-147002", "title": "Lager 2"},\n  {"branchId": "FBS-147001", "title": "Lager"},\n  {"branchId": "DK-714700", "title": "Biblioteket Frederiksberg. Hovedbiblioteket"},\n  {"branchId": "DK-714702", "title": "Biblioteket Danasvej"},\n  {"branchId": "DK-714704", "title": "Medborgercentret Nordens Plads"},\n  {"branchId": "DK-714703", "title": "Biblioteket Godthåbsvej"}\n]',
     materialHeaderAllEditionsText: "All editions",
     materialHeaderAuthorByText: "By",
     materialGridRelatedTitleText: "Other materials",
@@ -1048,8 +1047,9 @@ const meta: Meta<typeof MaterialEntry> = {
     instantLoanSubTitleText: "Spring køen over og hent bogen nu på",
     instantLoanUnderlineDescriptionText:
       "Bogen er tilgængelig på disse biblioteker nær dig",
+    // bør 31ures være med? Den er ikke tilføjet her...
     instantLoanConfig:
-      '{ "threshold": "1", "matchStrings": ["Standard"], "enabled": "true" }',
+      '{\n  "enabled": true,\n  "threshold": "1",\n  "matchStrings": ["31filial/1xforny/ures"]\n}',
     interestPeriodsConfig:
       '{ "interestPeriods":[ { "value":14, "label":"14 days" }, { "value":30, "label":"1 month" }, { "value":60, "label":"2 months" }, { "value":90, "label":"3 months" }, { "value":180, "label":"6 months" }, { "value":365, "label":"1 year" } ], "defaultInterestPeriod":{ "value":"14", "label":"14 days" } }',
     openOrderResponseTitleText: "Order from another library:",
@@ -1251,5 +1251,12 @@ export const gameOfThronesSeason7: Story = {
   args: {
     ...Default.args,
     wid: "work-of:870970-basis:53795633"
+  }
+};
+
+export const denTavse: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:47684056"
   }
 };
