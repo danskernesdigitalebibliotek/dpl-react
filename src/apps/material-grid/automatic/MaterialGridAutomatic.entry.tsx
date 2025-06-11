@@ -6,6 +6,7 @@ import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import MaterialGridAutomatic from "./MaterialGridAutomatic";
 import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
+import { parseBoolean } from "../../../core/utils/helpers/general";
 
 interface MaterialGridAutomaticEntryConfigProps {
   blacklistedAvailabilityBranchesConfig: string;
@@ -18,6 +19,10 @@ export interface MaterialGridAutomaticEntryProps
   extends GlobalEntryTextProps,
     MaterialGridAutomaticEntryConfigProps {
   cql: string;
+  location?: string;
+  sublocation?: string;
+  onshelf?: string;
+  sort?: string;
   title?: string;
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
@@ -27,6 +32,10 @@ export interface MaterialGridAutomaticEntryProps
 
 const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   cql,
+  location,
+  sublocation,
+  onshelf,
+  sort,
   title,
   description,
   selectedAmountOfMaterialsForDisplay
@@ -34,6 +43,10 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   <GuardedApp app="material-grid-automatic">
     <MaterialGridAutomatic
       cql={cql}
+      location={location}
+      sublocation={sublocation}
+      onshelf={parseBoolean(onshelf)}
+      sort={sort}
       title={title}
       description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}

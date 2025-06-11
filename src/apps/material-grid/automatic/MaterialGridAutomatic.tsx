@@ -2,19 +2,35 @@ import * as React from "react";
 import MaterialGrid from "../../../components/material-grid/MaterialGrid";
 import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
 import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
-import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
+import {
+  HoldingsStatusEnum,
+  useComplexSearchWithPaginationQuery
+} from "../../../core/dbc-gateway/generated/graphql";
 import useGetCleanBranches from "../../../core/utils/branches";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
+import { commaSeparatedStringToArray } from "../../advanced-search/helpers";
+import {
+  advancedSortMap,
+  AdvancedSortMapStrings
+} from "../../advanced-search/types";
 export type MaterialGridAutomaticProps = {
   cql: string;
   title?: string;
   description?: string;
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
+  location?: string;
+  sublocation?: string;
+  onshelf?: boolean;
+  sort?: string;
 };
 
 const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   cql,
+  location,
+  sublocation,
+  onshelf,
+  sort,
   title,
   description,
   selectedAmountOfMaterialsForDisplay
@@ -28,8 +44,14 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
     offset: 0,
     limit: selectedAmountOfMaterialsForDisplay,
     filters: {
-      branchId: cleanBranches
-    }
+      branchId: cleanBranches,
+      ...(location ? { location: commaSeparatedStringToArray(location) } : {}),
+      ...(sublocation
+        ? { sublocation: commaSeparatedStringToArray(sublocation) }
+        : {}),
+      ...(onshelf ? { status: [HoldingsStatusEnum.Onshelf] } : {})
+    },
+    ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
   });
 
   if (isLoading || !data) {
