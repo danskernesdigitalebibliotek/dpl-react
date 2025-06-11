@@ -132,6 +132,17 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    // set page title
+    if (selectedManifestations) {
+      const firstManifestation = selectedManifestations[0];
+      const title = firstManifestation?.titles.main;
+      if (title) {
+        document.title = `${title}`;
+      }
+    }
+  }, [selectedManifestations]);
+
   if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;
   }
@@ -158,6 +169,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   return (
     <>
       <section className="material-page">
+        <h1>hej fra react</h1>
         <MaterialHeader
           wid={wid}
           work={work}
