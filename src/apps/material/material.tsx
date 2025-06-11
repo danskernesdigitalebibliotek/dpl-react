@@ -140,6 +140,17 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    // set page title
+    if (selectedManifestations) {
+      const firstManifestation = getFirstManifestation(selectedManifestations);
+      const title = firstManifestation?.titles.main;
+      if (title) {
+        document.title = `${title}`;
+      }
+    }
+  }, [selectedManifestations]);
+
   if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;
   }
@@ -163,9 +174,12 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   // Get disclosure URL parameter from the current URL to see if it should be open.
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
+  console.error("Material component rendered with work:", work);
+
   return (
     <>
       <section className="material-page">
+        <h1>hej fra react</h1>
         <MaterialHeader
           wid={wid}
           work={work}
