@@ -41,7 +41,7 @@ const meta: Meta<typeof MaterialGridAutomatic> = {
     },
     onshelf: {
       description: "On shelf filter",
-      control: { type: "boolean" }
+      control: { type: "text" }
     },
 
     sort: {
@@ -120,7 +120,7 @@ export const Primary: Story = {
     cql: "'heste' OR 'PIPPI'",
     location: "",
     sublocation: "",
-    onshelf: false,
+    onshelf: "false",
     sort: AdvancedSortMapStrings.Relevance,
     selectedAmountOfMaterialsForDisplay: 12,
     buttonText: "Show all",
