@@ -143,7 +143,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   useEffect(() => {
     // set page title
     if (selectedManifestations) {
-      const firstManifestation = getFirstManifestation(selectedManifestations);
+      const firstManifestation = selectedManifestations[0];
       const title = firstManifestation?.titles.main;
       if (title) {
         document.title = `${title}`;
