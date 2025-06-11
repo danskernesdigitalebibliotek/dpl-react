@@ -114,6 +114,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
 
   return (
     <div className="material-manifestation-item">
+      <pre>{JSON.stringify(pid, null, 2)}</pre>
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
           key={`${faustId}-material-manifestation-item`}

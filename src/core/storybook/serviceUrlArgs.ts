@@ -67,7 +67,7 @@ export const argTypes = {
     table: {
       type: { summary: "text" },
       defaultValue: {
-        summary: "https://temp.fbi-api.dbc.dk/next/graphql"
+        summary: "https://temp.fbi-api.dbc.dk/fkbcms-soeg/graphql"
       }
     }
   },
@@ -102,7 +102,7 @@ export default {
   [serviceUrlKeys.cover]: "https://cover.dandigbib.org",
   [serviceUrlKeys.materialList]: "https://prod.materiallist.dandigbib.org",
   [serviceUrlKeys.fbi]: "https://temp.fbi-api.dbc.dk/next-present/graphql",
-  [serviceUrlKeys.fbiLocal]: "https://temp.fbi-api.dbc.dk/next/graphql",
+  [serviceUrlKeys.fbiLocal]: "https://temp.fbi-api.dbc.dk/fkbcms-soeg/graphql",
   [serviceUrlKeys.fbiGlobal]:
     "https://temp.fbi-api.dbc.dk/next-present/graphql",
   userinfoUrl: "https://login.bib.dk/userinfo"
