@@ -15,6 +15,8 @@ import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";
+import AdvancedSortSelect from "./AdvancedSortSelect";
+import { advancedSortMap, AdvancedSortMapStrings } from "./types";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -22,6 +24,8 @@ interface AdvancedSearchResultProps {
   showContentOnly: boolean;
   onShelf: boolean;
   locationFilter: LocationFilter;
+  sort: AdvancedSortMapStrings;
+  setSort: (value: AdvancedSortMapStrings) => void;
 }
 
 const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
@@ -29,7 +33,9 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   pageSize,
   showContentOnly,
   onShelf,
-  locationFilter
+  locationFilter,
+  sort,
+  setSort
 }) => {
   const t = useText();
   const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
@@ -76,7 +82,8 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       ...(locationFilter?.sublocation?.length && {
         sublocation: locationFilter.sublocation
       })
-    }
+    },
+    ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
   });
 
   useEffect(() => {
@@ -156,6 +163,9 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
         )}
         {shouldShowSearchResults && (
           <>
+            <ul className="content-list-page__filters">
+              <AdvancedSortSelect sort={sort} setSort={setSort} />
+            </ul>
             <SearchResultList
               resultItems={resultItems}
               page={page}
