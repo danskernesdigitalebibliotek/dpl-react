@@ -32,6 +32,7 @@ export type WorkSmall = Omit<WorkSmallFragment, "workId" | "manifestations"> & {
     first: Manifestation;
     latest: Manifestation;
     bestRepresentation: Manifestation;
+    mostRelevant: Manifestation[];
   };
 };
 
@@ -45,6 +46,7 @@ export type Work = Omit<
     first: Manifestation;
     latest: Manifestation;
     bestRepresentation: Manifestation;
+    mostRelevant: Manifestation[];
   };
   // Nested Omit<...> unfortunately doesn't work here, so if relations property
   // ever changes it will have to be updated here as well.
