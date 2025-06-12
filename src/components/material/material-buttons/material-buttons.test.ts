@@ -262,12 +262,6 @@ describe("Material buttons", () => {
     });
 
     cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
-    });
-
-    cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
       fixtureFilePath: "material/availability.json"
@@ -276,6 +270,11 @@ describe("Material buttons", () => {
     cy.interceptGraphql({
       operationName: "WorkRecommendations",
       fixtureFilePath: "material/material-grid-related-recommendations.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover.json"
     });
 
     // Intercept like button

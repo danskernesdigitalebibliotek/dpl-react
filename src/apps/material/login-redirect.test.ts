@@ -57,9 +57,8 @@ describe("Material", () => {
       operationName: "WorkRecommendations",
       fixtureFilePath: "material/material-grid-related-recommendations.json"
     });
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
       fixtureFilePath: "cover.json"
     });
     cy.interceptRest({
