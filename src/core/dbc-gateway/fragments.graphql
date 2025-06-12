@@ -8,6 +8,9 @@ fragment ManifestationsSimple on Manifestations {
   bestRepresentation {
     ...ManifestationsSimpleFields
   }
+  mostRelevant {
+    ...ManifestationsSimpleFields
+  }
 }
 
 fragment ManifestationsAccess on Manifestations {
