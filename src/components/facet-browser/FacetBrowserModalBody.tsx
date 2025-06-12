@@ -9,6 +9,7 @@ import { FacetBrowserModalId } from "./helper";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import DisclosureSummary from "../Disclosures/DisclosureSummary";
 import { Facets } from "../../core/utils/types/entities";
+import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
 
 interface FacetBrowserModalBodyProps {
   facets: Facets;
@@ -32,7 +33,10 @@ const FacetBrowserModalBody: React.FunctionComponent<
           const { name, values } = facet;
           // Remove facets disclosures with no tags
           if (values.length === 0) return null;
-
+          if (name.toUpperCase() === FacetFieldEnum.Year.toUpperCase()) {
+            // Sort year facets in descending order by value
+            values.sort((a, b) => Number(b.term) - Number(a.term));
+          }
           const hasSelectedTerms = Boolean(filters[name]);
 
           return (
