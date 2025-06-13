@@ -27,7 +27,13 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const u = useUrls();
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
-  const { fictionNonfiction, series, subjects, relations, dk5MainEntry } = work;
+  const { fictionNonfiction, series, subjects, relations } = work;
+  // Use dk5MainEntry/emnetal from the most relevant manifestation. This is because mostRelevant retrieves appended
+  // records instead of base records, and the subject count may be corrected locally, in which case, we need
+  // to show the local data. Read more about this in this ticket: https://reload.atlassian.net/browse/DDFBRA-694
+  const dk5MainEntry =
+    work.manifestations.mostRelevant[0]?.shelfmark?.shelfmark ??
+    work.dk5MainEntry?.display;
 
   const isFiction = materialIsFiction(work);
 
@@ -86,8 +92,8 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                 title={t("subjectNumberText")}
                 linkList={[
                   {
-                    url: constructSearchUrl(searchUrl, dk5MainEntry.display),
-                    term: dk5MainEntry.display
+                    url: constructSearchUrl(searchUrl, dk5MainEntry),
+                    term: dk5MainEntry
                   }
                 ]}
               />

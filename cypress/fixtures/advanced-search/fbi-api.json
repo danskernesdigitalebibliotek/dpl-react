@@ -344,7 +344,114 @@
                   "BKX202304"
                 ]
               }
-            }
+            },
+            "mostRelevant": [{
+              "pid": "870970-basis:135229989",
+              "genreAndForm": ["erindringer", "biografier"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "dansk",
+                    "isoCode": "dan"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Reserven"],
+                "original": ["Spare"]
+              },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Politiken"],
+              "identifiers": [
+                {
+                  "value": "9788740075212"
+                }
+              ],
+              "contributors": [
+                {
+                  "display": "Didde Gaardsted",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "display": "Carsten Norton",
+                  "roles": [
+                    {
+                      "function": {
+                        "singular": "oversætter"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "edition": {
+                "summary": "1. udgave, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
+              },
+              "dateFirstEdition": null,
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescription": {
+                "summaryFull": "576 sider",
+                "numberOfPages": 576,
+                "playingTime": null
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": ["DBF202305"],
+                "otherCatalogues": [
+                  "ACF202250",
+                  "ACC202302",
+                  "BKM202305",
+                  "BKX202304"
+                ]
+              }
+            }]
           }
         },
         {
@@ -610,7 +717,88 @@
                 "nationalBibliography": [],
                 "otherCatalogues": ["OVE999999"]
               }
-            }
+            },
+            "mostRelevant": [{
+              "pid": "870970-basis:134991119",
+              "genreAndForm": ["erindringer", "biografier"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [
+                  {
+                    "display": "engelsk",
+                    "isoCode": "eng"
+                  }
+                ],
+                "notes": []
+              },
+              "titles": {
+                "main": ["Spare"],
+                "original": []
+              },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                {
+                  "materialTypeSpecific": {
+                    "display": "bog"
+                  }
+                }
+              ],
+              "creators": [
+                {
+                  "display": "Harry (prins, hertug af Sussex)",
+                  "__typename": "Person"
+                }
+              ],
+              "publisher": ["Random House"],
+              "identifiers": [
+                {
+                  "value": "9780593593806"
+                }
+              ],
+              "contributors": [],
+              "edition": {
+                "summary": "1. US edition, 2023",
+                "publicationYear": {
+                  "display": "2023"
+                }
+              },
+              "dateFirstEdition": null,
+              "audience": {
+                "generalAudience": [],
+                "ages": []
+              },
+              "notes": [],
+              "physicalDescription": {
+                "summaryFull": "410 sider: ill.",
+                "numberOfPages": 410,
+                "playingTime": null
+              },
+              "hostPublication": null,
+              "manifestationParts": null,
+              "accessTypes": [
+                {
+                  "code": "PHYSICAL"
+                }
+              ],
+              "access": [
+                {
+                  "__typename": "InterLibraryLoan",
+                  "loanIsPossible": true
+                }
+              ],
+              "shelfmark": {
+                "postfix": "Harry",
+                "shelfmark": "99.4 Harry"
+              },
+              "workYear": null,
+              "catalogueCodes": {
+                "nationalBibliography": [],
+                "otherCatalogues": ["OVE999999"]
+              }
+            }]
           }
         }
       ]
