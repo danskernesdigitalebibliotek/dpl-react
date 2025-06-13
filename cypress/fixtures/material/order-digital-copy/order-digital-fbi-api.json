@@ -326,7 +326,94 @@
             "nationalBibliography": ["ABU201042", "DAR201042"],
             "otherCatalogues": []
           }
-        }
+        },
+        "mostRelevant": [{
+          "pid": "870971-tsart:34310815",
+          "genreAndForm": [],
+          "source": ["Tidsskriftsartikler"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Faglig formidling er ikke kun skriveteknik"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "artikel"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Leif Becker Jensen",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": [],
+          "identifiers": [],
+          "contributors": [],
+          "edition": {
+            "summary": "2010",
+            "publicationYear": {
+              "display": "2010"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [
+            {
+              "display": ["Med litteraturhenvisninger"]
+            }
+          ],
+          "physicalDescription": {
+            "summaryFull": "S. 8-13: ill.",
+            "numberOfPages": 6,
+            "playingTime": null
+          },
+          "hostPublication": {
+            "summary": "Dansk noter, Nr. 3 (2010)"
+          },
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "DigitalArticleService",
+              "issn": "01071424"
+            },
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Faglig",
+            "shelfmark": "19.1"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["ABU201042", "DAR201042"],
+            "otherCatalogues": []
+          }
+        }]
       },
       "materialTypes": [
         {

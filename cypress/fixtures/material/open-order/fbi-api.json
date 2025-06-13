@@ -277,7 +277,92 @@
             "nationalBibliography": [],
             "otherCatalogues": ["OVE999999"]
           }
-        }
+        },
+        "mostRelevant": [{
+          "pid": "870970-basis:44926407",
+          "genreAndForm": ["biografier"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "engelsk",
+                "isoCode": "eng"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Duchess of Death"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "bog"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Richard Hack",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["JR Books"],
+          "identifiers": [
+            {
+              "value": "9781906779832"
+            }
+          ],
+          "contributors": [],
+          "edition": {
+            "summary": "1. edition, 2010",
+            "publicationYear": {
+              "display": "2010"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [
+            {
+              "display": ["Med litteraturhenvisninger"]
+            }
+          ],
+          "physicalDescription": {
+            "summaryFull": "xxxiii, 284 sider, 8 side  med tavler",
+            "numberOfPages": 325,
+            "playingTime": null
+          },
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Hack",
+            "shelfmark": "99.4 Christie, Agatha"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": [],
+            "otherCatalogues": ["OVE999999"]
+          }
+        }]
       },
       "materialTypes": [
         {

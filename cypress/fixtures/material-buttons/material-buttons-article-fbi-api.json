@@ -377,7 +377,122 @@
             "nationalBibliography": ["ABU201713", "DAR201707"],
             "otherCatalogues": ["ARK201713"]
           }
-        }
+        },
+        "mostRelevant": [{
+          "pid": "870971-tsart:37346950",
+          "genreAndForm": [],
+          "source": ["Tidsskriftsartikler"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": [
+              "Farmakologisk behandling af overaktiv blæresyndrom - hvad skal jeg nu vælge?"
+            ],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "artikel (online)"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Louise Størling Hedegaard",
+              "nameSort": "hedegård louise størling",
+              "__typename": "Person"
+            },
+            {
+              "display": "Anders Rune Lander",
+              "nameSort": "lander anders rune",
+              "__typename": "Person"
+            },
+            {
+              "display": "Jon Trærup Andersen",
+              "nameSort": "trærup andersen jon",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": [],
+          "identifiers": [],
+          "contributors": [],
+          "edition": {
+            "summary": "2017",
+            "publicationYear": {
+              "display": "2017"
+            }
+          },
+          "dateFirstEdition": {
+            "display": "2017",
+            "year": 2017
+          },
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [
+            {
+              "display": ["Med litteraturhenvisninger"]
+            }
+          ],
+          "physicalDescription": {
+            "summaryFull": "S. 1-4",
+            "numberOfPages": 4
+          },
+          "hostPublication": {
+            "summary": "Rationel farmakoterapi, 2017, nr. 2"
+          },
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            },
+            {
+              "code": "ONLINE"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "AccessUrl",
+              "origin": "www.irf.dk",
+              "url": "http://www.irf.dk/dk/publikationer/rationel_farmakoterapi/maanedsblad/2017/farmakologisk-behandling-af-overaktiv-blaeresyndrom--hvad-skal-jeg-nu-vaelge.htm",
+              "loginRequired": false,
+              "status": "OK"
+            },
+            {
+              "__typename": "AccessUrl",
+              "origin": "DBC Webarkiv",
+              "url": "https://moreinfo.addi.dk/2.11/more_info_get.php?lokalid=37346950&attachment_type=f56_a&bibliotek=870971&source_id=870970&key=f3f5107a83d9a34dd506",
+              "loginRequired": false,
+              "status": "OK"
+            },
+            {
+              "__typename": "DigitalArticleService",
+              "issn": "16002555"
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Farmakologisk",
+            "shelfmark": "61.617"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["ABU201713", "DAR201707"],
+            "otherCatalogues": ["ARK201713"]
+          }
+        }]
       },
       "materialTypes": [
         {

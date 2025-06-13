@@ -381,7 +381,104 @@
               "DAT202211"
             ]
           }
-        }
+        },
+        "mostRelevant": [{
+          "pid": "870970-basis:134015012",
+          "genreAndForm": ["roman", "krimi", "romaner", "politiromaner"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Skyggeriget"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "skønlitteratur",
+            "code": "FICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "bog"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Kim Faber",
+              "__typename": "Person"
+            },
+            {
+              "display": "Janni Pedersen (f. 1968)",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Politiken"],
+          "identifiers": [
+            {
+              "value": "9788740074918"
+            }
+          ],
+          "contributors": [],
+          "edition": {
+            "summary": "1. udgave, 2022",
+            "publicationYear": {
+              "display": "2022"
+            }
+          },
+          "dateFirstEdition": {
+            "display": "2022",
+            "year": 2022
+          },
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [
+            {
+              "display": ["Originaludgave: 2022"]
+            }
+          ],
+          "physicalDescription": {
+            "summaryFull": "365 side ",
+            "numberOfPages": 365,
+            "playingTime": null
+          },
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": null,
+          "workYear": {
+            "year": 2022
+          },
+          "catalogueCodes": {
+            "nationalBibliography": ["DBF202245"],
+            "otherCatalogues": [
+              "ACF202227",
+              "ACC202242",
+              "BKM202245",
+              "BKX202244",
+              "DAT202211"
+            ]
+          }
+        }]
       },
       "materialTypes": [
         {

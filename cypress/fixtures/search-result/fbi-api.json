@@ -286,7 +286,45 @@
               ],
               "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [{
+              "pid": "870970-basis:54129807",
+              "genreAndForm": ["biografier"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [{ "display": "dansk", "isoCode": "dan" }]
+              },
+              "titles": { "main": ["Harry"], "original": ["Harry (engelsk)"] },
+              "fictionNonfiction": {
+                "display": "faglitteratur",
+                "code": "NONFICTION"
+              },
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
+              "creators": [
+                { "display": "Angela Levin", "__typename": "Person" }
+              ],
+              "publisher": ["Memoris"],
+              "identifiers": [{ "value": "9788793681088" }],
+              "contributors": [{ "display": "Birgitte Brix" }],
+              "edition": {
+                "summary": "1. udgave, 2018",
+                "publicationYear": { "display": "2018" }
+              },
+              "dateFirstEdition": null,
+              "audience": { "generalAudience": [] },
+              "physicalDescription": {
+                "numberOfPages": 301,
+                "playingTime": null
+              },
+              "accessTypes": [{ "code": "PHYSICAL" }],
+              "access": [
+                { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+              ],
+              "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
+              "workYear": null
+            }]
           }
         },
         {
@@ -1072,7 +1110,57 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2003 }
-            }
+            },
+            "mostRelevant": [{
+              "pid": "870970-basis:134693959",
+              "genreAndForm": ["roman", "fantasy", "romaner"],
+              "source": ["Bibliotekskatalog"],
+              "languages": {
+                "main": [{ "display": "dansk", "isoCode": "dan" }]
+              },
+              "titles": {
+                "main": ["Harry Potter og Fønixordenen (Ill. Jim Kay)"],
+                "original": ["Harry Potter and the Order of the Phoenix"]
+              },
+              "fictionNonfiction": {
+                "display": "skønlitteratur",
+                "code": "FICTION"
+              },
+              "materialTypes": [
+                { "materialTypeSpecific": { "display": "bog" } }
+              ],
+              "creators": [
+                { "display": "Joanne K. Rowling", "__typename": "Person" }
+              ],
+              "publisher": ["Gyldendal"],
+              "identifiers": [{ "value": "9788702307566" }],
+              "contributors": [
+                { "display": "Jim Kay" },
+                { "display": "Neil Packer" },
+                { "display": "Hanna Lützen" }
+              ],
+              "edition": {
+                "summary": "Illustreret udgave, 7. udgave, 2022",
+                "publicationYear": { "display": "2022" }
+              },
+              "dateFirstEdition": null,
+              "audience": {
+                "generalAudience": [
+                  "Højtlæsning fra 8 år. Selvlæsning fra 12 år",
+                  "for højtlæsning"
+                ]
+              },
+              "physicalDescription": {
+                "numberOfPages": 565,
+                "playingTime": null
+              },
+              "accessTypes": [{ "code": "PHYSICAL" }],
+              "access": [
+                { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+              ],
+              "shelfmark": null,
+              "workYear": { "year": 2003 }
+            }]
           }
         }
       ]
