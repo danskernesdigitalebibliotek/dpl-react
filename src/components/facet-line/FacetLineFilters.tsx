@@ -32,12 +32,16 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   const facetMap = createFacetsMap(facets);
 
   const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
-    return values.map((value) => {
+    const dropdownValues = values.map((value) => {
       return {
         label: value.term,
         value: value.key
       };
     });
+    if (facet.toUpperCase() === FacetFieldEnum.Year.toUpperCase()) {
+      dropdownValues.sort((a, b) => Number(b.label) - Number(a.label));
+    }
+    return dropdownValues;
   };
 
   const handleDropdownOnchange = (

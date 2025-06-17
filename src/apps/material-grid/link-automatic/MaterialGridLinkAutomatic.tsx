@@ -11,6 +11,10 @@ import { getQueryParams } from "../../../core/utils/helpers/url";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
 import { commaSeparatedStringToArray } from "../../advanced-search/helpers";
+import {
+  advancedSortMap,
+  AdvancedSortMapStrings
+} from "../../advanced-search/types";
 
 export type MaterialGridLinkAutomaticProps = {
   link: URL;
@@ -28,7 +32,7 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
   const t = useText();
   const buttonText = t("buttonText");
   const cleanBranches = useGetCleanBranches();
-  const { advancedSearchCql, location, sublocation, onshelf } =
+  const { advancedSearchCql, location, sublocation, onshelf, sort } =
     getQueryParams(link);
 
   const { data, isLoading } = useComplexSearchWithPaginationQuery(
@@ -45,7 +49,8 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
           ? { sublocation: commaSeparatedStringToArray(sublocation) }
           : {}),
         ...(onshelf === "true" ? { status: [HoldingsStatusEnum.Onshelf] } : {})
-      }
+      },
+      ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
     },
     {
       enabled: !!advancedSearchCql
