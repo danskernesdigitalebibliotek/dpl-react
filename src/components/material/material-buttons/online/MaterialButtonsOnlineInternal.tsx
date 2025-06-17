@@ -21,6 +21,7 @@ import { getFirstManifestation } from "../../../../apps/material/helper";
 import { WorkId } from "../../../../core/utils/types/ids";
 import { useEventStatistics } from "../../../../core/statistics/useStatistics";
 import { statistics } from "../../../../core/statistics/statistics";
+import PlayerModal from "../../player-modal/PlayerModal";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -201,25 +202,28 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
 
     if (isAlreadyLoaned && orderId) {
       return (
-        <Button
-          dataCy={`${dataCy}-player`}
-          label={t("onlineMaterialPlayerText", {
-            placeholders: { "@materialType": manifestationType }
-          })}
-          buttonType="none"
-          variant="filled"
-          size={size || "large"}
-          onClick={() => {
-            track("click", {
-              id: statistics.publizonReadListen.id,
-              name: statistics.publizonReadListen.name,
-              trackedData: workId
-            });
-            open(playerModalId(orderId));
-          }}
-          disabled={false}
-          collapsible={false}
-        />
+        <>
+          <PlayerModal orderId={orderId} />
+          <Button
+            dataCy={`${dataCy}-player`}
+            label={t("onlineMaterialPlayerText", {
+              placeholders: { "@materialType": manifestationType }
+            })}
+            buttonType="none"
+            variant="filled"
+            size={size || "large"}
+            onClick={() => {
+              track("click", {
+                id: statistics.publizonReadListen.id,
+                name: statistics.publizonReadListen.name,
+                trackedData: workId
+              });
+              open(playerModalId(orderId));
+            }}
+            disabled={false}
+            collapsible={false}
+          />
+        </>
       );
     }
 
@@ -246,20 +250,23 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
 
     if (identifier) {
       return (
-        <MaterialSecondaryButton
-          label={tryLabel}
-          size={size || "large"}
-          onClick={() => {
-            track("click", {
-              id: statistics.publizonTry.id,
-              name: statistics.publizonTry.name,
-              trackedData: workId
-            });
-            open(playerModalId(identifier));
-          }}
-          dataCy={`${dataCy}-player-teaser`}
-          ariaDescribedBy={t("onlineMaterialTeaserText")}
-        />
+        <>
+          <PlayerModal identifier={identifier} />
+          <MaterialSecondaryButton
+            label={tryLabel}
+            size={size || "large"}
+            onClick={() => {
+              track("click", {
+                id: statistics.publizonTry.id,
+                name: statistics.publizonTry.name,
+                trackedData: workId
+              });
+              open(playerModalId(identifier));
+            }}
+            dataCy={`${dataCy}-player-teaser`}
+            ariaDescribedBy={t("onlineMaterialTeaserText")}
+          />
+        </>
       );
     }
     return null;
