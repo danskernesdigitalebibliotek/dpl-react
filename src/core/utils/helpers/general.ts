@@ -552,6 +552,9 @@ export const formatDanishPhoneNumber = (phoneNumber: string) => {
     : `+45${phoneNumber}`; // Prepend +45 if no country code is present
 };
 
+export const parseBoolean = (value?: string): boolean =>
+  value?.toLowerCase() === "true";
+
 export default {};
 
 /* ********************************* Vitest Section  ********************************* */

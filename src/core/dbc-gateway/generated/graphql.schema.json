@@ -5312,8 +5312,8 @@
               "name": "ManifestationParts",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'Manifestation.contents' instead expires: 01/11-2025"
           },
           {
             "name": "marc",
@@ -5608,8 +5608,8 @@
               "name": "TableOfContent",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'Manifestation.contents' instead expires: 01/11-2025"
           },
           {
             "name": "titles",

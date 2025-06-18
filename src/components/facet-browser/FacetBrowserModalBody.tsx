@@ -86,8 +86,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
                         selected={selected}
                         dataCy={`facet-browser-${name}-${term}`}
                       >
-                        {termItem.term}{" "}
-                        {termItem?.score && `(${termItem.score})`}
+                        {termItem.term}
                       </ButtonTag>
                     </li>
                   );

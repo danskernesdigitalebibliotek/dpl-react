@@ -25,9 +25,8 @@ module.exports = (_env, argv) => {
     }),
     new ESLintPlugin({
       files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
-      context: path.resolve(__dirname, "./src"),
-      useEslintrc: true
-    }),
+      context: path.resolve(__dirname, "./src")
+    })
   ];
 
   if (process.env.VERSION_FILE_NAME && process.env.VERSION_FILE_VERSION) {

@@ -114,7 +114,6 @@ export const ReservationModalBody = ({
     branches,
     blacklistBranchesInstantLoan.concat(blacklistPickupBranches)
   );
-
   const mainManifestationType = getMaterialType(selectedManifestations);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations: selectedManifestations,
@@ -266,6 +265,8 @@ export const ReservationModalBody = ({
       instantLoanThreshold
     );
 
+  const userHasEmail = Boolean(patron?.emailAddress);
+
   return (
     <>
       {!reservationResults && !openOrderResponse && (
@@ -287,7 +288,11 @@ export const ReservationModalBody = ({
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
                 {materialIsReservableFromAnotherLibrary ? (
-                  t("reservableFromAnotherLibraryText")
+                  userHasEmail ? (
+                    t("reservableFromAnotherLibraryExtraInfoText")
+                  ) : (
+                    t("reservableFromAnotherLibraryMissingEmailText")
+                  )
                 ) : (
                   <StockAndReservationInfo
                     stockCount={holdings}
@@ -300,7 +305,10 @@ export const ReservationModalBody = ({
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
-                disabled={reservationStatus === "pending"}
+                disabled={
+                  reservationStatus === "pending" ||
+                  (materialIsReservableFromAnotherLibrary && !userHasEmail)
+                }
                 collapsible={false}
                 size="small"
                 onClick={saveReservation}
