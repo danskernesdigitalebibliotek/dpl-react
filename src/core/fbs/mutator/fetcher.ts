@@ -50,13 +50,21 @@ export const fetcher = async <ResponseType>({
       );
     }
 
-    try {
-      return (await response.json()) as ResponseType;
-    } catch (e) {
-      if (!(e instanceof SyntaxError)) {
-        throw e;
-      }
+    // If the server returns 204 No Content, there is intentionally no body to parse
+    if (response.status === 204) {
+      return null;
     }
+
+    const contentType = response.headers.get("content-type") || "";
+    const text = await response.text();
+
+    // If the response is JSON, parse it (or return null when the body is empty)
+    if (contentType.includes("application/json")) {
+      return text ? (JSON.parse(text) as ResponseType) : null;
+    }
+
+    // Non-JSON and non-204 responses are treated as critical fetch failures
+    throw new FetchFailedCriticalError(text, serviceUrl);
   } catch (error: unknown) {
     if (error instanceof FbsServiceHttpError) {
       throw error;
