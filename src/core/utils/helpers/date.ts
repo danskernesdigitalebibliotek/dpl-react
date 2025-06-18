@@ -2,6 +2,7 @@ import { upperFirst } from "lodash";
 import dayjs from "dayjs";
 import "dayjs/locale/da";
 import weekOfYear from "dayjs/plugin/weekOfYear";
+import utc from "dayjs/plugin/utc";
 import {
   dateFormatCustom,
   dateFormatDash,
@@ -16,6 +17,7 @@ import {
 
 dayjs.locale("da");
 dayjs.extend(weekOfYear);
+dayjs.extend(utc);
 
 const getCurrentUnixTime = () => Math.floor(Date.now() / 1000);
 
@@ -83,6 +85,10 @@ export const formatDateTime = (date: string) => {
   return dayjs(date).format(dateFormatDashWithTime);
 };
 
+export const formatDateTimeUtc = (date: string) => {
+  return dayjs(date).utc().format(dateFormatDashWithTime);
+};
+
 export const formatDayMonth = (date: string | Date) => {
   return dayjs(date).format(dateFormatSlashDayMonth);
 };
@@ -109,7 +115,7 @@ export const formatDateDependingOnDigitalMaterial = ({
   date: string;
   isDigital: boolean;
 }) => {
-  return isDigital ? formatDateTime(date) : formatDate(date);
+  return isDigital ? formatDateTimeUtc(date) : formatDate(date);
 };
 
 // Date calculation functions: Get dates relative to today
