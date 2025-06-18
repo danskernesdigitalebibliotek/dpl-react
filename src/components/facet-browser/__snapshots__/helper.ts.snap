@@ -187,5 +187,49 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       },
     ],
   },
+  {
+    "name": "YEAR",
+    "type": "YEAR",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+        "traceId": "",
+      },
+    ],
+  },
+  {
+    "name": "CANALWAYSBELOANED",
+    "type": "CANALWAYSBELOANED",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+        "traceId": "",
+      },
+    ],
+  },
+  {
+    "name": "DK5",
+    "type": "DK5",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+        "traceId": "",
+      },
+    ],
+  },
+  {
+    "name": "GAMEPLATFORM",
+    "type": "GAMEPLATFORM",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+        "traceId": "",
+      },
+    ],
+  },
 ]
 `;

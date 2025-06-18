@@ -33,14 +33,10 @@ const FacetBrowserModalBody: React.FunctionComponent<
           const { name, values } = facet;
           // Remove facets disclosures with no tags
           if (values.length === 0) return null;
-          let sortedValues = values;
-          // Sort years by score (relevance)
-          if (name.toUpperCase() === FacetFieldEnum.Year) {
-            sortedValues = values.sort((a, b) => {
-              return (b.score || 0) - (a.score || 0);
-            });
+          if (name.toUpperCase() === FacetFieldEnum.Year.toUpperCase()) {
+            // Sort year facets in descending order by value
+            values.sort((a, b) => Number(b.term) - Number(a.term));
           }
-
           const hasSelectedTerms = Boolean(filters[name]);
 
           return (
@@ -58,7 +54,7 @@ const FacetBrowserModalBody: React.FunctionComponent<
               }
             >
               <ul className="facet-browser__facet-group">
-                {sortedValues.map((termItem) => {
+                {values.map((termItem) => {
                   const { term } = termItem;
 
                   const selected = Boolean(
