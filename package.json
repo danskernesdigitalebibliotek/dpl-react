@@ -67,6 +67,7 @@
     "@graphql-codegen/typescript-operations": "^4.3.1",
     "@graphql-codegen/typescript-react-query": "^6.1.0",
     "@graphql-typed-document-node/core": "^3.1.1",
+    "@hammzj/cypress-page-object": "^2.3.0",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@namics/stylelint-bem": "^10.1.0",
     "@storybook/addon-essentials": "^8.4.7",
