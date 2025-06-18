@@ -7,7 +7,7 @@ import { useText } from "../../../../core/utils/text";
 import ArrowButton from "../../../../components/Buttons/ArrowButton";
 import {
   formatDate,
-  formatDateTime
+  formatDateTimeUtc
 } from "../../../../core/utils/helpers/date";
 import StatusMessage from "../selectable-material/StatusMessage";
 
@@ -72,7 +72,7 @@ const MaterialStatus: FC<MaterialStatusProps> = ({
           <p className="text-small-caption color-secondary-gray">
             {isDigital(loan)
               ? t("loanListToBeDeliveredDigitalMaterialText", {
-                  placeholders: { "@date": formatDateTime(dueDate) }
+                  placeholders: { "@date": formatDateTimeUtc(dueDate) }
                 })
               : t("loanListToBeDeliveredText", {
                   placeholders: { "@date": formatDate(dueDate) }
