@@ -324,42 +324,40 @@ const SearchHeader: React.FC = () => {
   }, [q, advancedSearchUrl, searchUrl]);
 
   return (
-    <>
-      <div className="header__menu-second">
-        <div className="header__menu-search">
-          <SearchBar
-            q={q}
-            getInputProps={getInputProps}
-            getLabelProps={getLabelProps}
-            qWithoutQuery={qWithoutQuery}
-            setQWithoutQuery={setQWithoutQuery}
-            isHeaderDropdownOpen={isHeaderDropdownOpen}
+    <div className="header__menu-second">
+      <div className="header__menu-search">
+        <SearchBar
+          q={q}
+          getInputProps={getInputProps}
+          getLabelProps={getLabelProps}
+          qWithoutQuery={qWithoutQuery}
+          setQWithoutQuery={setQWithoutQuery}
+          isHeaderDropdownOpen={isHeaderDropdownOpen}
+          setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
+          redirectUrl={redirectUrl}
+        />
+        <Autosuggest
+          textData={textData}
+          materialData={materialData}
+          categoryData={categoryData}
+          status={status}
+          getMenuProps={getMenuProps}
+          highlightedIndex={highlightedIndex}
+          getItemProps={getItemProps}
+          isOpen={isAutosuggestOpen}
+          setIsOpen={setIsAutosuggestOpen}
+          isLoading={isLoading}
+        />
+        {isHeaderDropdownOpen && (
+          <HeaderDropdown
+            redirectTo={redirectTo}
             setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
-            redirectUrl={redirectUrl}
+            headerDropdownRef={headerDropdownRef}
+            advancedSearchUrl={advancedSearchUrl}
           />
-          <Autosuggest
-            textData={textData}
-            materialData={materialData}
-            categoryData={categoryData}
-            status={status}
-            getMenuProps={getMenuProps}
-            highlightedIndex={highlightedIndex}
-            getItemProps={getItemProps}
-            isOpen={isAutosuggestOpen}
-            setIsOpen={setIsAutosuggestOpen}
-            isLoading={isLoading}
-          />
-          {isHeaderDropdownOpen && (
-            <HeaderDropdown
-              redirectTo={redirectTo}
-              setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
-              headerDropdownRef={headerDropdownRef}
-              advancedSearchUrl={advancedSearchUrl}
-            />
-          )}
-        </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
