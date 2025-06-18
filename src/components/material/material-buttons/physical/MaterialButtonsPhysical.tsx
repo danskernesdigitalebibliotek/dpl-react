@@ -45,6 +45,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const { reservableManifestations } = UseReservableManifestations({
     manifestations
   });
+  console.log("🚀 ~ reservableManifestations:", reservableManifestations);
   const { data: userData, isLoading } = usePatronData();
   const isUserBlocked = !!(userData?.patron && isBlocked(userData?.patron));
 
