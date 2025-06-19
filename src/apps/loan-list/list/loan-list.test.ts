@@ -162,12 +162,6 @@ describe("Loan list", () => {
       }
     }).as("digital_loans");
 
-    // Intercept covers.
-    cy.interceptGraphql({
-      operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
-    });
-
     cy.interceptGraphql({
       operationName: "getManifestationViaMaterialByFaust",
       fixtureFilePath: "reservation-details/fbi-api.json"
