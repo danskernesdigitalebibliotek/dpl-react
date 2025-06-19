@@ -19,11 +19,6 @@ describe("Instant Loan", () => {
       fixtureFilePath: "material/user.json"
     });
 
-    cy.interceptGraphql({
-      operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
-    });
-
     cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
