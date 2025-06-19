@@ -16,7 +16,11 @@ import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";
 import AdvancedSortSelect from "./AdvancedSortSelect";
-import { advancedSortMap, AdvancedSortMapStrings } from "./types";
+import {
+  advancedSortMap,
+  AdvancedSortMapStrings,
+  FirstAccessionOperatorFilter
+} from "./types";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -24,6 +28,8 @@ interface AdvancedSearchResultProps {
   showContentOnly: boolean;
   onShelf: boolean;
   locationFilter: LocationFilter;
+  firstAccessionDateFilter: string | null;
+  firstAccessionOperatorFilter: FirstAccessionOperatorFilter;
   sort: AdvancedSortMapStrings;
   setSort: (value: AdvancedSortMapStrings) => void;
 }
@@ -34,6 +40,8 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   showContentOnly,
   onShelf,
   locationFilter,
+  firstAccessionDateFilter,
+  firstAccessionOperatorFilter,
   sort,
   setSort
 }) => {
@@ -81,7 +89,10 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       }),
       ...(locationFilter?.sublocation?.length && {
         sublocation: locationFilter.sublocation
-      })
+      }),
+      firstAccessionDate: firstAccessionDateFilter
+        ? `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`
+        : ""
     },
     ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
   });
