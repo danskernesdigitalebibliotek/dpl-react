@@ -37,11 +37,6 @@ describe("Material - Periodical", () => {
       fixtureFilePath: "material/periodical-fbi-api.json"
     });
 
-    cy.interceptGraphql({
-      operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
-    });
-
     cy.createFakeAuthenticatedSession();
     cy.visit(
       "/iframe.html?id=apps-material--periodical&viewMode=story&type=tidsskrift"
