@@ -929,7 +929,6 @@ describe("Reservation list", () => {
             pickupDeadline: null,
             expiryDate: "2022-09-21",
             dateOfReservation: "2022-06-14T09:00:50.059",
-            //  identifier: "9781844135417", //
             numberInQueue: 1,
             periodical: null,
             pickupNumber: null,
