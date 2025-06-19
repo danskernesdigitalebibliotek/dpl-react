@@ -323,6 +323,35 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     advancedSearchFilterSublocationDescriptionText: {
       description: "Advanced search filter - sublocation description",
       control: { type: "text" }
+    },
+    advancedSearchFirstAccessionDateText: {
+      description: "Date for first accession date",
+      control: { type: "text" }
+    },
+    advancedSearchFirstAccessionDateOperatorText: {
+      description: "Choose operator",
+      control: { type: "text" }
+    },
+    advancedSearchFilterLaterThanText: {
+      description: "Date later than",
+      control: { type: "text" }
+    },
+    advancedSearchFilterExactDateText: {
+      description: "Exact date",
+      control: { type: "text" }
+    },
+    advancedSearchFilterEarlierThanText: {
+      description: "Date earlier than",
+      control: { type: "text" }
+    },
+    advancedSearchFirstAccessionDateDescriptionText: {
+      description:
+        "Formatet skal være ÅÅÅÅ-DD-MM fx 2024-24-11. Der kan også anvendes ”NOW”, ”DAYS” og ”MONTHS”, fx ”NOW - 60 DAYS”. Husk at tilføje mellemrum på begge sider af plus og minus tegn",
+      control: { type: "text" }
+    },
+    advancedSearchFirstAccessionDateSpecifyDateText: {
+      description: "Input desired date in format 'YYYY-MM-DD'",
+      control: { type: "text" }
     }
   }
 };
@@ -415,6 +444,15 @@ export const Primary: Story = {
       "Add a comma separated list for multiple locations",
     advancedSearchFilterSublocationText: "Sublocation",
     advancedSearchFilterSublocationDescriptionText:
-      "Add a comma separated list for multiple sublocations"
+      "Add a comma separated list for multiple sublocations",
+    advancedSearchFirstAccessionDateText: "First Accession Date",
+    advancedSearchFirstAccessionDateOperatorText: "Choose operator",
+    advancedSearchFilterLaterThanText: "Later than",
+    advancedSearchFilterExactDateText: "Exact date",
+    advancedSearchFilterEarlierThanText: "Earlier than",
+    advancedSearchFirstAccessionDateDescriptionText:
+      "Formatet skal være ÅÅÅÅ-DD-MM fx 2024-24-11. Der kan også anvendes ”NOW”, ”DAYS” og ”MONTHS”, fx ”NOW - 60 DAYS”. Husk at tilføje mellemrum på begge sider af plus og minus tegn",
+    advancedSearchFirstAccessionDateSpecifyDateText:
+      "Input desired date in format 'YYYY-MM-DD'"
   }
 };

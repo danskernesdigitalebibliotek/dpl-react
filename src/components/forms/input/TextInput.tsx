@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import Label from "../label/Label";
 
 export interface TextInputProps {
-  label: string;
+  label?: string;
   type: "text" | "password" | "number" | "email" | "tel";
   id: string;
   required?: boolean;
@@ -16,6 +16,7 @@ export interface TextInputProps {
   inputmode?: "numeric";
   title?: string;
   placeholder?: string;
+  ariaLabel?: string;
 }
 
 const TextInput: FC<TextInputProps> = ({
@@ -31,7 +32,8 @@ const TextInput: FC<TextInputProps> = ({
   inputmode,
   required,
   title,
-  placeholder
+  placeholder,
+  ariaLabel
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
@@ -42,9 +44,11 @@ const TextInput: FC<TextInputProps> = ({
         { "dpl-input--invalid": !!validation }
       ])}
     >
-      <Label id={id} required={required}>
-        {label}
-      </Label>
+      {label && (
+        <Label id={id} required={required}>
+          {label}
+        </Label>
+      )}
       <input
         className="text-body-medium-medium"
         required={required}
@@ -56,6 +60,7 @@ const TextInput: FC<TextInputProps> = ({
         inputMode={inputmode}
         onChange={handleChange}
         value={value}
+        aria-label={ariaLabel || ""}
         aria-labelledby={validation ? `validation-${id}` : ""}
         title={title}
         placeholder={placeholder}

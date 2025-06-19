@@ -4,6 +4,8 @@ import CheckBox from "../../components/checkbox/Checkbox";
 import { LocationFilter } from "./LocationFilter";
 import Textarea from "../../components/forms/textarea/Textarea";
 import TextInput from "../../components/forms/input/TextInput";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import { FirstAccessionOperatorFilter } from "./types";
 
 export type CqlSearchHeaderProps = {
   dataCy?: string;
@@ -13,7 +15,13 @@ export type CqlSearchHeaderProps = {
   handleOnShelfChange: (newState: boolean) => void;
   onLocationChange: (location: string) => void;
   onSublocationChange: (sublocation: string) => void;
+  onFirstAccessionDateChange: (firstAccession: string) => void;
+  onFirstAccessionOperatorChange: (
+    operator: FirstAccessionOperatorFilter
+  ) => void;
   locationFilter: LocationFilter;
+  firstAccessionDateFilter: string;
+  firstAccessionOperatorFilter: FirstAccessionOperatorFilter;
 };
 
 const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
@@ -24,7 +32,11 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   handleOnShelfChange,
   onLocationChange,
   onSublocationChange,
-  locationFilter
+  onFirstAccessionDateChange,
+  onFirstAccessionOperatorChange,
+  locationFilter,
+  firstAccessionDateFilter,
+  firstAccessionOperatorFilter
 }) => {
   const t = useText();
 
@@ -39,11 +51,21 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   // while locationFilter location and sublocation are provided as arrays.
   const [inputValues, setInputValues] = useState({
     location: locationFilter?.location?.join(", ") ?? "",
-    sublocation: locationFilter?.sublocation?.join(", ") ?? ""
+    sublocation: locationFilter?.sublocation?.join(", ") ?? "",
+    firstAccessionDate: firstAccessionDateFilter,
+    firstAccessionOperatorFilter: firstAccessionOperatorFilter
   });
-
+  const firstAccessionDateOperators = [
+    { label: t("advancedSearchFilterLaterThanText"), value: ">" },
+    { label: t("advancedSearchFilterExactDateText"), value: "=" },
+    { label: t("advancedSearchFilterEarlierThanText"), value: "<" }
+  ];
   const handleInputChange = (
-    name: "location" | "sublocation",
+    name:
+      | "location"
+      | "sublocation"
+      | "firstAccessionDate"
+      | "firstAccessionDateOperator",
     value: string
   ) => {
     setInputValues((prevValues) => ({
@@ -56,6 +78,12 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
     }
     if (name === "sublocation") {
       onSublocationChange(value);
+    }
+    if (name === "firstAccessionDate") {
+      onFirstAccessionDateChange(value);
+    }
+    if (name === "firstAccessionDateOperator") {
+      onFirstAccessionOperatorChange(value as FirstAccessionOperatorFilter);
     }
   };
 
@@ -102,6 +130,26 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           selected={onShelf}
           onChecked={handleOnShelfChange}
           label={t("advancedSearchFilterHoldingStatusText")}
+        />
+        <Dropdown
+          classNames="dropdown--grey-borders advanced-search__filter dpl-input"
+          options={firstAccessionDateOperators}
+          arrowIcon="chevron"
+          handleOnChange={(e) => {
+            handleInputChange("firstAccessionDateOperator", e.target.value);
+          }}
+          id="first-accession-date-operator"
+          label={t("advancedSearchFirstAccessionDateText")}
+          ariaLabel={t("advancedSearchFirstAccessionDateOperatorText")}
+        />
+        <TextInput
+          id="first-accession-date"
+          className="mb-32"
+          description={t("advancedSearchFirstAccessionDateDescriptionText")}
+          ariaLabel={t("advancedSearchFirstAccessionDateSpecifyDateText")}
+          type="text"
+          onChange={(date) => handleInputChange("firstAccessionDate", date)}
+          value={String(firstAccessionDateFilter)}
         />
       </div>
     </>
