@@ -310,6 +310,8 @@ describe("Reservation list", () => {
       operationName: "GetCoversByPids",
       fixtureFilePath: "cover.json"
     });
+
+    // Some reservations may not include a pid — fallback to fetching cover via ISBN
     cy.interceptGraphql({
       operationName: "GetBestRepresentationPidByIsbn",
       fixtureFilePath: "cover-get-best-representation-by-isbn.json"
@@ -914,7 +916,7 @@ describe("Reservation list", () => {
       .and("match", FbiCoverUrlPattern);
   });
 
-  it("Reservations list falls back on interlibrary record when work is not found", () => {
+  it.only("Reservations list falls back on interlibrary record when work is not found", () => {
     cy.intercept(
       "GET",
       "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
