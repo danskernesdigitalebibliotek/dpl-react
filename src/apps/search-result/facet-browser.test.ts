@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("The Facet Browser", () => {
   beforeEach(() => {
     // Clear the session storage to avoid previously saved facets
@@ -27,23 +25,10 @@ describe("The Facet Browser", () => {
       fixtureFilePath: "material/availability"
     });
 
-    // Intercept all images from Cloudinary.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    ).as("Harry Potter cover");
-
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
-
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover.json"
+    });
     // Intercept material list service.
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404,
@@ -51,7 +36,7 @@ describe("The Facet Browser", () => {
     }).as("Material list service");
 
     cy.visit("/iframe.html?id=apps-search-result--primary");
-    cy.wait(["@Availability", "@Cover service", "@Material list service"]);
+    cy.wait(["@Availability", "@Material list service"]);
     cy.getBySel("facet-line-open-browser").click();
   });
 

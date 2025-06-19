@@ -1,4 +1,4 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
+import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 
 describe("Search Result", () => {
   it("Should render the site", () => {
@@ -20,7 +20,7 @@ describe("Search Result", () => {
   it("Renders the images", () => {
     cy.get(".content-list .card-list-item img")
       .should("have.attr", "src")
-      .and("match", coverUrlPattern);
+      .and("match", FbiCoverUrlPattern);
   });
 
   it("Renders the favorite buttons", () => {
@@ -104,20 +104,10 @@ describe("Search Result", () => {
       })
       .as("Graphql search query");
     // Intercept all images from Cloudinary.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    ).as("Harry Potter cover");
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover.json"
+    });
     // Intercept availability service.
     cy.intercept("GET", "**/availability/v3**", {
       statusCode: 200,
