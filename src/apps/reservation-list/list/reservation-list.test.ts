@@ -916,7 +916,7 @@ describe("Reservation list", () => {
       .and("match", FbiCoverUrlPattern);
   });
 
-  it.only("Reservations list falls back on interlibrary record when work is not found", () => {
+  it("Reservations list falls back on interlibrary record when work is not found", () => {
     cy.intercept(
       "GET",
       "**/external/v1/agencyid/patrons/patronid/reservations/v2**",
