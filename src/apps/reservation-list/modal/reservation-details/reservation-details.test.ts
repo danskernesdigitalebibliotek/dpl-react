@@ -372,16 +372,9 @@ describe("Reservation details modal", () => {
       }
     }).as("digital_reservations");
 
-    cy.interceptRest({
-      aliasName: "work",
-      httpMethod: "POST",
-      url: "**/next*/**",
-      fixtureFilePath: "reservation-list/work.json"
-    });
-
     cy.interceptGraphql({
-      operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      operationName: "getManifestationViaMaterialByFaust",
+      fixtureFilePath: "reservation-list/work.json"
     });
 
     cy.intercept("DELETE", "**/external/v1/agencyid/patrons/patronid/**", {
@@ -607,17 +600,11 @@ describe("Reservation details modal", () => {
       ]
     });
 
-    cy.interceptRest({
-      aliasName: "work",
-      httpMethod: "POST",
-      url: "**/next*/**",
+    cy.interceptGraphql({
+      operationName: "getManifestationViaMaterialByFaust",
       fixtureFilePath: "reservation-list/work.json"
     });
 
-    cy.interceptGraphql({
-      operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
-    });
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
     );
@@ -707,17 +694,11 @@ describe("Reservation details modal", () => {
       }
     }).as("digital_reservations");
 
-    cy.interceptRest({
-      aliasName: "work",
-      httpMethod: "POST",
-      url: "**/next*/**",
+    cy.interceptGraphql({
+      operationName: "getManifestationViaBestRepresentationByFaust",
       fixtureFilePath: "reservation-list/work-bestrepresentation.json"
     });
 
-    cy.interceptGraphql({
-      operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
-    });
     cy.intercept(
       "PUT",
       "**/external/v1/agencyid/patrons/patronid/reservations",
