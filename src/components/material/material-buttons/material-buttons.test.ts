@@ -282,15 +282,6 @@ describe("Material buttons", () => {
       statusCode: 404
     }).as("Favorite list service");
 
-    // Intercept covers.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
     // Intercept url "translation".
     cy.interceptRest({
       aliasName: "UrlProxy",
