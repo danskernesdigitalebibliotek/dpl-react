@@ -91,7 +91,7 @@ describe("Open Order Functionality", () => {
 
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
 
     cy.interceptRest({

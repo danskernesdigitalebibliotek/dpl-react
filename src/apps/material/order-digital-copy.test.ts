@@ -7,7 +7,7 @@ describe("Material - Order digital copy", () => {
 
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
 
     cy.interceptRest({

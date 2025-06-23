@@ -10,7 +10,7 @@ describe("Instant Loan", () => {
 
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
 
     cy.interceptRest({

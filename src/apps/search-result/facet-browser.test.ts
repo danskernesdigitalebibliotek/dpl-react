@@ -27,7 +27,7 @@ describe("The Facet Browser", () => {
 
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
     // Intercept material list service.
     cy.intercept("HEAD", "**/list/default/**", {

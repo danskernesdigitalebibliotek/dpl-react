@@ -106,7 +106,7 @@ describe("Search Result", () => {
     // Intercept all images from Cloudinary.
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
     // Intercept availability service.
     cy.intercept("GET", "**/availability/v3**", {

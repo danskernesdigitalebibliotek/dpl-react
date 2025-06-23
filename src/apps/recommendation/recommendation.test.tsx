@@ -6,7 +6,7 @@ describe("Recommendation Component", () => {
     });
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
     // To fill the heart
     cy.intercept("HEAD", "**list/default/work-of**", {

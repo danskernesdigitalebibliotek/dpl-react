@@ -16,7 +16,7 @@ describe("Reservation", () => {
     });
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
     cy.interceptRest({
       aliasName: "holdings",

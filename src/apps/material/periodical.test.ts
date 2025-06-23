@@ -2,7 +2,7 @@ describe("Material - Periodical", () => {
   beforeEach(() => {
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
 
     cy.interceptGraphql({

@@ -18,7 +18,7 @@ describe("Cover", () => {
   beforeEach(() => {
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
   });
 

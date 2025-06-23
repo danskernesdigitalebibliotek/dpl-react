@@ -672,7 +672,7 @@ describe("Material", () => {
     // Intercept covers
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
   });
 });

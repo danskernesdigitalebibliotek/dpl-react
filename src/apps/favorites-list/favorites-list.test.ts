@@ -44,7 +44,7 @@ describe("Favorites list", () => {
 
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
 
     cy.visit("/iframe.html?id=apps-favorite-list--primary&viewMode=story");

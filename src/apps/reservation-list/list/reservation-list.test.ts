@@ -308,7 +308,7 @@ describe("Reservation list", () => {
     // Intercept covers.
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
 
     // Some reservations may not include a pid — fallback to fetching cover via ISBN

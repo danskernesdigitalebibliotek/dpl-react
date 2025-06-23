@@ -22,7 +22,7 @@ describe("Campaign", () => {
     // Intercept covers.
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
 
     // Intercept availability service.

@@ -65,7 +65,7 @@ describe("Modals", () => {
 
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
     cy.visit(
       "/iframe.html?path=/story/apps-loan-list--loan-list-details-modal"

@@ -190,7 +190,7 @@ describe("Material buttons", () => {
     cy.interceptRest({
       aliasName: "FBSPatron",
       url: "**fbs-openplatform.dbc.dk/external/agencyid/patrons/patronid/v4",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
     cy.visit(
       "/iframe.html?id=apps-material--digital&viewMode=story&type=artikel"
@@ -274,7 +274,7 @@ describe("Material buttons", () => {
 
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
 
     // Intercept like button
