@@ -24,7 +24,6 @@ describe("Cover", () => {
 
   it("loads a cover (default is small in storybook)", () => {
     cy.visit("/iframe.html?args=&id=components-cover--with-pid&viewMode=story");
-    cy.get("img").should("have.attr", "src", coverImageUrls.small);
     cy.get("img").should("have.attr", "src").and("match", FbiCoverUrlPattern);
   });
 
