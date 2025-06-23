@@ -44,7 +44,7 @@ describe("Cover", () => {
   it("does not render an image when no cover is available", () => {
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover-null.json"
+      fixtureFilePath: "cover/cover-null.json"
     });
 
     cy.visit(
@@ -57,7 +57,7 @@ describe("Cover", () => {
   it("Applies the correct background tint if no covers are found (120 in storybook)", () => {
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover-null.json"
+      fixtureFilePath: "cover/cover-null.json"
     });
     cy.visit("/iframe.html?args=&id=components-cover--no-ids&viewMode=story");
     cy.get(".cover").should("have.class", "bg-identity-tint-120");
