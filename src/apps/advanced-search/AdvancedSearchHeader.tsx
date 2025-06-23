@@ -122,6 +122,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     }
   };
   const handleSearch = () => {
+    // CQL search (free text mode)
     if (rawCql.trim() !== "" && !isFormMode) {
       resetAndCollectPageStatistics({
         ...statistics.advancedSearchCql,
@@ -136,6 +137,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       }, 500);
       return;
     }
+    // Advanced search (form mode)
     resetAndCollectPageStatistics({
       ...statistics.advancedSearchTerm,
       trackedData: translatedCql
@@ -143,6 +145,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     updatePageStatistics({ waitTime: 1000 });
 
     setSearchObject(internalSearchObject);
+    setUpdateSearchResults(true);
     // Half a second makes sure search result is rendered before scrolling to it.
     setTimeout(() => {
       scrollToResults();
