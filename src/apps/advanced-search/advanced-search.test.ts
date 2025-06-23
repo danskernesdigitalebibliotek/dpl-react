@@ -252,22 +252,10 @@ describe("Search Result", () => {
       fixtureFilePath: "advanced-search/fbi-api.json"
     });
 
-    // Intercept all images from Cloudinary.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    ).as("Harry Potter cover");
-
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
 
     // Intercept availability service.
     cy.intercept("GET", "**/availability/v3**", {
