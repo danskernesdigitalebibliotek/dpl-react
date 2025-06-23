@@ -41,7 +41,7 @@ describe("Cover", () => {
     cy.get("a > img").should("exist");
   });
 
-  it("renders nothing if no cover is provided", () => {
+  it("does not render an image when no cover is available", () => {
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
       fixtureFilePath: "cover-null.json"
