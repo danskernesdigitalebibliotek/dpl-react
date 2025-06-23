@@ -97,6 +97,12 @@ export function filterNonNullManifestations<T>(
 ): T[] {
   return manifestations?.filter((m): m is T => m != null) ?? [];
 }
+
+/**
+ * Converts a list of ISBNs into a CQL query string,
+ * i.e. "term.isbn=9781 OR term.isbn=9782".
+ * Used when resolving a PID via the best representation query.
+ */
 export const createIsbnCql = (ids: (string | number)[] = []) =>
   ids.length ? ids.map((id) => `term.isbn=${id}`).join(" OR ") : "";
 
