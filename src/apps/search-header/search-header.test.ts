@@ -9,7 +9,7 @@ describe("Search header app", () => {
 
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "/cover.json"
+      fixtureFilePath: "cover/cover.json"
     });
 
     cy.visit("/iframe.html?args=viewMode=story&id=apps-header--search");
