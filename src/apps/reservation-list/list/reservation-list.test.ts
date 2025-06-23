@@ -314,7 +314,7 @@ describe("Reservation list", () => {
     // Some reservations may not include a pid — fallback to fetching cover via ISBN
     cy.interceptGraphql({
       operationName: "GetBestRepresentationPidByIsbn",
-      fixtureFilePath: "cover-get-best-representation-by-isbn.json"
+      fixtureFilePath: "cover/cover-get-best-representation-by-isbn.json"
     });
   });
 

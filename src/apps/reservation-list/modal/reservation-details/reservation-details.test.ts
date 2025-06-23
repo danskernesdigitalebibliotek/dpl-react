@@ -14,7 +14,7 @@ describe("Reservation details modal", () => {
     });
     cy.interceptGraphql({
       operationName: "GetBestRepresentationPidByIsbn",
-      fixtureFilePath: "cover-get-best-representation-by-isbn.json"
+      fixtureFilePath: "cover/cover-get-best-representation-by-isbn.json"
     });
 
     const clockDate = new Date(

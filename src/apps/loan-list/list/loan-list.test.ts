@@ -174,7 +174,7 @@ describe("Loan list", () => {
 
     cy.interceptGraphql({
       operationName: "GetBestRepresentationPidByIsbn",
-      fixtureFilePath: "cover-get-best-representation-by-isbn.json"
+      fixtureFilePath: "cover/cover-get-best-representation-by-isbn.json"
     });
 
     cy.intercept("GET", "**v1/products/**", {
