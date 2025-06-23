@@ -346,11 +346,11 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     },
     advancedSearchFirstAccessionDateDescriptionText: {
       description:
-        "Formatet skal være ÅÅÅÅ-DD-MM fx 2024-24-11. Der kan også anvendes ”NOW”, ”DAYS” og ”MONTHS”, fx ”NOW - 60 DAYS”. Husk at tilføje mellemrum på begge sider af plus og minus tegn",
+        "The format should be YYYY-DD-MM e.g. 2024-24-11. Terms ”NOW”, ”DAYS” and ”MONTHS” can also be used. For example ”NOW - 60 DAYS”. Remember to add a space on both sides of the plus and minus symbols",
       control: { type: "text" }
     },
     advancedSearchFirstAccessionDateSpecifyDateText: {
-      description: "Input desired date in format 'YYYY-MM-DD'",
+      description: "Input desired date in format ”YYYY-MM-DD”",
       control: { type: "text" }
     }
   }
