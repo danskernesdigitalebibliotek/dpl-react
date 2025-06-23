@@ -451,7 +451,92 @@
             "nationalBibliography": ["DBF202329"],
             "otherCatalogues": ["ACT202325", "ACC202327", "BKM202329"]
           }
-        }
+        },
+        "mostRelevant": [{
+          "pid": "870970-basis:136336282",
+          "genreAndForm": [],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ]
+          },
+          "titles": {
+            "main": ["Brillebjørn"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "bog"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Per Østergaard (f. 1950)",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Turbine"],
+          "identifiers": [
+            {
+              "value": "9788740692570"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Jesper Tolstrup"
+            },
+            {
+              "display": "Helene Lund Sylvestersen"
+            },
+            {
+              "display": "Guillermo Ossa"
+            }
+          ],
+          "edition": {
+            "summary": "1. udgave, 2023",
+            "publicationYear": {
+              "display": "2023"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": ["for begynderlæsere", "let at læse"]
+          },
+          "physicalDescription": {
+            "numberOfPages": 16,
+            "playingTime": null
+          },
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Østergaard",
+            "shelfmark": "58.95"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["DBF202329"],
+            "otherCatalogues": ["ACT202325", "ACC202327", "BKM202329"]
+          }
+        }]
       },
       "materialTypes": [
         {

@@ -370,7 +370,124 @@
                         "nationalBibliography": [],
                         "otherCatalogues": []
                     }
-                }
+                },
+                "mostRelevant": [{
+                    "pid": "710100-katalog:07664400",
+                    "genreAndForm": [
+                        "tidsskrift"
+                    ],
+                    "source": [
+                        "Bibliotekskatalog"
+                    ],
+                    "languages": {
+                        "main": [
+                            {
+                                "display": "tysk",
+                                "isoCode": "ger"
+                            }
+                        ],
+                        "notes": []
+                    },
+                    "titles": {
+                        "main": [
+                            "Der Spiegel"
+                        ],
+                        "original": []
+                    },
+                    "fictionNonfiction": {
+                        "display": "nonfiktion",
+                        "code": "NONFICTION"
+                    },
+                    "materialTypes": [
+                        {
+                            "materialTypeSpecific": {
+                                "display": "tidsskrift"
+                            }
+                        }
+                    ],
+                    "creators": [],
+                    "publisher": [
+                        "Spiegel-Verlag"
+                    ],
+                    "identifiers": [
+                        {
+                            "value": "0038-7452"
+                        }
+                    ],
+                    "contributors": [],
+                    "edition": {
+                        "summary": "1947",
+                        "publicationYear": {
+                            "display": "1947"
+                        }
+                    },
+                    "dateFirstEdition": null,
+                    "audience": {
+                        "generalAudience": [],
+                        "ages": [],
+                        "childrenOrAdults": [
+                            {
+                                "display": "til voksne",
+                                "code": "FOR_ADULTS"
+                            }
+                        ]
+                    },
+                    "notes": [
+                        {
+                            "display": [
+                                "1947-"
+                            ]
+                        }
+                    ],
+                    "physicalDescription": null,
+                    "hostPublication": null,
+                    "manifestationParts": null,
+                    "accessTypes": [
+                        {
+                            "code": "PHYSICAL"
+                        }
+                    ],
+                    "access": [
+                        {
+                            "__typename": "AccessUrl",
+                            "origin": "bibpurl.oclc.org",
+                            "url": "http://bibpurl.oclc.org/web/22210",
+                            "loginRequired": false,
+                            "status": "OK"
+                        },
+                        {
+                            "__typename": "AccessUrl",
+                            "origin": "www.spiegel.de",
+                            "url": "http://www.spiegel.de/spiegel/print",
+                            "loginRequired": false,
+                            "status": "OK"
+                        },
+                        {
+                            "__typename": "AccessUrl",
+                            "origin": "www.lexisnexis.com",
+                            "url": "http://www.lexisnexis.com/us/lnacademic/api/version1/sf?shr=t&sfi=AC00NBGenSrch&csi=222443",
+                            "loginRequired": false,
+                            "status": "OK"
+                        },
+                        {
+                            "__typename": "DigitalArticleService",
+                            "issn": "00387452"
+                        },
+                        {
+                            "__typename": "InterLibraryLoan",
+                            "loanIsPossible": true
+                        }
+                    ],
+                    "shelfmark": {
+                        "postfix": "Spiegel",
+                        "shelfmark": "05.43"
+                    },
+                    "workYear": null,
+                    "catalogueCodes": {
+                        "nationalBibliography": [],
+                        "otherCatalogues": []
+                    }
+                }]
             },
             "materialTypes": [
                 {
