@@ -971,7 +971,7 @@ describe("Reservation list", () => {
     // ilBibliographicRecord property.
     cy.interceptGraphql({
       operationName: "getManifestationViaMaterialByFaust",
-      fixtureFilePath: "empty.json"
+      fixtureFilePath: "cover/empty.json"
     });
 
     cy.visit(
