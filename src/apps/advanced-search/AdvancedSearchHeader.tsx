@@ -47,6 +47,7 @@ export type AdvancedSearchHeaderProps = {
   locationFilter: LocationFilter;
   firstAccessionDateFilter: string;
   firstAccessionOperatorFilter: FirstAccessionOperatorFilter;
+  setUpdateSearchResults: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
@@ -63,7 +64,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   onFirstAccessionOperatorChange,
   locationFilter,
   firstAccessionDateFilter,
-  firstAccessionOperatorFilter
+  firstAccessionOperatorFilter,
+  setUpdateSearchResults
 }) => {
   const t = useText();
   const [isFormMode, setIsFormMode] = useState<boolean>(true);
@@ -127,6 +129,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       });
       updatePageStatistics({ waitTime: 1000 });
       setSearchQuery(rawCql);
+      setUpdateSearchResults(true);
       // Half a second makes sure search result is rendered before scrolling to it.
       setTimeout(() => {
         scrollToResults();
