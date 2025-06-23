@@ -14,7 +14,7 @@ import {
   filterNonNullManifestations,
   getCoverDisplaySize,
   getCoverUrl,
-  resolveCoverPids
+  resolveCoverPidValues
 } from "./helper";
 
 export type CoverProps = {
@@ -68,7 +68,7 @@ export const Cover = ({
     isbnData?.complexSearch?.works?.[0]?.manifestations?.bestRepresentation
       ?.pid;
 
-  const pidsToQuery = resolveCoverPids({ idType, ids, resolvedIsbnPid });
+  const pidsToQuery = resolveCoverPidValues({ idType, ids, resolvedIsbnPid });
 
   const { data: coverResult } = useGetCoversByPidsQuery(
     { pids: pidsToQuery },

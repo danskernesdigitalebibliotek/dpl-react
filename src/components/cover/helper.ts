@@ -105,7 +105,7 @@ export const createIsbnCql = (ids: (string | number)[] = []) =>
  * - For `pid`, returns the raw `ids` array.
  * - For `isbn`, returns an array with the resolved PID if available.
  */
-export function resolveCoverPids({
+export function resolveCoverPidValues({
   idType,
   ids,
   resolvedIsbnPid
@@ -118,7 +118,7 @@ export function resolveCoverPids({
     return resolvedIsbnPid ? [resolvedIsbnPid] : [];
   }
 
-  return Array.isArray(ids) ? (ids as string[]) : [];
+  return Array.isArray(ids) ? (ids as Pid[]) : [];
 }
 
 export default {};
