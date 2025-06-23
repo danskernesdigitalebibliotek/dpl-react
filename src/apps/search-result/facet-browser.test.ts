@@ -161,13 +161,6 @@ describe("The Facet Browser", () => {
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
 
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
-
     // Intercept material list service.
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404,
