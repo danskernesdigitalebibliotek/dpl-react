@@ -95,7 +95,7 @@
     "caniuse-lite": "^1.0.30001721",
     "change-case-all": "^2.1.0",
     "chokidar-cli": "^3.0.0",
-    "concurrently": "^9.1.2",
+    "concurrently": "^9.2.0",
     "core-js": "^3.43.0",
     "css-loader": "^7.1.2",
     "cssnano": "^7.0.7",
