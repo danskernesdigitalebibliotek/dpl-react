@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("Material buttons", () => {
   it("Renders a clickable find on shelf button even if no materials are available", () => {
     cy.interceptRest({

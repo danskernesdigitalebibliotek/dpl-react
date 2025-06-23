@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("Search Result", () => {
   it("Should show two query-index inputs on load", () => {
     cy.getBySel("advanced-search-header-row").should("have.length", 2);

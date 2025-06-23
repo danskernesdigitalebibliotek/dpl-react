@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("Material", () => {
   it("Redirects to login & opens reservation modal on subsequent land-in", () => {
     window.sessionStorage.removeItem("user");
