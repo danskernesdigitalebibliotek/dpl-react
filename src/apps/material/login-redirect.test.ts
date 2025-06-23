@@ -66,14 +66,7 @@ describe("Material", () => {
       url: "**/availability/v3?recordid=**",
       fixtureFilePath: "material/availability.json"
     });
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
+
     cy.interceptRest({
       aliasName: "user",
       url: "**/agencyid/patrons/patronid/v4",
