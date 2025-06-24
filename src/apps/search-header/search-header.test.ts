@@ -1,30 +1,16 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
+import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 
 describe("Search header app", () => {
   beforeEach(() => {
-    cy.fixture("search-header-data.json")
-      .then((result) => {
-        cy.intercept("POST", "**/next*/graphql", {
-          statusCode: 200,
-          body: result
-        });
-      })
-      .as("Autosuggest service");
+    cy.interceptGraphql({
+      operationName: "suggestionsFromQueryString",
+      fixtureFilePath: "search-header-data.json"
+    });
 
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    ).as("Harry Potter cover");
-
-    cy.fixture("search-header-cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
 
     cy.visit("/iframe.html?args=viewMode=story&id=apps-header--search");
   });
@@ -81,11 +67,8 @@ describe("Search header app", () => {
     cy.getBySel("autosuggest-material-item")
       .first()
       .find("img")
-      .should(
-        "have.attr",
-        "src",
-        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886150/bogportalen.dk/9788702029444.jpg"
-      );
+      .should("have.attr", "src")
+      .and("match", FbiCoverUrlPattern);
   });
 });
 
