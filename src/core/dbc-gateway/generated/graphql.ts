@@ -5273,6 +5273,67 @@ export type SuggestionsFromQueryStringQuery = {
   };
 };
 
+export type GetCoversByPidsQueryVariables = Exact<{
+  pids: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
+}>;
+
+export type GetCoversByPidsQuery = {
+  __typename?: "Query";
+  manifestations: Array<{
+    __typename?: "Manifestation";
+    pid: string;
+    cover: {
+      __typename?: "Cover";
+      xSmall?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+      small?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+      medium?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+      large?: {
+        __typename?: "CoverDetails";
+        url?: string | null;
+        width?: number | null;
+        height?: number | null;
+      } | null;
+    };
+  } | null>;
+};
+
+export type GetBestRepresentationPidByIsbnQueryVariables = Exact<{
+  cql: Scalars["String"]["input"];
+  offset: Scalars["Int"]["input"];
+  limit: Scalars["PaginationLimitScalar"]["input"];
+  filters: ComplexSearchFiltersInput;
+}>;
+
+export type GetBestRepresentationPidByIsbnQuery = {
+  __typename?: "Query";
+  complexSearch: {
+    __typename?: "ComplexSearchResponse";
+    works: Array<{
+      __typename?: "Work";
+      workId: string;
+      manifestations: {
+        __typename?: "Manifestations";
+        bestRepresentation: { __typename?: "Manifestation"; pid: string };
+      };
+    }>;
+  };
+};
+
 export type SearchFacetQueryVariables = Exact<{
   q: SearchQueryInput;
   facets: Array<FacetFieldEnum> | FacetFieldEnum;
@@ -7663,6 +7724,85 @@ export const useSuggestionsFromQueryStringQuery = <
   );
 };
 
+export const GetCoversByPidsDocument = `
+    query GetCoversByPids($pids: [String!]!) {
+  manifestations(pid: $pids) {
+    pid
+    cover {
+      xSmall {
+        url
+        width
+        height
+      }
+      small {
+        url
+        width
+        height
+      }
+      medium {
+        url
+        width
+        height
+      }
+      large {
+        url
+        width
+        height
+      }
+    }
+  }
+}
+    `;
+
+export const useGetCoversByPidsQuery = <
+  TData = GetCoversByPidsQuery,
+  TError = unknown
+>(
+  variables: GetCoversByPidsQueryVariables,
+  options?: UseQueryOptions<GetCoversByPidsQuery, TError, TData>
+) => {
+  return useQuery<GetCoversByPidsQuery, TError, TData>(
+    ["GetCoversByPids", variables],
+    fetcher<GetCoversByPidsQuery, GetCoversByPidsQueryVariables>(
+      GetCoversByPidsDocument,
+      variables
+    ),
+    options
+  );
+};
+
+export const GetBestRepresentationPidByIsbnDocument = `
+    query GetBestRepresentationPidByIsbn($cql: String!, $offset: Int!, $limit: PaginationLimitScalar!, $filters: ComplexSearchFiltersInput!) {
+  complexSearch(cql: $cql, filters: $filters) {
+    works(offset: $offset, limit: $limit) {
+      workId
+      manifestations {
+        bestRepresentation {
+          pid
+        }
+      }
+    }
+  }
+}
+    `;
+
+export const useGetBestRepresentationPidByIsbnQuery = <
+  TData = GetBestRepresentationPidByIsbnQuery,
+  TError = unknown
+>(
+  variables: GetBestRepresentationPidByIsbnQueryVariables,
+  options?: UseQueryOptions<GetBestRepresentationPidByIsbnQuery, TError, TData>
+) => {
+  return useQuery<GetBestRepresentationPidByIsbnQuery, TError, TData>(
+    ["GetBestRepresentationPidByIsbn", variables],
+    fetcher<
+      GetBestRepresentationPidByIsbnQuery,
+      GetBestRepresentationPidByIsbnQueryVariables
+    >(GetBestRepresentationPidByIsbnDocument, variables),
+    options
+  );
+};
+
 export const SearchFacetDocument = `
     query searchFacet($q: SearchQueryInput!, $facets: [FacetFieldEnum!]!, $facetLimit: Int!, $filters: SearchFiltersInput) {
   search(q: $q, filters: $filters) {
@@ -7814,6 +7954,8 @@ export const operationNames = {
       "complexSearchWithPaginationWorkAccess" as const,
     complexSearchWithPagination: "complexSearchWithPagination" as const,
     suggestionsFromQueryString: "suggestionsFromQueryString" as const,
+    GetCoversByPids: "GetCoversByPids" as const,
+    GetBestRepresentationPidByIsbn: "GetBestRepresentationPidByIsbn" as const,
     searchFacet: "searchFacet" as const,
     intelligentFacets: "intelligentFacets" as const,
     WorkRecommendations: "WorkRecommendations" as const

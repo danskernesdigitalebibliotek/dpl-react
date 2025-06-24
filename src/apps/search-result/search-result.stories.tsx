@@ -259,7 +259,7 @@ export const Primary: Story = {
     facetYearText: "Year",
     showResultsText: "Show results",
     filterListText: "Filter list",
-    addMoreFiltersText: "+ more filters",
+    addMoreFiltersText: "More filters",
     loadingText: "Loading",
     invalidSearchText: "Invalid search",
     invalidSearchDescriptionText:

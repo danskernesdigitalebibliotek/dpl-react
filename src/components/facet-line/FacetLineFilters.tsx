@@ -4,12 +4,10 @@ import {
   FacetFieldEnum,
   FacetValue
 } from "../../core/dbc-gateway/generated/graphql";
-import { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
 import Dropdown from "../Dropdown/Dropdown";
 import {
-  FacetBrowserModalId,
   createFacetsMap,
   findTermInFacetMap,
   getFacetFieldTranslation
@@ -24,7 +22,6 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   facets = []
 }) => {
   const t = useText();
-  const { open } = useModalButtonHandler();
   const { filters, addToFilter } = useFilterHandler();
   // TODO: Since the huge refactoring of the FBI API,
   // summer 2024, a lot of changes has been introduced
@@ -35,12 +32,16 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   const facetMap = createFacetsMap(facets);
 
   const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
-    return values.map((value) => {
+    const dropdownValues = values.map((value) => {
       return {
         label: value.term,
         value: value.key
       };
     });
+    if (facet.toUpperCase() === FacetFieldEnum.Year.toUpperCase()) {
+      dropdownValues.sort((a, b) => Number(b.label) - Number(a.label));
+    }
+    return dropdownValues;
   };
 
   const handleDropdownOnchange = (
@@ -123,14 +124,6 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
               </>
             );
           })}
-        <li className="facet-line__item">
-          <ButtonTag
-            onClick={() => open(FacetBrowserModalId)}
-            dataCy="facet-line-open-browser"
-          >
-            {t("addMoreFiltersText")}
-          </ButtonTag>
-        </li>
       </ul>
     </section>
   );

@@ -51,7 +51,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     null
   );
   const { facets: campaignFacets } = useGetFacets(q, filters);
-  const minimalQueryLength = 3;
+  const minimalQueryLength = 1;
 
   // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.

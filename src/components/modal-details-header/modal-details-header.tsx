@@ -30,7 +30,7 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
   const coverIds = [pid || isbnForCover];
 
   return (
-    <div className="modal-details__header">
+    <div data-cy="modal-details__header" className="modal-details__header">
       <div className="modal-details__cover">
         <div className="material-container">
           <span className="material material--large bg-identity-tint-120 material__animate">
