@@ -151,3 +151,5 @@ export const advancedSortMap: AdvancedSortMapType = {
     order: SortOrderEnum.Desc
   }
 };
+
+export type FirstAccessionOperatorFilter = ">" | "=" | "<";

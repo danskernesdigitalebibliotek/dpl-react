@@ -6,7 +6,8 @@ import {
   advancedSearchFiction,
   advancedSearchMaterialTypes,
   AdvancedSearchQuery,
-  initialAdvancedSearchQuery
+  initialAdvancedSearchQuery,
+  FirstAccessionOperatorFilter
 } from "./types";
 import { useText } from "../../core/utils/text";
 import PreviewSection from "./PreviewSection";
@@ -39,7 +40,14 @@ export type AdvancedSearchHeaderProps = {
   setOnShelf: (checked: boolean) => void;
   onLocationChange: (location: string) => void;
   onSublocationChange: (sublocation: string) => void;
+  onFirstAccessionDateChange: (firstAccession: string) => void;
+  onFirstAccessionOperatorChange: (
+    firstAccession: FirstAccessionOperatorFilter
+  ) => void;
   locationFilter: LocationFilter;
+  firstAccessionDateFilter: string;
+  firstAccessionOperatorFilter: FirstAccessionOperatorFilter;
+  setUpdateSearchResults: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
@@ -52,7 +60,12 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   setOnShelf,
   onLocationChange,
   onSublocationChange,
-  locationFilter
+  onFirstAccessionDateChange,
+  onFirstAccessionOperatorChange,
+  locationFilter,
+  firstAccessionDateFilter,
+  firstAccessionOperatorFilter,
+  setUpdateSearchResults
 }) => {
   const t = useText();
   const [isFormMode, setIsFormMode] = useState<boolean>(true);
@@ -109,6 +122,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     }
   };
   const handleSearch = () => {
+    // CQL search (free text mode)
     if (rawCql.trim() !== "" && !isFormMode) {
       resetAndCollectPageStatistics({
         ...statistics.advancedSearchCql,
@@ -116,12 +130,14 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
       });
       updatePageStatistics({ waitTime: 1000 });
       setSearchQuery(rawCql);
+      setUpdateSearchResults(true);
       // Half a second makes sure search result is rendered before scrolling to it.
       setTimeout(() => {
         scrollToResults();
       }, 500);
       return;
     }
+    // Advanced search (form mode)
     resetAndCollectPageStatistics({
       ...statistics.advancedSearchTerm,
       trackedData: translatedCql
@@ -129,6 +145,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     updatePageStatistics({ waitTime: 1000 });
 
     setSearchObject(internalSearchObject);
+    setUpdateSearchResults(true);
     // Half a second makes sure search result is rendered before scrolling to it.
     setTimeout(() => {
       scrollToResults();
@@ -263,7 +280,11 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
           handleOnShelfChange={handleOnShelfChange}
           onLocationChange={onLocationChange}
           onSublocationChange={onSublocationChange}
+          onFirstAccessionDateChange={onFirstAccessionDateChange}
+          onFirstAccessionOperatorChange={onFirstAccessionOperatorChange}
           locationFilter={locationFilter}
+          firstAccessionDateFilter={firstAccessionDateFilter}
+          firstAccessionOperatorFilter={firstAccessionOperatorFilter}
         />
       )}
 

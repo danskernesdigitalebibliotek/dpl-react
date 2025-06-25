@@ -16,7 +16,11 @@ import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";
 import AdvancedSortSelect from "./AdvancedSortSelect";
-import { advancedSortMap, AdvancedSortMapStrings } from "./types";
+import {
+  advancedSortMap,
+  AdvancedSortMapStrings,
+  FirstAccessionOperatorFilter
+} from "./types";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -24,8 +28,11 @@ interface AdvancedSearchResultProps {
   showContentOnly: boolean;
   onShelf: boolean;
   locationFilter: LocationFilter;
+  firstAccessionDateFilter: string | null;
+  firstAccessionOperatorFilter: FirstAccessionOperatorFilter;
   sort: AdvancedSortMapStrings;
   setSort: (value: AdvancedSortMapStrings) => void;
+  updateSearchResults: boolean;
 }
 
 const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
@@ -34,8 +41,11 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   showContentOnly,
   onShelf,
   locationFilter,
+  firstAccessionDateFilter,
+  firstAccessionOperatorFilter,
   sort,
-  setSort
+  setSort,
+  updateSearchResults
 }) => {
   const t = useText();
   const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
@@ -69,22 +79,28 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     setResultItems([]);
   }, [q, pageSize]);
 
-  const { data, isLoading } = useComplexSearchWithPaginationQuery({
-    cql,
-    offset: page * pageSize,
-    limit: pageSize,
-    filters: {
-      branchId: cleanBranches,
-      status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
-      ...(locationFilter?.location?.length && {
-        location: locationFilter.location
-      }),
-      ...(locationFilter?.sublocation?.length && {
-        sublocation: locationFilter.sublocation
-      })
+  const { data, isLoading } = useComplexSearchWithPaginationQuery(
+    {
+      cql,
+      offset: page * pageSize,
+      limit: pageSize,
+      filters: {
+        branchId: cleanBranches,
+        status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
+        ...(locationFilter?.location?.length && {
+          location: locationFilter.location
+        }),
+        ...(locationFilter?.sublocation?.length && {
+          sublocation: locationFilter.sublocation
+        }),
+        firstAccessionDate: firstAccessionDateFilter
+          ? `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`
+          : ""
+      },
+      ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
     },
-    ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
-  });
+    { enabled: showContentOnly || updateSearchResults }
+  );
 
   useEffect(() => {
     if (!data) {

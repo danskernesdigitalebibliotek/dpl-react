@@ -6,7 +6,11 @@ import {
   commaSeparatedStringToArray,
   translateSearchObjectToCql
 } from "./helpers";
-import { AdvancedSearchQuery, AdvancedSortMapStrings } from "./types";
+import {
+  AdvancedSearchQuery,
+  AdvancedSortMapStrings,
+  FirstAccessionOperatorFilter
+} from "./types";
 import {
   getUrlQueryParam,
   removeQueryParametersFromUrl,
@@ -31,12 +35,16 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
   const [showResultOnly, setShowResultOnly] = useState<boolean>(false);
   // This is the CQL query that is actually executed.
   const [executedQuery, setExecutedQuery] = useState<string | null>(null);
-
   const [locationFilter, setLocationFilter] = useState<LocationFilter>({});
-
+  const [firstAccessionDateFilter, setFirstAccessionDateFilter] =
+    useState<string>("");
+  const [firstAccessionOperatorFilter, setFirstAccessionOperatorFilter] =
+    useState<FirstAccessionOperatorFilter>(">");
   const [sort, setSort] = useState<AdvancedSortMapStrings>(
     AdvancedSortMapStrings.Relevance
   );
+  const [updateSearchResults, setUpdateSearchResults] =
+    useState<boolean>(false);
 
   const handleLocationChange = (location: string) => {
     setLocationFilter((prevFilter) => ({
@@ -59,6 +67,17 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
       setQueryParametersInUrl({ sublocation });
     } else {
       removeQueryParametersFromUrl("sublocation");
+    }
+  };
+
+  const handleFirstAccessionDateChange = (firstAccession: string) => {
+    setFirstAccessionDateFilter(firstAccession);
+    if (firstAccession) {
+      setQueryParametersInUrl({
+        firstaccessiondateitem: `${firstAccessionOperatorFilter}${firstAccession}`
+      });
+    } else {
+      removeQueryParametersFromUrl("firstaccessiondateitem");
     }
   };
 
@@ -128,6 +147,16 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     if (sortParam) {
       setSort(sortParam as AdvancedSortMapStrings);
     }
+
+    const firstAccessionDateParam = getUrlQueryParam("firstaccessiondateitem");
+    if (firstAccessionDateParam) {
+      const operator = firstAccessionDateParam.charAt(
+        0
+      ) as FirstAccessionOperatorFilter;
+      const date = firstAccessionDateParam.slice(1);
+      setFirstAccessionOperatorFilter(operator as FirstAccessionOperatorFilter);
+      setFirstAccessionDateFilter(date);
+    }
   });
 
   useEffect(() => {
@@ -153,6 +182,16 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     setExecutedQuery(searchQuery);
   }, [searchQuery]);
 
+  // Enable API search query when the user clicks the search button, then disable it
+  // again to prevent searching every time the user changes the search form.
+  useEffect(() => {
+    if (updateSearchResults) {
+      setTimeout(() => {
+        setUpdateSearchResults(false);
+      }, 1000);
+    }
+  }, [updateSearchResults]);
+
   return (
     <div className="advanced-search">
       {!showResultOnly && (
@@ -165,7 +204,12 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           setOnShelf={handleOnShelfChange}
           onLocationChange={handleLocationChange}
           onSublocationChange={handleSublocationChange}
+          onFirstAccessionDateChange={handleFirstAccessionDateChange}
+          onFirstAccessionOperatorChange={setFirstAccessionOperatorFilter}
           locationFilter={locationFilter}
+          firstAccessionDateFilter={firstAccessionDateFilter}
+          firstAccessionOperatorFilter={firstAccessionOperatorFilter}
+          setUpdateSearchResults={setUpdateSearchResults}
         />
       )}
       {executedQuery && (
@@ -175,8 +219,11 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           showContentOnly={showResultOnly}
           onShelf={onShelf}
           locationFilter={locationFilter}
+          firstAccessionDateFilter={firstAccessionDateFilter}
+          firstAccessionOperatorFilter={firstAccessionOperatorFilter}
           sort={sort}
           setSort={handleSortChange}
+          updateSearchResults={updateSearchResults}
         />
       )}
     </div>
