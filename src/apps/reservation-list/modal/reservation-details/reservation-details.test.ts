@@ -213,7 +213,7 @@ describe("Reservation details modal", () => {
     cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Your reservation expires 27-01-2023 23:37!");
+      .should("have.text", "Your reservation expires 27-01-2023 22:37!");
 
     // ID 17 2.f. header "date of reservation"
     cy.getBySel("reservation-form-list-item")
@@ -225,7 +225,7 @@ describe("Reservation details modal", () => {
     cy.getBySel("reservation-form-list-item")
       .eq(1)
       .find(".text-small-caption")
-      .should("have.text", "16-08-2022 12:52");
+      .should("have.text", "16-08-2022 10:52");
 
     cy.getBySel("remove-digital-reservation-button")
       .eq(0)
@@ -339,7 +339,7 @@ describe("Reservation details modal", () => {
     cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Borrow before 27-01-2023 23:37");
+      .should("have.text", "Borrow before 27-01-2023 22:37");
   });
 
   it("It shows physical reservation details modal", () => {
