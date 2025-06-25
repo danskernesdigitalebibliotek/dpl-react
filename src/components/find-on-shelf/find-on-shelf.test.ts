@@ -1,3 +1,4 @@
+// This file is deprecated. All "Find on shelf" tests should be moved to the new default material test file.
 describe("Find on shelf modal - default", () => {
   beforeEach(() => {
     // Intercept holdings data call.
