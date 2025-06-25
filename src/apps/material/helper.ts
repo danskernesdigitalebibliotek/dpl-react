@@ -583,6 +583,17 @@ export const getAvailability = async ({
 }) =>
   getAvailabilityV3(getBlacklistedQueryArgs(faustIds, config, "availability"));
 
+// export const getHoldingsLogistics = async ({
+//   faustIds,
+//   config,
+//   blacklist
+// }: {
+//   faustIds: FaustId[];
+//   config: UseConfigFunction;
+//   blacklist: BlacklistType;
+// }) =>
+//   getHoldingsLogisticsV1(getBlacklistedQueryArgs(faustIds, config, blacklist));
+
 export const useGetHoldings = ({
   faustIds,
   config,
