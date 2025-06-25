@@ -128,6 +128,7 @@ export default [
             "orval.config.ts",
             "cypress/plugins/index.js",
             "cypress/support/index.ts",
+            "cypress/pages/**/*.ts",
             "scripts/postcss-node-sass.js",
             "scripts/post-process-generated-graphql.ts",
             "cypress/utils/graphql-test-utils.ts"

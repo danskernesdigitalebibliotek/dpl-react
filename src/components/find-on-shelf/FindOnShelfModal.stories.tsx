@@ -1,3 +1,5 @@
+// This file is for temporary testing purposes only. Remove this Storybook file once all test cases have been migrated to the new default material test file.
+
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import materialDev from "../../apps/material/material.stories";
