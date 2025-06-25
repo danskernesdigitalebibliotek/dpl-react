@@ -20,7 +20,11 @@ export const allFacetFields = [
   FacetFieldEnum.Mainlanguages,
   FacetFieldEnum.Genreandform,
   FacetFieldEnum.Materialtypesspecific,
-  FacetFieldEnum.Fictionalcharacters
+  FacetFieldEnum.Fictionalcharacters,
+  FacetFieldEnum.Year,
+  FacetFieldEnum.Canalwaysbeloaned,
+  FacetFieldEnum.Dk5,
+  FacetFieldEnum.Gameplatform
 ];
 
 export const getPlaceHolderFacets = (facets: string[]) =>

@@ -1,0 +1,17 @@
+query GetBestRepresentationPidByIsbn(
+  $cql: String!
+  $offset: Int!
+  $limit: PaginationLimitScalar!
+  $filters: ComplexSearchFiltersInput!
+) {
+  complexSearch(cql: $cql, filters: $filters) {
+    works(offset: $offset, limit: $limit) {
+      workId
+      manifestations {
+        bestRepresentation {
+          pid
+        }
+      }
+    }
+  }
+}

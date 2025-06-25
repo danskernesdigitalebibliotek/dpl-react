@@ -31,10 +31,11 @@ query complexSearchWithPagination(
   $offset: Int!
   $limit: PaginationLimitScalar!
   $filters: ComplexSearchFiltersInput!
+  $sort: [SortInput!]
 ) {
   complexSearch(cql: $cql, filters: $filters) {
     hitcount
-    works(offset: $offset, limit: $limit) {
+    works(offset: $offset, limit: $limit, sort: $sort) {
       ...WorkSmall
     }
   }

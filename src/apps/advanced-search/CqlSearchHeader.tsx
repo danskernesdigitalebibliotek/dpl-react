@@ -67,14 +67,14 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
       >
         {t("cqlSearchTitleText")}
       </h1>
-      <form className="advanced-search-cql-form">
+      <div className="advanced-search-cql-form">
         <Textarea
           id="cql"
           label="CQL"
           className="advanced-search-cql-form__input focus-styling__input"
           cols={100}
           rows={5}
-          placeholder="e.g. 'harry potter'"
+          placeholder="e.g. term.title=snemand*”"
           dataCy={`${dataCy}-input`}
           onChange={(e) => setCql(e.target.value)}
           defaultValue={initialCql}
@@ -103,7 +103,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           onChecked={handleOnShelfChange}
           label={t("advancedSearchFilterHoldingStatusText")}
         />
-      </form>
+      </div>
     </>
   );
 };

@@ -9,15 +9,28 @@ type ButtonTagProps = {
   selected?: boolean;
   removable?: boolean;
   dataCy?: string;
+  className?: string;
 };
 
 const ButtonTag = React.forwardRef<HTMLButtonElement, ButtonTagProps>(
-  ({ onClick, selected, children, size, removable = false, dataCy }, ref) => {
-    const className = clsx(
+  (
+    {
+      onClick,
+      selected,
+      children,
+      size,
+      removable = false,
+      dataCy,
+      className
+    }: ButtonTagProps,
+    ref
+  ) => {
+    const classes = clsx(
       "tag",
       selected && "tag--fill",
       size && `tag--${size}`,
-      "cursor-pointer"
+      "cursor-pointer",
+      className
     );
 
     return (
@@ -25,7 +38,7 @@ const ButtonTag = React.forwardRef<HTMLButtonElement, ButtonTagProps>(
         ref={ref}
         type="button"
         aria-pressed={selected}
-        className={className}
+        className={classes}
         onClick={onClick}
         data-cy={dataCy}
       >

@@ -237,7 +237,8 @@ export const getInstantLoanBranchHoldings = (
         // and is available, it is an instant loan.
         return (
           instantLoanStrings.some(
-            (instantLoanString) => instantLoanString === materialGroup.name
+            (instantLoanString) =>
+              instantLoanString.trim() === materialGroup.name.trim()
           ) && available
         );
       });

@@ -23,6 +23,9 @@ const Player: React.FC<PlayerType> = ({ identifier, orderId }) => {
   if (orderId) {
     return (
       <iframe
+        // Adding a tabindex of 0 to make the iframe focusable for accessibility.
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+        tabIndex={0}
         title="Player"
         className="player"
         src={`https://play.pubhub.dk/index141.html?o=${orderId}`}
@@ -33,6 +36,9 @@ const Player: React.FC<PlayerType> = ({ identifier, orderId }) => {
   if (identifier) {
     return (
       <iframe
+        // Adding a tabindex of 0 to make the iframe focusable for accessibility.
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+        tabIndex={0}
         title="Player"
         className="player"
         src={`https://play.pubhub.dk/index141.html?i=${identifier}`}
