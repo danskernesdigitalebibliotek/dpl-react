@@ -345,6 +345,7 @@ const SearchHeader: React.FC = () => {
           highlightedIndex={highlightedIndex}
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
+          setIsOpen={setIsAutosuggestOpen}
           isLoading={isLoading}
         />
         {isHeaderDropdownOpen && (
