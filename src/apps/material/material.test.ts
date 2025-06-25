@@ -1,418 +1,227 @@
-// Deprecated: This test file is moved to separate files
-// src/apps/material/material-default.test.ts
-// src/apps/material/material-infomedia.test.ts
-// src/apps/material/material-music.test.ts.
-
-import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
+import { MaterialPage } from "../../../cypress/pages/material";
 
 describe("Material", () => {
+  let materialPage: MaterialPage;
+
+  beforeEach(() => {
+    materialPage = new MaterialPage();
+
+    // Setup all the necessary interceptors using the page object
+    materialPage
+      .interceptDefaultRest()
+      .interceptDefaultGraphql()
+      .interceptDefault();
+    materialPage.visitDefaultMaterial();
+  });
+
   it("Renders a title", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.get(".text-header-h1").should("be.visible");
+    materialPage.elements
+      .title()
+      .should("contain", "De syv søstre : Maias historie");
   });
 
   it("Renders a cover with a source", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.get("img").should("have.attr", "src").and("match", FbiCoverUrlPattern);
+    materialPage.shouldHaveCoverWithSource();
   });
 
   it("Renders favorite buttons", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.get(".button-favourite").should(
-      "have.attr",
-      "aria-label",
-      "Add De syv søstre : Maias historie to favorites list"
-    );
+    materialPage.elements
+      .favouriteButton()
+      .should(
+        "have.attr",
+        "aria-label",
+        "Add De syv søstre : Maias historie to favorites list"
+      );
   });
 
   it("Renders series horizontal lines", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    materialPage.scrollToToMaterialTDescription();
 
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.getBySel("material-header-content").scrollIntoView({ duration: 100 });
-
-    cy.getBySel("material-description-series-0")
+    materialPage.elements
+      .seriesDescription(0)
       .should("be.visible")
       .and("contain.text", "Del 1  in seriesDe syv søstre-serien");
   });
 
   it("Renders only first 3 horizontal lines items", () => {
-    cy.getBySel("material-description-series-members")
+    materialPage.scrollToToMaterialTDescription();
+
+    materialPage.elements
+      .seriesMembers()
       .should("be.visible")
       .find("span")
       .should("have.length", 3);
   });
 
   it("Renders additional horizontal lines items after button click", () => {
-    cy.getBySel("material-description-series-members").find("button").click();
+    materialPage.scrollToToMaterialTDescription();
+    materialPage.clickSeriesMembersButton();
 
-    cy.getBySel("material-description-series-members")
+    materialPage.elements
+      .seriesMembers()
       .should("be.visible")
       .find("span")
       .should("have.length", 8);
   });
 
   it("Renders authors", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.getBySel("material-header-author-text")
+    materialPage.elements
+      .authorText()
       .should("be.visible")
       .and("contain", "Lucinda Riley");
   });
 
   it("Renders exactly 1 availability label per material type", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.getBySel("material-header-content").scrollIntoView({ duration: 100 });
-
-    cy.getBySel("availability-label")
+    materialPage.elements
+      .availabilityLabels()
       .find('[data-cy="availability-label-type"]')
       .contains("bog")
       .should("have.length", 1);
   });
 
   it("Shows the book availability as available", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
-
-    cy.getBySel("availability-label")
-      .find('[data-cy="availability-label-type"]')
-      .contains("bog")
-      .parent()
-      .find('[data-cy="availability-label-status"]')
-      .should("have.text", "Available");
+    materialPage.shouldShowAvailabilityStatus("bog", "Available");
   });
 
   it("Can open material details", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.getBySel("material-details-disclosure").click();
+    materialPage.openMaterialDetails();
   });
 
   it("Renders the correct details for books", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    materialPage.openMaterialDetails();
 
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-    cy.wait("@getMaterial GraphQL operation");
+    materialPage.elements.listDescription().within(() => {
+      // Verify various fields
+      cy.get(".list-description__item")
+        .contains("Language")
+        .next()
+        .should("contain.text", "dansk");
 
-    cy.scrollTo("bottom");
-    cy.getBySel("material-details-disclosure").click();
+      cy.get(".list-description__item")
+        .contains("Edition")
+        .next()
+        .should("contain.text", "2. udgave, 2017");
 
-    cy.get('[data-cy="list-description"]')
-      .first()
-      .within(() => {
-        // Verify "Language" field and its value
-        cy.get(".list-description__item")
-          .contains("Language")
-          .next()
-          .should("contain.text", "dansk");
+      cy.get(".list-description__item")
+        .contains("Genre")
+        .next()
+        .should("contain.text", "romaner / slægtsromaner");
 
-        // Verify "Edition" field and its value
-        cy.get(".list-description__item")
-          .contains("Edition")
-          .next()
-          .should("contain.text", "1. udgave, 2016");
+      cy.get(".list-description__item")
+        .contains("Original title")
+        .next()
+        .should("contain.text", "The seven sisters");
 
-        // Verify "Genre" field and its value
-        cy.get(".list-description__item")
-          .contains("Genre")
-          .next()
-          .should("contain.text", "roman / slægtsromaner");
-
-        // Verify "Original title" field and its value
-        cy.get(".list-description__item")
-          .contains("Original title")
-          .next()
-          .should("contain.text", "The seven sisters");
-
-        // Verify "Publisher" field and its value
-        cy.get(".list-description__item")
-          .contains("Publisher")
-          .next()
-          .should("contain.text", "Cicero");
-
-        // Verify "Type" field and its value
-        cy.get(".list-description__item")
-          .contains("Type")
-          .next()
-          .should("contain.text", "bog");
-
-        // Verify "Contributors" field and its value
-        cy.get(".list-description__item")
-          .contains("Contributors")
-          .next()
-          .should("contain.text", "Ulla Lauridsen (oversætter)");
-
-        // Verify "Scope" field and its value
-        cy.get(".list-description__item")
-          .contains("Scope")
-          .next()
-          .should("contain.text", "523");
-
-        // Verify "Dimensions" field and its value
-        cy.get(".list-description__item")
-          .contains("Dimensions")
-          .next()
-          .should("contain.text", "523 sider");
-      });
-
-    cy.getBySel("material-editions-disclosure").click();
-    cy.get(".material-manifestation-item__details").first().click();
-
-    cy.get('[data-cy="list-description"]')
-      .first()
-      .within(() => {
-        // Verify "Type" field and its value
-        cy.get(".list-description__item")
-          .contains("Type")
-          .next()
-          .should("contain.text", "bog");
-
-        // Verify "Language" field and its value
-        cy.get(".list-description__item")
-          .contains("Language")
-          .next()
-          .should("contain.text", "dansk");
-
-        // Verify "Genre" field and its value
-        cy.get(".list-description__item")
-          .contains("Genre")
-          .next()
-          .should("contain.text", "roman / slægtsromaner");
-
-        // Verify "Contributors" field and its value
-        cy.get(".list-description__item")
-          .contains("Contributors")
-          .next()
-          .should("contain.text", "Ulla Lauridsen (oversætter)");
-
-        // Verify "Original title" field and its value
-        cy.get(".list-description__item")
-          .contains("Original title")
-          .next()
-          .should("contain.text", "The seven sisters");
-
-        // Verify "ISBN" field and its value
-        cy.get(".list-description__item")
-          .contains("ISBN")
-          .next()
-          .should("contain.text", "9788763844116");
-
-        // Verify "Edition" field and its value
-        cy.get(".list-description__item")
-          .contains("Edition")
-          .next()
-          .should("contain.text", "1. udgave, 2016");
-
-        // Verify "Scope" field and its value
-        cy.get(".list-description__item")
-          .contains("Scope")
-          .next()
-          .should("contain.text", "523");
-
-        // Verify "Publisher" field and its value
-        cy.get(".list-description__item")
-          .contains("Publisher")
-          .next()
-          .should("contain.text", "Cicero");
-
-        // Verify "Authors" field and its value
-        cy.get(".list-description__item")
-          .contains("Authors")
-          .next()
-          .should("contain.text", "Lucinda Riley");
-
-        // Verify "Dimensions" field and its value
-        cy.get(".list-description__item")
-          .contains("Dimensions")
-          .next()
-          .should("contain.text", "523 sider");
-
-        // Verify "Source" field and its value
-        cy.get(".list-description__item")
-          .contains("Source")
-          .next()
-          .should("contain.text", "Bibliotekskatalog");
-      });
-  });
-
-  it("Renders the correct details for infomedia", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/infomedia-fbi-api.json"
-    });
-
-    cy.visit(
-      "/iframe.html?args=&id=apps-material--infomedia&viewMode=story&type=artikel"
-    );
-    cy.wait("@getMaterial GraphQL operation");
-
-    cy.scrollTo("bottom");
-    cy.getBySel("material-details-disclosure").click();
-
-    cy.get('[data-cy="list-description"]')
-      .first()
-      .within(() => {
-        // Verify "Language" field and its value
-        cy.get(".list-description__item")
-          .contains("Language")
-          .next()
-          .should("contain.text", "dansk");
-
-        // Verify "Edition" field and its value
-        cy.get(".list-description__item")
-          .contains("Edition")
-          .next()
-          .should("contain.text", "2013");
-
-        // Verify "Type" field and its value
-        cy.get(".list-description__item")
-          .contains("Type")
-          .next()
-          .should("contain.text", "artikel");
-
-        // Verify "Scope" field and its value
-        cy.get(".list-description__item")
-          .contains("Scope")
-          .next()
-          .should("contain.text", "2");
-
-        // Verify "Dimensions" field and its value
-        cy.get(".list-description__item")
-          .contains("Dimensions")
-          .next()
-          .should("contain.text", "Sektion 3, s. 6-7: ill.");
-
-        // Verify "Host Publication" field and its value
-        cy.get(".list-description__item")
-          .contains("Host Publication")
-          .next()
-          .should("contain.text", "Politiken, 2013-09-19");
-      });
-  });
-
-  it("Renders the correct details for music", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/music-fbi-api.json"
-    });
-
-    cy.visit(
-      "/iframe.html?args=&id=apps-material--default&viewMode=story&type=musik+%28cd%29"
-    );
-    cy.wait("@getMaterial GraphQL operation");
-
-    cy.scrollTo("bottom");
-    cy.getBySel("material-details-disclosure").click();
-    cy.get('[data-cy="list-description"]').within(() => {
-      // Verify "Publisher" field and its value
       cy.get(".list-description__item")
         .contains("Publisher")
         .next()
-        .should("contain.text", "Warner Bros.");
+        .should("contain.text", "Cicero");
 
+      cy.get(".list-description__item")
+        .contains("Type")
+        .next()
+        .should("contain.text", "bog");
+
+      cy.get(".list-description__item")
+        .contains("Contributors")
+        .next()
+        .should("contain.text", "Ulla Lauridsen (oversætter)");
+
+      cy.get(".list-description__item")
+        .contains("Scope")
+        .next()
+        .should("contain.text", "523");
+
+      cy.get(".list-description__item")
+        .contains("Dimensions")
+        .next()
+        .should("contain.text", "523 sider");
+    });
+
+    materialPage.openMaterialEditions();
+
+    materialPage.expandFirstManifestationDetails();
+
+    materialPage.elements.listDescription().within(() => {
       // Verify "Type" field and its value
       cy.get(".list-description__item")
         .contains("Type")
         .next()
-        .should("contain.text", "musik (cd)");
+        .should("contain.text", "bog");
+
+      // Verify "Language" field and its value
+      cy.get(".list-description__item")
+        .contains("Language")
+        .next()
+        .should("contain.text", "dansk");
+
+      // Verify "Genre" field and its value
+      cy.get(".list-description__item")
+        .contains("Genre")
+        .next()
+        .should("contain.text", "romaner / slægtsromaner");
 
       // Verify "Contributors" field and its value
       cy.get(".list-description__item")
         .contains("Contributors")
         .next()
-        .should(
-          "contain.text",
-          "Michael Bruce / Dennis Dunaway / Neal Smith / Glen Buxton"
-        );
+        .should("contain.text", "Ulla Lauridsen (oversætter)");
+
+      // Verify "Original title" field and its value
+      cy.get(".list-description__item")
+        .contains("Original title")
+        .next()
+        .should("contain.text", "The seven sisters");
+
+      // Verify "ISBN" field and its value
+      cy.get(".list-description__item")
+        .contains("ISBN")
+        .next()
+        .should("contain.text", "9788763849630");
+
+      // Verify "Edition" field and its value
+      cy.get(".list-description__item")
+        .contains("Edition")
+        .next()
+        .should("contain.text", "2. udgave, 2017");
+
+      // Verify "Scope" field and its value
+      cy.get(".list-description__item")
+        .contains("Scope")
+        .next()
+        .should("contain.text", "523");
+
+      // Verify "Publisher" field and its value
+      cy.get(".list-description__item")
+        .contains("Publisher")
+        .next()
+        .should("contain.text", "Cicero");
+
+      // Verify "Authors" field and its value
+      cy.get(".list-description__item")
+        .contains("Authors")
+        .next()
+        .should("contain.text", "Lucinda Riley");
 
       // Verify "Dimensions" field and its value
       cy.get(".list-description__item")
         .contains("Dimensions")
         .next()
-        .should("contain.text", "Stereo");
+        .should("contain.text", "523 sider");
 
-      // Verify "Contents" field and its list values
+      // Verify "Source" field and its value
       cy.get(".list-description__item")
-        .contains("Contents")
+        .contains("Source")
         .next()
-        .within(() => {
-          // Validate each list item in "Contents"
-          const contents = [
-            "Hello hooray",
-            "Raped and freezin'",
-            "Elected",
-            "Billion dollar babies",
-            "Unfinished sweet",
-            "No more Mr. Nice Guy",
-            "Generation landslide",
-            "Sick things",
-            "Mary Ann",
-            "I love the dead"
-          ];
-
-          contents.forEach((item, index) => {
-            cy.get(".list-description__value--list li")
-              .eq(index)
-              .should("have.text", item);
-          });
-        });
+        .should("contain.text", "Bibliotekskatalog");
     });
   });
 
   it("Renders editions with a reservation button", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    materialPage.openMaterialEditions();
 
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.scrollTo("bottom");
-
-    cy.getBySel("material-editions-disclosure").click();
-    cy.getBySel("material-editions-disclosure")
+    materialPage.elements
+      .materialEditionsDisclosure()
       .should("contain", "Editions")
       .then((disclosure) => {
         cy.wrap(disclosure).should("contain", "Reserve");
@@ -420,106 +229,72 @@ describe("Material", () => {
   });
 
   it("Opens modal by clicking on reservation button and closes it with the x button", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-
     cy.createFakeAuthenticatedSession();
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
+    materialPage.scrollToToMaterialTDescription();
+    materialPage.clickReserveButton();
 
-    cy.getBySel("material-header-buttons-physical")
-      .should("be.visible")
-      .and("contain", "Reserve bog")
-      .click();
+    materialPage.scrollToReservationModalList();
 
-    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
-
-    cy.getBySel("reservation-modal-list-item-text")
-      .should("be.visible")
+    materialPage.elements
+      .reservationModalListItemEq(0)
+      .and("contain", "Edition")
+      .and("contain", "First available edition");
+    materialPage.elements
+      .reservationModalListItemEq(1)
+      .and("contain", "Have no interest after")
+      .and("contain", "14 days");
+    materialPage.elements
+      .reservationModalListItemEq(2)
       .and("contain", "Pick up at")
-      .and("contain", "Hovedbiblioteket")
-      .and("contain", "12345678")
+      .and("contain", "Hovedbiblioteket");
+    materialPage.elements
+      .reservationModalListItemEq(3)
+      .and("contain", "You will receive an SMS when the material is ready")
+      .and("contain", "12345678");
+    materialPage.elements
+      .reservationModalListItemEq(4)
+      .and("contain", "You will receive an email when the material is ready")
       .and("contain", "test@test.com");
 
-    cy.getBySelStartEnd(
-      "modal-reservation-modal-",
-      "-close-button",
-      true
-    ).click();
+    materialPage.closeModalWithX();
   });
 
   it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
     cy.createFakeAuthenticatedSession();
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
+    materialPage.scrollToToMaterialTDescription();
+    materialPage
+      .clickReserveButton()
+      .scrollToReservationModalList()
+      .submitReservation();
 
-    cy.getBySel("material-header-buttons-physical")
-      .should("be.visible")
-      .and("contain", "Reserve bog")
-      .click();
-
-    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
-
-    cy.getBySel("reservation-modal-submit-button", true)
-      .should("be.visible")
-      .and("contain", "Approve reservation");
-    // We need to wait here because no other fixes work.
-    // eslint-disable-next-line
-    cy.wait(500);
-    cy.getBySel("reservation-modal-submit-button").click();
-
-    cy.getBySel("reservation-success-title-text")
+    materialPage.elements
+      .reservationSuccessTitle()
       .should("be.visible")
       .and("contain", "Material is available and reserved for you!");
 
-    cy.getBySel("number-in-queue-text")
+    materialPage.elements
+      .numberInQueue()
       .should("be.visible")
       .and("contain", "You are number 3 in the queue");
 
-    cy.getBySel("reservation-success-close-button")
-      .should("be.visible")
-      .and("contain", "Ok")
-      .click();
+    materialPage.closeReservationSuccess();
   });
 
   it("Renders reviews", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-    cy.interceptGraphql({
-      operationName: "getReviewManifestations",
-      fixtureFilePath: "material/reviews.json"
-    });
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+    materialPage.openMaterialReviews();
 
-    cy.scrollTo("bottom");
-    cy.getBySel("material-reviews-disclosure").should("be.visible").click();
-    cy.getBySel("material-reviews").should(
-      "contain",
-      "Dorthe Marlene Jørgensen, 2016"
-    );
+    materialPage.elements
+      .materialReviews()
+      .should("contain", "Dorthe Marlene Jørgensen, 2016");
   });
 
   it("Has a selected availability label based on url parameter", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    materialPage.scrollToToMaterialTDescription();
 
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
-
-    cy.getBySel("availability-label")
+    materialPage.elements
+      .availabilityLabels()
       .find('[data-cy="availability-label-type"]')
       .contains("bog")
       .parent()
@@ -527,16 +302,10 @@ describe("Material", () => {
   });
 
   it("Does not have selected availability labels which does not match url parameter", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    materialPage.scrollToToMaterialTDescription();
 
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
-
-    cy.getBySel("availability-label")
+    materialPage.elements
+      .availabilityLabels()
       .find('[data-cy="availability-label-type"]')
       .contains("lydbog")
       .parent()
@@ -544,140 +313,102 @@ describe("Material", () => {
   });
 
   it("Can favorite a material", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-
-    // Intercept like button to show it as filled
-    cy.intercept("PUT", "**/list/default/**", {
-      statusCode: 200
-    }).as("Favorite list service");
-
     cy.createFakeAuthenticatedSession();
+    materialPage.interceptFavoriteAsFilled();
 
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+    materialPage.elements
+      .favouriteIcon()
+      .should("not.have.class", "icon-favourite--filled");
 
-    // Material should show an unfilled heart icon
-    cy.get(".icon-favourite").should(
-      "not.have.class",
-      "icon-favourite--filled"
-    );
+    materialPage.clickFavouriteButton();
 
-    // Favorite the material
-    cy.get(".button-favourite").click();
-
-    // Material should show a filled heart icon
-    cy.get(".icon-favourite").should("have.class", "icon-favourite--filled");
+    materialPage.elements
+      .favouriteIcon()
+      .should("have.class", "icon-favourite--filled");
   });
 
   it("Displays 8 recommended materials in the related grid", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
-
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    cy.getBySel("material-grid-related").should("exist");
-
-    cy.get('[data-cy="material-grid-related"] li').should("have.length", 8);
+    materialPage.elements.materialGridRelated().should("exist");
+    materialPage.elements
+      .materialGridRelated()
+      .find("li")
+      .should("have.length", 8);
   });
 
   it("Renders 3 filter buttons and can click author and series filters", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    materialPage.elements.relatedFilterButtons().should("have.length", 3);
 
-    cy.interceptGraphql({
-      operationName: "WorkRecommendations",
-      fixtureFilePath: "material/material-grid-related-recommendations.json"
-    });
+    materialPage.elements
+      .relatedFilterButtons()
+      .contains("Recommendations")
+      .click();
 
-    cy.interceptGraphql({
-      operationName: "complexSearchWithPagination",
-      fixtureFilePath:
-        "material/material-grid-related-author-recommendations.json"
-    });
+    materialPage.elements
+      .relatedFilterButtons()
+      .contains("In same series")
+      .click();
 
-    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
-
-    // Check if there are 3 filters render
-    cy.get('[data-cy="material-grid-related-filter-button"]').should(
-      "have.length",
-      3
-    );
-
-    cy.contains(
-      '[data-cy="material-grid-related-filter-button"]',
-      "By same author"
-    ).click();
-
-    cy.contains(
-      '[data-cy="material-grid-related-filter-button"]',
-      "In same series"
-    ).click();
+    materialPage.elements
+      .relatedFilterButtons()
+      .contains("By same author")
+      .click();
   });
 
-  beforeEach(() => {
-    cy.interceptRest({
-      httpMethod: "POST",
-      aliasName: "reservations",
-      url: "**/patrons/patronid/reservations/**",
-      fixtureFilePath: "material/reservations.json"
-    });
+  it("Shows find on shelf button for physical materials", () => {
+    materialPage.scrollToToMaterialTDescription();
 
-    cy.interceptRest({
-      aliasName: "holdings",
-      url: "**/agencyid/catalog/holdingsLogistics/**",
-      fixtureFilePath: "material/holdings.json"
-    });
+    materialPage.elements
+      .findFirstOnShelfButton()
+      .should("be.visible")
+      .and("contain", "Find on shelf");
+  });
 
-    cy.interceptRest({
-      aliasName: "branches",
-      url: "**/agencyid/branches",
-      fixtureFilePath: "material/branches.json"
-    });
+  it("Opens find on shelf modal when button is clicked", () => {
+    materialPage.scrollToToMaterialTDescription();
+    materialPage.elements.findFirstOnShelfButton().click({ force: true });
 
-    cy.interceptRest({
-      aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v4",
-      fixtureFilePath: "material/user.json"
-    });
+    materialPage.elements.findOnShelfModal().should("be.visible");
+    materialPage.elements.findOnShelfModalHeader().should("be.visible");
+  });
 
-    cy.interceptGraphql({
-      operationName: "WorkRecommendations",
-      fixtureFilePath: "material/material-grid-related-recommendations.json"
-    });
+  it("Shows location data and availability count in find on shelf modal", () => {
+    materialPage.scrollToToMaterialTDescription();
+    materialPage.elements.findFirstOnShelfButton().click({ force: true });
 
-    cy.interceptGraphql({
-      operationName: "complexSearchWithPagination",
-      fixtureFilePath:
-        "material/material-grid-related-author-recommendations.json"
-    });
+    materialPage.elements.findOnShelfModal().should("be.visible");
+    materialPage.elements.pageFoldEq(0).contains("Unavailable");
+    materialPage.elements.findOnShelfModalDisclosuresEq(0).click();
 
-    cy.interceptRest({
-      aliasName: "Availability",
-      url: "**/availability/v3?recordid=**",
-      fixtureFilePath: "material/availability.json"
-    });
+    materialPage.elements.findOnShelfContainerEq(0).within(() => {
+      materialPage.elements
+        .findOnShelfMaterialHeader()
+        .should("contain", "Material");
+      materialPage.elements
+        .findOnShelfLocationHeader()
+        .should("contain", "Find it on shelf");
+      materialPage.elements
+        .findOnShelfItemCountHeader()
+        .should("contain", "home");
 
-    // Intercept like button to show it as unfilled
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404
-    }).as("Favorite list service");
+      // Assert rows
+      materialPage.elements.findOnShelfRows().should("have.length", 1);
 
-    // Intercept url "translation".
-    cy.interceptRest({
-      aliasName: "UrlProxy",
-      url: "**/dpl-url-proxy?url=**",
-      fixtureFilePath: "material/dpl-url-proxy.json"
-    });
-    // Intercept covers
-    cy.interceptGraphql({
-      operationName: "GetCoversByPids",
-      fixtureFilePath: "cover/cover.json"
+      // Check specific contents
+      materialPage.elements.findOnShelfMaterialText().each(($el) => {
+        cy.wrap($el).should("contain.text", "De syv søstre (2017)");
+      });
+
+      materialPage.elements
+        .findOnShelfRowEq(0)
+        .should("contain.text", "Voksen · Historiske romaner · Riley, Lucinda");
+      materialPage.elements
+        .findOnShelfRowEq(1)
+        .should("contain.text", "Voksen · Skønlitteratur · Riley, Lucinda");
+
+      // Check that both show count 0
+      materialPage.elements.findOnShelfItemCountText().each(($el) => {
+        cy.wrap($el).should("contain.text", "0");
+      });
     });
   });
 });
