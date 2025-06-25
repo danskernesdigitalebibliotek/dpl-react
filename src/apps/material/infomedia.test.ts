@@ -1,3 +1,4 @@
+// This file is deprecated. The skipped test should be moved to src/apps/material/material-infomedia.test.ts
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material - Infomedia", () => {

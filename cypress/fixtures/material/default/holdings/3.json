@@ -1,0 +1,395 @@
+[
+  {
+    "recordId": "52557240",
+    "reservable": true,
+    "reservations": 0,
+    "holdings": [
+      {
+        "branch": {
+          "branchId": "DK-710111",
+          "title": "Nørrebro"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5130200917",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710111",
+          "title": "Nørrebro"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Nørrebro", "Voksen", "Skønlitteratur"],
+        "materials": [
+          {
+            "itemNumber": "5119213845",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710121",
+          "title": "Østerbro"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5119212504",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710110",
+          "title": "Biblioteket Rentemestervej"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5119213926",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5119213764",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710122",
+          "title": "Ørestad"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5119213713",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710100",
+          "title": "Hovedbiblioteket"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "hiskøn",
+            "title": "Historiske romaner"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5119213691",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710119",
+          "title": "Vesterbro"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5119213896",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5119212431",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "FBS-101008",
+          "title": "Fjernlager 1"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "hiskøn",
+            "title": "Historiske romaner"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5130200909",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710104",
+          "title": "Blågården"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5119212547",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710117",
+          "title": "Valby"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5119213756",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710118",
+          "title": "Vanløse"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Vanløse", "Voksen", "Skønlitteratur"],
+        "materials": [
+          {
+            "itemNumber": "5119358606",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710120",
+          "title": "Vigerslev"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5130276697",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710114",
+          "title": "Bibliotekshuset"
+        },
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
+        "materials": [
+          {
+            "itemNumber": "5119213853",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

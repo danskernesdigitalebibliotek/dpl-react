@@ -1,0 +1,28 @@
+[
+  {
+    "recordId": "52643414",
+    "reservable": true,
+    "reservations": 0,
+    "holdings": [
+      {
+        "branch": {
+          "branchId": "DK-710109",
+          "title": "Øbro Jagtvej"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": ["Øbro Jagtvej", "2.sal", "Voksen", "MP3"],
+        "materials": [
+          {
+            "itemNumber": "5119760196",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,3 +1,8 @@
+// Deprecated: This test file is moved to separate files
+// src/apps/material/material-default.test.ts
+// src/apps/material/material-infomedia.test.ts
+// src/apps/material/material-music.test.ts.
+
 import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 
 describe("Material", () => {
