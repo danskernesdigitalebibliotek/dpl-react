@@ -18,10 +18,7 @@ export class MaterialPage extends PageObject {
 
       // Cover and images
       mainCoverImage: () =>
-        cy
-          .get(".cover.cover--size-xlarge.cover--aspect-xlarge")
-          .find("img.cover__img.cover__img--animate.cover__img--shadow-small")
-          .scrollIntoView({ duration: 100 }),
+        cy.get(".cover").find("img").scrollIntoView({ duration: 100 }),
 
       // Buttons
       favouriteButton: () =>
