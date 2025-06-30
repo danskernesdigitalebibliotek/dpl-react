@@ -282,9 +282,11 @@ describe("Material", () => {
         findOnShelf.elements.findOnShelfRows().should("have.length", 1);
 
         // Check specific contents
-        findOnShelf.elements.findOnShelfMaterialText().each(($el) => {
-          cy.wrap($el).should("contain.text", "De syv søstre (2017)");
-        });
+        findOnShelf.elements
+          .findOnShelfMaterialText()
+          .each(($el: JQuery<HTMLElement>) => {
+            cy.wrap($el).should("contain.text", "De syv søstre (2017)");
+          });
 
         findOnShelf.elements
           .findOnShelfRowEq(0)
@@ -297,9 +299,11 @@ describe("Material", () => {
           .should("contain.text", "Voksen · Skønlitteratur · Riley, Lucinda");
 
         // Check that both show count 0
-        findOnShelf.elements.findOnShelfItemCountText().each(($el) => {
-          cy.wrap($el).should("contain.text", "0");
-        });
+        findOnShelf.elements
+          .findOnShelfItemCountText()
+          .each(($el: JQuery<HTMLElement>) => {
+            cy.wrap($el).should("contain.text", "0");
+          });
       });
     });
   });
