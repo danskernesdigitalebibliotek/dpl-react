@@ -90,9 +90,11 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       ...(locationFilter?.sublocation?.length && {
         sublocation: locationFilter.sublocation
       }),
-      firstAccessionDate: firstAccessionDateFilter
-        ? `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`
-        : ""
+      ...(firstAccessionDateFilter && firstAccessionOperatorFilter
+        ? {
+            firstAccessionDate: `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`
+          }
+        : {})
     },
     ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
   });
