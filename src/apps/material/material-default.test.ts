@@ -149,30 +149,36 @@ describe("Material", () => {
         .field("You will receive an email when the material is ready")
         .should("contain", "test@test.com");
 
-      modal.closeWithX();
+      modal.elements.closeXButton().click();
     });
   });
 
   it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
     cy.createFakeAuthenticatedSession();
-
     materialPage.scrollToToMaterialTDescription();
 
     materialPage.components.ReservationModal((modal) => {
       modal.elements.reservePhysicalButton().click();
-      modal.submit();
+      cy.interceptRest({
+        httpMethod: "POST",
+        aliasName: "reservations",
+        url: "**/patrons/patronid/reservations/**",
+        fixtureFilePath: "material/reservations.json"
+      });
+      modal.elements.submitButton().click();
+      modal.elements.approvalModal().should("be.visible");
 
       modal.elements
-        .title()
+        .approvalTitle()
         .should("be.visible")
         .and("contain", "Material is available and reserved for you!");
 
       modal.elements
-        .numberInQueue()
+        .approvalNumberInQueue()
         .should("be.visible")
         .and("contain", "You are number 3 in the queue");
 
-      modal.closeWithOk();
+      modal.elements.okButton().click();
     });
   });
 

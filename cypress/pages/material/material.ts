@@ -137,14 +137,6 @@ export class MaterialPage extends PageObject {
 
   // Setup all necessary REST and GraphQL interceptors
   interceptDefaultRest() {
-    // Reservations
-    cy.interceptRest({
-      httpMethod: "POST",
-      aliasName: "reservations",
-      url: "**/patrons/patronid/reservations/**",
-      fixtureFilePath: "material/reservations.json"
-    });
-
     // Holdings
     cy.interceptRest({
       aliasName: "holdings 1",
@@ -296,5 +288,4 @@ export class MaterialPage extends PageObject {
       .should("have.text", status);
     return this;
   }
-
 }

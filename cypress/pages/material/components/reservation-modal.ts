@@ -10,11 +10,6 @@ export class ReservationModalComponent extends ComponentObject {
           .findByRole("button", { name: "Reserve bog" })
           .scrollIntoView({ duration: 100 }),
 
-      title: () =>
-        this.container()
-          .getBySel("reservation-success-title-text")
-          .scrollIntoView({ duration: 100 }),
-
       reservationModalList: () =>
         this.container()
           .get(".reservation-modal-list")
@@ -37,23 +32,19 @@ export class ReservationModalComponent extends ComponentObject {
       successTitle: () =>
         this.container().getBySel("reservation-success-title-text"),
 
-      numberInQueue: () => this.container().getBySel("number-in-queue-text")
+      // approval modal elements
+      approvalModal: () =>
+        cy.get(".reservation-modal--confirm").scrollIntoView({ duration: 100 }),
+
+      approvalTitle: () =>
+        cy
+          .get(".reservation-modal--confirm")
+          .getBySel("reservation-success-title-text")
+          .scrollIntoView({ duration: 100 }),
+
+      approvalNumberInQueue: () =>
+        cy.get(".reservation-modal--confirm").getBySel("number-in-queue-text")
     };
-  }
-
-  submit() {
-    this.elements.submitButton().click();
-    return this;
-  }
-
-  closeWithX() {
-    this.elements.closeXButton().click();
-    return this;
-  }
-
-  closeWithOk() {
-    this.elements.okButton().click();
-    return this;
   }
 
   field(fieldName: string) {
