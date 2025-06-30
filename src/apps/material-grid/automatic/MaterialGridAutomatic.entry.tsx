@@ -28,6 +28,7 @@ export interface MaterialGridAutomaticEntryProps
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
   buttonText: string;
   materialUrl: string;
+  firstaccessiondateitem?: string;
 }
 
 const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
@@ -38,7 +39,8 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   sort,
   title,
   description,
-  selectedAmountOfMaterialsForDisplay
+  selectedAmountOfMaterialsForDisplay,
+  firstaccessiondateitem
 }) => (
   <GuardedApp app="material-grid-automatic">
     <MaterialGridAutomatic
@@ -50,6 +52,7 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
       title={title}
       description={description}
       selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
+      firstaccessiondateitem={firstaccessiondateitem}
     />
   </GuardedApp>
 );
