@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useCopyToClipboard } from "react-use";
+import React, { useEffect, useState, useMemo } from "react";
+import { isEqual } from "lodash";
+import { useCopyToClipboard, usePrevious } from "react-use";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
@@ -34,6 +35,14 @@ interface AdvancedSearchResultProps {
   setSort: (value: AdvancedSortMapStrings) => void;
 }
 
+type FilterState = Pick<
+  AdvancedSearchResultProps,
+  | "locationFilter"
+  | "firstAccessionDateFilter"
+  | "firstAccessionOperatorFilter"
+  | "sort"
+>;
+
 const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   q,
   pageSize,
@@ -50,12 +59,28 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
-  const { PagerComponent, page } = usePager({
+  const { PagerComponent, page, resetPage } = usePager({
     hitcount,
     pageSize
   });
   const [cql, setCql] = useState<string>(q);
   const [, copy] = useCopyToClipboard();
+
+  const currentFilters: FilterState = useMemo(
+    () => ({
+      locationFilter,
+      firstAccessionDateFilter,
+      firstAccessionOperatorFilter,
+      sort
+    }),
+    [
+      locationFilter,
+      firstAccessionDateFilter,
+      firstAccessionOperatorFilter,
+      sort
+    ]
+  );
+  const prevFilters = usePrevious(currentFilters);
 
   useEffect(() => {
     setCql(q);
@@ -132,6 +157,13 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       }, 2000);
     }
   }, [copiedLinkToSearch]);
+
+  // Reset page to 0 when filters or sort change (but not on initial render)
+  useEffect(() => {
+    if (prevFilters && !isEqual(prevFilters, currentFilters)) {
+      resetPage();
+    }
+  }, [resetPage, prevFilters, currentFilters]);
 
   return (
     <>
