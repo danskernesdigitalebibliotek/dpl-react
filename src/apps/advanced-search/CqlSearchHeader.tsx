@@ -138,6 +138,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           handleOnChange={(e) => {
             handleInputChange("firstAccessionDateOperator", e.target.value);
           }}
+          defaultValue={inputValues.firstAccessionOperatorFilter}
           id="first-accession-date-operator"
           label={t("advancedSearchFirstAccessionDateText")}
           ariaLabel={t("advancedSearchFirstAccessionDateOperatorText")}
@@ -149,7 +150,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           ariaLabel={t("advancedSearchFirstAccessionDateSpecifyDateText")}
           type="text"
           onChange={(date) => handleInputChange("firstAccessionDate", date)}
-          value={firstAccessionDateFilter}
+          value={inputValues.firstAccessionDate}
         />
       </div>
     </>

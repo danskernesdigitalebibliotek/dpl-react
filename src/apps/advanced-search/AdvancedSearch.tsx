@@ -80,6 +80,17 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     }
   };
 
+  const handleFirstAccessionOperatorChange = (
+    operator: FirstAccessionOperatorFilter
+  ) => {
+    setFirstAccessionOperatorFilter(operator);
+    if (firstAccessionDateFilter) {
+      setQueryParametersInUrl({
+        firstaccessiondateitem: `${operator}${firstAccessionDateFilter}`
+      });
+    }
+  };
+
   const handleSortChange = (value: AdvancedSortMapStrings) => {
     setSort(value);
     setQueryParametersInUrl({ sort: value });
@@ -194,7 +205,7 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           onLocationChange={handleLocationChange}
           onSublocationChange={handleSublocationChange}
           onFirstAccessionDateChange={handleFirstAccessionDateChange}
-          onFirstAccessionOperatorChange={setFirstAccessionOperatorFilter}
+          onFirstAccessionOperatorChange={handleFirstAccessionOperatorChange}
           locationFilter={locationFilter}
           firstAccessionDateFilter={firstAccessionDateFilter}
           firstAccessionOperatorFilter={firstAccessionOperatorFilter}
