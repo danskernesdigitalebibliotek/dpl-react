@@ -55,7 +55,7 @@ describe("Material", () => {
 
   it("Renders additional horizontal lines items after button click", () => {
     materialPage.scrollToToMaterialTDescription();
-    materialPage.clickSeriesMembersButton();
+    materialPage.elements.seriesMembers().findByRole("button").click();
 
     materialPage.elements
       .seriesMembers()
@@ -105,9 +105,9 @@ describe("Material", () => {
     });
 
     materialPage.components.Editions((editions) => {
+      editions.open();
+      editions.elements.manifestationDetailsButtons(0).click();
       editions
-        .open()
-        .expandManifestationDetails(0)
         .verifyField("Type", "bog")
         .verifyField("Language", "dansk")
         .verifyField("Genre", "romaner / slægtsromaner")
@@ -136,7 +136,7 @@ describe("Material", () => {
     materialPage.scrollToToMaterialTDescription();
 
     materialPage.components.ReservationModal((modal) => {
-      modal.clickReserveButton();
+      modal.elements.reservePhysicalButton().click();
       modal.scrollToList();
 
       modal.field("Edition").should("contain", "First available edition");
@@ -159,7 +159,7 @@ describe("Material", () => {
     materialPage.scrollToToMaterialTDescription();
 
     materialPage.components.ReservationModal((modal) => {
-      modal.clickReserveButton();
+      modal.elements.reservePhysicalButton().click();
       modal.submit();
 
       modal.elements
@@ -212,7 +212,7 @@ describe("Material", () => {
       .favouriteIcon()
       .should("not.have.class", "icon-favourite--filled");
 
-    materialPage.clickFavouriteButton();
+    materialPage.elements.favouriteButton().click();
 
     materialPage.elements
       .favouriteIcon()
@@ -229,9 +229,9 @@ describe("Material", () => {
   it("Renders 3 filter buttons and can click author and series filters", () => {
     materialPage.components.RelatedMaterials((relatedMaterials) => {
       relatedMaterials.elements.filterButtons().should("have.length", 3);
-      relatedMaterials.clickFilterButton("Recommendations");
-      relatedMaterials.clickFilterButton("In same series");
-      relatedMaterials.clickFilterButton("By same author");
+      relatedMaterials.elements.filterButtonByText("Recommendations").click();
+      relatedMaterials.elements.filterButtonByText("In same series").click();
+      relatedMaterials.elements.filterButtonByText("By same author").click();
     });
   });
 

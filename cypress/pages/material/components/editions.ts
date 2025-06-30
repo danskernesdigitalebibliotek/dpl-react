@@ -13,7 +13,7 @@ export class EditionsComponent extends ComponentObject {
 
       manifestationDetailsButtons: (index = 0) =>
         this.container()
-          .find(".material-manifestation-item__details")
+          .findAllByRole("button", { name: "Details about the material" })
           .eq(index),
 
       reservePhysicalButtons: () =>
@@ -23,11 +23,6 @@ export class EditionsComponent extends ComponentObject {
 
   open() {
     this.container().should("be.visible").click();
-    return this;
-  }
-
-  expandManifestationDetails(index = 0) {
-    this.elements.manifestationDetailsButtons(index).click();
     return this;
   }
 

@@ -297,14 +297,4 @@ export class MaterialPage extends PageObject {
     return this;
   }
 
-  // Action methods
-  clickSeriesMembersButton() {
-    this.elements.seriesMembers().find("button").click();
-    return this;
-  }
-
-  clickFavouriteButton() {
-    this.elements.favouriteButton().click();
-    return this;
-  }
 }

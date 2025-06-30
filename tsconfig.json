@@ -2,7 +2,12 @@
   "extends": "@tsconfig/create-react-app/tsconfig.json",
   "compilerOptions": {
     "jsx": "react",
-    "types": ["cypress", "node", "vitest/importMeta"],
+    "types": [
+      "cypress",
+      "@testing-library/cypress",
+      "node",
+      "vitest/importMeta"
+    ],
     "target": "es6",
     "allowJs": true
   },

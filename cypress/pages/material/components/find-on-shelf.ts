@@ -8,8 +8,8 @@ export class FindOnShelfComponent extends ComponentObject {
       // Button to open find on shelf modal
       findFirstOnShelfButton: () =>
         cy
-          .getBySel("material-buttons-find-on-shelf")
-          .first()
+          .get(".material-header__button")
+          .findByRole("button", { name: "Find on shelf" })
           .scrollIntoView({ duration: 100 }),
 
       // Modal elements

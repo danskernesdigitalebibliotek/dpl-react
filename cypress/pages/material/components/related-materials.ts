@@ -19,10 +19,4 @@ export class RelatedMaterialsComponent extends ComponentObject {
       materialItems: () => this.container().find("li")
     };
   }
-
-  // Action methods
-  clickFilterButton(buttonText: string) {
-    this.elements.filterButtonByText(buttonText).click();
-    return this;
-  }
 }

@@ -6,7 +6,8 @@ export class ReservationModalComponent extends ComponentObject {
     this.addElements = {
       reservePhysicalButton: () =>
         cy
-          .getBySel("material-header-buttons-physical")
+          .get(".material-header__button")
+          .findByRole("button", { name: "Reserve bog" })
           .scrollIntoView({ duration: 100 }),
 
       title: () =>
@@ -61,15 +62,6 @@ export class ReservationModalComponent extends ComponentObject {
 
   scrollToList() {
     this.elements.reservationModalList();
-    return this;
-  }
-
-  clickReserveButton() {
-    this.elements
-      .reservePhysicalButton()
-      .should("be.visible")
-      .and("contain", "Reserve bog")
-      .click();
     return this;
   }
 }
