@@ -1,4 +1,4 @@
-import { MaterialPage } from "../../../cypress/pages/material";
+import { MaterialPage } from "../../../cypress/pages/material/material";
 
 describe("Material", () => {
   let materialPage: MaterialPage;
@@ -15,61 +15,39 @@ describe("Material", () => {
   });
 
   it("Renders the correct details for music", () => {
-    materialPage.openMaterialDetails();
-
-    materialPage.elements.listDescription().within(() => {
-      // Verify "Publisher" field and its value
-      cy.get(".list-description__item")
-        .contains("Publisher")
-        .next()
-        .should("contain.text", "Warner Bros.");
-
-      // Verify "Type" field and its value
-      cy.get(".list-description__item")
-        .contains("Type")
-        .next()
-        .should("contain.text", "musik (cd)");
-
-      // Verify "Contributors" field and its value
-      cy.get(".list-description__item")
-        .contains("Contributors")
-        .next()
-        .should(
-          "contain.text",
+    materialPage.components.Details((details) => {
+      details
+        .open()
+        .verifyField("Publisher", "Warner Bros.")
+        .verifyField("Type", "musik (cd)")
+        .verifyField(
+          "Contributors",
           "Michael Bruce / Dennis Dunaway / Neal Smith / Glen Buxton"
-        );
+        )
+        .verifyField("Dimensions", "Stereo");
 
-      // Verify "Dimensions" field and its value
-      cy.get(".list-description__item")
-        .contains("Dimensions")
-        .next()
-        .should("contain.text", "Stereo");
+      // For the Contents field with list values, we need to handle it specially
+      details.getField("Contents").within(() => {
+        // Validate each list item in "Contents"
+        const contents = [
+          "Hello hooray",
+          "Raped and freezin'",
+          "Elected",
+          "Billion dollar babies",
+          "Unfinished sweet",
+          "No more Mr. Nice Guy",
+          "Generation landslide",
+          "Sick things",
+          "Mary Ann",
+          "I love the dead"
+        ];
 
-      // Verify "Contents" field and its list values
-      cy.get(".list-description__item")
-        .contains("Contents")
-        .next()
-        .within(() => {
-          // Validate each list item in "Contents"
-          const contents = [
-            "Hello hooray",
-            "Raped and freezin'",
-            "Elected",
-            "Billion dollar babies",
-            "Unfinished sweet",
-            "No more Mr. Nice Guy",
-            "Generation landslide",
-            "Sick things",
-            "Mary Ann",
-            "I love the dead"
-          ];
-
-          contents.forEach((item, index) => {
-            cy.get(".list-description__value--list li")
-              .eq(index)
-              .should("have.text", item);
-          });
+        contents.forEach((item, index) => {
+          cy.get(".list-description__value--list li")
+            .eq(index)
+            .should("have.text", item);
         });
+      });
     });
   });
 });

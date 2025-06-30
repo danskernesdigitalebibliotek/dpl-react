@@ -1,8 +1,19 @@
-import { PageObject, Elements } from "@hammzj/cypress-page-object";
-import { FbiCoverUrlPattern } from "../fixtures/fixture.types";
+import {
+  PageObject,
+  Elements,
+  NestedComponents
+} from "@hammzj/cypress-page-object";
+import { FbiCoverUrlPattern } from "../../fixtures/fixture.types";
+import { DetailsComponent } from "./components/details";
+import { EditionsComponent } from "./components/editions";
+import { ReviewsComponent } from "./components/reviews";
+import { ReservationModalComponent } from "./components/reservation-modal";
+import { FindOnShelfComponent } from "./components/find-on-shelf";
+import { RelatedMaterialsComponent } from "./components/related-materials";
 
 export class MaterialPage extends PageObject {
   public elements!: Elements;
+  public components!: NestedComponents;
 
   constructor() {
     super({
@@ -27,36 +38,9 @@ export class MaterialPage extends PageObject {
       favouriteIcon: () =>
         cy.get(".icon-favourite").first().scrollIntoView({ duration: 100 }),
 
-      reservePhysicalButton: () =>
-        cy
-          .getBySel("material-header-buttons-physical")
-          .scrollIntoView({ duration: 100 }),
-
-      // modal elements
-      reservationModalList: () =>
-        cy.get(".reservation-modal-list").scrollIntoView({ duration: 300 }),
-
       // Material description and details
       materialDescription: () =>
         cy.getBySel("material-description").scrollIntoView({ duration: 300 }),
-
-      materialDetailsDisclosure: () =>
-        cy
-          .getBySel("material-details-disclosure")
-          .scrollIntoView({ duration: 100 }),
-
-      materialEditionsDisclosure: () =>
-        cy
-          .getBySel("material-editions-disclosure")
-          .scrollIntoView({ duration: 100 }),
-
-      materialReviewsDisclosure: () =>
-        cy
-          .getBySel("material-reviews-disclosure")
-          .scrollIntoView({ duration: 100 }),
-
-      materialReviews: () =>
-        cy.getBySel("material-reviews").scrollIntoView({ duration: 100 }),
 
       // Series elements
       seriesDescription: (index: number) =>
@@ -83,148 +67,36 @@ export class MaterialPage extends PageObject {
           .get('[data-cy="availability-label-status"]')
           .scrollIntoView({ duration: 100 }),
 
-      // List descriptions for details
-      listDescription: () =>
-        cy
-          .getBySel("list-description")
-          .first()
-          .scrollIntoView({ duration: 100 }),
-
-      listDescriptionItem: () =>
-        cy.get(".list-description__item").scrollIntoView({ duration: 100 }),
-
-      // Manifestation items
-      firstManifestationItemDetails: () =>
-        cy
-          .get(".material-manifestation-item__details")
-          .first()
-          .scrollIntoView({ duration: 100 }),
-
-      // Modal elements
-      reservationModalListItemEq: (index: number) =>
-        cy
-          .getBySel("reservation-modal-list-item-text")
-          .eq(index)
-          .scrollIntoView({
-            duration: 100
-          }),
-
-      // More flexible modal content selector
-      reservationModalListItems: () =>
-        cy
-          .getBySel("reservation-modal-list-item-text")
-          .scrollIntoView({ duration: 100 }),
-
-      reservationModalSubmitButton: () =>
-        cy
-          .getBySel("reservation-modal-submit-button")
-          .scrollIntoView({ duration: 100 }),
-
-      reservationSuccessTitle: () =>
-        cy
-          .getBySel("reservation-success-title-text")
-          .scrollIntoView({ duration: 100 }),
-
-      numberInQueue: () =>
-        cy.getBySel("number-in-queue-text").scrollIntoView({ duration: 100 }),
-
-      reservationSuccessCloseButton: () =>
-        cy
-          .getBySel("reservation-success-close-button")
-          .scrollIntoView({ duration: 100 }),
-
-      // Related materials
-      materialGridRelated: () =>
-        cy.getBySel("material-grid-related").scrollIntoView({ duration: 100 }),
-
-      relatedFilterButtons: () =>
-        cy.getBySel("material-grid-related-filter-button"),
-
-      // Find on shelf elements
-      findFirstOnShelfButton: () =>
-        cy
-          .getBySel("material-buttons-find-on-shelf")
-          .first()
-          .scrollIntoView({ duration: 100 }),
-
-      findOnShelfModal: () =>
-        cy
-          .get(".modal-find-on-shelf")
-          .first()
-          .scrollIntoView({ duration: 100 }),
-
-      findOnShelfModalHeader: () =>
-        cy
-          .get(".modal-find-on-shelf__headline")
-          .first()
-          .scrollIntoView({ duration: 100 }),
-
-      findOnShelfModalDisclosuresEq: (index: number) =>
-        cy
-          .getBySel("find-on-shelf-modal-body-disclosure")
-          .eq(index)
-          .scrollIntoView({ duration: 100 }),
-
-      findOnShelfModalListContentEq: (index: number) =>
-        cy.get("find-on-shelf").eq(index).scrollIntoView({ duration: 100 }),
-
       // Page fold elements for availability status
       pageFoldEq: (index: number) =>
         cy
           .get('[data-cy="page-fold"]')
           .eq(index)
-          .scrollIntoView({ duration: 100 }),
-
-      // Find on shelf container elements
-      findOnShelfContainer: () =>
-        cy.get(".find-on-shelf").scrollIntoView({ duration: 100 }),
-
-      findOnShelfContainerEq: (index: number) =>
-        cy.get(".find-on-shelf").eq(index).scrollIntoView({ duration: 100 }),
-
-      // Find on shelf header elements
-      findOnShelfMaterialHeader: () =>
-        cy
-          .get(".find-on-shelf__material-header")
-          .scrollIntoView({ duration: 100 }),
-
-      findOnShelfLocationHeader: () =>
-        cy
-          .get(".find-on-shelf__location-header")
-          .scrollIntoView({ duration: 100 }),
-
-      findOnShelfItemCountHeader: () =>
-        cy
-          .get(".find-on-shelf__item-count-header")
-          .scrollIntoView({ duration: 100 }),
-
-      // Find on shelf content elements
-      findOnShelfRows: () =>
-        cy.get(".find-on-shelf__row").first().scrollIntoView({ duration: 100 }),
-
-      findOnShelfRowEq: (index: number) =>
-        cy
-          .get(".find-on-shelf__row")
-          .eq(index)
-          .scrollIntoView({ duration: 100 }),
-
-      findOnShelfMaterialText: () =>
-        cy
-          .get(".find-on-shelf__material-text")
-          .first()
-          .scrollIntoView({ duration: 100 }),
-
-      findOnShelfItemCountText: () =>
-        cy
-          .get(".find-on-shelf__item-count-text")
-          .first()
-          .scrollIntoView({ duration: 100 }),
-
-      findOnShelfItemCountTextFirst: () =>
-        cy
-          .get(".find-on-shelf__item-count-text")
-          .first()
           .scrollIntoView({ duration: 100 })
+    };
+
+    // Add nested components using proper PageObject pattern
+    this.addNestedComponents = {
+      Details: (fn) =>
+        this.performWithin(this.container(), new DetailsComponent(), fn),
+      Editions: (fn) =>
+        this.performWithin(this.container(), new EditionsComponent(), fn),
+      Reviews: (fn) =>
+        this.performWithin(this.container(), new ReviewsComponent(), fn),
+      ReservationModal: (fn) =>
+        this.performWithin(
+          this.container(),
+          new ReservationModalComponent(),
+          fn
+        ),
+      FindOnShelf: (fn) =>
+        this.performWithin(this.container(), new FindOnShelfComponent(), fn),
+      RelatedMaterials: (fn) =>
+        this.performWithin(
+          this.container(),
+          new RelatedMaterialsComponent(),
+          fn
+        )
     };
   }
 
@@ -431,72 +303,8 @@ export class MaterialPage extends PageObject {
     return this;
   }
 
-  openMaterialDetails() {
-    this.elements.materialDetailsDisclosure().click();
-    return this;
-  }
-
-  openMaterialEditions() {
-    this.elements.materialEditionsDisclosure().click();
-    return this;
-  }
-
-  openMaterialReviews() {
-    this.elements.materialReviewsDisclosure().should("be.visible").click();
-    return this;
-  }
-
-  clickReserveButton() {
-    this.elements
-      .reservePhysicalButton()
-      .should("be.visible")
-      .and("contain", "Reserve bog")
-      .click();
-    return this;
-  }
-
   clickFavouriteButton() {
     this.elements.favouriteButton().click();
-    return this;
-  }
-
-  expandFirstManifestationDetails() {
-    this.elements.firstManifestationItemDetails().click();
-    return this;
-  }
-
-  // Modal interaction methods
-  scrollToReservationModalList() {
-    this.elements.reservationModalList();
-    return this;
-  }
-
-  closeModalWithX() {
-    cy.getBySelStartEnd(
-      "modal-reservation-modal-",
-      "-close-button",
-      true
-    ).click();
-    return this;
-  }
-
-  submitReservation() {
-    this.elements
-      .reservationModalSubmitButton()
-      .should("be.visible")
-      .and("contain", "Approve reservation");
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(500); // Wait as mentioned in original test
-    this.elements.reservationModalSubmitButton().click();
-    return this;
-  }
-
-  closeReservationSuccess() {
-    this.elements
-      .reservationSuccessCloseButton()
-      .should("be.visible")
-      .and("contain", "Ok")
-      .click();
     return this;
   }
 }

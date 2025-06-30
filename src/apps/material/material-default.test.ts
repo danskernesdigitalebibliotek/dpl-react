@@ -1,4 +1,4 @@
-import { MaterialPage } from "../../../cypress/pages/material";
+import { MaterialPage } from "../../../cypress/pages/material/material";
 
 describe("Material", () => {
   let materialPage: MaterialPage;
@@ -84,210 +84,102 @@ describe("Material", () => {
   });
 
   it("Can open material details", () => {
-    materialPage.openMaterialDetails();
+    materialPage.components.Details((details) => {
+      details.open();
+    });
   });
 
   it("Renders the correct details for books", () => {
-    materialPage.openMaterialDetails();
-
-    materialPage.elements.listDescription().within(() => {
-      // Verify various fields
-      cy.get(".list-description__item")
-        .contains("Language")
-        .next()
-        .should("contain.text", "dansk");
-
-      cy.get(".list-description__item")
-        .contains("Edition")
-        .next()
-        .should("contain.text", "2. udgave, 2017");
-
-      cy.get(".list-description__item")
-        .contains("Genre")
-        .next()
-        .should("contain.text", "romaner / slægtsromaner");
-
-      cy.get(".list-description__item")
-        .contains("Original title")
-        .next()
-        .should("contain.text", "The seven sisters");
-
-      cy.get(".list-description__item")
-        .contains("Publisher")
-        .next()
-        .should("contain.text", "Cicero");
-
-      cy.get(".list-description__item")
-        .contains("Type")
-        .next()
-        .should("contain.text", "bog");
-
-      cy.get(".list-description__item")
-        .contains("Contributors")
-        .next()
-        .should("contain.text", "Ulla Lauridsen (oversætter)");
-
-      cy.get(".list-description__item")
-        .contains("Scope")
-        .next()
-        .should("contain.text", "523");
-
-      cy.get(".list-description__item")
-        .contains("Dimensions")
-        .next()
-        .should("contain.text", "523 sider");
+    materialPage.components.Details((details) => {
+      details
+        .open()
+        .verifyField("Language", "dansk")
+        .verifyField("Edition", "2. udgave, 2017")
+        .verifyField("Genre", "romaner / slægtsromaner")
+        .verifyField("Original title", "The seven sisters")
+        .verifyField("Publisher", "Cicero")
+        .verifyField("Type", "bog")
+        .verifyField("Contributors", "Ulla Lauridsen (oversætter)")
+        .verifyField("Scope", "523")
+        .verifyField("Dimensions", "523 sider");
     });
 
-    materialPage.openMaterialEditions();
-
-    materialPage.expandFirstManifestationDetails();
-
-    materialPage.elements.listDescription().within(() => {
-      // Verify "Type" field and its value
-      cy.get(".list-description__item")
-        .contains("Type")
-        .next()
-        .should("contain.text", "bog");
-
-      // Verify "Language" field and its value
-      cy.get(".list-description__item")
-        .contains("Language")
-        .next()
-        .should("contain.text", "dansk");
-
-      // Verify "Genre" field and its value
-      cy.get(".list-description__item")
-        .contains("Genre")
-        .next()
-        .should("contain.text", "romaner / slægtsromaner");
-
-      // Verify "Contributors" field and its value
-      cy.get(".list-description__item")
-        .contains("Contributors")
-        .next()
-        .should("contain.text", "Ulla Lauridsen (oversætter)");
-
-      // Verify "Original title" field and its value
-      cy.get(".list-description__item")
-        .contains("Original title")
-        .next()
-        .should("contain.text", "The seven sisters");
-
-      // Verify "ISBN" field and its value
-      cy.get(".list-description__item")
-        .contains("ISBN")
-        .next()
-        .should("contain.text", "9788763849630");
-
-      // Verify "Edition" field and its value
-      cy.get(".list-description__item")
-        .contains("Edition")
-        .next()
-        .should("contain.text", "2. udgave, 2017");
-
-      // Verify "Scope" field and its value
-      cy.get(".list-description__item")
-        .contains("Scope")
-        .next()
-        .should("contain.text", "523");
-
-      // Verify "Publisher" field and its value
-      cy.get(".list-description__item")
-        .contains("Publisher")
-        .next()
-        .should("contain.text", "Cicero");
-
-      // Verify "Authors" field and its value
-      cy.get(".list-description__item")
-        .contains("Authors")
-        .next()
-        .should("contain.text", "Lucinda Riley");
-
-      // Verify "Dimensions" field and its value
-      cy.get(".list-description__item")
-        .contains("Dimensions")
-        .next()
-        .should("contain.text", "523 sider");
-
-      // Verify "Source" field and its value
-      cy.get(".list-description__item")
-        .contains("Source")
-        .next()
-        .should("contain.text", "Bibliotekskatalog");
+    materialPage.components.Editions((editions) => {
+      editions
+        .open()
+        .expandManifestationDetails(0)
+        .verifyField("Type", "bog")
+        .verifyField("Language", "dansk")
+        .verifyField("Genre", "romaner / slægtsromaner")
+        .verifyField("Contributors", "Ulla Lauridsen (oversætter)")
+        .verifyField("Original title", "The seven sisters")
+        .verifyField("ISBN", "9788763849630")
+        .verifyField("Edition", "2. udgave, 2017")
+        .verifyField("Scope", "523")
+        .verifyField("Publisher", "Cicero")
+        .verifyField("Authors", "Lucinda Riley")
+        .verifyField("Dimensions", "523 sider")
+        .verifyField("Source", "Bibliotekskatalog");
     });
   });
 
   it("Renders editions with a reservation button", () => {
-    materialPage.openMaterialEditions();
-
-    materialPage.elements
-      .materialEditionsDisclosure()
-      .should("contain", "Editions")
-      .then((disclosure) => {
-        cy.wrap(disclosure).should("contain", "Reserve");
-      });
+    materialPage.components.Editions((editions) => {
+      editions.open();
+      editions.getreservePhysicalButtons().should("have.length", 2);
+    });
   });
 
   it("Opens modal by clicking on reservation button and closes it with the x button", () => {
     cy.createFakeAuthenticatedSession();
 
     materialPage.scrollToToMaterialTDescription();
-    materialPage.clickReserveButton();
 
-    materialPage.scrollToReservationModalList();
+    materialPage.components.ReservationModal((modal) => {
+      modal.clickReserveButton();
+      modal.scrollToList();
 
-    materialPage.elements
-      .reservationModalListItemEq(0)
-      .and("contain", "Edition")
-      .and("contain", "First available edition");
-    materialPage.elements
-      .reservationModalListItemEq(1)
-      .and("contain", "Have no interest after")
-      .and("contain", "14 days");
-    materialPage.elements
-      .reservationModalListItemEq(2)
-      .and("contain", "Pick up at")
-      .and("contain", "Hovedbiblioteket");
-    materialPage.elements
-      .reservationModalListItemEq(3)
-      .and("contain", "You will receive an SMS when the material is ready")
-      .and("contain", "12345678");
-    materialPage.elements
-      .reservationModalListItemEq(4)
-      .and("contain", "You will receive an email when the material is ready")
-      .and("contain", "test@test.com");
+      modal.field("Edition").should("contain", "First available edition");
+      modal.field("Have no interest after").should("contain", "14 days");
+      modal.field("Pick up at").should("contain", "Hovedbiblioteket");
+      modal
+        .field("You will receive an SMS when the material is ready")
+        .should("contain", "12345678");
+      modal
+        .field("You will receive an email when the material is ready")
+        .should("contain", "test@test.com");
 
-    materialPage.closeModalWithX();
+      modal.closeWithX();
+    });
   });
 
   it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
     cy.createFakeAuthenticatedSession();
 
     materialPage.scrollToToMaterialTDescription();
-    materialPage
-      .clickReserveButton()
-      .scrollToReservationModalList()
-      .submitReservation();
 
-    materialPage.elements
-      .reservationSuccessTitle()
-      .should("be.visible")
-      .and("contain", "Material is available and reserved for you!");
+    materialPage.components.ReservationModal((modal) => {
+      modal.clickReserveButton();
+      modal.submit();
 
-    materialPage.elements
-      .numberInQueue()
-      .should("be.visible")
-      .and("contain", "You are number 3 in the queue");
+      modal.elements
+        .title()
+        .should("be.visible")
+        .and("contain", "Material is available and reserved for you!");
 
-    materialPage.closeReservationSuccess();
+      modal.elements
+        .numberInQueue()
+        .should("be.visible")
+        .and("contain", "You are number 3 in the queue");
+
+      modal.closeWithOk();
+    });
   });
 
   it("Renders reviews", () => {
-    materialPage.openMaterialReviews();
-
-    materialPage.elements
-      .materialReviews()
-      .should("contain", "Dorthe Marlene Jørgensen, 2016");
+    materialPage.components.Reviews((reviews) => {
+      reviews.open().verifyReviewContent("Dorthe Marlene Jørgensen, 2016");
+    });
   });
 
   it("Has a selected availability label based on url parameter", () => {
@@ -328,86 +220,86 @@ describe("Material", () => {
   });
 
   it("Displays 8 recommended materials in the related grid", () => {
-    materialPage.elements.materialGridRelated().should("exist");
-    materialPage.elements
-      .materialGridRelated()
-      .find("li")
-      .should("have.length", 8);
+    materialPage.components.RelatedMaterials((relatedMaterials) => {
+      relatedMaterials.elements.materialGrid().should("exist");
+      relatedMaterials.elements.materialItems().should("have.length", 8);
+    });
   });
 
   it("Renders 3 filter buttons and can click author and series filters", () => {
-    materialPage.elements.relatedFilterButtons().should("have.length", 3);
-
-    materialPage.elements
-      .relatedFilterButtons()
-      .contains("Recommendations")
-      .click();
-
-    materialPage.elements
-      .relatedFilterButtons()
-      .contains("In same series")
-      .click();
-
-    materialPage.elements
-      .relatedFilterButtons()
-      .contains("By same author")
-      .click();
+    materialPage.components.RelatedMaterials((relatedMaterials) => {
+      relatedMaterials.elements.filterButtons().should("have.length", 3);
+      relatedMaterials.clickFilterButton("Recommendations");
+      relatedMaterials.clickFilterButton("In same series");
+      relatedMaterials.clickFilterButton("By same author");
+    });
   });
 
   it("Shows find on shelf button for physical materials", () => {
     materialPage.scrollToToMaterialTDescription();
 
-    materialPage.elements
-      .findFirstOnShelfButton()
-      .should("be.visible")
-      .and("contain", "Find on shelf");
+    materialPage.components.FindOnShelf((findOnShelf) => {
+      findOnShelf.elements
+        .findFirstOnShelfButton()
+        .should("be.visible")
+        .and("contain", "Find on shelf");
+    });
   });
 
   it("Opens find on shelf modal when button is clicked", () => {
     materialPage.scrollToToMaterialTDescription();
-    materialPage.elements.findFirstOnShelfButton().click({ force: true });
 
-    materialPage.elements.findOnShelfModal().should("be.visible");
-    materialPage.elements.findOnShelfModalHeader().should("be.visible");
+    materialPage.components.FindOnShelf((findOnShelf) => {
+      findOnShelf.elements.findFirstOnShelfButton().click({ force: true });
+      findOnShelf.elements.findOnShelfModal().should("be.visible");
+      findOnShelf.elements.findOnShelfModalHeader().should("be.visible");
+    });
   });
 
   it("Shows location data and availability count in find on shelf modal", () => {
     materialPage.scrollToToMaterialTDescription();
-    materialPage.elements.findFirstOnShelfButton().click({ force: true });
 
-    materialPage.elements.findOnShelfModal().should("be.visible");
-    materialPage.elements.pageFoldEq(0).contains("Unavailable");
-    materialPage.elements.findOnShelfModalDisclosuresEq(0).click();
+    materialPage.components.FindOnShelf((findOnShelf) => {
+      findOnShelf.elements.findFirstOnShelfButton().click({ force: true });
+      findOnShelf.elements.findOnShelfModal().should("be.visible");
 
-    materialPage.elements.findOnShelfContainerEq(0).within(() => {
-      materialPage.elements
-        .findOnShelfMaterialHeader()
-        .should("contain", "Material");
-      materialPage.elements
-        .findOnShelfLocationHeader()
-        .should("contain", "Find it on shelf");
-      materialPage.elements
-        .findOnShelfItemCountHeader()
-        .should("contain", "home");
+      // Use pageFoldEq from MaterialPage as it's a general page element
+      materialPage.elements.pageFoldEq(0).contains("Unavailable");
+      findOnShelf.elements.findOnShelfModalDisclosuresEq(0).click();
 
-      // Assert rows
-      materialPage.elements.findOnShelfRows().should("have.length", 1);
+      findOnShelf.elements.findOnShelfContainerEq(0).within(() => {
+        findOnShelf.elements
+          .findOnShelfMaterialHeader()
+          .should("contain", "Material");
+        findOnShelf.elements
+          .findOnShelfLocationHeader()
+          .should("contain", "Find it on shelf");
+        findOnShelf.elements
+          .findOnShelfItemCountHeader()
+          .should("contain", "home");
 
-      // Check specific contents
-      materialPage.elements.findOnShelfMaterialText().each(($el) => {
-        cy.wrap($el).should("contain.text", "De syv søstre (2017)");
-      });
+        // Assert rows
+        findOnShelf.elements.findOnShelfRows().should("have.length", 1);
 
-      materialPage.elements
-        .findOnShelfRowEq(0)
-        .should("contain.text", "Voksen · Historiske romaner · Riley, Lucinda");
-      materialPage.elements
-        .findOnShelfRowEq(1)
-        .should("contain.text", "Voksen · Skønlitteratur · Riley, Lucinda");
+        // Check specific contents
+        findOnShelf.elements.findOnShelfMaterialText().each(($el) => {
+          cy.wrap($el).should("contain.text", "De syv søstre (2017)");
+        });
 
-      // Check that both show count 0
-      materialPage.elements.findOnShelfItemCountText().each(($el) => {
-        cy.wrap($el).should("contain.text", "0");
+        findOnShelf.elements
+          .findOnShelfRowEq(0)
+          .should(
+            "contain.text",
+            "Voksen · Historiske romaner · Riley, Lucinda"
+          );
+        findOnShelf.elements
+          .findOnShelfRowEq(1)
+          .should("contain.text", "Voksen · Skønlitteratur · Riley, Lucinda");
+
+        // Check that both show count 0
+        findOnShelf.elements.findOnShelfItemCountText().each(($el) => {
+          cy.wrap($el).should("contain.text", "0");
+        });
       });
     });
   });
