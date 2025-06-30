@@ -149,7 +149,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           ariaLabel={t("advancedSearchFirstAccessionDateSpecifyDateText")}
           type="text"
           onChange={(date) => handleInputChange("firstAccessionDate", date)}
-          value={String(firstAccessionDateFilter)}
+          value={firstAccessionDateFilter}
         />
       </div>
     </>
