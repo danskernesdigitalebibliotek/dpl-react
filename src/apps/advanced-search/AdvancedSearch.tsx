@@ -40,11 +40,10 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     useState<string>("");
   const [firstAccessionOperatorFilter, setFirstAccessionOperatorFilter] =
     useState<FirstAccessionOperatorFilter>(">");
+
   const [sort, setSort] = useState<AdvancedSortMapStrings>(
     AdvancedSortMapStrings.Relevance
   );
-  const [updateSearchResults, setUpdateSearchResults] =
-    useState<boolean>(false);
 
   const handleLocationChange = (location: string) => {
     setLocationFilter((prevFilter) => ({
@@ -182,16 +181,6 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     setExecutedQuery(searchQuery);
   }, [searchQuery]);
 
-  // Enable API search query when the user clicks the search button, then disable it
-  // again to prevent searching every time the user changes the search form.
-  useEffect(() => {
-    if (updateSearchResults) {
-      setTimeout(() => {
-        setUpdateSearchResults(false);
-      }, 1000);
-    }
-  }, [updateSearchResults]);
-
   return (
     <div className="advanced-search">
       {!showResultOnly && (
@@ -209,7 +198,6 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           locationFilter={locationFilter}
           firstAccessionDateFilter={firstAccessionDateFilter}
           firstAccessionOperatorFilter={firstAccessionOperatorFilter}
-          setUpdateSearchResults={setUpdateSearchResults}
         />
       )}
       {executedQuery && (
@@ -223,7 +211,6 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           firstAccessionOperatorFilter={firstAccessionOperatorFilter}
           sort={sort}
           setSort={handleSortChange}
-          updateSearchResults={updateSearchResults}
         />
       )}
     </div>

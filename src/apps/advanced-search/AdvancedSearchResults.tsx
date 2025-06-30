@@ -32,7 +32,6 @@ interface AdvancedSearchResultProps {
   firstAccessionOperatorFilter: FirstAccessionOperatorFilter;
   sort: AdvancedSortMapStrings;
   setSort: (value: AdvancedSortMapStrings) => void;
-  updateSearchResults: boolean;
 }
 
 const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
@@ -44,8 +43,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   firstAccessionDateFilter,
   firstAccessionOperatorFilter,
   sort,
-  setSort,
-  updateSearchResults
+  setSort
 }) => {
   const t = useText();
   const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
@@ -79,28 +77,25 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     setResultItems([]);
   }, [q, pageSize]);
 
-  const { data, isLoading } = useComplexSearchWithPaginationQuery(
-    {
-      cql,
-      offset: page * pageSize,
-      limit: pageSize,
-      filters: {
-        branchId: cleanBranches,
-        status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
-        ...(locationFilter?.location?.length && {
-          location: locationFilter.location
-        }),
-        ...(locationFilter?.sublocation?.length && {
-          sublocation: locationFilter.sublocation
-        }),
-        firstAccessionDate: firstAccessionDateFilter
-          ? `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`
-          : ""
-      },
-      ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
+  const { data, isLoading } = useComplexSearchWithPaginationQuery({
+    cql,
+    offset: page * pageSize,
+    limit: pageSize,
+    filters: {
+      branchId: cleanBranches,
+      status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
+      ...(locationFilter?.location?.length && {
+        location: locationFilter.location
+      }),
+      ...(locationFilter?.sublocation?.length && {
+        sublocation: locationFilter.sublocation
+      }),
+      firstAccessionDate: firstAccessionDateFilter
+        ? `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`
+        : ""
     },
-    { enabled: showContentOnly || updateSearchResults }
-  );
+    ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
+  });
 
   useEffect(() => {
     if (!data) {
