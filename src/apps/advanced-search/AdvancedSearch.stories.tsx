@@ -451,7 +451,7 @@ export const Primary: Story = {
     advancedSearchFilterExactDateText: "Exact date",
     advancedSearchFilterEarlierThanText: "Earlier than",
     advancedSearchFirstAccessionDateDescriptionText:
-      "Formatet skal være ÅÅÅÅ-DD-MM fx 2024-24-11. Der kan også anvendes ”NOW”, ”DAYS” og ”MONTHS”, fx ”NOW - 60 DAYS”. Husk at tilføje mellemrum på begge sider af plus og minus tegn",
+      "The format should be YYYY-MM-DD e.g. 2024-11-24. Terms ”NOW”, ”DAYS” and ”MONTHS” can also be used. For example ”NOW - 90 DAYS”. Remember to add a space on both sides of the plus and minus symbols.",
     advancedSearchFirstAccessionDateSpecifyDateText:
       "Input desired date in format 'YYYY-MM-DD'"
   }
