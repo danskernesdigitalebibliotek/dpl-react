@@ -43,9 +43,7 @@ export const shouldShowMaterialAvailabilityText = (
 ) => {
   const firstManifestation = getFirstManifestation(manifestations);
   const shouldShowOnlineAvailability =
-    !isAnonymous() &&
-    firstManifestation &&
-    isMaterialButtonsOnlineInternal(firstManifestation);
+    firstManifestation && isMaterialButtonsOnlineInternal(firstManifestation);
 
   const shouldShowPhysicalAvailability =
     isPhysical(manifestations) &&
