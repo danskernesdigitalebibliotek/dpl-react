@@ -122,6 +122,7 @@ export const Primary: Story = {
     sublocation: "",
     onshelf: "false",
     sort: AdvancedSortMapStrings.Relevance,
+    firstaccessiondateitem: "",
     selectedAmountOfMaterialsForDisplay: 12,
     buttonText: "Show all",
     materialUrl: "/work/:workid",

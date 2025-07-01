@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useCopyToClipboard } from "react-use";
+import React, { useEffect, useState, useMemo } from "react";
+import { isEqual } from "lodash";
+import { useCopyToClipboard, usePrevious } from "react-use";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
@@ -16,7 +17,11 @@ import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";
 import AdvancedSortSelect from "./AdvancedSortSelect";
-import { advancedSortMap, AdvancedSortMapStrings } from "./types";
+import {
+  advancedSortMap,
+  AdvancedSortMapStrings,
+  FirstAccessionOperatorFilter
+} from "./types";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -24,9 +29,19 @@ interface AdvancedSearchResultProps {
   showContentOnly: boolean;
   onShelf: boolean;
   locationFilter: LocationFilter;
+  firstAccessionDateFilter: string | null;
+  firstAccessionOperatorFilter: FirstAccessionOperatorFilter;
   sort: AdvancedSortMapStrings;
   setSort: (value: AdvancedSortMapStrings) => void;
 }
+
+type FilterState = Pick<
+  AdvancedSearchResultProps,
+  | "locationFilter"
+  | "firstAccessionDateFilter"
+  | "firstAccessionOperatorFilter"
+  | "sort"
+>;
 
 const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   q,
@@ -34,6 +49,8 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   showContentOnly,
   onShelf,
   locationFilter,
+  firstAccessionDateFilter,
+  firstAccessionOperatorFilter,
   sort,
   setSort
 }) => {
@@ -42,12 +59,28 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
-  const { PagerComponent, page } = usePager({
+  const { PagerComponent, page, resetPage } = usePager({
     hitcount,
     pageSize
   });
   const [cql, setCql] = useState<string>(q);
   const [, copy] = useCopyToClipboard();
+
+  const currentFilters: FilterState = useMemo(
+    () => ({
+      locationFilter,
+      firstAccessionDateFilter,
+      firstAccessionOperatorFilter,
+      sort
+    }),
+    [
+      locationFilter,
+      firstAccessionDateFilter,
+      firstAccessionOperatorFilter,
+      sort
+    ]
+  );
+  const prevFilters = usePrevious(currentFilters);
 
   useEffect(() => {
     setCql(q);
@@ -81,7 +114,12 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       }),
       ...(locationFilter?.sublocation?.length && {
         sublocation: locationFilter.sublocation
-      })
+      }),
+      ...(firstAccessionDateFilter && firstAccessionOperatorFilter
+        ? {
+            firstAccessionDate: `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`
+          }
+        : {})
     },
     ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
   });
@@ -119,6 +157,13 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       }, 2000);
     }
   }, [copiedLinkToSearch]);
+
+  // Reset page to 0 when filters or sort change (but not on initial render)
+  useEffect(() => {
+    if (prevFilters && !isEqual(prevFilters, currentFilters)) {
+      resetPage();
+    }
+  }, [resetPage, prevFilters, currentFilters]);
 
   return (
     <>

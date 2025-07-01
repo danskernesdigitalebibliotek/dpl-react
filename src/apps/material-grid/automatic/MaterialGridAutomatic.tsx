@@ -23,6 +23,7 @@ export type MaterialGridAutomaticProps = {
   sublocation?: string;
   onshelf?: boolean;
   sort?: string;
+  firstaccessiondateitem?: string;
 };
 
 const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
@@ -33,7 +34,8 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   sort,
   title,
   description,
-  selectedAmountOfMaterialsForDisplay
+  selectedAmountOfMaterialsForDisplay,
+  firstaccessiondateitem
 }) => {
   const t = useText();
   const buttonText = t("buttonText");
@@ -49,7 +51,10 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
       ...(sublocation
         ? { sublocation: commaSeparatedStringToArray(sublocation) }
         : {}),
-      ...(onshelf ? { status: [HoldingsStatusEnum.Onshelf] } : {})
+      ...(onshelf ? { status: [HoldingsStatusEnum.Onshelf] } : {}),
+      ...(firstaccessiondateitem
+        ? { firstAccessionDate: decodeURIComponent(firstaccessiondateitem) }
+        : {})
     },
     ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
   });
