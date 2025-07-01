@@ -1,6 +1,5 @@
 import { getFirstManifestation } from "../../apps/material/helper";
 import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
-import { isAnonymous } from "../../core/utils/helpers/user";
 import { Manifestation } from "../../core/utils/types/entities";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { getReaderPlayerType } from "../reader-player/helper";
