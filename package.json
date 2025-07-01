@@ -45,7 +45,7 @@
     "post-process-generated-graphql": "ts-node ./scripts/post-process-generated-graphql.ts"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.4",
+    "@babel/core": "^7.27.7",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@babel/preset-env": "^7.27.2",
@@ -54,10 +54,10 @@
     "@chromatic-com/storybook": "^3",
     "@csstools/postcss-sass": "^5.1.1",
     "@cypress/browserify-preprocessor": "^3.0.2",
-    "@cypress/code-coverage": "^3.14.4",
+    "@cypress/code-coverage": "^3.14.5",
     "@cypress/webpack-preprocessor": "^6.0.4",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.29.0",
+    "@eslint/js": "^9.30.0",
     "@graphql-codegen/add": "^5.0.3",
     "@graphql-codegen/cli": "^5.0.3",
     "@graphql-codegen/introspection": "^4.0.3",
@@ -92,7 +92,7 @@
     "babel-plugin-istanbul": "^7.0.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "caniuse-lite": "^1.0.30001724",
+    "caniuse-lite": "^1.0.30001726",
     "change-case-all": "^2.1.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.2.0",
@@ -115,7 +115,7 @@
     "eslint-webpack-plugin": "^5.0.2",
     "glob": "11.0.1",
     "globals": "^16.2.0",
-    "happy-dom": "^17.6.3",
+    "happy-dom": "^18.0.1",
     "istanbul-lib-coverage": "^3.2.2",
     "markdownlint-cli2": "^0.16.0",
     "mutationobserver-shim": "^0.3.7",
@@ -151,7 +151,7 @@
     "prop-types": "Since we use former ddb-react components that depend on prop-types we keep this. Should be removed when usage of prop-types is deprecated."
   },
   "dependencies": {
-    "@danskernesdigitalebibliotek/dpl-design-system": "0.0.0-503b14cd6ed856b4bbf6537e2dffdddc0dc104b4",
+    "@danskernesdigitalebibliotek/dpl-design-system": "2025.27.0-a301abfb35e16b2f5ecfcd8a234e2ac4bb2497b5",
     "@fullcalendar/core": "^6.1.17",
     "@fullcalendar/daygrid": "^6.1.17",
     "@fullcalendar/interaction": "^6.1.17",

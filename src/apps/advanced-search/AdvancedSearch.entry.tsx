@@ -75,6 +75,13 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterLocationDescriptionText: string;
   advancedSearchFilterSublocationText: string;
   advancedSearchFilterSublocationDescriptionText: string;
+  advancedSearchFirstAccessionDateText: string;
+  advancedSearchFirstAccessionDateOperatorText: string;
+  advancedSearchFilterLaterThanText: string;
+  advancedSearchFilterExactDateText: string;
+  advancedSearchFilterEarlierThanText: string;
+  advancedSearchFirstAccessionDateDescriptionText: string;
+  advancedSearchFirstAccessionDateSpecifyDateText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
