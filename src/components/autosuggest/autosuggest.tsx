@@ -15,7 +15,6 @@ export interface AutosuggestProps {
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   categoryData?: SuggestionsFromQueryStringQuery["suggest"]["result"];
   isLoading: boolean;
   dataCy?: string;
@@ -28,7 +27,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   highlightedIndex,
   getItemProps,
   isOpen,
-  setIsOpen,
   categoryData,
   isLoading,
   dataCy = "autosuggest"
@@ -45,13 +43,6 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
 
   return (
     <>
-      {isOpen && (
-        <div
-          aria-hidden
-          className="autosuggest-backdrop"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
       {/* The downshift combobox works this way by design */}
       <ul
         className="autosuggest pb-16"
