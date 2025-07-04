@@ -80,6 +80,12 @@ function Modal({
     dispatch(closeModal({ modalId }));
   };
 
+  const handleCloseKeyUp = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      close();
+    }
+  };
+
   return (
     <FocusTrap
       focusTrapOptions={{
@@ -98,9 +104,10 @@ function Modal({
             // the remaining modals
             zIndex: modalIds.indexOf(modalId) + 20
           }}
-          onClick={() => {
+          onMouseUp={() => {
             close();
           }}
+          onKeyUp={handleCloseKeyUp}
         />
         <div
           className={clsx(
@@ -134,9 +141,10 @@ function Modal({
               zIndex: modalIds.indexOf(modalId) + 20
             }}
             aria-label={closeModalAriaLabelText}
-            onClick={() => {
+            onMouseUp={() => {
               close();
             }}
+            onKeyUp={handleCloseKeyUp}
             data-cy={`modal-${modalId}-close-button`}
           >
             <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />

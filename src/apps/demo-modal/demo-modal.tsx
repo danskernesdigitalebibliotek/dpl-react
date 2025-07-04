@@ -9,7 +9,7 @@ const DemoModal: React.FC = () => {
   const modalIdOne = "demo-modal-one";
   const modalIdTwo = "demo-modal-two";
 
-  const onClick = (modalId: ModalId) => () => {
+  const handleOpenModal = (modalId: ModalId) => {
     open(modalId);
   };
 
@@ -31,7 +31,12 @@ const DemoModal: React.FC = () => {
         <button
           type="button"
           id={`${modalIdTwo}-button`}
-          onClick={onClick(modalIdTwo)}
+          onMouseUp={() => handleOpenModal(modalIdTwo)}
+          onKeyUp={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleOpenModal(modalIdTwo);
+            }
+          }}
         >
           Show Modal 2
         </button>
@@ -39,7 +44,12 @@ const DemoModal: React.FC = () => {
       <button
         type="button"
         id={`${modalIdOne}-button`}
-        onClick={onClick(modalIdOne)}
+        onMouseUp={() => handleOpenModal(modalIdOne)}
+        onKeyUp={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            handleOpenModal(modalIdOne);
+          }
+        }}
       >
         Show Modal 1
       </button>
