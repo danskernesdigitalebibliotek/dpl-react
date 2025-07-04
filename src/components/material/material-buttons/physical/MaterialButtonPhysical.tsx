@@ -49,22 +49,25 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   };
 
   return (
-    <Button
-      dataCy={dataCy}
-      label={
-        size === "small"
-          ? t("reserveText")
-          : `${t("reserveWithMaterialTypeText", {
-              placeholders: { "@materialType": manifestationMaterialType }
-            })}`
-      }
-      buttonType="none"
-      variant="filled"
-      disabled={false}
-      collapsible={false}
-      size={size || "large"}
-      onClick={onClick}
-    />
+    <>
+      <pre>{JSON.stringify(faustIds, null, 2)}</pre>
+      <Button
+        dataCy={dataCy}
+        label={
+          size === "small"
+            ? t("reserveText")
+            : `${t("reserveWithMaterialTypeText", {
+                placeholders: { "@materialType": manifestationMaterialType }
+              })}`
+        }
+        buttonType="none"
+        variant="filled"
+        disabled={false}
+        collapsible={false}
+        size={size || "large"}
+        onClick={onClick}
+      />
+    </>
   );
 };
 
