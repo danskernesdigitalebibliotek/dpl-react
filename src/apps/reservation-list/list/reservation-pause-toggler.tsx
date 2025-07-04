@@ -5,6 +5,7 @@ import { useText } from "../../../core/utils/text";
 import { PatronV5 } from "../../../core/fbs/model";
 import { formatDate } from "../../../core/utils/helpers/date";
 import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
+import { isActivationKeys } from "../../../core/utils/helpers/general";
 
 interface ReservationPauseTogglerProps {
   user: PatronV5;
@@ -58,7 +59,7 @@ const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
             type="button"
             onMouseUp={openPauseReservationModal}
             onKeyUp={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
+              if (isActivationKeys(e.key)) {
                 openPauseReservationModal();
               }
             }}

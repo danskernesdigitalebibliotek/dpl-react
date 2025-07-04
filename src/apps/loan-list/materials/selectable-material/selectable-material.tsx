@@ -11,6 +11,7 @@ import ArrowButton from "../../../../components/Buttons/ArrowButton";
 import { isDigital } from "../../utils/helpers";
 import { listId, ListType } from "../../../../core/utils/types/list-type";
 import SelectableMaterialSkeleton from "./selectable-material-skeleton";
+import { isActivationKeys } from "../../../../core/utils/helpers/general";
 
 interface SelectableMaterialProps {
   identifier?: string | null;
@@ -65,7 +66,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   const handleOnKeyUp = (
     e: React.KeyboardEvent<HTMLDivElement | HTMLButtonElement>
   ) => {
-    if (openDetailsModal && (e.key === "Enter" || e.key === " ")) {
+    if (openDetailsModal && isActivationKeys(e.key)) {
       openDetailsModal(item);
     }
   };

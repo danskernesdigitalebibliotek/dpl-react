@@ -10,6 +10,7 @@ import {
   redirectToLoginAndBack
 } from "./helpers/url";
 import { isVitestEnvironment } from "./helpers/vitest";
+import { isActivationKeys } from "./helpers/general";
 
 type ModalId = string;
 
@@ -83,7 +84,7 @@ function Modal({
   };
 
   const handleCloseKeyUp = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
+    if (isActivationKeys(e.key)) {
       close();
     }
   };
