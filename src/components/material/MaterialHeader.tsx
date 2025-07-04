@@ -182,7 +182,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
                   />
                 </div>
                 {/* MaterialAvailabilityText is only shown for:
-                    - Online manifestations if the user is logged in
+                    - Online manifestations
                     - physical manifestations
                     - that are not periodical or articles
                     - that are available in at least one local library branch

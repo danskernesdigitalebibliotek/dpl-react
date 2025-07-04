@@ -10,6 +10,7 @@ import MaterialAvailabilityTextParagraph from "../generic/MaterialAvailabilityTe
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
 import { AvailabilityTextMap, getAvailabilityText } from "./helper";
 import { playerTypes, readerTypes } from "../../../reader-player/helper";
+import { isAnonymous } from "../../../../core/utils/helpers/user";
 
 interface MaterialAvailabilityTextOnlineProps {
   isbns: string[];
@@ -19,6 +20,7 @@ interface MaterialAvailabilityTextOnlineProps {
 const MaterialAvailabilityTextOnline: React.FC<
   MaterialAvailabilityTextOnlineProps
 > = ({ isbns, materialType }) => {
+  const isUserAnonymous = isAnonymous();
   const t = useText();
   const { data: productsData } = useGetV1ProductsIdentifier(
     first(isbns) || "",
@@ -30,21 +32,31 @@ const MaterialAvailabilityTextOnline: React.FC<
       }
     }
   );
-  const { data: libraryProfileData } = useGetV1LibraryProfile();
-  const { data: loansData } = useGetV1UserLoans();
 
-  if (!libraryProfileData || !loansData || !productsData) return null;
+  const { data: libraryProfileData } = useGetV1LibraryProfile({
+    query: {
+      enabled: !isUserAnonymous
+    }
+  });
+  const { data: loansData } = useGetV1UserLoans(
+    {},
+    {
+      query: {
+        enabled: !isUserAnonymous
+      }
+    }
+  );
 
-  const totalEbookLoans = loansData?.userData?.totalEbookLoans;
-  const totalAudioLoans = loansData?.userData?.totalAudioLoans;
-
-  const {
-    maxConcurrentEbookLoansPerBorrower,
-    maxConcurrentAudioLoansPerBorrower
-  } = libraryProfileData;
+  if (!productsData) return null;
 
   const availabilityTextMap: AvailabilityTextMap = {
     ...readerTypes.reduce((acc, type) => {
+      if (isUserAnonymous) return acc;
+
+      const totalEbookLoans = loansData?.userData?.totalEbookLoans;
+      const maxConcurrentEbookLoansPerBorrower =
+        libraryProfileData?.maxConcurrentEbookLoansPerBorrower;
+
       return {
         ...acc,
         [type]: {
@@ -55,6 +67,12 @@ const MaterialAvailabilityTextOnline: React.FC<
       };
     }, {}),
     ...playerTypes.reduce((acc, type) => {
+      if (isUserAnonymous) return acc;
+
+      const totalAudioLoans = loansData?.userData?.totalAudioLoans;
+      const maxConcurrentAudioLoansPerBorrower =
+        libraryProfileData?.maxConcurrentAudioLoansPerBorrower;
+
       return {
         ...acc,
         [type]: {
