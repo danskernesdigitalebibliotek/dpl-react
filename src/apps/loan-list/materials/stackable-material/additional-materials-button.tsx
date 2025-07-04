@@ -1,5 +1,6 @@
 import React, { useCallback, FC, MouseEvent } from "react";
 import { useText } from "../../../../core/utils/text";
+import { isActivationKeys } from "../../../../core/utils/helpers/general";
 
 interface AdditionalMaterialsButtonProps {
   additionalMaterials: number;
@@ -28,7 +29,7 @@ const AdditionalMaterialsButton: FC<AdditionalMaterialsButtonProps> = ({
       type="button"
       onMouseUp={(e) => openDueDateModalCallBack(e)}
       onKeyUp={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
+        if (isActivationKeys(e.key)) {
           openDueDateModalCallBack(e as unknown as MouseEvent);
         }
       }}
