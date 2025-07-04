@@ -54,7 +54,12 @@ export const Button: React.FC<ButtonProps> = ({
         disabled ? "btn-outline" : ""
       } arrow__hover--right-small ${classNames ?? ""}`}
       disabled={disabled || isLoadingRef.current}
-      onClick={handleClick}
+      onMouseUp={handleClick}
+      onKeyUp={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          handleClick();
+        }
+      }}
       id={id}
       aria-describedby={ariaDescribedBy}
     >

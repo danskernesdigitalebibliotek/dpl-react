@@ -25,7 +25,7 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
       className={`${classNames} arrow-button`}
       style={pointer}
       type="button"
-      onClick={(e) => {
+      onMouseUp={(e) => {
         if (clickEventHandler) {
           e.stopPropagation();
           clickEventHandler();

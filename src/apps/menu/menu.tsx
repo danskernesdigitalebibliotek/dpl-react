@@ -54,8 +54,12 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
         data-cy="header-menu-profile-button"
         type="button"
         aria-label={getAriaLabel()}
-        onClick={() => openMenu()}
-        onKeyDown={(e) => e.key === "Enter" && openMenu()}
+        onMouseUp={() => openMenu()}
+        onKeyUp={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            openMenu();
+          }
+        }}
         tabIndex={0}
       >
         <img src={profileIcon} className="header__button-icon" alt="" />
