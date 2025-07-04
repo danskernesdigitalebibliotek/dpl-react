@@ -1,12 +1,17 @@
 import React, { FC } from "react";
 import { PatronV5 } from "../../../core/fbs/model";
 import { useText } from "../../../core/utils/text";
+import { FriendlyCardResult } from "../../../core/publizon/model";
 
 interface BasicDetailsSectionProps {
   patron: PatronV5;
+  patronCardNumber?: FriendlyCardResult | null;
 }
 
-const BasicDetailsSection: FC<BasicDetailsSectionProps> = ({ patron }) => {
+const BasicDetailsSection: FC<BasicDetailsSectionProps> = ({
+  patron,
+  patronCardNumber
+}) => {
   const t = useText();
   const {
     address: { coName, street, postalCode, city, country } = {
@@ -25,6 +30,16 @@ const BasicDetailsSection: FC<BasicDetailsSectionProps> = ({ patron }) => {
         {t("patronPageBasicDetailsHeaderText")}
       </h2>
       <div className="dpl-patron-info">
+        {patronCardNumber?.friendlyCardNumber && (
+          <>
+            <h3 className="dpl-patron-info__label text-header-h4">
+              {t("patronPageBasicFriendlyCardNumberLabelText")}
+            </h3>
+            <div className="dpl-patron-info__text">
+              {patronCardNumber.friendlyCardNumber}
+            </div>
+          </>
+        )}
         <h3 className="dpl-patron-info__label text-header-h4">
           {t("patronPageBasicDetailsNameLabelText")}
         </h3>

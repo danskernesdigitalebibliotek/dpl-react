@@ -32,6 +32,7 @@ interface PatronPageTextProps {
   patronPageBasicDetailsAddressLabelText: string;
   patronPageBasicDetailsHeaderText: string;
   patronPageBasicDetailsNameLabelText: string;
+  patronPageBasicFriendlyCardNumberLabelText: string;
   patronPageChangePickupBodyText: string;
   patronPageChangePickupHeaderText: string;
   patronPageChangePincodeBodyText: string;
