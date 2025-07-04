@@ -17,9 +17,9 @@ const MaterialSecondaryButton: FC<MaterialSecondaryButtonProps> = ({
   dataCy,
   ariaDescribedBy
 }) => {
-  // If element is currently focused on, we would like to let users open it using enter
-  const handleKeyUp = (key: string) => {
-    if (key === "Enter") {
+  // If element is currently focused on, we would like to let users open it using enter or space
+  const handleKeyUp = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
       onClick();
     }
   };
@@ -44,8 +44,8 @@ const MaterialSecondaryButton: FC<MaterialSecondaryButtonProps> = ({
     <button
       className="link-tag text-small-caption material-manifestation-item__find capitalize-all btn-ui"
       aria-describedby={ariaDescribedBy}
-      onClick={onClick}
-      onKeyUp={(e) => handleKeyUp(e.key)}
+      onMouseUp={onClick}
+      onKeyUp={handleKeyUp}
       tabIndex={0}
       type="button"
       data-cy={dataCy}

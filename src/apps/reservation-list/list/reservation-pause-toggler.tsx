@@ -56,7 +56,12 @@ const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
           <button
             aria-label={t("reservationListPauseReservationAriaModalText")}
             type="button"
-            onClick={openPauseReservationModal}
+            onMouseUp={openPauseReservationModal}
+            onKeyUp={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                openPauseReservationModal();
+              }
+            }}
             className="btn-primary btn-filled btn-small"
           >
             {t("reservationListPauseReservationButtonText")}

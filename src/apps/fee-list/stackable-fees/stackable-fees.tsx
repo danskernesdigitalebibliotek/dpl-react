@@ -40,9 +40,9 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   return (
     <button
       type="button"
-      onClick={() => openDetailsModalClickEvent(feeData.feeId)}
+      onMouseUp={() => openDetailsModalClickEvent(feeData.feeId)}
       onKeyUp={(e) => {
-        if (e.key === "Enter" || e.key === "Space") {
+        if (e.key === "Enter" || e.key === " ") {
           openDetailsModalClickEvent(feeData.feeId);
         }
       }}

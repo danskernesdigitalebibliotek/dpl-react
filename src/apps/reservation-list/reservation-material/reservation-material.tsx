@@ -33,9 +33,9 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
         data-cy={dataCy}
         className="list-reservation my-32 cursor-pointer arrow__hover--right-small"
         role="button"
-        onClick={() => openDetailsModal()}
+        onMouseUp={() => openDetailsModal()}
         onKeyUp={(e) => {
-          if (e.key === "Enter" || e.key === "Space") {
+          if (e.key === "Enter" || e.key === " ") {
             openDetailsModal();
           }
         }}
