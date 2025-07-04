@@ -5,7 +5,7 @@ import { useText } from "../../../../core/utils/text";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
 import ListDetails from "../../../../components/list-details/list-details";
-import { formatDateTime } from "../../../../core/utils/helpers/date";
+import { formatDateTimeUtc } from "../../../../core/utils/helpers/date";
 
 export interface DigitalListDetailsProps {
   reservation: ReservationType;
@@ -25,7 +25,7 @@ const DigitalListDetails: FC<DigitalListDetailsProps & MaterialProps> = ({
           icon={ReservationsIcon}
           title={t("reservationDetailsStatusTitleText")}
           labels={t("reservationDetailsExpiresText", {
-            placeholders: { "@date": formatDateTime(expiryDate) }
+            placeholders: { "@date": formatDateTimeUtc(expiryDate) }
           })}
         />
       )}
@@ -34,14 +34,14 @@ const DigitalListDetails: FC<DigitalListDetailsProps & MaterialProps> = ({
           icon={ReservationsIcon}
           title={t("reservationDetailsStatusTitleText")}
           labels={t("reservationDetailsBorrowBeforeText", {
-            placeholders: { "@date": formatDateTime(pickupDeadline) }
+            placeholders: { "@date": formatDateTimeUtc(pickupDeadline) }
           })}
         />
       )}
       {dateOfReservation && (
         <ListDetails
           icon={LoansIcon}
-          labels={formatDateTime(dateOfReservation)}
+          labels={formatDateTimeUtc(dateOfReservation)}
           title={t("reservationDetailsDateOfReservationTitleText")}
         />
       )}

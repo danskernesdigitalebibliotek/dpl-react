@@ -509,7 +509,7 @@ describe("Reservation list", () => {
 
         cy.getBySel("info-label").should(
           "have.text",
-          "Borrow before 27-01-2023 20:37"
+          "Borrow before 27-01-2023 19:37"
         );
 
         cy.get(".list-reservation__deadline .text-small-caption").should(
