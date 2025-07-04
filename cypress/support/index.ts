@@ -4,6 +4,7 @@
 import "@cypress/code-coverage/support";
 import { hasOperationName } from "../utils/graphql-test-utils";
 import { Operations } from "../../src/core/dbc-gateway/types";
+import "@testing-library/cypress/add-commands";
 
 const TOKEN_LIBRARY_KEY = "library";
 const TOKEN_USER_KEY = "user";
