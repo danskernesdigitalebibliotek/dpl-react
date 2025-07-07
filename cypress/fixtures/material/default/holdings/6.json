@@ -24,7 +24,7 @@
         "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5442636399",
+            "itemNumber": "5442636429",
             "available": false,
             "periodical": null,
             "materialGroup": {
@@ -54,8 +54,8 @@
         "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5442636380",
-            "available": false,
+            "itemNumber": "5442636402",
+            "available": true,
             "periodical": null,
             "materialGroup": {
               "name": "Standard",
@@ -126,6 +126,30 @@
       },
       {
         "branch": {
+          "branchId": "DK-710109",
+          "title": "Øbro Jagtvej"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": [
+          "Øbro Jagtvej",
+          "2.sal",
+          "Voksen",
+          "Skønlitteratur"
+        ],
+        "materials": [
+          {
+            "itemNumber": "5442636283",
+            "available": true,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
           "branchId": "DK-710104",
           "title": "Blågården"
         },
@@ -156,34 +180,26 @@
       },
       {
         "branch": {
-          "branchId": "DK-710108",
-          "title": "Islands Brygge"
-        },
-        "lmsPlacement": null,
-        "logisticsPlacement": ["Islands Brygge", "Voksen", "Skønlitteratur"],
-        "materials": [
-          {
-            "itemNumber": "5442636313",
-            "available": true,
-            "periodical": null,
-            "materialGroup": {
-              "name": "Standard",
-              "description": "Std. materialegruppe"
-            }
-          }
-        ]
-      },
-      {
-        "branch": {
           "branchId": "DK-710120",
           "title": "Vigerslev"
         },
-        "lmsPlacement": null,
-        "logisticsPlacement": ["Vigerslev", "Voksen", "Skønlitteratur"],
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
         "materials": [
           {
             "itemNumber": "5442636437",
-            "available": true,
+            "available": false,
             "periodical": null,
             "materialGroup": {
               "name": "Standard",
@@ -194,15 +210,26 @@
       },
       {
         "branch": {
-          "branchId": "DK-710115",
-          "title": "Sydhavn"
+          "branchId": "DK-710121",
+          "title": "Østerbro"
         },
-        "lmsPlacement": null,
-        "logisticsPlacement": ["Sydhavn", "Voksen", "Skønlitteratur"],
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5442636429",
-            "available": true,
+            "itemNumber": "5442636410",
+            "available": false,
             "periodical": null,
             "materialGroup": {
               "name": "Standard",
@@ -233,30 +260,6 @@
           {
             "itemNumber": "5442636240",
             "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "Standard",
-              "description": "Std. materialegruppe"
-            }
-          }
-        ]
-      },
-      {
-        "branch": {
-          "branchId": "DK-710119",
-          "title": "Vesterbro"
-        },
-        "lmsPlacement": null,
-        "logisticsPlacement": [
-          "Vesterbro",
-          "Stuen",
-          "Voksen",
-          "Skønlitteratur"
-        ],
-        "materials": [
-          {
-            "itemNumber": "5442636259",
-            "available": true,
             "periodical": null,
             "materialGroup": {
               "name": "Standard",
@@ -405,14 +408,58 @@
       },
       {
         "branch": {
-          "branchId": "DK-710121",
-          "title": "Østerbro"
+          "branchId": "DK-710108",
+          "title": "Islands Brygge"
         },
-        "lmsPlacement": null,
-        "logisticsPlacement": ["Østerbro", "Voksen", "Skønlitteratur"],
+        "lmsPlacement": {
+          "department": {
+            "departmentId": "vo",
+            "title": "Voksen"
+          },
+          "section": null,
+          "location": null,
+          "sublocation": {
+            "sublocationId": "skøn",
+            "title": "Skønlitteratur"
+          }
+        },
+        "logisticsPlacement": [],
         "materials": [
           {
-            "itemNumber": "5442636410",
+            "itemNumber": "5442636399",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          },
+          {
+            "itemNumber": "5442636313",
+            "available": false,
+            "periodical": null,
+            "materialGroup": {
+              "name": "Standard",
+              "description": "Std. materialegruppe"
+            }
+          }
+        ]
+      },
+      {
+        "branch": {
+          "branchId": "DK-710114",
+          "title": "Bibliotekshuset"
+        },
+        "lmsPlacement": null,
+        "logisticsPlacement": [
+          "Bibliotekshuset",
+          "Stuen",
+          "Voksen",
+          "Skønlitteratur"
+        ],
+        "materials": [
+          {
+            "itemNumber": "5442636380",
             "available": true,
             "periodical": null,
             "materialGroup": {
@@ -443,15 +490,6 @@
         "materials": [
           {
             "itemNumber": "5442636372",
-            "available": false,
-            "periodical": null,
-            "materialGroup": {
-              "name": "Standard",
-              "description": "Std. materialegruppe"
-            }
-          },
-          {
-            "itemNumber": "5442636283",
             "available": false,
             "periodical": null,
             "materialGroup": {
