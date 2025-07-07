@@ -166,6 +166,9 @@ describe("Material", () => {
         fixtureFilePath: "material/reservations.json"
       });
       modal.elements.submitButton().click();
+
+      cy.wait("@reservations");
+
       modal.elements.approvalModal().should("be.visible");
 
       modal.elements
