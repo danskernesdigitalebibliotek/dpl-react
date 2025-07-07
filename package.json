@@ -103,6 +103,7 @@
     "dotenv": "^17.0.0",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^10.1.5",
+    "eslint-formatter-rdjson": "^1.0.6",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-cypress": "^4.1.0",
