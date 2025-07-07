@@ -188,6 +188,13 @@ export class MaterialPage extends PageObject {
       fixtureFilePath: "material/user.json"
     });
 
+    // https://login.bib.dk/userinfo/
+    cy.interceptRest({
+      aliasName: "userinfo",
+      url: "**/userinfo",
+      fixtureFilePath: "material/userinfo.json"
+    });
+
     // Availability
     cy.interceptRest({
       aliasName: "Availability",
