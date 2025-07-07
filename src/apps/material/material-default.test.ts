@@ -155,6 +155,7 @@ describe("Material", () => {
 
   it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
     cy.createFakeAuthenticatedSession();
+    cy.wait("@user");
     materialPage.scrollToToMaterialTDescription();
 
     materialPage.components.ReservationModal((modal) => {
