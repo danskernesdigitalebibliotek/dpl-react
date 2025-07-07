@@ -174,6 +174,12 @@ export class MaterialPage extends PageObject {
       fixtureFilePath: "material/default/holdings/6.json"
     });
 
+    cy.interceptRest({
+      aliasName: "holdings 7",
+      url: "**/agencyid/catalog/holdingsLogistics/v1?recordid=53292968&exclude=FBS-101002&exclude=FBS-101003&exclude=FBS-101004&exclude=FBS-101007&exclude=FBS-101010&exclude=FBS-101017&exclude=FBS-101002&exclude=FBS-101003&exclude=FBS-101004&exclude=FBS-101006&exclude=FBS-101007&exclude=FBS-101008&exclude=FBS-101009&exclude=FBS-101010&exclude=FBS-101011&exclude=FBS-101012&exclude=FBS-101017",
+      fixtureFilePath: "material/default/holdings/7.json"
+    });
+
     // Branches
     cy.interceptRest({
       aliasName: "branches",
