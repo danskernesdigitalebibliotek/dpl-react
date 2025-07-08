@@ -23,7 +23,7 @@ describe("Material", () => {
   });
 
   it("Renders a cover with a source", () => {
-    materialPage.shouldHaveCoverWithSource();
+    materialPage.shouldHaveMainCoverWithSource();
   });
 
   it("Renders favorite buttons", () => {

@@ -29,7 +29,10 @@ export class MaterialPage extends PageObject {
 
       // Cover and images
       mainCoverImage: () =>
-        cy.get(".cover").find("img").scrollIntoView({ duration: 100 }),
+        cy
+          .get(".material-header__cover > .cover")
+          .find("img")
+          .scrollIntoView({ duration: 100 }),
 
       // Buttons
       favouriteButton: () =>
@@ -282,7 +285,7 @@ export class MaterialPage extends PageObject {
   }
 
   // Assertion methods
-  shouldHaveCoverWithSource() {
+  shouldHaveMainCoverWithSource() {
     this.elements
       .mainCoverImage()
       .should("have.attr", "src")
