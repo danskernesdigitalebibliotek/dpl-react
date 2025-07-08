@@ -33,7 +33,7 @@ export class MaterialPage extends PageObject {
 
       // Buttons
       favouriteButton: () =>
-        cy.get(".button-favourite").scrollIntoView({ duration: 100 }),
+        cy.get(".button-favourite").first().scrollIntoView({ duration: 100 }),
 
       favouriteIcon: () =>
         cy.get(".icon-favourite").first().scrollIntoView({ duration: 100 }),
@@ -270,13 +270,18 @@ export class MaterialPage extends PageObject {
     return this;
   }
 
-  // Assertion methods
-
-  scrollToToMaterialTDescription() {
-    this.elements.materialDescription();
-    return this;
+  // Enuse the page is loaded and all elements are visible
+  ensurePageIsLoaded() {
+    this.elements
+      .title()
+      .should("be.visible")
+      .invoke("text")
+      .should("not.be.empty");
+    // Scroll to the description to ensure all API calls are made
+    this.elements.materialDescription().should("be.visible");
   }
 
+  // Assertion methods
   shouldHaveCoverWithSource() {
     this.elements
       .mainCoverImage()

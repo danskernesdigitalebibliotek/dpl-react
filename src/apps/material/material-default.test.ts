@@ -12,6 +12,8 @@ describe("Material", () => {
       .interceptDefaultGraphql()
       .interceptDefault();
     materialPage.visitDefaultMaterial();
+    // Ensure the page is loaded
+    materialPage.ensurePageIsLoaded();
   });
 
   it("Renders a title", () => {
@@ -35,8 +37,6 @@ describe("Material", () => {
   });
 
   it("Renders series horizontal lines", () => {
-    materialPage.scrollToToMaterialTDescription();
-
     materialPage.elements
       .seriesDescription(0)
       .should("be.visible")
@@ -44,8 +44,6 @@ describe("Material", () => {
   });
 
   it("Renders only first 3 horizontal lines items", () => {
-    materialPage.scrollToToMaterialTDescription();
-
     materialPage.elements
       .seriesMembers()
       .should("be.visible")
@@ -54,7 +52,6 @@ describe("Material", () => {
   });
 
   it("Renders additional horizontal lines items after button click", () => {
-    materialPage.scrollToToMaterialTDescription();
     materialPage.elements.seriesMembers().findByRole("button").click();
 
     materialPage.elements
@@ -133,8 +130,6 @@ describe("Material", () => {
   it("Opens modal by clicking on reservation button and closes it with the x button", () => {
     cy.createFakeAuthenticatedSession();
 
-    materialPage.scrollToToMaterialTDescription();
-
     materialPage.components.ReservationModal((modal) => {
       modal.elements.reservePhysicalButton().click();
       modal.scrollToList();
@@ -155,8 +150,6 @@ describe("Material", () => {
 
   it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
     cy.createFakeAuthenticatedSession();
-    cy.wait("@user");
-    materialPage.scrollToToMaterialTDescription();
 
     materialPage.components.ReservationModal((modal) => {
       modal.elements.reservePhysicalButton().click();
@@ -193,8 +186,6 @@ describe("Material", () => {
   });
 
   it("Has a selected availability label based on url parameter", () => {
-    materialPage.scrollToToMaterialTDescription();
-
     materialPage.elements
       .availabilityLabels()
       .find('[data-cy="availability-label-type"]')
@@ -204,8 +195,6 @@ describe("Material", () => {
   });
 
   it("Does not have selected availability labels which does not match url parameter", () => {
-    materialPage.scrollToToMaterialTDescription();
-
     materialPage.elements
       .availabilityLabels()
       .find('[data-cy="availability-label-type"]')
@@ -246,8 +235,6 @@ describe("Material", () => {
   });
 
   it("Shows find on shelf button for physical materials", () => {
-    materialPage.scrollToToMaterialTDescription();
-
     materialPage.components.FindOnShelf((findOnShelf) => {
       findOnShelf.elements
         .findFirstOnShelfButton()
@@ -257,8 +244,6 @@ describe("Material", () => {
   });
 
   it("Opens find on shelf modal when button is clicked", () => {
-    materialPage.scrollToToMaterialTDescription();
-
     materialPage.components.FindOnShelf((findOnShelf) => {
       findOnShelf.elements.findFirstOnShelfButton().click({ force: true });
       findOnShelf.elements.findOnShelfModal().should("be.visible");
@@ -267,8 +252,6 @@ describe("Material", () => {
   });
 
   it("Shows location data and availability count in find on shelf modal", () => {
-    materialPage.scrollToToMaterialTDescription();
-
     materialPage.components.FindOnShelf((findOnShelf) => {
       findOnShelf.elements.findFirstOnShelfButton().click({ force: true });
       findOnShelf.elements.findOnShelfModal().should("be.visible");
