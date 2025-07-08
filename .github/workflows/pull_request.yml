@@ -23,7 +23,7 @@ jobs:
       - name: stylelint
         uses: reviewdog/action-stylelint@v1
         with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check
           stylelint_input: './src/**/*.scss'
       - name: Lint SCSS
@@ -69,7 +69,7 @@ jobs:
       - name: eslint
         uses: reviewdog/action-eslint@v1
         with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check
           eslint_flags: './src/'
       - name: Lint Javascript
