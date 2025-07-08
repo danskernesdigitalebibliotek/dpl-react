@@ -306,6 +306,7 @@ export const ReservationModalBody = ({
                 buttonType="none"
                 variant="filled"
                 disabled={
+                  !selectedManifestations ||
                   reservationStatus === "pending" ||
                   (materialIsReservableFromAnotherLibrary && !userHasEmail)
                 }
