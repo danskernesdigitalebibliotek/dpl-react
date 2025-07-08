@@ -41,6 +41,12 @@ export class MaterialPage extends PageObject {
       favouriteIcon: () =>
         cy.get(".icon-favourite").first().scrollIntoView({ duration: 100 }),
 
+      reservePhysicalButton: () =>
+        cy
+          .get(".material-header__button")
+          .findByRole("button", { name: "Reserve bog" })
+          .scrollIntoView({ duration: 100 }),
+
       // Material description and details
       materialDescription: () =>
         cy.getBySel("material-description").scrollIntoView({ duration: 300 }),

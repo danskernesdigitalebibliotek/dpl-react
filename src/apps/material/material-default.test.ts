@@ -130,8 +130,10 @@ describe("Material", () => {
   it("Opens modal by clicking on reservation button and closes it with the x button", () => {
     cy.createFakeAuthenticatedSession();
 
+    materialPage.elements.reservePhysicalButton().click();
+
     materialPage.components.ReservationModal((modal) => {
-      modal.elements.reservePhysicalButton().click();
+      modal.ensureReservationModalIsLoaded();
       modal.scrollToList();
 
       modal.field("Edition").should("contain", "First available edition");
@@ -151,8 +153,10 @@ describe("Material", () => {
   it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
     cy.createFakeAuthenticatedSession();
 
+    materialPage.elements.reservePhysicalButton().click();
+
     materialPage.components.ReservationModal((modal) => {
-      modal.elements.reservePhysicalButton().click();
+      modal.ensureReservationModalIsLoaded();
       cy.interceptRest({
         httpMethod: "POST",
         aliasName: "reservations",
