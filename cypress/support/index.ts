@@ -5,6 +5,26 @@ import "@cypress/code-coverage/support";
 import { hasOperationName } from "../utils/graphql-test-utils";
 import { Operations } from "../../src/core/dbc-gateway/types";
 import "@testing-library/cypress/add-commands";
+import "cypress-terminal-report/src/installLogsCollector";
+
+// Configure cypress-terminal-report to collect all relevant logs
+require("cypress-terminal-report/src/installLogsCollector")({
+  collectTypes: [
+    "cons:log",
+    "cons:info",
+    "cons:warn",
+    "cons:error",
+    "cy:log",
+    "cy:xhr",
+    "cy:request",
+    "cy:intercept",
+    "cy:command"
+  ],
+  xhr: {
+    printHeaderData: true, // Show request/response headers
+    printRequestData: true // Show request data
+  }
+});
 
 const TOKEN_LIBRARY_KEY = "library";
 const TOKEN_USER_KEY = "user";
