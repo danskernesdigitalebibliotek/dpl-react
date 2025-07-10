@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import ReservationList from "./reservation-list.entry";
 import serviceUrlArgs, {
   argTypes as serviceUrlArgTypes

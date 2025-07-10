@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import DemoModal from "./demo-modal.entry";
 import globalTextArgs, {
   argTypes as globalTextArgTypes

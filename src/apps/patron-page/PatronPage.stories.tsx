@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import PatronPage from "./PatronPage.entry";
 import serviceUrlArgs, {
   argTypes as serviceUrlArgTypes
