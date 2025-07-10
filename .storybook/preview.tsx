@@ -7,6 +7,9 @@ import React from "react";
 import { withErrorBoundary } from "react-error-boundary";
 import ErrorBoundaryAlert from "../src/components/error-boundary-alert/ErrorBoundaryAlert";
 import Store from "../src/components/store";
+import { store } from "../src/core/store";
+import { addUrlEntries } from "../src/core/url.slice";
+import serviceUrlArgs from "../src/core/storybook/serviceUrlArgs";
 
 
 const getSessionStorage = (type) => window.sessionStorage.getItem(type);
@@ -31,6 +34,9 @@ if (libraryToken) {
 if (!libraryToken && userToken) {
   setToken(TOKEN_LIBRARY_KEY, userToken);
 }
+
+// Initialize service URLs for Storybook
+store.dispatch(addUrlEntries({ entries: serviceUrlArgs }));
 
 const WrappedStory = (app) =>
   withErrorBoundary(app, {

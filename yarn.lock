@@ -3045,11 +3045,6 @@
     react-dom "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-queryparams@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.npmjs.org/@storybook/addon-queryparams/-/addon-queryparams-7.0.1.tgz"
-  integrity sha512-hlOrjCbUdkg/f/7HaIBMvEp2oyNkBYaxifDdGNyUhdBzfuWUeWDTUwYDxUubbhuqNcSMbw5Cje34dE+hJaGR9A==
-
 "@storybook/addon-webpack5-compiler-babel@^3.0.6":
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/@storybook/addon-webpack5-compiler-babel/-/addon-webpack5-compiler-babel-3.0.6.tgz#8fe3a3dac8ec33e532a7e9af207b99676fbb132e"
