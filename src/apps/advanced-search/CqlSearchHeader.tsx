@@ -146,6 +146,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           label={t("advancedSearchFilterHoldingStatusText")}
         />
         <Dropdown
+          labelClassName="advanced-search-cql-form__label"
           classNames="dropdown--grey-borders advanced-search__filter dpl-input"
           options={firstAccessionDateOperators}
           arrowIcon="chevron"
