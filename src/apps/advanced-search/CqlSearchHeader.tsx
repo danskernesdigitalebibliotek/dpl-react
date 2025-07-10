@@ -102,6 +102,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
             id="cql"
             label="CQL"
             className="advanced-search-cql-form__input focus-styling__input"
+            labelClassName="advanced-search-cql-form__label"
             cols={100}
             rows={5}
             placeholder="e.g. term.title=snemand*”"
@@ -110,7 +111,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
             defaultValue={initialCql}
           />
           <Link
-            className="link-tag"
+            className="link-tag advanced-search-cql-form__external-help-link"
             href={new URL("https://danbib.dk/soegekoder-complex-search")}
             isNewTab
           >
@@ -118,6 +119,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           </Link>
         </div>
         <TextInput
+          labelClassName="advanced-search-cql-form__label"
           id="location"
           label={t("advancedSearchFilterLocationText")}
           description={t("advancedSearchFilterLocationDescriptionText")}
@@ -126,6 +128,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           value={inputValues.location}
         />
         <TextInput
+          labelClassName="advanced-search-cql-form__label"
           id="sublocation"
           label={t("advancedSearchFilterSublocationText")}
           description={t("advancedSearchFilterSublocationDescriptionText")}
@@ -136,6 +139,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           value={inputValues.sublocation}
         />
         <CheckBox
+          labelClassName="advanced-search-cql-form__label"
           id="on-shelf"
           selected={onShelf}
           onChecked={handleOnShelfChange}
