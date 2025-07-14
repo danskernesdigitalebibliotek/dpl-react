@@ -26,6 +26,7 @@ import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
 import DisclosureSummary from "../Disclosures/DisclosureSummary";
 import { constructModalId } from "../../core/utils/helpers/modal-helpers";
+import { isConfigValueOne } from "../reservation/helper";
 
 export const findOnShelfModalId = (faustIds: FaustId[]) => {
   return constructModalId("find-on-shelf-modal", faustIds.sort());
@@ -47,6 +48,9 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   setSelectedPeriodical
 }) => {
   const config = useConfig();
+  const findOnShelfDisclosuresIsOpen = isConfigValueOne(
+    config("findOnShelfDisclosuresDefaultOpenConfig")
+  );
   const t = useText();
   const pidArray = getManifestationsPids(manifestations);
   const faustIdArray = pidArray.map((manifestationPid) =>
@@ -209,7 +213,7 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
             return (
               <Disclosure
                 key={libraryBranch[0].holding.branch.branchId}
-                open={finalData.length === 1}
+                open={findOnShelfDisclosuresIsOpen || finalData.length === 1}
                 className="disclosure--full-width"
                 dataCy="find-on-shelf-modal-body-disclosure"
                 summary={
