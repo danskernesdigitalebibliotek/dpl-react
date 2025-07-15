@@ -40,7 +40,11 @@ export const MaterialReviews: React.FC<MaterialReviewsProps> = ({
       return "external";
     }
     if (
-      review?.access.some((access) => access.__typename === "InterLibraryLoan")
+      review?.access.some(
+        (access) => access.__typename === "InterLibraryLoan"
+      ) ||
+      // Check if the review has reviewByLibrarians data even if access is empty
+      review?.review?.reviewByLibrarians?.length
     ) {
       return "librarian";
     }
