@@ -324,6 +324,22 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
       description: "Advanced search filter - sublocation description",
       control: { type: "text" }
     },
+    advancedSearchFilterBranchText: {
+      description: "Advanced search filter - branch",
+      control: { type: "text" }
+    },
+    advancedSearchFilterBranchDescriptionText: {
+      description: "Advanced search filter - branch description",
+      control: { type: "text" }
+    },
+    advancedSearchFilterDepartmentText: {
+      description: "Advanced search filter - department",
+      control: { type: "text" }
+    },
+    advancedSearchFilterDepartmentDescriptionText: {
+      description: "Advanced search filter - department description",
+      control: { type: "text" }
+    },
     advancedSearchFirstAccessionDateText: {
       description: "Date for first accession date",
       control: { type: "text" }
@@ -445,6 +461,11 @@ export const Primary: Story = {
     advancedSearchFilterSublocationText: "Sublocation",
     advancedSearchFilterSublocationDescriptionText:
       "Add a comma separated list for multiple sublocations",
+    advancedSearchFilterBranchText: "Branch",
+    advancedSearchFilterBranchDescriptionText:
+      "Add a comma separated list for multiple branches",
+    advancedSearchFilterDepartmentText: "Department",
+    advancedSearchFilterDepartmentDescriptionText: 'E.g. "Adult" or "Children"',
     advancedSearchFirstAccessionDateText: "First Accession Date",
     advancedSearchFirstAccessionDateOperatorText: "Choose operator",
     advancedSearchFilterLaterThanText: "Later than",

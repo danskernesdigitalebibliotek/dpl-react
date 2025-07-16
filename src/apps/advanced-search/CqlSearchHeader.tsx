@@ -15,6 +15,8 @@ export type CqlSearchHeaderProps = {
   handleOnShelfChange: (newState: boolean) => void;
   onLocationChange: (location: string) => void;
   onSublocationChange: (sublocation: string) => void;
+  onBranchChange: (branch: string) => void;
+  onDepartmentChange: (department: string) => void;
   onFirstAccessionDateChange: (firstAccession: string) => void;
   onFirstAccessionOperatorChange: (
     operator: FirstAccessionOperatorFilter
@@ -32,6 +34,8 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   handleOnShelfChange,
   onLocationChange,
   onSublocationChange,
+  onBranchChange,
+  onDepartmentChange,
   onFirstAccessionDateChange,
   onFirstAccessionOperatorChange,
   locationFilter,
@@ -52,6 +56,8 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   const [inputValues, setInputValues] = useState({
     location: locationFilter?.location?.join(", ") ?? "",
     sublocation: locationFilter?.sublocation?.join(", ") ?? "",
+    branch: locationFilter?.branch?.join(", ") ?? "",
+    department: locationFilter?.department?.join(", ") ?? "",
     firstAccessionDate: firstAccessionDateFilter,
     firstAccessionOperatorFilter: firstAccessionOperatorFilter
   });
@@ -64,6 +70,8 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
     name:
       | "location"
       | "sublocation"
+      | "branch"
+      | "department"
       | "firstAccessionDate"
       | "firstAccessionDateOperator",
     value: string
@@ -78,6 +86,12 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
     }
     if (name === "sublocation") {
       onSublocationChange(value);
+    }
+    if (name === "branch") {
+      onBranchChange(value);
+    }
+    if (name === "department") {
+      onDepartmentChange(value);
     }
     if (name === "firstAccessionDate") {
       onFirstAccessionDateChange(value);
@@ -124,6 +138,22 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
             handleInputChange("sublocation", sublocation)
           }
           value={inputValues.sublocation}
+        />
+        <TextInput
+          id="branch"
+          label={t("advancedSearchFilterBranchText")}
+          description={t("advancedSearchFilterBranchDescriptionText")}
+          type="text"
+          onChange={(branch) => handleInputChange("branch", branch)}
+          value={inputValues.branch}
+        />
+        <TextInput
+          id="department"
+          label={t("advancedSearchFilterDepartmentText")}
+          description={t("advancedSearchFilterDepartmentDescriptionText")}
+          type="text"
+          onChange={(department) => handleInputChange("department", department)}
+          value={inputValues.department}
         />
         <CheckBox
           id="on-shelf"
