@@ -352,6 +352,10 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     advancedSearchFirstAccessionDateSpecifyDateText: {
       description: "Input desired date in format ”YYYY-MM-DD”",
       control: { type: "text" }
+    },
+    cqlSearchExternalHelpLinkText: {
+      description: "CQL search external help link text",
+      control: { type: "text" }
     }
   }
 };
@@ -445,6 +449,7 @@ export const Primary: Story = {
     advancedSearchFilterSublocationText: "Sublocation",
     advancedSearchFilterSublocationDescriptionText:
       "Add a comma separated list for multiple sublocations",
+    cqlSearchExternalHelpLinkText: "Find out more about CQL search",
     advancedSearchFirstAccessionDateText: "First Accession Date",
     advancedSearchFirstAccessionDateOperatorText: "Choose operator",
     advancedSearchFilterLaterThanText: "Later than",
