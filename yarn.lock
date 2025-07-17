@@ -1080,7 +1080,7 @@
     "@babel/plugin-transform-modules-commonjs" "^7.27.1"
     "@babel/plugin-transform-typescript" "^7.27.1"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.16.0", "@babel/runtime@^7.17.8", "@babel/runtime@^7.24.5", "@babel/runtime@^7.26.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.7.2", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.6", "@babel/runtime@^7.16.0", "@babel/runtime@^7.17.8", "@babel/runtime@^7.24.5", "@babel/runtime@^7.26.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.7.2", "@babel/runtime@^7.9.2":
   version "7.26.10"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.26.10.tgz#a07b4d8fa27af131a633d7b3524db803eb4764c2"
   integrity sha512-2WJMeRQPHKSPemqk/awGrAiuFfzBmOIPXKizAsVhWH9YJqLZ0H+HS4c8loHGgW6utJ3E/ejXQUsiGaQy2NZ9Fw==
@@ -2274,6 +2274,11 @@
   resolved "https://registry.npmjs.org/@graphql-typed-document-node/core/-/core-3.2.0.tgz"
   integrity sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==
 
+"@hammzj/cypress-page-object@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@hammzj/cypress-page-object/-/cypress-page-object-2.3.0.tgz#08c1a8880a4ac5d2fd31632c33a7a42b4d07f8d7"
+  integrity sha512-AT2mN+UiHaAFPEvPWm8/ayL9T4XgymfkkdfsB+zAbp3KNC8nf3rjEF3g27Kc3va0BfowfiGzI5TO9XFowx5bAw==
+
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.npmjs.org/@humanfs/core/-/core-0.19.1.tgz"
@@ -3289,7 +3294,15 @@
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.6.14.tgz#78c6dc878f705de70c67f2b2d08b8313b985d81a"
   integrity sha512-r4y+LsiB37V5hzpQo+BM10PaCsp7YlZ0YcZzQP1OCkPlYXmUAFy2VvDKaFRpD8IeNPKug2u4iFm/laDEbs03dg==
 
-"@testing-library/dom@^10.4.0":
+"@testing-library/cypress@^10.0.3":
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/cypress/-/cypress-10.0.3.tgz#4514b1bcace4f28acab7ba7db6b8f5c017f0bfd1"
+  integrity sha512-TeZJMCNtiS59cPWalra7LgADuufO5FtbqQBYxuAgdX6ZFAR2D9CtQwAG8VbgvFcchW3K414va/+7P4OkQ80UVg==
+  dependencies:
+    "@babel/runtime" "^7.14.6"
+    "@testing-library/dom" "^10.1.0"
+
+"@testing-library/dom@^10.1.0", "@testing-library/dom@^10.4.0":
   version "10.4.0"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-10.4.0.tgz"
   integrity sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==
@@ -5385,6 +5398,11 @@ compare-versions@^6.1.0:
   resolved "https://registry.npmjs.org/compare-versions/-/compare-versions-6.1.0.tgz"
   integrity sha512-LNZQXhqUvqUTotpZ00qLSaify3b4VFD588aRr8MKFw4CMUr98ytzCW5wDH5qx/DEY5kCDXcbcRuCqL0szEf2tg==
 
+compare-versions@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-6.1.1.tgz#7af3cc1099ba37d244b3145a9af5201b629148a9"
+  integrity sha512-4hm4VPpIecmlg59CHXnRDnqGplJFrbLG4aFEl5vl6cK1u76ws3LLvX7ikFnTDl5vo39sjWD6AaDPYodJp/NNHg==
+
 compute-scroll-into-view@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/compute-scroll-into-view/-/compute-scroll-into-view-3.1.0.tgz"
@@ -5773,6 +5791,15 @@ csstype@^3.0.2, csstype@^3.1.2:
   version "3.1.3"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
+
+cypress-terminal-report@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/cypress-terminal-report/-/cypress-terminal-report-7.2.0.tgz#25ac50f50f962c93eed4956ac6076a1f00e42af8"
+  integrity sha512-5LeRy3kEY9S/qPpQRVvbaPELdjx4DVk1WCo7rKK0+O+cNZNzbNyWYlaNVHhTiHDGH1lEQFra/1L49ngtM/6whg==
+  dependencies:
+    chalk "^4.0.0"
+    compare-versions "^6.1.1"
+    superstruct "0.14.2"
 
 cypress@^13.17.0:
   version "13.17.0"
@@ -12183,6 +12210,11 @@ subarg@^1.0.0:
   integrity sha512-RIrIdRY0X1xojthNcVtgT9sjpOGagEUKpZdgBUi054OEPFo282yg+zE+t1Rj3+RqKq2xStL7uUHhY+AjbC4BXg==
   dependencies:
     minimist "^1.1.0"
+
+superstruct@0.14.2:
+  version "0.14.2"
+  resolved "https://registry.yarnpkg.com/superstruct/-/superstruct-0.14.2.tgz#0dbcdf3d83676588828f1cf5ed35cda02f59025b"
+  integrity sha512-nPewA6m9mR3d6k7WkZ8N8zpTWfenFH3q9pA2PkuiZxINr9DKB2+40wEQf0ixn8VaGuJ78AB6iWOtStI+/4FKZQ==
 
 supports-color@^7.0.0, supports-color@^7.1.0:
   version "7.2.0"
