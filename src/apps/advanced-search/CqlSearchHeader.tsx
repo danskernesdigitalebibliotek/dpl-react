@@ -122,6 +122,22 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           defaultValue={initialCql}
         />
         <TextInput
+          id="branch"
+          label={t("advancedSearchFilterBranchText")}
+          description={t("advancedSearchFilterBranchDescriptionText")}
+          type="text"
+          onChange={(branch) => handleInputChange("branch", branch)}
+          value={inputValues.branch}
+        />
+        <TextInput
+          id="department"
+          label={t("advancedSearchFilterDepartmentText")}
+          description={t("advancedSearchFilterDepartmentDescriptionText")}
+          type="text"
+          onChange={(department) => handleInputChange("department", department)}
+          value={inputValues.department}
+        />
+        <TextInput
           id="location"
           label={t("advancedSearchFilterLocationText")}
           description={t("advancedSearchFilterLocationDescriptionText")}
@@ -138,22 +154,6 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
             handleInputChange("sublocation", sublocation)
           }
           value={inputValues.sublocation}
-        />
-        <TextInput
-          id="branch"
-          label={t("advancedSearchFilterBranchText")}
-          description={t("advancedSearchFilterBranchDescriptionText")}
-          type="text"
-          onChange={(branch) => handleInputChange("branch", branch)}
-          value={inputValues.branch}
-        />
-        <TextInput
-          id="department"
-          label={t("advancedSearchFilterDepartmentText")}
-          description={t("advancedSearchFilterDepartmentDescriptionText")}
-          type="text"
-          onChange={(department) => handleInputChange("department", department)}
-          value={inputValues.department}
         />
         <CheckBox
           id="on-shelf"
