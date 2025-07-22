@@ -6,6 +6,7 @@ import Textarea from "../../components/forms/textarea/Textarea";
 import TextInput from "../../components/forms/input/TextInput";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import { FirstAccessionOperatorFilter } from "./types";
+import Link from "../../components/atoms/links/Link";
 
 export type CqlSearchHeaderProps = {
   dataCy?: string;
@@ -110,17 +111,27 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
         {t("cqlSearchTitleText")}
       </h1>
       <div className="advanced-search-cql-form">
-        <Textarea
-          id="cql"
-          label="CQL"
-          className="advanced-search-cql-form__input focus-styling__input"
-          cols={100}
-          rows={5}
-          placeholder="e.g. term.title=snemand*”"
-          dataCy={`${dataCy}-input`}
-          onChange={(e) => setCql(e.target.value)}
-          defaultValue={initialCql}
-        />
+        <div>
+          <Textarea
+            id="cql"
+            label="CQL"
+            className="advanced-search-cql-form__input focus-styling__input"
+            labelClassName="advanced-search-cql-form__label"
+            cols={100}
+            rows={5}
+            placeholder="e.g. term.title=snemand*”"
+            dataCy={`${dataCy}-input`}
+            onChange={(e) => setCql(e.target.value)}
+            defaultValue={initialCql}
+          />
+          <Link
+            className="link-tag advanced-search-cql-form__external-help-link"
+            href={new URL("https://danbib.dk/soegekoder-complex-search")}
+            isNewTab
+          >
+            {t("cqlSearchExternalHelpLinkText")}
+          </Link>
+        </div>
         <TextInput
           id="branch"
           label={t("advancedSearchFilterBranchText")}
@@ -138,6 +149,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           value={inputValues.department}
         />
         <TextInput
+          labelClassName="advanced-search-cql-form__label"
           id="location"
           label={t("advancedSearchFilterLocationText")}
           description={t("advancedSearchFilterLocationDescriptionText")}
@@ -146,6 +158,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           value={inputValues.location}
         />
         <TextInput
+          labelClassName="advanced-search-cql-form__label"
           id="sublocation"
           label={t("advancedSearchFilterSublocationText")}
           description={t("advancedSearchFilterSublocationDescriptionText")}
@@ -156,12 +169,14 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           value={inputValues.sublocation}
         />
         <CheckBox
+          labelClassName="advanced-search-cql-form__label"
           id="on-shelf"
           selected={onShelf}
           onChecked={handleOnShelfChange}
           label={t("advancedSearchFilterHoldingStatusText")}
         />
         <Dropdown
+          labelClassName="advanced-search-cql-form__label"
           classNames="dropdown--grey-borders advanced-search__filter dpl-input"
           options={firstAccessionDateOperators}
           arrowIcon="chevron"

@@ -80,6 +80,9 @@ const meta: Meta<typeof PatronPage> = {
     patronPageBasicDetailsNameLabelText: {
       control: { type: "text" }
     },
+    patronPageBasicFriendlyCardNumberLabelText: {
+      control: { type: "text" }
+    },
     patronPageBasicDetailsAddressLabelText: {
       control: { type: "text" }
     },
@@ -222,6 +225,7 @@ const meta: Meta<typeof PatronPage> = {
     pauseReservationModalCancelButtonLabelText: "Cancel pause",
     patronPageBasicDetailsHeaderText: "Basic details",
     patronPageBasicDetailsNameLabelText: "Name",
+    patronPageBasicFriendlyCardNumberLabelText: "Card number",
     patronPageBasicDetailsAddressLabelText: "Address",
     patronContactInfoHeaderText: "Contact information",
     patronContactPhoneLabelText: "Phone number",
