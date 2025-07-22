@@ -491,6 +491,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Close Reservation modal",
       control: { type: "text" }
     },
+    libraryAssessmentText: {
+      description: "Library assessment text shown in review metadata",
+      control: { type: "text" }
+    },
     librariesHaveTheMaterialText: {
       description: "Libraries have the material",
       control: { type: "text" }
@@ -967,6 +971,7 @@ const meta: Meta<typeof MaterialEntry> = {
     missingDataText: "Missing data",
     reservationModalScreenReaderModalDescriptionText: "Modal for reservation",
     reservationModalCloseModalAriaLabelText: "Close reservation modal",
+    libraryAssessmentText: "Library assessment",
     librariesHaveTheMaterialText: "libraries have material",
     findOnShelfModalScreenReaderModalDescriptionText: "Modal for reservation",
     findOnShelfModalCloseModalAriaLabelText: "Close reservation modal",
