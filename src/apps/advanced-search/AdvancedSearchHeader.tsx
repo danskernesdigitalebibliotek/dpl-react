@@ -40,6 +40,8 @@ export type AdvancedSearchHeaderProps = {
   setOnShelf: (checked: boolean) => void;
   onLocationChange: (location: string) => void;
   onSublocationChange: (sublocation: string) => void;
+  onBranchChange: (branch: string) => void;
+  onDepartmentChange: (department: string) => void;
   onFirstAccessionDateChange: (firstAccession: string) => void;
   onFirstAccessionOperatorChange: (
     firstAccession: FirstAccessionOperatorFilter
@@ -59,6 +61,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
   setOnShelf,
   onLocationChange,
   onSublocationChange,
+  onBranchChange,
+  onDepartmentChange,
   onFirstAccessionDateChange,
   onFirstAccessionOperatorChange,
   locationFilter,
@@ -276,6 +280,8 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
           handleOnShelfChange={handleOnShelfChange}
           onLocationChange={onLocationChange}
           onSublocationChange={onSublocationChange}
+          onBranchChange={onBranchChange}
+          onDepartmentChange={onDepartmentChange}
           onFirstAccessionDateChange={onFirstAccessionDateChange}
           onFirstAccessionOperatorChange={onFirstAccessionOperatorChange}
           locationFilter={locationFilter}
