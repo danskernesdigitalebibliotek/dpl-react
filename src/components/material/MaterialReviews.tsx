@@ -39,14 +39,15 @@ export const MaterialReviews: React.FC<MaterialReviewsProps> = ({
     if (review?.access.some((access) => access.__typename === "AccessUrl")) {
       return "external";
     }
-    if (
-      review?.access.some(
-        (access) => access.__typename === "InterLibraryLoan"
-      ) ||
-      // Check if the review has reviewByLibrarians data even if access is empty
-      review?.review?.reviewByLibrarians?.length
-    ) {
+    // Only classify as librarian if there's actual review content in reviewByLibrarians array.
+    if (review?.review?.reviewByLibrarians?.length) {
       return "librarian";
+    }
+    // Reviews with InterLibraryLoan access but no librarian content are external reviews
+    if (
+      review?.access.some((access) => access.__typename === "InterLibraryLoan")
+    ) {
+      return "external";
     }
     return null;
   };
