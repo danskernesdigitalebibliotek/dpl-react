@@ -77,6 +77,7 @@ interface MaterialEntryTextProps {
   instantLoanTitleText: string;
   instantLoanUnderlineDescriptionText: string;
   interestPeriodsConfig: string;
+  libraryAssessmentText: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
