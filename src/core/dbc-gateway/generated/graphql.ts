@@ -333,6 +333,77 @@ export type Complexity = {
   value: Scalars["Int"]["output"];
 };
 
+export type ContentEntry = {
+  __typename?: "ContentEntry";
+  /** Additional 'authors' (lyricists, arrangers, performers/soloists etc.), quoted as strings (including possible author's statement) from the record */
+  contributors?: Maybe<Array<Scalars["String"]["output"]>>;
+  /** Main creator(s) of the entry i.e. composer (classical music), artist/band (rhythmic music), author (fiction, articles). For music and sheet music always only 1 creator, for articles and fiction possibly more than 1 */
+  creators?: Maybe<ContentEntryCreators>;
+  /** Playing time for music tracks, quoted from the record */
+  playingTime?: Maybe<Scalars["String"]["output"]>;
+  /** Possible entry data (title, creators, contributors, playingtime) subordinate to the entry's top level */
+  sublevel?: Maybe<Array<ContentSublevel>>;
+  /** Top level title of the entry */
+  title: ContentEntryTitle;
+};
+
+export type ContentEntryCreators = {
+  __typename?: "ContentEntryCreators";
+  /** Details about a corporation or conference, name, role, etc. */
+  corporations?: Maybe<Array<Corporation>>;
+  /** Details about a person, name, role etc. */
+  persons?: Maybe<Array<Person>>;
+};
+
+export type ContentEntryTitle = {
+  __typename?: "ContentEntryTitle";
+  /** Title of the content entry */
+  display: Scalars["String"]["output"];
+};
+
+export type ContentSublevel = {
+  __typename?: "ContentSublevel";
+  /** Additional 'authors' (lyricists, arrangers, performers/soloists etc.) related to the title on sublevel 1, quoted as strings (including possible author's statement) from the record */
+  contributors?: Maybe<Array<Scalars["String"]["output"]>>;
+  /** Playing time for music tracks */
+  playingTime?: Maybe<Scalars["String"]["output"]>;
+  /** Possible entry data (title, contributors, playingtime) subordinate to the entry's sublevel 1 */
+  sublevel?: Maybe<Array<ContentSublevelLast>>;
+  /** Title subordinate to the title in the entry's top level */
+  title: ContentEntryTitle;
+};
+
+export type ContentSublevelLast = {
+  __typename?: "ContentSublevelLast";
+  /** Additional 'authors' (lyricists, arrangers, performers/soloists etc.) related to the title on sublevel 1, quoted as strings (including possible author's statement) from the record */
+  contributors?: Maybe<Array<Scalars["String"]["output"]>>;
+  /** Playing time for music tracks */
+  playingTime?: Maybe<Scalars["String"]["output"]>;
+  /** Title subordinate to the title in the entry's top level */
+  title: ContentEntryTitle;
+};
+
+export type ContentsEntity = {
+  __typename?: "ContentsEntity";
+  /** Content entry with title and possible creator(s), contributors and (for some music and movies) playing time */
+  entries?: Maybe<Array<ContentEntry>>;
+  /** Heading for the contents of this entity */
+  heading: Scalars["String"]["output"];
+  /** Contents text note quoted as it is from the marc field. Used for non-machine-decipherable content notes (un)formatted in only 1 subfield) */
+  raw?: Maybe<Scalars["String"]["output"]>;
+  /** ENUM for type of content entries (music tracks, articles, fiction etc.) in this entity */
+  type: ContentsEntityEnum;
+};
+
+export enum ContentsEntityEnum {
+  Articles = "ARTICLES",
+  Chapters = "CHAPTERS",
+  Fiction = "FICTION",
+  MusicTracks = "MUSIC_TRACKS",
+  NotSpecified = "NOT_SPECIFIED",
+  SheetMusic = "SHEET_MUSIC"
+}
+
 export type CopyRequestInput = {
   authorOfComponent?: InputMaybe<Scalars["String"]["input"]>;
   issueOfComponent?: InputMaybe<Scalars["String"]["input"]>;
@@ -821,6 +892,8 @@ export type Manifestation = {
   cataloguedPublicationStatus?: Maybe<CataloguedPublicationStatus>;
   /** Classification codes for this manifestation from any classification system */
   classifications: Array<Classification>;
+  /** Content title entries with possible creators, contributors and playing time for music tracks, sheet music titles, articles, poems, short stories etc. */
+  contents?: Maybe<Array<ContentsEntity>>;
   /** Contributors to the manifestation, actors, illustrators etc */
   contributors: Array<CreatorInterface>;
   /** Additional contributors of this manifestation as described on the publication. E.g. 'på dansk ved Vivi Berendt' */
@@ -3760,7 +3833,9 @@ export type GetInfomediaQuery = {
     error?: InfomediaErrorEnum | null;
     article?: {
       __typename?: "InfomediaArticle";
-      headLine?: string | null;
+      dateLine?: string | null;
+      hedLine?: string | null;
+      paper?: string | null;
       text?: string | null;
     } | null;
   };
@@ -7478,7 +7553,9 @@ export const GetInfomediaDocument = `
   infomedia(id: $id) {
     error
     article {
-      headLine
+      dateLine
+      hedLine
+      paper
       text
     }
   }

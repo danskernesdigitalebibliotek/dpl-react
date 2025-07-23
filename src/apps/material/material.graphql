@@ -14,7 +14,9 @@ query getInfomedia($id: String!) {
   infomedia(id: $id) {
     error
     article {
-      headLine
+      dateLine
+      hedLine
+      paper
       text
     }
   }
