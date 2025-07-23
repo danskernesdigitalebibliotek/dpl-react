@@ -7,6 +7,11 @@ import InfomediaModalBody from "./InfomediaModalBody";
 import { Manifestation } from "../../../core/utils/types/entities";
 import InfomediaSkeleton from "./InfomediaSkeleton";
 import { usePatronData } from "../../../core/utils/helpers/usePatronData";
+import {
+  getManifestationAuthors,
+  getManifestationTitle
+} from "../../../apps/material/helper";
+import { first } from "lodash";
 
 export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 
@@ -21,10 +26,6 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
 }) => {
   const t = useText();
   const [shouldFetchData, setShouldFetchData] = useState(false);
-  const [infomediaData, setInfomediaData] = useState<Record<
-    string,
-    string | null | undefined
-  > | null>(null);
   const { data: patronData, isLoading: isLoadingPatron } = usePatronData();
 
   useEffect(() => {
@@ -42,24 +43,21 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
       id: infoMediaId
     },
     {
-      enabled: shouldFetchData,
-      onSuccess: (response) => {
-        const infomedia: Record<string, string | null | undefined> = {
-          headline: response?.infomedia?.article?.headLine,
-          text: response?.infomedia?.article?.text
-        };
-        setInfomediaData(infomedia);
-      }
+      enabled: shouldFetchData
     }
   );
+  const firstManifestation = first(selectedManifestations);
 
-  if (!data || error) {
+  if (!data || error || !firstManifestation) {
     return null;
   }
 
+  const author = getManifestationAuthors(firstManifestation);
+  const title = getManifestationTitle(firstManifestation);
+
   return (
     <Modal
-      modalId={infomediaModalId(selectedManifestations[0].pid)}
+      modalId={infomediaModalId(firstManifestation.pid)}
       screenReaderModalDescriptionText={t(
         "infomediaModalScreenReaderModalDescriptionText"
       )}
@@ -67,10 +65,14 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
       dataCy="infomedia-modal"
     >
       {isLoadingPatron || (isLoadingInfomedia && <InfomediaSkeleton />)}
-      {infomediaData?.headline && infomediaData?.text && (
+      {data?.infomedia?.article && data.infomedia.article.text && (
         <InfomediaModalBody
-          headline={infomediaData.headline}
-          text={infomediaData.text}
+          headLine={title}
+          hedLine={data.infomedia.article.hedLine ?? ""}
+          paper={data.infomedia.article.paper ?? ""}
+          byLine={author}
+          dateLine={data.infomedia.article.dateLine ?? ""}
+          text={data.infomedia.article.text ?? ""}
         />
       )}
     </Modal>

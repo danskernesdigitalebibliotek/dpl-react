@@ -604,6 +604,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Close infomedia modal",
       control: { type: "text" }
     },
+    infomediaCopyrightText: {
+      description: "Infomedia copyright notice text",
+      control: { type: "text" }
+    },
     saveButtonText: {
       description: "Save button text",
       control: { type: "text" }
@@ -1003,6 +1007,8 @@ const meta: Meta<typeof MaterialEntry> = {
     chooseOneText: "Choose one",
     infomediaModalScreenReaderModalDescriptionText: "Modal for infomedia",
     infomediaModalCloseModalAriaLabelText: "Close infomedia modal",
+    infomediaCopyrightText:
+      "All material in Infomedia is covered by copyright law and may not be copied without special permission.",
     saveButtonText: "Save",
     orderDigitalCopyModalScreenReaderModalDescriptionText:
       "Modal for Order digital copy",
@@ -1122,7 +1128,7 @@ export const newspaperPeriodical: Story = {
 export const Infomedia: Story = {
   args: {
     ...Default.args,
-    wid: "work-of:870971-avis:35731733"
+    wid: "work-of:870971-avis:138119807"
   }
 };
 
