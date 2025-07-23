@@ -3833,7 +3833,9 @@ export type GetInfomediaQuery = {
     error?: InfomediaErrorEnum | null;
     article?: {
       __typename?: "InfomediaArticle";
+      byLine?: string | null;
       dateLine?: string | null;
+      headLine?: string | null;
       hedLine?: string | null;
       paper?: string | null;
       text?: string | null;
@@ -7553,7 +7555,9 @@ export const GetInfomediaDocument = `
   infomedia(id: $id) {
     error
     article {
+      byLine
       dateLine
+      headLine
       hedLine
       paper
       text
