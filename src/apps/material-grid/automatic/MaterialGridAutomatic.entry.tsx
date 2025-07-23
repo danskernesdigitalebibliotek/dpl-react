@@ -21,6 +21,8 @@ export interface MaterialGridAutomaticEntryProps
   cql: string;
   location?: string;
   sublocation?: string;
+  branch?: string;
+  department?: string;
   onshelf?: string;
   sort?: string;
   title?: string;
@@ -35,6 +37,8 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   cql,
   location,
   sublocation,
+  branch,
+  department,
   onshelf,
   sort,
   title,
@@ -47,6 +51,8 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
       cql={cql}
       location={location}
       sublocation={sublocation}
+      branch={branch}
+      department={department}
       onshelf={parseBoolean(onshelf)}
       sort={sort}
       title={title}

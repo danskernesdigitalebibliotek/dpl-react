@@ -115,6 +115,12 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
       ...(locationFilter?.sublocation?.length && {
         sublocation: locationFilter.sublocation
       }),
+      ...(locationFilter?.branch?.length && {
+        branch: locationFilter.branch
+      }),
+      ...(locationFilter?.department?.length && {
+        department: locationFilter.department
+      }),
       ...(firstAccessionDateFilter && firstAccessionOperatorFilter
         ? {
             firstAccessionDate: `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`

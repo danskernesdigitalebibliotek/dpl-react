@@ -39,11 +39,18 @@ const meta: Meta<typeof MaterialGridAutomatic> = {
       description: "Sublocation filter",
       control: { type: "text" }
     },
+    branch: {
+      description: "Branch filter",
+      control: { type: "text" }
+    },
+    department: {
+      description: "Department filter",
+      control: { type: "text" }
+    },
     onshelf: {
       description: "On shelf filter",
       control: { type: "text" }
     },
-
     sort: {
       description: "Sort order",
       control: {
@@ -120,6 +127,8 @@ export const Primary: Story = {
     cql: "'heste' OR 'PIPPI'",
     location: "",
     sublocation: "",
+    branch: "",
+    department: "",
     onshelf: "false",
     sort: AdvancedSortMapStrings.Relevance,
     firstaccessiondateitem: "",

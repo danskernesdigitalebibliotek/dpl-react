@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { FC, ReactNode } from "react";
 import IconCheckbox from "../icon-checkbox/icon-checkbox";
 
@@ -8,6 +9,7 @@ interface CheckBoxProps {
   selected?: boolean;
   disabled?: boolean;
   className?: string;
+  labelClassName?: string;
   onChecked?: (value: boolean) => void;
   ariaLabel?: string;
   focused?: boolean;
@@ -20,6 +22,7 @@ const CheckBox: FC<CheckBoxProps> = ({
   label,
   hideLabel,
   className,
+  labelClassName,
   selected,
   onChecked,
   disabled,
@@ -51,7 +54,11 @@ const CheckBox: FC<CheckBoxProps> = ({
         aria-labelledby={isVisualOnly && labelledBy ? labelledBy : undefined}
         disabled={disabled}
       />
-      <label className="checkbox__label" htmlFor={id} data-cy={id}>
+      <label
+        className={clsx("checkbox__label", labelClassName)}
+        htmlFor={id}
+        data-cy={id}
+      >
         <span className="checkbox__icon" aria-labelledby={labelledBy}>
           <IconCheckbox />
         </span>

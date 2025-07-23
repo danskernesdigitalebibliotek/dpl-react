@@ -12,6 +12,7 @@ export interface TextInputProps {
   onChange: (value: string) => void;
   value?: string | number;
   className?: string;
+  labelClassName?: string;
   pattern?: string;
   inputmode?: "numeric";
   title?: string;
@@ -28,6 +29,7 @@ const TextInput: FC<TextInputProps> = ({
   onChange,
   value,
   className,
+  labelClassName,
   pattern,
   inputmode,
   required,
@@ -45,7 +47,7 @@ const TextInput: FC<TextInputProps> = ({
       ])}
     >
       {label && (
-        <Label id={id} required={required}>
+        <Label id={id} required={required} className={labelClassName}>
           {label}
         </Label>
       )}
