@@ -33,14 +33,13 @@ const ReviewMetadata: React.FC<ReviewMetadataProps> = ({
   ) => {
     const authorText = returnAuthor || "";
     const hostText = returnHost || "";
-    const authorAndHostSeparator = authorText && hostText ? " - " : "";
+    const isLibrarianText = isLibrarian ? t("libraryAssessmentText") : "";
+    const authorAndHostSeparator =
+      authorText && (hostText || isLibrarianText) ? " - " : "";
     const dateText = returnDate && `, ${returnDate}`;
-    const isLibrarianText = isLibrarian
-      ? ` - ${t("libraryAssessmentText")}`
-      : "";
 
     return `
-    ${authorText}${authorAndHostSeparator}${hostText}${dateText}${isLibrarianText}
+    ${authorText}${authorAndHostSeparator}${hostText}${isLibrarianText}${dateText}
     `;
   };
 
