@@ -15,6 +15,7 @@ import {
   constructMaterialUrl,
   constructSearchUrl,
   constructSearchUrlWithFilter,
+  getUrlQueryParam,
   redirectTo
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
@@ -36,8 +37,11 @@ const SearchHeader: React.FC = () => {
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
-  const [q, setQ] = useState<string>("");
-  const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
+
+  // Initialize search query from URL parameter if present
+  const initialQ = getUrlQueryParam("q") || "";
+  const [q, setQ] = useState<string>(initialQ);
+  const [qWithoutQuery, setQWithoutQuery] = useState<string>(initialQ);
   const [suggestItems, setSuggestItems] = useState<
     SuggestionsFromQueryStringQuery["suggest"]["result"] | []
   >([]);
@@ -47,6 +51,7 @@ const SearchHeader: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
+  const [hasUserTyped, setHasUserTyped] = useState<boolean>(false);
   const { clearFilter } = useFilterHandler();
   const {
     data,
@@ -112,22 +117,22 @@ const SearchHeader: React.FC = () => {
     }
   }
 
-  // Autosuggest opening and closing based on input text length.
+  // Autosuggest opening and closing based on input text length and user interaction.
   useEffect(() => {
-    if (data && data.suggest.result.length > 0) {
+    if (hasUserTyped && data && data.suggest.result.length > 0) {
       setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [data]);
+  }, [data, hasUserTyped]);
 
   useEffect(() => {
-    if (qWithoutQuery.length > 2) {
+    if (hasUserTyped && qWithoutQuery.length > 2) {
       setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [qWithoutQuery]);
+  }, [qWithoutQuery, hasUserTyped]);
 
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
@@ -198,6 +203,7 @@ const SearchHeader: React.FC = () => {
     if (type === useCombobox.stateChangeTypes.InputChange) {
       setQ(inputValue);
       setQWithoutQuery(inputValue);
+      setHasUserTyped(true);
       return;
     }
     setQWithoutQuery(inputValue);
