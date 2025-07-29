@@ -15,15 +15,16 @@ import {
   constructMaterialUrl,
   constructSearchUrl,
   constructSearchUrlWithFilter,
-  getUrlQueryParam,
   redirectTo
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
 import {
+  constructSearchUrlByType,
   determineSuggestionTerm,
   findNonWorkSuggestion,
   getAutosuggestCategoryList,
+  getSearchContextFromUrl,
   isDisplayedAsWorkSuggestion
 } from "./helpers";
 import { useEventStatistics } from "../../core/statistics/useStatistics";
@@ -38,10 +39,10 @@ const SearchHeader: React.FC = () => {
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
 
-  // Initialize search query from URL parameter if present
-  const initialQ = getUrlQueryParam("q") || "";
-  const [q, setQ] = useState<string>(initialQ);
-  const [qWithoutQuery, setQWithoutQuery] = useState<string>(initialQ);
+  // Get search context from URL parameters
+  const { searchType, initialQuery } = getSearchContextFromUrl();
+  const [q, setQ] = useState<string>(initialQuery);
+  const [qWithoutQuery, setQWithoutQuery] = useState<string>(initialQuery);
   const [suggestItems, setSuggestItems] = useState<
     SuggestionsFromQueryStringQuery["suggest"]["result"] | []
   >([]);
@@ -275,7 +276,11 @@ const SearchHeader: React.FC = () => {
       // Before redirecting we need to clean persisted filters from previous search.
       clearFilter();
       redirectTo(
-        constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
+        constructSearchUrlByType(
+          searchType,
+          searchUrl,
+          determineSuggestionTerm(selectedItem)
+        )
       );
     });
   }
@@ -325,9 +330,9 @@ const SearchHeader: React.FC = () => {
     ) {
       setRedirectUrl(constructAdvancedSearchUrl(advancedSearchUrl, q));
     } else {
-      setRedirectUrl(constructSearchUrl(searchUrl, q));
+      setRedirectUrl(constructSearchUrlByType(searchType, searchUrl, q));
     }
-  }, [q, advancedSearchUrl, searchUrl]);
+  }, [q, advancedSearchUrl, searchUrl, searchType]);
 
   return (
     <div className="header__menu-second">

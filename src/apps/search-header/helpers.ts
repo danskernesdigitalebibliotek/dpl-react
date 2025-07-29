@@ -5,6 +5,12 @@ import {
   SuggestionsFromQueryStringQuery,
   SuggestionTypeEnum
 } from "../../core/dbc-gateway/generated/graphql";
+import {
+  constructCreatorSearchUrl,
+  constructSearchUrl,
+  constructSubjectSearchUrl,
+  getUrlQueryParam
+} from "../../core/utils/helpers/url";
 
 export const getAutosuggestCategoryList = (t: UseTextFunction) => {
   const autosuggestCategoryList = [
@@ -72,6 +78,47 @@ export function isDisplayedAsWorkSuggestion(
     (item) => item.work?.workId === selectedItem?.workId
   );
   return Boolean(dataWithWorkId.length);
+}
+
+type SearchType = "creator" | "subject" | "q";
+
+interface SearchContext {
+  searchType: SearchType;
+  initialQuery: string;
+}
+
+export function getSearchContextFromUrl(): SearchContext {
+  const creatorParam = getUrlQueryParam("creator");
+  const subjectParam = getUrlQueryParam("subject");
+  const qParam = getUrlQueryParam("q");
+
+  if (creatorParam) {
+    return { searchType: "creator", initialQuery: creatorParam };
+  }
+  if (subjectParam) {
+    return { searchType: "subject", initialQuery: subjectParam };
+  }
+  if (qParam) {
+    return { searchType: "q", initialQuery: qParam };
+  }
+
+  return { searchType: "q", initialQuery: "" };
+}
+
+export function constructSearchUrlByType(
+  searchType: SearchType,
+  searchUrl: URL,
+  query: string
+): URL {
+  switch (searchType) {
+    case "creator":
+      return constructCreatorSearchUrl(searchUrl, query);
+    case "subject":
+      return constructSubjectSearchUrl(searchUrl, query);
+    case "q":
+    default:
+      return constructSearchUrl(searchUrl, query);
+  }
 }
 
 export default {};
