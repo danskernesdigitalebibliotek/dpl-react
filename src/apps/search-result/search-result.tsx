@@ -200,7 +200,6 @@ const SearchResult: React.FC<SearchResultProps> = ({
   };
 
   const displayQuery = formatSearchDisplayQuery({ q, creator, subject, t });
-  const facetQuery = [q, creator, subject].find(Boolean) || "";
 
   // We are handling loading state for every element separately inside this return(),
   // because then we achieve smoother experience using the filters - not having
@@ -214,7 +213,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
       {!isLoading && !shouldShowZeroHits() && resultItems && (
         <>
           <SearchResultHeader hitcount={hitcount} q={displayQuery} />
-          <FacetLine q={facetQuery} />
+          <FacetLine q={facetsQuery} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />
           )}
