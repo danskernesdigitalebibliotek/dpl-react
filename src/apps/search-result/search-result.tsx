@@ -27,11 +27,13 @@ import {
   getUrlQueryParam,
   buildSearchQueryObject
 } from "../../core/utils/helpers/url";
+import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultZeroHits from "./search-result-zero-hits";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
+import { formatSearchDisplayQuery } from "./helper";
 
 interface SearchResultProps {
   q: string;
@@ -49,6 +51,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
+  const t = useText();
   const [resultItems, setResultItems] = useState<Work[] | null>(null);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
@@ -196,7 +199,8 @@ const SearchResult: React.FC<SearchResultProps> = ({
     return !isLoading && hitcount === 0;
   };
 
-  const combinedQuery = [q, creator, subject].filter(Boolean).join(", ");
+  const displayQuery = formatSearchDisplayQuery({ q, creator, subject, t });
+  const facetQuery = [q, creator, subject].find(Boolean) || "";
 
   // We are handling loading state for every element separately inside this return(),
   // because then we achieve smoother experience using the filters - not having
@@ -209,8 +213,8 @@ const SearchResult: React.FC<SearchResultProps> = ({
 
       {!isLoading && !shouldShowZeroHits() && resultItems && (
         <>
-          <SearchResultHeader hitcount={hitcount} q={combinedQuery} />
-          <FacetLine q={combinedQuery} />
+          <SearchResultHeader hitcount={hitcount} q={displayQuery} />
+          <FacetLine q={facetQuery} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />
           )}

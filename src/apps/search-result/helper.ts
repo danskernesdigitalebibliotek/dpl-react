@@ -29,4 +29,24 @@ export const getFirstMaterialTypeFromFilters = (
     : undefined;
 };
 
+export const formatSearchDisplayQuery = ({
+  q,
+  creator,
+  subject,
+  t
+}: {
+  q?: string;
+  creator?: string;
+  subject?: string;
+  t: (key: string) => string;
+}): string => {
+  return [
+    q || null,
+    creator ? `${t("byAuthorText")}: ${creator}` : null,
+    subject ? `${t("facetSubjectsText")}: ${subject}` : null
+  ]
+    .filter(Boolean)
+    .join("; ");
+};
+
 export default {};
