@@ -1,5 +1,5 @@
 import React from "react";
-import { constructSearchUrl } from "../../core/utils/helpers/url";
+import { constructCreatorSearchUrl } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
@@ -34,7 +34,7 @@ const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
         <p data-cy="material-header-author-text" className="text-body-large">
           <span>{t("materialHeaderAuthorByText")} </span>
           <LinkNoStyle
-            url={constructSearchUrl(searchUrl, author)}
+            url={constructCreatorSearchUrl(searchUrl, author)}
             className="arrow__link"
           >
             {author}
