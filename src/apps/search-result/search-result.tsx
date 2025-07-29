@@ -23,7 +23,10 @@ import Campaign from "../../components/campaign/Campaign";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
-import { getUrlQueryParam } from "../../core/utils/helpers/url";
+import {
+  getUrlQueryParam,
+  buildSearchQueryObject
+} from "../../core/utils/helpers/url";
 import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
@@ -32,10 +35,17 @@ import SearchResultInvalidSearch from "./search-result-not-valid-search";
 
 interface SearchResultProps {
   q: string;
+  creator?: string;
+  subject?: string;
   pageSize: number;
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
+const SearchResult: React.FC<SearchResultProps> = ({
+  q,
+  creator,
+  subject,
+  pageSize
+}) => {
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
@@ -50,14 +60,16 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-  const { facets: campaignFacets } = useGetFacets(q, filters);
+  // Create a combined query string for facets - use the main query or fallback to creator/subject
+  const facetsQuery = q || creator || subject || "";
+  const { facets: campaignFacets } = useGetFacets(facetsQuery, filters);
   const minimalQueryLength = 1;
 
-  // If q changes (eg. in Storybook context)
+  // If q, creator, subject changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
   useDeepCompareEffect(() => {
     setResultItems([]);
-  }, [q, pageSize, filters]);
+  }, [q, creator, subject, pageSize, filters]);
 
   const { collectPageStatistics } = useCollectPageStatistics();
   useEffect(() => {
@@ -97,12 +109,18 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   const { data, isLoading } = useSearchWithPaginationQuery(
     {
-      q: { all: q },
+      q: buildSearchQueryObject({ q, creator, subject }),
       offset: page * pageSize,
       limit: pageSize,
       filters: createFilters(filters, cleanBranches)
     },
-    { enabled: q.length >= minimalQueryLength }
+    {
+      enabled: Boolean(
+        (q && q.length >= minimalQueryLength) ||
+          (creator && creator.length >= minimalQueryLength) ||
+          (subject && subject.length >= minimalQueryLength)
+      )
+    }
   );
 
   useEffect(() => {
@@ -166,7 +184,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
-  if (!q || q.length < minimalQueryLength) {
+  if (
+    (!q || q.length < minimalQueryLength) &&
+    (!creator || creator.length < minimalQueryLength) &&
+    (!subject || subject.length < minimalQueryLength)
+  ) {
     return <SearchResultInvalidSearch />;
   }
 
@@ -184,7 +206,10 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
       {!isLoading && !shouldShowZeroHits() && resultItems && (
         <>
-          <SearchResultHeader hitcount={hitcount} q={q} />
+          <SearchResultHeader
+            hitcount={hitcount}
+            q={[q, creator, subject].filter(Boolean).join(", ")}
+          />
           <FacetLine q={q} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />

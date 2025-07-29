@@ -63,18 +63,27 @@ export interface SearchResultEntryProps
     SearchResultEntryTextProps,
     MappArgs {
   q?: string;
+  creator?: string;
+  subject?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }
 
 const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   q,
+  creator,
+  subject,
   pageSizeDesktop,
   pageSizeMobile
 }) => {
-  // If a q string has been defined as a data attribute use that
-  // otherwise use the one from the url query parameter.
-  const { q: searchQuery } = getParams({ q });
+  // If search parameters have been defined as data attributes use those,
+  // otherwise use the ones from the url query parameters.
+  const {
+    q: searchQuery,
+    creator: creatorQuery,
+    subject: subjectQuery
+  } = getParams({ q, creator, subject });
+
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
   // otherwise get them from the configuration.
@@ -83,12 +92,19 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
     mobile: pageSizeMobile
   });
 
+  const hasSearchQuery = searchQuery || creatorQuery || subjectQuery;
+
   return (
     <div>
       {/* We still want to render the app, even if the search query is an empty string */}
-      {(searchQuery || searchQuery === "") && (
+      {hasSearchQuery && (
         <GuardedApp app="search-result">
-          <SearchResult q={searchQuery} pageSize={pageSize} />
+          <SearchResult
+            q={searchQuery}
+            creator={creatorQuery}
+            subject={subjectQuery}
+            pageSize={pageSize}
+          />
         </GuardedApp>
       )}
     </div>
