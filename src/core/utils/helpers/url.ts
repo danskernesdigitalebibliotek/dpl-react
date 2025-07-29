@@ -110,6 +110,16 @@ export const constructSearchUrl = (searchUrl: URL, q: string) =>
     q
   });
 
+export const constructCreatorSearchUrl = (searchUrl: URL, creator: string) =>
+  appendQueryParametersToUrl(searchUrl, {
+    creator
+  });
+
+export const constructSubjectSearchUrl = (searchUrl: URL, subject: string) =>
+  appendQueryParametersToUrl(searchUrl, {
+    subject
+  });
+
 export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>
   appendQueryParametersToUrl(advancedSearchUrl, {
     advancedSearchCql: q
@@ -173,3 +183,35 @@ export const isUrlValid = (text: string) => {
 export const currentLocationWithParametersUrl = (
   params: Record<string, string>
 ) => appendQueryParametersToUrl(new URL(getCurrentLocation()), params);
+
+interface SearchQueryObject {
+  all?: string;
+  creator?: string;
+  subject?: string;
+}
+
+export const buildSearchQueryObject = ({
+  q,
+  creator,
+  subject
+}: {
+  q?: string;
+  creator?: string;
+  subject?: string;
+}): SearchQueryObject => {
+  const queryObj: SearchQueryObject = {};
+
+  if (q) {
+    queryObj.all = q;
+  }
+
+  if (creator) {
+    queryObj.creator = creator;
+  }
+
+  if (subject) {
+    queryObj.subject = subject;
+  }
+
+  return queryObj;
+};
