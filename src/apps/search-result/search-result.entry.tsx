@@ -92,11 +92,10 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
     mobile: pageSizeMobile
   });
 
-  const hasSearchQuery = Boolean(
+  const hasSearchQuery =
     searchQuery !== undefined ||
-      creatorQuery !== undefined ||
-      subjectQuery !== undefined
-  );
+    creatorQuery !== undefined ||
+    subjectQuery !== undefined;
 
   return (
     <div>
