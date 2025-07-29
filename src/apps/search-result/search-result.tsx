@@ -226,7 +226,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
         </>
       )}
       {/* We know we can show the facet browser after the first valid search. */}
-      {resultItems !== null && <FacetBrowserModal q={q} />}
+      {resultItems !== null && <FacetBrowserModal q={facetsQuery} />}
     </div>
   );
 };
