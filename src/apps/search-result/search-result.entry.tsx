@@ -93,9 +93,9 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   });
 
   const hasSearchQuery = Boolean(
-    (searchQuery && searchQuery.length > 0) ||
-      (creatorQuery && creatorQuery.length > 0) ||
-      (subjectQuery && subjectQuery.length > 0)
+    searchQuery !== undefined ||
+      creatorQuery !== undefined ||
+      subjectQuery !== undefined
   );
 
   return (
