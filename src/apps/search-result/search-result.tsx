@@ -195,6 +195,9 @@ const SearchResult: React.FC<SearchResultProps> = ({
   const shouldShowZeroHits = () => {
     return !isLoading && hitcount === 0;
   };
+
+  const combinedQuery = [q, creator, subject].filter(Boolean).join(", ");
+
   // We are handling loading state for every element separately inside this return(),
   // because then we achieve smoother experience using the filters - not having
   // to loose the filter modal upon selecting a filter.
@@ -206,11 +209,8 @@ const SearchResult: React.FC<SearchResultProps> = ({
 
       {!isLoading && !shouldShowZeroHits() && resultItems && (
         <>
-          <SearchResultHeader
-            hitcount={hitcount}
-            q={[q, creator, subject].filter(Boolean).join(", ")}
-          />
-          <FacetLine q={q} />
+          <SearchResultHeader hitcount={hitcount} q={combinedQuery} />
+          <FacetLine q={combinedQuery} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />
           )}
