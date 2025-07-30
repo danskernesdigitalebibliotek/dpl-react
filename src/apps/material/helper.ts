@@ -519,6 +519,10 @@ export const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
     ...subjects.all.map((item) => item.display)
   ]);
 
+export const stripDk5Numbers = (dk5String: string): string => {
+  return dk5String.replace(/^[0-9.]+\s/, "");
+};
+
 export const isParallelReservation = (manifestations: Manifestation[]) =>
   manifestations.length > 1 &&
   hasCorrectAccessType(AccessTypeCodeEnum.Physical, manifestations) &&

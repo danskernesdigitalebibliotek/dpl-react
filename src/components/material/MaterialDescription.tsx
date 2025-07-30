@@ -2,7 +2,8 @@ import React from "react";
 import {
   getUniqueMovies,
   getDbcVerifiedSubjectsFirst,
-  materialContainsDanish
+  materialContainsDanish,
+  stripDk5Numbers
 } from "../../apps/material/helper";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
@@ -94,7 +95,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                   {
                     url: constructSubjectSearchUrl(
                       searchUrl,
-                      dk5MainEntry.code
+                      stripDk5Numbers(dk5MainEntry.display)
                     ),
                     term: dk5MainEntry.display
                   }

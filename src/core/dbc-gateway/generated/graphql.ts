@@ -2893,11 +2893,7 @@ export type GetMaterialQuery = {
       display: string;
       code: FictionNonfictionCodeEnum;
     } | null;
-    dk5MainEntry?: {
-      __typename?: "DK5MainEntry";
-      display: string;
-      code: string;
-    } | null;
+    dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
     relations: {
       __typename?: "Relations";
       hasReview: Array<{ __typename?: "Manifestation"; pid: string }>;
@@ -3389,11 +3385,7 @@ export type GetMaterialGloballyQuery = {
       display: string;
       code: FictionNonfictionCodeEnum;
     } | null;
-    dk5MainEntry?: {
-      __typename?: "DK5MainEntry";
-      display: string;
-      code: string;
-    } | null;
+    dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
     relations: {
       __typename?: "Relations";
       hasReview: Array<{ __typename?: "Manifestation"; pid: string }>;
@@ -6614,11 +6606,7 @@ export type WorkMediumFragment = {
     display: string;
     code: FictionNonfictionCodeEnum;
   } | null;
-  dk5MainEntry?: {
-    __typename?: "DK5MainEntry";
-    display: string;
-    code: string;
-  } | null;
+  dk5MainEntry?: { __typename?: "DK5MainEntry"; display: string } | null;
   relations: {
     __typename?: "Relations";
     hasReview: Array<{ __typename?: "Manifestation"; pid: string }>;
@@ -7405,7 +7393,6 @@ export const WorkMediumFragmentDoc = `
   }
   dk5MainEntry {
     display
-    code
   }
   relations {
     hasReview {
