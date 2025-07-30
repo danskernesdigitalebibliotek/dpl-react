@@ -3,17 +3,18 @@ import { constructCreatorSearchUrl } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
+import { WorkSmall } from "../../core/utils/types/entities";
 
 interface MaterialHeaderTextProps {
   title: string;
-  author: string;
+  creators: WorkSmall["creators"];
   languageIsoCode?: string;
   materialTitleId?: string;
 }
 
 const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
   title,
-  author,
+  creators,
   languageIsoCode,
   materialTitleId
 }) => {
@@ -30,15 +31,20 @@ const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
       >
         {title}
       </h1>
-      {author && (
+      {creators.length && (
         <p data-cy="material-header-author-text" className="text-body-large">
           <span>{t("materialHeaderAuthorByText")} </span>
-          <LinkNoStyle
-            url={constructCreatorSearchUrl(searchUrl, author)}
-            className="arrow__link"
-          >
-            {author}
-          </LinkNoStyle>
+          {creators.map((creator, index) => (
+            <React.Fragment key={creator.display}>
+              <LinkNoStyle
+                url={constructCreatorSearchUrl(searchUrl, creator.display)}
+                className="arrow__link"
+              >
+                {creator.display}
+              </LinkNoStyle>
+              {index < creators.length - 1 && ", "}
+            </React.Fragment>
+          ))}
         </p>
       )}
     </>

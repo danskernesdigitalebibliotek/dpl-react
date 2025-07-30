@@ -5,8 +5,6 @@ import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
   convertPostIdToFaustId,
-  creatorsToString,
-  flattenCreators,
   getAllFaustIds,
   getManifestationsPids,
   getMaterialTypes,
@@ -77,7 +75,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       })
     );
   };
-  const author = creatorsToString(flattenCreators(creators), t);
   const title = getWorkTitle(work);
   const pid = getWorkPid(work);
   const coverPids = getManifestationsPids(selectedManifestations);
@@ -145,7 +142,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         />
         <MaterialHeaderText
           title={String(title)}
-          author={author}
+          creators={creators}
           languageIsoCode={languageIsoCode}
           materialTitleId={materialTitleId}
         />
