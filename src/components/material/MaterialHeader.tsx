@@ -10,7 +10,6 @@ import {
   getMaterialTypes,
   getWorkPid
 } from "../../core/utils/helpers/general";
-import { useText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
 import { AvailabilityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite, {
@@ -64,7 +63,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
 }) => {
   const materialTitleId = useId();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
-  const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
   const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
