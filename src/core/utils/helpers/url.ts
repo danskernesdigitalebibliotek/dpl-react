@@ -114,14 +114,14 @@ export const constructCreatorSearchUrl = (searchUrl: URL, creator: string) =>
   constructSearchUrlWithFilter({
     searchUrl,
     selectedItemString: creator,
-    filter: { creators: creator }
+    filter: { creators: creator.toLowerCase() }
   });
 
 export const constructSubjectSearchUrl = (searchUrl: URL, subject: string) =>
   constructSearchUrlWithFilter({
     searchUrl,
     selectedItemString: subject,
-    filter: { subjects: subject }
+    filter: { subjects: subject.toLowerCase() }
   });
 
 export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>
