@@ -88,8 +88,8 @@ interface SearchContext {
 }
 
 export function getSearchContextFromUrl(): SearchContext {
-  const creatorParam = getUrlQueryParam("creator");
-  const subjectParam = getUrlQueryParam("subject");
+  const creatorParam = getUrlQueryParam("creators");
+  const subjectParam = getUrlQueryParam("subjects");
   const qParam = getUrlQueryParam("q");
 
   if (creatorParam) {

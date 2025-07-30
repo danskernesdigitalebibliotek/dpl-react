@@ -63,16 +63,16 @@ export interface SearchResultEntryProps
     SearchResultEntryTextProps,
     MappArgs {
   q?: string;
-  creator?: string;
-  subject?: string;
+  creators?: string;
+  subjects?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
 }
 
 const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   q,
-  creator,
-  subject,
+  creators,
+  subjects,
   pageSizeDesktop,
   pageSizeMobile
 }) => {
@@ -80,9 +80,9 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   // otherwise use the ones from the url query parameters.
   const {
     q: searchQuery,
-    creator: creatorQuery,
-    subject: subjectQuery
-  } = getParams({ q, creator, subject });
+    creators: creatorsQuery,
+    subjects: subjectsQuery
+  } = getParams({ q, creators, subjects });
 
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
@@ -94,8 +94,8 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
 
   const hasSearchQuery =
     searchQuery !== undefined ||
-    creatorQuery !== undefined ||
-    subjectQuery !== undefined;
+    creatorsQuery !== undefined ||
+    subjectsQuery !== undefined;
 
   return (
     <div>
@@ -104,8 +104,8 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
         <GuardedApp app="search-result">
           <SearchResult
             q={searchQuery}
-            creator={creatorQuery}
-            subject={subjectQuery}
+            creators={creatorsQuery}
+            subjects={subjectsQuery}
             pageSize={pageSize}
           />
         </GuardedApp>

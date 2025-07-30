@@ -11,6 +11,10 @@ export const mapFacetToFilter = (facet: FacetFieldEnum) => {
       return "materialTypesSpecific";
     case FacetFieldEnum.Worktypes:
       return "workTypes";
+    case FacetFieldEnum.Creators:
+      return "creators";
+    case FacetFieldEnum.Subjects:
+      return "subjects";
     default:
       return "invalid";
   }

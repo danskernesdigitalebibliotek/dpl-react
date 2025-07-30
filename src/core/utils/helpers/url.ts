@@ -112,12 +112,12 @@ export const constructSearchUrl = (searchUrl: URL, q: string) =>
 
 export const constructCreatorSearchUrl = (searchUrl: URL, creator: string) =>
   appendQueryParametersToUrl(searchUrl, {
-    creator
+    creators: creator
   });
 
 export const constructSubjectSearchUrl = (searchUrl: URL, subject: string) =>
   appendQueryParametersToUrl(searchUrl, {
-    subject
+    subjects: subject
   });
 
 export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>

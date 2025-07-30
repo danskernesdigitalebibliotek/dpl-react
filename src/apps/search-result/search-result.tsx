@@ -23,10 +23,7 @@ import Campaign from "../../components/campaign/Campaign";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
-import {
-  getUrlQueryParam,
-  buildSearchQueryObject
-} from "../../core/utils/helpers/url";
+import { getUrlQueryParam } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
@@ -37,15 +34,15 @@ import { formatSearchDisplayQuery } from "./helper";
 
 interface SearchResultProps {
   q: string;
-  creator?: string;
-  subject?: string;
+  creators?: string;
+  subjects?: string;
   pageSize: number;
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({
   q,
-  creator,
-  subject,
+  creators,
+  subjects,
   pageSize
 }) => {
   const { filters, clearFilter, addFilterFromUrlParamListener } =
@@ -63,16 +60,16 @@ const SearchResult: React.FC<SearchResultProps> = ({
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-  // Create a combined query string for facets - use the main query or fallback to creator/subject
-  const facetsQuery = q || creator || subject || "";
+  // Create a combined query string for facets - use the main query or fallback to creators/subjects
+  const facetsQuery = q || creators || subjects || "";
   const { facets: campaignFacets } = useGetFacets(facetsQuery, filters);
   const minimalQueryLength = 1;
 
-  // If q, creator, subject changes (eg. in Storybook context)
+  // If q, creators, subjects changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
   useDeepCompareEffect(() => {
     setResultItems([]);
-  }, [q, creator, subject, pageSize, filters]);
+  }, [q, creators, subjects, pageSize, filters]);
 
   const { collectPageStatistics } = useCollectPageStatistics();
   useEffect(() => {
@@ -106,13 +103,15 @@ const SearchResult: React.FC<SearchResultProps> = ({
   // This is an initial, intentionally simple approach supporting what is required by the search header.
   // It could be reworked to support all filters and terms at a later point.
   useEffectOnce(() => {
+    addFilterFromUrlParamListener(FacetFieldEnum.Creators);
+    addFilterFromUrlParamListener(FacetFieldEnum.Subjects);
     addFilterFromUrlParamListener(FacetFieldEnum.Materialtypesspecific);
     addFilterFromUrlParamListener(FacetFieldEnum.Worktypes);
   });
 
   const { data, isLoading } = useSearchWithPaginationQuery(
     {
-      q: buildSearchQueryObject({ q, creator, subject }),
+      q: { all: q || creators || subjects || "" },
       offset: page * pageSize,
       limit: pageSize,
       filters: createFilters(filters, cleanBranches)
@@ -120,8 +119,8 @@ const SearchResult: React.FC<SearchResultProps> = ({
     {
       enabled: Boolean(
         (q && q.length >= minimalQueryLength) ||
-          (creator && creator.length >= minimalQueryLength) ||
-          (subject && subject.length >= minimalQueryLength)
+          (creators && creators.length >= minimalQueryLength) ||
+          (subjects && subjects.length >= minimalQueryLength)
       )
     }
   );
@@ -189,8 +188,8 @@ const SearchResult: React.FC<SearchResultProps> = ({
 
   if (
     (!q || q.length < minimalQueryLength) &&
-    (!creator || creator.length < minimalQueryLength) &&
-    (!subject || subject.length < minimalQueryLength)
+    (!creators || creators.length < minimalQueryLength) &&
+    (!subjects || subjects.length < minimalQueryLength)
   ) {
     return <SearchResultInvalidSearch />;
   }
@@ -199,7 +198,12 @@ const SearchResult: React.FC<SearchResultProps> = ({
     return !isLoading && hitcount === 0;
   };
 
-  const displayQuery = formatSearchDisplayQuery({ q, creator, subject, t });
+  const displayQuery = formatSearchDisplayQuery({
+    q,
+    creator: creators,
+    subject: subjects,
+    t
+  });
 
   // We are handling loading state for every element separately inside this return(),
   // because then we achieve smoother experience using the filters - not having
