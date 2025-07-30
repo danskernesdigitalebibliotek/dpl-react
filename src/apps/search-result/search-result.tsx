@@ -53,7 +53,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-  const { facets: campaignFacets } = useGetFacets(q || "", filters);
+  const { facets: campaignFacets } = useGetFacets(q, filters);
   const minimalQueryLength = 1;
 
   // If q changes (eg. in Storybook context)
@@ -102,14 +102,12 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   const { data, isLoading } = useSearchWithPaginationQuery(
     {
-      q: { all: q || "" },
+      q: { all: q },
       offset: page * pageSize,
       limit: pageSize,
       filters: createFilters(filters, cleanBranches)
     },
-    {
-      enabled: Boolean(q && q.length >= minimalQueryLength)
-    }
+    { enabled: q.length >= minimalQueryLength }
   );
 
   useEffect(() => {
@@ -204,7 +202,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       {!isLoading && !shouldShowZeroHits() && resultItems && (
         <>
           <SearchResultHeader hitcount={hitcount} q={displayQuery} />
-          <FacetLine q={q || ""} />
+          <FacetLine q={q} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />
           )}
@@ -217,7 +215,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
         </>
       )}
       {/* We know we can show the facet browser after the first valid search. */}
-      {resultItems !== null && <FacetBrowserModal q={q || ""} />}
+      {resultItems !== null && <FacetBrowserModal q={q} />}
     </div>
   );
 };
