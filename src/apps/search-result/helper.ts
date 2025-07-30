@@ -40,8 +40,8 @@ export const formatSearchDisplayQuery = ({
   t
 }: {
   q?: string;
-  creator?: string;
-  subject?: string;
+  creator?: string | null;
+  subject?: string | null;
   t: (key: string) => string;
 }): string => {
   return [

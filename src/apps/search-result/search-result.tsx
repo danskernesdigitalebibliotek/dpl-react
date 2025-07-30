@@ -34,17 +34,10 @@ import { formatSearchDisplayQuery } from "./helper";
 
 interface SearchResultProps {
   q: string;
-  creators?: string;
-  subjects?: string;
   pageSize: number;
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({
-  q,
-  creators,
-  subjects,
-  pageSize
-}) => {
+const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
@@ -60,16 +53,14 @@ const SearchResult: React.FC<SearchResultProps> = ({
   const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
     null
   );
-  // Create a combined query string for facets - use the main query or fallback to creators/subjects
-  const facetsQuery = q || creators || subjects || "";
-  const { facets: campaignFacets } = useGetFacets(facetsQuery, filters);
+  const { facets: campaignFacets } = useGetFacets(q || "", filters);
   const minimalQueryLength = 1;
 
-  // If q, creators, subjects changes (eg. in Storybook context)
+  // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
   useDeepCompareEffect(() => {
     setResultItems([]);
-  }, [q, creators, subjects, pageSize, filters]);
+  }, [q, pageSize, filters]);
 
   const { collectPageStatistics } = useCollectPageStatistics();
   useEffect(() => {
@@ -111,17 +102,13 @@ const SearchResult: React.FC<SearchResultProps> = ({
 
   const { data, isLoading } = useSearchWithPaginationQuery(
     {
-      q: { all: q || creators || subjects || "" },
+      q: { all: q || "" },
       offset: page * pageSize,
       limit: pageSize,
       filters: createFilters(filters, cleanBranches)
     },
     {
-      enabled: Boolean(
-        (q && q.length >= minimalQueryLength) ||
-          (creators && creators.length >= minimalQueryLength) ||
-          (subjects && subjects.length >= minimalQueryLength)
-      )
+      enabled: Boolean(q && q.length >= minimalQueryLength)
     }
   );
 
@@ -186,11 +173,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
     if (filtersUrlParam !== "usePersistedFilters") clearFilter();
   }, [clearFilter]);
 
-  if (
-    (!q || q.length < minimalQueryLength) &&
-    (!creators || creators.length < minimalQueryLength) &&
-    (!subjects || subjects.length < minimalQueryLength)
-  ) {
+  if (!q || q.length < minimalQueryLength) {
     return <SearchResultInvalidSearch />;
   }
 
@@ -198,10 +181,14 @@ const SearchResult: React.FC<SearchResultProps> = ({
     return !isLoading && hitcount === 0;
   };
 
+  // Get creator/subject from URL filters for display purposes
+  const creatorFilter = getUrlQueryParam("creators");
+  const subjectFilter = getUrlQueryParam("subjects");
+
   const displayQuery = formatSearchDisplayQuery({
     q,
-    creator: creators,
-    subject: subjects,
+    creator: creatorFilter,
+    subject: subjectFilter,
     t
   });
 
@@ -217,7 +204,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
       {!isLoading && !shouldShowZeroHits() && resultItems && (
         <>
           <SearchResultHeader hitcount={hitcount} q={displayQuery} />
-          <FacetLine q={facetsQuery} />
+          <FacetLine q={q || ""} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />
           )}
@@ -230,7 +217,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
         </>
       )}
       {/* We know we can show the facet browser after the first valid search. */}
-      {resultItems !== null && <FacetBrowserModal q={facetsQuery} />}
+      {resultItems !== null && <FacetBrowserModal q={q || ""} />}
     </div>
   );
 };

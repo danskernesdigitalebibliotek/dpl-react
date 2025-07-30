@@ -111,13 +111,17 @@ export const constructSearchUrl = (searchUrl: URL, q: string) =>
   });
 
 export const constructCreatorSearchUrl = (searchUrl: URL, creator: string) =>
-  appendQueryParametersToUrl(searchUrl, {
-    creators: creator
+  constructSearchUrlWithFilter({
+    searchUrl,
+    selectedItemString: creator,
+    filter: { creators: creator }
   });
 
 export const constructSubjectSearchUrl = (searchUrl: URL, subject: string) =>
-  appendQueryParametersToUrl(searchUrl, {
-    subjects: subject
+  constructSearchUrlWithFilter({
+    searchUrl,
+    selectedItemString: subject,
+    filter: { subjects: subject }
   });
 
 export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>

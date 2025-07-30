@@ -88,16 +88,19 @@ interface SearchContext {
 }
 
 export function getSearchContextFromUrl(): SearchContext {
-  const creatorParam = getUrlQueryParam("creators");
-  const subjectParam = getUrlQueryParam("subjects");
   const qParam = getUrlQueryParam("q");
+  const creatorFilterParam = getUrlQueryParam("creators");
+  const subjectFilterParam = getUrlQueryParam("subjects");
 
-  if (creatorParam) {
-    return { searchType: "creator", initialQuery: creatorParam };
+  // If we have a creators filter parameter, it's a creator search
+  if (creatorFilterParam && qParam) {
+    return { searchType: "creator", initialQuery: qParam };
   }
-  if (subjectParam) {
-    return { searchType: "subject", initialQuery: subjectParam };
+  // If we have a subjects filter parameter, it's a subject search
+  if (subjectFilterParam && qParam) {
+    return { searchType: "subject", initialQuery: qParam };
   }
+  // Otherwise it's a general search
   if (qParam) {
     return { searchType: "q", initialQuery: qParam };
   }
