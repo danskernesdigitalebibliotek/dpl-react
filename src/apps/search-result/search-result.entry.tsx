@@ -72,10 +72,9 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   pageSizeDesktop,
   pageSizeMobile
 }) => {
-  // If search parameters have been defined as data attributes use those,
-  // otherwise use the ones from the url query parameters.
+  // If a q string has been defined as a data attribute use that
+  // otherwise use the one from the url query parameter.
   const { q: searchQuery } = getParams({ q });
-
   // Get number of result items to be shown.
   // If the number of items has been defined with data attributes use those
   // otherwise get them from the configuration.
@@ -84,12 +83,10 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
     mobile: pageSizeMobile
   });
 
-  const hasSearchQuery = searchQuery !== undefined;
-
   return (
     <div>
       {/* We still want to render the app, even if the search query is an empty string */}
-      {hasSearchQuery && (
+      {(searchQuery || searchQuery === "") && (
         <GuardedApp app="search-result">
           <SearchResult q={searchQuery} pageSize={pageSize} />
         </GuardedApp>
