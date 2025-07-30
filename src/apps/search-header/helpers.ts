@@ -80,11 +80,17 @@ export function isDisplayedAsWorkSuggestion(
   return Boolean(dataWithWorkId.length);
 }
 
-type SearchType = "creator" | "subject" | "q";
+enum SearchType {
+  Creator = "creator",
+  Subject = "subject",
+  General = "q"
+}
 
 interface SearchContext {
   searchType: SearchType;
   initialQuery: string;
+  creatorFilter: string | null;
+  subjectFilter: string | null;
 }
 
 export function getSearchContextFromUrl(): SearchContext {
@@ -92,20 +98,31 @@ export function getSearchContextFromUrl(): SearchContext {
   const creatorFilterParam = getUrlQueryParam("creators");
   const subjectFilterParam = getUrlQueryParam("subjects");
 
-  // If we have a creators filter parameter, it's a creator search
+  // Determine search type based on filter parameters using guard clauses
   if (creatorFilterParam && qParam) {
-    return { searchType: "creator", initialQuery: qParam };
-  }
-  // If we have a subjects filter parameter, it's a subject search
-  if (subjectFilterParam && qParam) {
-    return { searchType: "subject", initialQuery: qParam };
-  }
-  // Otherwise it's a general search
-  if (qParam) {
-    return { searchType: "q", initialQuery: qParam };
+    return {
+      searchType: SearchType.Creator,
+      initialQuery: qParam,
+      creatorFilter: creatorFilterParam,
+      subjectFilter: subjectFilterParam
+    };
   }
 
-  return { searchType: "q", initialQuery: "" };
+  if (subjectFilterParam && qParam) {
+    return {
+      searchType: SearchType.Subject,
+      initialQuery: qParam,
+      creatorFilter: creatorFilterParam,
+      subjectFilter: subjectFilterParam
+    };
+  }
+
+  return {
+    searchType: SearchType.General,
+    initialQuery: qParam || "",
+    creatorFilter: creatorFilterParam,
+    subjectFilter: subjectFilterParam
+  };
 }
 
 export function constructSearchUrlByType(
@@ -114,11 +131,11 @@ export function constructSearchUrlByType(
   query: string
 ): URL {
   switch (searchType) {
-    case "creator":
+    case SearchType.Creator:
       return constructCreatorSearchUrl(searchUrl, query);
-    case "subject":
+    case SearchType.Subject:
       return constructSubjectSearchUrl(searchUrl, query);
-    case "q":
+    case SearchType.General:
     default:
       return constructSearchUrl(searchUrl, query);
   }

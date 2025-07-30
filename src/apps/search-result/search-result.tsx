@@ -24,6 +24,7 @@ import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal"
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
+import { getSearchContextFromUrl } from "../search-header/helpers";
 import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
@@ -179,9 +180,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     return !isLoading && hitcount === 0;
   };
 
-  // Get creator/subject from URL filters for display purposes
-  const creatorFilter = getUrlQueryParam("creators");
-  const subjectFilter = getUrlQueryParam("subjects");
+  const { creatorFilter, subjectFilter } = getSearchContextFromUrl();
 
   const displayQuery = formatSearchDisplayQuery({
     q,
