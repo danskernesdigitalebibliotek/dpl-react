@@ -497,7 +497,8 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "58.95 Rovdyr"
+        "display": "58.95 Rovdyr",
+        "code": "58.95"
       },
       "relations": {
         "hasReview": [

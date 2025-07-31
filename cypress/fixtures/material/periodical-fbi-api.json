@@ -322,7 +322,8 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "05.6 Aviser. Periodica af blandet indhold. Danmark"
+        "display": "05.6 Aviser. Periodica af blandet indhold. Danmark",
+        "code": "05.6"
       },
       "relations": {
         "hasReview": [],
