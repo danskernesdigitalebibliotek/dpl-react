@@ -4,6 +4,7 @@ import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import { WorkSmall } from "../../core/utils/types/entities";
+import { cleanCreatorName } from "./helper";
 
 interface MaterialHeaderTextProps {
   title: string;
@@ -37,7 +38,10 @@ const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
           {creators.map((creator, index) => (
             <React.Fragment key={creator.display}>
               <LinkNoStyle
-                url={constructCreatorSearchUrl(searchUrl, creator.display)}
+                url={constructCreatorSearchUrl(
+                  searchUrl,
+                  cleanCreatorName(creator.display)
+                )}
                 className="arrow__link"
               >
                 {creator.display}
