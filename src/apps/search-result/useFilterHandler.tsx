@@ -64,7 +64,10 @@ const useFilterHandler = () => {
   );
 
   const removeFromFilter = useCallback(
-    (payload: FilterPayloadType) => dispatch(remove(payload)),
+    (payload: FilterPayloadType) => {
+      dispatch(remove(payload));
+      removeQueryParametersFromUrl(payload.facet);
+    },
     [dispatch]
   );
 
