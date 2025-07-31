@@ -7,6 +7,7 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import {
   constructCreatorSearchUrl,
+  constructDK5SearchUrl,
   constructSearchUrl,
   constructSubjectSearchUrl,
   getUrlQueryParam
@@ -83,6 +84,7 @@ export function isDisplayedAsWorkSuggestion(
 enum SearchType {
   Creator = "creator",
   Subject = "subject",
+  Dk5 = "dk5",
   General = "q"
 }
 
@@ -91,29 +93,44 @@ interface SearchContext {
   initialQuery: string;
   creatorFilter: string | null;
   subjectFilter: string | null;
+  dk5Filter: string | null;
 }
 
 export function getSearchContextFromUrl(): SearchContext {
   const qParam = getUrlQueryParam("q");
   const creatorFilterParam = getUrlQueryParam("creators");
   const subjectFilterParam = getUrlQueryParam("subjects");
+  const dk5FilterParam = getUrlQueryParam("dk5");
 
   // Determine search type based on filter parameters using guard clauses
-  if (creatorFilterParam && qParam) {
+  // Display filter value as initial query to allow user to see/edit it
+  if (creatorFilterParam) {
     return {
       searchType: SearchType.Creator,
-      initialQuery: qParam,
+      initialQuery: creatorFilterParam,
       creatorFilter: creatorFilterParam,
-      subjectFilter: subjectFilterParam
+      subjectFilter: subjectFilterParam,
+      dk5Filter: dk5FilterParam
     };
   }
 
-  if (subjectFilterParam && qParam) {
+  if (subjectFilterParam) {
     return {
       searchType: SearchType.Subject,
-      initialQuery: qParam,
+      initialQuery: subjectFilterParam,
       creatorFilter: creatorFilterParam,
-      subjectFilter: subjectFilterParam
+      subjectFilter: subjectFilterParam,
+      dk5Filter: dk5FilterParam
+    };
+  }
+
+  if (dk5FilterParam) {
+    return {
+      searchType: SearchType.Dk5,
+      initialQuery: dk5FilterParam,
+      creatorFilter: creatorFilterParam,
+      subjectFilter: subjectFilterParam,
+      dk5Filter: dk5FilterParam
     };
   }
 
@@ -121,7 +138,8 @@ export function getSearchContextFromUrl(): SearchContext {
     searchType: SearchType.General,
     initialQuery: qParam || "",
     creatorFilter: creatorFilterParam,
-    subjectFilter: subjectFilterParam
+    subjectFilter: subjectFilterParam,
+    dk5Filter: dk5FilterParam
   };
 }
 
@@ -135,6 +153,8 @@ export function constructSearchUrlByType(
       return constructCreatorSearchUrl(searchUrl, query);
     case SearchType.Subject:
       return constructSubjectSearchUrl(searchUrl, query);
+    case SearchType.Dk5:
+      return constructDK5SearchUrl(searchUrl, query);
     case SearchType.General:
     default:
       return constructSearchUrl(searchUrl, query);

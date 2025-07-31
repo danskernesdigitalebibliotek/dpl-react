@@ -99,6 +99,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     addFilterFromUrlParamListener(FacetFieldEnum.Subjects);
     addFilterFromUrlParamListener(FacetFieldEnum.Materialtypesspecific);
     addFilterFromUrlParamListener(FacetFieldEnum.Worktypes);
+    addFilterFromUrlParamListener(FacetFieldEnum.Dk5);
   });
 
   const { data, isLoading } = useSearchWithPaginationQuery(
@@ -180,12 +181,13 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     return !isLoading && hitcount === 0;
   };
 
-  const { creatorFilter, subjectFilter } = getSearchContextFromUrl();
+  const { creatorFilter, subjectFilter, dk5Filter } = getSearchContextFromUrl();
 
   const displayQuery = formatSearchDisplayQuery({
     q,
     creator: creatorFilter,
     subject: subjectFilter,
+    dk5: dk5Filter,
     t
   });
 

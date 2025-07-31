@@ -126,6 +126,15 @@ export const constructSubjectSearchUrl = (searchUrl: URL, subject: string) =>
     filter: { subjects: subject.toLowerCase() }
   });
 
+export const constructDK5SearchUrl = (searchUrl: URL, dk5: string) =>
+  constructSearchUrlWithFilter({
+    searchUrl,
+    // For DK5 searches, q should always be "*"
+    selectedItemString: "*",
+    // Facets only work with lowercase values
+    filter: { dk5: dk5.toLowerCase() }
+  });
+
 export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>
   appendQueryParametersToUrl(advancedSearchUrl, {
     advancedSearchCql: q

@@ -71,12 +71,13 @@ const useFilterHandler = () => {
   const addFilterFromUrlParamListener = (facet: FacetFieldEnum) => {
     const urlFilter = getUrlQueryParam(mapFacetToFilter(facet));
     if (urlFilter) {
-      // When a user initiates a new search for a creator or subject (e.g., from a material page link
+      // When a user initiates a new search for a creator, subject, or DK5 (e.g., from a material page link
       // or by rewriting the search query), we want to provide a clean search experience.
       // This clears any filters from a previous search to avoid unintended filtering on the new search.
       if (
         facet === FacetFieldEnum.Creators ||
-        facet === FacetFieldEnum.Subjects
+        facet === FacetFieldEnum.Subjects ||
+        facet === FacetFieldEnum.Dk5
       ) {
         clearFilter();
       }

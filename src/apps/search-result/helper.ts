@@ -15,6 +15,8 @@ export const mapFacetToFilter = (facet: FacetFieldEnum) => {
       return "creators";
     case FacetFieldEnum.Subjects:
       return "subjects";
+    case FacetFieldEnum.Dk5:
+      return "dk5";
     default:
       return "invalid";
   }
@@ -37,17 +39,20 @@ export const formatSearchDisplayQuery = ({
   q,
   creator,
   subject,
+  dk5,
   t
 }: {
   q?: string;
   creator?: string | null;
   subject?: string | null;
+  dk5?: string | null;
   t: (key: string) => string;
 }): string => {
   return [
     q,
     creator ? `${t("byAuthorText")}: ${creator}` : null,
-    subject ? `${t("facetSubjectsText")}: ${subject}` : null
+    subject ? `${t("facetSubjectsText")}: ${subject}` : null,
+    dk5 ? `${t("facetDk5Text")}: ${dk5}` : null
   ]
     .filter(Boolean)
     .join("; ");

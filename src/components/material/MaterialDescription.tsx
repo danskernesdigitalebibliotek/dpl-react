@@ -6,6 +6,7 @@ import {
 } from "../../apps/material/helper";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
+  constructDK5SearchUrl,
   constructMaterialUrl,
   constructSearchUrl,
   constructSubjectSearchUrl
@@ -92,7 +93,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                 title={t("subjectNumberText")}
                 linkList={[
                   {
-                    url: constructSearchUrl(searchUrl, dk5MainEntry.display),
+                    url: constructDK5SearchUrl(searchUrl, dk5MainEntry.code),
                     term: dk5MainEntry.display
                   }
                 ]}
