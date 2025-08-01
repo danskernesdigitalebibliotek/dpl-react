@@ -7,7 +7,7 @@ import { Pid } from "../../../core/utils/types/ids";
 import InfomediaModalBody from "./InfomediaModalBody";
 import { Manifestation } from "../../../core/utils/types/entities";
 import InfomediaSkeleton from "./InfomediaSkeleton";
-import { isResident } from "../../../core/utils/helpers/user";
+import { isResident } from "../../../core/utils/helpers/userInfo";
 import useUserInfo from "../../../core/adgangsplatformen/useUserInfo";
 import {
   getManifestationAuthors,

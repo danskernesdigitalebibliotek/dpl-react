@@ -7,7 +7,7 @@ import { Manifestation } from "../../../../core/utils/types/entities";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { infomediaModalId } from "../../infomedia/InfomediaModal";
-import { isResident } from "../../../../core/utils/helpers/user";
+import { isResident } from "../../../../core/utils/helpers/userInfo";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import useUserInfo from "../../../../core/adgangsplatformen/useUserInfo";

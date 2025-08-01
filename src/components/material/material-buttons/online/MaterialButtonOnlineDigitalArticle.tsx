@@ -9,7 +9,7 @@ import { Button } from "../../../Buttons/Button";
 import { createDigitalModalId } from "../../digital-modal/helper";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
-import { isResident } from "../../../../core/utils/helpers/user";
+import { isResident } from "../../../../core/utils/helpers/userInfo";
 import useUserInfo from "../../../../core/adgangsplatformen/useUserInfo";
 import { useConfig } from "../../../../core/utils/config";
 
