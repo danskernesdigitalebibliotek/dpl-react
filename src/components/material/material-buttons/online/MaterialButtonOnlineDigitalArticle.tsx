@@ -10,7 +10,8 @@ import { createDigitalModalId } from "../../digital-modal/helper";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import { isResident } from "../../../../core/utils/helpers/user";
-import { usePatronData } from "../../../../core/utils/helpers/usePatronData";
+import useUserInfo from "../../../../core/adgangsplatformen/useUserInfo";
+import { useConfig } from "../../../../core/utils/config";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
   pid: Pid;
@@ -24,17 +25,19 @@ const MaterialButtonOnlineDigitalArticle: FC<
   const t = useText();
   const u = useUrls();
   const authUrl = u("authUrl");
+  const config = useConfig();
+  const siteAgencyId = config("agencyIdConfig");
 
   const [isUserResident, setIsUserResident] = useState<null | boolean>(null);
-  const { isLoading, data: userData } = usePatronData();
+  const { isLoading, data: userInfo } = useUserInfo();
   const { openGuarded } = useModalButtonHandler();
 
   useDeepCompareEffect(() => {
-    if (!userData || !userData.patron) {
+    if (!userInfo) {
       return;
     }
-    setIsUserResident(isResident(userData?.patron));
-  }, [userData]);
+    setIsUserResident(isResident(userInfo, siteAgencyId));
+  }, [userInfo, siteAgencyId]);
 
   const onClick = () => {
     openGuarded({
