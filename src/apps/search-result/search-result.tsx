@@ -24,7 +24,6 @@ import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal"
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
-import { getSearchContextFromUrl } from "../search-header/helpers";
 import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
@@ -181,13 +180,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     return !isLoading && hitcount === 0;
   };
 
-  const { creatorFilter, subjectFilter, dk5Filter } = getSearchContextFromUrl();
-
   const displayQuery = formatSearchDisplayQuery({
     q,
-    creator: creatorFilter,
-    subject: subjectFilter,
-    dk5: dk5Filter,
+    creator: getUrlQueryParam("creators"),
+    subject: getUrlQueryParam("subjects"),
+    dk5: getUrlQueryParam("dk5"),
     t
   });
 
@@ -202,7 +199,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
       {!isLoading && !shouldShowZeroHits() && resultItems && (
         <>
-          <SearchResultHeader hitcount={hitcount} q={displayQuery} />
+          <SearchResultHeader hitcount={hitcount} displayQuery={displayQuery} />
           <FacetLine q={q} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />

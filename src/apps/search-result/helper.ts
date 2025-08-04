@@ -49,7 +49,7 @@ export const formatSearchDisplayQuery = ({
   t: (key: string) => string;
 }): string => {
   return [
-    q,
+    q && q !== "*" ? q : null,
     creator ? `${t("byAuthorText")}: ${creator}` : null,
     subject ? `${t("facetSubjectsText")}: ${subject}` : null,
     dk5 ? `${t("facetDk5Text")}: ${dk5}` : null
