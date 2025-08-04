@@ -113,7 +113,8 @@ export const constructSearchUrl = (searchUrl: URL, q: string) =>
 export const constructCreatorSearchUrl = (searchUrl: URL, creator: string) =>
   constructSearchUrlWithFilter({
     searchUrl,
-    selectedItemString: creator,
+    // For creator searches, q should always be "*"
+    selectedItemString: "*",
     // Facets only work with lowercase values
     filter: { creators: creator.toLowerCase() }
   });
@@ -121,7 +122,8 @@ export const constructCreatorSearchUrl = (searchUrl: URL, creator: string) =>
 export const constructSubjectSearchUrl = (searchUrl: URL, subject: string) =>
   constructSearchUrlWithFilter({
     searchUrl,
-    selectedItemString: subject,
+    // For subject searches, q should always be "*"
+    selectedItemString: "*",
     // Facets only work with lowercase values
     filter: { subjects: subject.toLowerCase() }
   });
