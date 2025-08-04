@@ -5,13 +5,7 @@ import {
   SuggestionsFromQueryStringQuery,
   SuggestionTypeEnum
 } from "../../core/dbc-gateway/generated/graphql";
-import {
-  constructCreatorSearchUrl,
-  constructDK5SearchUrl,
-  constructSearchUrl,
-  constructSubjectSearchUrl,
-  getUrlQueryParam
-} from "../../core/utils/helpers/url";
+import { getUrlQueryParam } from "../../core/utils/helpers/url";
 
 export const getAutosuggestCategoryList = (t: UseTextFunction) => {
   const autosuggestCategoryList = [
@@ -81,84 +75,10 @@ export function isDisplayedAsWorkSuggestion(
   return Boolean(dataWithWorkId.length);
 }
 
-enum SearchType {
-  Creator = "creator",
-  Subject = "subject",
-  Dk5 = "dk5",
-  General = "q"
-}
-
-interface SearchContext {
-  searchType: SearchType;
-  initialQuery: string;
-  creatorFilter: string | null;
-  subjectFilter: string | null;
-  dk5Filter: string | null;
-}
-
-export function getSearchContextFromUrl(): SearchContext {
+export function getInitialSearchQuery(): string {
   const qParam = getUrlQueryParam("q");
-  const creatorFilterParam = getUrlQueryParam("creators");
-  const subjectFilterParam = getUrlQueryParam("subjects");
-  const dk5FilterParam = getUrlQueryParam("dk5");
-
-  // Determine search type based on filter parameters using guard clauses
-  // Display filter value as initial query to allow user to see/edit it
-  if (creatorFilterParam) {
-    return {
-      searchType: SearchType.Creator,
-      initialQuery: creatorFilterParam,
-      creatorFilter: creatorFilterParam,
-      subjectFilter: subjectFilterParam,
-      dk5Filter: dk5FilterParam
-    };
-  }
-
-  if (subjectFilterParam) {
-    return {
-      searchType: SearchType.Subject,
-      initialQuery: subjectFilterParam,
-      creatorFilter: creatorFilterParam,
-      subjectFilter: subjectFilterParam,
-      dk5Filter: dk5FilterParam
-    };
-  }
-
-  if (dk5FilterParam) {
-    return {
-      searchType: SearchType.Dk5,
-      initialQuery: dk5FilterParam,
-      creatorFilter: creatorFilterParam,
-      subjectFilter: subjectFilterParam,
-      dk5Filter: dk5FilterParam
-    };
-  }
-
-  return {
-    searchType: SearchType.General,
-    initialQuery: qParam || "",
-    creatorFilter: creatorFilterParam,
-    subjectFilter: subjectFilterParam,
-    dk5Filter: dk5FilterParam
-  };
-}
-
-export function constructSearchUrlByType(
-  searchType: SearchType,
-  searchUrl: URL,
-  query: string
-): URL {
-  switch (searchType) {
-    case SearchType.Creator:
-      return constructCreatorSearchUrl(searchUrl, query);
-    case SearchType.Subject:
-      return constructSubjectSearchUrl(searchUrl, query);
-    case SearchType.Dk5:
-      return constructDK5SearchUrl(searchUrl, query);
-    case SearchType.General:
-    default:
-      return constructSearchUrl(searchUrl, query);
-  }
+  // If q is "*" or doesn't exist, return empty string for display
+  return qParam === "*" || !qParam ? "" : qParam;
 }
 
 export default {};

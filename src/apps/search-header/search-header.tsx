@@ -20,11 +20,10 @@ import {
 import { WorkId } from "../../core/utils/types/ids";
 import { useText } from "../../core/utils/text";
 import {
-  constructSearchUrlByType,
   determineSuggestionTerm,
   findNonWorkSuggestion,
   getAutosuggestCategoryList,
-  getSearchContextFromUrl,
+  getInitialSearchQuery,
   isDisplayedAsWorkSuggestion
 } from "./helpers";
 import { useEventStatistics } from "../../core/statistics/useStatistics";
@@ -39,8 +38,7 @@ const SearchHeader: React.FC = () => {
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
 
-  // Get search context from URL parameters
-  const { searchType, initialQuery } = getSearchContextFromUrl();
+  const initialQuery = getInitialSearchQuery();
   const [q, setQ] = useState<string>(initialQuery);
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(initialQuery);
   const [suggestItems, setSuggestItems] = useState<
@@ -272,11 +270,7 @@ const SearchHeader: React.FC = () => {
       // Before redirecting we need to clean persisted filters from previous search.
       clearFilter();
       redirectTo(
-        constructSearchUrlByType(
-          searchType,
-          searchUrl,
-          determineSuggestionTerm(selectedItem)
-        )
+        constructSearchUrl(searchUrl, determineSuggestionTerm(selectedItem))
       );
     });
   }
@@ -326,9 +320,9 @@ const SearchHeader: React.FC = () => {
     ) {
       setRedirectUrl(constructAdvancedSearchUrl(advancedSearchUrl, q));
     } else {
-      setRedirectUrl(constructSearchUrlByType(searchType, searchUrl, q));
+      setRedirectUrl(constructSearchUrl(searchUrl, q));
     }
-  }, [q, advancedSearchUrl, searchUrl, searchType]);
+  }, [q, advancedSearchUrl, searchUrl]);
 
   return (
     <div className="header__menu-second">
