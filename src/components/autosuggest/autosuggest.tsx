@@ -1,20 +1,20 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
 import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
-import { useText } from "../../core/utils/text";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import AutosuggestCategory from "../autosuggest-category/autosuggest-category";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
 import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
+import { createPortal } from "react-dom";
 
 export interface AutosuggestProps {
   textData: SuggestionsFromQueryStringQuery["suggest"]["result"];
   materialData: Suggestions;
-  status: string;
   getMenuProps: UseComboboxPropGetters<unknown>["getMenuProps"];
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   categoryData?: SuggestionsFromQueryStringQuery["suggest"]["result"];
   isLoading: boolean;
   dataCy?: string;
@@ -27,25 +27,29 @@ export const Autosuggest: React.FC<AutosuggestProps> = ({
   highlightedIndex,
   getItemProps,
   isOpen,
+  setIsOpen,
   categoryData,
   isLoading,
   dataCy = "autosuggest"
 }) => {
-  const t = useText();
-
   if (isLoading && !textData) {
-    return (
-      <ul className="autosuggest pb-16" data-cy={dataCy}>
-        <li className="ml-24">{t("loadingText")}</li>
-      </ul>
-    );
+    return null;
   }
 
   return (
     <>
+      {createPortal(
+        <div
+          aria-hidden
+          className={`autosuggest-backdrop ${isOpen ? "autosuggest-backdrop--open" : ""}`}
+          onClick={() => setIsOpen(false)}
+        />,
+        document.body
+      )}
+
       {/* The downshift combobox works this way by design */}
       <ul
-        className="autosuggest pb-16"
+        className={`autosuggest ${isOpen ? "autosuggest--open" : ""}`}
         // TODO: Explicitly define prop types for better clarity
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...getMenuProps()}

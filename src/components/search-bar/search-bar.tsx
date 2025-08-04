@@ -43,7 +43,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <>
+    <div className="header__menu-search">
       <label
         className="hide-visually"
         // TODO: Explicitly define prop types for better clarity
@@ -118,7 +118,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         data-cy="search-header-dropdown-icon"
         aria-expanded={isHeaderDropdownOpen}
       />
-    </>
+    </div>
   );
 };
 

@@ -120,20 +120,16 @@ const SearchHeader: React.FC = () => {
 
   // Autosuggest opening and closing based on input text length and user interaction.
   useEffect(() => {
-    if (hasUserTyped && data && data.suggest.result.length > 0) {
+    if (
+      hasUserTyped &&
+      suggestItems.length > 0 &&
+      (status === "success" || status === "loading")
+    ) {
       setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [data, hasUserTyped]);
-
-  useEffect(() => {
-    if (hasUserTyped && qWithoutQuery.length > 2) {
-      setIsAutosuggestOpen(true);
-    } else {
-      setIsAutosuggestOpen(false);
-    }
-  }, [qWithoutQuery, hasUserTyped]);
+  }, [hasUserTyped, status, suggestItems, qWithoutQuery]);
 
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
@@ -351,9 +347,9 @@ const SearchHeader: React.FC = () => {
           textData={textData}
           materialData={materialData}
           categoryData={categoryData}
-          status={status}
           getMenuProps={getMenuProps}
           highlightedIndex={highlightedIndex}
+          setIsOpen={setIsAutosuggestOpen}
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
           isLoading={isLoading}
