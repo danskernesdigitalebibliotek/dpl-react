@@ -5351,47 +5351,6 @@ export type LocalSuggestionsFromQueryStringQuery = {
   };
 };
 
-export type SuggestionsFromQueryStringQueryVariables = Exact<{
-  q: Scalars["String"]["input"];
-}>;
-
-export type SuggestionsFromQueryStringQuery = {
-  __typename?: "Query";
-  suggest: {
-    __typename?: "SuggestResponse";
-    result: Array<{
-      __typename?: "Suggestion";
-      type: SuggestionTypeEnum;
-      term: string;
-      work?: {
-        __typename?: "Work";
-        workId: string;
-        titles: { __typename?: "WorkTitles"; main: Array<string> };
-        creators: Array<
-          | { __typename?: "Corporation"; display: string }
-          | { __typename?: "Person"; display: string }
-        >;
-        manifestations: {
-          __typename?: "Manifestations";
-          all: Array<{ __typename?: "Manifestation"; pid: string }>;
-          bestRepresentation: {
-            __typename?: "Manifestation";
-            pid: string;
-            languages?: {
-              __typename?: "Languages";
-              main?: Array<{
-                __typename?: "Language";
-                display: string;
-                isoCode: string;
-              }> | null;
-            } | null;
-          };
-        };
-      } | null;
-    }>;
-  };
-};
-
 export type GetCoversByPidsQueryVariables = Exact<{
   pids: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
 }>;
@@ -7847,52 +7806,6 @@ export const useLocalSuggestionsFromQueryStringQuery = <
   );
 };
 
-export const SuggestionsFromQueryStringDocument = `
-    query suggestionsFromQueryString($q: String!) {
-  suggest(q: $q) {
-    result {
-      type
-      term
-      work {
-        workId
-        titles {
-          main
-        }
-        creators {
-          display
-        }
-        manifestations {
-          all {
-            pid
-          }
-          bestRepresentation {
-            pid
-            ...WithLanguages
-          }
-        }
-      }
-    }
-  }
-}
-    ${WithLanguagesFragmentDoc}`;
-
-export const useSuggestionsFromQueryStringQuery = <
-  TData = SuggestionsFromQueryStringQuery,
-  TError = unknown
->(
-  variables: SuggestionsFromQueryStringQueryVariables,
-  options?: UseQueryOptions<SuggestionsFromQueryStringQuery, TError, TData>
-) => {
-  return useQuery<SuggestionsFromQueryStringQuery, TError, TData>(
-    ["suggestionsFromQueryString", variables],
-    fetcher<
-      SuggestionsFromQueryStringQuery,
-      SuggestionsFromQueryStringQueryVariables
-    >(SuggestionsFromQueryStringDocument, variables),
-    options
-  );
-};
-
 export const GetCoversByPidsDocument = `
     query GetCoversByPids($pids: [String!]!) {
   manifestations(pid: $pids) {
@@ -8123,7 +8036,6 @@ export const operationNames = {
       "complexSearchWithPaginationWorkAccess" as const,
     complexSearchWithPagination: "complexSearchWithPagination" as const,
     localSuggestionsFromQueryString: "localSuggestionsFromQueryString" as const,
-    suggestionsFromQueryString: "suggestionsFromQueryString" as const,
     GetCoversByPids: "GetCoversByPids" as const,
     GetBestRepresentationPidByIsbn: "GetBestRepresentationPidByIsbn" as const,
     searchFacet: "searchFacet" as const,
