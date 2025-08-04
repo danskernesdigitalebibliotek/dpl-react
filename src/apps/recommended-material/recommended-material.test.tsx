@@ -1,4 +1,4 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
+import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 
 describe("Recommended Material", () => {
   beforeEach(() => {
@@ -6,10 +6,9 @@ describe("Recommended Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "recommendation/fbi-api.json"
     });
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
     });
     // To fill the heart
     cy.intercept("HEAD", "**list/default/work-of**", {
@@ -34,7 +33,7 @@ describe("Recommended Material", () => {
     );
     cy.get(".cover__img")
       .should("have.attr", "src")
-      .should("match", coverUrlPattern);
+      .should("match", FbiCoverUrlPattern);
   });
   it("link navigates to the correct material page", () => {
     cy.visit(

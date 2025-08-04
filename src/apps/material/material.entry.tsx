@@ -69,6 +69,7 @@ interface MaterialEntryTextProps {
   goToText: string;
   reservationDetailsNoInterestAfterTitleText: string;
   identifierText: string;
+  infomediaCopyrightText: string;
   infomediaModalCloseModalAriaLabelText: string;
   infomediaModalScreenReaderModalDescriptionText: string;
   inSameSeriesText: string;
@@ -77,6 +78,7 @@ interface MaterialEntryTextProps {
   instantLoanTitleText: string;
   instantLoanUnderlineDescriptionText: string;
   interestPeriodsConfig: string;
+  libraryAssessmentText: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
@@ -206,6 +208,7 @@ interface MaterialEntryConfigProps {
   blacklistedInstantLoanBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
+  findOnShelfDisclosuresDefaultOpenConfig: string;
   instantLoanConfig: string;
   smsNotificationsForReservationsEnabledConfig: string;
 }

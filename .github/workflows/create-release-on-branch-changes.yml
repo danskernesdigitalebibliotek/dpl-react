@@ -60,13 +60,12 @@ jobs:
         run: |
           zip -r -j ${{ env.DIST_FILENAME }} dist/
 
-
       - name: Delete existing releases
-        uses: dev-drprasad/delete-tag-and-release@v1.1
-        with:
-          tag_name: ${{ env.TAG_NAME }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
+        run: gh release delete ${{ env.TAG_NAME }} --cleanup-tag -y
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # The step will fail if the release does not exist.
+        continue-on-error: true
 
       - name: Create or update tag
         uses: EndBug/latest-tag@v1.6.2
@@ -75,8 +74,9 @@ jobs:
 
       - name: Create release
         id: create-release
-        uses: softprops/action-gh-release@v2.2.2
+        uses: softprops/action-gh-release@v2.3.2
         with:
+          prerelease: true
           target_commitish: ${{ env.RELEASE_SHA }}
           tag_name: ${{ env.TAG_NAME }}
           body: ${{ env.RELEASE_DESCRIPTION }}

@@ -1,3 +1,4 @@
+import { FbiCoverUrlPattern } from "../../../../../cypress/fixtures/fixture.types";
 import { TOKEN_LIBRARY_KEY } from "../../../../core/token";
 
 describe("Reservation details modal", () => {
@@ -7,11 +8,14 @@ describe("Reservation details modal", () => {
     });
 
     // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("cover");
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
+    cy.interceptGraphql({
+      operationName: "GetBestRepresentationPidByIsbn",
+      fixtureFilePath: "cover/cover-get-best-representation-by-isbn.json"
+    });
 
     const clockDate = new Date(
       "Wed Feb 08 2023 20:10:25 GMT+0200 (Central European Summer Time)"
@@ -173,10 +177,7 @@ describe("Reservation details modal", () => {
       .find(".cover")
       .find("img")
       .should("have.attr", "src")
-      .should(
-        "include",
-        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
-      );
+      .and("match", FbiCoverUrlPattern);
 
     // ID 43 2.c. full title
     cy.get(".modal").find("h2").should("have.text", "Mordet i det blå tog");
@@ -212,7 +213,7 @@ describe("Reservation details modal", () => {
     cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Your reservation expires 27-01-2023 23:37!");
+      .should("have.text", "Your reservation expires 27-01-2023 22:37!");
 
     // ID 17 2.f. header "date of reservation"
     cy.getBySel("reservation-form-list-item")
@@ -224,7 +225,7 @@ describe("Reservation details modal", () => {
     cy.getBySel("reservation-form-list-item")
       .eq(1)
       .find(".text-small-caption")
-      .should("have.text", "16-08-2022 12:52");
+      .should("have.text", "16-08-2022 10:52");
 
     cy.getBySel("remove-digital-reservation-button")
       .eq(0)
@@ -338,7 +339,7 @@ describe("Reservation details modal", () => {
     cy.getBySel("reservation-form-list-item")
       .eq(0)
       .find(".text-small-caption")
-      .should("have.text", "Borrow before 27-01-2023 23:37");
+      .should("have.text", "Borrow before 27-01-2023 22:37");
   });
 
   it("It shows physical reservation details modal", () => {
@@ -370,10 +371,9 @@ describe("Reservation details modal", () => {
         message: "OK"
       }
     }).as("digital_reservations");
-    cy.interceptRest({
-      aliasName: "work",
-      httpMethod: "POST",
-      url: "**/next*/**",
+
+    cy.interceptGraphql({
+      operationName: "getManifestationViaMaterialByFaust",
       fixtureFilePath: "reservation-list/work.json"
     });
 
@@ -394,19 +394,13 @@ describe("Reservation details modal", () => {
     cy.visit(
       "/iframe.html?path=/story/apps-reservation-list--reservation-list-physical-details-modal"
     );
-    // These two cy.wait are split up because of the proceedance of the requests
-    cy.wait(["@physical_reservations", "@digital_reservations"]);
-    cy.wait(["@work"]);
 
     // ID 43 2.a. Material cover (coverservice)
     cy.get(".modal")
       .find(".cover")
       .find("img")
       .should("have.attr", "src")
-      .should(
-        "include",
-        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
-      );
+      .and("match", FbiCoverUrlPattern);
 
     // ID 43 2.c. full title
     cy.get(".modal").find("h2").should("have.text", "Dummy Some Title");
@@ -606,10 +600,8 @@ describe("Reservation details modal", () => {
       ]
     });
 
-    cy.interceptRest({
-      aliasName: "work",
-      httpMethod: "POST",
-      url: "**/next*/**",
+    cy.interceptGraphql({
+      operationName: "getManifestationViaMaterialByFaust",
       fixtureFilePath: "reservation-list/work.json"
     });
 
@@ -622,10 +614,7 @@ describe("Reservation details modal", () => {
       .find(".cover")
       .find("img")
       .should("have.attr", "src")
-      .should(
-        "include",
-        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
-      );
+      .and("match", FbiCoverUrlPattern);
 
     //  ID 13 2.a.ii. "Ready for pickup" if reservation is ready for pickup
     cy.get(".modal")
@@ -705,10 +694,8 @@ describe("Reservation details modal", () => {
       }
     }).as("digital_reservations");
 
-    cy.interceptRest({
-      aliasName: "work",
-      httpMethod: "POST",
-      url: "**/next*/**",
+    cy.interceptGraphql({
+      operationName: "getManifestationViaBestRepresentationByFaust",
       fixtureFilePath: "reservation-list/work-bestrepresentation.json"
     });
 
@@ -726,7 +713,6 @@ describe("Reservation details modal", () => {
     );
     // These two cy.wait are split up because of the proceedance of the requests
     cy.wait(["@physical_reservations", "@digital_reservations"]);
-    cy.wait(["@work"]);
 
     // Open the change pickup branch modal for the reservation.
     cy.getBySel("reservation-form-list-item")

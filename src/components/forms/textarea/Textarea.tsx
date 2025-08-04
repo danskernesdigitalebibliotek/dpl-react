@@ -8,6 +8,7 @@ export interface TextareaProps {
   rows?: number;
   cols?: number;
   className?: string;
+  labelClassName?: string;
   placeholder?: string;
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   defaultValue?: string;
@@ -20,6 +21,7 @@ const Textarea: FC<TextareaProps> = ({
   rows = 8,
   cols = 80,
   className,
+  labelClassName,
   placeholder,
   onChange,
   defaultValue,
@@ -27,7 +29,9 @@ const Textarea: FC<TextareaProps> = ({
 }) => {
   return (
     <div className="dpl-input">
-      <Label id={id}>{label}</Label>
+      <Label id={id} className={labelClassName}>
+        {label}
+      </Label>
       <div>
         <textarea
           data-cy={dataCy}

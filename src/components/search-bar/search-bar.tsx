@@ -43,7 +43,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <>
+    <div className="header__menu-search">
       <label
         className="hide-visually"
         // TODO: Explicitly define prop types for better clarity
@@ -63,8 +63,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
         placeholder={t("inputPlaceholderText")}
         aria-label={t("inputPlaceholderText")}
         onKeyUp={(e) => {
-          // Only redirect if there is no selected item in autosuggest + query is longer than 2 characters
-          if (e.key === "Enter" && qWithoutQuery === q && q.length > 2) {
+          // Only redirect if there is no selected item in autosuggest + query has length above 0 characters
+          if (e.key === "Enter" && qWithoutQuery === q && !!q.length) {
             redirectTo(redirectUrl);
           }
         }}
@@ -82,14 +82,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
         alt={t("searchHeaderIconAltText")}
         className="header__menu-search-icon"
         onClick={() => {
-          // Only redirect if there is no selected item in autosuggest + query is longer than 2 characters
-          if (qWithoutQuery === q && q.length > 2) {
+          // Only redirect if there is no selected item in autosuggest + query has length above 0 characters
+          if (qWithoutQuery === q && !!q.length) {
             redirectTo(redirectUrl);
           }
         }}
         onKeyUp={(e) => {
-          // Only redirect if there is no selected item in autosuggest + query is longer than 2 characters
-          if (e.key === "Enter" && qWithoutQuery === q && q.length > 2) {
+          // Only redirect if there is no selected item in autosuggest + query has length above 0 characters
+          if (e.key === "Enter" && qWithoutQuery === q && !!q.length) {
             redirectTo(redirectUrl);
           }
         }}
@@ -118,7 +118,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         data-cy="search-header-dropdown-icon"
         aria-expanded={isHeaderDropdownOpen}
       />
-    </>
+    </div>
   );
 };
 

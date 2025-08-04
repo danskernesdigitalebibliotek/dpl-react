@@ -1,6 +1,6 @@
 # Architecture decision records
 
-We document decisions regarding the architecture of the project using [ADRs](https://github.com/joelparkerhenderson/architecture-decision-record/blob/main/templates/decision-record-template-by-michael-nygard/index.md).
+We document decisions regarding the architecture of the project using [ADRs](https://github.com/joelparkerhenderson/architecture-decision-record/blob/main/locales/en/templates/decision-record-template-by-michael-nygard/index.md).
 
 We follow [the format suggested by Michael Nygaard](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
 containing the sections: *Title*, *Context*, *Decision* and *Consequences*.

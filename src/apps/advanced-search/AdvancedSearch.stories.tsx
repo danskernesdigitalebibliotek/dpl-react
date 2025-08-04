@@ -12,6 +12,9 @@ import AdvancedSearchEntry from "./AdvancedSearch.entry";
 import mappArgs, {
   argTypes as mappArgTypes
 } from "../../core/storybook/mappArgs";
+import advancedSortSelectArgs, {
+  argTypes as advancedSortSelectArgsTypes
+} from "../../core/storybook/AdvancedSortSelect";
 
 const meta: Meta<typeof AdvancedSearchEntry> = {
   title: "Apps / Advanced Search",
@@ -23,6 +26,7 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
     ...mappArgTypes,
+    ...advancedSortSelectArgsTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
       control: { type: "number" },
@@ -319,6 +323,55 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     advancedSearchFilterSublocationDescriptionText: {
       description: "Advanced search filter - sublocation description",
       control: { type: "text" }
+    },
+    advancedSearchFilterBranchText: {
+      description: "Advanced search filter - branch",
+      control: { type: "text" }
+    },
+    advancedSearchFilterBranchDescriptionText: {
+      description: "Advanced search filter - branch description",
+      control: { type: "text" }
+    },
+    advancedSearchFilterDepartmentText: {
+      description: "Advanced search filter - department",
+      control: { type: "text" }
+    },
+    advancedSearchFilterDepartmentDescriptionText: {
+      description: "Advanced search filter - department description",
+      control: { type: "text" }
+    },
+    advancedSearchFirstAccessionDateText: {
+      description: "Date for first accession date",
+      control: { type: "text" }
+    },
+    advancedSearchFirstAccessionDateOperatorText: {
+      description: "Choose operator",
+      control: { type: "text" }
+    },
+    advancedSearchFilterLaterThanText: {
+      description: "Date later than",
+      control: { type: "text" }
+    },
+    advancedSearchFilterExactDateText: {
+      description: "Exact date",
+      control: { type: "text" }
+    },
+    advancedSearchFilterEarlierThanText: {
+      description: "Date earlier than",
+      control: { type: "text" }
+    },
+    advancedSearchFirstAccessionDateDescriptionText: {
+      description:
+        "The format should be YYYY-DD-MM e.g. 2024-24-11. Terms ”NOW”, ”DAYS” and ”MONTHS” can also be used. For example ”NOW - 60 DAYS”. Remember to add a space on both sides of the plus and minus symbols",
+      control: { type: "text" }
+    },
+    advancedSearchFirstAccessionDateSpecifyDateText: {
+      description: "Input desired date in format ”YYYY-MM-DD”",
+      control: { type: "text" }
+    },
+    cqlSearchExternalHelpLinkText: {
+      description: "CQL search external help link text",
+      control: { type: "text" }
     }
   }
 };
@@ -333,6 +386,7 @@ export const Primary: Story = {
     ...globalTextArgs,
     ...globalConfigArgs,
     ...mappArgs,
+    ...advancedSortSelectArgs,
     pageSizeDesktop: 50,
     pageSizeMobile: 20,
     materialUrl: "/work/:workid",
@@ -410,6 +464,21 @@ export const Primary: Story = {
       "Add a comma separated list for multiple locations",
     advancedSearchFilterSublocationText: "Sublocation",
     advancedSearchFilterSublocationDescriptionText:
-      "Add a comma separated list for multiple sublocations"
+      "Add a comma separated list for multiple sublocations",
+    cqlSearchExternalHelpLinkText: "Find out more about CQL search",
+    advancedSearchFilterBranchText: "Branch",
+    advancedSearchFilterBranchDescriptionText:
+      "Add a comma separated list for multiple branches",
+    advancedSearchFilterDepartmentText: "Department",
+    advancedSearchFilterDepartmentDescriptionText: 'E.g. "Adult" or "Children"',
+    advancedSearchFirstAccessionDateText: "First Accession Date",
+    advancedSearchFirstAccessionDateOperatorText: "Choose operator",
+    advancedSearchFilterLaterThanText: "Later than",
+    advancedSearchFilterExactDateText: "Exact date",
+    advancedSearchFilterEarlierThanText: "Earlier than",
+    advancedSearchFirstAccessionDateDescriptionText:
+      "The format should be YYYY-MM-DD e.g. 2024-11-24. Terms ”NOW”, ”DAYS” and ”MONTHS” can also be used. For example ”NOW - 90 DAYS”. Remember to add a space on both sides of the plus and minus symbols.",
+    advancedSearchFirstAccessionDateSpecifyDateText:
+      "Input desired date in format 'YYYY-MM-DD'"
   }
 };

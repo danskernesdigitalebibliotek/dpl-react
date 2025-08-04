@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("Material", () => {
   it("Redirects to login & opens reservation modal on subsequent land-in", () => {
     window.sessionStorage.removeItem("user");
@@ -57,24 +55,16 @@ describe("Material", () => {
       operationName: "WorkRecommendations",
       fixtureFilePath: "material/material-grid-related-recommendations.json"
     });
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
     });
     cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
       fixtureFilePath: "material/availability.json"
     });
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
+
     cy.interceptRest({
       aliasName: "user",
       url: "**/agencyid/patrons/patronid/v4",

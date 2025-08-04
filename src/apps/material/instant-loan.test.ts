@@ -1,4 +1,4 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
+import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 
 describe("Instant Loan", () => {
   beforeEach(() => {
@@ -8,16 +8,15 @@ describe("Instant Loan", () => {
       fixtureFilePath: "material/instant-loan/holdings.json"
     });
 
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
+
     cy.interceptRest({
       aliasName: "user",
       url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
-    });
-
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
     });
 
     cy.interceptRest({
@@ -29,15 +28,6 @@ describe("Instant Loan", () => {
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404
     }).as("Favorite list service");
-
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
 
     cy.interceptGraphql({
       operationName: "getMaterial",
@@ -62,7 +52,7 @@ describe("Instant Loan", () => {
       .and("contain", "Hent bogen nu")
       .find("img")
       .should("have.attr", "src")
-      .and("match", coverUrlPattern);
+      .and("match", FbiCoverUrlPattern);
   });
 
   it("should render InstantLoan branches", () => {

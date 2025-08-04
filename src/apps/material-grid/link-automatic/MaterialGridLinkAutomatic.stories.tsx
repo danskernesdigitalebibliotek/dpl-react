@@ -113,6 +113,15 @@ export const WithOnshelfTrue: Story = {
   }
 };
 
+export const WithSort: Story = {
+  args: {
+    ...Primary.args,
+    title: "with sort = sort.title.desc",
+    description: "Sorts materials by title in descending order",
+    link: "https://dapple-cms.docker/advanced-search?advancedSearchCql=%28lix%3D2+OR+lix%3D3+OR+lix%3D4+OR+lix%3D5+OR+let%3D8+OR+let%3D9+OR+let%3D10%29+AND+term.childrenoradults%3D%22til+b%C3%B8rn%22&sort=sort.title.desc"
+  }
+};
+
 export const Skeleton: Story = {
   render: () => <MaterialGridSkeleton />
 };

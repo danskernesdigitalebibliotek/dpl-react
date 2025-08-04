@@ -41,7 +41,7 @@ const SearchHeader: React.FC = () => {
   const [suggestItems, setSuggestItems] = useState<
     SuggestionsFromQueryStringQuery["suggest"]["result"] | []
   >([]);
-  const minimalQueryLength = 3;
+  const minimalAutosuggestCharacters = 3;
   // we need to convert between string and suggestion result object so
   // that the value in the search field on enter click doesn't become [object][object]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -58,7 +58,7 @@ const SearchHeader: React.FC = () => {
     status: string;
   } = useSuggestionsFromQueryStringQuery(
     { q },
-    { enabled: q.length >= minimalQueryLength }
+    { enabled: q.length >= minimalAutosuggestCharacters }
   );
   const [isHeaderDropdownOpen, setIsHeaderDropdownOpen] =
     useState<boolean>(false);
@@ -114,20 +114,15 @@ const SearchHeader: React.FC = () => {
 
   // Autosuggest opening and closing based on input text length.
   useEffect(() => {
-    if (data && data.suggest.result.length > 0) {
+    if (
+      suggestItems.length > 0 &&
+      (status === "success" || status === "loading")
+    ) {
       setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [data]);
-
-  useEffect(() => {
-    if (qWithoutQuery.length > 2) {
-      setIsAutosuggestOpen(true);
-    } else {
-      setIsAutosuggestOpen(false);
-    }
-  }, [qWithoutQuery]);
+  }, [status, suggestItems, qWithoutQuery]);
 
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
@@ -340,9 +335,9 @@ const SearchHeader: React.FC = () => {
           textData={textData}
           materialData={materialData}
           categoryData={categoryData}
-          status={status}
           getMenuProps={getMenuProps}
           highlightedIndex={highlightedIndex}
+          setIsOpen={setIsAutosuggestOpen}
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
           isLoading={isLoading}

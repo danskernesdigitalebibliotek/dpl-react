@@ -9,6 +9,7 @@ import AdvancedSearch from "./AdvancedSearch";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
 import withPageStatistics from "../../core/statistics/withPageStatistics";
+import { AdvancedSortSelectArgs } from "../../core/storybook/AdvancedSortSelect";
 
 interface AdvancedSearchEntryTextProps {
   byAuthorText: string;
@@ -74,6 +75,18 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterLocationDescriptionText: string;
   advancedSearchFilterSublocationText: string;
   advancedSearchFilterSublocationDescriptionText: string;
+  advancedSearchFilterBranchText: string;
+  advancedSearchFilterBranchDescriptionText: string;
+  advancedSearchFilterDepartmentText: string;
+  advancedSearchFilterDepartmentDescriptionText: string;
+  advancedSearchFirstAccessionDateText: string;
+  advancedSearchFirstAccessionDateOperatorText: string;
+  advancedSearchFilterLaterThanText: string;
+  advancedSearchFilterExactDateText: string;
+  advancedSearchFilterEarlierThanText: string;
+  advancedSearchFirstAccessionDateDescriptionText: string;
+  advancedSearchFirstAccessionDateSpecifyDateText: string;
+  cqlSearchExternalHelpLinkText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
@@ -88,7 +101,8 @@ export interface AdvancedSearchEntryProps
     GlobalEntryTextProps,
     AdvancedSearchEntryConfigProps,
     AdvancedSearchEntryTextProps,
-    MappArgs {
+    MappArgs,
+    AdvancedSortSelectArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
   showingMaterialsText: string;

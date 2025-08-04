@@ -4,6 +4,9 @@ import CheckBox from "../../components/checkbox/Checkbox";
 import { LocationFilter } from "./LocationFilter";
 import Textarea from "../../components/forms/textarea/Textarea";
 import TextInput from "../../components/forms/input/TextInput";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import { FirstAccessionOperatorFilter } from "./types";
+import Link from "../../components/atoms/links/Link";
 
 export type CqlSearchHeaderProps = {
   dataCy?: string;
@@ -13,7 +16,15 @@ export type CqlSearchHeaderProps = {
   handleOnShelfChange: (newState: boolean) => void;
   onLocationChange: (location: string) => void;
   onSublocationChange: (sublocation: string) => void;
+  onBranchChange: (branch: string) => void;
+  onDepartmentChange: (department: string) => void;
+  onFirstAccessionDateChange: (firstAccession: string) => void;
+  onFirstAccessionOperatorChange: (
+    operator: FirstAccessionOperatorFilter
+  ) => void;
   locationFilter: LocationFilter;
+  firstAccessionDateFilter: string;
+  firstAccessionOperatorFilter: FirstAccessionOperatorFilter;
 };
 
 const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
@@ -24,7 +35,13 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   handleOnShelfChange,
   onLocationChange,
   onSublocationChange,
-  locationFilter
+  onBranchChange,
+  onDepartmentChange,
+  onFirstAccessionDateChange,
+  onFirstAccessionOperatorChange,
+  locationFilter,
+  firstAccessionDateFilter,
+  firstAccessionOperatorFilter
 }) => {
   const t = useText();
 
@@ -39,11 +56,25 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
   // while locationFilter location and sublocation are provided as arrays.
   const [inputValues, setInputValues] = useState({
     location: locationFilter?.location?.join(", ") ?? "",
-    sublocation: locationFilter?.sublocation?.join(", ") ?? ""
+    sublocation: locationFilter?.sublocation?.join(", ") ?? "",
+    branch: locationFilter?.branch?.join(", ") ?? "",
+    department: locationFilter?.department?.join(", ") ?? "",
+    firstAccessionDate: firstAccessionDateFilter,
+    firstAccessionOperatorFilter: firstAccessionOperatorFilter
   });
-
+  const firstAccessionDateOperators = [
+    { label: t("advancedSearchFilterLaterThanText"), value: ">" },
+    { label: t("advancedSearchFilterExactDateText"), value: "=" },
+    { label: t("advancedSearchFilterEarlierThanText"), value: "<" }
+  ];
   const handleInputChange = (
-    name: "location" | "sublocation",
+    name:
+      | "location"
+      | "sublocation"
+      | "branch"
+      | "department"
+      | "firstAccessionDate"
+      | "firstAccessionDateOperator",
     value: string
   ) => {
     setInputValues((prevValues) => ({
@@ -57,6 +88,18 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
     if (name === "sublocation") {
       onSublocationChange(value);
     }
+    if (name === "branch") {
+      onBranchChange(value);
+    }
+    if (name === "department") {
+      onDepartmentChange(value);
+    }
+    if (name === "firstAccessionDate") {
+      onFirstAccessionDateChange(value);
+    }
+    if (name === "firstAccessionDateOperator") {
+      onFirstAccessionOperatorChange(value as FirstAccessionOperatorFilter);
+    }
   };
 
   return (
@@ -67,19 +110,46 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
       >
         {t("cqlSearchTitleText")}
       </h1>
-      <form className="advanced-search-cql-form">
-        <Textarea
-          id="cql"
-          label="CQL"
-          className="advanced-search-cql-form__input focus-styling__input"
-          cols={100}
-          rows={5}
-          placeholder="e.g. 'harry potter'"
-          dataCy={`${dataCy}-input`}
-          onChange={(e) => setCql(e.target.value)}
-          defaultValue={initialCql}
+      <div className="advanced-search-cql-form">
+        <div>
+          <Textarea
+            id="cql"
+            label="CQL"
+            className="advanced-search-cql-form__input focus-styling__input"
+            labelClassName="advanced-search-cql-form__label"
+            cols={100}
+            rows={5}
+            placeholder="e.g. term.title=snemand*”"
+            dataCy={`${dataCy}-input`}
+            onChange={(e) => setCql(e.target.value)}
+            defaultValue={initialCql}
+          />
+          <Link
+            className="link-tag advanced-search-cql-form__external-help-link"
+            href={new URL("https://danbib.dk/soegekoder-complex-search")}
+            isNewTab
+          >
+            {t("cqlSearchExternalHelpLinkText")}
+          </Link>
+        </div>
+        <TextInput
+          id="branch"
+          label={t("advancedSearchFilterBranchText")}
+          description={t("advancedSearchFilterBranchDescriptionText")}
+          type="text"
+          onChange={(branch) => handleInputChange("branch", branch)}
+          value={inputValues.branch}
         />
         <TextInput
+          id="department"
+          label={t("advancedSearchFilterDepartmentText")}
+          description={t("advancedSearchFilterDepartmentDescriptionText")}
+          type="text"
+          onChange={(department) => handleInputChange("department", department)}
+          value={inputValues.department}
+        />
+        <TextInput
+          labelClassName="advanced-search-cql-form__label"
           id="location"
           label={t("advancedSearchFilterLocationText")}
           description={t("advancedSearchFilterLocationDescriptionText")}
@@ -88,6 +158,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           value={inputValues.location}
         />
         <TextInput
+          labelClassName="advanced-search-cql-form__label"
           id="sublocation"
           label={t("advancedSearchFilterSublocationText")}
           description={t("advancedSearchFilterSublocationDescriptionText")}
@@ -98,12 +169,35 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           value={inputValues.sublocation}
         />
         <CheckBox
+          labelClassName="advanced-search-cql-form__label"
           id="on-shelf"
           selected={onShelf}
           onChecked={handleOnShelfChange}
           label={t("advancedSearchFilterHoldingStatusText")}
         />
-      </form>
+        <Dropdown
+          labelClassName="advanced-search-cql-form__label"
+          classNames="dropdown--grey-borders advanced-search__filter dpl-input"
+          options={firstAccessionDateOperators}
+          arrowIcon="chevron"
+          handleOnChange={(e) => {
+            handleInputChange("firstAccessionDateOperator", e.target.value);
+          }}
+          defaultValue={inputValues.firstAccessionOperatorFilter}
+          id="first-accession-date-operator"
+          label={t("advancedSearchFirstAccessionDateText")}
+          ariaLabel={t("advancedSearchFirstAccessionDateOperatorText")}
+        />
+        <TextInput
+          id="first-accession-date"
+          className="mb-32"
+          description={t("advancedSearchFirstAccessionDateDescriptionText")}
+          ariaLabel={t("advancedSearchFirstAccessionDateSpecifyDateText")}
+          type="text"
+          onChange={(date) => handleInputChange("firstAccessionDate", date)}
+          value={inputValues.firstAccessionDate}
+        />
+      </div>
     </>
   );
 };

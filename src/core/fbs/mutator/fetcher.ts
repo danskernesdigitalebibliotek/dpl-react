@@ -50,13 +50,9 @@ export const fetcher = async <ResponseType>({
       );
     }
 
-    try {
-      return (await response.json()) as ResponseType;
-    } catch (e) {
-      if (!(e instanceof SyntaxError)) {
-        throw e;
-      }
-    }
+    const text = await response.text();
+    // Some of our responses are intentionally empty. Only try to convert non-empty responses to JSON.
+    return text ? (JSON.parse(text) as ResponseType) : null;
   } catch (error: unknown) {
     if (error instanceof FbsServiceHttpError) {
       throw error;
@@ -65,12 +61,6 @@ export const fetcher = async <ResponseType>({
     const message = error instanceof Error ? error.message : "Unknown error";
     throw new FetchFailedCriticalError(message, serviceUrl);
   }
-
-  // Do nothing. Some of our responses are intentionally empty and thus
-  // cannot be converted to JSON. Fetch API and TypeScript has no clean
-  // way for us to identify empty responses, so instead we swallow
-  // syntax errors during decoding.
-  return null;
 };
 
 export default fetcher;

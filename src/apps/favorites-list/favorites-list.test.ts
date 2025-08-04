@@ -42,10 +42,9 @@ describe("Favorites list", () => {
       aliasName: "work"
     });
 
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
     });
 
     cy.visit("/iframe.html?id=apps-favorite-list--primary&viewMode=story");
