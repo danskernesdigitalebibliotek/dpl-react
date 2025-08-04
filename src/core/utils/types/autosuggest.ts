@@ -1,5 +1,6 @@
-import { SuggestionsFromQueryStringQuery } from "../../dbc-gateway/generated/graphql";
+import { LocalSuggestionsFromQueryStringQuery } from "../../dbc-gateway/generated/graphql";
 
-export type Suggestions = SuggestionsFromQueryStringQuery["suggest"]["result"];
+export type Suggestions =
+  LocalSuggestionsFromQueryStringQuery["localSuggest"]["result"];
 
 export type Suggestion = Suggestions[0];

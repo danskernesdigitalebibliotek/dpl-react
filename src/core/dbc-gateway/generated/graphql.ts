@@ -5309,6 +5309,48 @@ export type ComplexSearchWithPaginationQuery = {
   };
 };
 
+export type LocalSuggestionsFromQueryStringQueryVariables = Exact<{
+  q: Scalars["String"]["input"];
+  branchId?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type LocalSuggestionsFromQueryStringQuery = {
+  __typename?: "Query";
+  localSuggest: {
+    __typename?: "LocalSuggestResponse";
+    result: Array<{
+      __typename?: "Suggestion";
+      type: SuggestionTypeEnum;
+      term: string;
+      work?: {
+        __typename?: "Work";
+        workId: string;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+        creators: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Person"; display: string }
+        >;
+        manifestations: {
+          __typename?: "Manifestations";
+          all: Array<{ __typename?: "Manifestation"; pid: string }>;
+          bestRepresentation: {
+            __typename?: "Manifestation";
+            pid: string;
+            languages?: {
+              __typename?: "Languages";
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
+            } | null;
+          };
+        };
+      } | null;
+    }>;
+  };
+};
+
 export type SuggestionsFromQueryStringQueryVariables = Exact<{
   q: Scalars["String"]["input"];
 }>;
@@ -7759,6 +7801,52 @@ export const useComplexSearchWithPaginationQuery = <
   );
 };
 
+export const LocalSuggestionsFromQueryStringDocument = `
+    query localSuggestionsFromQueryString($q: String!, $branchId: String) {
+  localSuggest(q: $q, branchId: $branchId) {
+    result {
+      type
+      term
+      work {
+        workId
+        titles {
+          main
+        }
+        creators {
+          display
+        }
+        manifestations {
+          all {
+            pid
+          }
+          bestRepresentation {
+            pid
+            ...WithLanguages
+          }
+        }
+      }
+    }
+  }
+}
+    ${WithLanguagesFragmentDoc}`;
+
+export const useLocalSuggestionsFromQueryStringQuery = <
+  TData = LocalSuggestionsFromQueryStringQuery,
+  TError = unknown
+>(
+  variables: LocalSuggestionsFromQueryStringQueryVariables,
+  options?: UseQueryOptions<LocalSuggestionsFromQueryStringQuery, TError, TData>
+) => {
+  return useQuery<LocalSuggestionsFromQueryStringQuery, TError, TData>(
+    ["localSuggestionsFromQueryString", variables],
+    fetcher<
+      LocalSuggestionsFromQueryStringQuery,
+      LocalSuggestionsFromQueryStringQueryVariables
+    >(LocalSuggestionsFromQueryStringDocument, variables),
+    options
+  );
+};
+
 export const SuggestionsFromQueryStringDocument = `
     query suggestionsFromQueryString($q: String!) {
   suggest(q: $q) {
@@ -8034,6 +8122,7 @@ export const operationNames = {
     complexSearchWithPaginationWorkAccess:
       "complexSearchWithPaginationWorkAccess" as const,
     complexSearchWithPagination: "complexSearchWithPagination" as const,
+    localSuggestionsFromQueryString: "localSuggestionsFromQueryString" as const,
     suggestionsFromQueryString: "suggestionsFromQueryString" as const,
     GetCoversByPids: "GetCoversByPids" as const,
     GetBestRepresentationPidByIsbn: "GetBestRepresentationPidByIsbn" as const,

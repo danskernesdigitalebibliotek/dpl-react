@@ -3,7 +3,7 @@ import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 describe("Search header app", () => {
   beforeEach(() => {
     cy.interceptGraphql({
-      operationName: "suggestionsFromQueryString",
+      operationName: "localSuggestionsFromQueryString",
       fixtureFilePath: "search-header-data.json"
     });
 

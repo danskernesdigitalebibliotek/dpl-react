@@ -1,0 +1,26 @@
+query localSuggestionsFromQueryString($q: String!, $branchId: String) {
+  localSuggest(q: $q, branchId: $branchId) {
+    result {
+      type
+      term
+      work {
+        workId
+        titles {
+          main
+        }
+        creators {
+          display
+        }
+        manifestations {
+          all {
+            pid
+          }
+          bestRepresentation {
+            pid
+            ...WithLanguages
+          }
+        }
+      }
+    }
+  }
+}

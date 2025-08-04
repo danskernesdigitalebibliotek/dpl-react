@@ -11,6 +11,7 @@ export default {
   searchFacet: serviceUrlKeys.fbiLocal,
   searchWithPagination: serviceUrlKeys.fbiLocal,
   suggestionsFromQueryString: serviceUrlKeys.fbiLocal,
+  localSuggestionsFromQueryString: serviceUrlKeys.fbiLocal,
   // Global requests.
   getInfomedia: serviceUrlKeys.fbiGlobal,
   getManifestationViaBestRepresentationByFaust: serviceUrlKeys.fbiGlobal,

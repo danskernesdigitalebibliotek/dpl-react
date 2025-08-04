@@ -2,7 +2,7 @@ import { Suggestion } from "../../core/utils/types/autosuggest";
 import { AutosuggestCategory } from "../../core/utils/types/material-type";
 import { UseTextFunction } from "../../core/utils/text";
 import {
-  SuggestionsFromQueryStringQuery,
+  LocalSuggestionsFromQueryStringQuery,
   SuggestionTypeEnum
 } from "../../core/dbc-gateway/generated/graphql";
 
@@ -48,7 +48,9 @@ export const getAutosuggestCategoryList = (t: UseTextFunction) => {
 };
 
 export function findNonWorkSuggestion(
-  originalData: SuggestionsFromQueryStringQuery["suggest"]["result"] | []
+  originalData:
+    | LocalSuggestionsFromQueryStringQuery["localSuggest"]["result"]
+    | []
 ) {
   return originalData.find(
     (item) =>
