@@ -37,10 +37,9 @@ const SearchHeader: React.FC = () => {
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
-
   const initialQuery = getInitialSearchQuery();
   const [q, setQ] = useState<string>(initialQuery);
-  const [qWithoutQuery, setQWithoutQuery] = useState<string>(initialQuery);
+  const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<
     SuggestionsFromQueryStringQuery["suggest"]["result"] | []
   >([]);
