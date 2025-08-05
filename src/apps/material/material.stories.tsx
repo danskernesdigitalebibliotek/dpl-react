@@ -71,6 +71,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Branches",
       control: { type: "text" }
     },
+    findOnShelfDisclosuresDefaultOpenConfig: {
+      description: "Find on shelf disclosures default open",
+      control: { type: "text" }
+    },
     materialHeaderAllEditionsText: {
       description: "Text for the fiction edition text",
       control: { type: "text" }
@@ -491,6 +495,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Close Reservation modal",
       control: { type: "text" }
     },
+    libraryAssessmentText: {
+      description: "Library assessment text shown in review metadata",
+      control: { type: "text" }
+    },
     librariesHaveTheMaterialText: {
       description: "Libraries have the material",
       control: { type: "text" }
@@ -598,6 +606,10 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     infomediaModalCloseModalAriaLabelText: {
       description: "Close infomedia modal",
+      control: { type: "text" }
+    },
+    infomediaCopyrightText: {
+      description: "Infomedia copyright notice text",
       control: { type: "text" }
     },
     saveButtonText: {
@@ -841,6 +853,7 @@ const meta: Meta<typeof MaterialEntry> = {
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
     branchesConfig:
       '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
+    findOnShelfDisclosuresDefaultOpenConfig: "0",
     materialHeaderAllEditionsText: "All editions",
     materialHeaderAuthorByText: "By",
     materialGridRelatedTitleText: "Other materials",
@@ -967,6 +980,7 @@ const meta: Meta<typeof MaterialEntry> = {
     missingDataText: "Missing data",
     reservationModalScreenReaderModalDescriptionText: "Modal for reservation",
     reservationModalCloseModalAriaLabelText: "Close reservation modal",
+    libraryAssessmentText: "Library assessment",
     librariesHaveTheMaterialText: "libraries have material",
     findOnShelfModalScreenReaderModalDescriptionText: "Modal for reservation",
     findOnShelfModalCloseModalAriaLabelText: "Close reservation modal",
@@ -998,6 +1012,8 @@ const meta: Meta<typeof MaterialEntry> = {
     chooseOneText: "Choose one",
     infomediaModalScreenReaderModalDescriptionText: "Modal for infomedia",
     infomediaModalCloseModalAriaLabelText: "Close infomedia modal",
+    infomediaCopyrightText:
+      "All material in Infomedia is covered by copyright law and may not be copied without special permission.",
     saveButtonText: "Save",
     orderDigitalCopyModalScreenReaderModalDescriptionText:
       "Modal for Order digital copy",
@@ -1117,7 +1133,7 @@ export const newspaperPeriodical: Story = {
 export const Infomedia: Story = {
   args: {
     ...Default.args,
-    wid: "work-of:870971-avis:35731733"
+    wid: "work-of:870971-avis:138119807"
   }
 };
 

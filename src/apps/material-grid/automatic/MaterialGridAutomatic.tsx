@@ -21,6 +21,8 @@ export type MaterialGridAutomaticProps = {
   selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
   location?: string;
   sublocation?: string;
+  branch?: string;
+  department?: string;
   onshelf?: boolean;
   sort?: string;
   firstaccessiondateitem?: string;
@@ -30,6 +32,8 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
   cql,
   location,
   sublocation,
+  branch,
+  department,
   onshelf,
   sort,
   title,
@@ -50,6 +54,10 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
       ...(location ? { location: commaSeparatedStringToArray(location) } : {}),
       ...(sublocation
         ? { sublocation: commaSeparatedStringToArray(sublocation) }
+        : {}),
+      ...(branch ? { branch: commaSeparatedStringToArray(branch) } : {}),
+      ...(department
+        ? { department: commaSeparatedStringToArray(department) }
         : {}),
       ...(onshelf ? { status: [HoldingsStatusEnum.Onshelf] } : {}),
       ...(firstaccessiondateitem

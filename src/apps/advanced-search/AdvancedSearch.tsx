@@ -69,6 +69,30 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
     }
   };
 
+  const handleBranchChange = (branch: string) => {
+    setLocationFilter((prevFilter) => ({
+      ...prevFilter,
+      branch: commaSeparatedStringToArray(branch)
+    }));
+    if (branch) {
+      setQueryParametersInUrl({ branch });
+    } else {
+      removeQueryParametersFromUrl("branch");
+    }
+  };
+
+  const handleDepartmentChange = (department: string) => {
+    setLocationFilter((prevFilter) => ({
+      ...prevFilter,
+      department: commaSeparatedStringToArray(department)
+    }));
+    if (department) {
+      setQueryParametersInUrl({ department });
+    } else {
+      removeQueryParametersFromUrl("department");
+    }
+  };
+
   const handleFirstAccessionDateChange = (firstAccession: string) => {
     setFirstAccessionDateFilter(firstAccession);
     if (firstAccession) {
@@ -153,6 +177,22 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
       }));
     }
 
+    const branchParam = getUrlQueryParam("branch");
+    if (branchParam) {
+      setLocationFilter((prevFilter) => ({
+        ...prevFilter,
+        branch: commaSeparatedStringToArray(branchParam)
+      }));
+    }
+
+    const departmentParam = getUrlQueryParam("department");
+    if (departmentParam) {
+      setLocationFilter((prevFilter) => ({
+        ...prevFilter,
+        department: commaSeparatedStringToArray(departmentParam)
+      }));
+    }
+
     const sortParam = getUrlQueryParam("sort");
     if (sortParam) {
       setSort(sortParam as AdvancedSortMapStrings);
@@ -204,6 +244,8 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ pageSize }) => {
           setOnShelf={handleOnShelfChange}
           onLocationChange={handleLocationChange}
           onSublocationChange={handleSublocationChange}
+          onBranchChange={handleBranchChange}
+          onDepartmentChange={handleDepartmentChange}
           onFirstAccessionDateChange={handleFirstAccessionDateChange}
           onFirstAccessionOperatorChange={handleFirstAccessionOperatorChange}
           locationFilter={locationFilter}

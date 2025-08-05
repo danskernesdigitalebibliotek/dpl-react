@@ -500,7 +500,7 @@ describe("Material", () => {
     cy.getBySel("material-reviews-disclosure").should("be.visible").click();
     cy.getBySel("material-reviews").should(
       "contain",
-      "Dorthe Marlene Jørgensen, 2016"
+      "Dorthe Marlene Jørgensen - Library assessment, 2016"
     );
   });
 

@@ -34,6 +34,7 @@ const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
           author={authors}
           date={date}
           publication={publication}
+          isLibrarian={true}
         />
       )}
       {review?.reviewByLibrarians &&

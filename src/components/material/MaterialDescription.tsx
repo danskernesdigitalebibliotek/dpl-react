@@ -1,7 +1,8 @@
 import React from "react";
 import {
   getUniqueMovies,
-  getDbcVerifiedSubjectsFirst
+  getDbcVerifiedSubjectsFirst,
+  materialContainsDanish
 } from "../../apps/material/helper";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
@@ -30,6 +31,10 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const { fictionNonfiction, series, subjects, relations, dk5MainEntry } = work;
 
   const isFiction = materialIsFiction(work);
+
+  // Show DK5 for all non-fiction works OR fiction works in non-Danish languages
+  const shouldShowDk5 =
+    !isFiction || (isFiction && !materialContainsDanish(work));
 
   const seriesMembersList =
     (series &&
@@ -81,7 +86,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
             </p>
           )}
           <div className="material-description__links mt-32">
-            {!isFiction && dk5MainEntry && (
+            {shouldShowDk5 && dk5MainEntry && (
               <HorizontalTermLine
                 title={t("subjectNumberText")}
                 linkList={[
