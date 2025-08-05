@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn, StoryObj } from "@storybook/react-webpack5";
 import React, { useEffect } from "react";
 import Modal, { useModalButtonHandler } from "../../../core/utils/modal";
 import ModalMessage from "./ModalMessage";

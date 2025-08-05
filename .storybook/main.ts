@@ -2,10 +2,10 @@ const config = {
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
 
   addons: [
-    "@storybook/addon-essentials",
     "@storybook/addon-queryparams",
     "@storybook/addon-webpack5-compiler-babel",
-    "@chromatic-com/storybook"
+    "@chromatic-com/storybook",
+    "@storybook/addon-docs"
   ],
 
   typescript: {
@@ -22,10 +22,6 @@ const config = {
   framework: {
     name: "@storybook/react-webpack5",
     options: {}
-  },
-
-  docs: {
-    autodocs: "tag"
   }
 };
 
