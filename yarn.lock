@@ -10830,10 +10830,10 @@ react-error-boundary@^5.0.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-react-flatpickr@^4.0.10:
-  version "4.0.10"
-  resolved "https://registry.yarnpkg.com/react-flatpickr/-/react-flatpickr-4.0.10.tgz#01280f632d095abe53e61b7dab65168b2446e4d4"
-  integrity sha512-/pFC+Y0KZ3C4cPwMwvH+CR+AHovPjdQV+Tfn8II9ue2N6AN7+D8KIvo2x5oY29dFFL60hwfqjJ/9s3NBKJzmDA==
+react-flatpickr@^4.0.11:
+  version "4.0.11"
+  resolved "https://registry.yarnpkg.com/react-flatpickr/-/react-flatpickr-4.0.11.tgz#c2dc96b14c6b4b652165f80c13221d7c32b879be"
+  integrity sha512-S0TAu8eUeJgN8lZ0Efi41WGPM/tPPUvrveXQ8CAUO60+7TTrF5Ehyv8fvPVagKCqJahY7hXYERM7XfH2hSAWdg==
   dependencies:
     flatpickr "^4.6.13"
 
