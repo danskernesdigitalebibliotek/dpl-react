@@ -45,15 +45,21 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           workId,
           titles,
           creators,
-          manifestations: { all: allManifestations, bestRepresentation }
+          manifestations: {
+            all: allManifestations,
+            bestRepresentation,
+            mostRelevant
+          }
         } = work;
         const authors = flattenCreators(
           creators as WorkMediumFragment["creators"]
         );
 
+        const manifestationToShow = mostRelevant?.[0] || bestRepresentation;
+
         const manifestationLanguageIsoCode =
-          bestRepresentation &&
-          getManifestationLanguageIsoCode([bestRepresentation]);
+          manifestationToShow &&
+          getManifestationLanguageIsoCode([manifestationToShow]);
         const coverPids = getManifestationsPids(
           (allManifestations ?? []) as Manifestation[]
         );
@@ -77,7 +83,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 animate
                 size="xSmall"
                 ids={coverPids}
-                bestRepresentation={bestRepresentation as Manifestation}
+                bestRepresentation={manifestationToShow as Manifestation}
                 shadow="small"
               />
               <div className="autosuggest__info">

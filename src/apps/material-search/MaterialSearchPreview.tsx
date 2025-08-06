@@ -38,7 +38,10 @@ const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
     if (!work) return;
 
     if (!selectedMaterialType) {
-      setMaterialForDisplay(work.manifestations.bestRepresentation);
+      setMaterialForDisplay(
+        work.manifestations.mostRelevant?.[0] ||
+          work.manifestations.bestRepresentation
+      );
       return;
     }
 

@@ -88,7 +88,10 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
                 <Cover
                   size="large"
                   displaySize="2xsmall"
-                  ids={[work.manifestations.bestRepresentation.pid]}
+                  ids={[
+                    work.manifestations.mostRelevant?.[0].pid,
+                    work.manifestations.bestRepresentation.pid
+                  ]}
                   animate
                 />
                 <div>

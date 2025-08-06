@@ -53,7 +53,7 @@ interface MaterialHeaderProps {
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   work: {
     creators,
-    manifestations: { all: manifestations, bestRepresentation },
+    manifestations: { all: manifestations, bestRepresentation, mostRelevant },
     workId: wid
   },
   work,
@@ -77,6 +77,9 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       })
     );
   };
+
+  const manifestationToShow = mostRelevant?.[0] || bestRepresentation;
+
   const author = creatorsToString(flattenCreators(creators), t);
   const title = getWorkTitle(work);
   const pid = getWorkPid(work);
@@ -127,7 +130,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       <div className="material-header__cover">
         <Cover
           ids={coverPids}
-          bestRepresentation={bestRepresentation}
+          bestRepresentation={manifestationToShow}
           size="large"
           displaySize="xlarge"
           animate

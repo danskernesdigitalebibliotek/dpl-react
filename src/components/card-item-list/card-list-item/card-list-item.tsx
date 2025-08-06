@@ -82,7 +82,9 @@ const CardListItem: React.FC<CardListItemProps> = ({
     materialTypeFromFilters
   );
   const languageIsoCode = getManifestationLanguageIsoCode(manifestations);
-  const { shelfmark } = mostRelevant[0] || bestRepresentation;
+  const materialToShow =
+    mostRelevant?.[0] || bestRepresentation || bookManifestation;
+  const { shelfmark } = materialToShow;
   const { track } = useEventStatistics();
   // We use hasBeenVisible to determine if the search result
   // is, or has been, visible in the viewport.
@@ -110,6 +112,8 @@ const CardListItem: React.FC<CardListItemProps> = ({
     );
   };
 
+  const isMaterialIsFiction = materialIsFiction(materialToShow);
+
   return (
     // We know that is not following a11y recommendations to have an onclick
     // handler on a non-interactive element.
@@ -136,7 +140,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
           <CardListItemCover
             ids={manifestationPids}
             // We'll try to prioritize book covers or else use FBI's recommended manifestation.
-            bestRepresentation={bookManifestation ?? mostRelevant[0]}
+            bestRepresentation={materialToShow}
             url={materialFullUrl}
             tint={coverTint}
             linkAriaLabelledBy={searchTitleId}
@@ -159,7 +163,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
             workId={workId}
           />
         </div>
-        {!materialIsFiction(mostRelevant[0]) && shelfmark && (
+        {!isMaterialIsFiction && shelfmark && (
           <SubjectNumber
             className="text-tags color-secondary-gray mt-8"
             shelfmark={shelfmark}
