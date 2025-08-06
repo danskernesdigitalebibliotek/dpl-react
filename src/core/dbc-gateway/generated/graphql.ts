@@ -5309,12 +5309,12 @@ export type ComplexSearchWithPaginationQuery = {
   };
 };
 
-export type LocalSuggestionsFromQueryStringQueryVariables = Exact<{
+export type SuggestionsFromQueryStringQueryVariables = Exact<{
   q: Scalars["String"]["input"];
   branchId?: InputMaybe<Scalars["String"]["input"]>;
 }>;
 
-export type LocalSuggestionsFromQueryStringQuery = {
+export type SuggestionsFromQueryStringQuery = {
   __typename?: "Query";
   localSuggest: {
     __typename?: "LocalSuggestResponse";
@@ -7760,8 +7760,8 @@ export const useComplexSearchWithPaginationQuery = <
   );
 };
 
-export const LocalSuggestionsFromQueryStringDocument = `
-    query localSuggestionsFromQueryString($q: String!, $branchId: String) {
+export const SuggestionsFromQueryStringDocument = `
+    query suggestionsFromQueryString($q: String!, $branchId: String) {
   localSuggest(q: $q, branchId: $branchId) {
     result {
       type
@@ -7789,19 +7789,19 @@ export const LocalSuggestionsFromQueryStringDocument = `
 }
     ${WithLanguagesFragmentDoc}`;
 
-export const useLocalSuggestionsFromQueryStringQuery = <
-  TData = LocalSuggestionsFromQueryStringQuery,
+export const useSuggestionsFromQueryStringQuery = <
+  TData = SuggestionsFromQueryStringQuery,
   TError = unknown
 >(
-  variables: LocalSuggestionsFromQueryStringQueryVariables,
-  options?: UseQueryOptions<LocalSuggestionsFromQueryStringQuery, TError, TData>
+  variables: SuggestionsFromQueryStringQueryVariables,
+  options?: UseQueryOptions<SuggestionsFromQueryStringQuery, TError, TData>
 ) => {
-  return useQuery<LocalSuggestionsFromQueryStringQuery, TError, TData>(
-    ["localSuggestionsFromQueryString", variables],
+  return useQuery<SuggestionsFromQueryStringQuery, TError, TData>(
+    ["suggestionsFromQueryString", variables],
     fetcher<
-      LocalSuggestionsFromQueryStringQuery,
-      LocalSuggestionsFromQueryStringQueryVariables
-    >(LocalSuggestionsFromQueryStringDocument, variables),
+      SuggestionsFromQueryStringQuery,
+      SuggestionsFromQueryStringQueryVariables
+    >(SuggestionsFromQueryStringDocument, variables),
     options
   );
 };
@@ -8035,7 +8035,7 @@ export const operationNames = {
     complexSearchWithPaginationWorkAccess:
       "complexSearchWithPaginationWorkAccess" as const,
     complexSearchWithPagination: "complexSearchWithPagination" as const,
-    localSuggestionsFromQueryString: "localSuggestionsFromQueryString" as const,
+    suggestionsFromQueryString: "suggestionsFromQueryString" as const,
     GetCoversByPids: "GetCoversByPids" as const,
     GetBestRepresentationPidByIsbn: "GetBestRepresentationPidByIsbn" as const,
     searchFacet: "searchFacet" as const,

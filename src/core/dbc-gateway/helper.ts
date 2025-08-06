@@ -71,7 +71,7 @@ if (import.meta.vitest) {
       expect(resolveBaseUrl("searchWithPagination")).toEqual(
         "i-am-fbi-local-url"
       );
-      expect(resolveBaseUrl("localSuggestionsFromQueryString")).toEqual(
+      expect(resolveBaseUrl("suggestionsFromQueryString")).toEqual(
         "i-am-fbi-local-url"
       );
       expect(resolveBaseUrl("getInfomedia")).toEqual("i-am-fbi-global-url");

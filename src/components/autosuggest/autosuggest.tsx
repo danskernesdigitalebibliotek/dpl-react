@@ -1,6 +1,6 @@
 import { UseComboboxPropGetters } from "downshift";
 import React from "react";
-import { LocalSuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
+import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
 import { Suggestion, Suggestions } from "../../core/utils/types/autosuggest";
 import AutosuggestCategory from "../autosuggest-category/autosuggest-category";
 import AutosuggestMaterial from "../autosuggest-material/autosuggest-material";
@@ -8,14 +8,14 @@ import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
 import { createPortal } from "react-dom";
 
 export interface AutosuggestProps {
-  textData: LocalSuggestionsFromQueryStringQuery["localSuggest"]["result"];
+  textData: SuggestionsFromQueryStringQuery["localSuggest"]["result"];
   materialData: Suggestions;
   getMenuProps: UseComboboxPropGetters<unknown>["getMenuProps"];
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  categoryData?: LocalSuggestionsFromQueryStringQuery["localSuggest"]["result"];
+  categoryData?: SuggestionsFromQueryStringQuery["localSuggest"]["result"];
   isLoading: boolean;
   dataCy?: string;
 }

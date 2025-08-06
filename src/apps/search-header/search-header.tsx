@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useCombobox, UseComboboxStateChange } from "downshift";
 import { useClickAway } from "react-use";
 import {
-  LocalSuggestionsFromQueryStringQuery,
+  SuggestionsFromQueryStringQuery,
   SuggestionTypeEnum,
-  useLocalSuggestionsFromQueryStringQuery
+  useSuggestionsFromQueryStringQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import SearchBar from "../../components/search-bar/search-bar";
 import { Autosuggest } from "../../components/autosuggest/autosuggest";
@@ -39,7 +39,7 @@ const SearchHeader: React.FC = () => {
   const [q, setQ] = useState<string>("");
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<
-    LocalSuggestionsFromQueryStringQuery["localSuggest"]["result"] | []
+    SuggestionsFromQueryStringQuery["localSuggest"]["result"] | []
   >([]);
 
   const minimalAutosuggestCharacters = 3;
@@ -49,7 +49,7 @@ const SearchHeader: React.FC = () => {
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
   const { clearFilter } = useFilterHandler();
-  const { data, isLoading, status } = useLocalSuggestionsFromQueryStringQuery(
+  const { data, isLoading, status } = useSuggestionsFromQueryStringQuery(
     { q },
     {
       enabled: q.length >= minimalAutosuggestCharacters
@@ -79,7 +79,7 @@ const SearchHeader: React.FC = () => {
   // The first suggestion that is not of SuggestionType.Title - used for showing/
   // /hiding autosuggest categories suggestions.
   let nonWorkSuggestion: Suggestion | undefined;
-  let orderedData: LocalSuggestionsFromQueryStringQuery["localSuggest"]["result"] =
+  let orderedData: SuggestionsFromQueryStringQuery["localSuggest"]["result"] =
     [];
 
   if (originalData) {

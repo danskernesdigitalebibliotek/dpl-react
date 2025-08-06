@@ -2,13 +2,13 @@ import clsx from "clsx";
 import { UseComboboxPropGetters } from "downshift";
 import * as React from "react";
 import { FC } from "react";
-import { LocalSuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
+import { SuggestionsFromQueryStringQuery } from "../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../core/utils/text";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { getAutosuggestCategoryList } from "../../apps/search-header/helpers";
 
 export interface AutosuggestCategoryProps {
-  categoryData: LocalSuggestionsFromQueryStringQuery["localSuggest"]["result"];
+  categoryData: SuggestionsFromQueryStringQuery["localSuggest"]["result"];
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   highlightedIndex: number;
   textAndMaterialDataLength: number;
