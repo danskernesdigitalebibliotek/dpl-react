@@ -20,8 +20,11 @@ export const getFirstMaterialTypeFromFilters = (
   filters: Filter,
   manifestations: Manifestation[]
 ) => {
+  if (!filters || !filters.materialTypesSpecific) {
+    return undefined;
+  }
   const materialTypeFilter = head(
-    Object.keys(filters[FacetFieldEnum.Materialtypesspecific] || {}).sort()
+    Object.keys(filters.materialTypesSpecific)
   ) as ManifestationMaterialType;
   const allMaterialTypes = getMaterialTypes(manifestations);
   return materialTypeFilter && allMaterialTypes.includes(materialTypeFilter)
