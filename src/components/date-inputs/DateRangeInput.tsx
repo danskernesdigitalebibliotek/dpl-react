@@ -39,9 +39,10 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
 
   // We only create a default date if both start and end date are set
   // Because it is about defing a range.
+  // Use hour(12) to avoid timezone issues when parsing date strings
   const value =
     startDate && endDate
-      ? [dayjs(startDate).toDate(), dayjs(endDate).toDate()]
+      ? [dayjs(startDate).hour(12).toDate(), dayjs(endDate).hour(12).toDate()]
       : undefined;
 
   return (
