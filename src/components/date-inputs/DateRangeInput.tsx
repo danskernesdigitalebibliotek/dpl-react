@@ -37,12 +37,18 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
     refLabel.current?.scrollIntoView();
   };
 
+  // Disable past dates - only allow today and future dates
+  // Using disable instead of minDate because minDate causes unexpected behavior
+  // where existing date ranges don't display correctly
+  const isPastDate = (date: Date) => {
+    return dayjs(date).isBefore(dayjs(), "day");
+  };
+
   // We only create a default date if both start and end date are set
-  // Because it is about defing a range.
-  // Use hour(12) to avoid timezone issues when parsing date strings
+  // Because it is about defining a range.
   const value =
     startDate && endDate
-      ? [dayjs(startDate).hour(12).toDate(), dayjs(endDate).hour(12).toDate()]
+      ? [dayjs(startDate).toDate(), dayjs(endDate).toDate()]
       : undefined;
 
   return (
@@ -64,7 +70,7 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
           options={{
             altInput: true,
             altFormat: "j. F Y",
-            minDate: dayjs().toDate(),
+            disable: [isPastDate],
             locale: Danish,
             dateFormat: "d-m-Y",
             static: true,
