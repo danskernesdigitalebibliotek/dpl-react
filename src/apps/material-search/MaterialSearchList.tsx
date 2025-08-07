@@ -6,6 +6,7 @@ import { flattenCreators } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
 import useInfiniteScrollLoading from "./useInfiteScrollLoading";
 import { SearchWithPaginationQuery } from "../../core/dbc-gateway/generated/graphql";
+import { first } from "lodash";
 
 type MaterialSearchListResultsProps = {
   data: SearchWithPaginationQuery["search"]["works"];
@@ -61,6 +62,17 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
         {works.map((work, index) => {
           const authors = flattenCreators(work.creators);
           const isLastItem = index === data.length - 1;
+          const firstMostRelevantManifestation = first(
+            work.manifestations.mostRelevant
+          );
+
+          const pids: string[] = [];
+          if (firstMostRelevantManifestation?.pid) {
+            pids.push(firstMostRelevantManifestation.pid);
+          }
+          if (work.manifestations.bestRepresentation.pid) {
+            pids.push(work.manifestations.bestRepresentation.pid);
+          }
 
           return (
             <li
@@ -85,15 +97,7 @@ const MaterialSearchListResults: FC<MaterialSearchListResultsProps> = ({
                   placeholders: { "@title": `${work.titles.full}` }
                 })}
               >
-                <Cover
-                  size="large"
-                  displaySize="2xsmall"
-                  ids={[
-                    work.manifestations.mostRelevant?.[0].pid,
-                    work.manifestations.bestRepresentation.pid
-                  ]}
-                  animate
-                />
+                <Cover size="large" displaySize="2xsmall" ids={pids} animate />
                 <div>
                   <div className="material-search-list__detail-item">
                     <span className="material-search-list__term">
