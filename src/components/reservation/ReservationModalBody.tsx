@@ -209,9 +209,7 @@ export const ReservationModalBody = ({
           }
         }
       );
-    }
-
-    if (materialIsReservableFromAnotherLibrary && patron) {
+    } else if (materialIsReservableFromAnotherLibrary && patron) {
       setReservationStatus("pending");
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
       // Save reservation to open order.
