@@ -173,7 +173,7 @@ if (import.meta.vitest) {
     }
   ];
 
-  describe("Testing getCoverUrl function with no best representation given", () => {
+  describe("Testing getCoverUrl function with no manifestation given", () => {
     it("Should show first cover if cover is available in size given", () => {
       const url = getCoverUrl({
         coverData,
@@ -206,10 +206,10 @@ if (import.meta.vitest) {
     });
   });
 
-  describe("Testing getCoverUrl function with a best representation given", () => {
-    it("Should show the best representation cover if size matches", () => {
+  describe("Testing getCoverUrl function with a manifestation given", () => {
+    it("Should show the manifestation cover if size matches", () => {
       type GetCoverUrlParams = Parameters<typeof getCoverUrl>[0];
-      const bestRepresentation = {
+      const manifestation = {
         genreAndForm: ["Book"],
         pid: "3-somestring:4"
       };
@@ -217,13 +217,13 @@ if (import.meta.vitest) {
       const url = getCoverUrl({
         coverData,
         size: "small",
-        bestRepresentation
+        manifestation
       } as GetCoverUrlParams);
       expect(url).toBe("url2");
     });
-    it("Should show the first cover if size matches the best representation cover but url is null", () => {
+    it("Should show the first cover if size matches the manifestation cover but url is null", () => {
       type GetCoverUrlParams = Parameters<typeof getCoverUrl>[0];
-      const bestRepresentation = {
+      const manifestation = {
         genreAndForm: ["Book"],
         pid: "4-somestring:5"
       };
@@ -231,13 +231,13 @@ if (import.meta.vitest) {
       const url = getCoverUrl({
         coverData,
         size: "small",
-        bestRepresentation
+        manifestation
       } as GetCoverUrlParams);
       expect(url).toBe("url1");
     });
-    it("Should show the first cover if size matches the best representation cover but url is null", () => {
+    it("Should show the first cover if size matches the manifestation cover but url is null", () => {
       type GetCoverUrlParams = Parameters<typeof getCoverUrl>[0];
-      const bestRepresentation = {
+      const manifestation = {
         genreAndForm: ["Book"],
         pid: "4-somestring:5"
       };
@@ -245,7 +245,7 @@ if (import.meta.vitest) {
       const url = getCoverUrl({
         coverData,
         size: "small",
-        bestRepresentation
+        manifestation
       } as GetCoverUrlParams);
       expect(url).toBe("url1");
     });
