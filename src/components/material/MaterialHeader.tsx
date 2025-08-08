@@ -130,7 +130,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       <div className="material-header__cover">
         <Cover
           ids={coverPids}
-          bestRepresentation={manifestationToShow}
+          manifestation={manifestationToShow}
           size="large"
           displaySize="xlarge"
           animate

@@ -49,11 +49,11 @@ const coverDataRemoveEmptyCovers = ({
 
 export const getCoverUrl = ({
   coverData,
-  bestRepresentation,
+  manifestation,
   size
 }: {
   coverData: GraphQLCoverData[];
-  bestRepresentation?: Manifestation;
+  manifestation?: Manifestation;
   size: FbiCoverImageSizeKey;
 }) => {
   if (!coverData) {
@@ -66,17 +66,17 @@ export const getCoverUrl = ({
   const firstCover = first(covers);
 
   // If no best representation has been given use first cover if available.
-  if (!bestRepresentation && firstCover && getUrl(firstCover.cover, size)) {
+  if (!manifestation && firstCover && getUrl(firstCover.cover, size)) {
     return getUrl(firstCover.cover, size);
   }
 
   // See if we can find a cover that has same id as the best representation id.
-  const bestRepresentationCover = first(
-    covers.filter((item) => bestRepresentation?.pid === item.pid)
+  const manifestationCover = first(
+    covers.filter((item) => manifestation?.pid === item.pid)
   );
   // If we have a best representation cover in the given size use that.
-  if (bestRepresentationCover && getUrl(bestRepresentationCover.cover, size)) {
-    return getUrl(bestRepresentationCover.cover, size);
+  if (manifestationCover && getUrl(manifestationCover.cover, size)) {
+    return getUrl(manifestationCover.cover, size);
   }
 
   // If the best representation method failed we try the first cover.

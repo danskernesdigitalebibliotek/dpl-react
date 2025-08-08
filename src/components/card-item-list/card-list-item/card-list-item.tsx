@@ -141,7 +141,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
           <CardListItemCover
             ids={manifestationPids}
             // We'll try to prioritize book covers or else use FBI's recommended manifestation.
-            bestRepresentation={materialToShow}
+            manifestation={materialToShow}
             url={materialFullUrl}
             tint={coverTint}
             linkAriaLabelledBy={searchTitleId}

@@ -23,7 +23,7 @@ export type CoverProps = {
   displaySize?: DisplaySize;
   tint?: "20" | "40" | "80" | "100" | "120";
   ids: (Pid | string)[];
-  bestRepresentation?: Manifestation;
+  manifestation?: Manifestation;
   alt?: string;
   url?: URL;
   idType?: CoverIdType;
@@ -40,7 +40,7 @@ export const Cover = ({
   animate,
   tint,
   ids,
-  bestRepresentation,
+  manifestation,
   idType = "pid",
   shadow,
   linkAriaLabelledBy,
@@ -83,7 +83,7 @@ export const Cover = ({
 
   const coverSrc = getCoverUrl({
     coverData,
-    bestRepresentation,
+    manifestation,
     size: size
   });
 

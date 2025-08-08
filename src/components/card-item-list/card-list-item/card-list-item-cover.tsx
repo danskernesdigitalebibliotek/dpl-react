@@ -4,7 +4,7 @@ import { Cover, CoverProps } from "../../cover/cover";
 type CardListItemCoverProps = Omit<CoverProps, "animate" | "size">;
 const CardListItemCover: React.FC<CardListItemCoverProps> = ({
   ids,
-  bestRepresentation,
+  manifestation,
   alt,
   url,
   tint,
@@ -14,7 +14,7 @@ const CardListItemCover: React.FC<CardListItemCoverProps> = ({
     <Cover
       animate
       ids={ids}
-      bestRepresentation={bestRepresentation}
+      manifestation={manifestation}
       size="small"
       alt={String(alt)}
       url={url}

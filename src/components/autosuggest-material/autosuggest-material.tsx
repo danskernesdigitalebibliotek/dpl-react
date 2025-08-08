@@ -84,7 +84,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 animate
                 size="xSmall"
                 ids={coverPids}
-                bestRepresentation={manifestationToShow as Manifestation}
+                manifestation={manifestationToShow as Manifestation}
                 shadow="small"
               />
               <div className="autosuggest__info">
