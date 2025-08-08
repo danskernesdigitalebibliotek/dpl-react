@@ -36,6 +36,7 @@ import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 import SubjectNumber from "../../subject-number/SubjectNumber";
 import SeriesList from "./series-list";
+import { first } from "lodash";
 
 export interface CardListItemProps {
   item: Work;
@@ -83,7 +84,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
   );
   const languageIsoCode = getManifestationLanguageIsoCode(manifestations);
   const materialToShow =
-    mostRelevant?.[0] || bestRepresentation || bookManifestation;
+    first(mostRelevant) || bestRepresentation || bookManifestation;
   const { shelfmark } = materialToShow;
   const { track } = useEventStatistics();
   // We use hasBeenVisible to determine if the search result

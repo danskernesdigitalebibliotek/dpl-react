@@ -15,6 +15,7 @@ import MaterialTypeNotFoundError from "./Errors/MaterialTypeNotFoundError";
 import WorkNotFoundError from "./Errors/WorkNotFoundError";
 import ErrorState from "./Errors/errorState";
 import MaterialSearchLoading from "./MaterialSearchLoading";
+import { first } from "lodash";
 
 type MaterialSearchPreviewProps = {
   work: Work | null;
@@ -37,11 +38,12 @@ const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
   useEffect(() => {
     if (!work) return;
 
+    const materialToShow =
+      first(work?.manifestations.mostRelevant) ||
+      work?.manifestations.bestRepresentation;
+
     if (!selectedMaterialType) {
-      setMaterialForDisplay(
-        work.manifestations.mostRelevant?.[0] ||
-          work.manifestations.bestRepresentation
-      );
+      setMaterialForDisplay(materialToShow);
       return;
     }
 

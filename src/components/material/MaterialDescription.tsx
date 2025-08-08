@@ -16,6 +16,7 @@ import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 import { materialIsFiction } from "../../core/utils/helpers/general";
 import SeriesList from "../card-item-list/card-list-item/series-list";
+import { first } from "lodash";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
@@ -33,7 +34,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   // records instead of base records, and the subject count may be corrected locally, in which case, we need
   // to show the local data. Read more about this in this ticket: https://reload.atlassian.net/browse/DDFBRA-694
   const dk5MainEntry =
-    work.manifestations.mostRelevant[0]?.shelfmark?.shelfmark ??
+    first(work.manifestations.mostRelevant)?.shelfmark?.shelfmark ??
     work.dk5MainEntry?.display;
 
   const isFiction = materialIsFiction(work);

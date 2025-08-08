@@ -12,6 +12,7 @@ import {
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 import { Manifestation } from "../../core/utils/types/entities";
+import { first } from "lodash";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -55,7 +56,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           creators as WorkMediumFragment["creators"]
         );
 
-        const manifestationToShow = mostRelevant?.[0] || bestRepresentation;
+        const manifestationToShow = first(mostRelevant) || bestRepresentation;
 
         const manifestationLanguageIsoCode =
           manifestationToShow &&

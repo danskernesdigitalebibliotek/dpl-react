@@ -78,7 +78,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     );
   };
 
-  const manifestationToShow = mostRelevant?.[0] || bestRepresentation;
+  const manifestationToShow = first(mostRelevant) || bestRepresentation;
 
   const author = creatorsToString(flattenCreators(creators), t);
   const title = getWorkTitle(work);
