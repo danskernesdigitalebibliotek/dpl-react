@@ -38,6 +38,7 @@ import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { first } from "lodash";
 import { hasCorrectMaterialType } from "./material-buttons/helper";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import { getBestManifestation } from "../../core/utils/helpers/manifestation";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -53,7 +54,7 @@ interface MaterialHeaderProps {
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   work: {
     creators,
-    manifestations: { all: manifestations, bestRepresentation, mostRelevant },
+    manifestations: { all: manifestations },
     workId: wid
   },
   work,
@@ -78,7 +79,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     );
   };
 
-  const manifestationToShow = first(mostRelevant) || bestRepresentation;
+  const coverManifestation = getBestManifestation(work, "cover");
 
   const author = creatorsToString(flattenCreators(creators), t);
   const title = getWorkTitle(work);
@@ -130,7 +131,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       <div className="material-header__cover">
         <Cover
           ids={coverPids}
-          manifestation={manifestationToShow}
+          manifestation={coverManifestation}
           size="large"
           displaySize="xlarge"
           animate

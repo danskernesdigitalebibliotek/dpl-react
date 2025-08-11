@@ -12,7 +12,7 @@ import {
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 import { Manifestation } from "../../core/utils/types/entities";
-import { first } from "lodash";
+import { getBestManifestation } from "../../core/utils/helpers/manifestation";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -46,21 +46,22 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           workId,
           titles,
           creators,
-          manifestations: {
-            all: allManifestations,
-            bestRepresentation,
-            mostRelevant
-          }
+          manifestations: { all: allManifestations }
         } = work;
         const authors = flattenCreators(
           creators as WorkMediumFragment["creators"]
         );
 
-        const manifestationToShow = first(mostRelevant) || bestRepresentation;
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const coverManifestation = getBestManifestation(work, "cover");
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const detailsManifestation = getBestManifestation(work, "details");
 
         const manifestationLanguageIsoCode =
-          manifestationToShow &&
-          getManifestationLanguageIsoCode([manifestationToShow]);
+          detailsManifestation &&
+          getManifestationLanguageIsoCode([detailsManifestation]);
         const coverPids = getManifestationsPids(
           (allManifestations ?? []) as Manifestation[]
         );
@@ -84,7 +85,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 animate
                 size="xSmall"
                 ids={coverPids}
-                manifestation={manifestationToShow as Manifestation}
+                manifestation={coverManifestation as Manifestation}
                 shadow="small"
               />
               <div className="autosuggest__info">
