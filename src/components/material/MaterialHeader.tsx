@@ -5,14 +5,11 @@ import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
   convertPostIdToFaustId,
-  creatorsToString,
-  flattenCreators,
   getAllFaustIds,
   getManifestationsPids,
   getMaterialTypes,
   getWorkPid
 } from "../../core/utils/helpers/general";
-import { useText } from "../../core/utils/text";
 import { WorkId } from "../../core/utils/types/ids";
 import { AvailabilityLabels } from "../availability-label/availability-labels";
 import ButtonFavourite, {
@@ -66,7 +63,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
 }) => {
   const materialTitleId = useId();
   const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
-  const t = useText();
   const dispatch = useDispatch<TypedDispatch>();
   const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
@@ -77,7 +73,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       })
     );
   };
-  const author = creatorsToString(flattenCreators(creators), t);
   const title = getWorkTitle(work);
   const pid = getWorkPid(work);
   const coverPids = getManifestationsPids(selectedManifestations);
@@ -145,7 +140,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         />
         <MaterialHeaderText
           title={String(title)}
-          author={author}
+          creators={creators}
           languageIsoCode={languageIsoCode}
           materialTitleId={materialTitleId}
         />

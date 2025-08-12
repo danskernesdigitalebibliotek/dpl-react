@@ -705,7 +705,8 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "47.57 Rom"
+        "display": "47.57 Rom",
+        "code": "47.57"
       },
       "relations": {
         "hasReview": [

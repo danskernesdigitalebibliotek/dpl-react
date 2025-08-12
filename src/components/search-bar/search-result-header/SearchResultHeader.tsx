@@ -4,7 +4,7 @@ import { useConfig } from "../../../core/utils/config";
 
 export interface SearchResultHeaderProps {
   hitcount: number;
-  q: string;
+  displayQuery: string;
 }
 
 type WebSearchConfigType = {
@@ -16,7 +16,7 @@ type WebSearchConfigType = {
 
 const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
   hitcount,
-  q
+  displayQuery
 }) => {
   const t = useText();
   const config = useConfig();
@@ -32,7 +32,7 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
         aria-live="polite"
       >
         {`${t("showingResultsForText", {
-          placeholders: { "@query": q }
+          placeholders: { "@query": displayQuery }
         })} (${hitcount})`}
       </h1>
       {webSearchConfig.hasWebSearchResults && (

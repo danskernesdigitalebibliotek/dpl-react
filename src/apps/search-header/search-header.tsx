@@ -23,6 +23,7 @@ import {
   determineSuggestionTerm,
   findNonWorkSuggestion,
   getAutosuggestCategoryList,
+  getInitialSearchQuery,
   isDisplayedAsWorkSuggestion
 } from "./helpers";
 import { useEventStatistics } from "../../core/statistics/useStatistics";
@@ -36,7 +37,8 @@ const SearchHeader: React.FC = () => {
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
-  const [q, setQ] = useState<string>("");
+  const initialQuery = getInitialSearchQuery();
+  const [q, setQ] = useState<string>(initialQuery);
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<
     SuggestionsFromQueryStringQuery["suggest"]["result"] | []
@@ -47,6 +49,7 @@ const SearchHeader: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
+  const [hasUserTyped, setHasUserTyped] = useState<boolean>(false);
   const { clearFilter } = useFilterHandler();
   const {
     data,
@@ -112,9 +115,10 @@ const SearchHeader: React.FC = () => {
     }
   }
 
-  // Autosuggest opening and closing based on input text length.
+  // Autosuggest opening and closing based on input text length and user interaction.
   useEffect(() => {
     if (
+      hasUserTyped &&
       suggestItems.length > 0 &&
       (status === "success" || status === "loading")
     ) {
@@ -122,7 +126,7 @@ const SearchHeader: React.FC = () => {
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [status, suggestItems, qWithoutQuery]);
+  }, [hasUserTyped, status, suggestItems, qWithoutQuery]);
 
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
@@ -193,6 +197,7 @@ const SearchHeader: React.FC = () => {
     if (type === useCombobox.stateChangeTypes.InputChange) {
       setQ(inputValue);
       setQWithoutQuery(inputValue);
+      setHasUserTyped(true);
       return;
     }
     setQWithoutQuery(inputValue);
