@@ -477,6 +477,13 @@ export const getBestMaterialTypeForManifestation = (
 };
 
 export const getBestMaterialTypeForWork = (work: Work) => {
+  if (work.manifestations.mostRelevant) {
+    // Get first manifestation from mostRelevant
+    const firstManifestation = first(work.manifestations.mostRelevant);
+    if (firstManifestation) {
+      return getBestMaterialTypeForManifestation(firstManifestation);
+    }
+  }
   if (work.manifestations.bestRepresentation) {
     return getBestMaterialTypeForManifestation(
       work.manifestations.bestRepresentation

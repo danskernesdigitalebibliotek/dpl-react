@@ -12,6 +12,7 @@ import {
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 import { Manifestation } from "../../core/utils/types/entities";
+import { first } from "lodash";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -45,15 +46,21 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
           workId,
           titles,
           creators,
-          manifestations: { all: allManifestations, bestRepresentation }
+          manifestations: {
+            all: allManifestations,
+            bestRepresentation,
+            mostRelevant
+          }
         } = work;
         const authors = flattenCreators(
           creators as WorkMediumFragment["creators"]
         );
 
+        const manifestationToShow = first(mostRelevant) || bestRepresentation;
+
         const manifestationLanguageIsoCode =
-          bestRepresentation &&
-          getManifestationLanguageIsoCode([bestRepresentation]);
+          manifestationToShow &&
+          getManifestationLanguageIsoCode([manifestationToShow]);
         const coverPids = getManifestationsPids(
           (allManifestations ?? []) as Manifestation[]
         );
@@ -77,7 +84,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 animate
                 size="xSmall"
                 ids={coverPids}
-                bestRepresentation={bestRepresentation as Manifestation}
+                manifestation={manifestationToShow as Manifestation}
                 shadow="small"
               />
               <div className="autosuggest__info">

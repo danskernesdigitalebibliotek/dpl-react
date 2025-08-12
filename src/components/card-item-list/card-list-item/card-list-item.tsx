@@ -36,6 +36,7 @@ import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 import SubjectNumber from "../../subject-number/SubjectNumber";
 import SeriesList from "./series-list";
+import { first } from "lodash";
 
 export interface CardListItemProps {
   item: Work;
@@ -52,7 +53,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
     titles: { full: fullTitle },
     series,
     creators,
-    manifestations: { all: manifestations, bestRepresentation },
+    manifestations: { all: manifestations, bestRepresentation, mostRelevant },
     workId
   },
   coverTint,
@@ -82,7 +83,9 @@ const CardListItem: React.FC<CardListItemProps> = ({
     materialTypeFromFilters
   );
   const languageIsoCode = getManifestationLanguageIsoCode(manifestations);
-  const { shelfmark } = bestRepresentation;
+  const materialToShow =
+    first(mostRelevant) || bestRepresentation || bookManifestation;
+  const { shelfmark } = materialToShow;
   const { track } = useEventStatistics();
   // We use hasBeenVisible to determine if the search result
   // is, or has been, visible in the viewport.
@@ -110,6 +113,8 @@ const CardListItem: React.FC<CardListItemProps> = ({
     );
   };
 
+  const isMaterialIsFiction = materialIsFiction(materialToShow);
+
   return (
     // We know that is not following a11y recommendations to have an onclick
     // handler on a non-interactive element.
@@ -136,7 +141,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
           <CardListItemCover
             ids={manifestationPids}
             // We'll try to prioritize book covers or else use FBI's recommended manifestation.
-            bestRepresentation={bookManifestation ?? bestRepresentation}
+            manifestation={materialToShow}
             url={materialFullUrl}
             tint={coverTint}
             linkAriaLabelledBy={searchTitleId}
@@ -159,7 +164,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
             workId={workId}
           />
         </div>
-        {!materialIsFiction(bestRepresentation) && shelfmark && (
+        {!isMaterialIsFiction && shelfmark && (
           <SubjectNumber
             className="text-tags color-secondary-gray mt-8"
             shelfmark={shelfmark}
