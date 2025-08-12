@@ -342,7 +342,8 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "99.4 Christie, Agatha"
+        "display": "99.4 Christie, Agatha",
+        "code": "99.4"
       },
       "relations": {
         "hasReview": [],

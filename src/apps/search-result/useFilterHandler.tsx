@@ -64,13 +64,29 @@ const useFilterHandler = () => {
   );
 
   const removeFromFilter = useCallback(
-    (payload: FilterPayloadType) => dispatch(remove(payload)),
+    (payload: FilterPayloadType) => {
+      dispatch(remove(payload));
+      removeQueryParametersFromUrl(payload.facet);
+    },
     [dispatch]
   );
 
   const addFilterFromUrlParamListener = (facet: FacetFieldEnum) => {
     const urlFilter = getUrlQueryParam(mapFacetToFilter(facet));
     if (urlFilter) {
+      // When a user initiates a new search for a creator, subject, or DK5 (from a material page link),
+      // we want to provide a clean search experience.
+      // This clears any filters from a previous search to avoid unintended filtering on the new search.
+      if (
+        [
+          FacetFieldEnum.Creators,
+          FacetFieldEnum.Subjects,
+          FacetFieldEnum.Dk5
+        ].includes(facet)
+      ) {
+        clearFilter();
+      }
+
       // We only use term from the url, therefore key is not important here.
       // We dont have a traceId, so we just use a placeholder.
       addToFilter({

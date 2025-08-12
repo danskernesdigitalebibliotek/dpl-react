@@ -395,7 +395,8 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "19.1 Forskningsteknik i alm."
+        "display": "19.1 Forskningsteknik i alm.",
+        "code": "19.1"
       },
       "relations": {
         "hasReview": [],

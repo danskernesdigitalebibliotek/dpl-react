@@ -24,11 +24,13 @@ import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal"
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import { getUrlQueryParam } from "../../core/utils/helpers/url";
+import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultZeroHits from "./search-result-zero-hits";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
+import { formatSearchDisplayQuery } from "./helper";
 
 interface SearchResultProps {
   q: string;
@@ -39,6 +41,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
+  const t = useText();
   const [resultItems, setResultItems] = useState<Work[] | null>(null);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
@@ -91,8 +94,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // This is an initial, intentionally simple approach supporting what is required by the search header.
   // It could be reworked to support all filters and terms at a later point.
   useEffectOnce(() => {
+    addFilterFromUrlParamListener(FacetFieldEnum.Creators);
+    addFilterFromUrlParamListener(FacetFieldEnum.Subjects);
     addFilterFromUrlParamListener(FacetFieldEnum.Materialtypesspecific);
     addFilterFromUrlParamListener(FacetFieldEnum.Worktypes);
+    addFilterFromUrlParamListener(FacetFieldEnum.Dk5);
   });
 
   const { data, isLoading } = useSearchWithPaginationQuery(
@@ -173,6 +179,15 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const shouldShowZeroHits = () => {
     return !isLoading && hitcount === 0;
   };
+
+  const displayQuery = formatSearchDisplayQuery({
+    q,
+    creator: getUrlQueryParam("creators"),
+    subject: getUrlQueryParam("subjects"),
+    dk5: getUrlQueryParam("dk5"),
+    t
+  });
+
   // We are handling loading state for every element separately inside this return(),
   // because then we achieve smoother experience using the filters - not having
   // to loose the filter modal upon selecting a filter.
@@ -184,7 +199,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
       {!isLoading && !shouldShowZeroHits() && resultItems && (
         <>
-          <SearchResultHeader hitcount={hitcount} q={q} />
+          <SearchResultHeader hitcount={hitcount} displayQuery={displayQuery} />
           <FacetLine q={q} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />

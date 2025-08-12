@@ -689,7 +689,8 @@
         "code": "FICTION"
       },
       "dk5MainEntry": {
-        "display": "Skønlitteratur"
+        "display": "Skønlitteratur",
+        "code": "sk"
       },
       "relations": {
         "hasReview": [

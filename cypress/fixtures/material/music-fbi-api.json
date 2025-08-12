@@ -756,7 +756,8 @@
         "code": "NOT_SPECIFIED"
       },
       "dk5MainEntry": {
-        "display": "78.794:5 Rock'n roll. Rock. Folk"
+        "display": "78.794:5 Rock'n roll. Rock. Folk",
+        "code": "78.794:5"
       },
       "relations": {
         "hasReview": [

@@ -290,6 +290,7 @@ fragment WorkMedium on Work {
   }
   dk5MainEntry {
     display
+    code
   }
   relations {
     hasReview {

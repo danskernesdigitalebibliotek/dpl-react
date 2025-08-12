@@ -6,8 +6,10 @@ import {
 } from "../../apps/material/helper";
 import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
+  constructDK5SearchUrl,
   constructMaterialUrl,
-  constructSearchUrl
+  constructSearchUrl,
+  constructSubjectSearchUrl
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
@@ -49,7 +51,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
     [];
 
   const subjectsList = getDbcVerifiedSubjectsFirst(subjects).map((item) => ({
-    url: constructSearchUrl(searchUrl, item),
+    url: constructSubjectSearchUrl(searchUrl, item),
     term: item
   }));
 
@@ -91,7 +93,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
                 title={t("subjectNumberText")}
                 linkList={[
                   {
-                    url: constructSearchUrl(searchUrl, dk5MainEntry.display),
+                    url: constructDK5SearchUrl(searchUrl, dk5MainEntry.code),
                     term: dk5MainEntry.display
                   }
                 ]}

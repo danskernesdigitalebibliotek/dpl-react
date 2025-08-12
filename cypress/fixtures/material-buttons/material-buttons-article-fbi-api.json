@@ -421,7 +421,8 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "61.617 Nyre- og urinvejssygdomme, samt sygdomme i de mandlige kønsorganer"
+        "display": "61.617 Nyre- og urinvejssygdomme, samt sygdomme i de mandlige kønsorganer",
+        "code": "61.617"
       },
       "relations": {
         "hasReview": [],
