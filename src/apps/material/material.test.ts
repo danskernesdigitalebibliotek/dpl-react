@@ -1,20 +1,15 @@
 import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
+import { interceptGetMaterial } from "../../../cypress/factories";
 
 describe("Material", () => {
   it("Renders a title", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get(".text-header-h1").should("be.visible");
   });
 
   it("Renders a cover with a source", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -22,10 +17,7 @@ describe("Material", () => {
   });
 
   it("Renders favorite buttons", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.get(".button-favourite").should(
       "have.attr",
@@ -35,10 +27,7 @@ describe("Material", () => {
   });
 
   it("Renders series horizontal lines", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -66,10 +55,7 @@ describe("Material", () => {
   });
 
   it("Renders authors", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
     cy.getBySel("material-header-author-text")
@@ -78,10 +64,7 @@ describe("Material", () => {
   });
 
   it("Renders exactly 1 availability label per material type", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -94,10 +77,7 @@ describe("Material", () => {
   });
 
   it("Shows the book availability as available", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -112,10 +92,7 @@ describe("Material", () => {
   });
 
   it("Can open material details", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -123,10 +100,7 @@ describe("Material", () => {
   });
 
   it("Renders the correct details for books", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
     cy.wait("@getMaterial GraphQL operation");
@@ -397,10 +371,7 @@ describe("Material", () => {
   });
 
   it("Renders editions with a reservation button", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -415,10 +386,7 @@ describe("Material", () => {
   });
 
   it("Opens modal by clicking on reservation button and closes it with the x button", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.createFakeAuthenticatedSession();
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
@@ -447,10 +415,7 @@ describe("Material", () => {
   });
 
   it("Can open reservation modal, approve a reservation, and close the modal using buttons", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
     cy.createFakeAuthenticatedSession();
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -486,10 +451,7 @@ describe("Material", () => {
   });
 
   it("Renders reviews", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
     cy.interceptGraphql({
       operationName: "getReviewManifestations",
       fixtureFilePath: "material/reviews.json"
@@ -505,10 +467,7 @@ describe("Material", () => {
   });
 
   it("Has a selected availability label based on url parameter", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -522,10 +481,7 @@ describe("Material", () => {
   });
 
   it("Does not have selected availability labels which does not match url parameter", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -539,10 +495,7 @@ describe("Material", () => {
   });
 
   it("Can favorite a material", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     // Intercept like button to show it as filled
     cy.intercept("PUT", "**/list/default/**", {
@@ -567,10 +520,7 @@ describe("Material", () => {
   });
 
   it("Displays 8 recommended materials in the related grid", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
@@ -580,10 +530,7 @@ describe("Material", () => {
   });
 
   it("Renders 3 filter buttons and can click author and series filters", () => {
-    cy.interceptGraphql({
-      operationName: "getMaterial",
-      fixtureFilePath: "material/fbi-api.json"
-    });
+    interceptGetMaterial();
 
     cy.interceptGraphql({
       operationName: "WorkRecommendations",

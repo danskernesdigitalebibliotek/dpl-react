@@ -162,6 +162,7 @@
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "downshift": "^9.0.8",
+    "fishery": "^2.3.1",
     "focus-trap-react": "^11.0.4",
     "graphql": "^16.11.0",
     "graphql-tag": "^2.12.6",
