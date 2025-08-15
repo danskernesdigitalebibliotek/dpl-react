@@ -113,6 +113,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-webpack-plugin": "^5.0.2",
+    "fishery": "^2.3.1",
     "glob": "11.0.1",
     "globals": "^16.3.0",
     "happy-dom": "^18.0.1",
