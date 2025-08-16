@@ -1,3 +1,6 @@
+import { buildGetMaterialResponse } from "../../../cypress/factories/fbs/helper";
+import { infomedia } from "../../../cypress/factories/fbs/overrides/infomedia";
+
 const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
 
 describe("Material - Infomedia", () => {
@@ -34,7 +37,7 @@ describe("Material - Infomedia", () => {
 
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixtureFilePath: "material/infomedia-fbi-api.json"
+      body: buildGetMaterialResponse(infomedia)
     });
 
     cy.interceptGraphql({

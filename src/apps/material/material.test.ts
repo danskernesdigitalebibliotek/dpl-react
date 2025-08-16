@@ -1,5 +1,6 @@
 import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 import { buildGetMaterialResponse } from "../../../cypress/factories/fbs/helper";
+import { infomedia } from "../../../cypress/factories/fbs/overrides/infomedia";
 
 describe("Material", () => {
   it("Renders a title", () => {
@@ -277,7 +278,7 @@ describe("Material", () => {
   it("Renders the correct details for infomedia", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixtureFilePath: "material/infomedia-fbi-api.json"
+      body: buildGetMaterialResponse(infomedia)
     });
 
     cy.visit(
