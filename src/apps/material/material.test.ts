@@ -1,5 +1,8 @@
 import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
-import { buildGetMaterialResponse } from "../../../cypress/factories/fbs/helper";
+import {
+  buildGetMaterialResponse,
+  buildWorkRecommendationsResponse
+} from "../../../cypress/factories/fbs/helper";
 import { infomedia } from "../../../cypress/factories/fbs/overrides/infomedia";
 import { music } from "../../../cypress/factories/fbs/overrides/music";
 
@@ -591,7 +594,7 @@ describe("Material", () => {
 
     cy.interceptGraphql({
       operationName: "WorkRecommendations",
-      fixtureFilePath: "material/material-grid-related-recommendations.json"
+      body: buildWorkRecommendationsResponse()
     });
 
     cy.interceptGraphql({
@@ -647,7 +650,7 @@ describe("Material", () => {
 
     cy.interceptGraphql({
       operationName: "WorkRecommendations",
-      fixtureFilePath: "material/material-grid-related-recommendations.json"
+      body: buildWorkRecommendationsResponse()
     });
 
     cy.interceptGraphql({
