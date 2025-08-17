@@ -1,7 +1,8 @@
 import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 import {
   buildGetMaterialResponse,
-  buildWorkRecommendationsResponse
+  buildWorkRecommendationsResponse,
+  buildGetCoversByPidsResponse
 } from "../../../cypress/factories/fbs/helper";
 import { infomedia } from "../../../cypress/factories/fbs/overrides/infomedia";
 import { music } from "../../../cypress/factories/fbs/overrides/music";
@@ -679,7 +680,7 @@ describe("Material", () => {
     // Intercept covers
     cy.interceptGraphql({
       operationName: "GetCoversByPids",
-      fixtureFilePath: "cover/cover.json"
+      body: buildGetCoversByPidsResponse()
     });
   });
 });
