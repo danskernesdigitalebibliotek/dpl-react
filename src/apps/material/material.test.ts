@@ -1,6 +1,7 @@
 import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 import { buildGetMaterialResponse } from "../../../cypress/factories/fbs/helper";
 import { infomedia } from "../../../cypress/factories/fbs/overrides/infomedia";
+import { music } from "../../../cypress/factories/fbs/overrides/music";
 
 describe("Material", () => {
   it("Renders a title", () => {
@@ -333,7 +334,7 @@ describe("Material", () => {
   it("Renders the correct details for music", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
-      fixtureFilePath: "material/music-fbi-api.json"
+      body: buildGetMaterialResponse(music)
     });
 
     cy.visit(
