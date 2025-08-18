@@ -71,3 +71,8 @@ updates:
         patterns:
           - "cypress"
           - "@cypress/*"
+    ignore:
+      - dependency-name: "storybook"
+        versions: [">=9"]
+      - dependency-name: "@storybook/react-webpack5"
+        versions: [">=9"]
