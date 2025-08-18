@@ -76,3 +76,5 @@ updates:
         versions: [">=9"]
       - dependency-name: "@storybook/react-webpack5"
         versions: [">=9"]
+      - dependency-name: "@chromatic-com/storybook"
+        versions: [">=4"]
