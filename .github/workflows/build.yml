@@ -10,7 +10,7 @@ jobs:
     if: '!github.event.deleted'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # Required to fetch all commits and tags
           fetch-depth: 0
