@@ -21,9 +21,6 @@ updates:
     labels:
       - dependencies
     groups:
-      node:
-        patterns: ["@types/node"]
-        update-types: ["minor", "patch"]
       babel:
         patterns:
           - "@babel/*"
@@ -75,6 +72,8 @@ updates:
           - "cypress"
           - "@cypress/*"
     ignore:
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
       - dependency-name: "storybook"
         versions: [">=9"]
       - dependency-name: "@storybook/react-webpack5"
