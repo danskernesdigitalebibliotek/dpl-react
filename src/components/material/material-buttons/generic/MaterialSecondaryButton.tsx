@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Button } from "../../../Buttons/Button";
 import { ButtonSize } from "../../../../core/utils/types/button";
-import { isActivationKeys } from "../../../../core/utils/helpers/general";
+import { isEnterOrSpacePressed } from "../../../../core/utils/helpers/general";
 
 interface MaterialSecondaryButtonProps {
   label: string;
@@ -20,7 +20,7 @@ const MaterialSecondaryButton: FC<MaterialSecondaryButtonProps> = ({
 }) => {
   // If element is currently focused on, we would like to let users open it using enter or space
   const handleKeyUp = (e: React.KeyboardEvent) => {
-    if (isActivationKeys(e.key)) {
+    if (isEnterOrSpacePressed(e.key)) {
       onClick();
     }
   };

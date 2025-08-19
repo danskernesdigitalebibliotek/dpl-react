@@ -2,7 +2,7 @@ import React from "react";
 import { ModalId } from "../../core/modal.slice";
 import Modal, { useModalButtonHandler } from "../../core/utils/modal";
 import { useText, withText } from "../../core/utils/text";
-import { isActivationKeys } from "../../core/utils/helpers/general";
+import { isEnterOrSpacePressed } from "../../core/utils/helpers/general";
 
 const DemoModal: React.FC = () => {
   const { open } = useModalButtonHandler();
@@ -34,7 +34,7 @@ const DemoModal: React.FC = () => {
           id={`${modalIdTwo}-button`}
           onMouseUp={() => handleOpenModal(modalIdTwo)}
           onKeyUp={(e) => {
-            if (isActivationKeys(e.key)) {
+            if (isEnterOrSpacePressed(e.key)) {
               handleOpenModal(modalIdTwo);
             }
           }}
@@ -47,7 +47,7 @@ const DemoModal: React.FC = () => {
         id={`${modalIdOne}-button`}
         onMouseUp={() => handleOpenModal(modalIdOne)}
         onKeyUp={(e) => {
-          if (isActivationKeys(e.key)) {
+          if (isEnterOrSpacePressed(e.key)) {
             handleOpenModal(modalIdOne);
           }
         }}

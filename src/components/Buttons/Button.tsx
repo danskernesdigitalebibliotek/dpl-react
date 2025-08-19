@@ -5,7 +5,7 @@ import {
   ButtonVariant
 } from "../../core/utils/types/button";
 import { ButtonIcon } from "./ButtonIcon";
-import { isActivationKeys } from "../../core/utils/helpers/general";
+import { isEnterOrSpacePressed } from "../../core/utils/helpers/general";
 
 export type ButtonProps = {
   label: string;
@@ -57,7 +57,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled || isLoadingRef.current}
       onMouseUp={handleClick}
       onKeyUp={(e) => {
-        if (isActivationKeys(e.key)) {
+        if (isEnterOrSpacePressed(e.key)) {
           handleClick();
         }
       }}

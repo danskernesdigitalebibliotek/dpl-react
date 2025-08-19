@@ -555,7 +555,7 @@ export const formatDanishPhoneNumber = (phoneNumber: string) => {
 export const parseBoolean = (value?: string): boolean =>
   value?.toLowerCase() === "true";
 
-export const isActivationKeys = (key: string): boolean => {
+export const isEnterOrSpacePressed = (key: string): boolean => {
   return key === "Enter" || key === " ";
 };
 

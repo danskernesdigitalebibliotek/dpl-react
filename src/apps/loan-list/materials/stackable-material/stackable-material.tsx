@@ -9,7 +9,7 @@ import fetchDigitalMaterial from "../utils/digital-material-fetch-hoc";
 import MaterialStatus from "./material-status";
 import { LoanId } from "../../../../core/utils/types/ids";
 import ListMaterialSkeleton from "../../../reservation-list/reservation-material/list-material-skeleton";
-import { isActivationKeys } from "../../../../core/utils/helpers/general";
+import { isEnterOrSpacePressed } from "../../../../core/utils/helpers/general";
 
 export interface StackableMaterialProps {
   loan: LoanType;
@@ -53,7 +53,7 @@ const StackableMaterial: FC<StackableMaterialProps & MaterialProps> = ({
         // `!focused` prevents opening material details modal after clicking
         // enter on pager. Pager gives focus to the next stackable material too
         // quickly while still registering the enter key press.
-        if (isActivationKeys(e.key) && !focused) {
+        if (isEnterOrSpacePressed(e.key) && !focused) {
           handleOpenDueDateModal();
         }
       }}

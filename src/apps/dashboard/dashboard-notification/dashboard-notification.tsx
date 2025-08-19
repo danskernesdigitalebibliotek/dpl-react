@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Arrow from "../../../components/atoms/icons/arrow/arrow";
 import StatusBadge from "../../loan-list/materials/utils/status-badge";
-import { isActivationKeys } from "../../../core/utils/helpers/general";
+import { isEnterOrSpacePressed } from "../../../core/utils/helpers/general";
 
 interface DashboardNotificationProps {
   notificationNumber: number;
@@ -31,7 +31,7 @@ const DashboardNotification: FC<DashboardNotificationProps> = ({
       data-cy={dataCy}
       onMouseUp={notificationClickEvent}
       onKeyUp={(e) => {
-        if (isActivationKeys(e.key)) {
+        if (isEnterOrSpacePressed(e.key)) {
           notificationClickEvent();
         }
       }}
