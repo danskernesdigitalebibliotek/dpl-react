@@ -157,11 +157,20 @@ export type GuardedOpenModalProps = {
   trackOnlineView?: () => Promise<unknown>;
 };
 
+type ModalOptions = {
+  updateUrl?: boolean;
+};
+
 export const useModalButtonHandler = () => {
   const dispatch = useDispatch();
   return {
-    open: (modalId: ModalId) => {
-      return dispatch(openModal({ modalId }));
+    open: (modalId: ModalId, options?: ModalOptions) => {
+      return dispatch(
+        openModal({
+          modalId,
+          updateUrl: options?.updateUrl
+        })
+      );
     },
     close: (modalId: ModalId) => {
       return dispatch(closeModal({ modalId }));

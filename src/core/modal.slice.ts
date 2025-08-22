@@ -11,6 +11,7 @@ export type ModalId = string;
 interface PayloadProps {
   payload: {
     modalId: ModalId;
+    updateUrl?: boolean;
   };
 }
 
@@ -64,7 +65,10 @@ const modalSlice = createSlice({
         state.modalIds.push(action.payload.modalId);
         const searchParams = new URLSearchParams(window.location.search);
         const alreadyOpenModals = searchParams.get("modal");
-        if (alreadyOpenModals !== action.payload.modalId) {
+        if (
+          alreadyOpenModals !== action.payload.modalId &&
+          action.payload.updateUrl !== false
+        ) {
           window.history.pushState(
             "",
             "",
