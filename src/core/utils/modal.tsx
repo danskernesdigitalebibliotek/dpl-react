@@ -3,7 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import clsx from "clsx";
 import { FocusTrap } from "focus-trap-react";
-import { closeAllModals, closeModal, openModal } from "../modal.slice";
+import {
+  closeAllModals,
+  closeModal,
+  openModal,
+  ModalOptions
+} from "../modal.slice";
 import { isAnonymous } from "./helpers/user";
 import {
   currentLocationWithParametersUrl,
@@ -155,10 +160,6 @@ export type GuardedOpenModalProps = {
   authUrl: URL;
   modalId: string;
   trackOnlineView?: () => Promise<unknown>;
-};
-
-type ModalOptions = {
-  updateUrl?: boolean;
 };
 
 export const useModalButtonHandler = () => {

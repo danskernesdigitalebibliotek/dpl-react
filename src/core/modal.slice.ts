@@ -8,11 +8,14 @@ import {
 
 export type ModalId = string;
 
+export type ModalOptions = {
+  updateUrl?: boolean;
+};
+
 interface PayloadProps {
   payload: {
     modalId: ModalId;
-    updateUrl?: boolean;
-  };
+  } & ModalOptions;
 }
 
 interface StateProps {
