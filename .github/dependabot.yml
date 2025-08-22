@@ -2,19 +2,24 @@ version: 2
 updates:
   - package-ecosystem: github-actions
     directory: /
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 20
     schedule:
       interval: weekly
+      day: monday
+      time: '04:00'
       timezone: Europe/Copenhagen
     labels:
       - dependencies
       - github_actions
   - package-ecosystem: npm
     directory: /
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 20
     schedule:
       interval: weekly
+      day: monday
+      time: '04:00'
       timezone: Europe/Copenhagen
+    versioning-strategy: increase
     labels:
       - dependencies
     groups:
@@ -68,3 +73,12 @@ updates:
         patterns:
           - "cypress"
           - "@cypress/*"
+    ignore:
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "storybook"
+        versions: [">=9"]
+      - dependency-name: "@storybook/react-webpack5"
+        versions: [">=9"]
+      - dependency-name: "@chromatic-com/storybook"
+        versions: [">=4"]
