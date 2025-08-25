@@ -5319,12 +5319,13 @@ export type ComplexSearchWithPaginationQuery = {
 
 export type SuggestionsFromQueryStringQueryVariables = Exact<{
   q: Scalars["String"]["input"];
+  branchId?: InputMaybe<Scalars["String"]["input"]>;
 }>;
 
 export type SuggestionsFromQueryStringQuery = {
   __typename?: "Query";
-  suggest: {
-    __typename?: "SuggestResponse";
+  localSuggest: {
+    __typename?: "LocalSuggestResponse";
     result: Array<{
       __typename?: "Suggestion";
       type: SuggestionTypeEnum;
@@ -7773,8 +7774,8 @@ export const useComplexSearchWithPaginationQuery = <
 };
 
 export const SuggestionsFromQueryStringDocument = `
-    query suggestionsFromQueryString($q: String!) {
-  suggest(q: $q) {
+    query suggestionsFromQueryString($q: String!, $branchId: String) {
+  localSuggest(q: $q, branchId: $branchId) {
     result {
       type
       term

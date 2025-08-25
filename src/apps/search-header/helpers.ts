@@ -49,7 +49,7 @@ export const getAutosuggestCategoryList = (t: UseTextFunction) => {
 };
 
 export function findNonWorkSuggestion(
-  originalData: SuggestionsFromQueryStringQuery["suggest"]["result"] | []
+  originalData: SuggestionsFromQueryStringQuery["localSuggest"]["result"] | []
 ) {
   return originalData.find(
     (item) =>
