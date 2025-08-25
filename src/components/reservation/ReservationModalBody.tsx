@@ -173,7 +173,10 @@ export const ReservationModalBody = ({
   const materialType = getMaterialType(selectedManifestations);
 
   const saveReservation = () => {
-    if (manifestationsToReserve?.length) {
+    if (
+      manifestationsToReserve?.length &&
+      !materialIsReservableFromAnotherLibrary
+    ) {
       setReservationStatus("pending");
       // Save reservation to FBS.
       mutateAddReservations(
@@ -206,9 +209,7 @@ export const ReservationModalBody = ({
           }
         }
       );
-    }
-
-    if (materialIsReservableFromAnotherLibrary && patron) {
+    } else if (materialIsReservableFromAnotherLibrary && patron) {
       setReservationStatus("pending");
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
       // Save reservation to open order.
