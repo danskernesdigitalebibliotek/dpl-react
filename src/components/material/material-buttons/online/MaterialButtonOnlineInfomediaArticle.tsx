@@ -1,15 +1,16 @@
 import React, { FC } from "react";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
 import { useText } from "../../../../core/utils/text";
+import { useConfig } from "../../../../core/utils/config";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
 import { useUrls } from "../../../../core/utils/url";
 import { Button } from "../../../Buttons/Button";
 import { infomediaModalId } from "../../infomedia/InfomediaModal";
-import { isResident } from "../../../../core/utils/helpers/user";
+import { isResident } from "../../../../core/utils/helpers/userInfo";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
-import { usePatronData } from "../../../../core/utils/helpers/usePatronData";
+import useUserInfo from "../../../../core/adgangsplatformen/useUserInfo";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
@@ -28,12 +29,14 @@ const MaterialButtonOnlineInfomediaArticle: FC<
 }) => {
   const t = useText();
   const u = useUrls();
+  const config = useConfig();
   const authUrl = u("authUrl");
+  const siteAgencyId = config("agencyIdConfig");
 
-  const { isLoading, data: userData } = usePatronData();
+  const { isLoading: isLoadingUserInfo, data: userInfo } = useUserInfo();
   const { openGuarded } = useModalButtonHandler();
   const isUserResident =
-    userData && userData?.patron ? isResident(userData.patron) : null;
+    userInfo && siteAgencyId ? isResident(userInfo, siteAgencyId) : null;
 
   if (manifestations.length < 1) {
     return null;
@@ -50,7 +53,7 @@ const MaterialButtonOnlineInfomediaArticle: FC<
     });
   };
 
-  if (isLoading) {
+  if (isLoadingUserInfo) {
     return <MaterialButtonLoading />;
   }
 

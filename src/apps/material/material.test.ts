@@ -278,6 +278,14 @@ describe("Material", () => {
       fixtureFilePath: "material/infomedia-fbi-api.json"
     });
 
+    cy.interceptRest({
+      aliasName: "UserInfo",
+      url: "**/userinfo",
+      fixtureFilePath: "material/userinfo.json"
+    });
+
+    cy.createFakeAuthenticatedSession();
+
     cy.visit(
       "/iframe.html?args=&id=apps-material--infomedia&viewMode=story&type=artikel"
     );
