@@ -138,7 +138,7 @@
     "stylelint-scss": "^6.12.1",
     "stylelint-webpack-plugin": "^5.0.1",
     "svg-url-loader": "^8.0.0",
-    "ts-loader": "^9.5.2",
+    "ts-loader": "^9.5.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8",
