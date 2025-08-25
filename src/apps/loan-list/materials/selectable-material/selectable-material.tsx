@@ -11,6 +11,7 @@ import ArrowButton from "../../../../components/Buttons/ArrowButton";
 import { isDigital } from "../../utils/helpers";
 import { listId, ListType } from "../../../../core/utils/types/list-type";
 import SelectableMaterialSkeleton from "./selectable-material-skeleton";
+import { isEnterOrSpacePressed } from "../../../../core/utils/helpers/general";
 
 interface SelectableMaterialProps {
   identifier?: string | null;
@@ -65,7 +66,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   const handleOnKeyUp = (
     e: React.KeyboardEvent<HTMLDivElement | HTMLButtonElement>
   ) => {
-    if (openDetailsModal && (e.key === "Enter" || e.key === "Space")) {
+    if (openDetailsModal && isEnterOrSpacePressed(e.key)) {
       openDetailsModal(item);
     }
   };
@@ -102,7 +103,7 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           className={clsx("list-materials__content", {
             "cursor-pointer": openDetailsModal
           })}
-          onClick={handleOnClick}
+          onMouseUp={handleOnClick}
           onKeyUp={handleOnKeyUp}
           role="button"
           tabIndex={0}

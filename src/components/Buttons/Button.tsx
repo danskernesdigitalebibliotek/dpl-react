@@ -5,6 +5,7 @@ import {
   ButtonVariant
 } from "../../core/utils/types/button";
 import { ButtonIcon } from "./ButtonIcon";
+import { isEnterOrSpacePressed } from "../../core/utils/helpers/general";
 
 export type ButtonProps = {
   label: string;
@@ -54,7 +55,12 @@ export const Button: React.FC<ButtonProps> = ({
         disabled ? "btn-outline" : ""
       } arrow__hover--right-small ${classNames ?? ""}`}
       disabled={disabled || isLoadingRef.current}
-      onClick={handleClick}
+      onMouseUp={handleClick}
+      onKeyUp={(e) => {
+        if (isEnterOrSpacePressed(e.key)) {
+          handleClick();
+        }
+      }}
       id={id}
       aria-describedby={ariaDescribedBy}
     >

@@ -5,6 +5,7 @@ import { useText } from "../../../core/utils/text";
 import { PatronV5 } from "../../../core/fbs/model";
 import { formatDate } from "../../../core/utils/helpers/date";
 import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
+import { isEnterOrSpacePressed } from "../../../core/utils/helpers/general";
 
 interface ReservationPauseTogglerProps {
   user: PatronV5;
@@ -56,7 +57,12 @@ const ReservationPauseToggler: FC<ReservationPauseTogglerProps> = ({
           <button
             aria-label={t("reservationListPauseReservationAriaModalText")}
             type="button"
-            onClick={openPauseReservationModal}
+            onMouseUp={openPauseReservationModal}
+            onKeyUp={(e) => {
+              if (isEnterOrSpacePressed(e.key)) {
+                openPauseReservationModal();
+              }
+            }}
             className="btn-primary btn-filled btn-small"
           >
             {t("reservationListPauseReservationButtonText")}

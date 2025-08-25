@@ -7,6 +7,7 @@ import fetchDigitalMaterial from "../../loan-list/materials/utils/digital-materi
 import MaterialInfo from "../../loan-list/materials/stackable-material/material-info";
 import ReservationInfo from "./reservation-info";
 import ListMaterialSkeleton from "./list-material-skeleton";
+import { isEnterOrSpacePressed } from "../../../core/utils/helpers/general";
 
 export interface ReservationMaterialProps {
   reservation: ReservationType;
@@ -33,9 +34,9 @@ const ReservationMaterial: FC<ReservationMaterialProps & MaterialProps> = ({
         data-cy={dataCy}
         className="list-reservation my-32 cursor-pointer arrow__hover--right-small"
         role="button"
-        onClick={() => openDetailsModal()}
+        onMouseUp={() => openDetailsModal()}
         onKeyUp={(e) => {
-          if (e.key === "Enter" || e.key === "Space") {
+          if (isEnterOrSpacePressed(e.key)) {
             openDetailsModal();
           }
         }}

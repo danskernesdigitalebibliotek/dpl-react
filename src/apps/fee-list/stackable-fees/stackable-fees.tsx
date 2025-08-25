@@ -10,6 +10,7 @@ import { useText } from "../../../core/utils/text";
 import { BasicDetailsType } from "../../../core/utils/types/basic-details-type";
 import { formatCurrency } from "../../../core/utils/helpers/currency";
 import FeeListItemSkeleton from "../FeeListItemSkeleton";
+import { isEnterOrSpacePressed } from "../../../core/utils/helpers/general";
 
 export interface StackableFeeProps {
   amountOfMaterialsWithDueDate: number;
@@ -40,9 +41,9 @@ const StackableFees: FC<StackableFeeProps & MaterialProps> = ({
   return (
     <button
       type="button"
-      onClick={() => openDetailsModalClickEvent(feeData.feeId)}
+      onMouseUp={() => openDetailsModalClickEvent(feeData.feeId)}
       onKeyUp={(e) => {
-        if (e.key === "Enter" || e.key === "Space") {
+        if (isEnterOrSpacePressed(e.key)) {
           openDetailsModalClickEvent(feeData.feeId);
         }
       }}

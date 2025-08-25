@@ -1,5 +1,6 @@
 import React, { useCallback, FC, MouseEvent } from "react";
 import { useText } from "../../../../core/utils/text";
+import { isEnterOrSpacePressed } from "../../../../core/utils/helpers/general";
 
 interface AdditionalMaterialsButtonProps {
   additionalMaterials: number;
@@ -26,9 +27,9 @@ const AdditionalMaterialsButton: FC<AdditionalMaterialsButtonProps> = ({
   return (
     <button
       type="button"
-      onClick={(e) => openDueDateModalCallBack(e)}
+      onMouseUp={(e) => openDueDateModalCallBack(e)}
       onKeyUp={(e) => {
-        if (e.key === "Enter" || e.key === "Space") {
+        if (isEnterOrSpacePressed(e.key)) {
           openDueDateModalCallBack(e as unknown as MouseEvent);
         }
       }}
