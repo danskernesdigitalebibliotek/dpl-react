@@ -23,16 +23,17 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
     userMenuUnregistered: userMenuUnregisteredModalId
   } = getModalIds();
   const { isLoading, data: userData } = usePatronData();
+  const openMenuOptions = { updateUrl: false };
   const openMenu = () => {
     if (isUnregistered()) {
-      open(userMenuUnregisteredModalId as string);
+      open(userMenuUnregisteredModalId as string, openMenuOptions);
       return;
     }
     if (isAnonymous()) {
-      open(userMenuAnonymousModalId as string);
+      open(userMenuAnonymousModalId as string, openMenuOptions);
       return;
     }
-    open(userMenuAuthenticatedModalId as string);
+    open(userMenuAuthenticatedModalId as string, openMenuOptions);
   };
   const getAriaLabel = () => {
     if (isLoading) {

@@ -8,10 +8,14 @@ import {
 
 export type ModalId = string;
 
+export type ModalOptions = {
+  updateUrl?: boolean;
+};
+
 interface PayloadProps {
   payload: {
     modalId: ModalId;
-  };
+  } & ModalOptions;
 }
 
 interface StateProps {
@@ -64,7 +68,10 @@ const modalSlice = createSlice({
         state.modalIds.push(action.payload.modalId);
         const searchParams = new URLSearchParams(window.location.search);
         const alreadyOpenModals = searchParams.get("modal");
-        if (alreadyOpenModals !== action.payload.modalId) {
+        if (
+          alreadyOpenModals !== action.payload.modalId &&
+          action.payload.updateUrl !== false
+        ) {
           window.history.pushState(
             "",
             "",
