@@ -15,6 +15,7 @@ import {
   redirectToLoginAndBack
 } from "./helpers/url";
 import { isVitestEnvironment } from "./helpers/vitest";
+import { isEnterOrSpacePressed } from "./helpers/general";
 
 type ModalId = string;
 
@@ -87,6 +88,12 @@ function Modal({
     dispatch(closeModal({ modalId }));
   };
 
+  const handleCloseKeyUp = (e: React.KeyboardEvent) => {
+    if (isEnterOrSpacePressed(e.key)) {
+      close();
+    }
+  };
+
   return (
     <FocusTrap
       focusTrapOptions={{
@@ -105,9 +112,10 @@ function Modal({
             // the remaining modals
             zIndex: modalIds.indexOf(modalId) + MODAL_Z_INDEX
           }}
-          onClick={() => {
+          onMouseUp={() => {
             close();
           }}
+          onKeyUp={handleCloseKeyUp}
         />
         <div
           className={clsx(
@@ -141,9 +149,10 @@ function Modal({
               zIndex: modalIds.indexOf(modalId) + MODAL_Z_INDEX
             }}
             aria-label={closeModalAriaLabelText}
-            onClick={() => {
+            onMouseUp={() => {
               close();
             }}
+            onKeyUp={handleCloseKeyUp}
             data-cy={`modal-${modalId}-close-button`}
           >
             <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />
