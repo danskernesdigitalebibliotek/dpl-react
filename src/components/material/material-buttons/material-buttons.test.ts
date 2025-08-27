@@ -141,6 +141,12 @@ describe("Material buttons", () => {
       fixtureFilePath:
         "material-buttons/material-buttons-order-digital-fbi-api.json"
     });
+    cy.interceptRest({
+      aliasName: "UserInfo",
+      url: "**/userinfo",
+      fixtureFilePath: "material/userinfo.json"
+    });
+    cy.createFakeAuthenticatedSession();
     cy.visit(
       "/iframe.html?id=apps-material--digital&viewMode=story&type=artikel"
     )
@@ -190,6 +196,12 @@ describe("Material buttons", () => {
       url: "**fbs-openplatform.dbc.dk/external/agencyid/patrons/patronid/v4",
       fixtureFilePath: "cover/cover.json"
     });
+    cy.interceptRest({
+      aliasName: "UserInfo",
+      url: "**/userinfo",
+      fixtureFilePath: "material/userinfo.json"
+    });
+    cy.createFakeAuthenticatedSession();
     cy.visit(
       "/iframe.html?id=apps-material--digital&viewMode=story&type=artikel"
     )
@@ -207,6 +219,12 @@ describe("Material buttons", () => {
       fixtureFilePath:
         "material-buttons/material-buttons-infomedia-fbi-api.json"
     });
+    cy.interceptRest({
+      aliasName: "UserInfo",
+      url: "**/userinfo",
+      fixtureFilePath: "material/userinfo.json"
+    });
+    cy.createFakeAuthenticatedSession();
     cy.visit("/iframe.html?id=apps-material--infomedia&viewMode=story")
       .getBySel("material-description")
       .scrollIntoView({ duration: 300 });

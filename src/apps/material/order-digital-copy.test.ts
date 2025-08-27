@@ -28,6 +28,12 @@ describe("Material - Order digital copy", () => {
       fixtureFilePath: "material/holdings.json"
     });
 
+    cy.interceptRest({
+      aliasName: "UserInfo",
+      url: "**/userinfo",
+      fixtureFilePath: "material/userinfo.json"
+    });
+
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404
     }).as("Favorite list service");
