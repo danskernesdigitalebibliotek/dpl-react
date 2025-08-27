@@ -1,6 +1,6 @@
 {
   "data": {
-    "suggest": {
+    "localSuggest": {
       "result": [
         {
           "type": "TITLE",

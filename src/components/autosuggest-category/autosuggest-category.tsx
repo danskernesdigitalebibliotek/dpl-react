@@ -8,7 +8,7 @@ import { Suggestion } from "../../core/utils/types/autosuggest";
 import { getAutosuggestCategoryList } from "../../apps/search-header/helpers";
 
 export interface AutosuggestCategoryProps {
-  categoryData: SuggestionsFromQueryStringQuery["suggest"]["result"];
+  categoryData: SuggestionsFromQueryStringQuery["localSuggest"]["result"];
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   highlightedIndex: number;
   textAndMaterialDataLength: number;
