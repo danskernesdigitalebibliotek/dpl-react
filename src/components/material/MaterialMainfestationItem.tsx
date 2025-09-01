@@ -10,6 +10,7 @@ import {
 import { useText } from "../../core/utils/text";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
+import CopyLink from "../copy-link/CopyLink";
 import { Manifestation } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
 import {
@@ -111,9 +112,10 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
   const access = manifestation.access.map((acc) => acc.__typename);
   const detailsId = `material-details-${pid}`;
+  const manifestationId = `manifestation-${pid}`;
 
   return (
-    <div className="material-manifestation-item">
+    <div className="material-manifestation-item" id={manifestationId}>
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
           key={`${faustId}-material-manifestation-item`}
@@ -163,11 +165,18 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <MaterialDetailsList
-            id={detailsId}
-            className="mt-24"
-            data={detailsListData}
-          />
+          <>
+            <MaterialDetailsList
+              id={detailsId}
+              className="mt-24"
+              data={detailsListData}
+            />
+            <CopyLink
+              label={t("copyLinkToEditionText")}
+              url={`${window.location.origin}${window.location.pathname}${window.location.search}#${manifestationId}`}
+              className="mt-24"
+            />
+          </>
         )}
       </div>
       <div className="material-manifestation-item__buttons">
