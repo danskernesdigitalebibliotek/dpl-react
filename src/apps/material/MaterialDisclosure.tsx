@@ -7,17 +7,20 @@ export interface MaterialDisclosureProps {
   title: string;
   icon: string;
   children?: ReactNode;
+  open?: boolean;
 }
 
 const MaterialDisclosure: FC<MaterialDisclosureProps> = ({
   title,
   icon,
   children,
-  dataCy
+  dataCy,
+  open
 }) => {
   return (
     <Disclosure
       dataCy={dataCy}
+      open={open}
       summary={<DisclosureSummary title={title} mainIconPath={icon} />}
     >
       {children}
