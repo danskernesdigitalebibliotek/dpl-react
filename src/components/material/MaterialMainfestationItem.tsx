@@ -29,22 +29,25 @@ import {
   getManifestationPhysicalDescription,
   getManifestationPublisher,
   getManifestationSource,
-  getManifestationTitle
+  getManifestationTitle,
+  createManifestationId
 } from "../../apps/material/helper";
 
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
   workId: WorkId;
+  openDetails?: boolean;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation: { materialTypes, pid, creators, identifiers, edition },
   manifestation,
-  workId
+  workId,
+  openDetails = false
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(openDetails);
   const faustId = convertPostIdToFaustId(pid);
   const author = creatorsToString(flattenCreators(creators), t);
 
