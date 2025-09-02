@@ -9,6 +9,7 @@ import TextLineSkeleton from "../../components/skeletons/TextLineSkeleton";
 import { getModalIds } from "../../core/utils/helpers/modal-helpers";
 import MenuUserUnregistered from "./menu-user-unregistered/menu-user-unregistered";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
+import { isEnterOrSpacePressed } from "../../core/utils/helpers/general";
 
 interface MenuProps {
   pageSize: number;
@@ -23,16 +24,17 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
     userMenuUnregistered: userMenuUnregisteredModalId
   } = getModalIds();
   const { isLoading, data: userData } = usePatronData();
+  const openMenuOptions = { updateUrl: false };
   const openMenu = () => {
     if (isUnregistered()) {
-      open(userMenuUnregisteredModalId as string);
+      open(userMenuUnregisteredModalId as string, openMenuOptions);
       return;
     }
     if (isAnonymous()) {
-      open(userMenuAnonymousModalId as string);
+      open(userMenuAnonymousModalId as string, openMenuOptions);
       return;
     }
-    open(userMenuAuthenticatedModalId as string);
+    open(userMenuAuthenticatedModalId as string, openMenuOptions);
   };
   const getAriaLabel = () => {
     if (isLoading) {
@@ -54,8 +56,12 @@ const Menu: FC<MenuProps> = ({ pageSize }) => {
         data-cy="header-menu-profile-button"
         type="button"
         aria-label={getAriaLabel()}
-        onClick={() => openMenu()}
-        onKeyDown={(e) => e.key === "Enter" && openMenu()}
+        onMouseUp={() => openMenu()}
+        onKeyUp={(e) => {
+          if (isEnterOrSpacePressed(e.key)) {
+            openMenu();
+          }
+        }}
         tabIndex={0}
       >
         <img src={profileIcon} className="header__button-icon" alt="" />

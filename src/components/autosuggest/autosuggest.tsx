@@ -8,14 +8,14 @@ import { AutosuggestText } from "../autosuggest-text/autosuggest-text";
 import { createPortal } from "react-dom";
 
 export interface AutosuggestProps {
-  textData: SuggestionsFromQueryStringQuery["suggest"]["result"];
+  textData: SuggestionsFromQueryStringQuery["localSuggest"]["result"];
   materialData: Suggestions;
   getMenuProps: UseComboboxPropGetters<unknown>["getMenuProps"];
   highlightedIndex: number;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  categoryData?: SuggestionsFromQueryStringQuery["suggest"]["result"];
+  categoryData?: SuggestionsFromQueryStringQuery["localSuggest"]["result"];
   isLoading: boolean;
   dataCy?: string;
 }

@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from "react";
 import AuthorYear from "../../../../components/author-year/authorYear";
 import { Cover } from "../../../../components/cover/cover";
 import { BasicDetailsType } from "../../../../core/utils/types/basic-details-type";
+import { isEnterOrSpacePressed } from "../../../../core/utils/helpers/general";
 
 interface MaterialInfoProps {
   material: BasicDetailsType;
@@ -62,14 +63,14 @@ const MaterialInfo: FC<MaterialInfoProps> = ({
         </div>
         <div className="list-reservation__about">
           <button
-            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            onMouseUp={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               handleDetailsModal(e);
             }}
             onKeyUp={(e) => {
               // `!focused` prevents opening material details modal after clicking
               // enter on pager. Pager gives focus to the next stackable material too
               // quickly while still registering the enter key press.
-              if ((e.key === "Enter" || e.key === "Space") && !focused) {
+              if (isEnterOrSpacePressed(e.key) && !focused) {
                 handleDetailsModal(e);
               }
             }}
