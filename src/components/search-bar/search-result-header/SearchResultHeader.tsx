@@ -42,7 +42,9 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
             className="link-tag text-body-medium-medium"
             href={webSearchConfig.webSearchUrl}
           >
-            {webSearchConfig.webSearchText} ({webSearchConfig.webSearchTotal})
+            {webSearchConfig.webSearchText &&
+              webSearchConfig.webSearchTotal &&
+              `${webSearchConfig.webSearchText} (${webSearchConfig.webSearchTotal})`}
           </a>
         </h2>
       )}
