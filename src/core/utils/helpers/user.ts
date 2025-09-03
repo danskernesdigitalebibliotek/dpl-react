@@ -19,10 +19,6 @@ export const isBlocked = (patron: Patron) => {
   return !isEmpty(patron.blockStatus);
 };
 
-export const isResident = (patron: Patron) => {
-  return patron.resident;
-};
-
 export const getUserToken = () => {
   if (isUnregistered()) {
     return getToken(TOKEN_UNREGISTERED_USER_KEY);
