@@ -31,7 +31,7 @@ const Disclosure: FC<DisclosureProps> = ({
       data-cy={dataCy}
     >
       {summaryWithRef}
-      {showItem && children}
+      {(showItem || open) && children}
     </details>
   );
 };
