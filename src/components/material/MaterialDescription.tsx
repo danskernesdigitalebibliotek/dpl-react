@@ -18,6 +18,7 @@ import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 import { materialIsFiction } from "../../core/utils/helpers/general";
 import SeriesList from "../card-item-list/card-list-item/series-list";
+import ButtonShare from "../button-share/button-share";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
@@ -127,6 +128,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
               dataCy="material-description-film-adaptations"
             />
           </div>
+          <ButtonShare className="mt-64" />
         </>
       )}
     </section>
