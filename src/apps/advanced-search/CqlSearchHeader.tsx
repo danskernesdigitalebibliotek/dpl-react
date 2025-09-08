@@ -133,6 +133,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           </Link>
         </div>
         <TextInput
+          labelClassName="advanced-search-cql-form__label"
           id="branch"
           label={t("advancedSearchFilterBranchText")}
           description={t("advancedSearchFilterBranchDescriptionText")}
@@ -141,6 +142,7 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           value={inputValues.branch}
         />
         <TextInput
+          labelClassName="advanced-search-cql-form__label"
           id="department"
           label={t("advancedSearchFilterDepartmentText")}
           description={t("advancedSearchFilterDepartmentDescriptionText")}
