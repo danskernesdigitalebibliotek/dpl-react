@@ -206,7 +206,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               setSelectedPeriodical={setSelectedPeriodical}
             />
           )}
-          <EditionSwitchModal work={work} workId={wid} />
+          <EditionSwitchModal
+            work={work}
+            workId={wid}
+            selectedManifestations={selectedManifestations}
+          />
         </MaterialHeader>
         <MaterialDescription pid={pid} work={work} />
         {/* Since we cannot trust the editions for global manifestations */}
