@@ -10,6 +10,7 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
 import { PublizonErrorArgs } from "../../core/storybook/publizonErrorArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
+import { EditionSwitchModalArgs } from "../../core/storybook/editionSwitchModalArgs";
 import withPageStatistics from "../../core/statistics/withPageStatistics";
 
 interface MaterialEntryTextProps {
@@ -221,7 +222,8 @@ export interface MaterialEntryProps
     MaterialEntryConfigProps,
     DeleteReservationModalArgs,
     PublizonErrorArgs,
-    MappArgs {
+    MappArgs,
+    EditionSwitchModalArgs {
   wid: WorkId;
 }
 
