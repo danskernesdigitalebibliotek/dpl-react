@@ -25,7 +25,9 @@ import {
 } from "../../core/fbs/model";
 import { UseConfigFunction } from "../../core/utils/config";
 import {
+  convertPostIdsToFaustIds,
   flattenCreators,
+  getAllPids,
   getMaterialType,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
@@ -497,6 +499,14 @@ export const getBestMaterialTypeForWork = (work: Work) => {
 
 export const reservationModalId = (faustIds: FaustId[]) => {
   return constructModalId("reservation-modal", faustIds.sort());
+};
+
+export const getParallelReservationModalId = (
+  manifestations: Manifestation[]
+) => {
+  const pids = getAllPids(manifestations);
+  const faustIds = convertPostIdsToFaustIds(pids);
+  return reservationModalId(faustIds);
 };
 
 export const onlineInternalModalId = (faustIds: FaustId[]) => {
