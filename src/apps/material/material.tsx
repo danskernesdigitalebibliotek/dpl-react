@@ -44,6 +44,7 @@ import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
+import EditionSwitchModal from "../../components/reservation/EditionSwitchModal";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -205,6 +206,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               setSelectedPeriodical={setSelectedPeriodical}
             />
           )}
+          <EditionSwitchModal work={work} workId={wid} />
         </MaterialHeader>
         <MaterialDescription pid={pid} work={work} />
         {/* Since we cannot trust the editions for global manifestations */}
