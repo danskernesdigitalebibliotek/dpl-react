@@ -1,14 +1,19 @@
 import React from "react";
-import Modal from "../../core/utils/modal";
+import Modal, { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import MaterialMainfestationItem from "../material/MaterialMainfestationItem";
-import { getManifestationsOrderByTypeAndYear } from "../../apps/material/helper";
+import {
+  getParallelReservationModalId,
+  getManifestationsOrderByTypeAndYear
+} from "../../apps/material/helper";
 import { WorkId } from "../../core/utils/types/ids";
+import { useUrls } from "../../core/utils/url";
 
 export type EditionSwitchModalProps = {
   work: Work;
   workId: WorkId;
+  selectedManifestations: Manifestation[];
   dataCy?: string;
 };
 
@@ -19,13 +24,30 @@ export const editionSwitchModalId = () => {
 const EditionSwitchModal = ({
   work,
   workId,
+  selectedManifestations,
   dataCy
 }: EditionSwitchModalProps) => {
   const t = useText();
+  const u = useUrls();
+  const authUrl = u("authUrl");
+  const { openGuarded, close } = useModalButtonHandler();
 
   const allManifestations = getManifestationsOrderByTypeAndYear(
     work.manifestations.all
   );
+
+  const parallelReservationModalId = getParallelReservationModalId(
+    selectedManifestations
+  );
+
+  const handleFirstAvailableEditionSwitchClick = () => {
+    // Close current edition switch modal and open parallel reservation modal
+    close(editionSwitchModalId());
+    openGuarded({
+      authUrl,
+      modalId: parallelReservationModalId
+    });
+  };
 
   return (
     <Modal
@@ -49,6 +71,10 @@ const EditionSwitchModal = ({
         </header>
         <div>
           <div className="edition-switch-list">
+            <button onClick={handleFirstAvailableEditionSwitchClick}>
+              First Available Edition (Reserve from{" "}
+              {selectedManifestations.length} editions)
+            </button>
             {allManifestations.map((manifestation: Manifestation) => {
               return (
                 <MaterialMainfestationItem
