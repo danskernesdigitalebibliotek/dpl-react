@@ -24,6 +24,9 @@ import reservationMaterialDetailsProps, {
 import reservationListArgs, {
   argTypes as reservationListArgTypes
 } from "../../core/storybook/reservationListArgs";
+import editionSwitchModalArgs, {
+  argTypes as editionSwitchModalArgTypes
+} from "../../core/storybook/editionSwitchModalArgs";
 
 const meta: Meta<typeof MaterialEntry> = {
   title: "Apps / Material",
@@ -39,6 +42,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...mappArgTypes,
     ...reservationMaterialDetailsPropsArgTypes,
     ...reservationListArgTypes,
+    ...editionSwitchModalArgTypes,
     searchUrl: {
       description: "Path to the search result page",
       control: { type: "text" }
@@ -845,6 +849,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...mappArgs,
     ...reservationMaterialDetailsProps,
     ...reservationListArgs,
+    ...editionSwitchModalArgs,
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
