@@ -39,7 +39,11 @@ const ReservationFormListItem: React.FC<ReservationFormListItemProps> = ({
       </div>
       {changeHandler && isPossibleToChangeReservationDetails && (
         <button
-          onClick={changeHandler}
+          onMouseUp={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            changeHandler();
+          }}
           type="button"
           className="link-tag text-small-caption cursor-pointer"
           aria-label={buttonAriaLabel}

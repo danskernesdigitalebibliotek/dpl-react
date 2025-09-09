@@ -30,7 +30,7 @@ const EditionSwitchModal = ({
   const t = useText();
   const u = useUrls();
   const authUrl = u("authUrl");
-  const { openGuarded, close } = useModalButtonHandler();
+  const { openGuarded } = useModalButtonHandler();
 
   const allManifestations = getManifestationsOrderByTypeAndYear(
     work.manifestations.all
@@ -41,8 +41,6 @@ const EditionSwitchModal = ({
   );
 
   const handleFirstAvailableEditionSwitchClick = () => {
-    // Close current edition switch modal and open parallel reservation modal
-    close(editionSwitchModalId());
     openGuarded({
       authUrl,
       modalId: parallelReservationModalId
@@ -71,7 +69,13 @@ const EditionSwitchModal = ({
         </header>
         <div>
           <div className="edition-switch-list">
-            <button onClick={handleFirstAvailableEditionSwitchClick}>
+            <button
+              onMouseUp={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleFirstAvailableEditionSwitchClick();
+              }}
+            >
               First Available Edition (Reserve from{" "}
               {selectedManifestations.length} editions)
             </button>
