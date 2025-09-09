@@ -59,13 +59,19 @@ const modalSlice = createSlice({
       if (typeof window !== "undefined" && window.document) {
         document.body.style.overflow = "hidden";
       }
-      // If there is a modalid in the payload, and if this modalid is not saved
-      // then save the modalid
-      if (
-        action.payload.modalId &&
-        !state.modalIds.includes(action.payload.modalId)
-      ) {
-        state.modalIds.push(action.payload.modalId);
+      // If there is a modalid in the payload, handle it
+      if (action.payload.modalId) {
+        const existingIndex = state.modalIds.indexOf(action.payload.modalId);
+
+        if (existingIndex === -1) {
+          // Modal not in array, add it to the top
+          state.modalIds.push(action.payload.modalId);
+        } else {
+          // Modal already exists, move it to the top
+          state.modalIds.splice(existingIndex, 1);
+          state.modalIds.push(action.payload.modalId);
+        }
+
         const searchParams = new URLSearchParams(window.location.search);
         const alreadyOpenModals = searchParams.get("modal");
         if (

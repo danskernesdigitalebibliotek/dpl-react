@@ -88,7 +88,7 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
-  const { open, close } = useModalButtonHandler();
+  const { open } = useModalButtonHandler();
   const { defaultInterestDaysForOpenOrder } = getConf(
     "reservation",
     configuration
@@ -272,9 +272,6 @@ export const ReservationModalBody = ({
   const userHasEmail = Boolean(patron?.emailAddress);
 
   const handleEditionSwitchClick = () => {
-    // Close current reservation modal and open EditionSwitchModal
-    const currentReservationModalId = reservationModalId(faustIds);
-    close(currentReservationModalId);
     open(editionSwitchModalId());
   };
 
