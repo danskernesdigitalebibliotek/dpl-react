@@ -15,8 +15,12 @@ export const argTypes = {
     description: "Description text for edition switch modal",
     control: { type: "text" }
   },
-  changeEditionText: {
+  editionChangeText: {
     description: "Text for change edition button aria label",
+    control: { type: "text" }
+  },
+  editionChooseText: {
+    description: "Text for choose button",
     control: { type: "text" }
   }
 };
@@ -27,7 +31,8 @@ export default {
   editionSwitchModalTitleText: "Choose Edition",
   editionSwitchModalDescriptionText:
     "Select which edition you would like to reserve from the available options below.",
-  changeEditionText: "Change edition"
+  editionChangeText: "Change edition",
+  editionChooseText: "Choose"
 };
 
 export interface EditionSwitchModalArgs {
@@ -35,5 +40,6 @@ export interface EditionSwitchModalArgs {
   editionSwitchModalCloseAriaLabelText: string;
   editionSwitchModalTitleText: string;
   editionSwitchModalDescriptionText: string;
-  changeEditionText: string;
+  editionChangeText: string;
+  editionChooseText: string;
 }

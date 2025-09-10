@@ -22,6 +22,7 @@ export interface MaterialButtonsProps {
   dataCy?: string;
   materialTitleId: string;
   isSpecificManifestation?: boolean;
+  isEditionPicker?: boolean;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
@@ -30,7 +31,8 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
   workId,
   dataCy = "material-buttons",
   materialTitleId,
-  isSpecificManifestation = false
+  isSpecificManifestation = false,
+  isEditionPicker = false
 }) => {
   const faustIds = getAllFaustIds(manifestations);
   // We don't want to show physical buttons/find on shelf for articles because
@@ -70,13 +72,16 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
             size={size}
             dataCy={`${dataCy}-physical`}
             isSpecificManifestation={isSpecificManifestation}
+            isEditionPicker={isEditionPicker}
           />
-          <MaterialButtonsFindOnShelf
-            size={size}
-            faustIds={faustIds}
-            dataCy={`${dataCy}-find-on-shelf`}
-            workId={workId}
-          />
+          {!isEditionPicker && (
+            <MaterialButtonsFindOnShelf
+              size={size}
+              faustIds={faustIds}
+              dataCy={`${dataCy}-find-on-shelf`}
+              workId={workId}
+            />
+          )}
         </>
       )}
       {showOnlineButtons && (
