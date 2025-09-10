@@ -338,7 +338,7 @@ export const ReservationModalBody = ({
                 text={selectedPeriodical?.displayText || editionText || ""}
                 isPossibleToChangeReservationDetails
                 changeHandler={handleEditionSwitchClick}
-                buttonAriaLabel={t("changeEditionText")}
+                buttonAriaLabel={t("editionChangeText")}
               />
               {!materialIsFiction(work) && otherManifestationPreferred && (
                 <PromoBar

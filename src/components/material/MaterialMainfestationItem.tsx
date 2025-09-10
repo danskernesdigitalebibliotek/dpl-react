@@ -36,13 +36,15 @@ export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
   workId: WorkId;
   className?: string;
+  isEditionPicker?: boolean;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation: { materialTypes, pid, creators, identifiers, edition },
   manifestation,
   workId,
-  className
+  className,
+  isEditionPicker
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();
@@ -180,6 +182,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           workId={workId}
           materialTitleId={mainfestationTitleId}
           isSpecificManifestation
+          isEditionPicker={isEditionPicker}
         />
       </div>
     </div>
