@@ -9,6 +9,7 @@ import {
 } from "../../apps/material/helper";
 import { WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
+import { Button } from "../Buttons/Button";
 
 export type EditionSwitchModalProps = {
   work: Work;
@@ -69,22 +70,24 @@ const EditionSwitchModal = ({
         </header>
         <div>
           <div className="edition-switch-list">
-            <button
-              onMouseUp={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleFirstAvailableEditionSwitchClick();
-              }}
-            >
-              First Available Edition (Reserve from{" "}
-              {selectedManifestations.length} editions)
-            </button>
+            <div className="reservation-modal-submit">
+              <Button
+                dataCy="edition-switch-first-available-button"
+                label="First Available Edition"
+                buttonType="none"
+                variant="filled"
+                collapsible={false}
+                size="small"
+                onClick={handleFirstAvailableEditionSwitchClick}
+              />
+            </div>
             {allManifestations.map((manifestation: Manifestation) => {
               return (
                 <MaterialMainfestationItem
                   key={manifestation.pid}
                   manifestation={manifestation}
                   workId={workId}
+                  className="material-manifestation-item--no-side-margins"
                 />
               );
             })}
