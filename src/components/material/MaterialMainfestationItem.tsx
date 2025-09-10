@@ -30,24 +30,25 @@ import {
   getManifestationPublisher,
   getManifestationSource,
   getManifestationTitle,
-  createManifestationId
+  createManifestationUrlHash,
+  getManifestationFromUrlHash
 } from "../../apps/material/helper";
+import { getCurrentUrlWithHash } from "../../core/utils/helpers/url";
 
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
   workId: WorkId;
-  openDetails?: boolean;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation: { materialTypes, pid, creators, identifiers, edition },
   manifestation,
-  workId,
-  openDetails = false
+  workId
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();
-  const [isOpen, setIsOpen] = useState(openDetails);
+  const shouldOpenDetails = getManifestationFromUrlHash() === pid;
+  const [isOpen, setIsOpen] = useState(shouldOpenDetails);
   const faustId = convertPostIdToFaustId(pid);
   const author = creatorsToString(flattenCreators(creators), t);
 
@@ -115,7 +116,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
   const access = manifestation.access.map((acc) => acc.__typename);
   const detailsId = `material-details-${pid}`;
-  const manifestationId = createManifestationId(pid);
+  const manifestationId = createManifestationUrlHash(pid);
 
   return (
     <div className="material-manifestation-item" id={manifestationId}>
@@ -176,7 +177,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
             />
             <CopyLink
               label={t("copyLinkToEditionText")}
-              url={`${window.location.origin}${window.location.pathname}${window.location.search}#${manifestationId}`}
+              url={getCurrentUrlWithHash(manifestationId)}
               className="mt-24"
             />
           </>

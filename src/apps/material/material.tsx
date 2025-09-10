@@ -22,7 +22,6 @@ import {
 } from "../../core/statistics/useStatistics";
 import { getWorkPid } from "../../core/utils/helpers/general";
 import {
-  getUrlHashWithPrefix,
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
@@ -41,8 +40,7 @@ import {
   getManifestationChildrenOrAdults,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation,
-  shouldOpenManifestationDetails,
-  MANIFESTATION_HASH_PREFIX
+  getManifestationFromUrlHash
 } from "./helper";
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
@@ -164,9 +162,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
 
   // Check if there's a manifestation hash in the URL - this should open the editions disclosure
-  const shouldOpenEditionsDisclosure = !!getUrlHashWithPrefix(
-    MANIFESTATION_HASH_PREFIX
-  );
+  const shouldOpenEditionsDisclosure = !!getManifestationFromUrlHash();
 
   return (
     <>
@@ -232,15 +228,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             <>
               {getManifestationsOrderByTypeAndYear(manifestations).map(
                 (manifestation: Manifestation) => {
-                  const shouldOpenDetails = shouldOpenManifestationDetails(
-                    manifestation.pid
-                  );
                   return (
                     <MaterialMainfestationItem
                       key={manifestation.pid}
                       manifestation={manifestation}
                       workId={wid}
-                      openDetails={shouldOpenDetails}
                     />
                   );
                 }

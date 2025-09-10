@@ -29,7 +29,6 @@ import {
   getMaterialType,
   orderManifestationsByYear
 } from "../../core/utils/helpers/general";
-import { getUrlHashWithPrefix } from "../../core/utils/helpers/url";
 import { constructModalId } from "../../core/utils/helpers/modal-helpers";
 import { UseTextFunction } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
@@ -685,17 +684,18 @@ export const getWorkTitle = (work: Work): string => {
   return "Unknown title";
 };
 
-// Constants
 export const MANIFESTATION_HASH_PREFIX = "manifestation-" as const;
 
-export const createManifestationId = (pid: string): string => {
+export const createManifestationUrlHash = (pid: string): string => {
   return `${MANIFESTATION_HASH_PREFIX}${pid}`;
 };
 
-export const shouldOpenManifestationDetails = (pid: string): boolean => {
-  const manifestationId = createManifestationId(pid);
-  const hashWithPrefix = getUrlHashWithPrefix(MANIFESTATION_HASH_PREFIX);
-  return hashWithPrefix === manifestationId;
+export const getManifestationFromUrlHash = () => {
+  const hash = window.location.hash;
+  if (hash.startsWith(`#${MANIFESTATION_HASH_PREFIX}`)) {
+    return hash.replace(`#${MANIFESTATION_HASH_PREFIX}`, "");
+  }
+  return null;
 };
 
 // ************** VITEST ***************
