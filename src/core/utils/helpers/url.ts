@@ -201,12 +201,7 @@ export const currentLocationWithParametersUrl = (
   params: Record<string, string>
 ) => appendQueryParametersToUrl(new URL(getCurrentLocation()), params);
 
-export const getUrlHashWithPrefix = (prefix: string): string => {
-  const hash = window.location.hash;
-
-  if (hash.startsWith(`#${prefix}`)) {
-    return hash.replace("#", "");
-  }
-
-  return "";
+export const getCurrentUrlWithHash = (hash: string): string => {
+  const { origin, pathname, search } = window.location;
+  return `${origin}${pathname}${search}#${hash}`;
 };
