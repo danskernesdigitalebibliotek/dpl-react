@@ -61,17 +61,22 @@ const modalSlice = createSlice({
       }
       // If there is a modalid in the payload, handle it
       if (action.payload.modalId) {
-        const existingIndex = state.modalIds.indexOf(action.payload.modalId);
+        const { modalId } = action.payload;
 
-        if (existingIndex === -1) {
-          // Modal not in array, add it to the top
-          state.modalIds.push(action.payload.modalId);
-        } else {
-          // Modal already exists, move it to the top
-          state.modalIds.splice(existingIndex, 1);
-          state.modalIds.push(action.payload.modalId);
+        // If opening a reservation modal, close any existing reservation modals first
+        // and also close edition-switch-modal
+        if (modalId.startsWith("reservation-modal-")) {
+          state.modalIds = state.modalIds.filter(
+            (id) =>
+              !id.startsWith("reservation-modal-") &&
+              id !== "edition-switch-modal"
+          );
+          // Add the new reservation modal
+          state.modalIds.push(modalId);
+        } else if (!state.modalIds.includes(modalId)) {
+          // For non-reservation modals, use the existing logic - only add if not already present
+          state.modalIds.push(modalId);
         }
-
         const searchParams = new URLSearchParams(window.location.search);
         const alreadyOpenModals = searchParams.get("modal");
         if (
