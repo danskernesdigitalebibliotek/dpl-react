@@ -73,7 +73,7 @@ const EditionSwitchModal = ({
             <div className="reservation-modal-submit">
               <Button
                 dataCy="edition-switch-first-available-button"
-                label="First Available Edition"
+                label={t("firstAvailableEditionText")}
                 buttonType="none"
                 variant="filled"
                 collapsible={false}
@@ -88,6 +88,7 @@ const EditionSwitchModal = ({
                   manifestation={manifestation}
                   workId={workId}
                   className="material-manifestation-item--no-side-margins"
+                  isEditionPicker
                 />
               );
             })}
