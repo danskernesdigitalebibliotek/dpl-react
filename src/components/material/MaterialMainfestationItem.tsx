@@ -1,4 +1,5 @@
 import React, { useId, FC, useState } from "react";
+import clsx from "clsx";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
@@ -34,12 +35,14 @@ import {
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
   workId: WorkId;
+  className?: string;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation: { materialTypes, pid, creators, identifiers, edition },
   manifestation,
-  workId
+  workId,
+  className
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();
@@ -113,7 +116,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const detailsId = `material-details-${pid}`;
 
   return (
-    <div className="material-manifestation-item">
+    <div className={clsx("material-manifestation-item", className)}>
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
           key={`${faustId}-material-manifestation-item`}
