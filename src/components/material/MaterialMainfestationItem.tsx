@@ -35,7 +35,6 @@ import {
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
   workId: WorkId;
-  className?: string;
   isEditionPicker?: boolean;
 }
 
@@ -43,7 +42,6 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation: { materialTypes, pid, creators, identifiers, edition },
   manifestation,
   workId,
-  className,
   isEditionPicker
 }) => {
   const mainfestationTitleId = useId();
@@ -118,7 +116,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const detailsId = `material-details-${pid}`;
 
   return (
-    <div className={clsx("material-manifestation-item", className)}>
+    <div
+      className={clsx("material-manifestation-item", {
+        "material-manifestation-item--no-side-margins": isEditionPicker
+      })}
+    >
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
           key={`${faustId}-material-manifestation-item`}
