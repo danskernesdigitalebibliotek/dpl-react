@@ -4,9 +4,16 @@ import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import MaterialMainfestationItem from "../material/MaterialMainfestationItem";
 import {
-  getParallelReservationModalId,
-  getManifestationsOrderByTypeAndYear
+  getManifestationsOrderByTypeAndYear,
+  reservationModalId,
+  onlineInternalModalId
 } from "../../apps/material/helper";
+import {
+  getAllPids,
+  convertPostIdsToFaustIds
+} from "../../core/utils/helpers/general";
+import { hasCorrectAccessType } from "../material/material-buttons/helper";
+import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import { Button } from "../Buttons/Button";
@@ -37,14 +44,22 @@ const EditionSwitchModal = ({
     work.manifestations.all
   );
 
-  const parallelReservationModalId = getParallelReservationModalId(
-    selectedManifestations
-  );
+  const pids = getAllPids(selectedManifestations);
+  const faustIds = convertPostIdsToFaustIds(pids);
 
   const handleFirstAvailableEditionSwitchClick = () => {
+    // Determine the appropriate modal ID based on the access type
+    const isPhysical = hasCorrectAccessType(
+      AccessTypeCodeEnum.Physical,
+      selectedManifestations
+    );
+    const modalId = isPhysical
+      ? reservationModalId(faustIds)
+      : onlineInternalModalId(faustIds);
+
     openGuarded({
       authUrl,
-      modalId: parallelReservationModalId
+      modalId
     });
   };
 
