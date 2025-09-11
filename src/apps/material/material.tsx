@@ -25,6 +25,7 @@ import {
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
+import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
 import { useText } from "../../core/utils/text";
@@ -38,7 +39,8 @@ import {
   getInfomediaIds,
   getManifestationChildrenOrAdults,
   getManifestationsOrderByTypeAndYear,
-  isParallelReservation
+  isParallelReservation,
+  getManifestationFromUrlHash
 } from "./helper";
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
@@ -132,6 +134,10 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   }, [data]);
 
+  // Handle scrolling to manifestation when there's a hash in the URL
+  // Use a 300ms delay to allow the MaterialDisclosure to animate open
+  useScrollToLocation(data?.work, 300);
+
   if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;
   }
@@ -154,6 +160,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
 
   // Get disclosure URL parameter from the current URL to see if it should be open.
   const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
+
+  // Check if there's a manifestation hash in the URL - this should open the editions disclosure
+  const shouldOpenEditionsDisclosure = !!getManifestationFromUrlHash();
 
   return (
     <>
@@ -214,6 +223,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             title={`${t("editionsText")} (${manifestations.length})`}
             icon={VariousIcon}
             dataCy="material-editions-disclosure"
+            open={shouldOpenEditionsDisclosure}
           >
             <>
               {getManifestationsOrderByTypeAndYear(manifestations).map(

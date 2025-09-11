@@ -24,6 +24,9 @@ import reservationMaterialDetailsProps, {
 import reservationListArgs, {
   argTypes as reservationListArgTypes
 } from "../../core/storybook/reservationListArgs";
+import copyLinkArgs, {
+  argTypes as copyLinkArgTypes
+} from "../../core/storybook/copyLinkArgs";
 
 const meta: Meta<typeof MaterialEntry> = {
   title: "Apps / Material",
@@ -36,6 +39,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...globalConfigArgTypes,
     ...deleteReservationModalArgTypes,
     ...publizonErrorArgTypes,
+    ...copyLinkArgTypes,
     ...mappArgTypes,
     ...reservationMaterialDetailsPropsArgTypes,
     ...reservationListArgTypes,
@@ -842,6 +846,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...globalConfigArgs,
     ...deleteReservationModalArgs,
     ...publizonErrorArgs,
+    ...copyLinkArgs,
     ...mappArgs,
     ...reservationMaterialDetailsProps,
     ...reservationListArgs,

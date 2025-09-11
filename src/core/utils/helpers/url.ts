@@ -200,3 +200,8 @@ export const isUrlValid = (text: string) => {
 export const currentLocationWithParametersUrl = (
   params: Record<string, string>
 ) => appendQueryParametersToUrl(new URL(getCurrentLocation()), params);
+
+export const getCurrentUrlWithHash = (hash: string): string => {
+  const { origin, pathname, search } = window.location;
+  return `${origin}${pathname}${search}#${hash}`;
+};
