@@ -87,7 +87,6 @@ const EditionSwitchModal = ({
                   key={manifestation.pid}
                   manifestation={manifestation}
                   workId={workId}
-                  className="material-manifestation-item--no-side-margins"
                   isEditionPicker
                 />
               );
