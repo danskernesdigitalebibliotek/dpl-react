@@ -403,7 +403,6 @@ export const ReservationModalBody = ({
       )}
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
-          modalId={reservationModalId(faustIds)}
           title={getManifestationTitle(manifestation)}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
