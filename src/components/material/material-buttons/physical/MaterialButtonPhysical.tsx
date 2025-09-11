@@ -35,6 +35,20 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   const faustIds = convertPostIdsToFaustIds(pids);
   const { openGuarded } = useModalButtonHandler();
 
+  const getButtonLabel = () => {
+    if (isEditionPicker) {
+      return t("editionChooseText");
+    }
+
+    if (size === "small") {
+      return t("reserveText");
+    }
+
+    return t("reserveWithMaterialTypeText", {
+      placeholders: { "@materialType": manifestationMaterialType }
+    });
+  };
+
   const onClick = () => {
     if (isSpecificManifestation && first(pids)) {
       track("click", {
@@ -52,15 +66,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   return (
     <Button
       dataCy={dataCy}
-      label={
-        isEditionPicker
-          ? t("editionChooseText")
-          : size === "small"
-            ? t("reserveText")
-            : `${t("reserveWithMaterialTypeText", {
-                placeholders: { "@materialType": manifestationMaterialType }
-              })}`
-      }
+      label={getButtonLabel()}
       buttonType="none"
       variant="filled"
       disabled={false}
