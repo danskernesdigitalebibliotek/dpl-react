@@ -88,7 +88,7 @@ const OnlineInternalModalBody = ({
         })}
         ctaButton={{
           text: t("okButtonText"),
-          modalId: onlineInternalModalId(faustIds),
+          closeAllModals: true,
           dataCy: "online-internal-close-button"
         }}
       >
