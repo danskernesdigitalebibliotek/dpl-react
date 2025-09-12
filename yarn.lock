@@ -2289,6 +2289,11 @@
   resolved "https://registry.npmjs.org/@graphql-typed-document-node/core/-/core-3.2.0.tgz"
   integrity sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==
 
+"@hammzj/cypress-page-object@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@hammzj/cypress-page-object/-/cypress-page-object-2.3.0.tgz#08c1a8880a4ac5d2fd31632c33a7a42b4d07f8d7"
+  integrity sha512-AT2mN+UiHaAFPEvPWm8/ayL9T4XgymfkkdfsB+zAbp3KNC8nf3rjEF3g27Kc3va0BfowfiGzI5TO9XFowx5bAw==
+
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.npmjs.org/@humanfs/core/-/core-0.19.1.tgz"
