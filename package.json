@@ -157,6 +157,7 @@
     "@fullcalendar/interaction": "^6.1.19",
     "@fullcalendar/react": "^6.1.19",
     "@fullcalendar/timegrid": "^6.1.19",
+    "@hammzj/cypress-page-object": "^2.3.0",
     "@reduxjs/toolkit": "^2.5.0",
     "@types/lodash": "^4.17.5",
     "clsx": "^2.1.1",
