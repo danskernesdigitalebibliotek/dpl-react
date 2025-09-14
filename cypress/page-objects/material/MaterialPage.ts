@@ -4,6 +4,7 @@ import {
   NestedComponents
 } from "@hammzj/cypress-page-object";
 import { EditionsComponent } from "./components/editions";
+import { FindOnShelfComponent } from "./components/find-on-shelf";
 
 export class MaterialPage extends PageObject {
   public elements!: Elements;
@@ -30,7 +31,9 @@ export class MaterialPage extends PageObject {
 
     this.addNestedComponents = {
       Editions: (fn) =>
-        this.performWithin(this.container(), new EditionsComponent(), fn)
+        this.performWithin(this.container(), new EditionsComponent(), fn),
+      FindOnShelf: (fn) =>
+        this.performWithin(this.container(), new FindOnShelfComponent(), fn)
     };
   }
 
