@@ -88,6 +88,25 @@ describe("Material Page Object Test", () => {
         .getAvailabilityLabelForManifestation(3)
         .should("contain.text", "lydbog");
     });
+
+    // Test FindOnShelf component functionality
+    materialPage.components.FindOnShelf((findOnShelf) => {
+      findOnShelf.open();
+
+      findOnShelf.elements
+        .headline()
+        .should("be.visible")
+        .and("contain.text", "De syv søstre : Maias historie / Lucinda Riley");
+
+      findOnShelf.elements
+        .libraryDisclosures()
+        .should("have.length.at.least", 1);
+
+      findOnShelf.getLibraryDisclosure(0).within(() => {
+        cy.get(".disclosure__headline").should("be.visible");
+        cy.get(".availability-label").should("be.visible");
+      });
+    });
   });
 
   it("Should demonstrate factory flexibility with different material types", () => {
