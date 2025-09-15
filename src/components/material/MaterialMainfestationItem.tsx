@@ -178,7 +178,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
             <CopyLink
               label={t("copyLinkToEditionText")}
               url={getCurrentUrlWithHash(manifestationId)}
-              className="mt-24"
+              className="mt-24 mb-24"
             />
           </>
         )}
