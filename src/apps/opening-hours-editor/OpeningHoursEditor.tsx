@@ -13,6 +13,7 @@ import DialogFormAdd from "./DialogFormAdd";
 import { OpeningHoursCategoriesType } from "./types";
 import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
+import watchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
 
 export type OpeningHoursEditorType = {
   initialDate?: Date;
@@ -41,7 +42,8 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
     handleEventAdd,
     handleEventEditing,
     handleEventRemove,
-    handleDatesSet
+    handleDatesSet,
+    isLoading
   } = useOpeningHoursEditor();
 
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
@@ -57,6 +59,35 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         {dialogContent}
       </Dialog>
 
+      {isLoading && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.75)",
+            display: "flex",
+            gap: "10px",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            boxSizing: "border-box",
+            zIndex: 10
+          }}
+        >
+          <img
+            src={watchIcon}
+            alt="clock icon"
+            style={{
+              display: "block",
+              width: "64px",
+              height: "64px"
+            }}
+          />
+
+          <h1>{t("openingHoursLoadingText")}</h1>
+        </div>
+      )}
+
       <FullCalendar
         initialDate={initialDate ?? undefined}
         ref={fullCalendarRef}
@@ -68,28 +99,34 @@ const OpeningHoursEditor: React.FC<OpeningHoursEditorType> = ({
         }}
         initialView="timeGridWeek"
         locale={da}
-        selectable
-        select={(selectedEventInfo) =>
-          openDialogWithContent(
-            <DialogFormAdd
-              selectedEventInfo={selectedEventInfo}
-              handleEventAdd={handleEventAdd}
-              openingHoursCategories={openingHoursCategories}
-              closeDialog={closeDialog}
-            />
-          )
+        selectable={!isLoading}
+        select={
+          isLoading
+            ? undefined
+            : (selectedEventInfo) =>
+                openDialogWithContent(
+                  <DialogFormAdd
+                    selectedEventInfo={selectedEventInfo}
+                    handleEventAdd={handleEventAdd}
+                    openingHoursCategories={openingHoursCategories}
+                    closeDialog={closeDialog}
+                  />
+                )
         }
         unselectAuto={false}
-        eventClick={(clickInfo) =>
-          openDialogWithContent(
-            <DialogFormEdit
-              eventInfo={clickInfo.event}
-              handleEventEditing={handleEventEditing}
-              handleEventRemove={handleEventRemove}
-              openingHoursCategories={openingHoursCategories}
-              closeDialog={closeDialog}
-            />
-          )
+        eventClick={
+          isLoading
+            ? undefined
+            : (clickInfo) =>
+                openDialogWithContent(
+                  <DialogFormEdit
+                    eventInfo={clickInfo.event}
+                    handleEventEditing={handleEventEditing}
+                    handleEventRemove={handleEventRemove}
+                    openingHoursCategories={openingHoursCategories}
+                    closeDialog={closeDialog}
+                  />
+                )
         }
         eventContent={(eventInput) =>
           OpeningHoursEditorEventContent({
