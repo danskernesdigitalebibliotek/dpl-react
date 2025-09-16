@@ -204,6 +204,7 @@ interface MaterialEntryTextProps {
 }
 
 interface MaterialEntryConfigProps {
+  agencyIdConfig: string;
   blacklistedAvailabilityBranchesConfig?: string;
   blacklistedInstantLoanBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
