@@ -8,6 +8,7 @@ import { withConfig } from "../../core/utils/config";
 import { getInitialDateFromUrl } from "./helper";
 
 interface OpeningHoursEditorEntryTextProps {
+  openingHoursLoadingText: string;
   openingHoursRemoveEventButtonText: string;
   openingHoursInvalidEventText: string;
   openingHoursEventFormCategoryText: string;
