@@ -25,7 +25,7 @@ import {
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
-import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
+import { useScrollAfterFetchWithRetry } from "../../core/utils/useScrollAfterFetchWithRetry";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
 import { useText } from "../../core/utils/text";
@@ -135,8 +135,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   }, [data]);
 
   // Handle scrolling to manifestation when there's a hash in the URL
-  // Use a 300ms delay to allow the MaterialDisclosure to animate open
-  useScrollToLocation(data?.work, 300);
+  useScrollAfterFetchWithRetry();
 
   if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;
