@@ -54,6 +54,7 @@ interface SearchResultEntryConfigProps {
   blacklistedPickupBranchesConfig?: string;
   blacklistedSearchBranchesConfig?: string;
   branchesConfig: string;
+  searchInfoboxConfig: string;
 }
 
 export interface SearchResultEntryProps
