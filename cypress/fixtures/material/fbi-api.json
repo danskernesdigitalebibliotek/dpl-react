@@ -630,7 +630,116 @@
             "nationalBibliography": ["DLF201642"],
             "otherCatalogues": ["BKM201642", "DAT201713"]
           }
-        }
+        },
+        "mostRelevant": [{
+          "pid": "870970-basis:52643414",
+          "genreAndForm": ["roman"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["De syv søstre (mp3)"],
+            "original": ["The seven sisters"]
+          },
+          "fictionNonfiction": {
+            "display": "skønlitteratur",
+            "code": "FICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "lydbog (cd-mp3)"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Lucinda Riley",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Rosinante"],
+          "identifiers": [
+            {
+              "value": "9788763850636"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Maria Stokholm",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "indlæser"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Ulla Lauridsen",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "oversætter"
+                  }
+                }
+              ]
+            }
+          ],
+          "edition": {
+            "summary": "1. lydbogsudgave, 2016",
+            "publicationYear": {
+              "display": "2016"
+            }
+          },
+          "dateFirstEdition": {
+            "display": "2016",
+            "year": 2016
+          },
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [
+            {
+              "display": [
+                "Gengivelse af bogen",
+                "Indlæst efter 1. udgave. 2016. ISBN: 9788763844116"
+              ]
+            }
+          ],
+          "physicalDescription": {
+            "summaryFull": "1 cd i 1 mappe (mp3) 16 t., 30 min.",
+            "numberOfPages": null,
+            "materialUnits": [{ "extent": "16 t., 30 min." }]
+          },
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": null,
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["DLF201642"],
+            "otherCatalogues": ["BKM201642", "DAT201713"]
+          }
+        }]
       },
       "materialTypes": [
         {
@@ -690,8 +799,7 @@
         "code": "FICTION"
       },
       "dk5MainEntry": {
-        "display": "Skønlitteratur",
-        "code": "sk"
+        "display": "Skønlitteratur"
       },
       "relations": {
         "hasReview": [

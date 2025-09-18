@@ -298,7 +298,102 @@
               "DAT201246"
             ]
           }
-        }
+        },
+        "mostRelevant": [{
+          "pid": "870970-basis:06373674",
+          "genreAndForm": ["tidsskrift"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Alt for damerne"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "nonfiktion",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "tidsskrift"
+              }
+            }
+          ],
+          "creators": [],
+          "publisher": ["Egmont Magasiner"],
+          "identifiers": [
+            {
+              "value": "0002-6506"
+            }
+          ],
+          "contributors": [],
+          "edition": {
+            "summary": "1946",
+            "publicationYear": {
+              "display": "1946"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [
+            {
+              "display": ["[Nr. 1, 1946]-"]
+            },
+            {
+              "display": ["Ugentlig"]
+            },
+            {
+              "display": [
+                "Tidligere udgivet: Kbh. : Gutenberghus Bladene",
+                "Hertil findes tillæg",
+                "Hertil findes årligt tillæg med titel: Skønhed"
+              ]
+            }
+          ],
+          "physicalDescription": {},
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "DigitalArticleService",
+              "issn": "00026506"
+            },
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Alt",
+            "shelfmark": "05.6"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["DPF197680"],
+            "otherCatalogues": [
+              "DAT199834",
+              "DAT200523",
+              "DAT200945",
+              "DAT201246"
+            ]
+          }
+        }]
       },
       "materialTypes": [
         {
@@ -322,8 +417,7 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "05.6 Aviser. Periodica af blandet indhold. Danmark",
-        "code": "05.6"
+        "display": "05.6 Aviser. Periodica af blandet indhold. Danmark"
       },
       "relations": {
         "hasReview": [],

@@ -712,7 +712,198 @@
             "nationalBibliography": [],
             "otherCatalogues": ["ACM202407", "BKM202415"]
           }
-        }
+        },
+        "mostRelevant": [{
+          "pid": "870970-basis:137949814",
+          "genreAndForm": ["rock", "heavy rock", "70'er rock"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "engelsk",
+                "isoCode": "eng"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Billion dollar babies"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "vides ikke",
+            "code": "NOT_SPECIFIED"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "musik (cd)"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Alice Cooper",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Warner Records"],
+          "identifiers": [
+            {
+              "value": "Warner Rhino 603497832415"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Michael Bruce",
+              "roles": []
+            },
+            {
+              "display": "Glen Buxton",
+              "roles": []
+            },
+            {
+              "display": "Dennis Dunaway",
+              "roles": []
+            },
+            {
+              "display": "Neal Smith",
+              "roles": []
+            }
+          ],
+          "edition": {
+            "summary": "50th-anniversary edition, ℗2024",
+            "publicationYear": {
+              "display": "℗2024"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [],
+          "physicalDescription": {
+            "summaryFull": "2 cd'er (1 kommentarbilag)",
+            "numberOfPages": null,
+            "playingTime": null
+          },
+          "hostPublication": null,
+          "manifestationParts": {
+            "parts": [
+              {
+                "title": "Hello Hooray"
+              },
+              {
+                "title": "Raped and Freezin'"
+              },
+              {
+                "title": "Elected"
+              },
+              {
+                "title": "Billion Dollar Babies"
+              },
+              {
+                "title": "Unfinished Sweet"
+              },
+              {
+                "title": "No More Mr. Nice Guy"
+              },
+              {
+                "title": "Generation Landslide"
+              },
+              {
+                "title": "Sick Things"
+              },
+              {
+                "title": "Mary Ann"
+              },
+              {
+                "title": "I Love the Dead"
+              },
+              {
+                "title": "Hello Hooray (Live)"
+              },
+              {
+                "title": "Billion Dollar Babies (Live)"
+              },
+              {
+                "title": "Elected (Live)"
+              },
+              {
+                "title": "I'm Eighteen (Live, 1973)"
+              },
+              {
+                "title": "Raped and Freezin' (Live)"
+              },
+              {
+                "title": "No More Mr. Nice Guy (Live)"
+              },
+              {
+                "title": "My Stars (Live)"
+              },
+              {
+                "title": "Unfinished Sweet (Live)"
+              },
+              {
+                "title": "Sick Things (Live)"
+              },
+              {
+                "title": "Dead Babies (Live)"
+              },
+              {
+                "title": "I Love the Dead (Live)"
+              },
+              {
+                "title": "School's Out (Live 1973)"
+              },
+              {
+                "title": "Under My Wheels (Live 1973)"
+              },
+              {
+                "title": "Coal Black Model T (Outtake)"
+              },
+              {
+                "title": "Son Of Billion Dollar Babies (Generation Landslide) (Outtake)"
+              },
+              {
+                "title": "Hello Hooray (Single Version)"
+              },
+              {
+                "title": "Billion Dollar Babies 8Single Version"
+              },
+              {
+                "title": "Elected (Single Version)"
+              },
+              {
+                "title": "Mary Ann (Single Version)"
+              },
+              {
+                "title": "Slick Black Limousine"
+              }
+            ]
+          },
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Cooper",
+            "shelfmark": "Rock"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": [],
+            "otherCatalogues": ["ACM202407", "BKM202415"]
+          }
+        }]
       },
       "materialTypes": [
         {
@@ -756,8 +947,7 @@
         "code": "NOT_SPECIFIED"
       },
       "dk5MainEntry": {
-        "display": "78.794:5 Rock'n roll. Rock. Folk",
-        "code": "78.794:5"
+        "display": "78.794:5 Rock'n roll. Rock. Folk"
       },
       "relations": {
         "hasReview": [

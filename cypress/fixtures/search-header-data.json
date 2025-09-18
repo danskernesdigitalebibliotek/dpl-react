@@ -19,6 +19,11 @@
               "bestRepresentation": {
                 "pid": "870970-basis:38289977"
               },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:38289977"
+                }
+              ],
               "all": [
                 {
                   "pid": "870970-basis:22629344"
@@ -50,6 +55,11 @@
               "bestRepresentation": {
                 "pid": "870970-basis:61636935"
               },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:61636935"
+                }
+              ],
               "all": [
                 {
                   "pid": "870970-basis:22629344"
@@ -81,6 +91,11 @@
               "bestRepresentation": {
                 "pid": "870970-basis:53111203"
               },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:53111203"
+                }
+              ],
               "all": [
                 {
                   "pid": "870970-basis:22629344"
@@ -111,7 +126,12 @@
             "manifestations": {
               "bestRepresentation": {
                 "pid": "870970-basis:50999335"
-              }
+              },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:50999335"
+                }
+              ]
             }
           }
         },
@@ -131,7 +151,12 @@
             "manifestations": {
               "bestRepresentation": {
                 "pid": "870970-basis:54215797"
-              }
+              },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:54215797"
+                }
+              ]
             }
           }
         },
@@ -151,7 +176,12 @@
             "manifestations": {
               "bestRepresentation": {
                 "pid": "870970-basis:54936508"
-              }
+              },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:54936508"
+                }
+              ]
             }
           }
         },
@@ -167,7 +197,12 @@
             "manifestations": {
               "bestRepresentation": {
                 "pid": "870970-basis:53182623"
-              }
+              },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:53182623"
+                }
+              ]
             }
           }
         },
@@ -188,6 +223,11 @@
               "bestRepresentation": {
                 "pid": "870970-basis:54871945"
               },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:54871945"
+                }
+              ],
               "all": [
                 {
                   "pid": "870970-basis:22629344"
@@ -218,7 +258,12 @@
             "manifestations": {
               "bestRepresentation": {
                 "pid": "870970-basis:134987766"
-              }
+              },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:134987766"
+                }
+              ]
             }
           }
         },
@@ -238,7 +283,12 @@
             "manifestations": {
               "bestRepresentation": {
                 "pid": "870970-basis:28813597"
-              }
+              },
+              "mostRelevant": [
+                {
+                  "pid": "870970-basis:28813597"
+                }
+              ]
             }
           }
         }
