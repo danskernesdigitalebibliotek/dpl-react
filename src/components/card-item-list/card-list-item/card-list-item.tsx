@@ -28,14 +28,12 @@ import { Work } from "../../../core/utils/types/entities";
 import { useEventStatistics } from "../../../core/statistics/useStatistics";
 import { statistics } from "../../../core/statistics/statistics";
 import { useItemHasBeenVisible } from "../../../core/utils/helpers/lazy-load";
-import {
-  getFirstBookManifestation,
-  getManifestationLanguageIsoCode
-} from "../../../apps/material/helper";
+import { getManifestationLanguageIsoCode } from "../../../apps/material/helper";
 import useFilterHandler from "../../../apps/search-result/useFilterHandler";
 import { getFirstMaterialTypeFromFilters } from "../../../apps/search-result/helper";
 import SubjectNumber from "../../subject-number/SubjectNumber";
 import SeriesList from "./series-list";
+import { getRepresentativeManifestation } from "../../../core/utils/helpers/manifestations";
 
 export interface CardListItemProps {
   item: Work;
@@ -52,7 +50,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
     titles: { full: fullTitle },
     series,
     creators,
-    manifestations: { all: manifestations, bestRepresentation },
+    manifestations: { all: manifestations },
     workId
   },
   coverTint,
@@ -71,8 +69,10 @@ const CardListItem: React.FC<CardListItemProps> = ({
     filters,
     manifestations
   );
-  const bookManifestation = getFirstBookManifestation(manifestations);
-
+  const representativeManifestation = getRepresentativeManifestation({
+    work: item,
+    context: "material"
+  });
   const dispatch = useDispatch<TypedDispatch>();
   const author = creatorsToString(flattenCreators(creators), t);
   const manifestationPids = getManifestationsPids(manifestations);
@@ -82,7 +82,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
     materialTypeFromFilters
   );
   const languageIsoCode = getManifestationLanguageIsoCode(manifestations);
-  const { shelfmark } = bestRepresentation;
+  const { shelfmark } = representativeManifestation;
   const { track } = useEventStatistics();
   // We use hasBeenVisible to determine if the search result
   // is, or has been, visible in the viewport.
@@ -136,7 +136,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
           <CardListItemCover
             ids={manifestationPids}
             // We'll try to prioritize book covers or else use FBI's recommended manifestation.
-            manifestation={bookManifestation ?? bestRepresentation}
+            manifestation={representativeManifestation}
             url={materialFullUrl}
             tint={coverTint}
             linkAriaLabelledBy={searchTitleId}
@@ -159,7 +159,7 @@ const CardListItem: React.FC<CardListItemProps> = ({
             workId={workId}
           />
         </div>
-        {!materialIsFiction(bestRepresentation) && shelfmark && (
+        {!materialIsFiction(representativeManifestation) && shelfmark && (
           <SubjectNumber
             className="text-tags color-secondary-gray mt-8"
             shelfmark={shelfmark}

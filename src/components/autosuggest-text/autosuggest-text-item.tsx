@@ -4,6 +4,7 @@ import { useText } from "../../core/utils/text";
 import { SuggestionTypeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
+import { getRepresentativeManifestation } from "../../core/utils/helpers/manifestations";
 
 export interface AutosuggestTextItemProps {
   classes: {
@@ -22,11 +23,13 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   getItemProps,
   dataCy = "autosuggest-text-item"
 }) => {
+  const representativeManifestation = getRepresentativeManifestation({
+    work: item.work,
+    context: "auto-suggest"
+  });
   const isoLang =
-    item.work?.manifestations.bestRepresentation &&
-    getManifestationLanguageIsoCode([
-      item.work.manifestations.bestRepresentation
-    ]);
+    representativeManifestation &&
+    getManifestationLanguageIsoCode([representativeManifestation]);
 
   const t = useText();
   return (

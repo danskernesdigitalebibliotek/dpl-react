@@ -24,6 +24,7 @@ import { ManifestationMaterialType } from "../../core/utils/types/material-type"
 import { useUrls } from "../../core/utils/url";
 import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import { getRepresentativeManifestation } from "../../core/utils/helpers/manifestations";
 
 export type RecommendedMaterialProps = {
   wid: WorkId;
@@ -54,15 +55,18 @@ const RecommendedMaterialComp: React.FC<RecommendedMaterialProps> = ({
   const {
     work: {
       titles: { full: fullTitle },
-      manifestations: { bestRepresentation },
       creators
     }
   } = data;
 
   const work = data.work as Work;
+  const representativeManifestation = getRepresentativeManifestation({
+    work,
+    context: "recommended-material"
+  });
   const materialManifestationForDisplay = materialType
     ? getManifestationBasedOnType(work, materialType)
-    : bestRepresentation;
+    : representativeManifestation;
 
   const { pid } = materialManifestationForDisplay;
 

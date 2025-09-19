@@ -5,7 +5,7 @@ import ButtonFavourite, {
   ButtonFavouriteId
 } from "../button-favourite/button-favourite";
 import { Cover } from "../cover/cover";
-import { getContributors, getWorkPid } from "../../core/utils/helpers/general";
+import { getContributors } from "../../core/utils/helpers/general";
 import { TypedDispatch } from "../../core/store";
 import { guardedRequest } from "../../core/guardedRequests.slice";
 import { constructMaterialUrl } from "../../core/utils/helpers/url";
@@ -13,6 +13,7 @@ import Link from "../atoms/links/Link";
 import { useUrls } from "../../core/utils/url";
 import { GuardedAppId } from "../../core/utils/types/ids";
 import { WorkSmall } from "../../core/utils/types/entities";
+import { getRepresentativeManifestation } from "../../core/utils/helpers/manifestations";
 
 export interface SimpleMaterialProps {
   work: WorkSmall;
@@ -44,7 +45,10 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
   }
 
   // For retrieving cover
-  const manifestationPid = getWorkPid(work);
+  const { pid: coverPid } = getRepresentativeManifestation({
+    work: work,
+    context: "cover"
+  });
 
   const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
@@ -63,7 +67,7 @@ const SimpleMaterial: FC<SimpleMaterialProps> = ({
       className={`simple-material ${bright ? " simple-material--bright" : ""}`}
     >
       <div className="simple-material__cover-container">
-        <Cover animate size="medium" ids={[manifestationPid]} />
+        <Cover animate size="medium" ids={[coverPid]} />
       </div>
       <div className="simple-material__favourite">
         <ButtonFavourite

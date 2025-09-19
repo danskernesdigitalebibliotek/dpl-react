@@ -12,6 +12,7 @@ import {
 import { WorkMediumFragment } from "../../core/dbc-gateway/generated/graphql";
 import { getManifestationLanguageIsoCode } from "../../apps/material/helper";
 import { Manifestation } from "../../core/utils/types/entities";
+import { getRepresentativeManifestation } from "../../core/utils/helpers/manifestations";
 
 export interface AutosuggestMaterialProps {
   materialData: Suggestions | [];
@@ -41,21 +42,25 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
         if (!work) {
           return null;
         }
-        const {
-          workId,
-          titles,
-          creators,
-          manifestations: { all: allManifestations, bestRepresentation }
-        } = work;
+        const { workId, titles, creators } = work;
         const authors = flattenCreators(
           creators as WorkMediumFragment["creators"]
         );
 
-        const manifestationLanguageIsoCode =
-          bestRepresentation &&
-          getManifestationLanguageIsoCode([bestRepresentation]);
+        const manifestation = getRepresentativeManifestation({
+          work,
+          context: "auto-suggest"
+        });
+        const coverManifestation = getRepresentativeManifestation({
+          work,
+          context: "cover"
+        });
+
+        const manifestationLanguageIsoCode = getManifestationLanguageIsoCode(
+          manifestation ? [manifestation] : []
+        );
         const coverPids = getManifestationsPids(
-          (allManifestations ?? []) as Manifestation[]
+          coverManifestation ? [coverManifestation] : []
         );
 
         return (
@@ -77,7 +82,7 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 animate
                 size="xSmall"
                 ids={coverPids}
-                manifestation={bestRepresentation as Manifestation}
+                manifestation={coverManifestation as Manifestation}
                 shadow="small"
               />
               <div className="autosuggest__info">

@@ -249,7 +249,7 @@ describe("getRepresentativeManifestation", () => {
       contexts.forEach((context) => {
         expect(() => {
           getRepresentativeManifestation({
-            work: null as any,
+            work: null as Work | null,
             context
           });
         }).toThrow("No valid pid found in representative manifestation");
