@@ -21,6 +21,20 @@ query suggestionsFromQueryString($q: String!, $branchId: String) {
           bestRepresentation {
             pid
             ...WithLanguages
+            materialTypes {
+              materialTypeSpecific {
+                display
+              }
+            }
+          }
+          mostRelevant {
+            pid
+            ...WithLanguages
+            materialTypes {
+              materialTypeSpecific {
+                display
+              }
+            }
           }
         }
       }

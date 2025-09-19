@@ -927,8 +927,6 @@ export type Manifestation = {
    * @deprecated Use 'Manifestation.contents' instead expires: 01/11-2025
    */
   manifestationParts?: Maybe<ManifestationParts>;
-  /** Field for presenting bibliographic records in MARC format */
-  marc?: Maybe<MarcRecord>;
   /** The type of material of the manifestation based on bibliotek.dk types */
   materialTypes: Array<MaterialType>;
   /** Notes about the manifestation */
@@ -1067,22 +1065,6 @@ export type Manifestations = {
    * Only one manifestation per unit is returned.
    */
   searchHits?: Maybe<Array<SearchHit>>;
-};
-
-export type MarcRecord = {
-  __typename?: "MarcRecord";
-  /** The library agency */
-  agencyId: Scalars["String"]["output"];
-  /** The bibliographic record identifier */
-  bibliographicRecordId: Scalars["String"]["output"];
-  /** The MARC record collection content as marcXchange XML string */
-  content: Scalars["String"]["output"];
-  /** The serialization format of the MARC record content. Defaults to 'marcXchange' */
-  contentSerializationFormat: Scalars["String"]["output"];
-  /** Flag indicating whether or not the record is deleted */
-  deleted: Scalars["Boolean"]["output"];
-  /** The marc record identifier */
-  id: Scalars["String"]["output"];
 };
 
 export type MaterialType = {
@@ -2188,8 +2170,6 @@ export type Work = {
   mainLanguages: Array<Language>;
   /** Details about the manifestations of this work */
   manifestations: Manifestations;
-  /** Field for presenting bibliographic records in MARC format */
-  marc?: Maybe<MarcRecord>;
   /** The type of material of the manifestation based on bibliotek.dk types */
   materialTypes: Array<MaterialType>;
   /** Relations to other manifestations */
@@ -5353,6 +5333,25 @@ export type SuggestionsFromQueryStringQuery = {
               }> | null;
             } | null;
           };
+          mostRelevant: Array<{
+            __typename?: "Manifestation";
+            pid: string;
+            materialTypes: Array<{
+              __typename?: "MaterialType";
+              materialTypeSpecific: {
+                __typename?: "SpecificMaterialType";
+                display: string;
+              };
+            }>;
+            languages?: {
+              __typename?: "Languages";
+              main?: Array<{
+                __typename?: "Language";
+                display: string;
+                isoCode: string;
+              }> | null;
+            } | null;
+          }>;
         };
       } | null;
     }>;
@@ -7794,6 +7793,15 @@ export const SuggestionsFromQueryStringDocument = `
           bestRepresentation {
             pid
             ...WithLanguages
+          }
+          mostRelevant {
+            pid
+            ...WithLanguages
+            materialTypes {
+              materialTypeSpecific {
+                display
+              }
+            }
           }
         }
       }
