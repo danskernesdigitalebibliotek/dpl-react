@@ -31,7 +31,6 @@ import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultZeroHits from "./search-result-zero-hits";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
 import { formatSearchDisplayQuery } from "./helper";
-import { useConfig } from "../../core/utils/config";
 
 interface SearchResultProps {
   q: string;
@@ -39,7 +38,6 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
-  const config = useConfig();
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
@@ -57,12 +55,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   );
   const { facets: campaignFacets } = useGetFacets(q, filters);
   const minimalQueryLength = 1;
-
-  // Get search info box data from config
-  const searchInfoBox = config("searchInfoboxConfig", {
-    transformer: "jsonParse"
-  });
-  console.log("🚀 ~ SearchResult ~ searchInfoBox:", searchInfoBox);
 
   // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
