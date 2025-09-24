@@ -17,7 +17,7 @@ export interface SearchResultListProps {
 type InfoBox = {
   title?: string;
   content: { value?: string };
-  buttonText?: string;
+  buttonLabel?: string;
 };
 
 const SearchResultList: React.FC<SearchResultListProps> = ({
@@ -32,11 +32,12 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
   // Get search info box data from config
   const {
     title: infoBoxTitle,
-    content: { value: infoBoxHtml },
-    buttonText: infoBoxButtonText
+    content: infoBoxContent,
+    buttonLabel: infoBoxButtonLabel
   } = config<InfoBox>("searchInfoboxConfig", {
     transformer: "jsonParse"
   });
+  const infoBoxHtml = infoBoxContent?.value || "";
 
   useEffect(() => {
     if (page > 0 && lastItemRef.current) {
@@ -62,7 +63,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
         resultItems.map((item, i) => {
           const isFirstNewItem = i === page * pageSize;
 
-          if (i === searchInfoBoxIndex) {
+          if (i === searchInfoBoxIndex && infoBoxTitle && infoBoxHtml) {
             return (
               <>
                 <MaterialListItem
@@ -80,7 +81,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
                   <CardListInfoBox
                     title={infoBoxTitle}
                     html={infoBoxHtml}
-                    buttonText={infoBoxButtonText}
+                    buttonLabel={infoBoxButtonLabel}
                   />
                 </div>
               </>

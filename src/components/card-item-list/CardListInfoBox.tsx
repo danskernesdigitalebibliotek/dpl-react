@@ -3,10 +3,14 @@ import React from "react";
 type CardListInfoBoxProps = {
   title?: string;
   html?: string;
-  buttonText?: string;
+  buttonLabel?: string;
 };
 
-const CardListInfoBox = ({ title, html, buttonText }: CardListInfoBoxProps) => {
+const CardListInfoBox = ({
+  title,
+  html,
+  buttonLabel
+}: CardListInfoBoxProps) => {
   return (
     <div className="card-list-info-box pagefold-parent--medium">
       <div className="pagefold-triangle--medium pagefold-inherit-parent" />
@@ -24,13 +28,13 @@ const CardListInfoBox = ({ title, html, buttonText }: CardListInfoBoxProps) => {
           />
         </div>
 
-        {buttonText && (
+        {buttonLabel && (
           <div className="card-list-info-box__button-wrapper">
             <a
               href="/advanced-search"
               className="btn-primary btn-outline btn-xsmall"
             >
-              {buttonText}
+              {buttonLabel}
             </a>
           </div>
         )}
