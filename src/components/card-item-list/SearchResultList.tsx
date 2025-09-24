@@ -77,13 +77,13 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
                     resultNumber={i + 1}
                   />
                 </MaterialListItem>
-                <div className="content-list__item">
+                <li className="content-list__item">
                   <CardListInfoBox
                     title={infoBoxTitle}
                     html={infoBoxHtml}
                     buttonLabel={infoBoxButtonLabel}
                   />
-                </div>
+                </li>
               </>
             );
           }
