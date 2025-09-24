@@ -31,11 +31,18 @@ import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultZeroHits from "./search-result-zero-hits";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
 import { formatSearchDisplayQuery } from "./helper";
+import { useConfig } from "../../core/utils/config";
 
 interface SearchResultProps {
   q: string;
   pageSize: number;
 }
+
+type InfoBox = {
+  title?: string;
+  content: { value?: string };
+  buttonLabel?: string;
+};
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const { filters, clearFilter, addFilterFromUrlParamListener } =
@@ -55,6 +62,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   );
   const { facets: campaignFacets } = useGetFacets(q, filters);
   const minimalQueryLength = 1;
+  const config = useConfig();
 
   // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
@@ -188,6 +196,16 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     t
   });
 
+  // Get search info box data from config
+  const {
+    title: infoBoxTitle,
+    content: infoBoxContent,
+    buttonLabel: infoBoxButtonLabel
+  } = config<InfoBox>("searchInfoboxConfig", {
+    transformer: "jsonParse"
+  });
+  const infoBoxHtml = infoBoxContent?.value || "";
+
   // We are handling loading state for every element separately inside this return(),
   // because then we achieve smoother experience using the filters - not having
   // to loose the filter modal upon selecting a filter.
@@ -208,6 +226,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
             resultItems={resultItems}
             page={page}
             pageSize={pageSize}
+            infoBoxTitle={infoBoxTitle}
+            infoBoxHtml={infoBoxHtml}
+            infoBoxButtonLabel={infoBoxButtonLabel}
           />
           <PagerComponent isLoading={isLoading} />
         </>

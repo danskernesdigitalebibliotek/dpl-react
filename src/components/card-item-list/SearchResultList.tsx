@@ -6,38 +6,27 @@ import CardListItem from "./card-list-item/card-list-item";
 import CardListItemSkeleton from "./card-list-item/card-list-item-skeleton";
 import MaterialListItem from "./MaterialListItem";
 import CardListInfoBox from "./CardListInfoBox";
-import { useConfig } from "../../core/utils/config";
 
 export interface SearchResultListProps {
   resultItems: Work[];
   page: number;
   pageSize: number;
+  // Info box props
+  infoBoxTitle?: string;
+  infoBoxHtml?: string;
+  infoBoxButtonLabel?: string;
 }
-
-type InfoBox = {
-  title?: string;
-  content: { value?: string };
-  buttonLabel?: string;
-};
 
 const SearchResultList: React.FC<SearchResultListProps> = ({
   resultItems,
   page,
-  pageSize
+  pageSize,
+  infoBoxTitle,
+  infoBoxHtml,
+  infoBoxButtonLabel
 }) => {
   const worksAreLoaded = !isEmpty(resultItems);
   const lastItemRef = React.useRef<HTMLLIElement>(null);
-  const config = useConfig();
-
-  // Get search info box data from config
-  const {
-    title: infoBoxTitle,
-    content: infoBoxContent,
-    buttonLabel: infoBoxButtonLabel
-  } = config<InfoBox>("searchInfoboxConfig", {
-    transformer: "jsonParse"
-  });
-  const infoBoxHtml = infoBoxContent?.value || "";
 
   useEffect(() => {
     if (page > 0 && lastItemRef.current) {
