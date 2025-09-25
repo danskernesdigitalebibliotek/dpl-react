@@ -54,7 +54,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
 
           if (i === searchInfoBoxIndex && infoBoxTitle && infoBoxHtml) {
             return (
-              <div key={item.workId}>
+              <Fragment key={item.workId}>
                 <MaterialListItem className="content-list__item content-list__item--info-box">
                   <CardListInfoBox
                     title={infoBoxTitle}
@@ -72,7 +72,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
                     resultNumber={i + 1}
                   />
                 </MaterialListItem>
-              </div>
+              </Fragment>
             );
           } else {
             return (
