@@ -15,9 +15,9 @@ import mappArgs, {
 import advancedSortSelectArgs, {
   argTypes as advancedSortSelectArgsTypes
 } from "../../core/storybook/AdvancedSortSelect";
-import zeroHitsSearchLinkArgs, {
-  argTypes as zeroHitsSearchLinkArgTypes
-} from "../../core/storybook/zeroHitsSearchLinkArgs";
+import zeroHitsSearchUrlArgs, {
+  argTypes as zeroHitsSearchUrlArgTypes
+} from "../../core/storybook/zeroHitsSearchUrlArgs";
 
 const meta: Meta<typeof AdvancedSearchEntry> = {
   title: "Apps / Advanced Search",
@@ -30,7 +30,7 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     ...globalConfigArgTypes,
     ...mappArgTypes,
     ...advancedSortSelectArgsTypes,
-    ...zeroHitsSearchLinkArgTypes,
+    ...zeroHitsSearchUrlArgTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
       control: { type: "number" },
@@ -387,7 +387,7 @@ export const Primary: Story = {
     ...globalConfigArgs,
     ...mappArgs,
     ...advancedSortSelectArgs,
-    ...zeroHitsSearchLinkArgs,
+    ...zeroHitsSearchUrlArgs,
     pageSizeDesktop: 50,
     pageSizeMobile: 20,
     materialUrl: "/work/:workid",

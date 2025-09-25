@@ -10,7 +10,6 @@ import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
 import withPageStatistics from "../../core/statistics/withPageStatistics";
 import { AdvancedSortSelectArgs } from "../../core/storybook/AdvancedSortSelect";
-import { ZeroHitsSearchLinkArgs } from "../../core/storybook/zeroHitsSearchLinkArgs";
 
 interface AdvancedSearchEntryTextProps {
   byAuthorText: string;
@@ -102,8 +101,7 @@ export interface AdvancedSearchEntryProps
     AdvancedSearchEntryConfigProps,
     AdvancedSearchEntryTextProps,
     MappArgs,
-    AdvancedSortSelectArgs,
-    ZeroHitsSearchLinkArgs {
+    AdvancedSortSelectArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
   showingMaterialsText: string;

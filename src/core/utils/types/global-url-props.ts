@@ -1,4 +1,6 @@
-interface GlobalUrlEntryPropsInterface {
+import { ZeroHitsSearchUrlArgs } from "../../storybook/zeroHitsSearchUrlArgs";
+
+interface GlobalUrlEntryPropsInterface extends ZeroHitsSearchUrlArgs {
   materialUrl: string;
   searchUrl: string;
   advancedSearchUrl: string;
