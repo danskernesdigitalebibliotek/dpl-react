@@ -13,8 +13,11 @@ import {
 } from "../../core/dbc-gateway/generated/graphql";
 import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
-import SearchResultZeroHits from "../search-result/search-result-zero-hits";
-import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
+import {
+  currentLocationWithParametersUrl,
+  getCurrentLocation,
+  redirectTo
+} from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";
 import AdvancedSortSelect from "./AdvancedSortSelect";
 import {
@@ -22,6 +25,7 @@ import {
   AdvancedSortMapStrings,
   FirstAccessionOperatorFilter
 } from "./types";
+import { useConfig } from "../../core/utils/config";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -55,6 +59,8 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   setSort
 }) => {
   const t = useText();
+  const config = useConfig();
+  const zeroHitsSearchLinkConfig = config("zeroHitsSearchLinkConfig");
   const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
@@ -102,33 +108,42 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     setResultItems([]);
   }, [q, pageSize]);
 
-  const { data, isLoading } = useComplexSearchWithPaginationQuery({
-    cql,
-    offset: page * pageSize,
-    limit: pageSize,
-    filters: {
-      branchId: cleanBranches,
-      status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
-      ...(locationFilter?.location?.length && {
-        location: locationFilter.location
-      }),
-      ...(locationFilter?.sublocation?.length && {
-        sublocation: locationFilter.sublocation
-      }),
-      ...(locationFilter?.branch?.length && {
-        branch: locationFilter.branch
-      }),
-      ...(locationFilter?.department?.length && {
-        department: locationFilter.department
-      }),
-      ...(firstAccessionDateFilter && firstAccessionOperatorFilter
-        ? {
-            firstAccessionDate: `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`
-          }
-        : {})
+  const { data, isLoading } = useComplexSearchWithPaginationQuery(
+    {
+      cql,
+      offset: page * pageSize,
+      limit: pageSize,
+      filters: {
+        branchId: cleanBranches,
+        status: onShelf ? [HoldingsStatusEnum.Onshelf] : [],
+        ...(locationFilter?.location?.length && {
+          location: locationFilter.location
+        }),
+        ...(locationFilter?.sublocation?.length && {
+          sublocation: locationFilter.sublocation
+        }),
+        ...(locationFilter?.branch?.length && {
+          branch: locationFilter.branch
+        }),
+        ...(locationFilter?.department?.length && {
+          department: locationFilter.department
+        }),
+        ...(firstAccessionDateFilter && firstAccessionOperatorFilter
+          ? {
+              firstAccessionDate: `${firstAccessionOperatorFilter} ${firstAccessionDateFilter}`
+            }
+          : {})
+      },
+      ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
     },
-    ...(sort ? { sort: advancedSortMap[sort as AdvancedSortMapStrings] } : {})
-  });
+    {
+      onSuccess: (data) => {
+        if (data.complexSearch.hitcount === 0) {
+          redirectTo(new URL(zeroHitsSearchLinkConfig, getCurrentLocation()));
+        }
+      }
+    }
+  );
 
   useEffect(() => {
     if (!data) {
@@ -225,7 +240,6 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
             <PagerComponent isLoading={isLoading} />
           </>
         )}
-        {!isLoading && hitcount === 0 && <SearchResultZeroHits />}
       </section>
     </>
   );

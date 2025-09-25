@@ -19,7 +19,6 @@ interface AdvancedSearchEntryTextProps {
   loadingText: string;
   numberDescriptionText: string;
   resultPagerStatusText: string;
-  noSearchResultText: string;
   showMoreText: string;
   showingResultsForWithoutQueryText: string;
   advancedSearchLinkToThisSearchText: string;
