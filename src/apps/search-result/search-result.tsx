@@ -38,7 +38,7 @@ interface SearchResultProps {
   pageSize: number;
 }
 
-type InfoBox = {
+type InfoBoxConfig = {
   title?: string;
   content: { value?: string };
   buttonLabel?: string;
@@ -201,7 +201,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     title: infoBoxTitle,
     content: infoBoxContent,
     buttonLabel: infoBoxButtonLabel
-  } = config<InfoBox>("searchInfoboxConfig", {
+  } = config<InfoBoxConfig>("searchInfoboxConfig", {
     transformer: "jsonParse"
   });
   const infoBoxHtml = infoBoxContent?.value || "";
