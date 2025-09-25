@@ -72,6 +72,12 @@ describe("Search Result", () => {
       .should("have.length", 4);
   });
 
+  it("Loads more search result items will show an info box", () => {
+    cy.getBySel("search-result-list")
+      .find(".content-list__item--info-box")
+      .should("be.visible");
+  });
+
   it("Updates the pager info after clicking show more results", () => {
     cy.get(".result-pager__title").should(
       "contain.text",
