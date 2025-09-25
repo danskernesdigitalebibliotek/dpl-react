@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { Fragment, memo, useEffect } from "react";
 import { isEmpty } from "lodash";
 import { getCoverTint } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
@@ -54,10 +54,16 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
 
           if (i === searchInfoBoxIndex && infoBoxTitle && infoBoxHtml) {
             return (
-              <>
+              <Fragment key={item.workId}>
+                <MaterialListItem className="content-list__item">
+                  <CardListInfoBox
+                    title={infoBoxTitle}
+                    html={infoBoxHtml}
+                    buttonLabel={infoBoxButtonLabel}
+                  />
+                </MaterialListItem>
                 <MaterialListItem
                   className="content-list__item"
-                  key={item.workId}
                   ref={isFirstNewItem ? lastItemRef : null}
                 >
                   <CardListItem
@@ -66,14 +72,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
                     resultNumber={i + 1}
                   />
                 </MaterialListItem>
-                <li className="content-list__item">
-                  <CardListInfoBox
-                    title={infoBoxTitle}
-                    html={infoBoxHtml}
-                    buttonLabel={infoBoxButtonLabel}
-                  />
-                </li>
-              </>
+              </Fragment>
             );
           }
 

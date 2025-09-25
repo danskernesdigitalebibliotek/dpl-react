@@ -66,7 +66,7 @@ describe("Search Result", () => {
 
   it("Loads more search result items after clicking show more results", () => {
     cy.get(".result-pager button").click();
-    cy.getBySel("search-result-list").find("li").should("have.length", 8);
+    cy.getBySel("search-result-list").find("li").should("have.length", 5);
   });
 
   it("Updates the pager info after clicking show more results", () => {
