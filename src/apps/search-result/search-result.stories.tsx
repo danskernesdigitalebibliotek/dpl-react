@@ -225,6 +225,7 @@ export const Primary: Story = {
     pageSizeMobile: 20,
     authUrl: "",
     searchUrl: "/search",
+    advancedSearchUrl: "/advanced-search",
     searchInfoboxConfig:
       '{"title":"Help with searching","content":{"value":"<p>Here are some tips for searching:</p><ul><li>Use specific terms</li><li>Try different keywords</li><li>Check your spelling</li></ul>","format":"limited"},"buttonLabel":"Advanced search"}',
     materialUrl: "/work/:workid",
