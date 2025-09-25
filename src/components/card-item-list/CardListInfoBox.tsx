@@ -1,5 +1,6 @@
 import React from "react";
 import { useUrls } from "../../core/utils/url";
+import Link from "../atoms/links/Link";
 
 export type CardListInfoBoxProps = {
   title?: string;
@@ -34,12 +35,12 @@ const CardListInfoBox = ({
 
         {buttonLabel && (
           <div className="card-list-info-box__button-wrapper">
-            <a
-              href={String(advancedSearchUrl)}
+            <Link
+              href={advancedSearchUrl}
               className="btn-primary btn-outline btn-xsmall"
             >
               {buttonLabel}
-            </a>
+            </Link>
           </div>
         )}
       </div>
