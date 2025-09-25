@@ -226,9 +226,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
             resultItems={resultItems}
             page={page}
             pageSize={pageSize}
-            infoBoxTitle={infoBoxTitle}
-            infoBoxHtml={infoBoxHtml}
-            infoBoxButtonLabel={infoBoxButtonLabel}
+            infoBoxProps={{
+              title: infoBoxTitle,
+              html: infoBoxHtml,
+              buttonLabel: infoBoxButtonLabel
+            }}
           />
           <PagerComponent isLoading={isLoading} />
         </>

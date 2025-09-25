@@ -1,6 +1,7 @@
 import React from "react";
+import { useUrls } from "../../core/utils/url";
 
-type CardListInfoBoxProps = {
+export type CardListInfoBoxProps = {
   title?: string;
   html?: string;
   buttonLabel?: string;
@@ -11,6 +12,9 @@ const CardListInfoBox = ({
   html,
   buttonLabel
 }: CardListInfoBoxProps) => {
+  const u = useUrls();
+  const advancedSearchUrl = u("advancedSearchUrl");
+
   return (
     <div className="card-list-info-box pagefold-parent--medium">
       <div className="pagefold-triangle--medium pagefold-inherit-parent" />
@@ -31,7 +35,7 @@ const CardListInfoBox = ({
         {buttonLabel && (
           <div className="card-list-info-box__button-wrapper">
             <a
-              href="/advanced-search"
+              href={String(advancedSearchUrl)}
               className="btn-primary btn-outline btn-xsmall"
             >
               {buttonLabel}

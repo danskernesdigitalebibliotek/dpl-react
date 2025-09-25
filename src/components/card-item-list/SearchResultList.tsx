@@ -5,25 +5,20 @@ import { Work } from "../../core/utils/types/entities";
 import CardListItem from "./card-list-item/card-list-item";
 import CardListItemSkeleton from "./card-list-item/card-list-item-skeleton";
 import MaterialListItem from "./MaterialListItem";
-import CardListInfoBox from "./CardListInfoBox";
+import CardListInfoBox, { CardListInfoBoxProps } from "./CardListInfoBox";
 
 export interface SearchResultListProps {
   resultItems: Work[];
   page: number;
   pageSize: number;
-  // Info box props
-  infoBoxTitle?: string;
-  infoBoxHtml?: string;
-  infoBoxButtonLabel?: string;
+  infoBoxProps?: CardListInfoBoxProps;
 }
 
 const SearchResultList: React.FC<SearchResultListProps> = ({
   resultItems,
   page,
   pageSize,
-  infoBoxTitle,
-  infoBoxHtml,
-  infoBoxButtonLabel
+  infoBoxProps
 }) => {
   const worksAreLoaded = !isEmpty(resultItems);
   const lastItemRef = React.useRef<HTMLLIElement>(null);
@@ -52,14 +47,18 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
         resultItems.map((item, i) => {
           const isFirstNewItem = i === page * pageSize;
 
-          if (i === searchInfoBoxIndex && infoBoxTitle && infoBoxHtml) {
+          if (
+            i === searchInfoBoxIndex &&
+            infoBoxProps?.title &&
+            infoBoxProps?.html
+          ) {
             return (
               <Fragment key={item.workId}>
                 <MaterialListItem className="content-list__item content-list__item--info-box">
                   <CardListInfoBox
-                    title={infoBoxTitle}
-                    html={infoBoxHtml}
-                    buttonLabel={infoBoxButtonLabel}
+                    title={infoBoxProps?.title}
+                    html={infoBoxProps?.html}
+                    buttonLabel={infoBoxProps?.buttonLabel}
                   />
                 </MaterialListItem>
                 <MaterialListItem
