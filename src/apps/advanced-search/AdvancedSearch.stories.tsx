@@ -91,10 +91,6 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
       description: "Showing materials",
       control: { type: "text" }
     },
-    noSearchResultText: {
-      description: "0-hit search result",
-      control: { type: "text" }
-    },
     blacklistedPickupBranchesConfig: {
       description: "Blacklisted Pickup branches",
       control: { type: "text" }
@@ -405,7 +401,6 @@ export const Primary: Story = {
     numberDescriptionText: "Nr.",
     inSeriesText: "in series",
     showingMaterialsText: "Showing materials (@hitcount)",
-    noSearchResultText: "Your search has 0 results",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
     blacklistedAvailabilityBranchesConfig:

@@ -39,7 +39,6 @@ interface SearchResultEntryTextProps {
   numberDescriptionText: string;
   resultPagerStatusText: string;
   showingResultsForText: string;
-  noSearchResultText: string;
   showMoreText: string;
   showResultsText: string;
   invalidSearchText: string;

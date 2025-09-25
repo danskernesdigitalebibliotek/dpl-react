@@ -23,14 +23,18 @@ import Campaign from "../../components/campaign/Campaign";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
-import { getUrlQueryParam } from "../../core/utils/helpers/url";
+import {
+  getUrlQueryParam,
+  redirectTo,
+  getCurrentLocation
+} from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
-import SearchResultZeroHits from "./search-result-zero-hits";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
 import { formatSearchDisplayQuery } from "./helper";
+import { useConfig } from "../../core/utils/config";
 
 interface SearchResultProps {
   q: string;
@@ -38,6 +42,8 @@ interface SearchResultProps {
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
+  const config = useConfig();
+  const zeroHitsSearchLinkConfig = config("zeroHitsSearchLinkConfig");
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
@@ -108,7 +114,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       limit: pageSize,
       filters: createFilters(filters, cleanBranches)
     },
-    { enabled: q.length >= minimalQueryLength }
+    {
+      enabled: q.length >= minimalQueryLength,
+      onSuccess: (data) => {
+        if (data.search.hitcount === 0) {
+          redirectTo(new URL(zeroHitsSearchLinkConfig, getCurrentLocation()));
+        }
+      }
+    }
   );
 
   useEffect(() => {
@@ -176,10 +189,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     return <SearchResultInvalidSearch />;
   }
 
-  const shouldShowZeroHits = () => {
-    return !isLoading && hitcount === 0;
-  };
-
   const displayQuery = formatSearchDisplayQuery({
     q,
     creator: getUrlQueryParam("creators"),
@@ -195,9 +204,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     <div className="content-list-page">
       {isLoading && <SearchResultSkeleton q={q} />}
 
-      {shouldShowZeroHits() && <SearchResultZeroHits />}
-
-      {!isLoading && !shouldShowZeroHits() && resultItems && (
+      {!isLoading && resultItems && (
         <>
           <SearchResultHeader hitcount={hitcount} displayQuery={displayQuery} />
           <FacetLine q={q} />
