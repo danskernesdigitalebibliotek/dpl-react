@@ -34,7 +34,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
     }
   }, [page, resultItems]);
 
-  const searchInfoBoxIndex = pageSize + 1;
+  const searchInfoBoxIndex = pageSize;
 
   return (
     <ul className="content-list" data-cy="search-result-list">
@@ -54,8 +54,8 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
 
           if (i === searchInfoBoxIndex && infoBoxTitle && infoBoxHtml) {
             return (
-              <Fragment key={item.workId}>
-                <MaterialListItem className="content-list__item">
+              <div key={item.workId}>
+                <MaterialListItem className="content-list__item content-list__item--info-box">
                   <CardListInfoBox
                     title={infoBoxTitle}
                     html={infoBoxHtml}
@@ -72,23 +72,23 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
                     resultNumber={i + 1}
                   />
                 </MaterialListItem>
-              </Fragment>
+              </div>
+            );
+          } else {
+            return (
+              <MaterialListItem
+                className="content-list__item"
+                key={item.workId}
+                ref={isFirstNewItem ? lastItemRef : null}
+              >
+                <CardListItem
+                  item={item}
+                  coverTint={getCoverTint(i)}
+                  resultNumber={i + 1}
+                />
+              </MaterialListItem>
             );
           }
-
-          return (
-            <MaterialListItem
-              className="content-list__item"
-              key={item.workId}
-              ref={isFirstNewItem ? lastItemRef : null}
-            >
-              <CardListItem
-                item={item}
-                coverTint={getCoverTint(i)}
-                resultNumber={i + 1}
-              />
-            </MaterialListItem>
-          );
         })}
     </ul>
   );
