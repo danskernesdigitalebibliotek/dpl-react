@@ -12,9 +12,9 @@ import globalConfigArgs, {
 import mappArgs, {
   argTypes as mappArgTypes
 } from "../../core/storybook/mappArgs";
-import zeroHitsSearchLinkArgs, {
-  argTypes as zeroHitsSearchLinkArgTypes
-} from "../../core/storybook/zeroHitsSearchLinkArgs";
+import zeroHitsSearchUrlArgs, {
+  argTypes as zeroHitsSearchUrlArgTypes
+} from "../../core/storybook/zeroHitsSearchUrlArgs";
 
 const meta: Meta<typeof SearchResultEntry> = {
   title: "Apps / Search Result",
@@ -26,7 +26,7 @@ const meta: Meta<typeof SearchResultEntry> = {
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
     ...mappArgTypes,
-    ...zeroHitsSearchLinkArgTypes,
+    ...zeroHitsSearchUrlArgTypes,
     q: {
       description: "Search string",
       control: { type: "text" }
@@ -220,7 +220,7 @@ export const Primary: Story = {
     ...globalTextArgs,
     ...globalConfigArgs,
     ...mappArgs,
-    ...zeroHitsSearchLinkArgs,
+    ...zeroHitsSearchUrlArgs,
     q: "harry",
     pageSizeDesktop: 50,
     pageSizeMobile: 20,

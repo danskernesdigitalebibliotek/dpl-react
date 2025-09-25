@@ -9,7 +9,6 @@ import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-prop
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
 import withPageStatistics from "../../core/statistics/withPageStatistics";
-import { ZeroHitsSearchLinkArgs } from "../../core/storybook/zeroHitsSearchLinkArgs";
 
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
@@ -62,8 +61,7 @@ export interface SearchResultEntryProps
     SearchResultEntryConfigProps,
     GlobalEntryTextProps,
     SearchResultEntryTextProps,
-    MappArgs,
-    ZeroHitsSearchLinkArgs {
+    MappArgs {
   q?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;

@@ -15,7 +15,6 @@ import usePager from "../../components/result-pager/use-pager";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import {
   currentLocationWithParametersUrl,
-  getCurrentLocation,
   redirectTo
 } from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";
@@ -25,7 +24,7 @@ import {
   AdvancedSortMapStrings,
   FirstAccessionOperatorFilter
 } from "./types";
-import { useConfig } from "../../core/utils/config";
+import { useUrls } from "../../core/utils/url";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -59,8 +58,8 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   setSort
 }) => {
   const t = useText();
-  const config = useConfig();
-  const zeroHitsSearchLinkConfig = config("zeroHitsSearchLinkConfig");
+  const u = useUrls();
+  const zeroHitsSearchUrl = u("zeroHitsSearchUrl");
   const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
@@ -139,7 +138,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
     {
       onSuccess: (data) => {
         if (data.complexSearch.hitcount === 0) {
-          redirectTo(new URL(zeroHitsSearchLinkConfig, getCurrentLocation()));
+          redirectTo(zeroHitsSearchUrl);
         }
       }
     }

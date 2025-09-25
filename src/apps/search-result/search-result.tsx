@@ -34,7 +34,7 @@ import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
 import { formatSearchDisplayQuery } from "./helper";
-import { useConfig } from "../../core/utils/config";
+import { useUrls } from "../../core/utils/url";
 
 interface SearchResultProps {
   q: string;
@@ -49,8 +49,8 @@ type InfoBoxConfig = {
 };
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
-  const config = useConfig();
-  const zeroHitsSearchLinkConfig = config("zeroHitsSearchLinkConfig");
+  const u = useUrls();
+  const zeroHitsSearchUrl = u("zeroHitsSearchUrl");
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
@@ -126,7 +126,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       enabled: q.length >= minimalQueryLength,
       onSuccess: (data) => {
         if (data.search.hitcount === 0) {
-          redirectTo(new URL(zeroHitsSearchLinkConfig, getCurrentLocation()));
+          redirectTo(zeroHitsSearchUrl);
         }
       }
     }
