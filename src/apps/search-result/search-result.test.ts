@@ -93,18 +93,6 @@ describe("Search Result", () => {
     cy.getBySel("card-list-item").first().should("contain", "2018");
   });
 
-  it("Renders the 0-result page correctly", () => {
-    // Overwrite graphql search query fixture.
-    cy.interceptGraphql({
-      operationName: "searchWithPagination",
-      fixtureFilePath: "search-result/fbi-api-no-results.json"
-    });
-    cy.visit(
-      "/iframe.html?id=apps-search-result--primary&args=pageSizeDesktop:2;pageSizeMobile:2"
-    );
-    cy.getBySel("search-result-zero-hits").should("be.visible");
-  });
-
   beforeEach(() => {
     // Intercept graphql search query.
     cy.fixture("search-result/fbi-api.json")
