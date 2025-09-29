@@ -15,9 +15,6 @@ import mappArgs, {
 import advancedSortSelectArgs, {
   argTypes as advancedSortSelectArgsTypes
 } from "../../core/storybook/AdvancedSortSelect";
-import zeroHitsSearchUrlArgs, {
-  argTypes as zeroHitsSearchUrlArgTypes
-} from "../../core/storybook/zeroHitsSearchUrlArgs";
 
 const meta: Meta<typeof AdvancedSearchEntry> = {
   title: "Apps / Advanced Search",
@@ -30,7 +27,6 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     ...globalConfigArgTypes,
     ...mappArgTypes,
     ...advancedSortSelectArgsTypes,
-    ...zeroHitsSearchUrlArgTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
       control: { type: "number" },
@@ -89,6 +85,10 @@ const meta: Meta<typeof AdvancedSearchEntry> = {
     },
     showingMaterialsText: {
       description: "Showing materials",
+      control: { type: "text" }
+    },
+    noSearchResultText: {
+      description: "0-hit search result",
       control: { type: "text" }
     },
     blacklistedPickupBranchesConfig: {
@@ -387,7 +387,6 @@ export const Primary: Story = {
     ...globalConfigArgs,
     ...mappArgs,
     ...advancedSortSelectArgs,
-    ...zeroHitsSearchUrlArgs,
     pageSizeDesktop: 50,
     pageSizeMobile: 20,
     materialUrl: "/work/:workid",
@@ -401,6 +400,7 @@ export const Primary: Story = {
     numberDescriptionText: "Nr.",
     inSeriesText: "in series",
     showingMaterialsText: "Showing materials (@hitcount)",
+    noSearchResultText: "Your search has 0 results",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
     blacklistedAvailabilityBranchesConfig:
