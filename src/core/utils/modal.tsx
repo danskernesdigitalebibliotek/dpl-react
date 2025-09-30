@@ -14,7 +14,6 @@ import {
   currentLocationWithParametersUrl,
   redirectToLoginAndBack
 } from "./helpers/url";
-import { isVitestEnvironment } from "./helpers/vitest";
 import { isEnterOrSpacePressed } from "./helpers/general";
 
 type ModalId = string;
@@ -97,8 +96,8 @@ function Modal({
   return (
     <FocusTrap
       focusTrapOptions={{
-        // Set fallbackFocus when running vitest to avoid focus trap errors.
-        fallbackFocus: isVitestEnvironment ? "body" : undefined
+        // Set fallbackFocus to avoid focus trap errors.
+        fallbackFocus: "body"
       }}
     >
       <div>
