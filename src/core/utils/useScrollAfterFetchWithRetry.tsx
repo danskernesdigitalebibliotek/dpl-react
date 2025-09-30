@@ -11,7 +11,7 @@ export const useScrollAfterFetchWithRetry = () => {
   const anchorId = urlHash.replace("#", "");
 
   useEffect(() => {
-    if (!anchorId || scrolledAlready || !isQueriesReady) {
+    if (anchorId && !scrolledAlready && isQueriesReady) {
       let lastElementTop = 0;
       let stableCount = 0;
 
