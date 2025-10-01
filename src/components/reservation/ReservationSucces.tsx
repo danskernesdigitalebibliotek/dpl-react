@@ -1,7 +1,7 @@
 import FocusTrap from "focus-trap-react";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { closeAllModals } from "../../core/modal.slice";
+import { closeModal } from "../../core/modal.slice";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import StockAndReservationInfo from "../material/StockAndReservationInfo";
@@ -9,11 +9,13 @@ import StockAndReservationInfo from "../material/StockAndReservationInfo";
 type ReservationSuccesProps = {
   title: string;
   preferredPickupBranch: string;
+  modalId: string;
   numberInQueue?: number;
   holdings: number;
 };
 
 const ReservationSucces: React.FC<ReservationSuccesProps> = ({
+  modalId,
   title,
   preferredPickupBranch,
   numberInQueue,
@@ -69,7 +71,7 @@ const ReservationSucces: React.FC<ReservationSuccesProps> = ({
           size="small"
           variant="filled"
           onClick={() => {
-            dispatch(closeAllModals());
+            dispatch(closeModal({ modalId }));
           }}
         />
       </section>
