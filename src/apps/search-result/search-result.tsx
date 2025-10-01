@@ -23,7 +23,10 @@ import Campaign from "../../components/campaign/Campaign";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
-import { getUrlQueryParam } from "../../core/utils/helpers/url";
+import {
+  getCurrentLocation,
+  getUrlQueryParam
+} from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
@@ -42,6 +45,7 @@ type InfoBoxConfig = {
   title?: string;
   content: { value?: string };
   buttonLabel?: string;
+  buttonUrl?: string;
 };
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
@@ -200,7 +204,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const {
     title: infoBoxTitle,
     content: infoBoxContent,
-    buttonLabel: infoBoxButtonLabel
+    buttonLabel: infoBoxButtonLabel,
+    buttonUrl: infoBoxButtonUrl
   } = config<InfoBoxConfig>("searchInfoboxConfig", {
     transformer: "jsonParse"
   });
@@ -229,7 +234,10 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
             infoBoxProps={{
               title: infoBoxTitle,
               html: infoBoxHtml,
-              buttonLabel: infoBoxButtonLabel
+              buttonLabel: infoBoxButtonLabel,
+              buttonUrl: infoBoxButtonUrl
+                ? new URL(infoBoxButtonUrl, getCurrentLocation())
+                : undefined
             }}
           />
           <PagerComponent isLoading={isLoading} />

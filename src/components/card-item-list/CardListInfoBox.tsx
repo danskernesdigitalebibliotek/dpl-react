@@ -1,21 +1,19 @@
 import React from "react";
-import { useUrls } from "../../core/utils/url";
 import Link from "../atoms/links/Link";
 
 export type CardListInfoBoxProps = {
   title?: string;
   html?: string;
   buttonLabel?: string;
+  buttonUrl?: URL;
 };
 
 const CardListInfoBox = ({
   title,
   html,
-  buttonLabel
+  buttonLabel,
+  buttonUrl
 }: CardListInfoBoxProps) => {
-  const u = useUrls();
-  const advancedSearchUrl = u("advancedSearchUrl");
-
   return (
     <div className="card-list-info-box pagefold-parent--medium">
       <div className="pagefold-triangle--medium pagefold-inherit-parent" />
@@ -33,10 +31,10 @@ const CardListInfoBox = ({
           />
         </div>
 
-        {buttonLabel && (
+        {buttonLabel && buttonUrl && (
           <div className="card-list-info-box__button-wrapper">
             <Link
-              href={advancedSearchUrl}
+              href={buttonUrl}
               className="btn-primary btn-outline btn-xsmall"
             >
               {buttonLabel}

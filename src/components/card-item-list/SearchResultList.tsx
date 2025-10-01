@@ -59,6 +59,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
                     title={infoBoxProps?.title}
                     html={infoBoxProps?.html}
                     buttonLabel={infoBoxProps?.buttonLabel}
+                    buttonUrl={infoBoxProps?.buttonUrl}
                   />
                 </MaterialListItem>
                 <MaterialListItem
