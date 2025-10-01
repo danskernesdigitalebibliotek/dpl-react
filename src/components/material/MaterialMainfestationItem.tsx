@@ -42,7 +42,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation: { materialTypes, pid, creators, identifiers, edition },
   manifestation,
   workId,
-  isEditionPicker
+  isEditionPicker = false
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();

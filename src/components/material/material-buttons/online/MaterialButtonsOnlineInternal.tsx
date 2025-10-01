@@ -47,7 +47,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   setLoanStatus,
   setReservationOrLoanErrorResponse,
   workId,
-  isEditionPicker
+  isEditionPicker = false
 }) => {
   const { track } = useEventStatistics();
   const t = useText();
