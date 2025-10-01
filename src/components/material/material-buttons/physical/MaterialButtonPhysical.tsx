@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
+import { useModalIdsToCloseForReservation } from "../../../../core/utils/useModalIdsToCloseForReservation";
 import { reservationModalId } from "../../../../apps/material/helper";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -34,6 +35,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   const authUrl = u("authUrl");
   const faustIds = convertPostIdsToFaustIds(pids);
   const { openGuarded } = useModalButtonHandler();
+  const modalsToCloseForReservation = useModalIdsToCloseForReservation();
 
   const getButtonLabel = () => {
     if (isEditionPicker) {
@@ -57,9 +59,16 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
         trackedData: `${first(pids)}`
       });
     }
+
+    // If we're in the edition picker, close any existing reservation modals
+    const modalsToClose = isEditionPicker
+      ? modalsToCloseForReservation
+      : undefined;
+
     openGuarded({
       authUrl,
-      modalId: reservationModalId(faustIds)
+      modalId: reservationModalId(faustIds),
+      modalsToClose
     });
   };
 

@@ -1,12 +1,9 @@
 import React from "react";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import modalReducer, {
-  openModal,
-  closeAllModals
-} from "../../core/modal.slice";
+import modalReducer from "../../core/modal.slice";
 import Modal, { useModalButtonHandler } from "../../core/utils/modal";
 
 const store = configureStore({
@@ -72,69 +69,6 @@ const ComponentWithModals = () => {
     </div>
   );
 };
-
-// Shared setup for all modal tests
-beforeEach(() => {
-  // Reset Redux store to initial state by closing all modals
-  store.dispatch(closeAllModals());
-});
-
-describe("edition switch modal behavior", () => {
-  it("should filter out existing reservation modals when opening a new reservation modal", () => {
-    // Start with initial state
-    let state = { modalIds: [] };
-
-    // Open first reservation modal
-    state = modalReducer(
-      state,
-      openModal({ modalId: "reservation-modal-1234" })
-    );
-    expect(state.modalIds).toEqual(["reservation-modal-1234"]);
-
-    // Open a regular modal and edition-switch-modal
-    state = modalReducer(state, openModal({ modalId: "regular-modal" }));
-    state = modalReducer(state, openModal({ modalId: "edition-switch-modal" }));
-    expect(state.modalIds).toEqual([
-      "reservation-modal-1234",
-      "regular-modal",
-      "edition-switch-modal"
-    ]);
-
-    // Open second reservation modal - should remove first reservation modal and edition-switch-modal but keep regular modal
-    state = modalReducer(
-      state,
-      openModal({ modalId: "reservation-modal-5678" })
-    );
-    expect(state.modalIds).toEqual(["regular-modal", "reservation-modal-5678"]);
-
-    // Open third reservation modal - should remove second reservation modal but keep regular modal
-    state = modalReducer(
-      state,
-      openModal({ modalId: "reservation-modal-9999" })
-    );
-    expect(state.modalIds).toEqual(["regular-modal", "reservation-modal-9999"]);
-  });
-
-  it("should not affect non-reservation modals", () => {
-    let state = { modalIds: [] };
-
-    // Open some modals
-    state = modalReducer(state, openModal({ modalId: "modal-1" }));
-    state = modalReducer(state, openModal({ modalId: "modal-2" }));
-    state = modalReducer(state, openModal({ modalId: "modal-3" }));
-
-    expect(state.modalIds).toEqual(["modal-1", "modal-2", "modal-3"]);
-
-    // Opening another non-reservation modal should not affect existing ones
-    state = modalReducer(state, openModal({ modalId: "modal-4" }));
-    expect(state.modalIds).toEqual([
-      "modal-1",
-      "modal-2",
-      "modal-3",
-      "modal-4"
-    ]);
-  });
-});
 
 describe("modal", () => {
   afterEach(() => {
