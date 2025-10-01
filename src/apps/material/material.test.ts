@@ -147,13 +147,13 @@ describe("Material", () => {
         cy.get(".list-description__item")
           .contains("Edition")
           .next()
-          .should("contain.text", "1. udgave, 2016");
+          .should("contain.text", "1. udgave, 2016 (manifest: all)");
 
         // Verify "Genre" field and its value
         cy.get(".list-description__item")
           .contains("Genre")
           .next()
-          .should("contain.text", "roman / slægtsromaner");
+          .should("contain.text", "roman (manifest: all)");
 
         // Verify "Original title" field and its value
         cy.get(".list-description__item")
@@ -165,7 +165,7 @@ describe("Material", () => {
         cy.get(".list-description__item")
           .contains("Publisher")
           .next()
-          .should("contain.text", "Cicero");
+          .should("contain.text", "Cicero (manifest: all)");
 
         // Verify "Type" field and its value
         cy.get(".list-description__item")
@@ -214,7 +214,10 @@ describe("Material", () => {
         cy.get(".list-description__item")
           .contains("Genre")
           .next()
-          .should("contain.text", "roman / slægtsromaner");
+          .should(
+            "contain.text",
+            "roman (manifest: all) / slægtsromaner (manifest: all)"
+          );
 
         // Verify "Contributors" field and its value
         cy.get(".list-description__item")

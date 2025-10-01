@@ -167,7 +167,7 @@ export const getManifestationLanguages = (manifestation: Manifestation) => {
 };
 
 export const getManifestationLanguageIsoCode = (
-  manifestations: Pick<Manifestation, "languages">[]
+  manifestations: Manifestation[]
 ) => {
   const mainLanguages = manifestations
     .map(({ languages }) => languages)

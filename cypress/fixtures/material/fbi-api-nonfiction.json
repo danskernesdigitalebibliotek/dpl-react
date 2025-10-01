@@ -664,7 +664,139 @@
             "nationalBibliography": ["DBF202415"],
             "otherCatalogues": ["ACC202412", "BKM202415", "BKX202413"]
           }
-        }
+        },
+        "mostRelevant": [{
+          "pid": "870970-basis:138130479",
+          "genreAndForm": ["rejseguides"],
+          "source": ["Bibliotekskatalog"],
+          "languages": {
+            "main": [
+              {
+                "display": "dansk",
+                "isoCode": "dan"
+              }
+            ],
+            "notes": []
+          },
+          "titles": {
+            "main": ["Turen går til Rom"],
+            "original": []
+          },
+          "fictionNonfiction": {
+            "display": "faglitteratur",
+            "code": "NONFICTION"
+          },
+          "materialTypes": [
+            {
+              "materialTypeSpecific": {
+                "display": "bog"
+              }
+            }
+          ],
+          "creators": [
+            {
+              "display": "Alfredo Tesio",
+              "__typename": "Person"
+            }
+          ],
+          "publisher": ["Politiken"],
+          "identifiers": [
+            {
+              "value": "9788740088588"
+            }
+          ],
+          "contributors": [
+            {
+              "display": "Thomas Linder Thomsen",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "illustrator"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Marine Gastineau",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "illustrator"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Martin Thomas",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "illustrator"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Ulla Britze",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "korttegner"
+                  }
+                }
+              ]
+            },
+            {
+              "display": "Susan Bergqvist",
+              "roles": [
+                {
+                  "function": {
+                    "singular": "korttegner"
+                  }
+                }
+              ]
+            }
+          ],
+          "edition": {
+            "summary": "30. udgave, 2024",
+            "publicationYear": {
+              "display": "2024"
+            }
+          },
+          "dateFirstEdition": null,
+          "audience": {
+            "generalAudience": [],
+            "ages": []
+          },
+          "notes": [],
+          "physicalDescription": {
+            "summaryFull": "168 side : ill. i farver",
+            "numberOfPages": 168,
+            "playingTime": null
+          },
+          "hostPublication": null,
+          "manifestationParts": null,
+          "accessTypes": [
+            {
+              "code": "PHYSICAL"
+            }
+          ],
+          "access": [
+            {
+              "__typename": "InterLibraryLoan",
+              "loanIsPossible": true
+            }
+          ],
+          "shelfmark": {
+            "postfix": "Tesio",
+            "shelfmark": "47.57 Rom"
+          },
+          "workYear": null,
+          "catalogueCodes": {
+            "nationalBibliography": ["DBF202415"],
+            "otherCatalogues": ["ACC202412", "BKM202415", "BKX202413"]
+          }
+        }]
       },
       "materialTypes": [
         {
@@ -705,8 +837,7 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "47.57 Rom",
-        "code": "47.57"
+        "display": "47.57 Rom"
       },
       "relations": {
         "hasReview": [

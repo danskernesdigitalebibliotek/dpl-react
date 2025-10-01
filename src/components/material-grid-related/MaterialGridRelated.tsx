@@ -13,7 +13,7 @@ import MaterialGridSkeleton from "../material-grid/MaterialGridSkeleton";
 
 import { first } from "lodash";
 import { FC, useEffect, useMemo, useState } from "react";
-import { flattenCreators, getWorkPid } from "../../core/utils/helpers/general";
+import { flattenCreators } from "../../core/utils/helpers/general";
 import {
   extractMaterialsFromComplexSearch,
   extractMaterialsFromRecommendations,
@@ -23,6 +23,7 @@ import {
 import { MaterialGridFilterType } from "./MaterialGridRelated.types";
 import { MaterialGridRelatedInlineFilters } from "./MaterialGridRelatedInlineFilters";
 import { MaterialGridRelatedSelect } from "./MaterialGridRelatedSelect";
+import { getRepresentativeManifestation } from "../../core/utils/helpers/manifestations";
 
 type MaterialGridRelatedOption = {
   label: string;
@@ -38,9 +39,13 @@ const MaterialGridRelated: FC<MaterialGridRelatedProps> = ({ work }) => {
   const t = useText();
   const title = t("materialGridRelatedTitleText");
 
-  const pid = getWorkPid(work);
+  const representativeManifestation = getRepresentativeManifestation({
+    work,
+    context: "material"
+  });
+  const { pid } = representativeManifestation;
 
-  const { creators } = work.manifestations.bestRepresentation;
+  const { creators } = representativeManifestation;
   const { series } = work;
   const seriesObject = first(series);
   const flattenedCreators = flattenCreators(creators);

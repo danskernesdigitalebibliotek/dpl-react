@@ -18,6 +18,7 @@ import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 import { materialIsFiction } from "../../core/utils/helpers/general";
 import SeriesList from "../card-item-list/card-list-item/series-list";
+import { getRepresentativeManifestation } from "../../core/utils/helpers/manifestations";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
@@ -30,7 +31,13 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const u = useUrls();
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
-  const { fictionNonfiction, series, subjects, relations, dk5MainEntry } = work;
+  const { fictionNonfiction, series, subjects, relations } = work;
+
+  const representativeManifestation = getRepresentativeManifestation({
+    work: work,
+    context: "material-description"
+  });
+  const { shelfmark } = representativeManifestation;
 
   const isFiction = materialIsFiction(work);
 
@@ -88,17 +95,20 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
             </p>
           )}
           <div className="material-description__links mt-32">
-            {shouldShowDk5 && dk5MainEntry && (
-              <HorizontalTermLine
-                title={t("subjectNumberText")}
-                linkList={[
-                  {
-                    url: constructDK5SearchUrl(searchUrl, dk5MainEntry.code),
-                    term: dk5MainEntry.display
-                  }
-                ]}
-              />
-            )}
+            {shouldShowDk5 &&
+              shelfmark &&
+              shelfmark.shelfmark &&
+              shelfmark.postfix && (
+                <HorizontalTermLine
+                  title={t("subjectNumberText")}
+                  linkList={[
+                    {
+                      url: constructDK5SearchUrl(searchUrl, shelfmark.postfix),
+                      term: shelfmark.shelfmark
+                    }
+                  ]}
+                />
+              )}
             <SeriesList
               series={series}
               searchUrl={searchUrl}

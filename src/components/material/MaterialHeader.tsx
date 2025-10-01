@@ -7,8 +7,7 @@ import {
   convertPostIdToFaustId,
   getAllFaustIds,
   getManifestationsPids,
-  getMaterialTypes,
-  getWorkPid
+  getMaterialTypes
 } from "../../core/utils/helpers/general";
 import { WorkId } from "../../core/utils/types/ids";
 import { AvailabilityLabels } from "../availability-label/availability-labels";
@@ -35,6 +34,7 @@ import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { first } from "lodash";
 import { hasCorrectMaterialType } from "./material-buttons/helper";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import { getRepresentativeManifestation } from "../../core/utils/helpers/manifestations";
 
 interface MaterialHeaderProps {
   wid: WorkId;
@@ -50,7 +50,7 @@ interface MaterialHeaderProps {
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   work: {
     creators,
-    manifestations: { all: manifestations, bestRepresentation },
+    manifestations: { all: manifestations },
     workId: wid
   },
   work,
@@ -74,7 +74,15 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
     );
   };
   const title = getWorkTitle(work);
-  const pid = getWorkPid(work);
+  const representativeManifestation = getRepresentativeManifestation({
+    work,
+    context: "material"
+  });
+  const { pid } = representativeManifestation;
+  const coverManifestation = getRepresentativeManifestation({
+    work,
+    context: "cover"
+  });
   const coverPids = getManifestationsPids(selectedManifestations);
   const { collectPageStatistics } = useCollectPageStatistics();
   // This is used to track whether the user is changing between material types or just clicking the same button over
@@ -122,7 +130,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
       <div className="material-header__cover">
         <Cover
           ids={coverPids}
-          bestRepresentation={bestRepresentation}
+          manifestation={coverManifestation as Manifestation}
           size="large"
           displaySize="xlarge"
           animate

@@ -123,10 +123,8 @@ export const getFirstPublishedYear = (manifestations: Manifestation[]) => {
   );
 };
 
-// This function is used to find the most representative pid of a work.
-export const getWorkPid = (work: WorkSmall) => {
-  return work.manifestations.bestRepresentation.pid || null;
-};
+export const getManifestationPid = (manifestation: Manifestation) =>
+  manifestation?.pid || null;
 
 export const getCoverTint = (index: number) => {
   const conf = getConf("coverTints", configuration);

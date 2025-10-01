@@ -20,7 +20,6 @@ import {
   useCollectPageStatistics,
   usePageStatistics
 } from "../../core/statistics/useStatistics";
-import { getWorkPid } from "../../core/utils/helpers/general";
 import {
   getUrlQueryParam,
   setQueryParametersInUrl
@@ -44,6 +43,7 @@ import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
+import { getRepresentativeManifestation } from "../../core/utils/helpers/manifestations";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -144,12 +144,27 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   } = data as { work: Work };
 
-  const pid = getWorkPid(work);
+  const representativeManifestation = getRepresentativeManifestation({
+    work,
+    context: "material-details"
+  });
+  const { pid } = representativeManifestation;
   const detailsListData = getDetailsListData({
     manifestation: selectedManifestations[0],
     work,
     t
   });
+  // TODO: Remove this when we are sure that we need to change manifestation when changing material type
+  // const representativeManifestation = getRepresentativeManifestation({
+  //   work,
+  //   context: "material-details"
+  // });
+  // const { pid } = representativeManifestation;
+  // const detailsListData = getDetailsListData({
+  //   manifestation: representativeManifestation,
+  //   work,
+  //   t
+  // });
   const infomediaIds = getInfomediaIds(selectedManifestations);
 
   // Get disclosure URL parameter from the current URL to see if it should be open.
