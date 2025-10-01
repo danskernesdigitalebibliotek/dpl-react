@@ -1,12 +1,14 @@
 import React from "react";
 import Modal, { useModalButtonHandler } from "../../core/utils/modal";
+import { useModalIdsToCloseForReservation } from "../../core/utils/useModalIdsToCloseForReservation";
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import MaterialMainfestationItem from "../material/MaterialMainfestationItem";
 import {
   getManifestationsOrderByTypeAndYear,
   reservationModalId,
-  onlineInternalModalId
+  onlineInternalModalId,
+  editionSwitchModalId
 } from "../../apps/material/helper";
 import {
   getAllPids,
@@ -25,10 +27,6 @@ export type EditionSwitchModalProps = {
   dataCy?: string;
 };
 
-export const editionSwitchModalId = () => {
-  return "edition-switch-modal";
-};
-
 const EditionSwitchModal = ({
   work,
   workId,
@@ -39,6 +37,7 @@ const EditionSwitchModal = ({
   const u = useUrls();
   const authUrl = u("authUrl");
   const { openGuarded } = useModalButtonHandler();
+  const modalsToCloseForReservation = useModalIdsToCloseForReservation();
 
   const allManifestations = getManifestationsOrderByTypeAndYear(
     work.manifestations.all
@@ -57,9 +56,12 @@ const EditionSwitchModal = ({
       ? reservationModalId(faustIds)
       : onlineInternalModalId(faustIds);
 
+    const modalsToClose = modalsToCloseForReservation;
+
     openGuarded({
       authUrl,
-      modalId
+      modalId,
+      modalsToClose
     });
   };
 

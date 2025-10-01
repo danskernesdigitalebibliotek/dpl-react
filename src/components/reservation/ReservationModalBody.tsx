@@ -3,7 +3,6 @@ import { first } from "lodash";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import { editionSwitchModalId } from "./EditionSwitchModal";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
@@ -27,6 +26,7 @@ import {
   getTotalHoldings,
   getTotalReservations,
   reservationModalId,
+  editionSwitchModalId,
   useGetHoldings
 } from "../../apps/material/helper";
 import {
