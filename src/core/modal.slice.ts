@@ -10,6 +10,7 @@ export type ModalId = string;
 
 export type ModalOptions = {
   updateUrl?: boolean;
+  modalsToClose?: string[];
 };
 
 interface PayloadProps {

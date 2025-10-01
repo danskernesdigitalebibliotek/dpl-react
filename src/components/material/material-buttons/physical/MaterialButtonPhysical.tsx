@@ -68,7 +68,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
     openGuarded({
       authUrl,
       modalId: reservationModalId(faustIds),
-      modalsToClose
+      options: { modalsToClose }
     });
   };
 

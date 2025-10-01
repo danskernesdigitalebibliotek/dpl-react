@@ -41,7 +41,7 @@ export const useEditionSwitch = (
     openGuarded({
       authUrl,
       modalId,
-      modalsToClose
+      options: { modalsToClose }
     });
   };
 
