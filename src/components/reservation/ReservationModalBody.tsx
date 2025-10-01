@@ -277,7 +277,7 @@ export const ReservationModalBody = ({
 
   return (
     <>
-      {!reservationResults && !openOrderResponse && (
+      {!reservationSuccess && !reservationResults && !openOrderResponse && (
         <section className="reservation-modal">
           <header className="reservation-modal-header">
             <Cover ids={[manifestation.pid]} size="medium" animate />
