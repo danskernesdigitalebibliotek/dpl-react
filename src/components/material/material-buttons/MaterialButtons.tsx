@@ -91,6 +91,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
           workId={workId}
           dataCy={`${dataCy}-online`}
           ariaLabelledBy={materialTitleId}
+          isEditionPicker={isEditionPicker}
         />
       )}
     </>
