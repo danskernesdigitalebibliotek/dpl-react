@@ -13,6 +13,7 @@ interface GlobalUrlEntryPropsInterface {
   fbiGlobalBaseUrl: string;
   authUrl: string;
   materialListBaseUrl: string;
+  zeroHitsSearchUrl: string;
 }
 
 export default GlobalUrlEntryPropsInterface;
