@@ -33,7 +33,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   workId,
   dataCy = "material-buttons-online",
   ariaLabelledBy,
-  isEditionPicker
+  isEditionPicker = false
 }) => {
   const { track } = useEventStatistics();
   const trackOnlineView = () => {
