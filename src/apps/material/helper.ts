@@ -684,6 +684,20 @@ export const getWorkTitle = (work: Work): string => {
   return "Unknown title";
 };
 
+export const MANIFESTATION_HASH_PREFIX = "manifestation-" as const;
+
+export const createManifestationUrlHash = (pid: string): string => {
+  return `${MANIFESTATION_HASH_PREFIX}${pid}`;
+};
+
+export const getManifestationFromUrlHash = () => {
+  const hash = window.location.hash;
+  if (hash.startsWith(`#${MANIFESTATION_HASH_PREFIX}`)) {
+    return hash.replace(`#${MANIFESTATION_HASH_PREFIX}`, "");
+  }
+  return null;
+};
+
 // ************** VITEST ***************
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
