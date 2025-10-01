@@ -173,9 +173,8 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           isGlobalMaterial={workType === "global"}
         >
           {manifestations.map((manifestation) => (
-            <>
+            <React.Fragment key={manifestation.pid}>
               <ReservationFindOnShelfModals
-                key={manifestation.pid}
                 patron={userData?.patron}
                 manifestations={[manifestation]}
                 selectedPeriodical={selectedPeriodical}
@@ -186,7 +185,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
                 workId={wid}
                 selectedManifestations={[manifestation]}
               />
-            </>
+            </React.Fragment>
           ))}
           {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
             <InfomediaModal
