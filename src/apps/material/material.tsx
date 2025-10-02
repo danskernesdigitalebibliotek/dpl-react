@@ -188,6 +188,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               />
             </>
           ))}
+          <EditionSwitchModal
+            work={work}
+            workId={wid}
+            handleReserveFirstAvailable={handleReserveFirstAvailable}
+          />
           {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
             <InfomediaModal
               selectedManifestations={selectedManifestations}
@@ -210,11 +215,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               setSelectedPeriodical={setSelectedPeriodical}
             />
           )}
-          <EditionSwitchModal
-            work={work}
-            workId={wid}
-            handleReserveFirstAvailable={handleReserveFirstAvailable}
-          />
         </MaterialHeader>
         <MaterialDescription pid={pid} work={work} />
         {/* Since we cannot trust the editions for global manifestations */}
