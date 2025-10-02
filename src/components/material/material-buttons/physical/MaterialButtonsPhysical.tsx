@@ -22,13 +22,15 @@ export interface MaterialButtonsPhysicalProps {
   size?: ButtonSize;
   dataCy?: string;
   isSpecificManifestation?: boolean;
+  isEditionPicker?: boolean;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   manifestations,
   size,
   dataCy = "material-buttons-physical",
-  isSpecificManifestation
+  isSpecificManifestation,
+  isEditionPicker = false
 }) => {
   const t = useText();
   const config = useConfig();
@@ -72,6 +74,7 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
         size={size}
         isSpecificManifestation={isSpecificManifestation}
         pids={pids}
+        isEditionPicker={isEditionPicker}
       />
     );
   }

@@ -24,6 +24,7 @@ export interface MaterialButtonsOnlineProps {
   workId: WorkId;
   dataCy?: string;
   ariaLabelledBy: string;
+  isEditionPicker?: boolean;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
@@ -31,7 +32,8 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   size,
   workId,
   dataCy = "material-buttons-online",
-  ariaLabelledBy
+  ariaLabelledBy,
+  isEditionPicker = false
 }) => {
   const { track } = useEventStatistics();
   const trackOnlineView = () => {
@@ -53,6 +55,7 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
         manifestations={manifestations}
         dataCy={`${dataCy}-internal`}
         workId={workId}
+        isEditionPicker={isEditionPicker}
       />
     );
   }

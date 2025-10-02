@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { useModalButtonHandler } from "../../../../core/utils/modal";
+import { useModalIdsToCloseForReservation } from "../../../../core/utils/useModalIdsToCloseForReservation";
 import { reservationModalId } from "../../../../apps/material/helper";
 import { useText } from "../../../../core/utils/text";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -14,10 +15,10 @@ import { convertPostIdsToFaustIds } from "../../../../core/utils/helpers/general
 export interface MaterialButtonPhysicalProps {
   manifestationMaterialType: string;
   size?: ButtonSize;
-
   dataCy?: string;
   isSpecificManifestation?: boolean;
   pids: Pid[];
+  isEditionPicker?: boolean;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
@@ -25,7 +26,8 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   size,
   dataCy = "material-button-physical",
   isSpecificManifestation,
-  pids
+  pids,
+  isEditionPicker = false
 }) => {
   const { track } = useEventStatistics();
   const t = useText();
@@ -33,6 +35,21 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
   const authUrl = u("authUrl");
   const faustIds = convertPostIdsToFaustIds(pids);
   const { openGuarded } = useModalButtonHandler();
+  const modalsToCloseForReservation = useModalIdsToCloseForReservation();
+
+  const getButtonLabel = () => {
+    if (isEditionPicker) {
+      return t("editionChooseText");
+    }
+
+    if (size === "small") {
+      return t("reserveText");
+    }
+
+    return t("reserveWithMaterialTypeText", {
+      placeholders: { "@materialType": manifestationMaterialType }
+    });
+  };
 
   const onClick = () => {
     if (isSpecificManifestation && first(pids)) {
@@ -42,22 +59,23 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
         trackedData: `${first(pids)}`
       });
     }
+
+    // If we're in the edition picker, close any existing reservation modals
+    const modalsToClose = isEditionPicker
+      ? modalsToCloseForReservation
+      : undefined;
+
     openGuarded({
       authUrl,
-      modalId: reservationModalId(faustIds)
+      modalId: reservationModalId(faustIds),
+      options: { modalsToClose }
     });
   };
 
   return (
     <Button
       dataCy={dataCy}
-      label={
-        size === "small"
-          ? t("reserveText")
-          : `${t("reserveWithMaterialTypeText", {
-              placeholders: { "@materialType": manifestationMaterialType }
-            })}`
-      }
+      label={getButtonLabel()}
       buttonType="none"
       variant="filled"
       disabled={false}

@@ -503,6 +503,10 @@ export const onlineInternalModalId = (faustIds: FaustId[]) => {
   return constructModalId("online-internal-modal", faustIds.sort());
 };
 
+export const editionSwitchModalId = () => {
+  return "edition-switch-modal";
+};
+
 export const getUniqueMovies = (relations: Work["relations"]) => {
   const movies = relations.hasAdaptation.filter(
     (item) => item.ownerWork.workTypes.includes(WorkTypeEnum.Movie)
