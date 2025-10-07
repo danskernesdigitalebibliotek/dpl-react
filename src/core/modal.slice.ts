@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  appendQueryParametersToUrl,
   getCurrentLocation,
   removeQueryParametersFromUrl,
   setQueryParametersInUrl
