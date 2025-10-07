@@ -54,22 +54,12 @@ function Modal({
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    // Deep link stuff: if the id is in the url, open the modal
-    if (searchParams.get("modal") === modalId) {
-      dispatch(openModal({ modalId }));
-    }
-    // If modal parameter exists, but modal ID doesn't exist - remove it
-    // from the URL and re-enable scrolling (disabled in modal.slice)
-    // to prevent trying to open uninitialized modals
-    if (searchParams.get("modal") && searchParams.get("modal") !== modalId) {
-      searchParams.delete("modal");
-      window.history.replaceState(
-        {},
-        "",
-        window.location.href.replace(`&modal=${searchParams.get("modal")}`, "")
-      );
-      document.body.style.overflow = "";
-    }
+
+    const modalIdsInUrl = searchParams.getAll("modal");
+
+    modalIdsInUrl.forEach((id) => {
+      dispatch(openModal({ modalId: id }));
+    });
   }, [modalId, dispatch]);
 
   // Check if the modal should be open
