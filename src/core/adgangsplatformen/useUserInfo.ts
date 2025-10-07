@@ -27,11 +27,13 @@ export type UserInfoData = {
 
 const getUserInfoQueryKey = (url: string) => {
   const userToken = getUserToken();
+
   if (!userToken) {
-    throw new Error("User token is missing");
+    // eslint-disable-next-line no-console
+    console.error("userToken is missing");
   }
 
-  return `${url}:${userToken}`;
+  return userToken ? `${url}:${userToken}` : url;
 };
 
 type UserInfoFunction = () => Promise<UserInfoData | null | undefined>;
