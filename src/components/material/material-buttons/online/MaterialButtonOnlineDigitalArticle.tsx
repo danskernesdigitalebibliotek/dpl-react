@@ -12,6 +12,7 @@ import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import { isResident } from "../../../../core/utils/helpers/userInfo";
 import useUserInfo from "../../../../core/adgangsplatformen/useUserInfo";
 import { useConfig } from "../../../../core/utils/config";
+import { isAnonymous } from "../../../../core/utils/helpers/user";
 
 export interface MaterialButtonOnlineDigitalArticleProps {
   pid: Pid;
@@ -29,7 +30,10 @@ const MaterialButtonOnlineDigitalArticle: FC<
   const siteAgencyId = config("agencyIdConfig");
 
   const [isUserResident, setIsUserResident] = useState<null | boolean>(null);
-  const { isLoading, data: userInfo } = useUserInfo();
+  const { isLoading, data: userInfo } = useUserInfo({
+    enabled: !isAnonymous()
+  });
+
   const { openGuarded } = useModalButtonHandler();
 
   useDeepCompareEffect(() => {
