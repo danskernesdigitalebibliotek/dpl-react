@@ -84,8 +84,4 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   );
 };
 
-const loggedInButton = () => {
-  return <div>Logged in button</div>;
-};
-
 export default MaterialButtonOnlineInfomediaArticle;
