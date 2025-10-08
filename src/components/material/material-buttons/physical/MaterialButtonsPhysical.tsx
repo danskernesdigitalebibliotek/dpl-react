@@ -18,18 +18,18 @@ import useGetAvailability from "../../../../core/utils/useGetAvailability";
 import { useConfig } from "../../../../core/utils/config";
 
 export interface MaterialButtonsPhysicalProps {
+  isSpecificManifestation?: boolean;
   manifestations: Manifestation[];
   size?: ButtonSize;
   dataCy?: string;
-  isSpecificManifestation?: boolean;
   isEditionPicker?: boolean;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
+  isSpecificManifestation,
   manifestations,
   size,
   dataCy = "material-buttons-physical",
-  isSpecificManifestation,
   isEditionPicker = false
 }) => {
   const t = useText();

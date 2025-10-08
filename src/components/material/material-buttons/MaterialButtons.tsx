@@ -16,22 +16,22 @@ import MaterialButtonReservableFromAnotherLibrary from "./physical/MaterialButto
 import useReservableFromAnotherLibrary from "../../../core/utils/useReservableFromAnotherLibrary";
 
 export interface MaterialButtonsProps {
+  isSpecificManifestation?: boolean;
   manifestations: Manifestation[];
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
   materialTitleId: string;
-  isSpecificManifestation?: boolean;
   isEditionPicker?: boolean;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
+  isSpecificManifestation = false,
   manifestations,
   size,
   workId,
   dataCy = "material-buttons",
   materialTitleId,
-  isSpecificManifestation = false,
   isEditionPicker = false
 }) => {
   const faustIds = getAllFaustIds(manifestations);

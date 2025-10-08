@@ -179,11 +179,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       </div>
       <div className="material-manifestation-item__buttons">
         <MaterialButtons
+          isSpecificManifestation
           manifestations={[manifestation]}
           size="small"
           workId={workId}
           materialTitleId={mainfestationTitleId}
-          isSpecificManifestation
           isEditionPicker={isEditionPicker}
         />
       </div>

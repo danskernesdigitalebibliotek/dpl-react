@@ -13,19 +13,19 @@ import { first } from "lodash";
 import { convertPostIdsToFaustIds } from "../../../../core/utils/helpers/general";
 
 export interface MaterialButtonPhysicalProps {
+  isSpecificManifestation?: boolean;
   manifestationMaterialType: string;
   size?: ButtonSize;
   dataCy?: string;
-  isSpecificManifestation?: boolean;
   pids: Pid[];
   isEditionPicker?: boolean;
 }
 
 const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
+  isSpecificManifestation,
   manifestationMaterialType,
   size,
   dataCy = "material-button-physical",
-  isSpecificManifestation,
   pids,
   isEditionPicker = false
 }) => {
