@@ -14,6 +14,7 @@ import {
   getManifestationTitle
 } from "../../../apps/material/helper";
 import { first } from "lodash";
+import { isAnonymous } from "../../../core/utils/helpers/user";
 
 export const infomediaModalId = (pid: Pid) => `infomedia-modal-${pid}`;
 
@@ -29,7 +30,9 @@ const InfomediaModal: React.FunctionComponent<InfomediaModalProps> = ({
   const t = useText();
   const config = useConfig();
   const [shouldFetchData, setShouldFetchData] = useState(false);
-  const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo();
+  const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo({
+    enabled: !isAnonymous()
+  });
   const siteAgencyId = config("agencyIdConfig");
 
   useEffect(() => {
