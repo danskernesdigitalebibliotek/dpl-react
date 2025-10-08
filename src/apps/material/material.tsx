@@ -40,7 +40,7 @@ import {
   getManifestationChildrenOrAdults,
   getManifestationsOrderByTypeAndYear,
   isParallelReservation,
-  getManifestationFromUrlHash
+  getDisclosureOpenStatesFromUrl
 } from "./helper";
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
@@ -134,7 +134,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   }, [data]);
 
-  // Handle scrolling to manifestation when there's a hash in the URL
+  // Handle scrolling to any element with an ID matching the URL hash after data loads
   useScrollAfterFetchWithRetry();
 
   if (isLoading || !data?.work || !selectedManifestations) {
@@ -157,11 +157,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   });
   const infomediaIds = getInfomediaIds(selectedManifestations);
 
-  // Get disclosure URL parameter from the current URL to see if it should be open.
-  const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
-
-  // Check if there's a manifestation hash in the URL - this should open the editions disclosure
-  const shouldOpenEditionsDisclosure = !!getManifestationFromUrlHash();
+  const disclosureOpenStates = getDisclosureOpenStatesFromUrl();
 
   return (
     <>
@@ -222,7 +218,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             title={`${t("editionsText")} (${manifestations.length})`}
             icon={VariousIcon}
             dataCy="material-editions-disclosure"
-            open={shouldOpenEditionsDisclosure}
+            open={disclosureOpenStates.editions}
           >
             <>
               {getManifestationsOrderByTypeAndYear(manifestations).map(
@@ -243,6 +239,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           dataCy="material-details-disclosure"
           title={t("detailsText")}
           icon={Receipt}
+          open={disclosureOpenStates.details}
         >
           <MaterialDetailsList
             id={`material-details-${wid}`}
@@ -254,7 +251,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           <DisclosureControllable
             detailsClassName="disclosure text-body-large"
             id="reviews"
-            showContent={shouldOpenReviewDisclosure}
+            showContent={disclosureOpenStates.reviews}
             cyData="material-reviews-disclosure"
             summary={
               <DisclosureSummary

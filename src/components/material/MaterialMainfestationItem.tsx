@@ -29,11 +29,14 @@ import {
   getManifestationPhysicalDescription,
   getManifestationPublisher,
   getManifestationSource,
-  getManifestationTitle,
-  createManifestationUrlHash,
-  getManifestationFromUrlHash
+  getManifestationTitle
 } from "../../apps/material/helper";
-import { getCurrentUrlWithHash } from "../../core/utils/helpers/url";
+import {
+  getCurrentUrlWithHash,
+  createUrlHash,
+  getIdFromUrlHash,
+  HashPrefix
+} from "../../core/utils/helpers/url";
 
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
@@ -47,7 +50,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();
-  const shouldOpenDetails = getManifestationFromUrlHash() === pid;
+  const shouldOpenDetails = getIdFromUrlHash(HashPrefix.MANIFESTATION) === pid;
   const [isOpen, setIsOpen] = useState(shouldOpenDetails);
   const faustId = convertPostIdToFaustId(pid);
   const author = creatorsToString(flattenCreators(creators), t);
@@ -116,7 +119,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
   const access = manifestation.access.map((acc) => acc.__typename);
   const detailsId = `material-details-${pid}`;
-  const manifestationId = createManifestationUrlHash(pid);
+  const manifestationId = createUrlHash(HashPrefix.MANIFESTATION, pid);
 
   return (
     <div className="material-manifestation-item" id={manifestationId}>

@@ -6,6 +6,7 @@ import {
 } from "../../core/utils/helpers/general";
 import { ReviewManifestation } from "../../core/utils/types/entities";
 import ReviewMetadata from "./ReviewMetadata";
+import { createUrlHash, HashPrefix } from "../../core/utils/helpers/url";
 
 export interface ReviewLibrarianProps {
   review: ReviewManifestation;
@@ -14,6 +15,7 @@ export interface ReviewLibrarianProps {
 
 const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
   review: {
+    pid,
     workYear,
     dateFirstEdition,
     creators,
@@ -28,7 +30,11 @@ const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
   const publication = getPublicationName(hostPublication);
 
   return (
-    <li className="review text-small-caption" data-cy={dataCy}>
+    <li
+      className="review text-small-caption"
+      id={createUrlHash(HashPrefix.REVIEW, pid)}
+      data-cy={dataCy}
+    >
       {(authors || date || publication) && (
         <ReviewMetadata
           author={authors}

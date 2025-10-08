@@ -205,3 +205,21 @@ export const getCurrentUrlWithHash = (hash: string): string => {
   const { origin, pathname, search } = window.location;
   return `${origin}${pathname}${search}#${hash}`;
 };
+
+// Hash-based URL utilities
+export enum HashPrefix {
+  MANIFESTATION = "manifestation-",
+  REVIEW = "review-"
+}
+
+export const createUrlHash = (prefix: HashPrefix, id: string): string => {
+  return `${prefix}${id}`;
+};
+
+export const getIdFromUrlHash = (prefix: HashPrefix): string | null => {
+  const hash = window.location.hash;
+  if (hash.startsWith(`#${prefix}`)) {
+    return hash.replace(`#${prefix}`, "");
+  }
+  return null;
+};

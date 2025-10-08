@@ -10,14 +10,15 @@ import {
   getReviewRelease
 } from "../../core/utils/helpers/general";
 import {
-  currentLocationWithParametersUrl,
+  getCurrentLocation,
   isUrlValid,
-  redirectToLoginAndBack
+  redirectToLoginAndBack,
+  createUrlHash,
+  HashPrefix
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { ReviewManifestation } from "../../core/utils/types/entities";
 import { useUrls } from "../../core/utils/url";
-import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
 import { Button } from "../Buttons/Button";
 import ReviewHearts from "./ReviewHearts";
 import ReviewMetadata from "./ReviewMetadata";
@@ -55,15 +56,10 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   });
 
   const onClick = (reviewId: string) => {
-    const returnUrl = currentLocationWithParametersUrl({
-      disclosure: "disclosure-reviews"
-    });
-    returnUrl.hash = reviewId;
+    const returnUrl = new URL(getCurrentLocation());
+    returnUrl.hash = createUrlHash(HashPrefix.REVIEW, reviewId);
     redirectToLoginAndBack({ authUrl, returnUrl });
   };
-
-  // If there is an anchor we scroll down to it.
-  useScrollToLocation(data);
 
   if (error) {
     return null;
@@ -74,7 +70,11 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   const { infomedia } = data;
   if (infomedia.error) {
     return (
-      <li className="review text-small-caption" data-cy={dataCy}>
+      <li
+        className="review text-small-caption"
+        id={createUrlHash(HashPrefix.REVIEW, infomediaId)}
+        data-cy={dataCy}
+      >
         {(authors || date || publication) && (
           <ReviewMetadata
             author={authors}
@@ -109,7 +109,10 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   ) as Pick<AccessUrl, "origin" | "url">[];
 
   return (
-    <li className="review text-small-caption" id={infomediaId}>
+    <li
+      className="review text-small-caption"
+      id={createUrlHash(HashPrefix.REVIEW, infomediaId)}
+    >
       {(authors || date || publication) && (
         <ReviewMetadata
           author={authors}
