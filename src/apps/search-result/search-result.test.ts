@@ -66,7 +66,16 @@ describe("Search Result", () => {
 
   it("Loads more search result items after clicking show more results", () => {
     cy.get(".result-pager button").click();
-    cy.getBySel("search-result-list").find("li").should("have.length", 4);
+    cy.getBySel("search-result-list")
+      .find(".content-list__item")
+      .not(".content-list__item--info-box")
+      .should("have.length", 4);
+  });
+
+  it("Loads more search result items will show an info box", () => {
+    cy.getBySel("search-result-list")
+      .find(".content-list__item--info-box")
+      .should("be.visible");
   });
 
   it("Updates the pager info after clicking show more results", () => {

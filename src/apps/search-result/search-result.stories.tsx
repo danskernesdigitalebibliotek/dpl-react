@@ -95,6 +95,10 @@ const meta: Meta<typeof SearchResultEntry> = {
       description: "Branches",
       control: { type: "text" }
     },
+    searchInfoboxConfig: {
+      description: "Search info box configuration",
+      control: { type: "text" }
+    },
     facetBrowserModalScreenReaderModalDescriptionText: {
       description: "facet browser screen reader modal description text",
       control: { type: "text" }
@@ -221,6 +225,9 @@ export const Primary: Story = {
     pageSizeMobile: 20,
     authUrl: "",
     searchUrl: "/search",
+    advancedSearchUrl: "/advanced-search",
+    searchInfoboxConfig:
+      '{"title":"Help with searching","content":{"value":"<p>Here are some tips for searching:</p><ul><li>Use specific terms</li><li>Try different keywords</li><li>Check your spelling</li></ul>","format":"limited"},"buttonLabel":"Advanced search","buttonUrl":"/advanced-search"}',
     materialUrl: "/work/:workid",
     etAlText: "et al.",
     byAuthorText: "By",
