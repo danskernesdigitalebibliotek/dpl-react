@@ -187,13 +187,13 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
         )}
       </div>
       <div className="material-manifestation-item__buttons">
-        <MaterialButtons
+        {/* <MaterialButtons
           manifestations={[manifestation]}
           size="small"
           workId={workId}
           materialTitleId={mainfestationTitleId}
           isSpecificManifestation
-        />
+        /> */}
       </div>
     </div>
   );

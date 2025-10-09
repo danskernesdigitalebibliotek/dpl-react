@@ -22,7 +22,9 @@ import {
 } from "../../core/statistics/useStatistics";
 import { getWorkPid } from "../../core/utils/helpers/general";
 import {
+  getIdFromUrlHash,
   getUrlQueryParam,
+  HashPrefix,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
@@ -133,6 +135,52 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   }, [data]);
 
+  const scrolltoplz = () => {
+    if (!isLoading && data && selectedManifestations) {
+      const urlParams = new URLSearchParams(window.location.search);
+      console.log("🚀 ~ scroll ~ urlParams:", urlParams);
+      const scrollTo = urlParams.get("scrollTo");
+
+      console.log("🚀 ~ scroll ~ scrollTo:", scrollTo);
+
+      if (scrollTo) {
+        const element = document.getElementById(scrollTo);
+
+        console.log("🚀 ~ scroll ~ element:", element);
+
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      // const manifestationHash = getIdFromUrlHash(HashPrefix.MANIFESTATION);
+      // console.log("🚀 ~ scroll ~ manifestationHash:", manifestationHash);
+      // const reviewHash = getIdFromUrlHash(HashPrefix.REVIEW);
+
+      // if (manifestationHash) {
+      //   const element = document.getElementById(manifestationHash);
+      //   console.log("🚀 ~ Material ~ element:", element);
+
+      //   if (element) {
+      //     element.scrollIntoView({ behavior: "smooth" });
+      //   }
+      // }
+
+      // if (reviewHash) {
+      //   const element = document.getElementById(reviewHash);
+      //   console.log("🚀 ~ Material ~ element:", element);
+      //   if (element) {
+      //     element.scrollIntoView({ behavior: "smooth" });
+      //   }
+      // }
+    }
+  };
+
+  useEffect(() => {
+    scrolltoplz();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, userData, selectedManifestations]);
+
   if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;
   }
@@ -157,6 +205,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
 
   return (
     <>
+      <button onClick={() => scrolltoplz()}>scroll abe</button>
       <section className="material-page">
         <MaterialHeader
           wid={wid}
@@ -214,7 +263,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             title={`${t("editionsText")} (${manifestations.length})`}
             icon={VariousIcon}
             dataCy="material-editions-disclosure"
-            open={disclosureOpenStates.editions}
+            open={true}
           >
             <>
               {getManifestationsOrderByTypeAndYear(manifestations).map(

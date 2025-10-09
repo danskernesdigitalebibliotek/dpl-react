@@ -145,7 +145,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           materialTitleId={materialTitleId}
         />
         <div ref={itemRef} className="material-header__availability-label">
-          {!isGlobalMaterial && showItem && (
+          {!isGlobalMaterial && (
             <AvailabilityLabels
               cursorPointer
               workId={wid}
@@ -156,7 +156,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           )}
         </div>
         {/* The CTA buttons apparently only make sense on a global work */}
-        {!isGlobalMaterial && showItem && (
+        {!isGlobalMaterial && (
           <>
             {isPeriodical(selectedManifestations) && (
               <MaterialPeriodical
@@ -169,12 +169,12 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
             {selectedManifestations && (
               <>
                 <div className="material-header__button">
-                  <MaterialButtons
+                  {/* <MaterialButtons
                     manifestations={selectedManifestations}
                     workId={wid}
                     dataCy="material-header-buttons"
                     materialTitleId={materialTitleId}
-                  />
+                  /> */}
                 </div>
                 {/* MaterialAvailabilityText is only shown for:
                     - Online manifestations

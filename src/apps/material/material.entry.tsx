@@ -231,7 +231,7 @@ export interface MaterialEntryProps
 const WrappedMaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => {
   // Handle scrolling to any element with an ID matching the URL hash after data loads
   // This runs at the entry level after all HOCs are applied
-  useSmartScrollToAnchor();
+  // useSmartScrollToAnchor();
 
   return (
     <GuardedApp app="material">

@@ -25,14 +25,15 @@ const Disclosure: FC<DisclosureProps> = ({
   });
 
   return (
-    <details
-      className={clsx("disclosure text-body-large", className)}
-      open={open}
-      data-cy={dataCy}
-    >
-      {summaryWithRef}
-      {(showItem || open) && children}
-    </details>
+    <>
+      <details
+        className={clsx("disclosure text-body-large", className)}
+        open={open}
+        data-cy={dataCy}
+      >
+        {children}
+      </details>
+    </>
   );
 };
 
