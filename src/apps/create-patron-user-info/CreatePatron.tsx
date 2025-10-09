@@ -4,7 +4,6 @@ import { useText } from "../../core/utils/text";
 import { useConfig } from "../../core/utils/config";
 import useUserInfo from "../../core/adgangsplatformen/useUserInfo";
 import RedirectToLoginMessage from "./RedirectToLoginMessage";
-import { isAnonymous } from "../../core/utils/helpers/user";
 
 export interface CreatePatronProps {
   cpr?: string;
@@ -24,7 +23,7 @@ const CreatePatron: FC<CreatePatronProps> = ({ cpr }) => {
   });
   // Fetch user info data (only if not in storybook context).
   const { data: userInfo, isLoading } = useUserInfo({
-    enabled: !cpr && !isAnonymous()
+    enabled: !cpr
   });
 
   useEffect(() => {
