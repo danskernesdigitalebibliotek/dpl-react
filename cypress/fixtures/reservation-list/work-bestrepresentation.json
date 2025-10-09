@@ -101,7 +101,106 @@
                 "display": "Dummy Some Corporation"
               }
             ]
-          }
+          },
+          "mostRelevant": [{
+            "pid": "870970-basis:22629344",
+            "titles": {
+              "full": ["Best representation of dummy title"]
+            },
+            "abstract": ["Dummy Some abstract ..."],
+            "edition": {
+              "summary": "3. udgave, 1. oplag (2019)",
+              "publicationYear": {
+                "display": "2006"
+              }
+            },
+            "materialTypes": [
+              {
+                "materialTypeSpecific": { "display": "Dummy bog" }
+              }
+            ],
+            "series": [
+              {
+                "title": "Harry Potter (bøger)",
+                "isPopular": true,
+                "members": [
+                  {
+                    "numberInSeries": "Del 1",
+                    "work": {
+                      "workId": "work-of:870970-basis:22252852",
+                      "titles": {
+                        "main": ["Harry Potter og De Vises Sten"]
+                      }
+                    }
+                  },
+                  {
+                    "numberInSeries": "Del 2",
+                    "work": {
+                      "workId": "work-of:870970-basis:25197887",
+                      "titles": {
+                        "main": ["Harry Potter og Hemmelighedernes Kammer"]
+                      }
+                    }
+                  },
+                  {
+                    "numberInSeries": "Del 3",
+                    "work": {
+                      "workId": "work-of:870970-basis:25197879",
+                      "titles": {
+                        "main": ["Harry Potter og fangen fra Azkaban"]
+                      }
+                    }
+                  },
+                  {
+                    "numberInSeries": "Del 4",
+                    "work": {
+                      "workId": "work-of:870970-basis:25197909",
+                      "titles": {
+                        "main": ["Harry Potter og Flammernes Pokal"]
+                      }
+                    }
+                  },
+                  {
+                    "numberInSeries": "Del 5",
+                    "work": {
+                      "workId": "work-of:870970-basis:25245784",
+                      "titles": {
+                        "main": ["Harry Potter og Fønixordenen"]
+                      }
+                    }
+                  },
+                  {
+                    "numberInSeries": "Del 6",
+                    "work": {
+                      "workId": "work-of:870970-basis:25807995",
+                      "titles": {
+                        "main": ["Harry Potter og Halvblodsprinsen"]
+                      }
+                    }
+                  },
+                  {
+                    "numberInSeries": "Del 7",
+                    "work": {
+                      "workId": "work-of:870970-basis:27267912",
+                      "titles": {
+                        "main": ["Harry Potter og Dødsregalierne"]
+                      }
+                    }
+                  }
+                ],
+                "readThisFirst": true,
+                "readThisWhenever": null
+              }
+            ],
+            "creators": [
+              {
+                "display": "Dummy Jens Jensen"
+              },
+              {
+                "display": "Dummy Some Corporation"
+              }
+            ]
+          }]
         }
       }
     }

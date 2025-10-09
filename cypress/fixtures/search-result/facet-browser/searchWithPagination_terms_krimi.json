@@ -535,7 +535,45 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:38519395",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": { "main": ["Kniv"], "original": ["Kniv (norsk)"] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788770073851" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2020",
+                  "publicationYear": { "display": "2020" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 502,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -1070,7 +1108,45 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54215797",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": { "main": ["Tørst"], "original": ["Tørst (norsk)"] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788770070096" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": { "display": "2017", "year": 2017 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 523,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -1791,7 +1867,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52487226",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Flagermusmanden"],
+                  "original": ["Flaggermusmannen"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771465754" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 342,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -2356,7 +2473,51 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52444721",
+                "genreAndForm": ["roman", "krimi", "romaner", "politiromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Politi"],
+                  "original": ["Politi (norsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [
+                  { "value": "9788771465846" },
+                  { "value": "9788771461305" }
+                ],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "6. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 526,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -3032,7 +3193,45 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:134320257",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": { "main": ["Rødhals"], "original": ["Rødstrupe"] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788770077231" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "6. udgave, 2022",
+                  "publicationYear": { "display": "2022" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 540,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -3519,7 +3718,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:47969298",
+                "genreAndForm": ["roman", "krimi", "politiromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Mørkets ridder"],
+                  "original": ["Dark sacred night"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788772045382" }],
+                "contributors": [{ "display": "Line Beck Rasmussen" }],
+                "edition": {
+                  "summary": "2. udgave, 2020",
+                  "publicationYear": { "display": "2020" }
+                },
+                "dateFirstEdition": { "display": "2019", "year": 2019 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 356,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -4237,7 +4479,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52444357",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Kakerlakkerne"],
+                  "original": ["Kakerlakkene"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771465761" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 345,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -4838,7 +5121,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52489849",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Panserhjerte"],
+                  "original": ["Panserhjerte (norsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771465822" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 634,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -5413,7 +5737,45 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52487234",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": { "main": ["Genfærd"], "original": ["Gjenferd"] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771465839" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "6. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 456,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -6014,7 +6376,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52444330",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Frelseren"],
+                  "original": ["Frelseren (norsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771465808" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 478,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -6782,7 +7185,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52468280",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Marekors"],
+                  "original": ["Marekors (norsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771465792" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 425,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -7225,7 +7669,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54989458",
+                "genreAndForm": ["roman", "krimi", "politiromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["To slags sandhed"],
+                  "original": ["Two kinds of truth"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788772042091" }],
+                "contributors": [{ "display": "Søren K. Barsøe" }],
+                "edition": {
+                  "summary": "1. udgave, 2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 320,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -7988,7 +8475,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52636760",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Sorgenfri"],
+                  "original": ["Sorgenfri (norsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771465785" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 467,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -8513,7 +9041,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:46366565",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Bag slørene"],
+                  "original": ["The wrong side of goodbye"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788772042244" }],
+                "contributors": [{ "display": "Søren K. Barsøe" }],
+                "edition": {
+                  "summary": "2. udgave, 2019",
+                  "publicationYear": { "display": "2019" }
+                },
+                "dateFirstEdition": { "display": "2017", "year": 2017 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 349,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -9029,7 +9600,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52442680",
+                "genreAndForm": ["roman", "krimi", "politiromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Snehvide"],
+                  "original": ["The black box"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788771298109" }],
+                "contributors": [{ "display": "Søren K. Barsøe" }],
+                "edition": {
+                  "summary": "2. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": { "display": "2015", "year": 2015 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 331,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -9513,7 +10127,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:28346638",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Echo park"],
+                  "original": ["Echo Park (amerikansk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788779557819" }],
+                "contributors": [{ "display": "Søren K. Barsøe" }],
+                "edition": {
+                  "summary": "2. udgave, 2010",
+                  "publicationYear": { "display": "2010" }
+                },
+                "dateFirstEdition": { "display": "2008", "year": 2008 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 440,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -9913,47 +10570,49 @@
               "shelfmark": null,
               "workYear": null
             },
-            "bestRepresentation": {
-              "pid": "870970-basis:47862922",
-              "genreAndForm": ["roman", "krimi", "politiromaner", "romaner"],
-              "source": ["Bibliotekskatalog"],
-              "languages": {
-                "main": [{ "display": "dansk", "isoCode": "dan" }]
-              },
-              "titles": {
-                "main": ["Brande i natten"],
-                "original": ["Nightfire"]
-              },
-              "fictionNonfiction": {
-                "display": "skønlitteratur",
-                "code": "FICTION"
-              },
-              "materialTypes": [
-                { "materialTypeSpecific": { "display": "bog" } }
-              ],
-              "creators": [
-                { "display": "Michael Connelly", "__typename": "Person" }
-              ],
-              "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788772045184" }],
-              "contributors": [{ "display": "Inger Kristensen" }],
-              "edition": {
-                "summary": "1. udgave, 2020",
-                "publicationYear": { "display": "2020" }
-              },
-              "dateFirstEdition": null,
-              "audience": { "generalAudience": [] },
-              "physicalDescription": {
-                "numberOfPages": 391,
-                "materialUnits": [{ "extent": null }]
-              },
-              "accessTypes": [{ "code": "PHYSICAL" }],
-              "access": [
-                { "__typename": "InterLibraryLoan", "loanIsPossible": true }
-              ],
-              "shelfmark": null,
-              "workYear": null
-            }
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:47862922",
+                "genreAndForm": ["roman", "krimi", "politiromaner", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Brande i natten"],
+                  "original": ["Nightfire"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788772045184" }],
+                "contributors": [{ "display": "Inger Kristensen" }],
+                "edition": {
+                  "summary": "1. udgave, 2020",
+                  "publicationYear": { "display": "2020" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 391,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -10147,7 +10806,7 @@
                 "identifiers": [{ "value": "9788771298413" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
-                  "summary": "1. udgave, 2016",
+                  "summary": "1. udgave, 2016 (manifest: all)",
                   "publicationYear": { "display": "2016" }
                 },
                 "dateFirstEdition": null,
@@ -10475,7 +11134,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53397069",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Mordbrand"],
+                  "original": ["The burning room"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788771299960" }],
+                "contributors": [{ "display": "Søren K. Barsøe" }],
+                "edition": {
+                  "summary": "2. udgave, 2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": { "display": "2016", "year": 2016 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 362,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -10958,7 +11660,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:50957772",
+                "genreAndForm": ["roman", "krimi", "politiromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Magtspillerne"],
+                  "original": ["The drop"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788771293197" }],
+                "contributors": [{ "display": "Søren K. Barsøe" }],
+                "edition": {
+                  "summary": "1. udgave, 2014",
+                  "publicationYear": { "display": "2014" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 365,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -11201,7 +11946,66 @@
               ],
               "shelfmark": { "postfix": "Snemanden", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53968414",
+                "genreAndForm": ["krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": { "main": ["The snowman"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
+                "creators": [
+                  { "display": "Dion Beebe", "__typename": "Person" },
+                  {
+                    "display": "Peter Straughan (f. 1968)",
+                    "__typename": "Person"
+                  },
+                  { "display": "Søren Sveistrup", "__typename": "Person" },
+                  { "display": "Tomas Alfredson", "__typename": "Person" },
+                  { "display": "Hossein Amini", "__typename": "Person" }
+                ],
+                "publisher": [
+                  "Universal Sony Pictures Home Entertainment Nordic"
+                ],
+                "identifiers": [{ "value": "Nordic 8313777" }],
+                "contributors": [
+                  { "display": "Jo Nesbø" },
+                  { "display": "Michael Fassbinder" },
+                  { "display": "Rebecca Ferguson" },
+                  { "display": "Charlotte Gainsbourg" },
+                  { "display": "Toby Jones" },
+                  { "display": "Val Kilmer" },
+                  { "display": "J.K. Simmons" }
+                ],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "ca. 119 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Snemanden", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -11575,7 +12379,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:26972035",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Nattens konger"],
+                  "original": ["Lost light"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788779554948" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "2. udgave, 2007",
+                  "publicationYear": { "display": "2007" }
+                },
+                "dateFirstEdition": { "display": "2006", "year": 2006 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 299,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -11949,7 +12796,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:28056931",
+                "genreAndForm": ["roman", "politiromaner", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Det sidste ord"],
+                  "original": ["The closers"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788779556560" }],
+                "contributors": [{ "display": "Søren K. Barsøe" }],
+                "edition": {
+                  "summary": "2. udgave, 2010",
+                  "publicationYear": { "display": "2010" }
+                },
+                "dateFirstEdition": { "display": "2008", "year": 2008 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 455,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -12431,7 +13321,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:25361083",
+                "genreAndForm": ["roman", "politiromaner", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Mørkere end natten"],
+                  "original": ["A darkness more than night"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "87-7955-307-9" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "2. udgave, 2004",
+                  "publicationYear": { "display": "2004" }
+                },
+                "dateFirstEdition": { "display": "2003", "year": 2003 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 381,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -12996,7 +13929,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:25931726",
+                "genreAndForm": ["roman", "politiromaner", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Skeletternes by"],
+                  "original": ["City of bones"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "87-7955-422-9" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "3. udgave, 2004",
+                  "publicationYear": { "display": "2004" }
+                },
+                "dateFirstEdition": { "display": "2004", "year": 2004 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 359,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -13373,7 +14349,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:25330080",
+                "genreAndForm": ["roman", "krimi", "politiromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Det sorte ekko"],
+                  "original": ["The black echo"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "87-7955-308-7" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "3. udgave, 2004",
+                  "publicationYear": { "display": "2004" }
+                },
+                "dateFirstEdition": { "display": "1992", "year": 1992 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 409,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -13856,7 +14875,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:29899606",
+                "genreAndForm": ["roman", "krimi", "politiromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Ni drager"],
+                  "original": ["Nine dragons"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Klim"],
+                "identifiers": [{ "value": "9788771292138" }],
+                "contributors": [{ "display": "Søren K. Barsøe" }],
+                "edition": {
+                  "summary": "1. udgave, 2013",
+                  "publicationYear": { "display": "2013" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 387,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -14379,7 +15441,60 @@
               ],
               "shelfmark": { "postfix": "Dirty", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:51087747",
+                "genreAndForm": ["politifilm", "actionfilm"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": { "main": ["Dirty Harry"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
+                "creators": [
+                  { "display": "Bruce Surtees", "__typename": "Person" },
+                  { "display": "Harry Julian Fink", "__typename": "Person" },
+                  { "display": "R. M. Fink", "__typename": "Person" },
+                  { "display": "Dean Riesner", "__typename": "Person" },
+                  { "display": "Don Siegel", "__typename": "Person" }
+                ],
+                "publisher": ["Warner Home Video Denmark"],
+                "identifiers": [],
+                "contributors": [
+                  { "display": "Clint Eastwood" },
+                  { "display": "Harry Guardino" },
+                  { "display": "Reni Santoni" },
+                  { "display": "Andy Robinson" },
+                  { "display": "John Larch" },
+                  { "display": "John Vernon" }
+                ],
+                "edition": {
+                  "summary": "Renewed, edition, 2014",
+                  "publicationYear": { "display": "2014" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "102 min" }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Dirty", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -14621,7 +15736,66 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:28447698",
+                "genreAndForm": ["actionfilm", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": { "main": ["Harry Brown"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray)" } }
+                ],
+                "creators": [
+                  { "display": "Daniel Barber", "__typename": "Person" },
+                  {
+                    "display": "Gary Young (manuskriptforfatter)",
+                    "__typename": "Person"
+                  },
+                  { "display": "Martin Ruhe", "__typename": "Person" }
+                ],
+                "publisher": ["Nordisk Film"],
+                "identifiers": [
+                  { "value": "BLU-RAY DISC 1573611 BLU-RAY DISC 1876331" }
+                ],
+                "contributors": [
+                  { "display": "Michael Caine" },
+                  { "display": "Emily Mortimer" },
+                  { "display": "Charlie Creed Miles" },
+                  { "display": "David Bradley" },
+                  { "display": "Iain Glen" },
+                  { "display": "Sean Harris" },
+                  { "display": "Ben Drew" },
+                  { "display": "Jack O'Connell" },
+                  { "display": "Jamie Downey" }
+                ],
+                "edition": {
+                  "summary": "2010",
+                  "publicationYear": { "display": "2010" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "103 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -14948,7 +16122,47 @@
               ],
               "shelfmark": { "postfix": "Connelly", "shelfmark": "83" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54686722",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": { "main": ["Dark sacred night"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Orion"],
+                "identifiers": [{ "value": "9781409182726" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 433,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Connelly", "shelfmark": "83" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -15428,7 +16642,55 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:62264667",
+                "genreAndForm": [
+                  "roman",
+                  "fantasy",
+                  "urban fantasy",
+                  "romaner"
+                ],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Stormfront (Ved Valdemar Tellerup)"],
+                  "original": ["Storm front"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Jim Butcher", "__typename": "Person" }
+                ],
+                "publisher": ["Superlux"],
+                "identifiers": [{ "value": "9788775671021" }],
+                "contributors": [{ "display": "Valdemar Tellerup" }],
+                "edition": {
+                  "summary": "1. udgave, 2022",
+                  "publicationYear": { "display": "2022" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 340,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -15861,7 +17123,53 @@
               ],
               "shelfmark": { "postfix": "Connelly", "shelfmark": "83.8" },
               "workYear": { "year": 2016 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53339522",
+                "genreAndForm": ["roman", "krimi", "politiromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["The wrong side of goodbye"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Grand Central"],
+                "identifiers": [
+                  { "value": "9781455524211" },
+                  { "value": "9780316225953" }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": { "display": "2016", "year": 2016 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 439,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Connelly", "shelfmark": "83.8" },
+                "workYear": { "year": 2016 }
+              }
+            ]
           }
         },
         {
@@ -16001,7 +17309,50 @@
               ],
               "shelfmark": { "postfix": "Connelly", "shelfmark": "83.8" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53408575",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": { "main": ["Two kinds of truth"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Orion Books"],
+                "identifiers": [
+                  { "value": "9781409145554" },
+                  { "value": "9781409147572" }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 402,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Connelly", "shelfmark": "83.8" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -16328,7 +17679,47 @@
               ],
               "shelfmark": { "postfix": "Connelly", "shelfmark": "83" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:47013615",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": { "main": ["The night fire"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Orion"],
+                "identifiers": [{ "value": "9781409186045" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "2019",
+                  "publicationYear": { "display": "2019" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 405,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Connelly", "shelfmark": "83" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -16463,7 +17854,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:50528782",
+                "genreAndForm": ["roman", "krimi", "politiromaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Politi (Modtryks storskriftserie). Bind 1"],
+                  "original": ["Politi (norsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771460377" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "3. udgave, 2013",
+                  "publicationYear": { "display": "2013" }
+                },
+                "dateFirstEdition": { "display": "2013", "year": 2013 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 322,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -16931,7 +18363,53 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 1953 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:50691861",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Det lange farvel (Ved Kurt Kreutzfeld)"],
+                  "original": ["The long good-bye"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Raymond Chandler", "__typename": "Person" }
+                ],
+                "publisher": ["People'sPress"],
+                "identifiers": [{ "value": "9788771376678" }],
+                "contributors": [
+                  { "display": "Kurt Kreutzfeld" },
+                  { "display": "Haruki Murakami" }
+                ],
+                "edition": {
+                  "summary": "Ny udgave, 2013",
+                  "publicationYear": { "display": "2013" }
+                },
+                "dateFirstEdition": { "display": "1953", "year": 1953 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 453,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 1953 }
+              }
+            ]
           }
         },
         {
@@ -17066,7 +18544,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53105602",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Tørst. Bind 1"],
+                  "original": ["Tørst (norsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771467697" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "3. udgave, 2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": { "display": "2017", "year": 2017 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 326,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -17203,7 +18722,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52426731",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": [
+                    "Flagermusmanden (Modtryks storskriftserie). Bind 1"
+                  ],
+                  "original": ["Flaggermusmannen"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771466096" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "6. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 308,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -17532,7 +19094,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:46366506",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Nøkkens spil"],
+                  "original": ["Aldrig näcken"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Stieg Trenter", "__typename": "Person" }
+                ],
+                "publisher": ["Lindhardt og Ringhof"],
+                "identifiers": [{ "value": "9788711835173" }],
+                "contributors": [{ "display": "Mogens Cohrt" }],
+                "edition": {
+                  "summary": "1. L&R udgave, 2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": { "display": "1953", "year": 1953 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 263,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -17667,7 +19272,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:28037880",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Panserhjerte (Modtryks storskriftserie). Bind 1"],
+                  "original": ["Panserhjerte (norsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788770533737" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "2. udgave, 2009",
+                  "publicationYear": { "display": "2009" }
+                },
+                "dateFirstEdition": { "display": "2009", "year": 2009 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 382,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -18124,7 +19770,47 @@
               ],
               "shelfmark": { "postfix": "Butcher", "shelfmark": "83.8" },
               "workYear": { "year": 2000 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:45215342",
+                "genreAndForm": ["roman", "fantasy", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": { "main": ["Storm front"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Jim Butcher", "__typename": "Person" }
+                ],
+                "publisher": ["Orbit"],
+                "identifiers": [{ "value": "9780356500270" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "Paperback edition, 2011",
+                  "publicationYear": { "display": "2011" }
+                },
+                "dateFirstEdition": { "display": "2000", "year": 2000 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 307,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Butcher", "shelfmark": "83.8" },
+                "workYear": { "year": 2000 }
+              }
+            ]
           }
         },
         {
@@ -18256,7 +19942,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:29072450",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Genfærd (Modtryks storskriftserie). Bind 1"],
+                  "original": ["Gjenferd"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788770537247" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "2. udgave, 2011",
+                  "publicationYear": { "display": "2011" }
+                },
+                "dateFirstEdition": { "display": "2011", "year": 2011 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 264,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -18872,7 +20599,59 @@
               ],
               "shelfmark": { "postfix": "Hvem", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:62640847",
+                "genreAndForm": ["krimi", "komedier"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["The trouble with Harry"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+                ],
+                "creators": [
+                  { "display": "Alfred Hitchcock", "__typename": "Person" },
+                  { "display": "John Michael Hayes", "__typename": "Person" },
+                  { "display": "Robert Burks", "__typename": "Person" }
+                ],
+                "publisher": ["SF Film"],
+                "identifiers": [{ "value": "1302896" }],
+                "contributors": [
+                  { "display": "Jack Trevor Story" },
+                  { "display": "Edmund Gwenn" },
+                  { "display": "John Forsythe" },
+                  { "display": "Shirley MacLaine" }
+                ],
+                "edition": {
+                  "summary": "2022",
+                  "publicationYear": { "display": "2022" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 15 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "99 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Hvem", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -19348,7 +21127,47 @@
               ],
               "shelfmark": { "postfix": "Connelly", "shelfmark": "83.8" },
               "workYear": { "year": 2005 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:45849600",
+                "genreAndForm": ["roman", "politiromaner", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": { "main": ["The closers"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Connelly", "__typename": "Person" }
+                ],
+                "publisher": ["Orion"],
+                "identifiers": [{ "value": "9781409157298" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "Reissued, 2015",
+                  "publicationYear": { "display": "2015" }
+                },
+                "dateFirstEdition": { "display": "2005", "year": 2005 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 405,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Connelly", "shelfmark": "83.8" },
+                "workYear": { "year": 2005 }
+              }
+            ]
           }
         },
         {
@@ -19483,7 +21302,48 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52460956",
+                "genreAndForm": ["roman", "krimi"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Kakerlakkerne (Modtryks storskriftserie). Bind 1"],
+                  "original": ["Kakerlakkene"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog stor skrift" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788771466119" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "6. udgave, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 300,
+                  "materialUnits": [{ "extent": null }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         }
       ]

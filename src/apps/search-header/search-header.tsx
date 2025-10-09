@@ -30,6 +30,8 @@ import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 import useFilterHandler from "../search-result/useFilterHandler";
+import { getRepresentativeManifestation } from "../../core/utils/helpers/manifestations";
+import { getMaterialType } from "../../core/utils/helpers/general";
 
 const SearchHeader: React.FC = () => {
   const t = useText();
@@ -58,6 +60,7 @@ const SearchHeader: React.FC = () => {
       enabled: q.length >= minimalAutosuggestCharacters
     }
   );
+
   const [isHeaderDropdownOpen, setIsHeaderDropdownOpen] =
     useState<boolean>(false);
   // Once we register the item select event the original highlighted index is
@@ -220,8 +223,20 @@ const SearchHeader: React.FC = () => {
       }).then(() => {
         // Before redirecting we need to clean persisted filters from previous search.
         clearFilter();
+        // Get the representative manifestation of the selected work.
+        const representativeManifestation = getRepresentativeManifestation({
+          work: selectedItem.work,
+          context: "auto-suggest"
+        });
+        // And get the material type of that manifestation so we are sure to
+        // link to the right material type of the work.
+        const materialType = getMaterialType([representativeManifestation]);
         redirectTo(
-          constructMaterialUrl(materialUrl, selectedItem.work?.workId as WorkId)
+          constructMaterialUrl(
+            materialUrl,
+            selectedItem.work?.workId as WorkId,
+            materialType
+          )
         );
       });
       return;

@@ -286,7 +286,50 @@
               ],
               "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54129807",
+                "genreAndForm": ["biografier"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry"],
+                  "original": ["Harry (engelsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Angela Levin", "__typename": "Person" }
+                ],
+                "publisher": ["Memoris"],
+                "identifiers": [{ "value": "9788793681088" }],
+                "contributors": [{ "display": "Birgitte Brix" }],
+                "edition": {
+                  "summary": "1. udgave, 2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 301,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Levin", "shelfmark": "99.4 Henry" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -1125,7 +1168,59 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2003 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:134693959",
+                "genreAndForm": ["roman", "fantasy", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og Fønixordenen (Ill. Jim Kay)"],
+                  "original": ["Harry Potter and the Order of the Phoenix"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702307566" }],
+                "contributors": [
+                  { "display": "Jim Kay" },
+                  { "display": "Neil Packer" },
+                  { "display": "Hanna Lützen" }
+                ],
+                "edition": {
+                  "summary": "Illustreret udgave, 7. udgave, 2022",
+                  "publicationYear": { "display": "2022" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": [
+                    "Højtlæsning fra 8 år. Selvlæsning fra 12 år",
+                    "for højtlæsning"
+                  ]
+                },
+                "physicalDescription": {
+                  "numberOfPages": 565,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2003 }
+              }
+            ]
           }
         },
         {
@@ -2266,7 +2361,58 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 1997 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:38289977",
+                "genreAndForm": ["roman", "fantasy", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og de vises sten (ill. MinaLima)"],
+                  "original": ["Harry Potter and the philosopher's stone"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702301588" }],
+                "contributors": [
+                  { "display": "Hanna Lützen" },
+                  { "display": "MinaLima (firma)" }
+                ],
+                "edition": {
+                  "summary": "9. udgave, 2020",
+                  "publicationYear": { "display": "2020" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": [
+                    "Højtlæsning fra 8 år. Selvlæsning fra 11 år",
+                    "for højtlæsning"
+                  ]
+                },
+                "physicalDescription": {
+                  "numberOfPages": 356,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 1997 }
+              }
+            ]
           }
         },
         {
@@ -2993,7 +3139,50 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2005 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54872003",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og halvblodsprinsen"],
+                  "original": ["Harry Potter and the half-blood prince"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702272499" }],
+                "contributors": [{ "display": "Hanna Lützen" }],
+                "edition": {
+                  "summary": "6. udgave, 2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 557,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2005 }
+              }
+            ]
           }
         },
         {
@@ -3538,7 +3727,50 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2007 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54872186",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og dødsregalierne"],
+                  "original": ["Harry Potter and the deathly hallows"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702272420" }],
+                "contributors": [{ "display": "Hanna Lützen" }],
+                "edition": {
+                  "summary": "6. udgave, 2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 648,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2007 }
+              }
+            ]
           }
         },
         {
@@ -4500,7 +4732,55 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 1998 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:61636935",
+                "genreAndForm": ["roman", "fantasy", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": [
+                    "Harry Potter og Hemmelighedernes Kammer (Ill. MinaLima)"
+                  ],
+                  "original": ["Harry Potter and the Chamber of Secrets"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702319361" }],
+                "contributors": [
+                  { "display": "Hanna Lützen" },
+                  { "display": "MinaLima (firma)" }
+                ],
+                "edition": {
+                  "summary": "9. udgave, 2021",
+                  "publicationYear": { "display": "2021" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 384,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 1998 }
+              }
+            ]
           }
         },
         {
@@ -4678,7 +4958,62 @@
                 "shelfmark": "99.4 Rowling, Joanne K."
               },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54181744",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter"],
+                  "original": ["Harry Potter (engelsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702257199" }],
+                "contributors": [
+                  { "display": "Joanne K. Rowling" },
+                  { "display": "Hanna Lützen" },
+                  { "display": "Jim Kay" },
+                  { "display": "Olivia Lomenech" },
+                  { "display": "British Library" }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": [
+                    "Højtlæsning fra 8 år. Selvlæsning fra 10 år",
+                    "for højtlæsning"
+                  ]
+                },
+                "physicalDescription": {
+                  "numberOfPages": 143,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": {
+                  "postfix": "Harry",
+                  "shelfmark": "99.4 Rowling, Joanne K."
+                },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -5581,7 +5916,50 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 1999 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54871945",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og fangen fra Azkaban"],
+                  "original": ["Harry Potter and the prisoner of Azkaban"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702272468" }],
+                "contributors": [{ "display": "Hanna Lützen" }],
+                "edition": {
+                  "summary": "8. udgave, 2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 482,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 1999 }
+              }
+            ]
           }
         },
         {
@@ -6443,7 +6821,53 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2000 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:47092183",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og Flammernes Pokal (Ill. Jim Kay)"],
+                  "original": ["Harry Potter and the goblet of fire"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702284799" }],
+                "contributors": [
+                  { "display": "Hanna Lützen" },
+                  { "display": "Jim Kay" }
+                ],
+                "edition": {
+                  "summary": "Illustreret udgave, 8. udgave, 2019",
+                  "publicationYear": { "display": "2019" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 450,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2000 }
+              }
+            ]
           }
         },
         {
@@ -6635,7 +7059,7 @@
                 "identifiers": [{ "value": "9788711565339" }],
                 "contributors": [{ "display": "Sara Ejersbo Frederiksen" }],
                 "edition": {
-                  "summary": "1. udgave, 2016",
+                  "summary": "1. udgave, 2016 (manifest: all)",
                   "publicationYear": { "display": "2016" }
                 },
                 "dateFirstEdition": null,
@@ -6677,7 +7101,7 @@
               "identifiers": [{ "value": "9788711565339" }],
               "contributors": [{ "display": "Sara Ejersbo Frederiksen" }],
               "edition": {
-                "summary": "1. udgave, 2016",
+                "summary": "1. udgave, 2016 (manifest: latest)",
                 "publicationYear": { "display": "2016" }
               },
               "dateFirstEdition": null,
@@ -6718,7 +7142,7 @@
               "identifiers": [{ "value": "9788711565339" }],
               "contributors": [{ "display": "Sara Ejersbo Frederiksen" }],
               "edition": {
-                "summary": "1. udgave, 2016",
+                "summary": "1. udgave, 2016 (manifest: bestRepresentation)",
                 "publicationYear": { "display": "2016" }
               },
               "dateFirstEdition": null,
@@ -6733,7 +7157,50 @@
               ],
               "shelfmark": { "postfix": "Baker", "shelfmark": "77.693" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52796202",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": { "main": ["Harry Potter"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  {
+                    "display": "Felicity Baker (f. 1962)",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Carlsen"],
+                "identifiers": [{ "value": "9788711565339" }],
+                "contributors": [{ "display": "Sara Ejersbo Frederiksen" }],
+                "edition": {
+                  "summary": "1. udgave, 2016 (manifest: mostRelevant)",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 62,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Baker", "shelfmark": "77.693" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -6968,7 +7435,56 @@
                 "shelfmark": "99.4 Styles, Harry"
               },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:50536661",
+                "genreAndForm": ["biografier"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Styles"],
+                  "original": ["Harry Styles (engelsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Sarah Oliver", "__typename": "Person" }
+                ],
+                "publisher": ["Turbulenz"],
+                "identifiers": [{ "value": "9788771480290" }],
+                "contributors": [
+                  { "display": "Brian Christensen" },
+                  { "display": "Sarah Nørgaard Jensen" }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2013",
+                  "publicationYear": { "display": "2013" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 256,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": {
+                  "postfix": "Oliver",
+                  "shelfmark": "99.4 Styles, Harry"
+                },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -7280,7 +7796,55 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2016 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52646251",
+                "genreAndForm": ["dramatik", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og det forbandede barn"],
+                  "original": ["Harry Potter and the cursed child"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" },
+                  { "display": "John Tiffany", "__typename": "Person" },
+                  { "display": "Jack Thorne", "__typename": "Person" }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702215694" }],
+                "contributors": [
+                  { "display": "Hanna Lützen" },
+                  { "display": "Mette Nejmann" }
+                ],
+                "edition": {
+                  "summary": "1. udgave af manuskriptbogen, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 369,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2016 }
+              }
+            ]
           }
         },
         {
@@ -7629,7 +8193,47 @@
               ],
               "shelfmark": { "postfix": "Mohr", "shelfmark": "79.71" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:46036727",
+                "genreAndForm": ["biografier"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": { "main": ["Harry Kane"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Christian Mohr Boisen", "__typename": "Person" }
+                ],
+                "publisher": ["Carlsen"],
+                "identifiers": [{ "value": "9788711908976" }],
+                "contributors": [{ "display": "Sanne Katrine Haugaard" }],
+                "edition": {
+                  "summary": "2019",
+                  "publicationYear": { "display": "2019" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": ["let at læse"] },
+                "physicalDescription": {
+                  "numberOfPages": 34,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Mohr", "shelfmark": "79.71" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -8699,7 +9303,50 @@
               ],
               "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
               "workYear": { "year": 1997 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:134987766",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the philosopher's stone"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Bloomsbury"],
+                "identifiers": [{ "value": "9781526646651" }],
+                "contributors": [{ "display": "Thomas Taylor" }],
+                "edition": {
+                  "summary": "Bloomsbury, silver anniversary edition 2022, 2022",
+                  "publicationYear": { "display": "2022" }
+                },
+                "dateFirstEdition": { "display": "1997", "year": 1997 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 331,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
+                "workYear": { "year": 1997 }
+              }
+            ]
           }
         },
         {
@@ -9868,7 +10515,52 @@
               ],
               "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
               "workYear": { "year": 2000 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:47086868",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": [
+                    "Harry Potter and the goblet of fire (Ill. Jim Kay)"
+                  ],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Bloomsbury Children's Books"],
+                "identifiers": [{ "value": "9781408845677" }],
+                "contributors": [{ "display": "Jim Kay" }],
+                "edition": {
+                  "summary": "2019",
+                  "publicationYear": { "display": "2019" }
+                },
+                "dateFirstEdition": { "display": "2000", "year": 2000 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 450,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
+                "workYear": { "year": 2000 }
+              }
+            ]
           }
         },
         {
@@ -10361,7 +11053,63 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:27091423",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og Fønixordenen"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
+                "creators": [
+                  { "display": "David Yates", "__typename": "Person" },
+                  { "display": "Michael Goldenberg", "__typename": "Person" },
+                  { "display": "Sławomir Idziak", "__typename": "Person" },
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Warner Bros. Entertainment Danmark"],
+                "identifiers": [{ "value": "59326" }],
+                "contributors": [
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Ralph Fiennes" },
+                  { "display": "Michael Gambon" },
+                  { "display": "Brendan Gleeson" }
+                ],
+                "edition": {
+                  "summary": "2007",
+                  "publicationYear": { "display": "2007" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "ca. 2 t., 12 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -10754,7 +11502,65 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:28058306",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og halvblodsprinsen"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
+                "creators": [
+                  { "display": "David Yates", "__typename": "Person" },
+                  { "display": "Bruno Delbonnel", "__typename": "Person" },
+                  { "display": "Steve Kloves", "__typename": "Person" },
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Warner Bros. Entertainment Danmark"],
+                "identifiers": [{ "value": "Y 22512" }],
+                "contributors": [
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Helena Bonham Carter" },
+                  { "display": "Jim Broadbent" },
+                  { "display": "Michael Gambon" },
+                  { "display": "Alan Rickman" },
+                  { "display": "Maggie Smith" }
+                ],
+                "edition": {
+                  "summary": "2-disc special edition, 2009",
+                  "publicationYear": { "display": "2009" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "ca. 2 t., 27 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -11056,7 +11862,53 @@
               ],
               "shelfmark": { "postfix": "Herbert", "shelfmark": "99.4 Henry" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54129262",
+                "genreAndForm": ["biografier"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry & Meghan"],
+                  "original": ["Harry & Meghan (engelsk)"]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Emily Herbert", "__typename": "Person" }
+                ],
+                "publisher": ["Memoris"],
+                "identifiers": [{ "value": "9788793681019" }],
+                "contributors": [{ "display": "Michael Jepsen" }],
+                "edition": {
+                  "summary": "1. udgave, 2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 223,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": {
+                  "postfix": "Herbert",
+                  "shelfmark": "99.4 Henry"
+                },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -11632,7 +12484,50 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:134325674",
+                "genreAndForm": ["roman", "spænding", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Sandheden om Harry Quebert-sagen"],
+                  "original": ["La vérité sur l'affaire Harry Québert"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joël Dicker", "__typename": "Person" }
+                ],
+                "publisher": ["People's"],
+                "identifiers": [{ "value": "9788772385495" }],
+                "contributors": [{ "display": "Mette Olesen" }],
+                "edition": {
+                  "summary": "3. udgave, 2022",
+                  "publicationYear": { "display": "2022" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 693,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -11786,7 +12681,54 @@
                 "shelfmark": "99.4 Rowling, Joanne K."
               },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53704638",
+                "genreAndForm": ["litteraturanalyser", "analyser"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og filosofien"],
+                  "original": ["The ultimate Harry Potter and philosophy"]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [],
+                "publisher": ["Frydenlund"],
+                "identifiers": [{ "value": "9788771187854" }],
+                "contributors": [
+                  { "display": "Gregory Bassham" },
+                  { "display": "Rebekka Hjelholt Svendsen" }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 280,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": {
+                  "postfix": "Harry",
+                  "shelfmark": "99.4 Rowling, Joanne K."
+                },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -12078,7 +13020,50 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2015 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:51842405",
+                "genreAndForm": ["roman"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": { "main": ["Anna og Harry"], "original": [] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  {
+                    "display": "Susanne Foldberg (f. 1970)",
+                    "__typename": "Person"
+                  }
+                ],
+                "publisher": ["Høst"],
+                "identifiers": [{ "value": "9788763841450" }],
+                "contributors": [{ "display": "Bodil Bang Heinemeier" }],
+                "edition": {
+                  "summary": "1. udgave, 2015",
+                  "publicationYear": { "display": "2015" }
+                },
+                "dateFirstEdition": { "display": "2015", "year": 2015 },
+                "audience": { "generalAudience": ["let at læse"] },
+                "physicalDescription": {
+                  "numberOfPages": 124,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2015 }
+              }
+            ]
           }
         },
         {
@@ -13252,7 +14237,52 @@
               ],
               "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52561604",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": [
+                    "Harry Potter and the Chamber of Secrets (Ill. Jim Kay)"
+                  ],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Bloomsbury"],
+                "identifiers": [{ "value": "9781408845653" }],
+                "contributors": [{ "display": "Jim Kay" }],
+                "edition": {
+                  "summary": "2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 258,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -13491,7 +14521,53 @@
                 "shelfmark": "99.4 Rowling, Joanne K."
               },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:24857549",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Potters eventyrlige univers"],
+                  "original": ["The magical worlds of Harry Potter"]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "David Colbert", "__typename": "Person" }
+                ],
+                "publisher": ["Sesam"],
+                "identifiers": [{ "value": "87-11-22000-7" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "2. udgave, 2003",
+                  "publicationYear": { "display": "2003" }
+                },
+                "dateFirstEdition": { "display": "2002", "year": 2002 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 198,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": {
+                  "postfix": "Colbert",
+                  "shelfmark": "99.4 Rowling, Joanne K."
+                },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -13847,7 +14923,50 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2014 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:51625293",
+                "genreAndForm": ["roman"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Efterlyst - Klamme Harry og mig"],
+                  "original": ["Efterlysta - Harry Hansson och jag"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Elin Lindell", "__typename": "Person" }
+                ],
+                "publisher": ["ABC"],
+                "identifiers": [{ "value": "9788779162884" }],
+                "contributors": [{ "display": "Anja Hitz" }],
+                "edition": {
+                  "summary": "1. udgave, 2015",
+                  "publicationYear": { "display": "2015" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 118,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2014 }
+              }
+            ]
           }
         },
         {
@@ -14545,7 +15664,68 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:27963390",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og de vises sten"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
+                "creators": [
+                  {
+                    "display": "Chris Columbus (f. 1958)",
+                    "__typename": "Person"
+                  },
+                  { "display": "Steve Kloves", "__typename": "Person" },
+                  { "display": "John Seale", "__typename": "Person" },
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Warner Bros. Entertainment Danmark"],
+                "identifiers": [{ "value": "58815" }],
+                "contributors": [
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "John Cleese" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Richard Griffiths" },
+                  { "display": "Richard Harris" },
+                  { "display": "Ian Hart" },
+                  { "display": "John Hurt" }
+                ],
+                "edition": {
+                  "summary": "1-disc edition, 2009",
+                  "publicationYear": { "display": "2009" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "ca. 2 t., 27 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -15797,7 +16977,52 @@
               ],
               "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:45919692",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": [
+                    "Harry Potter and the prisoner of Azkaban (ill. Jim Kay)"
+                  ],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Bloomsbury Publishing"],
+                "identifiers": [{ "value": "9781408845660" }],
+                "contributors": [{ "display": "Jim Kay" }],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 325,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -16302,7 +17527,65 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:26205530",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og Flammernes Pokal"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
+                "creators": [
+                  { "display": "Mike Newell", "__typename": "Person" },
+                  { "display": "Steve Kloves", "__typename": "Person" },
+                  { "display": "Roger Pratt", "__typename": "Person" },
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Warner Bros. Entertainment Danmark"],
+                "identifiers": [{ "value": "Z13 59388" }],
+                "contributors": [
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Ralph Fiennes" },
+                  { "display": "Michael Gambon" },
+                  { "display": "Brendan Gleeson" },
+                  { "display": "Jason Isaacs" },
+                  { "display": "Gary Oldman" }
+                ],
+                "edition": {
+                  "summary": "1-disc edition, 2005",
+                  "publicationYear": { "display": "2005" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "ca. 2 t., 30 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -16877,7 +18160,67 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:27963404",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og hemmelighedernes kammer"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
+                "creators": [
+                  {
+                    "display": "Chris Columbus (f. 1958)",
+                    "__typename": "Person"
+                  },
+                  { "display": "Steve Kloves", "__typename": "Person" },
+                  { "display": "Roger Pratt", "__typename": "Person" },
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Warner Bros. Entertainment Danmark"],
+                "identifiers": [{ "value": "58816" }],
+                "contributors": [
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Kenneth Branagh" },
+                  { "display": "John Cleese" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Warwick Davis" },
+                  { "display": "Richard Griffiths" }
+                ],
+                "edition": {
+                  "summary": "1-disc edition, 2009",
+                  "publicationYear": { "display": "2009" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "ca. 2 t., 35 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -17438,7 +18781,65 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:25713583",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter og fangen fra Azkaban"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
+                "creators": [
+                  { "display": "Steve Kloves", "__typename": "Person" },
+                  { "display": "Alfonso Cuarón", "__typename": "Person" },
+                  { "display": "Michael Seresin", "__typename": "Person" },
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Sandrew Metronome"],
+                "identifiers": [{ "value": "Z13 58817" }],
+                "contributors": [
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Julie Christie" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Michael Gambov" },
+                  { "display": "Richard Griffiths" },
+                  { "display": "Gary Oldman" },
+                  { "display": "Alan Rickman" }
+                ],
+                "edition": {
+                  "summary": "1-disc edition, 2005",
+                  "publicationYear": { "display": "2005" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "2 t., 16 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -18466,7 +19867,53 @@
               ],
               "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:134620226",
+                "genreAndForm": ["roman", "fantasy", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": [
+                    "Harry Potter and the order of the Phoenix (Ill. Jim Kay)"
+                  ],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" },
+                  { "display": "Jim Kay", "__typename": "Person" }
+                ],
+                "publisher": ["Bloomsbury Children's Books"],
+                "identifiers": [{ "value": "9781408845684" }],
+                "contributors": [{ "display": "Neil Packer" }],
+                "edition": {
+                  "summary": "2022",
+                  "publicationYear": { "display": "2022" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 564,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -19390,7 +20837,68 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:39518775",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the philosopher's stone"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (dvd)" } }
+                ],
+                "creators": [
+                  {
+                    "display": "Chris Columbus (f. 1958)",
+                    "__typename": "Person"
+                  },
+                  { "display": "Steve Kloves", "__typename": "Person" },
+                  { "display": "John Seale", "__typename": "Person" }
+                ],
+                "publisher": ["SF Film"],
+                "identifiers": [{ "value": "1202696" }],
+                "contributors": [
+                  { "display": "Joanne K. Rowling" },
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "John Cleese" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Richard Griffiths" },
+                  { "display": "Richard Harris" },
+                  { "display": "Ian Hart" },
+                  { "display": "John Hurt" }
+                ],
+                "edition": {
+                  "summary": "2021",
+                  "publicationYear": { "display": "2021" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "2 t., 36 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -20074,7 +21582,53 @@
               ],
               "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
               "workYear": { "year": 2007 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:45654265",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the deathly hallows"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Bloomsbury"],
+                "identifiers": [
+                  { "value": "9781408855713" },
+                  { "value": "9781408855959" }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "Bloomsbury, new edition 2014, 2014",
+                  "publicationYear": { "display": "2014" }
+                },
+                "dateFirstEdition": { "display": "2007", "year": 2007 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 619,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
+                "workYear": { "year": 2007 }
+              }
+            ]
           }
         },
         {
@@ -20761,7 +22315,65 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53690246",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the goblet of fire"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+                ],
+                "creators": [
+                  { "display": "Mike Newell", "__typename": "Person" },
+                  { "display": "Steve Kloves", "__typename": "Person" },
+                  { "display": "Roger Pratt", "__typename": "Person" }
+                ],
+                "publisher": ["Twentieth Century Fox Home Entertainment"],
+                "identifiers": [{ "value": "FP 93174014" }],
+                "contributors": [
+                  { "display": "Joanne K. Rowling" },
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Ralph Fiennes" },
+                  { "display": "Michael Gambon" },
+                  { "display": "Brendan Gleeson" },
+                  { "display": "Jason Isaacs" },
+                  { "display": "Gary Oldman" }
+                ],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "2 t., 37 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -20903,7 +22515,50 @@
               ],
               "shelfmark": { "postfix": "Part", "shelfmark": "79.71" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:46004779",
+                "genreAndForm": ["biografier"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Kane"],
+                  "original": ["Harry Kane The Hurricane"]
+                },
+                "fictionNonfiction": {
+                  "display": "faglitteratur",
+                  "code": "NONFICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Michael Part", "__typename": "Person" }
+                ],
+                "publisher": ["Turbine"],
+                "identifiers": [{ "value": "9788740653199" }],
+                "contributors": [{ "display": "Tommy Heisz" }],
+                "edition": {
+                  "summary": "1. udgave, 2019",
+                  "publicationYear": { "display": "2019" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 124,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Part", "shelfmark": "79.71" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -21151,7 +22806,54 @@
               ],
               "shelfmark": { "postfix": "Lego", "shelfmark": "79.41" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:45926621",
+                "genreAndForm": [
+                  "spil for 1-2 spillere",
+                  "actionspil",
+                  "adventurespil"
+                ],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Lego Harry Potter collection (Xbox One)"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "vides ikke",
+                  "code": "NOT_SPECIFIED"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "xbox one" } }
+                ],
+                "creators": [
+                  { "display": "TT Games", "__typename": "Corporation" }
+                ],
+                "publisher": ["Warner Bros. Entertainment"],
+                "identifiers": [],
+                "contributors": [],
+                "edition": {
+                  "summary": "2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": ["PEGI-mærkning: 7"] },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Lego", "shelfmark": "79.41" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -21293,7 +22995,50 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2017 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53725953",
+                "genreAndForm": ["dyrefortællinger"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Et hjem til Harry"],
+                  "original": ["Een huis voor Harry"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "billedbog" } }
+                ],
+                "creators": [
+                  { "display": "Leo Timmers", "__typename": "Person" }
+                ],
+                "publisher": ["Turbine"],
+                "identifiers": [{ "value": "9788740619089" }],
+                "contributors": [{ "display": "Marie Brocks Larsen" }],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": { "display": "2017", "year": 2017 },
+                "audience": { "generalAudience": ["for højtlæsning"] },
+                "physicalDescription": {
+                  "numberOfPages": 50,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2017 }
+              }
+            ]
           }
         },
         {
@@ -21596,7 +23341,52 @@
               ],
               "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52232309",
+                "genreAndForm": ["dramatik", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the cursed child"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" },
+                  { "display": "Jack Thorne", "__typename": "Person" },
+                  { "display": "John Tiffany", "__typename": "Person" }
+                ],
+                "publisher": ["Little, Brown"],
+                "identifiers": [{ "value": "9780751565355" }],
+                "contributors": [],
+                "edition": {
+                  "summary": "Special rehearsal edition, 2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 343,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -22355,7 +24145,73 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53690262",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the chamber of secrets"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+                ],
+                "creators": [
+                  {
+                    "display": "Chris Columbus (f. 1958)",
+                    "__typename": "Person"
+                  },
+                  { "display": "Steve Kloves", "__typename": "Person" },
+                  { "display": "Roger Pratt", "__typename": "Person" }
+                ],
+                "publisher": ["Twentieth Century Fox Home Entertainment"],
+                "identifiers": [{ "value": "FP 93174012" }],
+                "contributors": [
+                  { "display": "Joanne K. Rowling" },
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Kenneth Branagh" },
+                  { "display": "John Cleese" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Warwick Davis" },
+                  { "display": "Richard Griffiths" },
+                  { "display": "Philip Christian Schmølker Hornehøj" },
+                  { "display": "Maja Iven Ulstrup" },
+                  { "display": "Allan Hyde" },
+                  { "display": "Mikkel Christiansen" },
+                  { "display": "Sebastian Jessen" },
+                  { "display": "Sonny Lahey" }
+                ],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "2 t., 40 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -23046,7 +24902,53 @@
               ],
               "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
               "workYear": { "year": 2005 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:45654273",
+                "genreAndForm": ["roman", "fantasy"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the half-blood prince"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Joanne K. Rowling", "__typename": "Person" }
+                ],
+                "publisher": ["Bloomsbury"],
+                "identifiers": [
+                  { "value": "9781408855706" },
+                  { "value": "9781408855942" }
+                ],
+                "contributors": [],
+                "edition": {
+                  "summary": "Bloomsbury, new edition 2014, 2014",
+                  "publicationYear": { "display": "2014" }
+                },
+                "dateFirstEdition": { "display": "2005", "year": 2005 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 541,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Rowling", "shelfmark": "83" },
+                "workYear": { "year": 2005 }
+              }
+            ]
           }
         },
         {
@@ -23749,7 +25651,74 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53690289",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the prisoner of Azkaban"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+                ],
+                "creators": [
+                  { "display": "Alfonso Cuarón", "__typename": "Person" },
+                  { "display": "Steve Kloves", "__typename": "Person" },
+                  { "display": "Michael Seresin", "__typename": "Person" }
+                ],
+                "publisher": ["Twentieth Century Fox Home Entertainment"],
+                "identifiers": [{ "value": "FP 93174013" }],
+                "contributors": [
+                  { "display": "Joanne K. Rowling" },
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Julie Christie" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Michael Gambon" },
+                  { "display": "Richard Griffiths" },
+                  { "display": "Gary Oldman" },
+                  { "display": "Alan Rickman" },
+                  { "display": "Philip Christian Schmølker Hornehøj" },
+                  { "display": "Maja Iven Ulstrup" },
+                  { "display": "Allan Hyde" },
+                  { "display": "Niels Ellegaard" },
+                  { "display": "Sebastian Jessen" },
+                  { "display": "Sonny Lahey" },
+                  { "display": "Kit Eichler" },
+                  { "display": "Lars Thiesgaard" },
+                  { "display": "Thea Iven Ulstrup" }
+                ],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "2 t., 22 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -24069,7 +26038,50 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2008 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:28233698",
+                "genreAndForm": ["roman", "chick lit"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Jagten på Harry Winston"],
+                  "original": ["Chasing Harry Winston"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Lauren Weisberger", "__typename": "Person" }
+                ],
+                "publisher": ["Sommer & Sørensen"],
+                "identifiers": [{ "value": "9788792355096" }],
+                "contributors": [{ "display": "Sara Koch" }],
+                "edition": {
+                  "summary": "2. udgave, 2010",
+                  "publicationYear": { "display": "2010" }
+                },
+                "dateFirstEdition": { "display": "2009", "year": 2009 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 283,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2008 }
+              }
+            ]
           }
         },
         {
@@ -24375,7 +26387,55 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2013 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:51259327",
+                "genreAndForm": ["roman", "gys", "humor"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Scary Harry - ikke til at spøge med"],
+                  "original": [
+                    "Scary Harry - von allen guten Geistern verlassen"
+                  ]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Sonja Kaiblinger", "__typename": "Person" }
+                ],
+                "publisher": ["Turbine"],
+                "identifiers": [{ "value": "9788771418125" }],
+                "contributors": [
+                  { "display": "Fréderic Bertrand" },
+                  { "display": "Jacob Jonia" }
+                ],
+                "edition": {
+                  "summary": "2014",
+                  "publicationYear": { "display": "2014" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 233,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2013 }
+              }
+            ]
           }
         },
         {
@@ -25038,7 +27098,63 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53051014",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the Order of the Phoenix"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+                ],
+                "creators": [
+                  { "display": "David Yates", "__typename": "Person" },
+                  { "display": "Michael Goldenberg", "__typename": "Person" },
+                  { "display": "Sławomir Idziak", "__typename": "Person" }
+                ],
+                "publisher": ["Twentieth Century Fox Home Entertainment"],
+                "identifiers": [{ "value": "FP 93174699" }],
+                "contributors": [
+                  { "display": "Joanne K. Rowling" },
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Ralph Fiennes" },
+                  { "display": "Michael Gambon" },
+                  { "display": "Brendan Gleeson" }
+                ],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": null,
+                "audience": {
+                  "generalAudience": ["Mærkning: Tilladt for børn over 11 år"]
+                },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "2 t., 18 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -25573,7 +27689,45 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:38519395",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": { "main": ["Kniv"], "original": ["Kniv (norsk)"] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788770073851" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2020",
+                  "publicationYear": { "display": "2020" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 502,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -25871,7 +28025,53 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2013 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52606071",
+                "genreAndForm": ["roman", "sjove bøger"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Hammerhaj - hajstjerne"],
+                  "original": ["Harry Hammer - shark star"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Davy Ocean", "__typename": "Person" }
+                ],
+                "publisher": ["Turbine"],
+                "identifiers": [{ "value": "9788740612387" }],
+                "contributors": [
+                  { "display": "Aaron Blecha" },
+                  { "display": "Natasja Erbillor" }
+                ],
+                "edition": {
+                  "summary": "2016",
+                  "publicationYear": { "display": "2016" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 113,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2013 }
+              }
+            ]
           }
         },
         {
@@ -26169,7 +28369,53 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2013 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:51830229",
+                "genreAndForm": ["roman", "sjove bøger"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry Hammerhaj - hajskolen"],
+                  "original": ["Harry Hammer - shark school"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Davy Ocean", "__typename": "Person" }
+                ],
+                "publisher": ["Turbine"],
+                "identifiers": [{ "value": "9788740604221" }],
+                "contributors": [
+                  { "display": "Aaron Blecha" },
+                  { "display": "Natasja Erbillor" }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2015",
+                  "publicationYear": { "display": "2015" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 119,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2013 }
+              }
+            ]
           }
         },
         {
@@ -26704,7 +28950,45 @@
               ],
               "shelfmark": null,
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:54215797",
+                "genreAndForm": ["roman", "krimi", "romaner"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": { "main": ["Tørst"], "original": ["Tørst (norsk)"] },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
+                "publisher": ["Modtryk"],
+                "identifiers": [{ "value": "9788770070096" }],
+                "contributors": [{ "display": "Allan Hilton Andersen" }],
+                "edition": {
+                  "summary": "5. udgave, 2018",
+                  "publicationYear": { "display": "2018" }
+                },
+                "dateFirstEdition": { "display": "2017", "year": 2017 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 523,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": null
+              }
+            ]
           }
         },
         {
@@ -27060,7 +29344,50 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2015 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:52134935",
+                "genreAndForm": ["roman"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Hemmeligt - Jørdis hjerte Harry"],
+                  "original": ["Hemligt: Jördis hjärta Harry"]
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Elin Lindell", "__typename": "Person" }
+                ],
+                "publisher": ["ABC"],
+                "identifiers": [{ "value": "9788779163577" }],
+                "contributors": [{ "display": "Anita Hitz" }],
+                "edition": {
+                  "summary": "1. udgave, 2015",
+                  "publicationYear": { "display": "2015" }
+                },
+                "dateFirstEdition": { "display": "2015", "year": 2015 },
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": 132,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2015 }
+              }
+            ]
           }
         },
         {
@@ -27362,7 +29689,53 @@
               ],
               "shelfmark": null,
               "workYear": { "year": 2011 }
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:28618085",
+                "genreAndForm": ["roman", "gys"],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "dansk", "isoCode": "dan" }]
+                },
+                "titles": {
+                  "main": ["Harry og Jønne og spøgelsesbilisten"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "skønlitteratur",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "bog" } }
+                ],
+                "creators": [
+                  { "display": "Jim Højberg", "__typename": "Person" }
+                ],
+                "publisher": ["Gyldendal"],
+                "identifiers": [{ "value": "9788702093070" }],
+                "contributors": [
+                  { "display": "Jon Ranheimsæter" },
+                  { "display": "Hanne Leth" }
+                ],
+                "edition": {
+                  "summary": "1. udgave, 2011",
+                  "publicationYear": { "display": "2011" }
+                },
+                "dateFirstEdition": { "display": "2011", "year": 2011 },
+                "audience": { "generalAudience": ["let at læse"] },
+                "physicalDescription": {
+                  "numberOfPages": 48,
+                  "playingTime": null
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": null,
+                "workYear": { "year": 2011 }
+              }
+            ]
           }
         },
         {
@@ -28196,7 +30569,63 @@
               ],
               "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
               "workYear": null
-            }
+            },
+            "mostRelevant": [
+              {
+                "pid": "870970-basis:53051030",
+                "genreAndForm": [],
+                "source": ["Bibliotekskatalog"],
+                "languages": {
+                  "main": [{ "display": "engelsk", "isoCode": "eng" }]
+                },
+                "titles": {
+                  "main": ["Harry Potter and the half-blood prince"],
+                  "original": []
+                },
+                "fictionNonfiction": {
+                  "display": "fiktion",
+                  "code": "FICTION"
+                },
+                "materialTypes": [
+                  { "materialTypeSpecific": { "display": "film (blu-ray 4K)" } }
+                ],
+                "creators": [
+                  { "display": "David Yates", "__typename": "Person" },
+                  { "display": "Bruno Delbonnel", "__typename": "Person" },
+                  { "display": "Steve Kloves", "__typename": "Person" }
+                ],
+                "publisher": ["Twentieth Century Fox Home Entertainment"],
+                "identifiers": [{ "value": "FP 93174015" }],
+                "contributors": [
+                  { "display": "Joanne K. Rowling" },
+                  { "display": "Daniel Radcliffe" },
+                  { "display": "Rupert Grint" },
+                  { "display": "Emma Watson" },
+                  { "display": "Robbie Coltrane" },
+                  { "display": "Helena Bonham Carter" },
+                  { "display": "Jim Broadbent" },
+                  { "display": "Michael Gambon" },
+                  { "display": "Alan Rickman" },
+                  { "display": "Maggie Smith" }
+                ],
+                "edition": {
+                  "summary": "2017",
+                  "publicationYear": { "display": "2017" }
+                },
+                "dateFirstEdition": null,
+                "audience": { "generalAudience": [] },
+                "physicalDescription": {
+                  "numberOfPages": null,
+                  "materialUnits": [{ "extent": "2 t., 10 min." }]
+                },
+                "accessTypes": [{ "code": "PHYSICAL" }],
+                "access": [
+                  { "__typename": "InterLibraryLoan", "loanIsPossible": true }
+                ],
+                "shelfmark": { "postfix": "Harry", "shelfmark": "77.7" },
+                "workYear": null
+              }
+            ]
           }
         }
       ]
