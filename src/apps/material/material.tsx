@@ -25,7 +25,6 @@ import {
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
-import { useScrollAfterFetchWithRetry } from "../../core/utils/useScrollAfterFetchWithRetry";
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import { isAnonymous, isBlocked } from "../../core/utils/helpers/user";
 import { useText } from "../../core/utils/text";
@@ -133,9 +132,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       setQueryParametersInUrl({ type: bestMaterialType });
     }
   }, [data]);
-
-  // Handle scrolling to any element with an ID matching the URL hash after data loads
-  useScrollAfterFetchWithRetry();
 
   if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;

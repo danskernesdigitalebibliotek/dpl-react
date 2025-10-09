@@ -12,6 +12,7 @@ import { PublizonErrorArgs } from "../../core/storybook/publizonErrorArgs";
 import { CopyLinkArgs } from "../../core/storybook/copyLinkArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
 import withPageStatistics from "../../core/statistics/withPageStatistics";
+import { useSmartScrollToAnchor } from "../../core/utils/useSmartScrollToAnchor";
 
 interface MaterialEntryTextProps {
   alreadyReservedText: string;
@@ -228,6 +229,10 @@ export interface MaterialEntryProps
 }
 
 const WrappedMaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => {
+  // Handle scrolling to any element with an ID matching the URL hash after data loads
+  // This runs at the entry level after all HOCs are applied
+  useSmartScrollToAnchor();
+
   return (
     <GuardedApp app="material">
       <Material wid={wid} />
