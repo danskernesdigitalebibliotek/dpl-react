@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   AccessUrl,
   InfomediaService,
@@ -14,8 +14,7 @@ import {
   isUrlValid,
   redirectToLoginAndBack,
   createUrlHash,
-  HashPrefix,
-  getFromUrlHash
+  HashPrefix
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { ReviewManifestation } from "../../core/utils/types/entities";
@@ -23,6 +22,7 @@ import { useUrls } from "../../core/utils/url";
 import { Button } from "../Buttons/Button";
 import ReviewHearts from "./ReviewHearts";
 import ReviewMetadata from "./ReviewMetadata";
+import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
 
 export interface ReviewInfomediaProps {
   review: ReviewManifestation;
@@ -52,7 +52,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     (accessItem) => accessItem.__typename === "InfomediaService"
   ) as Pick<InfomediaService, "id">[];
   const infomediaId = infomediaAccess[0].id;
-  const { data, error } = useGetInfomediaQuery({
+  const { data, error, isLoading } = useGetInfomediaQuery({
     id: infomediaId
   });
 
@@ -62,22 +62,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     redirectToLoginAndBack({ authUrl, returnUrl });
   };
 
-  // Scroll to element if there's a hash in the URL
-  useEffect(() => {
-    if (data) {
-      const hash = getFromUrlHash();
-
-      if (hash) {
-        const element = document.querySelector(
-          `[data-scroll-target="${hash}"]`
-        );
-
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    }
-  }, [data]);
+  useScrollToLocation([data, isLoading]);
 
   if (error) {
     return null;
@@ -131,6 +116,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     <li
       className="review text-small-caption"
       id={createUrlHash(HashPrefix.REVIEW, infomediaId)}
+      data-scroll-target={createUrlHash(HashPrefix.REVIEW, infomediaId)}
     >
       {(authors || date || publication) && (
         <ReviewMetadata

@@ -20,9 +20,8 @@ import {
   useCollectPageStatistics,
   usePageStatistics
 } from "../../core/statistics/useStatistics";
-import { getWorkPid } from "../../core/utils/helpers/general";
+import { getAllFaustIds, getWorkPid } from "../../core/utils/helpers/general";
 import {
-  getFromUrlHash,
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
@@ -46,6 +45,9 @@ import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
+import useAvailabilityData from "../../components/availability-label/useAvailabilityData";
+import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
+import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -63,6 +65,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
   const { updatePageStatistics } = usePageStatistics();
   const { collectPageStatistics } = useCollectPageStatistics();
+  const disclosureOpenStates = getDisclosureOpenStatesFromUrl();
 
   useUpdateEffect(() => {
     updatePageStatistics({ waitTime: 2500 });
@@ -134,22 +137,23 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   }, [data]);
 
-  // Scroll to element if there's a hash in the URL
-  useEffect(() => {
-    if (data?.work && selectedManifestations) {
-      const hash = getFromUrlHash();
-
-      if (hash) {
-        const element = document.querySelector(
-          `[data-scroll-target="${hash}"]`
-        );
-
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
+  // We need availability in order to show availability text under action buttons
+  const { isAvailable, isLoading: isAvailabilityLoading } = useAvailabilityData(
+    {
+      accessTypes: [AccessTypeCodeEnum.Physical, AccessTypeCodeEnum.Online],
+      access: [undefined],
+      faustIds: selectedManifestations
+        ? getAllFaustIds(selectedManifestations)
+        : [],
+      isbn: null, // Not needed.
+      // "manifestText" is used inside the availability hook to check whether the material is an article
+      // which we check inside shouldShowMaterialAvailabilityText() helper here.
+      manifestText: "NOT AN ARTICLE",
+      enabled: !!selectedManifestations
     }
-  }, [data?.work, selectedManifestations]);
+  );
+
+  useScrollToLocation([data?.work, isAvailabilityLoading]);
 
   if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;
@@ -171,8 +175,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   });
   const infomediaIds = getInfomediaIds(selectedManifestations);
 
-  const disclosureOpenStates = getDisclosureOpenStatesFromUrl();
-
   return (
     <>
       <section className="material-page">
@@ -184,6 +186,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           selectedPeriodical={selectedPeriodical}
           selectPeriodicalHandler={setSelectedPeriodical}
           isGlobalMaterial={workType === "global"}
+          isAvailable={isAvailable}
         >
           {manifestations.map((manifestation) => (
             <>

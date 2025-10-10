@@ -22,6 +22,7 @@ import { WorkId } from "../../../../core/utils/types/ids";
 import { useEventStatistics } from "../../../../core/statistics/useStatistics";
 import { statistics } from "../../../../core/statistics/statistics";
 import PlayerModal from "../../player-modal/PlayerModal";
+import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -286,8 +287,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   if (type === "reader") {
     return (
       <>
-        {renderReaderButton()}
-        {renderReaderTeaserButton()}
+        {renderReaderButton() ?? <MaterialButtonLoading />}
+        {renderReaderTeaserButton() ?? <MaterialButtonLoading />}
         {renderDeleteReservationModal()}
       </>
     );
@@ -296,8 +297,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   if (type === "player") {
     return (
       <>
-        {renderPlayerButton()}
-        {renderPlayerTeaserButton()}
+        {renderPlayerButton() ?? <MaterialButtonLoading />}
+        {renderPlayerTeaserButton() ?? <MaterialButtonLoading />}
         {renderDeleteReservationModal()}
       </>
     );
