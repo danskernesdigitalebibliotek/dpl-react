@@ -41,6 +41,7 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({
     <li
       className="review text-small-caption"
       id={createUrlHash(HashPrefix.REVIEW, pid)}
+      data-scroll-target={createUrlHash(HashPrefix.REVIEW, pid)}
       data-cy={dataCy}
     >
       {(authors || date || publication) && (

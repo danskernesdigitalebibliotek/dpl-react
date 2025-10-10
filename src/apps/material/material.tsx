@@ -22,6 +22,7 @@ import {
 } from "../../core/statistics/useStatistics";
 import { getWorkPid } from "../../core/utils/helpers/general";
 import {
+  getFromUrlHash,
   getUrlQueryParam,
   setQueryParametersInUrl
 } from "../../core/utils/helpers/url";
@@ -132,6 +133,23 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
       setQueryParametersInUrl({ type: bestMaterialType });
     }
   }, [data]);
+
+  // Scroll to element if there's a hash in the URL
+  useEffect(() => {
+    if (data?.work && selectedManifestations) {
+      const hash = getFromUrlHash();
+
+      if (hash) {
+        const element = document.querySelector(
+          `[data-scroll-target="${hash}"]`
+        );
+
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+  }, [data?.work, selectedManifestations]);
 
   if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;

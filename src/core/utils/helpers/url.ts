@@ -216,6 +216,14 @@ export const createUrlHash = (prefix: HashPrefix, id: string): string => {
   return `${prefix}${id}`;
 };
 
+export const getFromUrlHash = () => {
+  const hash = window.location.hash;
+  if (hash) {
+    return hash.replace("#", "");
+  }
+  return null;
+};
+
 export const getIdFromUrlHash = (prefix: HashPrefix): string | null => {
   const hash = window.location.hash;
   if (hash.startsWith(`#${prefix}`)) {

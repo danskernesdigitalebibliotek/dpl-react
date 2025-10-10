@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AccessUrl,
   InfomediaService,
@@ -14,7 +14,8 @@ import {
   isUrlValid,
   redirectToLoginAndBack,
   createUrlHash,
-  HashPrefix
+  HashPrefix,
+  getFromUrlHash
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { ReviewManifestation } from "../../core/utils/types/entities";
@@ -61,6 +62,23 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     redirectToLoginAndBack({ authUrl, returnUrl });
   };
 
+  // Scroll to element if there's a hash in the URL
+  useEffect(() => {
+    if (data) {
+      const hash = getFromUrlHash();
+
+      if (hash) {
+        const element = document.querySelector(
+          `[data-scroll-target="${hash}"]`
+        );
+
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+  }, [data]);
+
   if (error) {
     return null;
   }
@@ -73,6 +91,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
       <li
         className="review text-small-caption"
         id={createUrlHash(HashPrefix.REVIEW, infomediaId)}
+        data-scroll-target={createUrlHash(HashPrefix.REVIEW, infomediaId)}
         data-cy={dataCy}
       >
         {(authors || date || publication) && (

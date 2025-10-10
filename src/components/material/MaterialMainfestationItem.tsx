@@ -122,7 +122,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const manifestationId = createUrlHash(HashPrefix.MANIFESTATION, pid);
 
   return (
-    <div className="material-manifestation-item" id={manifestationId}>
+    <div
+      className="material-manifestation-item"
+      id={manifestationId}
+      data-scroll-target={manifestationId}
+    >
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
           key={`${faustId}-material-manifestation-item`}
