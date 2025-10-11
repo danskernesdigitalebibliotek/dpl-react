@@ -200,3 +200,18 @@ export const isUrlValid = (text: string) => {
 export const currentLocationWithParametersUrl = (
   params: Record<string, string>
 ) => appendQueryParametersToUrl(new URL(getCurrentLocation()), params);
+
+export const getCurrentUrlWithHash = (hash: string): string => {
+  const { origin, pathname, search } = window.location;
+  return `${origin}${pathname}${search}#${hash}`;
+};
+
+// Hash-based URL utilities
+export enum HashPrefix {
+  MANIFESTATION = "manifestation-",
+  REVIEW = "review-"
+}
+
+export const createUrlHash = (prefix: HashPrefix, id: string): string => {
+  return `${prefix}${id}`;
+};
