@@ -125,6 +125,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
     <div
       className="material-manifestation-item"
       id={manifestationId}
+      data-scroll-target={manifestationId}
     >
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel

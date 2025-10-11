@@ -223,3 +223,11 @@ export const getIdFromUrlHash = (prefix: HashPrefix): string | null => {
   }
   return null;
 };
+
+export const getFromUrlHash = () => {
+  const hash = window.location.hash;
+  if (hash) {
+    return hash.replace("#", "");
+  }
+  return null;
+};

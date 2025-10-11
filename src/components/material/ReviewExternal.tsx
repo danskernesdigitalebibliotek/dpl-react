@@ -43,6 +43,7 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({
     <li
       className="review text-small-caption"
       id={id}
+      data-scroll-target={id}
       data-cy={dataCy}
     >
       {(authors || date || publication) && (

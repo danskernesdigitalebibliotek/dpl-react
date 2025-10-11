@@ -5,7 +5,6 @@ import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
   convertPostIdToFaustId,
-  getAllFaustIds,
   getManifestationsPids,
   getMaterialTypes,
   getWorkPid
@@ -29,8 +28,6 @@ import {
   getWorkTitle
 } from "../../apps/material/helper";
 import { isPeriodical, shouldShowMaterialAvailabilityText } from "./helper";
-import useAvailabilityData from "../availability-label/useAvailabilityData";
-import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { first } from "lodash";
 import { hasCorrectMaterialType } from "./material-buttons/helper";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
@@ -44,6 +41,7 @@ interface MaterialHeaderProps {
   selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
   children: React.ReactNode;
   isGlobalMaterial: boolean;
+  isAvailable: boolean | null;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -58,7 +56,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   selectedPeriodical,
   selectPeriodicalHandler,
   children,
-  isGlobalMaterial = false
+  isGlobalMaterial = false,
+  isAvailable
 }) => {
   const materialTitleId = useId();
   const dispatch = useDispatch<TypedDispatch>();
@@ -81,16 +80,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const languageIsoCode = getManifestationLanguageIsoCode(
     selectedManifestations
   );
-  // We need availability in order to show availability text under action buttons
-  const { isAvailable } = useAvailabilityData({
-    accessTypes: [AccessTypeCodeEnum.Physical, AccessTypeCodeEnum.Online],
-    access: [undefined],
-    faustIds: getAllFaustIds(selectedManifestations),
-    isbn: null, // Not needed.
-    // "manifestText" is used inside the availability hook to check whether the material is an article
-    // which we check inside shouldShowMaterialAvailabilityText() helper here.
-    manifestText: "NOT AN ARTICLE"
-  });
+
   const isYearbook =
     hasCorrectMaterialType(
       ManifestationMaterialType.yearBook,

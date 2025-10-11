@@ -52,7 +52,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     (accessItem) => accessItem.__typename === "InfomediaService"
   ) as Pick<InfomediaService, "id">[];
   const infomediaId = infomediaAccess[0].id;
-  const { data, error } = useGetInfomediaQuery({
+  const { data, error, isLoading } = useGetInfomediaQuery({
     id: infomediaId
   });
 
@@ -62,8 +62,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     redirectToLoginAndBack({ authUrl, returnUrl });
   };
 
-  // If there is an anchor we scroll down to it.
-  useScrollToLocation(data);
+  useScrollToLocation([data, isLoading]);
 
   if (error) {
     return null;
@@ -80,6 +79,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
       <li
         className="review text-small-caption"
         id={id}
+        data-scroll-target={id}
         data-cy={dataCy}
       >
         {(authors || date || publication) && (
@@ -116,7 +116,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   ) as Pick<AccessUrl, "origin" | "url">[];
 
   return (
-    <li className="review text-small-caption" id={id}>
+    <li className="review text-small-caption" id={id} data-scroll-target={id}>
       {(authors || date || publication) && (
         <ReviewMetadata
           author={authors}

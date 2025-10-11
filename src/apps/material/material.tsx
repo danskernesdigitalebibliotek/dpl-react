@@ -20,7 +20,7 @@ import {
   useCollectPageStatistics,
   usePageStatistics
 } from "../../core/statistics/useStatistics";
-import { getWorkPid } from "../../core/utils/helpers/general";
+import { getAllFaustIds, getWorkPid } from "../../core/utils/helpers/general";
 import {
   getUrlQueryParam,
   setQueryParametersInUrl
@@ -45,6 +45,9 @@ import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
 import OnlineInternalModal from "../../components/reservation/OnlineInternalModal";
 import MaterialGridRelated from "../../components/material-grid-related/MaterialGridRelated";
+import useAvailabilityData from "../../components/availability-label/useAvailabilityData";
+import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
+import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -134,6 +137,24 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
     }
   }, [data]);
 
+  // We need availability in order to show availability text under action buttons
+  const { isAvailable, isLoading: isAvailabilityLoading } = useAvailabilityData(
+    {
+      accessTypes: [AccessTypeCodeEnum.Physical, AccessTypeCodeEnum.Online],
+      access: [undefined],
+      faustIds: selectedManifestations
+        ? getAllFaustIds(selectedManifestations)
+        : [],
+      isbn: null, // Not needed.
+      // "manifestText" is used inside the availability hook to check whether the material is an article
+      // which we check inside shouldShowMaterialAvailabilityText() helper here.
+      manifestText: "NOT AN ARTICLE",
+      enabled: !!selectedManifestations
+    }
+  );
+
+  useScrollToLocation([data?.work, isAvailabilityLoading]);
+
   if (isLoading || !data?.work || !selectedManifestations) {
     return <MaterialSkeleton />;
   }
@@ -165,6 +186,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           selectedPeriodical={selectedPeriodical}
           selectPeriodicalHandler={setSelectedPeriodical}
           isGlobalMaterial={workType === "global"}
+          isAvailable={isAvailable}
         >
           {manifestations.map((manifestation) => (
             <>

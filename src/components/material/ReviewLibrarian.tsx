@@ -35,6 +35,7 @@ const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
     <li
       className="review text-small-caption"
       id={id}
+      data-scroll-target={id}
       data-cy={dataCy}
     >
       {(authors || date || publication) && (
