@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getFromUrlHash } from "./helpers/url";
 
 // The dependency prop is given to the hook so that it can scroll based on
 // external changes (e.g. scroll when some data on the page loads).
 export const useScrollToLocation = (dependencies: Array<unknown>) => {
+  const stableDependencies = useMemo(() => dependencies, [dependencies]);
   const [scrolledAlready, setScrolledAlready] = useState<boolean>(false);
   const hash = getFromUrlHash();
+
   useEffect(() => {
     if (hash && !scrolledAlready) {
       const element = document.querySelector(`[data-scroll-target="${hash}"]`);
@@ -18,7 +20,7 @@ export const useScrollToLocation = (dependencies: Array<unknown>) => {
         }, 300);
       }
     }
-  }, [hash, ...dependencies, scrolledAlready]);
+  }, [hash, stableDependencies, scrolledAlready]);
 };
 
 export default {};
