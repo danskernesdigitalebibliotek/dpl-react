@@ -24,7 +24,6 @@ import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "./periodical/helper";
 import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
   getManifestationLanguageIsoCode,
   getWorkTitle
@@ -62,7 +61,6 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   isGlobalMaterial = false
 }) => {
   const materialTitleId = useId();
-  const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const dispatch = useDispatch<TypedDispatch>();
   const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
@@ -144,8 +142,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           languageIsoCode={languageIsoCode}
           materialTitleId={materialTitleId}
         />
-        <div ref={itemRef} className="material-header__availability-label">
-          {!isGlobalMaterial && showItem && (
+        <div className="material-header__availability-label">
+          {!isGlobalMaterial && (
             <AvailabilityLabels
               cursorPointer
               workId={wid}
@@ -156,7 +154,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           )}
         </div>
         {/* The CTA buttons apparently only make sense on a global work */}
-        {!isGlobalMaterial && showItem && (
+        {!isGlobalMaterial && (
           <>
             {isPeriodical(selectedManifestations) && (
               <MaterialPeriodical
