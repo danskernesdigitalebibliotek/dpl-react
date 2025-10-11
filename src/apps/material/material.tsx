@@ -38,7 +38,8 @@ import {
   getInfomediaIds,
   getManifestationChildrenOrAdults,
   getManifestationsOrderByTypeAndYear,
-  isParallelReservation
+  isParallelReservation,
+  getDisclosureOpenStatesFromUrl
 } from "./helper";
 import MaterialDisclosure from "./MaterialDisclosure";
 import ReservationFindOnShelfModals from "./ReservationFindOnShelfModals";
@@ -61,6 +62,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const [isUserBlocked, setIsUserBlocked] = useState<boolean | null>(null);
   const { updatePageStatistics } = usePageStatistics();
   const { collectPageStatistics } = useCollectPageStatistics();
+  const disclosureOpenStates = getDisclosureOpenStatesFromUrl();
 
   useUpdateEffect(() => {
     updatePageStatistics({ waitTime: 2500 });
@@ -152,9 +154,6 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   });
   const infomediaIds = getInfomediaIds(selectedManifestations);
 
-  // Get disclosure URL parameter from the current URL to see if it should be open.
-  const shouldOpenReviewDisclosure = !!getUrlQueryParam("disclosure");
-
   return (
     <>
       <section className="material-page">
@@ -214,6 +213,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             title={`${t("editionsText")} (${manifestations.length})`}
             icon={VariousIcon}
             dataCy="material-editions-disclosure"
+            open={disclosureOpenStates.editions}
           >
             <>
               {getManifestationsOrderByTypeAndYear(manifestations).map(
@@ -234,6 +234,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           dataCy="material-details-disclosure"
           title={t("detailsText")}
           icon={Receipt}
+          open={disclosureOpenStates.details}
         >
           <MaterialDetailsList
             id={`material-details-${wid}`}
@@ -245,7 +246,7 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           <DisclosureControllable
             detailsClassName="disclosure text-body-large"
             id="reviews"
-            showContent={shouldOpenReviewDisclosure}
+            showContent={disclosureOpenStates.reviews}
             cyData="material-reviews-disclosure"
             summary={
               <DisclosureSummary

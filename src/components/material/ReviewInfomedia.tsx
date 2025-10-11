@@ -11,7 +11,7 @@ import {
 } from "../../core/utils/helpers/general";
 import {
   createUrlHash,
-  currentLocationWithParametersUrl,
+  getCurrentLocation,
   HashPrefix,
   isUrlValid,
   redirectToLoginAndBack
@@ -57,9 +57,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   });
 
   const onClick = (reviewId: string) => {
-    const returnUrl = currentLocationWithParametersUrl({
-      disclosure: "disclosure-reviews"
-    });
+    const returnUrl = new URL(getCurrentLocation());
     returnUrl.hash = createUrlHash(HashPrefix.REVIEW, reviewId);
     redirectToLoginAndBack({ authUrl, returnUrl });
   };
