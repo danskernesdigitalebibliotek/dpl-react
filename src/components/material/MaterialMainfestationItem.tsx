@@ -34,6 +34,8 @@ import {
 import {
   getCurrentUrlWithHash,
   createUrlHash,
+  getIdFromUrlHash,
+  HashPrefix
 } from "../../core/utils/helpers/url";
 
 export interface MaterialMainfestationItemProps {
@@ -48,7 +50,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();
-  const [isOpen, setIsOpen] = useState(false);
+  const shouldOpenDetails = getIdFromUrlHash(HashPrefix.MANIFESTATION) === pid;
+  const [isOpen, setIsOpen] = useState(shouldOpenDetails);
   const faustId = convertPostIdToFaustId(pid);
   const author = creatorsToString(flattenCreators(creators), t);
 

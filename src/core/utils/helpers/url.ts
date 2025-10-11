@@ -215,3 +215,11 @@ export enum HashPrefix {
 export const createUrlHash = (prefix: HashPrefix, id: string): string => {
   return `${prefix}${id}`;
 };
+
+export const getIdFromUrlHash = (prefix: HashPrefix): string | null => {
+  const hash = window.location.hash;
+  if (hash.startsWith(`#${prefix}`)) {
+    return hash.replace(`#${prefix}`, "");
+  }
+  return null;
+};
