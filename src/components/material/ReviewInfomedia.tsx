@@ -10,7 +10,9 @@ import {
   getReviewRelease
 } from "../../core/utils/helpers/general";
 import {
+  createUrlHash,
   currentLocationWithParametersUrl,
+  HashPrefix,
   isUrlValid,
   redirectToLoginAndBack
 } from "../../core/utils/helpers/url";
@@ -58,7 +60,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     const returnUrl = currentLocationWithParametersUrl({
       disclosure: "disclosure-reviews"
     });
-    returnUrl.hash = reviewId;
+    returnUrl.hash = createUrlHash(HashPrefix.REVIEW, reviewId);
     redirectToLoginAndBack({ authUrl, returnUrl });
   };
 
@@ -72,9 +74,16 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     return null;
   }
   const { infomedia } = data;
+
+  const id = createUrlHash(HashPrefix.REVIEW, infomediaId);
+
   if (infomedia.error) {
     return (
-      <li className="review text-small-caption" data-cy={dataCy}>
+      <li
+        className="review text-small-caption"
+        id={id}
+        data-cy={dataCy}
+      >
         {(authors || date || publication) && (
           <ReviewMetadata
             author={authors}
@@ -109,7 +118,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   ) as Pick<AccessUrl, "origin" | "url">[];
 
   return (
-    <li className="review text-small-caption" id={infomediaId}>
+    <li className="review text-small-caption" id={id}>
       {(authors || date || publication) && (
         <ReviewMetadata
           author={authors}

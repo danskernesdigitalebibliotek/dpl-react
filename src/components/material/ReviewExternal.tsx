@@ -9,6 +9,7 @@ import {
 } from "../../core/utils/helpers/general";
 import { ReviewManifestation } from "../../core/utils/types/entities";
 import Link from "../atoms/links/Link";
+import { createUrlHash, HashPrefix } from "../../core/utils/helpers/url";
 
 export interface ReviewExternalProps {
   review: ReviewManifestation;
@@ -17,6 +18,7 @@ export interface ReviewExternalProps {
 
 const ReviewExternal: React.FC<ReviewExternalProps> = ({
   review: {
+    pid,
     workYear,
     dateFirstEdition,
     creators,
@@ -35,8 +37,14 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({
     (accessItem) => accessItem.__typename === "AccessUrl"
   ) as Pick<AccessUrl, "origin" | "url">[];
 
+  const id = createUrlHash(HashPrefix.REVIEW, pid);
+
   return (
-    <li className="review text-small-caption" data-cy={dataCy}>
+    <li
+      className="review text-small-caption"
+      id={id}
+      data-cy={dataCy}
+    >
       {(authors || date || publication) && (
         <ReviewMetadata
           author={authors}
