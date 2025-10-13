@@ -90,3 +90,5 @@ updates:
         versions: [">=1.0.30001741"]
       - dependency-name: "@types/react"
         versions: [">=19.1.13"]
+      - dependency-name: "eslint-plugin-react-hooks"
+        update-types: ["version-update:semver-major"]
