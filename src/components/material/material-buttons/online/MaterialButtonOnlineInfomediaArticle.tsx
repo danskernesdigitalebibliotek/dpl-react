@@ -11,6 +11,7 @@ import { isResident } from "../../../../core/utils/helpers/userInfo";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
 import MaterialButtonDisabled from "../generic/MaterialButtonDisabled";
 import useUserInfo from "../../../../core/adgangsplatformen/useUserInfo";
+import { isAnonymous } from "../../../../core/utils/helpers/user";
 
 export interface MaterialButtonOnlineInfomediaArticleProps {
   size?: ButtonSize;
@@ -33,7 +34,9 @@ const MaterialButtonOnlineInfomediaArticle: FC<
   const authUrl = u("authUrl");
   const siteAgencyId = config("agencyIdConfig");
 
-  const { isLoading: isLoadingUserInfo, data: userInfo } = useUserInfo();
+  const { isLoading: isLoadingUserInfo, data: userInfo } = useUserInfo({
+    enabled: !isAnonymous()
+  });
   const { openGuarded } = useModalButtonHandler();
   const isUserResident =
     userInfo && siteAgencyId ? isResident(userInfo, siteAgencyId) : null;

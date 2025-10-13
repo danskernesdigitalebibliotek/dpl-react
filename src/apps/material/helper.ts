@@ -25,6 +25,11 @@ import {
 } from "../../core/fbs/model";
 import { UseConfigFunction } from "../../core/utils/config";
 import {
+  getIdFromUrlHash,
+  getUrlQueryParam,
+  HashPrefix
+} from "../../core/utils/helpers/url";
+import {
   flattenCreators,
   getMaterialType,
   orderManifestationsByYear
@@ -682,6 +687,19 @@ export const getWorkTitle = (work: Work): string => {
 
   // This should never happen, so therefore ist not translated.
   return "Unknown title";
+};
+
+export const getDisclosureOpenStatesFromUrl = () => {
+  const disclosureParam = getUrlQueryParam("disclosure");
+
+  const manifestationHash = getIdFromUrlHash(HashPrefix.MANIFESTATION);
+  const reviewHash = getIdFromUrlHash(HashPrefix.REVIEW);
+
+  return {
+    reviews: disclosureParam === "reviews" || !!reviewHash,
+    editions: disclosureParam === "editions" || !!manifestationHash,
+    details: disclosureParam === "details"
+  };
 };
 
 // ************** VITEST ***************

@@ -10,6 +10,7 @@ import {
   useUpdateV8
 } from "../fbs/fbs";
 import useUserInfo from "../adgangsplatformen/useUserInfo";
+import { isAnonymous } from "./helpers/user";
 
 export interface FetchHandlers {
   onSuccess?: () => void;
@@ -25,7 +26,9 @@ interface UseSavePatron {
 }
 
 const useSavePatron = ({ patron, fetchHandlers }: UseSavePatron) => {
-  const { data: userInfo } = useUserInfo();
+  const { data: userInfo } = useUserInfo({
+    enabled: !isAnonymous()
+  });
   const { mutate } = useUpdateV8();
   const queryClient = useQueryClient();
 
