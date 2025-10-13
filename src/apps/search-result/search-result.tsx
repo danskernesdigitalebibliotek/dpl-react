@@ -25,15 +25,16 @@ import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import {
   getCurrentLocation,
-  getUrlQueryParam
+  getUrlQueryParam,
+  redirectTo
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
-import SearchResultZeroHits from "./search-result-zero-hits";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
 import { formatSearchDisplayQuery } from "./helper";
+import { useUrls } from "../../core/utils/url";
 import { useConfig } from "../../core/utils/config";
 
 interface SearchResultProps {
@@ -49,6 +50,8 @@ type InfoBoxConfig = {
 };
 
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
+  const u = useUrls();
+  const zeroHitsSearchUrl = u("zeroHitsSearchUrl");
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
   const cleanBranches = useGetCleanBranches();
@@ -120,7 +123,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       limit: pageSize,
       filters: createFilters(filters, cleanBranches)
     },
-    { enabled: q.length >= minimalQueryLength }
+    {
+      enabled: q.length >= minimalQueryLength,
+      onSuccess: (data) => {
+        if (data.search.hitcount === 0) {
+          redirectTo(zeroHitsSearchUrl);
+        }
+      }
+    }
   );
 
   useEffect(() => {
@@ -188,10 +198,6 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     return <SearchResultInvalidSearch />;
   }
 
-  const shouldShowZeroHits = () => {
-    return !isLoading && hitcount === 0;
-  };
-
   const displayQuery = formatSearchDisplayQuery({
     q,
     creator: getUrlQueryParam("creators"),
@@ -218,9 +224,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     <div className="content-list-page">
       {isLoading && <SearchResultSkeleton q={q} />}
 
-      {shouldShowZeroHits() && <SearchResultZeroHits />}
-
-      {!isLoading && !shouldShowZeroHits() && resultItems && (
+      {!isLoading && resultItems && (
         <>
           <SearchResultHeader hitcount={hitcount} displayQuery={displayQuery} />
           <FacetLine q={q} />

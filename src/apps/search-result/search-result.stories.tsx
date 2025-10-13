@@ -12,6 +12,9 @@ import globalConfigArgs, {
 import mappArgs, {
   argTypes as mappArgTypes
 } from "../../core/storybook/mappArgs";
+import zeroHitsSearchUrlArgs, {
+  argTypes as zeroHitsSearchUrlArgTypes
+} from "../../core/storybook/zeroHitsSearchUrlArgs";
 
 const meta: Meta<typeof SearchResultEntry> = {
   title: "Apps / Search Result",
@@ -23,6 +26,7 @@ const meta: Meta<typeof SearchResultEntry> = {
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
     ...mappArgTypes,
+    ...zeroHitsSearchUrlArgTypes,
     q: {
       description: "Search string",
       control: { type: "text" }
@@ -73,10 +77,6 @@ const meta: Meta<typeof SearchResultEntry> = {
     },
     showingResultsForText: {
       description: "Showing results for",
-      control: { type: "text" }
-    },
-    noSearchResultText: {
-      description: "0-hit search result",
       control: { type: "text" }
     },
     blacklistedPickupBranchesConfig: {
@@ -220,6 +220,7 @@ export const Primary: Story = {
     ...globalTextArgs,
     ...globalConfigArgs,
     ...mappArgs,
+    ...zeroHitsSearchUrlArgs,
     q: "harry",
     pageSizeDesktop: 50,
     pageSizeMobile: 20,
@@ -236,7 +237,6 @@ export const Primary: Story = {
     numberDescriptionText: "Nr.",
     inSeriesText: "in series",
     showingResultsForText: "Showing results for “@query”",
-    noSearchResultText: "Your search has 0 results",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
     blacklistedAvailabilityBranchesConfig:
