@@ -70,11 +70,5 @@ updates:
         versions: [">=4"]
       - dependency-name: "dotenv"
         update-types: ["version-update:semver-major"]
-      - dependency-name: "happy-dom"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "caniuse-lite"
-        versions: [">=1.0.30001741"]
-      - dependency-name: "@types/react"
-        versions: [">=19.1.13"]
       - dependency-name: "eslint-plugin-react-hooks"
         update-types: ["version-update:semver-major"]
