@@ -24,9 +24,9 @@ import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal"
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
 import {
-  getCurrentLocation
+  getCurrentLocation,
   getUrlQueryParam,
-  redirectTo,
+  redirectTo
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import useGetCleanBranches from "../../core/utils/branches";
