@@ -55,20 +55,6 @@ updates:
       testing-library:
         patterns:
           - "@testing-library/*"
-      eslint:
-        patterns:
-          - "eslint"
-          - "eslint-config-prettier"
-          - "eslint-loader"
-          - "eslint-plugin-cypress"
-          - "eslint-plugin-import"
-          - "eslint-plugin-jsx-a11y"
-          - "eslint-plugin-no-only-tests"
-          - "eslint-plugin-prettier"
-          - "eslint-plugin-react"
-          - "eslint-plugin-react-hooks"
-          - "eslint-webpack-plugin"
-          - "@eslint/*"
       cypress:
         patterns:
           - "cypress"
