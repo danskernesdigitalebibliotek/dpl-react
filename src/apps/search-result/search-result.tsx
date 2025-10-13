@@ -35,6 +35,7 @@ import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
 import { formatSearchDisplayQuery } from "./helper";
 import { useUrls } from "../../core/utils/url";
+import { useConfig } from "../../core/utils/config";
 
 interface SearchResultProps {
   q: string;
