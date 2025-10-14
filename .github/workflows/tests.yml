@@ -55,6 +55,7 @@ jobs:
         with:
           name: cypress-videos-${{ matrix.containers }}
           path: cypress/videos
+      - run: mkdir -p .nyc_output
       - name: Generate code coverage report
         run: yarn run nyc report --reporter=clover --reporter=text --report-dir=./coverage
       - name: Upload coverage to Codecov

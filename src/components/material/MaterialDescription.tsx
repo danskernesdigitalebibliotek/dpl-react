@@ -4,7 +4,6 @@ import {
   getDbcVerifiedSubjectsFirst,
   materialContainsDanish
 } from "../../apps/material/helper";
-import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
   constructDK5SearchUrl,
   constructMaterialUrl,
@@ -25,7 +24,6 @@ export interface MaterialDescriptionProps {
 }
 
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
-  const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const t = useText();
   const u = useUrls();
   const searchUrl = u("searchUrl");
@@ -72,63 +70,55 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
     : [];
 
   return (
-    <section
-      ref={itemRef}
-      className="material-description"
-      data-cy="material-description"
-    >
-      {showItem && (
-        <>
-          <h2 className="text-header-h4 pb-24">
-            {t("descriptionHeadlineText")}
-          </h2>
-          {work.abstract && (
-            <p className="text-body-large material-description__content">
-              {work.abstract[0]}
-            </p>
+    <section className="material-description" data-cy="material-description">
+      <>
+        <h2 className="text-header-h4 pb-24">{t("descriptionHeadlineText")}</h2>
+        {work.abstract && (
+          <p className="text-body-large material-description__content">
+            {work.abstract[0]}
+          </p>
+        )}
+        <div className="material-description__links mt-32">
+          {shouldShowDk5 && dk5MainEntry && (
+            <HorizontalTermLine
+              title={t("subjectNumberText")}
+              linkList={[
+                {
+                  url: constructDK5SearchUrl(searchUrl, dk5MainEntry.code),
+                  term: dk5MainEntry.display
+                }
+              ]}
+            />
           )}
-          <div className="material-description__links mt-32">
-            {shouldShowDk5 && dk5MainEntry && (
-              <HorizontalTermLine
-                title={t("subjectNumberText")}
-                linkList={[
-                  {
-                    url: constructDK5SearchUrl(searchUrl, dk5MainEntry.code),
-                    term: dk5MainEntry.display
-                  }
-                ]}
-              />
-            )}
-            <SeriesList
-              series={series}
-              searchUrl={searchUrl}
-              t={t}
-              workId={work.workId}
-              dataCy="material-description-series"
-            />
-            <HorizontalTermLine
-              title={t("inSameSeriesText")}
-              linkList={seriesMembersList}
-              dataCy="material-description-series-members"
-            />
-            <HorizontalTermLine
-              title={t("identifierText")}
-              linkList={subjectsList}
-              dataCy="material-description-identifier"
-            />
-            <HorizontalTermLine
-              title={t("fictionNonfictionText")}
-              linkList={fictionNonfictionList}
-              dataCy="material-description-fiction-nonfiction"
-            />
-            <HorizontalTermLine
-              title={t("filmAdaptationsText")}
-              linkList={filmAdaptationsList}
-              dataCy="material-description-film-adaptations"
-            />
-          </div>
-        </>
-      )}
+          <SeriesList
+            series={series}
+            searchUrl={searchUrl}
+            t={t}
+            workId={work.workId}
+            dataCy="material-description-series"
+          />
+          <HorizontalTermLine
+            title={t("inSameSeriesText")}
+            linkList={seriesMembersList}
+            dataCy="material-description-series-members"
+          />
+          <HorizontalTermLine
+            title={t("identifierText")}
+            linkList={subjectsList}
+            dataCy="material-description-identifier"
+          />
+          <HorizontalTermLine
+            title={t("fictionNonfictionText")}
+            linkList={fictionNonfictionList}
+            dataCy="material-description-fiction-nonfiction"
+          />
+          <HorizontalTermLine
+            title={t("filmAdaptationsText")}
+            linkList={filmAdaptationsList}
+            dataCy="material-description-film-adaptations"
+          />
+        </div>
+      </>
     </section>
   );
 };

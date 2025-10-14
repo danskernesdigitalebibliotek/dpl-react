@@ -5,7 +5,6 @@ import { guardedRequest } from "../../core/guardedRequests.slice";
 import { TypedDispatch } from "../../core/store";
 import {
   convertPostIdToFaustId,
-  getAllFaustIds,
   getManifestationsPids,
   getMaterialTypes,
   getWorkPid
@@ -24,14 +23,11 @@ import { Manifestation, Work } from "../../core/utils/types/entities";
 import { PeriodicalEdition } from "./periodical/helper";
 import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import { useItemHasBeenVisible } from "../../core/utils/helpers/lazy-load";
 import {
   getManifestationLanguageIsoCode,
   getWorkTitle
 } from "../../apps/material/helper";
 import { isPeriodical, shouldShowMaterialAvailabilityText } from "./helper";
-import useAvailabilityData from "../availability-label/useAvailabilityData";
-import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { first } from "lodash";
 import { hasCorrectMaterialType } from "./material-buttons/helper";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
@@ -45,6 +41,7 @@ interface MaterialHeaderProps {
   selectPeriodicalHandler: (selectedPeriodical: PeriodicalEdition) => void;
   children: React.ReactNode;
   isGlobalMaterial: boolean;
+  isAvailable: boolean | null;
 }
 
 const MaterialHeader: React.FC<MaterialHeaderProps> = ({
@@ -59,10 +56,10 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   selectedPeriodical,
   selectPeriodicalHandler,
   children,
-  isGlobalMaterial = false
+  isGlobalMaterial = false,
+  isAvailable
 }) => {
   const materialTitleId = useId();
-  const { itemRef, hasBeenVisible: showItem } = useItemHasBeenVisible();
   const dispatch = useDispatch<TypedDispatch>();
   const addToListRequest = (id: ButtonFavouriteId) => {
     dispatch(
@@ -83,16 +80,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   const languageIsoCode = getManifestationLanguageIsoCode(
     selectedManifestations
   );
-  // We need availability in order to show availability text under action buttons
-  const { isAvailable } = useAvailabilityData({
-    accessTypes: [AccessTypeCodeEnum.Physical, AccessTypeCodeEnum.Online],
-    access: [undefined],
-    faustIds: getAllFaustIds(selectedManifestations),
-    isbn: null, // Not needed.
-    // "manifestText" is used inside the availability hook to check whether the material is an article
-    // which we check inside shouldShowMaterialAvailabilityText() helper here.
-    manifestText: "NOT AN ARTICLE"
-  });
+
   const isYearbook =
     hasCorrectMaterialType(
       ManifestationMaterialType.yearBook,
@@ -144,8 +132,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           languageIsoCode={languageIsoCode}
           materialTitleId={materialTitleId}
         />
-        <div ref={itemRef} className="material-header__availability-label">
-          {!isGlobalMaterial && showItem && (
+        <div className="material-header__availability-label">
+          {!isGlobalMaterial && (
             <AvailabilityLabels
               cursorPointer
               workId={wid}
@@ -156,7 +144,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
           )}
         </div>
         {/* The CTA buttons apparently only make sense on a global work */}
-        {!isGlobalMaterial && showItem && (
+        {!isGlobalMaterial && (
           <>
             {isPeriodical(selectedManifestations) && (
               <MaterialPeriodical
