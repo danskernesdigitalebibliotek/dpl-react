@@ -26,7 +26,7 @@ const ButtonTag = React.forwardRef<HTMLButtonElement, ButtonTagProps>(
     ref
   ) => {
     const classes = clsx(
-      "tag",
+      "tag tag--outline",
       selected && "tag--fill",
       size && `tag--${size}`,
       "cursor-pointer",
