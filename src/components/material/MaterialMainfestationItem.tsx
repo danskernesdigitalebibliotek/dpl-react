@@ -11,6 +11,7 @@ import {
 import { useText } from "../../core/utils/text";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
+import CopyLink from "../copy-link/CopyLink";
 import { Manifestation } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
 import {
@@ -31,6 +32,12 @@ import {
   getManifestationSource,
   getManifestationTitle
 } from "../../apps/material/helper";
+import {
+  getCurrentUrlWithHash,
+  createUrlHash,
+  getIdFromUrlHash,
+  HashPrefix
+} from "../../core/utils/helpers/url";
 
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
@@ -46,7 +53,8 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();
-  const [isOpen, setIsOpen] = useState(false);
+  const shouldOpenDetails = getIdFromUrlHash(HashPrefix.MANIFESTATION) === pid;
+  const [isOpen, setIsOpen] = useState(shouldOpenDetails);
   const faustId = convertPostIdToFaustId(pid);
   const author = creatorsToString(flattenCreators(creators), t);
 
@@ -114,12 +122,15 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
   const access = manifestation.access.map((acc) => acc.__typename);
   const detailsId = `material-details-${pid}`;
+  const manifestationId = createUrlHash(HashPrefix.MANIFESTATION, pid);
 
   return (
     <div
       className={clsx("material-manifestation-item", {
         "material-manifestation-item--no-side-margins": isEditionPicker
       })}
+      id={manifestationId}
+      data-scroll-target={manifestationId}
     >
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
@@ -170,11 +181,18 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <MaterialDetailsList
-            id={detailsId}
-            className="mt-24"
-            data={detailsListData}
-          />
+          <>
+            <MaterialDetailsList
+              id={detailsId}
+              className="mt-24"
+              data={detailsListData}
+            />
+            <CopyLink
+              label={t("copyLinkToEditionText")}
+              url={getCurrentUrlWithHash(manifestationId)}
+              className="mt-24 mb-24"
+            />
+          </>
         )}
       </div>
       <div className="material-manifestation-item__buttons">

@@ -10,23 +10,25 @@ const useAvailabilityData = ({
   access,
   faustIds,
   manifestText,
-  isbn
+  isbn,
+  enabled = true
 }: {
   accessTypes: AccessTypeCodeEnum[];
   access: AccessTypes[];
   faustIds: FaustId[];
   manifestText: string;
   isbn: string | null;
+  enabled?: boolean;
 }) => {
   const availabilityOnline = useOnlineAvailabilityData({
-    enabled: isOnline(accessTypes),
+    enabled: isOnline(accessTypes) && enabled,
     access,
     faustIds,
     isbn
   });
 
   const availabilityPhysical = usePhysicalAvailabilityData({
-    enabled: !isOnline(accessTypes),
+    enabled: !isOnline(accessTypes) && enabled,
     faustIds,
     manifestText
   });

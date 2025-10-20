@@ -364,7 +364,8 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "99.4 Allen, Eugene"
+        "display": "99.4 Allen, Eugene",
+        "code": "99.4"
       },
       "relations": {
         "hasReview": [],

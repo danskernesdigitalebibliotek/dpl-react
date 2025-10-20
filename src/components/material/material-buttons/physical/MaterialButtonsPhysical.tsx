@@ -51,11 +51,17 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const isUserBlocked = !!(userData?.patron && isBlocked(userData?.patron));
 
   if (isLoading || isLoadingAvailability) {
-    return <MaterialButtonLoading />;
+    return <MaterialButtonLoading classNames="reserve-button" />;
   }
 
   if (!reservableManifestations || reservableManifestations.length < 1) {
-    return <MaterialButtonDisabled size={size} label={t("cantReserveText")} />;
+    return (
+      <MaterialButtonDisabled
+        size={size}
+        label={t("cantReserveText")}
+        classNames="reserve-button"
+      />
+    );
   }
 
   if (isUserBlocked) {

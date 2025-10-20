@@ -74,6 +74,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
 
   return (
     <Button
+      classNames="reserve-button"
       dataCy={dataCy}
       label={getButtonLabel()}
       buttonType="none"
