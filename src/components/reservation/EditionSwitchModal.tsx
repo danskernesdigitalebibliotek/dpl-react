@@ -9,6 +9,7 @@ import {
 } from "../../apps/material/helper";
 import { WorkId } from "../../core/utils/types/ids";
 import { Button } from "../Buttons/Button";
+import { materialIsFiction } from "../../core/utils/helpers/general";
 
 export type EditionSwitchModalProps = {
   work: Work;
@@ -28,6 +29,10 @@ const EditionSwitchModal = ({
   const allManifestations = getManifestationsOrderByTypeAndYear(
     work.manifestations.all
   );
+
+  const editionButtonText = materialIsFiction(work)
+    ? t("editionSwitchButtonFictionText")
+    : t("editionSwitchButtonNonFictionText");
 
   return (
     <Modal
@@ -54,7 +59,7 @@ const EditionSwitchModal = ({
             <div className="reservation-modal-submit">
               <Button
                 dataCy="edition-switch-first-available-button"
-                label={t("firstAvailableEditionText")}
+                label={editionButtonText}
                 buttonType="none"
                 variant="filled"
                 collapsible={false}

@@ -39,7 +39,7 @@ const MaterialButtonPhysical: FC<MaterialButtonPhysicalProps> = ({
 
   const getButtonLabel = () => {
     if (isEditionPicker) {
-      return t("editionChooseText");
+      return t("editionSwitchButtonChooseText");
     }
 
     if (size === "small") {
