@@ -1,6 +1,6 @@
 import { ComponentObject } from "@hammzj/cypress-page-object";
 
-export class EditionsComponent extends ComponentObject {
+export class DisclosureEditionsComponent extends ComponentObject {
   constructor() {
     super(() => cy.getBySel("material-editions-disclosure"));
     this.addElements = {
