@@ -3,7 +3,7 @@ import { interceptFbsCalls } from "../../../cypress/intercepts/fbs/interceptFbsC
 import {
   givenAMaterial,
   givenAMaterialMusic
-} from "../../../cypress/fixtures/material";
+} from "../../../cypress/intercepts/fbi/material";
 
 describe("Material Page Object Test", () => {
   let materialPage: MaterialPage;

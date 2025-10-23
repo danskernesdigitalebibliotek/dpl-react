@@ -1,5 +1,5 @@
-import { buildGetMaterialResponse } from "../factories/material/material.factory";
-import { musicMaterial } from "../factories/material/variants/musicMaterial";
+import { buildGetMaterialResponse } from "../../factories/material/material.factory";
+import { musicMaterial } from "../../factories/material/variants/musicMaterial";
 
 export const givenAMaterial = () => {
   cy.interceptGraphql({
