@@ -6,7 +6,7 @@ export class DisclosureEditionsComponent extends ComponentObject {
     this.addElements = {
       summary: () => {
         this.container().scrollIntoView();
-        return this.container().getBySel("disclosure-summary");
+        return this.container().find("[data-cy='disclosure-summary']");
       },
       manifestationItems: () =>
         this.container().find(".material-manifestation-item")

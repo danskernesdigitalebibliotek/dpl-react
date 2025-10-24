@@ -168,12 +168,12 @@ describe("Material Page Object Test", () => {
         // When: Opening the details disclosure
         materialPage.components.DisclosureDetails((details) => {
           // Then: Summary should show "Details"
-          details.elements.summary().should("contain.text", "Details");
+          details.elements.summary().shouldContainAll(["Details"]);
 
           details.open();
 
           // Then: Should display multiple detail items
-          details.elements.listItems().should("have.length.at.least", 5);
+          details.elements.listItems().should("have.length", 9);
           details.elements.listDescription().should("be.visible");
 
           // And: Should display Language

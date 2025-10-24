@@ -5,10 +5,10 @@ export class DisclosureDetailsComponent extends ComponentObject {
     super(() => cy.getBySel("material-details-disclosure"));
     this.addElements = {
       summary: () => {
-        return this.container().getBySel("disclosure-summary");
+        return this.container().find("[data-cy='disclosure-summary']");
       },
       listDescription: () => {
-        return this.container().getBySel("list-description");
+        return this.container().find("[data-cy='list-description']");
       },
       listItems: () => this.container().find(".list-description__item")
     };
