@@ -265,44 +265,33 @@ describe("Material Page Object Test", () => {
           editions.elements.manifestationItems().should("have.length", 4);
 
           // And: First manifestation (physical book) should have correct availability and buttons
-          editions
-            .getAvailabilityLabelForManifestation(0)
-            .should("be.visible")
-            .and("contain.text", "bog")
-            .and("contain.text", "Available");
+          editions.getManifestationItem(0).within(() => {
+            cy.contains("bog").should("be.visible");
+            cy.contains("Available").should("be.visible");
+            cy.contains("button", "Reserve").should("be.visible");
+            cy.contains("button", "Find on shelf").should("be.visible");
+          });
 
           // And: Second manifestation (physical book unavailable) should have correct availability
-          editions
-            .getAvailabilityLabelForManifestation(1)
-            .should("be.visible")
-            .and("contain.text", "bog")
-            .and("contain.text", "Unavailable");
-
           editions.getManifestationItem(1).within(() => {
+            cy.contains("bog").should("be.visible");
+            cy.contains("Unavailable").should("be.visible");
             cy.contains("button", "Reserve").should("be.visible");
             cy.contains("button", "Find on shelf").should("be.visible");
           });
 
           // And: Third manifestation (e-book) should have correct availability and button
-          editions
-            .getAvailabilityLabelForManifestation(2)
-            .should("be.visible")
-            .and("contain.text", "e-bog")
-            .and("contain.text", "Available");
-
           editions.getManifestationItem(2).within(() => {
+            cy.contains("e-bog").should("be.visible");
+            cy.contains("Available").should("be.visible");
             cy.contains("button", "Loan e-bog").should("be.visible");
             cy.contains("Try e-bog").should("be.visible");
           });
 
           // And: Fourth manifestation (audiobook) should have correct availability and buttons
-          editions
-            .getAvailabilityLabelForManifestation(3)
-            .should("be.visible")
-            .and("contain.text", "lydbog")
-            .and("contain.text", "Unavailable");
-
           editions.getManifestationItem(3).within(() => {
+            cy.contains("lydbog").should("be.visible");
+            cy.contains("Unavailable").should("be.visible");
             cy.contains("button", "Can't be reserved").should("be.visible");
             cy.contains("button", "Find on shelf").should("be.visible");
           });
