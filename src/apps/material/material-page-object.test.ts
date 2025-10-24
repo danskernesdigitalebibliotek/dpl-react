@@ -11,6 +11,7 @@ describe("Material Page Object Test", () => {
   let materialPage: MaterialPage;
 
   beforeEach(() => {
+    cy.viewport(1280, 720);
     // FBS service calls with realistic factory data
     interceptFbsCalls();
 
