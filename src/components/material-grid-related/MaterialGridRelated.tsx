@@ -165,11 +165,7 @@ const MaterialGridRelated: FC<MaterialGridRelatedProps> = ({ work }) => {
           }))}
         />
       </div>
-      <MaterialGrid
-        materials={displayedMaterials}
-        selectedAmountOfMaterialsForDisplay={8}
-        initialMaximumDisplay={8}
-      />
+      <MaterialGrid materials={displayedMaterials} initialMaximumDisplay={8} />
     </div>
   );
 };
