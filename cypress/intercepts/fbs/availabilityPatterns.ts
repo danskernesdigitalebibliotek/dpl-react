@@ -17,7 +17,6 @@ type BranchOptions = {
   };
 };
 
-// Helper: Create branch with copies
 const branch = ({
   library,
   available,
@@ -33,7 +32,6 @@ const branch = ({
   ]
 });
 
-// Main availability patterns
 export enum AvailabilityPattern {
   ONLY_AVAILABLE_ON_MAIN_LIBRARY = "ONLY_AVAILABLE_ON_MAIN_LIBRARY",
   IS_RESERVABLE_EVERYWHERE = "IS_RESERVABLE_EVERYWHERE",
@@ -44,7 +42,6 @@ export enum AvailabilityPattern {
   ON_SHELF_BUT_UNAVAILABLE = "ON_SHELF_BUT_UNAVAILABLE"
 }
 
-// Per-branch holdings configuration
 export interface BranchHoldingsConfig {
   branchId: string;
   title: string;
@@ -57,7 +54,6 @@ export interface BranchHoldingsConfig {
   }[];
 }
 
-// Configuration for how each pattern should behave
 export interface AvailabilityConfigType {
   // Global settings
   reservable: boolean;
