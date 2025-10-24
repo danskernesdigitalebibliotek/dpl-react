@@ -290,7 +290,7 @@ describe("Material Page Object Test", () => {
             .and("contain.text", "Available");
 
           editions.getManifestationItem(2).within(() => {
-            cy.contains("Loan e-bog").should("be.visible");
+            cy.contains("button", "Loan e-bog").should("be.visible");
             cy.contains("Try e-bog").should("be.visible");
           });
 
@@ -453,22 +453,12 @@ describe("Material Page Object Test", () => {
           findOnShelf.getLibraryDisclosure(1).click();
 
           // Then: Should show detailed placement information
-          findOnShelf
-            .getLibraryDisclosure(1)
-            .contains("De syv søstre (2017)")
-            .should("be.visible");
-          findOnShelf
-            .getLibraryDisclosure(1)
-            .contains("Voksen")
-            .should("be.visible");
-          findOnShelf
-            .getLibraryDisclosure(1)
-            .contains("Skønlitteratur")
-            .should("be.visible");
-          findOnShelf
-            .getLibraryDisclosure(1)
-            .contains("Riley, Lucinda")
-            .should("be.visible");
+          findOnShelf.getLibraryDisclosure(1).within(() => {
+            cy.contains("De syv søstre (2017)").should("be.visible");
+            cy.contains("Voksen").should("be.visible");
+            cy.contains("Skønlitteratur").should("be.visible");
+            cy.contains("Riley, Lucinda").should("be.visible");
+          });
         });
       });
     });
