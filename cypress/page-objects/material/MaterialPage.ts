@@ -23,28 +23,19 @@ export class MaterialPage extends PageObject {
 
     this.addElements = {
       headerAvailabilityLabels: () => {
-        cy.get(".material-header__availability-label").scrollIntoView();
+        cy.get(".material-header__availability-label");
         return cy.get(
           ".material-header__availability-label .availability-label"
         );
       },
-      stockInfo: () =>
-        cy
-          .getBySel("material-header-content")
-          .find(".text-small-caption")
-          .scrollIntoView(),
-      descriptionSection: () =>
-        cy.getBySel("material-description").scrollIntoView(),
-      seriesInfo: () =>
-        cy.getBySel("material-description-series-0").scrollIntoView(),
-      seriesMembers: () =>
-        cy.getBySel("material-description-series-members").scrollIntoView(),
-      identifierTags: () =>
-        cy.getBySel("material-description-identifier").scrollIntoView(),
+      stockInfo: () => cy.getBySel("material-header-content"),
+      descriptionSection: () => cy.getBySel("material-description"),
+      seriesInfo: () => cy.getBySel("material-description-series-0"),
+      seriesMembers: () => cy.getBySel("material-description-series-members"),
+      identifierTags: () => cy.getBySel("material-description-identifier"),
       fictionNonfiction: () =>
-        cy.getBySel("material-description-fiction-nonfiction").scrollIntoView(),
-      detailsDisclosure: () =>
-        cy.getBySel("material-details-disclosure").scrollIntoView()
+        cy.getBySel("material-description-fiction-nonfiction"),
+      detailsDisclosure: () => cy.getBySel("material-details-disclosure")
     };
 
     this.addNestedComponents = {
@@ -82,14 +73,12 @@ export class MaterialPage extends PageObject {
   }
 
   openModalReservation() {
-    cy.getBySel("material-header-buttons-physical").scrollIntoView();
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .click();
   }
 
   openFindOnShelf() {
-    cy.getBySel("material-header-buttons-find-on-shelf").scrollIntoView();
     cy.getBySel("material-header-buttons-find-on-shelf")
       .should("be.visible")
       .click();

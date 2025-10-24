@@ -110,6 +110,25 @@ Cypress.Commands.add(
   }
 );
 
+/**
+ * Check that an element contains all specified texts
+ * @param texts Array of texts to check for
+ * @example cy.get('.tags').shouldContainAll(['tag1', 'tag2', 'tag3'])
+ */
+Cypress.Commands.add(
+  "shouldContainAll",
+  { prevSubject: true },
+  (subject, texts: string[]) => {
+    cy.wrap(subject).scrollIntoView();
+    cy.wrap(subject).within(() => {
+      texts.forEach((text) => {
+        cy.contains(text).should("be.visible");
+      });
+    });
+    return cy.wrap(subject);
+  }
+);
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -128,6 +147,11 @@ declare global {
         endSelector: string,
         checkVisible?: boolean
       ): Chainable;
+      /**
+       * Check that an element contains all specified texts
+       * @example cy.get('.tags').shouldContainAll(['tag1', 'tag2'])
+       */
+      shouldContainAll(texts: string[]): Chainable;
     }
   }
 }

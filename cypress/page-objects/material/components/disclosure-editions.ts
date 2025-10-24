@@ -19,12 +19,6 @@ export class DisclosureEditionsComponent extends ComponentObject {
     return this;
   }
 
-  getAvailabilityLabelForManifestation(manifestationIndex: number) {
-    const item = this.elements.manifestationItems().eq(manifestationIndex);
-    item.scrollIntoView();
-    return item.find('[data-cy="availability-label"]');
-  }
-
   getManifestationItem(manifestationIndex: number) {
     const item = this.elements.manifestationItems().eq(manifestationIndex);
     item.scrollIntoView();

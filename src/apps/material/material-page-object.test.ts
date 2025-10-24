@@ -70,10 +70,7 @@ describe("Material Page Object Test", () => {
     materialPage.visit([]);
 
     // Then: The page should display the music album title
-    materialPage.elements
-      .title()
-      .should("be.visible")
-      .and("contain.text", "Test Music Album");
+    materialPage.elements.title().shouldContainAll(["Test Music Album"]);
   });
 
   describe("Material Page Content", () => {
@@ -86,16 +83,10 @@ describe("Material Page Object Test", () => {
       materialPage.visit([]);
 
       // Then: Title should be visible
-      materialPage.elements
-        .title()
-        .should("be.visible")
-        .and("contain.text", "De syv søstre");
+      materialPage.elements.title().shouldContainAll(["De syv søstre"]);
 
       // And: Description should be visible
-      materialPage.elements.descriptionSection().should("be.visible");
-      materialPage.elements
-        .descriptionSection()
-        .should("contain.text", "Pa Salt");
+      materialPage.elements.descriptionSection().shouldContainAll(["Pa Salt"]);
     });
 
     it("Should display availability labels", () => {
@@ -119,10 +110,9 @@ describe("Material Page Object Test", () => {
       materialPage.visit([]);
 
       // Then: Stock information should be visible
-      materialPage.elements.stockInfo().should("be.visible");
       materialPage.elements
         .stockInfo()
-        .should("contain.text", "We have 11 copies of the material in stock.");
+        .shouldContainAll(["We have 11 copies of the material in stock."]);
     });
 
     it("Should display series information", () => {
@@ -134,21 +124,12 @@ describe("Material Page Object Test", () => {
       materialPage.visit([]);
 
       // Then: Series information should be visible
-      materialPage.elements.seriesInfo().should("be.visible");
-      materialPage.elements.seriesInfo().should("contain.text", "Del");
-      materialPage.elements.seriesInfo().should("contain.text", "serien");
+      materialPage.elements.seriesInfo().shouldContainAll(["Del", "serien"]);
 
       // And: Related series materials should be shown
-      materialPage.elements.seriesMembers().should("be.visible");
       materialPage.elements
         .seriesMembers()
-        .should("contain.text", "De syv søstre");
-      materialPage.elements
-        .seriesMembers()
-        .should("contain.text", "Stormsøsteren");
-      materialPage.elements
-        .seriesMembers()
-        .should("contain.text", "Skyggesøsteren");
+        .shouldContainAll(["De syv søstre", "Stormsøsteren", "Skyggesøsteren"]);
     });
 
     it("Should display tags and categories", () => {
@@ -160,19 +141,14 @@ describe("Material Page Object Test", () => {
       materialPage.visit([]);
 
       // Then: Tags should be visible
-      materialPage.elements.identifierTags().should("be.visible");
-      materialPage.elements.identifierTags().should("contain.text", "Tags");
       materialPage.elements
         .identifierTags()
-        .should("contain.text", "kærlighed");
-      materialPage.elements.identifierTags().should("contain.text", "adoption");
-      materialPage.elements.identifierTags().should("contain.text", "familien");
+        .shouldContainAll(["Tags", "kærlighed", "adoption", "familien"]);
 
       // And: Fictional category should be shown
-      materialPage.elements.fictionNonfiction().should("be.visible");
       materialPage.elements
         .fictionNonfiction()
-        .should("contain.text", "skønlitteratur");
+        .shouldContainAll(["skønlitteratur"]);
     });
   });
 
@@ -201,45 +177,26 @@ describe("Material Page Object Test", () => {
           details.elements.listDescription().should("be.visible");
 
           // And: Should display Language
-          details
-            .getValueByKey("Language")
-            .should("be.visible")
-            .and("contain.text", "dansk");
+          details.getValueByKey("Language").shouldContainAll(["dansk"]);
 
           // And: Should display Edition
           details
             .getValueByKey("Edition")
-            .should("be.visible")
-            .and("contain.text", "2017 (2. udgave)");
+            .shouldContainAll(["2017 (2. udgave)"]);
 
           // And: Should display Genre
-          details
-            .getValueByKey("Genre")
-            .should("be.visible")
-            .and("contain.text", "romaner");
+          details.getValueByKey("Genre").shouldContainAll(["romaner"]);
 
           // And: Should display Original title
           details
             .getValueByKey("Original title")
-            .should("be.visible")
-            .and("contain.text", "The seven sisters");
+            .shouldContainAll(["The seven sisters"]);
 
           // And: Should display Publisher
-          details
-            .getValueByKey("Publisher")
-            .should("be.visible")
-            .and("contain.text", "Cicero");
+          details.getValueByKey("Publisher").shouldContainAll(["Cicero"]);
 
           // And: Should display Type
-          details
-            .getValueByKey("Type")
-            .should("be.visible")
-            .and("contain.text", "bog");
-
-          // And: First item should have key and value
-          details.getListItem(0).should("be.visible");
-          details.getKeyByIndex(0).should("be.visible");
-          details.getValueByIndex(0).should("be.visible");
+          details.getValueByKey("Type").shouldContainAll(["bog"]);
         });
       });
     });
@@ -265,36 +222,39 @@ describe("Material Page Object Test", () => {
           editions.elements.manifestationItems().should("have.length", 4);
 
           // And: First manifestation (physical book) should have correct availability and buttons
-          editions.getManifestationItem(0).within(() => {
-            cy.contains("bog").should("be.visible");
-            cy.contains("Available").should("be.visible");
-            cy.contains("button", "Reserve").should("be.visible");
-            cy.contains("button", "Find on shelf").should("be.visible");
-          });
+          editions
+            .getManifestationItem(0)
+            .shouldContainAll(["bog", "Available", "Reserve", "Find on shelf"]);
 
           // And: Second manifestation (physical book unavailable) should have correct availability
-          editions.getManifestationItem(1).within(() => {
-            cy.contains("bog").should("be.visible");
-            cy.contains("Unavailable").should("be.visible");
-            cy.contains("button", "Reserve").should("be.visible");
-            cy.contains("button", "Find on shelf").should("be.visible");
-          });
+          editions
+            .getManifestationItem(1)
+            .shouldContainAll([
+              "bog",
+              "Unavailable",
+              "Reserve",
+              "Find on shelf"
+            ]);
 
           // And: Third manifestation (e-book) should have correct availability and button
-          editions.getManifestationItem(2).within(() => {
-            cy.contains("e-bog").should("be.visible");
-            cy.contains("Available").should("be.visible");
-            cy.contains("button", "Loan e-bog").should("be.visible");
-            cy.contains("Try e-bog").should("be.visible");
-          });
+          editions
+            .getManifestationItem(2)
+            .shouldContainAll([
+              "e-bog",
+              "Available",
+              "Loan e-bog",
+              "Try e-bog"
+            ]);
 
           // And: Fourth manifestation (audiobook) should have correct availability and buttons
-          editions.getManifestationItem(3).within(() => {
-            cy.contains("lydbog").should("be.visible");
-            cy.contains("Unavailable").should("be.visible");
-            cy.contains("button", "Can't be reserved").should("be.visible");
-            cy.contains("button", "Find on shelf").should("be.visible");
-          });
+          editions
+            .getManifestationItem(3)
+            .shouldContainAll([
+              "lydbog",
+              "Unavailable",
+              "Can't be reserved",
+              "Find on shelf"
+            ]);
         });
       });
 
@@ -336,45 +296,42 @@ describe("Material Page Object Test", () => {
           reservation.elements.listItems().should("have.length", 5);
 
           // And: Edition item
-          reservation.getListItem(0).within(() => {
-            cy.contains("Edition");
-            cy.contains("First available edition");
-            cy.contains("button", "Change");
-          });
+          reservation
+            .getListItem(0)
+            .shouldContainAll(["Edition", "First available edition", "Change"]);
 
           // And: Interest period item
-          reservation.getListItem(1).within(() => {
-            cy.contains("Have no interest after");
-            cy.contains("14 days");
-            cy.contains("button", "Change");
-          });
+          reservation
+            .getListItem(1)
+            .shouldContainAll(["Have no interest after", "14 days", "Change"]);
 
           // And: Pickup location item
-          reservation.getListItem(2).within(() => {
-            cy.contains("Pick up at");
-            cy.contains("Hovedbiblioteket");
-            cy.contains("button", "Change");
-          });
+          reservation
+            .getListItem(2)
+            .shouldContainAll(["Pick up at", "Hovedbiblioteket", "Change"]);
 
           // And: SMS item
-          reservation.getListItem(3).within(() => {
-            cy.contains("You will receive an SMS");
-            cy.contains("12345678");
-            cy.contains("button", "Change");
-          });
+          reservation
+            .getListItem(3)
+            .shouldContainAll([
+              "You will receive an SMS",
+              "12345678",
+              "Change"
+            ]);
 
           // And: Email item
-          reservation.getListItem(4).within(() => {
-            cy.contains("You will receive an email");
-            cy.contains("test@test.com");
-            cy.contains("button", "Change");
-          });
+          reservation
+            .getListItem(4)
+            .shouldContainAll([
+              "You will receive an email",
+              "test@test.com",
+              "Change"
+            ]);
 
           // And: Submit button should be visible
           reservation.elements
             .submitButton()
-            .should("be.visible")
-            .and("contain.text", "Approve reservation");
+            .shouldContainAll(["Approve reservation"]);
         });
       });
     });
@@ -392,12 +349,11 @@ describe("Material Page Object Test", () => {
 
         materialPage.components.ModalReservation((reservation) => {
           // Then: Should show "All editions" and "First available edition"
-          reservation.elements
-            .subtitle()
-            .should("contain.text", "(All editions)");
+          reservation.elements.subtitle().shouldContainAll(["(All editions)"]);
+
           reservation
             .getListItemValue(0)
-            .should("contain.text", "First available edition");
+            .shouldContainAll(["Edition", "First available edition", "Change"]);
 
           // When: Changing the edition
           reservation.changeEdition();
@@ -405,9 +361,7 @@ describe("Material Page Object Test", () => {
 
         // Then: Editions switch modal displays with options
         materialPage.components.ModalEditionsSwitch((editionsSwitch) => {
-          editionsSwitch.elements
-            .title()
-            .should("contain.text", "Choose Edition");
+          editionsSwitch.elements.title().shouldContainAll(["Choose Edition"]);
           editionsSwitch.elements.manifestationItems().should("have.length", 4);
 
           // When: Choosing the first available manifestation (2017 edition)
@@ -418,7 +372,7 @@ describe("Material Page Object Test", () => {
         materialPage.components.ModalReservation((reservation) => {
           reservation
             .getListItemValue(0)
-            .should("contain.text", "2017 (2. udgave)");
+            .shouldContainAll(["2017 (2. udgave)"]);
         });
       });
     });
@@ -448,26 +402,32 @@ describe("Material Page Object Test", () => {
             .libraryDisclosures()
             .should("have.length.at.least", 3);
 
-          // And: Should show specific libraries with availability
-          cy.contains("Hovedbiblioteket").should("be.visible");
-          cy.contains("Islands Brygge").should("be.visible");
-
           // And: First library disclosure should show headline and availability
-          findOnShelf.getLibraryDisclosure(0).within(() => {
-            cy.contains("Hovedbiblioteket").should("be.visible");
-            cy.contains("Available").should("be.visible");
-          });
+          findOnShelf
+            .getLibraryDisclosure(0)
+            .shouldContainAll(["Hovedbiblioteket", "Available"]);
+
+          // And: Second library disclosure should show its name
+          findOnShelf.getLibraryDisclosure(1).shouldContainAll(["Fjernlager"]);
+
+          // And: Third library disclosure should show its name
+          findOnShelf
+            .getLibraryDisclosure(2)
+            .shouldContainAll(["Islands Brygge"]);
 
           // When: Expanding a library disclosure
           findOnShelf.getLibraryDisclosure(1).click();
 
           // Then: Should show detailed placement information
-          findOnShelf.getLibraryDisclosure(1).within(() => {
-            cy.contains("De syv søstre (2017)").should("be.visible");
-            cy.contains("Voksen").should("be.visible");
-            cy.contains("Skønlitteratur").should("be.visible");
-            cy.contains("Riley, Lucinda").should("be.visible");
-          });
+          findOnShelf
+            .getLibraryDisclosure(1)
+            .shouldContainAll([
+              "De syv søstre (2017)",
+              "Voksen",
+              "Skønlitteratur",
+              "Riley, Lucinda",
+              "1"
+            ]);
         });
       });
     });

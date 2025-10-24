@@ -11,8 +11,6 @@ export class ModalFindOnShelfComponent extends ComponentObject {
   }
 
   getLibraryDisclosure(libraryIndex: number) {
-    const item = this.elements.libraryDisclosures().eq(libraryIndex);
-    item.scrollIntoView();
-    return item;
+    return this.elements.libraryDisclosures().eq(libraryIndex).scrollIntoView();
   }
 }

@@ -11,9 +11,7 @@ export class ModalEditionsSwitchComponent extends ComponentObject {
   }
 
   getManifestationItem(manifestationIndex: number) {
-    const item = this.elements.manifestationItems().eq(manifestationIndex);
-    item.scrollIntoView();
-    return item;
+    return this.elements.manifestationItems().eq(manifestationIndex);
   }
 
   clickChooseForManifestation(manifestationIndex: number) {
