@@ -98,7 +98,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   });
 
   const renderReaderButton = () => {
-    if (!identifier) return null;
+    if (!identifier) return <MaterialButtonLoading />;
 
     if (isAlreadyReserved && reservation) {
       return (
@@ -158,10 +158,11 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       );
     }
 
-    return null;
+    return <MaterialButtonLoading />;
   };
 
   const renderReaderTeaserButton = () => {
+    // Don't show teaser if already loaned or not in modal view
     if (isAlreadyLoaned || !openModal) return null;
 
     if (identifier) {
@@ -183,11 +184,12 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
         />
       );
     }
-    return null;
+    // Show loading only if we don't have identifier yet
+    return <MaterialButtonLoading />;
   };
 
   const renderPlayerButton = () => {
-    if (!identifier) return null;
+    if (!identifier) return <MaterialButtonLoading />;
 
     if (isAlreadyReserved && reservation) {
       return (
@@ -251,10 +253,11 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
       );
     }
 
-    return null;
+    return <MaterialButtonLoading />;
   };
 
   const renderPlayerTeaserButton = () => {
+    // Don't show teaser if already loaned or not in modal view
     if (isAlreadyLoaned || !openModal) return null;
 
     if (identifier) {
@@ -278,7 +281,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
         </>
       );
     }
-    return null;
+    // Show loading only if we don't have identifier yet
+    return <MaterialButtonLoading />;
   };
 
   const renderDeleteReservationModal = () => {
@@ -295,8 +299,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   if (type === "reader") {
     return (
       <>
-        {renderReaderButton() ?? <MaterialButtonLoading />}
-        {renderReaderTeaserButton() ?? <MaterialButtonLoading />}
+        {renderReaderButton()}
+        {renderReaderTeaserButton()}
         {renderDeleteReservationModal()}
       </>
     );
@@ -305,8 +309,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   if (type === "player") {
     return (
       <>
-        {renderPlayerButton() ?? <MaterialButtonLoading />}
-        {renderPlayerTeaserButton() ?? <MaterialButtonLoading />}
+        {renderPlayerButton()}
+        {renderPlayerTeaserButton()}
         {renderDeleteReservationModal()}
       </>
     );
