@@ -5,6 +5,7 @@ import {
   givenAMaterial,
   givenAMaterialMusic
 } from "../../../cypress/intercepts/fbi/material";
+import { givenUserHasLoanedEbook } from "../../../cypress/intercepts/publizon/publizon";
 
 describe("Material Page Object Test", () => {
   let materialPage: MaterialPage;
@@ -304,6 +305,25 @@ describe("Material Page Object Test", () => {
           editions.getManifestationItem(3).within(() => {
             cy.contains("button", "Can't be reserved").should("be.visible");
             cy.contains("button", "Find on shelf").should("be.visible");
+          });
+        });
+      });
+
+      it("Should show Read button when e-book is already loaned", () => {
+        // Given: A material page with authentication and book already loaned
+        materialPage = new MaterialPage();
+        givenAMaterial();
+        givenUserHasLoanedEbook();
+        cy.createFakeAuthenticatedSession();
+
+        // When: The user visits the material page and opens editions
+        materialPage.visit([]);
+        materialPage.components.DisclosureEditions((editions) => {
+          editions.open();
+
+          // Then: E-book manifestation should show Read button (because it's in loans)
+          editions.getManifestationItem(2).within(() => {
+            cy.contains("button", "Read e-bog").should("be.visible");
           });
         });
       });
