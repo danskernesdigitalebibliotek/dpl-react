@@ -85,3 +85,10 @@ tasks:
       - yarn lint:js
       - yarn lint:scss
       - yarn lint:markdown
+
+  dev:format:
+    summary: Run linters, and auto-fix
+    cmds:
+      - yarn lint:js --fix
+      - yarn lint:scss --fix
+      - yarn lint:markdown --fix
