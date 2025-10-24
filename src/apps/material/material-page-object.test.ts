@@ -1,5 +1,6 @@
 import { MaterialPage } from "../../../cypress/page-objects/material/MaterialPage";
 import { interceptFbsCalls } from "../../../cypress/intercepts/fbs/interceptFbsCalls";
+import { interceptPublizonCalls } from "../../../cypress/intercepts/publizon/interceptPublizonCalls";
 import {
   givenAMaterial,
   givenAMaterialMusic
@@ -11,6 +12,9 @@ describe("Material Page Object Test", () => {
   beforeEach(() => {
     // FBS service calls with realistic factory data
     interceptFbsCalls();
+
+    // Publizon service calls with factory data
+    interceptPublizonCalls();
 
     // Intercept all external API calls that could cause issues
 
@@ -40,12 +44,6 @@ describe("Material Page Object Test", () => {
       statusCode: 200,
       body: []
     }).as("coverService");
-
-    // Publizon calls
-    cy.intercept("GET", "**/publizon/**", {
-      statusCode: 200,
-      body: {}
-    }).as("publizon");
 
     // Mock user info for authenticated user
     cy.interceptRest({
@@ -77,155 +75,402 @@ describe("Material Page Object Test", () => {
       .and("contain.text", "Test Music Album");
   });
 
-  it("Should display material page with correct title and availability labels", () => {
-    // Given: A material page with default book type
-    materialPage = new MaterialPage();
-    givenAMaterial();
+  describe("Material Page Content", () => {
+    it("Should display title and description", () => {
+      // Given: A material page
+      materialPage = new MaterialPage();
+      givenAMaterial();
 
-    // When: The user visits the material page
-    materialPage.visit([]);
+      // When: The user visits the material page
+      materialPage.visit([]);
 
-    // Then: The page should display the correct title
-    materialPage.elements
-      .title()
-      .should("be.visible")
-      .and("contain.text", "De syv søstre");
+      // Then: Title should be visible
+      materialPage.elements
+        .title()
+        .should("be.visible")
+        .and("contain.text", "De syv søstre");
 
-    // And: The header should show 3 availability labels
-    materialPage.elements.headerAvailabilityLabels().should("have.length", 3);
-  });
+      // And: Description should be visible
+      materialPage.elements.descriptionSection().should("be.visible");
+      materialPage.elements
+        .descriptionSection()
+        .should("contain.text", "Pa Salt");
+    });
 
-  it("Should display correct number of manifestations in editions", () => {
-    // Given: A material page with default book type
-    materialPage = new MaterialPage();
-    givenAMaterial();
+    it("Should display availability labels", () => {
+      // Given: A material page
+      materialPage = new MaterialPage();
+      givenAMaterial();
 
-    // When: The user visits the material page
-    materialPage.visit([]);
+      // When: The user visits the material page
+      materialPage.visit([]);
 
-    // Then: The editions component should display 4 manifestations
-    materialPage.components.DisclosureEditions((editions) => {
-      editions.open();
-      editions.elements.manifestationItems().should("have.length", 4);
+      // Then: Availability labels should be visible
+      materialPage.elements.headerAvailabilityLabels().should("have.length", 3);
+    });
+
+    it("Should display stock information", () => {
+      // Given: A material page
+      materialPage = new MaterialPage();
+      givenAMaterial();
+
+      // When: The user visits the material page
+      materialPage.visit([]);
+
+      // Then: Stock information should be visible
+      materialPage.elements.stockInfo().should("be.visible");
+      materialPage.elements
+        .stockInfo()
+        .should("contain.text", "We have 11 copies of the material in stock.");
+    });
+
+    it("Should display series information", () => {
+      // Given: A material page
+      materialPage = new MaterialPage();
+      givenAMaterial();
+
+      // When: The user visits the material page
+      materialPage.visit([]);
+
+      // Then: Series information should be visible
+      materialPage.elements.seriesInfo().should("be.visible");
+      materialPage.elements.seriesInfo().should("contain.text", "Del");
+      materialPage.elements.seriesInfo().should("contain.text", "serien");
+
+      // And: Related series materials should be shown
+      materialPage.elements.seriesMembers().should("be.visible");
+      materialPage.elements
+        .seriesMembers()
+        .should("contain.text", "De syv søstre");
+      materialPage.elements
+        .seriesMembers()
+        .should("contain.text", "Stormsøsteren");
+      materialPage.elements
+        .seriesMembers()
+        .should("contain.text", "Skyggesøsteren");
+    });
+
+    it("Should display tags and categories", () => {
+      // Given: A material page
+      materialPage = new MaterialPage();
+      givenAMaterial();
+
+      // When: The user visits the material page
+      materialPage.visit([]);
+
+      // Then: Tags should be visible
+      materialPage.elements.identifierTags().should("be.visible");
+      materialPage.elements.identifierTags().should("contain.text", "Tags");
+      materialPage.elements
+        .identifierTags()
+        .should("contain.text", "kærlighed");
+      materialPage.elements.identifierTags().should("contain.text", "adoption");
+      materialPage.elements.identifierTags().should("contain.text", "familien");
+
+      // And: Fictional category should be shown
+      materialPage.elements.fictionNonfiction().should("be.visible");
+      materialPage.elements
+        .fictionNonfiction()
+        .should("contain.text", "skønlitteratur");
     });
   });
 
-  it("Should display correct availability labels for each manifestation in editions", () => {
-    // Given: A material page with default book type
-    materialPage = new MaterialPage();
-    givenAMaterial();
+  describe("Disclosures", () => {
+    describe("Details Disclosure", () => {
+      it("Should display material details with correct values", () => {
+        // Given: A material page
+        materialPage = new MaterialPage();
+        givenAMaterial();
 
-    // When: The user visits the material page
-    materialPage.visit([]);
+        // When: The user visits the material page
+        materialPage.visit([]);
 
-    // Then: The editions component should display correct labels for each manifestation
-    materialPage.components.DisclosureEditions((editions) => {
-      editions.open();
+        // Then: Details disclosure should be visible
+        materialPage.elements.detailsDisclosure().should("be.visible");
 
-      // And: First manifestation should show "bog"
-      editions
-        .getAvailabilityLabelForManifestation(0)
-        .should("be.visible")
-        .and("contain.text", "bog");
-      // And: Second manifestation should show "bog"
-      editions
-        .getAvailabilityLabelForManifestation(1)
-        .should("be.visible")
-        .and("contain.text", "bog");
-      // And: Third manifestation should show "e-bog"
-      editions
-        .getAvailabilityLabelForManifestation(2)
-        .should("be.visible")
-        .and("contain.text", "e-bog");
-      // And: Fourth manifestation should show "lydbog"
-      editions
-        .getAvailabilityLabelForManifestation(3)
-        .should("be.visible")
-        .and("contain.text", "lydbog");
+        // When: Opening the details disclosure
+        materialPage.components.DisclosureDetails((details) => {
+          // Then: Summary should show "Details"
+          details.elements.summary().should("contain.text", "Details");
+
+          details.open();
+
+          // Then: Should display multiple detail items
+          details.elements.listItems().should("have.length.at.least", 5);
+          details.elements.listDescription().should("be.visible");
+
+          // And: Should display Language
+          details
+            .getValueByKey("Language")
+            .should("be.visible")
+            .and("contain.text", "dansk");
+
+          // And: Should display Edition
+          details
+            .getValueByKey("Edition")
+            .should("be.visible")
+            .and("contain.text", "2017 (2. udgave)");
+
+          // And: Should display Genre
+          details
+            .getValueByKey("Genre")
+            .should("be.visible")
+            .and("contain.text", "romaner");
+
+          // And: Should display Original title
+          details
+            .getValueByKey("Original title")
+            .should("be.visible")
+            .and("contain.text", "The seven sisters");
+
+          // And: Should display Publisher
+          details
+            .getValueByKey("Publisher")
+            .should("be.visible")
+            .and("contain.text", "Cicero");
+
+          // And: Should display Type
+          details
+            .getValueByKey("Type")
+            .should("be.visible")
+            .and("contain.text", "bog");
+
+          // And: First item should have key and value
+          details.getListItem(0).should("be.visible");
+          details.getKeyByIndex(0).should("be.visible");
+          details.getValueByIndex(0).should("be.visible");
+        });
+      });
     });
-  });
 
-  it("Should display FindOnShelf with library information and availability", () => {
-    // Given: A material page with default book type
-    materialPage = new MaterialPage();
-    givenAMaterial();
+    describe("Editions Disclosure", () => {
+      it("Should display manifestations with correct availability labels and action buttons", () => {
+        // Given: A material page with default book type
+        materialPage = new MaterialPage();
+        givenAMaterial();
 
-    // When: The user visits the material page
-    materialPage.visit([]);
-    // And: Opens FindOnShelf
-    materialPage.openFindOnShelf();
+        // When: The user visits the material page and opens editions
+        materialPage.visit([]);
+        materialPage.components.DisclosureEditions((editions) => {
+          // Then: Summary should show "Editions (4)"
+          editions.elements
+            .summary()
+            .should("contain.text", "Editions")
+            .and("contain.text", "(4)");
 
-    // Then: The FindOnShelf component should display the headline
-    materialPage.components.ModalFindOnShelf((findOnShelf) => {
-      findOnShelf.elements
-        .headline()
-        .should("be.visible")
-        .and("contain.text", "De syv søstre : Maias historie / Lucinda Riley");
+          editions.open();
 
-      // And: Should show at least one library disclosure
-      findOnShelf.elements
-        .libraryDisclosures()
-        .should("have.length.at.least", 1);
+          // Then: Should display 4 manifestations
+          editions.elements.manifestationItems().should("have.length", 4);
 
-      // And: The first library disclosure should show its headline and availability
-      findOnShelf.getLibraryDisclosure(0).within(() => {
-        cy.get(".disclosure__headline").should("be.visible");
-        cy.get(".availability-label").should("be.visible");
+          // And: First manifestation (physical book) should have correct availability and buttons
+          editions
+            .getAvailabilityLabelForManifestation(0)
+            .should("be.visible")
+            .and("contain.text", "bog")
+            .and("contain.text", "Available");
+
+          // And: Second manifestation (physical book unavailable) should have correct availability
+          editions
+            .getAvailabilityLabelForManifestation(1)
+            .should("be.visible")
+            .and("contain.text", "bog")
+            .and("contain.text", "Unavailable");
+
+          editions.getManifestationItem(1).within(() => {
+            cy.contains("button", "Reserve").should("be.visible");
+            cy.contains("button", "Find on shelf").should("be.visible");
+          });
+
+          // And: Third manifestation (e-book) should have correct availability and button
+          editions
+            .getAvailabilityLabelForManifestation(2)
+            .should("be.visible")
+            .and("contain.text", "e-bog")
+            .and("contain.text", "Available");
+
+          editions.getManifestationItem(2).within(() => {
+            cy.contains("Loan e-bog").should("be.visible");
+            cy.contains("Try e-bog").should("be.visible");
+          });
+
+          // And: Fourth manifestation (audiobook) should have correct availability and buttons
+          editions
+            .getAvailabilityLabelForManifestation(3)
+            .should("be.visible")
+            .and("contain.text", "lydbog")
+            .and("contain.text", "Unavailable");
+
+          editions.getManifestationItem(3).within(() => {
+            cy.contains("button", "Can't be reserved").should("be.visible");
+            cy.contains("button", "Find on shelf").should("be.visible");
+          });
+        });
       });
     });
   });
 
-  it("Should allow changing edition from reservation modal", () => {
-    // Given: A material page with default book type and authentication
-    materialPage = new MaterialPage();
-    givenAMaterial();
+  describe("Modals", () => {
+    describe("Reservation Modal", () => {
+      it("Should display all reservation form fields with correct values", () => {
+        // Given: A material page with authentication
+        materialPage = new MaterialPage();
+        givenAMaterial();
+        cy.createFakeAuthenticatedSession();
+        materialPage.visit([]);
 
-    // When: The user visits the material page
-    materialPage.visit([]);
-    // And: Creates an authenticated session
-    cy.createFakeAuthenticatedSession();
-    // And: Opens the reservation modal
-    materialPage.openModalReservation();
+        // When: Opening the reservation modal
+        materialPage.openModalReservation();
 
-    // Then: The reservation modal should show "(All editions)"
-    materialPage.components.ModalReservation((modalReservation) => {
-      modalReservation.elements
-        .title()
-        .should("contain.text", "(All editions)");
-      // And: Should show "First available edition"
-      modalReservation.elements
-        .editionText()
-        .should("be.visible")
-        .and("contain.text", "Edition")
-        .and("contain.text", "First available edition");
+        materialPage.components.ModalReservation((reservation) => {
+          // Then: Should display 5 list items
+          reservation.elements.listItems().should("have.length", 5);
+
+          // And: Edition item
+          reservation.getListItem(0).within(() => {
+            cy.contains("Edition");
+            cy.contains("First available edition");
+            cy.contains("button", "Change");
+          });
+
+          // And: Interest period item
+          reservation.getListItem(1).within(() => {
+            cy.contains("Have no interest after");
+            cy.contains("14 days");
+            cy.contains("button", "Change");
+          });
+
+          // And: Pickup location item
+          reservation.getListItem(2).within(() => {
+            cy.contains("Pick up at");
+            cy.contains("Hovedbiblioteket");
+            cy.contains("button", "Change");
+          });
+
+          // And: SMS item
+          reservation.getListItem(3).within(() => {
+            cy.contains("You will receive an SMS");
+            cy.contains("12345678");
+            cy.contains("button", "Change");
+          });
+
+          // And: Email item
+          reservation.getListItem(4).within(() => {
+            cy.contains("You will receive an email");
+            cy.contains("test@test.com");
+            cy.contains("button", "Change");
+          });
+
+          // And: Submit button should be visible
+          reservation.elements
+            .submitButton()
+            .should("be.visible")
+            .and("contain.text", "Approve reservation");
+        });
+      });
     });
 
-    // Then: The user can change the edition
-    materialPage.components.ModalReservation((modalReservation) => {
-      modalReservation.changeEdition();
+    describe("Reservation + Editions Modal", () => {
+      it("Should allow changing edition from reservation modal", () => {
+        // Given: A material page with authentication
+        materialPage = new MaterialPage();
+        givenAMaterial();
+        cy.createFakeAuthenticatedSession();
+        materialPage.visit([]);
+
+        // When: Opening the reservation modal
+        materialPage.openModalReservation();
+
+        materialPage.components.ModalReservation((reservation) => {
+          // Then: Should show "All editions" and "First available edition"
+          reservation.elements
+            .subtitle()
+            .should("contain.text", "(All editions)");
+          reservation
+            .getListItemValue(0)
+            .should("contain.text", "First available edition");
+
+          // When: Changing the edition
+          reservation.changeEdition();
+        });
+
+        // Then: Editions switch modal displays with options
+        materialPage.components.ModalEditionsSwitch((editionsSwitch) => {
+          editionsSwitch.elements
+            .title()
+            .should("contain.text", "Choose Edition");
+          editionsSwitch.elements.manifestationItems().should("have.length", 4);
+
+          // When: Choosing the first available manifestation (2017 edition)
+          editionsSwitch.clickChooseForManifestation(0);
+        });
+
+        // Then: Reservation modal reflects the selected edition
+        materialPage.components.ModalReservation((reservation) => {
+          reservation
+            .getListItemValue(0)
+            .should("contain.text", "2017 (2. udgave)");
+        });
+      });
     });
 
-    // Then: The editions switch modal should display with correct title
-    materialPage.components.ModalEditionsSwitch((editionsSwitch) => {
-      editionsSwitch.elements
-        .title()
-        .should("be.visible")
-        .and("contain.text", "Choose Edition");
-      // And: Should display multiple manifestation options
-      editionsSwitch.elements
-        .manifestationItems()
-        .should("have.length.at.least", 2);
-      // When: The user clicks choose button for a different edition (e-book from 2025)
-      editionsSwitch.clickChooseButton();
-    });
+    describe("FindOnShelf Modal", () => {
+      it("Should display library information and allow expanding library details", () => {
+        // Given: A material page
+        materialPage = new MaterialPage();
+        givenAMaterial();
 
-    // Then: The reservation modal should reflect the newly selected edition
-    materialPage.components.ModalReservation((modalReservation) => {
-      modalReservation.elements
-        .editionText()
-        .should("be.visible")
-        .and("contain.text", "Edition")
-        .and("contain.text", "2017 (2. udgave)");
+        // When: The user opens FindOnShelf
+        materialPage.visit([]);
+        materialPage.openFindOnShelf();
+
+        materialPage.components.ModalFindOnShelf((findOnShelf) => {
+          // Then: Should display the headline with material title
+          findOnShelf.elements
+            .headline()
+            .should("be.visible")
+            .and(
+              "contain.text",
+              "De syv søstre : Maias historie / Lucinda Riley"
+            );
+
+          // And: Should show multiple library disclosures
+          findOnShelf.elements
+            .libraryDisclosures()
+            .should("have.length.at.least", 3);
+
+          // And: Should show specific libraries with availability
+          cy.contains("Hovedbiblioteket").should("be.visible");
+          cy.contains("Islands Brygge").should("be.visible");
+
+          // And: First library disclosure should show headline and availability
+          findOnShelf.getLibraryDisclosure(0).within(() => {
+            cy.contains("Hovedbiblioteket").should("be.visible");
+            cy.contains("Available").should("be.visible");
+          });
+
+          // When: Expanding a library disclosure
+          findOnShelf.getLibraryDisclosure(1).click();
+
+          // Then: Should show detailed placement information
+          findOnShelf
+            .getLibraryDisclosure(1)
+            .contains("De syv søstre (2017)")
+            .should("be.visible");
+          findOnShelf
+            .getLibraryDisclosure(1)
+            .contains("Voksen")
+            .should("be.visible");
+          findOnShelf
+            .getLibraryDisclosure(1)
+            .contains("Skønlitteratur")
+            .should("be.visible");
+          findOnShelf
+            .getLibraryDisclosure(1)
+            .contains("Riley, Lucinda")
+            .should("be.visible");
+        });
+      });
     });
   });
 });

@@ -2,27 +2,46 @@ import { ComponentObject } from "@hammzj/cypress-page-object";
 
 export class ModalReservationComponent extends ComponentObject {
   constructor() {
-    // Reservation modal container
     super(() => cy.get(".reservation-modal"));
     this.addElements = {
-      // Modal title section
-      title: () => this.container().find(".reservation-modal-description"),
-      // All reservation list items inside the modal
-      listItems: () =>
-        this.container().find("[data-cy='reservation-form-list-item']"),
-      // Edition text within the list item
-      editionText: () =>
-        this.container().find("[data-cy='reservation-modal-list-item-text']"),
-      // Change buttons within the reservation list items
-      changeButtons: () =>
-        this.container().find("[data-cy='reservation-form-list-item'] button")
+      subtitle: () => {
+        const element = this.container().find(
+          ".reservation-modal-description p"
+        );
+        element.scrollIntoView();
+        return element;
+      },
+      submitButton: () => {
+        const element = this.container().getBySel(
+          "reservation-modal-submit-button"
+        );
+        element.scrollIntoView();
+        return element;
+      },
+      listItems: () => this.container().getBySel("reservation-form-list-item")
     };
   }
 
-  // Clicks the Change button for the edition row (first list item)
+  getListItem(index: number) {
+    const item = this.elements.listItems().eq(index);
+    item.scrollIntoView();
+    return item;
+  }
+
+  getListItemTitle(index: number) {
+    return this.getListItem(index).find(".text-header-h5");
+  }
+
+  getListItemValue(index: number) {
+    return this.getListItem(index).find(".text-small-caption");
+  }
+
+  getListItemButton(index: number) {
+    return this.getListItem(index).find("button");
+  }
+
   changeEdition() {
-    this.container().should("be.visible");
-    this.elements.listItems().first().find("button").click();
+    this.getListItemButton(0).click();
     return this;
   }
 }

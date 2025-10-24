@@ -2,47 +2,24 @@ import { ComponentObject } from "@hammzj/cypress-page-object";
 
 export class ModalEditionsSwitchComponent extends ComponentObject {
   constructor() {
-    super(() => cy.getBySel("edition-switch-modal"));
+    super(() => cy.get(".reservation-modal--edition-switch"));
     this.addElements = {
-      // Modal title section
-      title: () => this.container().find(".reservation-modal-description"),
-      // All material-manifestation-item components within the modal
+      title: () => this.container().find(".reservation-modal-description h2"),
       manifestationItems: () =>
         this.container().find(".material-manifestation-item")
     };
   }
 
-  open() {
-    this.container().should("be.visible");
-    return this;
-  }
-
   getManifestationItem(manifestationIndex: number) {
-    return this.elements.manifestationItems().eq(manifestationIndex);
+    const item = this.elements.manifestationItems().eq(manifestationIndex);
+    item.scrollIntoView();
+    return item;
   }
 
-  getAvailabilityLabelForManifestation(manifestationIndex: number) {
-    return (
-      this.elements
-        .manifestationItems()
-        .eq(manifestationIndex)
-        // getBySel can't be used here - it ignores current element context
-        .find('[data-cy="availability-label"]')
-    );
-  }
-
-  clickManifestationReserveButton(manifestationIndex: number) {
+  clickChooseForManifestation(manifestationIndex: number) {
     this.getManifestationItem(manifestationIndex)
-      .find('[data-cy*="material-header-buttons"]')
-      .first()
-      .click();
-    return this;
-  }
-
-  clickChooseButton() {
-    this.container()
-      .find(".material-manifestation-item")
-      .contains("button", "Choose")
+      .find("button")
+      .contains("Choose")
       .click();
     return this;
   }

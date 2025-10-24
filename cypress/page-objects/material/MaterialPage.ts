@@ -4,6 +4,7 @@ import {
   NestedComponents
 } from "@hammzj/cypress-page-object";
 import { DisclosureEditionsComponent } from "./components/disclosure-editions";
+import { DisclosureDetailsComponent } from "./components/disclosure-details";
 import { ModalReservationComponent } from "./components/modal-reservation";
 import { ModalEditionsSwitchComponent } from "./components/modal-editions-switch";
 import { ModalFindOnShelfComponent } from "./components/modal-find-on-shelf";
@@ -22,17 +23,28 @@ export class MaterialPage extends PageObject {
 
     this.addElements = {
       headerAvailabilityLabels: () => {
+        cy.get(".material-header__availability-label").scrollIntoView();
         return cy.get(
           ".material-header__availability-label .availability-label"
         );
       },
-
-      mainReservationButton: () =>
-        cy.getBySel("material-header-buttons-physical"),
-
-      // FindOnShelf button in the material header
-      findOnShelfButton: () =>
-        cy.getBySel("material-header-buttons-find-on-shelf")
+      stockInfo: () =>
+        cy
+          .getBySel("material-header-content")
+          .find(".text-small-caption")
+          .scrollIntoView(),
+      descriptionSection: () =>
+        cy.getBySel("material-description").scrollIntoView(),
+      seriesInfo: () =>
+        cy.getBySel("material-description-series-0").scrollIntoView(),
+      seriesMembers: () =>
+        cy.getBySel("material-description-series-members").scrollIntoView(),
+      identifierTags: () =>
+        cy.getBySel("material-description-identifier").scrollIntoView(),
+      fictionNonfiction: () =>
+        cy.getBySel("material-description-fiction-nonfiction").scrollIntoView(),
+      detailsDisclosure: () =>
+        cy.getBySel("material-details-disclosure").scrollIntoView()
     };
 
     this.addNestedComponents = {
@@ -40,6 +52,12 @@ export class MaterialPage extends PageObject {
         this.performWithin(
           this.container(),
           new DisclosureEditionsComponent(),
+          fn
+        ),
+      DisclosureDetails: (fn) =>
+        this.performWithin(
+          this.container(),
+          new DisclosureDetailsComponent(),
           fn
         ),
       ModalReservation: (fn) =>
@@ -64,23 +82,17 @@ export class MaterialPage extends PageObject {
   }
 
   openModalReservation() {
-    this.elements.mainReservationButton().should("be.visible").click();
-  }
-
-  getHeaderAvailabilityLabel(labelIndex: number) {
-    return cy
-      .get(".material-header__availability-label .availability-label")
-      .eq(labelIndex);
+    cy.getBySel("material-header-buttons-physical").scrollIntoView();
+    cy.getBySel("material-header-buttons-physical")
+      .should("be.visible")
+      .click();
   }
 
   openFindOnShelf() {
-    this.elements
-      .findOnShelfButton()
-      .scrollIntoView()
+    cy.getBySel("material-header-buttons-find-on-shelf").scrollIntoView();
+    cy.getBySel("material-header-buttons-find-on-shelf")
       .should("be.visible")
       .click();
-
-    // Wait for the modal to appear
     cy.get(".modal-find-on-shelf").should("be.visible");
     return this;
   }

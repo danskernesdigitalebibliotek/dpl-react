@@ -43,7 +43,7 @@ const EditionSwitchModal = ({
       closeModalAriaLabelText={t("editionSwitchModalCloseAriaLabelText")}
       dataCy={dataCy || "edition-switch-modal"}
     >
-      <section className="reservation-modal">
+      <section className="reservation-modal reservation-modal--edition-switch">
         <header className="reservation-modal-header">
           <div className="reservation-modal-description">
             <h2 className="text-header-h2 mt-22 mb-8">
