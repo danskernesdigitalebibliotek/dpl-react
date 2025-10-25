@@ -358,7 +358,7 @@ describe("Material Page Object Test", () => {
 
   describe("Modals", () => {
     describe("Reservation Modal", () => {
-      it("Should display all reservation form fields with correct values", () => {
+      it("Should display reservation form fields, stock information, and submit button", () => {
         // Given: A material page with authentication
         materialPage = new MaterialPage();
         givenAMaterial();
@@ -404,6 +404,11 @@ describe("Material Page Object Test", () => {
               "test@test.com",
               "Change"
             ]);
+
+          // And: Should display stock information
+          reservation.elements
+            .submitSection()
+            .shouldContainAll(["We have 11 copies of the material in stock."]);
 
           // And: Submit button should be visible
           reservation.elements

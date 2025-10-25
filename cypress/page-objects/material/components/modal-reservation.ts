@@ -16,6 +16,10 @@ export class ModalReservationComponent extends ComponentObject {
         );
         return element;
       },
+      submitSection: () => {
+        const element = this.container().find(".reservation-modal-submit");
+        return element;
+      },
       listItems: () =>
         this.container().find("[data-cy='reservation-form-list-item']")
     };
