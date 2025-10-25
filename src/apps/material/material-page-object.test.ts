@@ -193,11 +193,11 @@ describe("Material Page Object Test", () => {
           .headerButtons()
           .shouldContainAll(["Loan e-bog", "Try e-bog"]);
 
-        // And: Should show loan limit information
+        // And: Should show loan limit information with actual numbers
         materialPage.elements
           .materialHeaderContent()
           .shouldContainAll([
-            "You have borrowed @count out of @limit possible e-books this month"
+            "You have borrowed 0 out of 5 possible e-books this month"
           ]);
 
         // And: E-book manifestation in editions should also show Loan button
@@ -228,6 +228,13 @@ describe("Material Page Object Test", () => {
 
         // Then: Material header should show Read button
         materialPage.elements.headerButtons().shouldContainAll(["Read e-bog"]);
+
+        // And: Should show loan limit information with actual numbers
+        materialPage.elements
+          .materialHeaderContent()
+          .shouldContainAll([
+            "You have borrowed 1 out of 5 possible e-books this month"
+          ]);
 
         // And: E-book manifestation in editions should also show Read button
         materialPage.components.DisclosureEditions((editions) => {

@@ -5,6 +5,7 @@ import {
   LoanStatusResult,
   LoanResult,
   LoanListResult,
+  LibraryProfile,
   ApiResponseCode,
   ContentLoanStatusEnum,
   IdentifierTypeEnum,
@@ -114,24 +115,7 @@ export const publizonLoanFactory = Factory.define<LoanResult>(() => ({
  * This is for the /v1/user/loans endpoint which returns an array of loans
  */
 export const publizonLoanListFactory = Factory.define<LoanListResult>(() => ({
-  loans: [
-    {
-      orderId: "123e4567-e89b-12d3-a456-426614174000",
-      orderNumber: "ORD-2025-001",
-      orderDateUtc: new Date().toISOString(),
-      loanExpireDateUtc: new Date(
-        Date.now() + 30 * 24 * 60 * 60 * 1000
-      ).toISOString(),
-      isSubscriptionLoan: false,
-      fileExtensionType: FileExtensionType.NUMBER_3,
-      libraryBook: {
-        identifier: "9788702441000",
-        identifierType: IdentifierTypeEnum.NUMBER_15,
-        title: "De syv søstre",
-        publishersName: "Gyldendal"
-      }
-    }
-  ],
+  loans: [],
   libraryData: {
     loanDurationDays: 30,
     maxAmountPerMonth: 10,
@@ -139,10 +123,10 @@ export const publizonLoanListFactory = Factory.define<LoanListResult>(() => ({
     maxConcurrentAudiobookLoansPerBorrower: 5
   },
   userData: {
-    totalLoans: 1,
-    totalEbookLoans: 1,
+    totalLoans: 0,
+    totalEbookLoans: 0,
     totalAudioLoans: 0,
-    ebookLoansRemaining: 4,
+    ebookLoansRemaining: 5,
     audiobookLoansRemaining: 5,
     friendlyCardNumber: "1234567890",
     ebookLoanAvailableUtc: new Date().toISOString(),
@@ -151,3 +135,16 @@ export const publizonLoanListFactory = Factory.define<LoanListResult>(() => ({
   code: ApiResponseCode.NUMBER_101,
   message: "OK (#101)."
 }));
+
+/**
+ * Factory for Publizon library profile
+ * Uses generated types from Orval
+ */
+export const publizonLibraryProfileFactory = Factory.define<LibraryProfile>(
+  () => ({
+    maxConcurrentEbookLoansPerBorrower: 5,
+    maxConcurrentAudioLoansPerBorrower: 5,
+    ebookLoanDurationInDays: 30,
+    audioLoanDurationInDays: 30
+  })
+);

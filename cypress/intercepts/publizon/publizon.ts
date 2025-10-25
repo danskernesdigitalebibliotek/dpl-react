@@ -25,22 +25,35 @@ export const givenUserHasLoanedEbook = (options?: {
   }).as("publizonLoanStatusLoaned");
 
   // Return the loan in user's loans list
-  const loansList = publizonLoanListFactory.build();
   cy.intercept("GET", "**/v1/user/loans**", {
     statusCode: 200,
-    body: {
-      ...loansList,
+    body: publizonLoanListFactory.build({
       loans: [
         {
-          ...loansList.loans![0],
           orderId,
+          orderNumber: "ORD-2025-001",
+          orderDateUtc: new Date().toISOString(),
+          loanExpireDateUtc: new Date(
+            Date.now() + 30 * 24 * 60 * 60 * 1000
+          ).toISOString(),
+          isSubscriptionLoan: false,
+          fileExtensionType: 3, // epub
           libraryBook: {
-            ...loansList.loans![0].libraryBook!,
-            identifier
+            identifier,
+            identifierType: 15, // ISBN
+            title: "De syv søstre",
+            publishersName: "Gyldendal"
           }
         }
-      ]
-    }
+      ],
+      userData: {
+        totalLoans: 1,
+        totalEbookLoans: 1,
+        totalAudioLoans: 0,
+        ebookLoansRemaining: 4,
+        audiobookLoansRemaining: 5
+      }
+    })
   }).as("publizonUserLoansWithLoan");
 };
 

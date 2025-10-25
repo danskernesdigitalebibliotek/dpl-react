@@ -1,7 +1,9 @@
 import {
   publizonUserFactory,
   publizonProductFactory,
-  publizonLoanStatusFactory
+  publizonLoanStatusFactory,
+  publizonLoanListFactory,
+  publizonLibraryProfileFactory
 } from "../../factories/publizon/publizon.factory";
 import {
   ReservationListResult,
@@ -32,15 +34,17 @@ export const interceptPublizonCalls = (overrides?: {
     body: publizonUserFactory.build(overrides?.user)
   }).as("publizonUserReservations");
 
-  // Intercept user loans
+  // Intercept user loans with userData and libraryData (no active loans by default)
   cy.intercept("GET", "**/v1/user/loans**", {
     statusCode: 200,
-    body: {
-      loans: [],
-      code: 101,
-      message: "OK (#101)."
-    }
+    body: publizonLoanListFactory.build()
   }).as("publizonUserLoans");
+
+  // Intercept library profile
+  cy.intercept("GET", "**/v1/library/profile**", {
+    statusCode: 200,
+    body: publizonLibraryProfileFactory.build()
+  }).as("publizonLibraryProfile");
 
   // Intercept product details
   cy.intercept("GET", "**/v1/products/**", {
