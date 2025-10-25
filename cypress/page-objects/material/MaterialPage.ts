@@ -85,4 +85,8 @@ export class MaterialPage extends PageObject {
     cy.get(".modal-find-on-shelf").should("be.visible");
     return this;
   }
+
+  getHeaderAvailabilityLabel(index: number) {
+    return this.elements.headerAvailabilityLabels().eq(index);
+  }
 }

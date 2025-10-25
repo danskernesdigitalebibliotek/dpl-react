@@ -98,8 +98,23 @@ describe("Material Page Object Test", () => {
       // When: The user visits the material page
       materialPage.visit([]);
 
-      // Then: Availability labels should be visible
+      // Then: Should display 3 availability labels
       materialPage.elements.headerAvailabilityLabels().should("have.length", 3);
+
+      // And: First label (e-bog) should show type and availability
+      materialPage
+        .getHeaderAvailabilityLabel(0)
+        .shouldContainAll(["e-bog", "Available"]);
+
+      // And: Second label (bog) should show type and availability
+      materialPage
+        .getHeaderAvailabilityLabel(1)
+        .shouldContainAll(["bog", "Available"]);
+
+      // And: Third label (lydbog) should show type and availability
+      materialPage
+        .getHeaderAvailabilityLabel(2)
+        .shouldContainAll(["lydbog (cd-mp3)", "Unavailable"]);
     });
 
     it("Should display stock information", () => {
