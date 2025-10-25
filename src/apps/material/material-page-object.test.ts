@@ -1,12 +1,14 @@
 import { MaterialPage } from "../../../cypress/page-objects/material/MaterialPage";
-import { interceptFbsCalls } from "../../../cypress/intercepts/fbs/interceptFbsCalls";
 import { interceptPublizonCalls } from "../../../cypress/intercepts/publizon/interceptPublizonCalls";
 import {
   givenAMaterial,
   givenAMaterialMusic
 } from "../../../cypress/intercepts/fbi/material";
 import { givenUserHasLoanedEbook } from "../../../cypress/intercepts/publizon/publizon";
-import { givenReservationWillSucceed } from "../../../cypress/intercepts/fbs/fbs";
+import {
+  givenReservationWillSucceed,
+  interceptFbsCalls
+} from "../../../cypress/intercepts/fbs/fbs";
 
 describe("Material Page Object Test", () => {
   let materialPage: MaterialPage;
@@ -171,7 +173,7 @@ describe("Material Page Object Test", () => {
         // And: Should show stock information
         materialPage.elements
           .materialHeaderContent()
-          .shouldContainAll(["We have 11 copies of the material in stock."]);
+          .shouldContainAll(["We have 13 copies of the material in stock."]);
       });
 
       it("Should show Loan and Try buttons when e-book is available", () => {
@@ -409,7 +411,7 @@ describe("Material Page Object Test", () => {
           // And: Should display stock information
           reservation.elements
             .submitSection()
-            .shouldContainAll(["We have 11 copies of the material in stock."]);
+            .shouldContainAll(["We have 13 copies of the material in stock."]);
 
           // And: Submit button should be visible
           reservation.elements
@@ -454,7 +456,7 @@ describe("Material Page Object Test", () => {
             .numberInQueueText()
             .shouldContainAll([
               "You are number 3 in the queue",
-              "We have 11 copies of the material in stock"
+              "We have 13 copies of the material in stock"
             ]);
 
           // Pickup branch information
@@ -526,34 +528,42 @@ describe("Material Page Object Test", () => {
           // Then: Should display the headline with material title
           findOnShelf.elements
             .headline()
-            .should("be.visible")
-            .and(
-              "contain.text",
+            .shouldContainAll([
               "De syv søstre : Maias historie / Lucinda Riley"
-            );
+            ]);
 
-          // And: Should show multiple library disclosures
+          // And: Should show caption with library count (only counts available libraries)
           findOnShelf.elements
-            .libraryDisclosures()
-            .should("have.length.at.least", 3);
+            .caption()
+            .shouldContainAll(["3 libraries have material"]);
 
-          // And: First library disclosure should show headline and availability
+          // And: Should show 4 library disclosures (including unavailable ones)
+          findOnShelf.elements.libraryDisclosures().should("have.length", 4);
+
+          // First library: Hovedbiblioteket (Available) - open disclosure
           findOnShelf
             .getLibraryDisclosure(0)
-            .shouldContainAll(["Hovedbiblioteket", "Available"]);
+            .shouldContainAll(["Hovedbiblioteket", "Available"])
+            .click();
 
-          // And: Second library disclosure should show its name
-          findOnShelf.getLibraryDisclosure(1).shouldContainAll(["Fjernlager"]);
-
-          // And: Third library disclosure should show its name
+          // Then: Should show detailed holdings
           findOnShelf
-            .getLibraryDisclosure(2)
-            .shouldContainAll(["Islands Brygge"]);
+            .getLibraryDisclosure(0)
+            .shouldContainAll([
+              "De syv søstre (2017)",
+              "Voksen · Skønlitteratur · Riley, Lucinda",
+              "2",
+              "De syv søstre (2016)",
+              "0"
+            ]);
 
-          // When: Expanding a library disclosure
-          findOnShelf.getLibraryDisclosure(1).click();
+          // Second library: Fjernlager (Available) - open disclosure
+          findOnShelf
+            .getLibraryDisclosure(1)
+            .shouldContainAll(["Fjernlager", "Available"])
+            .click();
 
-          // Then: Should show detailed placement information
+          // Then: Should show 1 available copy of 2017 edition
           findOnShelf
             .getLibraryDisclosure(1)
             .shouldContainAll([
@@ -562,6 +572,36 @@ describe("Material Page Object Test", () => {
               "Skønlitteratur",
               "Riley, Lucinda",
               "1"
+            ]);
+
+          // Third library: Islands Brygge (Available) - open disclosure
+          findOnShelf
+            .getLibraryDisclosure(2)
+            .shouldContainAll(["Islands Brygge", "Available"])
+            .click();
+
+          // Then: Should show 3 available copies of 2017 edition
+          findOnShelf
+            .getLibraryDisclosure(2)
+            .shouldContainAll([
+              "De syv søstre (2017)",
+              "Voksen · Skønlitteratur · Riley, Lucinda",
+              "3"
+            ]);
+
+          // Fourth library: Vesterbro (Unavailable - all checked out) - open disclosure
+          findOnShelf
+            .getLibraryDisclosure(3)
+            .shouldContainAll(["Vesterbro", "Unavailable"])
+            .click();
+
+          // Then: Should show 0 available copies of 2017 edition
+          findOnShelf
+            .getLibraryDisclosure(3)
+            .shouldContainAll([
+              "De syv søstre (2017)",
+              "Voksen · Skønlitteratur · Riley, Lucinda",
+              "0"
             ]);
         });
       });

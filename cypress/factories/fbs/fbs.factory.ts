@@ -14,13 +14,13 @@ export const reservationDetailsFactory = Factory.define<ReservationDetailsV2>(
     recordId: "12345678",
     state: "reserved",
     pickupBranch: "DK-775100",
-    pickupDeadline: null,
+    pickupDeadline: undefined,
     expiryDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
     dateOfReservation: new Date().toISOString(),
     numberInQueue: 3,
-    periodical: null,
-    pickupNumber: null,
-    ilBibliographicRecord: null,
+    periodical: undefined,
+    pickupNumber: undefined,
+    ilBibliographicRecord: undefined,
     transactionId: "txn-001",
     reservationType: "NORMAL"
   })

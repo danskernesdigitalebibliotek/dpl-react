@@ -5,12 +5,13 @@ export class ModalFindOnShelfComponent extends ComponentObject {
     super(() => cy.get(".modal-find-on-shelf"));
     this.addElements = {
       headline: () => this.container().find(".modal-find-on-shelf__headline"),
+      caption: () => this.container().find(".modal-find-on-shelf__caption"),
       libraryDisclosures: () =>
         this.container().find("[data-cy='find-on-shelf-modal-body-disclosure']")
     };
   }
 
   getLibraryDisclosure(libraryIndex: number) {
-    return this.elements.libraryDisclosures().eq(libraryIndex).scrollIntoView();
+    return this.elements.libraryDisclosures().eq(libraryIndex);
   }
 }

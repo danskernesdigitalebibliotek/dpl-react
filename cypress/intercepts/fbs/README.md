@@ -1,298 +1,201 @@
-# FBS Intercepts - How It Works
+# FBS Intercepts
 
-Intercept system for mocking FBS (Folkebibliotekernes Bibliotekssystem) API
-responses in Cypress tests.
+This directory contains Cypress intercepts for mocking FBS (Fælles Bibliotekar Service) API responses in tests.
 
-## Quick Start
+## Overview
+
+The FBS intercepts use [Fishery](https://github.com/thoughtbot/fishery) factories to generate realistic test data for library availability and holdings. This approach provides:
+
+- **Consistent test data** across all tests
+- **Flexible scenario-based mocking** for different availability states
+- **Realistic factory-generated data** that mirrors production responses
+- **Type-safe** mock data using TypeScript
+
+## Architecture
+
+### Core Files
+
+- **`fbs.ts`** - Main intercept setup and helper functions
+- **`scenarios.ts`** - Predefined availability/holdings scenarios
+- **`../../factories/fbs/`** - Factory definitions for FBS data structures
+  - `availability.factory.ts` - Creates availability responses
+  - `holdings.factory.ts` - Creates holdings and material data
+
+### How It Works
+
+1. **PID Mapping**: Tests use manifestation PIDs (e.g., `870970-basis:52557240`) to identify materials
+2. **Numeric Extraction**: FBS API requests use only the numeric portion (e.g., `52557240`)
+3. **Scenario Lookup**: Each PID maps to a predefined scenario (available, unavailable, etc.)
+4. **Factory Generation**: Factories build realistic response data based on the scenario
 
 ```typescript
-import { interceptFbsCalls } from "cypress/intercepts/fbs/interceptFbsCalls";
+// Request flow:
+manifestationScenarios.get("52557240") 
+  → scenarios.unavailableEverywhere
+  → availabilityFactory.build({ available: false, reservable: true })
+  → Response sent to test
+```
+
+## Default Manifestation Scenarios
+
+The intercepts automatically handle these default materials:
+| Material | PID | Scenario | Status |
+|----------|-----|----------|--------|
+| Original book (2016) | `52557240` | `unavailableEverywhere` | All copies checked out, reservable |
+| New book (2017) | `53292968` | `default` | Available at 3 of 4 libraries |
+| Audiobook | `52643414` | `notAvailableAnywhere` | Not in collection, not reservable |
+| E-book | `9788702441000` | `reservableButNoHoldings` | Digital only, reservation queue |
+
+## Usage
+
+### Basic Setup
+
+```typescript
+import { interceptFbsCalls } from "cypress/intercepts/fbs/fbs";
 
 beforeEach(() => {
-  interceptFbsCalls();
+  interceptFbsCalls(); // Sets up default intercepts
 });
 ```
 
-That's it! The system will now intercept all FBS API calls and return
-pattern-based responses.
+This automatically handles all FBS availability and holdings requests with realistic factory data.
 
-## How It Works
+### Advanced Usage
 
-### 1. **Manifestations are registered with patterns**
-
-In `interceptFbsCalls.ts`, each manifestation (book edition) is assigned an
-availability pattern:
+#### Test Reservation Flow
 
 ```typescript
-// 2016 edition: show on shelves but all checked out
-registerManifestationAvailability(
-  originalBookManifestation.pid,
-  AvailabilityPattern.ON_SHELF_BUT_UNAVAILABLE
-);
+import { givenReservationWillSucceed } from "cypress/intercepts/fbs/fbs";
 
-// 2017 edition: available at all libraries
-registerManifestationAvailability(
-  newBookManifestation.pid,
-  AvailabilityPattern.AVAILABLE_EVERYWHERE
-);
-```
-
-### 2. **Patterns define library holdings**
-
-In `availabilityPatterns.ts`, each pattern specifies which libraries have
-the material and how many copies.
-
-We use helper functions for cleaner, more readable configuration:
-
-```typescript
-[AvailabilityPattern.AVAILABLE_EVERYWHERE]: {
-  reservable: true,
-  reservations: 0,
-  available: true,
-  branches: [
-    branch({
-      library: libraries.hovedbiblioteket,
-      available: 2,
-      unavailable: 1,
-      placement: { department: "Voksen", section: "Skønlitteratur" }
-    }),
-    branch({
-      library: libraries.islandsBrygge,
-      available: 3,
-      unavailable: 2,
-      placement: { department: "Voksen", section: "Skønlitteratur" }
-    }),
-    branch({
-      library: libraries.fjernlager,
-      available: 1,
-      unavailable: 0,
-      placement: { department: "Voksen", section: "Skønlitteratur" }
-    })
-  ]
-}
-```
-
-**Helper function:**
-
-- `branch(options)` - Creates a branch entry with named properties (all required):
-  - `library` - Library from `libraries` config
-  - `available` - Number of available copies
-  - `unavailable` - Number of checked out copies
-  - `placement` - Placement with `department` and `section`
-
-### 3. **API calls are intercepted and responses generated**
-
-`interceptFbsCalls()` is the glue that makes everything work. It uses
-Cypress's `cy.intercept()` to catch FBS API calls before they reach the real
-server.
-
-#### What it does
-
-1. **Registers manifestations** - Maps book PIDs to patterns:
-
-   ```typescript
-   registerManifestationAvailability(
-     "870970-basis:52557240",  // Book ID
-     AvailabilityPattern.AVAILABLE_EVERYWHERE  // Which pattern
-   );
-   ```
-
-2. **Intercepts availability API** - Catches calls to
-   `/catalog/availability/`:
-
-   ```text
-   Real: GET https://fbs.../availability/?recordid=870970-basis:52557240
-   Intercepted: Cypress catches it, returns fake data
-   ```
-
-3. **Intercepts holdings API** - Catches calls to
-   `/catalog/holdingsLogistics/`:
-
-   ```text
-   Real: GET https://fbs.../holdingsLogistics/?recordid=870970-basis:52557240
-   Intercepted: Cypress catches it, returns fake data
-   ```
-
-#### The flow
-
-```typescript
-// Your React app requests:
-fetch("/fbs/availability/?recordid=870970-basis:52557240")
-
-// Cypress intercepts it:
-cy.intercept("GET", "**/availability/**", (req) => {
-  const recordIds = extractRecordIdsFromUrl(req.url);  // ["870970-basis:52557240"]
-  const response = getFbsAvailabilityResponse(recordIds);  // Generate fake data
-  req.reply({ statusCode: 200, body: response });  // Return it
+it("Should create a reservation", () => {
+  givenReservationWillSucceed();
+  
+  // Test reservation creation...
 });
-
-// Your React app receives fake data as if from real server
 ```
 
-#### Why two different APIs?
+## Scenarios Explained
 
-FBS has two separate endpoints:
+### `default`
+- **Use case**: Default scenario - material available at multiple libraries with mixed availability
+- **Note**: This is also used as the fallback for unknown PIDs
+- **Data**: 
+  - Available: `true` (overall - at least one copy available somewhere)
+  - Reservable: `true`
+  - Holdings at Hovedbiblioteket (2 available, 1 checked out)
+  - Holdings at Islands Brygge (3 available, 2 checked out)
+  - Holdings at Fjernlager (1 available, 0 checked out)
+  - Holdings at Vesterbro (0 available, 2 checked out)
 
-1. **Availability API** (`/availability/`) - Quick check:
-   - Is it available? (true/false)
-   - How many reservations?
-   - Is it reservable?
+### `unavailableEverywhere`
+- **Use case**: All copies are checked out but can be reserved
+- **Data**:
+  - Available: `false`
+  - Reservable: `true`
+  - Holdings at Hovedbiblioteket (0 available, 2 checked out)
 
-2. **Holdings API** (`/holdingsLogistics/`) - Detailed info:
-   - Which specific libraries?
-   - How many copies at each?
-   - Exact placement (department/section)
-   - Individual item barcodes
+### `notAvailableAnywhere`
+- **Use case**: Material is not in the library collection
+- **Data**:
+  - Available: `false`
+  - Reservable: `false`
+  - No holdings
 
-Both use the same pattern system, so data stays consistent.
+### `reservableButNoHoldings`
+- **Use case**: Digital materials (e-books, audiobooks) with a queue
+- **Data**:
+  - Available: `false`
+  - Reservable: `true`
+  - Reservations: `2` (people in queue)
+  - No physical holdings
 
-## Changing Number of Copies
+## Extending
 
-### Add more copies at a library
+### Adding New Scenarios
 
-Simply change the numbers:
-
-```typescript
-branch({
-  library: libraries.hovedbiblioteket,
-  available: 5,
-  unavailable: 3,
-  placement: { department: "Voksen", section: "Skønlitteratur" }
-})
-// Result: 5 available, 3 checked out = 8 total
-```
-
-### Add the material to another library
-
-Add another `branch()` call to the `branches` array:
-
-```typescript
-branches: [
-  branch({
-    library: libraries.hovedbiblioteket,
-    available: 1,
-    unavailable: 0,
-    placement: { department: "Voksen", section: "Skønlitteratur" }
-  }),
-  branch({
-    library: libraries.islandsBrygge,
-    available: 1,
-    unavailable: 1,
-    placement: { department: "Voksen", section: "Skønlitteratur" }
-  })
-]
-```
-
-### Remove material from a library
-
-Simply remove that library's `branch()` call from the `branches` array.
-
-### Custom placement (different section)
-
-Change the `placement` property:
+To add a custom scenario, edit `cypress/intercepts/fbs/scenarios.ts`:
 
 ```typescript
-branches: [
-  branch({
-    library: libraries.hovedbiblioteket,
-    available: 0,
-    unavailable: 2,
-    placement: { department: "Voksen", section: "Historiske romaner" }
-  })
-]
-```
-
-**Note:** In real libraries, the same book wouldn't be in multiple sections.
-Use different manifestations (editions) for different placements.
-
-## Available Patterns
-
-| Pattern | Description |
-|---------|-------------|
-| `ONLY_AVAILABLE_ON_MAIN_LIBRARY` | Material only at Hovedbiblioteket |
-| `AVAILABLE_EVERYWHERE` | Material at all 3 libraries |
-| `AVAILABLE_ON_TWO_LIBRARIES` | Material at 2 libraries |
-| `MAIN_LIBRARY_UNAVAILABLE_OTHERS_AVAILABLE` | Material NOT at main library |
-| `ON_SHELF_BUT_UNAVAILABLE` | Material exists but all copies checked out |
-| `NOT_AVAILABLE_ANYWHERE` | Material not in collection |
-| `IS_RESERVABLE_EVERYWHERE` | No physical copies, but can be reserved |
-
-## Creating a New Pattern
-
-Add the pattern to `availabilityPatterns.ts`:
-
-```typescript
-export enum AvailabilityPattern {
-  // ... existing patterns
-  MY_CUSTOM_PATTERN = "MY_CUSTOM_PATTERN"
-}
-
-export const availabilityConfigMap: Record<
-  AvailabilityPattern,
-  AvailabilityConfigType
-> = {
-  // ... existing patterns
-  [AvailabilityPattern.MY_CUSTOM_PATTERN]: {
-    reservable: true,
-    reservations: 5,
-    available: true,
-    branches: [
-      branch({
+export const scenarios = {
+  // ... existing scenarios
+  
+  myCustomScenario: {
+    availability: {
+      available: true,
+      reservable: false,
+      reservations: 5
+    } as Partial<AvailabilityV3>,
+    holdings: [
+      createHoldingsAtLibrary({
         library: libraries.hovedbiblioteket,
-        available: 1,
-        unavailable: 1,
-        placement: { department: "Voksen", section: "Skønlitteratur" }
+        availableCount: 1,
+        unavailableCount: 0,
+        placement: defaultPlacement
       })
     ]
   }
 };
 ```
 
-Register a manifestation with your pattern in `interceptFbsCalls.ts`:
+Then use it in `fbs.ts`:
 
 ```typescript
-registerManifestationAvailability(
-  "870970-basis:12345678",
-  AvailabilityPattern.MY_CUSTOM_PATTERN
-);
+const manifestationScenarios = new Map([
+  // ... existing mappings
+  [convertPostIdToFaustId("my-pid"), scenarios.myCustomScenario]
+]);
 ```
 
-## Architecture
+### Adding New Materials
 
-```text
-Test makes API call
-       ↓
-interceptFbsCalls intercepts request
-       ↓
-extractRecordIdsFromUrl(["52557240", "53292968"])
-       ↓
-For each recordId:
-  - getAvailabilityConfig(recordId) → looks up pattern
-  - createHoldingsForManifestation(recordId) → generates holdings
-       ↓
-Return mocked response
+To add a new material variant with custom data:
+
+1. Create a new manifestation in `cypress/factories/manifestation/variants/`
+2. Add its PID mapping in `fbs.ts`
+3. The intercepts will automatically handle it
+
+## Advanced Customization
+
+### Custom Placement
+
+By default, all materials use the `defaultPlacement` ("Voksen" department, "Skønlitteratur" section). To create holdings with different placement:
+
+```typescript
+const childrenPlacement = {
+  department: { id: "bo", name: "Børn" },
+  section: { id: "Billedbøger", name: "Billedbøger" }
+};
+
+createHoldingsAtLibrary({
+  library: libraries.hovedbiblioteket,
+  availableCount: 5,
+  unavailableCount: 0,
+  placement: childrenPlacement
+});
 ```
 
-## Files Overview
+## Troubleshooting
 
-- **`availabilityPatterns.ts`** - Pattern definitions with `branch()` helper
-  function
-- **`helpers.ts`** - All response builders and utility functions
-  - URL parsing (`extractRecordIdsFromUrl`)
-  - Config lookup (`getAvailabilityConfig`)
-  - Response generation (`getFbsAvailabilityResponse`,
-    `getFbsHoldingsResponse`)
-  - Holdings creation (`createHoldingsForManifestation`)
-- **`interceptFbsCalls.ts`** - Registers manifestations and intercepts API
-  calls
-- **`manifestationPatternsMap.ts`** - Maps PIDs to patterns
-- **`libraryConfig.ts`** - Defines the 3 test libraries
+### Material showing wrong availability
 
-## Tips
+Check that:
+1. The PID is correctly mapped in `manifestationScenarios`
+2. The faust ID portion of the PID matches (use `convertPostIdToFaustId()`)
+3. The scenario has the correct `available` and `reservable` flags
 
-- All `branch()` parameters are required for explicitness
-- `available` = copies on shelf, `unavailable` = checked out copies
-- Always specify `unavailable` even if 0 (e.g., `unavailable: 0`)
-- Always specify `placement` (usually `{ department: "Voksen", section:
-  "Skønlitteratur" }`)
-- Each library should only have one placement per book (realistic behavior)
+### Holdings not showing up
+
+Verify that:
+1. The scenario includes `holdings` array
+2. Holdings have materials with correct `available` flags
+3. Library branch IDs match expected format (`DK-710100`, etc.)
+
+### Type errors
+
+Ensure factory data matches the FBS model types in `src/core/fbs/model.ts`
+
+## Related Documentation
+
+- [Fishery Factory Documentation](https://github.com/thoughtbot/fishery)
+- [FBS API Documentation](https://fbs-openplatform.dbc.dk/v3/api-docs)
+- [Cypress Intercept Guide](https://docs.cypress.io/api/commands/intercept)
