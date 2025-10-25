@@ -8,6 +8,7 @@ import { DisclosureDetailsComponent } from "./components/disclosure-details";
 import { ModalReservationComponent } from "./components/modal-reservation";
 import { ModalEditionsSwitchComponent } from "./components/modal-editions-switch";
 import { ModalFindOnShelfComponent } from "./components/modal-find-on-shelf";
+import { ModalReservationSuccessComponent } from "./components/modal-reservation-success";
 
 export class MaterialPage extends PageObject {
   public elements!: Elements;
@@ -68,6 +69,12 @@ export class MaterialPage extends PageObject {
         this.performWithin(
           this.container(),
           new ModalEditionsSwitchComponent(),
+          fn
+        ),
+      ModalReservationSuccess: (fn) =>
+        this.performWithin(
+          this.container(),
+          new ModalReservationSuccessComponent(),
           fn
         )
     };

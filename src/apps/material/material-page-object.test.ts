@@ -6,6 +6,7 @@ import {
   givenAMaterialMusic
 } from "../../../cypress/intercepts/fbi/material";
 import { givenUserHasLoanedEbook } from "../../../cypress/intercepts/publizon/publizon";
+import { givenReservationWillSucceed } from "../../../cypress/intercepts/fbs/fbs";
 
 describe("Material Page Object Test", () => {
   let materialPage: MaterialPage;
@@ -414,6 +415,58 @@ describe("Material Page Object Test", () => {
           reservation.elements
             .submitButton()
             .shouldContainAll(["Approve reservation"]);
+        });
+      });
+
+      it("Should submit reservation and display success message", () => {
+        // Given: A material page with authentication and successful reservation setup
+        materialPage = new MaterialPage();
+        givenAMaterial();
+        cy.createFakeAuthenticatedSession();
+        givenReservationWillSucceed();
+
+        materialPage.visit([]);
+
+        // When: Opening the reservation modal and submitting
+        materialPage.openModalReservation();
+
+        materialPage.components.ModalReservation((reservation) => {
+          reservation.elements.submitButton().click();
+        });
+
+        // Wait for the reservation API call to complete
+        cy.wait("@createReservation");
+
+        // Then: Should show success modal with all expected information
+        materialPage.components.ModalReservationSuccess((success) => {
+          // Title message
+          success.elements
+            .titleText()
+            .shouldContainAll(["Material is available and reserved for you!"]);
+
+          // Material title confirmation
+          success.elements
+            .reservedForYouText()
+            .shouldContainAll(["De syv søstre is reserved for you"]);
+
+          // Queue position and stock count
+          success.elements
+            .numberInQueueText()
+            .shouldContainAll([
+              "You are number 3 in the queue",
+              "We have 11 copies of the material in stock"
+            ]);
+
+          // Pickup branch information
+          success.elements
+            .pickupBranchText()
+            .shouldContainAll([
+              "Material is available",
+              "pickup at Hovedbiblioteket"
+            ]);
+
+          // Close button
+          success.elements.closeButton().shouldContainAll(["Ok"]);
         });
       });
     });
