@@ -28,7 +28,8 @@ export class MaterialPage extends PageObject {
           ".material-header__availability-label .availability-label"
         );
       },
-      stockInfo: () => cy.getBySel("material-header-content"),
+      headerButtons: () => cy.get(".material-header__button"),
+      materialHeaderContent: () => cy.getBySel("material-header-content"),
       descriptionSection: () => cy.getBySel("material-description"),
       seriesInfo: () => cy.getBySel("material-description-series-0"),
       seriesMembers: () => cy.getBySel("material-description-series-members"),

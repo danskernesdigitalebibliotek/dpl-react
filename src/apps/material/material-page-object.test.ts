@@ -117,20 +117,6 @@ describe("Material Page Object Test", () => {
         .shouldContainAll(["lydbog (cd-mp3)", "Unavailable"]);
     });
 
-    it("Should display stock information", () => {
-      // Given: A material page
-      materialPage = new MaterialPage();
-      givenAMaterial();
-
-      // When: The user visits the material page
-      materialPage.visit([]);
-
-      // Then: Stock information should be visible
-      materialPage.elements
-        .stockInfo()
-        .shouldContainAll(["We have 11 copies of the material in stock."]);
-    });
-
     it("Should display series information", () => {
       // Given: A material page
       materialPage = new MaterialPage();
@@ -165,6 +151,93 @@ describe("Material Page Object Test", () => {
       materialPage.elements
         .fictionNonfiction()
         .shouldContainAll(["skønlitteratur"]);
+    });
+
+    describe("Header Buttons", () => {
+      it("Should show Reserve and Find on shelf buttons for physical books", () => {
+        // Given: A material page
+        materialPage = new MaterialPage();
+        givenAMaterial();
+
+        // When: The user visits the material page
+        materialPage.visit([]);
+
+        // Then: Material header should show Reserve and Find on shelf buttons
+        materialPage.elements
+          .headerButtons()
+          .shouldContainAll(["Reserve bog", "Find on shelf"]);
+
+        // And: Should show stock information
+        materialPage.elements
+          .materialHeaderContent()
+          .shouldContainAll(["We have 11 copies of the material in stock."]);
+      });
+
+      it("Should show Loan and Try buttons when e-book is available", () => {
+        // Given: A material page with authentication
+        materialPage = new MaterialPage();
+        givenAMaterial();
+        cy.createFakeAuthenticatedSession();
+
+        // When: The user visits the material page
+        materialPage.visit([]);
+
+        // And: Clicking on the e-book availability label
+        materialPage
+          .getHeaderAvailabilityLabel(0)
+          .shouldContainAll(["e-bog", "Available"])
+          .click();
+
+        // Then: Material header should show Loan and Try buttons
+        materialPage.elements
+          .headerButtons()
+          .shouldContainAll(["Loan e-bog", "Try e-bog"]);
+
+        // And: Should show loan limit information
+        materialPage.elements
+          .materialHeaderContent()
+          .shouldContainAll([
+            "You have borrowed @count out of @limit possible e-books this month"
+          ]);
+
+        // And: E-book manifestation in editions should also show Loan button
+        materialPage.components.DisclosureEditions((editions) => {
+          editions.open();
+
+          editions
+            .getManifestationItem(2)
+            .shouldContainAll(["Loan e-bog", "Try e-bog"]);
+        });
+      });
+
+      it("Should show Read button when e-book is already loaned", () => {
+        // Given: A material page with authentication and book already loaned
+        materialPage = new MaterialPage();
+        givenAMaterial();
+        givenUserHasLoanedEbook();
+        cy.createFakeAuthenticatedSession();
+
+        // When: The user visits the material page
+        materialPage.visit([]);
+
+        // And: Clicking on the e-book availability label
+        materialPage
+          .getHeaderAvailabilityLabel(0)
+          .shouldContainAll(["e-bog"])
+          .click();
+
+        // Then: Material header should show Read button
+        materialPage.elements.headerButtons().shouldContainAll(["Read e-bog"]);
+
+        // And: E-book manifestation in editions should also show Read button
+        materialPage.components.DisclosureEditions((editions) => {
+          editions.open();
+
+          editions.getManifestationItem(2).within(() => {
+            cy.contains("button", "Read e-bog").should("be.visible");
+          });
+        });
+      });
     });
   });
 
@@ -271,25 +344,6 @@ describe("Material Page Object Test", () => {
               "Can't be reserved",
               "Find on shelf"
             ]);
-        });
-      });
-
-      it("Should show Read button when e-book is already loaned", () => {
-        // Given: A material page with authentication and book already loaned
-        materialPage = new MaterialPage();
-        givenAMaterial();
-        givenUserHasLoanedEbook();
-        cy.createFakeAuthenticatedSession();
-
-        // When: The user visits the material page and opens editions
-        materialPage.visit([]);
-        materialPage.components.DisclosureEditions((editions) => {
-          editions.open();
-
-          // Then: E-book manifestation should show Read button (because it's in loans)
-          editions.getManifestationItem(2).within(() => {
-            cy.contains("button", "Read e-bog").should("be.visible");
-          });
         });
       });
     });
