@@ -1,10 +1,13 @@
 # FBS Intercepts
 
-This directory contains Cypress intercepts for mocking FBS (Fælles Bibliotekar Service) API responses in tests.
+This directory contains Cypress intercepts for mocking FBS (Fælles
+Bibliotekar Service) API responses in tests.
 
 ## Overview
 
-The FBS intercepts use [Fishery](https://github.com/thoughtbot/fishery) factories to generate realistic test data for library availability and holdings. This approach provides:
+The FBS intercepts use [Fishery](https://github.com/thoughtbot/fishery)
+factories to generate realistic test data for library availability and
+holdings. This approach provides:
 
 - **Consistent test data** across all tests
 - **Flexible scenario-based mocking** for different availability states
@@ -23,10 +26,14 @@ The FBS intercepts use [Fishery](https://github.com/thoughtbot/fishery) factorie
 
 ### How It Works
 
-1. **PID Mapping**: Tests use manifestation PIDs (e.g., `870970-basis:52557240`) to identify materials
-2. **Numeric Extraction**: FBS API requests use only the numeric portion (e.g., `52557240`)
-3. **Scenario Lookup**: Each PID maps to a predefined scenario (available, unavailable, etc.)
-4. **Factory Generation**: Factories build realistic response data based on the scenario
+1. **PID Mapping**: Tests use manifestation PIDs (e.g.,
+   `870970-basis:52557240`) to identify materials
+2. **Numeric Extraction**: FBS API requests use only the numeric portion
+   (e.g., `52557240`)
+3. **Scenario Lookup**: Each PID maps to a predefined scenario (available,
+   unavailable, etc.)
+4. **Factory Generation**: Factories build realistic response data based on
+   the scenario
 
 ```typescript
 // Request flow:
@@ -39,12 +46,13 @@ manifestationScenarios.get("52557240")
 ## Default Manifestation Scenarios
 
 The intercepts automatically handle these default materials:
-| Material | PID | Scenario | Status |
-|----------|-----|----------|--------|
-| Original book (2016) | `52557240` | `unavailableEverywhere` | All copies checked out, reservable |
-| New book (2017) | `53292968` | `default` | Available at 3 of 4 libraries |
-| Audiobook | `52643414` | `notAvailableAnywhere` | Not in collection, not reservable |
-| E-book | `9788702441000` | `reservableButNoHoldings` | Digital only, reservation queue |
+
+| Material | PID | Scenario |
+|----------|-----|----------|
+| Original book (2016) | `52557240` | `unavailableEverywhere` |
+| New book (2017) | `53292968` | `default` |
+| Audiobook | `52643414` | `notAvailableAnywhere` |
+| E-book | `9788702441000` | `reservableButNoHoldings` |
 
 ## Usage
 
@@ -58,7 +66,8 @@ beforeEach(() => {
 });
 ```
 
-This automatically handles all FBS availability and holdings requests with realistic factory data.
+This automatically handles all FBS availability and holdings requests with
+realistic factory data.
 
 ### Advanced Usage
 
@@ -77,9 +86,11 @@ it("Should create a reservation", () => {
 ## Scenarios Explained
 
 ### `default`
-- **Use case**: Default scenario - material available at multiple libraries with mixed availability
+
+- **Use case**: Default scenario - material available at multiple libraries
+  with mixed availability
 - **Note**: This is also used as the fallback for unknown PIDs
-- **Data**: 
+- **Data**:
   - Available: `true` (overall - at least one copy available somewhere)
   - Reservable: `true`
   - Holdings at Hovedbiblioteket (2 available, 1 checked out)
@@ -88,6 +99,7 @@ it("Should create a reservation", () => {
   - Holdings at Vesterbro (0 available, 2 checked out)
 
 ### `unavailableEverywhere`
+
 - **Use case**: All copies are checked out but can be reserved
 - **Data**:
   - Available: `false`
@@ -95,6 +107,7 @@ it("Should create a reservation", () => {
   - Holdings at Hovedbiblioteket (0 available, 2 checked out)
 
 ### `notAvailableAnywhere`
+
 - **Use case**: Material is not in the library collection
 - **Data**:
   - Available: `false`
@@ -102,6 +115,7 @@ it("Should create a reservation", () => {
   - No holdings
 
 ### `reservableButNoHoldings`
+
 - **Use case**: Digital materials (e-books, audiobooks) with a queue
 - **Data**:
   - Available: `false`
@@ -158,7 +172,8 @@ To add a new material variant with custom data:
 
 ### Custom Placement
 
-By default, all materials use the `defaultPlacement` ("Voksen" department, "Skønlitteratur" section). To create holdings with different placement:
+By default, all materials use the `defaultPlacement` ("Voksen" department,
+"Skønlitteratur" section). To create holdings with different placement:
 
 ```typescript
 const childrenPlacement = {
@@ -179,6 +194,7 @@ createHoldingsAtLibrary({
 ### Material showing wrong availability
 
 Check that:
+
 1. The PID is correctly mapped in `manifestationScenarios`
 2. The faust ID portion of the PID matches (use `convertPostIdToFaustId()`)
 3. The scenario has the correct `available` and `reservable` flags
@@ -186,6 +202,7 @@ Check that:
 ### Holdings not showing up
 
 Verify that:
+
 1. The scenario includes `holdings` array
 2. Holdings have materials with correct `available` flags
 3. Library branch IDs match expected format (`DK-710100`, etc.)
