@@ -80,6 +80,7 @@ const DawaInput = (props: InputProps) => {
   const [query, setQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const addresses = useGetDawaAddresses(query);
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   const handleAddressSelect = (address: DawaAddress) => {
     setQuery(address.betegnelse);
@@ -95,21 +96,45 @@ const DawaInput = (props: InputProps) => {
     }
   };
 
+  const isDropdownFocused = () => {
+    return dropdownRef.current?.contains(document.activeElement);
+  };
+
   return (
     <div className={clsx("dawa-input", classNames)}>
       <Label id={id} className={labelClassName}>
         {label}
       </Label>
-      <div className="dawa-input__input-wrapper">
+      <div
+        className={clsx(
+          "dawa-input__input-wrapper",
+          isDropdownFocused() && "dawa-input__input-wrapper--focused"
+        )}
+      >
         <input
           placeholder={placeholder}
           id={id}
           type={type}
           value={query}
           onChange={(event) => handleInputChange(event.target.value)}
+          onFocus={() => {
+            if (query.length > MIN_QUERY_LENGTH) {
+              setShowSuggestions(true);
+            }
+          }}
+          onBlur={() => {
+            setTimeout(() => {
+              if (isDropdownFocused()) {
+                // If the focused element is inside the dropdown, keep it open
+                setShowSuggestions(true);
+              } else {
+                setShowSuggestions(false);
+              }
+            });
+          }}
         />
         {showSuggestions && query.length > 3 && addresses.length > 0 && (
-          <div className="dawa-input__address-suggestions">
+          <div className="dawa-input__address-suggestions" ref={dropdownRef}>
             {addresses.map((address) => (
               <button
                 key={address.id}

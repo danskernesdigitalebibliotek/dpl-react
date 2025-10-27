@@ -11,8 +11,12 @@ export type InputProps = {
   selectedBranch?: {
     branchId: string;
     title: string;
-    address: {
+    location: {
+      lat: string;
+      lng: string;
       value: string;
+      address: string;
+      city: string;
     };
   };
   required?: boolean;
@@ -49,7 +53,8 @@ function LibrarySelect({
               {selectedBranch.title}
             </p>
             <div className="library-select-button__address">
-              <p>{selectedBranch.address.value}</p>
+              <p>{selectedBranch.location.address}</p>
+              <p>{selectedBranch.location.city}</p>
             </div>
           </div>
         ) : (
