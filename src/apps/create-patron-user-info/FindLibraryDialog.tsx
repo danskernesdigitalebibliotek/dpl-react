@@ -57,7 +57,7 @@ function FindLibraryDialog({
     setSelectedDawaAddress(address);
   };
 
-  console.log(branches);
+  console.log("Test commit");
 
   return (
     <div className="find-library-dialog">
