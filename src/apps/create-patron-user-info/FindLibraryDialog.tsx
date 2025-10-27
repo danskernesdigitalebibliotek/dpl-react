@@ -8,7 +8,13 @@ type FindLibraryDialogProps = {
   branches?: Array<{
     branchId: string;
     title: string;
-    address: { lat: string; lng: string; value: string };
+    location: {
+      lat: string;
+      lng: string;
+      value: string;
+      address: string;
+      city: string;
+    };
   }>;
   selectedBranchId?: string;
   handleBranchSelect?: (branchId: string) => void;
@@ -51,9 +57,11 @@ function FindLibraryDialog({
     setSelectedDawaAddress(address);
   };
 
+  console.log(branches);
+
   return (
     <div className="find-library-dialog">
-      <p className="find-library-dialog__title">Find dit nærmeste bibliotek</p>
+      <p className="find-library-dialog__title">Find nærmeste bibliotek</p>
       <div className="find-library-dialog__location-group">
         <DawaInput
           id="address-input"
@@ -97,9 +105,8 @@ function FindLibraryDialog({
                   {branch.title}
                 </p>
                 <div className="find-library-dialog__location-list__item__address">
-                  <p>{branch.address.value}</p>
-                  {/* <p>{branch.street}</p>
-                  <p>{branch.city}</p> */}
+                  <p>{branch.location.address}</p>
+                  <p>{branch.location.city}</p>
                 </div>
               </div>
               <p className="find-library-dialog__location-list__item__distance">
@@ -109,8 +116,8 @@ function FindLibraryDialog({
                   calculateDistance(
                     selectedDawaAddress.lat,
                     selectedDawaAddress.lng,
-                    parseFloat(branch.address.lat),
-                    parseFloat(branch.address.lng)
+                    parseFloat(branch.location.lat),
+                    parseFloat(branch.location.lng)
                   ).toFixed(1) + " km"}
               </p>
             </button>
