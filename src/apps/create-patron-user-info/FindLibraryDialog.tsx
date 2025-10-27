@@ -8,7 +8,7 @@ type FindLibraryDialogProps = {
   branches?: Array<{
     branchId: string;
     title: string;
-    location: {
+    location?: {
       lat: string;
       lng: string;
       value: string;
@@ -105,14 +105,16 @@ function FindLibraryDialog({
                   {branch.title}
                 </p>
                 <div className="find-library-dialog__location-list__item__address">
-                  <p>{branch.location.address}</p>
-                  <p>{branch.location.city}</p>
+                  <p>{branch.location?.address}</p>
+                  <p>{branch.location?.city}</p>
                 </div>
               </div>
               <p className="find-library-dialog__location-list__item__distance">
                 {selectedDawaAddress &&
                   selectedDawaAddress.lat &&
                   selectedDawaAddress.lng &&
+                  branch.location?.lat &&
+                  branch.location?.lng &&
                   calculateDistance(
                     selectedDawaAddress.lat,
                     selectedDawaAddress.lng,

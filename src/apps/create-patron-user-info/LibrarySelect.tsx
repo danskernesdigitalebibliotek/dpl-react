@@ -11,7 +11,7 @@ export type InputProps = {
   selectedBranch?: {
     branchId: string;
     title: string;
-    location: {
+    location?: {
       lat: string;
       lng: string;
       value: string;
@@ -52,10 +52,12 @@ function LibrarySelect({
             <p className="library-select-button__name">
               {selectedBranch.title}
             </p>
-            <div className="library-select-button__address">
-              <p>{selectedBranch.location.address}</p>
-              <p>{selectedBranch.location.city}</p>
-            </div>
+            {selectedBranch.location && (
+              <div className="library-select-button__address">
+                <p>{selectedBranch.location.address}</p>
+                <p>{selectedBranch.location.city}</p>
+              </div>
+            )}
           </div>
         ) : (
           <div>Vælg bibliotek</div>
