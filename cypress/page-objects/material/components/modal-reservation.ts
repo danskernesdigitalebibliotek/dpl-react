@@ -9,9 +9,9 @@ export class ModalReservationComponent extends ComponentObject {
         return element;
       },
       submitButton: () => {
-        const element = this.container().find(
-          "[data-cy='reservation-modal-submit-button']"
-        );
+        const element = this.container()
+          .find("[data-cy='reservation-modal-submit-button']")
+          .should("not.be.disabled");
         return element;
       },
       submitSection: () => {

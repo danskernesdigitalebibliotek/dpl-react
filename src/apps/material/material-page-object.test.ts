@@ -480,7 +480,7 @@ describe("Material Page Object Test", () => {
         materialPage.openModalReservation();
 
         materialPage.components.ModalReservation((reservation) => {
-          reservation.elements.submitButton().should("not.be.disabled").click();
+          reservation.elements.submitButton().click();
         });
 
         // Then: Should show success modal with all expected information
