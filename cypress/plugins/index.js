@@ -21,8 +21,8 @@ export default (on, config) => {
                   transpileOnly: true,
                   compilerOptions: {
                     module: "esnext",
-                    target: "es5",
-                    lib: ["es5", "dom"],
+                    target: "es2017",
+                    lib: ["es2017", "dom"],
                     jsx: "react",
                     allowJs: true,
                     esModuleInterop: true,

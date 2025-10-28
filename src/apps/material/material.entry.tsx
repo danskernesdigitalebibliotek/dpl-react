@@ -11,6 +11,7 @@ import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservati
 import { PublizonErrorArgs } from "../../core/storybook/publizonErrorArgs";
 import { CopyLinkArgs } from "../../core/storybook/copyLinkArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
+import { EditionSwitchModalArgs } from "../../core/storybook/editionSwitchModalArgs";
 import withPageStatistics from "../../core/statistics/withPageStatistics";
 import useSetSmoothScroll from "../../core/utils/useSetSmoothScroll";
 
@@ -224,7 +225,8 @@ export interface MaterialEntryProps
     DeleteReservationModalArgs,
     PublizonErrorArgs,
     CopyLinkArgs,
-    MappArgs {
+    MappArgs,
+    EditionSwitchModalArgs {
   wid: WorkId;
 }
 

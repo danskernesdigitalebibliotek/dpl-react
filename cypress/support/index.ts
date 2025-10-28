@@ -5,6 +5,9 @@ import "@cypress/code-coverage/support";
 import { hasOperationName } from "../utils/graphql-test-utils";
 import { Operations } from "../../src/core/dbc-gateway/types";
 
+// Install cypress-terminal-report logs collector
+require('cypress-terminal-report/src/installLogsCollector')();
+
 const TOKEN_LIBRARY_KEY = "library";
 const TOKEN_USER_KEY = "user";
 
@@ -34,6 +37,7 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
 type InterceptGraphqlParams = {
   operationName: Operations;
   fixtureFilePath?: string;
+  body?: unknown;
   statusCode?: number;
 };
 Cypress.Commands.add(
@@ -41,12 +45,15 @@ Cypress.Commands.add(
   ({
     operationName,
     fixtureFilePath,
+    body,
     statusCode = 200
   }: InterceptGraphqlParams) => {
     cy.intercept("POST", "**/next*/graphql", (req) => {
       if (hasOperationName(req, operationName)) {
         if (fixtureFilePath) {
           req.reply({ fixture: fixtureFilePath, statusCode });
+        } else if (body) {
+          req.reply({ statusCode, body });
         } else {
           req.reply({ statusCode });
         }
@@ -103,6 +110,25 @@ Cypress.Commands.add(
   }
 );
 
+/**
+ * Check that an element contains all specified texts
+ * @param texts Array of texts to check for
+ * @example cy.get('.tags').shouldContainAll(['tag1', 'tag2', 'tag3'])
+ */
+Cypress.Commands.add(
+  "shouldContainAll",
+  { prevSubject: true },
+  (subject, texts: string[]) => {
+    cy.wrap(subject).scrollIntoView();
+    cy.wrap(subject).within(() => {
+      texts.forEach((text) => {
+        cy.contains(text).should("be.visible");
+      });
+    });
+    return cy.wrap(subject);
+  }
+);
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -112,7 +138,7 @@ declare global {
        */
       createFakeLibrarySession(): void;
       createFakeAuthenticatedSession(): void;
-      interceptGraphql(prams: InterceptGraphqlParams): void;
+      interceptGraphql(params: InterceptGraphqlParams): void;
       interceptRest(params: InterceptRestParams): void;
       getBySel(selector: string, checkVisible?: boolean): Chainable;
       getBySelLike(selector: string, checkVisible?: boolean): Chainable;
@@ -121,6 +147,11 @@ declare global {
         endSelector: string,
         checkVisible?: boolean
       ): Chainable;
+      /**
+       * Check that an element contains all specified texts
+       * @example cy.get('.tags').shouldContainAll(['tag1', 'tag2'])
+       */
+      shouldContainAll(texts: string[]): Chainable;
     }
   }
 }
