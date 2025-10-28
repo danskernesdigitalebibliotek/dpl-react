@@ -149,21 +149,26 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
               setIsPinValid={setIsPinValid}
             />
 
-            <BranchesDropdown
-              classNames="dropdown--grey-borders"
-              selected={patron?.preferredPickupBranch || ""}
-              onChange={(newPreferredPickupBranch) =>
-                changePatron(newPreferredPickupBranch, "preferredPickupBranch")
-              }
-              required
-              footnote={t("createPatronBranchDropdownNoteText")}
-            />
+            {/* <div>
+              <BranchesDropdown
+                classNames="dropdown--grey-borders"
+                selected={patron?.preferredPickupBranch || ""}
+                onChange={(newPreferredPickupBranch) =>
+                  changePatron(
+                    newPreferredPickupBranch,
+                    "preferredPickupBranch"
+                  )
+                }
+                required
+                footnote={t("createPatronBranchDropdownNoteText")}
+              />
+            </div> */}
 
             <section className="create-patron-page__row">
               <LibrarySelect
                 label="Choose library*"
                 id="library-select"
-                description="Select the library you want to borrow from."
+                description={t("createPatronBranchDropdownNoteText")}
                 validation="Please select a library*"
                 selectedBranch={selectedBranch}
                 required

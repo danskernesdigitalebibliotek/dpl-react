@@ -10,7 +10,9 @@ export type InputProps = {
   description?: string;
   classNames?: string;
   placeholder?: string;
+  query?: string;
   onDawaAddressSelect: (address: DawaAddress) => void;
+  onQueryChange: (query: string) => void;
 };
 
 export type DawaAddress = {
@@ -67,9 +69,16 @@ function useGetDawaAddresses(query: string) {
 }
 
 const DawaInput = (props: InputProps) => {
-  const { label, type, id, classNames, placeholder, onDawaAddressSelect } =
-    props;
-  const [query, setQuery] = useState("");
+  const {
+    label,
+    type,
+    id,
+    classNames,
+    placeholder,
+    query = "",
+    onDawaAddressSelect,
+    onQueryChange
+  } = props;
   const [showSuggestions, setShowSuggestions] = useState(false);
   const addresses = useGetDawaAddresses(query);
   const dawaWrapperRef = React.useRef<HTMLDivElement>(null);
@@ -77,13 +86,12 @@ const DawaInput = (props: InputProps) => {
 
   const handleAddressSelect = (address: DawaAddress) => {
     inputRef.current?.focus();
-    setQuery(address.betegnelse);
     setShowSuggestions(false);
     onDawaAddressSelect(address);
   };
 
   const handleInputChange = (query: string) => {
-    setQuery(query);
+    onQueryChange(query);
 
     if (query.length > MIN_QUERY_LENGTH) {
       setShowSuggestions(true);
@@ -122,6 +130,7 @@ const DawaInput = (props: InputProps) => {
             }
           }}
           onBlur={() => {
+            // Delay hiding suggestions to allow click event to register
             setTimeout(() => {
               if (!dawaWrapperHasFocusWithin()) {
                 setShowSuggestions(false);
@@ -136,6 +145,14 @@ const DawaInput = (props: InputProps) => {
                 <button
                   className="dawa-input__address-suggestions__item"
                   onClick={() => handleAddressSelect(address)}
+                  onBlur={() => {
+                    // Delay hiding suggestions to allow click event to register
+                    setTimeout(() => {
+                      if (!dawaWrapperHasFocusWithin()) {
+                        setShowSuggestions(false);
+                      }
+                    });
+                  }}
                 >
                   {address.betegnelse}
                 </button>
