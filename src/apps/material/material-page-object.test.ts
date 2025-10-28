@@ -2,7 +2,8 @@ import { MaterialPage } from "../../../cypress/page-objects/material/MaterialPag
 import { interceptPublizonCalls } from "../../../cypress/intercepts/publizon/interceptPublizonCalls";
 import {
   givenAMaterial,
-  givenAMaterialMusic
+  givenAMaterialMusic,
+  givenANonFictionMaterial
 } from "../../../cypress/intercepts/fbi/material";
 import { givenUserHasLoanedEbook } from "../../../cypress/intercepts/publizon/publizon";
 import {
@@ -420,6 +421,52 @@ describe("Material Page Object Test", () => {
         });
       });
 
+      describe("Edition text (fiction vs non-fiction)", () => {
+        it("Fiction shows 'First available edition'", () => {
+          materialPage = new MaterialPage();
+          givenAMaterial();
+          cy.createFakeAuthenticatedSession();
+          materialPage.visit([]);
+          materialPage.openModalReservation();
+
+          materialPage.components.ModalReservation((reservation) => {
+            reservation.elements
+              .description()
+              .shouldContainAll([
+                "De syv søstre",
+                "Lucinda Riley",
+                "(All editions)"
+              ]);
+
+            reservation
+              .getListItem(0)
+              .shouldContainAll([
+                "Edition",
+                "First available edition",
+                "Change"
+              ]);
+          });
+        });
+
+        it("Non-fiction shows concrete edition summary", () => {
+          materialPage = new MaterialPage();
+          givenANonFictionMaterial();
+          cy.createFakeAuthenticatedSession();
+          materialPage.visit([]);
+          materialPage.openModalReservation();
+
+          materialPage.components.ModalReservation((reservation) => {
+            reservation.elements
+              .description()
+              .shouldContainAll(["Turen går til Rom"]);
+
+            reservation
+              .getListItem(0)
+              .shouldContainAll(["Edition", "udgave", "Change"]);
+          });
+        });
+      });
+
       it("Should submit reservation and display success message", () => {
         // Given: A material page with authentication and successful reservation setup
         materialPage = new MaterialPage();
@@ -483,7 +530,13 @@ describe("Material Page Object Test", () => {
 
         materialPage.components.ModalReservation((reservation) => {
           // Then: Should show "All editions" and "First available edition"
-          reservation.elements.subtitle().shouldContainAll(["(All editions)"]);
+          reservation.elements
+            .description()
+            .shouldContainAll([
+              "De syv søstre",
+              "Lucinda Riley",
+              "(All editions)"
+            ]);
 
           reservation
             .getListItemValue(0)

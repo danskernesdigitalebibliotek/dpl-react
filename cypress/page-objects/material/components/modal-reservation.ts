@@ -4,10 +4,8 @@ export class ModalReservationComponent extends ComponentObject {
   constructor() {
     super(() => cy.get(".reservation-modal"));
     this.addElements = {
-      subtitle: () => {
-        const element = this.container().find(
-          ".reservation-modal-description p"
-        );
+      description: () => {
+        const element = this.container().find(".reservation-modal-description");
         return element;
       },
       submitButton: () => {
