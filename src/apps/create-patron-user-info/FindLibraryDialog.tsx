@@ -57,8 +57,6 @@ function FindLibraryDialog({
     setSelectedDawaAddress(address);
   };
 
-  console.log("Test commit");
-
   return (
     <div className="find-library-dialog">
       <p className="find-library-dialog__title">Find nærmeste bibliotek</p>
@@ -68,22 +66,21 @@ function FindLibraryDialog({
           label="Indtast din adresse"
           placeholder="Fx Torvegade 1, 1401 København K"
           type="text"
-          classNames="dawa-input"
           onDawaAddressSelect={(address) => {
             handleDawaAddressSelect(address);
           }}
         />
-        <button className="find-library-dialog__location">
+        <button onClick={() => {}} className="find-library-dialog__location">
           <img src={LocationIcon} alt="" />
           <p>Find nærmeste bibliotek ud fra din lokation</p>
         </button>
-        <div className="find-library-dialog__error-message">
+        {/* <div className="find-library-dialog__error-message">
           <img src={WarningIcon} alt="" />
           <p>
             Årh nej. Der er sket en fejl i afstandsmåleren. Prøv at reloade
             siden eller indtast adressen forfra.
           </p>
-        </div>
+        </div> */}
       </div>
       <div className="find-library-dialog__location-list">
         <p className="find-library-dialog__location-list__title">
@@ -120,7 +117,9 @@ function FindLibraryDialog({
                     selectedDawaAddress.lng,
                     parseFloat(branch.location.lat),
                     parseFloat(branch.location.lng)
-                  ).toFixed(1) + " km"}
+                  )
+                    .toFixed(1)
+                    .replace(".", ",") + " km"}
               </p>
             </button>
           );

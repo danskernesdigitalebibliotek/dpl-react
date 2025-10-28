@@ -9,7 +9,6 @@ export type InputProps = {
   id: string;
   description?: string;
   classNames?: string;
-  labelClassName?: string;
   placeholder?: string;
   onDawaAddressSelect: (address: DawaAddress) => void;
 };
@@ -68,21 +67,16 @@ function useGetDawaAddresses(query: string) {
 }
 
 const DawaInput = (props: InputProps) => {
-  const {
-    label,
-    type,
-    id,
-    classNames,
-    labelClassName,
-    placeholder,
-    onDawaAddressSelect
-  } = props;
+  const { label, type, id, classNames, placeholder, onDawaAddressSelect } =
+    props;
   const [query, setQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const addresses = useGetDawaAddresses(query);
-  const dropdownRef = React.useRef<HTMLDivElement>(null);
+  const dawaWrapperRef = React.useRef<HTMLDivElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleAddressSelect = (address: DawaAddress) => {
+    inputRef.current?.focus();
     setQuery(address.betegnelse);
     setShowSuggestions(false);
     onDawaAddressSelect(address);
@@ -96,22 +90,27 @@ const DawaInput = (props: InputProps) => {
     }
   };
 
-  const isDropdownFocused = () => {
-    return dropdownRef.current?.contains(document.activeElement);
+  const dawaWrapperHasFocusWithin = () => {
+    return dawaWrapperRef.current?.contains(document.activeElement);
   };
 
   return (
-    <div className={clsx("dawa-input", classNames)}>
-      <Label id={id} className={labelClassName}>
+    <div
+      ref={dawaWrapperRef}
+      className={clsx("dawa-input-wrapper", classNames)}
+    >
+      <Label id={id} className="dawa-input-wrapper__label">
         {label}
       </Label>
       <div
         className={clsx(
           "dawa-input__input-wrapper",
-          isDropdownFocused() && "dawa-input__input-wrapper--focused"
+          dawaWrapperHasFocusWithin() && "dawa-input__input-wrapper--focused"
         )}
       >
         <input
+          className="dawa-input"
+          ref={inputRef}
           placeholder={placeholder}
           id={id}
           type={type}
@@ -124,27 +123,25 @@ const DawaInput = (props: InputProps) => {
           }}
           onBlur={() => {
             setTimeout(() => {
-              if (isDropdownFocused()) {
-                // If the focused element is inside the dropdown, keep it open
-                setShowSuggestions(true);
-              } else {
+              if (!dawaWrapperHasFocusWithin()) {
                 setShowSuggestions(false);
               }
             });
           }}
         />
         {showSuggestions && query.length > 3 && addresses.length > 0 && (
-          <div className="dawa-input__address-suggestions" ref={dropdownRef}>
+          <ul className="dawa-input__address-suggestions">
             {addresses.map((address) => (
-              <button
-                key={address.id}
-                className="dawa-input__address-suggestions__item"
-                onClick={() => handleAddressSelect(address)}
-              >
-                {address.betegnelse}
-              </button>
+              <li key={address.id}>
+                <button
+                  className="dawa-input__address-suggestions__item"
+                  onClick={() => handleAddressSelect(address)}
+                >
+                  {address.betegnelse}
+                </button>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </div>
     </div>
