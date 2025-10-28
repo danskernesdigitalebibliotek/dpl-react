@@ -433,11 +433,8 @@ describe("Material Page Object Test", () => {
         materialPage.openModalReservation();
 
         materialPage.components.ModalReservation((reservation) => {
-          reservation.elements.submitButton().click();
+          reservation.elements.submitButton().should("not.be.disabled").click();
         });
-
-        // Wait for the reservation API call to complete
-        cy.wait("@createReservation");
 
         // Then: Should show success modal with all expected information
         materialPage.components.ModalReservationSuccess((success) => {

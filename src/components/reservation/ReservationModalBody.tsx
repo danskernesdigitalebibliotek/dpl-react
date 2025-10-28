@@ -175,11 +175,12 @@ export const ReservationModalBody = ({
   const expiryDate = getFutureDateString(interestPeriod);
   const materialType = getMaterialType(selectedManifestations);
 
+  const canSubmitFbs =
+    manifestationsToReserve?.length && !materialIsReservableFromAnotherLibrary;
+  const canSubmitOpenOrder = materialIsReservableFromAnotherLibrary && patron;
+
   const saveReservation = () => {
-    if (
-      manifestationsToReserve?.length &&
-      !materialIsReservableFromAnotherLibrary
-    ) {
+    if (canSubmitFbs) {
       setReservationStatus("pending");
       // Save reservation to FBS.
       mutateAddReservations(
@@ -212,7 +213,7 @@ export const ReservationModalBody = ({
           }
         }
       );
-    } else if (materialIsReservableFromAnotherLibrary && patron) {
+    } else if (canSubmitOpenOrder) {
       setReservationStatus("pending");
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
       // Save reservation to open order.
@@ -271,6 +272,10 @@ export const ReservationModalBody = ({
 
   const userHasEmail = Boolean(patron?.emailAddress);
 
+  // Disable submit based on the exact conditions used in saveReservation
+  const isSubmitDisabled =
+    reservationStatus === "pending" || !(canSubmitFbs || canSubmitOpenOrder);
+
   const handleEditionSwitchClick = () => {
     open(editionSwitchModalId());
   };
@@ -313,10 +318,7 @@ export const ReservationModalBody = ({
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
-                disabled={
-                  reservationStatus === "pending" ||
-                  (materialIsReservableFromAnotherLibrary && !userHasEmail)
-                }
+                disabled={isSubmitDisabled}
                 collapsible={false}
                 size="small"
                 onClick={saveReservation}
