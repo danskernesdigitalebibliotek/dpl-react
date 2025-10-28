@@ -16,21 +16,23 @@ import MaterialButtonReservableFromAnotherLibrary from "./physical/MaterialButto
 import useReservableFromAnotherLibrary from "../../../core/utils/useReservableFromAnotherLibrary";
 
 export interface MaterialButtonsProps {
+  isSpecificManifestation?: boolean;
   manifestations: Manifestation[];
   size?: ButtonSize;
   workId: WorkId;
   dataCy?: string;
   materialTitleId: string;
-  isSpecificManifestation?: boolean;
+  isEditionPicker?: boolean;
 }
 
 const MaterialButtons: FC<MaterialButtonsProps> = ({
+  isSpecificManifestation = false,
   manifestations,
   size,
   workId,
   dataCy = "material-buttons",
   materialTitleId,
-  isSpecificManifestation = false
+  isEditionPicker = false
 }) => {
   const faustIds = getAllFaustIds(manifestations);
   // We don't want to show physical buttons/find on shelf for articles because
@@ -70,13 +72,16 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
             size={size}
             dataCy={`${dataCy}-physical`}
             isSpecificManifestation={isSpecificManifestation}
+            isEditionPicker={isEditionPicker}
           />
-          <MaterialButtonsFindOnShelf
-            size={size}
-            faustIds={faustIds}
-            dataCy={`${dataCy}-find-on-shelf`}
-            workId={workId}
-          />
+          {!isEditionPicker && (
+            <MaterialButtonsFindOnShelf
+              size={size}
+              faustIds={faustIds}
+              dataCy={`${dataCy}-find-on-shelf`}
+              workId={workId}
+            />
+          )}
         </>
       )}
       {showOnlineButtons && (
@@ -86,6 +91,7 @@ const MaterialButtons: FC<MaterialButtonsProps> = ({
           workId={workId}
           dataCy={`${dataCy}-online`}
           ariaLabelledBy={materialTitleId}
+          isEditionPicker={isEditionPicker}
         />
       )}
     </>

@@ -23,6 +23,7 @@ import { useEventStatistics } from "../../../../core/statistics/useStatistics";
 import { statistics } from "../../../../core/statistics/statistics";
 import PlayerModal from "../../player-modal/PlayerModal";
 import MaterialButtonLoading from "../generic/MaterialButtonLoading";
+import { useModalIdsToCloseForReservation } from "../../../../core/utils/useModalIdsToCloseForReservation";
 
 type MaterialButtonsOnlineInternalType = {
   size?: ButtonSize;
@@ -34,6 +35,7 @@ type MaterialButtonsOnlineInternalType = {
   setLoanStatus?: (status: RequestStatus) => void;
   setReservationOrLoanErrorResponse?: (error: ApiResult) => void;
   workId: WorkId;
+  isEditionPicker?: boolean;
 };
 
 const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
@@ -45,11 +47,15 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
   setLoanResponse,
   setLoanStatus,
   setReservationOrLoanErrorResponse,
-  workId
+  workId,
+  isEditionPicker = false
 }) => {
   const { track } = useEventStatistics();
   const t = useText();
   const { open } = useModalButtonHandler();
+  const modalsToClose = useModalIdsToCloseForReservation();
+  const modalCloseOptions = isEditionPicker ? { modalsToClose } : undefined;
+
   const {
     type,
     orderId,
@@ -60,6 +66,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     canBeReserved,
     reservation
   } = useReaderPlayer(getFirstManifestation(manifestations));
+
   const handleModalLoanReservation = useOnlineInternalHandleLoanReservation({
     manifestations,
     openModal,
@@ -67,7 +74,8 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
     setLoanResponse,
     setLoanStatus,
     setReservationOrLoanErrorResponse,
-    workId
+    workId,
+    modalsToClose: isEditionPicker ? modalsToClose : undefined
   });
   const [reservationToDelete, setReservationToDelete] =
     useState<ReservationType | null>(null);
@@ -105,7 +113,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
             disabled={false}
             onClick={() => {
               setReservationToDelete(reservation);
-              open(deleteReservationModalId(reservation));
+              open(deleteReservationModalId(reservation), modalCloseOptions);
             }}
           />
         </>
@@ -196,7 +204,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
             disabled={false}
             onClick={() => {
               setReservationToDelete(reservation);
-              open(deleteReservationModalId(reservation));
+              open(deleteReservationModalId(reservation), modalCloseOptions);
             }}
           />
         </>
@@ -221,7 +229,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
                 name: statistics.publizonReadListen.name,
                 trackedData: workId
               });
-              open(playerModalId(orderId));
+              open(playerModalId(orderId), modalCloseOptions);
             }}
             disabled={false}
             collapsible={false}
@@ -265,7 +273,7 @@ const MaterialButtonsOnlineInternal: FC<MaterialButtonsOnlineInternalType> = ({
                 name: statistics.publizonTry.name,
                 trackedData: workId
               });
-              open(playerModalId(identifier));
+              open(playerModalId(identifier), modalCloseOptions);
             }}
             dataCy={`${dataCy}-player-teaser`}
             ariaDescribedBy={t("onlineMaterialTeaserText")}

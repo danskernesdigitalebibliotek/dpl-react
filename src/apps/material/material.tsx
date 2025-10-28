@@ -31,6 +31,7 @@ import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
 import { useGetWork } from "../../core/utils/useGetWork";
+import { useEditionSwitch } from "../../core/utils/useEditionSwitch";
 import {
   divideManifestationsByMaterialType,
   getBestMaterialTypeForWork,
@@ -48,6 +49,7 @@ import MaterialGridRelated from "../../components/material-grid-related/Material
 import useAvailabilityData from "../../components/availability-label/useAvailabilityData";
 import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { useScrollToLocation } from "../../core/utils/UseScrollToLocation";
+import EditionSwitchModal from "../../components/reservation/EditionSwitchModal";
 
 export interface MaterialProps {
   wid: WorkId;
@@ -66,6 +68,9 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
   const { updatePageStatistics } = usePageStatistics();
   const { collectPageStatistics } = useCollectPageStatistics();
   const disclosureOpenStates = getDisclosureOpenStatesFromUrl();
+  const { handleReserveFirstAvailable } = useEditionSwitch(
+    selectedManifestations
+  );
 
   useUpdateEffect(() => {
     updatePageStatistics({ waitTime: 2500 });
@@ -226,6 +231,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
               setSelectedPeriodical={setSelectedPeriodical}
             />
           )}
+          <EditionSwitchModal
+            work={work}
+            workId={wid}
+            handleReserveFirstAvailable={handleReserveFirstAvailable}
+          />
         </MaterialHeader>
         <MaterialDescription pid={pid} work={work} />
         {/* Since we cannot trust the editions for global manifestations */}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { first } from "lodash";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
+import { useModalButtonHandler } from "../../core/utils/modal";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
@@ -25,6 +26,7 @@ import {
   getTotalHoldings,
   getTotalReservations,
   reservationModalId,
+  editionSwitchModalId,
   useGetHoldings
 } from "../../apps/material/helper";
 import {
@@ -86,6 +88,7 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
+  const { open } = useModalButtonHandler();
   const { defaultInterestDaysForOpenOrder } = getConf(
     "reservation",
     configuration
@@ -268,6 +271,10 @@ export const ReservationModalBody = ({
 
   const userHasEmail = Boolean(patron?.emailAddress);
 
+  const handleEditionSwitchClick = () => {
+    open(editionSwitchModalId());
+  };
+
   return (
     <>
       {!reservationResults && !openOrderResponse && (
@@ -329,6 +336,9 @@ export const ReservationModalBody = ({
                 icon={Various}
                 title={t("editionText")}
                 text={selectedPeriodical?.displayText || editionText || ""}
+                isPossibleToChangeReservationDetails
+                changeHandler={handleEditionSwitchClick}
+                buttonAriaLabel={t("editionSwitchButtonChangeText")}
               />
               {!materialIsFiction(work) && otherManifestationPreferred && (
                 <PromoBar
@@ -393,7 +403,6 @@ export const ReservationModalBody = ({
       )}
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
-          modalId={reservationModalId(faustIds)}
           title={getManifestationTitle(manifestation)}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
