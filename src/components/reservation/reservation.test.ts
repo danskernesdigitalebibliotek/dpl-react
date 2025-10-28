@@ -1,3 +1,8 @@
+// This test is unstable and should be moved to our new test,
+// where the environment is more
+// stable: src/apps/material/material-page-object.test.ts
+// reload.atlassian.net/browse/DDFSAL-442
+
 describe("Reservation", () => {
   beforeEach(() => {
     cy.interceptRest({
@@ -41,7 +46,7 @@ describe("Reservation", () => {
     });
   });
 
-  it("Renders a reservation modal for fiction", () => {
+  it.skip("Renders a reservation modal for fiction", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -73,7 +78,7 @@ describe("Reservation", () => {
     );
   });
 
-  it("Renders a reservation modal for nonfiction", () => {
+  it.skip("Renders a reservation modal for nonfiction", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api-nonfiction.json"
