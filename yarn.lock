@@ -2315,6 +2315,11 @@
   resolved "https://registry.npmjs.org/@graphql-typed-document-node/core/-/core-3.2.0.tgz"
   integrity sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==
 
+"@hammzj/cypress-page-object@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@hammzj/cypress-page-object/-/cypress-page-object-2.3.0.tgz#08c1a8880a4ac5d2fd31632c33a7a42b4d07f8d7"
+  integrity sha512-AT2mN+UiHaAFPEvPWm8/ayL9T4XgymfkkdfsB+zAbp3KNC8nf3rjEF3g27Kc3va0BfowfiGzI5TO9XFowx5bAw==
+
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.npmjs.org/@humanfs/core/-/core-0.19.1.tgz"
@@ -5429,6 +5434,11 @@ compare-versions@^6.1.0:
   resolved "https://registry.npmjs.org/compare-versions/-/compare-versions-6.1.0.tgz"
   integrity sha512-LNZQXhqUvqUTotpZ00qLSaify3b4VFD588aRr8MKFw4CMUr98ytzCW5wDH5qx/DEY5kCDXcbcRuCqL0szEf2tg==
 
+compare-versions@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-6.1.1.tgz#7af3cc1099ba37d244b3145a9af5201b629148a9"
+  integrity sha512-4hm4VPpIecmlg59CHXnRDnqGplJFrbLG4aFEl5vl6cK1u76ws3LLvX7ikFnTDl5vo39sjWD6AaDPYodJp/NNHg==
+
 compute-scroll-into-view@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/compute-scroll-into-view/-/compute-scroll-into-view-3.1.0.tgz"
@@ -5808,6 +5818,15 @@ csstype@^3.0.2, csstype@^3.1.2:
   version "3.1.3"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
+
+cypress-terminal-report@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/cypress-terminal-report/-/cypress-terminal-report-7.2.1.tgz#28f4a9c857e932b4c50a3d5c5b0fd0690db3e5a6"
+  integrity sha512-Mm6gWjenl/WlxStMRHqeZhN+rlKaxuNLwOCN13tCJbr8bcBXicHu0lXf7QYKuMxF7fEixNeWneu49C3ncmPhpg==
+  dependencies:
+    chalk "^4.0.0"
+    compare-versions "^6.1.1"
+    superstruct "0.14.2"
 
 cypress@^13.17.0:
   version "13.17.0"
@@ -7293,6 +7312,13 @@ find-up@^6.3.0:
   dependencies:
     locate-path "^7.1.0"
     path-exists "^5.0.0"
+
+fishery@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/fishery/-/fishery-2.3.1.tgz#94b896a0a8f6c6c7f5987f8dafcdd0b8b1aa81c9"
+  integrity sha512-eKgpAfx88/dFnLUGhJmq9eslN6nsHUcCR13Th1z6tLZixUtKjW/33MqKuzxGtYmhzUh2yLYZxq4jHxIQd3F04A==
+  dependencies:
+    lodash.mergewith "^4.6.2"
 
 flat-cache@^3.0.4:
   version "3.0.4"
@@ -9055,6 +9081,11 @@ lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
+lodash.mergewith@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz#617121f89ac55f59047c7aec1ccd6654c6590f55"
+  integrity sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==
 
 lodash.omit@^4.5.0:
   version "4.5.0"
@@ -12187,6 +12218,11 @@ subarg@^1.0.0:
   integrity sha512-RIrIdRY0X1xojthNcVtgT9sjpOGagEUKpZdgBUi054OEPFo282yg+zE+t1Rj3+RqKq2xStL7uUHhY+AjbC4BXg==
   dependencies:
     minimist "^1.1.0"
+
+superstruct@0.14.2:
+  version "0.14.2"
+  resolved "https://registry.yarnpkg.com/superstruct/-/superstruct-0.14.2.tgz#0dbcdf3d83676588828f1cf5ed35cda02f59025b"
+  integrity sha512-nPewA6m9mR3d6k7WkZ8N8zpTWfenFH3q9pA2PkuiZxINr9DKB2+40wEQf0ixn8VaGuJ78AB6iWOtStI+/4FKZQ==
 
 supports-color@8.1.1, supports-color@^8.0.0, supports-color@^8.1.1:
   version "8.1.1"
