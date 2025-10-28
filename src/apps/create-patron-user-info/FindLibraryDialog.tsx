@@ -1,7 +1,7 @@
 import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
 import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import DawaInput, { DawaAddress } from "../../components/dawa-input/DawaInput";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import clsx from "clsx";
 
 type FindLibraryDialogProps = {
@@ -40,6 +40,82 @@ const calculateDistance = (
   return R * c;
 };
 
+const reverseGeocode = async (
+  lat: number,
+  lng: number
+): Promise<DawaAddress | null> => {
+  try {
+    const response = await fetch(
+      `https://api.dataforsyningen.dk/adgangsadresser/reverse?x=${lng}&y=${lat}&struktur=mini`
+    );
+
+    if (!response.ok) {
+      throw new Error("Kunne ikke hente adresse");
+    }
+
+    const data = await response.json();
+
+    if (data) {
+      return {
+        ...data,
+        lat,
+        lng
+      };
+    }
+
+    return null;
+  } catch (error) {
+    throw new Error("Kunne ikke konvertere lokation til adresse.");
+  }
+};
+
+const getUserLocation = (
+  onSuccess: (address: DawaAddress) => void,
+  onError: (errorMessage: string) => void
+) => {
+  if (!navigator.geolocation) {
+    onError("Geolocation er ikke understøttet af din browser.");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      const { latitude, longitude } = position.coords;
+      try {
+        const address = await reverseGeocode(latitude, longitude);
+        if (address) {
+          onSuccess(address);
+        }
+      } catch (error) {
+        onError("Kunne ikke konvertere lokation til adresse.");
+      }
+    },
+    (error) => {
+      let errorMessage = "Der opstod en fejl ved hentning af din lokation.";
+
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          errorMessage =
+            "Du har afvist adgang til din lokation. Tillad lokationsadgang i din browser.";
+          break;
+        case error.POSITION_UNAVAILABLE:
+          errorMessage = "Din lokation er ikke tilgængelig i øjeblikket.";
+          break;
+        case error.TIMEOUT:
+          errorMessage = "Anmodningen om din lokation fik timeout. Prøv igen.";
+          break;
+      }
+
+      onError(errorMessage);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    }
+  );
+};
+
 function FindLibraryDialog({
   branches,
   selectedBranchId,
@@ -47,6 +123,9 @@ function FindLibraryDialog({
 }: FindLibraryDialogProps) {
   const [selectedDawaAddress, setSelectedDawaAddress] =
     useState<DawaAddress | null>(null);
+  const [geoLocationError, setGeoLocationError] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
+
   const handleOnClick = (branchId: string) => {
     if (handleBranchSelect) {
       handleBranchSelect(branchId);
@@ -57,6 +136,52 @@ function FindLibraryDialog({
     setSelectedDawaAddress(address);
   };
 
+  const handleGetUserLocation = () => {
+    setGeoLocationError(null);
+    getUserLocation(
+      (address) => {
+        setSelectedDawaAddress(address);
+        setQuery(address.betegnelse || "");
+      },
+      (errorMessage) => {
+        setGeoLocationError(errorMessage);
+      }
+    );
+  };
+
+  const branchesWithDistance = useMemo(() => {
+    if (!branches || !selectedDawaAddress?.lat || !selectedDawaAddress?.lng) {
+      return branches?.map((branch) => ({ branch, distance: null })) || [];
+    }
+
+    return branches
+      .map((branch) => {
+        const lat = branch.location?.lat
+          ? parseFloat(branch.location.lat)
+          : null;
+        const lng = branch.location?.lng
+          ? parseFloat(branch.location.lng)
+          : null;
+
+        const distance =
+          lat && lng
+            ? calculateDistance(
+                selectedDawaAddress.lat,
+                selectedDawaAddress.lng,
+                lat,
+                lng
+              )
+            : null;
+
+        return { branch, distance };
+      })
+      .sort((a, b) => {
+        if (a.distance === null) return 1;
+        if (b.distance === null) return -1;
+        return a.distance - b.distance;
+      });
+  }, [branches, selectedDawaAddress]);
+
   return (
     <div className="find-library-dialog">
       <p className="find-library-dialog__title">Find nærmeste bibliotek</p>
@@ -66,28 +191,33 @@ function FindLibraryDialog({
           label="Indtast din adresse"
           placeholder="Fx Torvegade 1, 1401 København K"
           type="text"
+          query={query}
+          onQueryChange={(query) => setQuery(query)}
           onDawaAddressSelect={(address) => {
             handleDawaAddressSelect(address);
+            setQuery(address.betegnelse);
           }}
         />
-        <button onClick={() => {}} className="find-library-dialog__location">
+        <button
+          onClick={handleGetUserLocation}
+          className="find-library-dialog__location"
+        >
           <img src={LocationIcon} alt="" />
           <p>Find nærmeste bibliotek ud fra din lokation</p>
         </button>
-        {/* <div className="find-library-dialog__error-message">
-          <img src={WarningIcon} alt="" />
-          <p>
-            Årh nej. Der er sket en fejl i afstandsmåleren. Prøv at reloade
-            siden eller indtast adressen forfra.
-          </p>
-        </div> */}
+        {geoLocationError && (
+          <div className="find-library-dialog__error-message">
+            <img src={WarningIcon} alt="" />
+            <p>{geoLocationError}</p>
+          </div>
+        )}
       </div>
       <div className="find-library-dialog__location-list">
         <p className="find-library-dialog__location-list__title">
           Vælg bibliotek
         </p>
 
-        {branches?.map((branch) => {
+        {branchesWithDistance?.map(({ branch, distance }) => {
           return (
             <button
               onClick={() => handleOnClick(branch.branchId)}
@@ -107,19 +237,8 @@ function FindLibraryDialog({
                 </div>
               </div>
               <p className="find-library-dialog__location-list__item__distance">
-                {selectedDawaAddress &&
-                  selectedDawaAddress.lat &&
-                  selectedDawaAddress.lng &&
-                  branch.location?.lat &&
-                  branch.location?.lng &&
-                  calculateDistance(
-                    selectedDawaAddress.lat,
-                    selectedDawaAddress.lng,
-                    parseFloat(branch.location.lat),
-                    parseFloat(branch.location.lng)
-                  )
-                    .toFixed(1)
-                    .replace(".", ",") + " km"}
+                {distance !== null &&
+                  distance.toFixed(1).replace(".", ",") + " km"}
               </p>
             </button>
           );
