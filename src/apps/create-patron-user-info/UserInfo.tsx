@@ -151,7 +151,6 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
               setIsPinValid={setIsPinValid}
             />
 
-            {/* TODO: add flag that enables/disables old library select */}
             {isAddressSearchEnabled ? (
               <section className="create-patron-page__row">
                 <LibrarySelect
@@ -191,9 +190,6 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
                 />
               </div>
             )}
-
-            {/* TODO: add flag that enables/disables new library select */}
-
             <div className="create-patron-page__buttons">
               <button
                 type="submit"
