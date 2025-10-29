@@ -1,9 +1,14 @@
 import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
 import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
-import DawaInput, { DawaAddress } from "../../components/dawa-input/DawaInput";
+import DawaInput from "../../components/dawa-input/DawaInput";
 import React, { useState, useMemo } from "react";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
+import {
+  DawaAddress,
+  getReverseGeocode
+} from "../../core/address-lookup/dawa-reqests";
+import { calculateDistanceBetweenTwoCoordinates } from "./helper";
 
 type FindLibraryDialogProps = {
   branches?: Array<{
@@ -21,57 +26,6 @@ type FindLibraryDialogProps = {
   handleBranchSelect?: (branchId: string) => void;
 };
 
-const calculateDistance = (
-  lat1: number,
-  lng1: number,
-  lat2: number,
-  lng2: number
-) => {
-  // Haversine formula
-  const R = 6371; // Earth's radius in km
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLon = ((lng2 - lng1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-};
-
-const reverseGeocode = async (
-  lat: number,
-  lng: number
-): Promise<DawaAddress | null> => {
-  try {
-    const response = await fetch(
-      `https://api.dataforsyningen.dk/adgangsadresser/reverse?x=${lng}&y=${lat}&struktur=mini`
-    );
-
-    if (!response.ok) {
-      // TODO: translate
-      throw new Error("Kunne ikke hente adresse");
-    }
-
-    const data = await response.json();
-
-    if (data) {
-      return {
-        ...data,
-        lat,
-        lng
-      };
-    }
-
-    return null;
-  } catch (error) {
-    // TODO: translate
-    throw new Error("Kunne ikke konvertere lokation til adresse.");
-  }
-};
-
 const getUserLocation = (
   onSuccess: (address: DawaAddress) => void,
   onError: (errorMessage: string) => void
@@ -86,7 +40,7 @@ const getUserLocation = (
     async (position) => {
       const { latitude, longitude } = position.coords;
       try {
-        const address = await reverseGeocode(latitude, longitude);
+        const address = await getReverseGeocode(latitude, longitude);
         if (address) {
           onSuccess(address);
         }
@@ -171,7 +125,7 @@ function FindLibraryDialog({
 
         const distance =
           lat && lng
-            ? calculateDistance(
+            ? calculateDistanceBetweenTwoCoordinates(
                 selectedDawaAddress.lat,
                 selectedDawaAddress.lng,
                 lat,
