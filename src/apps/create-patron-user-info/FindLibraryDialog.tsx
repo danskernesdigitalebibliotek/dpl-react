@@ -166,8 +166,7 @@ function FindLibraryDialog({
           className="find-library-dialog__location"
         >
           <img src={LocationIcon} alt="" />
-          {/* TODO: translate */}
-          <p>Find nærmeste bibliotek ud fra din lokation</p>
+          <p>{t("findLibraryDialogGeoLocationButtonText")}</p>
         </button>
         {geoLocationError && (
           <div className="find-library-dialog__error-message">
@@ -178,8 +177,7 @@ function FindLibraryDialog({
       </div>
       <div className="find-library-dialog__location-list">
         <p className="find-library-dialog__location-list__title">
-          {/* TODO: translate */}
-          Vælg bibliotek
+          {t("findLibraryDialogSuggestionsListLabelText")}
         </p>
 
         {branchesWithDistance?.map(({ branch, distance }) => {

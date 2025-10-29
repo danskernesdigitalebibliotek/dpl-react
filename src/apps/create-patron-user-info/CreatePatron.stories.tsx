@@ -316,7 +316,8 @@ export const Primary: Story = {
     findLibraryDialogDawaInputPlaceholderText:
       "Ex. Torvegade 1, 1401 København K",
     findLibraryDialogGeoLocationButtonText:
-      "Find nearest library using your location"
+      "Find nearest library using your location",
+    findLibraryDialogSuggestionsListLabelText: "Choose library"
   },
   decorators: [
     (Story) => {
