@@ -2,6 +2,10 @@ import clsx from "clsx";
 import Label from "../forms/label/Label";
 import React, { useEffect, useState } from "react";
 import { debounce } from "lodash";
+import {
+  DawaAddress,
+  getAddressesFromLocationQuery
+} from "../../core/address-lookup/dawa-reqests";
 
 export type InputProps = {
   label: string;
@@ -15,37 +19,7 @@ export type InputProps = {
   onQueryChange: (query: string) => void;
 };
 
-export type DawaAddress = {
-  vejnavn: string;
-  betegnelse: string;
-  x: number;
-  y: number;
-  id: string;
-  postnr: string;
-  postnrnavn: string;
-  lat?: number;
-  lng?: number;
-};
-
 const MIN_QUERY_LENGTH = 3;
-
-function getAddresses(query: string) {
-  return fetch(
-    `https://api.dataforsyningen.dk/adresser?q=${query}&struktur=mini&fuzzy&per_side=10`
-  )
-    .then((response) => response.json())
-    .then((addresses) => {
-      // Add lat/lng from x/y coordinates (DAWA returns both WGS84 and ETRS89)
-      return addresses.map((addr: any) => ({
-        ...addr,
-        lat: addr.y, // In mini structure, y is latitude
-        lng: addr.x // In mini structure, x is longitude
-      }));
-    })
-    .catch((error) => {
-      return [];
-    });
-}
 
 function useGetDawaAddresses(query: string) {
   const [addresses, setAddresses] = useState<DawaAddress[]>([]);
@@ -55,7 +29,7 @@ function useGetDawaAddresses(query: string) {
       if (query.length < MIN_QUERY_LENGTH) return;
 
       const debouncedFetch = debounce(async () => {
-        const result = await getAddresses(query);
+        const result = await getAddressesFromLocationQuery(query);
         setAddresses(result);
       }, 300);
 
