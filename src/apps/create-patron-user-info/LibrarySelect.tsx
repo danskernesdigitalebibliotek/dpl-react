@@ -6,7 +6,6 @@ export type InputProps = {
   label: string;
   id: string;
   description?: string;
-  validation?: string;
   classNames?: string;
   selectedBranch?: {
     branchId: string;
@@ -27,20 +26,13 @@ function LibrarySelect({
   label,
   id,
   description,
-  validation,
   classNames,
   selectedBranch,
   onClickCallback
 }: InputProps) {
   return (
-    <div
-      className={clsx("dpl-input", classNames, {
-        "dpl-input--invalid": !!validation
-      })}
-    >
-      <label id={id} className="mb-8">
-        {label}
-      </label>
+    <div className={clsx("library-select-button-wrapper", classNames)}>
+      <label id={id}>{label}</label>
       <button
         type="button"
         className="library-select-button"
@@ -60,22 +52,28 @@ function LibrarySelect({
             )}
           </div>
         ) : (
-          <div>Vælg bibliotek</div>
+          <div>{label}</div>
         )}
         <img
           className="library-select-button__icon"
           src={ExpandIcon}
           alt="various-icon"
         />
+        {/* This hidden input is used to handle validation on form submit */}
+        <input
+          type="text"
+          className="library-select-button__hidden-input"
+          required
+          value={selectedBranch?.title || ""}
+        />
       </button>
+
       {description && (
-        <div className="dpl-input__description" id={`description-${id}`}>
+        <div
+          className="library-select-button-wrapper__description"
+          id={`description-${id}`}
+        >
           {description}
-        </div>
-      )}
-      {validation && (
-        <div id={`validation-${id}`} className="dpl-input__validation">
-          {validation}
         </div>
       )}
     </div>
