@@ -52,7 +52,13 @@ function FindLibraryDialog({
     setGeoLocationError(null);
 
     try {
-      const coords = await getCurrentPosition();
+      const coords = await getCurrentPosition({
+        notSupported: t("geoLocationErrorNotSupportedText"),
+        permissionDenied: t("geoLocationErrorPermissionDeniedText"),
+        positionUnavailable: t("geoLocationErrorPositionUnavailableText"),
+        timeout: t("geoLocationErrorTimeoutText"),
+        default: t("geoLocationErrorDefaultText")
+      });
       const { latitude, longitude } = coords;
 
       const address = await getReverseGeocode(latitude, longitude);
@@ -65,7 +71,7 @@ function FindLibraryDialog({
       const errorMessage =
         error instanceof Error
           ? error.message
-          : "Der opstod en fejl ved hentning af din lokation.";
+          : t("geoLocationErrorDefaultText");
       setGeoLocationError(errorMessage);
     }
   };
