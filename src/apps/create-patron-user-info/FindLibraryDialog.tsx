@@ -61,7 +61,9 @@ function FindLibraryDialog({
       });
       const { latitude, longitude } = coords;
 
-      const address = await getReverseGeocode(latitude, longitude);
+      const address = await getReverseGeocode(latitude, longitude, {
+        fetchError: t("reverseGeocodeErrorDefaultText")
+      });
 
       if (address) {
         setSelectedDawaAddress(address);

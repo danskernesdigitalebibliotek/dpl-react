@@ -66,6 +66,8 @@ interface CreatePatronTextProps {
   geoLocationErrorPositionUnavailableText: string;
   geoLocationErrorTimeoutText: string;
   geoLocationErrorDefaultText: string;
+
+  reverseGeocodeErrorDefaultText: string;
 }
 
 export interface CreatePatronProps
