@@ -59,6 +59,7 @@ interface CreatePatronTextProps {
   findLibraryDialogDawaInputLabelText: string;
   findLibraryDialogDawaInputPlaceholderText: string;
   findLibraryDialogGeoLocationButtonText: string;
+  findLibraryDialogSuggestionsListLabelText: string;
 }
 
 export interface CreatePatronProps
