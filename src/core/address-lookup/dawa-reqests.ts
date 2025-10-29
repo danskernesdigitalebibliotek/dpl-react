@@ -22,7 +22,6 @@ export const getReverseGeocode = async (
     );
 
     if (!response.ok) {
-      // TODO: translate
       throw new Error("Kunne ikke hente adresse");
     }
 
@@ -37,26 +36,24 @@ export const getReverseGeocode = async (
     }
 
     return null;
-  } catch (error) {
-    // TODO: translate
+  } catch {
     throw new Error("Kunne ikke konvertere lokation til adresse.");
   }
 };
 
-export function getAddressesFromLocationQuery(query: string) {
-  return fetch(
-    `${DAWA_BASE_URL}/adresser?q=${query}&struktur=mini&fuzzy&per_side=10`
-  )
-    .then((response) => response.json())
-    .then((addresses) => {
-      // Add lat/lng from x/y coordinates (DAWA returns both WGS84 and ETRS89)
-      return addresses.map((addr: any) => ({
-        ...addr,
-        lat: addr.y, // In mini structure, y is latitude
-        lng: addr.x // In mini structure, x is longitude
-      }));
-    })
-    .catch((error) => {
-      return [];
-    });
+export async function getAddressesFromLocationQuery(query: string) {
+  try {
+    const response = await fetch(
+      `${DAWA_BASE_URL}/adresser?q=${query}&struktur=mini&fuzzy&per_side=10`
+    );
+    const addresses = await response.json();
+    // Add lat/lng from x/y coordinates (DAWA returns both WGS84 and ETRS89)
+    return addresses.map((address: DawaAddress) => ({
+      ...address,
+      lat: address.y, // In mini structure, y is latitude
+      lng: address.x // In mini structure, x is longitude
+    }));
+  } catch {
+    return [];
+  }
 }
