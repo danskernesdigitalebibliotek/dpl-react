@@ -258,6 +258,59 @@ export const Primary: Story = {
         defaultValue: { summary: "Find nearest library using your location" }
       },
       control: { type: "text" }
+    },
+    findLibraryDialogSuggestionsListLabelText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: { summary: "Choose library" }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorNotSupportedText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "Geolocation is not supported by your browser."
+        }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorPermissionDeniedText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary:
+            "You have denied access to your location. Allow location access in your browser."
+        }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorPositionUnavailableText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "Your location is not available at the moment."
+        }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorTimeoutText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "The request for your location timed out. Please try again."
+        }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorDefaultText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "An error occurred while retrieving your location."
+        }
+      },
+      control: { type: "text" }
     }
   },
   args: {
@@ -317,7 +370,18 @@ export const Primary: Story = {
       "Ex. Torvegade 1, 1401 København K",
     findLibraryDialogGeoLocationButtonText:
       "Find nearest library using your location",
-    findLibraryDialogSuggestionsListLabelText: "Choose library"
+    findLibraryDialogSuggestionsListLabelText: "Choose library",
+
+    geoLocationErrorNotSupportedText:
+      "Geolocation is not supported by your browser.",
+    geoLocationErrorPermissionDeniedText:
+      "You have denied access to your location. Allow location access in your browser.",
+    geoLocationErrorPositionUnavailableText:
+      "Your location is not available at the moment.",
+    geoLocationErrorTimeoutText:
+      "The request for your location timed out. Please try again.",
+    geoLocationErrorDefaultText:
+      "An error occurred while retrieving your location."
   },
   decorators: [
     (Story) => {

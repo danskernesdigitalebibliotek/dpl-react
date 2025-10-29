@@ -60,6 +60,12 @@ interface CreatePatronTextProps {
   findLibraryDialogDawaInputPlaceholderText: string;
   findLibraryDialogGeoLocationButtonText: string;
   findLibraryDialogSuggestionsListLabelText: string;
+
+  geoLocationErrorNotSupportedText: string;
+  geoLocationErrorPermissionDeniedText: string;
+  geoLocationErrorPositionUnavailableText: string;
+  geoLocationErrorTimeoutText: string;
+  geoLocationErrorDefaultText: string;
 }
 
 export interface CreatePatronProps

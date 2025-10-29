@@ -1,11 +1,16 @@
-export const getCurrentPosition = (): Promise<{
+export const getCurrentPosition = (errorMessages: {
+  notSupported: string;
+  permissionDenied: string;
+  positionUnavailable: string;
+  timeout: string;
+  default: string;
+}): Promise<{
   latitude: number;
   longitude: number;
 }> => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
-      // TODO: translate
-      reject(new Error("Geolocation er ikke understøttet af din browser."));
+      reject(new Error(errorMessages.notSupported));
       return;
     }
 
@@ -18,20 +23,17 @@ export const getCurrentPosition = (): Promise<{
         resolve(coords);
       },
       (error) => {
-        let errorMessage = "Der opstod en fejl ved hentning af din lokation.";
+        let errorMessage = errorMessages.default;
 
         switch (error.code) {
-          // TODO: translate
           case error.PERMISSION_DENIED:
-            errorMessage =
-              "Du har afvist adgang til din lokation. Tillad lokationsadgang i din browser.";
+            errorMessage = errorMessages.permissionDenied;
             break;
           case error.POSITION_UNAVAILABLE:
-            errorMessage = "Din lokation er ikke tilgængelig i øjeblikket.";
+            errorMessage = errorMessages.positionUnavailable;
             break;
           case error.TIMEOUT:
-            errorMessage =
-              "Anmodningen om din lokation fik timeout. Prøv igen.";
+            errorMessage = errorMessages.timeout;
             break;
         }
 
