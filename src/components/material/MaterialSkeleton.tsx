@@ -3,11 +3,11 @@ import React from "react";
 const MaterialSkeleton: React.FC = () => {
   return (
     <section className="material-page ssc">
-      <header className="material-header">
-        <div className="material-header__cover">
+      <header className="material-header hero-grid hero-grid--material">
+        <div className="material-header__cover hero-grid__visual">
           <div className="ssc-square cover cover--size-xlarge cover--aspect-xlarge" />
         </div>
-        <div className="material-header__content">
+        <div className="material-header__content hero-grid__content">
           <div>
             <div className="scc-wrapper">
               <div className="ssc-square mb-32" />
