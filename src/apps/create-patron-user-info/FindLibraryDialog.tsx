@@ -81,32 +81,28 @@ function FindLibraryDialog({
       return branches?.map((branch) => ({ branch, distance: null })) || [];
     }
 
-    return branches
-      .map((branch) => {
-        const lat = branch.location?.lat
-          ? parseFloat(branch.location.lat)
-          : null;
-        const lng = branch.location?.lng
-          ? parseFloat(branch.location.lng)
+    const branchesWithDistances = branches.map((branch) => {
+      const lat = branch.location?.lat ? parseFloat(branch.location.lat) : null;
+      const lng = branch.location?.lng ? parseFloat(branch.location.lng) : null;
+
+      const distance =
+        lat && lng
+          ? calculateDistanceBetweenTwoCoordinates(
+              selectedDawaAddress.lat,
+              selectedDawaAddress.lng,
+              lat,
+              lng
+            )
           : null;
 
-        const distance =
-          lat && lng
-            ? calculateDistanceBetweenTwoCoordinates(
-                selectedDawaAddress.lat,
-                selectedDawaAddress.lng,
-                lat,
-                lng
-              )
-            : null;
-
-        return { branch, distance };
-      })
-      .sort((a, b) => {
-        if (a.distance === null) return 1;
-        if (b.distance === null) return -1;
-        return a.distance - b.distance;
-      });
+      return { branch, distance };
+    });
+    const sortedBranches = branchesWithDistances.sort((a, b) => {
+      if (a.distance === null) return 1;
+      if (b.distance === null) return -1;
+      return a.distance - b.distance;
+    });
+    return sortedBranches;
   }, [branches, selectedDawaAddress]);
 
   return (
