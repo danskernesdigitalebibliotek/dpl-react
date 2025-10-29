@@ -14,15 +14,22 @@ const DAWA_BASE_URL = "https://api.dataforsyningen.dk";
 
 export const getReverseGeocode = async (
   lat: number,
-  lng: number
+  lng: number,
+  errorMessages?: {
+    fetchError?: string;
+  }
 ): Promise<DawaAddress | null> => {
+  const messages = {
+    fetchError: errorMessages?.fetchError ?? "Could not fetch address"
+  };
+
   try {
     const response = await fetch(
       `${DAWA_BASE_URL}/adgangsadresser/reverse?x=${lng}&y=${lat}&struktur=mini`
     );
 
     if (!response.ok) {
-      throw new Error("Kunne ikke hente adresse");
+      throw new Error(messages.fetchError);
     }
 
     const data = await response.json();
@@ -37,7 +44,7 @@ export const getReverseGeocode = async (
 
     return null;
   } catch {
-    throw new Error("Kunne ikke konvertere lokation til adresse.");
+    throw new Error(messages.fetchError);
   }
 };
 

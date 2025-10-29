@@ -311,6 +311,15 @@ export const Primary: Story = {
         }
       },
       control: { type: "text" }
+    },
+    reverseGeocodeErrorDefaultText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "Could not fetch address."
+        }
+      },
+      control: { type: "text" }
     }
   },
   args: {
@@ -381,7 +390,8 @@ export const Primary: Story = {
     geoLocationErrorTimeoutText:
       "The request for your location timed out. Please try again.",
     geoLocationErrorDefaultText:
-      "An error occurred while retrieving your location."
+      "An error occurred while retrieving your location.",
+    reverseGeocodeErrorDefaultText: "Could not fetch address"
   },
   decorators: [
     (Story) => {
