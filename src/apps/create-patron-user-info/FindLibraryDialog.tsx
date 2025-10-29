@@ -9,6 +9,7 @@ import {
   getReverseGeocode
 } from "../../core/address-lookup/dawa-reqests";
 import { calculateDistanceBetweenTwoCoordinates } from "./helper";
+import { getCurrentPosition } from "../../core/geo-location/geo-location";
 
 type FindLibraryDialogProps = {
   branches?: Array<{
@@ -24,55 +25,6 @@ type FindLibraryDialogProps = {
   }>;
   selectedBranchId?: string;
   handleBranchSelect?: (branchId: string) => void;
-};
-
-const getUserLocation = (
-  onSuccess: (address: DawaAddress) => void,
-  onError: (errorMessage: string) => void
-) => {
-  if (!navigator.geolocation) {
-    // TODO: translate
-    onError("Geolocation er ikke understøttet af din browser.");
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    async (position) => {
-      const { latitude, longitude } = position.coords;
-      try {
-        const address = await getReverseGeocode(latitude, longitude);
-        if (address) {
-          onSuccess(address);
-        }
-      } catch (error) {
-        onError("Kunne ikke konvertere lokation til adresse.");
-      }
-    },
-    (error) => {
-      let errorMessage = "Der opstod en fejl ved hentning af din lokation.";
-
-      switch (error.code) {
-        // TODO: translate
-        case error.PERMISSION_DENIED:
-          errorMessage =
-            "Du har afvist adgang til din lokation. Tillad lokationsadgang i din browser.";
-          break;
-        case error.POSITION_UNAVAILABLE:
-          errorMessage = "Din lokation er ikke tilgængelig i øjeblikket.";
-          break;
-        case error.TIMEOUT:
-          errorMessage = "Anmodningen om din lokation fik timeout. Prøv igen.";
-          break;
-      }
-
-      onError(errorMessage);
-    },
-    {
-      enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 0
-    }
-  );
 };
 
 function FindLibraryDialog({
@@ -96,17 +48,26 @@ function FindLibraryDialog({
     setSelectedDawaAddress(address);
   };
 
-  const handleGetUserLocation = () => {
+  const handleGetUserLocation = async () => {
     setGeoLocationError(null);
-    getUserLocation(
-      (address) => {
+
+    try {
+      const coords = await getCurrentPosition();
+      const { latitude, longitude } = coords;
+
+      const address = await getReverseGeocode(latitude, longitude);
+
+      if (address) {
         setSelectedDawaAddress(address);
         setQuery(address.betegnelse || "");
-      },
-      (errorMessage) => {
-        setGeoLocationError(errorMessage);
       }
-    );
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Der opstod en fejl ved hentning af din lokation.";
+      setGeoLocationError(errorMessage);
+    }
   };
 
   const branchesWithDistance = useMemo(() => {
