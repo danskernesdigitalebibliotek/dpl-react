@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, FormEvent } from "react";
+import React, { FC, useState, FormEvent } from "react";
 import { set } from "lodash";
 import BranchesDropdown from "../patron-page/util/BranchesDropdown";
 import { PatronSettingsV4 } from "../../core/fbs/model";
@@ -19,6 +19,7 @@ import FindLibraryDialog from "./FindLibraryDialog";
 import useDialog from "../../components/dialog/useDialog";
 import Dialog from "../../components/dialog/Dialog";
 import { useGetBranches } from "../../core/utils/branches";
+import { isConfigValueOne } from "../../components/reservation/helper";
 
 export interface UserInfoProps {
   cpr: string;
@@ -30,7 +31,6 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
   const u = useUrls();
   const logoutUrl = u("logoutUrl");
   const config = useConfig();
-  const formRef = useRef<HTMLFormElement>(null);
   const [pin, setPin] = useState<string | null>(null);
   const minAge = parseInt(config("minAgeConfig"), 10);
   const [validCpr] = useState<boolean>(patronAgeValid(cpr, minAge));
@@ -49,6 +49,9 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
   const { dialogContent, openDialogWithContent, closeDialog, dialogRef } =
     useDialog();
   const branches = useGetBranches("blacklistedPickupBranchesConfig");
+  const isAddressSearchEnabled = isConfigValueOne(
+    config("branchAddressSearchEnabledConfig")
+  );
 
   // Changes the patron object by key.
   // So using the parameters 123 and "phoneNumber" would change the phoneNumber to 123.
@@ -106,7 +109,6 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
           <form
             className="create-patron-page__form"
             onSubmit={(e) => handleSubmit(e)}
-            ref={formRef}
           >
             <section
               data-cy="patron-page-contact-info"
@@ -149,44 +151,48 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
               setIsPinValid={setIsPinValid}
             />
 
-            {/* <div>
-              <BranchesDropdown
-                classNames="dropdown--grey-borders"
-                selected={patron?.preferredPickupBranch || ""}
-                onChange={(newPreferredPickupBranch) =>
-                  changePatron(
-                    newPreferredPickupBranch,
-                    "preferredPickupBranch"
-                  )
-                }
-                required
-                footnote={t("createPatronBranchDropdownNoteText")}
-              />
-            </div> */}
+            {/* TODO: add flag that enables/disables old library select */}
+            {isAddressSearchEnabled ? (
+              <section className="create-patron-page__row">
+                <LibrarySelect
+                  label={t("librarySelectEmptyStateText")}
+                  id="library-select"
+                  description={t("createPatronBranchDropdownNoteText")}
+                  selectedBranch={selectedBranch}
+                  required
+                  onClickCallback={() =>
+                    openDialogWithContent(
+                      <FindLibraryDialog
+                        handleBranchSelect={handleBranchSelect}
+                        selectedBranchId={patron.preferredPickupBranch}
+                        branches={branches}
+                      />
+                    )
+                  }
+                />
 
-            <section className="create-patron-page__row">
-              <LibrarySelect
-                label="Choose library*"
-                id="library-select"
-                description={t("createPatronBranchDropdownNoteText")}
-                validation="Please select a library*"
-                selectedBranch={selectedBranch}
-                required
-                onClickCallback={() =>
-                  openDialogWithContent(
-                    <FindLibraryDialog
-                      handleBranchSelect={handleBranchSelect}
-                      selectedBranchId={patron.preferredPickupBranch}
-                      branches={branches}
-                    />
-                  )
-                }
-              />
+                <Dialog isSidebar closeDialog={closeDialog} ref={dialogRef}>
+                  {dialogContent}
+                </Dialog>
+              </section>
+            ) : (
+              <div>
+                <BranchesDropdown
+                  classNames="dropdown--grey-borders"
+                  selected={patron?.preferredPickupBranch || ""}
+                  onChange={(newPreferredPickupBranch) =>
+                    changePatron(
+                      newPreferredPickupBranch,
+                      "preferredPickupBranch"
+                    )
+                  }
+                  required
+                  footnote={t("createPatronBranchDropdownNoteText")}
+                />
+              </div>
+            )}
 
-              <Dialog isSidebar closeDialog={closeDialog} ref={dialogRef}>
-                {dialogContent}
-              </Dialog>
-            </section>
+            {/* TODO: add flag that enables/disables new library select */}
 
             <div className="create-patron-page__buttons">
               <button

@@ -14,6 +14,7 @@ interface CreatePatronConfigProps {
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
   textNotificationsEnabledConfig: string;
+  branchAddressSearchEnabledConfig: string;
 }
 interface CreatePatronUrlProps {
   authUrl: string;
@@ -52,6 +53,12 @@ interface CreatePatronTextProps {
   postRegisterRedirectInfoTopText: string;
   postRegisterRedirectInfoBottomText: string;
   postRegisterRedirectButtonText: string;
+
+  librarySelectEmptyStateText: string;
+  findLibraryDialogTitleText: string;
+  findLibraryDialogDawaInputLabelText: string;
+  findLibraryDialogDawaInputPlaceholderText: string;
+  findLibraryDialogGeoLocationButtonText: string;
 }
 
 export interface CreatePatronProps

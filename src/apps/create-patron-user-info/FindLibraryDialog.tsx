@@ -3,6 +3,7 @@ import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/ic
 import DawaInput, { DawaAddress } from "../../components/dawa-input/DawaInput";
 import React, { useState, useMemo } from "react";
 import clsx from "clsx";
+import { useText } from "../../core/utils/text";
 
 type FindLibraryDialogProps = {
   branches?: Array<{
@@ -50,6 +51,7 @@ const reverseGeocode = async (
     );
 
     if (!response.ok) {
+      // TODO: translate
       throw new Error("Kunne ikke hente adresse");
     }
 
@@ -65,6 +67,7 @@ const reverseGeocode = async (
 
     return null;
   } catch (error) {
+    // TODO: translate
     throw new Error("Kunne ikke konvertere lokation til adresse.");
   }
 };
@@ -74,6 +77,7 @@ const getUserLocation = (
   onError: (errorMessage: string) => void
 ) => {
   if (!navigator.geolocation) {
+    // TODO: translate
     onError("Geolocation er ikke understøttet af din browser.");
     return;
   }
@@ -94,6 +98,7 @@ const getUserLocation = (
       let errorMessage = "Der opstod en fejl ved hentning af din lokation.";
 
       switch (error.code) {
+        // TODO: translate
         case error.PERMISSION_DENIED:
           errorMessage =
             "Du har afvist adgang til din lokation. Tillad lokationsadgang i din browser.";
@@ -125,6 +130,7 @@ function FindLibraryDialog({
     useState<DawaAddress | null>(null);
   const [geoLocationError, setGeoLocationError] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  const t = useText();
 
   const handleOnClick = (branchId: string) => {
     if (handleBranchSelect) {
@@ -184,12 +190,14 @@ function FindLibraryDialog({
 
   return (
     <div className="find-library-dialog">
-      <p className="find-library-dialog__title">Find nærmeste bibliotek</p>
+      <p className="find-library-dialog__title">
+        {t("findLibraryDialogTitleText")}
+      </p>
       <div className="find-library-dialog__location-group">
         <DawaInput
           id="address-input"
-          label="Indtast din adresse"
-          placeholder="Fx Torvegade 1, 1401 København K"
+          label={t("findLibraryDialogDawaInputLabelText")}
+          placeholder={t("findLibraryDialogDawaInputPlaceholderText")}
           type="text"
           query={query}
           onQueryChange={(query) => setQuery(query)}
@@ -199,10 +207,12 @@ function FindLibraryDialog({
           }}
         />
         <button
+          type="button"
           onClick={handleGetUserLocation}
           className="find-library-dialog__location"
         >
           <img src={LocationIcon} alt="" />
+          {/* TODO: translate */}
           <p>Find nærmeste bibliotek ud fra din lokation</p>
         </button>
         {geoLocationError && (
@@ -214,12 +224,14 @@ function FindLibraryDialog({
       </div>
       <div className="find-library-dialog__location-list">
         <p className="find-library-dialog__location-list__title">
+          {/* TODO: translate */}
           Vælg bibliotek
         </p>
 
         {branchesWithDistance?.map(({ branch, distance }) => {
           return (
             <button
+              type="button"
               onClick={() => handleOnClick(branch.branchId)}
               key={branch.branchId}
               className={clsx("find-library-dialog__location-list__item", {
