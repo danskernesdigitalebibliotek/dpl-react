@@ -1,12 +1,14 @@
 import { useConfig } from "./config";
 
-type TBranch = {
+export type TBranch = {
   branchId: string;
   title: string;
-  address: {
+  location?: {
     lat: string;
-    long: string;
+    lng: string;
     value: string;
+    address: string;
+    city: string;
   };
 };
 
