@@ -1,23 +1,14 @@
 import clsx from "clsx";
 import React from "react";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import { TBranch } from "../../core/utils/branches";
 
 export type InputProps = {
   label: string;
   id: string;
   description?: string;
   classNames?: string;
-  selectedBranch?: {
-    branchId: string;
-    title: string;
-    location?: {
-      lat: string;
-      lng: string;
-      value: string;
-      address: string;
-      city: string;
-    };
-  };
+  selectedBranch?: TBranch;
   required?: boolean;
   onClickCallback?: () => void;
 };

@@ -10,19 +10,10 @@ import {
 } from "../../core/address-lookup/dawa-reqests";
 import { calculateDistanceBetweenTwoCoordinates } from "./helper";
 import { getCurrentPosition } from "../../core/geo-location/geo-location";
+import { TBranch } from "../../core/utils/branches";
 
 type FindLibraryDialogProps = {
-  branches?: Array<{
-    branchId: string;
-    title: string;
-    location?: {
-      lat: string;
-      lng: string;
-      value: string;
-      address: string;
-      city: string;
-    };
-  }>;
+  branches?: TBranch[];
   selectedBranchId?: string;
   handleBranchSelect?: (branchId: string) => void;
 };
