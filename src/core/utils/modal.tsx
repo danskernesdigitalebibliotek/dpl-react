@@ -54,25 +54,12 @@ function Modal({
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    // Deep link stuff: if the id is in the url, open the modal
-    if (searchParams.get("modal")?.includes(modalId)) {
-      dispatch(openModal({ modalId }));
-    }
-    // If modal parameter exists, but modal ID doesn't exist - remove it
-    // from the URL and re-enable scrolling (disabled in modal.slice)
-    // to prevent trying to open uninitialized modals
-    if (
-      searchParams.get("modal") &&
-      !searchParams.get("modal")?.includes(modalId)
-    ) {
-      searchParams.delete("modal");
-      window.history.replaceState(
-        {},
-        "",
-        window.location.href.replace(`&modal=${searchParams.get("modal")}`, "")
-      );
-      document.body.style.overflow = "";
-    }
+
+    const modalIdsInUrl = searchParams.getAll("modal");
+
+    modalIdsInUrl.forEach((id) => {
+      dispatch(openModal({ modalId: id }));
+    });
   }, [modalId, dispatch]);
 
   // Check if the modal should be open
@@ -168,12 +155,27 @@ export type GuardedOpenModalProps = {
   authUrl: URL;
   modalId: string;
   trackOnlineView?: () => Promise<unknown>;
+  options?: ModalOptions;
 };
 
 export const useModalButtonHandler = () => {
   const dispatch = useDispatch();
+  const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
+
+  const closeModals = (modalsToClose: string[]) => {
+    modalsToClose.forEach((id) => {
+      if (modalIds.includes(id)) {
+        dispatch(closeModal({ modalId: id }));
+      }
+    });
+  };
+
   return {
     open: (modalId: ModalId, options?: ModalOptions) => {
+      if (options?.modalsToClose) {
+        closeModals(options.modalsToClose);
+      }
+
       return dispatch(
         openModal({
           modalId,
@@ -190,7 +192,8 @@ export const useModalButtonHandler = () => {
     openGuarded: ({
       authUrl,
       modalId,
-      trackOnlineView
+      trackOnlineView,
+      options
     }: GuardedOpenModalProps) => {
       // Redirect anonymous users to the login platform, including a return link
       // to this page with an open modal.
@@ -205,11 +208,21 @@ export const useModalButtonHandler = () => {
         });
         return;
       }
-      // If user is not anonymous we just open the given modal + potentially track it.
+
+      if (options?.modalsToClose) {
+        closeModals(options.modalsToClose);
+      }
+
       if (trackOnlineView) {
         trackOnlineView();
       }
-      dispatch(openModal({ modalId }));
+
+      dispatch(
+        openModal({
+          modalId,
+          updateUrl: options?.updateUrl
+        })
+      );
     }
   };
 };

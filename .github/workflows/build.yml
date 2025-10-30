@@ -31,7 +31,7 @@ jobs:
           VERSION_FILE_VERSION=$(git describe --tags --exclude=latest) \
           yarn build:js:prod --json webpack-stats.json
       - name: Upload build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: dist
           path: dist

@@ -1,7 +1,6 @@
 import * as React from "react";
 import MaterialGrid from "../../../components/material-grid/MaterialGrid";
 import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
-import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
 import {
   HoldingsStatusEnum,
   useComplexSearchWithPaginationQuery
@@ -20,14 +19,14 @@ export type MaterialGridLinkAutomaticProps = {
   link: URL;
   title?: string;
   description?: string;
-  selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
+  requestedAmount: number;
 };
 
 const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
   link,
   title,
   description,
-  selectedAmountOfMaterialsForDisplay
+  requestedAmount
 }) => {
   const t = useText();
   const buttonText = t("buttonText");
@@ -39,7 +38,7 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
     {
       cql: advancedSearchCql,
       offset: 0,
-      limit: selectedAmountOfMaterialsForDisplay,
+      limit: requestedAmount,
       filters: {
         branchId: cleanBranches,
         ...(location
@@ -74,9 +73,6 @@ const MaterialGridLinkAutomatic: React.FC<MaterialGridLinkAutomaticProps> = ({
         title={title}
         materials={materials}
         description={description}
-        selectedAmountOfMaterialsForDisplay={
-          selectedAmountOfMaterialsForDisplay
-        }
         buttonText={buttonText}
       />
     </>

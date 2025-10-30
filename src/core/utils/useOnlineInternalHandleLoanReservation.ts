@@ -34,6 +34,7 @@ type useOnlineInternalHandleLoanReservationType = {
   setLoanStatus?: (status: RequestStatus) => void;
   setReservationOrLoanErrorResponse?: (error: ApiResult) => void;
   workId: WorkId;
+  modalsToClose?: string[];
 };
 
 const useOnlineInternalHandleLoanReservation = ({
@@ -43,7 +44,8 @@ const useOnlineInternalHandleLoanReservation = ({
   setLoanResponse,
   setLoanStatus,
   setReservationOrLoanErrorResponse,
-  workId
+  workId,
+  modalsToClose
 }: useOnlineInternalHandleLoanReservationType) => {
   const queryClient = useQueryClient();
   const u = useUrls();
@@ -62,7 +64,8 @@ const useOnlineInternalHandleLoanReservation = ({
     if (openModal) {
       openGuarded({
         authUrl,
-        modalId: onlineInternalModalId(getAllFaustIds(manifestations))
+        modalId: onlineInternalModalId(getAllFaustIds(manifestations)),
+        options: { modalsToClose }
       });
       return;
     }

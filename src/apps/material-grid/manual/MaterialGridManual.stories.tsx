@@ -11,8 +11,6 @@ import serviceUrlArgs, {
 import MaterialGridManual from "./MaterialGridManual.entry";
 import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
 
-// 31 materials. Intentionally not using 32 in order to demonstrate the
-// logic for only displaying intervals of 4 materials.
 const materials = [
   { wid: "work-of:870970-basis:25660722", materialType: "bog" },
   { wid: "work-of:870970-basis:22383590", materialType: "e-bog" },

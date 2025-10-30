@@ -5,10 +5,6 @@ import { WorkId } from "../../core/utils/types/ids";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import MaterialListItem from "../card-item-list/MaterialListItem";
 import RecommendedMaterial from "../../apps/recommended-material/RecommendedMaterial";
-import {
-  ValidSelectedIncrements,
-  calculateAmountToDisplay
-} from "./materiel-grid-util";
 
 export type MaterialGridItemProps = {
   wid: WorkId;
@@ -19,29 +15,30 @@ export type MaterialGridProps = {
   materials: MaterialGridItemProps[];
   title?: string;
   description?: string;
-  selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
   buttonText?: string;
-  initialMaximumDisplay?: ValidSelectedIncrements;
+  initialMaximumDisplay?: number;
 };
 
-const defaultIncrement: ValidSelectedIncrements = 4;
+const defaultIncrement: number = 4;
+
+// Business logic states that there cannot be more than 32 items displayed.
+// This limit should ideally be happening in the editor-input, but we'll
+// add a safeguard here.
+const maxAmount: number = 32;
 
 const MaterialGrid: React.FC<MaterialGridProps> = ({
   materials,
   title,
   description,
-  selectedAmountOfMaterialsForDisplay,
   buttonText,
   initialMaximumDisplay = defaultIncrement
 }) => {
   const firstNewItemRef = React.useRef<HTMLLIElement>(null);
 
-  const maximumCalculatedDisplay = calculateAmountToDisplay(
-    materials.length,
-    selectedAmountOfMaterialsForDisplay
-  );
   const moreMaterialsThanInitialMaximum =
-    maximumCalculatedDisplay > initialMaximumDisplay;
+    materials.length > initialMaximumDisplay;
+
+  const amountToDisplay = Math.min(maxAmount, materials.length);
 
   const [
     currentAmountOfDisplayedMaterials,
@@ -58,7 +55,7 @@ const MaterialGrid: React.FC<MaterialGridProps> = ({
   const [showAllMaterials, setShowAllMaterials] = useState(false);
 
   function handleShowAllMaterials() {
-    setCurrentMaterialsDisplayedMaterials(maximumCalculatedDisplay);
+    setCurrentMaterialsDisplayedMaterials(amountToDisplay);
     setShowAllMaterials(!showAllMaterials);
   }
 

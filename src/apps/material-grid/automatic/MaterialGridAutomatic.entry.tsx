@@ -5,7 +5,6 @@ import { withConfig } from "../../../core/utils/config";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import MaterialGridAutomatic from "./MaterialGridAutomatic";
-import { ValidSelectedIncrements } from "../../../components/material-grid/materiel-grid-util";
 import { parseBoolean } from "../../../core/utils/helpers/general";
 
 interface MaterialGridAutomaticEntryConfigProps {
@@ -27,7 +26,7 @@ export interface MaterialGridAutomaticEntryProps
   sort?: string;
   title?: string;
   description?: string;
-  selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
+  requestedAmount: number;
   buttonText: string;
   materialUrl: string;
   firstaccessiondateitem?: string;
@@ -43,7 +42,7 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   sort,
   title,
   description,
-  selectedAmountOfMaterialsForDisplay,
+  requestedAmount,
   firstaccessiondateitem
 }) => (
   <GuardedApp app="material-grid-automatic">
@@ -57,7 +56,7 @@ const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
       sort={sort}
       title={title}
       description={description}
-      selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
+      requestedAmount={requestedAmount}
       firstaccessiondateitem={firstaccessiondateitem}
     />
   </GuardedApp>

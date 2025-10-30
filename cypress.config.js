@@ -17,6 +17,18 @@ export default defineConfig({
     baseUrl: "http://localhost:57021",
     testIsolation: false,
     setupNodeEvents(on, config) {
+      const terminalReportOptions = {
+        printLogsToConsole: "onFail",
+        printLogsToFile: "always",
+        outputCompactLogs: 1,
+        outputVerbose: false,
+        includeSuccessfulHookLogs: false
+      };
+      require("cypress-terminal-report/src/installLogsPrinter")(
+        on,
+        terminalReportOptions
+      );
+
       return plugins(on, config);
     }
   }

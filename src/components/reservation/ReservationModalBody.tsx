@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { first } from "lodash";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
+import { useModalButtonHandler } from "../../core/utils/modal";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
@@ -25,6 +26,7 @@ import {
   getTotalHoldings,
   getTotalReservations,
   reservationModalId,
+  editionSwitchModalId,
   useGetHoldings
 } from "../../apps/material/helper";
 import {
@@ -86,6 +88,7 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
+  const { open } = useModalButtonHandler();
   const { defaultInterestDaysForOpenOrder } = getConf(
     "reservation",
     configuration
@@ -172,11 +175,12 @@ export const ReservationModalBody = ({
   const expiryDate = getFutureDateString(interestPeriod);
   const materialType = getMaterialType(selectedManifestations);
 
+  const canSubmitFbs =
+    manifestationsToReserve?.length && !materialIsReservableFromAnotherLibrary;
+  const canSubmitOpenOrder = materialIsReservableFromAnotherLibrary && patron;
+
   const saveReservation = () => {
-    if (
-      manifestationsToReserve?.length &&
-      !materialIsReservableFromAnotherLibrary
-    ) {
+    if (canSubmitFbs) {
       setReservationStatus("pending");
       // Save reservation to FBS.
       mutateAddReservations(
@@ -209,7 +213,7 @@ export const ReservationModalBody = ({
           }
         }
       );
-    } else if (materialIsReservableFromAnotherLibrary && patron) {
+    } else if (canSubmitOpenOrder) {
       setReservationStatus("pending");
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
       // Save reservation to open order.
@@ -268,6 +272,14 @@ export const ReservationModalBody = ({
 
   const userHasEmail = Boolean(patron?.emailAddress);
 
+  // Disable submit based on the exact conditions used in saveReservation
+  const isSubmitDisabled =
+    reservationStatus === "pending" || !(canSubmitFbs || canSubmitOpenOrder);
+
+  const handleEditionSwitchClick = () => {
+    open(editionSwitchModalId());
+  };
+
   return (
     <>
       {!reservationResults && !openOrderResponse && (
@@ -306,10 +318,7 @@ export const ReservationModalBody = ({
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
-                disabled={
-                  reservationStatus === "pending" ||
-                  (materialIsReservableFromAnotherLibrary && !userHasEmail)
-                }
+                disabled={isSubmitDisabled}
                 collapsible={false}
                 size="small"
                 onClick={saveReservation}
@@ -329,6 +338,9 @@ export const ReservationModalBody = ({
                 icon={Various}
                 title={t("editionText")}
                 text={selectedPeriodical?.displayText || editionText || ""}
+                isPossibleToChangeReservationDetails
+                changeHandler={handleEditionSwitchClick}
+                buttonAriaLabel={t("editionSwitchButtonChangeText")}
               />
               {!materialIsFiction(work) && otherManifestationPreferred && (
                 <PromoBar
@@ -393,7 +405,6 @@ export const ReservationModalBody = ({
       )}
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
-          modalId={reservationModalId(faustIds)}
           title={getManifestationTitle(manifestation)}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,

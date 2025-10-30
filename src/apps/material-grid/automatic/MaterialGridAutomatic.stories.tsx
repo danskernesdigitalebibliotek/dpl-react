@@ -75,11 +75,10 @@ const meta: Meta<typeof MaterialGridAutomatic> = {
         [AdvancedSortMapStrings.LatestPubDateDesc]: "Newest First"
       }
     },
-    selectedAmountOfMaterialsForDisplay: {
-      description: "Amount of materials to show",
+    requestedAmount: {
+      description: "Requested amount of materials to show",
       control: {
-        type: "select",
-        options: [4, 8, 12, 16, 20, 24, 28, 32]
+        type: "number"
       }
     },
     buttonText: {
@@ -132,7 +131,7 @@ export const Primary: Story = {
     onshelf: "false",
     sort: AdvancedSortMapStrings.Relevance,
     firstaccessiondateitem: "",
-    selectedAmountOfMaterialsForDisplay: 12,
+    requestedAmount: 12,
     buttonText: "Show all",
     materialUrl: "/work/:workid",
     etAlText: "et al.",

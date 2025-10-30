@@ -30,11 +30,10 @@ const meta: Meta<typeof MaterialGridLinkAutomatic> = {
       description:
         "link search string to use for the material grid, search for a result and copy the link string from an advanced search"
     },
-    selectedAmountOfMaterialsForDisplay: {
-      description: "Amount of materials to show",
+    requestedAmount: {
+      description: "Requested amount of materials to be displayed.",
       control: {
-        type: "select",
-        options: [4, 8, 12, 16, 20, 24, 28, 32]
+        type: "number"
       }
     },
     buttonText: {
@@ -80,7 +79,7 @@ export const Primary: Story = {
     description:
       "This is a long description of the materials selected, or whatever else you want to put in here",
     link: "https://dapple-cms.docker/advanced-search?advancedSearchCql=%27harry%27&linked=true",
-    selectedAmountOfMaterialsForDisplay: 12,
+    requestedAmount: 12,
     buttonText: "Show all",
     materialUrl: "/work/:workid",
     etAlText: "et al.",

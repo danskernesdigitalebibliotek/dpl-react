@@ -1,4 +1,5 @@
 import React, { useId, FC, useState } from "react";
+import clsx from "clsx";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
@@ -41,12 +42,14 @@ import {
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
   workId: WorkId;
+  isEditionPicker?: boolean;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   manifestation: { materialTypes, pid, creators, identifiers, edition },
   manifestation,
-  workId
+  workId,
+  isEditionPicker = false
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();
@@ -123,7 +126,9 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
 
   return (
     <div
-      className="material-manifestation-item"
+      className={clsx("material-manifestation-item", {
+        "material-manifestation-item--no-side-margins": isEditionPicker
+      })}
       id={manifestationId}
       data-scroll-target={manifestationId}
     >
@@ -192,11 +197,12 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
       </div>
       <div className="material-manifestation-item__buttons">
         <MaterialButtons
+          isSpecificManifestation
           manifestations={[manifestation]}
           size="small"
           workId={workId}
           materialTitleId={mainfestationTitleId}
-          isSpecificManifestation
+          isEditionPicker={isEditionPicker}
         />
       </div>
     </div>
