@@ -565,7 +565,7 @@ describe("Material Page Object Test", () => {
     });
 
     describe("FindOnShelf Modal", () => {
-      it("Should display library information and allow expanding library details", () => {
+      it("Should display library information and allow expanding library details (showing 0-line items by default)", () => {
         // Given: A material page
         materialPage = new MaterialPage();
         givenAMaterial();
@@ -575,84 +575,98 @@ describe("Material Page Object Test", () => {
         materialPage.openFindOnShelf();
 
         materialPage.components.ModalFindOnShelf((findOnShelf) => {
-          // Then: Should display the headline with material title
+          // Then: Verify modal content
           findOnShelf.elements
             .headline()
             .shouldContainAll([
               "De syv søstre : Maias historie / Lucinda Riley"
             ]);
 
-          // And: Should show caption with library count (only counts available libraries)
           findOnShelf.elements
             .caption()
             .shouldContainAll(["3 libraries have material"]);
 
-          // And: Should show 4 library disclosures (including unavailable ones)
           findOnShelf.elements.libraryDisclosures().should("have.length", 4);
 
-          // First library: Hovedbiblioteket (Available) - open disclosure
           findOnShelf
-            .getLibraryDisclosure(0)
-            .shouldContainAll(["Hovedbiblioteket", "Available"])
-            .click();
+            .verifyLibraryHolding({
+              libraryName: "Hovedbiblioteket",
+              label: "Available",
+              editionTitle: "De syv søstre (2017)",
+              expectedCount: "2"
+            })
+            .verifyLibraryHolding({
+              libraryName: "Hovedbiblioteket",
+              label: "Available",
+              editionTitle: "De syv søstre (2016)",
+              expectedCount: "0"
+            });
 
-          // Then: Should show detailed holdings
-          findOnShelf
-            .getLibraryDisclosure(0)
-            .shouldContainAll([
-              "De syv søstre (2017)",
-              "Voksen · Skønlitteratur · Riley, Lucinda",
-              "2",
-              "De syv søstre (2016)",
-              "0"
-            ]);
+          findOnShelf.verifyLibraryHolding({
+            libraryName: "Fjernlager",
+            label: "Available",
+            editionTitle: "De syv søstre (2017)",
+            expectedCount: "1"
+          });
 
-          // Second library: Fjernlager (Available) - open disclosure
-          findOnShelf
-            .getLibraryDisclosure(1)
-            .shouldContainAll(["Fjernlager", "Available"])
-            .click();
+          findOnShelf.verifyLibraryHolding({
+            libraryName: "Islands Brygge",
+            label: "Available",
+            editionTitle: "De syv søstre (2017)",
+            expectedCount: "3"
+          });
 
-          // Then: Should show 1 available copy of 2017 edition
-          findOnShelf
-            .getLibraryDisclosure(1)
-            .shouldContainAll([
-              "De syv søstre (2017)",
-              "Voksen",
-              "Skønlitteratur",
-              "Riley, Lucinda",
-              "1"
-            ]);
+          findOnShelf.verifyLibraryHolding({
+            libraryName: "Vesterbro",
+            label: "Unavailable",
+            editionTitle: "De syv søstre (2017)",
+            expectedCount: "0"
+          });
+        });
+      });
 
-          // Third library: Islands Brygge (Available) - open disclosure
-          findOnShelf
-            .getLibraryDisclosure(2)
-            .shouldContainAll(["Islands Brygge", "Available"])
-            .click();
+      it("Should hide holdings with 0 available copies when setting is enabled", () => {
+        // Given: A material page with hide unavailable holdings enabled
+        materialPage = new MaterialPage();
+        givenAMaterial();
 
-          // Then: Should show 3 available copies of 2017 edition
-          findOnShelf
-            .getLibraryDisclosure(2)
-            .shouldContainAll([
-              "De syv søstre (2017)",
-              "Voksen · Skønlitteratur · Riley, Lucinda",
-              "3"
-            ]);
+        // When: The user visits with the setting enabled
+        cy.visit(
+          "/iframe.html?id=apps-material--default&viewMode=story&args=findOnShelfHideUnavailableHoldingsConfig:1"
+        );
+        materialPage.openFindOnShelf();
 
-          // Fourth library: Vesterbro (Unavailable - all checked out) - open disclosure
-          findOnShelf
-            .getLibraryDisclosure(3)
-            .shouldContainAll(["Vesterbro", "Unavailable"])
-            .click();
+        materialPage.components.ModalFindOnShelf((findOnShelf) => {
+          // Then: Verify filtered content
+          findOnShelf.elements
+            .caption()
+            .shouldContainAll(["3 libraries have material"]);
 
-          // Then: Should show 0 available copies of 2017 edition
-          findOnShelf
-            .getLibraryDisclosure(3)
-            .shouldContainAll([
-              "De syv søstre (2017)",
-              "Voksen · Skønlitteratur · Riley, Lucinda",
-              "0"
-            ]);
+          findOnShelf.elements.libraryDisclosures().should("have.length", 3);
+
+          findOnShelf.verifyLibraryHolding({
+            libraryName: "Hovedbiblioteket",
+            label: "Available",
+            editionTitle: "De syv søstre (2017)",
+            expectedCount: "2"
+          });
+
+          findOnShelf.verifyLibraryHolding({
+            libraryName: "Fjernlager",
+            label: "Available",
+            editionTitle: "De syv søstre (2017)",
+            expectedCount: "1"
+          });
+
+          findOnShelf.verifyLibraryHolding({
+            libraryName: "Islands Brygge",
+            label: "Available",
+            editionTitle: "De syv søstre (2017)",
+            expectedCount: "3"
+          });
+
+          // Verify Vesterbro is not shown (it only had 0 available copies)
+          cy.contains("Vesterbro").should("not.exist");
         });
       });
     });

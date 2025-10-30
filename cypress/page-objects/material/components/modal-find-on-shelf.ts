@@ -14,4 +14,47 @@ export class ModalFindOnShelfComponent extends ComponentObject {
   getLibraryDisclosure(libraryIndex: number) {
     return this.elements.libraryDisclosures().eq(libraryIndex);
   }
+
+  getLibraryDisclosureByName(libraryName: string) {
+    return this.elements
+      .libraryDisclosures()
+      .filter(`:contains("${libraryName}")`);
+  }
+
+  verifyLibraryHolding({
+    libraryName,
+    label,
+    editionTitle,
+    expectedCount
+  }: {
+    libraryName: string;
+    label: "Available" | "Unavailable";
+    editionTitle: string;
+    expectedCount: string;
+  }) {
+    this.getLibraryDisclosureByName(libraryName)
+      .scrollIntoView()
+      .should("be.visible")
+      .within(($details) => {
+        // Verify the label is present
+        cy.wrap($details).should("contain", label);
+
+        // Open the disclosure if it's not already open
+        if (!$details.attr("open")) {
+          cy.wrap($details).find("summary").click();
+        }
+
+        // Verify the edition title and count in the find-on-shelf list
+        cy.get(".find-on-shelf__row")
+          .filter(`:contains("${editionTitle}")`)
+          .scrollIntoView();
+
+        cy.get(".find-on-shelf__row")
+          .filter(`:contains("${editionTitle}")`)
+          .should("be.visible")
+          .should("contain", expectedCount);
+      });
+
+    return this;
+  }
 }
