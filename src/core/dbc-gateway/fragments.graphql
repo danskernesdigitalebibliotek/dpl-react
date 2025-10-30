@@ -77,6 +77,15 @@ fragment ManifestationsSimpleFields on Manifestation {
       }
     }
   }
+  contents {
+    heading
+    type
+    entries {
+      title {
+        display
+      }
+    }
+  }
   edition {
     summary
     publicationYear {
