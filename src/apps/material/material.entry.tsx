@@ -213,6 +213,7 @@ interface MaterialEntryConfigProps {
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
   findOnShelfDisclosuresDefaultOpenConfig: string;
+  findOnShelfHideUnavailableHoldingsConfig: string;
   instantLoanConfig: string;
   smsNotificationsForReservationsEnabledConfig: string;
 }
