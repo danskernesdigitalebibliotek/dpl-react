@@ -2,7 +2,8 @@ import React from "react";
 import {
   getUniqueMovies,
   getDbcVerifiedSubjectsFirst,
-  materialContainsDanish
+  materialContainsDanish,
+  getManifestationContents
 } from "../../apps/material/helper";
 import {
   constructDK5SearchUrl,
@@ -11,7 +12,7 @@ import {
   constructSubjectSearchUrl
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
-import { Work } from "../../core/utils/types/entities";
+import { Manifestation, Work } from "../../core/utils/types/entities";
 import { Pid, WorkId } from "../../core/utils/types/ids";
 import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
@@ -21,9 +22,13 @@ import SeriesList from "../card-item-list/card-list-item/series-list";
 export interface MaterialDescriptionProps {
   pid: Pid;
   work: Work;
+  manifestation: Manifestation;
 }
 
-const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
+const MaterialDescription: React.FC<MaterialDescriptionProps> = ({
+  work,
+  manifestation
+}) => {
   const t = useText();
   const u = useUrls();
   const searchUrl = u("searchUrl");
@@ -69,14 +74,30 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
       ]
     : [];
 
+  const contents = getManifestationContents(manifestation);
+
   return (
     <section className="material-description" data-cy="material-description">
       <>
         <h2 className="text-header-h4 pb-24">{t("descriptionHeadlineText")}</h2>
         {work.abstract && (
-          <p className="text-body-large material-description__content">
+          <p className="text-body-large material-description__abstract">
             {work.abstract[0]}
           </p>
+        )}
+        {contents && (
+          <>
+            <h3 className="text-header-h4 pt-32">
+              {t("contentsHeadlineText")}
+            </h3>
+            <ul className="pt-8 material-description__content">
+              {contents.map((content) => (
+                <li key={content} className="text-body-medium-medium">
+                  {content}
+                </li>
+              ))}
+            </ul>
+          </>
         )}
         <div className="material-description__links mt-32">
           {shouldShowDk5 && dk5MainEntry && (

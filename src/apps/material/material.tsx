@@ -227,7 +227,11 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
             />
           )}
         </MaterialHeader>
-        <MaterialDescription pid={pid} work={work} />
+        <MaterialDescription
+          pid={pid}
+          work={work}
+          manifestation={selectedManifestations[0]}
+        />
         {/* Since we cannot trust the editions for global manifestations */}
         {/* we limit them to only occur if the loaded work is global */}
         {workType === "local" && (

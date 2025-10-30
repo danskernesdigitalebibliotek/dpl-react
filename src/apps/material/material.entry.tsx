@@ -28,6 +28,7 @@ interface MaterialEntryTextProps {
   closeText: string;
   daysText: string;
   descriptionHeadlineText: string;
+  contentsHeadlineText: string;
   detailsListAudienceText: string;
   detailsListAgeRangeText: string;
   detailsListAuthorsText: string;

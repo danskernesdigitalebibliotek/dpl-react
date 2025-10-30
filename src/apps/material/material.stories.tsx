@@ -163,6 +163,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Description headline",
       control: { type: "text" }
     },
+    contentsHeadlineText: {
+      description: "Contents headline",
+      control: { type: "text" }
+    },
     identifierText: {
       description: "Identifier/topic text",
       control: { type: "text" }
@@ -886,6 +890,7 @@ const meta: Meta<typeof MaterialEntry> = {
     reservableFromAnotherLibraryText: "Ordered from another library.",
     findOnBookshelfText: "Find on shelf",
     descriptionHeadlineText: "Description",
+    contentsHeadlineText: "Contents",
     identifierText: "Tags",
     inSameSeriesText: "In the same series",
     numberDescriptionText: "Nr.",
