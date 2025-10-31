@@ -152,7 +152,10 @@ const UserInfo: FC<UserInfoProps> = ({ cpr, registerSuccessCallback }) => {
             />
 
             {isAddressSearchEnabled ? (
-              <section className="create-patron-page__row">
+              <section
+                className="create-patron-page__row"
+                data-cy="library-select-section"
+              >
                 <LibrarySelect
                   label={t("librarySelectEmptyStateText")}
                   id="library-select"
