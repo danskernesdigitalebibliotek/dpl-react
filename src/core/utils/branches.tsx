@@ -1,14 +1,25 @@
-import { AgencyBranch } from "../fbs/model";
 import { useConfig } from "./config";
 
+export type TBranch = {
+  branchId: string;
+  title: string;
+  location?: {
+    lat: string;
+    lng: string;
+    value: string;
+    address: string;
+    city: string;
+  };
+};
+
 export const excludeBlacklistedBranches = (
-  branches: AgencyBranch[],
+  branches: TBranch[],
   blacklist: string[]
-): AgencyBranch[] => {
+): TBranch[] => {
   return branches.filter((item) => !blacklist.includes(item.branchId));
 };
 
-export const cleanBranchesId = (branches: AgencyBranch[]): string[] => {
+export const cleanBranchesId = (branches: TBranch[]): string[] => {
   return (
     branches
       .map((branch) => {
@@ -23,9 +34,9 @@ export const cleanBranchesId = (branches: AgencyBranch[]): string[] => {
   );
 };
 
-export const useGetBranches = (key: string): AgencyBranch[] => {
+export const useGetBranches = (key: string): TBranch[] => {
   const config = useConfig();
-  const branches = config<AgencyBranch[]>("branchesConfig", {
+  const branches = config<TBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
   const blacklistBranches = config(key, {
