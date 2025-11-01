@@ -7,7 +7,13 @@ export class ModalFindOnShelfComponent extends ComponentObject {
       headline: () => this.container().find(".modal-find-on-shelf__headline"),
       caption: () => this.container().find(".modal-find-on-shelf__caption"),
       libraryDisclosures: () =>
-        this.container().find("[data-cy='find-on-shelf-modal-body-disclosure']")
+        this.container().find(
+          "[data-cy='find-on-shelf-modal-body-disclosure']"
+        ),
+      periodicalDropdowns: () =>
+        this.container().find(
+          ".modal-find-on-shelf__periodical-dropdowns select"
+        )
     };
   }
 
@@ -56,5 +62,21 @@ export class ModalFindOnShelfComponent extends ComponentObject {
       });
 
     return this;
+  }
+
+  assertBranchOrder(expectedOrder: string[]) {
+    const branchNames: string[] = [];
+
+    this.elements.libraryDisclosures().each(($disclosure) => {
+      const branchName = $disclosure.find("h3").text().trim();
+      branchNames.push(branchName);
+    });
+
+    cy.wrap(branchNames).should("deep.equal", expectedOrder);
+    return this;
+  }
+
+  getFirstBranchName() {
+    return this.elements.libraryDisclosures().first().find("h3");
   }
 }

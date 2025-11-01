@@ -3,7 +3,8 @@ import { interceptPublizonCalls } from "../../../cypress/intercepts/publizon/int
 import {
   givenAMaterial,
   givenAMaterialMusic,
-  givenANonFictionMaterial
+  givenANonFictionMaterial,
+  givenAPeriodical
 } from "../../../cypress/intercepts/fbi/material";
 import { givenUserHasLoanedEbook } from "../../../cypress/intercepts/publizon/publizon";
 import {
@@ -668,6 +669,125 @@ describe("Material Page Object Test", () => {
           // Verify Vesterbro is not shown (it only had 0 available copies)
           cy.contains("Vesterbro").should("not.exist");
         });
+      });
+
+      it("Should display main branch first regardless of availability", () => {
+        // Given: A material page
+        materialPage = new MaterialPage();
+        givenAMaterial();
+
+        // When: The user opens FindOnShelf
+        materialPage.visit([]);
+        materialPage.openFindOnShelf();
+
+        materialPage.components.ModalFindOnShelf((findOnShelf) => {
+          // Then: Main branch (ending with 00) appears first
+          findOnShelf
+            .getFirstBranchName()
+            .should("contain", "Hovedbiblioteket");
+        });
+      });
+
+      it("Should sort branches alphabetically within availability groups", () => {
+        // Given: A material page
+        materialPage = new MaterialPage();
+        givenAMaterial();
+
+        // When: The user opens FindOnShelf
+        materialPage.visit([]);
+        materialPage.openFindOnShelf();
+
+        materialPage.components.ModalFindOnShelf((findOnShelf) => {
+          // Then: Branches are ordered: main first, then available alphabetically, then unavailable
+          findOnShelf.assertBranchOrder([
+            "Hovedbiblioteket",
+            "Fjernlager",
+            "Islands Brygge",
+            "Vesterbro"
+          ]);
+        });
+      });
+    });
+  });
+
+  describe("Periodical Material", () => {
+    it("Should not display periodical dropdowns for non-periodical materials", () => {
+      // Given: A regular (non-periodical) material
+      materialPage = new MaterialPage();
+      givenAMaterial();
+
+      // When: The user opens FindOnShelf
+      materialPage.visit([]);
+      materialPage.openFindOnShelf();
+
+      materialPage.components.ModalFindOnShelf((findOnShelf) => {
+        // Then: No periodical dropdowns should be present
+        findOnShelf.elements.periodicalDropdowns().should("not.exist");
+      });
+    });
+
+    it("Should display and interact with periodical material on page and in FindOnShelf", () => {
+      // Given: A periodical material
+      materialPage = new MaterialPage();
+      givenAPeriodical();
+
+      // When: The user visits the material page
+      materialPage.visit([]);
+
+      // Then: Periodical dropdowns should be visible in the material page header
+      materialPage.elements.periodicalDropdowns().should("have.length", 2);
+      materialPage.elements
+        .periodicalYearDropdown()
+        .should("have.value", "2024");
+      materialPage.elements
+        .periodicalEditionDropdown()
+        .should("have.value", "46");
+
+      // When: The user opens FindOnShelf modal
+      materialPage.openFindOnShelf();
+
+      materialPage.components.ModalFindOnShelf((findOnShelf) => {
+        // Then: Headline should contain title
+        findOnShelf.elements.headline().should("contain", "Alt for damerne");
+
+        // And: Periodical dropdowns should be present with default values
+        findOnShelf.elements.periodicalDropdowns().should("have.length", 2);
+        findOnShelf.elements
+          .periodicalDropdowns()
+          .eq(0)
+          .should("contain", "2024");
+        findOnShelf.elements
+          .periodicalDropdowns()
+          .eq(1)
+          .should("contain", "46");
+
+        // And: Should display text showing library count
+        findOnShelf.elements
+          .caption()
+          .shouldContainAll(["1 libraries have material"]);
+
+        // And: Should show library holdings
+        findOnShelf.verifyLibraryHolding({
+          libraryName: "Hovedbiblioteket",
+          label: "Available",
+          editionTitle: "Alt for damerne (1946)",
+          expectedCount: "1"
+        });
+
+        // When: User interacts with dropdowns to select different editions
+        findOnShelf.elements.periodicalDropdowns().eq(1).select("45");
+        findOnShelf.elements.periodicalDropdowns().eq(0).select("2023");
+        findOnShelf.elements.periodicalDropdowns().eq(1).select("40");
+
+        // Then: Dropdowns should reflect the new selections
+        findOnShelf.elements
+          .periodicalDropdowns()
+          .eq(0)
+          .should("have.value", "2023");
+        findOnShelf.elements
+          .periodicalDropdowns()
+          .eq(1)
+          .should("have.value", "40");
       });
     });
   });
