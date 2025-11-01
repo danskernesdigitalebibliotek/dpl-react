@@ -37,7 +37,12 @@ export class MaterialPage extends PageObject {
       identifierTags: () => cy.getBySel("material-description-identifier"),
       fictionNonfiction: () =>
         cy.getBySel("material-description-fiction-nonfiction"),
-      detailsDisclosure: () => cy.getBySel("material-details-disclosure")
+      detailsDisclosure: () => cy.getBySel("material-details-disclosure"),
+      periodicalDropdowns: () => cy.get(".material-periodical-select select"),
+      periodicalYearDropdown: () =>
+        cy.get(".material-periodical-select select#year"),
+      periodicalEditionDropdown: () =>
+        cy.get(".material-periodical-select select#editions")
     };
 
     this.addNestedComponents = {
