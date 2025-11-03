@@ -162,7 +162,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "@types/lodash": "^4.17.5",
     "clsx": "^2.1.1",
-    "dayjs": "^1.11.18",
+    "dayjs": "^1.11.19",
     "downshift": "^9.0.8",
     "fishery": "^2.3.1",
     "focus-trap-react": "^11.0.4",
