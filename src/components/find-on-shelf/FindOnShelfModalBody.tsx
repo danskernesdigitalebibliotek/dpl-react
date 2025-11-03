@@ -189,20 +189,24 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   );
 
   // Filter out holdings with 0 available items if the setting is enabled.
+  const branchesWithAvailableHoldingsOnly =
+    finalDataFilterOutBlacklistedBranches.map((branchHoldings) =>
+      // First filter: Remove individual holding lines with 0 available copies
+      // within each branch (e.g., remove 2016 edition but keep 2017 edition)
+      branchHoldings.filter(
+        (holding) => totalAvailableMaterials(holding.holding.materials) > 0
+      )
+    );
+
+  const branchesWithHoldings = branchesWithAvailableHoldingsOnly.filter(
+    // Second filter: Remove entire branches that have no holdings left
+    // after the first filter (e.g., remove "Vesterbro" if all editions were 0)
+    (branchHoldings) => branchHoldings.length > 0
+  );
+
   const finalDataToShow: ManifestationHoldings[] =
     findOnShelfHideUnavailableHoldings
-      ? finalDataFilterOutBlacklistedBranches
-          .map((branchHoldings) =>
-            // First filter: Remove individual holding lines with 0 available copies
-            // within each branch (e.g., remove 2016 edition but keep 2017 edition)
-            branchHoldings.filter(
-              (holding) =>
-                totalAvailableMaterials(holding.holding.materials) > 0
-            )
-          )
-          // Second filter: Remove entire branches that have no holdings left
-          // after the first filter (e.g., remove "Vesterbro" if all editions were 0)
-          .filter((branchHoldings) => branchHoldings.length > 0)
+      ? branchesWithHoldings
       : finalDataFilterOutBlacklistedBranches;
 
   return (
