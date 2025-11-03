@@ -25,6 +25,19 @@ describe("Recommendation Component", () => {
         "Let fagbog om brillebjørnen, som også bliver kaldt Andes-bjørnen, fordi den lever i Andes-bjergene i Sydamerika. Til nysgerrige børn mellem 7 og 9 år."
       );
   });
+  it("respects manual title and description", () => {
+    cy.visit(
+      "/iframe.html?id=apps-recommendation--default&viewMode=story&args=title:Title;description:Description"
+    );
+    cy.getBySel("recommendation-title")
+      .should("be.visible")
+      .and("not.contain", "Brillebjørn")
+      .and("contain", "Title");
+    cy.getBySel("recommendation-description")
+      .should("be.visible")
+      .and("not.contain", "brillebjørn")
+      .and("contain", "Description");
+  });
   it("renders in the correct orientation based on positionImageRight prop", () => {
     cy.visit(
       "/iframe.html?args=positionImageRight:true&id=apps-recommendation--default&viewMode=story"

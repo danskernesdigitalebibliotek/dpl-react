@@ -15,12 +15,16 @@ export type RecommendationProps = {
   wid: WorkId;
   materialType?: ManifestationMaterialType;
   positionImageRight?: boolean;
+  title?: string;
+  description?: string;
 };
 
 const Recommendation: React.FC<RecommendationProps> = ({
   wid,
   materialType,
-  positionImageRight
+  positionImageRight,
+  title,
+  description
 }) => {
   const u = useUrls();
 
@@ -44,6 +48,9 @@ const Recommendation: React.FC<RecommendationProps> = ({
   const materialFullUrl = constructMaterialUrl(materialUrl, wid, materialType);
   const materialDescription = abstract?.[0];
 
+  const activeTitle = !title ? materialFullTitle : title;
+  const activeDescription = !description ? materialDescription : description;
+
   return (
     <div
       className={clsx(
@@ -58,13 +65,13 @@ const Recommendation: React.FC<RecommendationProps> = ({
         className="recommendation__texts arrow__hover--right-small"
       >
         <h3 className="recommendation__title" data-cy="recommendation-title">
-          {materialFullTitle}
+          {activeTitle}
         </h3>
         <p
           className="recommendation__description"
           data-cy="recommendation-description"
         >
-          {materialDescription}
+          {activeDescription}
         </p>
         <Arrow />
       </Link>
