@@ -34,8 +34,10 @@ const Recommendation: React.FC<RecommendationProps> = ({
     wid
   });
 
-  if (isLoading || !data?.work) {
+  if (isLoading) {
     return <RecommendationMaterialSkeleton />;
+  } else if (!data?.work) {
+    return null;
   }
 
   const {
