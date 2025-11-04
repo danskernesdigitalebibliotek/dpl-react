@@ -23,12 +23,12 @@ function LibrarySelect({
 }: InputProps) {
   return (
     <div className={clsx("library-select-button-wrapper", classNames)}>
-      <label id={id}>{label}</label>
+      <label htmlFor={id}>{label}</label>
       <button
         type="button"
         className="library-select-button"
-        id={id}
         onClick={onClickCallback}
+        aria-labelledby={`${id}-label`}
       >
         {selectedBranch ? (
           <div>
@@ -53,9 +53,12 @@ function LibrarySelect({
         {/* This hidden input is used to handle validation on form submit */}
         <input
           type="text"
+          id={id}
           className="library-select-button__hidden-input"
           required
           value={selectedBranch?.title || ""}
+          aria-hidden="true"
+          tabIndex={-1}
         />
       </button>
 
