@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useEffect, useState, useMemo } from "react";
+import { useCombobox } from "downshift";
 import clsx from "clsx";
-import Label from "../forms/label/Label";
-import React, { useEffect, useState } from "react";
 import { debounce } from "lodash";
 import {
   DawaAddress,
@@ -11,10 +12,10 @@ export type InputProps = {
   label: string;
   type: "text";
   id: string;
+  query: string;
   description?: string;
   classNames?: string;
   placeholder?: string;
-  query?: string;
   onDawaAddressSelect: (address: DawaAddress) => void;
   onQueryChange: (query: string) => void;
 };
@@ -24,116 +25,101 @@ const MIN_QUERY_LENGTH = 3;
 function useGetDawaAddresses(query: string) {
   const [addresses, setAddresses] = useState<DawaAddress[]>([]);
 
-  useEffect(() => {
-    async function fetchAddresses() {
-      if (query.length < MIN_QUERY_LENGTH) return;
+  const debouncedFetch = useMemo(
+    () =>
+      debounce(async (searchQuery: string) => {
+        if (searchQuery.length < MIN_QUERY_LENGTH) {
+          setAddresses([]);
+          return;
+        }
 
-      const debouncedFetch = debounce(async () => {
-        const result = await getAddressesFromLocationQuery(query);
+        const result = await getAddressesFromLocationQuery(searchQuery);
         setAddresses(result);
-      }, 300);
+      }, 300),
+    []
+  );
 
-      debouncedFetch();
-    }
+  useEffect(() => {
+    debouncedFetch(query);
+    return () => {
+      debouncedFetch.cancel();
+    };
+  }, [query, debouncedFetch]);
 
-    fetchAddresses();
-  }, [query]);
-
-  return addresses;
+  return { addresses };
 }
 
-const DawaInput = (props: InputProps) => {
+const DawaInput = ({
+  label,
+  id,
+  placeholder,
+  query,
+  onDawaAddressSelect,
+  onQueryChange
+}: InputProps) => {
+  const { addresses } = useGetDawaAddresses(query);
+
   const {
-    label,
-    type,
-    id,
-    classNames,
-    placeholder,
-    query = "",
-    onDawaAddressSelect,
-    onQueryChange
-  } = props;
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const addresses = useGetDawaAddresses(query);
-  const dawaWrapperRef = React.useRef<HTMLDivElement>(null);
-  const inputRef = React.useRef<HTMLInputElement>(null);
-
-  const handleAddressSelect = (address: DawaAddress) => {
-    inputRef.current?.focus();
-    setShowSuggestions(false);
-    onDawaAddressSelect(address);
-  };
-
-  const handleInputChange = (query: string) => {
-    onQueryChange(query);
-
-    if (query.length > MIN_QUERY_LENGTH) {
-      setShowSuggestions(true);
+    isOpen,
+    getLabelProps,
+    getMenuProps,
+    getInputProps,
+    highlightedIndex,
+    getItemProps,
+    selectedItem
+  } = useCombobox({
+    items: addresses,
+    inputValue: query,
+    itemToString(item) {
+      return item ? item.betegnelse : "";
+    },
+    onInputValueChange({ inputValue: newInputValue }) {
+      onQueryChange(newInputValue || "");
+    },
+    onSelectedItemChange({ selectedItem: newSelectedItem }) {
+      if (newSelectedItem) {
+        onDawaAddressSelect(newSelectedItem);
+      }
     }
-  };
-
-  const dawaWrapperHasFocusWithin = () => {
-    return dawaWrapperRef.current?.contains(document.activeElement);
-  };
+  });
 
   return (
-    <div
-      ref={dawaWrapperRef}
-      className={clsx("dawa-input-wrapper", classNames)}
-    >
-      <Label id={id} className="dawa-input-wrapper__label">
+    <div className="dawa-input-wrapper">
+      <label className="dawa-input-wrapper__label" {...getLabelProps()}>
         {label}
-      </Label>
-      <div
-        className={clsx(
-          "dawa-input__input-wrapper",
-          dawaWrapperHasFocusWithin() && "dawa-input__input-wrapper--focused"
-        )}
-      >
+      </label>
+      <div className="dawa-input__input-wrapper">
         <input
-          className="dawa-input"
-          ref={inputRef}
-          placeholder={placeholder}
           id={id}
-          type={type}
-          value={query}
-          onChange={(event) => handleInputChange(event.target.value)}
-          onFocus={() => {
-            if (query.length > MIN_QUERY_LENGTH) {
-              setShowSuggestions(true);
-            }
-          }}
-          onBlur={() => {
-            // Delay hiding suggestions to allow click event to register
-            setTimeout(() => {
-              if (!dawaWrapperHasFocusWithin()) {
-                setShowSuggestions(false);
-              }
-            });
-          }}
+          placeholder={placeholder}
+          className="dawa-input"
+          {...getInputProps()}
         />
-        {showSuggestions && query.length > 3 && addresses.length > 0 && (
-          <ul className="dawa-input__address-suggestions">
-            {addresses.map((address) => (
-              <li key={address.id}>
-                <button
-                  className="dawa-input__address-suggestions__item"
-                  onClick={() => handleAddressSelect(address)}
-                  onBlur={() => {
-                    // Delay hiding suggestions to allow click event to register
-                    setTimeout(() => {
-                      if (!dawaWrapperHasFocusWithin()) {
-                        setShowSuggestions(false);
-                      }
-                    });
-                  }}
-                >
-                  {address.betegnelse}
-                </button>
+        <ul
+          className={clsx(
+            "dawa-input__address-suggestions",
+            !(isOpen && addresses.length) &&
+              "dawa-input__address-suggestions--hidden"
+          )}
+          {...getMenuProps()}
+        >
+          {isOpen &&
+            addresses.map((address, index) => (
+              <li
+                className={clsx(
+                  "dawa-input__address-suggestions__item",
+                  highlightedIndex === index &&
+                    "dawa-input__address-suggestions__item--highlighted",
+                  selectedItem === address &&
+                    "dawa-input__address-suggestions__item--selected"
+                )}
+                key={address.id}
+                {...getItemProps({ item: address, index })}
+              >
+                <span>{address.betegnelse}</span>
               </li>
             ))}
-          </ul>
-        )}
+        </ul>
       </div>
     </div>
   );
