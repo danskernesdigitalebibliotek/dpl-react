@@ -1,6 +1,5 @@
 import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
 import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
-import DawaInput from "../../components/dawa-input/DawaInput";
 import React, { useState, useMemo } from "react";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
@@ -11,6 +10,7 @@ import {
 import { calculateDistanceBetweenTwoCoordinates } from "./helper";
 import { getCurrentPosition } from "../../core/geo-location/geo-location";
 import { TBranch } from "../../core/utils/branches";
+import DawaInput from "../../components/dawa-input/DawaInput";
 
 type FindLibraryDialogProps = {
   branches?: TBranch[];
@@ -104,7 +104,7 @@ function FindLibraryDialog({
       </p>
       <div className="find-library-dialog__location-group">
         <DawaInput
-          id="address-input"
+          id="address-input-2"
           label={t("findLibraryDialogDawaInputLabelText")}
           placeholder={t("findLibraryDialogDawaInputPlaceholderText")}
           type="text"
