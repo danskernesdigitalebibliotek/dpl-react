@@ -99,9 +99,9 @@ function FindLibraryDialog({
 
   return (
     <div className="find-library-dialog">
-      <p className="find-library-dialog__title">
+      <h3 className="find-library-dialog__title">
         {t("findLibraryDialogTitleText")}
-      </p>
+      </h3>
       <div className="find-library-dialog__location-group">
         <DawaInput
           id="address-input-2"
