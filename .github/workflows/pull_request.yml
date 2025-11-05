@@ -62,7 +62,6 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@v5
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
