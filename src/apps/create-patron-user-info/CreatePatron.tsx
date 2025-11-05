@@ -14,6 +14,7 @@ const CreatePatron: FC<CreatePatronProps> = ({ cpr }) => {
   const [patronIsRegistered, setPpatronIsRegistered] = useState<boolean | null>(
     null
   );
+
   const config = useConfig();
   const t = useText();
   const { id: agencyId } = config<{
