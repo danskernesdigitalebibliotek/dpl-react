@@ -10,6 +10,7 @@ import FacetsSelectDownshift from "./components/FacetsSelectDownshift";
 import FacetsSelectHeadless from "./components/FacetsSelectHeadless";
 import FacetsSelectRadix from "./components/FacetsSelectRadix";
 import FacetsSelectCustom from "./components/FacetsSelectCustom";
+import MultiSelectHeadless from "./components/MultiSelectHeadless";
 import {
   useComplexSuggestQuery,
   ComplexSuggestionTypeEnum,
@@ -23,7 +24,7 @@ const AdvancedSearchV2 = () => {
   const [selRadix, setSelRadix] = useState<Option | null>(null);
   const [selCustom, setSelCustom] = useState<Option | null>(null);
 
-  // Multiselect selections
+  // Facet multiselect states
   const [facetsDownshift, setFacetsDownshift] = useState<Option[]>([]);
   const [facetsHeadless, setFacetsHeadless] = useState<Option[]>([]);
   const [facetsRadix, setFacetsRadix] = useState<Option[]>([]);
@@ -35,6 +36,9 @@ const AdvancedSearchV2 = () => {
 
   // Facet multiselect demo
   const [facetQ, setFacetQ] = useState("harry");
+
+  // MultiSelectHeadless selections
+  const [msHeadless, setMsHeadless] = useState<Option[]>([]);
 
   const handleIndexChange = (value: string) => {
     setSelectedIndex(value);
@@ -118,6 +122,24 @@ const AdvancedSearchV2 = () => {
       </section>
 
       <hr />
+
+      <div
+        style={{
+          display: "grid",
+          gap: 24,
+          gridTemplateColumns: "1fr 1fr 1fr 1fr"
+        }}
+      >
+        <section>
+          <h3>MultiSelectHeadless (facets)</h3>
+          <MultiSelectHeadless
+            key={`ms-headless-${selectedIndex}`}
+            items={facetItems}
+            onChange={setMsHeadless}
+          />
+          <small>Selected count: {msHeadless.length}</small>
+        </section>
+      </div>
 
       <section>
         <h3>Facet query</h3>
