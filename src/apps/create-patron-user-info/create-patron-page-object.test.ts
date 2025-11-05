@@ -1,4 +1,7 @@
-import { givenDawaAddressess } from "../../../cypress/intercepts/dawa/addresses";
+import {
+  givenDawaAddressess,
+  givenDawaAddressReverseGeo
+} from "../../../cypress/intercepts/dawa/addresses";
 import { givenLocationLatLong } from "../../../cypress/intercepts/geolocation/geolocation";
 import { CreatePatronPage } from "../../../cypress/page-objects/create-patron/CreatePatronPage";
 
@@ -142,10 +145,11 @@ describe("Create Patron - Page Objects Integration", () => {
   describe("Find Library Dialog through reverse geolocation", () => {
     it("Should display reversed geo location when clicking the reverse geo location button", () => {
       givenDawaAddressess();
+      givenDawaAddressReverseGeo();
       createPatronPage.openFindLibraryDialog();
       createPatronPage.verifyFindLibraryDialogIsVisible();
-
       givenLocationLatLong();
+
       createPatronPage.components.DialogFindLibrary((dialog) => {
         dialog.clickReverseGeoLocationButton();
         dialog.verifyDawaSuggestionListIsNotExisting();
