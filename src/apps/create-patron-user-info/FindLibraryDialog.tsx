@@ -136,15 +136,16 @@ function FindLibraryDialog({
         </p>
 
         {branchesWithDistance?.map(({ branch, distance }) => {
+          const isSelected = branch.branchId === selectedBranchId;
           return (
             <button
               type="button"
               onClick={() => handleOnClick(branch.branchId)}
               key={branch.branchId}
               className={clsx("find-library-dialog__location-list__item", {
-                "find-library-dialog__location-list__item--selected":
-                  branch.branchId === selectedBranchId
+                "find-library-dialog__location-list__item--selected": isSelected
               })}
+              aria-pressed={isSelected}
             >
               <div>
                 <p className="find-library-dialog__location-list__item__name">
