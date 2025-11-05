@@ -35,11 +35,11 @@ export class DialogFindLibrary extends ComponentObject {
   }
 
   clickFirstDawaSuggestion() {
-    this.elements.dawaInputAddressSuggestions().find("button").eq(0).click();
+    this.elements.dawaInputAddressSuggestions().find("li").eq(0).click();
   }
 
   verifyDawaSuggestionListIsNotExisting() {
-    this.elements.dawaInputAddressSuggestions().should("not.exist");
+    this.elements.dawaInputAddressSuggestions().should("not.be.visible");
   }
 
   verifyDawaSuggestionIsInsertedInInput() {
@@ -58,7 +58,7 @@ export class DialogFindLibrary extends ComponentObject {
   verifyReverseLocationIsInsertedInInput() {
     this.elements
       .geoLocationGroupInput()
-      .should("have.value", "Vodroffsvej 34, 1900 Frederiksberg C");
+      .should("have.value", "Suomisvej 2, 1927 Frederiksberg C");
   }
 
   verifyLocationListHasSelectedLibrary({
