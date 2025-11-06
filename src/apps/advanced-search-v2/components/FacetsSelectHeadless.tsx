@@ -31,7 +31,7 @@ const FacetsSelectHeadless: React.FC<FacetsSelectProps> = ({
   }, [items, query]);
 
   return (
-    <div className="">
+    <div className="advanced-search-facets">
       <Combobox
         multiple
         value={selectedItems}
@@ -44,22 +44,29 @@ const FacetsSelectHeadless: React.FC<FacetsSelectProps> = ({
         <Label className="">{label}</Label>
         <div className="">
           <ComboboxInput
-            className=""
+            className="advanced-search-combobox-input"
             placeholder="Start typing …"
             onChange={(e) => setQuery(e.currentTarget.value)}
             displayValue={() => query}
           />
-          <ComboboxOptions className="" static>
+          <ComboboxOptions
+            static
+            className="advanced-search-facets__combobox-options"
+          >
             {filtered.length === 0 && <li className="">No results</li>}
             {filtered.map((item) => (
               <ComboboxOption
                 key={item.value}
                 value={item}
                 className={({ focus, selected }) =>
-                  clsx("advanced-search-combobox-option", {
-                    "is-focus": focus,
-                    "is-selected": selected
-                  })
+                  clsx(
+                    "advanced-search-combobox-option",
+                    "advanced-search-default-padding",
+                    {
+                      "is-focus": focus,
+                      "is-selected": selected
+                    }
+                  )
                 }
               >
                 {({ selected }) => (

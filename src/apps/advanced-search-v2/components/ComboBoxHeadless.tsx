@@ -11,14 +11,12 @@ import type { Option } from "../suggestions";
 export type ComboBoxProps = {
   items: Option[];
   onSelect: (item: Option) => void;
-
   onQueryChange?: (q: string) => void;
 };
 
 const ComboBoxHeadless = ({
   items,
   onSelect,
-
   onQueryChange
 }: ComboBoxProps) => {
   const [selected, setSelected] = useState<Option | null>(null);
@@ -33,7 +31,7 @@ const ComboBoxHeadless = ({
       by="value"
     >
       <ComboboxInput
-        className="advanced-search-suggest__combobox-input"
+        className="advanced-search-combobox-input advanced-search-select-search__combobox-input"
         onChange={(event) => {
           const v = event.currentTarget.value;
           onQueryChange?.(v);
@@ -42,7 +40,7 @@ const ComboBoxHeadless = ({
         placeholder="Start typing …"
       />
 
-      <ComboboxOptions className="advanced-search-suggest__combobox-dropdown">
+      <ComboboxOptions className="advanced-search-dropdown advanced-search-suggest__combobox-options">
         {items.map((item) => (
           <ComboboxOption
             key={item.value}
