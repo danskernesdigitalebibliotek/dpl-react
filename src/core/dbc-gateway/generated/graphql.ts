@@ -465,9 +465,17 @@ export type Corporation = CreatorInterface &
     /** Sub corporation or conference/meeting */
     sub?: Maybe<Scalars["String"]["output"]>;
     type: SubjectTypeEnum;
+    /** VIAF identifier of the creator */
+    viafid?: Maybe<Scalars["String"]["output"]>;
+    /** Additional data from Wikidata */
+    wikidata?: Maybe<Wikidata>;
     /** Year of the conference */
     year?: Maybe<Scalars["String"]["output"]>;
   };
+
+export type CorporationWikidataArgs = {
+  language?: InputMaybe<LanguageCodeEnum>;
+};
 
 export type Cover = {
   __typename?: "Cover";
@@ -492,6 +500,17 @@ export type CoverDetails = {
   width?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type CreatorImage = {
+  __typename?: "CreatorImage";
+  attributionText?: Maybe<Scalars["String"]["output"]>;
+  /** Url to creator image. Width 1800px */
+  large?: Maybe<Scalars["String"]["output"]>;
+  /** Url to creator image. Width 1200px */
+  medium?: Maybe<Scalars["String"]["output"]>;
+  /** Url to creator image. Width 800px */
+  small?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type CreatorInterface = {
   /** Name of the creator */
   display: Scalars["String"]["output"];
@@ -499,6 +518,8 @@ export type CreatorInterface = {
   nameSort: Scalars["String"]["output"];
   /** A list of which kinds of contributions this creator made to this creation */
   roles: Array<Role>;
+  /** VIAF identifier of the creator */
+  viafid?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type Dk5MainEntry = {
@@ -1333,7 +1354,15 @@ export type Person = CreatorInterface &
     /** A roman numeral added to the person, like Christian IV */
     romanNumeral?: Maybe<Scalars["String"]["output"]>;
     type: SubjectTypeEnum;
+    /** VIAF identifier of the creator */
+    viafid?: Maybe<Scalars["String"]["output"]>;
+    /** Additional metadata for the creator */
+    wikidata?: Maybe<Wikidata>;
   };
+
+export type PersonWikidataArgs = {
+  language?: InputMaybe<LanguageCodeEnum>;
+};
 
 export type PhysicalUnitDescription = {
   __typename?: "PhysicalUnitDescription";
@@ -2153,6 +2182,17 @@ export type UniverseContentResult = {
 
 export type UniverseContentUnion = Series | Work;
 
+export type Wikidata = {
+  __typename?: "Wikidata";
+  awards?: Maybe<Array<Scalars["String"]["output"]>>;
+  description?: Maybe<Scalars["String"]["output"]>;
+  education?: Maybe<Array<Scalars["String"]["output"]>>;
+  image?: Maybe<CreatorImage>;
+  nationality?: Maybe<Scalars["String"]["output"]>;
+  occupation?: Maybe<Array<Scalars["String"]["output"]>>;
+  wikidataId?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type Work = {
   __typename?: "Work";
   /** Abstract of the entity */
@@ -2234,6 +2274,27 @@ export enum WorkTypeEnum {
   Sheetmusic = "SHEETMUSIC",
   Track = "TRACK"
 }
+
+export type ComplexSuggestQueryVariables = Exact<{
+  q: Scalars["String"]["input"];
+  type: ComplexSuggestionTypeEnum;
+}>;
+
+export type ComplexSuggestQuery = {
+  __typename?: "Query";
+  complexSuggest: {
+    __typename?: "ComplexSuggestResponse";
+    result: Array<{
+      __typename?: "ComplexSearchSuggestion";
+      term: string;
+      work?: {
+        __typename?: "Work";
+        workId: string;
+        titles: { __typename?: "WorkTitles"; main: Array<string> };
+      } | null;
+    }>;
+  };
+};
 
 export type GetSmallWorkQueryVariables = Exact<{
   id: Scalars["String"]["input"];
@@ -7666,6 +7727,39 @@ export const WorkMediumFragmentDoc = `
   }
 }
     ${WorkSmallFragmentDoc}`;
+export const ComplexSuggestDocument = `
+    query complexSuggest($q: String!, $type: ComplexSuggestionTypeEnum!) {
+  complexSuggest(q: $q, type: $type) {
+    result {
+      term
+      work {
+        workId
+        titles {
+          main
+        }
+      }
+    }
+  }
+}
+    `;
+
+export const useComplexSuggestQuery = <
+  TData = ComplexSuggestQuery,
+  TError = unknown
+>(
+  variables: ComplexSuggestQueryVariables,
+  options?: UseQueryOptions<ComplexSuggestQuery, TError, TData>
+) => {
+  return useQuery<ComplexSuggestQuery, TError, TData>(
+    ["complexSuggest", variables],
+    fetcher<ComplexSuggestQuery, ComplexSuggestQueryVariables>(
+      ComplexSuggestDocument,
+      variables
+    ),
+    options
+  );
+};
+
 export const GetSmallWorkDocument = `
     query getSmallWork($id: String!) {
   work(id: $id) {
@@ -8276,6 +8370,7 @@ export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
 
 export const operationNames = {
   Query: {
+    complexSuggest: "complexSuggest" as const,
     getSmallWork: "getSmallWork" as const,
     getManifestationViaMaterialByFaust:
       "getManifestationViaMaterialByFaust" as const,
