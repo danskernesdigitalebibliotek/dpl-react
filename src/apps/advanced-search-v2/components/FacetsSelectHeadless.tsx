@@ -1,15 +1,8 @@
-import React, { useMemo, useState } from "react";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxOption,
-  ComboboxOptions,
-  Label
-} from "@headlessui/react";
+import React, { useState } from "react";
 import type { Option } from "../suggestions";
 
-import clsx from "clsx";
 import CheckBox from "../../../components/checkbox/Checkbox";
+import ComboBoxBase from "./ComboBoxBase";
 
 export type FacetsSelectProps = {
   items: Option[];
@@ -25,64 +18,36 @@ const FacetsSelectHeadless: React.FC<FacetsSelectProps> = ({
   const [query, setQuery] = useState("");
   const [selectedItems, setSelectedItems] = useState<Option[]>([]);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return q ? items.filter((i) => i.label.toLowerCase().includes(q)) : items;
-  }, [items, query]);
-
   return (
     <div className="advanced-search-facets">
-      <Combobox
+      <ComboBoxBase
+        label={label}
         multiple
+        items={items}
         value={selectedItems}
-        onChange={(vals: Option[]) => {
-          setSelectedItems(vals);
-          onChange?.(vals);
+        onChange={(vals) => {
+          if (Array.isArray(vals)) {
+            setSelectedItems(vals);
+            onChange?.(vals);
+          }
         }}
-        by={(a: Option, b: Option) => a.value === b.value}
-      >
-        <Label className="">{label}</Label>
-        <div className="">
-          <ComboboxInput
-            className="advanced-search-combobox-input"
-            placeholder="Start typing …"
-            onChange={(e) => setQuery(e.currentTarget.value)}
-            displayValue={() => query}
+        query={query}
+        onQueryChange={setQuery}
+        classes={{
+          options: "advanced-search-facets__combobox-options"
+        }}
+        optionsStatic
+        showEmptyStates
+        renderOption={(item, state) => (
+          <CheckBox
+            id={`facets-hu-${item.value}`}
+            label={item.label}
+            selected={state.selected}
+            onChecked={() => {}}
+            isVisualOnly
           />
-          <ComboboxOptions
-            static
-            className="advanced-search-facets__combobox-options"
-          >
-            {filtered.length === 0 && <li className="">No results</li>}
-            {filtered.map((item) => (
-              <ComboboxOption
-                key={item.value}
-                value={item}
-                className={({ focus, selected }) =>
-                  clsx(
-                    "advanced-search-combobox-option",
-                    "advanced-search-default-padding",
-                    {
-                      "is-focus": focus,
-                      "is-selected": selected
-                    }
-                  )
-                }
-              >
-                {({ selected }) => (
-                  <CheckBox
-                    id={`facets-hu-${item.value}`}
-                    label={item.label}
-                    selected={selected}
-                    onChecked={() => {}}
-                    isVisualOnly
-                  />
-                )}
-              </ComboboxOption>
-            ))}
-          </ComboboxOptions>
-        </div>
-      </Combobox>
+        )}
+      />
     </div>
   );
 };
