@@ -35,6 +35,12 @@ const meta: Meta<typeof Recommendation> = {
     etAlText: {
       description: "Et al. Text",
       control: { type: "text" }
+    },
+    title: {
+      control: { type: "text" }
+    },
+    description: {
+      control: { type: "text" }
     }
   }
 };
@@ -51,7 +57,9 @@ export const Default: Story = {
     materialType: "bog" as ManifestationMaterialType,
     positionImageRight: false,
     materialUrl: "/work/:workid",
-    etAlText: "et al."
+    etAlText: "et al.",
+    title: undefined,
+    description: undefined
   }
 };
 
