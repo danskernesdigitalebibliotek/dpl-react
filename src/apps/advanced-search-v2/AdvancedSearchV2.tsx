@@ -9,10 +9,23 @@ const AdvancedSearchV2 = () => {
       style={{ display: "grid", gap: 24, maxWidth: 900, margin: "20px auto" }}
     >
       <AdvancedSearchSuggestInput />
+      <AdvancedSearchSuggestInput />
 
-      <AdvancedSearchSelectSearch />
+      <div
+        style={{
+          display: "grid",
+          gap: "1rem",
+          gridTemplateColumns: "repeat(2, 1fr)"
+        }}
+      >
+        <AdvancedSearchSelectSearch />
+        <AdvancedSearchSelectSearch />
+      </div>
 
-      <AdvancedSearchFacet />
+      <div style={{ width: "300px" }}>
+        <AdvancedSearchFacet />
+        <AdvancedSearchFacet />
+      </div>
     </div>
   );
 };

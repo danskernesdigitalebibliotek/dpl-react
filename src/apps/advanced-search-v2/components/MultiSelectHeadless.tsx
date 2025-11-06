@@ -49,7 +49,7 @@ const MultiSelectHeadless: React.FC<Props> = ({
 
       <PopoverPanel
         anchor="bottom"
-        className="advanced-search-select-search__dropdown"
+        className="advanced-search-dropdown advanced-search-select-search__popover-panel"
       >
         <Combobox
           multiple
@@ -61,12 +61,15 @@ const MultiSelectHeadless: React.FC<Props> = ({
           by={(a: Option, b: Option) => a.value === b.value}
         >
           <ComboboxInput
-            className="advanced-search-select-search__dropdown-input"
+            className="advanced-search-combobox-input"
             placeholder="Start typing …"
             onChange={(e) => setQuery(e.target.value)}
             displayValue={() => query}
           />
-          <ComboboxOptions static>
+          <ComboboxOptions
+            static
+            className="advanced-search-select-search__combobox-options"
+          >
             {filtered?.length === 0 && query.length > 0 && (
               <li className="advanced-search-combobox-option">No results</li>
             )}

@@ -14,7 +14,7 @@ const AdvancedSearchFacet = () => {
 
   // Fetch facet values (e.g. subjects) based on facetQ
   const { data: facetData } = useSearchFacetQuery(
-    { q: { all: facetQ }, facets: [FacetFieldEnum.Subjects], facetLimit: 50 },
+    { q: { all: facetQ }, facets: [FacetFieldEnum.Subjects], facetLimit: 10 },
     { keepPreviousData: true }
   );
 
@@ -30,13 +30,11 @@ const AdvancedSearchFacet = () => {
   }));
 
   return (
-    <div>
-      <FacetsSelectHeadless
-        key={`facets-headless`}
-        items={facetItems}
-        onChange={setFacetsHeadless}
-      />
-    </div>
+    <FacetsSelectHeadless
+      key={`facets-headless`}
+      items={facetItems}
+      onChange={setFacetsHeadless}
+    />
   );
 };
 
