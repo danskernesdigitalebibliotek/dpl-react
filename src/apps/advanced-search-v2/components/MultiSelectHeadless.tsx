@@ -1,18 +1,10 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import type { Option } from "../suggestions";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxOption,
-  ComboboxOptions,
-  Popover,
-  PopoverButton,
-  PopoverPanel
-} from "@headlessui/react";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
-import clsx from "clsx";
 import CheckBox from "../../../components/checkbox/Checkbox";
+import ComboBoxBase from "./ComboBoxBase";
 
 type Props = {
   items: Option[];
@@ -27,11 +19,6 @@ const MultiSelectHeadless: React.FC<Props> = ({
 }) => {
   const [query, setQuery] = useState("");
   const [selectedItems, setSelectedItems] = useState<Option[]>([]);
-
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return q ? items.filter((i) => i.label.toLowerCase().includes(q)) : items;
-  }, [items, query]);
 
   return (
     <Popover className="advanced-search-select-search">
@@ -51,57 +38,33 @@ const MultiSelectHeadless: React.FC<Props> = ({
         anchor="bottom"
         className="advanced-search-dropdown advanced-search-select-search__popover-panel"
       >
-        <Combobox
+        <ComboBoxBase
           multiple
+          items={items}
           value={selectedItems}
-          onChange={(vals: Option[]) => {
-            setSelectedItems(vals);
-            onChange?.(vals);
+          onChange={(vals) => {
+            if (Array.isArray(vals)) {
+              setSelectedItems(vals);
+              onChange?.(vals);
+            }
           }}
-          by={(a: Option, b: Option) => a.value === b.value}
-        >
-          <ComboboxInput
-            className="advanced-search-combobox-input"
-            placeholder="Start typing …"
-            onChange={(e) => setQuery(e.target.value)}
-            displayValue={() => query}
-          />
-          <ComboboxOptions
-            static
-            className="advanced-search-select-search__combobox-options"
-          >
-            {filtered?.length === 0 && query.length > 0 && (
-              <li className="advanced-search-combobox-option">No results</li>
-            )}
-            {items.length === 0 && (
-              <li className="advanced-search-combobox-option">
-                No items available
-              </li>
-            )}
-            {filtered?.map((item) => (
-              <ComboboxOption
-                key={item.value}
-                value={item}
-                className={({ focus, selected }) =>
-                  clsx("advanced-search-combobox-option", {
-                    "is-focus": focus,
-                    "is-selected": selected
-                  })
-                }
-              >
-                {({ selected }) => (
-                  <CheckBox
-                    id={`facets-hu-${item.value}`}
-                    label={item.label}
-                    selected={selected}
-                    onChecked={() => {}}
-                    isVisualOnly
-                  />
-                )}
-              </ComboboxOption>
-            ))}
-          </ComboboxOptions>
-        </Combobox>
+          query={query}
+          onQueryChange={setQuery}
+          classes={{
+            options: "advanced-search-select-search__combobox-options"
+          }}
+          optionsStatic
+          showEmptyStates
+          renderOption={(item, state) => (
+            <CheckBox
+              id={`facets-hu-${item.value}`}
+              label={item.label}
+              selected={state.selected}
+              onChecked={() => {}}
+              isVisualOnly
+            />
+          )}
+        />
       </PopoverPanel>
     </Popover>
   );
