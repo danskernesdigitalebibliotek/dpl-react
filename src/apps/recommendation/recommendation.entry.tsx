@@ -14,18 +14,24 @@ export interface RecommendationEntryProps extends GlobalEntryTextProps {
   positionImageRight?: boolean;
   materialUrl: string;
   etAlText: string;
+  title?: string;
+  description?: string;
 }
 
 const RecommendationEntry: React.FC<RecommendationEntryProps> = ({
   wid,
   materialType,
-  positionImageRight
+  positionImageRight,
+  title,
+  description
 }) => (
   <GuardedApp app="recommendation">
     <Recommendation
       wid={wid}
       materialType={materialType}
       positionImageRight={positionImageRight}
+      title={title}
+      description={description}
     />
   </GuardedApp>
 );
