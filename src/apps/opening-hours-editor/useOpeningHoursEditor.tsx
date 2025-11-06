@@ -34,9 +34,12 @@ const useOpeningHoursEditor = () => {
     },
     { enabled: !!datesSet }
   );
-  const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
-  const { mutate: createOpeningHours } = useDplOpeningHoursCreatePOST();
-  const { mutate: updateOpeningHours } = useDplOpeningHoursUpdatePATCH();
+  const { mutate: removeOpeningHours, isLoading: removeOpeningHoursLoading } =
+    useDplOpeningHoursDeleteDELETE();
+  const { mutate: createOpeningHours, isLoading: createOpeningHoursLoading } =
+    useDplOpeningHoursCreatePOST();
+  const { mutate: updateOpeningHours, isLoading: updateOpeningHoursLoading } =
+    useDplOpeningHoursUpdatePATCH();
   const [events, setEvents] = useState<EventInput[]>([]);
 
   useEffect(() => {
@@ -138,7 +141,11 @@ const useOpeningHoursEditor = () => {
     handleEventAdd,
     handleEventRemove,
     handleEventEditing,
-    handleDatesSet
+    handleDatesSet,
+    isLoading:
+      updateOpeningHoursLoading ||
+      removeOpeningHoursLoading ||
+      createOpeningHoursLoading
   };
 };
 
