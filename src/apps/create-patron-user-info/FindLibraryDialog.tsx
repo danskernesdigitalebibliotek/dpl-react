@@ -124,7 +124,7 @@ function FindLibraryDialog({
           <p>{t("findLibraryDialogGeoLocationButtonText")}</p>
         </button>
         {geoLocationError && (
-          <div className="find-library-dialog__error-message">
+          <div className="find-library-dialog__error-message" role="alert">
             <img src={WarningIcon} alt="" />
             <p>{geoLocationError}</p>
           </div>
