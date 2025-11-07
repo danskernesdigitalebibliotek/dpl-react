@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FacetsSelectHeadless from "./FacetsSelectHeadless";
 import { Option } from "../suggestions";
 import {
@@ -7,14 +7,24 @@ import {
   useSearchFacetQuery
 } from "../../../core/dbc-gateway/generated/graphql";
 
-const AdvancedSearchFacet = () => {
-  const [facetsHeadless, setFacetsHeadless] = useState<Option[]>([]);
+type Props = {
+  query: string;
+  onQueryChange: (q: string) => void;
+  selected: Option[];
+  onChange: (selected: Option[]) => void;
+  label?: string;
+};
 
-  const [facetQ, setFacetQ] = useState("harry");
-
-  // Fetch facet values (e.g. subjects) based on facetQ
+const AdvancedSearchFacet: React.FC<Props> = ({
+  query,
+  onQueryChange,
+  selected,
+  onChange,
+  label
+}) => {
+  // Fetch facet values (e.g. subjects) based on query
   const { data: facetData } = useSearchFacetQuery(
-    { q: { all: facetQ }, facets: [FacetFieldEnum.Subjects], facetLimit: 10 },
+    { q: { all: query }, facets: [FacetFieldEnum.Subjects], facetLimit: 10 },
     { keepPreviousData: true }
   );
 
@@ -33,7 +43,11 @@ const AdvancedSearchFacet = () => {
     <FacetsSelectHeadless
       key={`facets-headless`}
       items={facetItems}
-      onChange={setFacetsHeadless}
+      value={selected}
+      onChange={onChange}
+      query={query}
+      onQueryChange={onQueryChange}
+      label={label}
     />
   );
 };
