@@ -2,36 +2,35 @@ import React, { useState } from "react";
 import AdvancedSearchSuggestInput from "./components/AdvancedSearchSuggestInput";
 import AdvancedSearchSelectSearch from "./components/AdvancedSearchSelectSearch";
 import AdvancedSearchFacet from "./components/AdvancedSearchFacet";
-import type { Option } from "./suggestions";
+import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
 
 type SuggestState = {
-  selectedIndex: string;
+  term: string;
   query: string;
-  selected: Option | null;
 };
 
 type MultiSelectState = {
-  query: string;
-  selected: Option[];
+  term: string;
+  selectedValues: string[];
 };
 
-const AdvancedSearchV2 = () => {
+const AdvancedSearchV2: React.FC = () => {
   // Suggest inputs (array)
   const [suggests, setSuggests] = useState<SuggestState[]>([
-    { selectedIndex: "term.default", query: "", selected: null },
-    { selectedIndex: "term.default", query: "", selected: null }
+    { term: "term.default", query: "" },
+    { term: "term.default", query: "" }
   ]);
 
   // Select search (array)
   const [selects, setSelects] = useState<MultiSelectState[]>([
-    { query: "", selected: [] },
-    { query: "", selected: [] }
+    { term: "Voksen", selectedValues: [] },
+    { term: "Magi", selectedValues: [] }
   ]);
 
   // Facets (array)
   const [facets, setFacets] = useState<MultiSelectState[]>([
-    { query: "harry", selected: [] },
-    { query: "harry", selected: [] }
+    { term: "Trolde", selectedValues: [] },
+    { term: "Abe", selectedValues: [] }
   ]);
 
   return (
@@ -49,28 +48,16 @@ const AdvancedSearchV2 = () => {
         {suggests.map((s, i) => (
           <AdvancedSearchSuggestInput
             key={`suggest-${i}`}
-            selectedIndex={s.selectedIndex}
+            selectedIndex={s.term}
             onSelectedIndexChange={(value) =>
               setSuggests((prev) =>
-                prev.map((it, idx) =>
-                  idx === i
-                    ? { selectedIndex: value, query: "", selected: null }
-                    : it
-                )
+                prev.map((it, idx) => (idx === i ? { ...it, term: value } : it))
               )
             }
-            query={s.query}
+            onSelect={() => {}}
             onQueryChange={(q) =>
               setSuggests((prev) =>
                 prev.map((it, idx) => (idx === i ? { ...it, query: q } : it))
-              )
-            }
-            selected={s.selected}
-            onSelect={(opt) =>
-              setSuggests((prev) =>
-                prev.map((it, idx) =>
-                  idx === i ? { ...it, selected: opt } : it
-                )
               )
             }
           />
@@ -87,17 +74,16 @@ const AdvancedSearchV2 = () => {
           {selects.map((s, i) => (
             <AdvancedSearchSelectSearch
               key={`select-${i}`}
-              query={s.query}
-              onQueryChange={(q) =>
-                setSelects((prev) =>
-                  prev.map((it, idx) => (idx === i ? { ...it, query: q } : it))
-                )
-              }
-              selected={s.selected}
+              fetchQuery={s.term}
+              facetField={FacetFieldEnum.Subjects}
+              label={s.term}
+              selected={s.selectedValues.map((v) => ({ label: v, value: v }))}
               onChange={(vals) =>
                 setSelects((prev) =>
                   prev.map((it, idx) =>
-                    idx === i ? { ...it, selected: vals } : it
+                    idx === i
+                      ? { ...it, selectedValues: vals.map((o) => o.value) }
+                      : it
                   )
                 )
               }
@@ -110,17 +96,16 @@ const AdvancedSearchV2 = () => {
           {facets.map((f, i) => (
             <AdvancedSearchFacet
               key={`facet-${i}`}
-              query={f.query}
-              onQueryChange={(q) =>
-                setFacets((prev) =>
-                  prev.map((it, idx) => (idx === i ? { ...it, query: q } : it))
-                )
-              }
-              selected={f.selected}
+              fetchQuery={f.term}
+              facetField={FacetFieldEnum.Subjects}
+              label={f.term}
+              selected={f.selectedValues.map((v) => ({ label: v, value: v }))}
               onChange={(vals) =>
                 setFacets((prev) =>
                   prev.map((it, idx) =>
-                    idx === i ? { ...it, selected: vals } : it
+                    idx === i
+                      ? { ...it, selectedValues: vals.map((o) => o.value) }
+                      : it
                   )
                 )
               }
