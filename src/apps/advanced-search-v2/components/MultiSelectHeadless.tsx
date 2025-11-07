@@ -10,8 +10,6 @@ type Props = {
   items: Option[];
   value: Option[];
   onChange?: (vals: Option[]) => void;
-  query?: string;
-  onQueryChange?: (q: string) => void;
   label?: string;
 };
 
@@ -19,8 +17,6 @@ const MultiSelectHeadless: React.FC<Props> = ({
   items = [],
   value,
   onChange,
-  query = "",
-  onQueryChange,
   label = "Label"
 }) => {
   return (
@@ -50,8 +46,6 @@ const MultiSelectHeadless: React.FC<Props> = ({
               onChange?.(vals);
             }
           }}
-          query={query}
-          onQueryChange={onQueryChange}
           classes={{
             options: "advanced-search-select-search__combobox-options"
           }}
