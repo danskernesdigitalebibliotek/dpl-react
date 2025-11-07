@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { type Option, suggestionsToOptions } from "../suggestions";
 import { SEARCH_INDEX_OPTIONS, type SearchIndexItem } from "../search-index";
 import SearchIndexSelect from "./SearchIndexSelect";
@@ -12,21 +12,21 @@ interface Props {
   minimalAutosuggestCharacters?: number;
   selectedIndex: string;
   onSelectedIndexChange: (value: string) => void;
-  query: string;
-  onQueryChange: (q: string) => void;
-  selected: Option | null;
-  onSelect: (opt: Option | null) => void;
+  selected?: Option | null;
+  onSelect?: (opt: Option | null) => void;
+  // NEW: allow parent to observe query changes so it can persist minimal state
+  onQueryChange?: (q: string) => void;
 }
 
 const AdvancedSearchSuggestInput: React.FC<Props> = ({
   minimalAutosuggestCharacters = 3,
   selectedIndex,
   onSelectedIndexChange,
-  query,
-  onQueryChange,
   selected,
-  onSelect
+  onSelect,
+  onQueryChange
 }) => {
+  const [query, setQuery] = useState("");
   const foundIndex = useMemo(
     () =>
       SEARCH_INDEX_OPTIONS.find(
@@ -47,14 +47,20 @@ const AdvancedSearchSuggestInput: React.FC<Props> = ({
 
   return (
     <div className="advanced-search-suggest">
-      <SearchIndexSelect value={selectedIndex} onChange={onSelectedIndexChange} />
+      <SearchIndexSelect
+        value={selectedIndex}
+        onChange={onSelectedIndexChange}
+      />
 
       <div className="advanced-search-suggest__combobox-wrapper">
         <ComboBoxHeadless
           items={items}
-          value={selected}
-          onChange={onSelect}
-          onQueryChange={onQueryChange}
+          value={selected ?? null}
+          onChange={onSelect ?? (() => {})}
+          onQueryChange={(q) => {
+            setQuery(q);
+            onQueryChange?.(q);
+          }}
         />
       </div>
     </div>
