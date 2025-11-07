@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 
 import MultiSelectHeadless from "./MultiSelectHeadless";
 import type { Option } from "../suggestions";
@@ -8,11 +8,23 @@ import {
   useSearchFacetQuery
 } from "../../../core/dbc-gateway/generated/graphql";
 
-const AdvancedSearchSelectSearch: React.FC = () => {
-  const [facetQ, setFacetQ] = useState<string>("harry");
+type Props = {
+  query: string;
+  onQueryChange: (q: string) => void;
+  selected: Option[];
+  onChange: (selected: Option[]) => void;
+  label?: string;
+};
 
+const AdvancedSearchSelectSearch: React.FC<Props> = ({
+  query,
+  onQueryChange,
+  selected,
+  onChange,
+  label
+}) => {
   const { data: facetData } = useSearchFacetQuery(
-    { q: { all: facetQ }, facets: [FacetFieldEnum.Subjects], facetLimit: 50 },
+    { q: { all: query }, facets: [FacetFieldEnum.Subjects], facetLimit: 50 },
     { keepPreviousData: true }
   );
 
@@ -25,11 +37,16 @@ const AdvancedSearchSelectSearch: React.FC = () => {
     return values.map((v) => ({ label: v.term, value: v.key }));
   }, [facetData]);
 
-  const onChange = (selected: Option[]) => {
-    console.log("Selected items:", selected);
-  };
-
-  return <MultiSelectHeadless items={items} onChange={onChange} />;
+  return (
+    <MultiSelectHeadless
+      items={items}
+      value={selected}
+      onChange={onChange}
+      query={query}
+      onQueryChange={onQueryChange}
+      label={label}
+    />
+  );
 };
 
 export default AdvancedSearchSelectSearch;

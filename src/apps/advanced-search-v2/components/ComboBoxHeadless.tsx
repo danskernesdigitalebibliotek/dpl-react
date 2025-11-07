@@ -1,28 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import type { Option } from "../suggestions";
 import ComboBoxBase from "./ComboBoxBase";
 
 export type ComboBoxProps = {
   items: Option[];
-  onSelect: (item: Option) => void;
+  value: Option | null;
+  onChange: (item: Option | null) => void;
   onQueryChange?: (q: string) => void;
 };
 
 const ComboBoxHeadless = ({
   items,
-  onSelect,
+  value,
+  onChange,
   onQueryChange
 }: ComboBoxProps) => {
-  const [selected, setSelected] = useState<Option | null>(null);
-
   return (
     <ComboBoxBase
       items={items}
-      value={selected}
+      value={value}
       onChange={(next) => {
-        if (!Array.isArray(next) && next) {
-          setSelected(next);
-          onSelect(next);
+        if (!Array.isArray(next)) {
+          onChange(next ?? null);
         }
       }}
       onQueryChange={onQueryChange}
