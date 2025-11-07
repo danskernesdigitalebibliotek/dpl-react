@@ -29,7 +29,8 @@ const Dialog = forwardRef<HTMLDialogElement, DialogType>(
           <button
             type="button"
             onClick={closeDialog}
-            className="dialog__close-button" aria-label="Close"
+            className="dialog__close-button"
+            aria-label="Close"
           >
             <img src={iconCross} alt="" />
           </button>

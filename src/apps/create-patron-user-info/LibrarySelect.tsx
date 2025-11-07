@@ -54,6 +54,7 @@ function LibrarySelect({
         <input
           type="text"
           id={id}
+          aria-describedby={`description-${id}`}
           className="library-select-button__hidden-input"
           required
           value={selectedBranch?.title || ""}
