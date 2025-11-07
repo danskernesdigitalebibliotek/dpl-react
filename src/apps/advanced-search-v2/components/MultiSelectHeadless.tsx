@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import type { Option } from "../suggestions";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
@@ -8,18 +8,21 @@ import ComboBoxBase from "./ComboBoxBase";
 
 type Props = {
   items: Option[];
+  value: Option[];
   onChange?: (vals: Option[]) => void;
+  query?: string;
+  onQueryChange?: (q: string) => void;
   label?: string;
 };
 
 const MultiSelectHeadless: React.FC<Props> = ({
   items = [],
+  value,
   onChange,
+  query = "",
+  onQueryChange,
   label = "Label"
 }) => {
-  const [query, setQuery] = useState("");
-  const [selectedItems, setSelectedItems] = useState<Option[]>([]);
-
   return (
     <Popover className="advanced-search-select-search">
       <PopoverButton className="dropdown dropdown--grey-borders advanced-search-select-search__button">
@@ -41,15 +44,14 @@ const MultiSelectHeadless: React.FC<Props> = ({
         <ComboBoxBase
           multiple
           items={items}
-          value={selectedItems}
+          value={value ?? []}
           onChange={(vals) => {
             if (Array.isArray(vals)) {
-              setSelectedItems(vals);
               onChange?.(vals);
             }
           }}
           query={query}
-          onQueryChange={setQuery}
+          onQueryChange={onQueryChange}
           classes={{
             options: "advanced-search-select-search__combobox-options"
           }}
