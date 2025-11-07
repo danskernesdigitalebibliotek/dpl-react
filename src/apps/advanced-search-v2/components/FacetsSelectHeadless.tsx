@@ -9,17 +9,13 @@ export type FacetsSelectProps = {
   value: Option[];
   label?: string;
   onChange?: (selected: Option[]) => void;
-  query?: string;
-  onQueryChange?: (q: string) => void;
 };
 
 const FacetsSelectHeadless: React.FC<FacetsSelectProps> = ({
   items,
   value,
   label = "Facet",
-  onChange,
-  query = "",
-  onQueryChange
+  onChange
 }) => {
   return (
     <div className="advanced-search-facets">
@@ -33,8 +29,6 @@ const FacetsSelectHeadless: React.FC<FacetsSelectProps> = ({
             onChange?.(vals);
           }
         }}
-        query={query}
-        onQueryChange={onQueryChange}
         classes={{
           options: "advanced-search-facets__combobox-options"
         }}

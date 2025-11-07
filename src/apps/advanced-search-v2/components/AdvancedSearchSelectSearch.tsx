@@ -9,22 +9,26 @@ import {
 } from "../../../core/dbc-gateway/generated/graphql";
 
 type Props = {
-  query: string;
-  onQueryChange: (q: string) => void;
+  fetchQuery: string;
+  facetField: FacetFieldEnum;
   selected: Option[];
   onChange: (selected: Option[]) => void;
   label?: string;
 };
 
 const AdvancedSearchSelectSearch: React.FC<Props> = ({
-  query,
-  onQueryChange,
+  fetchQuery,
+  facetField,
   selected,
   onChange,
   label
 }) => {
   const { data: facetData } = useSearchFacetQuery(
-    { q: { all: query }, facets: [FacetFieldEnum.Subjects], facetLimit: 50 },
+    {
+      q: { all: fetchQuery },
+      facets: [facetField],
+      facetLimit: 50
+    },
     { keepPreviousData: true }
   );
 
@@ -42,9 +46,7 @@ const AdvancedSearchSelectSearch: React.FC<Props> = ({
       items={items}
       value={selected}
       onChange={onChange}
-      query={query}
-      onQueryChange={onQueryChange}
-      label={label}
+      label={label ?? fetchQuery}
     />
   );
 };
