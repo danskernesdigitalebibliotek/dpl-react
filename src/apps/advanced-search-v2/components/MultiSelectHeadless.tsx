@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import type { Option } from "../suggestions";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
@@ -19,6 +19,8 @@ const MultiSelectHeadless: React.FC<Props> = ({
   onChange,
   label = "Label"
 }) => {
+  const [query, setQuery] = useState("");
+
   return (
     <Popover className="advanced-search-select-search">
       <PopoverButton className="dropdown dropdown--grey-borders advanced-search-select-search__button">
@@ -46,6 +48,8 @@ const MultiSelectHeadless: React.FC<Props> = ({
               onChange?.(vals);
             }
           }}
+          query={query}
+          onQueryChange={setQuery}
           classes={{
             options: "advanced-search-select-search__combobox-options"
           }}
