@@ -1,4 +1,12 @@
+import React from "react";
 import { withUrls } from "../../core/utils/url";
-import Component from "./AdvancedSearchV2";
+import AdvancedSearchV2 from "./AdvancedSearchV2";
+import { NuqsAdapter } from "nuqs/adapters/react";
 
-export default withUrls(Component);
+const WrappedAdvancedSearchV2 = () => (
+  <NuqsAdapter>
+    <AdvancedSearchV2 />
+  </NuqsAdapter>
+);
+
+export default withUrls(WrappedAdvancedSearchV2);

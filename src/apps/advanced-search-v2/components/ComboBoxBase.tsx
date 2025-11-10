@@ -36,8 +36,10 @@ export type ComboBoxBaseProps = {
   // Optional Label rendered inside Combobox
   label?: React.ReactNode;
   labelClassName?: string;
+  // Controlled query value
+  query: string;
   // Callback when query changes (useful for API calls)
-  onQueryChange?: (q: string) => void;
+  onQueryChange: (q: string) => void;
   // UI flags
   showEmptyStates?: boolean;
   optionsStatic?: boolean;
@@ -55,14 +57,12 @@ const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
   renderOption,
   label,
   labelClassName,
+  query,
   onQueryChange,
   showEmptyStates = false,
   optionsStatic,
   allowFreeInput = false
 }) => {
-  // Track the query string internally
-  const [query, setQuery] = useState("");
-
   // Track whether user has pressed arrow keys to navigate suggestions
   // This distinguishes between: "user typing freely" vs "user navigating to select"
   const [userHasNavigated, setUserHasNavigated] = useState(false);
@@ -92,8 +92,7 @@ const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
         // This ensures the input shows what was selected while still allowing further typing
         if (allowFreeInput && selectedValue && !Array.isArray(selectedValue)) {
           const selectedLabel = (selectedValue as Option).label;
-          setQuery(selectedLabel);
-          onQueryChange?.(selectedLabel);
+          onQueryChange(selectedLabel);
         }
       }}
       by={compareOptions}
@@ -105,11 +104,8 @@ const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
         onChange={(e) => {
           const v = e.currentTarget.value;
 
-          // Update internal query state
-          setQuery(v);
-
-          // Notify parent of query changes (for API calls, etc.)
-          onQueryChange?.(v);
+          // Notify parent of query changes
+          onQueryChange(v);
 
           // When user types, reset navigation state - they're back to "free input" mode
           // This means pressing Enter will now submit free text instead of selecting a suggestion

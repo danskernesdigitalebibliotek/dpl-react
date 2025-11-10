@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { type Option, suggestionsToOptions } from "../suggestions";
 import { SEARCH_INDEX_OPTIONS, type SearchIndexItem } from "../search-index";
 import SearchIndexSelect from "./SearchIndexSelect";
-import ComboBoxHeadless from "./ComboBoxHeadless";
+import ComboBoxBase from "./ComboBoxBase";
 import {
   ComplexSuggestionTypeEnum,
   useComplexSuggestQuery
@@ -14,8 +14,9 @@ interface Props {
   onSelectedIndexChange: (value: string) => void;
   selected?: Option | null;
   onSelect?: (opt: Option | null) => void;
-  // NEW: allow parent to observe query changes so it can persist minimal state
-  onQueryChange?: (q: string) => void;
+  // Controlled query value and change handler
+  query: string;
+  onQueryChange: (q: string) => void;
 }
 
 const AdvancedSearchSuggestInput: React.FC<Props> = ({
@@ -24,9 +25,9 @@ const AdvancedSearchSuggestInput: React.FC<Props> = ({
   onSelectedIndexChange,
   selected,
   onSelect,
+  query,
   onQueryChange
 }) => {
-  const [query, setQuery] = useState("");
   const foundIndex = useMemo(
     () =>
       SEARCH_INDEX_OPTIONS.find(
@@ -53,13 +54,21 @@ const AdvancedSearchSuggestInput: React.FC<Props> = ({
       />
 
       <div className="advanced-search-suggest__combobox-wrapper">
-        <ComboBoxHeadless
+        <ComboBoxBase
+          allowFreeInput
           items={items}
           value={selected ?? null}
-          onChange={onSelect ?? (() => {})}
-          onQueryChange={(q) => {
-            setQuery(q);
-            onQueryChange?.(q);
+          onChange={(next) => {
+            if (!Array.isArray(next)) {
+              onSelect?.(next ?? null);
+            }
+          }}
+          query={query}
+          onQueryChange={onQueryChange}
+          classes={{
+            input: "advanced-search-select-search__combobox-input",
+            options:
+              "advanced-search-dropdown advanced-search-suggest__combobox-options"
           }}
         />
       </div>
