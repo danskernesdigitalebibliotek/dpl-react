@@ -17,6 +17,7 @@ const ComboBoxHeadless = ({
 }: ComboBoxProps) => {
   return (
     <ComboBoxBase
+      allowFreeInput
       items={items}
       value={value}
       onChange={(next) => {
