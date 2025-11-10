@@ -1278,10 +1278,10 @@
     lodash "^4.17.20"
     semver "^7.3.2"
 
-"@cypress/webpack-preprocessor@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@cypress/webpack-preprocessor/-/webpack-preprocessor-7.0.1.tgz#cb6f9e542b74c74511a07bc1a5c69ad91fd44f1c"
-  integrity sha512-3PnuoT+9N/7Hnx5THgbXitKDXsjO7/G83JIBSJhzjLTyoE90LnDkWqhrhhjNFmWdqlelDTpnMtFk7TPHCPWzoQ==
+"@cypress/webpack-preprocessor@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@cypress/webpack-preprocessor/-/webpack-preprocessor-7.0.2.tgz#d00063a5fb225333a57be534dfdc803d1c685059"
+  integrity sha512-J8B8UG8sAVbCIvWh57irEzyjCpcXC2CvoXHY7xrQqwiaNbtKLL/WRRELTYpZtD16zT8WG6wwUkAOnrfwHO3tsA==
   dependencies:
     bluebird "3.7.1"
     debug "^4.3.4"
@@ -5063,6 +5063,11 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001702, caniuse-lite@^1.0.30001746, can
   version "1.0.30001753"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001753.tgz#419f8fc9bab6f1a1d10d9574d0b3374f823c5b00"
   integrity sha512-Bj5H35MD/ebaOV4iDLqPEtiliTN29qkGtEHCwawWn4cYm+bPJM2NsaP30vtZcnERClMzp52J4+aw2UNbK4o+zw==
+
+caniuse-lite@^1.0.30001751:
+  version "1.0.30001754"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001754.tgz#7758299d9a72cce4e6b038788a15b12b44002759"
+  integrity sha512-x6OeBXueoAceOmotzx3PO4Zpt4rzpeIFsSr6AAePTZxSkXiYDUmpypEl7e2+8NCd9bD7bXjqyef8CJYPC1jfxg==
 
 capital-case@^1.0.4:
   version "1.0.4"
