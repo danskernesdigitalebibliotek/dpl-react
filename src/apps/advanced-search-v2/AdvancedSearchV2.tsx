@@ -95,7 +95,6 @@ const AdvancedSearchV2: React.FC = () => {
                   )
                 )
               }
-              onSelect={() => {}}
               query={s.query}
               onQueryChange={(q) =>
                 setSuggests((prev) =>
