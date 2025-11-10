@@ -2,7 +2,10 @@ import {
   AvailabilityV3,
   HoldingsLogisticsV1
 } from "../../../src/core/fbs/model";
-import { holdingsLogisticsFactory, materialFactory } from "../../factories/fbs/holdings.factory";
+import {
+  holdingsLogisticsFactory,
+  materialFactory
+} from "../../factories/fbs/holdings.factory";
 
 /**
  * Library configuration
@@ -157,5 +160,51 @@ export const scenarios = {
       reservations: 2
     } as Partial<AvailabilityV3>,
     holdings: []
+  },
+
+  periodical: {
+    availability: {
+      available: true,
+      reservable: true,
+      reservations: 0
+    } as Partial<AvailabilityV3>,
+    holdings: [
+      holdingsLogisticsFactory.build({
+        branch: libraries.hovedbiblioteket,
+        lmsPlacement: undefined,
+        materials: [
+          materialFactory.build({
+            itemNumber: "5393541387",
+            available: true,
+            periodical: {
+              volume: undefined,
+              volumeYear: "2024",
+              displayText: "2024, 46",
+              volumeNumber: "46"
+            }
+          }),
+          materialFactory.build({
+            itemNumber: "5393473500",
+            available: true,
+            periodical: {
+              volume: undefined,
+              volumeYear: "2024",
+              displayText: "2024, 45",
+              volumeNumber: "45"
+            }
+          }),
+          materialFactory.build({
+            itemNumber: "5393469279",
+            available: true,
+            periodical: {
+              volume: undefined,
+              volumeYear: "2023",
+              displayText: "2023, 40",
+              volumeNumber: "40"
+            }
+          })
+        ]
+      })
+    ]
   }
 };

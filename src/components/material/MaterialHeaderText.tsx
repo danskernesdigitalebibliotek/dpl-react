@@ -32,7 +32,7 @@ const MaterialHeaderText: React.FC<MaterialHeaderTextProps> = ({
       >
         {title}
       </h1>
-      {creators.length && (
+      {!!creators.length && (
         <p data-cy="material-header-author-text" className="text-body-large">
           <span>{t("materialHeaderAuthorByText")} </span>
           {creators.map((creator, index) => (
