@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Option } from "../suggestions";
 
 import CheckBox from "../../../components/checkbox/Checkbox";
@@ -17,6 +17,8 @@ const FacetsSelectHeadless: React.FC<FacetsSelectProps> = ({
   label = "Facet",
   onChange
 }) => {
+  const [query, setQuery] = useState("");
+
   return (
     <div className="advanced-search-facets">
       <ComboBoxBase
@@ -29,6 +31,8 @@ const FacetsSelectHeadless: React.FC<FacetsSelectProps> = ({
             onChange?.(vals);
           }
         }}
+        query={query}
+        onQueryChange={setQuery}
         classes={{
           options: "advanced-search-facets__combobox-options"
         }}
