@@ -14,7 +14,6 @@ interface Props {
   onSelectedIndexChange: (value: string) => void;
   query: string;
   onQueryChange: (q: string) => void;
-  selected: Option | null;
   onSelect: (opt: Option | null) => void;
 }
 
@@ -24,7 +23,6 @@ const AdvancedSearchSuggestInput: React.FC<Props> = ({
   onSelectedIndexChange,
   query,
   onQueryChange,
-  selected,
   onSelect
 }) => {
   const foundIndex = useMemo(
@@ -43,19 +41,23 @@ const AdvancedSearchSuggestInput: React.FC<Props> = ({
     { enabled: query.trim().length >= minimalAutosuggestCharacters }
   );
 
-  const items = suggestionsToOptions(data?.complexSuggest?.result);
+  const suggestions = suggestionsToOptions(data?.complexSuggest?.result);
 
   return (
     <div className="advanced-search-suggest">
-      <SearchIndexSelect value={selectedIndex} onChange={onSelectedIndexChange} />
+      <SearchIndexSelect
+        value={selectedIndex}
+        onChange={onSelectedIndexChange}
+      />
 
       <div className="advanced-search-suggest__combobox-wrapper">
-        <ComboBoxHeadless
-          items={items}
+        <input onChange={() => onQueryChange} value={query} />
+        {/* <ComboBoxHeadless
+          items={suggestions}
           value={selected}
           onChange={onSelect}
           onQueryChange={onQueryChange}
-        />
+        /> */}
       </div>
     </div>
   );
