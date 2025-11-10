@@ -59,6 +59,8 @@ const AdvancedSearchSuggestInput: React.FC<Props> = ({
           items={items}
           value={selected ?? null}
           onChange={(next) => {
+            // When user clicks a suggestion from the dropdown, notify parent
+            // Filter out array case since we only support single selection
             if (!Array.isArray(next)) {
               onSelect?.(next ?? null);
             }
