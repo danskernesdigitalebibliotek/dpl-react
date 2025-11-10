@@ -11,8 +11,7 @@ type MultiSelectState = {
 const AdvancedSearchV2Facets: React.FC = () => {
   const [facetsFromUrl, setFacets] = useQueryState(
     "facets",
-    parseAsJson((value) => value as MultiSelectState[])
-      .withDefault([])
+    parseAsJson((value) => value as MultiSelectState[]).withDefault([])
   );
 
   // Define all available facets
@@ -41,10 +40,15 @@ const AdvancedSearchV2Facets: React.FC = () => {
             const updatedFacets = allFacets.map((defaultFacet) => {
               const isCurrentFacet = defaultFacet.term === facets[i].term;
               if (isCurrentFacet) {
-                return { ...defaultFacet, selectedValues: vals.map((o) => o.value) };
+                return {
+                  ...defaultFacet,
+                  selectedValues: vals.map((o) => o.value)
+                };
               }
               // Keep existing selections from URL
-              const existingFacet = facetsFromUrl.find((f) => f.term === defaultFacet.term);
+              const existingFacet = facetsFromUrl.find(
+                (f) => f.term === defaultFacet.term
+              );
               return existingFacet || defaultFacet;
             });
             // Only include facets with selections in the URL
