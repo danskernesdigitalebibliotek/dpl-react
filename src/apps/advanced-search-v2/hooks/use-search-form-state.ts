@@ -1,13 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
 import { useQueryStates, parseAsJson } from "nuqs";
 import { SuggestState, MultiSelectState, FacetState } from "../types";
-import { DEFAULT_SUGGESTS, DEFAULT_SELECTS } from "../lib/constants";
+import { SUGGESTS_CONFIG, SELECTS_CONFIG } from "../lib/config";
 
 export interface UseSearchFormStateReturn {
   suggests: SuggestState[];
   selects: MultiSelectState[];
   updateSuggest: (index: number, updates: Partial<SuggestState>) => void;
   updateSelect: (index: number, updates: Partial<MultiSelectState>) => void;
+  addSuggest: () => void;
+  removeSuggest: (index: number) => void;
   handleSearch: () => void;
   handleClearFilters: () => void;
 }
@@ -20,10 +22,10 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
   const [urlState, setUrlState] = useQueryStates(
     {
       suggests: parseAsJson((value) => value as SuggestState[]).withDefault(
-        DEFAULT_SUGGESTS
+        SUGGESTS_CONFIG
       ),
       selects: parseAsJson((value) => value as MultiSelectState[]).withDefault(
-        DEFAULT_SELECTS
+        SELECTS_CONFIG
       ),
       facets: parseAsJson((value) => value as FacetState[]).withDefault([])
     },
@@ -64,21 +66,47 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     []
   );
 
+  // Add a new suggest row
+  const addSuggest = useCallback(() => {
+    setSuggests((prev) => [
+      ...prev,
+      { term: "term.default", query: "", operator: "and" }
+    ]);
+  }, []);
+
+  // Remove a suggest row by index (minimum 1 row must remain)
+  const removeSuggest = useCallback((index: number) => {
+    setSuggests((prev) => {
+      if (prev.length <= 1) return prev;
+      return prev.filter((_, idx) => idx !== index);
+    });
+  }, []);
+
   // Sync local state to URL and trigger search
   const handleSearch = useCallback(() => {
+    // Filter out empty queries and remove operator from first row (never used)
+    const nonEmptySuggests = suggests
+      .filter((suggest) => suggest.query.trim())
+      .map((suggest, index) => {
+        // First suggest doesn't need operator field
+        if (index === 0) {
+          return { term: suggest.term, query: suggest.query };
+        }
+        return suggest;
+      });
+
     setUrlState({
-      suggests,
+      suggests: nonEmptySuggests,
       selects
     });
   }, [suggests, selects, setUrlState]);
-
   // Clear all filters including facets
   const handleClearFilters = useCallback(() => {
-    setSuggests(DEFAULT_SUGGESTS);
-    setSelects(DEFAULT_SELECTS);
+    setSuggests(SUGGESTS_CONFIG);
+    setSelects(SELECTS_CONFIG);
     setUrlState({
-      suggests: DEFAULT_SUGGESTS,
-      selects: DEFAULT_SELECTS,
+      suggests: SUGGESTS_CONFIG,
+      selects: SELECTS_CONFIG,
       facets: []
     });
   }, [setUrlState]);
@@ -88,6 +116,8 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     selects,
     updateSuggest,
     updateSelect,
+    addSuggest,
+    removeSuggest,
     handleSearch,
     handleClearFilters
   };
