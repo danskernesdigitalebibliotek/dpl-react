@@ -3,18 +3,8 @@ import { useQueryStates, parseAsJson } from "nuqs";
 import AdvancedSearchSuggestInput from "./components/AdvancedSearchSuggestInput";
 import AdvancedSearchSelectSearch from "./components/AdvancedSearchSelectSearch";
 import AdvancedSearchV2Results from "./AdvancedSearchV2Results";
-import AdvancedSearchV2Facets from "./AdvancedSearchV2Facets";
 import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
-
-type SuggestState = {
-  term: string;
-  query: string;
-};
-
-type MultiSelectState = {
-  term: string;
-  selectedValues: string[];
-};
+import { SuggestState, MultiSelectState } from "./types";
 
 const AdvancedSearchV2: React.FC = () => {
   // URL state management with nuqs
@@ -172,11 +162,7 @@ const AdvancedSearchV2: React.FC = () => {
         className="advanced-search-v2__results-container"
         style={{ display: "grid", gridTemplateColumns: "1fr 2fr" }}
       >
-        <AdvancedSearchV2Facets />
-        <AdvancedSearchV2Results
-          suggests={urlState.suggests}
-          selects={urlState.selects}
-        />
+        <AdvancedSearchV2Results />
       </div>
     </div>
   );

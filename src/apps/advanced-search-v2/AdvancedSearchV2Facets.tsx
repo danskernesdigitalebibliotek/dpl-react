@@ -2,63 +2,78 @@ import React from "react";
 import { useQueryState, parseAsJson } from "nuqs";
 import AdvancedSearchFacet from "./components/AdvancedSearchFacet";
 import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
+import { FacetConfig, FacetState } from "./types";
 
-type MultiSelectState = {
-  term: string;
-  selectedValues: string[];
-};
+const FACET_CONFIGURATION: FacetConfig[] = [
+  { label: "Format", facetField: FacetFieldEnum.Materialtypesspecific },
+  { label: "Forfatter / ophav", facetField: FacetFieldEnum.Creators },
+  { label: "Emne", facetField: FacetFieldEnum.Subjects },
+  { label: "Sprog", facetField: FacetFieldEnum.Mainlanguages },
+  { label: "Målgruppe", facetField: FacetFieldEnum.Generalaudience },
+  {
+    label: "Fiktiv hovedperson",
+    facetField: FacetFieldEnum.Fictionalcharacters
+  },
+  { label: "Genre og form", facetField: FacetFieldEnum.Genreandform },
+  { label: "Aldersgruppe", facetField: FacetFieldEnum.Age },
+  { label: "Lix-tal", facetField: FacetFieldEnum.Lix }
+];
 
-const AdvancedSearchV2Facets: React.FC = () => {
+interface AdvancedSearchV2FacetsProps {
+  fetchQuery: string;
+}
+
+const AdvancedSearchV2Facets: React.FC<AdvancedSearchV2FacetsProps> = ({
+  fetchQuery
+}) => {
+  // Read facets from URL
   const [facetsFromUrl, setFacets] = useQueryState(
     "facets",
-    parseAsJson((value) => value as MultiSelectState[]).withDefault([])
+    parseAsJson((value) => value as FacetState[]).withDefault([])
   );
 
-  // Define all available facets
-  const allFacets = [
-    { term: "Trolde", selectedValues: [] },
-    { term: "Abe", selectedValues: [] }
-  ];
+  const handleFacetChange = (
+    facetField: FacetFieldEnum,
+    selectedValues: string[]
+  ) => {
+    // Update the changed facet while keeping others
+    const updatedFacets = FACET_CONFIGURATION.map((config) =>
+      config.facetField === facetField
+        ? { facetField, selectedValues }
+        : (facetsFromUrl.find((f) => f.facetField === config.facetField) ?? {
+            facetField: config.facetField,
+            selectedValues: []
+          })
+    );
 
-  // Merge URL facets with all facets to ensure all options are shown
-  const facets = allFacets.map((defaultFacet) => {
-    const urlFacet = facetsFromUrl.find((f) => f.term === defaultFacet.term);
-    return urlFacet || defaultFacet;
-  });
+    // Only store facets with selections
+    setFacets(updatedFacets.filter((f) => f.selectedValues.length > 0));
+  };
 
   return (
     <aside className="advanced-search__facets">
       <h3>Filters</h3>
-      {facets.map((f, i) => (
-        <AdvancedSearchFacet
-          key={`facet-${i}`}
-          fetchQuery={f.term}
-          facetField={FacetFieldEnum.Subjects}
-          label={f.term}
-          selected={f.selectedValues.map((v) => ({ label: v, value: v }))}
-          onChange={(vals) => {
-            const updatedFacets = allFacets.map((defaultFacet) => {
-              const isCurrentFacet = defaultFacet.term === facets[i].term;
-              if (isCurrentFacet) {
-                return {
-                  ...defaultFacet,
-                  selectedValues: vals.map((o) => o.value)
-                };
-              }
-              // Keep existing selections from URL
-              const existingFacet = facetsFromUrl.find(
-                (f) => f.term === defaultFacet.term
-              );
-              return existingFacet || defaultFacet;
-            });
-            // Only include facets with selections in the URL
-            const facetsWithSelections = updatedFacets.filter(
-              (f) => f.selectedValues.length > 0
-            );
-            setFacets(facetsWithSelections);
-          }}
-        />
-      ))}
+      {FACET_CONFIGURATION.map((config) => {
+        const selectedValues =
+          facetsFromUrl.find((f) => f.facetField === config.facetField)
+            ?.selectedValues ?? [];
+
+        return (
+          <AdvancedSearchFacet
+            key={config.facetField}
+            fetchQuery={fetchQuery}
+            facetField={config.facetField}
+            label={config.label}
+            selected={selectedValues.map((v) => ({ label: v, value: v }))}
+            onChange={(vals) =>
+              handleFacetChange(
+                config.facetField,
+                vals.map((o) => o.value)
+              )
+            }
+          />
+        );
+      })}
     </aside>
   );
 };
