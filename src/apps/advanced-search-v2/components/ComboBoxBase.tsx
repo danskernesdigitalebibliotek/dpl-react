@@ -129,6 +129,20 @@ const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
             setUserHasNavigated(true);
           }
 
+          // Handle Tab key - prevent selection unless user navigated with arrows
+          if (e.key === "Tab") {
+            if (!userHasNavigated) {
+              // User hasn't used arrow keys - prevent auto-selection of first item
+              // Stop propagation to prevent HeadlessUI from selecting, but allow natural tab focus
+              e.stopPropagation();
+              e.currentTarget.blur(); // Close dropdown
+              // Don't preventDefault - let tab move focus naturally
+            } else {
+              // User navigated with arrows - allow selection, then reset state
+              setUserHasNavigated(false);
+            }
+          }
+
           // Handle Enter key - behavior depends on whether user navigated with arrows
           if (e.key === "Enter") {
             if (!userHasNavigated) {
