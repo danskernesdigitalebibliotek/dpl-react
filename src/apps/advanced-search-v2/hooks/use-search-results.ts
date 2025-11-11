@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useQueryState, parseAsJson } from "nuqs";
 import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
+import usePager from "../../../components/result-pager/use-pager";
 import { SuggestState, MultiSelectState, FacetState } from "../types";
 import { Work } from "../../../core/utils/types/entities";
 import {
@@ -21,18 +22,18 @@ export interface UseSearchResultsReturn {
   hasQuery: boolean;
   canShowZeroResults: boolean;
   resetResults: () => void;
+  page: number;
+  PagerComponent: React.FC<{ isLoading?: boolean }>;
 }
 
 interface UseSearchResultsProps {
-  page: number;
   pageSize?: number;
 }
 
 /**
- * Hook to manage search results with GraphQL queries
+ * Hook to manage search results with GraphQL queries and pagination
  */
 export const useSearchResults = ({
-  page,
   pageSize = DEFAULT_PAGE_SIZE
 }: UseSearchResultsProps): UseSearchResultsReturn => {
   // Read all search state from URL
@@ -56,6 +57,11 @@ export const useSearchResults = ({
   const [isRefetching, setIsRefetching] = useState(false);
   const [lastQueryStr, setLastQueryStr] = useState("");
   const [canShowZeroResults, setCanShowZeroResults] = useState(false);
+
+  const { PagerComponent, page, resetPage } = usePager({
+    hitcount,
+    pageSize
+  });
 
   // Build CQL query from all inputs
   const cql = useMemo(
@@ -123,8 +129,9 @@ export const useSearchResults = ({
       setIsRefetching(true);
       setCanShowZeroResults(false);
       setLastQueryStr(currentQueryStr);
+      resetPage();
     }
-  }, [currentQueryStr, lastQueryStr]);
+  }, [currentQueryStr, lastQueryStr, resetPage]);
 
   // Update refetching state when data arrives
   useEffect(() => {
@@ -151,6 +158,8 @@ export const useSearchResults = ({
     facetQuery,
     hasQuery,
     canShowZeroResults,
-    resetResults
+    resetResults,
+    page,
+    PagerComponent
   };
 };
