@@ -7,7 +7,7 @@ import {
   hasValidQuery
 } from "../lib/query-builder";
 
-export interface UseSearchQueriesReturn {
+interface UseSearchQueriesReturn {
   cql: string;
   facetQuery: string;
   hasQuery: boolean;
