@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
-
-import MultiSelectHeadless from "./MultiSelectHeadless";
+import HeadlessMultiSelect from "./HeadlessMultiSelect";
 import type { Option } from "../lib/suggestions";
 import {
   FacetFieldEnum,
@@ -16,7 +15,7 @@ type Props = {
   label?: string;
 };
 
-const AdvancedSearchSelectSearch: React.FC<Props> = ({
+const AdvancedSearchSelect: React.FC<Props> = ({
   fetchQuery,
   facetField,
   selected,
@@ -42,7 +41,7 @@ const AdvancedSearchSelectSearch: React.FC<Props> = ({
   }, [facetData]);
 
   return (
-    <MultiSelectHeadless
+    <HeadlessMultiSelect
       items={items}
       value={selected}
       onChange={onChange}
@@ -51,4 +50,4 @@ const AdvancedSearchSelectSearch: React.FC<Props> = ({
   );
 };
 
-export default AdvancedSearchSelectSearch;
+export default AdvancedSearchSelect;

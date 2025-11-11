@@ -1,6 +1,6 @@
 import React from "react";
-import AdvancedSearchV2Results from "./components/AdvancedSearchV2Results";
-import SearchForm from "./components/SearchForm";
+import AdvancedSearchResultsWithFacets from "./components/AdvancedSearchResultsWithFacets";
+import SearchForm from "./components/AdvancedSearchForm";
 
 const AdvancedSearchV2: React.FC = () => {
   return (
@@ -13,8 +13,7 @@ const AdvancedSearchV2: React.FC = () => {
     >
       <SearchForm />
 
-      {/* Results Section with Facets Sidebar */}
-      <AdvancedSearchV2Results />
+      <AdvancedSearchResultsWithFacets />
     </div>
   );
 };

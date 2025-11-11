@@ -2,18 +2,18 @@ import React from "react";
 import { useText } from "../../../core/utils/text";
 import SearchResultList from "../../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../../search-result/search-result-zero-hits";
-import AdvancedSearchV2Facets from "./AdvancedSearchV2Facets";
+import AdvancedSearchV2Facets from "./AdvancedSearchFacets";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
 import { DEFAULT_PAGE_SIZE } from "../lib/constants";
 
-interface AdvancedSearchV2ResultsProps {
+interface AdvancedSearchResultsWithFacetsProps {
   pageSize?: number;
 }
 
-const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
-  pageSize = DEFAULT_PAGE_SIZE
-}) => {
+const AdvancedSearchResultsWithFacets: React.FC<
+  AdvancedSearchResultsWithFacetsProps
+> = ({ pageSize = DEFAULT_PAGE_SIZE }) => {
   const t = useText();
   const { cql, facetQuery, hasQuery } = useSearchQueries();
   const {
@@ -42,6 +42,7 @@ const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
       style={{ display: "grid", gridTemplateColumns: "1fr 2fr" }}
     >
       <AdvancedSearchV2Facets fetchQuery={facetQuery} />
+
       <section className="content-list-page">
         <h2
           className="content-list-page__heading"
@@ -72,4 +73,4 @@ const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
   );
 };
 
-export default AdvancedSearchV2Results;
+export default AdvancedSearchResultsWithFacets;

@@ -1,12 +1,14 @@
 import React from "react";
 import { useText } from "../../../core/utils/text";
 
-interface ActionButtonsProps {
+interface AdvancedSearchActionButtonsProps {
   onSearch: () => void;
   onClear: () => void;
 }
 
-const ActionButtons: React.FC<ActionButtonsProps> = ({ onSearch, onClear }) => {
+const AdvancedSearchActionButtons: React.FC<
+  AdvancedSearchActionButtonsProps
+> = ({ onSearch, onClear }) => {
   const t = useText();
 
   return (
@@ -46,4 +48,4 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({ onSearch, onClear }) => {
   );
 };
 
-export default ActionButtons;
+export default AdvancedSearchActionButtons;

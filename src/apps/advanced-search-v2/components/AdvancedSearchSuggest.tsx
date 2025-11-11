@@ -1,6 +1,9 @@
 import React, { useMemo } from "react";
 import { type Option, suggestionsToOptions } from "../lib/suggestions";
-import { SEARCH_INDEX_OPTIONS, type SearchIndexItem } from "../lib/search-index";
+import {
+  SEARCH_INDEX_OPTIONS,
+  type SearchIndexItem
+} from "../lib/search-index";
 import SearchIndexSelect from "./SearchIndexSelect";
 import ComboBoxBase from "./ComboBoxBase";
 import {
@@ -8,7 +11,7 @@ import {
   useComplexSuggestQuery
 } from "../../../core/dbc-gateway/generated/graphql";
 
-interface Props {
+type AdvancedSearchSuggestProps = {
   minimalAutosuggestCharacters?: number;
   selectedIndex: string;
   onSelectedIndexChange: (value: string) => void;
@@ -17,9 +20,9 @@ interface Props {
   // Controlled query value and change handler
   query: string;
   onQueryChange: (q: string) => void;
-}
+};
 
-const AdvancedSearchSuggestInput: React.FC<Props> = ({
+const AdvancedSearchSuggest: React.FC<AdvancedSearchSuggestProps> = ({
   minimalAutosuggestCharacters = 3,
   selectedIndex,
   onSelectedIndexChange,
@@ -78,4 +81,4 @@ const AdvancedSearchSuggestInput: React.FC<Props> = ({
   );
 };
 
-export default AdvancedSearchSuggestInput;
+export default AdvancedSearchSuggest;

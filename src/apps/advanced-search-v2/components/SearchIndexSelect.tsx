@@ -1,6 +1,9 @@
 import React, { FC } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import { SEARCH_INDEX_OPTIONS, type SearchIndexItem } from "../lib/search-index";
+import {
+  SEARCH_INDEX_OPTIONS,
+  type SearchIndexItem
+} from "../lib/search-index";
 
 export type SearchIndexSelectProps = {
   value: string;
