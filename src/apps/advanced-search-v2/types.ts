@@ -6,7 +6,8 @@ export type SuggestState = {
 };
 
 export type MultiSelectState = {
-  term: string;
+  label: string;
+  facetField: FacetFieldEnum;
   selectedValues: string[];
 };
 

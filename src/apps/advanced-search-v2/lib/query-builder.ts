@@ -20,9 +20,12 @@ export const buildCQLQuery = (
 
   // Add select search filters
   selects.forEach((select) => {
-    select.selectedValues.forEach((value) => {
-      parts.push(`${select.term}="${value}"`);
-    });
+    const cqlField = FACET_TO_CQL_FIELD[select.facetField];
+    if (cqlField) {
+      select.selectedValues.forEach((value) => {
+        parts.push(`${cqlField}="${value}"`);
+      });
+    }
   });
 
   // Add facet filters

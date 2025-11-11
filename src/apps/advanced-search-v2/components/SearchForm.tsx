@@ -1,6 +1,5 @@
 import React from "react";
 import { SuggestState, MultiSelectState } from "../types";
-import { FacetFieldEnum } from "../../../core/dbc-gateway/generated/graphql";
 import AdvancedSearchSuggestInput from "./AdvancedSearchSuggestInput";
 import AdvancedSearchSelectSearch from "./AdvancedSearchSelectSearch";
 
@@ -17,6 +16,13 @@ const SearchForm: React.FC<SearchFormProps> = ({
   onSuggestUpdate,
   onSelectUpdate
 }) => {
+  // Build search query from suggest inputs for fetching facets
+  const fetchQuery =
+    suggests
+      .map((s) => s.query.trim())
+      .filter(Boolean)
+      .join(" ") || "*";
+
   return (
     <div className="advanced-search-v2__inputs">
       {/* Suggest inputs */}
@@ -43,9 +49,9 @@ const SearchForm: React.FC<SearchFormProps> = ({
         {selects.map((select, index) => (
           <AdvancedSearchSelectSearch
             key={`select-${index}`}
-            fetchQuery={select.term}
-            facetField={FacetFieldEnum.Subjects}
-            label={select.term}
+            fetchQuery={fetchQuery}
+            facetField={select.facetField}
+            label={select.label}
             selected={select.selectedValues.map((value) => ({
               label: value,
               value
