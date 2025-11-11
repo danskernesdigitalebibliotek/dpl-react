@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import usePager from "../../../components/result-pager/use-pager";
 import { Work } from "../../../core/utils/types/entities";
 import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import { DEFAULT_PAGE_SIZE } from "../constants";
+import { DEFAULT_PAGE_SIZE } from "../lib/constants";
 
 export interface UsePaginatedResultsReturn {
   resultItems: Work[];

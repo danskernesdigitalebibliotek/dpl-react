@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import type { Option } from "../suggestions";
+import type { Option } from "../lib/suggestions";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 import CheckBox from "../../../components/checkbox/Checkbox";

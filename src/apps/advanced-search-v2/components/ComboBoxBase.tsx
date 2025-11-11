@@ -7,7 +7,7 @@ import {
   Label
 } from "@headlessui/react";
 import clsx from "clsx";
-import type { Option } from "../suggestions";
+import type { Option } from "../lib/suggestions";
 
 const compareOptions = (a: unknown, b: unknown) => {
   const ao = a as Option | null | undefined;

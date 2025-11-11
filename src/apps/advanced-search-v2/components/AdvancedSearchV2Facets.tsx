@@ -1,8 +1,8 @@
 import React from "react";
 import { useQueryState, parseAsJson } from "nuqs";
-import AdvancedSearchFacet from "./components/AdvancedSearchFacet";
-import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
-import { FacetConfig, FacetState } from "./types";
+import AdvancedSearchFacet from "./AdvancedSearchFacet";
+import { FacetFieldEnum } from "../../../core/dbc-gateway/generated/graphql";
+import { FacetConfig, FacetState } from "../types";
 
 const FACET_CONFIGURATION: FacetConfig[] = [
   { label: "Format", facetField: FacetFieldEnum.Materialtypesspecific },

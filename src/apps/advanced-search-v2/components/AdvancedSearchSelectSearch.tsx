@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 
 import MultiSelectHeadless from "./MultiSelectHeadless";
-import type { Option } from "../suggestions";
+import type { Option } from "../lib/suggestions";
 import {
   FacetFieldEnum,
   SearchFacetQuery,
