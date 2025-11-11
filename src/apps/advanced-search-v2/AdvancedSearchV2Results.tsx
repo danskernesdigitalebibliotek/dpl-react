@@ -3,7 +3,8 @@ import { useText } from "../../core/utils/text";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import AdvancedSearchV2Facets from "./AdvancedSearchV2Facets";
-import { useSearchResults } from "./hooks/use-search-results";
+import { useSearchQueries } from "./hooks/use-search-queries";
+import { usePaginatedResults } from "./hooks/use-paginated-results";
 import { DEFAULT_PAGE_SIZE } from "./constants";
 
 interface AdvancedSearchV2ResultsProps {
@@ -14,19 +15,17 @@ const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
   pageSize = DEFAULT_PAGE_SIZE
 }) => {
   const t = useText();
-
+  const { cql, facetQuery, hasQuery } = useSearchQueries();
   const {
     resultItems,
     hitcount,
     isLoading,
     isFetching,
     isRefetching,
-    facetQuery,
-    hasQuery,
     canShowZeroResults,
     page,
     PagerComponent
-  } = useSearchResults({ pageSize });
+  } = usePaginatedResults({ cql, hasQuery, pageSize });
 
   const isLoadingOrRefetching = isLoading || isFetching || isRefetching;
   const shouldShowSearchResults =

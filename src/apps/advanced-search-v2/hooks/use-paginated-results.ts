@@ -1,57 +1,34 @@
 import { useState, useEffect, useMemo } from "react";
-import { useQueryState, parseAsJson } from "nuqs";
-import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import usePager from "../../../components/result-pager/use-pager";
-import { SuggestState, MultiSelectState, FacetState } from "../types";
 import { Work } from "../../../core/utils/types/entities";
-import {
-  buildCQLQuery,
-  buildFacetQuery,
-  hasValidQuery
-} from "../query-builder";
+import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { DEFAULT_PAGE_SIZE } from "../constants";
 
-export interface UseSearchResultsReturn {
+export interface UsePaginatedResultsReturn {
   resultItems: Work[];
   hitcount: number;
   isLoading: boolean;
   isFetching: boolean;
   isRefetching: boolean;
-  cql: string;
-  facetQuery: string;
-  hasQuery: boolean;
   canShowZeroResults: boolean;
-  resetResults: () => void;
   page: number;
   PagerComponent: React.FC<{ isLoading?: boolean }>;
 }
 
-interface UseSearchResultsProps {
+interface UsePaginatedResultsProps {
+  cql: string;
+  hasQuery: boolean;
   pageSize?: number;
 }
 
 /**
- * Hook to manage search results with GraphQL queries and pagination
+ * Hook to manage paginated search results from GraphQL query
  */
-export const useSearchResults = ({
+export const usePaginatedResults = ({
+  cql,
+  hasQuery,
   pageSize = DEFAULT_PAGE_SIZE
-}: UseSearchResultsProps): UseSearchResultsReturn => {
-  // Read all search state from URL
-  const [suggests] = useQueryState(
-    "suggests",
-    parseAsJson((value) => value as SuggestState[]).withDefault([])
-  );
-
-  const [selects] = useQueryState(
-    "selects",
-    parseAsJson((value) => value as MultiSelectState[]).withDefault([])
-  );
-
-  const [facets] = useQueryState(
-    "facets",
-    parseAsJson((value) => value as FacetState[]).withDefault([])
-  );
-
+}: UsePaginatedResultsProps): UsePaginatedResultsReturn => {
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState(0);
   const [isRefetching, setIsRefetching] = useState(false);
@@ -62,20 +39,6 @@ export const useSearchResults = ({
     hitcount,
     pageSize
   });
-
-  // Build CQL query from all inputs
-  const cql = useMemo(
-    () => buildCQLQuery(suggests, selects, facets),
-    [suggests, selects, facets]
-  );
-
-  // Build simple query for facets (without facet filters)
-  const facetQuery = useMemo(
-    () => buildFacetQuery(suggests, selects),
-    [suggests, selects]
-  );
-
-  const hasQuery = hasValidQuery(cql);
 
   // Fetch search results - disabled if no query
   const { data, isLoading, isFetching } = useComplexSearchWithPaginationQuery(
@@ -141,24 +104,13 @@ export const useSearchResults = ({
     }
   }, [isFetching, isLoading, isRefetching]);
 
-  const resetResults = () => {
-    setResultItems([]);
-    setHitCount(0);
-    setIsRefetching(false);
-    setCanShowZeroResults(false);
-  };
-
   return {
     resultItems,
     hitcount,
     isLoading,
     isFetching,
     isRefetching,
-    cql,
-    facetQuery,
-    hasQuery,
     canShowZeroResults,
-    resetResults,
     page,
     PagerComponent
   };
