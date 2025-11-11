@@ -1,30 +1,6 @@
 import { FacetFieldEnum } from "../../../core/dbc-gateway/generated/graphql";
-import { SuggestState, MultiSelectState } from "../types";
 
-export const DEFAULT_SUGGESTS: SuggestState[] = [
-  { term: "term.default", query: "" },
-  { term: "term.default", query: "" }
-];
-
-export const DEFAULT_SELECTS: MultiSelectState[] = [
-  {
-    label: "Genre og form",
-    facetField: FacetFieldEnum.Genreandform,
-    selectedValues: []
-  },
-  {
-    label: "Sprog",
-    facetField: FacetFieldEnum.Mainlanguages,
-    selectedValues: []
-  },
-  {
-    label: "Udgivelsesår",
-    facetField: FacetFieldEnum.Year,
-    selectedValues: []
-  },
-  { label: "Aldersgruppe", facetField: FacetFieldEnum.Age, selectedValues: [] }
-];
-
+export const MIN_QUERY_LENGTH = 3;
 export const DEFAULT_PAGE_SIZE = 50;
 
 export const FACET_TO_CQL_FIELD: Partial<Record<FacetFieldEnum, string>> = {

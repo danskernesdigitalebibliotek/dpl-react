@@ -33,7 +33,9 @@ const HeadlessMultiSelect: React.FC<HeadlessMultiSelectProps> = ({
       <Popover className="advanced-search-select-search">
         <PopoverButton className="dropdown dropdown--grey-borders advanced-search-select-search__button">
           <div className="dropdown__select dropdown__select--inline-body-font focus-styling advanced-search-v2__multiselect-button">
-            {hasSelection ? t("advancedSearchSelectedText") : t("advancedSearchAllText")}
+            {hasSelection
+              ? t("advancedSearchSelectedText")
+              : t("advancedSearchAllText")}
             {hasSelection && (
               <span className="advanced-search-v2__count-badge">
                 {selectedCount}
