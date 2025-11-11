@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useQueryState, parseAsJson } from "nuqs";
 import {
   useComplexSearchWithPaginationQuery,
-  ComplexSearchWithPaginationQuery,
   FacetFieldEnum
 } from "../../core/dbc-gateway/generated/graphql";
 import usePager from "../../components/result-pager/use-pager";
@@ -10,6 +9,7 @@ import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import AdvancedSearchV2Facets from "./AdvancedSearchV2Facets";
 import { SuggestState, MultiSelectState, FacetState } from "./types";
+import { Work } from "../../core/utils/types/entities";
 
 interface AdvancedSearchV2ResultsProps {
   pageSize?: number;
@@ -85,9 +85,6 @@ const buildFacetQuery = (
   return parts.length > 0 ? parts.join(" ") : "*";
 };
 
-type WorkResult =
-  ComplexSearchWithPaginationQuery["complexSearch"]["works"][number];
-
 const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
   pageSize = 50
 }) => {
@@ -106,7 +103,7 @@ const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
     "facets",
     parseAsJson((value) => value as FacetState[]).withDefault([])
   );
-  const [resultItems, setResultItems] = useState<WorkResult[]>([]);
+  const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState(0);
   const [isRefetching, setIsRefetching] = useState(false);
   const [lastQueryStr, setLastQueryStr] = useState("");
@@ -151,7 +148,12 @@ const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
 
     const {
       complexSearch: { works: resultWorks, hitcount: resultCount }
-    } = data;
+    } = data as {
+      complexSearch: {
+        works: Work[];
+        hitcount: number;
+      };
+    };
 
     setHitCount(resultCount);
 
@@ -188,9 +190,11 @@ const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
   }, [isFetching, isLoading, isRefetching]);
 
   const isLoadingOrRefetching = isLoading || isFetching || isRefetching;
-  const shouldShowSearchResults = isLoadingOrRefetching || resultItems.length > 0;
+  const shouldShowSearchResults =
+    isLoadingOrRefetching || resultItems.length > 0;
   const shouldShowResultHeadline = hitcount > 0 && !isLoadingOrRefetching;
-  const shouldShowZeroResults = !isLoadingOrRefetching && hitcount === 0 && data && canShowZeroResults;
+  const shouldShowZeroResults =
+    !isLoadingOrRefetching && hitcount === 0 && data && canShowZeroResults;
 
   if (!hasQuery) return null;
 
@@ -210,7 +214,7 @@ const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
         {shouldShowSearchResults && (
           <>
             <SearchResultList
-              resultItems={resultItems as any}
+              resultItems={resultItems}
               page={page}
               pageSize={pageSize}
             />
