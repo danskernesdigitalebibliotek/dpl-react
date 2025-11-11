@@ -1,4 +1,5 @@
 import React from "react";
+import { useText } from "../../../core/utils/text";
 
 interface ActionButtonsProps {
   onSearch: () => void;
@@ -6,6 +7,8 @@ interface ActionButtonsProps {
 }
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({ onSearch, onClear }) => {
+  const t = useText();
+
   return (
     <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
       <button
@@ -22,7 +25,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({ onSearch, onClear }) => {
           fontWeight: "bold"
         }}
       >
-        Search
+        {t("advancedSearchSearchButtonText")}
       </button>
       <button
         onClick={onClear}
@@ -37,7 +40,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({ onSearch, onClear }) => {
           fontSize: "1rem"
         }}
       >
-        Clear All
+        {t("advancedSearchResetText")}
       </button>
     </div>
   );

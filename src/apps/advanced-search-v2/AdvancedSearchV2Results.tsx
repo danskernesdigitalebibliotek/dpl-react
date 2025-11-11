@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import usePager from "../../components/result-pager/use-pager";
+import React from "react";
+import { useText } from "../../core/utils/text";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import AdvancedSearchV2Facets from "./AdvancedSearchV2Facets";
@@ -13,10 +13,7 @@ interface AdvancedSearchV2ResultsProps {
 const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
   pageSize = DEFAULT_PAGE_SIZE
 }) => {
-  const { PagerComponent, page, resetPage } = usePager({
-    hitcount: 0,
-    pageSize
-  });
+  const t = useText();
 
   const {
     resultItems,
@@ -26,14 +23,10 @@ const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
     isRefetching,
     facetQuery,
     hasQuery,
-    canShowZeroResults
-  } = useSearchResults({ page, pageSize });
-
-  // Reset page when query changes (handled via resetPage in usePager)
-  useEffect(() => {
-    resetPage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [facetQuery]);
+    canShowZeroResults,
+    page,
+    PagerComponent
+  } = useSearchResults({ pageSize });
 
   const isLoadingOrRefetching = isLoading || isFetching || isRefetching;
   const shouldShowSearchResults =
@@ -56,8 +49,11 @@ const AdvancedSearchV2Results: React.FC<AdvancedSearchV2ResultsProps> = ({
           id="advanced-search-result"
           aria-live="polite"
         >
-          {isLoadingOrRefetching && "Loading results..."}
-          {shouldShowResultHeadline && `Showing ${hitcount} materials`}
+          {isLoadingOrRefetching && t("loadingResultsText")}
+          {shouldShowResultHeadline &&
+            t("showingMaterialsText", {
+              placeholders: { "@hitcount": hitcount }
+            })}
         </h2>
 
         {shouldShowSearchResults && (

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useQueryStates, parseAsJson } from "nuqs";
-import { SuggestState, MultiSelectState } from "../types";
+import { SuggestState, MultiSelectState, FacetState } from "../types";
 import { DEFAULT_SUGGESTS, DEFAULT_SELECTS } from "../constants";
 
 export interface UseSearchFormStateReturn {
@@ -24,7 +24,8 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
       ),
       selects: parseAsJson((value) => value as MultiSelectState[]).withDefault(
         DEFAULT_SELECTS
-      )
+      ),
+      facets: parseAsJson((value) => value as FacetState[]).withDefault([])
     },
     { shallow: true }
   );
@@ -71,13 +72,14 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     });
   }, [suggests, selects, setUrlState]);
 
-  // Clear all filters
+  // Clear all filters including facets
   const handleClearFilters = useCallback(() => {
     setSuggests(DEFAULT_SUGGESTS);
     setSelects(DEFAULT_SELECTS);
     setUrlState({
       suggests: DEFAULT_SUGGESTS,
-      selects: DEFAULT_SELECTS
+      selects: DEFAULT_SELECTS,
+      facets: []
     });
   }, [setUrlState]);
 
