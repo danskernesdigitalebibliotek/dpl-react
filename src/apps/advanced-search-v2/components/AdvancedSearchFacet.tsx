@@ -22,14 +22,11 @@ const AdvancedSearchFacet: React.FC<Props> = ({
   onChange,
   label
 }) => {
-  const { data: facetData } = useSearchFacetQuery(
-    {
-      q: { all: fetchQuery },
-      facets: [facetField],
-      facetLimit: 10
-    },
-    { keepPreviousData: true }
-  );
+  const { data: facetData } = useSearchFacetQuery({
+    q: { all: fetchQuery },
+    facets: [facetField],
+    facetLimit: 10
+  });
 
   type FacetValue =
     SearchFacetQuery["search"]["facets"][number]["values"][number];
