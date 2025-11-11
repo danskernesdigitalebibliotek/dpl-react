@@ -5,7 +5,7 @@ import {
   buildCQLQuery,
   buildFacetQuery,
   hasValidQuery
-} from "../query-builder";
+} from "../lib/query-builder";
 
 export interface UseSearchQueriesReturn {
   cql: string;

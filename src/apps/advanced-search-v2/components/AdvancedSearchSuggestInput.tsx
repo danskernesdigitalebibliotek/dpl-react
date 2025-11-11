@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import { type Option, suggestionsToOptions } from "../suggestions";
-import { SEARCH_INDEX_OPTIONS, type SearchIndexItem } from "../search-index";
+import { type Option, suggestionsToOptions } from "../lib/suggestions";
+import { SEARCH_INDEX_OPTIONS, type SearchIndexItem } from "../lib/search-index";
 import SearchIndexSelect from "./SearchIndexSelect";
 import ComboBoxBase from "./ComboBoxBase";
 import {

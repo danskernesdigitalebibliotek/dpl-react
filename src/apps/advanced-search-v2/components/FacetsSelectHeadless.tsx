@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Option } from "../suggestions";
+import type { Option } from "../lib/suggestions";
 
 import CheckBox from "../../../components/checkbox/Checkbox";
 import ComboBoxBase from "./ComboBoxBase";

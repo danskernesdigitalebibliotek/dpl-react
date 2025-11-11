@@ -1,5 +1,5 @@
 import React from "react";
-import AdvancedSearchV2Results from "./AdvancedSearchV2Results";
+import AdvancedSearchV2Results from "./components/AdvancedSearchV2Results";
 import SearchForm from "./components/SearchForm";
 import ActionButtons from "./components/ActionButtons";
 import { useSearchFormState } from "./hooks/use-search-form-state";

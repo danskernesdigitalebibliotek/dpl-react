@@ -1,4 +1,4 @@
-import { SuggestState, MultiSelectState, FacetState } from "./types";
+import { SuggestState, MultiSelectState, FacetState } from "../types";
 import { FACET_TO_CQL_FIELD } from "./constants";
 
 /**

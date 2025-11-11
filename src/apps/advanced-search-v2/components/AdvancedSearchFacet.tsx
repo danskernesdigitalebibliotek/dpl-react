@@ -1,6 +1,6 @@
 import React from "react";
 import FacetsSelectHeadless from "./FacetsSelectHeadless";
-import { Option } from "../suggestions";
+import { Option } from "../lib/suggestions";
 import {
   FacetFieldEnum,
   SearchFacetQuery,
