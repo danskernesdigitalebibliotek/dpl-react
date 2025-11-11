@@ -372,6 +372,14 @@ const meta: Meta<typeof AdvancedSearchV2Entry> = {
     cqlSearchExternalHelpLinkText: {
       description: "CQL search external help link text",
       control: { type: "text" }
+    },
+    advancedSearchSelectedText: {
+      description: "Text shown in multiselect when items are selected",
+      control: { type: "text" }
+    },
+    advancedSearchAllText: {
+      description: "Text shown in multiselect when no items are selected",
+      control: { type: "text" }
     }
   }
 };
@@ -479,6 +487,8 @@ export const Default: Story = {
     advancedSearchFirstAccessionDateDescriptionText:
       "The format should be YYYY-MM-DD e.g. 2024-11-24. Terms ”NOW”, ”DAYS” and ”MONTHS” can also be used. For example ”NOW - 90 DAYS”. Remember to add a space on both sides of the plus and minus symbols.",
     advancedSearchFirstAccessionDateSpecifyDateText:
-      "Input desired date in format 'YYYY-MM-DD'"
+      "Input desired date in format 'YYYY-MM-DD'",
+    advancedSearchSelectedText: "Valgte",
+    advancedSearchAllText: "Alle"
   }
 };

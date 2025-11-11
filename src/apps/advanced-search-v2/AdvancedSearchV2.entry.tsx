@@ -88,6 +88,9 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFirstAccessionDateDescriptionText: string;
   advancedSearchFirstAccessionDateSpecifyDateText: string;
   cqlSearchExternalHelpLinkText: string;
+  // NOTE: The following properties are newly added and not inherited from the previous advanced search implementation.
+  advancedSearchSelectedText: string;
+  advancedSearchAllText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
