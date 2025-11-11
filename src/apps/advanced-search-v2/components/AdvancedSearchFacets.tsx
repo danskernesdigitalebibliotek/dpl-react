@@ -2,22 +2,8 @@ import React from "react";
 import { useQueryState, parseAsJson } from "nuqs";
 import AdvancedSearchFacet from "./AdvancedSearchFacet";
 import { FacetFieldEnum } from "../../../core/dbc-gateway/generated/graphql";
-import { FacetConfig, FacetState } from "../types";
-
-const FACET_CONFIGURATION: FacetConfig[] = [
-  { label: "Format", facetField: FacetFieldEnum.Materialtypesspecific },
-  { label: "Forfatter / ophav", facetField: FacetFieldEnum.Creators },
-  { label: "Emne", facetField: FacetFieldEnum.Subjects },
-  { label: "Sprog", facetField: FacetFieldEnum.Mainlanguages },
-  { label: "Målgruppe", facetField: FacetFieldEnum.Generalaudience },
-  {
-    label: "Fiktiv hovedperson",
-    facetField: FacetFieldEnum.Fictionalcharacters
-  },
-  { label: "Genre og form", facetField: FacetFieldEnum.Genreandform },
-  { label: "Aldersgruppe", facetField: FacetFieldEnum.Age },
-  { label: "Lix-tal", facetField: FacetFieldEnum.Lix }
-];
+import { FacetState } from "../types";
+import { FACETS_CONFIG } from "../lib/config";
 
 interface AdvancedSearchFacetsProps {
   fetchQuery: string;
@@ -37,7 +23,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({
     selectedValues: string[]
   ) => {
     // Update the changed facet while keeping others
-    const updatedFacets = FACET_CONFIGURATION.map((config) =>
+    const updatedFacets = FACETS_CONFIG.map((config) =>
       config.facetField === facetField
         ? { facetField, selectedValues }
         : (facetsFromUrl.find((f) => f.facetField === config.facetField) ?? {
@@ -53,7 +39,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({
   return (
     <aside className="advanced-search__facets">
       <h3>Filters</h3>
-      {FACET_CONFIGURATION.map((config) => {
+      {FACETS_CONFIG.map((config) => {
         const facetFromUrl = facetsFromUrl.find(
           (f) => f.facetField === config.facetField
         );

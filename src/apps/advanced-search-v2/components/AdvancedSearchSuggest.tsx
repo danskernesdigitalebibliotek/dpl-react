@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { type Option, suggestionsToOptions } from "../lib/suggestions";
+import { suggestionsToOptions } from "../lib/suggestions";
 import {
   SEARCH_INDEX_OPTIONS,
   type SearchIndexItem
@@ -10,26 +10,30 @@ import {
   ComplexSuggestionTypeEnum,
   useComplexSuggestQuery
 } from "../../../core/dbc-gateway/generated/graphql";
+import MinusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/MinusButton.svg";
+import OperatorButtons from "./OperatorButtons";
+import { MIN_QUERY_LENGTH } from "../lib/constants";
 
 type AdvancedSearchSuggestProps = {
-  minimalAutosuggestCharacters?: number;
   selectedIndex: string;
   onSelectedIndexChange: (value: string) => void;
-  selected?: Option | null;
-  onSelect?: (opt: Option | null) => void;
-  // Controlled query value and change handler
   query: string;
   onQueryChange: (q: string) => void;
+  operator?: "and" | "or" | "not";
+  onOperatorChange?: (operator: "and" | "or" | "not") => void;
+  onRemove?: () => void;
+  showRemoveButton?: boolean;
 };
 
 const AdvancedSearchSuggest: React.FC<AdvancedSearchSuggestProps> = ({
-  minimalAutosuggestCharacters = 3,
   selectedIndex,
   onSelectedIndexChange,
-  selected,
-  onSelect,
   query,
-  onQueryChange
+  onQueryChange,
+  operator = "and",
+  onOperatorChange,
+  onRemove,
+  showRemoveButton = false
 }) => {
   const foundIndex = useMemo(
     () =>
@@ -44,40 +48,49 @@ const AdvancedSearchSuggest: React.FC<AdvancedSearchSuggestProps> = ({
 
   const { data } = useComplexSuggestQuery(
     { q: query, type: suggestType },
-    { enabled: query.trim().length >= minimalAutosuggestCharacters }
+    { enabled: query.trim().length >= MIN_QUERY_LENGTH }
   );
 
   const items = suggestionsToOptions(data?.complexSuggest?.result);
 
   return (
-    <div className="advanced-search-suggest">
-      <SearchIndexSelect
-        value={selectedIndex}
-        onChange={onSelectedIndexChange}
-      />
-
-      <div className="advanced-search-suggest__combobox-wrapper">
-        <ComboBoxBase
-          allowFreeInput
-          items={items}
-          value={selected ?? null}
-          onChange={(next) => {
-            // When user clicks a suggestion from the dropdown, notify parent
-            // Filter out array case since we only support single selection
-            if (!Array.isArray(next)) {
-              onSelect?.(next ?? null);
-            }
-          }}
-          query={query}
-          onQueryChange={onQueryChange}
-          classes={{
-            input: "advanced-search-select-search__combobox-input",
-            options:
-              "advanced-search-dropdown advanced-search-suggest__combobox-options"
-          }}
+    <>
+      <div className="advanced-search-suggest">
+        <SearchIndexSelect
+          value={selectedIndex}
+          onChange={onSelectedIndexChange}
         />
+
+        <div className="advanced-search-suggest__combobox-wrapper">
+          <ComboBoxBase
+            allowFreeInput
+            items={items}
+            query={query}
+            onQueryChange={onQueryChange}
+            classes={{
+              input: "advanced-search-select-search__combobox-input",
+              options:
+                "advanced-search-dropdown advanced-search-suggest__combobox-options"
+            }}
+          />
+        </div>
+
+        {showRemoveButton && (
+          <button
+            type="button"
+            className="advanced-search-suggest__remove-button"
+            onClick={onRemove}
+            aria-label="Fjern søgelinje"
+          >
+            <img src={MinusButtonIcon} alt="" />
+          </button>
+        )}
       </div>
-    </div>
+
+      {onOperatorChange && (
+        <OperatorButtons value={operator} onChange={onOperatorChange} />
+      )}
+    </>
   );
 };
 
