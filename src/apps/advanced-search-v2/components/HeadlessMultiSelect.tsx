@@ -24,10 +24,7 @@ const HeadlessMultiSelect: React.FC<Props> = ({
   return (
     <Popover className="advanced-search-select-search">
       <PopoverButton className="dropdown dropdown--grey-borders advanced-search-select-search__button">
-        <div
-          className="dropdown__select dropdown__select--inline-body-font focus-styling"
-          style={{ height: "100%" }}
-        >
+        <div className="dropdown__select dropdown__select--inline-body-font focus-styling advanced-search-v2__multiselect-button">
           {label}
         </div>
         <div className="dropdown__arrows dropdown__arrows--inline">
