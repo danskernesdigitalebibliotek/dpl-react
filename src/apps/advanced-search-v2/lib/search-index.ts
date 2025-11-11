@@ -1,4 +1,4 @@
-import { ComplexSuggestionTypeEnum } from "../../core/dbc-gateway/generated/graphql";
+import { ComplexSuggestionTypeEnum } from "../../../core/dbc-gateway/generated/graphql";
 
 export type SearchIndexItem = {
   value: string;

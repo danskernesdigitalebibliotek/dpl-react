@@ -1,11 +1,11 @@
 import React from "react";
-import { useText } from "../../core/utils/text";
-import SearchResultList from "../../components/card-item-list/SearchResultList";
-import SearchResultZeroHits from "../search-result/search-result-zero-hits";
+import { useText } from "../../../core/utils/text";
+import SearchResultList from "../../../components/card-item-list/SearchResultList";
+import SearchResultZeroHits from "../../search-result/search-result-zero-hits";
 import AdvancedSearchV2Facets from "./AdvancedSearchV2Facets";
-import { useSearchQueries } from "./hooks/use-search-queries";
-import { usePaginatedResults } from "./hooks/use-paginated-results";
-import { DEFAULT_PAGE_SIZE } from "./constants";
+import { useSearchQueries } from "../hooks/use-search-queries";
+import { usePaginatedResults } from "../hooks/use-paginated-results";
+import { DEFAULT_PAGE_SIZE } from "../lib/constants";
 
 interface AdvancedSearchV2ResultsProps {
   pageSize?: number;

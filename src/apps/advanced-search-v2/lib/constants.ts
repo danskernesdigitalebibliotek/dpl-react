@@ -1,5 +1,5 @@
-import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
-import { SuggestState, MultiSelectState, FacetConfig } from "./types";
+import { FacetFieldEnum } from "../../../core/dbc-gateway/generated/graphql";
+import { SuggestState, MultiSelectState, FacetConfig } from "../types";
 
 export const DEFAULT_SUGGESTS: SuggestState[] = [
   { term: "term.default", query: "" },
