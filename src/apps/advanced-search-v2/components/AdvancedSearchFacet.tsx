@@ -1,5 +1,5 @@
 import React from "react";
-import FacetsSelectHeadless from "./FacetsSelectHeadless";
+import HeadlessFacetsSelect from "./HeadlessFacetsSelect";
 import { Option } from "../lib/suggestions";
 import {
   FacetFieldEnum,
@@ -40,7 +40,7 @@ const AdvancedSearchFacet: React.FC<Props> = ({
   }));
 
   return (
-    <FacetsSelectHeadless
+    <HeadlessFacetsSelect
       key={`facets-headless`}
       items={facetItems}
       value={selected}
