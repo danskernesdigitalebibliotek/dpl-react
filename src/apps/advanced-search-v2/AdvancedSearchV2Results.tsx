@@ -17,10 +17,10 @@ interface AdvancedSearchV2ResultsProps {
 
 // Map FacetFieldEnum to CQL field names
 const facetToCqlField: Partial<Record<FacetFieldEnum, string>> = {
-  [FacetFieldEnum.Materialtypesspecific]: "term.type",
+  [FacetFieldEnum.Materialtypesspecific]: "term.specificmaterialtype",
   [FacetFieldEnum.Creators]: "term.creator",
   [FacetFieldEnum.Subjects]: "term.subject",
-  [FacetFieldEnum.Mainlanguages]: "term.language",
+  [FacetFieldEnum.Mainlanguages]: "term.mainlanguage",
   [FacetFieldEnum.Generalaudience]: "term.audience",
   [FacetFieldEnum.Fictionalcharacters]: "term.fictionalcharacter",
   [FacetFieldEnum.Genreandform]: "term.genreandform",
