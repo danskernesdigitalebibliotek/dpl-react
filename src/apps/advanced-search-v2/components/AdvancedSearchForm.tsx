@@ -1,10 +1,11 @@
 import React from "react";
-import AdvancedSearchSuggestInput from "./AdvancedSearchSuggestInput";
-import AdvancedSearchSelectSearch from "./AdvancedSearchSelectSearch";
-import ActionButtons from "./ActionButtons";
-import { useSearchFormState } from "../hooks/use-search-form-state";
+import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
+import AdvancedSearchSelect from "./AdvancedSearchSelect";
 
-const SearchForm: React.FC = () => {
+import { useSearchFormState } from "../hooks/use-search-form-state";
+import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
+
+const AdvancedSearchForm: React.FC = () => {
   const {
     suggests,
     selects,
@@ -25,7 +26,7 @@ const SearchForm: React.FC = () => {
       <div className="advanced-search-v2__inputs">
         {/* Suggest inputs */}
         {suggests.map((suggest, index) => (
-          <AdvancedSearchSuggestInput
+          <AdvancedSearchSuggest
             key={`suggest-${index}`}
             selectedIndex={suggest.term}
             onSelectedIndexChange={(value) =>
@@ -45,7 +46,7 @@ const SearchForm: React.FC = () => {
           }}
         >
           {selects.map((select, index) => (
-            <AdvancedSearchSelectSearch
+            <AdvancedSearchSelect
               key={`select-${index}`}
               fetchQuery={fetchQuery}
               facetField={select.facetField}
@@ -63,10 +64,13 @@ const SearchForm: React.FC = () => {
           ))}
         </div>
 
-        <ActionButtons onSearch={handleSearch} onClear={handleClearFilters} />
+        <AdvancedSearchActionButtons
+          onSearch={handleSearch}
+          onClear={handleClearFilters}
+        />
       </div>
     </section>
   );
 };
 
-export default SearchForm;
+export default AdvancedSearchForm;

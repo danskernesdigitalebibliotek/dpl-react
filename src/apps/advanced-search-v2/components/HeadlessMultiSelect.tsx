@@ -13,7 +13,7 @@ type Props = {
   label?: string;
 };
 
-const MultiSelectHeadless: React.FC<Props> = ({
+const HeadlessMultiSelect: React.FC<Props> = ({
   items = [],
   value,
   onChange,
@@ -70,4 +70,4 @@ const MultiSelectHeadless: React.FC<Props> = ({
   );
 };
 
-export default MultiSelectHeadless;
+export default HeadlessMultiSelect;

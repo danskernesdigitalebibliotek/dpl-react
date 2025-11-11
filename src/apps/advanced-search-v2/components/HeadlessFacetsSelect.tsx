@@ -11,7 +11,7 @@ export type FacetsSelectProps = {
   onChange?: (selected: Option[]) => void;
 };
 
-const FacetsSelectHeadless: React.FC<FacetsSelectProps> = ({
+const HeadlessFacetsSelect: React.FC<FacetsSelectProps> = ({
   items,
   value,
   label = "Facet",
@@ -52,4 +52,4 @@ const FacetsSelectHeadless: React.FC<FacetsSelectProps> = ({
   );
 };
 
-export default FacetsSelectHeadless;
+export default HeadlessFacetsSelect;

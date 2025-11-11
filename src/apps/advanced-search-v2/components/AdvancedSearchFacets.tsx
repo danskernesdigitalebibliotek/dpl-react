@@ -19,11 +19,11 @@ const FACET_CONFIGURATION: FacetConfig[] = [
   { label: "Lix-tal", facetField: FacetFieldEnum.Lix }
 ];
 
-interface AdvancedSearchV2FacetsProps {
+interface AdvancedSearchFacetsProps {
   fetchQuery: string;
 }
 
-const AdvancedSearchV2Facets: React.FC<AdvancedSearchV2FacetsProps> = ({
+const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({
   fetchQuery
 }) => {
   // Read facets from URL
@@ -79,4 +79,4 @@ const AdvancedSearchV2Facets: React.FC<AdvancedSearchV2FacetsProps> = ({
   );
 };
 
-export default AdvancedSearchV2Facets;
+export default AdvancedSearchFacets;
