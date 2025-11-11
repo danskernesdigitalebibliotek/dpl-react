@@ -72,11 +72,15 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   return (
     <section className="material-description" data-cy="material-description">
       <>
-        <h2 className="text-header-h4 pb-24">{t("descriptionHeadlineText")}</h2>
         {work.abstract && (
-          <p className="text-body-large material-description__content">
-            {work.abstract[0]}
-          </p>
+          <>
+            <h2 className="text-header-h4 pb-24">
+              {t("descriptionHeadlineText")}
+            </h2>
+            <p className="text-body-large material-description__content">
+              {work.abstract[0]}
+            </p>
+          </>
         )}
         <div className="material-description__links mt-32">
           {shouldShowDk5 && dk5MainEntry && (
