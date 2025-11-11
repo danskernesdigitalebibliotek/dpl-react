@@ -27,7 +27,7 @@ const AdvancedSearchV2Facets: React.FC<AdvancedSearchV2FacetsProps> = ({
   fetchQuery
 }) => {
   // Read facets from URL
-  const [facetsFromUrl, setFacets] = useQueryState(
+  const [facetsFromUrl, setFacetsInUrl] = useQueryState(
     "facets",
     parseAsJson((value) => value as FacetState[]).withDefault([])
   );
@@ -47,16 +47,17 @@ const AdvancedSearchV2Facets: React.FC<AdvancedSearchV2FacetsProps> = ({
     );
 
     // Only store facets with selections
-    setFacets(updatedFacets.filter((f) => f.selectedValues.length > 0));
+    setFacetsInUrl(updatedFacets.filter((f) => f.selectedValues.length > 0));
   };
 
   return (
     <aside className="advanced-search__facets">
       <h3>Filters</h3>
       {FACET_CONFIGURATION.map((config) => {
-        const selectedValues =
-          facetsFromUrl.find((f) => f.facetField === config.facetField)
-            ?.selectedValues ?? [];
+        const facetFromUrl = facetsFromUrl.find(
+          (f) => f.facetField === config.facetField
+        );
+        const selectedValues = facetFromUrl?.selectedValues ?? [];
 
         return (
           <AdvancedSearchFacet
