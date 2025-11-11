@@ -57,7 +57,7 @@ const HeadlessMultiSelect: React.FC<Props> = ({
           showEmptyStates
           renderOption={(item, state) => (
             <CheckBox
-              id={`facets-hu-${item.value}`}
+              id={`advanced-search-select-${item.value}`}
               label={item.label}
               selected={state.selected}
               onChecked={() => {}}
