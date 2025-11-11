@@ -12,7 +12,7 @@ export type SearchIndexSelectProps = {
 
 const SearchIndexSelect: FC<SearchIndexSelectProps> = ({ value, onChange }) => {
   return (
-    <div className="dropdown dropdown--grey-borders" style={{ maxWidth: 260 }}>
+    <div className="dropdown dropdown--grey-borders advanced-search-v2__search-index-select">
       <select
         className="dropdown__select dropdown__select--inline-body-font focus-styling"
         value={value}

@@ -23,52 +23,44 @@ const AdvancedSearchForm: React.FC = () => {
 
   return (
     <section className="advanced-search-v2__form">
-      <div className="advanced-search-v2__inputs">
-        {/* Suggest inputs */}
-        {suggests.map((suggest, index) => (
-          <AdvancedSearchSuggest
-            key={`suggest-${index}`}
-            selectedIndex={suggest.term}
-            onSelectedIndexChange={(value) =>
-              updateSuggest(index, { term: value })
+      {/* Suggest inputs */}
+      {suggests.map((suggest, index) => (
+        <AdvancedSearchSuggest
+          key={`suggest-${index}`}
+          selectedIndex={suggest.term}
+          onSelectedIndexChange={(value) =>
+            updateSuggest(index, { term: value })
+          }
+          query={suggest.query}
+          onQueryChange={(query) => updateSuggest(index, { query })}
+        />
+      ))}
+
+      {/* Select search */}
+      <div className="advanced-search-v2__selects-grid">
+        {selects.map((select, index) => (
+          <AdvancedSearchSelect
+            key={`select-${index}`}
+            fetchQuery={fetchQuery}
+            facetField={select.facetField}
+            label={select.label}
+            selected={select.selectedValues.map((value) => ({
+              label: value,
+              value
+            }))}
+            onChange={(values) =>
+              updateSelect(index, {
+                selectedValues: values.map((option) => option.value)
+              })
             }
-            query={suggest.query}
-            onQueryChange={(query) => updateSuggest(index, { query })}
           />
         ))}
-
-        {/* Select search */}
-        <div
-          style={{
-            display: "grid",
-            gap: "1rem",
-            gridTemplateColumns: "repeat(2, 1fr)"
-          }}
-        >
-          {selects.map((select, index) => (
-            <AdvancedSearchSelect
-              key={`select-${index}`}
-              fetchQuery={fetchQuery}
-              facetField={select.facetField}
-              label={select.label}
-              selected={select.selectedValues.map((value) => ({
-                label: value,
-                value
-              }))}
-              onChange={(values) =>
-                updateSelect(index, {
-                  selectedValues: values.map((option) => option.value)
-                })
-              }
-            />
-          ))}
-        </div>
-
-        <AdvancedSearchActionButtons
-          onSearch={handleSearch}
-          onClear={handleClearFilters}
-        />
       </div>
+
+      <AdvancedSearchActionButtons
+        onSearch={handleSearch}
+        onClear={handleClearFilters}
+      />
     </section>
   );
 };

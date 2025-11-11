@@ -37,10 +37,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
   if (!hasQuery) return null;
 
   return (
-    <div
-      className="advanced-search-v2__results-container"
-      style={{ display: "grid", gridTemplateColumns: "1fr 2fr" }}
-    >
+    <div className="advanced-search-v2__results-container">
       <AdvancedSearchV2Facets fetchQuery={facetQuery} />
 
       <section className="content-list-page">
