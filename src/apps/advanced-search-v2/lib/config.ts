@@ -1,4 +1,4 @@
-import { FacetFieldEnum } from "../../../core/dbc-gateway/generated/graphql";
+import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 import { SuggestState, MultiSelectState, FacetConfig } from "../types";
 
 export const SUGGESTS_CONFIG: SuggestState[] = [
@@ -9,33 +9,40 @@ export const SUGGESTS_CONFIG: SuggestState[] = [
 export const SELECTS_CONFIG: MultiSelectState[] = [
   {
     label: "Genre og form",
-    facetField: FacetFieldEnum.Genreandform,
+    facetField: ComplexSearchFacetsEnum.Genreandform,
     selectedValues: []
   },
   {
     label: "Sprog",
-    facetField: FacetFieldEnum.Mainlanguages,
+    facetField: ComplexSearchFacetsEnum.Mainlanguage,
     selectedValues: []
   },
   {
     label: "Udgivelsesår",
-    facetField: FacetFieldEnum.Year,
+    facetField: ComplexSearchFacetsEnum.Publicationyear,
     selectedValues: []
   },
-  { label: "Aldersgruppe", facetField: FacetFieldEnum.Age, selectedValues: [] }
+  {
+    label: "Aldersgruppe",
+    facetField: ComplexSearchFacetsEnum.Ages,
+    selectedValues: []
+  }
 ];
 
 export const FACETS_CONFIG: FacetConfig[] = [
-  { label: "Format", facetField: FacetFieldEnum.Materialtypesspecific },
-  { label: "Forfatter / ophav", facetField: FacetFieldEnum.Creators },
-  { label: "Emne", facetField: FacetFieldEnum.Subjects },
-  { label: "Sprog", facetField: FacetFieldEnum.Mainlanguages },
-  { label: "Målgruppe", facetField: FacetFieldEnum.Generalaudience },
+  {
+    label: "Format",
+    facetField: ComplexSearchFacetsEnum.Specificmaterialtype
+  },
+  { label: "Forfatter / ophav", facetField: ComplexSearchFacetsEnum.Creator },
+  { label: "Emne", facetField: ComplexSearchFacetsEnum.Subject },
+  { label: "Sprog", facetField: ComplexSearchFacetsEnum.Mainlanguage },
+  { label: "Målgruppe", facetField: ComplexSearchFacetsEnum.Generalaudience },
   {
     label: "Fiktiv hovedperson",
-    facetField: FacetFieldEnum.Fictionalcharacters
+    facetField: ComplexSearchFacetsEnum.Fictionalcharacter
   },
-  { label: "Genre og form", facetField: FacetFieldEnum.Genreandform },
-  { label: "Aldersgruppe", facetField: FacetFieldEnum.Age },
-  { label: "Lix-tal", facetField: FacetFieldEnum.Lix }
+  { label: "Genre og form", facetField: ComplexSearchFacetsEnum.Genreandform },
+  { label: "Aldersgruppe", facetField: ComplexSearchFacetsEnum.Ages },
+  { label: "Lix-tal", facetField: ComplexSearchFacetsEnum.Lix }
 ];

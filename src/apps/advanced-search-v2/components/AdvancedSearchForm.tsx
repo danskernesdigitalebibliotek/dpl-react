@@ -6,6 +6,7 @@ import { useSearchFormState } from "../hooks/use-search-form-state";
 import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
+import { buildCQLQuery } from "../lib/query-builder";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
@@ -19,12 +20,8 @@ const AdvancedSearchForm: React.FC = () => {
     handleSearch,
     handleClearFilters
   } = useSearchFormState();
-  // Build search query from suggest inputs for fetching facets
-  const fetchQuery =
-    suggests
-      .map((s) => s.query.trim())
-      .filter(Boolean)
-      .join(" ") || "*";
+  // Build CQL query for facet calculation - this ensures facets reflect the actual search
+  const facetCql = buildCQLQuery(suggests, selects, []);
 
   return (
     <section className="advanced-search-v2__form">
@@ -65,7 +62,7 @@ const AdvancedSearchForm: React.FC = () => {
         {selects.map((select, index) => (
           <AdvancedSearchSelect
             key={`select-${index}`}
-            fetchQuery={fetchQuery}
+            cql={facetCql}
             facetField={select.facetField}
             label={select.label}
             selected={select.selectedValues.map((value) => ({

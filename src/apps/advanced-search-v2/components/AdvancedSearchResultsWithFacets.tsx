@@ -15,7 +15,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
   AdvancedSearchResultsWithFacetsProps
 > = ({ pageSize = DEFAULT_PAGE_SIZE }) => {
   const t = useText();
-  const { cql, facetQuery, hasQuery } = useSearchQueries();
+  const { cql, hasQuery } = useSearchQueries();
   const {
     resultItems,
     hitcount,
@@ -38,7 +38,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
 
   return (
     <div className="advanced-search-v2__results-container">
-      <AdvancedSearchV2Facets fetchQuery={facetQuery} />
+      <AdvancedSearchV2Facets cql={cql} />
 
       <section className="content-list-page">
         <h2

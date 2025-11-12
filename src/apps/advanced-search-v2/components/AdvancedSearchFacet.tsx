@@ -2,41 +2,48 @@ import React from "react";
 import HeadlessFacetsSelect from "./HeadlessFacetsSelect";
 import { Option } from "../lib/suggestions";
 import {
-  FacetFieldEnum,
-  SearchFacetQuery,
-  useSearchFacetQuery
+  ComplexSearchFacetsEnum,
+  ComplexFacetSearchQuery,
+  useComplexFacetSearchQuery
 } from "../../../core/dbc-gateway/generated/graphql";
 
 type Props = {
-  fetchQuery: string;
-  facetField: FacetFieldEnum;
+  cql: string;
+  facetField: ComplexSearchFacetsEnum;
   selected: Option[];
   onChange: (selected: Option[]) => void;
-  label?: string;
+  label: string;
 };
 
 const AdvancedSearchFacet: React.FC<Props> = ({
-  fetchQuery,
+  cql,
   facetField,
   selected,
   onChange,
   label
 }) => {
-  const { data: facetData } = useSearchFacetQuery({
-    q: { all: fetchQuery },
-    facets: [facetField],
-    facetLimit: 10
+  const { data: facetData } = useComplexFacetSearchQuery({
+    cql,
+    facets: { facets: [facetField], facetLimit: 10 },
+    filters: {}
   });
 
-  type FacetValue =
-    SearchFacetQuery["search"]["facets"][number]["values"][number];
+  type FacetValue = NonNullable<
+    NonNullable<
+      NonNullable<ComplexFacetSearchQuery["complexSearch"]["facets"]>[number]
+    >["values"]
+  >[number];
 
+  const facets = facetData?.complexSearch?.facets ?? [];
   const facetValues: FacetValue[] =
-    (facetData?.search?.facets?.[0]?.values as FacetValue[] | undefined) ?? [];
+    (facets[0]?.values as FacetValue[] | undefined) ?? [];
 
+  // Map facet values to options with counts
+  // Complex search facets use 'key' field directly - it's the searchable value
   const facetItems = facetValues.map((v) => ({
-    label: v.term,
-    value: v.key
+    label: v.key, // Complex search uses key as both display and filter value
+    value: v.key,
+    count: v.score ?? 0
   }));
 
   return (
@@ -45,7 +52,7 @@ const AdvancedSearchFacet: React.FC<Props> = ({
       items={facetItems}
       value={selected}
       onChange={onChange}
-      label={label ?? fetchQuery}
+      label={label}
     />
   );
 };
