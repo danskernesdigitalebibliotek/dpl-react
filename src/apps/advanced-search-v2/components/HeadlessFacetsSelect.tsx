@@ -39,13 +39,18 @@ const HeadlessFacetsSelect: React.FC<FacetsSelectProps> = ({
         optionsStatic
         showEmptyStates
         renderOption={(item, state) => (
-          <CheckBox
-            id={`advanced-search-facet-${item.value}`}
-            label={item.label}
-            selected={state.selected}
-            onChecked={() => {}}
-            isVisualOnly
-          />
+          <div className="advanced-search-facet__option">
+            <CheckBox
+              id={`advanced-search-facet-${item.value}`}
+              label={item.label}
+              selected={state.selected}
+              onChecked={() => {}}
+              isVisualOnly
+            />
+            {item.count !== undefined && (
+              <span className="advanced-search-facet__count">{item.count}</span>
+            )}
+          </div>
         )}
       />
     </div>

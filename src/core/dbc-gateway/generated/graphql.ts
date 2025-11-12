@@ -2275,6 +2275,29 @@ export enum WorkTypeEnum {
   Track = "TRACK"
 }
 
+export type ComplexFacetSearchQueryVariables = Exact<{
+  cql: Scalars["String"]["input"];
+  facets?: InputMaybe<ComplexSearchFacetsInput>;
+  filters: ComplexSearchFiltersInput;
+}>;
+
+export type ComplexFacetSearchQuery = {
+  __typename?: "Query";
+  complexSearch: {
+    __typename?: "ComplexSearchResponse";
+    facets?: Array<{
+      __typename?: "ComplexSearchFacetResponse";
+      name?: string | null;
+      values?: Array<{
+        __typename?: "ComplexSearchFacetValue";
+        key: string;
+        score: number;
+        traceId?: string | null;
+      }> | null;
+    }> | null;
+  };
+};
+
 export type ComplexSuggestQueryVariables = Exact<{
   q: Scalars["String"]["input"];
   type: ComplexSuggestionTypeEnum;
@@ -7727,6 +7750,38 @@ export const WorkMediumFragmentDoc = `
   }
 }
     ${WorkSmallFragmentDoc}`;
+export const ComplexFacetSearchDocument = `
+    query complexFacetSearch($cql: String!, $facets: ComplexSearchFacetsInput, $filters: ComplexSearchFiltersInput!) {
+  complexSearch(cql: $cql, filters: $filters, facets: $facets) {
+    facets {
+      name
+      values {
+        key
+        score
+        traceId
+      }
+    }
+  }
+}
+    `;
+
+export const useComplexFacetSearchQuery = <
+  TData = ComplexFacetSearchQuery,
+  TError = unknown
+>(
+  variables: ComplexFacetSearchQueryVariables,
+  options?: UseQueryOptions<ComplexFacetSearchQuery, TError, TData>
+) => {
+  return useQuery<ComplexFacetSearchQuery, TError, TData>(
+    ["complexFacetSearch", variables],
+    fetcher<ComplexFacetSearchQuery, ComplexFacetSearchQueryVariables>(
+      ComplexFacetSearchDocument,
+      variables
+    ),
+    options
+  );
+};
+
 export const ComplexSuggestDocument = `
     query complexSuggest($q: String!, $type: ComplexSuggestionTypeEnum!) {
   complexSuggest(q: $q, type: $type) {
@@ -8370,6 +8425,7 @@ export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
 
 export const operationNames = {
   Query: {
+    complexFacetSearch: "complexFacetSearch" as const,
     complexSuggest: "complexSuggest" as const,
     getSmallWork: "getSmallWork" as const,
     getManifestationViaMaterialByFaust:

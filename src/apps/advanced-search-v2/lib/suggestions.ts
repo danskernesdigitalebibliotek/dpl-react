@@ -1,6 +1,7 @@
 export type Option = {
   label: string;
   value: string;
+  count?: number; // Optional count for facet options
 };
 
 // Minimal common shape from both localSuggest and complexSuggest
