@@ -1,15 +1,10 @@
 import { useMemo } from "react";
 import { useQueryState, parseAsJson } from "nuqs";
 import { SuggestState, MultiSelectState, FacetState } from "../types";
-import {
-  buildCQLQuery,
-  buildFacetQuery,
-  hasValidQuery
-} from "../lib/query-builder";
+import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
 
 interface UseSearchQueriesReturn {
   cql: string;
-  facetQuery: string;
   hasQuery: boolean;
 }
 
@@ -39,17 +34,10 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     [suggests, selects, facets]
   );
 
-  // Build simple query for facets (without facet filters)
-  const facetQuery = useMemo(
-    () => buildFacetQuery(suggests, selects),
-    [suggests, selects]
-  );
-
   const hasQuery = hasValidQuery(cql);
 
   return {
     cql,
-    facetQuery,
     hasQuery
   };
 };

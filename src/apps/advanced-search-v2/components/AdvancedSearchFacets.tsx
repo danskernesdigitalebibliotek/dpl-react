@@ -1,17 +1,15 @@
 import React from "react";
 import { useQueryState, parseAsJson } from "nuqs";
 import AdvancedSearchFacet from "./AdvancedSearchFacet";
-import { FacetFieldEnum } from "../../../core/dbc-gateway/generated/graphql";
+import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 import { FacetState } from "../types";
 import { FACETS_CONFIG } from "../lib/config";
 
 interface AdvancedSearchFacetsProps {
-  fetchQuery: string;
+  cql: string;
 }
 
-const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({
-  fetchQuery
-}) => {
+const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
   // Read facets from URL
   const [facetsFromUrl, setFacetsInUrl] = useQueryState(
     "facets",
@@ -19,7 +17,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({
   );
 
   const handleFacetChange = (
-    facetField: FacetFieldEnum,
+    facetField: ComplexSearchFacetsEnum,
     selectedValues: string[]
   ) => {
     // Update the changed facet while keeping others
@@ -48,7 +46,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({
         return (
           <AdvancedSearchFacet
             key={config.facetField}
-            fetchQuery={fetchQuery}
+            cql={cql}
             facetField={config.facetField}
             label={config.label}
             selected={selectedValues.map((v) => ({ label: v, value: v }))}

@@ -1,4 +1,4 @@
-import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
+import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
 
 export type SuggestState = {
   term: string;
@@ -8,16 +8,16 @@ export type SuggestState = {
 
 export type MultiSelectState = {
   label: string;
-  facetField: FacetFieldEnum;
+  facetField: ComplexSearchFacetsEnum;
   selectedValues: string[];
 };
 
 export type FacetState = {
-  facetField: FacetFieldEnum;
+  facetField: ComplexSearchFacetsEnum;
   selectedValues: string[];
 };
 
 export type FacetConfig = {
   label: string;
-  facetField: FacetFieldEnum;
+  facetField: ComplexSearchFacetsEnum;
 };

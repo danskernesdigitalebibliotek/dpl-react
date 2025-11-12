@@ -1,5 +1,5 @@
 import { SuggestState, MultiSelectState, FacetState } from "../types";
-import { FACET_TO_CQL_FIELD } from "./constants";
+import { COMPLEX_FACET_TO_CQL_FIELD } from "./constants";
 
 /**
  * Build CQL query from search inputs and facets
@@ -41,7 +41,7 @@ export const buildCQLQuery = (
   [...selects, ...facets].forEach((item) => {
     // Map GraphQL enum to CQL field name
     const field =
-      FACET_TO_CQL_FIELD[item.facetField as keyof typeof FACET_TO_CQL_FIELD];
+      COMPLEX_FACET_TO_CQL_FIELD[item.facetField as keyof typeof COMPLEX_FACET_TO_CQL_FIELD];
     if (field) {
       // Add each selected value as a filter
       item.selectedValues.forEach((value) => {
@@ -54,34 +54,6 @@ export const buildCQLQuery = (
   return parts.length > 0 ? parts.join(" AND ") : "*";
 };
 
-/**
- * Build simple search query for facets (without CQL syntax)
- * Used to fetch facet options based on current search terms
- * Example: "harry potter 2020" (no operators, no field names)
- */
-export const buildFacetQuery = (
-  suggests: SuggestState[],
-  selects: MultiSelectState[]
-): string => {
-  const parts: string[] = [];
-
-  // Add suggest query values (plain text, no operators)
-  suggests.forEach((suggest) => {
-    if (suggest.query.trim()) {
-      parts.push(suggest.query);
-    }
-  });
-
-  // Add selected filter values
-  selects.forEach((select) => {
-    select.selectedValues.forEach((value) => {
-      parts.push(value);
-    });
-  });
-
-  // Join with spaces, or return wildcard if empty
-  return parts.length > 0 ? parts.join(" ") : "*";
-};
 
 /**
  * Check if the query has actual search terms (not just wildcard)
