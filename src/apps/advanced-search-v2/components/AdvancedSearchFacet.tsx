@@ -6,6 +6,7 @@ import {
   ComplexFacetSearchQuery,
   useComplexFacetSearchQuery
 } from "../../../core/dbc-gateway/generated/graphql";
+import useGetCleanBranches from "../../../core/utils/branches";
 
 type Props = {
   cql: string;
@@ -22,11 +23,22 @@ const AdvancedSearchFacet: React.FC<Props> = ({
   onChange,
   label
 }) => {
-  const { data: facetData } = useComplexFacetSearchQuery({
-    cql,
-    facets: { facets: [facetField], facetLimit: 10 },
-    filters: {}
-  });
+  const cleanBranches = useGetCleanBranches();
+
+  const { data: facetData } = useComplexFacetSearchQuery(
+    {
+      cql,
+      facets: { facets: [facetField], facetLimit: 10 },
+      filters: {
+        branchId: cleanBranches
+      }
+    },
+    {
+      keepPreviousData: false,
+      cacheTime: 0,
+      staleTime: 0
+    }
+  );
 
   type FacetValue = NonNullable<
     NonNullable<
