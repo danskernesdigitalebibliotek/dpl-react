@@ -45,8 +45,8 @@ export type ComboBoxBaseProps = {
   optionsStatic?: boolean;
   // Allow free input (user doesn't have to select a suggestion)
   allowFreeInput?: boolean;
-  // Auto-focus the input when component mounts
-  autoFocus?: boolean;
+  // Focus the input when component mounts
+  focusOnMount?: boolean;
 };
 
 const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
@@ -64,16 +64,16 @@ const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
   showEmptyStates = false,
   optionsStatic,
   allowFreeInput = false,
-  autoFocus = false
+  focusOnMount = false
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Focus input when component mounts if autoFocus is enabled
+  // Focus input when component mounts
   useEffect(() => {
-    if (autoFocus && inputRef.current) {
+    if (focusOnMount && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [autoFocus]);
+  }, [focusOnMount]);
 
   // Filter suggestions based on the current query
   const filtered = useMemo(() => {
