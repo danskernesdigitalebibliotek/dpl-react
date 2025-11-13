@@ -2,7 +2,7 @@ import React from "react";
 import { useText } from "../../../core/utils/text";
 import SearchResultList from "../../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../../search-result/search-result-zero-hits";
-import AdvancedSearchV2Facets from "./AdvancedSearchFacets";
+import AdvancedSearchFilters from "./AdvancedSearchFilters";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
 import { DEFAULT_PAGE_SIZE } from "../lib/constants";
@@ -38,34 +38,37 @@ const AdvancedSearchResultsWithFacets: React.FC<
 
   return (
     <div className="advanced-search-v2__results-container">
-      <AdvancedSearchV2Facets cql={cql} />
+      <h2
+        className="advanced-search-v2__result-heading"
+        id="advanced-search-result"
+        aria-live="polite"
+      >
+        {isLoadingOrRefetching && t("loadingResultsText")}
+        {shouldShowResultHeadline &&
+          t("showingMaterialsText", {
+            placeholders: { "@hitcount": hitcount }
+          })}
+      </h2>
 
-      <section className="content-list-page">
-        <h2
-          className="content-list-page__heading"
-          id="advanced-search-result"
-          aria-live="polite"
-        >
-          {isLoadingOrRefetching && t("loadingResultsText")}
-          {shouldShowResultHeadline &&
-            t("showingMaterialsText", {
-              placeholders: { "@hitcount": hitcount }
-            })}
-        </h2>
+      <div className="advanced-search-v2__grid">
+        <AdvancedSearchFilters cql={cql} />
 
-        {shouldShowSearchResults && (
-          <>
-            <SearchResultList
-              resultItems={resultItems}
-              page={page}
-              pageSize={pageSize}
-            />
-            <PagerComponent isLoading={isLoadingOrRefetching} />
-          </>
-        )}
+        <section className="content-list-page content-list-page--no-top-margin">
+          {shouldShowSearchResults && (
+            <>
+              <SearchResultList
+                resultItems={resultItems}
+                page={page}
+                pageSize={pageSize}
+                className="content-list--no-top-margin"
+              />
+              <PagerComponent isLoading={isLoadingOrRefetching} />
+            </>
+          )}
 
-        {shouldShowZeroResults && <SearchResultZeroHits />}
-      </section>
+          {shouldShowZeroResults && <SearchResultZeroHits />}
+        </section>
+      </div>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+// SHOULD BE DELETED
 import React from "react";
 import { useQueryState, parseAsJson } from "nuqs";
 import AdvancedSearchFacet from "./AdvancedSearchFacet";
