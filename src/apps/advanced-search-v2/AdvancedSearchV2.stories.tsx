@@ -461,6 +461,10 @@ const meta: Meta<typeof AdvancedSearchV2Entry> = {
     advancedSearchLabelHostPublicationText: {
       description: "Label for host publication search field dropdown",
       control: { type: "text" }
+    },
+    advancedSearchEditSearchText: {
+      description: "Edit search link text",
+      control: { type: "text" }
     }
   }
 };
@@ -592,6 +596,7 @@ export const Default: Story = {
     advancedSearchLabelIsbnText: "ISBN",
     advancedSearchLabelSeriesText: "Series title",
     advancedSearchLabelFictionalCharacterText: "Fictional character",
-    advancedSearchLabelHostPublicationText: "Host publication"
+    advancedSearchLabelHostPublicationText: "Host publication",
+    advancedSearchEditSearchText: "Edit search"
   }
 };

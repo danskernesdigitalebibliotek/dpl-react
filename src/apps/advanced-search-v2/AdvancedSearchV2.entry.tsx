@@ -111,6 +111,7 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchLabelSeriesText: string;
   advancedSearchLabelFictionalCharacterText: string;
   advancedSearchLabelHostPublicationText: string;
+  advancedSearchEditSearchText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {

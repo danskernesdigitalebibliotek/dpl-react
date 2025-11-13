@@ -1,8 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { useText } from "../../../core/utils/text";
-
-type Operator = "and" | "or" | "not";
+import { Operator } from "../types";
 
 type OperatorButtonsProps = {
   value: Operator;
