@@ -67,7 +67,7 @@ const HeadlessMultiSelect: React.FC<HeadlessMultiSelectProps> = ({
             }}
             optionsStatic
             showEmptyStates
-            autoFocus
+            focusOnMount
             renderOption={(item, state) => (
               <CheckBox
                 id={`advanced-search-select-${item.value}`}
