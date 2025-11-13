@@ -13,6 +13,7 @@ import {
 import MinusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/MinusButton.svg";
 import OperatorButtons from "./OperatorButtons";
 import { MIN_QUERY_LENGTH } from "../lib/constants";
+import { useText } from "../../../core/utils/text";
 
 type AdvancedSearchSuggestProps = {
   selectedIndex: string;
@@ -35,6 +36,8 @@ const AdvancedSearchSuggest: React.FC<AdvancedSearchSuggestProps> = ({
   onRemove,
   showRemoveButton = false
 }) => {
+  const t = useText();
+
   const foundIndex = useMemo(
     () =>
       SEARCH_INDEX_OPTIONS.find(
@@ -67,6 +70,9 @@ const AdvancedSearchSuggest: React.FC<AdvancedSearchSuggestProps> = ({
             items={items}
             query={query}
             onQueryChange={onQueryChange}
+            placeholder={
+              foundIndex?.placeholderKey ? t(foundIndex.placeholderKey) : ""
+            }
             classes={{
               input: "advanced-search-select-search__combobox-input",
               options:

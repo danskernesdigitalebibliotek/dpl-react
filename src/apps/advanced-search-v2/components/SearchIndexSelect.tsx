@@ -4,6 +4,7 @@ import {
   SEARCH_INDEX_OPTIONS,
   type SearchIndexItem
 } from "../lib/search-fields-config";
+import { useText } from "../../../core/utils/text";
 
 export type SearchIndexSelectProps = {
   value: string;
@@ -11,6 +12,8 @@ export type SearchIndexSelectProps = {
 };
 
 const SearchIndexSelect: FC<SearchIndexSelectProps> = ({ value, onChange }) => {
+  const t = useText();
+
   return (
     <div className="dropdown dropdown--grey-borders advanced-search-v2__search-index-select">
       <select
@@ -19,13 +22,13 @@ const SearchIndexSelect: FC<SearchIndexSelectProps> = ({ value, onChange }) => {
         onChange={(e) => onChange(e.target.value)}
         aria-label="Search index"
       >
-        {SEARCH_INDEX_OPTIONS.map((idx: SearchIndexItem) => (
+        {SEARCH_INDEX_OPTIONS.map((item: SearchIndexItem) => (
           <option
-            key={idx.value}
+            key={item.value}
             className="dropdown__option"
-            value={idx.value}
+            value={item.value}
           >
-            {idx.label}
+            {t(item.labelKey)}
           </option>
         ))}
       </select>
