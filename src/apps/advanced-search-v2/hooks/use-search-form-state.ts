@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useQueryStates, parseAsJson } from "nuqs";
 import { SuggestState, MultiSelectState, FacetState } from "../types";
-import { SUGGESTS_CONFIG, SELECTS_CONFIG } from "../lib/config";
+import { SUGGESTS_CONFIG, SELECTS_CONFIG } from "../lib/initial-state";
 
 export interface UseSearchFormStateReturn {
   suggests: SuggestState[];

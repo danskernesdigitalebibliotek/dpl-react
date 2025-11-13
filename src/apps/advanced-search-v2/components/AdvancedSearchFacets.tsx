@@ -3,7 +3,7 @@ import { useQueryState, parseAsJson } from "nuqs";
 import AdvancedSearchFacet from "./AdvancedSearchFacet";
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 import { FacetState } from "../types";
-import { FACETS_CONFIG } from "../lib/config";
+import { FACETS_CONFIG } from "../lib/facet-configs";
 
 interface AdvancedSearchFacetsProps {
   cql: string;
