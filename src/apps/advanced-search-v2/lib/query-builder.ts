@@ -3,7 +3,7 @@ import { COMPLEX_FACET_TO_CQL_FIELD } from "./constants";
 
 /**
  * Build CQL query from search inputs and facets
- * Example: (term.default="harry" AND term.default="potter" NOT term.default="film") AND term.year="2020"
+ * Example: (term.default="harry" AND term.default="potter" NOT term.default="film") AND ((phrase.year="2020"))
  */
 export const buildCQLQuery = (
   suggests: SuggestState[],
@@ -30,22 +30,22 @@ export const buildCQLQuery = (
     }
   });
 
-  // Wrap multiple suggest terms in parentheses for proper precedence
-  if (suggestTerms.length > 1) {
+  // Wrap suggest terms in parentheses for proper precedence
+  if (suggestTerms.length > 0) {
     parts.push(`(${suggestTerms.join(" ")})`);
-  } else if (suggestTerms.length === 1) {
-    parts.push(suggestTerms[0]);
   }
 
-  // Add filter terms from selects and facets (e.g., term.year="2020")
+  // Add filter terms from selects and facets (e.g., ((phrase.mainlanguage="arabisk")))
   [...selects, ...facets].forEach((item) => {
     // Map GraphQL enum to CQL field name
     const field =
-      COMPLEX_FACET_TO_CQL_FIELD[item.facetField as keyof typeof COMPLEX_FACET_TO_CQL_FIELD];
+      COMPLEX_FACET_TO_CQL_FIELD[
+        item.facetField as keyof typeof COMPLEX_FACET_TO_CQL_FIELD
+      ];
     if (field) {
-      // Add each selected value as a filter
+      // Add each selected value as a filter with extra parentheses for phrase matching
       item.selectedValues.forEach((value) => {
-        parts.push(`${field}="${value}"`);
+        parts.push(`((${field}="${value}"))`);
       });
     }
   });
@@ -53,7 +53,6 @@ export const buildCQLQuery = (
   // Join all parts with AND, or return wildcard if no query
   return parts.length > 0 ? parts.join(" AND ") : "*";
 };
-
 
 /**
  * Check if the query has actual search terms (not just wildcard)

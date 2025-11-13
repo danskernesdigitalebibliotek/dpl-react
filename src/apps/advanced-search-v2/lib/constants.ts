@@ -4,17 +4,18 @@ export const MIN_QUERY_LENGTH = 3;
 export const DEFAULT_PAGE_SIZE = 50;
 
 // Map ComplexSearchFacetsEnum to CQL field names for building search queries
+// Facets use "phrase" prefix to match exact values at work level
 export const COMPLEX_FACET_TO_CQL_FIELD: Partial<
   Record<ComplexSearchFacetsEnum, string>
 > = {
-  [ComplexSearchFacetsEnum.Specificmaterialtype]: "term.specificmaterialtype",
-  [ComplexSearchFacetsEnum.Creator]: "term.creator",
-  [ComplexSearchFacetsEnum.Subject]: "term.subject",
-  [ComplexSearchFacetsEnum.Mainlanguage]: "term.mainlanguage",
-  [ComplexSearchFacetsEnum.Generalaudience]: "term.audience",
-  [ComplexSearchFacetsEnum.Fictionalcharacter]: "term.fictionalcharacter",
-  [ComplexSearchFacetsEnum.Genreandform]: "term.genreandform",
-  [ComplexSearchFacetsEnum.Ages]: "term.age",
-  [ComplexSearchFacetsEnum.Lix]: "term.lix",
-  [ComplexSearchFacetsEnum.Publicationyear]: "term.year"
+  [ComplexSearchFacetsEnum.Specificmaterialtype]: "phrase.specificmaterialtype",
+  [ComplexSearchFacetsEnum.Creator]: "phrase.creator",
+  [ComplexSearchFacetsEnum.Subject]: "phrase.subject",
+  [ComplexSearchFacetsEnum.Mainlanguage]: "phrase.mainlanguage",
+  [ComplexSearchFacetsEnum.Generalaudience]: "phrase.audience",
+  [ComplexSearchFacetsEnum.Fictionalcharacter]: "phrase.fictionalcharacter",
+  [ComplexSearchFacetsEnum.Genreandform]: "phrase.genreandform",
+  [ComplexSearchFacetsEnum.Ages]: "phrase.age",
+  [ComplexSearchFacetsEnum.Lix]: "phrase.lix",
+  [ComplexSearchFacetsEnum.Publicationyear]: "phrase.year"
 };
