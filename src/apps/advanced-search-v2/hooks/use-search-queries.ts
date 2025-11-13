@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useQueryState, parseAsJson } from "nuqs";
+import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
 import { SuggestState, MultiSelectState, FacetState } from "../types";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
 
@@ -33,10 +33,18 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     parseAsJson((value) => value as FacetState[]).withDefault([])
   );
 
+  // Read toggle states
+  const [onShelf] = useQueryState("onShelf", parseAsBoolean.withDefault(false));
+
+  const [onlyExtraTitles] = useQueryState(
+    "onlyExtraTitles",
+    parseAsBoolean.withDefault(false)
+  );
+
   // Build CQL query from all inputs
   const cql = useMemo(
-    () => buildCQLQuery(suggests, selects, facets),
-    [suggests, selects, facets]
+    () => buildCQLQuery(suggests, selects, facets, onShelf, onlyExtraTitles),
+    [suggests, selects, facets, onShelf, onlyExtraTitles]
   );
 
   const hasQuery = hasValidQuery(cql);

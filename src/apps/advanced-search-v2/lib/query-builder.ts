@@ -59,7 +59,9 @@ export const buildFilterTerms = (
 export const buildCQLQuery = (
   suggests: SuggestState[],
   selects: MultiSelectState[],
-  facets: FacetState[]
+  facets: FacetState[],
+  onShelf?: boolean,
+  onlyExtraTitles?: boolean
 ): string => {
   const parts: string[] = [];
 
@@ -72,6 +74,18 @@ export const buildCQLQuery = (
   // Add filter terms
   const filterParts = buildFilterTerms([...selects, ...facets]);
   parts.push(...filterParts);
+
+  // Add toggle filters
+  if (onShelf) {
+    // TODO: Verify correct CQL field name for holding status.
+    // Current attempt uses term.holdingstatus but may need to be a GraphQL filter instead.
+    // See: https://pro.dbcdigital.dk/dokumentation/soegemaskiner/complex-search/
+    parts.push('term.holdingstatus="OnShelf"');
+  }
+
+  if (onlyExtraTitles) {
+    parts.push('term.canAlwaysBeLoaned="true"');
+  }
 
   // Join all parts with AND, or return wildcard if no query
   return parts.length > 0 ? parts.join(" AND ") : "*";
