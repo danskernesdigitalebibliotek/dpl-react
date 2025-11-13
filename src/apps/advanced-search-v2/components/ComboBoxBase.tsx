@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useEffect } from "react";
 import {
   Combobox,
   ComboboxInput,
@@ -45,6 +45,8 @@ export type ComboBoxBaseProps = {
   optionsStatic?: boolean;
   // Allow free input (user doesn't have to select a suggestion)
   allowFreeInput?: boolean;
+  // Auto-focus the input when component mounts
+  autoFocus?: boolean;
 };
 
 const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
@@ -61,11 +63,17 @@ const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
   onQueryChange,
   showEmptyStates = false,
   optionsStatic,
-  allowFreeInput = false
+  allowFreeInput = false,
+  autoFocus = false
 }) => {
-  // Track whether user has pressed arrow keys to navigate suggestions
-  // This distinguishes between: "user typing freely" vs "user navigating to select"
-  const [userHasNavigated, setUserHasNavigated] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Focus input when component mounts if autoFocus is enabled
+  useEffect(() => {
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [autoFocus]);
 
   // Filter suggestions based on the current query
   const filtered = useMemo(() => {
@@ -77,7 +85,6 @@ const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
   const isMulti = multiple === true;
 
   // In free input mode, set value to null to prevent Headless UI from auto-selecting items
-  // This allows users to type freely without being forced to select from the list
   const valueDefault = allowFreeInput ? null : (value ?? (isMulti ? [] : null));
 
   return (
@@ -100,76 +107,14 @@ const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
       {label ? <Label className={labelClassName}>{label}</Label> : null}
 
       <ComboboxInput
+        ref={inputRef}
         className={clsx("advanced-search-combobox-input", classes?.input)}
-        onChange={(e) => {
-          const v = e.currentTarget.value;
-
-          // Notify parent of query changes
-          onQueryChange(v);
-
-          // When user types, reset navigation state - they're back to "free input" mode
-          // This means pressing Enter will now submit free text instead of selecting a suggestion
-          if (allowFreeInput) setUserHasNavigated(false);
-        }}
-        onKeyDown={(e) => {
-          // Only handle special keyboard behavior in free input mode
-          if (!allowFreeInput) return;
-
-          const isNavKey = ["ArrowDown", "ArrowUp"].includes(e.key);
-
-          // Track arrow key navigation to enable selection mode
-          if (isNavKey) {
-            // Special case: Headless UI auto-focuses the first item when dropdown opens
-            // If user presses arrow down for the first time, prevent default navigation
-            // This keeps focus on the first item instead of moving to the second
-            if (!userHasNavigated && e.key === "ArrowDown") {
-              e.preventDefault();
-            }
-            // Mark that user is now in "navigation/selection" mode
-            setUserHasNavigated(true);
-          }
-
-          // Handle Tab key - prevent selection unless user navigated with arrows
-          if (e.key === "Tab") {
-            if (!userHasNavigated) {
-              // User hasn't used arrow keys - prevent auto-selection of first item
-              // Stop propagation to prevent HeadlessUI from selecting, but allow natural tab focus
-              e.stopPropagation();
-              e.currentTarget.blur(); // Close dropdown
-              // Don't preventDefault - let tab move focus naturally
-            } else {
-              // User navigated with arrows - allow selection, then reset state
-              setUserHasNavigated(false);
-            }
-          }
-
-          // Handle Enter key - behavior depends on whether user navigated with arrows
-          if (e.key === "Enter") {
-            if (!userHasNavigated) {
-              // User hasn't used arrow keys - they're submitting their typed text
-              // Prevent Headless UI from selecting the auto-focused first item
-              e.preventDefault();
-              e.stopPropagation();
-              e.currentTarget.blur(); // Close dropdown
-            } else {
-              // User navigated with arrows - allow selection, then reset state
-              setUserHasNavigated(false);
-            }
-          }
-
-          // Escape key closes dropdown and resets to free input mode
-          if (e.key === "Escape") {
-            setUserHasNavigated(false);
-          }
-        }}
+        onChange={(e) => onQueryChange(e.currentTarget.value)}
         displayValue={(val: Option | Option[] | null) => {
           // For multiple selection, always show the query
           if (isMulti) return query;
-
           // In free input mode, always display the query string (not the selected value)
-          // This allows users to continue typing freely even after selecting a suggestion
           if (allowFreeInput) return query;
-
           // In standard mode, show the selected option's label
           return val && !Array.isArray(val) ? val.label : "";
         }}
@@ -192,10 +137,7 @@ const ComboBoxBase: React.FC<ComboBoxBaseProps> = ({
             value={item}
             className={({ focus, selected }) =>
               clsx("advanced-search-combobox-option", classes?.option, {
-                // In free input mode: only show focus styling after user presses arrow keys
-                // This prevents the first item from appearing focused when dropdown opens
-                // In standard mode: always show focus styling when item is focused
-                "is-focus": focus && (allowFreeInput ? userHasNavigated : true),
+                "is-focus": focus,
                 "is-selected": selected
               })
             }
