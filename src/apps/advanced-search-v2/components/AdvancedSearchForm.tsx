@@ -7,6 +7,7 @@ import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
 import { buildCQLQuery } from "../lib/query-builder";
+import { SEARCH_INDEX_OPTIONS } from "../lib/search-fields-config";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
@@ -27,25 +28,33 @@ const AdvancedSearchForm: React.FC = () => {
     <section className="advanced-search-v2__form">
       {/* Suggest inputs */}
       <div className="advanced-search-v2__suggests">
-        {suggests.map((suggest, index) => (
-          <AdvancedSearchSuggest
-            key={`suggest-${index}`}
-            selectedIndex={suggest.term}
-            onSelectedIndexChange={(value) =>
-              updateSuggest(index, { term: value })
-            }
-            query={suggest.query}
-            onQueryChange={(query) => updateSuggest(index, { query })}
-            operator={suggests[index + 1]?.operator}
-            onOperatorChange={
-              index < suggests.length - 1
-                ? (operator) => updateSuggest(index + 1, { operator })
-                : undefined
-            }
-            onRemove={() => removeSuggest(index)}
-            showRemoveButton={suggests.length > 1}
-          />
-        ))}
+        {suggests.map((suggest, index) => {
+          const config = SEARCH_INDEX_OPTIONS.find(
+            (item) => item.value === suggest.term
+          )!;
+
+          return (
+            <AdvancedSearchSuggest
+              key={`suggest-${index}`}
+              selectedIndex={suggest.term}
+              onSelectedIndexChange={(value) =>
+                updateSuggest(index, { term: value })
+              }
+              query={suggest.query}
+              onQueryChange={(query) => updateSuggest(index, { query })}
+              suggestType={config.type}
+              placeholderKey={config.placeholderKey}
+              operator={suggests[index + 1]?.operator}
+              onOperatorChange={
+                index < suggests.length - 1
+                  ? (operator) => updateSuggest(index + 1, { operator })
+                  : undefined
+              }
+              onRemove={() => removeSuggest(index)}
+              showRemoveButton={suggests.length > 1}
+            />
+          );
+        })}
 
         <button
           type="button"
