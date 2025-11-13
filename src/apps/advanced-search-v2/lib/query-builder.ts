@@ -1,5 +1,5 @@
 import { SuggestState, MultiSelectState, FacetState } from "../types";
-import { COMPLEX_FACET_TO_CQL_FIELD } from "./constants";
+import { COMPLEX_FACET_TO_CQL_FIELD } from "./field-mappings";
 
 /**
  * Build CQL query from search inputs and facets
