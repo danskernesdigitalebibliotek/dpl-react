@@ -1,20 +1,12 @@
 import { SuggestState, MultiSelectState, FacetState } from "../types";
 import { COMPLEX_FACET_TO_CQL_FIELD } from "./field-mappings";
 
-/**
- * Build CQL query from search inputs and facets
- * Example: (term.default="harry" AND term.default="potter" NOT term.default="film") AND ((phrase.year="2020"))
- */
-export const buildCQLQuery = (
-  suggests: SuggestState[],
-  selects: MultiSelectState[],
-  facets: FacetState[]
-): string => {
-  const parts: string[] = [];
-
-  // Build suggest terms with operators (e.g., "harry AND potter NOT film")
-  // Each suggest's operator comes BEFORE that term (first term has no operator)
+// Builds search term part of CQL query with operators (AND, OR, NOT)
+// Returns wrapped in parentheses or empty string if no valid terms
+// e.g. [{ term: "term.default", query: "harry" }] => '(term.default="harry")'
+export const buildSuggestTerms = (suggests: SuggestState[]): string => {
   const suggestTerms: string[] = [];
+
   suggests.forEach((suggest, i) => {
     if (!suggest.query.trim()) return; // Skip empty queries
 
@@ -30,33 +22,63 @@ export const buildCQLQuery = (
     }
   });
 
-  // Wrap suggest terms in parentheses for proper precedence
-  if (suggestTerms.length > 0) {
-    parts.push(`(${suggestTerms.join(" ")})`);
-  }
+  return suggestTerms.length > 0 ? `(${suggestTerms.join(" ")})` : "";
+};
 
-  // Add filter terms from selects and facets (e.g., ((phrase.mainlanguage="arabisk")))
-  [...selects, ...facets].forEach((item) => {
+// Builds filter terms from facets and multi-selects
+// Maps GraphQL enum to CQL field names and wraps in phrase matching syntax
+// e.g. [{ facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues: ["dansk"] }]
+//   => ['((phrase.mainlanguage="dansk"))']
+export const buildFilterTerms = (
+  filters: (MultiSelectState | FacetState)[]
+): string[] => {
+  const filterTerms: string[] = [];
+
+  filters.forEach((item) => {
     // Map GraphQL enum to CQL field name
     const field =
       COMPLEX_FACET_TO_CQL_FIELD[
         item.facetField as keyof typeof COMPLEX_FACET_TO_CQL_FIELD
       ];
+
     if (field) {
       // Add each selected value as a filter with extra parentheses for phrase matching
       item.selectedValues.forEach((value) => {
-        parts.push(`((${field}="${value}"))`);
+        filterTerms.push(`((${field}="${value}"))`);
       });
     }
   });
+
+  return filterTerms;
+};
+
+// Builds complete CQL query from search terms and filters
+// Returns "*" wildcard if no query is provided
+// e.g. suggests=[{term:"term.default",query:"harry"}], selects=[{facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues:["dansk"]}], facets=[]
+//   => '(term.default="harry") AND ((phrase.mainlanguage="dansk"))'
+export const buildCQLQuery = (
+  suggests: SuggestState[],
+  selects: MultiSelectState[],
+  facets: FacetState[]
+): string => {
+  const parts: string[] = [];
+
+  // Add search terms
+  const suggestPart = buildSuggestTerms(suggests);
+  if (suggestPart) {
+    parts.push(suggestPart);
+  }
+
+  // Add filter terms
+  const filterParts = buildFilterTerms([...selects, ...facets]);
+  parts.push(...filterParts);
 
   // Join all parts with AND, or return wildcard if no query
   return parts.length > 0 ? parts.join(" AND ") : "*";
 };
 
-/**
- * Check if the query has actual search terms (not just wildcard)
- */
+// Checks if the query has actual search terms (not just wildcard)
+// e.g. hasValidQuery("*") => false; hasValidQuery('(term.default="harry")') => true
 export const hasValidQuery = (cql: string): boolean => {
   return cql !== "*";
 };
