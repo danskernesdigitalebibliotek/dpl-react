@@ -6,6 +6,11 @@ import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
 interface UseSearchQueriesReturn {
   cql: string;
   hasQuery: boolean;
+  urlState: {
+    suggests: SuggestState[];
+    selects: MultiSelectState[];
+    facets: FacetState[];
+  };
 }
 
 /**
@@ -38,6 +43,11 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
 
   return {
     cql,
-    hasQuery
+    hasQuery,
+    urlState: {
+      suggests,
+      selects,
+      facets
+    }
   };
 };

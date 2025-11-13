@@ -1,9 +1,11 @@
 import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
 
+export type Operator = "and" | "or" | "not";
+
 export type SuggestState = {
   term: string;
   query: string;
-  operator?: "and" | "or" | "not";
+  operator?: Operator;
 };
 
 export type MultiSelectState = {

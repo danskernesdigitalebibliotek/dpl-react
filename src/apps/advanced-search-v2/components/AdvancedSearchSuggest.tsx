@@ -10,6 +10,7 @@ import MinusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/buil
 import OperatorButtons from "./OperatorButtons";
 import { MIN_QUERY_LENGTH } from "../lib/constants";
 import { useText } from "../../../core/utils/text";
+import { Operator } from "../types";
 
 type AdvancedSearchSuggestProps = {
   selectedIndex: string;
@@ -18,8 +19,8 @@ type AdvancedSearchSuggestProps = {
   onQueryChange: (q: string) => void;
   suggestType: ComplexSuggestionTypeEnum;
   placeholderKey: string;
-  operator?: "and" | "or" | "not";
-  onOperatorChange?: (operator: "and" | "or" | "not") => void;
+  operator?: Operator;
+  onOperatorChange?: (operator: Operator) => void;
   onRemove?: () => void;
   showRemoveButton?: boolean;
 };
