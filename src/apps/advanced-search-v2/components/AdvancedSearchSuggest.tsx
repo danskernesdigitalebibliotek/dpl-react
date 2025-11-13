@@ -3,7 +3,7 @@ import { suggestionsToOptions } from "../lib/suggestions";
 import {
   SEARCH_INDEX_OPTIONS,
   type SearchIndexItem
-} from "../lib/search-index";
+} from "../lib/search-fields-config";
 import SearchIndexSelect from "./SearchIndexSelect";
 import ComboBoxBase from "./ComboBoxBase";
 import {

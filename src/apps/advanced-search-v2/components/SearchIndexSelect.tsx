@@ -3,7 +3,7 @@ import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 import {
   SEARCH_INDEX_OPTIONS,
   type SearchIndexItem
-} from "../lib/search-index";
+} from "../lib/search-fields-config";
 
 export type SearchIndexSelectProps = {
   value: string;
