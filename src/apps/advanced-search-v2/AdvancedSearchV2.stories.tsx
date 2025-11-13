@@ -597,6 +597,14 @@ export const Default: Story = {
     advancedSearchLabelSeriesText: "Series title",
     advancedSearchLabelFictionalCharacterText: "Fictional character",
     advancedSearchLabelHostPublicationText: "Host publication",
-    advancedSearchEditSearchText: "Edit search"
+    advancedSearchEditSearchText: "Edit search",
+    advancedSearchOnShelfText: "På hylden",
+    advancedSearchOnShelfDescriptionText:
+      "Vis kun resultater der er tilgængelige på biblioteket nu.",
+    advancedSearchOnlyExtraTitlesText: 'Kun "Ekstra Titler"',
+    advancedSearchOnlyExtraTitlesDescriptionText:
+      "Vis kun resultater der ikke er begrænset af kvoter for digitale lån.",
+    advancedSearchShowAllText: "Vis alle",
+    advancedSearchShowLessText: "Vis færre"
   }
 };

@@ -1,3 +1,4 @@
+// SHOULD BE DELETED
 import React from "react";
 import HeadlessFacetsSelect from "./HeadlessFacetsSelect";
 import { Option } from "../lib/suggestions";

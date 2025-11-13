@@ -1,3 +1,4 @@
+// SHOULD BE DELETED
 import React, { useState } from "react";
 import type { Option } from "../lib/suggestions";
 
