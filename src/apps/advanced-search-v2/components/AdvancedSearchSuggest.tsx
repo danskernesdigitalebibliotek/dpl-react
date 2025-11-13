@@ -1,9 +1,5 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { suggestionsToOptions } from "../lib/suggestions";
-import {
-  SEARCH_INDEX_OPTIONS,
-  type SearchIndexItem
-} from "../lib/search-fields-config";
 import SearchIndexSelect from "./SearchIndexSelect";
 import ComboBoxBase from "./ComboBoxBase";
 import {
@@ -20,6 +16,8 @@ type AdvancedSearchSuggestProps = {
   onSelectedIndexChange: (value: string) => void;
   query: string;
   onQueryChange: (q: string) => void;
+  suggestType: ComplexSuggestionTypeEnum;
+  placeholderKey: string;
   operator?: "and" | "or" | "not";
   onOperatorChange?: (operator: "and" | "or" | "not") => void;
   onRemove?: () => void;
@@ -31,23 +29,14 @@ const AdvancedSearchSuggest: React.FC<AdvancedSearchSuggestProps> = ({
   onSelectedIndexChange,
   query,
   onQueryChange,
+  suggestType,
+  placeholderKey,
   operator = "and",
   onOperatorChange,
   onRemove,
   showRemoveButton = false
 }) => {
   const t = useText();
-
-  const foundIndex = useMemo(
-    () =>
-      SEARCH_INDEX_OPTIONS.find(
-        (i: SearchIndexItem) => i.value === selectedIndex
-      ),
-    [selectedIndex]
-  );
-
-  const suggestType: ComplexSuggestionTypeEnum =
-    foundIndex?.type ?? ComplexSuggestionTypeEnum.Default;
 
   const { data } = useComplexSuggestQuery(
     { q: query, type: suggestType },
@@ -70,9 +59,7 @@ const AdvancedSearchSuggest: React.FC<AdvancedSearchSuggestProps> = ({
             items={items}
             query={query}
             onQueryChange={onQueryChange}
-            placeholder={
-              foundIndex?.placeholderKey ? t(foundIndex.placeholderKey) : ""
-            }
+            placeholder={t(placeholderKey)}
             classes={{
               input: "advanced-search-select-search__combobox-input",
               options:
