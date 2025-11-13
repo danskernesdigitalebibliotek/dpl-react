@@ -91,6 +91,26 @@ interface AdvancedSearchEntryTextProps {
   // NOTE: The following properties are newly added and not inherited from the previous advanced search implementation.
   advancedSearchSelectedText: string;
   advancedSearchAllText: string;
+  advancedSearchPlaceholderDefaultText: string;
+  advancedSearchPlaceholderTitleText: string;
+  advancedSearchPlaceholderCreatorText: string;
+  advancedSearchPlaceholderSubjectText: string;
+  advancedSearchPlaceholderPublisherText: string;
+  advancedSearchPlaceholderDk5Text: string;
+  advancedSearchPlaceholderIsbnText: string;
+  advancedSearchPlaceholderSeriesText: string;
+  advancedSearchPlaceholderFictionalCharacterText: string;
+  advancedSearchPlaceholderHostPublicationText: string;
+  advancedSearchLabelDefaultText: string;
+  advancedSearchLabelTitleText: string;
+  advancedSearchLabelCreatorText: string;
+  advancedSearchLabelSubjectText: string;
+  advancedSearchLabelPublisherText: string;
+  advancedSearchLabelDk5Text: string;
+  advancedSearchLabelIsbnText: string;
+  advancedSearchLabelSeriesText: string;
+  advancedSearchLabelFictionalCharacterText: string;
+  advancedSearchLabelHostPublicationText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {

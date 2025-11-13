@@ -373,12 +373,93 @@ const meta: Meta<typeof AdvancedSearchV2Entry> = {
       description: "CQL search external help link text",
       control: { type: "text" }
     },
+    // NOTE: The following properties are newly added and not inherited from the previous advanced search implementation.
     advancedSearchSelectedText: {
       description: "Text shown in multiselect when items are selected",
       control: { type: "text" }
     },
     advancedSearchAllText: {
       description: "Text shown in multiselect when no items are selected",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderDefaultText: {
+      description: "Placeholder for free text search field",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderTitleText: {
+      description: "Placeholder for title search field",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderCreatorText: {
+      description: "Placeholder for creator/author search field",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderSubjectText: {
+      description: "Placeholder for subject search field",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderPublisherText: {
+      description: "Placeholder for publisher search field",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderDk5Text: {
+      description: "Placeholder for DK5 search field",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderIsbnText: {
+      description: "Placeholder for ISBN search field",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderSeriesText: {
+      description: "Placeholder for series search field",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderFictionalCharacterText: {
+      description: "Placeholder for fictional character search field",
+      control: { type: "text" }
+    },
+    advancedSearchPlaceholderHostPublicationText: {
+      description: "Placeholder for host publication search field",
+      control: { type: "text" }
+    },
+    advancedSearchLabelDefaultText: {
+      description: "Label for free text search field dropdown",
+      control: { type: "text" }
+    },
+    advancedSearchLabelTitleText: {
+      description: "Label for title search field dropdown",
+      control: { type: "text" }
+    },
+    advancedSearchLabelCreatorText: {
+      description: "Label for creator/author search field dropdown",
+      control: { type: "text" }
+    },
+    advancedSearchLabelSubjectText: {
+      description: "Label for subject search field dropdown",
+      control: { type: "text" }
+    },
+    advancedSearchLabelPublisherText: {
+      description: "Label for publisher search field dropdown",
+      control: { type: "text" }
+    },
+    advancedSearchLabelDk5Text: {
+      description: "Label for DK5 search field dropdown",
+      control: { type: "text" }
+    },
+    advancedSearchLabelIsbnText: {
+      description: "Label for ISBN search field dropdown",
+      control: { type: "text" }
+    },
+    advancedSearchLabelSeriesText: {
+      description: "Label for series search field dropdown",
+      control: { type: "text" }
+    },
+    advancedSearchLabelFictionalCharacterText: {
+      description: "Label for fictional character search field dropdown",
+      control: { type: "text" }
+    },
+    advancedSearchLabelHostPublicationText: {
+      description: "Label for host publication search field dropdown",
       control: { type: "text" }
     }
   }
@@ -488,7 +569,29 @@ export const Default: Story = {
       "The format should be YYYY-MM-DD e.g. 2024-11-24. Terms ”NOW”, ”DAYS” and ”MONTHS” can also be used. For example ”NOW - 90 DAYS”. Remember to add a space on both sides of the plus and minus symbols.",
     advancedSearchFirstAccessionDateSpecifyDateText:
       "Input desired date in format 'YYYY-MM-DD'",
+    // NOTE: The following properties are newly added and not inherited from the previous advanced search implementation.
     advancedSearchSelectedText: "Valgte",
-    advancedSearchAllText: "Alle"
+    advancedSearchAllText: "Alle",
+    advancedSearchPlaceholderDefaultText: "Search in all material…",
+    advancedSearchPlaceholderTitleText: "Enter title…",
+    advancedSearchPlaceholderCreatorText: "Enter author or creator…",
+    advancedSearchPlaceholderSubjectText: "Enter subject…",
+    advancedSearchPlaceholderPublisherText: "Enter publisher…",
+    advancedSearchPlaceholderDk5Text: "Enter DK5 number…",
+    advancedSearchPlaceholderIsbnText: "Enter ISBN number…",
+    advancedSearchPlaceholderSeriesText: "Enter series title…",
+    advancedSearchPlaceholderFictionalCharacterText:
+      "Enter fictional character…",
+    advancedSearchPlaceholderHostPublicationText: "Enter host publication…",
+    advancedSearchLabelDefaultText: "Free text search",
+    advancedSearchLabelTitleText: "Title",
+    advancedSearchLabelCreatorText: "Author / Creator",
+    advancedSearchLabelSubjectText: "Subject",
+    advancedSearchLabelPublisherText: "Publisher",
+    advancedSearchLabelDk5Text: "DK5",
+    advancedSearchLabelIsbnText: "ISBN",
+    advancedSearchLabelSeriesText: "Series title",
+    advancedSearchLabelFictionalCharacterText: "Fictional character",
+    advancedSearchLabelHostPublicationText: "Host publication"
   }
 };

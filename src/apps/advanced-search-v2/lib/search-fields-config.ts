@@ -2,55 +2,70 @@ import { ComplexSuggestionTypeEnum } from "../../../core/dbc-gateway/generated/g
 
 export type SearchIndexItem = {
   value: string;
-  label: string;
+  labelKey: string;
   type: ComplexSuggestionTypeEnum;
+  placeholderKey: string;
 };
 
 export const SEARCH_INDEX_OPTIONS: SearchIndexItem[] = [
   {
     value: "term.default",
-    label: "Fritekstsøgning",
-    type: ComplexSuggestionTypeEnum.Default
+    labelKey: "advancedSearchLabelDefaultText",
+    type: ComplexSuggestionTypeEnum.Default,
+    placeholderKey: "advancedSearchPlaceholderDefaultText"
   },
   {
     value: "term.title",
-    label: "Titel",
-    type: ComplexSuggestionTypeEnum.Title
+    labelKey: "advancedSearchLabelTitleText",
+    type: ComplexSuggestionTypeEnum.Title,
+    placeholderKey: "advancedSearchPlaceholderTitleText"
   },
   {
     value: "term.creatorcontributor",
-    label: "Forfatter/ophav",
-    type: ComplexSuggestionTypeEnum.Creatorcontributor
+    labelKey: "advancedSearchLabelCreatorText",
+    type: ComplexSuggestionTypeEnum.Creatorcontributor,
+    placeholderKey: "advancedSearchPlaceholderCreatorText"
   },
   {
     value: "term.subject",
-    label: "Emne",
-    type: ComplexSuggestionTypeEnum.Subject
+    labelKey: "advancedSearchLabelSubjectText",
+    type: ComplexSuggestionTypeEnum.Subject,
+    placeholderKey: "advancedSearchPlaceholderSubjectText"
   },
   {
     value: "term.publisher",
-    label: "Udgiver",
-    type: ComplexSuggestionTypeEnum.Publisher
+    labelKey: "advancedSearchLabelPublisherText",
+    type: ComplexSuggestionTypeEnum.Publisher,
+    placeholderKey: "advancedSearchPlaceholderPublisherText"
   },
-  { value: "dk5", label: "DK5", type: ComplexSuggestionTypeEnum.Default },
+  {
+    value: "dk5",
+    labelKey: "advancedSearchLabelDk5Text",
+    type: ComplexSuggestionTypeEnum.Default,
+    placeholderKey: "advancedSearchPlaceholderDk5Text"
+  },
   {
     value: "term.isbn",
-    label: "ISBN",
-    type: ComplexSuggestionTypeEnum.Default
+    labelKey: "advancedSearchLabelIsbnText",
+    type: ComplexSuggestionTypeEnum.Default,
+    placeholderKey: "advancedSearchPlaceholderIsbnText"
   },
   {
     value: "term.series",
-    label: "Serietitel",
-    type: ComplexSuggestionTypeEnum.Series
+    labelKey: "advancedSearchLabelSeriesText",
+    type: ComplexSuggestionTypeEnum.Series,
+    placeholderKey: "advancedSearchPlaceholderSeriesText"
   },
   {
     value: "term.fictionalcharacter",
-    label: "Fiktiv karakter",
-    type: ComplexSuggestionTypeEnum.Fictionalcharacter
+    labelKey: "advancedSearchLabelFictionalCharacterText",
+    type: ComplexSuggestionTypeEnum.Fictionalcharacter,
+    placeholderKey: "advancedSearchPlaceholderFictionalCharacterText"
   },
   {
     value: "term.hostpublication",
-    label: "Værtspublikation",
-    type: ComplexSuggestionTypeEnum.Hostpublication
+    labelKey: "advancedSearchLabelHostPublicationText",
+    type: ComplexSuggestionTypeEnum.Hostpublication,
+    placeholderKey: "advancedSearchPlaceholderHostPublicationText"
   }
 ];
