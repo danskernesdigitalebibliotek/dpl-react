@@ -9,6 +9,7 @@ import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
 import { SEARCH_INDEX_OPTIONS } from "../lib/search-fields-config";
+import { INITIAL_FILTERS_STATE } from "../lib/initial-state";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
@@ -84,24 +85,36 @@ const AdvancedSearchForm: React.FC = () => {
             </button>
           </div>
 
-          {/* Filter selects */}
+          {/* Filter selects - fixed structure, values from unified state */}
           <div className="advanced-search-v2__selects-grid">
-            {filters.map((filter, index) => (
-              <AdvancedSearchSelect
-                key={`filter-${index}`}
-                facetField={filter.facetField}
-                label={filter.label}
-                selected={filter.selectedValues.map((value) => ({
-                  label: value,
-                  value
-                }))}
-                onChange={(values) =>
-                  updateFilter(index, {
-                    selectedValues: values.map((option) => option.value)
-                  })
-                }
-              />
-            ))}
+            {INITIAL_FILTERS_STATE.map((config) => {
+              // Get current values from unified filters state
+              const currentFilter = filters.find(
+                (f) => f.facetField === config.facetField
+              );
+              const selectedValues = currentFilter?.selectedValues ?? [];
+
+              return (
+                <AdvancedSearchSelect
+                  key={config.facetField}
+                  facetField={config.facetField}
+                  label={config.label}
+                  selected={selectedValues.map((value) => ({
+                    label: value,
+                    value
+                  }))}
+                  onChange={(values) => {
+                    const newValues = values.map((option) => option.value);
+                    // Upsert: update if exists, add if new, remove if empty
+                    updateFilter({
+                      label: config.label,
+                      facetField: config.facetField,
+                      selectedValues: newValues
+                    });
+                  }}
+                />
+              );
+            })}
           </div>
 
           <AdvancedSearchActionButtons
