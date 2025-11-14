@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
 import AdvancedSearchSelect from "./AdvancedSearchSelect";
 import AdvancedSearchSummary from "./AdvancedSearchSummary";
@@ -13,6 +13,8 @@ import { INITIAL_FILTERS_STATE } from "../lib/initial-state";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
+  const suggestRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
+  const previousSuggestCount = useRef<number>(0);
   const {
     suggests,
     filters,
@@ -26,6 +28,21 @@ const AdvancedSearchForm: React.FC = () => {
 
   const { shouldShowForm, shouldShowSummary, setShowForm } =
     useFormVisibility();
+
+  // Focus on the newly added suggest row's SearchIndexSelect
+  useEffect(() => {
+    if (suggests.length > previousSuggestCount.current) {
+      const newRowIndex = suggests.length - 1;
+      const newRowRef = suggestRefs.current.get(newRowIndex);
+      if (newRowRef) {
+        // Small delay to ensure DOM is ready
+        setTimeout(() => {
+          newRowRef.focus();
+        }, 0);
+      }
+    }
+    previousSuggestCount.current = suggests.length;
+  }, [suggests.length]);
 
   // Check if there are any filters to reset
   const hasFilters =
@@ -55,6 +72,13 @@ const AdvancedSearchForm: React.FC = () => {
               return (
                 <AdvancedSearchSuggest
                   key={`suggest-${index}`}
+                  ref={(el) => {
+                    if (el) {
+                      suggestRefs.current.set(index, el);
+                    } else {
+                      suggestRefs.current.delete(index);
+                    }
+                  }}
                   selectedIndex={suggest.term}
                   onSelectedIndexChange={(value) =>
                     updateSuggest(index, { term: value })
