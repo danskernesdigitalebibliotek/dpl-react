@@ -26,5 +26,10 @@ export const SELECTS_CONFIG: MultiSelectState[] = [
     label: "Aldersgruppe",
     facetField: ComplexSearchFacetsEnum.Ages,
     selectedValues: []
+  },
+  {
+    label: "Kilde",
+    facetField: ComplexSearchFacetsEnum.Source,
+    selectedValues: []
   }
 ];
