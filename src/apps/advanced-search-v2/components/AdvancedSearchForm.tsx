@@ -8,7 +8,6 @@ import { useFormVisibility } from "../hooks/use-form-visibility";
 import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
-import { buildCQLQuery } from "../lib/query-builder";
 import { SEARCH_INDEX_OPTIONS } from "../lib/search-fields-config";
 
 const AdvancedSearchForm: React.FC = () => {
@@ -28,9 +27,6 @@ const AdvancedSearchForm: React.FC = () => {
     suggests,
     selects
   });
-
-  // Build CQL query for facet calculation - this ensures facets reflect the actual search
-  const facetCql = buildCQLQuery(suggests, selects, []);
 
   // Check if there are any filters to reset
   const hasFilters =
@@ -95,7 +91,6 @@ const AdvancedSearchForm: React.FC = () => {
             {selects.map((select, index) => (
               <AdvancedSearchSelect
                 key={`select-${index}`}
-                cql={facetCql}
                 facetField={select.facetField}
                 label={select.label}
                 selected={select.selectedValues.map((value) => ({
