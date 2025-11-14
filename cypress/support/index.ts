@@ -6,7 +6,7 @@ import { hasOperationName } from "../utils/graphql-test-utils";
 import { Operations } from "../../src/core/dbc-gateway/types";
 
 // Install cypress-terminal-report logs collector
-require('cypress-terminal-report/src/installLogsCollector')();
+require("cypress-terminal-report/src/installLogsCollector")();
 
 const TOKEN_LIBRARY_KEY = "library";
 const TOKEN_USER_KEY = "user";
@@ -119,13 +119,34 @@ Cypress.Commands.add(
   "shouldContainAll",
   { prevSubject: true },
   (subject, texts: string[]) => {
-    cy.wrap(subject).scrollIntoView();
     cy.wrap(subject).within(() => {
       texts.forEach((text) => {
+        cy.contains(text).scrollIntoView();
         cy.contains(text).should("be.visible");
       });
     });
     return cy.wrap(subject);
+  }
+);
+
+/**
+ * Mock geolocation
+ * @param latitude Latitude to mock
+ * @param longitude Longitude to mock
+ * @example cy.mockGeolocation(55.9383, 12.3036) // Coordinates near Suomisvej 2, 3310 Ølsted
+ */
+Cypress.Commands.add(
+  "mockGeolocation",
+  (latitude: number, longitude: number) => {
+    cy.window().then(($window) => {
+      cy.stub(
+        $window.navigator.geolocation,
+        "getCurrentPosition",
+        (callback) => {
+          return callback({ coords: { latitude, longitude } });
+        }
+      );
+    });
   }
 );
 
@@ -152,6 +173,7 @@ declare global {
        * @example cy.get('.tags').shouldContainAll(['tag1', 'tag2'])
        */
       shouldContainAll(texts: string[]): Chainable;
+      mockGeolocation(latitude: number, longitude: number): void;
     }
   }
 }
