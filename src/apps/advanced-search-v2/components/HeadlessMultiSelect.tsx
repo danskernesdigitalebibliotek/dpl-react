@@ -75,6 +75,7 @@ const HeadlessMultiSelect: React.FC<HeadlessMultiSelectProps> = ({
                 selected={state.selected}
                 onChecked={() => {}}
                 isVisualOnly
+                tabIndex={-1}
               />
             )}
           />

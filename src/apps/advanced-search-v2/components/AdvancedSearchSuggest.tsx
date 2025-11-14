@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { suggestionsToOptions } from "../lib/suggestions";
 import SearchIndexSelect from "./SearchIndexSelect";
 import ComboBoxBase from "./ComboBoxBase";
@@ -25,67 +25,76 @@ type AdvancedSearchSuggestProps = {
   showRemoveButton?: boolean;
 };
 
-const AdvancedSearchSuggest: React.FC<AdvancedSearchSuggestProps> = ({
-  selectedIndex,
-  onSelectedIndexChange,
-  query,
-  onQueryChange,
-  suggestType,
-  placeholderKey,
-  operator = "and",
-  onOperatorChange,
-  onRemove,
-  showRemoveButton = false
-}) => {
-  const t = useText();
+const AdvancedSearchSuggest = forwardRef<
+  HTMLButtonElement,
+  AdvancedSearchSuggestProps
+>(
+  (
+    {
+      selectedIndex,
+      onSelectedIndexChange,
+      query,
+      onQueryChange,
+      suggestType,
+      placeholderKey,
+      operator = "and",
+      onOperatorChange,
+      onRemove,
+      showRemoveButton = false
+    },
+    ref
+  ) => {
+    const t = useText();
 
-  const { data } = useComplexSuggestQuery(
-    { q: query, type: suggestType },
-    { enabled: query.trim().length >= MIN_QUERY_LENGTH }
-  );
+    const { data } = useComplexSuggestQuery(
+      { q: query, type: suggestType },
+      { enabled: query.trim().length >= MIN_QUERY_LENGTH }
+    );
 
-  const items = suggestionsToOptions(data?.complexSuggest?.result);
+    const items = suggestionsToOptions(data?.complexSuggest?.result);
 
-  return (
-    <>
-      <div className="advanced-search-suggest">
-        <SearchIndexSelect
-          value={selectedIndex}
-          onChange={onSelectedIndexChange}
-        />
-
-        <div className="advanced-search-suggest__combobox-wrapper">
-          <ComboBoxBase
-            allowFreeInput
-            items={items}
-            query={query}
-            onQueryChange={onQueryChange}
-            placeholder={t(placeholderKey)}
-            classes={{
-              input: "advanced-search-select-search__combobox-input",
-              options:
-                "advanced-search-dropdown advanced-search-suggest__combobox-options"
-            }}
+    return (
+      <>
+        <div className="advanced-search-suggest">
+          <SearchIndexSelect
+            ref={ref}
+            value={selectedIndex}
+            onChange={onSelectedIndexChange}
           />
+
+          <div className="advanced-search-suggest__combobox-wrapper">
+            <ComboBoxBase
+              allowFreeInput
+              items={items}
+              query={query}
+              onQueryChange={onQueryChange}
+              placeholder={t(placeholderKey)}
+              classes={{
+                input: "advanced-search-select-search__combobox-input",
+                options:
+                  "advanced-search-dropdown advanced-search-suggest__combobox-options"
+              }}
+            />
+          </div>
+
+          {showRemoveButton && (
+            <button
+              type="button"
+              className="advanced-search-suggest__remove-button"
+              onClick={onRemove}
+              aria-label="Fjern søgelinje"
+            >
+              <img src={MinusButtonIcon} alt="" />
+            </button>
+          )}
         </div>
 
-        {showRemoveButton && (
-          <button
-            type="button"
-            className="advanced-search-suggest__remove-button"
-            onClick={onRemove}
-            aria-label="Fjern søgelinje"
-          >
-            <img src={MinusButtonIcon} alt="" />
-          </button>
+        {onOperatorChange && (
+          <OperatorButtons value={operator} onChange={onOperatorChange} />
         )}
-      </div>
-
-      {onOperatorChange && (
-        <OperatorButtons value={operator} onChange={onOperatorChange} />
-      )}
-    </>
-  );
-};
+      </>
+    );
+  }
+);
 
 export default AdvancedSearchSuggest;
