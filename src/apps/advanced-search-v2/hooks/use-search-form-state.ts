@@ -1,7 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { useQueryStates, parseAsJson } from "nuqs";
 import { SuggestState, MultiSelectState, FacetState } from "../types";
-import { SUGGESTS_CONFIG, SELECTS_CONFIG } from "../lib/initial-state";
+import {
+  INITIAL_SUGGEST_STATE,
+  INITIAL_SELECT_STATE
+} from "../lib/initial-state";
 
 export interface UseSearchFormStateReturn {
   suggests: SuggestState[];
@@ -22,10 +25,10 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
   const [urlState, setUrlState] = useQueryStates(
     {
       suggests: parseAsJson((value) => value as SuggestState[]).withDefault(
-        SUGGESTS_CONFIG
+        INITIAL_SUGGEST_STATE
       ),
       selects: parseAsJson((value) => value as MultiSelectState[]).withDefault(
-        SELECTS_CONFIG
+        INITIAL_SELECT_STATE
       ),
       facets: parseAsJson((value) => value as FacetState[]).withDefault([])
     },
@@ -102,11 +105,11 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
   }, [suggests, selects, setUrlState]);
   // Clear all filters including facets
   const handleClearFilters = useCallback(() => {
-    setSuggests(SUGGESTS_CONFIG);
-    setSelects(SELECTS_CONFIG);
+    setSuggests(INITIAL_SUGGEST_STATE);
+    setSelects(INITIAL_SELECT_STATE);
     setUrlState({
-      suggests: SUGGESTS_CONFIG,
-      selects: SELECTS_CONFIG,
+      suggests: INITIAL_SUGGEST_STATE,
+      selects: INITIAL_SELECT_STATE,
       facets: []
     });
   }, [setUrlState]);
