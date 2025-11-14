@@ -262,12 +262,12 @@ export const getManifestationHostPublication = (
 ) => {
   return manifestation.hostPublication?.summary ?? "";
 };
-export const getManifestationParts = (
-  manifestation: Manifestation
-): string[] | string => {
-  return (
-    manifestation.manifestationParts?.parts?.map((item) => item.title) || ""
-  );
+export const getManifestationContents = (manifestation: Manifestation) => {
+  // Get the first contents object
+  const firstContents = manifestation.contents?.[0];
+
+  // Return all display titles from the first contents object
+  return firstContents?.entries?.map((entry) => entry.title.display) || "";
 };
 
 export const getDetailsListData = ({
@@ -355,7 +355,7 @@ export const getDetailsListData = ({
     },
     {
       label: t("detailsListPartsText"),
-      value: getManifestationParts(manifestation ?? fallBackManifestation),
+      value: getManifestationContents(manifestation ?? fallBackManifestation),
       type: ListItemType.List
     }
   ];

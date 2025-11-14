@@ -71,6 +71,64 @@
                 "roles": []
               }
             ],
+            "contents": [
+              {
+                "heading": "Contents",
+                "type": "MUSIC",
+                "entries": [
+                  {
+                    "title": {
+                      "display": "Hello hooray"
+                    }
+                  },
+                  {
+                    "title": {
+                      "display": "Raped and freezin'"
+                    }
+                  },
+                  {
+                    "title": {
+                      "display": "Elected"
+                    }
+                  },
+                  {
+                    "title": {
+                      "display": "Billion dollar babies"
+                    }
+                  },
+                  {
+                    "title": {
+                      "display": "Unfinished sweet"
+                    }
+                  },
+                  {
+                    "title": {
+                      "display": "No more Mr. Nice Guy"
+                    }
+                  },
+                  {
+                    "title": {
+                      "display": "Generation landslide"
+                    }
+                  },
+                  {
+                    "title": {
+                      "display": "Sick things"
+                    }
+                  },
+                  {
+                    "title": {
+                      "display": "Mary Ann"
+                    }
+                  },
+                  {
+                    "title": {
+                      "display": "I love the dead"
+                    }
+                  }
+                ]
+              }
+            ],
             "edition": null,
             "dateFirstEdition": null,
             "audience": {
@@ -84,40 +142,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": {
-              "parts": [
-                {
-                  "title": "Hello hooray"
-                },
-                {
-                  "title": "Raped and freezin'"
-                },
-                {
-                  "title": "Elected"
-                },
-                {
-                  "title": "Billion dollar babies"
-                },
-                {
-                  "title": "Unfinished sweet"
-                },
-                {
-                  "title": "No more Mr. Nice Guy"
-                },
-                {
-                  "title": "Generation landslide"
-                },
-                {
-                  "title": "Sick things"
-                },
-                {
-                  "title": "Mary Ann"
-                },
-                {
-                  "title": "I love the dead"
-                }
-              ]
-            },
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -215,100 +239,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": {
-              "parts": [
-                {
-                  "title": "Hello Hooray"
-                },
-                {
-                  "title": "Raped and Freezin'"
-                },
-                {
-                  "title": "Elected"
-                },
-                {
-                  "title": "Billion Dollar Babies"
-                },
-                {
-                  "title": "Unfinished Sweet"
-                },
-                {
-                  "title": "No More Mr. Nice Guy"
-                },
-                {
-                  "title": "Generation Landslide"
-                },
-                {
-                  "title": "Sick Things"
-                },
-                {
-                  "title": "Mary Ann"
-                },
-                {
-                  "title": "I Love the Dead"
-                },
-                {
-                  "title": "Hello Hooray (Live)"
-                },
-                {
-                  "title": "Billion Dollar Babies (Live)"
-                },
-                {
-                  "title": "Elected (Live)"
-                },
-                {
-                  "title": "I'm Eighteen (Live, 1973)"
-                },
-                {
-                  "title": "Raped and Freezin' (Live)"
-                },
-                {
-                  "title": "No More Mr. Nice Guy (Live)"
-                },
-                {
-                  "title": "My Stars (Live)"
-                },
-                {
-                  "title": "Unfinished Sweet (Live)"
-                },
-                {
-                  "title": "Sick Things (Live)"
-                },
-                {
-                  "title": "Dead Babies (Live)"
-                },
-                {
-                  "title": "I Love the Dead (Live)"
-                },
-                {
-                  "title": "School's Out (Live 1973)"
-                },
-                {
-                  "title": "Under My Wheels (Live 1973)"
-                },
-                {
-                  "title": "Coal Black Model T (Outtake)"
-                },
-                {
-                  "title": "Son Of Billion Dollar Babies (Generation Landslide) (Outtake)"
-                },
-                {
-                  "title": "Hello Hooray (Single Version)"
-                },
-                {
-                  "title": "Billion Dollar Babies 8Single Version"
-                },
-                {
-                  "title": "Elected (Single Version)"
-                },
-                {
-                  "title": "Mary Ann (Single Version)"
-                },
-                {
-                  "title": "Slick Black Limousine"
-                }
-              ]
-            },
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -389,6 +319,64 @@
               "roles": []
             }
           ],
+          "contents": [
+            {
+              "heading": "Contents",
+              "type": "MUSIC",
+              "entries": [
+                {
+                  "title": {
+                    "display": "Hello hooray"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Raped and freezin'"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Elected"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Billion dollar babies"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Unfinished sweet"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "No more Mr. Nice Guy"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Generation landslide"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Sick things"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Mary Ann"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "I love the dead"
+                  }
+                }
+              ]
+            }
+          ],
           "edition": {
             "summary": "50th-anniversary edition, ℗2024",
             "publicationYear": {
@@ -407,100 +395,6 @@
             "playingTime": null
           },
           "hostPublication": null,
-          "manifestationParts": {
-            "parts": [
-              {
-                "title": "Hello Hooray"
-              },
-              {
-                "title": "Raped and Freezin'"
-              },
-              {
-                "title": "Elected"
-              },
-              {
-                "title": "Billion Dollar Babies"
-              },
-              {
-                "title": "Unfinished Sweet"
-              },
-              {
-                "title": "No More Mr. Nice Guy"
-              },
-              {
-                "title": "Generation Landslide"
-              },
-              {
-                "title": "Sick Things"
-              },
-              {
-                "title": "Mary Ann"
-              },
-              {
-                "title": "I Love the Dead"
-              },
-              {
-                "title": "Hello Hooray (Live)"
-              },
-              {
-                "title": "Billion Dollar Babies (Live)"
-              },
-              {
-                "title": "Elected (Live)"
-              },
-              {
-                "title": "I'm Eighteen (Live, 1973)"
-              },
-              {
-                "title": "Raped and Freezin' (Live)"
-              },
-              {
-                "title": "No More Mr. Nice Guy (Live)"
-              },
-              {
-                "title": "My Stars (Live)"
-              },
-              {
-                "title": "Unfinished Sweet (Live)"
-              },
-              {
-                "title": "Sick Things (Live)"
-              },
-              {
-                "title": "Dead Babies (Live)"
-              },
-              {
-                "title": "I Love the Dead (Live)"
-              },
-              {
-                "title": "School's Out (Live 1973)"
-              },
-              {
-                "title": "Under My Wheels (Live 1973)"
-              },
-              {
-                "title": "Coal Black Model T (Outtake)"
-              },
-              {
-                "title": "Son Of Billion Dollar Babies (Generation Landslide) (Outtake)"
-              },
-              {
-                "title": "Hello Hooray (Single Version)"
-              },
-              {
-                "title": "Billion Dollar Babies 8Single Version"
-              },
-              {
-                "title": "Elected (Single Version)"
-              },
-              {
-                "title": "Mary Ann (Single Version)"
-              },
-              {
-                "title": "Slick Black Limousine"
-              }
-            ]
-          },
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -580,6 +474,64 @@
               "roles": []
             }
           ],
+          "contents": [
+            {
+              "heading": "Contents",
+              "type": "MUSIC",
+              "entries": [
+                {
+                  "title": {
+                    "display": "Hello hooray"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Raped and freezin'"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Elected"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Billion dollar babies"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Unfinished sweet"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "No more Mr. Nice Guy"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Generation landslide"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Sick things"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "Mary Ann"
+                  }
+                },
+                {
+                  "title": {
+                    "display": "I love the dead"
+                  }
+                }
+              ]
+            }
+          ],
           "edition": {
             "summary": "50th-anniversary edition, ℗2024",
             "publicationYear": {
@@ -598,100 +550,6 @@
             "playingTime": null
           },
           "hostPublication": null,
-          "manifestationParts": {
-            "parts": [
-              {
-                "title": "Hello Hooray"
-              },
-              {
-                "title": "Raped and Freezin'"
-              },
-              {
-                "title": "Elected"
-              },
-              {
-                "title": "Billion Dollar Babies"
-              },
-              {
-                "title": "Unfinished Sweet"
-              },
-              {
-                "title": "No More Mr. Nice Guy"
-              },
-              {
-                "title": "Generation Landslide"
-              },
-              {
-                "title": "Sick Things"
-              },
-              {
-                "title": "Mary Ann"
-              },
-              {
-                "title": "I Love the Dead"
-              },
-              {
-                "title": "Hello Hooray (Live)"
-              },
-              {
-                "title": "Billion Dollar Babies (Live)"
-              },
-              {
-                "title": "Elected (Live)"
-              },
-              {
-                "title": "I'm Eighteen (Live, 1973)"
-              },
-              {
-                "title": "Raped and Freezin' (Live)"
-              },
-              {
-                "title": "No More Mr. Nice Guy (Live)"
-              },
-              {
-                "title": "My Stars (Live)"
-              },
-              {
-                "title": "Unfinished Sweet (Live)"
-              },
-              {
-                "title": "Sick Things (Live)"
-              },
-              {
-                "title": "Dead Babies (Live)"
-              },
-              {
-                "title": "I Love the Dead (Live)"
-              },
-              {
-                "title": "School's Out (Live 1973)"
-              },
-              {
-                "title": "Under My Wheels (Live 1973)"
-              },
-              {
-                "title": "Coal Black Model T (Outtake)"
-              },
-              {
-                "title": "Son Of Billion Dollar Babies (Generation Landslide) (Outtake)"
-              },
-              {
-                "title": "Hello Hooray (Single Version)"
-              },
-              {
-                "title": "Billion Dollar Babies 8Single Version"
-              },
-              {
-                "title": "Elected (Single Version)"
-              },
-              {
-                "title": "Mary Ann (Single Version)"
-              },
-              {
-                "title": "Slick Black Limousine"
-              }
-            ]
-          },
           "accessTypes": [
             {
               "code": "PHYSICAL"
