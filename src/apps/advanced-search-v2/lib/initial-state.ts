@@ -1,12 +1,12 @@
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 import { SuggestState, MultiSelectState } from "../types";
 
-export const SUGGESTS_CONFIG: SuggestState[] = [
+export const INITIAL_SUGGEST_STATE: SuggestState[] = [
   { term: "term.default", query: "", operator: "and" },
   { term: "term.default", query: "", operator: "and" }
 ];
 
-export const SELECTS_CONFIG: MultiSelectState[] = [
+export const INITIAL_SELECT_STATE: MultiSelectState[] = [
   {
     label: "Genre og form",
     facetField: ComplexSearchFacetsEnum.Genreandform,
