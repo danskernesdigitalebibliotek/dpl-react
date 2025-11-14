@@ -3,6 +3,7 @@ import usePager from "../../../components/result-pager/use-pager";
 import { Work } from "../../../core/utils/types/entities";
 import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
 import { DEFAULT_PAGE_SIZE } from "../lib/constants";
+import useGetCleanBranches from "../../../core/utils/branches";
 
 export interface UsePaginatedResultsReturn {
   resultItems: Work[];
@@ -40,13 +41,17 @@ export const usePaginatedResults = ({
     pageSize
   });
 
+  const cleanBranches = useGetCleanBranches();
+
   // Fetch search results - disabled if no query
   const { data, isLoading, isFetching } = useComplexSearchWithPaginationQuery(
     {
       cql,
       offset: page * pageSize,
       limit: pageSize,
-      filters: {}
+      filters: {
+        branchId: cleanBranches
+      }
     },
     {
       enabled: hasQuery,
