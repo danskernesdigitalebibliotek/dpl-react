@@ -1,11 +1,9 @@
 import * as React from "react";
 import menuIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-menu.svg";
-import searchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-search.svg";
 import profileIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-profile.svg";
 import heartIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-heart.svg";
 import watchIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-watch-static.svg";
 import crossIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross-medium.svg";
-import expandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 
 export interface StoryHeaderProps {
   search?: React.ReactNode;
@@ -116,28 +114,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({ search, userProfile }) => {
               <span className="header__button-text">Liked</span>
             </a>
           </nav>
-          {search || (
-            <div className="header__menu-search">
-              <input
-                name="q"
-                className="header__menu-search-input text-body-medium-regular"
-                type="text"
-                autoComplete="off"
-                placeholder="Cannot search in this story"
-              />
-              <input
-                type="image"
-                src={searchIcon}
-                className="header__menu-search-icon"
-                alt="search icon"
-              />
-              <img
-                className="header__menu-dropdown-icon"
-                src={expandIcon}
-                alt="expand dropdown icon"
-              />
-            </div>
-          )}
+          {search}
         </div>
         <div className="header__clock">
           <div className="pagefold-parent--medium">
