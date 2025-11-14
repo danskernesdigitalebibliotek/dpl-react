@@ -15,6 +15,7 @@ interface CheckBoxProps {
   focused?: boolean;
   isVisualOnly?: boolean;
   labelledBy?: string;
+  tabIndex?: number;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
@@ -29,7 +30,8 @@ const CheckBox: FC<CheckBoxProps> = ({
   ariaLabel,
   focused,
   isVisualOnly,
-  labelledBy
+  labelledBy,
+  tabIndex
 }) => {
   const checkedHandler = (checked: boolean) => {
     if (onChecked) {
@@ -53,6 +55,7 @@ const CheckBox: FC<CheckBoxProps> = ({
         aria-label={isVisualOnly && labelledBy ? undefined : ariaLabel}
         aria-labelledby={isVisualOnly && labelledBy ? labelledBy : undefined}
         disabled={disabled}
+        tabIndex={tabIndex}
       />
       <label
         className={clsx("checkbox__label", labelClassName)}
