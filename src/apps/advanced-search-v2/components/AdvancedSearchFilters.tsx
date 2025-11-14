@@ -4,7 +4,7 @@ import AdvancedSearchFilterGroup from "./AdvancedSearchFilterGroup";
 import AdvancedSearchToggle from "./AdvancedSearchToggle";
 import { useText } from "../../../core/utils/text";
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
-import { FacetState } from "../types";
+import { FilterState } from "../types";
 import { FACETS_CONFIG } from "../lib/facet-configs";
 
 interface AdvancedSearchFiltersProps {
@@ -26,31 +26,60 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
     parseAsBoolean.withDefault(false)
   );
 
-  // Facets state
-  const [facetsFromUrl, setFacetsInUrl] = useQueryState(
-    "facets",
-    parseAsJson((value) => value as FacetState[]).withDefault([])
+  // Unified filters state
+  const [filtersFromUrl, setFiltersInUrl] = useQueryState(
+    "filters",
+    parseAsJson((value) => value as FilterState[]).withDefault([])
   );
 
-  const handleFacetChange = (
+  const handleFilterChange = (
     facetField: ComplexSearchFacetsEnum,
     selectedValues: string[]
   ) => {
-    const updatedFacets = FACETS_CONFIG.map((config) =>
-      config.facetField === facetField
-        ? { facetField, selectedValues }
-        : (facetsFromUrl.find((f) => f.facetField === config.facetField) ?? {
-            facetField: config.facetField,
-            selectedValues: []
-          })
+    // Update or add the changed filter while keeping others
+    const existingFilter = filtersFromUrl.find(
+      (f) => f.facetField === facetField
     );
+    const filterConfig = FACETS_CONFIG.find((c) => c.facetField === facetField);
 
-    setFacetsInUrl(updatedFacets.filter((f) => f.selectedValues.length > 0));
+    if (!filterConfig) return;
+
+    let updatedFilters: FilterState[];
+
+    if (selectedValues.length === 0) {
+      // Remove filter if no values selected
+      updatedFilters = filtersFromUrl.filter(
+        (f) => f.facetField !== facetField
+      );
+    } else if (existingFilter) {
+      // Update existing filter
+      updatedFilters = filtersFromUrl.map((f) =>
+        f.facetField === facetField ? { ...f, selectedValues } : f
+      );
+    } else {
+      // Add new filter
+      updatedFilters = [
+        ...filtersFromUrl,
+        {
+          label: filterConfig.label,
+          facetField,
+          selectedValues
+        }
+      ];
+    }
+
+    setFiltersInUrl(updatedFilters);
+  };
+
+  const getSelectedValues = (facetField: ComplexSearchFacetsEnum): string[] => {
+    return (
+      filtersFromUrl.find((f) => f.facetField === facetField)?.selectedValues ??
+      []
+    );
   };
 
   const getSelectedCount = (facetField: ComplexSearchFacetsEnum): number => {
-    const facet = facetsFromUrl.find((f) => f.facetField === facetField);
-    return facet?.selectedValues.length ?? 0;
+    return getSelectedValues(facetField).length;
   };
 
   return (
@@ -76,10 +105,7 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
 
         {/* Filter groups */}
         {FACETS_CONFIG.map((config) => {
-          const facetFromUrl = facetsFromUrl.find(
-            (f) => f.facetField === config.facetField
-          );
-          const selectedValues = facetFromUrl?.selectedValues ?? [];
+          const selectedValues = getSelectedValues(config.facetField);
           const selectedCount = getSelectedCount(config.facetField);
 
           return (
@@ -90,7 +116,7 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
               label={config.label}
               selectedValues={selectedValues}
               selectedCount={selectedCount}
-              onChange={(vals) => handleFacetChange(config.facetField, vals)}
+              onChange={(vals) => handleFilterChange(config.facetField, vals)}
             />
           );
         })}

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
-import { SuggestState, MultiSelectState, FacetState } from "../types";
+import { SuggestState, FilterState } from "../types";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
 
 interface UseSearchQueriesReturn {
@@ -8,8 +8,7 @@ interface UseSearchQueriesReturn {
   hasQuery: boolean;
   urlState: {
     suggests: SuggestState[];
-    selects: MultiSelectState[];
-    facets: FacetState[];
+    filters: FilterState[];
   };
 }
 
@@ -23,14 +22,9 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     parseAsJson((value) => value as SuggestState[]).withDefault([])
   );
 
-  const [selects] = useQueryState(
-    "selects",
-    parseAsJson((value) => value as MultiSelectState[]).withDefault([])
-  );
-
-  const [facets] = useQueryState(
-    "facets",
-    parseAsJson((value) => value as FacetState[]).withDefault([])
+  const [filters] = useQueryState(
+    "filters",
+    parseAsJson((value) => value as FilterState[]).withDefault([])
   );
 
   // Read toggle states
@@ -43,8 +37,8 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
 
   // Build CQL query from all inputs
   const cql = useMemo(
-    () => buildCQLQuery(suggests, selects, facets, onShelf, onlyExtraTitles),
-    [suggests, selects, facets, onShelf, onlyExtraTitles]
+    () => buildCQLQuery(suggests, filters, onShelf, onlyExtraTitles),
+    [suggests, filters, onShelf, onlyExtraTitles]
   );
 
   const hasQuery = hasValidQuery(cql);
@@ -54,8 +48,7 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     hasQuery,
     urlState: {
       suggests,
-      selects,
-      facets
+      filters
     }
   };
 };
