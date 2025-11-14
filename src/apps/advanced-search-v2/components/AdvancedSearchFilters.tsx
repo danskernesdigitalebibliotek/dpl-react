@@ -26,7 +26,7 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
     parseAsBoolean.withDefault(false)
   );
 
-  // Unified filters state
+  // Unified filters state (both form and sidebar edit this)
   const [filtersFromUrl, setFiltersInUrl] = useQueryState(
     "filters",
     parseAsJson((value) => value as FilterState[]).withDefault([])
@@ -36,39 +36,38 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
     facetField: ComplexSearchFacetsEnum,
     selectedValues: string[]
   ) => {
-    // Update or add the changed filter while keeping others
-    const existingFilter = filtersFromUrl.find(
-      (f) => f.facetField === facetField
-    );
     const filterConfig = FACETS_CONFIG.find((c) => c.facetField === facetField);
-
     if (!filterConfig) return;
 
-    let updatedFilters: FilterState[];
-
     if (selectedValues.length === 0) {
-      // Remove filter if no values selected
-      updatedFilters = filtersFromUrl.filter(
-        (f) => f.facetField !== facetField
-      );
-    } else if (existingFilter) {
-      // Update existing filter
-      updatedFilters = filtersFromUrl.map((f) =>
-        f.facetField === facetField ? { ...f, selectedValues } : f
+      // Remove filter if empty
+      setFiltersInUrl(
+        filtersFromUrl.filter((f) => f.facetField !== facetField)
       );
     } else {
-      // Add new filter
-      updatedFilters = [
-        ...filtersFromUrl,
-        {
-          label: filterConfig.label,
-          facetField,
-          selectedValues
-        }
-      ];
-    }
+      const existingFilter = filtersFromUrl.find(
+        (f) => f.facetField === facetField
+      );
 
-    setFiltersInUrl(updatedFilters);
+      if (existingFilter) {
+        // Update existing filter
+        setFiltersInUrl(
+          filtersFromUrl.map((f) =>
+            f.facetField === facetField ? { ...f, selectedValues } : f
+          )
+        );
+      } else {
+        // Add new filter
+        setFiltersInUrl([
+          ...filtersFromUrl,
+          {
+            label: filterConfig.label,
+            facetField,
+            selectedValues
+          }
+        ]);
+      }
+    }
   };
 
   const getSelectedValues = (facetField: ComplexSearchFacetsEnum): string[] => {
