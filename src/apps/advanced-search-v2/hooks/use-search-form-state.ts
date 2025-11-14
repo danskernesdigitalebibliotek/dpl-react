@@ -1,16 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { useQueryStates, parseAsJson } from "nuqs";
 import { SuggestState, FilterState } from "../types";
-import {
-  INITIAL_SUGGEST_STATE,
-  INITIAL_FILTERS_STATE
-} from "../lib/initial-state";
+import { INITIAL_SUGGEST_STATE } from "../lib/initial-state";
 
 export interface UseSearchFormStateReturn {
   suggests: SuggestState[];
   filters: FilterState[];
   updateSuggest: (index: number, updates: Partial<SuggestState>) => void;
-  updateFilter: (index: number, updates: Partial<FilterState>) => void;
+  updateFilter: (filter: FilterState) => void;
   addSuggest: () => void;
   removeSuggest: (index: number) => void;
   handleSearch: () => void;
@@ -27,9 +24,7 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
       suggests: parseAsJson((value) => value as SuggestState[]).withDefault(
         INITIAL_SUGGEST_STATE
       ),
-      filters: parseAsJson((value) => value as FilterState[]).withDefault(
-        INITIAL_FILTERS_STATE
-      )
+      filters: parseAsJson((value) => value as FilterState[]).withDefault([])
     },
     { shallow: true }
   );
@@ -56,17 +51,25 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     []
   );
 
-  // Update a specific filter by index
-  const updateFilter = useCallback(
-    (index: number, updates: Partial<FilterState>) => {
-      setFilters((prev) =>
-        prev.map((item, idx) =>
-          idx === index ? { ...item, ...updates } : item
-        )
+  // Upsert filter: update if exists, add if new, remove if empty
+  const updateFilter = useCallback((filter: FilterState) => {
+    setFilters((prev) => {
+      const existingIndex = prev.findIndex(
+        (f) => f.facetField === filter.facetField
       );
-    },
-    []
-  );
+
+      if (filter.selectedValues.length === 0) {
+        // Remove if empty
+        return prev.filter((f) => f.facetField !== filter.facetField);
+      } else if (existingIndex >= 0) {
+        // Update existing
+        return prev.map((f, idx) => (idx === existingIndex ? filter : f));
+      } else {
+        // Add new
+        return [...prev, filter];
+      }
+    });
+  }, []);
 
   // Add a new suggest row
   const addSuggest = useCallback(() => {
@@ -98,18 +101,19 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
       });
 
     setUrlState({
-      suggests: nonEmptySuggests,
-      filters
+      // Don't write empty suggests to URL - let it use default on reload
+      suggests: nonEmptySuggests.length > 0 ? nonEmptySuggests : null,
+      filters: filters.length > 0 ? filters : null
     });
   }, [suggests, filters, setUrlState]);
 
   // Clear all filters
   const handleClearFilters = useCallback(() => {
     setSuggests(INITIAL_SUGGEST_STATE);
-    setFilters(INITIAL_FILTERS_STATE);
+    setFilters([]);
     setUrlState({
       suggests: INITIAL_SUGGEST_STATE,
-      filters: INITIAL_FILTERS_STATE
+      filters: []
     });
   }, [setUrlState]);
 
