@@ -1,16 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import { useQueryStates, parseAsJson } from "nuqs";
-import { SuggestState, MultiSelectState, FacetState } from "../types";
+import { SuggestState, FilterState } from "../types";
 import {
   INITIAL_SUGGEST_STATE,
-  INITIAL_SELECT_STATE
+  INITIAL_FILTERS_STATE
 } from "../lib/initial-state";
 
 export interface UseSearchFormStateReturn {
   suggests: SuggestState[];
-  selects: MultiSelectState[];
+  filters: FilterState[];
   updateSuggest: (index: number, updates: Partial<SuggestState>) => void;
-  updateSelect: (index: number, updates: Partial<MultiSelectState>) => void;
+  updateFilter: (index: number, updates: Partial<FilterState>) => void;
   addSuggest: () => void;
   removeSuggest: (index: number) => void;
   handleSearch: () => void;
@@ -27,23 +27,22 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
       suggests: parseAsJson((value) => value as SuggestState[]).withDefault(
         INITIAL_SUGGEST_STATE
       ),
-      selects: parseAsJson((value) => value as MultiSelectState[]).withDefault(
-        INITIAL_SELECT_STATE
-      ),
-      facets: parseAsJson((value) => value as FacetState[]).withDefault([])
+      filters: parseAsJson((value) => value as FilterState[]).withDefault(
+        INITIAL_FILTERS_STATE
+      )
     },
     { shallow: true }
   );
 
   // Local state for temporary changes - initialize from URL
   const [suggests, setSuggests] = useState<SuggestState[]>(urlState.suggests);
-  const [selects, setSelects] = useState<MultiSelectState[]>(urlState.selects);
+  const [filters, setFilters] = useState<FilterState[]>(urlState.filters);
 
   // Sync local state with URL state on mount/URL change
   useEffect(() => {
     setSuggests(urlState.suggests);
-    setSelects(urlState.selects);
-  }, [urlState.suggests, urlState.selects]);
+    setFilters(urlState.filters);
+  }, [urlState.suggests, urlState.filters]);
 
   // Update a specific suggest by index
   const updateSuggest = useCallback(
@@ -57,10 +56,10 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     []
   );
 
-  // Update a specific select by index
-  const updateSelect = useCallback(
-    (index: number, updates: Partial<MultiSelectState>) => {
-      setSelects((prev) =>
+  // Update a specific filter by index
+  const updateFilter = useCallback(
+    (index: number, updates: Partial<FilterState>) => {
+      setFilters((prev) =>
         prev.map((item, idx) =>
           idx === index ? { ...item, ...updates } : item
         )
@@ -100,25 +99,25 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
 
     setUrlState({
       suggests: nonEmptySuggests,
-      selects
+      filters
     });
-  }, [suggests, selects, setUrlState]);
-  // Clear all filters including facets
+  }, [suggests, filters, setUrlState]);
+
+  // Clear all filters
   const handleClearFilters = useCallback(() => {
     setSuggests(INITIAL_SUGGEST_STATE);
-    setSelects(INITIAL_SELECT_STATE);
+    setFilters(INITIAL_FILTERS_STATE);
     setUrlState({
       suggests: INITIAL_SUGGEST_STATE,
-      selects: INITIAL_SELECT_STATE,
-      facets: []
+      filters: INITIAL_FILTERS_STATE
     });
   }, [setUrlState]);
 
   return {
     suggests,
-    selects,
+    filters,
     updateSuggest,
-    updateSelect,
+    updateFilter,
     addSuggest,
     removeSuggest,
     handleSearch,

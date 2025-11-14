@@ -1,12 +1,7 @@
 import { useEffect } from "react";
-import { useQueryState, parseAsBoolean } from "nuqs";
+import { useQueryState, parseAsBoolean, parseAsJson } from "nuqs";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
-import { SuggestState, MultiSelectState } from "../types";
-
-interface UseFormVisibilityParams {
-  suggests: SuggestState[];
-  selects: MultiSelectState[];
-}
+import { SuggestState, FilterState } from "../types";
 
 interface UseFormVisibilityReturn {
   shouldShowForm: boolean;
@@ -16,18 +11,26 @@ interface UseFormVisibilityReturn {
 
 /**
  * Hook to manage form visibility state in URL
- * Ensures the form/summary toggle state is shareable via URL
+ * Reads from URL state to determine if there's an active search query
  */
-export const useFormVisibility = ({
-  suggests,
-  selects
-}: UseFormVisibilityParams): UseFormVisibilityReturn => {
+export const useFormVisibility = (): UseFormVisibilityReturn => {
   const [showForm, setShowForm] = useQueryState(
     "edit",
     parseAsBoolean.withDefault(true)
   );
 
-  const cql = buildCQLQuery(suggests, selects, []);
+  // Read committed search state from URL (not local draft state)
+  const [urlSuggests] = useQueryState(
+    "suggests",
+    parseAsJson((value) => value as SuggestState[]).withDefault([])
+  );
+
+  const [urlFilters] = useQueryState(
+    "filters",
+    parseAsJson((value) => value as FilterState[]).withDefault([])
+  );
+
+  const cql = buildCQLQuery(urlSuggests, urlFilters);
   const hasCurrentQuery = hasValidQuery(cql);
 
   // Ensure we show the form when there is no current query (e.g. after clearing)

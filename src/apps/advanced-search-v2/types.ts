@@ -8,13 +8,9 @@ export type SuggestState = {
   operator?: Operator;
 };
 
-export type MultiSelectState = {
+// Unified filter state used by both form MultiSelects and sidebar Facets
+export type FilterState = {
   label: string;
-  facetField: ComplexSearchFacetsEnum;
-  selectedValues: string[];
-};
-
-export type FacetState = {
   facetField: ComplexSearchFacetsEnum;
   selectedValues: string[];
 };
