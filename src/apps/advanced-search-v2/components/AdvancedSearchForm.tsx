@@ -14,24 +14,22 @@ const AdvancedSearchForm: React.FC = () => {
   const t = useText();
   const {
     suggests,
-    selects,
+    filters,
     updateSuggest,
-    updateSelect,
+    updateFilter,
     addSuggest,
     removeSuggest,
     handleSearch,
     handleClearFilters
   } = useSearchFormState();
 
-  const { shouldShowForm, shouldShowSummary, setShowForm } = useFormVisibility({
-    suggests,
-    selects
-  });
+  const { shouldShowForm, shouldShowSummary, setShowForm } =
+    useFormVisibility();
 
   // Check if there are any filters to reset
   const hasFilters =
     suggests.some((suggest) => suggest.query.trim()) ||
-    selects.some((select) => select.selectedValues.length > 0);
+    filters.some((filter) => filter.selectedValues.length > 0);
 
   const handleSearchComplete = () => {
     handleSearch();
@@ -86,19 +84,19 @@ const AdvancedSearchForm: React.FC = () => {
             </button>
           </div>
 
-          {/* Select search */}
+          {/* Filter selects */}
           <div className="advanced-search-v2__selects-grid">
-            {selects.map((select, index) => (
+            {filters.map((filter, index) => (
               <AdvancedSearchSelect
-                key={`select-${index}`}
-                facetField={select.facetField}
-                label={select.label}
-                selected={select.selectedValues.map((value) => ({
+                key={`filter-${index}`}
+                facetField={filter.facetField}
+                label={filter.label}
+                selected={filter.selectedValues.map((value) => ({
                   label: value,
                   value
                 }))}
                 onChange={(values) =>
-                  updateSelect(index, {
+                  updateFilter(index, {
                     selectedValues: values.map((option) => option.value)
                   })
                 }
