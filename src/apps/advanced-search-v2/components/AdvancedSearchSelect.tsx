@@ -1,5 +1,5 @@
 import React from "react";
-import HeadlessMultiSelect from "./HeadlessMultiSelect";
+import AdvancedSearchMultiSelect from "./AdvancedSearchMultiSelect";
 import type { Option } from "../lib/suggestions";
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 import { ADVANCED_SEARCH_SELECT_OPTIONS } from "../lib/advanced-search-select-options";
@@ -20,7 +20,7 @@ const AdvancedSearchSelect: React.FC<Props> = ({
   const items = ADVANCED_SEARCH_SELECT_OPTIONS[facetField] ?? [];
 
   return (
-    <HeadlessMultiSelect
+    <AdvancedSearchMultiSelect
       items={items}
       value={selected}
       onChange={onChange}

@@ -258,7 +258,7 @@ Holds static `Option[]` lists for some facet fields (currently detailed for `Gen
 
 - Indexed by `ComplexSearchFacetsEnum`.
 - Provides human‑readable labels and values based on domain conventions (Danish library genres, formats, etc.).
-- Used by `AdvancedSearchSelect` and `HeadlessMultiSelect` for the fixed multi‑select filters in the form.
+- Used by `AdvancedSearchSelect` and `AdvancedSearchMultiSelect` for the fixed multi‑select filters in the form.
 
 ### `suggestions.ts`
 
@@ -332,17 +332,17 @@ Rendered subcomponents:
 - Highlights the active operator.
 - Updates the parent via `onChange(operator)`.
 
-### Multi‑select filters: `AdvancedSearchSelect` + `HeadlessMultiSelect`
+### Multi‑select filters: `AdvancedSearchSelect` + `AdvancedSearchMultiSelect`
 
 `AdvancedSearchSelect`:
 
 - Looks up static options in `ADVANCED_SEARCH_SELECT_OPTIONS[facetField]`.
-- Renders `HeadlessMultiSelect` with:
+- Renders `AdvancedSearchMultiSelect` with:
   - `items: Option[]`.
   - `value: Option[]` representing current selections.
   - `onChange` callback for new selections.
 
-`HeadlessMultiSelect`:
+`AdvancedSearchMultiSelect`:
 
 - Uses `Popover` + `PopoverButton` + `PopoverPanel` from headlessui.
 - Button shows either:
