@@ -82,7 +82,7 @@ const AdvancedSearchSuggest = forwardRef<
               type="button"
               className="advanced-search-suggest__remove-button"
               onClick={onRemove}
-              aria-label="Fjern søgelinje"
+              aria-label={t("advancedSearchRemoveRowText")}
             >
               <img src={MinusButtonIcon} alt="" />
             </button>
