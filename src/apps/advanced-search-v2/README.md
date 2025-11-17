@@ -1,8 +1,11 @@
 # Advanced Search V2
 
-This document describes the structure and logic of the code in `src/apps/advanced-search-v2`.
+This document describes the structure and logic of the code in
+`src/apps/advanced-search-v2`.
 
-The app implements a faceted "advanced search" experience backed by the DBC GraphQL API and a CQL query builder. State is synchronized with the URL so searches can be deep‑linked and reloaded.
+The app implements a faceted "advanced search" experience backed by the
+DBC GraphQL API and a CQL query builder. State is synchronized with the URL
+so searches can be deep‑linked and reloaded.
 
 ---
 
@@ -11,13 +14,18 @@ The app implements a faceted "advanced search" experience backed by the DBC Grap
 At a high level the app consists of:
 
 - **Entry & mounting**: wiring into the hosting shell and Storybook.
-- **Form**: a multi‑row query builder with static filters and action buttons.
-- **URL‑backed state**: search parameters and UI mode are stored in query params via `nuqs`.
+- **Form**: a multi‑row query builder with static filters and action
+  buttons.
+- **URL‑backed state**: search parameters and UI mode are stored in query
+  params via `nuqs`.
 - **Query builder**: converts URL state into a CQL string.
-- **Results + facets**: paginated search results and sidebar facets backed by GraphQL.
-- **Static configs**: mappings from enums to CQL fields, search indices, and filter options.
+- **Results + facets**: paginated search results and sidebar facets backed
+  by GraphQL.
+- **Static configs**: mappings from enums to CQL fields, search indices,
+  and filter options.
 
-The main runtime component is `AdvancedSearchV2`, which renders the form and the results/facets grid.
+The main runtime component is `AdvancedSearchV2`, which renders the form
+and the results/facets grid.
 
 ---
 
@@ -29,28 +37,37 @@ The main runtime component is `AdvancedSearchV2`, which renders the form and the
 
 - **Props**
   - Extends global URL/config/text props and Storybook args.
-  - Defines many advanced‑search specific text properties (labels, placeholders, filter titles, etc.).
-  - Includes `pageSizeDesktop`, `pageSizeMobile`, branch configs, and blacklist configs.
+  - Defines many advanced‑search specific text properties (labels,
+    placeholders, filter titles, etc.).
+  - Includes `pageSizeDesktop`, `pageSizeMobile`, branch configs, and
+    blacklist configs.
 - **Logic**
-  - Calculates a `pageSize` from desktop/mobile via `pageSizeGlobal` (the internal results hook has its own default page size).
+  - Calculates a `pageSize` from desktop/mobile via `pageSizeGlobal`
+    (the internal results hook has its own default page size).
   - Wraps the app in:
     - `GuardedApp app="advanced-search"` – feature guard/shell integration.
     - `NuqsAdapter` – enables `nuqs` URL state hooks.
   - Renders `<AdvancedSearchV2 />` inside these wrappers.
 - **Export**
-  - Wrapped with `withConfig`, `withUrls`, `withText`, and `withPageStatistics` HOCs so it can run as a full-fledged app in the existing ecosystem.
+  - Wrapped with `withConfig`, `withUrls`, `withText`, and
+    `withPageStatistics` HOCs so it can run as a full-fledged app in the
+    existing ecosystem.
 
 ### `AdvancedSearchV2.mount.ts`
 
-- Calls `addMount({ appName: "advanced-search-v2", app: AdvancedSearchV2Entry })`.
-- Registers the entry component under the `advanced-search-v2` app name so the host can mount it into the DOM.
+- Calls `addMount({ appName: "advanced-search-v2", app:
+  AdvancedSearchV2Entry })`.
+- Registers the entry component under the `advanced-search-v2` app name
+  so the host can mount it into the DOM.
 
 ### `AdvancedSearchV2.stories.tsx`
 
 - Storybook meta+story for `AdvancedSearchV2Entry`.
-- Merges global argTypes (service URLs, global texts/config, mapp args, sort args) with a **large set of advanced‑search specific argTypes**.
+- Merges global argTypes (service URLs, global texts/config, mapp args,
+  sort args) with a **large set of advanced‑search specific argTypes**.
 - `Default` story:
-  - Provides realistic defaults for all text props and configs (branch JSON, labels, placeholders, filter names, etc.).
+  - Provides realistic defaults for all text props and configs (branch
+    JSON, labels, placeholders, filter names, etc.).
   - Documents the meaning of each prop via `description` fields.
 
 ### `AdvancedSearchV2.tsx`
@@ -75,16 +92,20 @@ The main runtime component is `AdvancedSearchV2`, which renders the form and the
 
 Defined in `types.ts`:
 
-- `Operator = "and" | "or" | "not"` – logical operator between suggest rows.
+- `Operator = "and" | "or" | "not"` – logical operator between suggest
+  rows.
 - `SuggestState` – a single row in the advanced search form:
   - `term: string` – CQL field, e.g. `"term.default"`, `"term.title"`.
   - `query: string` – user input.
-  - `operator?: Operator` – logical operator used **before** this row (omitted for first row).
-- `FilterState` – unified representation of a selected filter, used by both the form and sidebar facets:
+  - `operator?: Operator` – logical operator used **before** this row
+    (omitted for first row).
+- `FilterState` – unified representation of a selected filter, used by
+  both the form and sidebar facets:
   - `label: string` – human label shown in the UI/summary.
   - `facetField: ComplexSearchFacetsEnum` – GraphQL facet enum.
   - `selectedValues: string[]` – selected facet values for this field.
-- `FacetConfig` – simple `{ label, facetField }` used to configure facet groups.
+- `FacetConfig` – simple `{ label, facetField }` used to configure facet
+  groups.
 
 These types underpin URL state and query building.
 
@@ -95,36 +116,46 @@ These types underpin URL state and query building.
 State is stored in query parameters using `nuqs` so that:
 
 - Searches are shareable via URL.
-- The form can have a local "draft" state but search results are always based on committed URL state.
+- The form can have a local "draft" state but search results are always
+  based on committed URL state.
 
 ### `use-search-form-state.ts`
 
 Manages the **form draft state** and synchronizes it with URL parameters.
 
 - Uses `useQueryStates` on two keys:
-  - `suggests` – array of `SuggestState`, defaulted to `INITIAL_SUGGEST_STATE`.
+  - `suggests` – array of `SuggestState`, defaulted to
+    `INITIAL_SUGGEST_STATE`.
   - `filters` – array of `FilterState`, default `[]`.
-- Mirrors these into local React state (`suggests`, `filters`) so the user can edit the form without immediately changing the URL.
+- Mirrors these into local React state (`suggests`, `filters`) so the user
+  can edit the form without immediately changing the URL.
 - Exposes:
   - `updateSuggest(index, updates)` – update part of a suggest row.
-  - `updateFilter(filter)` – upsert/remove a filter based on `facetField` and `selectedValues`.
-  - `addSuggest()` – append a new row (default: free text with `and` operator).
-  - `removeSuggest(index)` – remove a row, but ensures at least one row remains.
+  - `updateFilter(filter)` – upsert/remove a filter based on `facetField`
+    and `selectedValues`.
+  - `addSuggest()` – append a new row (default: free text with `and`
+    operator).
+  - `removeSuggest(index)` – remove a row, but ensures at least one row
+    remains.
   - `handleSearch()` – **commit** local state to the URL:
     - Filters out rows with empty `query`.
     - Strips `operator` from the first non‑empty suggest.
-    - Writes `suggests` and `filters` to URL (or `null` when empty, letting defaults apply).
-  - `handleClearFilters()` – reset local and URL state to initial suggests and no filters.
+    - Writes `suggests` and `filters` to URL (or `null` when empty,
+      letting defaults apply).
+  - `handleClearFilters()` – reset local and URL state to initial suggests
+    and no filters.
 
 ### `use-form-visibility.ts`
 
 Controls whether the full form or a compact summary is shown.
 
 - URL key: `edit` (boolean), default `true`.
-- Reads committed URL `suggests` and `filters` and builds the CQL query via `buildCQLQuery`.
+- Reads committed URL `suggests` and `filters` and builds the CQL query
+  via `buildCQLQuery`.
 - Determines `hasCurrentQuery` using `hasValidQuery`.
 - Effect:
-  - If there is **no current query** and the form is hidden, it automatically shows the form again.
+  - If there is **no current query** and the form is hidden, it
+    automatically shows the form again.
 - Returns:
   - `shouldShowForm` – whether to render the full form.
   - `shouldShowSummary` – whether to show the summary bar.
@@ -139,7 +170,8 @@ Read‑only view of **committed search parameters** from the URL.
   - `filters: FilterState[]`.
   - `onShelf: boolean`.
   - `onlyExtraTitles: boolean`.
-- Calls `buildCQLQuery(suggests, filters, onShelf, onlyExtraTitles)` to get the CQL string.
+- Calls `buildCQLQuery(suggests, filters, onShelf, onlyExtraTitles)` to
+  get the CQL string.
 - Returns:
   - `cql` – current CQL query.
   - `hasQuery` – `false` only when CQL is the wildcard `"*"`.
@@ -163,7 +195,8 @@ Fetches paginated search results for the current CQL query.
   - `lastQueryStr` – to detect query changes.
   - `canShowZeroResults` – only allow zero‑hits UI after a completed fetch.
 - Behavior:
-  - When data arrives, updates `hitcount` and `resultItems` (appending when `page > 0`).
+  - When data arrives, updates `hitcount` and `resultItems` (appending
+    when `page > 0`).
   - When `cql` changes:
     - Clears results and hitcount.
     - Marks "refetching" and disables zero‑hit display.
@@ -177,10 +210,13 @@ Implemented in `lib/query-builder.ts` with help from `field-mappings.ts`.
 
 ### `buildSuggestTerms(suggests)`
 
-- Iterates over `SuggestState[]` and builds a CQL clause for non‑empty `query`s.
+- Iterates over `SuggestState[]` and builds a CQL clause for non‑empty
+  `query`s.
 - First term: `term="value"`.
-- Subsequent terms: prefixed with the row’s `operator` (`AND`, `OR`, `NOT`).
-- Returns a single string wrapped in parentheses or `""` when there are no valid terms.
+- Subsequent terms: prefixed with the row's `operator` (`AND`, `OR`,
+  `NOT`).
+- Returns a single string wrapped in parentheses or `""` when there are
+  no valid terms.
 
 ### `buildFilterTerms(filters)`
 
@@ -195,7 +231,8 @@ Implemented in `lib/query-builder.ts` with help from `field-mappings.ts`.
   - Suggest terms (if any).
   - Filter terms for all selected facet values.
   - Optional toggle filters:
-    - `onShelf` → `term.holdingstatus="OnShelf"` (subject to later validation).
+    - `onShelf` → `term.holdingstatus="OnShelf"` (subject to later
+      validation).
     - `onlyExtraTitles` → `term.canAlwaysBeLoaned="true"`.
 - If **no parts** are present, returns `"*"` as a wildcard.
 
@@ -205,7 +242,8 @@ Implemented in `lib/query-builder.ts` with help from `field-mappings.ts`.
 
 ### `field-mappings.ts`
 
-Maps `ComplexSearchFacetsEnum` enum values to CQL field names used by filters, for example:
+Maps `ComplexSearchFacetsEnum` enum values to CQL field names used by
+filters, for example:
 
 - `Specificmaterialtype` → `phrase.specificmaterialtype`.
 - `Mainlanguage` → `phrase.mainlanguage`.
@@ -221,14 +259,17 @@ This keeps query construction decoupled from GraphQL enum names.
 
 - `INITIAL_SUGGEST_STATE` – two default suggest rows:
   - Both free‑text (`term.default`), empty query, operator `"and"`.
-- `INITIAL_FILTERS_STATE` – initial form filter configuration with labels and facet fields for:
+- `INITIAL_FILTERS_STATE` – initial form filter configuration with labels
+  and facet fields for:
   - Genre and form, language, publication year, age group, and source.
 
 ### `facet-configs.ts`
 
-Defines which facets appear in the **sidebar filter list** (`AdvancedSearchFilters`).
+Defines which facets appear in the **sidebar filter list**
+(`AdvancedSearchFilters`).
 
-Each `FacetConfig` has a user‑facing label and a `ComplexSearchFacetsEnum` field, e.g.:
+Each `FacetConfig` has a user‑facing label and a `ComplexSearchFacetsEnum`
+field, e.g.:
 
 - Format → `Specificmaterialtype`.
 - Author / creator → `Creator`.
@@ -242,23 +283,29 @@ Describes available **search indices** for suggest rows.
 
 Each `SearchIndexItem` contains:
 
-- `value` – CQL field (`term.default`, `term.title`, `term.subject`, etc.).
+- `value` – CQL field (`term.default`, `term.title`, `term.subject`,
+  etc.).
 - `labelKey` – text key used by `useText` for the dropdown label.
-- `type: ComplexSuggestionTypeEnum` – tells the GraphQL suggest endpoint which suggestion type to use.
+- `type: ComplexSuggestionTypeEnum` – tells the GraphQL suggest endpoint
+  which suggestion type to use.
 - `placeholderKey` – text key for the suggest input placeholder.
 
 Used by:
 
 - `SearchIndexSelect` – to render the index dropdown.
-- `AdvancedSearchForm` / `AdvancedSearchSuggest` – to provide suggestion type and placeholder.
+- `AdvancedSearchForm` / `AdvancedSearchSuggest` – to provide suggestion
+  type and placeholder.
 
 ### `advanced-search-select-options.ts`
 
-Holds static `Option[]` lists for some facet fields (currently detailed for `Genreandform` and possibly others).
+Holds static `Option[]` lists for some facet fields (currently detailed
+for `Genreandform` and possibly others).
 
 - Indexed by `ComplexSearchFacetsEnum`.
-- Provides human‑readable labels and values based on domain conventions (Danish library genres, formats, etc.).
-- Used by `AdvancedSearchSelect` and `AdvancedSearchMultiSelect` for the fixed multi‑select filters in the form.
+- Provides human‑readable labels and values based on domain conventions
+  (Danish library genres, formats, etc.).
+- Used by `AdvancedSearchSelect` and `AdvancedSearchMultiSelect` for the
+  fixed multi‑select filters in the form.
 
 ### `suggestions.ts`
 
@@ -283,18 +330,22 @@ Responsibilities:
 - Manages the full advanced search form UI.
 - Connects to `useSearchFormState` and `useFormVisibility`.
 - Handles focus management when adding new suggest rows.
-- Computes whether there are any filters to determine if the Reset button should be shown.
+- Computes whether there are any filters to determine if the Reset button
+  should be shown.
 
 Rendered subcomponents:
 
 1. **Summary (when in summary mode)**
-   - If `shouldShowSummary` is `true`, renders `AdvancedSearchSummary` with an "Edit search" link.
+   - If `shouldShowSummary` is `true`, renders `AdvancedSearchSummary`
+     with an "Edit search" link.
 
 2. **Suggest rows**
    - Maps over `suggests` and renders one `AdvancedSearchSuggest` per row.
-   - Determines configuration (label/placeholder/suggest type) from `SEARCH_INDEX_OPTIONS` based on `suggest.term`.
-   - Maintains a `ref` per row pointing at the `SearchIndexSelect` button so new rows can be auto‑focused.
-   - Manages the operator of a row via the *next* row’s `operator` field.
+   - Determines configuration (label/placeholder/suggest type) from
+     `SEARCH_INDEX_OPTIONS` based on `suggest.term`.
+   - Maintains a `ref` per row pointing at the `SearchIndexSelect` button
+     so new rows can be auto‑focused.
+   - Manages the operator of a row via the *next* row's `operator` field.
 
 3. **Static filter selects**
    - Renders a grid of `AdvancedSearchSelect` components based on `INITIAL_FILTERS_STATE`.
@@ -316,7 +367,8 @@ Rendered subcomponents:
     - Placeholder from `t(placeholderKey)`.
   - Optional remove button.
   - Optional `OperatorButtons` below the row when `onOperatorChange` is provided.
-- Uses `useComplexSuggestQuery` with `ComplexSuggestionTypeEnum` from `SEARCH_INDEX_OPTIONS`, only when `query.length >= MIN_QUERY_LENGTH`.
+- Uses `useComplexSuggestQuery` with `ComplexSuggestionTypeEnum` from
+  `SEARCH_INDEX_OPTIONS`, only when `query.length >= MIN_QUERY_LENGTH`.
 - Transforms GraphQL results into `Option[]` via `suggestionsToOptions`.
 
 ### Search index select: `SearchIndexSelect`
@@ -357,7 +409,8 @@ Rendered subcomponents:
 - Reusable combobox abstraction used by both suggest and multiselect components.
 - Features:
   - Single and multiple selection.
-  - Free input mode (`allowFreeInput`) with a hidden option to preserve arrow navigation.
+  - Free input mode (`allowFreeInput`) with a hidden option to preserve
+    arrow navigation.
   - Controlled `query` / `onQueryChange` with local filtering by label.
   - Optional `renderOption` override.
   - Optional `focusOnMount` to focus input when a panel opens.
@@ -375,7 +428,8 @@ Rendered subcomponents:
 - Renders a textual summary of:
   - Each non‑empty suggest row with its index label and query value.
   - Each selected filter value (always joined with logical ANDs).
-- Displays operators (AND/OR/NOT) between suggest terms using localized text keys.
+- Displays operators (AND/OR/NOT) between suggest terms using localized
+  text keys.
 - Optionally renders an "Edit search" link that toggles the form visible.
 
 ---
@@ -411,11 +465,14 @@ Rendered subcomponents:
 
 ### `AdvancedSearchFilterGroup`
 
-- Fetches facet data for a specific `facetField` using `useComplexFacetSearchQuery(cql, facets, filters: {})`.
+- Fetches facet data for a specific `facetField` using
+  `useComplexFacetSearchQuery(cql, facets, filters: {})`.
 - Extracts facet values and counts from `complexSearch.facets`.
-- Provides collapse/expand and a "show all/show fewer" behavior (initially shows 5 values).
+- Provides collapse/expand and a "show all/show fewer" behavior
+  (initially shows 5 values).
 - Each value is rendered as a `CheckBox` with an optional count badge.
-- On change, calls `onChange(selectedValues)` so the parent can update URL state.
+- On change, calls `onChange(selectedValues)` so the parent can update
+  URL state.
 
 ### `AdvancedSearchToggle`
 
@@ -429,21 +486,28 @@ Rendered subcomponents:
 
 ## GraphQL integration
 
-- **Suggests**: `complex-suggest.graphql` → `useComplexSuggestQuery` in `AdvancedSearchSuggest`.
+- **Suggests**: `complex-suggest.graphql` → `useComplexSuggestQuery` in
+  `AdvancedSearchSuggest`.
   - Driven by `q` (query text) and `type` (from `SEARCH_INDEX_OPTIONS`).
-- **Facets**: `complex-facet-search.graphql` → `useComplexFacetSearchQuery` in `AdvancedSearchFilterGroup`.
+- **Facets**: `complex-facet-search.graphql` →
+  `useComplexFacetSearchQuery` in `AdvancedSearchFilterGroup`.
   - Driven by current `cql` and a `facets` specification.
-- **Results**: `useComplexSearchWithPaginationQuery` (generated hook, query defined elsewhere).
-  - Driven by `cql`, `offset`, `limit`, and (currently) an empty `filters` object.
+- **Results**: `useComplexSearchWithPaginationQuery` (generated hook,
+  query defined elsewhere).
+  - Driven by `cql`, `offset`, `limit`, and (currently) an empty
+    `filters` object.
 
-GraphQL results are transformed into UI state (`Option[]`, facet lists, `Work[]`) and combined with URL state to keep the UI and the URL synchronized.
+GraphQL results are transformed into UI state (`Option[]`, facet lists,
+`Work[]`) and combined with URL state to keep the UI and the URL
+synchronized.
 
 ---
 
 ## End‑to‑end flow
 
 1. User opens the Advanced Search page.
-   - Form is visible (`edit=true` or no active query), with default suggests and empty filters.
+   - Form is visible (`edit=true` or no active query), with default
+     suggests and empty filters.
 2. User types into suggest rows and/or selects static filters.
    - `useSearchFormState` updates local `suggests` and `filters`.
 3. User clicks **Search**.
@@ -454,9 +518,13 @@ GraphQL results are transformed into UI state (`Option[]`, facet lists, `Work[]`
 5. `usePaginatedResults` runs a GraphQL search with the CQL string.
    - Results and hitcount are displayed.
 6. User refines search using sidebar facets or toggles.
-   - `AdvancedSearchFilters` updates `filters`, `onShelf`, and `onlyExtraTitles` in URL.
+   - `AdvancedSearchFilters` updates `filters`, `onShelf`, and
+     `onlyExtraTitles` in URL.
    - CQL is recomputed; results refetch.
 7. User clicks **Edit search** in the summary.
-   - `edit` is set to `true` in URL; full form reappears with local state synced from URL.
+   - `edit` is set to `true` in URL; full form reappears with local state
+     synced from URL.
 
-This design keeps the **single source of truth** for executed searches in the URL, while still allowing a smooth, stateful editing experience in the form.
+This design keeps the **single source of truth** for executed searches in
+the URL, while still allowing a smooth, stateful editing experience in the
+form.
