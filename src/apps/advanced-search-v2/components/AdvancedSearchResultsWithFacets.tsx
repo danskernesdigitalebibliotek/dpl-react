@@ -18,20 +18,13 @@ const AdvancedSearchResultsWithFacets: React.FC<
   const {
     resultItems,
     hitcount,
-    isLoading,
-    isFetching,
-    isRefetching,
-    canShowZeroResults,
     page,
-    PagerComponent
+    PagerComponent,
+    isLoadingOrRefetching,
+    shouldShowSearchResults,
+    shouldShowResultHeadline,
+    shouldShowZeroResults
   } = usePaginatedResults({ cql, hasQuery, pageSize });
-
-  const isLoadingOrRefetching = isLoading || isFetching || isRefetching;
-  const shouldShowSearchResults =
-    isLoadingOrRefetching || resultItems.length > 0;
-  const shouldShowResultHeadline = hitcount > 0 && !isLoadingOrRefetching;
-  const shouldShowZeroResults =
-    !isLoadingOrRefetching && hitcount === 0 && canShowZeroResults;
 
   if (!hasQuery) return null;
 
