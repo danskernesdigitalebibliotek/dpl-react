@@ -5,15 +5,14 @@ import SearchResultZeroHits from "../../search-result/search-result-zero-hits";
 import AdvancedSearchFilters from "./AdvancedSearchFilters";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
-import { DEFAULT_PAGE_SIZE } from "../lib/constants";
 
 interface AdvancedSearchResultsWithFacetsProps {
-  pageSize?: number;
+  pageSize: number;
 }
 
 const AdvancedSearchResultsWithFacets: React.FC<
   AdvancedSearchResultsWithFacetsProps
-> = ({ pageSize = DEFAULT_PAGE_SIZE }) => {
+> = ({ pageSize }) => {
   const t = useText();
   const { cql, hasQuery } = useSearchQueries();
   const {

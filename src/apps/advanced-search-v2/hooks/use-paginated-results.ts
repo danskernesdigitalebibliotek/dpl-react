@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from "react";
 import usePager from "../../../components/result-pager/use-pager";
 import { Work } from "../../../core/utils/types/entities";
 import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
-import { DEFAULT_PAGE_SIZE } from "../lib/constants";
 
 export interface UsePaginatedResultsReturn {
   resultItems: Work[];
@@ -18,7 +17,7 @@ export interface UsePaginatedResultsReturn {
 interface UsePaginatedResultsProps {
   cql: string;
   hasQuery: boolean;
-  pageSize?: number;
+  pageSize: number;
 }
 
 /**
@@ -27,7 +26,7 @@ interface UsePaginatedResultsProps {
 export const usePaginatedResults = ({
   cql,
   hasQuery,
-  pageSize = DEFAULT_PAGE_SIZE
+  pageSize
 }: UsePaginatedResultsProps): UsePaginatedResultsReturn => {
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState(0);
