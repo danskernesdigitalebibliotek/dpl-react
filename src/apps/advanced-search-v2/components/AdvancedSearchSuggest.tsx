@@ -70,7 +70,7 @@ const AdvancedSearchSuggest = forwardRef<
               onQueryChange={onQueryChange}
               placeholder={t(placeholderKey)}
               classes={{
-                input: "advanced-search-select-search__combobox-input",
+                input: "advanced-search-suggest__combobox-input",
                 options:
                   "advanced-search-dropdown advanced-search-suggest__combobox-options"
               }}

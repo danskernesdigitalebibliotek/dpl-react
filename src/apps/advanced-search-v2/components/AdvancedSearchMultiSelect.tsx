@@ -7,14 +7,14 @@ import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import ComboBoxBase from "./ComboBoxBase";
 
-type HeadlessMultiSelectProps = {
+type AdvancedSearchMultiSelectProps = {
   items: Option[];
   value: Option[];
   onChange?: (vals: Option[]) => void;
   label: string;
 };
 
-const HeadlessMultiSelect: React.FC<HeadlessMultiSelectProps> = ({
+const AdvancedSearchMultiSelect: React.FC<AdvancedSearchMultiSelectProps> = ({
   items = [],
   value,
   onChange,
@@ -26,12 +26,12 @@ const HeadlessMultiSelect: React.FC<HeadlessMultiSelectProps> = ({
   const hasSelection = selectedCount > 0;
 
   return (
-    <div className="advanced-search-select-search-wrapper">
+    <div className="advanced-search-multi-select-wrapper">
       {label && (
-        <label className="advanced-search-select-search__label">{label}</label>
+        <label className="advanced-search-multi-select__label">{label}</label>
       )}
-      <Popover className="advanced-search-select-search">
-        <PopoverButton className="dropdown dropdown--grey-borders advanced-search-select-search__button">
+      <Popover className="advanced-search-multi-select">
+        <PopoverButton className="dropdown dropdown--grey-borders advanced-search-multi-select__button">
           <div className="dropdown__select dropdown__select--inline-body-font focus-styling advanced-search-v2__multiselect-button">
             {hasSelection
               ? t("advancedSearchSelectedText")
@@ -49,7 +49,7 @@ const HeadlessMultiSelect: React.FC<HeadlessMultiSelectProps> = ({
 
         <PopoverPanel
           anchor="bottom"
-          className="advanced-search-dropdown advanced-search-select-search__popover-panel"
+          className="advanced-search-dropdown advanced-search-multi-select__popover-panel"
         >
           <ComboBoxBase
             multiple
@@ -63,7 +63,7 @@ const HeadlessMultiSelect: React.FC<HeadlessMultiSelectProps> = ({
             query={query}
             onQueryChange={setQuery}
             classes={{
-              options: "advanced-search-select-search__combobox-options"
+              options: "advanced-search-multi-select__combobox-options"
             }}
             optionsStatic
             showEmptyStates
@@ -85,4 +85,4 @@ const HeadlessMultiSelect: React.FC<HeadlessMultiSelectProps> = ({
   );
 };
 
-export default HeadlessMultiSelect;
+export default AdvancedSearchMultiSelect;
