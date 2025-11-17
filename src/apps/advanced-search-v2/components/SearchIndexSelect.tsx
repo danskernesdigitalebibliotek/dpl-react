@@ -60,4 +60,6 @@ const SearchIndexSelect = forwardRef<HTMLButtonElement, SearchIndexSelectProps>(
   }
 );
 
+SearchIndexSelect.displayName = "SearchIndexSelect";
+
 export default SearchIndexSelect;
