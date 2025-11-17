@@ -39,35 +39,37 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
     const filterConfig = FACETS_CONFIG.find((c) => c.facetField === facetField);
     if (!filterConfig) return;
 
+    // Remove filter if empty
     if (selectedValues.length === 0) {
-      // Remove filter if empty
       setFiltersInUrl(
         filtersFromUrl.filter((f) => f.facetField !== facetField)
       );
-    } else {
-      const existingFilter = filtersFromUrl.find(
-        (f) => f.facetField === facetField
-      );
-
-      if (existingFilter) {
-        // Update existing filter
-        setFiltersInUrl(
-          filtersFromUrl.map((f) =>
-            f.facetField === facetField ? { ...f, selectedValues } : f
-          )
-        );
-      } else {
-        // Add new filter
-        setFiltersInUrl([
-          ...filtersFromUrl,
-          {
-            label: filterConfig.label,
-            facetField,
-            selectedValues
-          }
-        ]);
-      }
+      return;
     }
+
+    const existingFilter = filtersFromUrl.find(
+      (f) => f.facetField === facetField
+    );
+
+    // Update existing filter
+    if (existingFilter) {
+      setFiltersInUrl(
+        filtersFromUrl.map((f) =>
+          f.facetField === facetField ? { ...f, selectedValues } : f
+        )
+      );
+      return;
+    }
+
+    // Add new filter
+    setFiltersInUrl([
+      ...filtersFromUrl,
+      {
+        label: filterConfig.label,
+        facetField,
+        selectedValues
+      }
+    ]);
   };
 
   const getSelectedValues = (facetField: ComplexSearchFacetsEnum): string[] => {
