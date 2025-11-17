@@ -3731,10 +3731,10 @@
     "@typescript-eslint/types" "8.19.0"
     eslint-visitor-keys "^4.2.0"
 
-"@vitest/coverage-istanbul@^4.0.8":
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/@vitest/coverage-istanbul/-/coverage-istanbul-4.0.8.tgz#256239f094bfe432c78cae5d97d3f2a0abdb75be"
-  integrity sha512-YaoGA7laI7CUv+DnvwbRWF2aiMCU3AE/pFDbheUw27c5mrnXPbWmB1XKKjq0EoxgJIlw9ctEpQdjYFidz0Mi1w==
+"@vitest/coverage-istanbul@^4.0.9":
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@vitest/coverage-istanbul/-/coverage-istanbul-4.0.9.tgz#170fe556fcc3b41895095ab64ad0eecf9087973b"
+  integrity sha512-nMwXECwrkcJUb4rNS/VvGzsdwPKQUty9hIg0Otvtmh3Xf6UVEuWwxZRlyND1Aa0NdX5JyPzQ0v/X7wQv3sf+Gg==
   dependencies:
     "@istanbuljs/schema" "^0.1.3"
     debug "^4.4.3"
@@ -5060,11 +5060,6 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001702, caniuse-lite@^1.0.30001746, caniuse-lite@^1.0.30001751, caniuse-lite@^1.0.30001754:
-  version "1.0.30001754"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001754.tgz#7758299d9a72cce4e6b038788a15b12b44002759"
-  integrity sha512-x6OeBXueoAceOmotzx3PO4Zpt4rzpeIFsSr6AAePTZxSkXiYDUmpypEl7e2+8NCd9bD7bXjqyef8CJYPC1jfxg==
-
-caniuse-lite@^1.0.30001751:
   version "1.0.30001754"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001754.tgz#7758299d9a72cce4e6b038788a15b12b44002759"
   integrity sha512-x6OeBXueoAceOmotzx3PO4Zpt4rzpeIFsSr6AAePTZxSkXiYDUmpypEl7e2+8NCd9bD7bXjqyef8CJYPC1jfxg==
