@@ -55,18 +55,19 @@ The main runtime component is `AdvancedSearchV2`, which renders the form and the
 
 ### `AdvancedSearchV2.tsx`
 
-- Very thin container:
+- Thin container that receives `pageSize` from the entry and passes it through:
 
   ```tsx
-  const AdvancedSearchV2: React.FC = () => (
+  const AdvancedSearchV2: React.FC<{ pageSize: number }> = ({ pageSize }) => (
     <div className="advanced-search-v2">
       <SearchForm />
-      <AdvancedSearchResultsWithFacets />
+      <AdvancedSearchResultsWithFacets pageSize={pageSize} />
     </div>
   );
   ```
 
 - `SearchForm` and `AdvancedSearchResultsWithFacets` are responsible for most behavior.
+- The `pageSize` prop is required and flows from entry → V2 → results component.
 
 ---
 
@@ -148,7 +149,7 @@ Read‑only view of **committed search parameters** from the URL.
 
 Fetches paginated search results for the current CQL query.
 
-- Inputs: `{ cql, hasQuery, pageSize = DEFAULT_PAGE_SIZE }`.
+- Inputs: `{ cql, hasQuery, pageSize }` (all required).
 - Uses `usePager` (from `components/result-pager`) to get:
   - `page` – current page index.
   - `PagerComponent` – pagination UI.
