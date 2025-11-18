@@ -17,7 +17,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
   AdvancedSearchResultsWithFacetsProps
 > = ({ pageSize }) => {
   const t = useText();
-  const { cql, hasQuery } = useSearchQueries();
+  const { cql, hasQuery, onShelf } = useSearchQueries();
   const { setView } = useFormVisibility();
   const { clearFacets } = useSearchFormState();
   const {
@@ -29,7 +29,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
     shouldShowSearchResults,
     shouldShowResultHeadline,
     shouldShowZeroResults
-  } = usePaginatedResults({ cql, hasQuery, pageSize });
+  } = usePaginatedResults({ cql, hasQuery, onShelf, pageSize });
 
   if (!hasQuery) return null;
 
