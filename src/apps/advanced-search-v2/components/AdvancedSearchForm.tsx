@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, Activity } from "react";
+import React, { useRef, useEffect } from "react";
+import { Activity } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
 import AdvancedSearchSelect from "./AdvancedSearchSelect";
 import AdvancedSearchSummary from "./AdvancedSearchSummary";
@@ -26,8 +27,7 @@ const AdvancedSearchForm: React.FC = () => {
     handleClearFilters
   } = useSearchFormState();
 
-  const { shouldShowForm, shouldShowSummary, setShowForm } =
-    useFormVisibility();
+  const { view, hasCurrentQuery, setView } = useFormVisibility();
 
   // Focus on the newly added suggest row's SearchIndexSelect
   useEffect(() => {
@@ -51,16 +51,18 @@ const AdvancedSearchForm: React.FC = () => {
 
   const handleSearchComplete = () => {
     handleSearch();
-    setShowForm(false);
+    setView("summary");
   };
 
   return (
     <section className="advanced-search-v2__form">
-      <Activity mode={shouldShowSummary ? "visible" : "hidden"}>
-        <AdvancedSearchSummary onEditClick={() => setShowForm(true)} />
+      <Activity
+        mode={view === "summary" && hasCurrentQuery ? "visible" : "hidden"}
+      >
+        <AdvancedSearchSummary onEditClick={() => setView("form")} />
       </Activity>
 
-      <Activity mode={shouldShowForm ? "visible" : "hidden"}>
+      <Activity mode={view === "form" ? "visible" : "hidden"}>
         <>
           {/* Suggest inputs */}
           <div className="advanced-search-v2__suggests">
