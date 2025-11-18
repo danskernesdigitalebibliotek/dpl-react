@@ -1,4 +1,4 @@
-import { SuggestState, FilterState } from "../types";
+import { SuggestState, FacetState } from "../types";
 import { COMPLEX_FACET_TO_CQL_FIELD } from "./field-mappings";
 
 // Builds search term part of CQL query with operators (AND, OR, NOT)
@@ -25,11 +25,11 @@ export const buildSuggestTerms = (suggests: SuggestState[]): string => {
   return suggestTerms.length > 0 ? `(${suggestTerms.join(" ")})` : "";
 };
 
-// Builds filter terms from unified filters state
+// Builds filter terms from pre-search facets and facets
 // Maps GraphQL enum to CQL field names and wraps in phrase matching syntax
 // e.g. [{ facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues: ["dansk"] }]
 //   => ['((phrase.mainlanguage="dansk"))']
-export const buildFilterTerms = (filters: FilterState[]): string[] => {
+export const buildFilterTerms = (filters: FacetState[]): string[] => {
   const filterTermsSet = new Set<string>();
 
   filters.forEach((item) => {
@@ -50,13 +50,14 @@ export const buildFilterTerms = (filters: FilterState[]): string[] => {
   return Array.from(filterTermsSet);
 };
 
-// Builds complete CQL query from search terms and filters
+// Builds complete CQL query from search terms, pre-search facets and facets
 // Returns "*" wildcard if no query is provided
-// e.g. suggests=[{term:"term.default",query:"harry"}], filters=[{facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues:["dansk"]}]
+// e.g. suggests=[{term:"term.default",query:"harry"}], preSearchFacets=[{facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues:["dansk"]}]
 //   => '(term.default="harry") AND ((phrase.mainlanguage="dansk"))'
 export const buildCQLQuery = (
   suggests: SuggestState[],
-  filters: FilterState[],
+  preSearchFacets: FacetState[],
+  facets: FacetState[],
   onShelf?: boolean,
   onlyExtraTitles?: boolean
 ): string => {
@@ -68,9 +69,13 @@ export const buildCQLQuery = (
     parts.push(suggestPart);
   }
 
-  // Add filter terms
-  const filterParts = buildFilterTerms(filters);
-  parts.push(...filterParts);
+  // Add pre-search facet filter terms
+  const preSearchFacetParts = buildFilterTerms(preSearchFacets);
+  parts.push(...preSearchFacetParts);
+
+  // Add facet filter terms
+  const facetParts = buildFilterTerms(facets);
+  parts.push(...facetParts);
 
   // Add toggle filters
   if (onShelf) {

@@ -9,7 +9,9 @@ import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
 import { SEARCH_INDEX_OPTIONS } from "../lib/search-fields-config";
-import { INITIAL_FILTERS_STATE } from "../lib/initial-state";
+import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
+import { useQueryState, parseAsJson } from "nuqs";
+import { FacetState } from "../types";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
@@ -17,14 +19,20 @@ const AdvancedSearchForm: React.FC = () => {
   const previousSuggestCount = useRef<number>(0);
   const {
     suggests,
-    filters,
+    preSearchFacets,
     updateSuggest,
-    updateFilter,
+    updatePreSearchFacet,
     addSuggest,
     removeSuggest,
     handleSearch,
     handleClearFilters
   } = useSearchFormState();
+
+  // Access facets to clear them when editing
+  const [, setFacets] = useQueryState(
+    "facets",
+    parseAsJson((value) => value as FacetState[]).withDefault([])
+  );
 
   const { view, hasCurrentQuery, setView } = useFormVisibility();
 
@@ -46,7 +54,9 @@ const AdvancedSearchForm: React.FC = () => {
   // Check if there are any filters to reset
   const hasFilters =
     suggests.some((suggest) => suggest.query.trim()) ||
-    filters.some((filter) => filter.selectedValues.length > 0);
+    preSearchFacets.some(
+      (preSearchFacet) => preSearchFacet.selectedValues.length > 0
+    );
 
   const handleSearchComplete = () => {
     handleSearch();
@@ -58,7 +68,13 @@ const AdvancedSearchForm: React.FC = () => {
       <Activity
         mode={view === "summary" && hasCurrentQuery ? "visible" : "hidden"}
       >
-        <AdvancedSearchSummary onEditClick={() => setView("form")} />
+        <AdvancedSearchSummary
+          onEditClick={() => {
+            // Clear facets (sidebar filters) when editing, keep preSearchFacets
+            setFacets([]);
+            setView("form");
+          }}
+        />
       </Activity>
 
       <Activity mode={view === "form" ? "visible" : "hidden"}>
@@ -110,14 +126,15 @@ const AdvancedSearchForm: React.FC = () => {
             </button>
           </div>
 
-          {/* Filter selects - fixed structure, values from unified state */}
+          {/* Pre-search facet selects - fixed structure, values from preSearchFacets state */}
           <div className="advanced-search-v2__selects-grid">
-            {INITIAL_FILTERS_STATE.map((config) => {
-              // Get current values from unified filters state
-              const currentFilter = filters.find(
+            {INITIAL_PRE_SEARCH_FACETS_STATE.map((config) => {
+              // Get current values from preSearchFacets state
+              const currentPreSearchFacet = preSearchFacets.find(
                 (f) => f.facetField === config.facetField
               );
-              const selectedValues = currentFilter?.selectedValues ?? [];
+              const selectedValues =
+                currentPreSearchFacet?.selectedValues ?? [];
 
               return (
                 <AdvancedSearchSelect
@@ -131,7 +148,7 @@ const AdvancedSearchForm: React.FC = () => {
                   onChange={(values) => {
                     const newValues = values.map((option) => option.value);
                     // Upsert: update if exists, add if new, remove if empty
-                    updateFilter({
+                    updatePreSearchFacet({
                       label: config.label,
                       facetField: config.facetField,
                       selectedValues: newValues
