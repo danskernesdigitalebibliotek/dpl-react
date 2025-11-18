@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useQueryStates, parseAsJson } from "nuqs";
+import { useQueryStates, parseAsJson, parseAsBoolean } from "nuqs";
 import { SuggestState, FacetState } from "../types";
 import { INITIAL_SUGGEST_STATE } from "../lib/initial-state";
 
@@ -30,8 +30,9 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
       preSearchFacets: parseAsJson(
         (value) => value as FacetState[]
       ).withDefault([]),
-      // When switching to form view, clear facets
-      facets: parseAsJson((value) => value as FacetState[]).withDefault([])
+      facets: parseAsJson((value) => value as FacetState[]).withDefault([]),
+      onShelf: parseAsBoolean.withDefault(false),
+      onlyExtraTitles: parseAsBoolean.withDefault(false)
     },
     { shallow: true }
   );
@@ -133,9 +134,9 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     });
   }, [setUrlState]);
 
-  // Clear facets (sidebar filters) only
+  // Clear facets (sidebar filters) and toggles when returning to edit
   const clearFacets = useCallback(() => {
-    setUrlState({ facets: [] });
+    setUrlState({ facets: [], onShelf: false, onlyExtraTitles: false });
   }, [setUrlState]);
 
   return {
