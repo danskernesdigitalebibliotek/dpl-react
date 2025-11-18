@@ -1,7 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import usePager from "../../../components/result-pager/use-pager";
 import { Work } from "../../../core/utils/types/entities";
-import { useComplexSearchWithPaginationQuery } from "../../../core/dbc-gateway/generated/graphql";
+import {
+  useComplexSearchWithPaginationQuery,
+  HoldingsStatusEnum
+} from "../../../core/dbc-gateway/generated/graphql";
 
 export interface UsePaginatedResultsReturn {
   resultItems: Work[];
@@ -21,6 +24,7 @@ export interface UsePaginatedResultsReturn {
 interface UsePaginatedResultsProps {
   cql: string;
   hasQuery: boolean;
+  onShelf: boolean;
   pageSize: number;
 }
 
@@ -30,6 +34,7 @@ interface UsePaginatedResultsProps {
 export const usePaginatedResults = ({
   cql,
   hasQuery,
+  onShelf,
   pageSize
 }: UsePaginatedResultsProps): UsePaginatedResultsReturn => {
   const [resultItems, setResultItems] = useState<Work[]>([]);
@@ -49,7 +54,9 @@ export const usePaginatedResults = ({
       cql,
       offset: page * pageSize,
       limit: pageSize,
-      filters: {}
+      filters: {
+        ...(onShelf && { status: [HoldingsStatusEnum.Onshelf] })
+      }
     },
     {
       enabled: hasQuery,
