@@ -115,6 +115,7 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
               label={config.label}
               selectedValues={selectedValues}
               selectedCount={selectedCount}
+              onShelf={onShelf}
               onChange={(vals) => handleFacetChange(config.facetField, vals)}
             />
           );
