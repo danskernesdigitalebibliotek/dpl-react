@@ -12,6 +12,7 @@ export interface UseSearchFormStateReturn {
   removeSuggest: (index: number) => void;
   handleSearch: () => void;
   handleClearFilters: () => void;
+  clearFacets: () => void;
 }
 
 /**
@@ -132,6 +133,11 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     });
   }, [setUrlState]);
 
+  // Clear facets (sidebar filters) only
+  const clearFacets = useCallback(() => {
+    setUrlState({ facets: [] });
+  }, [setUrlState]);
+
   return {
     suggests,
     preSearchFacets,
@@ -140,6 +146,7 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     addSuggest,
     removeSuggest,
     handleSearch,
-    handleClearFilters
+    handleClearFilters,
+    clearFacets
   };
 };
