@@ -1,35 +1,19 @@
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
-import { SuggestState, FilterState } from "../types";
+import { SuggestState, FacetConfig } from "../types";
 
 export const INITIAL_SUGGEST_STATE: SuggestState[] = [
   { term: "term.default", query: "", operator: "and" },
   { term: "term.default", query: "", operator: "and" }
 ];
 
-export const INITIAL_FILTERS_STATE: FilterState[] = [
-  {
-    label: "Genre og form",
-    facetField: ComplexSearchFacetsEnum.Genreandform,
-    selectedValues: []
-  },
-  {
-    label: "Sprog",
-    facetField: ComplexSearchFacetsEnum.Mainlanguage,
-    selectedValues: []
-  },
+// Pre-search facets are the form selects shown in the search form
+export const INITIAL_PRE_SEARCH_FACETS_STATE: FacetConfig[] = [
+  { label: "Genre og form", facetField: ComplexSearchFacetsEnum.Genreandform },
+  { label: "Sprog", facetField: ComplexSearchFacetsEnum.Mainlanguage },
   {
     label: "Udgivelsesår",
-    facetField: ComplexSearchFacetsEnum.Publicationyear,
-    selectedValues: []
+    facetField: ComplexSearchFacetsEnum.Publicationyear
   },
-  {
-    label: "Aldersgruppe",
-    facetField: ComplexSearchFacetsEnum.Ages,
-    selectedValues: []
-  },
-  {
-    label: "Kilde",
-    facetField: ComplexSearchFacetsEnum.Source,
-    selectedValues: []
-  }
+  { label: "Aldersgruppe", facetField: ComplexSearchFacetsEnum.Ages },
+  { label: "Kilde", facetField: ComplexSearchFacetsEnum.Source }
 ];

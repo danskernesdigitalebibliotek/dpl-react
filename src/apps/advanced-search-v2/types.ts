@@ -8,8 +8,8 @@ export type SuggestState = {
   operator?: Operator;
 };
 
-// Unified filter state used by both form MultiSelects and sidebar Facets
-export type FilterState = {
+// Facets are filters that can be either pre-search (form selects) or post-search (sidebar filters)
+export type FacetState = {
   label: string;
   facetField: ComplexSearchFacetsEnum;
   selectedValues: string[];
