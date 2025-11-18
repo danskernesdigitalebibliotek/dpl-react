@@ -3,7 +3,9 @@ import { serviceUrlKeys } from "../utils/reduxMiddleware/extractServiceBaseUrls"
 // This map is for mapping query names to FBI service base urls.
 export default {
   // Local requests.
+  complexFacetSearch: serviceUrlKeys.fbiLocal,
   complexSearchWithPagination: serviceUrlKeys.fbiLocal,
+  complexSuggest: serviceUrlKeys.fbiLocal,
   complexSearchWithPaginationWorkAccess: serviceUrlKeys.fbiLocal,
   getMaterial: serviceUrlKeys.fbiLocal,
   intelligentFacets: serviceUrlKeys.fbiLocal,
