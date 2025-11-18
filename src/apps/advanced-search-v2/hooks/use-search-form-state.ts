@@ -100,11 +100,14 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
         return suggest;
       });
 
-    setUrlState({
-      // Don't write empty suggests to URL - let it use default on reload
-      suggests: nonEmptySuggests.length > 0 ? nonEmptySuggests : null,
-      filters: filters.length > 0 ? filters : null
-    });
+    setUrlState(
+      {
+        // Don't write empty suggests to URL - let it use default on reload
+        suggests: nonEmptySuggests.length > 0 ? nonEmptySuggests : null,
+        filters: filters.length > 0 ? filters : null
+      },
+      { history: "push" }
+    );
   }, [suggests, filters, setUrlState]);
 
   // Clear all filters
