@@ -3,7 +3,8 @@ import clsx from "clsx";
 import {
   ComplexSearchFacetsEnum,
   ComplexFacetSearchQuery,
-  useComplexFacetSearchQuery
+  useComplexFacetSearchQuery,
+  HoldingsStatusEnum
 } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
@@ -15,6 +16,7 @@ interface AdvancedSearchFilterGroupProps {
   label: string;
   selectedValues: string[];
   selectedCount: number;
+  onShelf: boolean;
   onChange: (selectedValues: string[]) => void;
 }
 
@@ -32,6 +34,7 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
   label,
   selectedValues,
   selectedCount,
+  onShelf,
   onChange
 }) => {
   const t = useText();
@@ -41,7 +44,9 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
   const { data: facetData } = useComplexFacetSearchQuery({
     cql,
     facets: { facets: [facetField], facetLimit: 50 },
-    filters: {}
+    filters: {
+      ...(onShelf && { status: [HoldingsStatusEnum.Onshelf] })
+    }
   });
 
   const facets = facetData?.complexSearch?.facets ?? [];
