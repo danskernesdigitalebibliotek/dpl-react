@@ -1,12 +1,13 @@
 export type Option = {
   label: string;
   value: string;
+  count?: number; // Optional count for facet options
 };
 
 // Minimal common shape from both localSuggest and complexSuggest
 // - localSuggest: { term, work: { titles: { main: string[] } } }
 // - complexSuggest: { term, work: { titles: { main: string[] } } }
-export type MinimalSuggestItem = {
+type MinimalSuggestItem = {
   term: string;
   work?: { titles: { main: string[] } } | null;
 };
