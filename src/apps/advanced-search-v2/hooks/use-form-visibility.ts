@@ -1,12 +1,14 @@
 import { useEffect } from "react";
-import { useQueryState, parseAsBoolean, parseAsJson } from "nuqs";
+import { useQueryState, parseAsJson, parseAsStringEnum } from "nuqs";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
 import { SuggestState, FilterState } from "../types";
 
+type FormView = "form" | "summary";
+
 interface UseFormVisibilityReturn {
-  shouldShowForm: boolean;
-  shouldShowSummary: boolean;
-  setShowForm: (value: boolean) => Promise<URLSearchParams>;
+  view: FormView;
+  hasCurrentQuery: boolean;
+  setView: (value: FormView) => Promise<URLSearchParams>;
 }
 
 /**
@@ -14,9 +16,9 @@ interface UseFormVisibilityReturn {
  * Reads from URL state to determine if there's an active search query
  */
 export const useFormVisibility = (): UseFormVisibilityReturn => {
-  const [showForm, setShowForm] = useQueryState(
+  const [view, setView] = useQueryState(
     "edit",
-    parseAsBoolean.withDefault(true)
+    parseAsStringEnum<FormView>(["form", "summary"]).withDefault("form")
   );
 
   // Read committed search state from URL (not local draft state)
@@ -35,16 +37,14 @@ export const useFormVisibility = (): UseFormVisibilityReturn => {
 
   // Ensure we show the form when there is no current query (e.g. after clearing)
   useEffect(() => {
-    if (!hasCurrentQuery && !showForm) {
-      setShowForm(true);
+    if (!hasCurrentQuery && view !== "form") {
+      setView("form");
     }
-  }, [hasCurrentQuery, showForm, setShowForm]);
-
-  const shouldShowSummary = !showForm && hasCurrentQuery;
+  }, [hasCurrentQuery, view, setView]);
 
   return {
-    shouldShowForm: showForm,
-    shouldShowSummary,
-    setShowForm
+    view,
+    hasCurrentQuery,
+    setView
   };
 };
