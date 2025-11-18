@@ -3,8 +3,11 @@ import { useText } from "../../../core/utils/text";
 import SearchResultList from "../../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../../search-result/search-result-zero-hits";
 import AdvancedSearchFilters from "./AdvancedSearchFilters";
+import AdvancedSearchSummary from "./AdvancedSearchSummary";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
+import { useFormVisibility } from "../hooks/use-form-visibility";
+import { useSearchFormState } from "../hooks/use-search-form-state";
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;
@@ -15,6 +18,8 @@ const AdvancedSearchResultsWithFacets: React.FC<
 > = ({ pageSize }) => {
   const t = useText();
   const { cql, hasQuery } = useSearchQueries();
+  const { setView } = useFormVisibility();
+  const { clearFacets } = useSearchFormState();
   const {
     resultItems,
     hitcount,
@@ -29,7 +34,14 @@ const AdvancedSearchResultsWithFacets: React.FC<
   if (!hasQuery) return null;
 
   return (
-    <div className="advanced-search-v2__results-container">
+    <>
+      <AdvancedSearchSummary
+        onEditClick={() => {
+          // Clear facets (sidebar filters) when editing, keep preSearchFacets
+          clearFacets();
+          setView("search");
+        }}
+      />
       <h2
         className="advanced-search-v2__result-heading"
         id="advanced-search-result"
@@ -61,7 +73,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
           {shouldShowZeroResults && <SearchResultZeroHits />}
         </section>
       </div>
-    </div>
+    </>
   );
 };
 
