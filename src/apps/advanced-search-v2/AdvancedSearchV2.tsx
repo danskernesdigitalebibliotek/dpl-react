@@ -8,17 +8,15 @@ interface AdvancedSearchV2Props {
 }
 
 const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
-  const { view, hasCurrentQuery } = useFormVisibility();
+  const { showResults } = useFormVisibility();
 
   return (
     <div className="advanced-search-v2">
-      <Activity mode={view === "search" ? "visible" : "hidden"}>
+      <Activity mode={!showResults ? "visible" : "hidden"}>
         <SearchForm />
       </Activity>
 
-      <Activity
-        mode={view === "results" && hasCurrentQuery ? "visible" : "hidden"}
-      >
+      <Activity mode={showResults ? "visible" : "hidden"}>
         <AdvancedSearchResultsWithFacets pageSize={pageSize} />
       </Activity>
     </div>
