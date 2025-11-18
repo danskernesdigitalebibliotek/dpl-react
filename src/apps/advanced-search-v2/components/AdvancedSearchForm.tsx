@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import { Activity } from "react";
+import React, { useRef, useEffect, Activity } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
 import AdvancedSearchSelect from "./AdvancedSearchSelect";
 import AdvancedSearchSummary from "./AdvancedSearchSummary";
