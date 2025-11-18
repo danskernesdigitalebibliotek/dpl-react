@@ -6,6 +6,8 @@ import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
 interface UseSearchQueriesReturn {
   cql: string;
   hasQuery: boolean;
+  onShelf: boolean;
+  onlyExtraTitles: boolean;
   urlState: {
     suggests: SuggestState[];
     preSearchFacets: FacetState[];
@@ -43,15 +45,8 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
 
   // Build CQL query from all inputs
   const cql = useMemo(
-    () =>
-      buildCQLQuery(
-        suggests,
-        preSearchFacets,
-        facets,
-        onShelf,
-        onlyExtraTitles
-      ),
-    [suggests, preSearchFacets, facets, onShelf, onlyExtraTitles]
+    () => buildCQLQuery(suggests, preSearchFacets, facets, onlyExtraTitles),
+    [suggests, preSearchFacets, facets, onlyExtraTitles]
   );
 
   const hasQuery = hasValidQuery(cql);
@@ -59,6 +54,8 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
   return {
     cql,
     hasQuery,
+    onShelf,
+    onlyExtraTitles,
     urlState: {
       suggests,
       preSearchFacets,
