@@ -1,6 +1,7 @@
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 import { FacetConfig } from "../types";
 
+// Facets are the sidebar filters shown after search
 export const FACETS_CONFIG: FacetConfig[] = [
   {
     label: "Format",

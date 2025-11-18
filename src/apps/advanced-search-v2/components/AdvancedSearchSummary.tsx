@@ -13,7 +13,7 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
 }) => {
   const t = useText();
   const { urlState } = useSearchQueries();
-  const { suggests, filters } = urlState;
+  const { suggests, preSearchFacets } = urlState;
 
   const renderOperator = (operator: Operator) => {
     const operatorMap = {
@@ -59,11 +59,11 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           );
         })}
 
-        {filters.flatMap((filter) =>
-          filter.selectedValues.map((value, i) => (
-            <React.Fragment key={`${filter.facetField}-${i}`}>
+        {preSearchFacets.flatMap((preSearchFacet) =>
+          preSearchFacet.selectedValues.map((value, i) => (
+            <React.Fragment key={`${preSearchFacet.facetField}-${i}`}>
               {renderOperator("and")}
-              {renderItem(filter.label, value)}
+              {renderItem(preSearchFacet.label, value)}
             </React.Fragment>
           ))
         )}

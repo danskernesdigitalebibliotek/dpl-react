@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useQueryState, parseAsJson, parseAsStringEnum } from "nuqs";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
-import { SuggestState, FilterState } from "../types";
+import { SuggestState, FacetState } from "../types";
 
 type FormView = "form" | "summary";
 
@@ -27,12 +27,17 @@ export const useFormVisibility = (): UseFormVisibilityReturn => {
     parseAsJson((value) => value as SuggestState[]).withDefault([])
   );
 
-  const [urlFilters] = useQueryState(
-    "filters",
-    parseAsJson((value) => value as FilterState[]).withDefault([])
+  const [urlPreSearchFacets] = useQueryState(
+    "preSearchFacets",
+    parseAsJson((value) => value as FacetState[]).withDefault([])
   );
 
-  const cql = buildCQLQuery(urlSuggests, urlFilters);
+  const [urlFacets] = useQueryState(
+    "facets",
+    parseAsJson((value) => value as FacetState[]).withDefault([])
+  );
+
+  const cql = buildCQLQuery(urlSuggests, urlPreSearchFacets, urlFacets);
   const hasCurrentQuery = hasValidQuery(cql);
 
   // Ensure we show the form when there is no current query (e.g. after clearing)
