@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, Activity } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
 import AdvancedSearchSelect from "./AdvancedSearchSelect";
 import AdvancedSearchSummary from "./AdvancedSearchSummary";
@@ -56,11 +56,11 @@ const AdvancedSearchForm: React.FC = () => {
 
   return (
     <section className="advanced-search-v2__form">
-      {shouldShowSummary && (
+      <Activity mode={shouldShowSummary ? "visible" : "hidden"}>
         <AdvancedSearchSummary onEditClick={() => setShowForm(true)} />
-      )}
+      </Activity>
 
-      {shouldShowForm && (
+      <Activity mode={shouldShowForm ? "visible" : "hidden"}>
         <>
           {/* Suggest inputs */}
           <div className="advanced-search-v2__suggests">
@@ -147,7 +147,7 @@ const AdvancedSearchForm: React.FC = () => {
             showReset={hasFilters}
           />
         </>
-      )}
+      </Activity>
     </section>
   );
 };
