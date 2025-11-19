@@ -80,7 +80,7 @@ const AdvancedSearchForm: React.FC = () => {
               query={suggest.query}
               onQueryChange={(query) => updateSuggest(index, { query })}
               suggestType={config.type}
-              placeholderKey={config.placeholderKey}
+              inputPlaceholder={t(config.placeholderKey)}
               operator={suggests[index + 1]?.operator}
               onOperatorChange={
                 index < suggests.length - 1
