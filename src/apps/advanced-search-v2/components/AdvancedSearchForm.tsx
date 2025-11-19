@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
 import AdvancedSearchSelect from "./AdvancedSearchSelect";
+import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
 
 import { useSearchFormState } from "../hooks/use-search-form-state";
 import { useFormVisibility } from "../hooks/use-form-visibility";
@@ -9,6 +10,7 @@ import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import { useText } from "../../../core/utils/text";
 import { SEARCH_INDEX_OPTIONS } from "../lib/search-fields-config";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
+import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
@@ -111,6 +113,30 @@ const AdvancedSearchForm: React.FC = () => {
             (f) => f.facetField === config.facetField
           );
           const selectedValues = currentPreSearchFacet?.selectedValues ?? [];
+
+          if (config.facetField === ComplexSearchFacetsEnum.Ages) {
+            return (
+              <AdvancedSearchAgeSelect
+                key={config.facetField}
+                label={config.label}
+                value={{
+                  from: selectedValues[0] ? parseInt(selectedValues[0]) : null,
+                  to: selectedValues[1] ? parseInt(selectedValues[1]) : null
+                }}
+                onChange={(range) => {
+                  const values: string[] = [];
+                  if (range.from !== null) values.push(String(range.from));
+                  if (range.to !== null) values.push(String(range.to));
+
+                  updatePreSearchFacet({
+                    label: config.label,
+                    facetField: config.facetField,
+                    selectedValues: values
+                  });
+                }}
+              />
+            );
+          }
 
           return (
             <AdvancedSearchSelect
