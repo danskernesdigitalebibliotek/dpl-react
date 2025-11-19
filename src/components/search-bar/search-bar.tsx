@@ -122,10 +122,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           aria-expanded={isHeaderDropdownOpen}
         />
       </form>
-      <a
-        className="header__advanced-desktop"
-        href={String(advancedSearchUrl)}
-      >
+      <a className="header__advanced-desktop" href={String(advancedSearchUrl)}>
         {t("headerDropdownItemAdvancedSearchText")}
       </a>
     </>
