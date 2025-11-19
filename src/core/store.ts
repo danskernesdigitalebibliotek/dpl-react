@@ -10,7 +10,7 @@ import {
 } from "react-redux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
-import textReducer from "./text.slice";
+import textReducer, { addTextEntries } from "./text.slice";
 import modalReducer from "./modal.slice";
 import urlReducer from "./url.slice";
 import filterReducer from "./filter.slice";
@@ -50,6 +50,19 @@ export const store = configureStore({
   ),
   devTools: process.env.NODE_ENV === "development"
 });
+
+// Bootstrap global texts from window.dplReact.settings.texts (if present)
+if (typeof window !== "undefined") {
+  const globalTexts = window.dplReact?.settings?.texts;
+
+  if (globalTexts && typeof globalTexts === "object") {
+    store.dispatch(
+      addTextEntries({
+        entries: globalTexts
+      })
+    );
+  }
+}
 
 export const persistor = persistStore(store);
 
