@@ -3,6 +3,7 @@ import { SEARCH_INDEX_OPTIONS } from "../lib/search-fields-config";
 import { useText } from "../../../core/utils/text";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { Operator } from "../types";
+import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 
 interface AdvancedSearchSummaryProps {
   onEditClick?: () => void;
@@ -59,14 +60,28 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           );
         })}
 
-        {preSearchFacets.flatMap((preSearchFacet) =>
-          preSearchFacet.selectedValues.map((value, i) => (
+        {preSearchFacets.map((preSearchFacet) => {
+          // Ages: show as range instead of individual values
+          if (preSearchFacet.facetField === ComplexSearchFacetsEnum.Ages) {
+            const [from, to] = preSearchFacet.selectedValues;
+            const value = to ? `${from}-${to}` : `${from}+`;
+
+            return (
+              <React.Fragment key={preSearchFacet.facetField}>
+                {renderOperator("and")}
+                {renderItem(preSearchFacet.label, value)}
+              </React.Fragment>
+            );
+          }
+
+          // Other facets: show each value
+          return preSearchFacet.selectedValues.map((value, i) => (
             <React.Fragment key={`${preSearchFacet.facetField}-${i}`}>
               {renderOperator("and")}
               {renderItem(preSearchFacet.label, value)}
             </React.Fragment>
-          ))
-        )}
+          ));
+        })}
 
         {onEditClick && (
           <button
