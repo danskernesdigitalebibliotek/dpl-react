@@ -330,6 +330,7 @@ const SearchHeader: React.FC = () => {
           setQWithoutQuery={setQWithoutQuery}
           isHeaderDropdownOpen={isHeaderDropdownOpen}
           setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
+          advancedSearchUrl={advancedSearchUrl}
           redirectUrl={redirectUrl}
         />
         <Autosuggest

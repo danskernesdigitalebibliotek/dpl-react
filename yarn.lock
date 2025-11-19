@@ -1296,10 +1296,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@danskernesdigitalebibliotek/dpl-design-system@2025.40.0-2d17557e7129a888c1640cae8e026f06189254b5":
-  version "2025.40.0-2d17557e7129a888c1640cae8e026f06189254b5"
-  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/2025.40.0-2d17557e7129a888c1640cae8e026f06189254b5/86ac69af816510a418b10c7d85877f6e84f455e0#86ac69af816510a418b10c7d85877f6e84f455e0"
-  integrity sha512-O+y4zV5FBOJ097ukt+p1GQtn1xDAPaDdGwUy5U5m9uXq9p81bt6/j6a06N4gC5QZc0TUL5WhpPhhnBJ0V3uDJA==
+"@danskernesdigitalebibliotek/dpl-design-system@0.0.0-6b88af884d8451bfd026cec6a9e9e5d4dcf804ec":
+  version "0.0.0-6b88af884d8451bfd026cec6a9e9e5d4dcf804ec"
+  resolved "https://npm.pkg.github.com/download/@danskernesdigitalebibliotek/dpl-design-system/0.0.0-6b88af884d8451bfd026cec6a9e9e5d4dcf804ec/7d7939b1c4a4c8f84eb3fa851221a71d8f55032f#7d7939b1c4a4c8f84eb3fa851221a71d8f55032f"
+  integrity sha512-FjZP3eCH891+cUSu9UxTtvA5Czpx07OEimy/aO1HmxlZNNc5rTXqwsahX0qaaZ2V/TaKZgl9Pc5v+ubOvc8O7w==
 
 "@discoveryjs/json-ext@^0.6.1":
   version "0.6.3"
@@ -5043,7 +5043,7 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001751, caniuse-lite@^1.0.30001754:
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001702, caniuse-lite@^1.0.30001746, caniuse-lite@^1.0.30001751, caniuse-lite@^1.0.30001754:
   version "1.0.30001754"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001754.tgz#7758299d9a72cce4e6b038788a15b12b44002759"
   integrity sha512-x6OeBXueoAceOmotzx3PO4Zpt4rzpeIFsSr6AAePTZxSkXiYDUmpypEl7e2+8NCd9bD7bXjqyef8CJYPC1jfxg==
