@@ -1,5 +1,6 @@
 import { SuggestState, FacetState } from "../types";
 import { COMPLEX_FACET_TO_CQL_FIELD } from "./field-mappings";
+import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 
 // Builds search term part of CQL query with operators (AND, OR, NOT)
 // Returns wrapped in parentheses or empty string if no valid terms
@@ -29,18 +30,32 @@ export const buildSuggestTerms = (suggests: SuggestState[]): string => {
 // Maps GraphQL enum to CQL field names and wraps in phrase matching syntax
 // e.g. [{ facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues: ["dansk"] }]
 //   => ['((phrase.mainlanguage="dansk"))']
+// Ages are handled specially:
+// e.g. [{ facetField: ComplexSearchFacetsEnum.Ages, selectedValues: ["3", "6"] }]
+//   => ['((ages within "3 6"))']
+// e.g. [{ facetField: ComplexSearchFacetsEnum.Ages, selectedValues: ["18"] }]
+//   => ['((ages>"18"))']
 export const buildFilterTerms = (filters: FacetState[]): string[] => {
   const filterTermsSet = new Set<string>();
 
   filters.forEach((item) => {
-    // Map GraphQL enum to CQL field name
+    // Ages: use "within" for range, ">" for open-ended
+    if (
+      item.facetField === ComplexSearchFacetsEnum.Ages &&
+      item.selectedValues[0]
+    ) {
+      const [from, to] = item.selectedValues;
+      const query = to ? `ages within "${from} ${to}"` : `ages>"${from}"`;
+      filterTermsSet.add(`((${query}))`);
+      return;
+    }
+
+    // Other facets: use phrase matching
     const field =
       COMPLEX_FACET_TO_CQL_FIELD[
         item.facetField as keyof typeof COMPLEX_FACET_TO_CQL_FIELD
       ];
-
     if (field) {
-      // Add each selected value as a filter with extra parentheses for phrase matching
       item.selectedValues.forEach((value) => {
         filterTermsSet.add(`((${field}="${value}"))`);
       });
