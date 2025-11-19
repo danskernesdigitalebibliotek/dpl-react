@@ -79,6 +79,19 @@ const AdvancedSearchMultiSelect: React.FC<AdvancedSearchMultiSelectProps> = ({
               />
             )}
           />
+
+          <div className="advanced-search-multi-select__footer">
+            <button
+              type="button"
+              className="advanced-search-multi-select__reset-button"
+              onClick={() => {
+                onChange?.([]);
+                setQuery("");
+              }}
+            >
+              {t("advancedSearchResetText")}
+            </button>
+          </div>
         </PopoverPanel>
       </Popover>
     </div>
