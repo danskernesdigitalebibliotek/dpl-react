@@ -3,9 +3,13 @@ import { useQueryState, parseAsBoolean, parseAsJson } from "nuqs";
 import AdvancedSearchFilterGroup from "./AdvancedSearchFilterGroup";
 import AdvancedSearchToggle from "./AdvancedSearchToggle";
 import { useText } from "../../../core/utils/text";
-import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
-import { FacetState } from "../types";
+import {
+  ComplexSearchFacetsEnum,
+  useComplexFacetSearchQuery,
+  HoldingsStatusEnum
+} from "../../../core/dbc-gateway/generated/graphql";
 import { FACETS_CONFIG } from "../lib/facet-configs";
+import { isValidFacetState } from "../lib/validation";
 
 interface AdvancedSearchFiltersProps {
   cql: string;
@@ -26,10 +30,25 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
     parseAsBoolean.withDefault(false)
   );
 
+  // Fetch all facets in one query
+  const facetFields = FACETS_CONFIG.map((c) => c.facetField);
+  const { data: facetData } = useComplexFacetSearchQuery({
+    cql,
+    facets: { facets: facetFields, facetLimit: 50 },
+    filters: {
+      ...(onShelf && { status: [HoldingsStatusEnum.Onshelf] })
+    }
+  });
+
+  const facetsResponse = facetData?.complexSearch?.facets ?? [];
+
   // Facets state (sidebar filters only)
   const [facetsFromUrl, setFacetsInUrl] = useQueryState(
     "facets",
-    parseAsJson((value) => value as FacetState[]).withDefault([])
+    parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([])
   );
 
   const handleFacetChange = (
@@ -107,15 +126,23 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
           const selectedValues = getSelectedValues(config.facetField);
           const selectedCount = getSelectedCount(config.facetField);
 
+          const facetResponse = facetsResponse.find((f) => {
+            if (!f.name) return false;
+            return (
+              f.name === config.facetField ||
+              f.name === `facet.${config.facetField.toLowerCase()}`
+            );
+          });
+          const facetValues = facetResponse?.values ?? [];
+
           return (
             <AdvancedSearchFilterGroup
               key={config.facetField}
-              cql={cql}
               facetField={config.facetField}
-              label={config.label}
+              label={t(config.label)}
               selectedValues={selectedValues}
               selectedCount={selectedCount}
-              onShelf={onShelf}
+              facetValues={facetValues}
               onChange={(vals) => handleFacetChange(config.facetField, vals)}
             />
           );

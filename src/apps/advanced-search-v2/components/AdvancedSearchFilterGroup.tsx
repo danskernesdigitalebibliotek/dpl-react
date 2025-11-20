@@ -2,56 +2,34 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import {
   ComplexSearchFacetsEnum,
-  ComplexFacetSearchQuery,
-  useComplexFacetSearchQuery,
-  HoldingsStatusEnum
+  ComplexSearchFacetValue
 } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import iconExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 
 interface AdvancedSearchFilterGroupProps {
-  cql: string;
   facetField: ComplexSearchFacetsEnum;
   label: string;
   selectedValues: string[];
   selectedCount: number;
-  onShelf: boolean;
+  facetValues: ComplexSearchFacetValue[];
   onChange: (selectedValues: string[]) => void;
 }
-
-type FacetValue = NonNullable<
-  NonNullable<
-    NonNullable<ComplexFacetSearchQuery["complexSearch"]["facets"]>[number]
-  >["values"]
->[number];
 
 const INITIAL_DISPLAY_LIMIT = 5;
 
 const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
-  cql,
   facetField,
   label,
   selectedValues,
   selectedCount,
-  onShelf,
+  facetValues,
   onChange
 }) => {
   const t = useText();
   const [isExpanded, setIsExpanded] = useState(false);
   const [showAll, setShowAll] = useState(false);
-
-  const { data: facetData } = useComplexFacetSearchQuery({
-    cql,
-    facets: { facets: [facetField], facetLimit: 50 },
-    filters: {
-      ...(onShelf && { status: [HoldingsStatusEnum.Onshelf] })
-    }
-  });
-
-  const facets = facetData?.complexSearch?.facets ?? [];
-  const facetValues: FacetValue[] =
-    (facets[0]?.values as FacetValue[] | undefined) ?? [];
 
   const handleCheckboxChange = (value: string, checked: boolean) => {
     if (checked) {

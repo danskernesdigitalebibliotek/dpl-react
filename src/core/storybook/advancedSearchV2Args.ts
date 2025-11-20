@@ -139,10 +139,90 @@ export const argTypes = {
     description: "Show less text",
     control: { type: "text" }
   },
-  advancedSearchResetText: {
-    description: "Advanced search reset button text",
+  advancedSearchFacetMaterialTypeText: {
+    description: "Facet label: Material type",
     control: { type: "text" }
-  }
+  },
+  advancedSearchFacetFormatText: {
+    description: "Facet label: Format",
+    control: { type: "text" }
+  },
+  advancedSearchFacetGenreAndFormText: {
+    description: "Facet label: Genre and Form",
+    control: { type: "text" }
+  },
+  advancedSearchFacetSourceText: {
+    description: "Facet label: Source",
+    control: { type: "text" }
+  },
+  advancedSearchFacetLanguageText: {
+    description: "Facet label: Language",
+    control: { type: "text" }
+  },
+  advancedSearchFacetAccessTypeText: {
+    description: "Facet label: Access Type",
+    control: { type: "text" }
+  },
+  advancedSearchFacetLevelText: {
+    description: "Facet label: Level",
+    control: { type: "text" }
+  },
+  advancedSearchFacetAudienceText: {
+    description: "Facet label: Audience",
+    control: { type: "text" }
+  },
+  advancedSearchFacetLixText: {
+    description: "Facet label: Lix",
+    control: { type: "text" }
+  },
+  advancedSearchFacetLetText: {
+    description: "Facet label: Let",
+    control: { type: "text" }
+  },
+  advancedSearchFacetSubjectText: {
+    description: "Facet label: Subject",
+    control: { type: "text" }
+  },
+  advancedSearchFacetHostPublicationText: {
+    description: "Facet label: Host Publication",
+    control: { type: "text" }
+  },
+  advancedSearchFacetCreatorText: {
+    description: "Facet label: Creator",
+    control: { type: "text" }
+  },
+  advancedSearchFacetContributorText: {
+    description: "Facet label: Contributor",
+    control: { type: "text" }
+  },
+  advancedSearchFacetInstrumentText: {
+    description: "Facet label: Instrument",
+    control: { type: "text" }
+  },
+  advancedSearchFacetChamberMusicText: {
+    description: "Facet label: Chamber Music",
+    control: { type: "text" }
+  },
+  advancedSearchFacetChoirText: {
+    description: "Facet label: Choir",
+    control: { type: "text" }
+  },
+  advancedSearchFacetScoreTypeText: {
+    description: "Facet label: Score Type",
+    control: { type: "text" }
+  },
+  advancedSearchFacetYearText: {
+    description: "Facet label: Year",
+    control: { type: "text" }
+  },
+  advancedSearchFacetFictionalCharacterText: {
+    description: "Facet label: Fictional Character",
+    control: { type: "text" }
+  },
+  advancedSearchFacetAgeText: {
+    description: "Facet label: Age",
+    control: { type: "text" }
+  },
 };
 
 export default {
@@ -184,7 +264,27 @@ export default {
     "Vis kun resultater der ikke er begrænset af kvoter for digitale lån.",
   advancedSearchShowAllText: "Vis alle",
   advancedSearchShowLessText: "Vis færre",
-  advancedSearchResetText: "Reset"
+  advancedSearchFacetMaterialTypeText: "Materialetype",
+  advancedSearchFacetFormatText: "Format",
+  advancedSearchFacetGenreAndFormText: "Genre og form",
+  advancedSearchFacetSourceText: "Kilde",
+  advancedSearchFacetLanguageText: "Sprog",
+  advancedSearchFacetAccessTypeText: "Fysisk/Online",
+  advancedSearchFacetLevelText: "Fagligt niveau",
+  advancedSearchFacetAudienceText: "Målgruppe",
+  advancedSearchFacetLixText: "Lix-tal",
+  advancedSearchFacetLetText: "Let",
+  advancedSearchFacetSubjectText: "Emne",
+  advancedSearchFacetHostPublicationText: "Værtspublikation",
+  advancedSearchFacetCreatorText: "Forfatter / ophav",
+  advancedSearchFacetContributorText: "Oplæser / oversætter / bidrag",
+  advancedSearchFacetInstrumentText: "Instrument",
+  advancedSearchFacetChamberMusicText: "Kammermusik",
+  advancedSearchFacetChoirText: "Noder til kor",
+  advancedSearchFacetScoreTypeText: "Nodetype",
+  advancedSearchFacetYearText: "Udgivelsesår",
+  advancedSearchFacetFictionalCharacterText: "Fiktiv hovedperson",
+  advancedSearchFacetAgeText: "Aldersgruppe",
 };
 
 export interface AdvancedSearchV2Args {
@@ -224,4 +324,25 @@ export interface AdvancedSearchV2Args {
   advancedSearchShowAllText: string;
   advancedSearchShowLessText: string;
   advancedSearchResetText: string;
+  advancedSearchFacetMaterialTypeText: string;
+  advancedSearchFacetFormatText: string;
+  advancedSearchFacetGenreAndFormText: string;
+  advancedSearchFacetSourceText: string;
+  advancedSearchFacetLanguageText: string;
+  advancedSearchFacetAccessTypeText: string;
+  advancedSearchFacetLevelText: string;
+  advancedSearchFacetAudienceText: string;
+  advancedSearchFacetLixText: string;
+  advancedSearchFacetLetText: string;
+  advancedSearchFacetSubjectText: string;
+  advancedSearchFacetHostPublicationText: string;
+  advancedSearchFacetCreatorText: string;
+  advancedSearchFacetContributorText: string;
+  advancedSearchFacetInstrumentText: string;
+  advancedSearchFacetChamberMusicText: string;
+  advancedSearchFacetChoirText: string;
+  advancedSearchFacetScoreTypeText: string;
+  advancedSearchFacetYearText: string;
+  advancedSearchFacetFictionalCharacterText: string;
+  advancedSearchFacetAgeText: string;
 }

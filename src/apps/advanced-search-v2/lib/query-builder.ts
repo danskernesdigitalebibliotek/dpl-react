@@ -11,7 +11,8 @@ export const buildSuggestTerms = (suggests: SuggestState[]): string => {
   suggests.forEach((suggest, i) => {
     if (!suggest.query.trim()) return; // Skip empty queries
 
-    const term = `${suggest.term}="${suggest.query}"`; // e.g., term.default="harry"
+    const escapedQuery = suggest.query.replace(/"/g, '\\"');
+    const term = `${suggest.term}="${escapedQuery}"`; // e.g., term.default="harry"
 
     if (i === 0) {
       // First term has no operator prefix
@@ -39,13 +40,19 @@ export const buildFilterTerms = (filters: FacetState[]): string[] => {
   const filterTermsSet = new Set<string>();
 
   filters.forEach((item) => {
-    // Ages: use "within" for range, ">" for open-ended
-    if (
-      item.facetField === ComplexSearchFacetsEnum.Ages &&
-      item.selectedValues[0]
-    ) {
+    let rangeFieldName: string | null = null;
+    if (item.facetField === ComplexSearchFacetsEnum.Publicationyear) {
+      rangeFieldName = "publicationyear";
+    } else if (item.facetField === ComplexSearchFacetsEnum.Ages) {
+      rangeFieldName = "ages";
+    }
+
+    if (rangeFieldName && item.selectedValues[0]) {
       const [from, to] = item.selectedValues;
-      const query = to ? `ages within "${from} ${to}"` : `ages>"${from}"`;
+      const hasRange = to && from !== to;
+      const query = hasRange
+        ? `${rangeFieldName} within "${from} ${to}"`
+        : `${rangeFieldName}>="${from}"`;
       filterTermsSet.add(`((${query}))`);
       return;
     }
