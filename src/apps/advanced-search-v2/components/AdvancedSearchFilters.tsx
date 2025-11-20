@@ -82,7 +82,6 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
     setFacetsInUrl([
       ...facetsFromUrl,
       {
-        label: facetConfig.label,
         facetField,
         selectedValues
       }

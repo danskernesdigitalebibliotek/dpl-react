@@ -1,6 +1,6 @@
 import React from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
-import type { Option } from "../lib/suggestions";
+import type { Option } from "../types";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { useText } from "../../../core/utils/text";
 

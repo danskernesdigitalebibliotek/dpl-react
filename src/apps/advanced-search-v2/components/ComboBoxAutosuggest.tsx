@@ -6,7 +6,7 @@ import {
   ComboboxOptions
 } from "@headlessui/react";
 import clsx from "clsx";
-import type { Option } from "../lib/suggestions";
+import type { Option } from "../types";
 
 export type ComboBoxAutosuggestProps = {
   items: Option[];
