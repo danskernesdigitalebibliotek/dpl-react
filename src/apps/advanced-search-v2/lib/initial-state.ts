@@ -1,5 +1,5 @@
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
-import { SuggestState, FacetConfig } from "../types";
+import { SuggestState, PreFacetConfig } from "../types";
 
 import {
   MATERIAL_TYPE_OPTIONS,
@@ -16,7 +16,7 @@ export const INITIAL_SUGGEST_STATE: SuggestState[] = [
 ];
 
 // Pre-search facets are the form selects shown in the search form
-export const INITIAL_PRE_SEARCH_FACETS_STATE: FacetConfig[] = [
+export const INITIAL_PRE_SEARCH_FACETS_STATE: PreFacetConfig[] = [
   {
     label: "advancedSearchFacetMaterialTypeText",
     facetField: ComplexSearchFacetsEnum.Generalmaterialtype,
