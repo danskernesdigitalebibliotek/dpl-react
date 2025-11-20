@@ -40,13 +40,12 @@ export const buildFilterTerms = (filters: FacetState[]): string[] => {
   const filterTermsSet = new Set<string>();
 
   filters.forEach((item) => {
-    // Ages and Publicationyear: use "within" for range, ">" for open-ended
-    const rangeFieldName =
-      item.facetField === ComplexSearchFacetsEnum.Publicationyear
-        ? "publicationyear"
-        : item.facetField === ComplexSearchFacetsEnum.Ages
-          ? "ages"
-          : null;
+    let rangeFieldName: string | null = null;
+    if (item.facetField === ComplexSearchFacetsEnum.Publicationyear) {
+      rangeFieldName = "publicationyear";
+    } else if (item.facetField === ComplexSearchFacetsEnum.Ages) {
+      rangeFieldName = "ages";
+    }
 
     if (rangeFieldName && item.selectedValues[0]) {
       const [from, to] = item.selectedValues;
