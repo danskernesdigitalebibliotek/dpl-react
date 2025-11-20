@@ -1,6 +1,5 @@
 import React, { forwardRef } from "react";
 import { suggestionsToOptions } from "../lib/suggestions";
-import SearchIndexSelect from "./SearchIndexSelect";
 import {
   ComplexSuggestionTypeEnum,
   useComplexSuggestQuery
@@ -11,10 +10,11 @@ import { MIN_QUERY_LENGTH } from "../lib/constants";
 import { useText } from "../../../core/utils/text";
 import { Operator } from "../types";
 import ComboBoxAutosuggest from "./ComboBoxAutosuggest";
+import SearchTermSelect from "./SearchTermSelect";
 
 type AdvancedSearchSuggestProps = {
-  selectedIndex: string;
-  onSelectedIndexChange: (value: string) => void;
+  selectedTerm: string;
+  onSelectedTermChange: (value: string) => void;
   query: string;
   onQueryChange: (q: string) => void;
   suggestType: ComplexSuggestionTypeEnum;
@@ -29,21 +29,18 @@ const AdvancedSearchSuggest = forwardRef<
   HTMLButtonElement,
   AdvancedSearchSuggestProps
 >(
-  (
-    {
-      selectedIndex,
-      onSelectedIndexChange,
-      query,
-      onQueryChange,
-      suggestType,
-      inputPlaceholder,
-      operator = "and",
-      onOperatorChange,
-      onRemove,
-      showRemoveButton = false
-    },
-    ref
-  ) => {
+  ({
+    selectedTerm,
+    onSelectedTermChange,
+    query,
+    onQueryChange,
+    suggestType,
+    inputPlaceholder,
+    operator = "and",
+    onOperatorChange,
+    onRemove,
+    showRemoveButton = false
+  }) => {
     const t = useText();
 
     const { data } = useComplexSuggestQuery(
@@ -61,9 +58,8 @@ const AdvancedSearchSuggest = forwardRef<
       <>
         <div className="advanced-search-suggest">
           <SearchTermSelect
-            ref={ref}
-            value={selectedIndex}
-            onChange={onSelectedIndexChange}
+            value={selectedTerm}
+            onChange={onSelectedTermChange}
           />
 
           <div className="advanced-search-suggest__combobox-wrapper">

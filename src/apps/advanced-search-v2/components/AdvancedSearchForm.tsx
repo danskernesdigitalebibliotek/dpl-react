@@ -7,7 +7,7 @@ import { useFormVisibility } from "../hooks/use-form-visibility";
 import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
-import { SEARCH_INDEX_OPTIONS } from "../lib/search-fields-config";
+import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
 
 const AdvancedSearchForm: React.FC = () => {
@@ -59,7 +59,7 @@ const AdvancedSearchForm: React.FC = () => {
       {/* Suggest inputs */}
       <div className="advanced-search-v2__suggests">
         {suggests.map((suggest, index) => {
-          const config = SEARCH_INDEX_OPTIONS.find(
+          const config = SEARCH_TERM_OPTIONS.find(
             (item) => item.value === suggest.term
           )!;
 
@@ -73,8 +73,8 @@ const AdvancedSearchForm: React.FC = () => {
                   suggestRefs.current.delete(index);
                 }
               }}
-              selectedIndex={suggest.term}
-              onSelectedIndexChange={(value) =>
+              selectedTerm={suggest.term}
+              onSelectedTermChange={(value) =>
                 updateSuggest(index, { term: value })
               }
               query={suggest.query}
