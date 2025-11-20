@@ -61,9 +61,9 @@ const AdvancedSearchForm: React.FC = () => {
       {/* Suggest inputs */}
       <div className="advanced-search-v2__suggests">
         {suggests.map((suggest, index) => {
-          const config = SEARCH_TERM_OPTIONS.find(
-            (item) => item.value === suggest.term
-          )!;
+          const config =
+            SEARCH_TERM_OPTIONS.find((item) => item.value === suggest.term) ??
+            SEARCH_TERM_OPTIONS[0];
 
           return (
             <AdvancedSearchSuggest
@@ -120,8 +120,14 @@ const AdvancedSearchForm: React.FC = () => {
                 key={config.facetField}
                 label={config.label}
                 value={{
-                  from: selectedValues[0] ? parseInt(selectedValues[0]) : null,
-                  to: selectedValues[1] ? parseInt(selectedValues[1]) : null
+                  from:
+                    selectedValues[0] && !isNaN(parseInt(selectedValues[0]))
+                      ? parseInt(selectedValues[0])
+                      : null,
+                  to:
+                    selectedValues[1] && !isNaN(parseInt(selectedValues[1]))
+                      ? parseInt(selectedValues[1])
+                      : null
                 }}
                 onChange={(range) => {
                   const values: string[] = [];
