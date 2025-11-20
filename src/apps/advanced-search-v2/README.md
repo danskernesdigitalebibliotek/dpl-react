@@ -104,7 +104,10 @@ Defined in `types.ts`:
   - `label: string` – human label shown in the UI/summary.
   - `facetField: ComplexSearchFacetsEnum` – GraphQL facet enum.
   - `selectedValues: string[]` – selected facet values for this field.
-- `FacetConfig` – simple `{ label, facetField }` used to configure facet
+- `PreFacetConfig` – discriminated union configuration for form filters:
+  - `PreSelectFacetConfig` – `{ type: "select", options: Option[] }`.
+  - `PreRangeFacetConfig` – `{ type: "range", presets: RangePreset[] }`.
+- `FacetConfig` – simple `{ label, facetField }` used to configure sidebar facet
   groups.
 
 These types underpin URL state and query building.
@@ -259,9 +262,10 @@ This keeps query construction decoupled from GraphQL enum names.
 
 - `INITIAL_SUGGEST_STATE` – two default suggest rows:
   - Both free‑text (`term.default`), empty query, operator `"and"`.
-- `INITIAL_PRE_SEARCH_FACETS_STATE` – initial form filter configuration with labels,
-  facet fields, and static options/presets for:
-  - Genre and form, language, publication year, age group, and source.
+- `INITIAL_PRE_SEARCH_FACETS_STATE` – initial form filter configuration.
+  - Imports options and presets from `lib/advanced-search-select-options.ts`.
+  - Defines type (`"select"` or `"range"`) for each config object (Genre,
+    Language, Year, Age, etc.).
 
 ### `facet-configs.ts`
 
@@ -340,9 +344,10 @@ Rendered subcomponents:
 
 3. **Static filter selects**
 
-   - Renders a grid of `AdvancedSearchSelect` components based on `INITIAL_FILTERS_STATE`.
-   - Converts unified `FilterState` into a list of `Option` objects and back.
-   - Uses `updateFilter` to keep unified filter state consistent.
+   - Renders a grid of components based on `INITIAL_PRE_SEARCH_FACETS_STATE`.
+   - Uses `AdvancedSearchSelect` for `"select"` types.
+   - Uses `AdvancedSearchRangeSelects` for `"range"` types (Year, Age).
+   - Uses `updatePreSearchFacet` to keep unified filter state consistent.
 
 4. **Action buttons**
    - Renders `AdvancedSearchActionButtons`:
@@ -376,7 +381,7 @@ Rendered subcomponents:
 - Highlights the active operator.
 - Updates the parent via `onChange(operator)`.
 
-### Multi‑select filters: `AdvancedSearchSelect` + `AdvancedSearchMultiSelect`
+### Multi‑select filters
 
 `AdvancedSearchSelect`:
 
@@ -384,6 +389,12 @@ Rendered subcomponents:
   - `items: Option[]`.
   - `value: Option[]` representing current selections.
   - `onChange` callback for new selections.
+
+`AdvancedSearchRangeSelects`:
+
+- Used for Year and Age filters.
+- Renders `AdvancedSearchMultiSelect` populated with `presets`.
+- Maps selected presets to/from the underlying `FacetState` (which stores raw values).
 
 `AdvancedSearchMultiSelect`:
 
@@ -447,18 +458,20 @@ Rendered subcomponents:
   - Two toggle switches (on shelf, only extra titles) stored in URL params.
   - A list of facet groups from `FACETS_CONFIG`.
 - Unified `FilterState[]` is stored in `filters` query param via `nuqs`.
+- **Performance**: Fetches all facets defined in `FACETS_CONFIG` in a single
+  `useComplexFacetSearchQuery`.
 - For each facet config:
   - Reads selected values from URL state.
-  - Renders an `AdvancedSearchFilterGroup` with label and selection.
+  - Extracts relevant facet data from the batched response.
+  - Renders an `AdvancedSearchFilterGroup` with label, selection, and data.
 - When user changes facet selections:
   - Performs an upsert/remove on the unified filters array and writes back to URL.
   - This in turn affects the CQL query and subsequent search results.
 
 ### `AdvancedSearchFilterGroup`
 
-- Fetches facet data for a specific `facetField` using
-  `useComplexFacetSearchQuery(cql, facets, filters: {})`.
-- Extracts facet values and counts from `complexSearch.facets`.
+- Purely presentational component.
+- Receives `facetValues` and `selectedValues` via props.
 - Provides collapse/expand and a "show all/show fewer" behavior
   (initially shows 5 values).
 - Each value is rendered as a `CheckBox` with an optional count badge.
@@ -481,8 +494,8 @@ Rendered subcomponents:
   `AdvancedSearchSuggest`.
   - Driven by `q` (query text) and `type` (from `SEARCH_INDEX_OPTIONS`).
 - **Facets**: `complex-facet-search.graphql` →
-  `useComplexFacetSearchQuery` in `AdvancedSearchFilterGroup`.
-  - Driven by current `cql` and a `facets` specification.
+  `useComplexFacetSearchQuery` in `AdvancedSearchFilters`.
+  - Batched request for all facets driven by current `cql`.
 - **Results**: `useComplexSearchWithPaginationQuery` (generated hook,
   query defined elsewhere).
   - Driven by `cql`, `offset`, `limit`, and (currently) an empty
