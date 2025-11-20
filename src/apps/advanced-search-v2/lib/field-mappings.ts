@@ -6,6 +6,7 @@ export const COMPLEX_FACET_TO_CQL_FIELD: Partial<
   Record<ComplexSearchFacetsEnum, string>
 > = {
   [ComplexSearchFacetsEnum.Specificmaterialtype]: "phrase.specificmaterialtype",
+  [ComplexSearchFacetsEnum.Generalmaterialtype]: "phrase.generalmaterialtype",
   [ComplexSearchFacetsEnum.Creator]: "phrase.creator",
   [ComplexSearchFacetsEnum.Subject]: "phrase.subject",
   [ComplexSearchFacetsEnum.Mainlanguage]: "phrase.mainlanguage",

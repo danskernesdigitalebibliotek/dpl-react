@@ -56,7 +56,7 @@ and the results/facets grid.
 ### `AdvancedSearchV2.mount.ts`
 
 - Calls `addMount({ appName: "advanced-search-v2", app:
-  AdvancedSearchV2Entry })`.
+AdvancedSearchV2Entry })`.
 - Registers the entry component under the `advanced-search-v2` app name
   so the host can mount it into the DOM.
 
@@ -259,8 +259,8 @@ This keeps query construction decoupled from GraphQL enum names.
 
 - `INITIAL_SUGGEST_STATE` – two default suggest rows:
   - Both free‑text (`term.default`), empty query, operator `"and"`.
-- `INITIAL_FILTERS_STATE` – initial form filter configuration with labels
-  and facet fields for:
+- `INITIAL_PRE_SEARCH_FACETS_STATE` – initial form filter configuration with labels,
+  facet fields, and static options/presets for:
   - Genre and form, language, publication year, age group, and source.
 
 ### `facet-configs.ts`
@@ -296,17 +296,6 @@ Used by:
 - `AdvancedSearchForm` / `AdvancedSearchSuggest` – to provide suggestion
   type and placeholder.
 
-### `advanced-search-select-options.ts`
-
-Holds static `Option[]` lists for some facet fields (currently detailed
-for `Genreandform` and possibly others).
-
-- Indexed by `ComplexSearchFacetsEnum`.
-- Provides human‑readable labels and values based on domain conventions
-  (Danish library genres, formats, etc.).
-- Used by `AdvancedSearchSelect` and `AdvancedSearchMultiSelect` for the
-  fixed multi‑select filters in the form.
-
 ### `suggestions.ts`
 
 Normalizes suggestion data from GraphQL into `Option[]`:
@@ -336,18 +325,21 @@ Responsibilities:
 Rendered subcomponents:
 
 1. **Summary (when in summary mode)**
+
    - If `shouldShowSummary` is `true`, renders `AdvancedSearchSummary`
      with an "Edit search" link.
 
 2. **Suggest rows**
+
    - Maps over `suggests` and renders one `AdvancedSearchSuggest` per row.
    - Determines configuration (label/placeholder/suggest type) from
      `SEARCH_INDEX_OPTIONS` based on `suggest.term`.
    - Maintains a `ref` per row pointing at the `SearchIndexSelect` button
      so new rows can be auto‑focused.
-   - Manages the operator of a row via the *next* row's `operator` field.
+   - Manages the operator of a row via the _next_ row's `operator` field.
 
 3. **Static filter selects**
+
    - Renders a grid of `AdvancedSearchSelect` components based on `INITIAL_FILTERS_STATE`.
    - Converts unified `FilterState` into a list of `Option` objects and back.
    - Uses `updateFilter` to keep unified filter state consistent.
@@ -388,7 +380,6 @@ Rendered subcomponents:
 
 `AdvancedSearchSelect`:
 
-- Looks up static options in `ADVANCED_SEARCH_SELECT_OPTIONS[facetField]`.
 - Renders `AdvancedSearchMultiSelect` with:
   - `items: Option[]`.
   - `value: Option[]` representing current selections.

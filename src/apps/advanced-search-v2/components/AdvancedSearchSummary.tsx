@@ -3,7 +3,7 @@ import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { useText } from "../../../core/utils/text";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { Operator } from "../types";
-import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
+import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
 
 interface AdvancedSearchSummaryProps {
   onEditClick?: () => void;
@@ -61,12 +61,14 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
         })}
 
         {preSearchFacets.map((preSearchFacet) => {
-          // Ages & Publicationyear: show as range instead of individual values
-          if (
-            preSearchFacet.facetField === ComplexSearchFacetsEnum.Ages ||
-            preSearchFacet.facetField ===
-              ComplexSearchFacetsEnum.Publicationyear
-          ) {
+          const config = INITIAL_PRE_SEARCH_FACETS_STATE.find(
+            (c) => c.facetField === preSearchFacet.facetField
+          );
+
+          if (!config) return null;
+
+          // Ranges: show as range instead of individual values
+          if (config.type === "range") {
             const [from, to] = preSearchFacet.selectedValues;
             const hasRange = to && from !== to;
             const value = hasRange ? `${from}-${to}` : `${from}+`;
@@ -74,7 +76,7 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
             return (
               <React.Fragment key={preSearchFacet.facetField}>
                 {renderOperator("and")}
-                {renderItem(preSearchFacet.label, value)}
+                {renderItem(t(config.label), value)}
               </React.Fragment>
             );
           }
@@ -83,7 +85,7 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           return preSearchFacet.selectedValues.map((value, i) => (
             <React.Fragment key={`${preSearchFacet.facetField}-${i}`}>
               {renderOperator("and")}
-              {renderItem(preSearchFacet.label, value)}
+              {renderItem(t(config.label), value)}
             </React.Fragment>
           ));
         })}
