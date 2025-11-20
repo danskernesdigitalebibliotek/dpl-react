@@ -1,5 +1,5 @@
 import React from "react";
-import { SEARCH_INDEX_OPTIONS } from "../lib/search-fields-config";
+import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { useText } from "../../../core/utils/text";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { Operator } from "../types";
@@ -39,7 +39,7 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
       <div className="advanced-search-summary__items">
         {suggests.map((suggest, index) => {
           if (!suggest.query.trim()) return null;
-          const config = SEARCH_INDEX_OPTIONS.find(
+          const config = SEARCH_TERM_OPTIONS.find(
             (item) => item.value === suggest.term
           );
           if (!config) return null;
