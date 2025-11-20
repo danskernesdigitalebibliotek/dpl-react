@@ -122,7 +122,7 @@ const AdvancedSearchForm: React.FC = () => {
                 presets={config.presets}
                 onUpdate={(values) => {
                   updatePreSearchFacet({
-                    label: config.label,
+                    label: t(config.label),
                     facetField: config.facetField,
                     selectedValues: values
                   });
@@ -145,7 +145,7 @@ const AdvancedSearchForm: React.FC = () => {
                 const newValues = values.map((option) => option.value);
                 // Upsert: update if exists, add if new, remove if empty
                 updatePreSearchFacet({
-                  label: config.label,
+                  label: t(config.label),
                   facetField: config.facetField,
                   selectedValues: newValues
                 });
