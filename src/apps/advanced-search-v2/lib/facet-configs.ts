@@ -5,84 +5,124 @@ import { FacetConfig } from "../types";
 export const FACETS_CONFIG: FacetConfig[] = [
   {
     label: "advancedSearchFacetFormatText",
-    facetField: ComplexSearchFacetsEnum.Specificmaterialtype
+    facetField: ComplexSearchFacetsEnum.Specificmaterialtype,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetGenreAndFormText",
-    facetField: ComplexSearchFacetsEnum.Genreandform
+    facetField: ComplexSearchFacetsEnum.Genreandform,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetSourceText",
-    facetField: ComplexSearchFacetsEnum.Source
+    facetField: ComplexSearchFacetsEnum.Source,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetLanguageText",
-    facetField: ComplexSearchFacetsEnum.Mainlanguage
+    facetField: ComplexSearchFacetsEnum.Mainlanguage,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetAccessTypeText",
-    facetField: ComplexSearchFacetsEnum.Accesstype
+    facetField: ComplexSearchFacetsEnum.Accesstype,
+    type: "select",
+    options: []
   },
   // { label: "Fiktion/Nonfiktion", facetField: "term.fictionnonfiction" }, // Not in enum
   {
     label: "advancedSearchFacetLevelText",
-    facetField: ComplexSearchFacetsEnum.Primarytarget
+    facetField: ComplexSearchFacetsEnum.Primarytarget,
+    type: "select",
+    options: []
   },
   // { label: "For børn/voksne", facetField: "term.childrenoradults" }, // Not in enum
   {
     label: "advancedSearchFacetAudienceText",
-    facetField: ComplexSearchFacetsEnum.Generalaudience
+    facetField: ComplexSearchFacetsEnum.Generalaudience,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetLixText",
-    facetField: ComplexSearchFacetsEnum.Lix
+    facetField: ComplexSearchFacetsEnum.Lix,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetLetText",
-    facetField: ComplexSearchFacetsEnum.Let
+    facetField: ComplexSearchFacetsEnum.Let,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetSubjectText",
-    facetField: ComplexSearchFacetsEnum.Subject
+    facetField: ComplexSearchFacetsEnum.Subject,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetHostPublicationText",
-    facetField: ComplexSearchFacetsEnum.Hostpublication
+    facetField: ComplexSearchFacetsEnum.Hostpublication,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetCreatorText",
-    facetField: ComplexSearchFacetsEnum.Creator
+    facetField: ComplexSearchFacetsEnum.Creator,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetContributorText",
-    facetField: ComplexSearchFacetsEnum.Contributor
+    facetField: ComplexSearchFacetsEnum.Contributor,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetInstrumentText",
-    facetField: ComplexSearchFacetsEnum.Instrument
+    facetField: ComplexSearchFacetsEnum.Instrument,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetChamberMusicText",
-    facetField: ComplexSearchFacetsEnum.Chambermusictype
+    facetField: ComplexSearchFacetsEnum.Chambermusictype,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetChoirText",
-    facetField: ComplexSearchFacetsEnum.Choirtype
+    facetField: ComplexSearchFacetsEnum.Choirtype,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetScoreTypeText",
-    facetField: ComplexSearchFacetsEnum.Typeofscore
+    facetField: ComplexSearchFacetsEnum.Typeofscore,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetYearText",
-    facetField: ComplexSearchFacetsEnum.Publicationyear
+    facetField: ComplexSearchFacetsEnum.Publicationyear,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetFictionalCharacterText",
-    facetField: ComplexSearchFacetsEnum.Fictionalcharacter
+    facetField: ComplexSearchFacetsEnum.Fictionalcharacter,
+    type: "select",
+    options: []
   },
   {
     label: "advancedSearchFacetAgeText",
-    facetField: ComplexSearchFacetsEnum.Ages
+    facetField: ComplexSearchFacetsEnum.Ages,
+    type: "select",
+    options: []
   }
 ];
