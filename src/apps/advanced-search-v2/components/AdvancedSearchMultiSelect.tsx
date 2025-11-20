@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import type { Option } from "../lib/suggestions";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { useText } from "../../../core/utils/text";
 
-import CheckBox from "../../../components/checkbox/Checkbox";
-import ComboBoxBase from "./ComboBoxBase";
+import MultiSelect from "./MultiSelect";
 
 type AdvancedSearchMultiSelectProps = {
   items: Option[];
@@ -21,7 +20,6 @@ const AdvancedSearchMultiSelect: React.FC<AdvancedSearchMultiSelectProps> = ({
   label
 }) => {
   const t = useText();
-  const [query, setQuery] = useState("");
   const selectedCount = value?.length ?? 0;
   const hasSelection = selectedCount > 0;
 
@@ -51,33 +49,18 @@ const AdvancedSearchMultiSelect: React.FC<AdvancedSearchMultiSelectProps> = ({
           anchor="bottom"
           className="advanced-search-dropdown advanced-search-multi-select__popover-panel"
         >
-          <ComboBoxBase
-            multiple
-            items={items}
-            value={value ?? []}
+          <MultiSelect
+            options={items}
+            selectedOptions={value ?? []}
             onChange={(vals) => {
-              if (Array.isArray(vals)) {
-                onChange?.(vals);
-              }
+              onChange?.(vals);
             }}
-            query={query}
-            onQueryChange={setQuery}
             classes={{
               options: "advanced-search-multi-select__combobox-options"
             }}
             optionsStatic
             showEmptyStates
-            focusOnMount
-            renderOption={(item, state) => (
-              <CheckBox
-                id={`advanced-search-select-${item.value}`}
-                label={item.label}
-                selected={state.selected}
-                onChecked={() => {}}
-                isVisualOnly
-                tabIndex={-1}
-              />
-            )}
+            enableSearch
           />
 
           <div className="advanced-search-multi-select__footer">
