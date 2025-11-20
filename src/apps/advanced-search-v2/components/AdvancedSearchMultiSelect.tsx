@@ -22,6 +22,7 @@ const AdvancedSearchMultiSelect: React.FC<AdvancedSearchMultiSelectProps> = ({
   const t = useText();
   const selectedCount = value?.length ?? 0;
   const hasSelection = selectedCount > 0;
+  const [query, setQuery] = React.useState("");
 
   return (
     <div className="advanced-search-multi-select-wrapper">
@@ -55,6 +56,8 @@ const AdvancedSearchMultiSelect: React.FC<AdvancedSearchMultiSelectProps> = ({
             onChange={(vals) => {
               onChange?.(vals);
             }}
+            inputValue={query}
+            onInputChange={setQuery}
             classes={{
               options: "advanced-search-multi-select__combobox-options"
             }}

@@ -37,6 +37,9 @@ export type MultiSelectProps = {
   // Focus the input when component mounts
   focusOnMount?: boolean;
   enableSearch?: boolean;
+  // Controlled search input
+  inputValue?: string;
+  onInputChange?: (value: string) => void;
 };
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
@@ -49,11 +52,24 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   labelClassName,
   showEmptyStates = false,
   optionsStatic = false,
-  enableSearch = false
+  enableSearch = false,
+  inputValue: controlledInputValue,
+  onInputChange
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const optionsRef = useRef<HTMLUListElement>(null);
-  const [inputValue, setInputValue] = useState("");
+  const [localInputValue, setLocalInputValue] = useState("");
+
+  const isControlled = controlledInputValue !== undefined;
+  const inputValue = isControlled ? controlledInputValue : localInputValue;
+
+  const handleInputChange = (value: string) => {
+    if (isControlled) {
+      onInputChange?.(value);
+    } else {
+      setLocalInputValue(value);
+    }
+  };
 
   // Focus input when component mounts
   useEffect(() => {
@@ -88,7 +104,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           ref={inputRef}
           className={clsx("advanced-search-combobox-input", classes?.input)}
           onChange={(e) => {
-            setInputValue(e.currentTarget.value);
+            handleInputChange(e.currentTarget.value);
           }}
           displayValue={() => inputValue}
           placeholder={placeholder}
