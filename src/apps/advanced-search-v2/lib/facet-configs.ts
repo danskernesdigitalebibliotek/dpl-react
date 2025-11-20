@@ -4,46 +4,85 @@ import { FacetConfig } from "../types";
 // Facets are the sidebar filters shown after search
 export const FACETS_CONFIG: FacetConfig[] = [
   {
-    label: "Format",
+    label: "advancedSearchFacetFormatText",
     facetField: ComplexSearchFacetsEnum.Specificmaterialtype
   },
-  { label: "Genre og form", facetField: ComplexSearchFacetsEnum.Genreandform },
-  { label: "Kilde", facetField: ComplexSearchFacetsEnum.Source },
-  { label: "Sprog", facetField: ComplexSearchFacetsEnum.Mainlanguage },
-  { label: "Fysisk/Online", facetField: ComplexSearchFacetsEnum.Accesstype },
+  {
+    label: "advancedSearchFacetGenreAndFormText",
+    facetField: ComplexSearchFacetsEnum.Genreandform
+  },
+  {
+    label: "advancedSearchFacetSourceText",
+    facetField: ComplexSearchFacetsEnum.Source
+  },
+  {
+    label: "advancedSearchFacetLanguageText",
+    facetField: ComplexSearchFacetsEnum.Mainlanguage
+  },
+  {
+    label: "advancedSearchFacetAccessTypeText",
+    facetField: ComplexSearchFacetsEnum.Accesstype
+  },
   // { label: "Fiktion/Nonfiktion", facetField: "term.fictionnonfiction" }, // Not in enum
   {
-    label: "Fagligt niveau",
+    label: "advancedSearchFacetLevelText",
     facetField: ComplexSearchFacetsEnum.Primarytarget
   },
   // { label: "For børn/voksne", facetField: "term.childrenoradults" }, // Not in enum
-  { label: "Målgruppe", facetField: ComplexSearchFacetsEnum.Generalaudience },
-  { label: "Lix-tal", facetField: ComplexSearchFacetsEnum.Lix },
-  { label: "Let", facetField: ComplexSearchFacetsEnum.Let },
-  { label: "Emne", facetField: ComplexSearchFacetsEnum.Subject },
   {
-    label: "Værtspublikation",
+    label: "advancedSearchFacetAudienceText",
+    facetField: ComplexSearchFacetsEnum.Generalaudience
+  },
+  {
+    label: "advancedSearchFacetLixText",
+    facetField: ComplexSearchFacetsEnum.Lix
+  },
+  {
+    label: "advancedSearchFacetLetText",
+    facetField: ComplexSearchFacetsEnum.Let
+  },
+  {
+    label: "advancedSearchFacetSubjectText",
+    facetField: ComplexSearchFacetsEnum.Subject
+  },
+  {
+    label: "advancedSearchFacetHostPublicationText",
     facetField: ComplexSearchFacetsEnum.Hostpublication
   },
-  { label: "Forfatter / ophav", facetField: ComplexSearchFacetsEnum.Creator },
   {
-    label: "Oplæser / oversætter / bidrag",
+    label: "advancedSearchFacetCreatorText",
+    facetField: ComplexSearchFacetsEnum.Creator
+  },
+  {
+    label: "advancedSearchFacetContributorText",
     facetField: ComplexSearchFacetsEnum.Contributor
   },
-  { label: "Instrument", facetField: ComplexSearchFacetsEnum.Instrument },
   {
-    label: "Kammermusik",
+    label: "advancedSearchFacetInstrumentText",
+    facetField: ComplexSearchFacetsEnum.Instrument
+  },
+  {
+    label: "advancedSearchFacetChamberMusicText",
     facetField: ComplexSearchFacetsEnum.Chambermusictype
   },
-  { label: "Noder til kor", facetField: ComplexSearchFacetsEnum.Choirtype },
-  { label: "Nodetype", facetField: ComplexSearchFacetsEnum.Typeofscore },
   {
-    label: "Udgivelsesår",
+    label: "advancedSearchFacetChoirText",
+    facetField: ComplexSearchFacetsEnum.Choirtype
+  },
+  {
+    label: "advancedSearchFacetScoreTypeText",
+    facetField: ComplexSearchFacetsEnum.Typeofscore
+  },
+  {
+    label: "advancedSearchFacetYearText",
     facetField: ComplexSearchFacetsEnum.Publicationyear
   },
   {
-    label: "Fiktiv hovedperson",
+    label: "advancedSearchFacetFictionalCharacterText",
     facetField: ComplexSearchFacetsEnum.Fictionalcharacter
   },
-  { label: "Aldersgruppe", facetField: ComplexSearchFacetsEnum.Ages }
+  {
+    label: "advancedSearchFacetAgeText",
+    facetField: ComplexSearchFacetsEnum.Ages
+  }
 ];

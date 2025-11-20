@@ -121,7 +121,7 @@ const AdvancedSearchForm: React.FC = () => {
               <AdvancedSearchRangeFacet
                 key={config.facetField}
                 facetField={config.facetField}
-                label={config.label}
+                label={t(config.label)}
                 selectedValues={selectedValues}
                 onUpdate={(values) => {
                   updatePreSearchFacet({
@@ -138,7 +138,7 @@ const AdvancedSearchForm: React.FC = () => {
             <AdvancedSearchSelect
               key={config.facetField}
               facetField={config.facetField}
-              label={config.label}
+              label={t(config.label)}
               selected={selectedValues.map((value) => ({
                 label: value,
                 value
