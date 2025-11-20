@@ -21,6 +21,12 @@ export const SEARCH_TERM_OPTIONS: SearchTermItem[] = [
     placeholderKey: "advancedSearchPlaceholderTitleText"
   },
   {
+    value: "term.series",
+    labelKey: "advancedSearchLabelSeriesText",
+    type: ComplexSuggestionTypeEnum.Series,
+    placeholderKey: "advancedSearchPlaceholderSeriesText"
+  },
+  {
     value: "term.creatorcontributor",
     labelKey: "advancedSearchLabelCreatorText",
     type: ComplexSuggestionTypeEnum.Creatorcontributor,
@@ -49,23 +55,5 @@ export const SEARCH_TERM_OPTIONS: SearchTermItem[] = [
     labelKey: "advancedSearchLabelIsbnText",
     type: ComplexSuggestionTypeEnum.Default,
     placeholderKey: "advancedSearchPlaceholderIsbnText"
-  },
-  {
-    value: "term.series",
-    labelKey: "advancedSearchLabelSeriesText",
-    type: ComplexSuggestionTypeEnum.Series,
-    placeholderKey: "advancedSearchPlaceholderSeriesText"
-  },
-  {
-    value: "term.fictionalcharacter",
-    labelKey: "advancedSearchLabelFictionalCharacterText",
-    type: ComplexSuggestionTypeEnum.Fictionalcharacter,
-    placeholderKey: "advancedSearchPlaceholderFictionalCharacterText"
-  },
-  {
-    value: "term.hostpublication",
-    labelKey: "advancedSearchLabelHostPublicationText",
-    type: ComplexSuggestionTypeEnum.Hostpublication,
-    placeholderKey: "advancedSearchPlaceholderHostPublicationText"
   }
 ];
