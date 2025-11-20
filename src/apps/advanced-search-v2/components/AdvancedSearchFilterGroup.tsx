@@ -38,7 +38,7 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
   onChange
 }) => {
   const t = useText();
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [showAll, setShowAll] = useState(false);
 
   const { data: facetData } = useComplexFacetSearchQuery({
