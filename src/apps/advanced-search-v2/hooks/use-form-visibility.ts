@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useQueryState, parseAsJson, parseAsStringEnum } from "nuqs";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
-import { SuggestState, FacetState } from "../types";
 import { isValidSuggestState, isValidFacetState } from "../lib/validation";
 
 type FormView = "search" | "results";
