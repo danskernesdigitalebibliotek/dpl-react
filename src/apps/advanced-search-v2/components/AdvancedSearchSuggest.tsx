@@ -1,7 +1,5 @@
 import React, { forwardRef } from "react";
 import { suggestionsToOptions } from "../lib/suggestions";
-import SearchIndexSelect from "./SearchIndexSelect";
-import ComboBoxBase from "./ComboBoxBase";
 import {
   ComplexSuggestionTypeEnum,
   useComplexSuggestQuery
@@ -11,14 +9,16 @@ import OperatorButtons from "./OperatorButtons";
 import { MIN_QUERY_LENGTH } from "../lib/constants";
 import { useText } from "../../../core/utils/text";
 import { Operator } from "../types";
+import ComboBoxAutosuggest from "./ComboBoxAutosuggest";
+import SearchTermSelect from "./SearchTermSelect";
 
 type AdvancedSearchSuggestProps = {
-  selectedIndex: string;
-  onSelectedIndexChange: (value: string) => void;
+  selectedTerm: string;
+  onSelectedTermChange: (value: string) => void;
   query: string;
   onQueryChange: (q: string) => void;
   suggestType: ComplexSuggestionTypeEnum;
-  placeholderKey: string;
+  inputPlaceholder: string;
   operator?: Operator;
   onOperatorChange?: (operator: Operator) => void;
   onRemove?: () => void;
@@ -29,21 +29,18 @@ const AdvancedSearchSuggest = forwardRef<
   HTMLButtonElement,
   AdvancedSearchSuggestProps
 >(
-  (
-    {
-      selectedIndex,
-      onSelectedIndexChange,
-      query,
-      onQueryChange,
-      suggestType,
-      placeholderKey,
-      operator = "and",
-      onOperatorChange,
-      onRemove,
-      showRemoveButton = false
-    },
-    ref
-  ) => {
+  ({
+    selectedTerm,
+    onSelectedTermChange,
+    query,
+    onQueryChange,
+    suggestType,
+    inputPlaceholder,
+    operator = "and",
+    onOperatorChange,
+    onRemove,
+    showRemoveButton = false
+  }) => {
     const t = useText();
 
     const { data } = useComplexSuggestQuery(
@@ -53,27 +50,24 @@ const AdvancedSearchSuggest = forwardRef<
 
     const items = suggestionsToOptions(data?.complexSuggest?.result);
 
+    const onQueryChangeHandler = (q: string) => {
+      onQueryChange(q);
+    };
+
     return (
       <>
         <div className="advanced-search-suggest">
-          <SearchIndexSelect
-            ref={ref}
-            value={selectedIndex}
-            onChange={onSelectedIndexChange}
+          <SearchTermSelect
+            value={selectedTerm}
+            onChange={onSelectedTermChange}
           />
 
           <div className="advanced-search-suggest__combobox-wrapper">
-            <ComboBoxBase
-              allowFreeInput
+            <ComboBoxAutosuggest
               items={items}
-              query={query}
-              onQueryChange={onQueryChange}
-              placeholder={t(placeholderKey)}
-              classes={{
-                input: "advanced-search-suggest__combobox-input",
-                options:
-                  "advanced-search-dropdown advanced-search-suggest__combobox-options"
-              }}
+              value={query}
+              onInputChange={onQueryChangeHandler}
+              placeholder={inputPlaceholder}
             />
           </div>
 
