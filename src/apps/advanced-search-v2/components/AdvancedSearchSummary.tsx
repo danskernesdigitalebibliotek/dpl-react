@@ -61,8 +61,12 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
         })}
 
         {preSearchFacets.map((preSearchFacet) => {
-          // Ages: show as range instead of individual values
-          if (preSearchFacet.facetField === ComplexSearchFacetsEnum.Ages) {
+          // Ages & Publicationyear: show as range instead of individual values
+          if (
+            preSearchFacet.facetField === ComplexSearchFacetsEnum.Ages ||
+            preSearchFacet.facetField ===
+              ComplexSearchFacetsEnum.Publicationyear
+          ) {
             const [from, to] = preSearchFacet.selectedValues;
             const value = to ? `${from}-${to}` : `${from}+`;
 

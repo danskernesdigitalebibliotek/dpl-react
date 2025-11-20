@@ -1,8 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
 import AdvancedSearchSelect from "./AdvancedSearchSelect";
-import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
-
+import AdvancedSearchRangeFacet from "./AdvancedSearchRangeFacet";
 import { useSearchFormState } from "../hooks/use-search-form-state";
 import { useFormVisibility } from "../hooks/use-form-visibility";
 import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
@@ -114,26 +113,17 @@ const AdvancedSearchForm: React.FC = () => {
           );
           const selectedValues = currentPreSearchFacet?.selectedValues ?? [];
 
-          if (config.facetField === ComplexSearchFacetsEnum.Ages) {
+          if (
+            config.facetField === ComplexSearchFacetsEnum.Ages ||
+            config.facetField === ComplexSearchFacetsEnum.Publicationyear
+          ) {
             return (
-              <AdvancedSearchAgeSelect
+              <AdvancedSearchRangeFacet
                 key={config.facetField}
+                facetField={config.facetField}
                 label={config.label}
-                value={{
-                  from:
-                    selectedValues[0] && !isNaN(parseInt(selectedValues[0]))
-                      ? parseInt(selectedValues[0])
-                      : null,
-                  to:
-                    selectedValues[1] && !isNaN(parseInt(selectedValues[1]))
-                      ? parseInt(selectedValues[1])
-                      : null
-                }}
-                onChange={(range) => {
-                  const values: string[] = [];
-                  if (range.from !== null) values.push(String(range.from));
-                  if (range.to !== null) values.push(String(range.to));
-
+                selectedValues={selectedValues}
+                onUpdate={(values) => {
                   updatePreSearchFacet({
                     label: config.label,
                     facetField: config.facetField,
