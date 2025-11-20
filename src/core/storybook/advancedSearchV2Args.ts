@@ -222,7 +222,7 @@ export const argTypes = {
   advancedSearchFacetAgeText: {
     description: "Facet label: Age",
     control: { type: "text" }
-  },
+  }
 };
 
 export default {
@@ -284,7 +284,7 @@ export default {
   advancedSearchFacetScoreTypeText: "Nodetype",
   advancedSearchFacetYearText: "Udgivelsesår",
   advancedSearchFacetFictionalCharacterText: "Fiktiv hovedperson",
-  advancedSearchFacetAgeText: "Aldersgruppe",
+  advancedSearchFacetAgeText: "Aldersgruppe"
 };
 
 export interface AdvancedSearchV2Args {
