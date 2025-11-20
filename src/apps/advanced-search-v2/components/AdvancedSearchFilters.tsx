@@ -46,7 +46,10 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
   // Facets state (sidebar filters only)
   const [facetsFromUrl, setFacetsInUrl] = useQueryState(
     "facets",
-    parseAsJson((value) => value as FacetState[]).withDefault([])
+    parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([])
   );
 
   const handleFacetChange = (
