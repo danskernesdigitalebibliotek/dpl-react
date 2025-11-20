@@ -4,7 +4,7 @@ import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
 import AdvancedSearchPublicationYearSelect from "./AdvancedSearchPublicationYearSelect";
 import { RangeValue, RangePreset } from "../types";
 
-type AdvancedSearchRangeFacetProps = {
+type AdvancedSearchRangeSelectsProps = {
   facetField: ComplexSearchFacetsEnum;
   label: string;
   selectedValues: string[];
@@ -12,7 +12,7 @@ type AdvancedSearchRangeFacetProps = {
   presets: RangePreset[];
 };
 
-const AdvancedSearchRangeFacet: React.FC<AdvancedSearchRangeFacetProps> = ({
+const AdvancedSearchRangeSelects: React.FC<AdvancedSearchRangeSelectsProps> = ({
   facetField,
   label,
   selectedValues,
@@ -62,4 +62,4 @@ const AdvancedSearchRangeFacet: React.FC<AdvancedSearchRangeFacetProps> = ({
   return null;
 };
 
-export default AdvancedSearchRangeFacet;
+export default AdvancedSearchRangeSelects;

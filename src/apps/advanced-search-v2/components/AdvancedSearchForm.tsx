@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
 import AdvancedSearchSelect from "./AdvancedSearchSelect";
-import AdvancedSearchRangeFacet from "./AdvancedSearchRangeFacet";
+import AdvancedSearchRangeSelects from "./AdvancedSearchRangeSelects";
 import { useSearchFormState } from "../hooks/use-search-form-state";
 import { useFormVisibility } from "../hooks/use-form-visibility";
 import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
@@ -114,7 +114,7 @@ const AdvancedSearchForm: React.FC = () => {
 
           if (config.type === "range") {
             return (
-              <AdvancedSearchRangeFacet
+              <AdvancedSearchRangeSelects
                 key={config.facetField}
                 facetField={config.facetField}
                 label={t(config.label)}
