@@ -15,5 +15,15 @@ export const COMPLEX_FACET_TO_CQL_FIELD: Partial<
   [ComplexSearchFacetsEnum.Genreandform]: "phrase.genreandform",
   [ComplexSearchFacetsEnum.Ages]: "phrase.age",
   [ComplexSearchFacetsEnum.Lix]: "phrase.lix",
-  [ComplexSearchFacetsEnum.Publicationyear]: "phrase.year"
+  [ComplexSearchFacetsEnum.Publicationyear]: "phrase.year",
+  [ComplexSearchFacetsEnum.Accesstype]: "phrase.accesstype",
+  [ComplexSearchFacetsEnum.Source]: "phrase.source",
+  [ComplexSearchFacetsEnum.Primarytarget]: "phrase.primarytarget",
+  [ComplexSearchFacetsEnum.Let]: "phrase.let",
+  [ComplexSearchFacetsEnum.Hostpublication]: "phrase.hostpublication",
+  [ComplexSearchFacetsEnum.Contributor]: "phrase.contributor",
+  [ComplexSearchFacetsEnum.Instrument]: "phrase.instrument",
+  [ComplexSearchFacetsEnum.Chambermusictype]: "phrase.chambermusictype",
+  [ComplexSearchFacetsEnum.Choirtype]: "phrase.choirtype",
+  [ComplexSearchFacetsEnum.Typeofscore]: "phrase.typeofscore"
 };
