@@ -32,19 +32,19 @@ export type RangePreset = {
   to: number | null;
 };
 
-type BaseFacetConfig = {
+export type FacetConfig = {
   label: string;
   facetField: ComplexSearchFacetsEnum;
 };
 
-export type SelectFacetConfig = BaseFacetConfig & {
+export type PreSelectFacetConfig = FacetConfig & {
   type: "select";
   options: Option[];
 };
 
-export type RangeFacetConfig = BaseFacetConfig & {
+export type PreRangeFacetConfig = FacetConfig & {
   type: "range";
   presets: RangePreset[];
 };
 
-export type FacetConfig = SelectFacetConfig | RangeFacetConfig;
+export type PreFacetConfig = PreSelectFacetConfig | PreRangeFacetConfig;
