@@ -10,6 +10,7 @@ import { MappArgs } from "../../core/storybook/mappArgs";
 import withPageStatistics from "../../core/statistics/withPageStatistics";
 import AdvancedSearchV2 from "./AdvancedSearchV2";
 import { NuqsAdapter } from "nuqs/adapters/react";
+import { AdvancedSearchV2Args } from "../../core/storybook/advancedSearchV2Args";
 
 interface AdvancedSearchEntryTextProps {
   byAuthorText: string;
@@ -18,40 +19,7 @@ interface AdvancedSearchEntryTextProps {
   resultPagerStatusText: string;
   noSearchResultText: string;
   showMoreText: string;
-  advancedSearchAddRowText: string;
-  advancedSearchSearchButtonText: string;
   loadingResultsText: string;
-  clauseAndText: string;
-  clauseOrText: string;
-  clauseNotText: string;
-  advancedSearchRemoveRowText: string;
-  // NOTE: The following properties are newly added and not inherited from the previous advanced search implementation.
-  advancedSearchSelectedText: string;
-  advancedSearchAllText: string;
-  advancedSearchPlaceholderDefaultText: string;
-  advancedSearchPlaceholderTitleText: string;
-  advancedSearchPlaceholderCreatorText: string;
-  advancedSearchPlaceholderSubjectText: string;
-  advancedSearchPlaceholderPublisherText: string;
-  advancedSearchPlaceholderDk5Text: string;
-  advancedSearchPlaceholderIsbnText: string;
-  advancedSearchPlaceholderSeriesText: string;
-  advancedSearchLabelDefaultText: string;
-  advancedSearchLabelTitleText: string;
-  advancedSearchLabelCreatorText: string;
-  advancedSearchLabelSubjectText: string;
-  advancedSearchLabelPublisherText: string;
-  advancedSearchLabelDk5Text: string;
-  advancedSearchLabelIsbnText: string;
-  advancedSearchLabelSeriesText: string;
-  advancedSearchEditSearchText: string;
-  advancedSearchOnShelfText: string;
-  advancedSearchOnShelfDescriptionText: string;
-  advancedSearchOnlyExtraTitlesText: string;
-  advancedSearchOnlyExtraTitlesDescriptionText: string;
-  advancedSearchShowAllText: string;
-  advancedSearchShowLessText: string;
-  advancedSearchResetText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
@@ -66,7 +34,8 @@ export interface AdvancedSearchEntryProps
     GlobalEntryTextProps,
     AdvancedSearchEntryConfigProps,
     AdvancedSearchEntryTextProps,
-    MappArgs {
+    MappArgs,
+    AdvancedSearchV2Args {
   pageSizeDesktop: number;
   pageSizeMobile: number;
   showingMaterialsText: string;
