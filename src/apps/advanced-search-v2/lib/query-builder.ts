@@ -40,13 +40,19 @@ export const buildFilterTerms = (filters: FacetState[]): string[] => {
   const filterTermsSet = new Set<string>();
 
   filters.forEach((item) => {
-    // Ages: use "within" for range, ">" for open-ended
-    if (
-      item.facetField === ComplexSearchFacetsEnum.Ages &&
-      item.selectedValues[0]
-    ) {
+    // Ages and Publicationyear: use "within" for range, ">" for open-ended
+    const rangeFieldName =
+      item.facetField === ComplexSearchFacetsEnum.Publicationyear
+        ? "publicationyear"
+        : item.facetField === ComplexSearchFacetsEnum.Ages
+          ? "ages"
+          : null;
+
+    if (rangeFieldName && item.selectedValues[0]) {
       const [from, to] = item.selectedValues;
-      const query = to ? `ages within "${from} ${to}"` : `ages>"${from}"`;
+      const query = to
+        ? `${rangeFieldName} within "${from} ${to}"`
+        : `${rangeFieldName}>"${from}"`;
       filterTermsSet.add(`((${query}))`);
       return;
     }
