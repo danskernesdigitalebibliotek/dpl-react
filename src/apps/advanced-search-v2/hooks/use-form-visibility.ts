@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useQueryState, parseAsJson, parseAsStringEnum } from "nuqs";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
 import { SuggestState, FacetState } from "../types";
+import { isValidSuggestState, isValidFacetState } from "../lib/validation";
 
 type FormView = "search" | "results";
 
@@ -25,17 +26,26 @@ export const useFormVisibility = (): UseFormVisibilityReturn => {
   // Read committed search state from URL (not local draft state)
   const [urlSuggests] = useQueryState(
     "suggests",
-    parseAsJson((value) => value as SuggestState[]).withDefault([])
+    parseAsJson((value) => {
+      if (isValidSuggestState(value)) return value;
+      return [];
+    }).withDefault([])
   );
 
   const [urlPreSearchFacets] = useQueryState(
     "preSearchFacets",
-    parseAsJson((value) => value as FacetState[]).withDefault([])
+    parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([])
   );
 
   const [urlFacets] = useQueryState(
     "facets",
-    parseAsJson((value) => value as FacetState[]).withDefault([])
+    parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([])
   );
 
   const cql = buildCQLQuery(urlSuggests, urlPreSearchFacets, urlFacets);

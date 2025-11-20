@@ -16,7 +16,6 @@ export type SuggestState = {
 
 // Facets are filters that can be either pre-search (form selects) or post-search (sidebar filters)
 export type FacetState = {
-  label: string;
   facetField: ComplexSearchFacetsEnum;
   selectedValues: string[];
 };
