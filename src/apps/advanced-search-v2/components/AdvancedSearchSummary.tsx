@@ -68,7 +68,8 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
               ComplexSearchFacetsEnum.Publicationyear
           ) {
             const [from, to] = preSearchFacet.selectedValues;
-            const value = to ? `${from}-${to}` : `${from}+`;
+            const hasRange = to && from !== to;
+            const value = hasRange ? `${from}-${to}` : `${from}+`;
 
             return (
               <React.Fragment key={preSearchFacet.facetField}>

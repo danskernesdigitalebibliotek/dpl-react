@@ -50,9 +50,10 @@ export const buildFilterTerms = (filters: FacetState[]): string[] => {
 
     if (rangeFieldName && item.selectedValues[0]) {
       const [from, to] = item.selectedValues;
-      const query = to
+      const hasRange = to && from !== to;
+      const query = hasRange
         ? `${rangeFieldName} within "${from} ${to}"`
-        : `${rangeFieldName}>"${from}"`;
+        : `${rangeFieldName}>="${from}"`;
       filterTermsSet.add(`((${query}))`);
       return;
     }
