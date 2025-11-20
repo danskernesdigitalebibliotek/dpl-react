@@ -2,20 +2,22 @@ import React from "react";
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
 import AdvancedSearchPublicationYearSelect from "./AdvancedSearchPublicationYearSelect";
-import { RangeValue } from "./AdvancedSearchRangeSelect";
+import { RangeValue, RangePreset } from "../types";
 
-type AdvancedSearchRangeFacetProps = {
+type AdvancedSearchRangeSelectsProps = {
   facetField: ComplexSearchFacetsEnum;
   label: string;
   selectedValues: string[];
   onUpdate: (values: string[]) => void;
+  presets: RangePreset[];
 };
 
-const AdvancedSearchRangeFacet: React.FC<AdvancedSearchRangeFacetProps> = ({
+const AdvancedSearchRangeSelects: React.FC<AdvancedSearchRangeSelectsProps> = ({
   facetField,
   label,
   selectedValues,
-  onUpdate
+  onUpdate,
+  presets
 }) => {
   const value: RangeValue = {
     from:
@@ -41,6 +43,7 @@ const AdvancedSearchRangeFacet: React.FC<AdvancedSearchRangeFacetProps> = ({
         label={label}
         value={value}
         onChange={handleChange}
+        presets={presets}
       />
     );
   }
@@ -51,6 +54,7 @@ const AdvancedSearchRangeFacet: React.FC<AdvancedSearchRangeFacetProps> = ({
         label={label}
         value={value}
         onChange={handleChange}
+        presets={presets}
       />
     );
   }
@@ -58,4 +62,4 @@ const AdvancedSearchRangeFacet: React.FC<AdvancedSearchRangeFacetProps> = ({
   return null;
 };
 
-export default AdvancedSearchRangeFacet;
+export default AdvancedSearchRangeSelects;

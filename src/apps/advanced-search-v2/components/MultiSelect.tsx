@@ -7,7 +7,7 @@ import {
   Label
 } from "@headlessui/react";
 import clsx from "clsx";
-import type { Option } from "../lib/suggestions";
+import type { Option } from "../types";
 import CheckBox from "../../../components/checkbox/Checkbox";
 
 const compareOptions = (a: unknown, b: unknown) => {

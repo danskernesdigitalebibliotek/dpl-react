@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
 import { SuggestState, FacetState } from "../types";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
+import { isValidSuggestState, isValidFacetState } from "../lib/validation";
 
 interface UseSearchQueriesReturn {
   cql: string;
@@ -22,17 +23,26 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
   // Read all search state from URL
   const [suggests] = useQueryState(
     "suggests",
-    parseAsJson((value) => value as SuggestState[]).withDefault([])
+    parseAsJson((value) => {
+      if (isValidSuggestState(value)) return value;
+      return [];
+    }).withDefault([])
   );
 
   const [preSearchFacets] = useQueryState(
     "preSearchFacets",
-    parseAsJson((value) => value as FacetState[]).withDefault([])
+    parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([])
   );
 
   const [facets] = useQueryState(
     "facets",
-    parseAsJson((value) => value as FacetState[]).withDefault([])
+    parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([])
   );
 
   // Read toggle states
