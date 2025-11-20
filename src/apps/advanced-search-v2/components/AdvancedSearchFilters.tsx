@@ -139,7 +139,7 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
             <AdvancedSearchFilterGroup
               key={config.facetField}
               facetField={config.facetField}
-              label={config.label}
+              label={t(config.label)}
               selectedValues={selectedValues}
               selectedCount={selectedCount}
               facetValues={facetValues}
