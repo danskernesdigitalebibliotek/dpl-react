@@ -33,12 +33,8 @@ export const isValidFacetState = (value: unknown): value is FacetState[] => {
   return value.every((item) => {
     if (typeof item !== "object" || item === null) return false;
 
-    const { label, facetField, selectedValues } = item as Record<
-      string,
-      unknown
-    >;
+    const { facetField, selectedValues } = item as Record<string, unknown>;
 
-    if (typeof label !== "string") return false;
     // Check if facetField is a valid enum value
     if (
       typeof facetField !== "string" ||
