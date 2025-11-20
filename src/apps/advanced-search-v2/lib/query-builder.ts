@@ -11,7 +11,8 @@ export const buildSuggestTerms = (suggests: SuggestState[]): string => {
   suggests.forEach((suggest, i) => {
     if (!suggest.query.trim()) return; // Skip empty queries
 
-    const term = `${suggest.term}="${suggest.query}"`; // e.g., term.default="harry"
+    const escapedQuery = suggest.query.replace(/"/g, '\\"');
+    const term = `${suggest.term}="${escapedQuery}"`; // e.g., term.default="harry"
 
     if (i === 0) {
       // First term has no operator prefix
