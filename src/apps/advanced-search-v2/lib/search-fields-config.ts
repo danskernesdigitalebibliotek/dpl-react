@@ -1,13 +1,13 @@
 import { ComplexSuggestionTypeEnum } from "../../../core/dbc-gateway/generated/graphql";
 
-export type SearchIndexItem = {
+export type SearchTermItem = {
   value: string;
   labelKey: string;
   type: ComplexSuggestionTypeEnum;
   placeholderKey: string;
 };
 
-export const SEARCH_INDEX_OPTIONS: SearchIndexItem[] = [
+export const SEARCH_TERM_OPTIONS: SearchTermItem[] = [
   {
     value: "term.default",
     labelKey: "advancedSearchLabelDefaultText",
