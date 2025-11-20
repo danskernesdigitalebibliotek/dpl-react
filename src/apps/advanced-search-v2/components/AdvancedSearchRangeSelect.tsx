@@ -9,18 +9,7 @@ import {
 } from "@headlessui/react";
 import clsx from "clsx";
 import { useText } from "../../../core/utils/text";
-
-export type RangeValue = {
-  from: number | null;
-  to: number | null;
-};
-
-export type RangePreset = {
-  id: string;
-  label: string;
-  from: number;
-  to: number | null;
-};
+import { RangeValue, RangePreset } from "../types";
 
 type AdvancedSearchRangeSelectProps = {
   label: string;
