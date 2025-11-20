@@ -8,86 +8,23 @@ import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-prop
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
 import withPageStatistics from "../../core/statistics/withPageStatistics";
-import { AdvancedSortSelectArgs } from "../../core/storybook/AdvancedSortSelect";
 import AdvancedSearchV2 from "./AdvancedSearchV2";
 import { NuqsAdapter } from "nuqs/adapters/react";
 
 interface AdvancedSearchEntryTextProps {
   byAuthorText: string;
-  etAlText: string;
   inSeriesText: string;
   loadingText: string;
-  numberDescriptionText: string;
   resultPagerStatusText: string;
   noSearchResultText: string;
   showMoreText: string;
-  showingResultsForWithoutQueryText: string;
-  advancedSearchLinkToThisSearchText: string;
-  advancedSearchAllIndexesText: string;
-  advancedSearchCreatorText: string;
-  advancedSearchSubjectText: string;
-  advancedSearchGenreText: string;
-  advancedSearchLanguageText: string;
-  advancedSearchDateText: string;
-  advancedSearchMainCreatorText: string;
-  advancedSearchMainTitleText: string;
-  advancedSearchSourceText: string;
-  advancedSearchDateFirstEditionText: string;
-  advancedSearchDecimalDk5Text: string;
-  advancedSearchTypeText: string;
-  advancedSearchAudienceText: string;
-  advancedSearchPublisherText: string;
-  advancedSearchIdentifierText: string;
-  advancedSearchAcSourceText: string;
   advancedSearchAddRowText: string;
-  advancedSearchTitleText: string;
-  advancedSearchPreviewHeadlineText: string;
-  advancedSearchPreviewEmptyText: string;
-  advancedSearchResetText: string;
-  advancedSearchCopyStringText: string;
-  advancedSearchEditCqlText: string;
   advancedSearchSearchButtonText: string;
   loadingResultsText: string;
-  toAdvancedSearchButtonText: string;
-  cqlSearchTitleText: string;
-  copiedToClipboardText: string;
-  copiedLinkToThisSearchText: string;
   clauseAndText: string;
   clauseOrText: string;
   clauseNotText: string;
-  advancedSearchFilterMaterialTypeText: string;
-  advancedSearchFilterLiteratureFormText: string;
-  advancedSearchFilterAccessText: string;
-  advancedSearchFilterBookText: string;
-  advancedSearchFilterEbookText: string;
-  advancedSearchFilterAudioBookText: string;
-  advancedSearchFilterArticleText: string;
-  advancedSearchFilterMovieText: string;
-  advancedSearchFilterMusicText: string;
-  advancedSearchFilterPhysicalText: string;
-  advancedSearchFilterOnlineText: string;
-  advancedSearchFilterFictionText: string;
-  advancedSearchFilterNonFictionText: string;
-  advancedSearchFilterHoldingStatusText: string;
-  advancedSearchInputLabelText: string;
-  advancedSearchInputPlaceholderText: string;
   advancedSearchRemoveRowText: string;
-  advancedSearchFilterLocationText: string;
-  advancedSearchFilterLocationDescriptionText: string;
-  advancedSearchFilterSublocationText: string;
-  advancedSearchFilterSublocationDescriptionText: string;
-  advancedSearchFilterBranchText: string;
-  advancedSearchFilterBranchDescriptionText: string;
-  advancedSearchFilterDepartmentText: string;
-  advancedSearchFilterDepartmentDescriptionText: string;
-  advancedSearchFirstAccessionDateText: string;
-  advancedSearchFirstAccessionDateOperatorText: string;
-  advancedSearchFilterLaterThanText: string;
-  advancedSearchFilterExactDateText: string;
-  advancedSearchFilterEarlierThanText: string;
-  advancedSearchFirstAccessionDateDescriptionText: string;
-  advancedSearchFirstAccessionDateSpecifyDateText: string;
-  cqlSearchExternalHelpLinkText: string;
   // NOTE: The following properties are newly added and not inherited from the previous advanced search implementation.
   advancedSearchSelectedText: string;
   advancedSearchAllText: string;
@@ -99,8 +36,6 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchPlaceholderDk5Text: string;
   advancedSearchPlaceholderIsbnText: string;
   advancedSearchPlaceholderSeriesText: string;
-  advancedSearchPlaceholderFictionalCharacterText: string;
-  advancedSearchPlaceholderHostPublicationText: string;
   advancedSearchLabelDefaultText: string;
   advancedSearchLabelTitleText: string;
   advancedSearchLabelCreatorText: string;
@@ -109,8 +44,6 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchLabelDk5Text: string;
   advancedSearchLabelIsbnText: string;
   advancedSearchLabelSeriesText: string;
-  advancedSearchLabelFictionalCharacterText: string;
-  advancedSearchLabelHostPublicationText: string;
   advancedSearchEditSearchText: string;
   advancedSearchOnShelfText: string;
   advancedSearchOnShelfDescriptionText: string;
@@ -118,6 +51,7 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchOnlyExtraTitlesDescriptionText: string;
   advancedSearchShowAllText: string;
   advancedSearchShowLessText: string;
+  advancedSearchResetText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
@@ -132,8 +66,7 @@ export interface AdvancedSearchEntryProps
     GlobalEntryTextProps,
     AdvancedSearchEntryConfigProps,
     AdvancedSearchEntryTextProps,
-    MappArgs,
-    AdvancedSortSelectArgs {
+    MappArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
   showingMaterialsText: string;
