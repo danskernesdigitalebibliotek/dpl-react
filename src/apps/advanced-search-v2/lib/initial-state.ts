@@ -8,12 +8,28 @@ export const INITIAL_SUGGEST_STATE: SuggestState[] = [
 
 // Pre-search facets are the form selects shown in the search form
 export const INITIAL_PRE_SEARCH_FACETS_STATE: FacetConfig[] = [
-  { label: "Genre og form", facetField: ComplexSearchFacetsEnum.Genreandform },
-  { label: "Sprog", facetField: ComplexSearchFacetsEnum.Mainlanguage },
   {
-    label: "Udgivelsesår",
+    label: "advancedSearchFacetMaterialTypeText",
+    facetField: ComplexSearchFacetsEnum.Generalmaterialtype
+  },
+  {
+    label: "advancedSearchFacetGenreAndFormText",
+    facetField: ComplexSearchFacetsEnum.Genreandform
+  },
+  {
+    label: "advancedSearchFacetSourceText",
+    facetField: ComplexSearchFacetsEnum.Source
+  },
+  {
+    label: "advancedSearchFacetLanguageText",
+    facetField: ComplexSearchFacetsEnum.Mainlanguage
+  },
+  {
+    label: "advancedSearchFacetYearText",
     facetField: ComplexSearchFacetsEnum.Publicationyear
   },
-  { label: "Aldersgruppe", facetField: ComplexSearchFacetsEnum.Ages },
-  { label: "Kilde", facetField: ComplexSearchFacetsEnum.Source }
+  {
+    label: "advancedSearchFacetAgeText",
+    facetField: ComplexSearchFacetsEnum.Ages
+  }
 ];

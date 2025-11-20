@@ -3,6 +3,8 @@ import { useQueryStates, parseAsJson, parseAsBoolean } from "nuqs";
 import { SuggestState, FacetState } from "../types";
 import { INITIAL_SUGGEST_STATE } from "../lib/initial-state";
 
+import { isValidSuggestState, isValidFacetState } from "../lib/validation";
+
 export interface UseSearchFormStateReturn {
   suggests: SuggestState[];
   preSearchFacets: FacetState[];
@@ -24,13 +26,18 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
   // URL state management with nuqs
   const [urlState, setUrlState] = useQueryStates(
     {
-      suggests: parseAsJson((value) => value as SuggestState[]).withDefault(
-        INITIAL_SUGGEST_STATE
-      ),
-      preSearchFacets: parseAsJson(
-        (value) => value as FacetState[]
-      ).withDefault([]),
-      facets: parseAsJson((value) => value as FacetState[]).withDefault([]),
+      suggests: parseAsJson((value) => {
+        if (isValidSuggestState(value)) return value;
+        return INITIAL_SUGGEST_STATE;
+      }).withDefault(INITIAL_SUGGEST_STATE),
+      preSearchFacets: parseAsJson((value) => {
+        if (isValidFacetState(value)) return value;
+        return [];
+      }).withDefault([]),
+      facets: parseAsJson((value) => {
+        if (isValidFacetState(value)) return value;
+        return [];
+      }).withDefault([]),
       onShelf: parseAsBoolean.withDefault(false),
       onlyExtraTitles: parseAsBoolean.withDefault(false)
     },
