@@ -1,8 +1,4 @@
-export type Option = {
-  label: string;
-  value: string;
-  count?: number; // Optional count for facet options
-};
+import type { Option } from "../types";
 
 // Minimal common shape from both localSuggest and complexSuggest
 // - localSuggest: { term, work: { titles: { main: string[] } } }

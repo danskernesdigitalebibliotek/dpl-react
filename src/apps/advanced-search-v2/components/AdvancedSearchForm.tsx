@@ -9,7 +9,6 @@ import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import { useText } from "../../../core/utils/text";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
-import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
@@ -113,16 +112,14 @@ const AdvancedSearchForm: React.FC = () => {
           );
           const selectedValues = currentPreSearchFacet?.selectedValues ?? [];
 
-          if (
-            config.facetField === ComplexSearchFacetsEnum.Ages ||
-            config.facetField === ComplexSearchFacetsEnum.Publicationyear
-          ) {
+          if (config.type === "range") {
             return (
               <AdvancedSearchRangeFacet
                 key={config.facetField}
                 facetField={config.facetField}
                 label={t(config.label)}
                 selectedValues={selectedValues}
+                presets={config.presets}
                 onUpdate={(values) => {
                   updatePreSearchFacet({
                     label: config.label,
@@ -139,6 +136,7 @@ const AdvancedSearchForm: React.FC = () => {
               key={config.facetField}
               facetField={config.facetField}
               label={t(config.label)}
+              options={config.options}
               selected={selectedValues.map((value) => ({
                 label: value,
                 value
