@@ -128,7 +128,12 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   return (
     <div className="hui-multiselect-wrapper">
       {label && (
-        <label className="hui-multiselect-wrapper__label">{t(label)}</label>
+        <label
+          htmlFor={`hui-multiselect-${label}`}
+          className="hui-multiselect-wrapper__label"
+        >
+          {t(label)}
+        </label>
       )}
       <Popover className="hui-multiselect">
         {({ open }) => {
@@ -141,6 +146,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                 listRef={listRef}
               />
               <PopoverButton
+                id={`hui-multiselect-${label}`}
                 className={clsx("hui-multiselect__button", {
                   "hui-multiselect__button--open": open
                 })}
@@ -165,84 +171,83 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               </PopoverButton>
 
               <PopoverPanel className="hui-multiselect__popover-panel">
-                <div>
-                  {enableSearch && (
-                    <input
-                      ref={inputRef}
-                      type="text"
-                      className="hui-multiselect__input"
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === "ArrowDown" && listRef.current) {
-                          e.preventDefault();
-                          const firstCheckbox =
-                            listRef.current.querySelector<HTMLInputElement>(
-                              'input[type="checkbox"]'
-                            );
-                          if (firstCheckbox) {
-                            firstCheckbox.focus();
-                            setFocusedIndex(0);
-                          }
+                {enableSearch && (
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    className="hui-multiselect__input"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "ArrowDown" && listRef.current) {
+                        e.preventDefault();
+                        const firstCheckbox =
+                          listRef.current.querySelector<HTMLInputElement>(
+                            'input[type="checkbox"]'
+                          );
+                        if (firstCheckbox) {
+                          firstCheckbox.focus();
+                          setFocusedIndex(0);
                         }
-                      }}
-                      placeholder="Search…"
-                    />
-                  )}
-
-                  <ul
-                    ref={listRef}
-                    className="hui-multiselect__options"
-                    tabIndex={0}
-                    role="listbox"
-                    onKeyDown={handleListKeyDown}
-                    onFocus={() => {
-                      if (focusedIndex === -1 && filtered.length > 0) {
-                        setFocusedIndex(0);
                       }
                     }}
-                    onBlur={() => setFocusedIndex(-1)}
-                  >
-                    {filtered.map((option, index) => {
-                      const isSelected = selectedOptions.some(
-                        (opt) => opt.value === option.value
-                      );
-                      const isFocused = focusedIndex === index;
+                    placeholder="Search…"
+                  />
+                )}
 
-                      return (
-                        <li
-                          className={clsx("hui-multiselect__options__option", {
-                            "hui-multiselect__options__option--selected":
-                              isSelected,
-                            "hui-multiselect__options__option--focused":
-                              isFocused
-                          })}
-                          key={option.value}
+                <ul
+                  ref={listRef}
+                  className="hui-multiselect__options"
+                  tabIndex={0}
+                  role="listbox"
+                  onKeyDown={handleListKeyDown}
+                  onFocus={() => {
+                    if (focusedIndex === -1 && filtered.length > 0) {
+                      setFocusedIndex(0);
+                    }
+                  }}
+                  onBlur={() => setFocusedIndex(-1)}
+                >
+                  {filtered.map((option, index) => {
+                    const isSelected = selectedOptions.some(
+                      (opt) => opt.value === option.value
+                    );
+                    const isFocused = focusedIndex === index;
+
+                    return (
+                      <li
+                        className={clsx("hui-multiselect__options__option", {
+                          "hui-multiselect__options__option--selected":
+                            isSelected,
+                          "hui-multiselect__options__option--focused": isFocused
+                        })}
+                        key={option.value}
+                      >
+                        <div
+                          role="button"
+                          tabIndex={-1}
+                          onKeyDown={(e) => {
+                            if (e.key === " " || e.key === "Enter") {
+                              e.preventDefault();
+                              handleToggle(option);
+                            }
+                          }}
                         >
-                          <div
-                            role="button"
-                            tabIndex={-1}
-                            onKeyDown={(e) => {
-                              if (e.key === " " || e.key === "Enter") {
-                                e.preventDefault();
-                                handleToggle(option);
-                              }
-                            }}
-                          >
-                            <CheckBox
-                              id={`select-${option.value}`}
-                              label={option.label}
-                              selected={isSelected}
-                              onChecked={() => handleToggle(option)}
-                              isVisualOnly={false}
-                              tabIndex={index === 0 && !enableSearch ? 0 : -1}
-                            />
-                          </div>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                          <CheckBox
+                            id={`select-${option.value}`}
+                            label={option.label}
+                            selected={isSelected}
+                            onChecked={() => handleToggle(option)}
+                            isVisualOnly={false}
+                            tabIndex={index === 0 && !enableSearch ? 0 : -1}
+                          />
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
 
+                <div className="hui-multiselect__footer">
                   <button
                     ref={resetButtonRef}
                     type="button"
