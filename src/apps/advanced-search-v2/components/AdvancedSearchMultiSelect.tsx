@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
-import type { Option } from "../lib/suggestions";
+import type { Option } from "../types";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
@@ -18,6 +18,37 @@ type AdvancedSearchMultiSelectProps = {
   onChange?: (vals: Option[]) => void;
   label: string;
   enableSearch?: boolean;
+};
+
+type PopoverFocusHandlerProps = {
+  open: boolean;
+  enableSearch?: boolean;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+  listRef: React.RefObject<HTMLUListElement | null>;
+};
+
+const PopoverFocusHandler: React.FC<PopoverFocusHandlerProps> = ({
+  open,
+  enableSearch,
+  inputRef,
+  listRef
+}) => {
+  useEffect(() => {
+    if (open) {
+      if (enableSearch && inputRef.current) {
+        inputRef.current.focus();
+      } else if (!enableSearch && listRef.current) {
+        const firstCheckbox = listRef.current.querySelector<HTMLInputElement>(
+          'input[type="checkbox"]'
+        );
+        if (firstCheckbox) {
+          firstCheckbox.focus();
+        }
+      }
+    }
+  }, [open, enableSearch, inputRef, listRef]);
+
+  return null;
 };
 
 const AdvancedSearchMultiSelect: React.FC<AdvancedSearchMultiSelectProps> = ({
@@ -97,29 +128,18 @@ const AdvancedSearchMultiSelect: React.FC<AdvancedSearchMultiSelectProps> = ({
   return (
     <div className="hui-multiselect-wrapper">
       {label && (
-        <label className="hui-multiselect-wrapper__label">{label}</label>
+        <label className="hui-multiselect-wrapper__label">{t(label)}</label>
       )}
       <Popover className="hui-multiselect">
         {({ open }) => {
-          // Focus input or first checkbox when panel opens
-          useEffect(() => {
-            if (open) {
-              if (enableSearch && inputRef.current) {
-                inputRef.current.focus();
-              } else if (!enableSearch && listRef.current) {
-                const firstCheckbox =
-                  listRef.current.querySelector<HTMLInputElement>(
-                    'input[type="checkbox"]'
-                  );
-                if (firstCheckbox) {
-                  firstCheckbox.focus();
-                }
-              }
-            }
-          }, [open]);
-
           return (
             <>
+              <PopoverFocusHandler
+                open={open}
+                enableSearch={enableSearch}
+                inputRef={inputRef}
+                listRef={listRef}
+              />
               <PopoverButton
                 className={clsx("hui-multiselect__button", {
                   "hui-multiselect__button--open": open
