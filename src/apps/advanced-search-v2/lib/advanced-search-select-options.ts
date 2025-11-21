@@ -3,9 +3,9 @@ import type { Option, RangePreset } from "../types";
 const currentYear = new Date().getFullYear();
 
 export const MATERIAL_TYPE_OPTIONS: Option[] = [
-  { label: "Bøger", value: "bog" },
-  { label: "E-bøger", value: "e-bog" },
-  { label: "Lydbøger", value: "lydbog" },
+  { label: "Bøger", value: "bøger" },
+  { label: "E-bøger", value: "e-bøger	" },
+  { label: "Lydbøger", value: "lydbøger" },
   { label: "Musik", value: "musik" },
   { label: "Noder", value: "noder" },
   { label: "Film", value: "film" },
@@ -15,9 +15,9 @@ export const MATERIAL_TYPE_OPTIONS: Option[] = [
   { label: "Computerspil", value: "computerspil" },
   { label: "Brætspil", value: "brætspil" },
   { label: "Billedmaterialer", value: "billedmaterialer" },
-  { label: "Aviser/tidsskrifter", value: "aviser/tidsskrifter" },
+  { label: "Aviser og tidsskrifter", value: "aviser og tidsskrifter" },
   { label: "Podcasts", value: "podcasts" },
-  { label: "Andet", value: "andet" }
+  { label: "Øvrige", value: "øvrige" }
 ];
 
 export const GENRE_OPTIONS: Option[] = [
