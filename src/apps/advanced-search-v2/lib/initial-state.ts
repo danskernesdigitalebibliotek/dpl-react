@@ -21,25 +21,29 @@ export const INITIAL_PRE_SEARCH_FACETS_STATE: PreFacetConfig[] = [
     label: "advancedSearchFacetMaterialTypeText",
     facetField: ComplexSearchFacetsEnum.Generalmaterialtype,
     type: "select",
-    options: MATERIAL_TYPE_OPTIONS
+    options: MATERIAL_TYPE_OPTIONS,
+    enableSearch: true
   },
   {
     label: "advancedSearchFacetGenreAndFormText",
     facetField: ComplexSearchFacetsEnum.Genreandform,
     type: "select",
-    options: GENRE_OPTIONS
+    options: GENRE_OPTIONS,
+    enableSearch: true
   },
   {
     label: "advancedSearchFacetSourceText",
     facetField: ComplexSearchFacetsEnum.Source,
     type: "select",
-    options: SOURCE_OPTIONS
+    options: SOURCE_OPTIONS,
+    enableSearch: false
   },
   {
     label: "advancedSearchFacetLanguageText",
     facetField: ComplexSearchFacetsEnum.Mainlanguage,
     type: "select",
-    options: LANGUAGE_OPTIONS
+    options: LANGUAGE_OPTIONS,
+    enableSearch: true
   },
   {
     label: "advancedSearchFacetYearText",

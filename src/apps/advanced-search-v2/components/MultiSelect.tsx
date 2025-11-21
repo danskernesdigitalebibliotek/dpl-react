@@ -1,152 +1,264 @@
-import React, { useMemo, useRef, useEffect, useState } from "react";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxOption,
-  ComboboxOptions,
-  Label
-} from "@headlessui/react";
+import React, {
+  useMemo,
+  useRef,
+  useEffect,
+  useState,
+  KeyboardEvent
+} from "react";
+import IconExpand from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import clsx from "clsx";
 import type { Option } from "../types";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
 
-const compareOptions = (a: unknown, b: unknown) => {
-  const ao = a as Option | null | undefined;
-  const bo = b as Option | null | undefined;
-  return ao?.value === bo?.value;
+const PopoverFocusHandler = ({
+  open,
+  enableSearch,
+  inputRef,
+  listRef
+}: {
+  open: boolean;
+  enableSearch?: boolean;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+  listRef: React.RefObject<HTMLUListElement | null>;
+}) => {
+  useEffect(() => {
+    if (open) {
+      if (enableSearch && inputRef.current) {
+        inputRef.current.focus();
+      } else if (!enableSearch && listRef.current) {
+        const firstCheckbox = listRef.current.querySelector<HTMLInputElement>(
+          'input[type="checkbox"]'
+        );
+        if (firstCheckbox) {
+          firstCheckbox.focus();
+        }
+      }
+    }
+  }, [open, enableSearch, inputRef, listRef]);
+
+  return null;
 };
 
-export type MultiSelectClasses = {
-  input?: string;
-  options?: string;
-  option?: string;
-};
-
-export type MultiSelectProps = {
+type MultiSelectProps = {
   options: Option[];
   selectedOptions: Option[];
-  onChange: (next: Option[]) => void;
-  placeholder?: string;
-  classes?: MultiSelectClasses;
-  // Optional Label rendered inside Combobox
-  label?: React.ReactNode;
-  labelClassName?: string;
-  // UI flags
-  showEmptyStates?: boolean;
-  optionsStatic?: boolean;
-  // Focus the input when component mounts
-  focusOnMount?: boolean;
+  onChange?: (vals: Option[]) => void;
+  label: string;
   enableSearch?: boolean;
-  // Controlled search input
-  inputValue?: string;
-  onInputChange?: (value: string) => void;
 };
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
-  options,
+  options = [],
   selectedOptions,
   onChange,
-  placeholder = "Start typing…",
-  classes,
   label,
-  labelClassName,
-  showEmptyStates = false,
-  optionsStatic = false,
-  enableSearch = false,
-  inputValue: controlledInputValue,
-  onInputChange
+  enableSearch
 }) => {
+  const t = useText();
   const inputRef = useRef<HTMLInputElement>(null);
-  const optionsRef = useRef<HTMLUListElement>(null);
-  const [localInputValue, setLocalInputValue] = useState("");
+  const listRef = useRef<HTMLUListElement>(null);
+  const resetButtonRef = useRef<HTMLButtonElement>(null);
+  const [inputValue, setInputValue] = useState("");
+  const [focusedIndex, setFocusedIndex] = useState(-1);
 
-  const isControlled = controlledInputValue !== undefined;
-  const inputValue = isControlled ? controlledInputValue : localInputValue;
+  const selectedCount = selectedOptions?.length ?? 0;
+  const hasSelection = selectedCount > 0;
 
-  const handleInputChange = (value: string) => {
-    if (isControlled) {
-      onInputChange?.(value);
+  // Filter options based on search value
+  const filtered = useMemo(() => {
+    const inputString = inputValue.trim().toLowerCase();
+    if (!inputString) return options;
+    return options.filter((option) =>
+      option.label.toLowerCase().includes(inputString)
+    );
+  }, [options, inputValue]);
+
+  const handleToggle = (option: Option) => {
+    const isSelected = selectedOptions.some(
+      (opt) => opt.value === option.value
+    );
+    if (isSelected) {
+      onChange?.(selectedOptions.filter((opt) => opt.value !== option.value));
     } else {
-      setLocalInputValue(value);
+      onChange?.([...selectedOptions, option]);
     }
   };
 
-  // Focus input when component mounts
-  useEffect(() => {
-    if (enableSearch && inputRef.current) {
-      inputRef.current.focus();
-    } else {
-      optionsRef.current?.focus();
-    }
-  }, [enableSearch]);
+  const handleReset = () => {
+    onChange?.([]);
+  };
 
-  // Filter suggestions based on the current query
-  const filtered = useMemo(() => {
-    const qstr = inputValue.trim().toLowerCase();
-    if (!qstr) return options;
-    return options.filter((i) => i.label.toLowerCase().includes(qstr));
-  }, [options, inputValue]);
+  const handleListKeyDown = (e: KeyboardEvent<HTMLUListElement>) => {
+    if (filtered.length === 0) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setFocusedIndex((prev) =>
+          prev < filtered.length - 1 ? prev + 1 : prev
+        );
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setFocusedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+        break;
+      case " ":
+      case "Enter":
+        e.preventDefault();
+        if (focusedIndex >= 0 && focusedIndex < filtered.length) {
+          handleToggle(filtered[focusedIndex]);
+        }
+        break;
+    }
+  };
+
+  // Scroll focused item into view
+  useEffect(() => {
+    if (focusedIndex >= 0 && listRef.current) {
+      const items = listRef.current.querySelectorAll("li");
+      items[focusedIndex]?.scrollIntoView({
+        block: "nearest",
+        behavior: "smooth"
+      });
+    }
+  }, [focusedIndex]);
 
   return (
-    <Combobox
-      multiple
-      value={selectedOptions}
-      onChange={(selectedValue) => {
-        // Notify parent component of the selected value
-        onChange(selectedValue as Option[]);
-      }}
-      by={compareOptions}
-    >
-      {label ? <Label className={labelClassName}>{label}</Label> : null}
-
-      {enableSearch && (
-        <ComboboxInput
-          ref={inputRef}
-          className={clsx("advanced-search-combobox-input", classes?.input)}
-          onChange={(e) => {
-            handleInputChange(e.currentTarget.value);
-          }}
-          displayValue={() => inputValue}
-          placeholder={placeholder}
-        />
+    <div className="hui-multiselect-wrapper">
+      {label && (
+        <label className="hui-multiselect-wrapper__label">{t(label)}</label>
       )}
+      <Popover className="hui-multiselect">
+        {({ open }) => {
+          return (
+            <>
+              <PopoverFocusHandler
+                open={open}
+                enableSearch={enableSearch}
+                inputRef={inputRef}
+                listRef={listRef}
+              />
+              <PopoverButton
+                className={clsx("hui-multiselect__button", {
+                  "hui-multiselect__button--open": open
+                })}
+              >
+                <div className="hui-multiselect__button-label">
+                  {hasSelection
+                    ? t("advancedSearchSelectedText")
+                    : t("advancedSearchAllText")}
+                  {hasSelection && (
+                    <span className="hui-multiselect__button-label__count-badge">
+                      {selectedCount}
+                    </span>
+                  )}
+                </div>
+                <div className="hui-multiselect__button-arrow">
+                  <img
+                    className="hui-multiselect__arrow"
+                    src={IconExpand}
+                    alt=""
+                  />
+                </div>
+              </PopoverButton>
 
-      <ComboboxOptions
-        ref={optionsRef}
-        className={classes?.options}
-        static={optionsStatic}
-      >
-        {showEmptyStates && filtered.length === 0 && inputValue.length > 0 && (
-          <li className="advanced-search-combobox-option">No results</li>
-        )}
-        {showEmptyStates && options.length === 0 && (
-          <li className="advanced-search-combobox-option">
-            No options available
-          </li>
-        )}
+              <PopoverPanel className="hui-multiselect__popover-panel">
+                <div>
+                  {enableSearch && (
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      className="hui-multiselect__input"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "ArrowDown" && listRef.current) {
+                          e.preventDefault();
+                          const firstCheckbox =
+                            listRef.current.querySelector<HTMLInputElement>(
+                              'input[type="checkbox"]'
+                            );
+                          if (firstCheckbox) {
+                            firstCheckbox.focus();
+                            setFocusedIndex(0);
+                          }
+                        }
+                      }}
+                      placeholder="Search…"
+                    />
+                  )}
 
-        {filtered.map((item) => (
-          <ComboboxOption
-            key={item.value}
-            value={item}
-            className={({ focus, selected }) =>
-              clsx("advanced-search-combobox-option", classes?.option, {
-                "is-focus": focus,
-                "is-selected": selected
-              })
-            }
-          >
-            <CheckBox
-              id={`advanced-search-select-${item.value}`}
-              label={item.label}
-              selected={selectedOptions.some((opt) => opt.value === item.value)}
-              onChecked={() => {}}
-              isVisualOnly
-            />
-          </ComboboxOption>
-        ))}
-      </ComboboxOptions>
-    </Combobox>
+                  <ul
+                    ref={listRef}
+                    className="hui-multiselect__options"
+                    tabIndex={0}
+                    role="listbox"
+                    onKeyDown={handleListKeyDown}
+                    onFocus={() => {
+                      if (focusedIndex === -1 && filtered.length > 0) {
+                        setFocusedIndex(0);
+                      }
+                    }}
+                    onBlur={() => setFocusedIndex(-1)}
+                  >
+                    {filtered.map((option, index) => {
+                      const isSelected = selectedOptions.some(
+                        (opt) => opt.value === option.value
+                      );
+                      const isFocused = focusedIndex === index;
+
+                      return (
+                        <li
+                          className={clsx("hui-multiselect__options__option", {
+                            "hui-multiselect__options__option--selected":
+                              isSelected,
+                            "hui-multiselect__options__option--focused":
+                              isFocused
+                          })}
+                          key={option.value}
+                        >
+                          <div
+                            role="button"
+                            tabIndex={-1}
+                            onKeyDown={(e) => {
+                              if (e.key === " " || e.key === "Enter") {
+                                e.preventDefault();
+                                handleToggle(option);
+                              }
+                            }}
+                          >
+                            <CheckBox
+                              id={`select-${option.value}`}
+                              label={option.label}
+                              selected={isSelected}
+                              onChecked={() => handleToggle(option)}
+                              isVisualOnly={false}
+                              tabIndex={index === 0 && !enableSearch ? 0 : -1}
+                            />
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                  <button
+                    ref={resetButtonRef}
+                    type="button"
+                    className="hui-multiselect__reset-button"
+                    onClick={handleReset}
+                    disabled={selectedCount === 0}
+                  >
+                    {t("advancedSearchResetText")}
+                  </button>
+                </div>
+              </PopoverPanel>
+            </>
+          );
+        }}
+      </Popover>
+    </div>
   );
 };
 
