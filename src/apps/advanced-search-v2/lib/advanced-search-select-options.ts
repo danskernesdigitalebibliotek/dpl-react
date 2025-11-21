@@ -4,7 +4,7 @@ const currentYear = new Date().getFullYear();
 
 export const MATERIAL_TYPE_OPTIONS: Option[] = [
   { label: "Bøger", value: "bøger" },
-  { label: "E-bøger", value: "e-bøger	" },
+  { label: "E-bøger", value: "e-bøger" },
   { label: "Lydbøger", value: "lydbøger" },
   { label: "Musik", value: "musik" },
   { label: "Noder", value: "noder" },
