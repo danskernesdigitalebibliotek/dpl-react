@@ -91,14 +91,16 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
             );
           }
 
-          // Other facets: show each value
-          return preSearchFacet.selectedValues.map((value, i) => (
-            <React.Fragment key={`${preSearchFacet.facetField}-${i}`}>
-              {(showOperator || i > 0) &&
-                renderOperator(i === 0 ? "and" : "or")}
+          // Other facets: show values joined by comma
+          const value = preSearchFacet.selectedValues.join(", ");
+          if (!value) return null;
+
+          return (
+            <React.Fragment key={preSearchFacet.facetField}>
+              {showOperator && renderOperator("and")}
               {renderItem(t(config.label), value)}
             </React.Fragment>
-          ));
+          );
         })}
 
         {onEditClick && (
