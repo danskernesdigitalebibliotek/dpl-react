@@ -23,6 +23,7 @@ const AdvancedSearchSelect: React.FC<Props> = ({
       value={selected}
       onChange={onChange}
       label={label ?? "Filter"}
+      enableSearch={true}
     />
   );
 };
