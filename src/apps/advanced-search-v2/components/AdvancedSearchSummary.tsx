@@ -60,12 +60,16 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           );
         })}
 
-        {preSearchFacets.map((preSearchFacet) => {
+        {preSearchFacets.map((preSearchFacet, facetIndex) => {
           const config = INITIAL_PRE_SEARCH_FACETS_STATE.find(
             (c) => c.facetField === preSearchFacet.facetField
           );
 
           if (!config) return null;
+
+          const hasSuggests = suggests.some((s) => s.query.trim().length > 0);
+          const isFirstFacet = facetIndex === 0;
+          const showOperator = hasSuggests || !isFirstFacet;
 
           // Ranges: show as range instead of individual values
           if (config.type === "range") {
@@ -81,7 +85,7 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
 
             return (
               <React.Fragment key={preSearchFacet.facetField}>
-                {renderOperator("and")}
+                {showOperator && renderOperator("and")}
                 {renderItem(t(config.label), value)}
               </React.Fragment>
             );
@@ -90,7 +94,8 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           // Other facets: show each value
           return preSearchFacet.selectedValues.map((value, i) => (
             <React.Fragment key={`${preSearchFacet.facetField}-${i}`}>
-              {renderOperator(i === 0 ? "and" : "or")}
+              {(showOperator || i > 0) &&
+                renderOperator(i === 0 ? "and" : "or")}
               {renderItem(t(config.label), value)}
             </React.Fragment>
           ));
