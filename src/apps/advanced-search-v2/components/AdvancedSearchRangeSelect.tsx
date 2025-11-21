@@ -37,7 +37,8 @@ const defaultFormatBadge = (
   to: number | null
 ): string | null => {
   if (from === null) return null;
-  if (to === null || from === to) return `${from}+`;
+  if (to === null) return `${from}+`;
+  if (from === to) return `${from}`;
   return `${from}-${to}`;
 };
 
