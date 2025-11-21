@@ -59,7 +59,7 @@ describe("Create Patron - Page Objects Integration", () => {
         dialog.elements
           .locationList()
           .shouldContainAll([
-            "Nørrebro",
+            "Grønlandsk Bibliotek",
             "Biblioteket Rentemestervej",
             "Sundby",
             "Solvang",

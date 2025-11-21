@@ -78,6 +78,10 @@ function FindLibraryDialog({
       const lat = branch.location?.lat ? parseFloat(branch.location.lat) : null;
       const lng = branch.location?.lng ? parseFloat(branch.location.lng) : null;
 
+      if (!lat || !lng) {
+        return { branch, distance: null };
+      }
+
       const distance = calculateDistanceBetweenTwoCoordinates(
         selectedDawaAddress.lat!,
         selectedDawaAddress.lng!,
