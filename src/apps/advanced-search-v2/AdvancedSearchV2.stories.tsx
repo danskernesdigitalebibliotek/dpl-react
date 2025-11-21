@@ -117,6 +117,7 @@ export const Default: Story = {
     ...globalConfigArgs,
     ...mappArgs,
     ...advancedSearchV2Args,
+    etAlText: "et al.",
     pageSizeDesktop: 50,
     pageSizeMobile: 20,
     materialUrl: "/work/:workid",

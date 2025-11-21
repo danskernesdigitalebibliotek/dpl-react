@@ -284,7 +284,8 @@ export default {
   advancedSearchFacetScoreTypeText: "Nodetype",
   advancedSearchFacetYearText: "Udgivelsesår",
   advancedSearchFacetFictionalCharacterText: "Fiktiv hovedperson",
-  advancedSearchFacetAgeText: "Aldersgruppe"
+  advancedSearchFacetAgeText: "Aldersgruppe",
+  advancedSearchResetText: "Nulstil søgning"
 };
 
 export interface AdvancedSearchV2Args {
