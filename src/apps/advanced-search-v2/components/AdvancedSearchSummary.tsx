@@ -60,34 +60,47 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           );
         })}
 
-        {preSearchFacets.map((preSearchFacet) => {
+        {preSearchFacets.map((preSearchFacet, facetIndex) => {
           const config = INITIAL_PRE_SEARCH_FACETS_STATE.find(
             (c) => c.facetField === preSearchFacet.facetField
           );
 
           if (!config) return null;
 
+          const hasSuggests = suggests.some((s) => s.query.trim().length > 0);
+          const isFirstFacet = facetIndex === 0;
+          const showOperator = hasSuggests || !isFirstFacet;
+
           // Ranges: show as range instead of individual values
           if (config.type === "range") {
             const [from, to] = preSearchFacet.selectedValues;
-            const hasRange = to && from !== to;
-            const value = hasRange ? `${from}-${to}` : `${from}+`;
+
+            const formatValue = (f: string, t: string) => {
+              if (!t) return `${f}+`;
+              if (f === t) return `${f}`;
+              return `${f}-${t}`;
+            };
+
+            const value = formatValue(from, to);
 
             return (
               <React.Fragment key={preSearchFacet.facetField}>
-                {renderOperator("and")}
+                {showOperator && renderOperator("and")}
                 {renderItem(t(config.label), value)}
               </React.Fragment>
             );
           }
 
-          // Other facets: show each value
-          return preSearchFacet.selectedValues.map((value, i) => (
-            <React.Fragment key={`${preSearchFacet.facetField}-${i}`}>
-              {renderOperator("and")}
+          // Other facets: show values joined by comma
+          const value = preSearchFacet.selectedValues.join(", ");
+          if (!value) return null;
+
+          return (
+            <React.Fragment key={preSearchFacet.facetField}>
+              {showOperator && renderOperator("and")}
               {renderItem(t(config.label), value)}
             </React.Fragment>
-          ));
+          );
         })}
 
         {onEditClick && (
