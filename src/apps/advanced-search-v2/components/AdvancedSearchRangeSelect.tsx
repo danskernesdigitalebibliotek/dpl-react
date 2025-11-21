@@ -11,11 +11,11 @@ import clsx from "clsx";
 import { useText } from "../../../core/utils/text";
 import { RangeValue, RangePreset } from "../types";
 
-type AdvancedSearchRangeSelectProps = {
+type RangeSelectProps = {
   label: string;
   value?: RangeValue;
   onChange: (next: RangeValue) => void;
-  presets: RangePreset[];
+  rangePresets: RangePreset[];
   fromLabel?: string;
   toLabel?: string;
   resetLabel?: string;
@@ -42,11 +42,11 @@ const defaultFormatBadge = (
   return `${from}-${to}`;
 };
 
-const AdvancedSearchRangeSelect: React.FC<AdvancedSearchRangeSelectProps> = ({
+const RangeSelect: React.FC<RangeSelectProps> = ({
   label,
   value,
   onChange,
-  presets,
+  rangePresets,
   fromLabel = "Fra",
   toLabel = "Til",
   resetLabel,
@@ -55,14 +55,8 @@ const AdvancedSearchRangeSelect: React.FC<AdvancedSearchRangeSelectProps> = ({
   const t = useText();
   const currentValue = value ?? emptyRange;
 
-  const rangeLabel = formatBadge(currentValue.from, currentValue.to);
-  const buttonLabel =
-    currentValue.from !== null
-      ? t("advancedSearchSelectedText")
-      : t("advancedSearchAllText");
-
   const handlePresetChange = (presetId: string) => {
-    const preset = presets.find((p) => p.id === presetId);
+    const preset = rangePresets.find((p) => p.id === presetId);
     if (preset) {
       onChange({ from: preset.from, to: preset.to });
     }
@@ -80,103 +74,123 @@ const AdvancedSearchRangeSelect: React.FC<AdvancedSearchRangeSelectProps> = ({
   const handleReset = () => onChange(emptyRange);
 
   return (
-    <div className="advanced-search-range-select-wrapper">
-      {label && (
-        <label className="advanced-search-multi-select__label">{label}</label>
-      )}
-      <Popover className="advanced-search-range-select">
-        <PopoverButton className="dropdown dropdown--grey-borders advanced-search-multi-select__button">
-          <div className="dropdown__select dropdown__select--inline-body-font focus-styling advanced-search-v2__multiselect-button">
-            {buttonLabel}
-            {rangeLabel && (
-              <span className="advanced-search-v2__count-badge">
-                {rangeLabel}
-              </span>
-            )}
-          </div>
-          <div className="dropdown__arrows dropdown__arrows--inline">
-            <img className="dropdown__arrow" src={IconExpand} alt="" />
-          </div>
-        </PopoverButton>
+    <div className="range-select-wrapper">
+      {label && <label className="range-select-wrapper__label">{label}</label>}
+      <Popover className="range-select">
+        {({ open }) => {
+          return (
+            <>
+              <PopoverButton
+                className={clsx("range-select__button", {
+                  "range-select__button--open": open
+                })}
+              >
+                <div className="range-select__button-label">
+                  {currentValue.from !== null
+                    ? t("advancedSearchSelectedText")
+                    : t("advancedSearchAllText")}
+                  {currentValue.from && currentValue.to && (
+                    <span className="range-select__button-label__count-badge">
+                      {formatBadge(currentValue.from, currentValue.to)}
+                    </span>
+                  )}
+                </div>
+                <div className="dropdown__arrows dropdown__arrows--inline">
+                  <img className="dropdown__arrow" src={IconExpand} alt="" />
+                </div>
+              </PopoverButton>
 
-        <PopoverPanel
-          anchor="bottom"
-          className="advanced-search-dropdown advanced-search-multi-select__popover-panel"
-        >
-          <div className="advanced-search-range-select__content">
-            <RadioGroup
-              value={
-                // Match current values to preset for aria-checked="true"
-                presets.find(
-                  (p) =>
-                    p.from === currentValue.from && p.to === currentValue.to
-                )?.id ?? ""
-              }
-              onChange={handlePresetChange}
-            >
-              <div className="advanced-search-range-select__options">
-                {presets.map((presetOption) => (
-                  <Radio
-                    key={presetOption.id}
-                    value={presetOption.id}
-                    className="advanced-search-range-select__option"
+              <PopoverPanel className="range-select__popover-panel">
+                <div className="range-select__content">
+                  <RadioGroup
+                    value={
+                      // Match current values to preset for aria-checked="true"
+                      rangePresets.find(
+                        (p) =>
+                          p.from === currentValue.from &&
+                          p.to === currentValue.to
+                      )?.id ?? ""
+                    }
+                    onChange={handlePresetChange}
                   >
-                    {({ checked }) => (
-                      <div className="advanced-search-range-select__option-inner">
-                        <span
-                          className={clsx(
-                            "advanced-search-range-select__bullet",
-                            checked &&
-                              "advanced-search-range-select__bullet--checked"
+                    <div className="range-select__options">
+                      {rangePresets.map((presetOption) => (
+                        <Radio
+                          key={presetOption.id}
+                          value={presetOption.id}
+                          className="range-select__option"
+                        >
+                          {({ checked }) => (
+                            <div className="range-select__option-inner">
+                              <span>{presetOption.label}</span>
+                              <span
+                                className={clsx(
+                                  "range-select__option__bullet",
+                                  checked &&
+                                    "range-select__option__bullet--checked"
+                                )}
+                                aria-hidden="true"
+                              />
+                            </div>
                           )}
-                          aria-hidden="true"
-                        />
-                        <span>{presetOption.label}</span>
-                      </div>
-                    )}
-                  </Radio>
-                ))}
-              </div>
-            </RadioGroup>
+                        </Radio>
+                      ))}
+                    </div>
+                  </RadioGroup>
 
-            <div className="advanced-search-range-select__range">
-              <div className="advanced-search-range-select__field">
-                <label className="input-label">{fromLabel}</label>
-                <input
-                  type="number"
-                  className="advanced-search-range-select__input"
-                  value={currentValue.from ?? ""}
-                  onChange={handleInputChange("from")}
-                />
-              </div>
+                  <div className="range-select__range">
+                    <div className="range-select__field">
+                      <label
+                        htmlFor="range-select-from"
+                        className="range-select-wrapper__label"
+                      >
+                        {fromLabel}
+                      </label>
+                      <input
+                        id="range-select-from"
+                        type="number"
+                        className="range-select__input"
+                        value={currentValue.from ?? ""}
+                        onChange={handleInputChange("from")}
+                      />
+                    </div>
 
-              <div className="advanced-search-range-select__separator">—</div>
+                    <div className="range-select__separator">—</div>
 
-              <div className="advanced-search-range-select__field">
-                <label className="input-label">{toLabel}</label>
-                <input
-                  type="number"
-                  className="advanced-search-range-select__input"
-                  value={currentValue.to ?? ""}
-                  onChange={handleInputChange("to")}
-                />
-              </div>
-            </div>
-          </div>
+                    <div className="range-select__field">
+                      <label
+                        htmlFor="range-select-to"
+                        className="range-select-wrapper__label"
+                      >
+                        {toLabel}
+                      </label>
+                      <input
+                        id="range-select-to"
+                        type="number"
+                        className="range-select__input"
+                        value={currentValue.to ?? ""}
+                        onChange={handleInputChange("to")}
+                      />
+                    </div>
+                  </div>
+                </div>
 
-          <div className="advanced-search-multi-select__footer">
-            <button
-              type="button"
-              className="advanced-search-multi-select__reset-button"
-              onClick={handleReset}
-            >
-              {resetLabel ?? t("advancedSearchResetText")}
-            </button>
-          </div>
-        </PopoverPanel>
+                <div className="range-select__footer">
+                  <button
+                    type="button"
+                    className="range-select__reset-button"
+                    onClick={handleReset}
+                  >
+                    {resetLabel ?? t("advancedSearchResetText")}
+                  </button>
+                </div>
+              </PopoverPanel>
+            </>
+          );
+        }}
       </Popover>
     </div>
   );
 };
 
-export default AdvancedSearchRangeSelect;
+export default RangeSelect;

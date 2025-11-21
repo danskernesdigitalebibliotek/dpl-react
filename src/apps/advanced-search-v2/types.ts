@@ -45,7 +45,7 @@ export type PreSelectFacetConfig = FacetConfig & {
 
 export type PreRangeFacetConfig = FacetConfig & {
   type: "range";
-  presets: RangePreset[];
+  rangePresets: RangePreset[];
 };
 
 export type PreFacetConfig = PreSelectFacetConfig | PreRangeFacetConfig;

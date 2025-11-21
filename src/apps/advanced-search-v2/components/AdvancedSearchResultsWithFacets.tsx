@@ -34,7 +34,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
   if (!hasQuery) return null;
 
   return (
-    <>
+    <div>
       <AdvancedSearchSummary
         onEditClick={() => {
           // Clear facets (sidebar filters) when editing, keep preSearchFacets
@@ -57,14 +57,13 @@ const AdvancedSearchResultsWithFacets: React.FC<
       <div className="advanced-search-v2__grid">
         <AdvancedSearchFilters cql={cql} />
 
-        <section className="content-list-page content-list-page--no-top-margin">
+        <section>
           {shouldShowSearchResults && (
             <>
               <SearchResultList
                 resultItems={resultItems}
                 page={page}
                 pageSize={pageSize}
-                className="content-list--no-top-margin"
               />
               <PagerComponent isLoading={isLoadingOrRefetching} />
             </>
@@ -73,7 +72,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
           {shouldShowZeroResults && <SearchResultZeroHits />}
         </section>
       </div>
-    </>
+    </div>
   );
 };
 
