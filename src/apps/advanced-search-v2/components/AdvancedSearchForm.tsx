@@ -103,54 +103,61 @@ const AdvancedSearchForm: React.FC = () => {
         </button>
       </div>
 
-      {/* Pre-search facet selects - fixed structure, values from preSearchFacets state */}
-      <div className="advanced-search-v2__selects-grid">
-        {INITIAL_PRE_SEARCH_FACETS_STATE.map((config) => {
-          // Get current values from preSearchFacets state
-          const currentPreSearchFacet = preSearchFacets.find(
-            (f) => f.facetField === config.facetField
-          );
-          const selectedValues = currentPreSearchFacet?.selectedValues ?? [];
+      <div className="advanced-search-v2__selects-wrapper">
+        <h2 className="advanced-search-v2__selects-wrapper__title">
+          Afgræns din søgning
+        </h2>
 
-          if (config.type === "range") {
+        {/* Pre-search facet selects - fixed structure, values from preSearchFacets state */}
+        <div className="advanced-search-v2__selects-grid">
+          {INITIAL_PRE_SEARCH_FACETS_STATE.map((config) => {
+            // Get current values from preSearchFacets state
+            const currentPreSearchFacet = preSearchFacets.find(
+              (f) => f.facetField === config.facetField
+            );
+            const selectedValues = currentPreSearchFacet?.selectedValues ?? [];
+
+            if (config.type === "range") {
+              return (
+                <AdvancedSearchRangeSelects
+                  key={config.facetField}
+                  facetField={config.facetField}
+                  label={t(config.label)}
+                  selectedValues={selectedValues}
+                  presets={config.presets}
+                  onUpdate={(values) => {
+                    updatePreSearchFacet({
+                      facetField: config.facetField,
+                      selectedValues: values
+                    });
+                  }}
+                />
+              );
+            }
+
             return (
-              <AdvancedSearchRangeSelects
+              <AdvancedSearchSelect
+                options={config.options}
                 key={config.facetField}
                 facetField={config.facetField}
-                label={t(config.label)}
-                selectedValues={selectedValues}
-                presets={config.presets}
-                onUpdate={(values) => {
+                label={config.label}
+                selected={selectedValues.map((value) => ({
+                  label: value,
+                  value
+                }))}
+                onChange={(values) => {
+                  const newValues = values.map((option) => option.value);
+                  // Upsert: update if exists, add if new, remove if empty
                   updatePreSearchFacet({
+                    label: config.label,
                     facetField: config.facetField,
-                    selectedValues: values
+                    selectedValues: newValues
                   });
                 }}
               />
             );
-          }
-
-          return (
-            <AdvancedSearchSelect
-              key={config.facetField}
-              facetField={config.facetField}
-              label={t(config.label)}
-              options={config.options}
-              selected={selectedValues.map((value) => ({
-                label: value,
-                value
-              }))}
-              onChange={(values) => {
-                const newValues = values.map((option) => option.value);
-                // Upsert: update if exists, add if new, remove if empty
-                updatePreSearchFacet({
-                  facetField: config.facetField,
-                  selectedValues: newValues
-                });
-              }}
-            />
-          );
-        })}
+          })}
+        </div>
       </div>
 
       <AdvancedSearchActionButtons
