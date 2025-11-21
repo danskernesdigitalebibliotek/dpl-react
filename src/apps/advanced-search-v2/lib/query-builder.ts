@@ -49,11 +49,18 @@ export const buildFilterTerms = (filters: FacetState[]): string[] => {
 
     if (rangeFieldName && item.selectedValues[0]) {
       const [from, to] = item.selectedValues;
-      const hasRange = to && from !== to;
-      const query = hasRange
-        ? `${rangeFieldName} within "${from} ${to}"`
-        : `${rangeFieldName}>="${from}"`;
-      filterTermsSet.add(`((${query}))`);
+
+      if (!to) {
+        filterTermsSet.add(`((${rangeFieldName}>=${from}))`);
+        return;
+      }
+
+      if (from === to) {
+        filterTermsSet.add(`((${rangeFieldName}=${from}))`);
+        return;
+      }
+
+      filterTermsSet.add(`((${rangeFieldName} within "${from} ${to}"))`);
       return;
     }
 
@@ -62,10 +69,11 @@ export const buildFilterTerms = (filters: FacetState[]): string[] => {
       COMPLEX_FACET_TO_CQL_FIELD[
         item.facetField as keyof typeof COMPLEX_FACET_TO_CQL_FIELD
       ];
-    if (field) {
-      item.selectedValues.forEach((value) => {
-        filterTermsSet.add(`((${field}="${value}"))`);
-      });
+    if (field && item.selectedValues.length > 0) {
+      const orTerms = item.selectedValues
+        .map((value) => `${field}="${value}"`)
+        .join(" OR ");
+      filterTermsSet.add(`((${orTerms}))`);
     }
   });
 
