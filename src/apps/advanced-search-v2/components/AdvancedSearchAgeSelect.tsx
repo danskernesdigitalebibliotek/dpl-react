@@ -15,7 +15,8 @@ const formatAgeBadge = (
   to: number | null
 ): string | null => {
   if (from === null) return null;
-  if (to === null || from === to) return `${from}+ årige`;
+  if (to === null) return `${from}+ årige`;
+  if (from === to) return `${from} årige`;
   return `${from}-${to}-årige`;
 };
 
