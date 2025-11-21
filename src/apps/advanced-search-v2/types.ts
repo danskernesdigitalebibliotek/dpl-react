@@ -40,6 +40,7 @@ export type FacetConfig = {
 export type PreSelectFacetConfig = FacetConfig & {
   type: "select";
   options: Option[];
+  enableSearch: boolean;
 };
 
 export type PreRangeFacetConfig = FacetConfig & {
