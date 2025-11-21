@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
-import AdvancedSearchSelect from "./AdvancedSearchSelect";
 import AdvancedSearchRangeSelects from "./AdvancedSearchRangeSelects";
 import { useSearchFormState } from "../hooks/use-search-form-state";
 import { useFormVisibility } from "../hooks/use-form-visibility";
@@ -9,6 +8,7 @@ import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import { useText } from "../../../core/utils/text";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
+import MultiSelect from "./MultiSelect";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
@@ -136,12 +136,12 @@ const AdvancedSearchForm: React.FC = () => {
             }
 
             return (
-              <AdvancedSearchSelect
+              <MultiSelect
+                enableSearch={config.enableSearch}
                 options={config.options}
                 key={config.facetField}
-                facetField={config.facetField}
                 label={config.label}
-                selected={selectedValues.map((value) => ({
+                selectedOptions={selectedValues.map((value) => ({
                   label: value,
                   value
                 }))}
