@@ -4,10 +4,10 @@ import { RangeValue, RangePreset } from "../types";
 
 type AdvancedSearchPublicationYearSelectProps = {
   label: string;
-  value?: RangeValue;
-  onChange: (next: RangeValue) => void;
+  selectedValues: string[];
+  onUpdate: (values: string[]) => void;
   resetLabel?: string;
-  presets: RangePreset[];
+  rangePresets: RangePreset[];
 };
 
 const formatYearBadge = (
@@ -22,13 +22,33 @@ const formatYearBadge = (
 
 const AdvancedSearchPublicationYearSelect: React.FC<
   AdvancedSearchPublicationYearSelectProps
-> = ({ label, value, onChange, resetLabel, presets }) => {
+> = ({ label, selectedValues, onUpdate, resetLabel, rangePresets }) => {
+  // Convert string[] to RangeValue
+  const value: RangeValue = {
+    from:
+      selectedValues[0] && !isNaN(parseInt(selectedValues[0]))
+        ? parseInt(selectedValues[0])
+        : null,
+    to:
+      selectedValues[1] && !isNaN(parseInt(selectedValues[1]))
+        ? parseInt(selectedValues[1])
+        : null
+  };
+
+  // Convert RangeValue to string[]
+  const handleChange = (range: RangeValue) => {
+    const values: string[] = [];
+    if (range.from !== null) values.push(String(range.from));
+    if (range.to !== null) values.push(String(range.to));
+    onUpdate(values);
+  };
+
   return (
     <AdvancedSearchRangeSelect
       label={label}
       value={value}
-      onChange={onChange}
-      presets={presets}
+      onChange={handleChange}
+      rangePresets={rangePresets}
       fromLabel="Fra"
       toLabel="Til"
       resetLabel={resetLabel}

@@ -49,12 +49,12 @@ export const INITIAL_PRE_SEARCH_FACETS_STATE: PreFacetConfig[] = [
     label: "advancedSearchFacetYearText",
     facetField: ComplexSearchFacetsEnum.Publicationyear,
     type: "range",
-    presets: YEAR_PRESETS
+    rangePresets: YEAR_PRESETS
   },
   {
     label: "advancedSearchFacetAgeText",
     facetField: ComplexSearchFacetsEnum.Ages,
     type: "range",
-    presets: AGE_PRESETS
+    rangePresets: AGE_PRESETS
   }
 ];

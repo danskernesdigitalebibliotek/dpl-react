@@ -315,7 +315,7 @@ export const YEAR_PRESETS: RangePreset[] = [
   {
     id: "last-10-years",
     label: "Seneste 10 år",
-    from: currentYear - 9,
+    from: currentYear - 10,
     to: currentYear
   }
 ];
