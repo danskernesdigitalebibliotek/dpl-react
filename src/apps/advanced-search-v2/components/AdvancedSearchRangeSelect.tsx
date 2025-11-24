@@ -182,6 +182,9 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
                     type="button"
                     className="range-select__reset-button"
                     onClick={handleReset}
+                    disabled={
+                      currentValue.from === null && currentValue.to === null
+                    }
                   >
                     {resetLabel ?? t("advancedSearchResetText")}
                   </button>
