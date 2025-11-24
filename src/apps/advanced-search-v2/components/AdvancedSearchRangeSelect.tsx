@@ -77,11 +77,7 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
 
   return (
     <div className="range-select-wrapper">
-      {label && (
-        <label className="range-select-wrapper__label">
-          {effectiveFromLabel}
-        </label>
-      )}
+      {label && <label className="range-select-wrapper__label">{label}</label>}
       <Popover className="range-select">
         {({ open }) => {
           return (
@@ -150,7 +146,7 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
                         htmlFor="range-select-from"
                         className="range-select-wrapper__label"
                       >
-                        {effectiveToLabel}
+                        {effectiveFromLabel}
                       </label>
                       <input
                         id="range-select-from"
@@ -168,7 +164,7 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
                         htmlFor="range-select-to"
                         className="range-select-wrapper__label"
                       >
-                        {toLabel}
+                        {effectiveToLabel}
                       </label>
                       <input
                         id="range-select-to"
