@@ -1,6 +1,7 @@
 import React from "react";
 import AdvancedSearchRangeSelect from "./AdvancedSearchRangeSelect";
 import { RangeValue, RangePreset } from "../types";
+import { useText } from "../../../core/utils/text";
 
 type AdvancedSearchAgeSelectProps = {
   label: string;
@@ -27,6 +28,7 @@ const AdvancedSearchAgeSelect: React.FC<AdvancedSearchAgeSelectProps> = ({
   resetLabel,
   rangePresets
 }) => {
+  const t = useText();
   // Convert string[] to RangeValue
   const value: RangeValue = {
     from:
@@ -53,8 +55,8 @@ const AdvancedSearchAgeSelect: React.FC<AdvancedSearchAgeSelectProps> = ({
       value={value}
       onChange={handleChange}
       rangePresets={rangePresets}
-      fromLabel="Fra"
-      toLabel="Til"
+      fromLabel={t("advancedSearchRangeFromText")}
+      toLabel={t("advancedSearchRangeToText")}
       resetLabel={resetLabel}
       formatBadge={formatAgeBadge}
     />

@@ -222,6 +222,26 @@ export const argTypes = {
   advancedSearchFacetAgeText: {
     description: "Facet label: Age",
     control: { type: "text" }
+  },
+  advancedSearchTitleText: {
+    description: "Title of the advanced search page",
+    control: { type: "text" }
+  },
+  advancedSearchLimitSearchText: {
+    description: "Header for limiting search",
+    control: { type: "text" }
+  },
+  advancedSearchRangeFromText: {
+    description: "Label for range 'from'",
+    control: { type: "text" }
+  },
+  advancedSearchRangeToText: {
+    description: "Label for range 'to'",
+    control: { type: "text" }
+  },
+  advancedSearchMultiselectSearchPlaceholderText: {
+    description: "Placeholder for multiselect search",
+    control: { type: "text" }
   }
 };
 
@@ -232,8 +252,8 @@ export default {
   clauseOrText: "OR",
   clauseNotText: "NOT",
   advancedSearchRemoveRowText: "Remove row @inputNumber",
-  advancedSearchSelectedText: "Valgte",
-  advancedSearchAllText: "Alle",
+  advancedSearchSelectedText: "Selected",
+  advancedSearchAllText: "All",
   advancedSearchPlaceholderDefaultText: "Search in all material…",
   advancedSearchPlaceholderTitleText: "Enter title…",
   advancedSearchPlaceholderCreatorText: "Enter author or creator…",
@@ -256,36 +276,41 @@ export default {
     "Enter fictional character...",
   advancedSearchPlaceholderHostPublicationText: "Enter host publication...",
   advancedSearchEditSearchText: "Edit search",
-  advancedSearchOnShelfText: "På hylden",
+  advancedSearchOnShelfText: "On shelf",
   advancedSearchOnShelfDescriptionText:
-    "Vis kun resultater der er tilgængelige på biblioteket nu.",
-  advancedSearchOnlyExtraTitlesText: 'Kun "Ekstra Titler"',
+    "Only show results available at the library now.",
+  advancedSearchOnlyExtraTitlesText: 'Only "Extra Titles"',
   advancedSearchOnlyExtraTitlesDescriptionText:
-    "Vis kun resultater der ikke er begrænset af kvoter for digitale lån.",
-  advancedSearchShowAllText: "Vis alle",
-  advancedSearchShowLessText: "Vis færre",
-  advancedSearchFacetMaterialTypeText: "Materialetype",
+    "Only show results not limited by digital loan quotas.",
+  advancedSearchShowAllText: "Show all",
+  advancedSearchShowLessText: "Show less",
+  advancedSearchFacetMaterialTypeText: "Material type",
   advancedSearchFacetFormatText: "Format",
-  advancedSearchFacetGenreAndFormText: "Genre og form",
-  advancedSearchFacetSourceText: "Kilde",
-  advancedSearchFacetLanguageText: "Sprog",
-  advancedSearchFacetAccessTypeText: "Fysisk/Online",
-  advancedSearchFacetLevelText: "Fagligt niveau",
-  advancedSearchFacetAudienceText: "Målgruppe",
-  advancedSearchFacetLixText: "Lix-tal",
+  advancedSearchFacetGenreAndFormText: "Genre and form",
+  advancedSearchFacetSourceText: "Source",
+  advancedSearchFacetLanguageText: "Language",
+  advancedSearchFacetAccessTypeText: "Access Type",
+  advancedSearchFacetLevelText: "Level",
+  advancedSearchFacetAudienceText: "Audience",
+  advancedSearchFacetLixText: "Lix",
   advancedSearchFacetLetText: "Let",
-  advancedSearchFacetSubjectText: "Emne",
-  advancedSearchFacetHostPublicationText: "Værtspublikation",
-  advancedSearchFacetCreatorText: "Forfatter / ophav",
-  advancedSearchFacetContributorText: "Oplæser / oversætter / bidrag",
+  advancedSearchFacetSubjectText: "Subject",
+  advancedSearchFacetHostPublicationText: "Host Publication",
+  advancedSearchFacetCreatorText: "Creator",
+  advancedSearchFacetContributorText: "Contributor",
   advancedSearchFacetInstrumentText: "Instrument",
-  advancedSearchFacetChamberMusicText: "Kammermusik",
-  advancedSearchFacetChoirText: "Noder til kor",
-  advancedSearchFacetScoreTypeText: "Nodetype",
-  advancedSearchFacetYearText: "Udgivelsesår",
-  advancedSearchFacetFictionalCharacterText: "Fiktiv hovedperson",
-  advancedSearchFacetAgeText: "Aldersgruppe",
-  advancedSearchResetText: "Nulstil søgning"
+  advancedSearchFacetChamberMusicText: "Chamber Music",
+  advancedSearchFacetChoirText: "Choir",
+  advancedSearchFacetScoreTypeText: "Score Type",
+  advancedSearchFacetYearText: "Year",
+  advancedSearchFacetFictionalCharacterText: "Fictional Character",
+  advancedSearchFacetAgeText: "Age",
+  advancedSearchResetText: "Reset search",
+  advancedSearchTitleText: "Advanced search",
+  advancedSearchLimitSearchText: "Refine your search",
+  advancedSearchRangeFromText: "From",
+  advancedSearchRangeToText: "To",
+  advancedSearchMultiselectSearchPlaceholderText: "Search..."
 };
 
 export interface AdvancedSearchV2Args {
@@ -346,4 +371,9 @@ export interface AdvancedSearchV2Args {
   advancedSearchFacetYearText: string;
   advancedSearchFacetFictionalCharacterText: string;
   advancedSearchFacetAgeText: string;
+  advancedSearchTitleText: string;
+  advancedSearchLimitSearchText: string;
+  advancedSearchRangeFromText: string;
+  advancedSearchRangeToText: string;
+  advancedSearchMultiselectSearchPlaceholderText: string;
 }

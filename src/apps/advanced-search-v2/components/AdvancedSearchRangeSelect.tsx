@@ -47,13 +47,15 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
   value,
   onChange,
   rangePresets,
-  fromLabel = "Fra",
-  toLabel = "Til",
+  fromLabel,
+  toLabel,
   resetLabel,
   formatBadge = defaultFormatBadge
 }) => {
   const t = useText();
   const currentValue = value ?? emptyRange;
+  const effectiveFromLabel = fromLabel ?? t("advancedSearchRangeFromText");
+  const effectiveToLabel = toLabel ?? t("advancedSearchRangeToText");
 
   const handlePresetChange = (presetId: string) => {
     const preset = rangePresets.find((p) => p.id === presetId);
@@ -75,7 +77,11 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
 
   return (
     <div className="range-select-wrapper">
-      {label && <label className="range-select-wrapper__label">{label}</label>}
+      {label && (
+        <label className="range-select-wrapper__label">
+          {effectiveFromLabel}
+        </label>
+      )}
       <Popover className="range-select">
         {({ open }) => {
           return (
@@ -144,7 +150,7 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
                         htmlFor="range-select-from"
                         className="range-select-wrapper__label"
                       >
-                        {fromLabel}
+                        {effectiveToLabel}
                       </label>
                       <input
                         id="range-select-from"

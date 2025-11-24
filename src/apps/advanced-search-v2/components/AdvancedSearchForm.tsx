@@ -106,7 +106,7 @@ const AdvancedSearchForm: React.FC = () => {
 
       <div className="advanced-search-v2__selects-wrapper">
         <h2 className="advanced-search-v2__selects-wrapper__title">
-          Afgræns din søgning
+          {t("advancedSearchLimitSearchText")}
         </h2>
 
         {/* Pre-search facet selects - fixed structure, values from preSearchFacets state */}
