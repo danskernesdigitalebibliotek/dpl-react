@@ -97,8 +97,8 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
                     </span>
                   )}
                 </div>
-                <div className="dropdown__arrows dropdown__arrows--inline">
-                  <img className="dropdown__arrow" src={IconExpand} alt="" />
+                <div className="range-select__button-arrow">
+                  <img src={IconExpand} alt="" />
                 </div>
               </PopoverButton>
 
