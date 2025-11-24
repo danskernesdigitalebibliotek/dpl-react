@@ -16,9 +16,14 @@ import { useText } from "../../../core/utils/text";
 export type SearchTermSelectProps = {
   value: string;
   onChange: (value: string) => void;
+  shouldAutoFocus?: boolean;
 };
 
-const SearchTermSelect = ({ value, onChange }: SearchTermSelectProps) => {
+const SearchTermSelect = ({
+  value,
+  onChange,
+  shouldAutoFocus
+}: SearchTermSelectProps) => {
   const t = useText();
   const [isButtonFocused, setIsButtonFocused] = useState(false);
 
@@ -37,6 +42,9 @@ const SearchTermSelect = ({ value, onChange }: SearchTermSelectProps) => {
             style={{ width: "max-content" }}
           >
             <ListboxButton
+              // Intentionally allow autoFocus when the parent asks us to move focus after add/remove
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus={shouldAutoFocus}
               className="select-button"
               onFocus={() => setIsButtonFocused(true)}
               onBlur={() => setIsButtonFocused(false)}
