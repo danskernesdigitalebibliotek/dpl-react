@@ -1,14 +1,15 @@
 import React, { useRef, useEffect } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
-import AdvancedSearchRangeSelects from "./AdvancedSearchRangeSelects";
 import { useSearchFormState } from "../hooks/use-search-form-state";
 import { useFormVisibility } from "../hooks/use-form-visibility";
-import AdvancedSearchActionButtons from "./AdvancedSearchActionButtons";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
 import MultiSelect from "./MultiSelect";
+import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
+import AdvancedSearchPublicationYearSelect from "./AdvancedSearchPublicationYearSelect";
+import { Button } from "../../../components/Buttons/Button";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
@@ -118,52 +119,85 @@ const AdvancedSearchForm: React.FC = () => {
             const selectedValues = currentPreSearchFacet?.selectedValues ?? [];
 
             if (config.type === "range") {
+              if (config.facetField === "AGES") {
+                return (
+                  <AdvancedSearchAgeSelect
+                    key={config.facetField}
+                    label={t(config.label)}
+                    selectedValues={selectedValues}
+                    rangePresets={config.rangePresets}
+                    onUpdate={(values) => {
+                      updatePreSearchFacet({
+                        facetField: config.facetField,
+                        selectedValues: values
+                      });
+                    }}
+                  />
+                );
+              }
+              if (config.facetField === "PUBLICATIONYEAR") {
+                return (
+                  <AdvancedSearchPublicationYearSelect
+                    key={config.facetField}
+                    label={t(config.label)}
+                    selectedValues={selectedValues}
+                    rangePresets={config.rangePresets}
+                    onUpdate={(values) => {
+                      updatePreSearchFacet({
+                        facetField: config.facetField,
+                        selectedValues: values
+                      });
+                    }}
+                  />
+                );
+              }
+            }
+            if (config.type === "select")
               return (
-                <AdvancedSearchRangeSelects
+                <MultiSelect
+                  enableSearch={config.enableSearch}
+                  options={config.options}
                   key={config.facetField}
-                  facetField={config.facetField}
-                  label={t(config.label)}
-                  selectedValues={selectedValues}
-                  presets={config.presets}
-                  onUpdate={(values) => {
+                  label={config.label}
+                  selectedOptions={selectedValues.map((value) => ({
+                    label: value,
+                    value
+                  }))}
+                  onChange={(values) => {
+                    const newValues = values.map((option) => option.value);
+                    // Upsert: update if exists, add if new, remove if empty
                     updatePreSearchFacet({
                       facetField: config.facetField,
-                      selectedValues: values
+                      selectedValues: newValues
                     });
                   }}
                 />
               );
-            }
-
-            return (
-              <MultiSelect
-                enableSearch={config.enableSearch}
-                options={config.options}
-                key={config.facetField}
-                label={config.label}
-                selectedOptions={selectedValues.map((value) => ({
-                  label: value,
-                  value
-                }))}
-                onChange={(values) => {
-                  const newValues = values.map((option) => option.value);
-                  // Upsert: update if exists, add if new, remove if empty
-                  updatePreSearchFacet({
-                    facetField: config.facetField,
-                    selectedValues: newValues
-                  });
-                }}
-              />
-            );
           })}
         </div>
       </div>
 
-      <AdvancedSearchActionButtons
-        onSearch={handleSearchComplete}
-        onClear={handleClearFilters}
-        showReset={hasFilters}
-      />
+      <div className="advanced-search-v2__action-buttons">
+        <Button
+          label={t("advancedSearchSearchButtonText")}
+          buttonType="none"
+          collapsible={false}
+          size="large"
+          variant="filled"
+          onClick={handleSearchComplete}
+        />
+        {hasFilters && (
+          <Button
+            label={t("advancedSearchResetText")}
+            buttonType="none"
+            collapsible={false}
+            size="large"
+            variant="outline"
+            onClick={handleClearFilters}
+            classNames="advanced-search-v2__reset-button"
+          />
+        )}
+      </div>
     </section>
   );
 };
