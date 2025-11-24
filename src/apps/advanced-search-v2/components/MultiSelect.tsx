@@ -191,7 +191,9 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                         }
                       }
                     }}
-                    placeholder="Search…"
+                    placeholder={t(
+                      "advancedSearchMultiselectSearchPlaceholderText"
+                    )}
                   />
                 )}
 
