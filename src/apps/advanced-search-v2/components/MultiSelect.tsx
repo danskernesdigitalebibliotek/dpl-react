@@ -162,11 +162,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                   )}
                 </div>
                 <div className="hui-multiselect__button-arrow">
-                  <img
-                    className="hui-multiselect__arrow"
-                    src={IconExpand}
-                    alt=""
-                  />
+                  <img src={IconExpand} alt="" />
                 </div>
               </PopoverButton>
 
