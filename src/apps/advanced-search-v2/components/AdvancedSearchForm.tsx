@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
 import { useSearchFormState } from "../hooks/use-search-form-state";
 import { useFormVisibility } from "../hooks/use-form-visibility";
@@ -13,8 +13,8 @@ import { Button } from "../../../components/Buttons/Button";
 
 const AdvancedSearchForm: React.FC = () => {
   const t = useText();
-  const suggestRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
-  const previousSuggestCount = useRef<number>(0);
+  const [focusIndex, setFocusIndex] = useState<number | null>(null);
+
   const {
     suggests,
     preSearchFacets,
@@ -28,20 +28,17 @@ const AdvancedSearchForm: React.FC = () => {
 
   const { setView } = useFormVisibility();
 
-  // Focus on the newly added suggest row's SearchIndexSelect
-  useEffect(() => {
-    if (suggests.length > previousSuggestCount.current) {
-      const newRowIndex = suggests.length - 1;
-      const newRowRef = suggestRefs.current.get(newRowIndex);
-      if (newRowRef) {
-        // Small delay to ensure DOM is ready
-        setTimeout(() => {
-          newRowRef.focus();
-        }, 0);
-      }
-    }
-    previousSuggestCount.current = suggests.length;
-  }, [suggests.length]);
+  const handleAddSuggest = () => {
+    setFocusIndex(suggests.length);
+    addSuggest();
+  };
+
+  const handleRemoveSuggest = (index: number) => {
+    setFocusIndex(
+      suggests.length > 1 ? Math.min(index, suggests.length - 2) : null
+    );
+    removeSuggest(index);
+  };
 
   // Check if there are any filters to reset
   const hasFilters =
@@ -67,13 +64,7 @@ const AdvancedSearchForm: React.FC = () => {
           return (
             <AdvancedSearchSuggest
               key={`suggest-${index}`}
-              ref={(el) => {
-                if (el) {
-                  suggestRefs.current.set(index, el);
-                } else {
-                  suggestRefs.current.delete(index);
-                }
-              }}
+              shouldAutoFocus={index === focusIndex}
               selectedTerm={suggest.term}
               onSelectedTermChange={(value) =>
                 updateSuggest(index, { term: value })
@@ -88,7 +79,7 @@ const AdvancedSearchForm: React.FC = () => {
                   ? (operator) => updateSuggest(index + 1, { operator })
                   : undefined
               }
-              onRemove={() => removeSuggest(index)}
+              onRemove={() => handleRemoveSuggest(index)}
               showRemoveButton={suggests.length > 1}
             />
           );
@@ -97,13 +88,12 @@ const AdvancedSearchForm: React.FC = () => {
         <button
           type="button"
           className="advanced-search-v2__add-suggest"
-          onClick={addSuggest}
+          onClick={handleAddSuggest}
         >
           <img src={PlusButtonIcon} alt="" />
           <span>{t("advancedSearchAddRowText")}</span>
         </button>
       </div>
-
       <div className="advanced-search-v2__selects-wrapper">
         <h2 className="advanced-search-v2__selects-wrapper__title">
           {t("advancedSearchLimitSearchText")}
@@ -176,7 +166,6 @@ const AdvancedSearchForm: React.FC = () => {
           })}
         </div>
       </div>
-
       <div className="advanced-search-v2__action-buttons">
         <Button
           label={t("advancedSearchSearchButtonText")}

@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import { suggestionsToOptions } from "../lib/suggestions";
 import {
   ComplexSuggestionTypeEnum,
@@ -23,72 +23,72 @@ type AdvancedSearchSuggestProps = {
   onOperatorChange?: (operator: Operator) => void;
   onRemove?: () => void;
   showRemoveButton?: boolean;
+  shouldAutoFocus?: boolean;
 };
 
-const AdvancedSearchSuggest = forwardRef<
-  HTMLButtonElement,
-  AdvancedSearchSuggestProps
->(
-  ({
-    selectedTerm,
-    onSelectedTermChange,
-    query,
-    onQueryChange,
-    suggestType,
-    inputPlaceholder,
-    operator = "and",
-    onOperatorChange,
-    onRemove,
-    showRemoveButton = false
-  }) => {
-    const t = useText();
+const AdvancedSearchSuggest = ({
+  selectedTerm,
+  onSelectedTermChange,
+  query,
+  onQueryChange,
+  suggestType,
+  inputPlaceholder,
+  operator = "and",
+  onOperatorChange,
+  onRemove,
+  showRemoveButton = false,
+  shouldAutoFocus
+}: AdvancedSearchSuggestProps) => {
+  const t = useText();
 
-    const { data } = useComplexSuggestQuery(
-      { q: query, type: suggestType },
-      { enabled: query.trim().length >= MIN_QUERY_LENGTH }
-    );
+  const { data } = useComplexSuggestQuery(
+    { q: query, type: suggestType },
+    { enabled: query.trim().length >= MIN_QUERY_LENGTH }
+  );
 
-    const items = suggestionsToOptions(data?.complexSuggest?.result);
+  const items = suggestionsToOptions(data?.complexSuggest?.result);
 
-    const onQueryChangeHandler = (q: string) => {
-      onQueryChange(q);
-    };
+  const onQueryChangeHandler = (q: string) => {
+    onQueryChange(q);
+  };
 
-    return (
-      <>
-        <div className="advanced-search-suggest">
-          <SearchTermSelect
-            value={selectedTerm}
-            onChange={onSelectedTermChange}
+  return (
+    <>
+      <div className="advanced-search-suggest">
+        <SearchTermSelect
+          // Force remount so native autoFocus runs reliably when focusing a different row
+          key={shouldAutoFocus ? "focus" : "idle"}
+          shouldAutoFocus={shouldAutoFocus}
+          value={selectedTerm}
+          onChange={onSelectedTermChange}
+        />
+
+        <div className="advanced-search-suggest__combobox-wrapper">
+          <ComboBoxAutosuggest
+            items={items}
+            value={query}
+            onInputChange={onQueryChangeHandler}
+            placeholder={inputPlaceholder}
           />
-
-          <div className="advanced-search-suggest__combobox-wrapper">
-            <ComboBoxAutosuggest
-              items={items}
-              value={query}
-              onInputChange={onQueryChangeHandler}
-              placeholder={inputPlaceholder}
-            />
-          </div>
-
-          {showRemoveButton && (
-            <button
-              type="button"
-              className="advanced-search-suggest__remove-button"
-              onClick={onRemove}
-              aria-label={t("advancedSearchRemoveRowText")}
-            >
-              <img src={MinusButtonIcon} alt="" />
-            </button>
-          )}
         </div>
 
-        {onOperatorChange && (
-          <OperatorButtons value={operator} onChange={onOperatorChange} />
+        {showRemoveButton && (
+          <button
+            type="button"
+            className="advanced-search-suggest__remove-button"
+            onClick={onRemove}
+            aria-label={t("advancedSearchRemoveRowText")}
+          >
+            <img src={MinusButtonIcon} alt="" />
+          </button>
         )}
-      </>
-    );
-  }
-);
+      </div>
+
+      {onOperatorChange && (
+        <OperatorButtons value={operator} onChange={onOperatorChange} />
+      )}
+    </>
+  );
+};
 
 export default AdvancedSearchSuggest;
