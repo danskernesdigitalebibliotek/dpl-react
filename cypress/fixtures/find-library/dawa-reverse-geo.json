@@ -1,0 +1,19 @@
+{
+  "id": "0a3f507b-5ced-32b8-e044-0003ba298018",
+  "status": 1,
+  "darstatus": 3,
+  "vejkode": "0763",
+  "vejnavn": "Suomisvej",
+  "adresseringsvejnavn": "Suomisvej",
+  "husnr": "2",
+  "supplerendebynavn": null,
+  "postnr": "1927",
+  "postnrnavn": "Frederiksberg C",
+  "stormodtagerpostnr": null,
+  "stormodtagerpostnrnavn": null,
+  "kommunekode": "0147",
+  "x": 12.55511495,
+  "y": 55.67936222,
+  "href": "https://api.dataforsyningen.dk/adgangsadresser/0a3f507b-5ced-32b8-e044-0003ba298018",
+  "betegnelse": "Suomisvej 2, 1927 Frederiksberg C"
+}

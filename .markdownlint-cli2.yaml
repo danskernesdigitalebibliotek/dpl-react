@@ -12,3 +12,5 @@ config:
       # https://gist.github.com/scmx/eca72d44afee0113ceb0349dd54a84a2
       - summary
       - details
+  MD013:
+    line_length: 160
