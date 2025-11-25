@@ -36,7 +36,7 @@ export const INITIAL_PRE_SEARCH_FACETS_STATE: PreFacetConfig[] = [
     facetField: ComplexSearchFacetsEnum.Source,
     type: "select",
     options: SOURCE_OPTIONS,
-    enableSearch: false
+    enableSearch: true
   },
   {
     label: "advancedSearchFacetLanguageText",

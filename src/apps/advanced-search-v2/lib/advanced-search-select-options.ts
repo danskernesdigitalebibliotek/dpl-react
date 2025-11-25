@@ -258,34 +258,7 @@ export const LANGUAGE_OPTIONS: Option[] = [
   { label: "tyrkisk", value: "tyrkisk" }
 ];
 
-export const SOURCE_OPTIONS: Option[] = [
-  {
-    label: "Besættelsestidsbibliografien",
-    value: "Besættelsestidsbibliografien"
-  },
-  { label: "Sportline", value: "Sportline" },
-  {
-    label: "Bibliografi over Dansk Kunst",
-    value: "Bibliografi over Dansk Kunst"
-  },
-  {
-    label: "Dansk Historisk Bibliografi",
-    value: "Dansk Historisk Bibliografi"
-  },
-  { label: "Dania Polyglotta", value: "Dania Polyglotta" },
-  {
-    label: "Dansk Musiklitterær Bibliografi",
-    value: "Dansk Musiklitterær Bibliografi"
-  },
-  {
-    label: "Dansk Litteraturhistorisk Bibliografi",
-    value: "Dansk Litteraturhistorisk Bibliografi"
-  },
-  {
-    label: "Kongelige Teater programartikler",
-    value: "Kongelige Teater programartikler"
-  }
-];
+export const SOURCE_OPTIONS: Option[] = [];
 
 export const YEAR_PRESETS: RangePreset[] = [
   {
