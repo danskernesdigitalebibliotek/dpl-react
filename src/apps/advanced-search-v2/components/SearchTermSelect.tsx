@@ -37,10 +37,7 @@ const SearchTermSelect = ({
         const isFocused = isButtonFocused || open;
 
         return (
-          <div
-            className={clsx("select", { "select--focused": isFocused })}
-            style={{ width: "max-content" }}
-          >
+          <div className={clsx("select", { "select--focused": isFocused })}>
             <ListboxButton
               // Intentionally allow autoFocus when the parent asks us to move focus after add/remove
               // eslint-disable-next-line jsx-a11y/no-autofocus
