@@ -54,24 +54,25 @@ const AdvancedSearchSuggest = ({
 
   return (
     <>
-      <div className="advanced-search-suggest">
-        <SearchTermSelect
-          // Force remount so native autoFocus runs reliably when focusing a different row
-          key={shouldAutoFocus ? "focus" : "idle"}
-          shouldAutoFocus={shouldAutoFocus}
-          value={selectedTerm}
-          onChange={onSelectedTermChange}
-        />
-
-        <div className="advanced-search-suggest__combobox-wrapper">
-          <ComboBoxAutosuggest
-            items={items}
-            value={query}
-            onInputChange={onQueryChangeHandler}
-            placeholder={inputPlaceholder}
+      <div className="advanced-search-suggest-wrapper">
+        <div className="advanced-search-suggest">
+          <SearchTermSelect
+            // Force remount so native autoFocus runs reliably when focusing a different row
+            key={shouldAutoFocus ? "focus" : "idle"}
+            shouldAutoFocus={shouldAutoFocus}
+            value={selectedTerm}
+            onChange={onSelectedTermChange}
           />
-        </div>
 
+          <div className="advanced-search-suggest__combobox-wrapper">
+            <ComboBoxAutosuggest
+              items={items}
+              value={query}
+              onInputChange={onQueryChangeHandler}
+              placeholder={inputPlaceholder}
+            />
+          </div>
+        </div>
         {showRemoveButton && (
           <button
             type="button"
