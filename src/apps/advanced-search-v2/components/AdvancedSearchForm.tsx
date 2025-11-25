@@ -98,11 +98,8 @@ const AdvancedSearchForm: React.FC = () => {
         <h2 className="advanced-search-v2__selects-wrapper__title">
           {t("advancedSearchLimitSearchText")}
         </h2>
-
-        {/* Pre-search facet selects - fixed structure, values from preSearchFacets state */}
         <div className="advanced-search-v2__selects-grid">
           {INITIAL_PRE_SEARCH_FACETS_STATE.map((config) => {
-            // Get current values from preSearchFacets state
             const currentPreSearchFacet = preSearchFacets.find(
               (f) => f.facetField === config.facetField
             );
@@ -155,7 +152,6 @@ const AdvancedSearchForm: React.FC = () => {
                   }))}
                   onChange={(values) => {
                     const newValues = values.map((option) => option.value);
-                    // Upsert: update if exists, add if new, remove if empty
                     updatePreSearchFacet({
                       facetField: config.facetField,
                       selectedValues: newValues
