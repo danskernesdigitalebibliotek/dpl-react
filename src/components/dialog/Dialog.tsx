@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import clsx from "clsx";
-import iconCross from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross.svg";
+import iconCross from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import useEscapeKey from "./useEscapeKey";
 
 type DialogType = {
@@ -25,13 +25,16 @@ const Dialog = forwardRef<HTMLDialogElement, DialogType>(
           }
         }}
       >
-        <button
-          type="button"
-          onClick={closeDialog}
-          className="dialog__close-button"
-        >
-          <img src={iconCross} alt="" aria-label="Close dialog" />
-        </button>
+        <div className="dialog__top-bar">
+          <button
+            type="button"
+            onClick={closeDialog}
+            className="dialog__close-button"
+            aria-label="Close"
+          >
+            <img src={iconCross} alt="" />
+          </button>
+        </div>
         {children}
       </dialog>
     );

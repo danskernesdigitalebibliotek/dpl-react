@@ -106,81 +106,83 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
   }, [manifestationMaterialTypes]);
 
   return (
-    <header className="material-header">
-      <div className="material-header__cover">
-        <Cover
-          ids={coverPids}
-          bestRepresentation={bestRepresentation}
-          size="large"
-          displaySize="xlarge"
-          animate
-          shadow="small"
-        />
-      </div>
-      <div
-        data-cy="material-header-content"
-        className="material-header__content"
-      >
-        <ButtonFavourite
-          title={String(title)}
-          id={wid}
-          addToListRequest={addToListRequest}
-        />
-        <MaterialHeaderText
-          title={String(title)}
-          creators={creators}
-          languageIsoCode={languageIsoCode}
-          materialTitleId={materialTitleId}
-        />
-        <div className="material-header__availability-label">
-          {!isGlobalMaterial && (
-            <AvailabilityLabels
-              cursorPointer
-              workId={wid}
-              manifestations={manifestations}
-              selectedManifestations={selectedManifestations}
-              setSelectedManifestations={setSelectedManifestations}
-            />
-          )}
+    <header className="border-bottom">
+      <div className="material-header hero-grid hero-grid--material">
+        <div className="material-header__cover hero-grid__visual">
+          <Cover
+            ids={coverPids}
+            bestRepresentation={bestRepresentation}
+            size="large"
+            displaySize="xlarge"
+            animate
+            shadow="small"
+          />
         </div>
-        {/* The CTA buttons apparently only make sense on a global work */}
-        {!isGlobalMaterial && (
-          <>
-            {isPeriodical(selectedManifestations) && (
-              <MaterialPeriodical
-                faustId={convertPostIdToFaustId(pid)}
-                selectedPeriodical={selectedPeriodical}
-                selectPeriodicalHandler={selectPeriodicalHandler}
-                isYearbook={isYearbook}
+        <div
+          data-cy="material-header-content"
+          className="material-header__content hero-grid__content"
+        >
+          <ButtonFavourite
+            title={String(title)}
+            id={wid}
+            addToListRequest={addToListRequest}
+          />
+          <MaterialHeaderText
+            title={String(title)}
+            creators={creators}
+            languageIsoCode={languageIsoCode}
+            materialTitleId={materialTitleId}
+          />
+          <div className="material-header__availability-label">
+            {!isGlobalMaterial && (
+              <AvailabilityLabels
+                cursorPointer
+                workId={wid}
+                manifestations={manifestations}
+                selectedManifestations={selectedManifestations}
+                setSelectedManifestations={setSelectedManifestations}
               />
             )}
-            {selectedManifestations && (
-              <>
-                <div className="material-header__button">
-                  <MaterialButtons
-                    manifestations={selectedManifestations}
-                    workId={wid}
-                    dataCy="material-header-buttons"
-                    materialTitleId={materialTitleId}
-                  />
-                </div>
-                {/* MaterialAvailabilityText is only shown for:
+          </div>
+          {/* The CTA buttons apparently only make sense on a global work */}
+          {!isGlobalMaterial && (
+            <>
+              {isPeriodical(selectedManifestations) && (
+                <MaterialPeriodical
+                  faustId={convertPostIdToFaustId(pid)}
+                  selectedPeriodical={selectedPeriodical}
+                  selectPeriodicalHandler={selectPeriodicalHandler}
+                  isYearbook={isYearbook}
+                />
+              )}
+              {selectedManifestations && (
+                <>
+                  <div className="material-header__button">
+                    <MaterialButtons
+                      manifestations={selectedManifestations}
+                      workId={wid}
+                      dataCy="material-header-buttons"
+                      materialTitleId={materialTitleId}
+                    />
+                  </div>
+                  {/* MaterialAvailabilityText is only shown for:
                     - Online manifestations
                     - physical manifestations
                     - that are not periodical or articles
                     - that are available in at least one local library branch
                 */}
-                {shouldShowMaterialAvailabilityText(selectedManifestations) &&
-                  isAvailable && (
-                    <MaterialAvailabilityText
-                      manifestations={selectedManifestations}
-                    />
-                  )}
-              </>
-            )}
-            {children}
-          </>
-        )}
+                  {shouldShowMaterialAvailabilityText(selectedManifestations) &&
+                    isAvailable && (
+                      <MaterialAvailabilityText
+                        manifestations={selectedManifestations}
+                      />
+                    )}
+                </>
+              )}
+              {children}
+            </>
+          )}
+        </div>
       </div>
     </header>
   );
