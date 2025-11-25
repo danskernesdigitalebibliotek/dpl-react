@@ -6,6 +6,7 @@ import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import { useText } from "../../../core/utils/text";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
+import { useAddFetchedFacets } from "../hooks/use-add-fetched-facets";
 import MultiSelect from "./MultiSelect";
 import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
 import AdvancedSearchPublicationYearSelect from "./AdvancedSearchPublicationYearSelect";
@@ -27,6 +28,7 @@ const AdvancedSearchForm: React.FC = () => {
   } = useSearchFormState();
 
   const { setView } = useFormVisibility();
+  const { optionsByFacet } = useAddFetchedFacets();
 
   const handleAddSuggest = () => {
     setFocusIndex(suggests.length);
@@ -139,11 +141,14 @@ const AdvancedSearchForm: React.FC = () => {
                 );
               }
             }
-            if (config.type === "select")
+            if (config.type === "select") {
+              const options =
+                optionsByFacet.get(config.facetField) ?? config.options;
+
               return (
                 <MultiSelect
                   enableSearch={config.enableSearch}
-                  options={config.options}
+                  options={options}
                   key={config.facetField}
                   label={config.label}
                   selectedOptions={selectedValues.map((value) => ({
@@ -159,6 +164,7 @@ const AdvancedSearchForm: React.FC = () => {
                   }}
                 />
               );
+            }
           })}
         </div>
       </div>
