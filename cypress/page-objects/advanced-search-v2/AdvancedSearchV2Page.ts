@@ -31,6 +31,9 @@ export class AdvancedSearchV2Page extends PageObject {
   }
 
   // Row actions
+
+  // Types a search term and closes the suggestions dropdown.
+  // Use this when testing search functionality without interacting with suggestions.
   enterSearchTerm(index: number, term: string) {
     this.elements
       .rows()
@@ -39,6 +42,35 @@ export class AdvancedSearchV2Page extends PageObject {
       .clear({ force: true })
       .type(term)
       .type("{esc}");
+  }
+
+  // Types a search term but keeps the suggestions dropdown open.
+  // Use this when testing suggestion display or selection.
+  typeSearchTerm(index: number, term: string) {
+    this.elements
+      .rows()
+      .eq(index)
+      .find("input.combobox-input")
+      .clear({ force: true })
+      .type(term);
+  }
+
+  selectSuggestion(suggestionText: string) {
+    cy.get(".combobox-options .combobox-option")
+      .contains(suggestionText)
+      .click();
+  }
+
+  verifySuggestionsAreVisible() {
+    cy.get(".combobox-options").should("be.visible");
+  }
+
+  verifySuggestionsAreHidden() {
+    cy.get(".combobox-options").should("not.exist");
+  }
+
+  verifySuggestionExists(text: string) {
+    cy.get(".combobox-options .combobox-option").should("contain", text);
   }
 
   selectSearchTermType(index: number, typeLabel: string) {
