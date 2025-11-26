@@ -1,5 +1,7 @@
 import { AdvancedSearchV2Page } from "../../../cypress/page-objects/advanced-search-v2/AdvancedSearchV2Page";
 import { givenComplexSuggestResponse } from "../../../cypress/intercepts/fbi/complexSuggest";
+import { givenComplexSearchWithPaginationResponse } from "../../../cypress/intercepts/fbi/complexSearchWithPagination";
+import { givenComplexFacetSearchResponse } from "../../../cypress/intercepts/fbi/complexFacetSearch";
 import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
 
 describe("Advanced Search V2", () => {
@@ -7,7 +9,25 @@ describe("Advanced Search V2", () => {
 
   beforeEach(() => {
     page = new AdvancedSearchV2Page();
+
+    // These intercepts are not relevant to the tests but prevent 401 errors
+    // from external services that would otherwise break the test environment.
+    cy.intercept("POST", "**/graphql", (req) => {
+      req.reply({ statusCode: 200, body: { data: {} } });
+    });
+    cy.intercept(
+      { url: /materiallist\.dandigbib\.org/ },
+      { statusCode: 200, body: [] }
+    );
+    cy.intercept(
+      { url: /fbs-openplatform\.dbc\.dk.*availability/ },
+      { statusCode: 200, body: [] }
+    );
+
+    // Test-specific intercepts
     givenComplexSuggestResponse();
+    givenComplexSearchWithPaginationResponse();
+    givenComplexFacetSearchResponse();
     page.visit([]);
   });
 
