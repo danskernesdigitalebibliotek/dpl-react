@@ -14,28 +14,30 @@ import type { Option } from "../types";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
 
-type MultiSelectComboboxProps = {
+type MultiSelectProps = {
   options: Option[];
   selectedOptions: Option[];
   onChange?: (vals: Option[]) => void;
   label: string;
+  enableSearch?: boolean;
 };
 
-const MultiSelectCombobox: React.FC<MultiSelectComboboxProps> = ({
+const MultiSelect: React.FC<MultiSelectProps> = ({
   options,
   selectedOptions,
   onChange,
-  label
+  label,
+  enableSearch = false
 }) => {
   const t = useText();
   const [query, setQuery] = useState("");
 
   const filteredOptions = useMemo(() => {
-    if (!query) return options;
+    if (!enableSearch || !query) return options;
     return options.filter((opt) =>
       opt.label.toLowerCase().includes(query.toLowerCase())
     );
-  }, [options, query]);
+  }, [options, query, enableSearch]);
 
   const selectedCount = selectedOptions.length;
   const hasSelection = selectedCount > 0;
@@ -74,15 +76,21 @@ const MultiSelectCombobox: React.FC<MultiSelectComboboxProps> = ({
                 onChange={(val) => onChange?.(val)}
                 by="value"
               >
-                <ComboboxInput
+                {enableSearch ? (
+                  <ComboboxInput
+                    // eslint-disable-next-line jsx-a11y/no-autofocus
+                    autoFocus
+                    className="hui-multiselect__input"
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder={t(
+                      "advancedSearchMultiselectSearchPlaceholderText"
+                    )}
+                  />
+                ) : (
+                  // Hidden input to capture focus and keyboard events
                   // eslint-disable-next-line jsx-a11y/no-autofocus
-                  autoFocus
-                  className="hui-multiselect__input"
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder={t(
-                    "advancedSearchMultiselectSearchPlaceholderText"
-                  )}
-                />
+                  <ComboboxInput readOnly autoFocus className="hide-visually" />
+                )}
 
                 <div className="hui-multiselect__options" tabIndex={-1}>
                   <ComboboxOptions static>
@@ -101,7 +109,7 @@ const MultiSelectCombobox: React.FC<MultiSelectComboboxProps> = ({
                             )}
                           >
                             <CheckBox
-                              id={`combobox-${option.value}`}
+                              id={`multiselect-${option.value}`}
                               label={option.label}
                               selected={selected}
                               isVisualOnly
@@ -133,4 +141,4 @@ const MultiSelectCombobox: React.FC<MultiSelectComboboxProps> = ({
   );
 };
 
-export default MultiSelectCombobox;
+export default MultiSelect;

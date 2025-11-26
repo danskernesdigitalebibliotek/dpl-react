@@ -7,7 +7,7 @@ import { useText } from "../../../core/utils/text";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
 import { useAddFetchedFacets } from "../hooks/use-add-fetched-facets";
-import MultiSelect from "./MultiSelectAccessible";
+import MultiSelect from "./MultiSelect";
 import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
 import AdvancedSearchPublicationYearSelect from "./AdvancedSearchPublicationYearSelect";
 import { Button } from "../../../components/Buttons/Button";
