@@ -59,6 +59,25 @@ describe("Advanced Search V2", () => {
       page.verifySearchTermTypeIs(1, "Author / Creator");
       page.verifySearchInputPlaceholderIs(1, "Enter author or creator…");
     });
+
+    it("shows suggestions when typing at least 3 characters", () => {
+      page.typeSearchTerm(0, "har");
+      page.verifySuggestionsAreVisible();
+      page.verifySuggestionExists("Harry Potter and the Philosopher's Stone");
+      page.verifySuggestionExists("Harry - a Biography");
+    });
+
+    it("does not show suggestions when typing less than 3 characters", () => {
+      page.typeSearchTerm(0, "ha");
+      page.verifySuggestionsAreHidden();
+    });
+
+    it("allows selecting a suggestion and populates input", () => {
+      page.typeSearchTerm(0, "har");
+      page.verifySuggestionsAreVisible();
+      page.selectSuggestion("Harry Potter and the Philosopher's Stone");
+      page.verifySearchTermValue(0, "Harry Potter and the Philosopher's Stone");
+    });
   });
 
   describe("Boolean Operators", () => {
