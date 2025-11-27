@@ -5,7 +5,7 @@ import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/gra
 // Builds search term part of CQL query with operators (AND, OR, NOT)
 // Returns wrapped in parentheses or empty string if no valid terms
 // e.g. [{ term: "term.default", query: "harry" }] => '(term.default="harry")'
-export const buildSuggestTerms = (suggests: SuggestState[]): string => {
+const buildSuggestTerms = (suggests: SuggestState[]): string => {
   const suggestTerms: string[] = [];
 
   suggests.forEach((suggest, i) => {
@@ -36,7 +36,7 @@ export const buildSuggestTerms = (suggests: SuggestState[]): string => {
 //   => ['((ages within "3 6"))']
 // e.g. [{ facetField: ComplexSearchFacetsEnum.Ages, selectedValues: ["18"] }]
 //   => ['((ages>"18"))']
-export const buildFilterTerms = (filters: FacetState[]): string[] => {
+const buildFilterTerms = (filters: FacetState[]): string[] => {
   const filterTermsSet = new Set<string>();
 
   filters.forEach((item) => {
