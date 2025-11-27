@@ -5,6 +5,7 @@ import {
 } from "@hammzj/cypress-page-object";
 import { AdvancedSearchFormComponent } from "./components/AdvancedSearchForm";
 import { AdvancedSearchFiltersComponent } from "./components/AdvancedSearchFilters";
+import { AdvancedSearchSortComponent } from "./components/AdvancedSearchSort";
 import { SummaryComponent } from "./components/summary";
 
 export class AdvancedSearchV2Page extends PageObject {
@@ -35,6 +36,12 @@ export class AdvancedSearchV2Page extends PageObject {
           this.container(),
           new AdvancedSearchFiltersComponent(),
           fn
+        ),
+      Sort: (fn) =>
+        this.performWithin(
+          this.container(),
+          new AdvancedSearchSortComponent(),
+          fn
         )
     };
   }
@@ -63,5 +70,9 @@ export class AdvancedSearchV2Page extends PageObject {
       const actualValue = JSON.parse(paramValue);
       expect(actualValue).to.deep.equal(expectedValue);
     });
+  }
+
+  verifyUrlDoesNotContain(substring: string) {
+    cy.url().should("not.include", substring);
   }
 }

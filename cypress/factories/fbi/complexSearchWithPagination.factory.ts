@@ -19,18 +19,6 @@ export const buildComplexSearchWithPaginationResponse = (
   data
 });
 
-// Helper to create response with multiple works
-export const buildComplexSearchWithPaginationResponseWithWorks = (
-  workCount: number
-) => ({
-  data: {
-    complexSearch: {
-      hitcount: workCount,
-      works: workSmallFactory.buildList(workCount, {}, { transient: {} })
-    }
-  }
-});
-
 // Helper to create empty results
 export const buildComplexSearchWithPaginationEmptyResponse = () => ({
   data: {

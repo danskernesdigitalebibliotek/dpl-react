@@ -586,6 +586,84 @@ describe("Advanced Search V2", () => {
     });
   });
 
+  describe("Sort Functionality", () => {
+    beforeEach(() => {
+      // Perform a search to show the results view with sort select
+      page.components.Form((form) => {
+        form.enterSearchTerm(0, "harry potter");
+        form.clickSearch();
+      });
+      page.verifyResultsAreVisible();
+    });
+
+    it("shows sort select with default 'Relevance' option", () => {
+      page.components.Sort((sort) => {
+        sort.verifyIsVisible();
+        sort.verifyLabelIs("Sort by");
+        sort.verifySortValueIs("relevance");
+        sort.verifySelectedOptionTextIs("Relevance");
+      });
+    });
+
+    it("allows changing sort to 'Newest first'", () => {
+      page.components.Sort((sort) => {
+        sort.selectSortOption("Newest first");
+        sort.verifySortValueIs("sort.latestpublicationdate.desc");
+      });
+
+      page.verifyUrlContains("sort=sort.latestpublicationdate.desc");
+    });
+
+    it("allows changing sort to 'Title A-Z'", () => {
+      page.components.Sort((sort) => {
+        sort.elements.select().select("sort.title.asc");
+        sort.verifySortValueIs("sort.title.asc");
+      });
+
+      page.verifyUrlContains("sort=sort.title.asc");
+    });
+
+    it("can change back to 'Relevance' and removes sort from URL", () => {
+      page.components.Sort((sort) => {
+        sort.selectSortOption("Newest first");
+        sort.verifySortValueIs("sort.latestpublicationdate.desc");
+      });
+
+      page.verifyUrlContains("sort=sort.latestpublicationdate.desc");
+
+      page.components.Sort((sort) => {
+        sort.selectSortOption("Relevance");
+        sort.verifySortValueIs("relevance");
+      });
+
+      page.verifyUrlDoesNotContain("sort.latestpublicationdate.desc");
+    });
+
+    it("resets sort to Relevance when editing search", () => {
+      page.components.Sort((sort) => {
+        sort.selectSortOption("Newest first");
+        sort.verifySortValueIs("sort.latestpublicationdate.desc");
+      });
+
+      page.components.Summary((summary) => {
+        summary.clickEdit();
+      });
+
+      page.verifyFormIsVisible();
+
+      page.components.Form((form) => {
+        form.clickSearch();
+      });
+
+      page.verifyResultsAreVisible();
+
+      // Sort should be reset to default "Relevance"
+      page.components.Sort((sort) => {
+        sort.verifySortValueIs("relevance");
+      });
+    });
+  });
+
   describe("Sidebar Facets URL State", () => {
     beforeEach(() => {
       page.components.Form((form) => {
