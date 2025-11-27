@@ -299,6 +299,7 @@ describe("Advanced Search V2", () => {
         form.openRangeSelect("Year");
         form.selectRangePreset("Seneste 2 år");
         form.verifyRangeInputValues("2024", "2025");
+        form.closePopover();
         form.verifyRangeBadgeContains("Year", "2024-2025");
         form.clickSearch();
       });
