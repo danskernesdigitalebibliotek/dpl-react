@@ -40,7 +40,10 @@ const CheckBox: FC<CheckBoxProps> = ({
   };
 
   return (
-    <div className={clsx("checkbox", className)}>
+    <div
+      className={clsx("checkbox", className)}
+      style={isVisualOnly ? { pointerEvents: "none" } : undefined}
+    >
       <input
         // This is to handle focus when more items are loaded via pagination
         // eslint-disable-next-line jsx-a11y/no-autofocus

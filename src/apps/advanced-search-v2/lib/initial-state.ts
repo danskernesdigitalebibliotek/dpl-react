@@ -22,7 +22,7 @@ export const INITIAL_PRE_SEARCH_FACETS_STATE: PreFacetConfig[] = [
     facetField: ComplexSearchFacetsEnum.Generalmaterialtype,
     type: "select",
     options: MATERIAL_TYPE_OPTIONS,
-    enableSearch: true
+    enableSearch: false
   },
   {
     label: "advancedSearchFacetGenreAndFormText",
