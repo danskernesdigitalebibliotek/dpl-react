@@ -241,14 +241,14 @@ describe("Advanced Search V2", () => {
       page.components.Form((form) => {
         form.enterSearchTerm(0, "børn");
         form.openRangeSelect("Age");
-        form.selectRangePreset("For 1-6-årige");
-        form.verifyRangeBadgeContains("Age", "1-6-årige");
+        form.selectRangePreset("For 3-6-årige");
+        form.verifyRangeBadgeContains("Age", "3-6-årige");
         form.clickSearch();
       });
 
       page.components.Summary((summary) => {
         summary.verifyItemContains(0, "børn");
-        summary.verifyItemContains(1, "1-6");
+        summary.verifyItemContains(1, "3-6");
       });
     });
 
@@ -268,12 +268,12 @@ describe("Advanced Search V2", () => {
       });
     });
 
-    it("allows selecting adult preset (18+)", () => {
+    it("allows selecting adult preset (16+)", () => {
       page.components.Form((form) => {
         form.enterSearchTerm(0, "voksen");
         form.openRangeSelect("Age");
-        form.selectRangePreset("For 18+");
-        form.verifyRangeBadgeContains("Age", "18+ årige");
+        form.selectRangePreset("For 16+");
+        form.verifyRangeBadgeContains("Age", "16+ årige");
       });
     });
 
@@ -281,9 +281,9 @@ describe("Advanced Search V2", () => {
       page.components.Form((form) => {
         form.openRangeSelect("Age");
         form.verifyRangeInputValues("", "");
-        form.selectRangePreset("For 1-6-årige");
-        form.verifyRangeInputValues("1", "6");
-        form.verifyRangeBadgeContains("Age", "1-6-årige");
+        form.selectRangePreset("For 3-6-årige");
+        form.verifyRangeInputValues("3", "6");
+        form.verifyRangeBadgeContains("Age", "3-6-årige");
         form.resetRange();
         form.verifyRangeInputValues("", "");
         form.closePopover();
