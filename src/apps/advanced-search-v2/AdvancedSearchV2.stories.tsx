@@ -15,6 +15,9 @@ import mappArgs, {
 import advancedSearchV2Args, {
   argTypes as advancedSearchV2ArgTypes
 } from "../../core/storybook/advancedSearchV2Args";
+import advancedSearchV2SortArgs, {
+  argTypes as advancedSearchV2SortArgTypes
+} from "../../core/storybook/advancedSearchV2SortArgs";
 
 const meta: Meta<typeof AdvancedSearchV2Entry> = {
   title: "Apps / Advanced Search V2",
@@ -27,6 +30,7 @@ const meta: Meta<typeof AdvancedSearchV2Entry> = {
     ...globalConfigArgTypes,
     ...mappArgTypes,
     ...advancedSearchV2ArgTypes,
+    ...advancedSearchV2SortArgTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
       control: { type: "number" },
@@ -117,6 +121,7 @@ export const Default: Story = {
     ...globalConfigArgs,
     ...mappArgs,
     ...advancedSearchV2Args,
+    ...advancedSearchV2SortArgs,
     etAlText: "et al.",
     pageSizeDesktop: 50,
     pageSizeMobile: 20,

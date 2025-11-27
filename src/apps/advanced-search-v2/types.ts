@@ -49,3 +49,13 @@ export type PreRangeFacetConfig = FacetConfig & {
 };
 
 export type PreFacetConfig = PreSelectFacetConfig | PreRangeFacetConfig;
+
+export enum SortOption {
+  Relevance = "relevance",
+  TitleAsc = "sort.title.asc",
+  TitleDesc = "sort.title.desc",
+  CreatorAsc = "sort.creator.asc",
+  CreatorDesc = "sort.creator.desc",
+  LatestPubDateAsc = "sort.latestpublicationdate.asc",
+  LatestPubDateDesc = "sort.latestpublicationdate.desc"
+}

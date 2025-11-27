@@ -5,6 +5,8 @@ import {
   useComplexSearchWithPaginationQuery,
   HoldingsStatusEnum
 } from "../../../core/dbc-gateway/generated/graphql";
+import { SortOption } from "../types";
+import { getSortInput } from "../lib/sort-utils";
 
 export interface UsePaginatedResultsReturn {
   resultItems: Work[];
@@ -26,6 +28,7 @@ interface UsePaginatedResultsProps {
   hasQuery: boolean;
   onShelf: boolean;
   pageSize: number;
+  sort: SortOption;
 }
 
 /**
@@ -35,7 +38,8 @@ export const usePaginatedResults = ({
   cql,
   hasQuery,
   onShelf,
-  pageSize
+  pageSize,
+  sort
 }: UsePaginatedResultsProps): UsePaginatedResultsReturn => {
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState(0);
@@ -56,7 +60,8 @@ export const usePaginatedResults = ({
       limit: pageSize,
       filters: {
         ...(onShelf && { status: [HoldingsStatusEnum.Onshelf] })
-      }
+      },
+      sort: getSortInput(sort)
     },
     {
       enabled: hasQuery,
@@ -92,8 +97,8 @@ export const usePaginatedResults = ({
     setResultItems(resultWorks);
   }, [data, page]);
 
-  // Reset results when CQL query changes
-  const currentQueryStr = useMemo(() => cql, [cql]);
+  // Reset results when CQL query or sort changes
+  const currentQueryStr = useMemo(() => `${cql}|${sort}`, [cql, sort]);
 
   useEffect(() => {
     if (currentQueryStr !== lastQueryStr) {
