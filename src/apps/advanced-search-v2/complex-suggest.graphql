@@ -1,13 +1,9 @@
 query complexSuggest($q: String!, $type: ComplexSuggestionTypeEnum!) {
   complexSuggest(q: $q, type: $type) {
     result {
+      type
       term
-      work {
-        workId
-        titles {
-          main
-        }
-      }
+      traceId
     }
   }
 }

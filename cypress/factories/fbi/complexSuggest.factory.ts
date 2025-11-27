@@ -6,22 +6,14 @@ export const complexSuggestFactory = Factory.define<ComplexSuggestQuery>(
     complexSuggest: {
       result: [
         {
-          term: "harry potter",
-          work: {
-            workId: "work-of:870970-basis:12345678",
-            titles: {
-              main: ["Harry Potter and the Philosopher's Stone"]
-            }
-          }
+          type: "title",
+          term: "Harry Potter and the Philosopher's Stone",
+          traceId: "trace-1"
         },
         {
-          term: "harry",
-          work: {
-            workId: "work-of:870970-basis:87654321",
-            titles: {
-              main: ["Harry - a Biography"]
-            }
-          }
+          type: "title",
+          term: "Harry - a Biography",
+          traceId: "trace-2"
         }
       ]
     }

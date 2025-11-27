@@ -1,27 +1,20 @@
 import type { Option } from "../types";
 
-// Minimal common shape from both localSuggest and complexSuggest
-// - localSuggest: { term, work: { titles: { main: string[] } } }
-// - complexSuggest: { term, work: { titles: { main: string[] } } }
-type MinimalSuggestItem = {
+type ComplexSuggestItem = {
+  type: string;
   term: string;
-  work?: { titles: { main: string[] } } | null;
+  traceId?: string | null;
 };
 
-export function suggestionsToOptions(results?: MinimalSuggestItem[]): Option[] {
+export function suggestionsToOptions(results?: ComplexSuggestItem[]): Option[] {
   if (!results || results.length === 0) return [];
 
   const seen = new Set<string>();
 
   return results
-    .map((item) => {
-      const fromWork = item.work?.titles?.main?.[0];
-      const raw = (typeof fromWork === "string" && fromWork) || item.term || "";
-      const label = raw.trim();
-      return label.length > 0 ? label : null;
-    })
-    .filter((label): label is string => Boolean(label))
-    .map((label) => ({ label, value: label.toLowerCase() }))
+    .map((item) => item.term?.trim())
+    .filter((term): term is string => Boolean(term && term.length > 0))
+    .map((term) => ({ label: term, value: term.toLowerCase() }))
     .filter((opt) => {
       if (seen.has(opt.label)) return false;
       seen.add(opt.label);
