@@ -11,7 +11,7 @@ interface AdvancedSearchV2Props {
 
 const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
   const t = useText();
-  const { showResults } = useFormVisibility();
+  const { showResults, setView } = useFormVisibility();
   const {
     suggests,
     preSearchFacets,
@@ -23,6 +23,11 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
     clearFacets,
     handleClearFilters
   } = useSearchFormState();
+
+  const onHandleSearch = () => {
+    handleSearch();
+    setView("results");
+  };
 
   return (
     <div className="advanced-search-v2">
@@ -38,7 +43,7 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
           updatePreSearchFacet={updatePreSearchFacet}
           addSuggest={addSuggest}
           removeSuggest={removeSuggest}
-          handleSearch={handleSearch}
+          handleSearch={onHandleSearch}
           handleClearFilters={handleClearFilters}
         />
       </Activity>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
-import { useFormVisibility } from "../hooks/use-form-visibility";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
@@ -36,7 +35,6 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
   const t = useText();
   const [focusIndex, setFocusIndex] = useState<number | null>(null);
 
-  const { setView } = useFormVisibility();
   const { mergedFacetOptions } = useMergedFacetOptions();
 
   const handleAddSuggest = () => {
@@ -57,11 +55,6 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
     preSearchFacets.some(
       (preSearchFacet) => preSearchFacet.selectedValues.length > 0
     );
-
-  const handleSearchComplete = () => {
-    handleSearch();
-    setView("results");
-  };
 
   return (
     <section className="advanced-search-v2__form">
@@ -186,7 +179,7 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
           collapsible={false}
           size="large"
           variant="filled"
-          onClick={handleSearchComplete}
+          onClick={handleSearch}
         />
         {hasFilters && (
           <Button
