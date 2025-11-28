@@ -7,19 +7,21 @@ import AdvancedSearchSummary from "./AdvancedSearchSummary";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
 import { useFormVisibility } from "../hooks/use-form-visibility";
-import { useSearchFormState } from "../hooks/use-search-form-state";
+import { FacetState, SuggestState } from "../types";
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;
+  suggests: SuggestState[];
+  preSearchFacets: FacetState[];
 }
 
 const AdvancedSearchResultsWithFacets: React.FC<
   AdvancedSearchResultsWithFacetsProps
-> = ({ pageSize }) => {
+> = ({ pageSize, suggests, preSearchFacets }) => {
   const t = useText();
   const { cql, hasQuery, onShelf } = useSearchQueries();
   const { setView } = useFormVisibility();
-  const { clearFacets } = useSearchFormState();
+
   const {
     resultItems,
     hitcount,
@@ -36,9 +38,10 @@ const AdvancedSearchResultsWithFacets: React.FC<
   return (
     <div>
       <AdvancedSearchSummary
+        suggests={suggests}
+        preSearchFacets={preSearchFacets}
         onEditClick={() => {
           // Clear facets (sidebar filters) when editing, keep preSearchFacets
-          clearFacets();
           setView("search");
         }}
       />

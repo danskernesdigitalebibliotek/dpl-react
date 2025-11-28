@@ -14,30 +14,30 @@ import SearchTermSelect from "./SearchTermSelect";
 
 type AdvancedSearchSuggestProps = {
   selectedTerm: string;
-  onSelectedTermChange: (value: string) => void;
   query: string;
-  onQueryChange: (q: string) => void;
   suggestType: ComplexSuggestionTypeEnum;
   inputPlaceholder: string;
   operator?: Operator;
-  onOperatorChange?: (operator: Operator) => void;
-  onRemove?: () => void;
   showRemoveButton?: boolean;
   shouldAutoFocus?: boolean;
+  onSelectedTermChange: (value: string) => void;
+  onQueryChange: (q: string) => void;
+  onOperatorChange?: (operator: Operator) => void;
+  onRemove?: () => void;
 };
 
 const AdvancedSearchSuggest = ({
   selectedTerm,
-  onSelectedTermChange,
   query,
-  onQueryChange,
   suggestType,
   inputPlaceholder,
   operator = "and",
-  onOperatorChange,
-  onRemove,
   showRemoveButton = false,
-  shouldAutoFocus
+  shouldAutoFocus,
+  onSelectedTermChange,
+  onQueryChange,
+  onOperatorChange,
+  onRemove
 }: AdvancedSearchSuggestProps) => {
   const t = useText();
 
@@ -47,10 +47,6 @@ const AdvancedSearchSuggest = ({
   );
 
   const items = suggestionsToOptions(data?.complexSuggest?.result);
-
-  const onQueryChangeHandler = (q: string) => {
-    onQueryChange(q);
-  };
 
   return (
     <>
@@ -68,7 +64,7 @@ const AdvancedSearchSuggest = ({
             <ComboBoxAutosuggest
               items={items}
               value={query}
-              onInputChange={onQueryChangeHandler}
+              onInputChange={(query) => onQueryChange(query)}
               placeholder={inputPlaceholder}
             />
           </div>
