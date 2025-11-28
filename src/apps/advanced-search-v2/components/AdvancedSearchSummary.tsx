@@ -1,20 +1,21 @@
 import React from "react";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { useText } from "../../../core/utils/text";
-import { useSearchQueries } from "../hooks/use-search-queries";
-import { Operator } from "../types";
+import { FacetState, Operator, SuggestState } from "../types";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
 
 interface AdvancedSearchSummaryProps {
+  suggests: SuggestState[];
+  preSearchFacets: FacetState[];
   onEditClick?: () => void;
 }
 
 const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
+  suggests,
+  preSearchFacets,
   onEditClick
 }) => {
   const t = useText();
-  const { urlState } = useSearchQueries();
-  const { suggests, preSearchFacets } = urlState;
 
   const renderOperator = (operator: Operator) => {
     const operatorMap = {
