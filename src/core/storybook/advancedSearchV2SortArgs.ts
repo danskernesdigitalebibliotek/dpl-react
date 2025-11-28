@@ -23,24 +23,16 @@ export const argTypes = {
     description: "Text for creator sorting option group",
     control: { type: "text" }
   },
-  advancedSearchSortCreatorAscText: {
-    description: "Text for creator ascending sorting option",
-    control: { type: "text" }
-  },
-  advancedSearchSortCreatorDescText: {
-    description: "Text for creator descending sorting option",
-    control: { type: "text" }
-  },
   advancedSearchSortTitleText: {
     description: "Text for title sorting option group",
     control: { type: "text" }
   },
-  advancedSearchSortTitleAscText: {
-    description: "Text for title ascending sorting option",
+  advancedSearchSortAscText: {
+    description: "Text for ascending (A-Z) sorting option",
     control: { type: "text" }
   },
-  advancedSearchSortTitleDescText: {
-    description: "Text for title descending sorting option",
+  advancedSearchSortDescText: {
+    description: "Text for descending (Z-A) sorting option",
     control: { type: "text" }
   }
 };
@@ -52,11 +44,9 @@ export default {
   advancedSearchSortLatestPubDateDescText: "Newest first",
   advancedSearchSortLatestPubDateAscText: "Oldest first",
   advancedSearchSortCreatorText: "Author",
-  advancedSearchSortCreatorAscText: "A-Z",
-  advancedSearchSortCreatorDescText: "Z-A",
   advancedSearchSortTitleText: "Title",
-  advancedSearchSortTitleAscText: "A-Z",
-  advancedSearchSortTitleDescText: "Z-A"
+  advancedSearchSortAscText: "A-Z",
+  advancedSearchSortDescText: "Z-A"
 };
 
 export interface AdvancedSearchV2SortArgs {
@@ -66,9 +56,7 @@ export interface AdvancedSearchV2SortArgs {
   advancedSearchSortLatestPubDateDescText: string;
   advancedSearchSortLatestPubDateAscText: string;
   advancedSearchSortCreatorText: string;
-  advancedSearchSortCreatorAscText: string;
-  advancedSearchSortCreatorDescText: string;
   advancedSearchSortTitleText: string;
-  advancedSearchSortTitleAscText: string;
-  advancedSearchSortTitleDescText: string;
+  advancedSearchSortAscText: string;
+  advancedSearchSortDescText: string;
 }

@@ -1,34 +1,41 @@
 import React, { useState } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
-import { useSearchFormState } from "../hooks/use-search-form-state";
-import { useFormVisibility } from "../hooks/use-form-visibility";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
-import { useAddFetchedFacets } from "../hooks/use-add-fetched-facets";
+import { useMergedFacetOptions } from "../hooks/use-merged-facet-options";
 import MultiSelect from "./MultiSelect";
 import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
 import AdvancedSearchPublicationYearSelect from "./AdvancedSearchPublicationYearSelect";
 import { Button } from "../../../components/Buttons/Button";
+import { FacetState, SuggestState } from "../types";
 
-const AdvancedSearchForm: React.FC = () => {
+type AdvancedSearchFormProps = {
+  suggests: SuggestState[];
+  preSearchFacets: FacetState[];
+  updateSuggest: (index: number, updates: Partial<SuggestState>) => void;
+  updatePreSearchFacet: (preSearchFacet: FacetState) => void;
+  addSuggest: () => void;
+  removeSuggest: (index: number) => void;
+  handleSearch: () => void;
+  handleClearFilters: () => void;
+};
+
+const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
+  suggests,
+  preSearchFacets,
+  updateSuggest,
+  updatePreSearchFacet,
+  addSuggest,
+  removeSuggest,
+  handleSearch,
+  handleClearFilters
+}) => {
   const t = useText();
   const [focusIndex, setFocusIndex] = useState<number | null>(null);
 
-  const {
-    suggests,
-    preSearchFacets,
-    updateSuggest,
-    updatePreSearchFacet,
-    addSuggest,
-    removeSuggest,
-    handleSearch,
-    handleClearFilters
-  } = useSearchFormState();
-
-  const { setView } = useFormVisibility();
-  const { optionsByFacet } = useAddFetchedFacets();
+  const { mergedFacetOptions } = useMergedFacetOptions();
 
   const handleAddSuggest = () => {
     setFocusIndex(suggests.length);
@@ -48,11 +55,6 @@ const AdvancedSearchForm: React.FC = () => {
     preSearchFacets.some(
       (preSearchFacet) => preSearchFacet.selectedValues.length > 0
     );
-
-  const handleSearchComplete = () => {
-    handleSearch();
-    setView("results");
-  };
 
   return (
     <section className="advanced-search-v2__form">
@@ -142,8 +144,10 @@ const AdvancedSearchForm: React.FC = () => {
               }
             }
             if (config.type === "select") {
-              const options =
-                optionsByFacet.get(config.facetField) ?? config.options;
+              const merged = mergedFacetOptions.find(
+                (m) => m.facetField === config.facetField
+              );
+              const options = merged?.options ?? config.options;
 
               return (
                 <MultiSelect
@@ -175,7 +179,7 @@ const AdvancedSearchForm: React.FC = () => {
           collapsible={false}
           size="large"
           variant="filled"
-          onClick={handleSearchComplete}
+          onClick={handleSearch}
         />
         {hasFilters && (
           <Button
