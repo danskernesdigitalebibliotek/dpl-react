@@ -1,6 +1,11 @@
 import { useMemo } from "react";
-import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
-import { SuggestState, FacetState } from "../types";
+import {
+  useQueryState,
+  parseAsJson,
+  parseAsBoolean,
+  parseAsStringEnum
+} from "nuqs";
+import { SuggestState, FacetState, SortOption } from "../types";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
 import { isValidSuggestState, isValidFacetState } from "../lib/validation";
 
@@ -9,6 +14,8 @@ interface UseSearchQueriesReturn {
   hasQuery: boolean;
   onShelf: boolean;
   onlyExtraTitles: boolean;
+  sort: SortOption;
+  setSort: (sort: SortOption) => void;
   urlState: {
     suggests: SuggestState[];
     preSearchFacets: FacetState[];
@@ -53,6 +60,13 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     parseAsBoolean.withDefault(false)
   );
 
+  const [sort, setSort] = useQueryState(
+    "sort",
+    parseAsStringEnum<SortOption>(Object.values(SortOption)).withDefault(
+      SortOption.Relevance
+    )
+  );
+
   // Build CQL query from all inputs
   const cql = useMemo(
     () => buildCQLQuery(suggests, preSearchFacets, facets, onlyExtraTitles),
@@ -66,6 +80,8 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     hasQuery,
     onShelf,
     onlyExtraTitles,
+    sort,
+    setSort,
     urlState: {
       suggests,
       preSearchFacets,

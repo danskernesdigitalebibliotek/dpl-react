@@ -4,6 +4,7 @@ import SearchResultList from "../../../components/card-item-list/SearchResultLis
 import SearchResultZeroHits from "../../search-result/search-result-zero-hits";
 import AdvancedSearchFilters from "./AdvancedSearchFilters";
 import AdvancedSearchSummary from "./AdvancedSearchSummary";
+import AdvancedSortSelect from "./AdvancedSortSelect";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
 import { useFormVisibility } from "../hooks/use-form-visibility";
@@ -17,7 +18,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
   AdvancedSearchResultsWithFacetsProps
 > = ({ pageSize }) => {
   const t = useText();
-  const { cql, hasQuery, onShelf } = useSearchQueries();
+  const { cql, hasQuery, onShelf, sort, setSort } = useSearchQueries();
   const { setView } = useFormVisibility();
   const { clearFacets } = useSearchFormState();
   const {
@@ -29,7 +30,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
     shouldShowSearchResults,
     shouldShowResultHeadline,
     shouldShowZeroResults
-  } = usePaginatedResults({ cql, hasQuery, onShelf, pageSize });
+  } = usePaginatedResults({ cql, hasQuery, onShelf, pageSize, sort });
 
   if (!hasQuery) return null;
 
@@ -58,6 +59,8 @@ const AdvancedSearchResultsWithFacets: React.FC<
         <AdvancedSearchFilters cql={cql} />
 
         <section>
+          <AdvancedSortSelect sort={sort} setSort={setSort} />
+
           {shouldShowSearchResults && (
             <>
               <SearchResultList

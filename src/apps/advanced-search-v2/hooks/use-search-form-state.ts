@@ -1,6 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
-import { useQueryStates, parseAsJson, parseAsBoolean } from "nuqs";
-import { SuggestState, FacetState } from "../types";
+import {
+  useQueryStates,
+  parseAsJson,
+  parseAsBoolean,
+  parseAsStringEnum
+} from "nuqs";
+import { SuggestState, FacetState, SortOption } from "../types";
 import { INITIAL_SUGGEST_STATE } from "../lib/initial-state";
 
 import { isValidSuggestState, isValidFacetState } from "../lib/validation";
@@ -39,7 +44,10 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
         return [];
       }).withDefault([]),
       onShelf: parseAsBoolean.withDefault(false),
-      onlyExtraTitles: parseAsBoolean.withDefault(false)
+      onlyExtraTitles: parseAsBoolean.withDefault(false),
+      sort: parseAsStringEnum<SortOption>(
+        Object.values(SortOption)
+      ).withDefault(SortOption.Relevance)
     },
     { shallow: true }
   );
@@ -141,9 +149,14 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     });
   }, [setUrlState]);
 
-  // Clear facets (sidebar filters) and toggles when returning to edit
+  // Clear facets (sidebar filters), toggles, and sort when returning to edit
   const clearFacets = useCallback(() => {
-    setUrlState({ facets: [], onShelf: false, onlyExtraTitles: false });
+    setUrlState({
+      facets: [],
+      onShelf: false,
+      onlyExtraTitles: false,
+      sort: null
+    });
   }, [setUrlState]);
 
   return {
