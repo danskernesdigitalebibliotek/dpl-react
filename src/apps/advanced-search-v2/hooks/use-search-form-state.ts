@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import {
   useQueryStates,
   parseAsJson,
@@ -65,19 +65,14 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
   }, [urlState.suggests, urlState.preSearchFacets]);
 
   // Update a specific suggest by index
-  const updateSuggest = useCallback(
-    (index: number, updates: Partial<SuggestState>) => {
-      setSuggests((prev) =>
-        prev.map((item, idx) =>
-          idx === index ? { ...item, ...updates } : item
-        )
-      );
-    },
-    []
-  );
+  const updateSuggest = (index: number, updates: Partial<SuggestState>) => {
+    setSuggests((prev) =>
+      prev.map((item, idx) => (idx === index ? { ...item, ...updates } : item))
+    );
+  };
 
   // Upsert pre-search facet: update if exists, add if new, remove if empty
-  const updatePreSearchFacet = useCallback((preSearchFacet: FacetState) => {
+  const updatePreSearchFacet = (preSearchFacet: FacetState) => {
     setPreSearchFacets((prev) => {
       const existingIndex = prev.findIndex(
         (f) => f.facetField === preSearchFacet.facetField
@@ -96,26 +91,26 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
         return [...prev, preSearchFacet];
       }
     });
-  }, []);
+  };
 
   // Add a new suggest row
-  const addSuggest = useCallback(() => {
+  const addSuggest = () => {
     setSuggests((prev) => [
       ...prev,
       { term: "term.default", query: "", operator: "and" }
     ]);
-  }, []);
+  };
 
   // Remove a suggest row by index (minimum 1 row must remain)
-  const removeSuggest = useCallback((index: number) => {
+  const removeSuggest = (index: number) => {
     setSuggests((prev) => {
       if (prev.length <= 1) return prev;
       return prev.filter((_, idx) => idx !== index);
     });
-  }, []);
+  };
 
   // Sync local state to URL and trigger search
-  const handleSearch = useCallback(() => {
+  const handleSearch = () => {
     // Filter out empty queries and remove operator from first row (never used)
     const nonEmptySuggests = suggests
       .filter((suggest) => suggest.query.trim())
@@ -136,10 +131,10 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
       },
       { history: "push" }
     );
-  }, [suggests, preSearchFacets, setUrlState]);
+  };
 
   // Clear all filters
-  const handleClearFilters = useCallback(() => {
+  const handleClearFilters = () => {
     setSuggests(INITIAL_SUGGEST_STATE);
     setPreSearchFacets([]);
     setUrlState({
@@ -147,17 +142,17 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
       preSearchFacets: [],
       facets: []
     });
-  }, [setUrlState]);
+  };
 
   // Clear facets (sidebar filters), toggles, and sort when returning to edit
-  const clearFacets = useCallback(() => {
+  const clearFacets = () => {
     setUrlState({
       facets: [],
       onShelf: false,
       onlyExtraTitles: false,
       sort: null
     });
-  }, [setUrlState]);
+  };
 
   return {
     suggests,
