@@ -294,9 +294,10 @@ export const YEAR_PRESETS: RangePreset[] = [
 ];
 
 export const AGE_PRESETS: RangePreset[] = [
-  { id: "1-6", label: "For 1-6-årige", from: 1, to: 6 },
+  { id: "1-2", label: "For 1-2-årige", from: 1, to: 2 },
+  { id: "3-6", label: "For 3-6-årige", from: 3, to: 6 },
   { id: "7-10", label: "For 7-10-årige", from: 7, to: 10 },
   { id: "11-13", label: "For 11-13-årige", from: 11, to: 13 },
-  { id: "14-18", label: "For 14-18-årige", from: 14, to: 18 },
-  { id: "18+", label: "For 18+", from: 18, to: null }
+  { id: "14-16", label: "For 14-16-årige", from: 14, to: 16 },
+  { id: "16+", label: "For 16+", from: 16, to: null }
 ];
