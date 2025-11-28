@@ -3,14 +3,26 @@ import AdvancedSearchResultsWithFacets from "./components/AdvancedSearchResultsW
 import AdvancedSearchForm from "./components/AdvancedSearchForm";
 import { useFormVisibility } from "./hooks/use-form-visibility";
 import { useText } from "../../core/utils/text";
+import { useSearchFormState } from "./hooks/use-search-form-state";
 
 interface AdvancedSearchV2Props {
   pageSize: number;
 }
 
 const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
-  const { showResults } = useFormVisibility();
   const t = useText();
+  const { showResults } = useFormVisibility();
+  const {
+    suggests,
+    preSearchFacets,
+    updateSuggest,
+    updatePreSearchFacet,
+    addSuggest,
+    removeSuggest,
+    handleSearch,
+    clearFacets,
+    handleClearFilters
+  } = useSearchFormState();
 
   return (
     <div className="advanced-search-v2">
@@ -19,11 +31,23 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
       </h1>
 
       <Activity mode={!showResults ? "visible" : "hidden"}>
-        <AdvancedSearchForm />
+        <AdvancedSearchForm
+          suggests={suggests}
+          preSearchFacets={preSearchFacets}
+          updateSuggest={updateSuggest}
+          updatePreSearchFacet={updatePreSearchFacet}
+          addSuggest={addSuggest}
+          removeSuggest={removeSuggest}
+          handleSearch={handleSearch}
+          handleClearFilters={handleClearFilters}
+        />
       </Activity>
 
       <Activity mode={showResults ? "visible" : "hidden"}>
-        <AdvancedSearchResultsWithFacets pageSize={pageSize} />
+        <AdvancedSearchResultsWithFacets
+          pageSize={pageSize}
+          clearFacets={clearFacets}
+        />
       </Activity>
     </div>
   );

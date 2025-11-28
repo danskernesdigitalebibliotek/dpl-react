@@ -8,19 +8,19 @@ import AdvancedSortSelect from "./AdvancedSortSelect";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
 import { useFormVisibility } from "../hooks/use-form-visibility";
-import { useSearchFormState } from "../hooks/use-search-form-state";
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;
+  clearFacets: () => void;
 }
 
 const AdvancedSearchResultsWithFacets: React.FC<
   AdvancedSearchResultsWithFacetsProps
-> = ({ pageSize }) => {
+> = ({ pageSize, clearFacets }) => {
   const t = useText();
   const { cql, hasQuery, onShelf, sort, setSort } = useSearchQueries();
   const { setView } = useFormVisibility();
-  const { clearFacets } = useSearchFormState();
+
   const {
     resultItems,
     hitcount,

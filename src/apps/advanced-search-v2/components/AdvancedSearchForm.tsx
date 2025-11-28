@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
-import { useSearchFormState } from "../hooks/use-search-form-state";
 import { useFormVisibility } from "../hooks/use-form-visibility";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
@@ -11,21 +10,31 @@ import MultiSelect from "./MultiSelect";
 import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
 import AdvancedSearchPublicationYearSelect from "./AdvancedSearchPublicationYearSelect";
 import { Button } from "../../../components/Buttons/Button";
+import { FacetState, SuggestState } from "../types";
 
-const AdvancedSearchForm: React.FC = () => {
+type AdvancedSearchFormProps = {
+  suggests: SuggestState[];
+  preSearchFacets: FacetState[];
+  updateSuggest: (index: number, updates: Partial<SuggestState>) => void;
+  updatePreSearchFacet: (preSearchFacet: FacetState) => void;
+  addSuggest: () => void;
+  removeSuggest: (index: number) => void;
+  handleSearch: () => void;
+  handleClearFilters: () => void;
+};
+
+const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
+  suggests,
+  preSearchFacets,
+  updateSuggest,
+  updatePreSearchFacet,
+  addSuggest,
+  removeSuggest,
+  handleSearch,
+  handleClearFilters
+}) => {
   const t = useText();
   const [focusIndex, setFocusIndex] = useState<number | null>(null);
-
-  const {
-    suggests,
-    preSearchFacets,
-    updateSuggest,
-    updatePreSearchFacet,
-    addSuggest,
-    removeSuggest,
-    handleSearch,
-    handleClearFilters
-  } = useSearchFormState();
 
   const { setView } = useFormVisibility();
   const { optionsByFacet } = useAddFetchedFacets();
