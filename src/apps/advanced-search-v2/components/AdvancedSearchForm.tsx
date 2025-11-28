@@ -5,7 +5,7 @@ import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build
 import { useText } from "../../../core/utils/text";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
-import { useAddFetchedFacets } from "../hooks/use-add-fetched-facets";
+import { useMergedFacetOptions } from "../hooks/use-merged-facet-options";
 import MultiSelect from "./MultiSelect";
 import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
 import AdvancedSearchPublicationYearSelect from "./AdvancedSearchPublicationYearSelect";
@@ -37,7 +37,7 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
   const [focusIndex, setFocusIndex] = useState<number | null>(null);
 
   const { setView } = useFormVisibility();
-  const { optionsByFacet } = useAddFetchedFacets();
+  const { mergedFacetOptions } = useMergedFacetOptions();
 
   const handleAddSuggest = () => {
     setFocusIndex(suggests.length);
@@ -151,8 +151,10 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
               }
             }
             if (config.type === "select") {
-              const options =
-                optionsByFacet.get(config.facetField) ?? config.options;
+              const merged = mergedFacetOptions.find(
+                (m) => m.facetField === config.facetField
+              );
+              const options = merged?.options ?? config.options;
 
               return (
                 <MultiSelect
