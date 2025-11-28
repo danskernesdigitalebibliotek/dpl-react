@@ -46,18 +46,18 @@ const AdvancedSortSelect: React.FC<SortSelectProps> = ({ sort, setSort }) => {
           </optgroup>
           <optgroup label={t("advancedSearchSortCreatorText")}>
             <option value={SortOption.CreatorAsc}>
-              {t("advancedSearchSortCreatorAscText")}
+              {t("advancedSearchSortAscText")}
             </option>
             <option value={SortOption.CreatorDesc}>
-              {t("advancedSearchSortCreatorDescText")}
+              {t("advancedSearchSortDescText")}
             </option>
           </optgroup>
           <optgroup label={t("advancedSearchSortTitleText")}>
             <option value={SortOption.TitleAsc}>
-              {t("advancedSearchSortTitleAscText")}
+              {t("advancedSearchSortAscText")}
             </option>
             <option value={SortOption.TitleDesc}>
-              {t("advancedSearchSortTitleDescText")}
+              {t("advancedSearchSortDescText")}
             </option>
           </optgroup>
         </select>
