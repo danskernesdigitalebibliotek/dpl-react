@@ -1,4 +1,4 @@
-import React, { Activity } from "react";
+import React, { Activity, useState, useEffect } from "react";
 import AdvancedSearchResultsWithFacets from "./components/AdvancedSearchResultsWithFacets";
 import AdvancedSearchForm from "./components/AdvancedSearchForm";
 import { useFormVisibility } from "./hooks/use-form-visibility";
@@ -24,6 +24,15 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
     handleClearFilters
   } = useSearchFormState();
 
+  // Force form remount when returning from results to clear Headless UI's
+  // stale inert attributes (they persist when Activity hides with display:none)
+  const [formKey, setFormKey] = useState(0);
+  useEffect(() => {
+    if (showResults) {
+      setFormKey((k) => k + 1);
+    }
+  }, [showResults]);
+
   const onHandleSearch = () => {
     handleSearch();
     setView("results");
@@ -37,6 +46,7 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
 
       <Activity mode={!showResults ? "visible" : "hidden"}>
         <AdvancedSearchForm
+          key={formKey}
           suggests={suggests}
           preSearchFacets={preSearchFacets}
           updateSuggest={updateSuggest}
