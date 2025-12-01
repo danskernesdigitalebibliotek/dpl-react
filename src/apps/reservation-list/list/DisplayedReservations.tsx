@@ -4,7 +4,8 @@ import List from "./list";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import {
   sortByNumberInQueue,
-  sortByOldestPickupDeadline
+  sortByOldestPickupDeadline,
+  sortByPickupNumber
 } from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
 import useReservations from "../../../core/utils/useReservations";
@@ -30,11 +31,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
         openReservationDetailsModal={openReservationDetailsModal}
         pageSize={pageSize}
         header={t("reservationListReadyForPickupTitleText")}
-        reservations={
-          sortByOldestPickupDeadline(
-            readyToLoanReservations
-          ) as ReservationType[]
-        }
+        reservations={sortByPickupNumber(readyToLoanReservations)}
         emptyListDataCy="reservation-list-ready-for-pickup-empty-list"
         emptyListLabel={t("reservationListReadyForPickupEmptyText")}
       />

@@ -24,6 +24,38 @@ export const sortByNumberInQueue = (
   );
 };
 
+/**
+ * Sorts reservations alphanumerically by pickup number (0-9, then a-z).
+ * With fallback to sort by pickup deadline.
+ */
+export const sortByPickupNumber = (list: ReservationType[]) => {
+  return [...list].sort((a, b) => {
+    const pickupA = a.pickupNumber || "";
+    const pickupB = b.pickupNumber || "";
+
+    // First, compare by pickup number (alphanumeric)
+    const numberComparison = pickupA.localeCompare(pickupB, undefined, {
+      numeric: true,
+      sensitivity: "base"
+    });
+
+    // If pickup numbers are different, use that ordering
+    if (numberComparison !== 0) {
+      return numberComparison;
+    }
+
+    // If pickup numbers are the same (or both empty), fall back to pickup deadline
+    const deadlineA = a.pickupDeadline
+      ? new Date(a.pickupDeadline).getTime()
+      : 0;
+    const deadlineB = b.pickupDeadline
+      ? new Date(b.pickupDeadline).getTime()
+      : 0;
+
+    return deadlineA - deadlineB;
+  });
+};
+
 export const getReadyForPickup = (list: ReservationType[]) => {
   return list.filter(({ state }) => {
     return state === "readyForPickup";
