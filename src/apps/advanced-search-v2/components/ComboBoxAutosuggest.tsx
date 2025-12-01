@@ -46,7 +46,7 @@ const ComboBoxAutosuggest: React.FC<ComboBoxAutosuggestProps> = ({
         placeholder={placeholder}
       />
 
-      {value.length >= 3 && filtered.length > 0 && (
+      {filtered.length > 0 && (
         <ComboboxOptions className="combobox-options">
           {/* Hidden option to prevent auto-selection of first item */}
           <ComboboxOption value={hiddenOption} style={{ display: "none" }}>

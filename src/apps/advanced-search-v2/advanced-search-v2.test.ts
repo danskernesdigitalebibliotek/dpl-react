@@ -66,19 +66,12 @@ describe("Advanced Search V2", () => {
       });
     });
 
-    it("shows suggestions when typing at least 3 characters", () => {
+    it("shows suggestions when typing", () => {
       page.components.Form((form) => {
         form.typeSearchTerm(0, "har");
         form.verifySuggestionsAreVisible();
         form.verifySuggestionExists("Harry Potter and the Philosopher's Stone");
         form.verifySuggestionExists("Harry - a Biography");
-      });
-    });
-
-    it("does not show suggestions when typing less than 3 characters", () => {
-      page.components.Form((form) => {
-        form.typeSearchTerm(0, "ha");
-        form.verifySuggestionsAreHidden();
       });
     });
 

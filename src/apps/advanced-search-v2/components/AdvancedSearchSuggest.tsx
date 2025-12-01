@@ -6,7 +6,6 @@ import {
 } from "../../../core/dbc-gateway/generated/graphql";
 import MinusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/MinusButton.svg";
 import OperatorButtons from "./OperatorButtons";
-import { MIN_QUERY_LENGTH } from "../lib/constants";
 import { useText } from "../../../core/utils/text";
 import { Operator } from "../types";
 import ComboBoxAutosuggest from "./ComboBoxAutosuggest";
@@ -41,10 +40,7 @@ const AdvancedSearchSuggest = ({
 }: AdvancedSearchSuggestProps) => {
   const t = useText();
 
-  const { data } = useComplexSuggestQuery(
-    { q: query, type: suggestType },
-    { enabled: query.trim().length >= MIN_QUERY_LENGTH }
-  );
+  const { data } = useComplexSuggestQuery({ q: query, type: suggestType });
 
   const items = suggestionsToOptions(data?.complexSuggest?.result);
 
