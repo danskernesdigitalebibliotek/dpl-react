@@ -258,7 +258,12 @@ export const LANGUAGE_OPTIONS: Option[] = [
   { label: "tyrkisk", value: "tyrkisk" }
 ];
 
-export const SOURCE_OPTIONS: Option[] = [];
+export const SOURCE_OPTIONS: Option[] = [
+  { label: "Bibliotekskatalog", value: "bibliotekskatalog" },
+  { label: "eReolen", value: "ereolen" },
+  { label: "eReolen Global", value: "ereolen global" },
+  { label: "Filmstriben", value: "filmstriben" }
+];
 
 export const YEAR_PRESETS: RangePreset[] = [
   {
