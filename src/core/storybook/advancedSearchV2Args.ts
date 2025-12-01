@@ -242,6 +242,22 @@ export const argTypes = {
   advancedSearchMultiselectSearchPlaceholderText: {
     description: "Placeholder for multiselect search",
     control: { type: "text" }
+  },
+  advancedSearchFilterFictionText: {
+    description: "Label for fiction radio option",
+    control: { type: "text" }
+  },
+  advancedSearchFilterNonFictionText: {
+    description: "Label for non-fiction radio option",
+    control: { type: "text" }
+  },
+  advancedSearchFilterAdultsText: {
+    description: "Label for adults radio option",
+    control: { type: "text" }
+  },
+  advancedSearchFilterChildrenText: {
+    description: "Label for children radio option",
+    control: { type: "text" }
   }
 };
 
@@ -310,7 +326,11 @@ export default {
   advancedSearchLimitSearchText: "Refine your search",
   advancedSearchRangeFromText: "From",
   advancedSearchRangeToText: "To",
-  advancedSearchMultiselectSearchPlaceholderText: "Search..."
+  advancedSearchMultiselectSearchPlaceholderText: "Search...",
+  advancedSearchFilterFictionText: "Fiktion",
+  advancedSearchFilterNonFictionText: "Non-fiktion",
+  advancedSearchFilterAdultsText: "Voksne",
+  advancedSearchFilterChildrenText: "Børn"
 };
 
 export interface AdvancedSearchV2Args {
@@ -376,4 +396,8 @@ export interface AdvancedSearchV2Args {
   advancedSearchRangeFromText: string;
   advancedSearchRangeToText: string;
   advancedSearchMultiselectSearchPlaceholderText: string;
+  advancedSearchFilterFictionText: string;
+  advancedSearchFilterNonFictionText: string;
+  advancedSearchFilterAdultsText: string;
+  advancedSearchFilterChildrenText: string;
 }

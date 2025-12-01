@@ -80,6 +80,11 @@ export const buildFilterTerms = (filters: FacetState[]): string[] => {
   return Array.from(filterTermsSet);
 };
 
+export type RadioFilters = {
+  fictionNonFiction?: string;
+  childrenOrAdults?: string;
+};
+
 // Builds complete CQL query from search terms, pre-search facets and facets
 // Returns "*" wildcard if no query is provided
 // e.g. suggests=[{term:"term.default",query:"harry"}], preSearchFacets=[{facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues:["dansk"]}]
@@ -88,7 +93,8 @@ export const buildCQLQuery = (
   suggests: SuggestState[],
   preSearchFacets: FacetState[],
   facets: FacetState[],
-  onlyExtraTitles?: boolean
+  onlyExtraTitles?: boolean,
+  radioFilters?: RadioFilters
 ): string => {
   const parts: string[] = [];
 
@@ -109,6 +115,14 @@ export const buildCQLQuery = (
   // Add toggle filters
   if (onlyExtraTitles) {
     parts.push('term.canAlwaysBeLoaned="true"');
+  }
+
+  // Add radio filters
+  if (radioFilters?.fictionNonFiction) {
+    parts.push(`((term.fictionnonfiction="${radioFilters.fictionNonFiction}"))`);
+  }
+  if (radioFilters?.childrenOrAdults) {
+    parts.push(`((term.childrenoradults="${radioFilters.childrenOrAdults}"))`);
   }
 
   // Join all parts with AND, or return wildcard if no query

@@ -3,7 +3,8 @@ import {
   useQueryStates,
   parseAsJson,
   parseAsBoolean,
-  parseAsStringEnum
+  parseAsStringEnum,
+  parseAsString
 } from "nuqs";
 import { SuggestState, FacetState, SortOption } from "../types";
 import { INITIAL_SUGGEST_STATE } from "../lib/initial-state";
@@ -47,7 +48,9 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
       onlyExtraTitles: parseAsBoolean.withDefault(false),
       sort: parseAsStringEnum<SortOption>(
         Object.values(SortOption)
-      ).withDefault(SortOption.Relevance)
+      ).withDefault(SortOption.Relevance),
+      fictionNonFiction: parseAsString.withDefault(""),
+      childrenOrAdults: parseAsString.withDefault("")
     },
     { shallow: true }
   );
@@ -144,13 +147,15 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     });
   };
 
-  // Clear facets (sidebar filters), toggles, and sort when returning to edit
+  // Clear facets (sidebar filters), toggles, radio filters, and sort when returning to edit
   const clearFacets = () => {
     setUrlState({
       facets: [],
       onShelf: false,
       onlyExtraTitles: false,
-      sort: null
+      sort: null,
+      fictionNonFiction: "",
+      childrenOrAdults: ""
     });
   };
 

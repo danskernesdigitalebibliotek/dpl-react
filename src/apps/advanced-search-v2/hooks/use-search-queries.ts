@@ -3,7 +3,8 @@ import {
   useQueryState,
   parseAsJson,
   parseAsBoolean,
-  parseAsStringEnum
+  parseAsStringEnum,
+  parseAsString
 } from "nuqs";
 import { SuggestState, FacetState, SortOption } from "../types";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
@@ -60,6 +61,16 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     parseAsBoolean.withDefault(false)
   );
 
+  // Radio filters
+  const [fictionNonFiction] = useQueryState(
+    "fictionNonFiction",
+    parseAsString.withDefault("")
+  );
+  const [childrenOrAdults] = useQueryState(
+    "childrenOrAdults",
+    parseAsString.withDefault("")
+  );
+
   const [sort, setSort] = useQueryState(
     "sort",
     parseAsStringEnum<SortOption>(Object.values(SortOption)).withDefault(
@@ -69,8 +80,19 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
 
   // Build CQL query from all inputs
   const cql = useMemo(
-    () => buildCQLQuery(suggests, preSearchFacets, facets, onlyExtraTitles),
-    [suggests, preSearchFacets, facets, onlyExtraTitles]
+    () =>
+      buildCQLQuery(suggests, preSearchFacets, facets, onlyExtraTitles, {
+        fictionNonFiction: fictionNonFiction || undefined,
+        childrenOrAdults: childrenOrAdults || undefined
+      }),
+    [
+      suggests,
+      preSearchFacets,
+      facets,
+      onlyExtraTitles,
+      fictionNonFiction,
+      childrenOrAdults
+    ]
   );
 
   const hasQuery = hasValidQuery(cql);

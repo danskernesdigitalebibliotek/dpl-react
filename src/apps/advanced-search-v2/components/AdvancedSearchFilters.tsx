@@ -1,7 +1,13 @@
 import React from "react";
-import { useQueryState, parseAsBoolean, parseAsJson } from "nuqs";
+import {
+  useQueryState,
+  parseAsBoolean,
+  parseAsJson,
+  parseAsString
+} from "nuqs";
 import AdvancedSearchFilterGroup from "./AdvancedSearchFilterGroup";
 import AdvancedSearchToggle from "./AdvancedSearchToggle";
+import AdvancedSearchRadioGroup from "./AdvancedSearchRadioGroup";
 import { useText } from "../../../core/utils/text";
 import {
   ComplexSearchFacetsEnum,
@@ -28,6 +34,16 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
   const [onlyExtraTitles, setOnlyExtraTitles] = useQueryState(
     "onlyExtraTitles",
     parseAsBoolean.withDefault(false)
+  );
+
+  // Radio group states
+  const [fictionNonFiction, setFictionNonFiction] = useQueryState(
+    "fictionNonFiction",
+    parseAsString.withDefault("")
+  );
+  const [childrenOrAdults, setChildrenOrAdults] = useQueryState(
+    "childrenOrAdults",
+    parseAsString.withDefault("")
   );
 
   // Fetch all facets in one query
@@ -117,6 +133,35 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
             description={t("advancedSearchOnlyExtraTitlesDescriptionText")}
             checked={onlyExtraTitles}
             onChange={setOnlyExtraTitles}
+          />
+
+          {/* Radio groups */}
+          <AdvancedSearchRadioGroup
+            name="fiction-nonfiction"
+            options={[
+              { label: t("advancedSearchFilterFictionText"), value: "fiction" },
+              {
+                label: t("advancedSearchFilterNonFictionText"),
+                value: "nonfiction"
+              }
+            ]}
+            value={fictionNonFiction || null}
+            onChange={(val) => setFictionNonFiction(val ?? "")}
+          />
+          <AdvancedSearchRadioGroup
+            name="children-adults"
+            options={[
+              {
+                label: t("advancedSearchFilterAdultsText"),
+                value: "til voksne"
+              },
+              {
+                label: t("advancedSearchFilterChildrenText"),
+                value: "til børn"
+              }
+            ]}
+            value={childrenOrAdults || null}
+            onChange={(val) => setChildrenOrAdults(val ?? "")}
           />
         </div>
 
