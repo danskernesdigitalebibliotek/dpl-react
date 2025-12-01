@@ -2,52 +2,16 @@ import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/gra
 import { FacetConfig } from "../types";
 
 // Facets are the sidebar filters shown after search
+
 export const FACETS_CONFIG: FacetConfig[] = [
-  {
-    label: "advancedSearchFacetFormatText",
-    facetField: ComplexSearchFacetsEnum.Specificmaterialtype
-  },
-  {
-    label: "advancedSearchFacetGenreAndFormText",
-    facetField: ComplexSearchFacetsEnum.Genreandform
-  },
-  {
-    label: "advancedSearchFacetSourceText",
-    facetField: ComplexSearchFacetsEnum.Source
-  },
-  {
-    label: "advancedSearchFacetLanguageText",
-    facetField: ComplexSearchFacetsEnum.Mainlanguage
-  },
   {
     label: "advancedSearchFacetAccessTypeText",
     facetField: ComplexSearchFacetsEnum.Accesstype
   },
-  // { label: "Fiktion/Nonfiktion", facetField: "term.fictionnonfiction" }, // Not in enum
+  // Fiktion / Nonfiktion - Not available in ComplexSearchFacetsEnum
   {
-    label: "advancedSearchFacetLevelText",
-    facetField: ComplexSearchFacetsEnum.Primarytarget
-  },
-  // { label: "For børn/voksne", facetField: "term.childrenoradults" }, // Not in enum
-  {
-    label: "advancedSearchFacetAudienceText",
-    facetField: ComplexSearchFacetsEnum.Generalaudience
-  },
-  {
-    label: "advancedSearchFacetLixText",
-    facetField: ComplexSearchFacetsEnum.Lix
-  },
-  {
-    label: "advancedSearchFacetLetText",
-    facetField: ComplexSearchFacetsEnum.Let
-  },
-  {
-    label: "advancedSearchFacetSubjectText",
-    facetField: ComplexSearchFacetsEnum.Subject
-  },
-  {
-    label: "advancedSearchFacetHostPublicationText",
-    facetField: ComplexSearchFacetsEnum.Hostpublication
+    label: "advancedSearchFacetFormatText",
+    facetField: ComplexSearchFacetsEnum.Specificmaterialtype
   },
   {
     label: "advancedSearchFacetCreatorText",
@@ -56,6 +20,56 @@ export const FACETS_CONFIG: FacetConfig[] = [
   {
     label: "advancedSearchFacetContributorText",
     facetField: ComplexSearchFacetsEnum.Contributor
+  },
+  {
+    label: "advancedSearchFacetYearText",
+    facetField: ComplexSearchFacetsEnum.Publicationyear
+  },
+  {
+    label: "advancedSearchFacetSourceText",
+    facetField: ComplexSearchFacetsEnum.Source
+  },
+
+  {
+    label: "advancedSearchFacetHostPublicationText",
+    facetField: ComplexSearchFacetsEnum.Hostpublication
+  },
+  {
+    label: "advancedSearchFacetLanguageText",
+    facetField: ComplexSearchFacetsEnum.Mainlanguage
+  },
+  {
+    label: "advancedSearchFacetSubjectText",
+    facetField: ComplexSearchFacetsEnum.Subject
+  },
+  {
+    label: "advancedSearchFacetGenreAndFormText",
+    facetField: ComplexSearchFacetsEnum.Genreandform
+  },
+  {
+    label: "advancedSearchFacetFictionalCharacterText",
+    facetField: ComplexSearchFacetsEnum.Fictionalcharacter
+  },
+  // For børn / voksne - Not available in ComplexSearchFacetsEnum
+  {
+    label: "advancedSearchFacetAgeText",
+    facetField: ComplexSearchFacetsEnum.Ages
+  },
+  {
+    label: "advancedSearchFacetAudienceText",
+    facetField: ComplexSearchFacetsEnum.Generalaudience
+  },
+  {
+    label: "advancedSearchFacetLevelText",
+    facetField: ComplexSearchFacetsEnum.Primarytarget
+  },
+  {
+    label: "advancedSearchFacetLixText",
+    facetField: ComplexSearchFacetsEnum.Lix
+  },
+  {
+    label: "advancedSearchFacetLetText",
+    facetField: ComplexSearchFacetsEnum.Let
   },
   {
     label: "advancedSearchFacetInstrumentText",
@@ -72,17 +86,5 @@ export const FACETS_CONFIG: FacetConfig[] = [
   {
     label: "advancedSearchFacetScoreTypeText",
     facetField: ComplexSearchFacetsEnum.Typeofscore
-  },
-  {
-    label: "advancedSearchFacetYearText",
-    facetField: ComplexSearchFacetsEnum.Publicationyear
-  },
-  {
-    label: "advancedSearchFacetFictionalCharacterText",
-    facetField: ComplexSearchFacetsEnum.Fictionalcharacter
-  },
-  {
-    label: "advancedSearchFacetAgeText",
-    facetField: ComplexSearchFacetsEnum.Ages
   }
 ];
