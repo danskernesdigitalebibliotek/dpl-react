@@ -233,6 +233,65 @@ describe("buildFilterTerms", () => {
     expect(buildFilterTerms(filters)).toEqual(["((ages=10))"]);
   });
 
+  it("builds ages with text value using phrase matching (post-search facet)", () => {
+    const filters: FacetState[] = [
+      {
+        facetField: ComplexSearchFacetsEnum.Ages,
+        selectedValues: ["for 10 år"]
+      }
+    ];
+    expect(buildFilterTerms(filters)).toEqual(['((phrase.ages="for 10 år"))']);
+  });
+
+  it("builds ages with multiple text values using OR (post-search facet)", () => {
+    const filters: FacetState[] = [
+      {
+        facetField: ComplexSearchFacetsEnum.Ages,
+        selectedValues: ["for 10 år", "for 12 år"]
+      }
+    ];
+    expect(buildFilterTerms(filters)).toEqual([
+      '((phrase.ages="for 10 år" OR phrase.ages="for 12 år"))'
+    ]);
+  });
+
+  it("falls back to phrase matching for ages with mixed numeric/text values", () => {
+    // Edge case: if somehow mixed values occur, use phrase matching to avoid invalid CQL
+    const filters: FacetState[] = [
+      {
+        facetField: ComplexSearchFacetsEnum.Ages,
+        selectedValues: ["10", "for 12 år"]
+      }
+    ];
+    expect(buildFilterTerms(filters)).toEqual([
+      '((phrase.ages="10" OR phrase.ages="for 12 år"))'
+    ]);
+  });
+
+  it("builds generalaudience filter correctly", () => {
+    const filters: FacetState[] = [
+      {
+        facetField: ComplexSearchFacetsEnum.Generalaudience,
+        selectedValues: ["let at læse"]
+      }
+    ];
+    expect(buildFilterTerms(filters)).toEqual([
+      '((phrase.generalaudience="let at læse"))'
+    ]);
+  });
+
+  it("builds generalaudience with multiple values", () => {
+    const filters: FacetState[] = [
+      {
+        facetField: ComplexSearchFacetsEnum.Generalaudience,
+        selectedValues: ["let at læse", "voksenmaterialer"]
+      }
+    ];
+    expect(buildFilterTerms(filters)).toEqual([
+      '((phrase.generalaudience="let at læse" OR phrase.generalaudience="voksenmaterialer"))'
+    ]);
+  });
+
   it("deduplicates identical filters", () => {
     const filters: FacetState[] = [
       {
