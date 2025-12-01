@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import {
   isDigitalReservation,
   isPhysicalReservation,
@@ -17,6 +17,9 @@ import PhysicalListDetails from "./physical-list-details";
 import { useConfig } from "../../../../core/utils/config";
 import MaterialButtonLoading from "../../../../components/material/material-buttons/generic/MaterialButtonLoading";
 import useGetWorkUrlFromPublizonIdentifier from "../../../../core/utils/useGetWorkUrlFromPublizonIdentifier";
+import { WorkId } from "../../../../core/utils/types/ids";
+import { useUrls } from "../../../../core/utils/url";
+import { constructMaterialUrl } from "../../../../core/utils/helpers/url";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
@@ -30,6 +33,10 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
 }) => {
   const t = useText();
   const config = useConfig();
+  const u = useUrls();
+  const materialUrl = u("materialUrl");
+  const isDigital = isDigitalReservation(reservation);
+  const isPhysical = isPhysicalReservation(reservation);
   const { state, identifier } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
@@ -43,8 +50,26 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
     (state === readyForPickupState && allowRemoveReadyReservations) ||
     state !== readyForPickupState;
 
-  const { workUrl, isLoading } =
-    useGetWorkUrlFromPublizonIdentifier(identifier);
+  // For digital reservations, get work URL from ISBN identifier
+  const { workUrl: digitalWorkUrl, isLoading: isLoadingDigitalWorkUrl } =
+    useGetWorkUrlFromPublizonIdentifier(isDigital ? identifier : null);
+
+  // For physical reservations, construct work URL from PID
+  const physicalWorkUrl = useMemo(() => {
+    if (isPhysical && pid) {
+      const workId = `work-of:${pid}` as WorkId;
+      return constructMaterialUrl(
+        materialUrl,
+        workId,
+        materialType || undefined
+      );
+    }
+    return null;
+  }, [isPhysical, pid, materialUrl, materialType]);
+
+  // Use the appropriate work URL based on reservation type
+  const workUrl = isDigital ? digitalWorkUrl : physicalWorkUrl;
+  const isLoading = isDigital ? isLoadingDigitalWorkUrl : false;
 
   return (
     <div className="modal-details__container">
@@ -59,6 +84,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             description={description}
             materialType={materialType}
             series={material.series}
+            workUrl={workUrl}
           >
             {state === readyForPickupState && (
               <div className="status-label status-label--info">
