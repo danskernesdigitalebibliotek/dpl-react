@@ -27,51 +27,70 @@ export const buildSuggestTerms = (suggests: SuggestState[]): string => {
   return suggestTerms.length > 0 ? `(${suggestTerms.join(" ")})` : "";
 };
 
+// Check if a value is a pure integer (for range queries)
+const isNumericValue = (value: string): boolean => /^\d+$/.test(value);
+
+// Build a CQL range query for numeric values
+// e.g. buildRangeQuery("ages", "3", "6") => '((ages within "3 6"))'
+// e.g. buildRangeQuery("ages", "16", undefined) => '((ages>=16))'
+const buildRangeQuery = (
+  field: string,
+  from: string,
+  to: string | undefined
+): string => {
+  if (!to) return `((${field}>=${from}))`;
+  if (from === to) return `((${field}=${from}))`;
+  return `((${field} within "${from} ${to}"))`;
+};
+
+// Fields that can use numeric range queries (when all values are numeric)
+const RANGE_QUERY_FIELDS: Partial<Record<ComplexSearchFacetsEnum, string>> = {
+  [ComplexSearchFacetsEnum.Publicationyear]: "publicationyear",
+  [ComplexSearchFacetsEnum.Ages]: "ages" // Used for numeric ranges; text values use phrase.ages
+};
+
 // Builds filter terms from pre-search facets and facets
-// Maps GraphQL enum to CQL field names and wraps in phrase matching syntax
-// e.g. [{ facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues: ["dansk"] }]
-//   => ['((phrase.mainlanguage="dansk"))']
-// Ages are handled specially:
+// For range queries (numeric ages, publication years):
 // e.g. [{ facetField: ComplexSearchFacetsEnum.Ages, selectedValues: ["3", "6"] }]
 //   => ['((ages within "3 6"))']
-// e.g. [{ facetField: ComplexSearchFacetsEnum.Ages, selectedValues: ["18"] }]
-//   => ['((ages>"18"))']
+// For phrase matching (text values):
+// e.g. [{ facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues: ["dansk"] }]
+//   => ['((phrase.mainlanguage="dansk"))']
 export const buildFilterTerms = (filters: FacetState[]): string[] => {
   const filterTermsSet = new Set<string>();
 
   filters.forEach((item) => {
-    let rangeFieldName: string | null = null;
-    if (item.facetField === ComplexSearchFacetsEnum.Publicationyear) {
-      rangeFieldName = "publicationyear";
-    } else if (item.facetField === ComplexSearchFacetsEnum.Ages) {
-      rangeFieldName = "ages";
-    }
+    const { facetField, selectedValues } = item;
+    const [from, to] = selectedValues;
 
-    if (rangeFieldName && item.selectedValues[0]) {
-      const [from, to] = item.selectedValues;
+    if (!from) return;
 
-      if (!to) {
-        filterTermsSet.add(`((${rangeFieldName}>=${from}))`);
-        return;
-      }
+    // Check if this field should use range queries
+    // For Ages: only use range query if ALL values are numeric (to handle mixed values safely)
+    const rangeField = RANGE_QUERY_FIELDS[facetField];
+    const allValuesNumeric = selectedValues.every(
+      (v) => !v || isNumericValue(v)
+    );
+    const isAgesWithNumericValues =
+      facetField === ComplexSearchFacetsEnum.Ages && allValuesNumeric;
+    const useRangeQuery =
+      facetField === ComplexSearchFacetsEnum.Publicationyear ||
+      isAgesWithNumericValues;
 
-      if (from === to) {
-        filterTermsSet.add(`((${rangeFieldName}=${from}))`);
-        return;
-      }
-
-      filterTermsSet.add(`((${rangeFieldName} within "${from} ${to}"))`);
+    if (useRangeQuery && rangeField) {
+      filterTermsSet.add(buildRangeQuery(rangeField, from, to));
       return;
     }
 
-    // Other facets: use phrase matching
-    const field =
+    // Use phrase matching for all other facets
+    const phraseField =
       COMPLEX_FACET_TO_CQL_FIELD[
-        item.facetField as keyof typeof COMPLEX_FACET_TO_CQL_FIELD
+        facetField as keyof typeof COMPLEX_FACET_TO_CQL_FIELD
       ];
-    if (field && item.selectedValues.length > 0) {
-      const orTerms = item.selectedValues
-        .map((value) => `${field}="${value}"`)
+
+    if (phraseField && selectedValues.length > 0) {
+      const orTerms = selectedValues
+        .map((value) => `${phraseField}="${value}"`)
         .join(" OR ");
       filterTermsSet.add(`((${orTerms}))`);
     }
