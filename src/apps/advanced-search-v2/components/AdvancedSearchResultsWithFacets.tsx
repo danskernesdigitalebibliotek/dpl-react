@@ -8,6 +8,7 @@ import AdvancedSortSelect from "./AdvancedSortSelect";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
 import { useFormVisibility } from "../hooks/use-form-visibility";
+import CopyLink from "../../../components/copy-link/CopyLink";
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;
@@ -35,7 +36,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
   if (!hasQuery) return null;
 
   return (
-    <div>
+    <div className="advanced-search-v2__results">
       <AdvancedSearchSummary
         onEditClick={() => {
           // Clear facets (sidebar filters) when editing, keep preSearchFacets
@@ -43,23 +44,35 @@ const AdvancedSearchResultsWithFacets: React.FC<
           setView("search");
         }}
       />
-      <h2
-        className="advanced-search-v2__result-heading"
-        id="advanced-search-result"
-        aria-live="polite"
-      >
-        {isLoadingOrRefetching && t("loadingResultsText")}
-        {shouldShowResultHeadline &&
-          t("showingMaterialsText", {
-            placeholders: { "@hitcount": hitcount }
-          })}
-      </h2>
 
       <div className="advanced-search-v2__grid">
         <AdvancedSearchFilters cql={cql} />
 
         <section>
-          <AdvancedSortSelect sort={sort} setSort={setSort} />
+          <div className="advanced-search-v2__results-top-bar">
+            <div className="advanced-search-v2__results-top-bar__left">
+              <h2
+                className="advanced-search-v2__results-heading"
+                id="advanced-search-result"
+                aria-live="polite"
+              >
+                {isLoadingOrRefetching && t("loadingResultsText")}
+                {shouldShowResultHeadline &&
+                  t("showingMaterialsText", {
+                    placeholders: { "@hitcount": hitcount }
+                  })}
+              </h2>
+              <CopyLink
+                className="advanced-search-v2__copy-link"
+                label="Kopier link"
+              />
+              {/* <button
+                onClick={handleOnClickCopy}
+                className="advanced-search-v2__copy-link"
+              ></button> */}
+            </div>
+            <AdvancedSortSelect sortOption={sort} setSortOption={setSort} />
+          </div>
 
           {shouldShowSearchResults && (
             <>

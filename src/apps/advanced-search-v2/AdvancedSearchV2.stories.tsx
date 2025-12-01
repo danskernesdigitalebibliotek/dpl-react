@@ -18,6 +18,9 @@ import advancedSearchV2Args, {
 import advancedSearchV2SortArgs, {
   argTypes as advancedSearchV2SortArgTypes
 } from "../../core/storybook/advancedSearchV2SortArgs";
+import copyLinkArgs, {
+  argTypes as copyLinkArgsTypes
+} from "../../core/storybook/copyLinkArgs";
 
 const meta: Meta<typeof AdvancedSearchV2Entry> = {
   title: "Apps / Advanced Search V2",
@@ -31,6 +34,7 @@ const meta: Meta<typeof AdvancedSearchV2Entry> = {
     ...mappArgTypes,
     ...advancedSearchV2ArgTypes,
     ...advancedSearchV2SortArgTypes,
+    ...copyLinkArgsTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
       control: { type: "number" },
@@ -122,6 +126,7 @@ export const Default: Story = {
     ...mappArgs,
     ...advancedSearchV2Args,
     ...advancedSearchV2SortArgs,
+    ...copyLinkArgs,
     etAlText: "et al.",
     pageSizeDesktop: 50,
     pageSizeMobile: 20,
@@ -132,7 +137,7 @@ export const Default: Story = {
     inSeriesText: "in series",
     showMoreText: "show more",
     resultPagerStatusText: "Showing @itemsShown out of @hitcount results",
-    showingMaterialsText: "Showing materials (@hitcount)",
+    showingMaterialsText: "@hitcount materials",
     noSearchResultText: "Your search has 0 results",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
