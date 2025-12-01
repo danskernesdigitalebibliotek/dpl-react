@@ -7,6 +7,7 @@ import {
 } from "../../../core/dbc-gateway/generated/graphql";
 import { SortOption } from "../types";
 import { getSortInput } from "../lib/sort-utils";
+import useGetCleanBranches from "../../../core/utils/branches";
 
 export interface UsePaginatedResultsReturn {
   resultItems: Work[];
@@ -41,6 +42,7 @@ export const usePaginatedResults = ({
   pageSize,
   sort
 }: UsePaginatedResultsProps): UsePaginatedResultsReturn => {
+  const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState(0);
   const [isRefetching, setIsRefetching] = useState(false);
@@ -59,7 +61,10 @@ export const usePaginatedResults = ({
       offset: page * pageSize,
       limit: pageSize,
       filters: {
-        ...(onShelf && { status: [HoldingsStatusEnum.Onshelf] })
+        ...(onShelf && {
+          status: [HoldingsStatusEnum.Onshelf],
+          branchId: cleanBranches
+        })
       },
       sort: getSortInput(sort)
     },
