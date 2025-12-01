@@ -365,7 +365,7 @@ Rendered subcomponents:
   - Optional remove button.
   - Optional `OperatorButtons` below the row when `onOperatorChange` is provided.
 - Uses `useComplexSuggestQuery` with `ComplexSuggestionTypeEnum` from
-  `SEARCH_INDEX_OPTIONS`, only when `query.length >= MIN_QUERY_LENGTH`.
+  `SEARCH_INDEX_OPTIONS`
 - Transforms GraphQL results into `Option[]` via `suggestionsToOptions`.
 
 ### Search index select: `SearchIndexSelect`
