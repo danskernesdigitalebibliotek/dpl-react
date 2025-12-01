@@ -5,6 +5,7 @@ export type SearchTermItem = {
   labelKey: string;
   type: ComplexSuggestionTypeEnum;
   placeholderKey: string;
+  disableSuggest?: boolean;
 };
 
 export const SEARCH_TERM_OPTIONS: SearchTermItem[] = [
@@ -48,12 +49,14 @@ export const SEARCH_TERM_OPTIONS: SearchTermItem[] = [
     value: "dk5",
     labelKey: "advancedSearchLabelDk5Text",
     type: ComplexSuggestionTypeEnum.Default,
-    placeholderKey: "advancedSearchPlaceholderDk5Text"
+    placeholderKey: "advancedSearchPlaceholderDk5Text",
+    disableSuggest: true
   },
   {
     value: "term.isbn",
     labelKey: "advancedSearchLabelIsbnText",
     type: ComplexSuggestionTypeEnum.Default,
-    placeholderKey: "advancedSearchPlaceholderIsbnText"
+    placeholderKey: "advancedSearchPlaceholderIsbnText",
+    disableSuggest: true
   }
 ];

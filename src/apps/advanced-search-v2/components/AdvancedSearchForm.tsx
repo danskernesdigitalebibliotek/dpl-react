@@ -85,6 +85,7 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
               }
               onRemove={() => handleRemoveSuggest(index)}
               showRemoveButton={suggests.length > 1}
+              disableSuggest={config.disableSuggest}
             />
           );
         })}
