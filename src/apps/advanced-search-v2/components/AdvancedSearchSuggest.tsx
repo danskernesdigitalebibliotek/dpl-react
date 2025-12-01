@@ -23,6 +23,7 @@ type AdvancedSearchSuggestProps = {
   onRemove?: () => void;
   showRemoveButton?: boolean;
   shouldAutoFocus?: boolean;
+  disableSuggest?: boolean;
 };
 
 const AdvancedSearchSuggest = ({
@@ -36,11 +37,15 @@ const AdvancedSearchSuggest = ({
   onOperatorChange,
   onRemove,
   showRemoveButton = false,
-  shouldAutoFocus
+  shouldAutoFocus,
+  disableSuggest = false
 }: AdvancedSearchSuggestProps) => {
   const t = useText();
 
-  const { data } = useComplexSuggestQuery({ q: query, type: suggestType });
+  const { data } = useComplexSuggestQuery(
+    { q: query, type: suggestType },
+    { enabled: !disableSuggest && query.length > 0 }
+  );
 
   const items = suggestionsToOptions(data?.complexSuggest?.result);
 

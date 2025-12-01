@@ -86,6 +86,22 @@ describe("Advanced Search V2", () => {
         );
       });
     });
+
+    it("does not show suggestions for DK5 field", () => {
+      page.components.Form((form) => {
+        form.selectSearchTermType(0, "DK5");
+        form.typeSearchTerm(0, "37.1");
+        form.verifySuggestionsAreHidden();
+      });
+    });
+
+    it("does not show suggestions for ISBN field", () => {
+      page.components.Form((form) => {
+        form.selectSearchTermType(0, "ISBN");
+        form.typeSearchTerm(0, "978");
+        form.verifySuggestionsAreHidden();
+      });
+    });
   });
 
   describe("Boolean Operators", () => {
