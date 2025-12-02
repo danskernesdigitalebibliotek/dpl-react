@@ -88,3 +88,5 @@ export const FACETS_CONFIG: FacetConfig[] = [
     facetField: ComplexSearchFacetsEnum.Typeofscore
   }
 ];
+
+export const FACET_FIELDS = FACETS_CONFIG.map((c) => c.facetField);

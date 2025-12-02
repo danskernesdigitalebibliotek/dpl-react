@@ -8,7 +8,7 @@ import {
   useComplexFacetSearchQuery,
   HoldingsStatusEnum
 } from "../../../core/dbc-gateway/generated/graphql";
-import { FACETS_CONFIG } from "../lib/facet-configs";
+import { FACETS_CONFIG, FACET_FIELDS } from "../lib/facet-configs";
 import { isValidFacetState } from "../lib/validation";
 
 interface AdvancedSearchFacetsProps {
@@ -28,11 +28,9 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
     parseAsBoolean.withDefault(false)
   );
 
-  // Fetch all facets in one query
-  const facetFields = FACETS_CONFIG.map((c) => c.facetField);
   const { data: facetData } = useComplexFacetSearchQuery({
     cql,
-    facets: { facets: facetFields, facetLimit: 50 },
+    facets: { facets: FACET_FIELDS, facetLimit: 50 },
     ...(onShelf && { filters: { status: [HoldingsStatusEnum.Onshelf] } })
   });
 
