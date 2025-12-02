@@ -1,6 +1,6 @@
 import React from "react";
 import AdvancedSearchRangeSelect from "./AdvancedSearchRangeSelect";
-import { RangePreset } from "../types";
+import { RangePreset, RangeValue } from "../types";
 import { useText } from "../../../core/utils/text";
 import useRangeSelectAdapter from "../hooks/useRangeSelectAdapter";
 
@@ -12,10 +12,8 @@ type AdvancedSearchPublicationYearSelectProps = {
   rangePresets: RangePreset[];
 };
 
-const formatYearBadge = (
-  from: number | null,
-  to: number | null
-): string | null => {
+const formatYearBadge = (range: RangeValue): string | null => {
+  const { from, to } = range;
   if (from === null) return null;
   if (to === null) return `${from}+`;
   if (from === to) return `${from}`;
