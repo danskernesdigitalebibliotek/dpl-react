@@ -11,13 +11,11 @@ import {
 import { FACETS_CONFIG } from "../lib/facet-configs";
 import { isValidFacetState } from "../lib/validation";
 
-interface AdvancedSearchFiltersProps {
+interface AdvancedSearchFacetsProps {
   cql: string;
 }
 
-const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
-  cql
-}) => {
+const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
   const t = useText();
 
   // Toggle states
@@ -160,4 +158,4 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
   );
 };
 
-export default AdvancedSearchFilters;
+export default AdvancedSearchFacets;

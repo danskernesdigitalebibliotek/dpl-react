@@ -470,7 +470,7 @@ describe("Advanced Search V2", () => {
     });
   });
 
-  // Tests for AdvancedSearchFilters
+  // Tests for AdvancedSearchFacets
   describe("Sidebar Filter Toggles", () => {
     beforeEach(() => {
       // Perform a search to show the results view with sidebar filters

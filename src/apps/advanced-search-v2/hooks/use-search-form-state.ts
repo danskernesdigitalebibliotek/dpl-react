@@ -25,7 +25,7 @@ export interface UseSearchFormStateReturn {
 /**
  * Hook to manage search form state with URL synchronization
  * Manages filters and preSearchFacets (form selects)
- * Facets (sidebar filters) are managed separately in AdvancedSearchFilters
+ * Facets (sidebar filters) are managed separately in AdvancedSearchFacets
  */
 export const useSearchFormState = (): UseSearchFormStateReturn => {
   // URL state management with nuqs

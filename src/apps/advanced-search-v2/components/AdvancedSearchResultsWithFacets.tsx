@@ -2,7 +2,7 @@ import React from "react";
 import { useText } from "../../../core/utils/text";
 import SearchResultList from "../../../components/card-item-list/SearchResultList";
 import SearchResultZeroHits from "../../search-result/search-result-zero-hits";
-import AdvancedSearchFilters from "./AdvancedSearchFilters";
+import AdvancedSearchFacets from "./AdvancedSearchFacets";
 import AdvancedSearchSummary from "./AdvancedSearchSummary";
 import AdvancedSortSelect from "./AdvancedSortSelect";
 import { useSearchQueries } from "../hooks/use-search-queries";
@@ -47,7 +47,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
       />
 
       <div className="advanced-search-v2__grid">
-        <AdvancedSearchFilters cql={cql} />
+        <AdvancedSearchFacets cql={cql} />
 
         <section>
           <div className="advanced-search-v2__results-top-bar">
