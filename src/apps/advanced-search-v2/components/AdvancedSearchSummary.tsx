@@ -43,7 +43,13 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           const config = SEARCH_TERM_OPTIONS.find(
             (item) => item.value === filter.term
           );
-          if (!config) return null;
+          if (!config) {
+            // eslint-disable-next-line no-console
+            console.warn(
+              `AdvancedSearchSummary: No config found for filter term "${filter.term}"`
+            );
+            return null;
+          }
 
           const value =
             filter.term === "term.default" ? `"${filter.query}"` : filter.query;
@@ -61,7 +67,13 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
             (c) => c.facetField === preSearchFacet.facetField
           );
 
-          if (!config) return null;
+          if (!config) {
+            // eslint-disable-next-line no-console
+            console.warn(
+              `AdvancedSearchSummary: No config found for facet field "${preSearchFacet.facetField}"`
+            );
+            return null;
+          }
 
           const hasFilters = filters.some((s) => s.query.trim().length > 0);
           const isFirstFacet = facetIndex === 0;
