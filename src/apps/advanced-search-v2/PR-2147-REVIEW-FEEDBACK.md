@@ -143,7 +143,7 @@ Each item should be addressed in a separate commit.
 - **File:** `components/AdvancedSearchFilterGroup.tsx` (lines 96-99)
 - **Issue:** Count badge should be associated with the checkbox for screen readers
 - **Fix:** Use `aria-describedby` or include count in checkbox label
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed - added `ariaDescribedBy` prop to CheckBox component and linked count to checkbox
 
 ---
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 16
+- Completed: 17
 - In progress: 0
-- Remaining: 2
+- Remaining: 1
 
 Last updated: 2025-12-02

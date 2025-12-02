@@ -86,6 +86,7 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
               const value = facetValue.key;
               const count = facetValue.score ?? 0;
               const isChecked = selectedValues.includes(value);
+              const countId = `filter-${facetField}-${value}-count`;
 
               return (
                 <li key={value} className="advanced-search-filter-group__item">
@@ -96,9 +97,13 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                     onChecked={(checked) =>
                       handleCheckboxChange(value, checked)
                     }
+                    ariaDescribedBy={count > 0 ? countId : undefined}
                   />
                   {count > 0 && (
-                    <span className="advanced-search-filter-group__item-count">
+                    <span
+                      id={countId}
+                      className="advanced-search-filter-group__item-count"
+                    >
                       {count}
                     </span>
                   )}
