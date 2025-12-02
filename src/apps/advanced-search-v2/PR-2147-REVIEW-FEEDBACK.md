@@ -62,7 +62,7 @@ Each item should be addressed in a separate commit.
 - **File:** `components/AdvancedSearchForm.tsx` (lines 45-48)
 - **Issue:** The number juggling in `handleRemoveSuggest` is not obvious
 - **Fix:** Add explanatory comment about focus management logic
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed
 
 ### 8. Add comment explaining history: "push"
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 6
+- Completed: 7
 - In progress: 0
-- Remaining: 12
+- Remaining: 11
 
 Last updated: 2025-12-02

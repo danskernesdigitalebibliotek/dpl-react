@@ -37,6 +37,9 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
 
   const { mergedFacetOptions } = useMergedFacetOptions();
 
+  // Focus management: When adding a row, focus the new row (at current length before add).
+  // When removing, focus the row that takes the removed position, or the new last row
+  // if we removed the last one. This preserves keyboard navigation flow.
   const handleAddFilter = () => {
     setFocusIndex(filters.length);
     addFilter();
