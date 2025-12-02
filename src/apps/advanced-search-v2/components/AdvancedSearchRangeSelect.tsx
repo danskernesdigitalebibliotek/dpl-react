@@ -91,7 +91,7 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
                     : t("advancedSearchAllText")}
                   {currentValue.from && (
                     <span className="range-select__button-label__count-badge">
-                    {formatBadge(currentValue)}
+                      {formatBadge(currentValue)}
                     </span>
                   )}
                 </div>
