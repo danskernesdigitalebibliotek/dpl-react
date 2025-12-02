@@ -242,6 +242,18 @@ export const argTypes = {
   advancedSearchMultiselectSearchPlaceholderText: {
     description: "Placeholder for multiselect search",
     control: { type: "text" }
+  },
+  advancedSearchAgeBadgeOpenEndedText: {
+    description: "Age badge text for open-ended range (e.g., '10+ year olds')",
+    control: { type: "text" }
+  },
+  advancedSearchAgeBadgeSingleText: {
+    description: "Age badge text for single age (e.g., '10 year olds')",
+    control: { type: "text" }
+  },
+  advancedSearchAgeBadgeRangeText: {
+    description: "Age badge text for age range (e.g., '10-12 year olds')",
+    control: { type: "text" }
   }
 };
 
@@ -310,7 +322,10 @@ export default {
   advancedSearchLimitSearchText: "Refine your search",
   advancedSearchRangeFromText: "From",
   advancedSearchRangeToText: "To",
-  advancedSearchMultiselectSearchPlaceholderText: "Search..."
+  advancedSearchMultiselectSearchPlaceholderText: "Search...",
+  advancedSearchAgeBadgeOpenEndedText: "@age+ year olds",
+  advancedSearchAgeBadgeSingleText: "@age year olds",
+  advancedSearchAgeBadgeRangeText: "@from-@to year olds"
 };
 
 export interface AdvancedSearchV2Args {
@@ -376,4 +391,7 @@ export interface AdvancedSearchV2Args {
   advancedSearchRangeFromText: string;
   advancedSearchRangeToText: string;
   advancedSearchMultiselectSearchPlaceholderText: string;
+  advancedSearchAgeBadgeOpenEndedText: string;
+  advancedSearchAgeBadgeSingleText: string;
+  advancedSearchAgeBadgeRangeText: string;
 }

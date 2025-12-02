@@ -14,7 +14,7 @@ Each item should be addressed in a separate commit.
 - **File:** `components/AdvancedSearchAgeSelect.tsx` (lines 17-21)
 - **Issue:** `formatAgeBadge` has hardcoded "årige" strings
 - **Fix:** Use `useText()` with placeholders for proper localization
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed
 
 ### 2. Code duplication between range select components
 - **Files:** `AdvancedSearchAgeSelect.tsx` and `AdvancedSearchPublicationYearSelect.tsx`
@@ -152,8 +152,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 19
-- Completed: 0
+- Completed: 1
 - In progress: 0
-- Remaining: 19
+- Remaining: 18
 
 Last updated: 2025-12-02

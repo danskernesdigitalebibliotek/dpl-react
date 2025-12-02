@@ -11,16 +11,6 @@ type AdvancedSearchAgeSelectProps = {
   rangePresets: RangePreset[];
 };
 
-const formatAgeBadge = (
-  from: number | null,
-  to: number | null
-): string | null => {
-  if (from === null) return null;
-  if (to === null) return `${from}+ årige`;
-  if (from === to) return `${from} årige`;
-  return `${from}-${to}-årige`;
-};
-
 const AdvancedSearchAgeSelect: React.FC<AdvancedSearchAgeSelectProps> = ({
   label,
   selectedValues,
@@ -29,6 +19,27 @@ const AdvancedSearchAgeSelect: React.FC<AdvancedSearchAgeSelectProps> = ({
   rangePresets
 }) => {
   const t = useText();
+
+  const formatAgeBadge = (
+    from: number | null,
+    to: number | null
+  ): string | null => {
+    if (from === null) return null;
+    if (to === null) {
+      return t("advancedSearchAgeBadgeOpenEndedText", {
+        placeholders: { "@age": from }
+      });
+    }
+    if (from === to) {
+      return t("advancedSearchAgeBadgeSingleText", {
+        placeholders: { "@age": from }
+      });
+    }
+    return t("advancedSearchAgeBadgeRangeText", {
+      placeholders: { "@from": from, "@to": to }
+    });
+  };
+
   // Convert string[] to RangeValue
   const value: RangeValue = {
     from:
