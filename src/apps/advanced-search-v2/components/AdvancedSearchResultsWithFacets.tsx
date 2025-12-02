@@ -86,7 +86,9 @@ const AdvancedSearchResultsWithFacets: React.FC<
                 <div className="advanced-search-filters__dialog">
                   <div className="advanced-search-filters__dialog-content">
                     <h2 className="advanced-search-filters__dialog-content__heading">
-                      {`Filtrer materialer (${hitcount})`}
+                      {t("advancedSearchFilterMaterialsText", {
+                        placeholders: { "@hitcount": hitcount }
+                      })}
                     </h2>
                     <AdvancedSearchFacets cql={cql} />
                   </div>
@@ -94,7 +96,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
                     <Button
                       classNames="advanced-search-filters__dialog__actions__button"
                       collapsible
-                      label="Vis resultater"
+                      label={t("advancedSearchShowResultsText")}
                       size="medium"
                       buttonType="default"
                       variant="filled"
