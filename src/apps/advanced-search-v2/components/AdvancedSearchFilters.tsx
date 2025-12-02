@@ -108,7 +108,7 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
     <aside className="advanced-search-filters">
       <div className="advanced-search-filters__container">
         {/* Toggles section */}
-        <div className="advanced-search-filters__toggles">
+        <ul className="advanced-search-filters__toggles">
           <AdvancedSearchToggle
             id="on-shelf"
             label={t("advancedSearchOnShelfText")}
@@ -125,34 +125,36 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
               setOnlyExtraTitles(checked, { history: "push" })
             }
           />
-        </div>
+        </ul>
 
         {/* Filter groups */}
-        {FACETS_CONFIG.map((config) => {
-          const selectedValues = getSelectedValues(config.facetField);
-          const selectedCount = getSelectedCount(config.facetField);
+        <ul className="advanced-search-filters__groups">
+          {FACETS_CONFIG.map((config) => {
+            const selectedValues = getSelectedValues(config.facetField);
+            const selectedCount = getSelectedCount(config.facetField);
 
-          const facetResponse = facetsResponse.find((f) => {
-            if (!f.name) return false;
+            const facetResponse = facetsResponse.find((f) => {
+              if (!f.name) return false;
+              return (
+                f.name === config.facetField ||
+                f.name === `facet.${config.facetField.toLowerCase()}`
+              );
+            });
+            const facetValues = facetResponse?.values ?? [];
+
             return (
-              f.name === config.facetField ||
-              f.name === `facet.${config.facetField.toLowerCase()}`
+              <AdvancedSearchFilterGroup
+                key={config.facetField}
+                facetField={config.facetField}
+                label={t(config.label)}
+                selectedValues={selectedValues}
+                selectedCount={selectedCount}
+                facetValues={facetValues}
+                onChange={(vals) => handleFacetChange(config.facetField, vals)}
+              />
             );
-          });
-          const facetValues = facetResponse?.values ?? [];
-
-          return (
-            <AdvancedSearchFilterGroup
-              key={config.facetField}
-              facetField={config.facetField}
-              label={t(config.label)}
-              selectedValues={selectedValues}
-              selectedCount={selectedCount}
-              facetValues={facetValues}
-              onChange={(vals) => handleFacetChange(config.facetField, vals)}
-            />
-          );
-        })}
+          })}
+        </ul>
       </div>
     </aside>
   );

@@ -50,12 +50,13 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
   }
 
   return (
-    <div className="advanced-search-filter-group">
+    <li className="advanced-search-filter-group">
       <button
         type="button"
         className="advanced-search-filter-group__header"
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
+        aria-controls={`filter-group-content-${facetField}`}
       >
         <div className="advanced-search-filter-group__header-content">
           <span className="advanced-search-filter-group__label">{label}</span>
@@ -77,14 +78,17 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
 
       {isExpanded && (
         <>
-          <div className="advanced-search-filter-group__content">
+          <ul
+            id={`filter-group-content-${facetField}`}
+            className="advanced-search-filter-group__content"
+          >
             {displayedValues.map((facetValue) => {
               const value = facetValue.key;
               const count = facetValue.score ?? 0;
               const isChecked = selectedValues.includes(value);
 
               return (
-                <div key={value} className="advanced-search-filter-group__item">
+                <li key={value} className="advanced-search-filter-group__item">
                   <CheckBox
                     id={`filter-${facetField}-${value}`}
                     label={value}
@@ -98,10 +102,10 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                       {count}
                     </span>
                   )}
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
 
           {hasMoreValues && (
             <div className="advanced-search-filter-group__footer">
@@ -135,7 +139,7 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
           )}
         </>
       )}
-    </div>
+    </li>
   );
 };
 

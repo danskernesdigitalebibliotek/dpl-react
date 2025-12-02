@@ -115,7 +115,7 @@ Each item should be addressed in a separate commit.
 - **File:** `components/AdvancedSearchFilterGroup.tsx` (line 58)
 - **Issue:** `aria-expanded` should be paired with `aria-controls`
 - **Fix:** Add `id` to content div and `aria-controls` to button
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed
 
 ### 15. Consider using usePrevious() hook
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 12
+- Completed: 13
 - In progress: 0
-- Remaining: 6
+- Remaining: 5
 
 Last updated: 2025-12-02
