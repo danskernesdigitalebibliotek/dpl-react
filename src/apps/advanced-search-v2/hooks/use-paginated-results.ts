@@ -121,20 +121,24 @@ export const usePaginatedResults = ({
 
   // Track query parameters to detect when we need to reset accumulated results.
   // Using usePrevious + isEqual provides cleaner change detection than manual state.
-  const currentQuery = useMemo(() => ({ cql, sort }), [cql, sort]);
-  const prevQuery = usePrevious(currentQuery);
+  // Reset results when CQL query, sort, or onShelf changes
+  const currentQueryStr = useMemo(
+    () => `${cql}|${sort}|${onShelf}`,
+    [cql, sort, onShelf]
+  );
+  const prevQuery = usePrevious(currentQueryStr);
 
   // Reset accumulated results when query parameters change.
   // This ensures users see fresh results when toggling facets or changing sort.
   useEffect(() => {
-    if (prevQuery && !isEqual(prevQuery, currentQuery)) {
+    if (prevQuery && !isEqual(prevQuery, currentQueryStr)) {
       setResultItems([]);
       setHitCount(0);
       setIsRefetching(true);
       setCanShowZeroResults(false);
       resetPage();
     }
-  }, [currentQuery, prevQuery, resetPage]);
+  }, [currentQueryStr, prevQuery, resetPage]);
 
   // Mark refetching complete once data arrives.
   // This enables showing "zero results" only after we've actually fetched.
