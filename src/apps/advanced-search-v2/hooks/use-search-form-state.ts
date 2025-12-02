@@ -119,6 +119,8 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
         return filter;
       });
 
+    // history: "push" creates a browser history entry so users can navigate
+    // back to previous search results with the back button.
     setUrlState(
       {
         // Don't write empty filters to URL - let it use default on reload

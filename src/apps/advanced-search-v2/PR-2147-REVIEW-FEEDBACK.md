@@ -69,7 +69,7 @@ Each item should be addressed in a separate commit.
 - **File:** `hooks/use-search-form-state.ts` (line 132)
 - **Issue:** Not clear why `history: "push"` is important
 - **Fix:** Add comment explaining that this creates browser history entries for back navigation
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed
 
 ### 9. Move operators to shared constant
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 7
+- Completed: 8
 - In progress: 0
-- Remaining: 11
+- Remaining: 10
 
 Last updated: 2025-12-02
