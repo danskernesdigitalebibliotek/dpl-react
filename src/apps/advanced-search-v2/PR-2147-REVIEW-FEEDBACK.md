@@ -122,21 +122,21 @@ Each item should be addressed in a separate commit.
 - **File:** `hooks/use-paginated-results.ts` (line 49)
 - **Issue:** Manual tracking of `lastQueryStr` state
 - **Fix:** Could use `usePrevious()` from react-use for cleaner code
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed - using `usePrevious` from react-use with `isEqual` from lodash
 
 ### 16. Review hook return properties
 
 - **File:** `hooks/use-paginated-results.ts` (lines 130-135)
 - **Issue:** Some derived properties like `isLoadingOrRefetching` seem trivial
 - **Decision needed:** Keep for convenience or compute in consumer
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed - kept for convenience; `shouldShowZeroResults` encapsulates timing guard logic
 
 ### 17. Consider keepPreviousData from React Query
 
 - **File:** `hooks/use-paginated-results.ts` (lines 96-100)
 - **Issue:** Manual pagination state management when React Query has built-in support
 - **Decision needed:** Evaluate if `keepPreviousData` could simplify the implementation
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed - `keepPreviousData: false` is intentional; we accumulate pages manually and cached responses would conflict with state resets
 
 ### 18. Accessibility: link count to checkbox label
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 13
+- Completed: 16
 - In progress: 0
-- Remaining: 5
+- Remaining: 2
 
 Last updated: 2025-12-02
