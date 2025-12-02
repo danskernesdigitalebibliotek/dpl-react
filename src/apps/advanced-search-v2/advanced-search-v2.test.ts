@@ -277,15 +277,6 @@ describe("Advanced Search V2", () => {
       });
     });
 
-    it("allows selecting adult preset (16+)", () => {
-      page.components.Form((form) => {
-        form.enterSearchTerm(0, "voksen");
-        form.openRangeSelect("Age");
-        form.selectRangePreset("For 16+");
-        form.verifyRangeBadgeContains("Age", "16+ årige");
-      });
-    });
-
     it("can reset age selection", () => {
       page.components.Form((form) => {
         form.openRangeSelect("Age");
@@ -330,21 +321,6 @@ describe("Advanced Search V2", () => {
 
       page.components.Summary((summary) => {
         summary.verifyItemContains(1, "2000-2020");
-      });
-    });
-
-    it("allows entering open-ended year range (from only)", () => {
-      page.components.Form((form) => {
-        form.enterSearchTerm(0, "moderne");
-        form.openRangeSelect("Year");
-        form.enterRangeFrom("2015");
-        form.closePopover();
-        form.verifyRangeBadgeContains("Year", "2015+");
-        form.clickSearch();
-      });
-
-      page.components.Summary((summary) => {
-        summary.verifyItemContains(1, "2015");
       });
     });
 

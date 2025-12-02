@@ -1,7 +1,7 @@
 query complexFacetSearch(
   $cql: String!
   $facets: ComplexSearchFacetsInput
-  $filters: ComplexSearchFiltersInput!
+  $filters: ComplexSearchFiltersInput
 ) {
   complexSearch(cql: $cql, filters: $filters, facets: $facets) {
     facets {
@@ -9,7 +9,6 @@ query complexFacetSearch(
       values {
         key
         score
-        traceId
       }
     }
   }

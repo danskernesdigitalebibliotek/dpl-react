@@ -35,9 +35,7 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
   const { data: facetData } = useComplexFacetSearchQuery({
     cql,
     facets: { facets: facetFields, facetLimit: 50 },
-    filters: {
-      ...(onShelf && { status: [HoldingsStatusEnum.Onshelf] })
-    }
+    ...(onShelf && { filters: { status: [HoldingsStatusEnum.Onshelf] } })
   });
 
   const facetsResponse = facetData?.complexSearch?.facets ?? [];
