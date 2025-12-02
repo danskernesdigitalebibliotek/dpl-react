@@ -4,6 +4,8 @@ import AdvancedSearchForm from "./components/AdvancedSearchForm";
 import { useFormVisibility } from "./hooks/use-form-visibility";
 import { useText } from "../../core/utils/text";
 import { useSearchFormState } from "./hooks/use-search-form-state";
+import Link from "../../components/atoms/links/Link";
+import { useCqlSearchUrl } from "./hooks/use-cql-search-url";
 
 interface AdvancedSearchV2Props {
   pageSize: number;
@@ -11,6 +13,7 @@ interface AdvancedSearchV2Props {
 
 const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
   const t = useText();
+  const { targetCqlUrl } = useCqlSearchUrl();
   const { showResults, setView } = useFormVisibility();
   const {
     suggests,
@@ -34,6 +37,11 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
       <h1 className="advanced-search-v2__title">
         {t("advancedSearchTitleText")}
       </h1>
+      {targetCqlUrl && (
+        <Link href={targetCqlUrl} className="link-tag">
+          {t("advancedSearchV2ToCqlSearchButtonText")}
+        </Link>
+      )}
 
       {!showResults && (
         <AdvancedSearchForm
