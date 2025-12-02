@@ -18,13 +18,13 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
 
   const renderOperator = (operator: Operator) => {
     const operatorMap = {
-      and: "clauseAndText",
-      or: "clauseOrText",
-      not: "clauseNotText"
+      and: t("clauseAndText"),
+      or: t("clauseOrText"),
+      not: t("clauseNotText")
     };
     return (
       <div className="advanced-search-summary__operator">
-        {t(operatorMap[operator])}
+        {operatorMap[operator]}
       </div>
     );
   };

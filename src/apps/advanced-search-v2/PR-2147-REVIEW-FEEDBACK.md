@@ -48,7 +48,7 @@ Each item should be addressed in a separate commit.
 - **File:** `components/AdvancedSearchSummary.tsx` (lines 19-24)
 - **Issue:** The `t()` call is outside the map, making it harder to analyze translations
 - **Fix:** Move translation calls directly into the map values
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed
 
 ### 6. Add console logging for missing config
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 4
+- Completed: 5
 - In progress: 0
-- Remaining: 14
+- Remaining: 13
 
 Last updated: 2025-12-02
