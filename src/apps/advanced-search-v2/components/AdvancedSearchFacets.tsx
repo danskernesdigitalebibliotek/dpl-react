@@ -28,6 +28,9 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
     parseAsBoolean.withDefault(false)
   );
 
+  // Facets are fetched in a separate query from search results.
+  // The FBI API supports this and it allows facet counts to update
+  // independently without refetching the full result set.
   const { data: facetData } = useComplexFacetSearchQuery({
     cql,
     facets: { facets: FACET_FIELDS, facetLimit: 50 },
