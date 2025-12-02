@@ -39,6 +39,7 @@ export interface AdvancedSearchEntryProps
   pageSizeDesktop: number;
   pageSizeMobile: number;
   showingMaterialsText: string;
+  addMoreFiltersText: string;
 }
 
 const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({

@@ -4,33 +4,39 @@ import { useText } from "../../../core/utils/text";
 import { SortOption } from "../types";
 
 type SortSelectProps = {
-  sort: SortOption;
-  setSort: (value: SortOption) => void;
+  sortOption: SortOption;
+  setSortOption: (value: SortOption) => void;
 };
 
 const isSortOption = (value: string): value is SortOption =>
   Object.values(SortOption).includes(value as SortOption);
 
-const AdvancedSortSelect: React.FC<SortSelectProps> = ({ sort, setSort }) => {
+const AdvancedSortSelect: React.FC<SortSelectProps> = ({
+  sortOption,
+  setSortOption
+}) => {
   const t = useText();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     if (isSortOption(value)) {
-      setSort(value);
+      setSortOption(value);
     }
   };
 
   return (
-    <div className="advanced-search-v2__sort">
-      <label className="input-label" htmlFor="advanced-sort-select">
+    <div className="advanced-search-v2__sort-select">
+      <label
+        className="advanced-search-v2__sort-select__label"
+        htmlFor="advanced-sort-select"
+      >
         {t("advancedSearchSortLabelText")}
       </label>
-      <div className="dropdown dropdown--grey-borders">
+      <div className="advanced-search-v2__sort-select__select-wrapper">
         <select
-          className="dropdown__select dropdown__select--grey"
+          className="advanced-search-v2__sort-select__select"
           id="advanced-sort-select"
-          value={sort}
+          value={sortOption}
           onChange={handleChange}
         >
           <option value={SortOption.Relevance}>
@@ -61,8 +67,12 @@ const AdvancedSortSelect: React.FC<SortSelectProps> = ({ sort, setSort }) => {
             </option>
           </optgroup>
         </select>
-        <div className="dropdown__arrows">
-          <img className="dropdown__arrow" src={IconExpand} alt="" />
+        <div className="advanced-search-v2__dropdown__arrows">
+          <img
+            className="advanced-search-v2__dropdown__arrow"
+            src={IconExpand}
+            alt=""
+          />
         </div>
       </div>
     </div>
