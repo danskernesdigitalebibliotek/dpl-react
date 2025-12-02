@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   buildSuggestTerms,
-  buildFilterTerms,
+  buildPreSearchFacetTerms,
+  buildPostSearchFacetTerms,
   buildCQLQuery,
   hasValidQuery
 } from "../../apps/advanced-search-v2/lib/query-builder";
@@ -26,24 +27,22 @@ describe("buildSuggestTerms", () => {
     expect(buildSuggestTerms(suggests)).toBe('(term.default="harry")');
   });
 
-  it("builds multiple terms with default AND operator", () => {
-    const suggests: SuggestState[] = [
-      { term: "term.default", query: "harry" },
-      { term: "term.default", query: "potter" }
-    ];
-    expect(buildSuggestTerms(suggests)).toBe(
-      '(term.default="harry" AND term.default="potter")'
-    );
-  });
+  it("builds multiple terms with AND operator (default or explicit)", () => {
+    // Default (no operator specified)
+    expect(
+      buildSuggestTerms([
+        { term: "term.default", query: "harry" },
+        { term: "term.default", query: "potter" }
+      ])
+    ).toBe('(term.default="harry" AND term.default="potter")');
 
-  it("builds terms with explicit AND operator", () => {
-    const suggests: SuggestState[] = [
-      { term: "term.default", query: "harry" },
-      { term: "term.default", query: "potter", operator: "and" }
-    ];
-    expect(buildSuggestTerms(suggests)).toBe(
-      '(term.default="harry" AND term.default="potter")'
-    );
+    // Explicit operator: "and"
+    expect(
+      buildSuggestTerms([
+        { term: "term.default", query: "harry" },
+        { term: "term.default", query: "potter", operator: "and" }
+      ])
+    ).toBe('(term.default="harry" AND term.default="potter")');
   });
 
   it("builds terms with OR operator", () => {
@@ -89,6 +88,14 @@ describe("buildSuggestTerms", () => {
     );
   });
 
+  it("handles empty first query correctly", () => {
+    const suggests: SuggestState[] = [
+      { term: "term.default", query: "" },
+      { term: "term.default", query: "potter", operator: "and" }
+    ];
+    expect(buildSuggestTerms(suggests)).toBe('(term.default="potter")');
+  });
+
   it("escapes double quotes in query", () => {
     const suggests: SuggestState[] = [
       { term: "term.default", query: 'book "title"' }
@@ -106,28 +113,11 @@ describe("buildSuggestTerms", () => {
       '(term.default="\\"hello\\" \\"world\\"")'
     );
   });
-
-  it("handles different term types", () => {
-    const suggests: SuggestState[] = [
-      { term: "term.title", query: "harry potter" },
-      { term: "term.creator", query: "rowling", operator: "and" }
-    ];
-    expect(buildSuggestTerms(suggests)).toBe(
-      '(term.title="harry potter" AND term.creator="rowling")'
-    );
-  });
 });
 
-describe("buildFilterTerms", () => {
+describe("buildPreSearchFacetTerms", () => {
   it("returns empty array for empty input", () => {
-    expect(buildFilterTerms([])).toEqual([]);
-  });
-
-  it("returns empty array when no values are selected", () => {
-    const filters: FacetState[] = [
-      { facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues: [] }
-    ];
-    expect(buildFilterTerms(filters)).toEqual([]);
+    expect(buildPreSearchFacetTerms([])).toEqual([]);
   });
 
   it("builds single facet filter correctly", () => {
@@ -137,7 +127,88 @@ describe("buildFilterTerms", () => {
         selectedValues: ["dansk"]
       }
     ];
-    expect(buildFilterTerms(filters)).toEqual([
+    expect(buildPreSearchFacetTerms(filters)).toEqual([
+      '((phrase.mainlanguage="dansk"))'
+    ]);
+  });
+
+  it("builds publication year range with from and to", () => {
+    const filters: FacetState[] = [
+      {
+        facetField: ComplexSearchFacetsEnum.Publicationyear,
+        selectedValues: ["2020", "2024"]
+      }
+    ];
+    expect(buildPreSearchFacetTerms(filters)).toEqual([
+      '((publicationyear within "2020 2024"))'
+    ]);
+  });
+
+  it("builds publication year with open-ended range for single value", () => {
+    expect(
+      buildPreSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Publicationyear,
+          selectedValues: ["2023"]
+        }
+      ])
+    ).toEqual(["((publicationyear>=2023))"]);
+  });
+
+  it("builds publication year with exact match for same from/to", () => {
+    expect(
+      buildPreSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Publicationyear,
+          selectedValues: ["2020", "2020"]
+        }
+      ])
+    ).toEqual(["((publicationyear=2020))"]);
+  });
+
+  it("builds ages with open-ended range for single value", () => {
+    expect(
+      buildPreSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Ages,
+          selectedValues: ["16"]
+        }
+      ])
+    ).toEqual(["((ages>=16))"]);
+  });
+
+  it("builds ages range with from and to", () => {
+    expect(
+      buildPreSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Ages,
+          selectedValues: ["3", "6"]
+        }
+      ])
+    ).toEqual(['((ages within "3 6"))']);
+  });
+});
+
+describe("buildPostSearchFacetTerms", () => {
+  it("returns empty array for empty input", () => {
+    expect(buildPostSearchFacetTerms([])).toEqual([]);
+  });
+
+  it("returns empty array when no values are selected", () => {
+    const filters: FacetState[] = [
+      { facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues: [] }
+    ];
+    expect(buildPostSearchFacetTerms(filters)).toEqual([]);
+  });
+
+  it("builds single facet filter correctly", () => {
+    const filters: FacetState[] = [
+      {
+        facetField: ComplexSearchFacetsEnum.Mainlanguage,
+        selectedValues: ["dansk"]
+      }
+    ];
+    expect(buildPostSearchFacetTerms(filters)).toEqual([
       '((phrase.mainlanguage="dansk"))'
     ]);
   });
@@ -149,7 +220,7 @@ describe("buildFilterTerms", () => {
         selectedValues: ["dansk", "engelsk"]
       }
     ];
-    expect(buildFilterTerms(filters)).toEqual([
+    expect(buildPostSearchFacetTerms(filters)).toEqual([
       '((phrase.mainlanguage="dansk" OR phrase.mainlanguage="engelsk"))'
     ]);
   });
@@ -165,7 +236,7 @@ describe("buildFilterTerms", () => {
         selectedValues: ["krimi"]
       }
     ];
-    const result = buildFilterTerms(filters);
+    const result = buildPostSearchFacetTerms(filters);
     expect(result).toHaveLength(2);
     expect(result).toContain('((phrase.mainlanguage="dansk"))');
     expect(result).toContain('((phrase.genreandform="krimi"))');
@@ -178,146 +249,112 @@ describe("buildFilterTerms", () => {
         selectedValues: ["2020", "2024"]
       }
     ];
-    expect(buildFilterTerms(filters)).toEqual([
+    expect(buildPostSearchFacetTerms(filters)).toEqual([
       '((publicationyear within "2020 2024"))'
     ]);
   });
 
-  it("builds publication year range with only from (open-ended)", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Publicationyear,
-        selectedValues: ["2015"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual(["((publicationyear>=2015))"]);
-  });
+  it("builds publication year with exact match for single value or same from/to", () => {
+    // Single value - exact match (not open-ended)
+    expect(
+      buildPostSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Publicationyear,
+          selectedValues: ["2023"]
+        }
+      ])
+    ).toEqual(["((publicationyear=2023))"]);
 
-  it("builds publication year with same from and to (single year)", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Publicationyear,
-        selectedValues: ["2020", "2020"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual(["((publicationyear=2020))"]);
+    // Same from and to
+    expect(
+      buildPostSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Publicationyear,
+          selectedValues: ["2020", "2020"]
+        }
+      ])
+    ).toEqual(["((publicationyear=2020))"]);
   });
 
   it("builds ages range with from and to", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Ages,
-        selectedValues: ["3", "6"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual(['((ages within "3 6"))']);
+    expect(
+      buildPostSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Ages,
+          selectedValues: ["3", "6"]
+        }
+      ])
+    ).toEqual(['((ages within "3 6"))']);
   });
 
-  it("builds ages range with only from (open-ended)", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Ages,
-        selectedValues: ["16"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual(["((ages>=16))"]);
+  it("builds ages with exact match for single value or same from/to", () => {
+    // Single value - exact match (not open-ended)
+    expect(
+      buildPostSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Ages,
+          selectedValues: ["16"]
+        }
+      ])
+    ).toEqual(["((ages=16))"]);
+
+    // Same from and to
+    expect(
+      buildPostSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Ages,
+          selectedValues: ["10", "10"]
+        }
+      ])
+    ).toEqual(["((ages=10))"]);
   });
 
-  it("builds ages range with same from and to (single age)", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Ages,
-        selectedValues: ["10", "10"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual(["((ages=10))"]);
+  it("builds ages with text value using phrase matching", () => {
+    expect(
+      buildPostSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Ages,
+          selectedValues: ["for 10 år"]
+        }
+      ])
+    ).toEqual(['((phrase.ages="for 10 år"))']);
   });
 
-  it("builds ages with text value using phrase matching (post-search facet)", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Ages,
-        selectedValues: ["for 10 år"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual(['((phrase.ages="for 10 år"))']);
+  it("builds ages with multiple text values using OR", () => {
+    expect(
+      buildPostSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Ages,
+          selectedValues: ["for 10 år", "for 12 år"]
+        }
+      ])
+    ).toEqual(['((phrase.ages="for 10 år" OR phrase.ages="for 12 år"))']);
   });
 
-  it("builds ages with multiple text values using OR (post-search facet)", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Ages,
-        selectedValues: ["for 10 år", "for 12 år"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual([
-      '((phrase.ages="for 10 år" OR phrase.ages="for 12 år"))'
-    ]);
-  });
-
-  it("falls back to phrase matching for ages with mixed numeric/text values", () => {
-    // Edge case: if somehow mixed values occur, use phrase matching to avoid invalid CQL
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Ages,
-        selectedValues: ["10", "for 12 år"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual([
-      '((phrase.ages="10" OR phrase.ages="for 12 år"))'
-    ]);
-  });
-
-  it("builds generalaudience filter correctly", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Generalaudience,
-        selectedValues: ["let at læse"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual([
-      '((phrase.generalaudience="let at læse"))'
-    ]);
-  });
-
-  it("builds generalaudience with multiple values", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Generalaudience,
-        selectedValues: ["let at læse", "voksenmaterialer"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual([
-      '((phrase.generalaudience="let at læse" OR phrase.generalaudience="voksenmaterialer"))'
-    ]);
+  it("uses phrase matching for ages when values contain text", () => {
+    expect(
+      buildPostSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Ages,
+          selectedValues: ["10", "for 12 år"]
+        }
+      ])
+    ).toEqual(['((phrase.ages="10" OR phrase.ages="for 12 år"))']);
   });
 
   it("deduplicates identical filters", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Mainlanguage,
-        selectedValues: ["dansk"]
-      },
-      {
-        facetField: ComplexSearchFacetsEnum.Mainlanguage,
-        selectedValues: ["dansk"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual([
-      '((phrase.mainlanguage="dansk"))'
-    ]);
-  });
-
-  it("builds material type filter correctly", () => {
-    const filters: FacetState[] = [
-      {
-        facetField: ComplexSearchFacetsEnum.Specificmaterialtype,
-        selectedValues: ["bog", "e-bog"]
-      }
-    ];
-    expect(buildFilterTerms(filters)).toEqual([
-      '((phrase.specificmaterialtype="bog" OR phrase.specificmaterialtype="e-bog"))'
-    ]);
+    expect(
+      buildPostSearchFacetTerms([
+        {
+          facetField: ComplexSearchFacetsEnum.Mainlanguage,
+          selectedValues: ["dansk"]
+        },
+        {
+          facetField: ComplexSearchFacetsEnum.Mainlanguage,
+          selectedValues: ["dansk"]
+        }
+      ])
+    ).toEqual(['((phrase.mainlanguage="dansk"))']);
   });
 });
 

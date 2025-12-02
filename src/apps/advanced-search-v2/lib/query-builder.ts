@@ -2,20 +2,30 @@ import { SuggestState, FacetState } from "../types";
 import { COMPLEX_FACET_TO_CQL_FIELD } from "./field-mappings";
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 
+// Escape double quotes in search queries
+const escapeQuotes = (value: string): string => value.replace(/"/g, '\\"');
+
+// Check if a value is a pure integer (for range queries)
+// ["16"] → true (one numeric)
+// ["16", ""] → true (numeric + empty)
+// ["3", "6"] → true (both numeric)
+// ["for 10 år"] → false (text)
+// ["10", "for 12 år"] → false (mixed)
+const isNumericValue = (value: string): boolean => /^\d+$/.test(value);
+
 // Builds search term part of CQL query with operators (AND, OR, NOT)
 // Returns wrapped in parentheses or empty string if no valid terms
 // e.g. [{ term: "term.default", query: "harry" }] => '(term.default="harry")'
 export const buildSuggestTerms = (suggests: SuggestState[]): string => {
   const suggestTerms: string[] = [];
 
-  suggests.forEach((suggest, i) => {
+  suggests.forEach((suggest) => {
     if (!suggest.query.trim()) return; // Skip empty queries
 
-    const escapedQuery = suggest.query.replace(/"/g, '\\"');
-    const term = `${suggest.term}="${escapedQuery}"`; // e.g., term.default="harry"
+    const term = `${suggest.term}="${escapeQuotes(suggest.query)}"`; // e.g., term.default="harry"
 
-    if (i === 0) {
-      // First term has no operator prefix
+    if (suggestTerms.length === 0) {
+      // First valid term has no operator prefix
       suggestTerms.push(term);
     } else {
       // Use this suggest's operator before the term
@@ -27,79 +37,98 @@ export const buildSuggestTerms = (suggests: SuggestState[]): string => {
   return suggestTerms.length > 0 ? `(${suggestTerms.join(" ")})` : "";
 };
 
-// Check if a value is a pure integer (for range queries)
-const isNumericValue = (value: string): boolean => /^\d+$/.test(value);
+// Build exact match query: e.g. '((publicationyear=2023))'
+const buildExactMatchQuery = (field: string, value: string): string =>
+  `((${field}=${value}))`;
 
-// Build a CQL range query for numeric values
-// e.g. buildRangeQuery("ages", "3", "6") => '((ages within "3 6"))'
-// e.g. buildRangeQuery("ages", "16", undefined) => '((ages>=16))'
-const buildRangeQuery = (
+// Build open-ended range query: e.g. '((ages>=16))'
+const buildOpenEndedRangeQuery = (field: string, from: string): string =>
+  `((${field}>=${from}))`;
+
+// Build closed range query: e.g. '((ages within "3 6"))'
+const buildClosedRangeQuery = (
   field: string,
   from: string,
-  to: string | undefined
-): string => {
-  if (!to) return `((${field}>=${from}))`;
-  if (from === to) return `((${field}=${from}))`;
-  return `((${field} within "${from} ${to}"))`;
+  to: string
+): string => `((${field} within "${from} ${to}"))`;
+
+// Builds phrase match query for non-range facets
+const buildPhraseQuery = (field: string, values: string[]): string => {
+  const orTerms = values.map((value) => `${field}="${value}"`).join(" OR ");
+  return `((${orTerms}))`;
 };
 
-// Fields that can use numeric range queries (when all values are numeric)
-const RANGE_QUERY_FIELDS: Partial<Record<ComplexSearchFacetsEnum, string>> = {
-  [ComplexSearchFacetsEnum.Publicationyear]: "publicationyear",
-  [ComplexSearchFacetsEnum.Ages]: "ages" // Used for numeric ranges; text values use phrase.ages
+// Get the CQL phrase field for a facet, or null if not mapped
+const getPhraseField = (facetField: ComplexSearchFacetsEnum): string | null =>
+  COMPLEX_FACET_TO_CQL_FIELD[facetField] ?? null;
+
+// Returns CQL field name for range queries, or null if not range-queryable
+// Ages field only supports range queries when all values are numeric:
+// ["16"] or ["3", "6"] → range query; ["for 10 år"] → phrase query
+const getRangeField = (
+  facetField: ComplexSearchFacetsEnum,
+  values: string[]
+): string | null => {
+  if (facetField === ComplexSearchFacetsEnum.Publicationyear) {
+    return "publicationyear";
+  }
+
+  const allValuesNumeric = values.every((v) => !v || isNumericValue(v));
+  if (facetField === ComplexSearchFacetsEnum.Ages && allValuesNumeric) {
+    return "ages";
+  }
+
+  return null;
 };
 
-// Builds filter terms from pre-search facets and facets
-// For range queries (numeric ages, publication years):
-// e.g. [{ facetField: ComplexSearchFacetsEnum.Ages, selectedValues: ["3", "6"] }]
-//   => ['((ages within "3 6"))']
-// For phrase matching (text values):
-// e.g. [{ facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues: ["dansk"] }]
-//   => ['((phrase.mainlanguage="dansk"))']
-export const buildFilterTerms = (filters: FacetState[]): string[] => {
+// Shared logic for building facet filter terms
+// useOpenEndedRange: true for pre-search (form), false for post-search (results)
+const buildFacetTerms = (
+  filters: FacetState[],
+  useOpenEndedRange: boolean
+): string[] => {
   const filterTermsSet = new Set<string>();
 
-  filters.forEach((item) => {
-    const { facetField, selectedValues } = item;
+  filters.forEach(({ facetField, selectedValues }) => {
     const [from, to] = selectedValues;
-
     if (!from) return;
 
-    // Check if this field should use range queries
-    // For Ages: only use range query if ALL values are numeric (to handle mixed values safely)
-    const rangeField = RANGE_QUERY_FIELDS[facetField];
-    const allValuesNumeric = selectedValues.every(
-      (v) => !v || isNumericValue(v)
-    );
-    const isAgesWithNumericValues =
-      facetField === ComplexSearchFacetsEnum.Ages && allValuesNumeric;
-    const useRangeQuery =
-      facetField === ComplexSearchFacetsEnum.Publicationyear ||
-      isAgesWithNumericValues;
-
-    if (useRangeQuery && rangeField) {
-      filterTermsSet.add(buildRangeQuery(rangeField, from, to));
+    const rangeField = getRangeField(facetField, selectedValues);
+    if (rangeField) {
+      if (!to) {
+        filterTermsSet.add(
+          useOpenEndedRange
+            ? buildOpenEndedRangeQuery(rangeField, from)
+            : buildExactMatchQuery(rangeField, from)
+        );
+      } else if (from === to) {
+        filterTermsSet.add(buildExactMatchQuery(rangeField, from));
+      } else {
+        filterTermsSet.add(buildClosedRangeQuery(rangeField, from, to));
+      }
       return;
     }
 
-    // Use phrase matching for all other facets
-    const phraseField =
-      COMPLEX_FACET_TO_CQL_FIELD[
-        facetField as keyof typeof COMPLEX_FACET_TO_CQL_FIELD
-      ];
-
+    const phraseField = getPhraseField(facetField);
     if (phraseField && selectedValues.length > 0) {
-      const orTerms = selectedValues
-        .map((value) => `${phraseField}="${value}"`)
-        .join(" OR ");
-      filterTermsSet.add(`((${orTerms}))`);
+      filterTermsSet.add(buildPhraseQuery(phraseField, selectedValues));
     }
   });
 
   return Array.from(filterTermsSet);
 };
 
-// Builds complete CQL query from search terms, pre-search facets and facets
+// Pre-search facets (from advanced search form)
+// Supports open-ended ranges: ["16"] => '((ages>=16))'
+export const buildPreSearchFacetTerms = (filters: FacetState[]): string[] =>
+  buildFacetTerms(filters, true);
+
+// Post-search facets (from search results)
+// Single values are exact match: ["2023"] => '((publicationyear=2023))'
+export const buildPostSearchFacetTerms = (filters: FacetState[]): string[] =>
+  buildFacetTerms(filters, false);
+
+// Builds complete CQL query
 // Returns "*" wildcard if no query is provided
 // e.g. suggests=[{term:"term.default",query:"harry"}], preSearchFacets=[{facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues:["dansk"]}]
 //   => '(term.default="harry") AND ((phrase.mainlanguage="dansk"))'
@@ -117,12 +146,12 @@ export const buildCQLQuery = (
     parts.push(suggestPart);
   }
 
-  // Add pre-search facet filter terms
-  const preSearchFacetParts = buildFilterTerms(preSearchFacets);
+  // Add pre-search facet terms (supports open-ended ranges)
+  const preSearchFacetParts = buildPreSearchFacetTerms(preSearchFacets);
   parts.push(...preSearchFacetParts);
 
-  // Add facet filter terms
-  const facetParts = buildFilterTerms(facets);
+  // Add post-search facet terms (exact match only)
+  const facetParts = buildPostSearchFacetTerms(facets);
   parts.push(...facetParts);
 
   // Add toggle filters
