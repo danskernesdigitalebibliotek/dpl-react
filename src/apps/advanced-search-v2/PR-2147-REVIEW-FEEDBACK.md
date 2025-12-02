@@ -101,7 +101,7 @@ Each item should be addressed in a separate commit.
 - **File:** `hooks/use-paginated-results.ts` (lines 106-108)
 - **Issue:** `useMemo(() => cql, [cql])` is essentially a no-op
 - **Fix:** Either remove or add comment explaining the intent (stable reference for effect dependency)
-- **Status:** ⬜ Not started
+- **Status:** ✅ Already addressed - current code uses `useMemo(() => \`${cql}|${sort}\`, [cql, sort])` which is meaningful
 
 ### 13. Use span instead of p inside button
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 10
+- Completed: 11
 - In progress: 0
-- Remaining: 8
+- Remaining: 7
 
 Last updated: 2025-12-02
