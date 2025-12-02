@@ -37,7 +37,7 @@ Each item should be addressed in a separate commit.
 - **File:** `hooks/use-search-form-state.ts` (line 52)
 - **Issue:** `shallow: true` is the default value for nuqs
 - **Fix:** Remove the redundant option
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed
 
 ---
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 3
+- Completed: 4
 - In progress: 0
-- Remaining: 15
+- Remaining: 14
 
 Last updated: 2025-12-02

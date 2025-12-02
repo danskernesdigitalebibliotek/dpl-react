@@ -29,28 +29,25 @@ export interface UseSearchFormStateReturn {
  */
 export const useSearchFormState = (): UseSearchFormStateReturn => {
   // URL state management with nuqs
-  const [urlState, setUrlState] = useQueryStates(
-    {
-      filters: parseAsJson((value) => {
-        if (isValidFilterState(value)) return value;
-        return INITIAL_FILTER_STATE;
-      }).withDefault(INITIAL_FILTER_STATE),
-      preSearchFacets: parseAsJson((value) => {
-        if (isValidFacetState(value)) return value;
-        return [];
-      }).withDefault([]),
-      facets: parseAsJson((value) => {
-        if (isValidFacetState(value)) return value;
-        return [];
-      }).withDefault([]),
-      onShelf: parseAsBoolean.withDefault(false),
-      onlyExtraTitles: parseAsBoolean.withDefault(false),
-      sort: parseAsStringEnum<SortOption>(
-        Object.values(SortOption)
-      ).withDefault(SortOption.Relevance)
-    },
-    { shallow: true }
-  );
+  const [urlState, setUrlState] = useQueryStates({
+    filters: parseAsJson((value) => {
+      if (isValidFilterState(value)) return value;
+      return INITIAL_FILTER_STATE;
+    }).withDefault(INITIAL_FILTER_STATE),
+    preSearchFacets: parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([]),
+    facets: parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([]),
+    onShelf: parseAsBoolean.withDefault(false),
+    onlyExtraTitles: parseAsBoolean.withDefault(false),
+    sort: parseAsStringEnum<SortOption>(Object.values(SortOption)).withDefault(
+      SortOption.Relevance
+    )
+  });
 
   // Local state for temporary changes - initialize from URL
   const [filters, setFilters] = useState<FilterState[]>(urlState.filters);
