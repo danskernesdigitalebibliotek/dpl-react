@@ -9,6 +9,7 @@ import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
 import { useFormVisibility } from "../hooks/use-form-visibility";
 import CopyLink from "../../../components/copy-link/CopyLink";
+import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-filter.svg";
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;
@@ -66,12 +67,17 @@ const AdvancedSearchResultsWithFacets: React.FC<
                 className="advanced-search-v2__copy-link"
                 label="Kopier link"
               />
-              {/* <button
-                onClick={handleOnClickCopy}
-                className="advanced-search-v2__copy-link"
-              ></button> */}
             </div>
-            <AdvancedSortSelect sortOption={sort} setSortOption={setSort} />
+            <div className="advanced-search-v2__results-top-bar__right">
+              <button
+                onClick={() => setView("search")}
+                className="advanced-search-v2__modify-filters-button"
+              >
+                <img src={IconFilter} alt="" />
+                <span>{t("addMoreFiltersText")}</span>
+              </button>
+              <AdvancedSortSelect sortOption={sort} setSortOption={setSort} />
+            </div>
           </div>
 
           {shouldShowSearchResults && (
