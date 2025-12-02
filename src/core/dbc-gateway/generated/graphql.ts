@@ -2244,7 +2244,7 @@ export enum WorkTypeEnum {
 export type ComplexFacetSearchQueryVariables = Exact<{
   cql: Scalars["String"]["input"];
   facets?: InputMaybe<ComplexSearchFacetsInput>;
-  filters: ComplexSearchFiltersInput;
+  filters?: InputMaybe<ComplexSearchFiltersInput>;
 }>;
 
 export type ComplexFacetSearchQuery = {
@@ -2258,7 +2258,6 @@ export type ComplexFacetSearchQuery = {
         __typename?: "ComplexSearchFacetValue";
         key: string;
         score: number;
-        traceId?: string | null;
       }> | null;
     }> | null;
   };
@@ -7714,14 +7713,13 @@ export const WorkMediumFragmentDoc = `
 }
     ${WorkSmallFragmentDoc}`;
 export const ComplexFacetSearchDocument = `
-    query complexFacetSearch($cql: String!, $facets: ComplexSearchFacetsInput, $filters: ComplexSearchFiltersInput!) {
+    query complexFacetSearch($cql: String!, $facets: ComplexSearchFacetsInput, $filters: ComplexSearchFiltersInput) {
   complexSearch(cql: $cql, filters: $filters, facets: $facets) {
     facets {
       name
       values {
         key
         score
-        traceId
       }
     }
   }
