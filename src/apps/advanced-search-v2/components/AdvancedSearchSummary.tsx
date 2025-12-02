@@ -1,5 +1,6 @@
 import React from "react";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
+import { getOperatorLabels } from "../lib/operators";
 import { useText } from "../../../core/utils/text";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { Operator } from "../types";
@@ -16,18 +17,11 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
   const { urlState } = useSearchQueries();
   const { filters, preSearchFacets } = urlState;
 
-  const renderOperator = (operator: Operator) => {
-    const operatorMap = {
-      and: t("clauseAndText"),
-      or: t("clauseOrText"),
-      not: t("clauseNotText")
-    };
-    return (
-      <div className="advanced-search-summary__operator">
-        {operatorMap[operator]}
-      </div>
-    );
-  };
+  const renderOperator = (operator: Operator) => (
+    <div className="advanced-search-summary__operator">
+      {getOperatorLabels(t)[operator]}
+    </div>
+  );
 
   const renderItem = (label: string, value: string) => (
     <div className="advanced-search-summary__item">

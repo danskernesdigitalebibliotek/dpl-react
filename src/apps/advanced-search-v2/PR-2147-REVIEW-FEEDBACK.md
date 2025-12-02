@@ -76,7 +76,7 @@ Each item should be addressed in a separate commit.
 - **File:** `components/OperatorButtons.tsx` (lines 17-21)
 - **Issue:** Operator config is defined inline
 - **Fix:** Extract to a shared constant that can be reused (e.g., in AdvancedSearchSummary)
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed
 
 ### 10. Remove unused traceId from GraphQL query
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 8
+- Completed: 9
 - In progress: 0
-- Remaining: 10
+- Remaining: 9
 
 Last updated: 2025-12-02
