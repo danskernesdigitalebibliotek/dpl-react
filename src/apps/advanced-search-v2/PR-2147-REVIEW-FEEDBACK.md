@@ -108,7 +108,7 @@ Each item should be addressed in a separate commit.
 - **File:** `components/SearchTermSelect.tsx` (line 49)
 - **Issue:** `<p>` tag inside `<button>` is semantically incorrect
 - **Fix:** Change to `<span>`
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed
 
 ### 14. Improve aria-expanded accessibility
 
@@ -175,8 +175,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 18
-- Completed: 11
+- Completed: 12
 - In progress: 0
-- Remaining: 7
+- Remaining: 6
 
 Last updated: 2025-12-02
