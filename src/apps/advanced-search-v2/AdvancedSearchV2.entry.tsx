@@ -11,6 +11,7 @@ import withPageStatistics from "../../core/statistics/withPageStatistics";
 import AdvancedSearchV2 from "./AdvancedSearchV2";
 import { NuqsAdapter } from "nuqs/adapters/react";
 import { AdvancedSearchV2Args } from "../../core/storybook/advancedSearchV2Args";
+import { AdvancedSearchV2CqlSearchArgs } from "../../core/storybook/advancedSearchV2CqlSearchArgs";
 
 interface AdvancedSearchEntryTextProps {
   byAuthorText: string;
@@ -35,7 +36,8 @@ export interface AdvancedSearchEntryProps
     AdvancedSearchEntryConfigProps,
     AdvancedSearchEntryTextProps,
     MappArgs,
-    AdvancedSearchV2Args {
+    AdvancedSearchV2Args,
+    AdvancedSearchV2CqlSearchArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
   showingMaterialsText: string;

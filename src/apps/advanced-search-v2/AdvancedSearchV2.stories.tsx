@@ -21,6 +21,9 @@ import advancedSearchV2SortArgs, {
 import copyLinkArgs, {
   argTypes as copyLinkArgsTypes
 } from "../../core/storybook/copyLinkArgs";
+import advancedSearchV2CqlSearchArgs, {
+  argTypes as advancedSearchV2CqlSearchArgTypes
+} from "../../core/storybook/advancedSearchV2CqlSearchArgs";
 
 const meta: Meta<typeof AdvancedSearchV2Entry> = {
   title: "Apps / Advanced Search V2",
@@ -35,6 +38,7 @@ const meta: Meta<typeof AdvancedSearchV2Entry> = {
     ...advancedSearchV2ArgTypes,
     ...advancedSearchV2SortArgTypes,
     ...copyLinkArgsTypes,
+    ...advancedSearchV2CqlSearchArgTypes,
     pageSizeDesktop: {
       description: "Number of search result items on desktop",
       control: { type: "number" },
@@ -131,6 +135,7 @@ export const Default: Story = {
     ...advancedSearchV2Args,
     ...advancedSearchV2SortArgs,
     ...copyLinkArgs,
+    ...advancedSearchV2CqlSearchArgs,
     etAlText: "et al.",
     pageSizeDesktop: 50,
     pageSizeMobile: 20,
