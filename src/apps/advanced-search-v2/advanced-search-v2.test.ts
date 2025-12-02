@@ -8,6 +8,9 @@ describe("Advanced Search V2", () => {
   let page: AdvancedSearchV2Page;
 
   beforeEach(() => {
+    // Use desktop viewport to ensure sidebar filters and sort controls are visible
+    cy.viewport(1280, 720);
+
     page = new AdvancedSearchV2Page();
 
     // These intercepts are not relevant to the tests but prevent 401 errors
