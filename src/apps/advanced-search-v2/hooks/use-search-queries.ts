@@ -5,9 +5,9 @@ import {
   parseAsBoolean,
   parseAsStringEnum
 } from "nuqs";
-import { SuggestState, FacetState, SortOption } from "../types";
+import { FilterState, FacetState, SortOption } from "../types";
 import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
-import { isValidSuggestState, isValidFacetState } from "../lib/validation";
+import { isValidFilterState, isValidFacetState } from "../lib/validation";
 
 interface UseSearchQueriesReturn {
   cql: string;
@@ -17,7 +17,7 @@ interface UseSearchQueriesReturn {
   sort: SortOption;
   setSort: (sort: SortOption) => void;
   urlState: {
-    suggests: SuggestState[];
+    filters: FilterState[];
     preSearchFacets: FacetState[];
     facets: FacetState[];
   };
@@ -28,10 +28,10 @@ interface UseSearchQueriesReturn {
  */
 export const useSearchQueries = (): UseSearchQueriesReturn => {
   // Read all search state from URL
-  const [suggests] = useQueryState(
-    "suggests",
+  const [filters] = useQueryState(
+    "filters",
     parseAsJson((value) => {
-      if (isValidSuggestState(value)) return value;
+      if (isValidFilterState(value)) return value;
       return [];
     }).withDefault([])
   );
@@ -69,8 +69,8 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
 
   // Build CQL query from all inputs
   const cql = useMemo(
-    () => buildCQLQuery(suggests, preSearchFacets, facets, onlyExtraTitles),
-    [suggests, preSearchFacets, facets, onlyExtraTitles]
+    () => buildCQLQuery(filters, preSearchFacets, facets, onlyExtraTitles),
+    [filters, preSearchFacets, facets, onlyExtraTitles]
   );
 
   const hasQuery = hasValidQuery(cql);
@@ -83,7 +83,7 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     sort,
     setSort,
     urlState: {
-      suggests,
+      filters,
       preSearchFacets,
       facets
     }

@@ -439,7 +439,7 @@ describe("Advanced Search V2", () => {
         form.clickSearch();
       });
 
-      page.verifyUrlParamEquals("suggests", [
+      page.verifyUrlParamEquals("filters", [
         { term: "term.default", query: "harry" },
         { term: "term.default", query: "potter", operator: "not" }
       ]);

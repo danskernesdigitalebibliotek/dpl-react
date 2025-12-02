@@ -1,4 +1,4 @@
-import { SuggestState, FacetState } from "../types";
+import { FilterState, FacetState } from "../types";
 import { COMPLEX_FACET_TO_CQL_FIELD } from "./field-mappings";
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 
@@ -16,25 +16,25 @@ const isNumericValue = (value: string): boolean => /^\d+$/.test(value);
 // Builds search term part of CQL query with operators (AND, OR, NOT)
 // Returns wrapped in parentheses or empty string if no valid terms
 // e.g. [{ term: "term.default", query: "harry" }] => '(term.default="harry")'
-export const buildSuggestTerms = (suggests: SuggestState[]): string => {
-  const suggestTerms: string[] = [];
+export const buildFilterInputTerms = (inputs: FilterState[]): string => {
+  const inputTerms: string[] = [];
 
-  suggests.forEach((suggest) => {
-    if (!suggest.query.trim()) return; // Skip empty queries
+  inputs.forEach((input) => {
+    if (!input.query.trim()) return; // Skip empty queries
 
-    const term = `${suggest.term}="${escapeQuotes(suggest.query)}"`; // e.g., term.default="harry"
+    const term = `${input.term}="${escapeQuotes(input.query)}"`; // e.g., term.default="harry"
 
-    if (suggestTerms.length === 0) {
+    if (inputTerms.length === 0) {
       // First valid term has no operator prefix
-      suggestTerms.push(term);
+      inputTerms.push(term);
     } else {
-      // Use this suggest's operator before the term
-      const operator = (suggest.operator || "and").toUpperCase();
-      suggestTerms.push(`${operator} ${term}`);
+      // Use this input's operator before the term
+      const operator = (input.operator || "and").toUpperCase();
+      inputTerms.push(`${operator} ${term}`);
     }
   });
 
-  return suggestTerms.length > 0 ? `(${suggestTerms.join(" ")})` : "";
+  return inputTerms.length > 0 ? `(${inputTerms.join(" ")})` : "";
 };
 
 // Build exact match query: e.g. '((publicationyear=2023))'
@@ -130,10 +130,10 @@ export const buildPostSearchFacetTerms = (filters: FacetState[]): string[] =>
 
 // Builds complete CQL query
 // Returns "*" wildcard if no query is provided
-// e.g. suggests=[{term:"term.default",query:"harry"}], preSearchFacets=[{facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues:["dansk"]}]
+// e.g. filters=[{term:"term.default",query:"harry"}], preSearchFacets=[{facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues:["dansk"]}]
 //   => '(term.default="harry") AND ((phrase.mainlanguage="dansk"))'
 export const buildCQLQuery = (
-  suggests: SuggestState[],
+  filters: FilterState[],
   preSearchFacets: FacetState[],
   facets: FacetState[],
   onlyExtraTitles?: boolean
@@ -141,9 +141,9 @@ export const buildCQLQuery = (
   const parts: string[] = [];
 
   // Add search terms
-  const suggestPart = buildSuggestTerms(suggests);
-  if (suggestPart) {
-    parts.push(suggestPart);
+  const filterPart = buildFilterInputTerms(filters);
+  if (filterPart) {
+    parts.push(filterPart);
   }
 
   // Add pre-search facet terms (supports open-ended ranges)

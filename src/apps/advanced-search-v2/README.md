@@ -92,14 +92,12 @@ AdvancedSearchV2Entry })`.
 
 Defined in `types.ts`:
 
-- `Operator = "and" | "or" | "not"` – logical operator between suggest
-  rows.
-- `SuggestState` – a single row in the advanced search form:
+- `Operator = "and" | "or" | "not"` – logical operator between search rows.
+- `FilterState` – a single search-row input in the advanced search form:
   - `term: string` – CQL field, e.g. `"term.default"`, `"term.title"`.
   - `query: string` – user input.
-  - `operator?: Operator` – logical operator used **before** this row
-    (omitted for first row).
-- `FilterState` – unified representation of a selected filter, used by
+  - `operator?: Operator` – logical operator used **before** this row (omitted for first row).
+- `FacetState` – unified representation of a selected facet value group, used by
   both the form and sidebar facets:
   - `label: string` – human label shown in the UI/summary.
   - `facetField: ComplexSearchFacetsEnum` – GraphQL facet enum.
@@ -127,33 +125,26 @@ State is stored in query parameters using `nuqs` so that:
 Manages the **form draft state** and synchronizes it with URL parameters.
 
 - Uses `useQueryStates` on two keys:
-  - `suggests` – array of `SuggestState`, defaulted to
-    `INITIAL_SUGGEST_STATE`.
-  - `filters` – array of `FilterState`, default `[]`.
-- Mirrors these into local React state (`suggests`, `filters`) so the user
-  can edit the form without immediately changing the URL.
+  - `filters` – array of `FilterState`, defaulted to `INITIAL_FILTER_INPUTS`.
+  - `preSearchFacets` – array of `FacetState`, default `[]`.
+- Mirrors these into local React state (`filters`, `preSearchFacets`) so the user can edit the form without immediately changing the URL.
 - Exposes:
-  - `updateSuggest(index, updates)` – update part of a suggest row.
-  - `updateFilter(filter)` – upsert/remove a filter based on `facetField`
-    and `selectedValues`.
-  - `addSuggest()` – append a new row (default: free text with `and`
-    operator).
-  - `removeSuggest(index)` – remove a row, but ensures at least one row
-    remains.
+  - `updateFilter(index, updates)` – update part of a filter input row.
+  - `updatePreSearchFacet(preSearchFacet)` – upsert/remove a pre‑search facet based on `facetField` and `selectedValues`.
+  - `addFilter()` – append a new row (default: free text with `and` operator).
+  - `removeFilter(index)` – remove a row, but ensures at least one row remains.
   - `handleSearch()` – **commit** local state to the URL:
     - Filters out rows with empty `query`.
-    - Strips `operator` from the first non‑empty suggest.
-    - Writes `suggests` and `filters` to URL (or `null` when empty,
-      letting defaults apply).
-  - `handleClearFilters()` – reset local and URL state to initial suggests
-    and no filters.
+    - Strips `operator` from the first non‑empty row.
+    - Writes `filters` and `preSearchFacets` to URL (or `null` when empty, letting defaults apply).
+  - `handleClearFilters()` – reset local and URL state to initial state.
 
 ### `use-form-visibility.ts`
 
 Controls whether the full form or a compact summary is shown.
 
 - URL key: `edit` (boolean), default `true`.
-- Reads committed URL `suggests` and `filters` and builds the CQL query
+- Reads committed URL `filters` and `preSearchFacets` and builds the CQL query
   via `buildCQLQuery`.
 - Determines `hasCurrentQuery` using `hasValidQuery`.
 - Effect:
@@ -169,16 +160,16 @@ Controls whether the full form or a compact summary is shown.
 Read‑only view of **committed search parameters** from the URL.
 
 - Reads query params via `useQueryState`:
-  - `suggests: SuggestState[]`.
   - `filters: FilterState[]`.
+  - `preSearchFacets: FacetState[]`.
   - `onShelf: boolean`.
   - `onlyExtraTitles: boolean`.
-- Calls `buildCQLQuery(suggests, filters, onShelf, onlyExtraTitles)` to
+- Calls `buildCQLQuery(filters, preSearchFacets, facets, onlyExtraTitles)` to
   get the CQL string.
 - Returns:
   - `cql` – current CQL query.
   - `hasQuery` – `false` only when CQL is the wildcard `"*"`.
-  - `urlState` – `{ suggests, filters }` for use in summaries.
+  - `urlState` – `{ filters, preSearchFacets }` for use in summaries.
 
 ### `use-paginated-results.ts`
 
@@ -211,15 +202,12 @@ Fetches paginated search results for the current CQL query.
 
 Implemented in `lib/query-builder.ts` with help from `field-mappings.ts`.
 
-### `buildSuggestTerms(suggests)`
+### `buildFilterInputTerms(filters)`
 
-- Iterates over `SuggestState[]` and builds a CQL clause for non‑empty
-  `query`s.
+- Iterates over `FilterState[]` and builds a CQL clause for non‑empty `query`s.
 - First term: `term="value"`.
-- Subsequent terms: prefixed with the row's `operator` (`AND`, `OR`,
-  `NOT`).
-- Returns a single string wrapped in parentheses or `""` when there are
-  no valid terms.
+- Subsequent terms: prefixed with the row's `operator` (`AND`, `OR`, `NOT`).
+- Returns a single string wrapped in parentheses or `""` when there are no valid terms.
 
 ### `buildFilterTerms(filters)`
 
@@ -228,11 +216,12 @@ Implemented in `lib/query-builder.ts` with help from `field-mappings.ts`.
   - Emits `((field="value"))` for each selected value.
 - Returns an array of unique filter clause strings.
 
-### `buildCQLQuery(suggests, filters, onShelf?, onlyExtraTitles?)`
+### `buildCQLQuery(filters, preSearchFacets, facets, onlyExtraTitles?)`
 
 - Constructs CQL as a conjunction of:
-  - Suggest terms (if any).
-  - Filter terms for all selected facet values.
+  - Filter terms (search input rows).
+  - PreSearchFacet terms for form-selected facet values.
+  - Facet terms for sidebar-selected facet values.
   - Optional toggle filters:
     - `onShelf` → `term.holdingstatus="OnShelf"` (subject to later
       validation).
@@ -260,12 +249,11 @@ This keeps query construction decoupled from GraphQL enum names.
 
 ### `initial-state.ts`
 
-- `INITIAL_SUGGEST_STATE` – two default suggest rows:
+- `INITIAL_FILTER_INPUTS` – two default filter input rows:
   - Both free‑text (`term.default`), empty query, operator `"and"`.
 - `INITIAL_PRE_SEARCH_FACETS_STATE` – initial form filter configuration.
   - Imports options and presets from `lib/advanced-search-select-options.ts`.
-  - Defines type (`"select"` or `"range"`) for each config object (Genre,
-    Language, Year, Age, etc.).
+  - Defines type (`"select"` or `"range"`) for each config object (Genre, Language, Year, Age, etc.).
 
 ### `facet-configs.ts`
 
@@ -297,7 +285,7 @@ Each `SearchIndexItem` contains:
 Used by:
 
 - `SearchIndexSelect` – to render the index dropdown.
-- `AdvancedSearchForm` / `AdvancedSearchSuggest` – to provide suggestion
+- `AdvancedSearchForm` / `AdvancedSearchFilterRow` – to provide suggestion
   type and placeholder.
 
 ### `suggestions.ts`
@@ -333,9 +321,9 @@ Rendered subcomponents:
    - If `shouldShowSummary` is `true`, renders `AdvancedSearchSummary`
      with an "Edit search" link.
 
-2. **Suggest rows**
+2. **Filter rows**
 
-   - Maps over `suggests` and renders one `AdvancedSearchSuggest` per row.
+   - Maps over `filters` and renders one `AdvancedSearchFilterRow` per row.
    - Determines configuration (label/placeholder/suggest type) from
      `SEARCH_INDEX_OPTIONS` based on `suggest.term`.
    - Maintains a `ref` per row pointing at the `SearchIndexSelect` button
@@ -354,7 +342,7 @@ Rendered subcomponents:
      - Search → `handleSearch` + hides form (summary mode).
      - Reset → `handleClearFilters`, only shown when there is something to clear.
 
-### Suggest row: `AdvancedSearchSuggest`
+### Filter row: `AdvancedSearchFilterRow`
 
 - Renders a single row composed of:
   - `SearchIndexSelect` – index dropdown; forwarded ref from parent.
@@ -491,7 +479,7 @@ Rendered subcomponents:
 ## GraphQL integration
 
 - **Suggests**: `complex-suggest.graphql` → `useComplexSuggestQuery` in
-  `AdvancedSearchSuggest`.
+  `AdvancedSearchFilterRow`.
   - Driven by `q` (query text) and `type` (from `SEARCH_INDEX_OPTIONS`).
 - **Facets**: `complex-facet-search.graphql` →
   `useComplexFacetSearchQuery` in `AdvancedSearchFilters`.
@@ -511,11 +499,11 @@ synchronized.
 
 1. User opens the Advanced Search page.
    - Form is visible (`edit=true` or no active query), with default
-     suggests and empty filters.
-2. User types into suggest rows and/or selects static filters.
-   - `useSearchFormState` updates local `suggests` and `filters`.
+     filters and empty preSearchFacets.
+2. User types into filter rows and/or selects static filters.
+   - `useSearchFormState` updates local `filters` and `preSearchFacets`.
 3. User clicks **Search**.
-   - `handleSearch()` serializes non‑empty suggests and filters into URL.
+   - `handleSearch()` serializes non‑empty filters and preSearchFacets into URL.
    - `useFormVisibility` hides the form and shows `AdvancedSearchSummary`.
 4. `useSearchQueries` sees new URL state.
    - Builds a new CQL query via `buildCQLQuery`.

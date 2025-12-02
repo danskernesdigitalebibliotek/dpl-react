@@ -30,7 +30,7 @@ Each item should be addressed in a separate commit.
 - **Issue:** "suggests" is confusing - it's not autocomplete data, it's user input/requirements
 - **Fix:** Consider renaming to "filters" or similar
 - **Note:** This is a breaking change for existing URLs
-- **Status:** ⬜ Not started
+- **Status:** ✅ Completed
 
 ### 4. Add button not using Button component
 
@@ -173,8 +173,8 @@ Each item should be addressed in a separate commit.
 ## Progress Tracking
 
 - Total items: 19
-- Completed: 1
+- Completed: 3
 - In progress: 0
-- Remaining: 18
+- Remaining: 16
 
 Last updated: 2025-12-02

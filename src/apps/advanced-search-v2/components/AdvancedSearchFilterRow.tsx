@@ -11,7 +11,7 @@ import { Operator } from "../types";
 import ComboBoxAutosuggest from "./ComboBoxAutosuggest";
 import SearchTermSelect from "./SearchTermSelect";
 
-type AdvancedSearchSuggestProps = {
+type AdvancedSearchFilterRowProps = {
   selectedTerm: string;
   onSelectedTermChange: (value: string) => void;
   query: string;
@@ -26,7 +26,7 @@ type AdvancedSearchSuggestProps = {
   disableSuggest?: boolean;
 };
 
-const AdvancedSearchSuggest = ({
+const AdvancedSearchFilterRow = ({
   selectedTerm,
   onSelectedTermChange,
   query,
@@ -39,7 +39,7 @@ const AdvancedSearchSuggest = ({
   showRemoveButton = false,
   shouldAutoFocus,
   disableSuggest = false
-}: AdvancedSearchSuggestProps) => {
+}: AdvancedSearchFilterRowProps) => {
   const t = useText();
 
   const { data } = useComplexSuggestQuery(
@@ -93,4 +93,4 @@ const AdvancedSearchSuggest = ({
   );
 };
 
-export default AdvancedSearchSuggest;
+export default AdvancedSearchFilterRow;

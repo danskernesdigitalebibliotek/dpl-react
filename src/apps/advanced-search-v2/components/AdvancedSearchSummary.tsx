@@ -14,7 +14,7 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
 }) => {
   const t = useText();
   const { urlState } = useSearchQueries();
-  const { suggests, preSearchFacets } = urlState;
+  const { filters, preSearchFacets } = urlState;
 
   const renderOperator = (operator: Operator) => {
     const operatorMap = {
@@ -38,23 +38,19 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
   return (
     <div className="advanced-search-summary">
       <div className="advanced-search-summary__items">
-        {suggests.map((suggest, index) => {
-          if (!suggest.query.trim()) return null;
+        {filters.map((filter, index) => {
+          if (!filter.query.trim()) return null;
           const config = SEARCH_TERM_OPTIONS.find(
-            (item) => item.value === suggest.term
+            (item) => item.value === filter.term
           );
           if (!config) return null;
 
           const value =
-            suggest.term === "term.default"
-              ? `"${suggest.query}"`
-              : suggest.query;
+            filter.term === "term.default" ? `"${filter.query}"` : filter.query;
 
           return (
-            <React.Fragment key={`suggest-${index}`}>
-              {index > 0 &&
-                suggest.operator &&
-                renderOperator(suggest.operator)}
+            <React.Fragment key={`filter-${index}`}>
+              {index > 0 && filter.operator && renderOperator(filter.operator)}
               {renderItem(t(config.labelKey), value)}
             </React.Fragment>
           );
@@ -67,9 +63,9 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
 
           if (!config) return null;
 
-          const hasSuggests = suggests.some((s) => s.query.trim().length > 0);
+          const hasFilters = filters.some((s) => s.query.trim().length > 0);
           const isFirstFacet = facetIndex === 0;
-          const showOperator = hasSuggests || !isFirstFacet;
+          const showOperator = hasFilters || !isFirstFacet;
 
           // Ranges: show as range instead of individual values
           if (config.type === "range") {

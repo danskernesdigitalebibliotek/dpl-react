@@ -8,7 +8,7 @@ export type Option = {
 
 export type Operator = "and" | "or" | "not";
 
-export type SuggestState = {
+export type FilterState = {
   term: string;
   query: string;
   operator?: Operator;
