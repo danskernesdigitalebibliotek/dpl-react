@@ -163,8 +163,8 @@ export const buildCQLQuery = (
   return parts.length > 0 ? parts.join(" AND ") : "*";
 };
 
-// Checks if the query has actual search terms (not just wildcard)
-// e.g. hasValidQuery("*") => false; hasValidQuery('(term.default="harry")') => true
-export const hasValidQuery = (cql: string): boolean => {
-  return cql !== "*";
+// Checks if the query is just a wildcard without specific search terms
+// e.g. isWildcardQuery("*") => true; isWildcardQuery('(term.default="harry")') => false
+export const isWildcardQuery = (cql: string): boolean => {
+  return cql === "*";
 };

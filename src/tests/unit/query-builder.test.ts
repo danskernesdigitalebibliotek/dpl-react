@@ -4,7 +4,7 @@ import {
   buildPreSearchFacetTerms,
   buildPostSearchFacetTerms,
   buildCQLQuery,
-  hasValidQuery
+  isWildcardQuery
 } from "../../apps/advanced-search-v2/lib/query-builder";
 import { FilterState, FacetState } from "../../apps/advanced-search-v2/types";
 import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
@@ -476,28 +476,28 @@ describe("buildCQLQuery", () => {
   });
 });
 
-describe("hasValidQuery", () => {
-  it("returns false for wildcard query", () => {
-    expect(hasValidQuery("*")).toBe(false);
+describe("isWildcardQuery", () => {
+  it("returns true for wildcard query", () => {
+    expect(isWildcardQuery("*")).toBe(true);
   });
 
-  it("returns true for non-wildcard query", () => {
-    expect(hasValidQuery('(term.default="harry")')).toBe(true);
+  it("returns false for non-wildcard query", () => {
+    expect(isWildcardQuery('(term.default="harry")')).toBe(false);
   });
 
-  it("returns true for query containing wildcard as part of string", () => {
-    expect(hasValidQuery('(term.default="*test*")')).toBe(true);
+  it("returns false for query containing wildcard as part of string", () => {
+    expect(isWildcardQuery('(term.default="*test*")')).toBe(false);
   });
 
-  it("returns true for complex query", () => {
+  it("returns false for complex query", () => {
     expect(
-      hasValidQuery(
+      isWildcardQuery(
         '(term.default="harry") AND ((phrase.mainlanguage="dansk"))'
       )
-    ).toBe(true);
+    ).toBe(false);
   });
 
-  it("returns true for filter-only query", () => {
-    expect(hasValidQuery('((phrase.mainlanguage="dansk"))')).toBe(true);
+  it("returns false for filter-only query", () => {
+    expect(isWildcardQuery('((phrase.mainlanguage="dansk"))')).toBe(false);
   });
 });

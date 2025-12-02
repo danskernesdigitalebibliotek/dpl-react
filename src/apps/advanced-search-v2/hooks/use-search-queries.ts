@@ -6,7 +6,7 @@ import {
   parseAsStringEnum
 } from "nuqs";
 import { FilterState, FacetState, SortOption } from "../types";
-import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
+import { buildCQLQuery, isWildcardQuery } from "../lib/query-builder";
 import { isValidFilterState, isValidFacetState } from "../lib/validation";
 
 interface UseSearchQueriesReturn {
@@ -73,7 +73,7 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     [filters, preSearchFacets, facets, onlyExtraTitles]
   );
 
-  const hasQuery = hasValidQuery(cql);
+  const hasQuery = !isWildcardQuery(cql);
 
   return {
     cql,

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useQueryState, parseAsJson, parseAsStringEnum } from "nuqs";
-import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
+import { buildCQLQuery, isWildcardQuery } from "../lib/query-builder";
 import { isValidFilterState, isValidFacetState } from "../lib/validation";
 
 type FormView = "search" | "results";
@@ -47,7 +47,7 @@ export const useFormVisibility = (): UseFormVisibilityReturn => {
   );
 
   const cql = buildCQLQuery(urlFilters, urlPreSearchFacets, urlFacets);
-  const hasCurrentQuery = hasValidQuery(cql);
+  const hasCurrentQuery = !isWildcardQuery(cql);
 
   // Ensure we show the form when there is no current query (e.g. after clearing)
   useEffect(() => {
