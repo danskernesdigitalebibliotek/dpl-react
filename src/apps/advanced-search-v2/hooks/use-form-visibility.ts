@@ -7,7 +7,6 @@ type FormView = "search" | "results";
 
 interface UseFormVisibilityReturn {
   view: FormView;
-  hasCurrentQuery: boolean;
   showResults: boolean;
   setView: (value: FormView) => Promise<URLSearchParams>;
 }
@@ -61,7 +60,6 @@ export const useFormVisibility = (): UseFormVisibilityReturn => {
 
   return {
     view,
-    hasCurrentQuery,
     showResults,
     setView
   };
