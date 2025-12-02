@@ -7,6 +7,7 @@ import {
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import iconExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import iconPlus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Plus.svg";
 
 interface AdvancedSearchFilterGroupProps {
   facetField: ComplexSearchFacetsEnum;
@@ -119,21 +120,11 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                 className="advanced-search-filter-group__show-all"
                 onClick={() => setShowAll(!showAll)}
               >
-                <svg
+                <img
+                  src={iconPlus}
+                  alt=""
                   className="advanced-search-filter-group__show-all-icon"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 4V12M4 8H12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                />
                 <span>
                   {showAll
                     ? t("advancedSearchShowLessText")
