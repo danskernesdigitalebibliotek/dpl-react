@@ -11,7 +11,6 @@ import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { useUrls } from "../../core/utils/url";
 import {
-  constructAdvancedSearchUrl,
   constructMaterialUrl,
   constructSearchUrl,
   constructSearchUrlWithFilter,
@@ -299,25 +298,7 @@ const SearchHeader: React.FC = () => {
     }, 100);
   });
 
-  const [redirectUrl, setRedirectUrl] = useState<URL>(
-    constructSearchUrl(searchUrl, q)
-  );
-
-  useEffect(() => {
-    // We redirect to Advanced search results instead of regular search results if:
-    // - the query is wrapped in double quotes
-    // - the query is not just empty double quotes
-    if (
-      q.trim().charAt(0) === '"' &&
-      q.trim().charAt(q.length - 1) === '"' &&
-      q.trim() !== '""' &&
-      q.trim() !== '"'
-    ) {
-      setRedirectUrl(constructAdvancedSearchUrl(advancedSearchUrl, q));
-    } else {
-      setRedirectUrl(constructSearchUrl(searchUrl, q));
-    }
-  }, [q, advancedSearchUrl, searchUrl]);
+  const redirectUrl = constructSearchUrl(searchUrl, q);
 
   return (
     <div className="header__menu-second">
