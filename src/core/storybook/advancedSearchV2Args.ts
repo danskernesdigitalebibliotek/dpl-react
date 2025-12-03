@@ -254,6 +254,14 @@ export const argTypes = {
   advancedSearchAgeBadgeRangeText: {
     description: "Age badge text for age range (e.g., '10-12 year olds')",
     control: { type: "text" }
+  },
+  advancedSearchFilterMaterialsText: {
+    description: "Dialog heading for filtering materials with count",
+    control: { type: "text" }
+  },
+  advancedSearchShowResultsText: {
+    description: "Button text to show results and close filter dialog",
+    control: { type: "text" }
   }
 };
 
@@ -325,7 +333,9 @@ export default {
   advancedSearchMultiselectSearchPlaceholderText: "Search...",
   advancedSearchAgeBadgeOpenEndedText: "@age+ year olds",
   advancedSearchAgeBadgeSingleText: "@age year olds",
-  advancedSearchAgeBadgeRangeText: "@from-@to year olds"
+  advancedSearchAgeBadgeRangeText: "@from-@to year olds",
+  advancedSearchFilterMaterialsText: "Filter materials (@hitcount)",
+  advancedSearchShowResultsText: "Show results"
 };
 
 export interface AdvancedSearchV2Args {
@@ -394,4 +404,6 @@ export interface AdvancedSearchV2Args {
   advancedSearchAgeBadgeOpenEndedText: string;
   advancedSearchAgeBadgeSingleText: string;
   advancedSearchAgeBadgeRangeText: string;
+  advancedSearchFilterMaterialsText: string;
+  advancedSearchShowResultsText: string;
 }

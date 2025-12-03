@@ -10,6 +10,9 @@ import { usePaginatedResults } from "../hooks/use-paginated-results";
 import { useFormVisibility } from "../hooks/use-form-visibility";
 import CopyLink from "../../../components/copy-link/CopyLink";
 import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-filter.svg";
+import useDialog from "../../../components/dialog/useDialog";
+import Dialog from "../../../components/dialog/Dialog";
+import { Button } from "../../../components/Buttons/Button";
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;
@@ -22,6 +25,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
   const t = useText();
   const { cql, isSearchEnabled, onShelf, sort, setSort } = useSearchQueries();
   const { setView } = useFormVisibility();
+  const { openDialogWithContent, closeDialog, dialogRef } = useDialog();
 
   const {
     resultItems,
@@ -70,13 +74,37 @@ const AdvancedSearchResultsWithFacets: React.FC<
             </div>
             <div className="advanced-search-v2__results-top-bar__right">
               <button
-                onClick={() => setView("search")}
+                onClick={() => openDialogWithContent(true)}
                 className="advanced-search-v2__modify-filters-button"
               >
                 <img src={IconFilter} alt="" />
                 <span>{t("addMoreFiltersText")}</span>
               </button>
               <AdvancedSortSelect sortOption={sort} setSortOption={setSort} />
+
+              <Dialog isSidebar closeDialog={closeDialog} ref={dialogRef}>
+                <div className="advanced-search-filters__dialog">
+                  <div className="advanced-search-filters__dialog-content">
+                    <h2 className="advanced-search-filters__dialog-content__heading">
+                      {t("advancedSearchFilterMaterialsText", {
+                        placeholders: { "@hitcount": hitcount }
+                      })}
+                    </h2>
+                    <AdvancedSearchFacets cql={cql} />
+                  </div>
+                  <div className="advanced-search-filters__dialog__actions">
+                    <Button
+                      classNames="advanced-search-filters__dialog__actions__button"
+                      collapsible
+                      label={t("advancedSearchShowResultsText")}
+                      size="medium"
+                      buttonType="default"
+                      variant="filled"
+                      onClick={closeDialog}
+                    />
+                  </div>
+                </div>
+              </Dialog>
             </div>
           </div>
 
