@@ -23,7 +23,6 @@ interface SelectableMaterialProps {
   statusMessageComponentMobile: ReactNode;
   statusMessageComponentDesktop: ReactNode;
   statusBadgeComponent: ReactNode;
-  statusBadgeComponentMobile?: ReactNode;
   focused: boolean;
   displayedMaterial?: ReservationType;
   noHoverEffect?: boolean;
@@ -39,7 +38,6 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
   statusMessageComponentMobile,
   statusMessageComponentDesktop,
   statusBadgeComponent,
-  statusBadgeComponentMobile,
   focused,
   displayedMaterial,
   noHoverEffect = false
@@ -113,9 +111,9 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
               <div className="status-label status-label--outline ">
                 {materialType}
               </div>
+              {statusBadgeComponent || null}
             </div>
           )}
-          {statusBadgeComponentMobile || null}
           <p className="list-materials__content__header mt-8" lang={lang || ""}>
             {title}
           </p>
@@ -127,7 +125,6 @@ const SelectableMaterial: FC<SelectableMaterialProps & MaterialProps> = ({
           </div>
         </div>
         <div className="list-materials__status list-materials__status--desktop">
-          {statusBadgeComponent}
           {displayedMaterial && (
             <ReservationInfo
               reservationInfo={displayedMaterial}

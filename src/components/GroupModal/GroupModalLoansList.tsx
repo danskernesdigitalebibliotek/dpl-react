@@ -66,13 +66,6 @@ const GroupModalLoansList: FC<GroupModalLoansListProps> = ({
                 neutralText={getLoanDeliveryDate(loanType, formatDate, t)}
               />
             }
-            statusBadgeComponentMobile={
-              <StatusBadge
-                badgeDate={loanType.dueDate}
-                neutralText={getLoanDeliveryDate(loanType, formatDate, t)}
-                mobileVersion
-              />
-            }
             statusMessageComponentDesktop={
               <StatusMessage
                 className="list-materials__status__note-desktop"
