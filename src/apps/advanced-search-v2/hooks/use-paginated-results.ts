@@ -14,10 +14,6 @@ import { usePrevious } from "react-use";
 export interface UsePaginatedResultsReturn {
   resultItems: Work[];
   hitcount: number;
-  isLoading: boolean;
-  isFetching: boolean;
-  isRefetching: boolean;
-  canShowZeroResults: boolean;
   page: number;
   PagerComponent: React.FC<{ isLoading?: boolean }>;
   isLoadingOrRefetching: boolean;
@@ -39,7 +35,7 @@ interface UsePaginatedResultsProps {
  *
  * Key behaviors:
  * - Accumulates results across pages (infinite scroll pattern)
- * - Resets accumulated results when query parameters change (cql, sort)
+ * - Resets accumulated results when query parameters change (cql, sort, onShelf)
  * - Prevents "zero results" flash during query transitions
  * - Disables React Query caching to avoid stale data conflicts
  */
@@ -121,7 +117,11 @@ export const usePaginatedResults = ({
 
   // Track query parameters to detect when we need to reset accumulated results.
   // Using usePrevious + isEqual provides cleaner change detection than manual state.
-  const currentQuery = useMemo(() => ({ cql, sort }), [cql, sort]);
+  // Includes onShelf to ensure filter changes reset pagination properly.
+  const currentQuery = useMemo(
+    () => ({ cql, sort, onShelf }),
+    [cql, sort, onShelf]
+  );
   const prevQuery = usePrevious(currentQuery);
 
   // Reset accumulated results when query parameters change.
@@ -155,10 +155,6 @@ export const usePaginatedResults = ({
   return {
     resultItems,
     hitcount,
-    isLoading,
-    isFetching,
-    isRefetching,
-    canShowZeroResults,
     page,
     PagerComponent,
     isLoadingOrRefetching,
