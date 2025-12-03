@@ -14,10 +14,6 @@ import {
 export interface UsePaginatedResultsReturn {
   resultItems: Work[];
   hitcount: number;
-  isLoading: boolean;
-  isFetching: boolean;
-  isRefetching: boolean;
-  canShowZeroResults: boolean;
   page: number;
   PagerComponent: React.FC<{ isLoading?: boolean }>;
   isLoadingOrRefetching: boolean;
@@ -53,24 +49,36 @@ export const usePaginatedResults = ({
 
   const sortInput = getSortInput(sort);
 
-  const { data, isLoading, isFetching, fetchNextPage, isPreviousData } =
-    useInfiniteComplexSearch(
-      {
-        cql,
-        limit: pageSize,
-        filters: {
-          ...(onShelf && {
-            status: [HoldingsStatusEnum.Onshelf],
-            branchId: cleanBranches
-          })
-        },
-        sort: sortInput
+  const {
+    data,
+    isLoading,
+    isFetching,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage
+  } = useInfiniteComplexSearch(
+    {
+      cql,
+      limit: pageSize,
+      filters: {
+        ...(onShelf && {
+          status: [HoldingsStatusEnum.Onshelf],
+          branchId: cleanBranches
+        })
       },
-      {
-        enabled: hasQuery,
-        keepPreviousData: true
-      }
-    );
+      sort: sortInput
+    },
+    {
+      enabled: hasQuery,
+      // Caching is disabled to prevent scroll jumps when onShelf change.
+      // With caching, toggling filters would briefly show old multi-page data,
+      // then collapse to page 0 when new data arrives, causing a jarring jump.
+      // Disabling cache ensures a clean loading → fresh content transition.
+      keepPreviousData: false,
+      cacheTime: 0,
+      staleTime: 0
+    }
+  );
 
   // Derive values from infinite query data
   const resultItems = useMemo(
@@ -87,6 +95,9 @@ export const usePaginatedResults = ({
   const itemsShown = Math.min(resultItems.length, hitcount);
 
   // Create PagerComponent that uses fetchNextPage
+  // Following TanStack Query best practices:
+  // - Guard fetchNextPage with hasNextPage && !isFetching to prevent overwrites
+  // - Use isFetchingNextPage to show loading state (distinguishes from background refresh)
   const PagerComponent: React.FC<{ isLoading?: boolean }> = useMemo(
     () =>
       function Pager({ isLoading: pagerIsLoading }) {
@@ -97,36 +108,34 @@ export const usePaginatedResults = ({
             itemsShown={itemsShown}
             hitcount={hitcount}
             classNames=""
-            setPageHandler={() => fetchNextPage()}
-            isLoading={pagerIsLoading || isFetching}
+            setPageHandler={() => {
+              if (hasNextPage && !isFetching) {
+                fetchNextPage();
+              }
+            }}
+            isLoading={pagerIsLoading || isFetchingNextPage}
           />
         );
       },
-    [hitcount, itemsShown, fetchNextPage, isFetching]
+    [
+      hitcount,
+      itemsShown,
+      fetchNextPage,
+      hasNextPage,
+      isFetching,
+      isFetchingNextPage
+    ]
   );
 
-  // Simplified state derivation
-  // isPreviousData indicates we're showing cached data while new query loads
-  const isRefetching = isPreviousData && isFetching;
   const isLoadingOrRefetching = isLoading || isFetching;
-
-  // canShowZeroResults: only show zero state after we've actually completed a fetch
-  // When isPreviousData is true, we're still showing old data, so don't show zero yet
-  const canShowZeroResults = !isPreviousData && !isLoading;
-
   const shouldShowSearchResults =
     isLoadingOrRefetching || resultItems.length > 0;
   const shouldShowResultHeadline = hitcount > 0 && !isLoadingOrRefetching;
-  const shouldShowZeroResults =
-    !isLoadingOrRefetching && hitcount === 0 && canShowZeroResults;
+  const shouldShowZeroResults = !isLoadingOrRefetching && hitcount === 0;
 
   return {
     resultItems,
     hitcount,
-    isLoading,
-    isFetching,
-    isRefetching,
-    canShowZeroResults,
     page,
     PagerComponent,
     isLoadingOrRefetching,
