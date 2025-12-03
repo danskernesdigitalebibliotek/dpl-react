@@ -65,6 +65,12 @@ const meta: Meta<typeof DashBoard> = {
     yourProfileText: {
       control: { type: "text" }
     },
+    // Config
+    blacklistedAvailabilityBranchesConfig: {
+      description: "Blacklisted availability branches",
+      control: { type: "text" }
+    },
+    // Texts.
     feesText: {
       control: { type: "text" }
     },
@@ -167,6 +173,8 @@ export const Primary: Story = {
     ...reservationListArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    blacklistedAvailabilityBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
     physicalLoansUrl: "/user/me/loans",
     reservationsUrl: "/user/me/reservations",
     yourProfileText: "Your profile",

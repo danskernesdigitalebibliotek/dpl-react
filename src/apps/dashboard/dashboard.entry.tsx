@@ -23,6 +23,7 @@ export interface DashBoardProps {
   reservationsUrl: string;
   // Config
   blacklistedPickupBranchesConfig: string;
+  blacklistedAvailabilityBranchesConfig: string;
   branchesConfig: string;
   expirationWarningDaysBeforeConfig: string;
   // Texts
