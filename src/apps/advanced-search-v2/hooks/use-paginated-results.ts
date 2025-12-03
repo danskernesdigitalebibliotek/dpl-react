@@ -18,7 +18,6 @@ export interface UsePaginatedResultsReturn {
   PagerComponent: React.FC<{ isLoading?: boolean }>;
   isLoadingOrRefetching: boolean;
   shouldShowSearchResults: boolean;
-  shouldShowResultHeadline: boolean;
   shouldShowZeroResults: boolean;
 }
 
@@ -148,7 +147,6 @@ export const usePaginatedResults = ({
   const isLoadingOrRefetching = isLoading || isFetching || isRefetching;
   const shouldShowSearchResults =
     isLoadingOrRefetching || resultItems.length > 0;
-  const shouldShowResultHeadline = hitcount > 0 && !isLoadingOrRefetching;
   const shouldShowZeroResults =
     !isLoadingOrRefetching && hitcount === 0 && canShowZeroResults;
 
@@ -159,7 +157,6 @@ export const usePaginatedResults = ({
     PagerComponent,
     isLoadingOrRefetching,
     shouldShowSearchResults,
-    shouldShowResultHeadline,
     shouldShowZeroResults
   };
 };
