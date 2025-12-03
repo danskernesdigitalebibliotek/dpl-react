@@ -137,21 +137,27 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
   const handleClearFilters = () => {
     setSuggests(INITIAL_SUGGEST_STATE);
     setPreSearchFacets([]);
-    setUrlState({
-      suggests: INITIAL_SUGGEST_STATE,
-      preSearchFacets: [],
-      facets: []
-    });
+    setUrlState(
+      {
+        suggests: INITIAL_SUGGEST_STATE,
+        preSearchFacets: [],
+        facets: []
+      },
+      { history: "push" }
+    );
   };
 
   // Clear facets (sidebar filters), toggles, and sort when returning to edit
   const clearFacets = () => {
-    setUrlState({
-      facets: [],
-      onShelf: false,
-      onlyExtraTitles: false,
-      sort: null
-    });
+    setUrlState(
+      {
+        facets: [],
+        onShelf: false,
+        onlyExtraTitles: false,
+        sort: null
+      },
+      { history: "push" }
+    );
   };
 
   return {

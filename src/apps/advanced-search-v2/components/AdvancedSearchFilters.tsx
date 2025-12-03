@@ -58,7 +58,10 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
 
     // Remove facet if empty
     if (selectedValues.length === 0) {
-      setFacetsInUrl(facetsFromUrl.filter((f) => f.facetField !== facetField));
+      setFacetsInUrl(
+        facetsFromUrl.filter((f) => f.facetField !== facetField),
+        { history: "push" }
+      );
       return;
     }
 
@@ -71,19 +74,23 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
       setFacetsInUrl(
         facetsFromUrl.map((f) =>
           f.facetField === facetField ? { ...f, selectedValues } : f
-        )
+        ),
+        { history: "push" }
       );
       return;
     }
 
     // Add new facet
-    setFacetsInUrl([
-      ...facetsFromUrl,
-      {
-        facetField,
-        selectedValues
-      }
-    ]);
+    setFacetsInUrl(
+      [
+        ...facetsFromUrl,
+        {
+          facetField,
+          selectedValues
+        }
+      ],
+      { history: "push" }
+    );
   };
 
   const getSelectedValues = (facetField: ComplexSearchFacetsEnum): string[] => {
@@ -107,14 +114,16 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
             label={t("advancedSearchOnShelfText")}
             description={t("advancedSearchOnShelfDescriptionText")}
             checked={onShelf}
-            onChange={setOnShelf}
+            onChange={(checked) => setOnShelf(checked, { history: "push" })}
           />
           <AdvancedSearchToggle
             id="only-extra-titles"
             label={t("advancedSearchOnlyExtraTitlesText")}
             description={t("advancedSearchOnlyExtraTitlesDescriptionText")}
             checked={onlyExtraTitles}
-            onChange={setOnlyExtraTitles}
+            onChange={(checked) =>
+              setOnlyExtraTitles(checked, { history: "push" })
+            }
           />
         </div>
 
