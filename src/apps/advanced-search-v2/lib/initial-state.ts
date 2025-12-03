@@ -1,5 +1,5 @@
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
-import { SuggestState, PreFacetConfig } from "../types";
+import { FilterState, PreFacetConfig } from "../types";
 
 import {
   MATERIAL_TYPE_OPTIONS,
@@ -10,7 +10,7 @@ import {
   AGE_PRESETS
 } from "./advanced-search-select-options";
 
-export const INITIAL_SUGGEST_STATE: SuggestState[] = [
+export const INITIAL_FILTER_STATE: FilterState[] = [
   { term: "term.default", query: "", operator: "and" },
   { term: "term.default", query: "", operator: "and" }
 ];

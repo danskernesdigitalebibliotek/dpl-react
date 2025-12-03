@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useQueryState, parseAsJson, parseAsStringEnum } from "nuqs";
-import { buildCQLQuery, hasValidQuery } from "../lib/query-builder";
-import { isValidSuggestState, isValidFacetState } from "../lib/validation";
+import { buildCQLQuery, isWildcardQuery } from "../lib/query-builder";
+import { isValidFilterState, isValidFacetState } from "../lib/validation";
 
 type FormView = "search" | "results";
 
 interface UseFormVisibilityReturn {
   view: FormView;
-  hasCurrentQuery: boolean;
   showResults: boolean;
   setView: (value: FormView) => Promise<URLSearchParams>;
 }
@@ -23,10 +22,10 @@ export const useFormVisibility = (): UseFormVisibilityReturn => {
   );
 
   // Read committed search state from URL (not local draft state)
-  const [urlSuggests] = useQueryState(
-    "suggests",
+  const [urlFilters] = useQueryState(
+    "filters",
     parseAsJson((value) => {
-      if (isValidSuggestState(value)) return value;
+      if (isValidFilterState(value)) return value;
       return [];
     }).withDefault([])
   );
@@ -47,21 +46,20 @@ export const useFormVisibility = (): UseFormVisibilityReturn => {
     }).withDefault([])
   );
 
-  const cql = buildCQLQuery(urlSuggests, urlPreSearchFacets, urlFacets);
-  const hasCurrentQuery = hasValidQuery(cql);
+  const cql = buildCQLQuery(urlFilters, urlPreSearchFacets, urlFacets);
+  const isNotWildcard = !isWildcardQuery(cql);
 
   // Ensure we show the form when there is no current query (e.g. after clearing)
   useEffect(() => {
-    if (!hasCurrentQuery && view !== "search") {
+    if (!isNotWildcard && view !== "search") {
       setView("search");
     }
-  }, [hasCurrentQuery, view, setView]);
+  }, [isNotWildcard, view, setView]);
 
-  const showResults = view === "results" && hasCurrentQuery;
+  const showResults = view === "results" && isNotWildcard;
 
   return {
     view,
-    hasCurrentQuery,
     showResults,
     setView
   };

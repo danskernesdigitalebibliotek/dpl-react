@@ -1,7 +1,8 @@
 import React from "react";
 import AdvancedSearchRangeSelect from "./AdvancedSearchRangeSelect";
-import { RangeValue, RangePreset } from "../types";
+import { RangePreset, RangeValue } from "../types";
 import { useText } from "../../../core/utils/text";
+import { parseRangeFromStrings, rangeToStrings } from "../helpers/rangeAdapter";
 
 type AdvancedSearchAgeSelectProps = {
   label: string;
@@ -9,16 +10,6 @@ type AdvancedSearchAgeSelectProps = {
   onUpdate: (values: string[]) => void;
   resetLabel?: string;
   rangePresets: RangePreset[];
-};
-
-const formatAgeBadge = (
-  from: number | null,
-  to: number | null
-): string | null => {
-  if (from === null) return null;
-  if (to === null) return `${from}+ årige`;
-  if (from === to) return `${from} årige`;
-  return `${from}-${to}-årige`;
 };
 
 const AdvancedSearchAgeSelect: React.FC<AdvancedSearchAgeSelectProps> = ({
@@ -29,24 +20,25 @@ const AdvancedSearchAgeSelect: React.FC<AdvancedSearchAgeSelectProps> = ({
   rangePresets
 }) => {
   const t = useText();
-  // Convert string[] to RangeValue
-  const value: RangeValue = {
-    from:
-      selectedValues[0] && !isNaN(parseInt(selectedValues[0]))
-        ? parseInt(selectedValues[0])
-        : null,
-    to:
-      selectedValues[1] && !isNaN(parseInt(selectedValues[1]))
-        ? parseInt(selectedValues[1])
-        : null
-  };
+  const value = parseRangeFromStrings(selectedValues);
+  const handleChange = (range: RangeValue) => onUpdate(rangeToStrings(range));
 
-  // Convert RangeValue to string[]
-  const handleChange = (range: RangeValue) => {
-    const values: string[] = [];
-    if (range.from !== null) values.push(String(range.from));
-    if (range.to !== null) values.push(String(range.to));
-    onUpdate(values);
+  const formatAgeBadge = (range: RangeValue): string | null => {
+    const { from, to } = range;
+    if (from === null) return null;
+    if (to === null) {
+      return t("advancedSearchAgeBadgeOpenEndedText", {
+        placeholders: { "@age": from }
+      });
+    }
+    if (from === to) {
+      return t("advancedSearchAgeBadgeSingleText", {
+        placeholders: { "@age": from }
+      });
+    }
+    return t("advancedSearchAgeBadgeRangeText", {
+      placeholders: { "@from": from, "@to": to }
+    });
   };
 
   return (

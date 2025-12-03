@@ -8,16 +8,14 @@ import {
   useComplexFacetSearchQuery,
   HoldingsStatusEnum
 } from "../../../core/dbc-gateway/generated/graphql";
-import { FACETS_CONFIG } from "../lib/facet-configs";
+import { FACETS_CONFIG, FACET_FIELDS } from "../lib/facet-configs";
 import { isValidFacetState } from "../lib/validation";
 
-interface AdvancedSearchFiltersProps {
+interface AdvancedSearchFacetsProps {
   cql: string;
 }
 
-const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
-  cql
-}) => {
+const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
   const t = useText();
 
   // Toggle states
@@ -30,11 +28,12 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
     parseAsBoolean.withDefault(false)
   );
 
-  // Fetch all facets in one query
-  const facetFields = FACETS_CONFIG.map((c) => c.facetField);
+  // Facets are fetched in a separate query from search results.
+  // The FBI API supports this and it allows facet counts to update
+  // independently without refetching the full result set.
   const { data: facetData } = useComplexFacetSearchQuery({
     cql,
-    facets: { facets: facetFields, facetLimit: 50 },
+    facets: { facets: FACET_FIELDS, facetLimit: 50 },
     ...(onShelf && { filters: { status: [HoldingsStatusEnum.Onshelf] } })
   });
 
@@ -108,54 +107,60 @@ const AdvancedSearchFilters: React.FC<AdvancedSearchFiltersProps> = ({
     <aside className="advanced-search-filters">
       <div className="advanced-search-filters__container">
         {/* Toggles section */}
-        <div className="advanced-search-filters__toggles">
-          <AdvancedSearchToggle
-            id="on-shelf"
-            label={t("advancedSearchOnShelfText")}
-            description={t("advancedSearchOnShelfDescriptionText")}
-            checked={onShelf}
-            onChange={(checked) => setOnShelf(checked, { history: "push" })}
-          />
-          <AdvancedSearchToggle
-            id="only-extra-titles"
-            label={t("advancedSearchOnlyExtraTitlesText")}
-            description={t("advancedSearchOnlyExtraTitlesDescriptionText")}
-            checked={onlyExtraTitles}
-            onChange={(checked) =>
-              setOnlyExtraTitles(checked, { history: "push" })
-            }
-          />
-        </div>
+        <ul className="advanced-search-filters__toggles">
+          <li>
+            <AdvancedSearchToggle
+              id="on-shelf"
+              label={t("advancedSearchOnShelfText")}
+              description={t("advancedSearchOnShelfDescriptionText")}
+              checked={onShelf}
+              onChange={(checked) => setOnShelf(checked, { history: "push" })}
+            />
+          </li>
+          <li>
+            <AdvancedSearchToggle
+              id="only-extra-titles"
+              label={t("advancedSearchOnlyExtraTitlesText")}
+              description={t("advancedSearchOnlyExtraTitlesDescriptionText")}
+              checked={onlyExtraTitles}
+              onChange={(checked) =>
+                setOnlyExtraTitles(checked, { history: "push" })
+              }
+            />
+          </li>
+        </ul>
 
         {/* Filter groups */}
-        {FACETS_CONFIG.map((config) => {
-          const selectedValues = getSelectedValues(config.facetField);
-          const selectedCount = getSelectedCount(config.facetField);
+        <ul className="advanced-search-filters__groups">
+          {FACETS_CONFIG.map((config) => {
+            const selectedValues = getSelectedValues(config.facetField);
+            const selectedCount = getSelectedCount(config.facetField);
 
-          const facetResponse = facetsResponse.find((f) => {
-            if (!f.name) return false;
+            const facetResponse = facetsResponse.find((f) => {
+              if (!f.name) return false;
+              return (
+                f.name === config.facetField ||
+                f.name === `facet.${config.facetField.toLowerCase()}`
+              );
+            });
+            const facetValues = facetResponse?.values ?? [];
+
             return (
-              f.name === config.facetField ||
-              f.name === `facet.${config.facetField.toLowerCase()}`
+              <AdvancedSearchFilterGroup
+                key={config.facetField}
+                facetField={config.facetField}
+                label={t(config.label)}
+                selectedValues={selectedValues}
+                selectedCount={selectedCount}
+                facetValues={facetValues}
+                onChange={(vals) => handleFacetChange(config.facetField, vals)}
+              />
             );
-          });
-          const facetValues = facetResponse?.values ?? [];
-
-          return (
-            <AdvancedSearchFilterGroup
-              key={config.facetField}
-              facetField={config.facetField}
-              label={t(config.label)}
-              selectedValues={selectedValues}
-              selectedCount={selectedCount}
-              facetValues={facetValues}
-              onChange={(vals) => handleFacetChange(config.facetField, vals)}
-            />
-          );
-        })}
+          })}
+        </ul>
       </div>
     </aside>
   );
 };
 
-export default AdvancedSearchFilters;
+export default AdvancedSearchFacets;

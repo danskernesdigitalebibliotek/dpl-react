@@ -1,36 +1,36 @@
 import { describe, expect, it } from "vitest";
 import {
-  buildSuggestTerms,
+  buildFilterInputTerms,
   buildPreSearchFacetTerms,
   buildPostSearchFacetTerms,
   buildCQLQuery,
-  hasValidQuery
+  isWildcardQuery
 } from "../../apps/advanced-search-v2/lib/query-builder";
-import { SuggestState, FacetState } from "../../apps/advanced-search-v2/types";
+import { FilterState, FacetState } from "../../apps/advanced-search-v2/types";
 import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
 
-describe("buildSuggestTerms", () => {
+describe("buildFilterInputTerms", () => {
   it("returns empty string for empty array", () => {
-    expect(buildSuggestTerms([])).toBe("");
+    expect(buildFilterInputTerms([])).toBe("");
   });
 
   it("returns empty string when all queries are empty", () => {
-    const suggests: SuggestState[] = [
+    const inputs: FilterState[] = [
       { term: "term.default", query: "" },
       { term: "term.title", query: "   " }
     ];
-    expect(buildSuggestTerms(suggests)).toBe("");
+    expect(buildFilterInputTerms(inputs)).toBe("");
   });
 
   it("builds single term correctly", () => {
-    const suggests: SuggestState[] = [{ term: "term.default", query: "harry" }];
-    expect(buildSuggestTerms(suggests)).toBe('(term.default="harry")');
+    const inputs: FilterState[] = [{ term: "term.default", query: "harry" }];
+    expect(buildFilterInputTerms(inputs)).toBe('(term.default="harry")');
   });
 
   it("builds multiple terms with AND operator (default or explicit)", () => {
     // Default (no operator specified)
     expect(
-      buildSuggestTerms([
+      buildFilterInputTerms([
         { term: "term.default", query: "harry" },
         { term: "term.default", query: "potter" }
       ])
@@ -38,7 +38,7 @@ describe("buildSuggestTerms", () => {
 
     // Explicit operator: "and"
     expect(
-      buildSuggestTerms([
+      buildFilterInputTerms([
         { term: "term.default", query: "harry" },
         { term: "term.default", query: "potter", operator: "and" }
       ])
@@ -46,70 +46,70 @@ describe("buildSuggestTerms", () => {
   });
 
   it("builds terms with OR operator", () => {
-    const suggests: SuggestState[] = [
+    const inputs: FilterState[] = [
       { term: "term.default", query: "roman" },
       { term: "term.default", query: "novelle", operator: "or" }
     ];
-    expect(buildSuggestTerms(suggests)).toBe(
+    expect(buildFilterInputTerms(inputs)).toBe(
       '(term.default="roman" OR term.default="novelle")'
     );
   });
 
   it("builds terms with NOT operator", () => {
-    const suggests: SuggestState[] = [
+    const inputs: FilterState[] = [
       { term: "term.default", query: "harry" },
       { term: "term.default", query: "potter", operator: "not" }
     ];
-    expect(buildSuggestTerms(suggests)).toBe(
+    expect(buildFilterInputTerms(inputs)).toBe(
       '(term.default="harry" NOT term.default="potter")'
     );
   });
 
   it("builds terms with mixed operators", () => {
-    const suggests: SuggestState[] = [
+    const inputs: FilterState[] = [
       { term: "term.default", query: "fantasy" },
       { term: "term.title", query: "dragon", operator: "and" },
       { term: "term.creator", query: "tolkien", operator: "or" },
       { term: "term.default", query: "horror", operator: "not" }
     ];
-    expect(buildSuggestTerms(suggests)).toBe(
+    expect(buildFilterInputTerms(inputs)).toBe(
       '(term.default="fantasy" AND term.title="dragon" OR term.creator="tolkien" NOT term.default="horror")'
     );
   });
 
   it("skips empty queries in mixed input", () => {
-    const suggests: SuggestState[] = [
+    const inputs: FilterState[] = [
       { term: "term.default", query: "harry" },
       { term: "term.default", query: "" },
       { term: "term.default", query: "potter", operator: "and" }
     ];
-    expect(buildSuggestTerms(suggests)).toBe(
+    expect(buildFilterInputTerms(inputs)).toBe(
       '(term.default="harry" AND term.default="potter")'
     );
   });
 
   it("handles empty first query correctly", () => {
-    const suggests: SuggestState[] = [
+    const inputs: FilterState[] = [
       { term: "term.default", query: "" },
       { term: "term.default", query: "potter", operator: "and" }
     ];
-    expect(buildSuggestTerms(suggests)).toBe('(term.default="potter")');
+    expect(buildFilterInputTerms(inputs)).toBe('(term.default="potter")');
   });
 
   it("escapes double quotes in query", () => {
-    const suggests: SuggestState[] = [
+    const inputs: FilterState[] = [
       { term: "term.default", query: 'book "title"' }
     ];
-    expect(buildSuggestTerms(suggests)).toBe(
+    expect(buildFilterInputTerms(inputs)).toBe(
       '(term.default="book \\"title\\"")'
     );
   });
 
   it("escapes multiple double quotes", () => {
-    const suggests: SuggestState[] = [
+    const inputs: FilterState[] = [
       { term: "term.default", query: '"hello" "world"' }
     ];
-    expect(buildSuggestTerms(suggests)).toBe(
+    expect(buildFilterInputTerms(inputs)).toBe(
       '(term.default="\\"hello\\" \\"world\\"")'
     );
   });
@@ -364,16 +364,16 @@ describe("buildCQLQuery", () => {
   });
 
   it("returns wildcard when all inputs are empty", () => {
-    const suggests: SuggestState[] = [{ term: "term.default", query: "" }];
+    const filters: FilterState[] = [{ term: "term.default", query: "" }];
     const facets: FacetState[] = [
       { facetField: ComplexSearchFacetsEnum.Mainlanguage, selectedValues: [] }
     ];
-    expect(buildCQLQuery(suggests, facets, [])).toBe("*");
+    expect(buildCQLQuery(filters, facets, [])).toBe("*");
   });
 
   it("builds query with only search terms", () => {
-    const suggests: SuggestState[] = [{ term: "term.default", query: "harry" }];
-    expect(buildCQLQuery(suggests, [], [])).toBe('(term.default="harry")');
+    const filters: FilterState[] = [{ term: "term.default", query: "harry" }];
+    expect(buildCQLQuery(filters, [], [])).toBe('(term.default="harry")');
   });
 
   it("builds query with only pre-search facets", () => {
@@ -401,20 +401,20 @@ describe("buildCQLQuery", () => {
   });
 
   it("combines search terms and pre-search facets with AND", () => {
-    const suggests: SuggestState[] = [{ term: "term.default", query: "harry" }];
+    const filters: FilterState[] = [{ term: "term.default", query: "harry" }];
     const preSearchFacets: FacetState[] = [
       {
         facetField: ComplexSearchFacetsEnum.Mainlanguage,
         selectedValues: ["dansk"]
       }
     ];
-    expect(buildCQLQuery(suggests, preSearchFacets, [])).toBe(
+    expect(buildCQLQuery(filters, preSearchFacets, [])).toBe(
       '(term.default="harry") AND ((phrase.mainlanguage="dansk"))'
     );
   });
 
   it("combines search terms, pre-search facets and facets with AND", () => {
-    const suggests: SuggestState[] = [{ term: "term.default", query: "harry" }];
+    const filters: FilterState[] = [{ term: "term.default", query: "harry" }];
     const preSearchFacets: FacetState[] = [
       {
         facetField: ComplexSearchFacetsEnum.Mainlanguage,
@@ -427,22 +427,20 @@ describe("buildCQLQuery", () => {
         selectedValues: ["krimi"]
       }
     ];
-    expect(buildCQLQuery(suggests, preSearchFacets, facets)).toBe(
+    expect(buildCQLQuery(filters, preSearchFacets, facets)).toBe(
       '(term.default="harry") AND ((phrase.mainlanguage="dansk")) AND ((phrase.genreandform="krimi"))'
     );
   });
 
   it("adds onlyExtraTitles filter when enabled", () => {
-    const suggests: SuggestState[] = [{ term: "term.default", query: "harry" }];
-    expect(buildCQLQuery(suggests, [], [], true)).toBe(
+    const filters: FilterState[] = [{ term: "term.default", query: "harry" }];
+    expect(buildCQLQuery(filters, [], [], true)).toBe(
       '(term.default="harry") AND term.canAlwaysBeLoaned="true"'
     );
   });
 
   it("builds complete query with all options", () => {
-    const suggests: SuggestState[] = [
-      { term: "term.default", query: "fantasy" }
-    ];
+    const filters: FilterState[] = [{ term: "term.default", query: "fantasy" }];
     const preSearchFacets: FacetState[] = [
       {
         facetField: ComplexSearchFacetsEnum.Publicationyear,
@@ -455,13 +453,13 @@ describe("buildCQLQuery", () => {
         selectedValues: ["bog"]
       }
     ];
-    expect(buildCQLQuery(suggests, preSearchFacets, facets, true)).toBe(
+    expect(buildCQLQuery(filters, preSearchFacets, facets, true)).toBe(
       '(term.default="fantasy") AND ((publicationyear within "2020 2024")) AND ((phrase.specificmaterialtype="bog")) AND term.canAlwaysBeLoaned="true"'
     );
   });
 
   it("handles complex multi-term search with operators", () => {
-    const suggests: SuggestState[] = [
+    const filters: FilterState[] = [
       { term: "term.title", query: "harry potter" },
       { term: "term.creator", query: "rowling", operator: "and" },
       { term: "term.default", query: "børn", operator: "not" }
@@ -472,34 +470,34 @@ describe("buildCQLQuery", () => {
         selectedValues: ["6", "12"]
       }
     ];
-    expect(buildCQLQuery(suggests, preSearchFacets, [])).toBe(
+    expect(buildCQLQuery(filters, preSearchFacets, [])).toBe(
       '(term.title="harry potter" AND term.creator="rowling" NOT term.default="børn") AND ((ages within "6 12"))'
     );
   });
 });
 
-describe("hasValidQuery", () => {
-  it("returns false for wildcard query", () => {
-    expect(hasValidQuery("*")).toBe(false);
+describe("isWildcardQuery", () => {
+  it("returns true for wildcard query", () => {
+    expect(isWildcardQuery("*")).toBe(true);
   });
 
-  it("returns true for non-wildcard query", () => {
-    expect(hasValidQuery('(term.default="harry")')).toBe(true);
+  it("returns false for non-wildcard query", () => {
+    expect(isWildcardQuery('(term.default="harry")')).toBe(false);
   });
 
-  it("returns true for query containing wildcard as part of string", () => {
-    expect(hasValidQuery('(term.default="*test*")')).toBe(true);
+  it("returns false for query containing wildcard as part of string", () => {
+    expect(isWildcardQuery('(term.default="*test*")')).toBe(false);
   });
 
-  it("returns true for complex query", () => {
+  it("returns false for complex query", () => {
     expect(
-      hasValidQuery(
+      isWildcardQuery(
         '(term.default="harry") AND ((phrase.mainlanguage="dansk"))'
       )
-    ).toBe(true);
+    ).toBe(false);
   });
 
-  it("returns true for filter-only query", () => {
-    expect(hasValidQuery('((phrase.mainlanguage="dansk"))')).toBe(true);
+  it("returns false for filter-only query", () => {
+    expect(isWildcardQuery('((phrase.mainlanguage="dansk"))')).toBe(false);
   });
 });

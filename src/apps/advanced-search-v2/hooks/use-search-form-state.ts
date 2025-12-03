@@ -5,18 +5,18 @@ import {
   parseAsBoolean,
   parseAsStringEnum
 } from "nuqs";
-import { SuggestState, FacetState, SortOption } from "../types";
-import { INITIAL_SUGGEST_STATE } from "../lib/initial-state";
+import { FilterState, FacetState, SortOption } from "../types";
+import { INITIAL_FILTER_STATE } from "../lib/initial-state";
 
-import { isValidSuggestState, isValidFacetState } from "../lib/validation";
+import { isValidFilterState, isValidFacetState } from "../lib/validation";
 
 export interface UseSearchFormStateReturn {
-  suggests: SuggestState[];
+  filters: FilterState[];
   preSearchFacets: FacetState[];
-  updateSuggest: (index: number, updates: Partial<SuggestState>) => void;
+  updateFilter: (index: number, updates: Partial<FilterState>) => void;
   updatePreSearchFacet: (preSearchFacet: FacetState) => void;
-  addSuggest: () => void;
-  removeSuggest: (index: number) => void;
+  addFilter: () => void;
+  removeFilter: (index: number) => void;
   handleSearch: () => void;
   handleClearFilters: () => void;
   clearFacets: () => void;
@@ -24,49 +24,46 @@ export interface UseSearchFormStateReturn {
 
 /**
  * Hook to manage search form state with URL synchronization
- * Manages suggests and preSearchFacets (form selects)
- * Facets (sidebar filters) are managed separately in AdvancedSearchFilters
+ * Manages filters and preSearchFacets (form selects)
+ * Facets (sidebar filters) are managed separately in AdvancedSearchFacets
  */
 export const useSearchFormState = (): UseSearchFormStateReturn => {
   // URL state management with nuqs
-  const [urlState, setUrlState] = useQueryStates(
-    {
-      suggests: parseAsJson((value) => {
-        if (isValidSuggestState(value)) return value;
-        return INITIAL_SUGGEST_STATE;
-      }).withDefault(INITIAL_SUGGEST_STATE),
-      preSearchFacets: parseAsJson((value) => {
-        if (isValidFacetState(value)) return value;
-        return [];
-      }).withDefault([]),
-      facets: parseAsJson((value) => {
-        if (isValidFacetState(value)) return value;
-        return [];
-      }).withDefault([]),
-      onShelf: parseAsBoolean.withDefault(false),
-      onlyExtraTitles: parseAsBoolean.withDefault(false),
-      sort: parseAsStringEnum<SortOption>(
-        Object.values(SortOption)
-      ).withDefault(SortOption.Relevance)
-    },
-    { shallow: true }
-  );
+  const [urlState, setUrlState] = useQueryStates({
+    filters: parseAsJson((value) => {
+      if (isValidFilterState(value)) return value;
+      return INITIAL_FILTER_STATE;
+    }).withDefault(INITIAL_FILTER_STATE),
+    preSearchFacets: parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([]),
+    facets: parseAsJson((value) => {
+      if (isValidFacetState(value)) return value;
+      return [];
+    }).withDefault([]),
+    onShelf: parseAsBoolean.withDefault(false),
+    onlyExtraTitles: parseAsBoolean.withDefault(false),
+    sort: parseAsStringEnum<SortOption>(Object.values(SortOption)).withDefault(
+      SortOption.Relevance
+    )
+  });
 
   // Local state for temporary changes - initialize from URL
-  const [suggests, setSuggests] = useState<SuggestState[]>(urlState.suggests);
+  const [filters, setFilters] = useState<FilterState[]>(urlState.filters);
   const [preSearchFacets, setPreSearchFacets] = useState<FacetState[]>(
     urlState.preSearchFacets
   );
 
   // Sync local state with URL state on mount/URL change
   useEffect(() => {
-    setSuggests(urlState.suggests);
+    setFilters(urlState.filters);
     setPreSearchFacets(urlState.preSearchFacets);
-  }, [urlState.suggests, urlState.preSearchFacets]);
+  }, [urlState.filters, urlState.preSearchFacets]);
 
-  // Update a specific suggest by index
-  const updateSuggest = (index: number, updates: Partial<SuggestState>) => {
-    setSuggests((prev) =>
+  // Update a specific filter by index
+  const updateFilter = (index: number, updates: Partial<FilterState>) => {
+    setFilters((prev) =>
       prev.map((item, idx) => (idx === index ? { ...item, ...updates } : item))
     );
   };
@@ -93,17 +90,17 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     });
   };
 
-  // Add a new suggest row
-  const addSuggest = () => {
-    setSuggests((prev) => [
+  // Add a new filter row
+  const addFilter = () => {
+    setFilters((prev) => [
       ...prev,
       { term: "term.default", query: "", operator: "and" }
     ]);
   };
 
-  // Remove a suggest row by index (minimum 1 row must remain)
-  const removeSuggest = (index: number) => {
-    setSuggests((prev) => {
+  // Remove a filter row by index (minimum 1 row must remain)
+  const removeFilter = (index: number) => {
+    setFilters((prev) => {
       if (prev.length <= 1) return prev;
       return prev.filter((_, idx) => idx !== index);
     });
@@ -112,20 +109,22 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
   // Sync local state to URL and trigger search
   const handleSearch = () => {
     // Filter out empty queries and remove operator from first row (never used)
-    const nonEmptySuggests = suggests
-      .filter((suggest) => suggest.query.trim())
-      .map((suggest, index) => {
-        // First suggest doesn't need operator field
+    const nonEmptyFilters = filters
+      .filter((filter) => filter.query.trim())
+      .map((filter, index) => {
+        // First filter doesn't need operator field
         if (index === 0) {
-          return { term: suggest.term, query: suggest.query };
+          return { term: filter.term, query: filter.query };
         }
-        return suggest;
+        return filter;
       });
 
+    // history: "push" creates a browser history entry so users can navigate
+    // back to previous search results with the back button.
     setUrlState(
       {
-        // Don't write empty suggests to URL - let it use default on reload
-        suggests: nonEmptySuggests.length > 0 ? nonEmptySuggests : null,
+        // Don't write empty filters to URL - let it use default on reload
+        filters: nonEmptyFilters.length > 0 ? nonEmptyFilters : null,
         preSearchFacets: preSearchFacets.length > 0 ? preSearchFacets : null,
         facets: null // Keep existing facets when searching
       },
@@ -135,11 +134,11 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
 
   // Clear all filters
   const handleClearFilters = () => {
-    setSuggests(INITIAL_SUGGEST_STATE);
+    setFilters(INITIAL_FILTER_STATE);
     setPreSearchFacets([]);
     setUrlState(
       {
-        suggests: INITIAL_SUGGEST_STATE,
+        filters: INITIAL_FILTER_STATE,
         preSearchFacets: [],
         facets: []
       },
@@ -161,12 +160,12 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
   };
 
   return {
-    suggests,
+    filters,
     preSearchFacets,
-    updateSuggest,
+    updateFilter,
     updatePreSearchFacet,
-    addSuggest,
-    removeSuggest,
+    addFilter,
+    removeFilter,
     handleSearch,
     handleClearFilters,
     clearFacets

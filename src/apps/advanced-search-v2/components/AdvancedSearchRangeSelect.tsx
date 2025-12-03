@@ -19,7 +19,7 @@ type RangeSelectProps = {
   fromLabel?: string;
   toLabel?: string;
   resetLabel?: string;
-  formatBadge?: (from: number | null, to: number | null) => string | null;
+  formatBadge?: (range: RangeValue) => string | null;
 };
 
 const emptyRange: RangeValue = { from: null, to: null };
@@ -32,10 +32,8 @@ const parseIntegerOrNull = (rawValue: string): number | null => {
   return Number.isNaN(parsed) ? null : parsed;
 };
 
-const defaultFormatBadge = (
-  from: number | null,
-  to: number | null
-): string | null => {
+const defaultFormatBadge = (range: RangeValue): string | null => {
+  const { from, to } = range;
   if (from === null) return null;
   if (to === null) return `${from}+`;
   if (from === to) return `${from}`;
@@ -93,7 +91,7 @@ const RangeSelect: React.FC<RangeSelectProps> = ({
                     : t("advancedSearchAllText")}
                   {currentValue.from && (
                     <span className="range-select__button-label__count-badge">
-                      {formatBadge(currentValue.from, currentValue.to)}
+                      {formatBadge(currentValue)}
                     </span>
                   )}
                 </div>

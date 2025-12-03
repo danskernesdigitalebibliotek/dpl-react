@@ -1,4 +1,4 @@
-import { SuggestState, FacetState, Operator } from "../types";
+import { FilterState, FacetState, Operator } from "../types";
 import { ComplexSearchFacetsEnum } from "../../../core/dbc-gateway/generated/graphql";
 
 const VALID_OPERATORS: Operator[] = ["and", "or", "not"];
@@ -9,9 +9,7 @@ const isValidOperator = (value: unknown): value is Operator => {
   );
 };
 
-export const isValidSuggestState = (
-  value: unknown
-): value is SuggestState[] => {
+export const isValidFilterState = (value: unknown): value is FilterState[] => {
   if (!Array.isArray(value)) return false;
 
   return value.every((item) => {

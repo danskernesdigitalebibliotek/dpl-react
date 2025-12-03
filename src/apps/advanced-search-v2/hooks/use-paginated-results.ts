@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { isEqual } from "lodash";
 import usePager from "../../../components/result-pager/use-pager";
 import { Work } from "../../../core/utils/types/entities";
 import {
@@ -8,6 +9,7 @@ import {
 import { SortOption } from "../types";
 import { getSortInput } from "../lib/sort-utils";
 import useGetCleanBranches from "../../../core/utils/branches";
+import { usePrevious } from "react-use";
 
 export interface UsePaginatedResultsReturn {
   resultItems: Work[];
@@ -26,18 +28,24 @@ export interface UsePaginatedResultsReturn {
 
 interface UsePaginatedResultsProps {
   cql: string;
-  hasQuery: boolean;
+  isSearchEnabled: boolean;
   onShelf: boolean;
   pageSize: number;
   sort: SortOption;
 }
 
 /**
- * Hook to manage paginated search results from GraphQL query
+ * Hook to manage paginated search results with infinite scroll behavior.
+ *
+ * Key behaviors:
+ * - Accumulates results across pages (infinite scroll pattern)
+ * - Resets accumulated results when query parameters change (cql, sort)
+ * - Prevents "zero results" flash during query transitions
+ * - Disables React Query caching to avoid stale data conflicts
  */
 export const usePaginatedResults = ({
   cql,
-  hasQuery,
+  isSearchEnabled,
   onShelf,
   pageSize,
   sort
@@ -45,8 +53,15 @@ export const usePaginatedResults = ({
   const cleanBranches = useGetCleanBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState(0);
+
+  // Tracks when we're transitioning between different queries.
+  // React Query's isFetching doesn't distinguish between "loading more pages"
+  // and "loading fresh results after query change", so we track this separately.
   const [isRefetching, setIsRefetching] = useState(false);
-  const [lastQueryStr, setLastQueryStr] = useState("");
+
+  // Guards against showing "zero results" prematurely during query transitions.
+  // Without this, there's a brief moment where hitcount=0 (from reset) and
+  // isLoading=false (before React Query starts), which would flash the zero state.
   const [canShowZeroResults, setCanShowZeroResults] = useState(false);
 
   const { PagerComponent, page, resetPage } = usePager({
@@ -54,7 +69,6 @@ export const usePaginatedResults = ({
     pageSize
   });
 
-  // Fetch search results - disabled if no query
   const { data, isLoading, isFetching } = useComplexSearchWithPaginationQuery(
     {
       cql,
@@ -69,14 +83,18 @@ export const usePaginatedResults = ({
       sort: getSortInput(sort)
     },
     {
-      enabled: hasQuery,
+      enabled: isSearchEnabled,
+      // Caching is disabled because we manually accumulate pages in resultItems.
+      // Cached responses would conflict with our state management when the user
+      // toggles facets or changes sort - we need fresh data each time.
       keepPreviousData: false,
       cacheTime: 0,
       staleTime: 0
     }
   );
 
-  // Update results when data changes
+  // Accumulate results for infinite scroll behavior.
+  // Page 0 replaces results, subsequent pages append to existing results.
   useEffect(() => {
     if (!data) {
       return;
@@ -93,7 +111,6 @@ export const usePaginatedResults = ({
 
     setHitCount(resultCount);
 
-    // If page has changed then append the new result to the existing result
     if (page > 0) {
       setResultItems((prev) => [...prev, ...resultWorks]);
       return;
@@ -102,21 +119,25 @@ export const usePaginatedResults = ({
     setResultItems(resultWorks);
   }, [data, page]);
 
-  // Reset results when CQL query or sort changes
-  const currentQueryStr = useMemo(() => `${cql}|${sort}`, [cql, sort]);
+  // Track query parameters to detect when we need to reset accumulated results.
+  // Using usePrevious + isEqual provides cleaner change detection than manual state.
+  const currentQuery = useMemo(() => ({ cql, sort }), [cql, sort]);
+  const prevQuery = usePrevious(currentQuery);
 
+  // Reset accumulated results when query parameters change.
+  // This ensures users see fresh results when toggling facets or changing sort.
   useEffect(() => {
-    if (currentQueryStr !== lastQueryStr) {
+    if (prevQuery && !isEqual(prevQuery, currentQuery)) {
       setResultItems([]);
       setHitCount(0);
       setIsRefetching(true);
       setCanShowZeroResults(false);
-      setLastQueryStr(currentQueryStr);
       resetPage();
     }
-  }, [currentQueryStr, lastQueryStr, resetPage]);
+  }, [currentQuery, prevQuery, resetPage]);
 
-  // Update refetching state when data arrives
+  // Mark refetching complete once data arrives.
+  // This enables showing "zero results" only after we've actually fetched.
   useEffect(() => {
     if (!isFetching && !isLoading && isRefetching) {
       setIsRefetching(false);

@@ -46,7 +46,9 @@ const SearchTermSelect = ({
               onFocus={() => setIsButtonFocused(true)}
               onBlur={() => setIsButtonFocused(false)}
             >
-              <p>{selectedOption ? t(selectedOption.labelKey) : "Select"}</p>
+              <span>
+                {selectedOption ? t(selectedOption.labelKey) : "Select"}
+              </span>
               <div className="select-button__arrow">
                 <img src={IconExpand} alt="" />
               </div>

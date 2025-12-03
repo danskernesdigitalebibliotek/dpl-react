@@ -16,12 +16,12 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
   const { targetCqlUrl } = useCqlSearchUrl();
   const { showResults, setView } = useFormVisibility();
   const {
-    suggests,
+    filters,
     preSearchFacets,
-    updateSuggest,
+    updateFilter,
     updatePreSearchFacet,
-    addSuggest,
-    removeSuggest,
+    addFilter,
+    removeFilter,
     handleSearch,
     clearFacets,
     handleClearFilters
@@ -45,12 +45,12 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
 
       {!showResults && (
         <AdvancedSearchForm
-          suggests={suggests}
+          filters={filters}
           preSearchFacets={preSearchFacets}
-          updateSuggest={updateSuggest}
+          updateFilter={updateFilter}
           updatePreSearchFacet={updatePreSearchFacet}
-          addSuggest={addSuggest}
-          removeSuggest={removeSuggest}
+          addFilter={addFilter}
+          removeFilter={removeFilter}
           handleSearch={onHandleSearch}
           handleClearFilters={handleClearFilters}
         />

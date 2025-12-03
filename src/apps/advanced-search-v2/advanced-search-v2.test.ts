@@ -254,7 +254,7 @@ describe("Advanced Search V2", () => {
         form.enterSearchTerm(0, "børn");
         form.openRangeSelect("Age");
         form.selectRangePreset("For 3-6-årige");
-        form.verifyRangeBadgeContains("Age", "3-6-årige");
+        form.verifyRangeBadgeContains("Age", "3-6 year olds");
         form.clickSearch();
       });
 
@@ -270,7 +270,7 @@ describe("Advanced Search V2", () => {
         form.openRangeSelect("Age");
         form.enterRangeValues("10", "15");
         form.closePopover();
-        form.verifyRangeBadgeContains("Age", "10-15-årige");
+        form.verifyRangeBadgeContains("Age", "10-15 year olds");
         form.clickSearch();
       });
 
@@ -280,13 +280,33 @@ describe("Advanced Search V2", () => {
       });
     });
 
+    it("shows single age badge when from and to are the same", () => {
+      page.components.Form((form) => {
+        form.enterSearchTerm(0, "test");
+        form.openRangeSelect("Age");
+        form.enterRangeValues("8", "8");
+        form.closePopover();
+        form.verifyRangeBadgeContains("Age", "8 year olds");
+      });
+    });
+
+    it("shows open-ended badge when only from value is entered", () => {
+      page.components.Form((form) => {
+        form.enterSearchTerm(0, "test");
+        form.openRangeSelect("Age");
+        form.enterRangeFrom("12");
+        form.closePopover();
+        form.verifyRangeBadgeContains("Age", "12+ year olds");
+      });
+    });
+
     it("can reset age selection", () => {
       page.components.Form((form) => {
         form.openRangeSelect("Age");
         form.verifyRangeInputValues("", "");
         form.selectRangePreset("For 3-6-årige");
         form.verifyRangeInputValues("3", "6");
-        form.verifyRangeBadgeContains("Age", "3-6-årige");
+        form.verifyRangeBadgeContains("Age", "3-6 year olds");
         form.resetRange();
         form.verifyRangeInputValues("", "");
         form.closePopover();
@@ -419,7 +439,7 @@ describe("Advanced Search V2", () => {
         form.clickSearch();
       });
 
-      page.verifyUrlParamEquals("suggests", [
+      page.verifyUrlParamEquals("filters", [
         { term: "term.default", query: "harry" },
         { term: "term.default", query: "potter", operator: "not" }
       ]);
@@ -450,7 +470,7 @@ describe("Advanced Search V2", () => {
     });
   });
 
-  // Tests for AdvancedSearchFilters
+  // Tests for AdvancedSearchFacets
   describe("Sidebar Filter Toggles", () => {
     beforeEach(() => {
       // Perform a search to show the results view with sidebar filters

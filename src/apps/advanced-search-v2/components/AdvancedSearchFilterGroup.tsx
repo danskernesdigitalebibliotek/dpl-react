@@ -7,6 +7,7 @@ import {
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import iconExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
+import iconPlus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Plus.svg";
 
 interface AdvancedSearchFilterGroupProps {
   facetField: ComplexSearchFacetsEnum;
@@ -50,12 +51,13 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
   }
 
   return (
-    <div className="advanced-search-filter-group">
+    <li className="advanced-search-filter-group">
       <button
         type="button"
         className="advanced-search-filter-group__header"
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
+        aria-controls={`filter-group-content-${facetField}`}
       >
         <div className="advanced-search-filter-group__header-content">
           <span className="advanced-search-filter-group__label">{label}</span>
@@ -77,14 +79,18 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
 
       {isExpanded && (
         <>
-          <div className="advanced-search-filter-group__content">
+          <ul
+            id={`filter-group-content-${facetField}`}
+            className="advanced-search-filter-group__content"
+          >
             {displayedValues.map((facetValue) => {
               const value = facetValue.key;
               const count = facetValue.score ?? 0;
               const isChecked = selectedValues.includes(value);
+              const countId = `filter-${facetField}-${value}-count`;
 
               return (
-                <div key={value} className="advanced-search-filter-group__item">
+                <li key={value} className="advanced-search-filter-group__item">
                   <CheckBox
                     id={`filter-${facetField}-${value}`}
                     label={value}
@@ -92,16 +98,20 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                     onChecked={(checked) =>
                       handleCheckboxChange(value, checked)
                     }
+                    ariaDescribedBy={count > 0 ? countId : undefined}
                   />
                   {count > 0 && (
-                    <span className="advanced-search-filter-group__item-count">
+                    <span
+                      id={countId}
+                      className="advanced-search-filter-group__item-count"
+                    >
                       {count}
                     </span>
                   )}
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
 
           {hasMoreValues && (
             <div className="advanced-search-filter-group__footer">
@@ -110,21 +120,11 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                 className="advanced-search-filter-group__show-all"
                 onClick={() => setShowAll(!showAll)}
               >
-                <svg
+                <img
+                  src={iconPlus}
+                  alt=""
                   className="advanced-search-filter-group__show-all-icon"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 4V12M4 8H12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                />
                 <span>
                   {showAll
                     ? t("advancedSearchShowLessText")
@@ -135,7 +135,7 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
           )}
         </>
       )}
-    </div>
+    </li>
   );
 };
 

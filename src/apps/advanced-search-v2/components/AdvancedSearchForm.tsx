@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AdvancedSearchSuggest from "./AdvancedSearchSuggest";
+import AdvancedSearchFilterRow from "./AdvancedSearchFilterRow";
 import PlusButtonIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/PlusButton.svg";
 import { useText } from "../../../core/utils/text";
 import { SEARCH_TERM_OPTIONS } from "../lib/search-fields-config";
@@ -9,26 +9,26 @@ import MultiSelect from "./MultiSelect";
 import AdvancedSearchAgeSelect from "./AdvancedSearchAgeSelect";
 import AdvancedSearchPublicationYearSelect from "./AdvancedSearchPublicationYearSelect";
 import { Button } from "../../../components/Buttons/Button";
-import { FacetState, SuggestState } from "../types";
+import { FacetState, FilterState } from "../types";
 
 type AdvancedSearchFormProps = {
-  suggests: SuggestState[];
+  filters: FilterState[];
   preSearchFacets: FacetState[];
-  updateSuggest: (index: number, updates: Partial<SuggestState>) => void;
+  updateFilter: (index: number, updates: Partial<FilterState>) => void;
   updatePreSearchFacet: (preSearchFacet: FacetState) => void;
-  addSuggest: () => void;
-  removeSuggest: (index: number) => void;
+  addFilter: () => void;
+  removeFilter: (index: number) => void;
   handleSearch: () => void;
   handleClearFilters: () => void;
 };
 
 const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
-  suggests,
+  filters,
   preSearchFacets,
-  updateSuggest,
+  updateFilter,
   updatePreSearchFacet,
-  addSuggest,
-  removeSuggest,
+  addFilter,
+  removeFilter,
   handleSearch,
   handleClearFilters
 }) => {
@@ -37,54 +37,57 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
 
   const { mergedFacetOptions } = useMergedFacetOptions();
 
-  const handleAddSuggest = () => {
-    setFocusIndex(suggests.length);
-    addSuggest();
+  // Focus management: When adding a row, focus the new row (at current length before add).
+  // When removing, focus the row that takes the removed position, or the new last row
+  // if we removed the last one. This preserves keyboard navigation flow.
+  const handleAddFilter = () => {
+    setFocusIndex(filters.length);
+    addFilter();
   };
 
-  const handleRemoveSuggest = (index: number) => {
+  const handleRemoveFilter = (index: number) => {
     setFocusIndex(
-      suggests.length > 1 ? Math.min(index, suggests.length - 2) : null
+      filters.length > 1 ? Math.min(index, filters.length - 2) : null
     );
-    removeSuggest(index);
+    removeFilter(index);
   };
 
   // Check if there are any filters to reset
-  const hasFilters =
-    suggests.some((suggest) => suggest.query.trim()) ||
+  const hasActiveFilters =
+    filters.some((filter) => filter.query.trim()) ||
     preSearchFacets.some(
       (preSearchFacet) => preSearchFacet.selectedValues.length > 0
     );
 
   return (
     <section className="advanced-search-v2__form">
-      {/* Suggest inputs */}
+      {/* Filter inputs */}
       <div className="advanced-search-v2__suggests">
-        {suggests.map((suggest, index) => {
+        {filters.map((filter, index) => {
           const config =
-            SEARCH_TERM_OPTIONS.find((item) => item.value === suggest.term) ??
+            SEARCH_TERM_OPTIONS.find((item) => item.value === filter.term) ??
             SEARCH_TERM_OPTIONS[0];
 
           return (
-            <AdvancedSearchSuggest
-              key={`suggest-${index}`}
+            <AdvancedSearchFilterRow
+              key={`filter-${index}`}
               shouldAutoFocus={index === focusIndex}
-              selectedTerm={suggest.term}
+              selectedTerm={filter.term}
               onSelectedTermChange={(value) =>
-                updateSuggest(index, { term: value })
+                updateFilter(index, { term: value })
               }
-              query={suggest.query}
-              onQueryChange={(query) => updateSuggest(index, { query })}
+              query={filter.query}
+              onQueryChange={(query) => updateFilter(index, { query })}
               suggestType={config.type}
               inputPlaceholder={t(config.placeholderKey)}
-              operator={suggests[index + 1]?.operator}
+              operator={filters[index + 1]?.operator}
               onOperatorChange={
-                index < suggests.length - 1
-                  ? (operator) => updateSuggest(index + 1, { operator })
+                index < filters.length - 1
+                  ? (operator) => updateFilter(index + 1, { operator })
                   : undefined
               }
-              onRemove={() => handleRemoveSuggest(index)}
-              showRemoveButton={suggests.length > 1}
+              onRemove={() => handleRemoveFilter(index)}
+              showRemoveButton={filters.length > 1}
               disableSuggest={config.disableSuggest}
             />
           );
@@ -93,7 +96,7 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
         <button
           type="button"
           className="advanced-search-v2__add-suggest"
-          onClick={handleAddSuggest}
+          onClick={handleAddFilter}
         >
           <img src={PlusButtonIcon} alt="" />
           <span>{t("advancedSearchAddRowText")}</span>
@@ -182,7 +185,7 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
           variant="filled"
           onClick={handleSearch}
         />
-        {hasFilters && (
+        {hasActiveFilters && (
           <Button
             label={t("advancedSearchResetText")}
             buttonType="none"

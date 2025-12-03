@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { useText } from "../../../core/utils/text";
 import { Operator } from "../types";
+import { OPERATOR_ORDER, getOperatorLabelsMap } from "../lib/operators";
 
 type OperatorButtonsProps = {
   value: Operator;
@@ -13,16 +14,11 @@ const OperatorButtons: React.FC<OperatorButtonsProps> = ({
   onChange
 }) => {
   const t = useText();
-
-  const operators: Array<{ value: Operator; label: string }> = [
-    { value: "and", label: t("clauseAndText") },
-    { value: "or", label: t("clauseOrText") },
-    { value: "not", label: t("clauseNotText") }
-  ];
+  const operatorLabelsMap = getOperatorLabelsMap(t);
 
   return (
     <div className="advanced-search-suggest__operators">
-      {operators.map(({ value: operator, label }) => (
+      {OPERATOR_ORDER.map((operator) => (
         <button
           key={operator}
           type="button"
@@ -31,7 +27,7 @@ const OperatorButtons: React.FC<OperatorButtonsProps> = ({
           })}
           onClick={() => onChange(operator)}
         >
-          {label}
+          {operatorLabelsMap[operator]}
         </button>
       ))}
     </div>
