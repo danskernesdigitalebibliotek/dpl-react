@@ -11,9 +11,11 @@ import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { useUrls } from "../../core/utils/url";
 import {
+  constructCreatorSearchUrl,
   constructMaterialUrl,
   constructSearchUrl,
   constructSearchUrlWithFilter,
+  constructSubjectSearchUrl,
   redirectTo
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
@@ -28,6 +30,7 @@ import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 import useFilterHandler from "../search-result/useFilterHandler";
+import { cleanCreatorName } from "../../core/utils/helpers/material";
 
 const SearchHeader: React.FC = () => {
   const t = useText();
@@ -206,6 +209,7 @@ const SearchHeader: React.FC = () => {
     ) {
       return;
     }
+
     // If this item is shown as one of work suggestions redirect to material page.
     if (selectedItem.work?.workId && materialData.includes(selectedItem)) {
       track("click", {
@@ -221,6 +225,49 @@ const SearchHeader: React.FC = () => {
       });
       return;
     }
+
+    // If this item is a creator, subject or title suggestion, redirect to the
+    // search page using the suggested term as a part of the query.
+    if (
+      [
+        SuggestionTypeEnum.Creator,
+        SuggestionTypeEnum.Subject,
+        SuggestionTypeEnum.Title
+      ].includes(selectedItem.type)
+    ) {
+      const selectedItemString = selectedItem.term;
+      let url: URL | never;
+      switch (selectedItem.type) {
+        case SuggestionTypeEnum.Creator:
+          url = constructCreatorSearchUrl(
+            searchUrl,
+            // Suggested creators may contain elements which are not valid
+            // creator filters. Clean it up before redirecting.
+            cleanCreatorName(selectedItem.term)
+          );
+          break;
+        case SuggestionTypeEnum.Subject:
+          url = constructSubjectSearchUrl(searchUrl, selectedItem.term);
+          break;
+        case SuggestionTypeEnum.Title:
+          // We do not have a specific search page handling for titles so
+          // instead do a phrase search for the title.
+          url = constructSearchUrl(searchUrl, '"' + selectedItem.term + '"');
+          break;
+      }
+
+      track("click", {
+        id: statistics.autosuggestClick.id,
+        name: statistics.autosuggestClick.name,
+        trackedData: selectedItemString
+      }).then(() => {
+        // Before redirecting we need to clean persisted filters from previous search.
+        clearFilter();
+        redirectTo(url);
+      });
+      return;
+    }
+
     // If this item is shown as a category suggestion
     if (
       nonWorkSuggestion &&
@@ -251,6 +298,7 @@ const SearchHeader: React.FC = () => {
       });
       return;
     }
+
     // Otherwise redirect to search result page & track autosuggest click.
     track("click", {
       id: statistics.autosuggestClick.id,
