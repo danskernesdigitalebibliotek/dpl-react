@@ -2,7 +2,7 @@ import React from "react";
 import AdvancedSearchRangeSelect from "./AdvancedSearchRangeSelect";
 import { RangePreset, RangeValue } from "../types";
 import { useText } from "../../../core/utils/text";
-import useRangeSelectAdapter from "../hooks/useRangeSelectAdapter";
+import { parseRangeFromStrings, rangeToStrings } from "../helpers/rangeAdapter";
 
 type AdvancedSearchAgeSelectProps = {
   label: string;
@@ -20,10 +20,8 @@ const AdvancedSearchAgeSelect: React.FC<AdvancedSearchAgeSelectProps> = ({
   rangePresets
 }) => {
   const t = useText();
-  const { value, handleChange } = useRangeSelectAdapter({
-    selectedValues,
-    onUpdate
-  });
+  const value = parseRangeFromStrings(selectedValues);
+  const handleChange = (range: RangeValue) => onUpdate(rangeToStrings(range));
 
   const formatAgeBadge = (range: RangeValue): string | null => {
     const { from, to } = range;
