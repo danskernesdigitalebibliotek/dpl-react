@@ -47,16 +47,16 @@ export const useFormVisibility = (): UseFormVisibilityReturn => {
   );
 
   const cql = buildCQLQuery(urlFilters, urlPreSearchFacets, urlFacets);
-  const hasCurrentQuery = !isWildcardQuery(cql);
+  const isNotWildcard = !isWildcardQuery(cql);
 
   // Ensure we show the form when there is no current query (e.g. after clearing)
   useEffect(() => {
-    if (!hasCurrentQuery && view !== "search") {
+    if (!isNotWildcard && view !== "search") {
       setView("search");
     }
-  }, [hasCurrentQuery, view, setView]);
+  }, [isNotWildcard, view, setView]);
 
-  const showResults = view === "results" && hasCurrentQuery;
+  const showResults = view === "results" && isNotWildcard;
 
   return {
     view,

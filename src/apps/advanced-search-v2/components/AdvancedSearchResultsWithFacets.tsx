@@ -20,7 +20,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
   AdvancedSearchResultsWithFacetsProps
 > = ({ pageSize, clearFacets }) => {
   const t = useText();
-  const { cql, hasQuery, onShelf, sort, setSort } = useSearchQueries();
+  const { cql, isSearchEnabled, onShelf, sort, setSort } = useSearchQueries();
   const { setView } = useFormVisibility();
 
   const {
@@ -32,9 +32,9 @@ const AdvancedSearchResultsWithFacets: React.FC<
     shouldShowSearchResults,
     shouldShowResultHeadline,
     shouldShowZeroResults
-  } = usePaginatedResults({ cql, hasQuery, onShelf, pageSize, sort });
+  } = usePaginatedResults({ cql, isSearchEnabled, onShelf, pageSize, sort });
 
-  if (!hasQuery) return null;
+  if (!isSearchEnabled) return null;
 
   return (
     <div className="advanced-search-v2__results">

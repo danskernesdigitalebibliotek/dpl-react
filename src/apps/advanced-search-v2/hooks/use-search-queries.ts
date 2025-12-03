@@ -11,7 +11,7 @@ import { isValidFilterState, isValidFacetState } from "../lib/validation";
 
 interface UseSearchQueriesReturn {
   cql: string;
-  hasQuery: boolean;
+  isSearchEnabled: boolean;
   onShelf: boolean;
   onlyExtraTitles: boolean;
   sort: SortOption;
@@ -73,11 +73,11 @@ export const useSearchQueries = (): UseSearchQueriesReturn => {
     [filters, preSearchFacets, facets, onlyExtraTitles]
   );
 
-  const hasQuery = !isWildcardQuery(cql);
+  const isSearchEnabled = !isWildcardQuery(cql);
 
   return {
     cql,
-    hasQuery,
+    isSearchEnabled,
     onShelf,
     onlyExtraTitles,
     sort,

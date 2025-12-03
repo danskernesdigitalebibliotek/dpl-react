@@ -28,7 +28,7 @@ export interface UsePaginatedResultsReturn {
 
 interface UsePaginatedResultsProps {
   cql: string;
-  hasQuery: boolean;
+  isSearchEnabled: boolean;
   onShelf: boolean;
   pageSize: number;
   sort: SortOption;
@@ -45,7 +45,7 @@ interface UsePaginatedResultsProps {
  */
 export const usePaginatedResults = ({
   cql,
-  hasQuery,
+  isSearchEnabled,
   onShelf,
   pageSize,
   sort
@@ -83,7 +83,7 @@ export const usePaginatedResults = ({
       sort: getSortInput(sort)
     },
     {
-      enabled: hasQuery,
+      enabled: isSearchEnabled,
       // Caching is disabled because we manually accumulate pages in resultItems.
       // Cached responses would conflict with our state management when the user
       // toggles facets or changes sort - we need fresh data each time.
