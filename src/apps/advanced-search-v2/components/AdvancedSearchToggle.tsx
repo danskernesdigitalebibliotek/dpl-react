@@ -17,7 +17,7 @@ const AdvancedSearchToggle: React.FC<AdvancedSearchToggleProps> = ({
   onChange
 }) => {
   return (
-    <li className="advanced-search-toggle">
+    <div className="advanced-search-toggle">
       <button
         type="button"
         role="switch"
@@ -35,7 +35,7 @@ const AdvancedSearchToggle: React.FC<AdvancedSearchToggleProps> = ({
         <p className="advanced-search-toggle__label">{label}</p>
         <p className="advanced-search-toggle__description">{description}</p>
       </div>
-    </li>
+    </div>
   );
 };
 

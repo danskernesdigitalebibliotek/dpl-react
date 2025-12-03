@@ -108,22 +108,26 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
       <div className="advanced-search-filters__container">
         {/* Toggles section */}
         <ul className="advanced-search-filters__toggles">
-          <AdvancedSearchToggle
-            id="on-shelf"
-            label={t("advancedSearchOnShelfText")}
-            description={t("advancedSearchOnShelfDescriptionText")}
-            checked={onShelf}
-            onChange={(checked) => setOnShelf(checked, { history: "push" })}
-          />
-          <AdvancedSearchToggle
-            id="only-extra-titles"
-            label={t("advancedSearchOnlyExtraTitlesText")}
-            description={t("advancedSearchOnlyExtraTitlesDescriptionText")}
-            checked={onlyExtraTitles}
-            onChange={(checked) =>
-              setOnlyExtraTitles(checked, { history: "push" })
-            }
-          />
+          <li>
+            <AdvancedSearchToggle
+              id="on-shelf"
+              label={t("advancedSearchOnShelfText")}
+              description={t("advancedSearchOnShelfDescriptionText")}
+              checked={onShelf}
+              onChange={(checked) => setOnShelf(checked, { history: "push" })}
+            />
+          </li>
+          <li>
+            <AdvancedSearchToggle
+              id="only-extra-titles"
+              label={t("advancedSearchOnlyExtraTitlesText")}
+              description={t("advancedSearchOnlyExtraTitlesDescriptionText")}
+              checked={onlyExtraTitles}
+              onChange={(checked) =>
+                setOnlyExtraTitles(checked, { history: "push" })
+              }
+            />
+          </li>
         </ul>
 
         {/* Filter groups */}
