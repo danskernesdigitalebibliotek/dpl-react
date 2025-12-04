@@ -4,7 +4,7 @@ const currentYear = new Date().getFullYear();
 
 export const MATERIAL_TYPE_OPTIONS: Option[] = [
   { label: "Bøger", value: "bøger" },
-  { label: "E-bøger", value: "e-bøger" },
+  { label: "e-Bøger", value: "e-bøger", preserveCase: true },
   { label: "Lydbøger", value: "lydbøger" },
   { label: "Podcasts", value: "podcasts" },
   { label: "Film", value: "film" },
@@ -47,8 +47,8 @@ export const LANGUAGE_OPTIONS: Option[] = [
 
 export const SOURCE_OPTIONS: Option[] = [
   { label: "Bibliotekskatalog", value: "bibliotekskatalog" },
-  { label: "eReolen", value: "ereolen" },
-  { label: "eReolen Global", value: "ereolen global" }
+  { label: "eReolen", value: "ereolen", preserveCase: true },
+  { label: "eReolen Global", value: "ereolen global", preserveCase: true }
 ];
 
 export const YEAR_PRESETS: RangePreset[] = [

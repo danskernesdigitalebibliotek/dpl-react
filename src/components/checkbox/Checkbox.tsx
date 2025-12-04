@@ -17,6 +17,7 @@ interface CheckBoxProps {
   isVisualOnly?: boolean;
   labelledBy?: string;
   tabIndex?: number;
+  preserveCase?: boolean;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
@@ -33,7 +34,8 @@ const CheckBox: FC<CheckBoxProps> = ({
   focused,
   isVisualOnly,
   labelledBy,
-  tabIndex
+  tabIndex,
+  preserveCase
 }) => {
   const checkedHandler = (checked: boolean) => {
     if (onChecked) {
@@ -43,7 +45,9 @@ const CheckBox: FC<CheckBoxProps> = ({
 
   return (
     <div
-      className={clsx("checkbox", className)}
+      className={clsx("checkbox", className, {
+        "checkbox--preserve-case": preserveCase
+      })}
       style={isVisualOnly ? { pointerEvents: "none" } : undefined}
     >
       <input

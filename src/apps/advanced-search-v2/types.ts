@@ -4,6 +4,7 @@ export type Option = {
   label: string;
   value: string;
   count?: number;
+  preserveCase?: boolean;
 };
 
 export const DIVIDER_VALUE = "__divider__";

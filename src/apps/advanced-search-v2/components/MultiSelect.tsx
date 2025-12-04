@@ -127,6 +127,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                                 selected={selected}
                                 isVisualOnly
                                 tabIndex={-1}
+                                preserveCase={option.preserveCase}
                               />
                             </div>
                           )}
