@@ -13,6 +13,15 @@ import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 import useDialog from "../../../components/dialog/useDialog";
 import Dialog from "../../../components/dialog/Dialog";
 import { Button } from "../../../components/Buttons/Button";
+import { useConfig } from "../../../core/utils/config";
+import { getCurrentLocation } from "../../../core/utils/helpers/url";
+
+type InfoBoxConfig = {
+  title?: string;
+  content: { value?: string };
+  buttonLabel?: string;
+  buttonUrl?: string;
+};
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;
@@ -25,9 +34,20 @@ const AdvancedSearchResultsWithFacets: React.FC<
   AdvancedSearchResultsWithFacetsProps
 > = ({ customCqlUrl, customCqlUrlLabel, pageSize, clearFacets }) => {
   const t = useText();
+  const config = useConfig();
   const { cql, isSearchEnabled, onShelf, sort, setSort } = useSearchQueries();
   const { setView } = useFormVisibility();
   const { openDialogWithContent, closeDialog, dialogRef } = useDialog();
+
+  // Get search info box data from config
+  const {
+    title: infoBoxTitle,
+    content: infoBoxContent,
+    buttonLabel: infoBoxButtonLabel,
+    buttonUrl: infoBoxButtonUrl
+  } = config<InfoBoxConfig>("searchInfoboxConfig", {
+    transformer: "jsonParse"
+  });
 
   const {
     resultItems,
@@ -115,6 +135,14 @@ const AdvancedSearchResultsWithFacets: React.FC<
                 resultItems={resultItems}
                 page={page}
                 pageSize={pageSize}
+                infoBoxProps={{
+                  title: infoBoxTitle,
+                  html: infoBoxContent.value,
+                  buttonLabel: infoBoxButtonLabel,
+                  buttonUrl: infoBoxButtonUrl
+                    ? new URL(infoBoxButtonUrl, getCurrentLocation())
+                    : undefined
+                }}
               />
               <PagerComponent isLoading={isLoadingOrRefetching} />
             </>
