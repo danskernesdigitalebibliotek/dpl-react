@@ -15,8 +15,6 @@ import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import { DIVIDER_VALUE } from "../types";
 
-const isDivider = (option: Option): boolean => option.value === DIVIDER_VALUE;
-
 type MultiSelectProps = {
   options: Option[];
   selectedOptions: Option[];
@@ -40,7 +38,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     // When searching, filter to matching options only (no dividers)
     return options.filter(
       (opt) =>
-        !isDivider(opt) && opt.label.toLowerCase().includes(query.toLowerCase())
+        opt.value !== DIVIDER_VALUE &&
+        opt.label.toLowerCase().includes(query.toLowerCase())
     );
   }, [options, query, enableSearch]);
 
@@ -100,7 +99,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                 <div className="hui-multiselect__options" tabIndex={-1}>
                   <ComboboxOptions static>
                     {filteredOptions.map((option, index) =>
-                      isDivider(option) ? (
+                      option.value === DIVIDER_VALUE ? (
                         <div
                           key={`divider-${index}`}
                           className="hui-multiselect__divider"
