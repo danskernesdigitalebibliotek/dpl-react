@@ -4,7 +4,11 @@ import {
   type DynamicFacet
 } from "../../apps/advanced-search-v2/hooks/use-merged-facet-options";
 import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
-import type { PreSelectFacetConfig } from "../../apps/advanced-search-v2/types";
+import type {
+  PreSelectFacetConfig,
+  Option
+} from "../../apps/advanced-search-v2/types";
+import { DIVIDER_VALUE } from "../../apps/advanced-search-v2/types";
 
 const createSelectConfig = (
   facetField: ComplexSearchFacetsEnum,
@@ -16,6 +20,9 @@ const createSelectConfig = (
   options,
   enableSearch: false
 });
+
+const getOptions = (items: Option[]): Option[] =>
+  items.filter((item) => item.value !== DIVIDER_VALUE);
 
 describe("mergeSelectFacetOptions", () => {
   describe("sorting behavior", () => {
@@ -36,13 +43,17 @@ describe("mergeSelectFacetOptions", () => {
       ];
 
       const result = mergeSelectFacetOptions(config, dynamicFacets);
+      const options = getOptions(result.options);
 
-      // Static options come first, then dynamic options sorted alphabetically
-      expect(result.options).toHaveLength(4);
-      expect(result.options[0].label).toBe("Static Option");
-      expect(result.options[1].label).toBe("apple");
-      expect(result.options[2].label).toBe("mango");
-      expect(result.options[3].label).toBe("zebra");
+      // Static options come first, then divider, then dynamic options sorted alphabetically
+      expect(options).toHaveLength(4);
+      expect(options[0].label).toBe("Static Option");
+      expect(options[1].label).toBe("apple");
+      expect(options[2].label).toBe("mango");
+      expect(options[3].label).toBe("zebra");
+
+      // Verify divider is present between static and dynamic
+      expect(result.options[1].value).toBe(DIVIDER_VALUE);
     });
 
     it("sorts dynamic options using localeCompare", () => {
@@ -61,9 +72,10 @@ describe("mergeSelectFacetOptions", () => {
       ];
 
       const result = mergeSelectFacetOptions(config, dynamicFacets);
+      const options = getOptions(result.options);
 
       // localeCompare sorts case-insensitively by default
-      const labels = result.options.map((o) => o.label);
+      const labels = options.map((o) => o.label);
       expect(labels).toEqual(["alpha", "Beta", "GAMMA", "zebra"]);
     });
 
@@ -130,9 +142,10 @@ describe("mergeSelectFacetOptions", () => {
       ];
 
       const result = mergeSelectFacetOptions(config, dynamicFacets);
+      const options = getOptions(result.options);
 
-      expect(result.options).toHaveLength(1);
-      expect(result.options[0].label).toBe("Source A");
+      expect(options).toHaveLength(1);
+      expect(options[0].label).toBe("Source A");
     });
 
     it("excludes dynamic options that already exist in static options", () => {
@@ -151,11 +164,14 @@ describe("mergeSelectFacetOptions", () => {
       ];
 
       const result = mergeSelectFacetOptions(config, dynamicFacets);
+      const options = getOptions(result.options);
 
       // Should only have 2 options: "Existing" (static) and "new-option" (dynamic)
-      expect(result.options).toHaveLength(2);
-      expect(result.options[0].label).toBe("Existing");
-      expect(result.options[1].label).toBe("new-option");
+      // Plus a divider between them
+      expect(options).toHaveLength(2);
+      expect(options[0].label).toBe("Existing");
+      expect(options[1].label).toBe("new-option");
+      expect(result.options).toHaveLength(3); // includes divider
     });
 
     it("filters out dynamic values with null or undefined keys", () => {
@@ -177,10 +193,11 @@ describe("mergeSelectFacetOptions", () => {
       ];
 
       const result = mergeSelectFacetOptions(config, dynamicFacets);
+      const options = getOptions(result.options);
 
       // Only "valid" should be included (empty string is falsy)
-      expect(result.options).toHaveLength(1);
-      expect(result.options[0].label).toBe("valid");
+      expect(options).toHaveLength(1);
+      expect(options[0].label).toBe("valid");
     });
 
     it("matches dynamic facet by lowercase name with facet. prefix", () => {
@@ -197,9 +214,10 @@ describe("mergeSelectFacetOptions", () => {
       ];
 
       const result = mergeSelectFacetOptions(config, dynamicFacets);
+      const options = getOptions(result.options);
 
-      expect(result.options).toHaveLength(1);
-      expect(result.options[0].label).toBe("matched");
+      expect(options).toHaveLength(1);
+      expect(options[0].label).toBe("matched");
     });
 
     it("sets count to undefined when score is nullish", () => {
@@ -213,8 +231,9 @@ describe("mergeSelectFacetOptions", () => {
       ];
 
       const result = mergeSelectFacetOptions(config, dynamicFacets);
+      const options = getOptions(result.options);
 
-      expect(result.options[0].count).toBeUndefined();
+      expect(options[0].count).toBeUndefined();
     });
   });
 });
