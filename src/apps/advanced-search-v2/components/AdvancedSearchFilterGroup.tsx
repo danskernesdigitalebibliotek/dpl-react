@@ -119,6 +119,8 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                 type="button"
                 className="advanced-search-filter-group__show-all"
                 onClick={() => setShowAll(!showAll)}
+                aria-controls={`filter-group-content-${facetField}`}
+                aria-expanded={showAll}
               >
                 <img
                   src={iconPlus}
