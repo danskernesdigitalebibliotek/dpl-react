@@ -5,6 +5,7 @@ import {
 } from "../../../core/dbc-gateway/generated/graphql";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
 import type { Option, PreSelectFacetConfig } from "../types";
+import { DIVIDER } from "../types";
 
 export type FacetValue = {
   key?: string | null;
@@ -57,6 +58,7 @@ const extractNewOptions = (
 /**
  * Merges static options with dynamic facet values.
  * Static options keep their original order, dynamic options are sorted alphabetically.
+ * A divider is inserted between static and dynamic options when both exist.
  */
 export const mergeSelectFacetOptions = (
   preFacet: PreSelectFacetConfig,
@@ -68,9 +70,15 @@ export const mergeSelectFacetOptions = (
   const existingValues = new Set(staticOptions.map((opt) => opt.value));
   const newOptions = extractNewOptions(facetValues, existingValues);
 
+  // Only insert divider if both static and dynamic options exist
+  const options: Option[] =
+    staticOptions.length > 0 && newOptions.length > 0
+      ? [...staticOptions, DIVIDER, ...newOptions]
+      : [...staticOptions, ...newOptions];
+
   return {
     facetField: preFacet.facetField,
-    options: [...staticOptions, ...newOptions]
+    options
   };
 };
 

@@ -6,6 +6,9 @@ export type Option = {
   count?: number;
 };
 
+export const DIVIDER_VALUE = "__divider__";
+export const DIVIDER: Option = { label: "", value: DIVIDER_VALUE };
+
 export type Operator = "and" | "or" | "not";
 
 export type FilterState = {

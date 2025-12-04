@@ -13,6 +13,9 @@ import {
 import type { Option } from "../types";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
+import { DIVIDER_VALUE } from "../types";
+
+const isDivider = (option: Option): boolean => option.value === DIVIDER_VALUE;
 
 type MultiSelectProps = {
   options: Option[];
@@ -34,8 +37,10 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
   const filteredOptions = useMemo(() => {
     if (!enableSearch || !query) return options;
-    return options.filter((opt) =>
-      opt.label.toLowerCase().includes(query.toLowerCase())
+    // When searching, filter to matching options only (no dividers)
+    return options.filter(
+      (opt) =>
+        !isDivider(opt) && opt.label.toLowerCase().includes(query.toLowerCase())
     );
   }, [options, query, enableSearch]);
 
@@ -94,31 +99,40 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
                 <div className="hui-multiselect__options" tabIndex={-1}>
                   <ComboboxOptions static>
-                    {filteredOptions.map((option) => (
-                      <ComboboxOption key={option.value} value={option}>
-                        {({ selected, focus }) => (
-                          <div
-                            className={clsx(
-                              "hui-multiselect__options__option",
-                              {
-                                "hui-multiselect__options__option--selected":
-                                  selected,
-                                "hui-multiselect__options__option--focused":
-                                  focus
-                              }
-                            )}
-                          >
-                            <CheckBox
-                              id={`multiselect-${option.value}`}
-                              label={option.label}
-                              selected={selected}
-                              isVisualOnly
-                              tabIndex={-1}
-                            />
-                          </div>
-                        )}
-                      </ComboboxOption>
-                    ))}
+                    {filteredOptions.map((option, index) =>
+                      isDivider(option) ? (
+                        <div
+                          key={`divider-${index}`}
+                          className="hui-multiselect__divider"
+                          role="separator"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <ComboboxOption key={option.value} value={option}>
+                          {({ selected, focus }) => (
+                            <div
+                              className={clsx(
+                                "hui-multiselect__options__option",
+                                {
+                                  "hui-multiselect__options__option--selected":
+                                    selected,
+                                  "hui-multiselect__options__option--focused":
+                                    focus
+                                }
+                              )}
+                            >
+                              <CheckBox
+                                id={`multiselect-${option.value}`}
+                                label={option.label}
+                                selected={selected}
+                                isVisualOnly
+                                tabIndex={-1}
+                              />
+                            </div>
+                          )}
+                        </ComboboxOption>
+                      )
+                    )}
                   </ComboboxOptions>
                 </div>
               </Combobox>
