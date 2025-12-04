@@ -31,10 +31,15 @@ const AdvancedSearchToggle: React.FC<AdvancedSearchToggleProps> = ({
       >
         <span className="advanced-search-toggle__slider" />
       </button>
-      <div className="advanced-search-toggle__content">
-        <p className="advanced-search-toggle__label">{label}</p>
-        <p className="advanced-search-toggle__description">{description}</p>
-      </div>
+      <label
+        htmlFor={id}
+        className="advanced-search-toggle__content cursor-pointer"
+      >
+        <span className="advanced-search-toggle__label">{label}</span>
+        <span className="advanced-search-toggle__description">
+          {description}
+        </span>
+      </label>
     </div>
   );
 };
