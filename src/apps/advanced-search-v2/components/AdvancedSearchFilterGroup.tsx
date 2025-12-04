@@ -8,6 +8,7 @@ import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
 import iconExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import iconPlus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Plus.svg";
+import iconMinus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Minus.svg";
 
 interface AdvancedSearchFilterGroupProps {
   facetField: ComplexSearchFacetsEnum;
@@ -123,7 +124,7 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                 aria-expanded={showAll}
               >
                 <img
-                  src={iconPlus}
+                  src={showAll ? iconMinus : iconPlus}
                   alt=""
                   className="advanced-search-filter-group__show-all-icon"
                 />
