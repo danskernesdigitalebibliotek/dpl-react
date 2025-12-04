@@ -56,7 +56,7 @@ const extractNewOptions = (
 
 /**
  * Merges static options with dynamic facet values.
- * Dynamic options are sorted alphabetically by label.
+ * Static options keep their original order, dynamic options are sorted alphabetically.
  */
 export const mergeSelectFacetOptions = (
   preFacet: PreSelectFacetConfig,
@@ -92,7 +92,7 @@ export const useMergedFacetOptions = (): UseMergedFacetOptionsReturn => {
     cql: "*",
     facets: {
       facets: SELECT_PREFACETS.map((preFacets) => preFacets.facetField),
-      facetLimit: 25
+      facetLimit: 50
     },
     filters: {}
   });

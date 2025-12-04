@@ -10,6 +10,7 @@ import {
 } from "../../../core/dbc-gateway/generated/graphql";
 import { FACETS_CONFIG, FACET_FIELDS } from "../lib/facet-configs";
 import { isValidFacetState } from "../lib/validation";
+import { sortFacetValues } from "../lib/facet-sort-utils";
 
 interface AdvancedSearchFacetsProps {
   cql: string;
@@ -143,7 +144,10 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
                 f.name === `facet.${config.facetField.toLowerCase()}`
               );
             });
-            const facetValues = facetResponse?.values ?? [];
+            const facetValues = sortFacetValues(
+              config.facetField,
+              facetResponse?.values ?? []
+            );
 
             return (
               <AdvancedSearchFilterGroup
