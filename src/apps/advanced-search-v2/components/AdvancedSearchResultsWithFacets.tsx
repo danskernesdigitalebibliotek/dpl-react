@@ -16,12 +16,14 @@ import { Button } from "../../../components/Buttons/Button";
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;
+  customCqlUrl?: URL;
+  customCqlUrlLabel?: string;
   clearFacets: () => void;
 }
 
 const AdvancedSearchResultsWithFacets: React.FC<
   AdvancedSearchResultsWithFacetsProps
-> = ({ pageSize, clearFacets }) => {
+> = ({ customCqlUrl, customCqlUrlLabel, pageSize, clearFacets }) => {
   const t = useText();
   const { cql, isSearchEnabled, onShelf, sort, setSort } = useSearchQueries();
   const { setView } = useFormVisibility();
@@ -34,7 +36,6 @@ const AdvancedSearchResultsWithFacets: React.FC<
     PagerComponent,
     isLoadingOrRefetching,
     shouldShowSearchResults,
-    shouldShowResultHeadline,
     shouldShowZeroResults
   } = usePaginatedResults({ cql, isSearchEnabled, onShelf, pageSize, sort });
 
@@ -43,6 +44,8 @@ const AdvancedSearchResultsWithFacets: React.FC<
   return (
     <div className="advanced-search-v2__results">
       <AdvancedSearchSummary
+        customCqlUrl={customCqlUrl}
+        customCqlUrlLabel={customCqlUrlLabel}
         onEditClick={() => {
           // Clear facets (sidebar filters) when editing, keep preSearchFacets
           clearFacets();
@@ -61,11 +64,9 @@ const AdvancedSearchResultsWithFacets: React.FC<
                 id="advanced-search-result"
                 aria-live="polite"
               >
-                {isLoadingOrRefetching && t("loadingResultsText")}
-                {shouldShowResultHeadline &&
-                  t("showingMaterialsText", {
-                    placeholders: { "@hitcount": hitcount }
-                  })}
+                {t("showingMaterialsText", {
+                  placeholders: { "@hitcount": hitcount }
+                })}
               </h2>
               <CopyLink
                 className="advanced-search-v2__copy-link"
@@ -98,7 +99,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
                       collapsible
                       label={t("advancedSearchShowResultsText")}
                       size="medium"
-                      buttonType="default"
+                      buttonType="none"
                       variant="filled"
                       onClick={closeDialog}
                     />

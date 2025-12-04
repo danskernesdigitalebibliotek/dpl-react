@@ -5,12 +5,17 @@ import { useText } from "../../../core/utils/text";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { Operator } from "../types";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
+import Link from "../../../components/atoms/links/Link";
 
 interface AdvancedSearchSummaryProps {
+  customCqlUrl?: URL;
+  customCqlUrlLabel?: string;
   onEditClick?: () => void;
 }
 
 const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
+  customCqlUrl,
+  customCqlUrlLabel,
   onEditClick
 }) => {
   const t = useText();
@@ -105,7 +110,8 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
             </React.Fragment>
           );
         })}
-
+      </div>
+      <div className="advanced-search-summary__links">
         {onEditClick && (
           <button
             type="button"
@@ -114,6 +120,15 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           >
             {t("advancedSearchEditSearchText")}
           </button>
+        )}
+
+        {customCqlUrl && customCqlUrlLabel && (
+          <Link
+            href={customCqlUrl}
+            className="advanced-search-summary__cql-link"
+          >
+            {customCqlUrlLabel}
+          </Link>
         )}
       </div>
     </div>

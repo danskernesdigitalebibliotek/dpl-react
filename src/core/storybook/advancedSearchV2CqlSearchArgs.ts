@@ -10,7 +10,7 @@ export const argTypes = {
 };
 
 export default {
-  advancedSearchV2ToCqlSearchButtonText: "Go to old CQL search",
+  advancedSearchV2ToCqlSearchButtonText: "CQL search",
   advancedSearchV2CqlSearchUrl: "/advanced-search"
 };
 
