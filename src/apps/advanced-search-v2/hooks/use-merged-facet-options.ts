@@ -4,8 +4,11 @@ import {
   ComplexSearchFacetsEnum
 } from "../../../core/dbc-gateway/generated/graphql";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
-import type { Option, PreSelectFacetConfig } from "../types";
-import { DIVIDER } from "../types";
+import {
+  DIVIDER_VALUE,
+  type Option,
+  type PreSelectFacetConfig
+} from "../types";
 
 export type FacetValue = {
   key?: string | null;
@@ -69,6 +72,8 @@ export const mergeSelectFacetOptions = (
   const facetValues = matchingFacet?.values ?? [];
   const existingValues = new Set(staticOptions.map((opt) => opt.value));
   const newOptions = extractNewOptions(facetValues, existingValues);
+
+  const DIVIDER: Option = { label: "", value: DIVIDER_VALUE };
 
   // Only insert divider if both static and dynamic options exist
   const options: Option[] =
