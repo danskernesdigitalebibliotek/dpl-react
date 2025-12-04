@@ -126,7 +126,11 @@ const CqlSearchHeader: React.FC<CqlSearchHeaderProps> = ({
           />
           <Link
             className="link-tag advanced-search-cql-form__external-help-link"
-            href={new URL("https://danbib.dk/soegekoder-complex-search")}
+            href={
+              new URL(
+                "https://pro.dbcdigital.dk/dokumentation/soegemaskiner/complex-search/soegekoder-i-complex-search"
+              )
+            }
             isNewTab
           >
             {t("cqlSearchExternalHelpLinkText")}
