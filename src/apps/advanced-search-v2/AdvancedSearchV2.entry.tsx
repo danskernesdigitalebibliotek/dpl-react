@@ -18,7 +18,6 @@ interface AdvancedSearchEntryTextProps {
   inSeriesText: string;
   loadingText: string;
   resultPagerStatusText: string;
-  noSearchResultText: string;
   showMoreText: string;
   loadingResultsText: string;
 }
