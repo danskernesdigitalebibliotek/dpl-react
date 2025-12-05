@@ -131,7 +131,7 @@ export const Search: Story = {
     stringSuggestionWorkText: "material",
     stringSuggestionTopicText: "topic",
     searchUrl: "/search",
-    advancedSearchUrl: "/advanced-search",
+    advancedSearchUrl: "/advancedsearch",
     searchHeaderDropdownText: "Dropdown with additional search functions",
     materialUrl: "/work/:workid",
     autosuggestBookCategoryText: "Books",
