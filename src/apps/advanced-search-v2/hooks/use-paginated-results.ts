@@ -138,8 +138,11 @@ export const usePaginatedResults = ({
   // Mark refetching complete once data arrives.
   // This enables showing "zero results" only after we've actually fetched.
   useEffect(() => {
-    if (!isFetching && !isLoading && isRefetching) {
-      setIsRefetching(false);
+    if (!isFetching && !isLoading) {
+      if (isRefetching) {
+        setIsRefetching(false);
+      }
+      // Allow zero results to show after any completed fetch (initial or refetch)
       setCanShowZeroResults(true);
     }
   }, [isFetching, isLoading, isRefetching]);

@@ -1,7 +1,6 @@
 import React from "react";
 import { useText } from "../../../core/utils/text";
 import SearchResultList from "../../../components/card-item-list/SearchResultList";
-import SearchResultZeroHits from "../../search-result/search-result-zero-hits";
 import AdvancedSearchFacets from "./AdvancedSearchFacets";
 import AdvancedSearchSummary from "./AdvancedSearchSummary";
 import AdvancedSortSelect from "./AdvancedSortSelect";
@@ -35,8 +34,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
     page,
     PagerComponent,
     isLoadingOrRefetching,
-    shouldShowSearchResults,
-    shouldShowZeroResults
+    shouldShowSearchResults
   } = usePaginatedResults({ cql, isSearchEnabled, onShelf, pageSize, sort });
 
   if (!isSearchEnabled) return null;
@@ -119,8 +117,6 @@ const AdvancedSearchResultsWithFacets: React.FC<
               <PagerComponent isLoading={isLoadingOrRefetching} />
             </>
           )}
-
-          {shouldShowZeroResults && <SearchResultZeroHits />}
         </section>
       </div>
     </div>
