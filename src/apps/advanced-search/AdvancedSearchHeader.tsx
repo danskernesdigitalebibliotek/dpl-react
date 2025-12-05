@@ -295,7 +295,7 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
         {!isFormMode && (
           <Link
             className="link-tag advanced-search__back-button cursor-pointer"
-            href={new URL("/advanced-search", window.location.href)}
+            href={new URL("/advancedsearch", window.location.href)}
           >
             {t("toAdvancedSearchButtonText")}
           </Link>
