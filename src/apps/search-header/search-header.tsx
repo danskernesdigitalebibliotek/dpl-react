@@ -210,6 +210,9 @@ const SearchHeader: React.FC = () => {
       return;
     }
 
+    // Determine how to handle the selected item. Since a single text suggestion
+    // can shown both as a material and as a category suggestion we need to
+    // determine if that was the case first.
     // If this item is shown as one of work suggestions redirect to material page.
     if (selectedItem.work?.workId && materialData.includes(selectedItem)) {
       track("click", {
@@ -226,8 +229,39 @@ const SearchHeader: React.FC = () => {
       return;
     }
 
-    // If this item is a creator, subject or title suggestion, redirect to the
-    // search page using the suggested term as a part of the query.
+    // If this item is shown as a category suggestion
+    if (
+      nonWorkSuggestion &&
+      changes.selectedItem &&
+      nonWorkSuggestion.term === changes.selectedItem.term &&
+      highlightedIndexAfterClick &&
+      highlightedIndexAfterClick >= textData.concat(materialData).length
+    ) {
+      const highlightedCategoryIndex =
+        highlightedIndexAfterClick - (textData.length + materialData.length);
+      const selectedItemString = determineSuggestionTerm(changes.selectedItem);
+      track("click", {
+        id: statistics.autosuggestClick.id,
+        name: statistics.autosuggestClick.name,
+        trackedData: selectedItemString
+      }).then(() => {
+        const { term, facet } =
+          getAutosuggestCategoryList(t)[highlightedCategoryIndex];
+        // Before redirecting we need to clean persisted filters from previous search.
+        clearFilter();
+        redirectTo(
+          constructSearchUrlWithFilter({
+            searchUrl,
+            selectedItemString,
+            filter: { [facet]: term }
+          })
+        );
+      });
+      return;
+    }
+
+    // If this item is a creator, subject or title text suggestion, redirect to
+    // the search page using the suggested term as a part of the query.
     if (
       [
         SuggestionTypeEnum.Creator,
@@ -264,37 +298,6 @@ const SearchHeader: React.FC = () => {
         // Before redirecting we need to clean persisted filters from previous search.
         clearFilter();
         redirectTo(url);
-      });
-      return;
-    }
-
-    // If this item is shown as a category suggestion
-    if (
-      nonWorkSuggestion &&
-      changes.selectedItem &&
-      nonWorkSuggestion.term === changes.selectedItem.term &&
-      highlightedIndexAfterClick &&
-      highlightedIndexAfterClick >= textData.concat(materialData).length
-    ) {
-      const highlightedCategoryIndex =
-        highlightedIndexAfterClick - (textData.length + materialData.length);
-      const selectedItemString = determineSuggestionTerm(changes.selectedItem);
-      track("click", {
-        id: statistics.autosuggestClick.id,
-        name: statistics.autosuggestClick.name,
-        trackedData: selectedItemString
-      }).then(() => {
-        const { term, facet } =
-          getAutosuggestCategoryList(t)[highlightedCategoryIndex];
-        // Before redirecting we need to clean persisted filters from previous search.
-        clearFilter();
-        redirectTo(
-          constructSearchUrlWithFilter({
-            searchUrl,
-            selectedItemString,
-            filter: { [facet]: term }
-          })
-        );
       });
       return;
     }
