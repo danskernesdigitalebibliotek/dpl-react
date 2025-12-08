@@ -92,7 +92,7 @@
     "babel-plugin-istanbul": "^7.0.1",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "caniuse-lite": "^1.0.30001757",
+    "caniuse-lite": "^1.0.30001759",
     "change-case-all": "^2.1.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.2.1",
