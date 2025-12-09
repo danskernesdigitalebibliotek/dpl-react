@@ -29,6 +29,7 @@ import {
   usePageStatistics
 } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
+import Link from "../../components/atoms/links/Link";
 
 export type AdvancedSearchHeaderProps = {
   dataCy?: string;
@@ -292,14 +293,12 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
 
       <section className="advanced-search__footer">
         {!isFormMode && (
-          <button
-            type="button"
+          <Link
             className="link-tag advanced-search__back-button cursor-pointer"
-            onClick={() => setIsFormMode(true)}
-            onKeyUp={(e) => e.key === "Enter" && setIsFormMode(!true)}
+            href={new URL("/advancedsearch", window.location.href)}
           >
             {t("toAdvancedSearchButtonText")}
-          </button>
+          </Link>
         )}
         <Button
           dataCy="search-button"
