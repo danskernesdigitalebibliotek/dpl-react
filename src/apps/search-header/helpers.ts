@@ -65,16 +65,6 @@ export function determineSuggestionTerm(suggestion: Suggestion): string {
   return suggestion.term;
 }
 
-export function isDisplayedAsWorkSuggestion(
-  selectedItem: Suggestion["work"],
-  currentMaterialData: Suggestion[]
-) {
-  const dataWithWorkId = currentMaterialData.filter(
-    (item) => item.work?.workId === selectedItem?.workId
-  );
-  return Boolean(dataWithWorkId.length);
-}
-
 export function getInitialSearchQuery(): string {
   const qParam = getUrlQueryParam("q");
   // If q is "*" or doesn't exist, return empty string for display

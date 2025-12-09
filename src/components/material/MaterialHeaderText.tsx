@@ -4,7 +4,7 @@ import { useText } from "../../core/utils/text";
 import { useUrls } from "../../core/utils/url";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import { WorkSmall } from "../../core/utils/types/entities";
-import { cleanCreatorName } from "./helper";
+import { cleanCreatorName } from "../../core/utils/helpers/material";
 
 interface MaterialHeaderTextProps {
   title: string;
