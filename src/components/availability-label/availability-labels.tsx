@@ -14,7 +14,7 @@ import { AvailabilityLabel } from "./availability-label";
 import { Manifestation } from "../../core/utils/types/entities";
 import {
   divideManifestationsByMaterialType,
-  getAllIdentifiers
+  getAllIsbns
 } from "../../apps/material/helper";
 
 export interface AvailabilityLabelsProps {
@@ -45,7 +45,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
         const manifestationsOfMaterialType =
           manifestationsByMaterialType[materialType];
         const faustIds = getAllFaustIds(manifestationsOfMaterialType).sort();
-        const identifiers = getAllIdentifiers(manifestationsOfMaterialType);
+        const isbns = getAllIsbns(manifestationsOfMaterialType);
         const url = constructMaterialUrl(materialUrl, workId, materialType);
         const accessTypesCodes = manifestationsOfMaterialType
           .map((manifest) =>
@@ -82,7 +82,7 @@ export const AvailabilityLabels: React.FC<AvailabilityLabelsProps> = ({
                   }
                 : undefined
             }
-            isbns={identifiers}
+            isbns={isbns}
             isVisualOnly={isTheOnlyLabel}
           />
         );

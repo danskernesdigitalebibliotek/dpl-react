@@ -67,6 +67,7 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   publisher
   identifiers {
+    type
     value
   }
   contributors {

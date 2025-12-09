@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getAllIdentifiers } from "../../../apps/material/helper";
+import { getAllIsbns } from "../../../apps/material/helper";
 import { AccessTypeCodeEnum } from "../../../core/dbc-gateway/generated/graphql";
 import {
   getAllPids,
@@ -20,7 +20,7 @@ interface Props {
 const MaterialAvailabilityText: React.FC<Props> = ({ manifestations }) => {
   const t = useText();
   const materialType = getMaterialType(manifestations);
-  const isbns = getAllIdentifiers(manifestations);
+  const isbns = getAllIsbns(manifestations);
   const { materialIsReservableFromAnotherLibrary } =
     useReservableFromAnotherLibrary(manifestations);
 
