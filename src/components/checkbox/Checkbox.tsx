@@ -12,9 +12,11 @@ interface CheckBoxProps {
   labelClassName?: string;
   onChecked?: (value: boolean) => void;
   ariaLabel?: string;
+  ariaDescribedBy?: string;
   focused?: boolean;
   isVisualOnly?: boolean;
   labelledBy?: string;
+  tabIndex?: number;
 }
 
 const CheckBox: FC<CheckBoxProps> = ({
@@ -27,9 +29,11 @@ const CheckBox: FC<CheckBoxProps> = ({
   onChecked,
   disabled,
   ariaLabel,
+  ariaDescribedBy,
   focused,
   isVisualOnly,
-  labelledBy
+  labelledBy,
+  tabIndex
 }) => {
   const checkedHandler = (checked: boolean) => {
     if (onChecked) {
@@ -38,7 +42,10 @@ const CheckBox: FC<CheckBoxProps> = ({
   };
 
   return (
-    <div className={`checkbox ${className || ""}`}>
+    <div
+      className={clsx("checkbox", className)}
+      style={isVisualOnly ? { pointerEvents: "none" } : undefined}
+    >
       <input
         // This is to handle focus when more items are loaded via pagination
         // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -52,7 +59,9 @@ const CheckBox: FC<CheckBoxProps> = ({
         type="checkbox"
         aria-label={isVisualOnly && labelledBy ? undefined : ariaLabel}
         aria-labelledby={isVisualOnly && labelledBy ? labelledBy : undefined}
+        aria-describedby={ariaDescribedBy}
         disabled={disabled}
+        tabIndex={tabIndex}
       />
       <label
         className={clsx("checkbox__label", labelClassName)}

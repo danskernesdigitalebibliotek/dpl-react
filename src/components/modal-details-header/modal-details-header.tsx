@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { Pid } from "../../core/utils/types/ids";
 import { Cover } from "../cover/cover";
+import LinkNoStyle from "../atoms/links/LinkNoStyle";
 
 export interface ModalDetailsHeaderProps {
   authors: string | undefined | null;
@@ -13,6 +14,7 @@ export interface ModalDetailsHeaderProps {
   periodical?: string | null;
   series?: string | null;
   children?: ReactNode;
+  workUrl?: URL | null;
 }
 
 const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
@@ -25,11 +27,12 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
   isbnForCover,
   periodical,
   series,
-  children
+  children,
+  workUrl
 }) => {
   const coverIds = [pid || isbnForCover];
 
-  return (
+  const headerContent = (
     <div data-cy="modal-details__header" className="modal-details__header">
       <div className="modal-details__cover">
         <div className="material-container">
@@ -66,6 +69,14 @@ const ModalDetailsHeader: FC<ModalDetailsHeaderProps> = ({
         )}
       </div>
     </div>
+  );
+
+  return workUrl ? (
+    <LinkNoStyle url={workUrl} isNewTab>
+      {headerContent}
+    </LinkNoStyle>
+  ) : (
+    headerContent
   );
 };
 

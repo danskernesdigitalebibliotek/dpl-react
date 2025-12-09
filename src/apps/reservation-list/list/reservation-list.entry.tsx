@@ -20,6 +20,7 @@ export interface ReservationListUrlProps {
 export interface ReservationListConfigProps {
   blacklistedPickupBranchesConfig: string;
   blacklistedSearchBranchesConfig: string;
+  blacklistedAvailabilityBranchesConfig: string;
   branchesConfig: string;
   expirationWarningDaysBeforeConfig: string;
   pauseReservationStartDateConfig: string;
@@ -30,7 +31,7 @@ export interface ReservationListTextProps {
   expiresSoonText: string;
   materialAndAuthorText: string;
   materialByAuthorText: string;
-  viewMaterialText: string;
+  materialsInStockInfoText: string;
   materialUrl: string;
   pauseReservationModalBodyText: string;
   pauseReservationModalCancelButtonLabelText: string;
@@ -72,6 +73,7 @@ export interface ReservationListTextProps {
   reservationListYouAreInQueueText: string;
   resultPagerStatusText: string;
   showMoreText: string;
+  viewMaterialText: string;
 }
 
 export interface ReservationListEntryWithPageSizeProps

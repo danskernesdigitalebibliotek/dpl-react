@@ -21,10 +21,10 @@ export type MaterialGridProps = {
 
 const defaultIncrement: number = 4;
 
-// Business logic states that there cannot be more than 32 items displayed.
+// Business logic states that there cannot be more than 100 items displayed.
 // This limit should ideally be happening in the editor-input, but we'll
 // add a safeguard here.
-const maxAmount: number = 32;
+const maxAmount: number = 100;
 
 const MaterialGrid: React.FC<MaterialGridProps> = ({
   materials,

@@ -34,7 +34,11 @@ const meta: Meta<typeof ReservationList> = {
     ...reservationListArgTypes,
     ...globalTextArgTypes,
     blacklistedSearchBranchesConfig: {
-      description: "Blacklisted branches",
+      description: "Blacklisted search branches",
+      control: { type: "text" }
+    },
+    blacklistedAvailabilityBranchesConfig: {
+      description: "Blacklisted availability branches",
       control: { type: "text" }
     },
     expirationWarningDaysBeforeConfig: {
@@ -44,7 +48,7 @@ const meta: Meta<typeof ReservationList> = {
       control: { type: "text" }
     },
     blacklistedPickupBranchesConfig: {
-      description: "Blacklisted branches",
+      description: "Blacklisted pickup branches",
       control: { type: "text" }
     },
     branchesConfig: {
@@ -209,6 +213,8 @@ export const Default: Story = {
     ...globalTextArgs,
     blacklistedSearchBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    blacklistedAvailabilityBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
     expirationWarningDaysBeforeConfig: "6",
     pauseReservationStartDateConfig: "2022-06-30",
     blacklistedPickupBranchesConfig:
@@ -237,6 +243,8 @@ export const Default: Story = {
     viewMaterialText: "View material",
     materialUrl: "/work/:workid",
     materialAndAuthorText: "and",
+    materialsInStockInfoText:
+      '{"type":"plural","text":["We have 1 copy of the material in stock. ","We have @count copies of the material in stock."]}',
     etAlText: "et al.",
     reservationListNumberInQueueText:
       "There are @count people in the queue before you",

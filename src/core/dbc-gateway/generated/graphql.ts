@@ -465,6 +465,8 @@ export type Corporation = CreatorInterface &
     /** Sub corporation or conference/meeting */
     sub?: Maybe<Scalars["String"]["output"]>;
     type: SubjectTypeEnum;
+    /** VIAF identifier of the creator */
+    viafid?: Maybe<Scalars["String"]["output"]>;
     /** Year of the conference */
     year?: Maybe<Scalars["String"]["output"]>;
   };
@@ -499,6 +501,8 @@ export type CreatorInterface = {
   nameSort: Scalars["String"]["output"];
   /** A list of which kinds of contributions this creator made to this creation */
   roles: Array<Role>;
+  /** VIAF identifier of the creator */
+  viafid?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type Dk5MainEntry = {
@@ -1333,6 +1337,8 @@ export type Person = CreatorInterface &
     /** A roman numeral added to the person, like Christian IV */
     romanNumeral?: Maybe<Scalars["String"]["output"]>;
     type: SubjectTypeEnum;
+    /** VIAF identifier of the creator */
+    viafid?: Maybe<Scalars["String"]["output"]>;
   };
 
 export type PhysicalUnitDescription = {
@@ -2234,6 +2240,46 @@ export enum WorkTypeEnum {
   Sheetmusic = "SHEETMUSIC",
   Track = "TRACK"
 }
+
+export type ComplexFacetSearchQueryVariables = Exact<{
+  cql: Scalars["String"]["input"];
+  facets?: InputMaybe<ComplexSearchFacetsInput>;
+  filters?: InputMaybe<ComplexSearchFiltersInput>;
+}>;
+
+export type ComplexFacetSearchQuery = {
+  __typename?: "Query";
+  complexSearch: {
+    __typename?: "ComplexSearchResponse";
+    facets?: Array<{
+      __typename?: "ComplexSearchFacetResponse";
+      name?: string | null;
+      values?: Array<{
+        __typename?: "ComplexSearchFacetValue";
+        key: string;
+        score: number;
+      }> | null;
+    }> | null;
+  };
+};
+
+export type ComplexSuggestQueryVariables = Exact<{
+  q: Scalars["String"]["input"];
+  type: ComplexSuggestionTypeEnum;
+}>;
+
+export type ComplexSuggestQuery = {
+  __typename?: "Query";
+  complexSuggest: {
+    __typename?: "ComplexSuggestResponse";
+    result: Array<{
+      __typename?: "ComplexSearchSuggestion";
+      type: string;
+      term: string;
+      traceId: string;
+    }>;
+  };
+};
 
 export type GetSmallWorkQueryVariables = Exact<{
   id: Scalars["String"]["input"];
@@ -7666,6 +7712,66 @@ export const WorkMediumFragmentDoc = `
   }
 }
     ${WorkSmallFragmentDoc}`;
+export const ComplexFacetSearchDocument = `
+    query complexFacetSearch($cql: String!, $facets: ComplexSearchFacetsInput, $filters: ComplexSearchFiltersInput) {
+  complexSearch(cql: $cql, filters: $filters, facets: $facets) {
+    facets {
+      name
+      values {
+        key
+        score
+      }
+    }
+  }
+}
+    `;
+
+export const useComplexFacetSearchQuery = <
+  TData = ComplexFacetSearchQuery,
+  TError = unknown
+>(
+  variables: ComplexFacetSearchQueryVariables,
+  options?: UseQueryOptions<ComplexFacetSearchQuery, TError, TData>
+) => {
+  return useQuery<ComplexFacetSearchQuery, TError, TData>(
+    ["complexFacetSearch", variables],
+    fetcher<ComplexFacetSearchQuery, ComplexFacetSearchQueryVariables>(
+      ComplexFacetSearchDocument,
+      variables
+    ),
+    options
+  );
+};
+
+export const ComplexSuggestDocument = `
+    query complexSuggest($q: String!, $type: ComplexSuggestionTypeEnum!) {
+  complexSuggest(q: $q, type: $type) {
+    result {
+      type
+      term
+      traceId
+    }
+  }
+}
+    `;
+
+export const useComplexSuggestQuery = <
+  TData = ComplexSuggestQuery,
+  TError = unknown
+>(
+  variables: ComplexSuggestQueryVariables,
+  options?: UseQueryOptions<ComplexSuggestQuery, TError, TData>
+) => {
+  return useQuery<ComplexSuggestQuery, TError, TData>(
+    ["complexSuggest", variables],
+    fetcher<ComplexSuggestQuery, ComplexSuggestQueryVariables>(
+      ComplexSuggestDocument,
+      variables
+    ),
+    options
+  );
+};
+
 export const GetSmallWorkDocument = `
     query getSmallWork($id: String!) {
   work(id: $id) {
@@ -8276,6 +8382,8 @@ export const usePlaceCopyMutation = <TError = unknown, TContext = unknown>(
 
 export const operationNames = {
   Query: {
+    complexFacetSearch: "complexFacetSearch" as const,
+    complexSuggest: "complexSuggest" as const,
     getSmallWork: "getSmallWork" as const,
     getManifestationViaMaterialByFaust:
       "getManifestationViaMaterialByFaust" as const,

@@ -11,10 +11,11 @@ import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { useUrls } from "../../core/utils/url";
 import {
-  constructAdvancedSearchUrl,
+  constructCreatorSearchUrl,
   constructMaterialUrl,
   constructSearchUrl,
   constructSearchUrlWithFilter,
+  constructSubjectSearchUrl,
   redirectTo
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
@@ -23,13 +24,13 @@ import {
   determineSuggestionTerm,
   findNonWorkSuggestion,
   getAutosuggestCategoryList,
-  getInitialSearchQuery,
-  isDisplayedAsWorkSuggestion
+  getInitialSearchQuery
 } from "./helpers";
 import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 import useFilterHandler from "../search-result/useFilterHandler";
+import { cleanCreatorName } from "../../core/utils/helpers/material";
 
 const SearchHeader: React.FC = () => {
   const t = useText();
@@ -208,11 +209,12 @@ const SearchHeader: React.FC = () => {
     ) {
       return;
     }
+
+    // Determine how to handle the selected item. Since a single text suggestion
+    // can shown both as a material and as a category suggestion we need to
+    // determine if that was the case first.
     // If this item is shown as one of work suggestions redirect to material page.
-    if (
-      selectedItem.work?.workId &&
-      isDisplayedAsWorkSuggestion(selectedItem.work, materialData)
-    ) {
+    if (selectedItem.work?.workId && materialData.includes(selectedItem)) {
       track("click", {
         id: statistics.autosuggestClick.id,
         name: statistics.autosuggestClick.name,
@@ -226,6 +228,7 @@ const SearchHeader: React.FC = () => {
       });
       return;
     }
+
     // If this item is shown as a category suggestion
     if (
       nonWorkSuggestion &&
@@ -256,6 +259,49 @@ const SearchHeader: React.FC = () => {
       });
       return;
     }
+
+    // If this item is a creator, subject or title text suggestion, redirect to
+    // the search page using the suggested term as a part of the query.
+    if (
+      [
+        SuggestionTypeEnum.Creator,
+        SuggestionTypeEnum.Subject,
+        SuggestionTypeEnum.Title
+      ].includes(selectedItem.type)
+    ) {
+      const selectedItemString = selectedItem.term;
+      let url: URL | never;
+      switch (selectedItem.type) {
+        case SuggestionTypeEnum.Creator:
+          url = constructCreatorSearchUrl(
+            searchUrl,
+            // Suggested creators may contain elements which are not valid
+            // creator filters. Clean it up before redirecting.
+            cleanCreatorName(selectedItem.term)
+          );
+          break;
+        case SuggestionTypeEnum.Subject:
+          url = constructSubjectSearchUrl(searchUrl, selectedItem.term);
+          break;
+        case SuggestionTypeEnum.Title:
+          // We do not have a specific search page handling for titles so
+          // instead do a phrase search for the title.
+          url = constructSearchUrl(searchUrl, '"' + selectedItem.term + '"');
+          break;
+      }
+
+      track("click", {
+        id: statistics.autosuggestClick.id,
+        name: statistics.autosuggestClick.name,
+        trackedData: selectedItemString
+      }).then(() => {
+        // Before redirecting we need to clean persisted filters from previous search.
+        clearFilter();
+        redirectTo(url);
+      });
+      return;
+    }
+
     // Otherwise redirect to search result page & track autosuggest click.
     track("click", {
       id: statistics.autosuggestClick.id,
@@ -299,25 +345,7 @@ const SearchHeader: React.FC = () => {
     }, 100);
   });
 
-  const [redirectUrl, setRedirectUrl] = useState<URL>(
-    constructSearchUrl(searchUrl, q)
-  );
-
-  useEffect(() => {
-    // We redirect to Advanced search results instead of regular search results if:
-    // - the query is wrapped in double quotes
-    // - the query is not just empty double quotes
-    if (
-      q.trim().charAt(0) === '"' &&
-      q.trim().charAt(q.length - 1) === '"' &&
-      q.trim() !== '""' &&
-      q.trim() !== '"'
-    ) {
-      setRedirectUrl(constructAdvancedSearchUrl(advancedSearchUrl, q));
-    } else {
-      setRedirectUrl(constructSearchUrl(searchUrl, q));
-    }
-  }, [q, advancedSearchUrl, searchUrl]);
+  const redirectUrl = constructSearchUrl(searchUrl, q);
 
   return (
     <div className="header__menu-second">

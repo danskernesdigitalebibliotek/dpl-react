@@ -9,6 +9,8 @@ import { getPreferredBranch } from "../../../components/reservation/helper";
 import ReservationStatus from "./reservation-status";
 import { useGetBranches } from "../../../core/utils/branches";
 import { getReservationStatusInfoLabel } from "../utils/helpers";
+import { getTotalHoldings, useGetHoldings } from "../../material/helper";
+import { useConfig } from "../../../core/utils/config";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
@@ -28,8 +30,9 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   isDigital
 }) => {
   const t = useText();
-
+  const config = useConfig();
   const {
+    faust,
     state,
     expiryDate,
     pickupBranch,
@@ -37,6 +40,14 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     pickupDeadline,
     pickupNumber
   } = reservationInfo;
+
+  const { data: holdingsData } = useGetHoldings({
+    faustIds: [String(faust)],
+    config,
+    blacklist: "availability",
+    options: { query: { enabled: !!faust } }
+  });
+  const holdings = getTotalHoldings(holdingsData || []);
 
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
   const { success } = getColors();
@@ -90,6 +101,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         empty={!showStatusCircleIcon}
         showArrow={showArrow}
         className={reservationStatusClassNameOverride}
+        holdings={holdings}
       >
         <div className="counter__value color-secondary-gray">
           <img src={check} alt="" />
@@ -120,6 +132,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         empty={!showStatusCircleIcon}
         showArrow={showArrow}
         className={reservationStatusClassNameOverride}
+        holdings={holdings}
       >
         {/* I am not using string interpolation here because of styling */}
         {/* if somehow it is possible to break text in one div into two lines */}
@@ -155,6 +168,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         empty={!showStatusCircleIcon}
         showArrow={showArrow}
         className={reservationStatusClassNameOverride}
+        holdings={holdings}
       >
         <span className="counter__value color-secondary-gray">
           {/* I am not using string interpolation here because of styling */}
@@ -183,6 +197,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       empty
       showArrow={showArrow}
       className={reservationStatusClassNameOverride}
+      holdings={holdings}
     />
   );
 };
