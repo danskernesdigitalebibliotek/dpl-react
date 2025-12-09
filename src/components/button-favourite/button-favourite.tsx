@@ -27,9 +27,10 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   darkBackground,
   title
 }) => {
-  const [fillState, setFillState] = useState<boolean>(false);
-  const [isLoadingHeart, setIsLoadingHeart] = useState<boolean>(!isAnonymous());
   const isUserAnonymous = isAnonymous();
+  const [fillState, setFillState] = useState<boolean>(false);
+  const [isLoadingHeart, setIsLoadingHeart] =
+    useState<boolean>(!isUserAnonymous);
   const t = useText();
   const { mutate: hasItem } = useHasItem();
   const { mutate: removeItem } = useRemoveItem();
