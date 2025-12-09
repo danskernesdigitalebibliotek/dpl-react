@@ -131,7 +131,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740074918"
+                "type": "ISBN", "value": "9788740074918"
               }
             ],
             "contributors": [],
@@ -229,7 +229,7 @@
           "publisher": ["Politiken"],
           "identifiers": [
             {
-              "value": "9788740074918"
+              "type": "ISBN", "value": "9788740074918"
             }
           ],
           "contributors": [],
@@ -326,7 +326,7 @@
           "publisher": ["Politiken"],
           "identifiers": [
             {
-              "value": "9788740074918"
+              "type": "ISBN", "value": "9788740074918"
             }
           ],
           "contributors": [],

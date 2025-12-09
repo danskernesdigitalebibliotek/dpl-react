@@ -268,12 +268,6 @@ describe("Search Result", () => {
       ]
     }).as("Availability service");
 
-    // Intercept material list service.
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
-
     // Intercept campaign query.
     cy.fixture("search-result/campaign.json")
       .then((result) => {

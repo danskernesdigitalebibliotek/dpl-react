@@ -50,6 +50,7 @@ export default {
         publisher: ["Macmillan"],
         identifiers: [
           {
+            type: "ISBN",
             value: "9780230026810"
           },
           {
@@ -145,6 +146,7 @@ export default {
         publisher: [],
         identifiers: [
           {
+            type: "ISBN",
             value: "9780553900330"
           }
         ],
@@ -242,6 +244,7 @@ export default {
         publisher: ["Random House Audio"],
         identifiers: [
           {
+            type: "ISBN",
             value: "9780739346273"
           }
         ],
@@ -331,6 +334,7 @@ export default {
         publisher: ["Oxford University Press"],
         identifiers: [
           {
+            type: "ISBN",
             value: "0-19-423069-4"
           }
         ],

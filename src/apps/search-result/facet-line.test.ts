@@ -29,13 +29,8 @@ describe("The facet line", () => {
       fixtureFilePath: "cover/cover.json"
     });
 
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
-
     cy.visit("/iframe.html?id=apps-search-result--primary");
-    cy.wait(["@Availability", "@Material list service"]);
+    cy.wait("@Availability");
   });
 
   it("Renders facets with a single term as a button", () => {

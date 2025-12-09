@@ -155,7 +155,7 @@
             "publisher": ["Cicero"],
             "identifiers": [
               {
-                "value": "9788763844116"
+                "type": "ISBN", "type": "ISBN", "type": "ISBN", "value": "9788763844116"
               }
             ],
             "contributors": [
@@ -244,10 +244,10 @@
             "publisher": ["Cicero"],
             "identifiers": [
               {
-                "value": "9788763844123"
+                "type": "ISBN", "type": "ISBN", "value": "9788763844123"
               },
               {
-                "value": "9788763844123"
+                "type": "ISBN", "type": "ISBN", "value": "9788763844123"
               }
             ],
             "contributors": [
@@ -339,7 +339,7 @@
             "publisher": ["Rosinante"],
             "identifiers": [
               {
-                "value": "9788763850636"
+                "type": "ISBN", "type": "ISBN", "value": "9788763850636"
               }
             ],
             "contributors": [
@@ -449,7 +449,7 @@
           "publisher": ["Rosinante"],
           "identifiers": [
             {
-              "value": "9788763850636"
+              "type": "ISBN", "type": "ISBN", "value": "9788763850636"
             }
           ],
           "contributors": [
@@ -558,7 +558,7 @@
           "publisher": ["Rosinante"],
           "identifiers": [
             {
-              "value": "9788763850636"
+              "type": "ISBN", "type": "ISBN", "value": "9788763850636"
             }
           ],
           "contributors": [

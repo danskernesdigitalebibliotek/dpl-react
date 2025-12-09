@@ -29,14 +29,8 @@ describe("The Facet Browser", () => {
       operationName: "GetCoversByPids",
       fixtureFilePath: "cover/cover.json"
     });
-    // Intercept material list service.
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
-
     cy.visit("/iframe.html?id=apps-search-result--primary");
-    cy.wait(["@Availability", "@Material list service"]);
+    cy.wait("@Availability");
     cy.getBySel("facet-line-open-browser").click();
   });
 
@@ -161,20 +155,12 @@ describe("The Facet Browser", () => {
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
 
-    // Intercept material list service.
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
-
     // Intercept campaign query.
     cy.fixture("search-result/campaign.json")
       .then((result) => {
         cy.intercept("**/dpl_campaign/match", result);
       })
       .as("Campaign service - full campaign");
-
-    cy.wait(["@Material list service"]);
 
     cy.visit("/iframe.html?id=apps-search-result--primary");
     cy.contains("button", "More filters").click();

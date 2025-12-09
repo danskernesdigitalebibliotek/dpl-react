@@ -1,4 +1,8 @@
 describe("Favorite button", () => {
+  beforeEach(() => {
+    cy.createFakeAuthenticatedSession();
+  });
+
   it("Shows that the user does not have the material on the list", () => {
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404,

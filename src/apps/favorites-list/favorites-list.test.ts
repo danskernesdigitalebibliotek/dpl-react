@@ -2,6 +2,7 @@ import { TOKEN_LIBRARY_KEY } from "../../core/token";
 
 describe("Favorites list", () => {
   beforeEach(() => {
+    cy.createFakeAuthenticatedSession();
     cy.window().then((win) => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });

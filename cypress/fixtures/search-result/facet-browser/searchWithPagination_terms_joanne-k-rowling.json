@@ -398,7 +398,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788700398368"
+                    "type": "ISBN", "value": "9788700398368"
                   },
                   {
                     "value": "87-00-39836-5"
@@ -1156,7 +1156,7 @@
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
                   {
-                    "value": "9788703011714"
+                    "type": "ISBN", "value": "9788703011714"
                   },
                   {
                     "value": "87-03-01171-2"
@@ -1237,7 +1237,7 @@
                 "publisher": ["Gyldendal Lyd"],
                 "identifiers": [
                   {
-                    "value": "9788702075380"
+                    "type": "ISBN", "value": "9788702075380"
                   }
                 ],
                 "contributors": [
@@ -1319,7 +1319,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702113990"
+                    "type": "ISBN", "value": "9788702113990"
                   }
                 ],
                 "contributors": [
@@ -1401,7 +1401,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702301588"
+                    "type": "ISBN", "value": "9788702301588"
                   }
                 ],
                 "contributors": [
@@ -1489,7 +1489,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788700774636"
+                    "type": "ISBN", "value": "9788700774636"
                   }
                 ],
                 "contributors": [
@@ -1574,7 +1574,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702173222"
+                    "type": "ISBN", "value": "9788702173222"
                   }
                 ],
                 "contributors": [
@@ -1656,7 +1656,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702179859"
+                    "type": "ISBN", "value": "9788702179859"
                   }
                 ],
                 "contributors": [
@@ -1741,7 +1741,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702272451"
+                    "type": "ISBN", "value": "9788702272451"
                   }
                 ],
                 "contributors": [
@@ -1824,7 +1824,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702301588"
+                  "type": "ISBN", "value": "9788702301588"
                 }
               ],
               "contributors": [
@@ -1906,7 +1906,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702301588"
+                  "type": "ISBN", "value": "9788702301588"
                 }
               ],
               "contributors": [
@@ -2120,7 +2120,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702307566"
+                    "type": "ISBN", "value": "9788702307566"
                   }
                 ],
                 "contributors": [
@@ -2628,7 +2628,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702029444"
+                    "type": "ISBN", "value": "9788702029444"
                   },
                   {
                     "value": "87-02-02944-8"
@@ -2794,7 +2794,7 @@
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
                   {
-                    "value": "9788703014807"
+                    "type": "ISBN", "value": "9788703014807"
                   },
                   {
                     "value": "87-03-01480-0"
@@ -2873,7 +2873,7 @@
                 "publisher": ["Gyldendal Lyd"],
                 "identifiers": [
                   {
-                    "value": "9788702075427"
+                    "type": "ISBN", "value": "9788702075427"
                   }
                 ],
                 "contributors": [
@@ -2955,7 +2955,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702114393"
+                    "type": "ISBN", "value": "9788702114393"
                   }
                 ],
                 "contributors": [
@@ -3037,7 +3037,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702173260"
+                    "type": "ISBN", "value": "9788702173260"
                   }
                 ],
                 "contributors": [
@@ -3119,7 +3119,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702272482"
+                    "type": "ISBN", "value": "9788702272482"
                   }
                 ],
                 "contributors": [
@@ -3202,7 +3202,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702307566"
+                  "type": "ISBN", "value": "9788702307566"
                 }
               ],
               "contributors": [
@@ -3287,7 +3287,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702307566"
+                  "type": "ISBN", "value": "9788702307566"
                 }
               ],
               "contributors": [
@@ -3988,7 +3988,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702048513"
+                    "type": "ISBN", "value": "9788702048513"
                   },
                   {
                     "value": "87-02-04851-5"
@@ -4072,7 +4072,7 @@
                 "publisher": ["Gyldendal Lyd"],
                 "identifiers": [
                   {
-                    "value": "9788702075434"
+                    "type": "ISBN", "value": "9788702075434"
                   }
                 ],
                 "contributors": [
@@ -4154,7 +4154,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702114423"
+                    "type": "ISBN", "value": "9788702114423"
                   }
                 ],
                 "contributors": [
@@ -4236,7 +4236,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702173277"
+                    "type": "ISBN", "value": "9788702173277"
                   }
                 ],
                 "contributors": [
@@ -4318,7 +4318,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702272499"
+                    "type": "ISBN", "value": "9788702272499"
                   }
                 ],
                 "contributors": [
@@ -4401,7 +4401,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702272499"
+                  "type": "ISBN", "value": "9788702272499"
                 }
               ],
               "contributors": [
@@ -4477,7 +4477,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702272499"
+                  "type": "ISBN", "value": "9788702272499"
                 }
               ],
               "contributors": [
@@ -4760,7 +4760,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788700459946"
+                    "type": "ISBN", "value": "9788700459946"
                   },
                   {
                     "value": "87-00-45994-1"
@@ -5426,7 +5426,7 @@
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
                   {
-                    "value": "9788703011721"
+                    "type": "ISBN", "value": "9788703011721"
                   },
                   {
                     "value": "87-03-01172-0"
@@ -5507,7 +5507,7 @@
                 "publisher": ["Gyldendal Lyd"],
                 "identifiers": [
                   {
-                    "value": "9788702075397"
+                    "type": "ISBN", "value": "9788702075397"
                   }
                 ],
                 "contributors": [
@@ -5589,7 +5589,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702114331"
+                    "type": "ISBN", "value": "9788702114331"
                   }
                 ],
                 "contributors": [
@@ -5671,7 +5671,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702173239"
+                    "type": "ISBN", "value": "9788702173239"
                   }
                 ],
                 "contributors": [
@@ -5755,7 +5755,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702204681"
+                    "type": "ISBN", "value": "9788702204681"
                   }
                 ],
                 "contributors": [
@@ -5840,7 +5840,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702272444"
+                    "type": "ISBN", "value": "9788702272444"
                   }
                 ],
                 "contributors": [
@@ -5924,7 +5924,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702319361"
+                    "type": "ISBN", "value": "9788702319361"
                   }
                 ],
                 "contributors": [
@@ -6012,7 +6012,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702319361"
+                  "type": "ISBN", "value": "9788702319361"
                 }
               ],
               "contributors": [
@@ -6093,7 +6093,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702319361"
+                  "type": "ISBN", "value": "9788702319361"
                 }
               ],
               "contributors": [
@@ -6457,7 +6457,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788700470460"
+                    "type": "ISBN", "value": "9788700470460"
                   },
                   {
                     "value": "87-00-47046-5"
@@ -6963,7 +6963,7 @@
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
                   {
-                    "value": "9788703011738"
+                    "type": "ISBN", "value": "9788703011738"
                   },
                   {
                     "value": "87-03-01173-9"
@@ -7128,7 +7128,7 @@
                 "publisher": ["Gyldendal Lyd"],
                 "identifiers": [
                   {
-                    "value": "9788702075403"
+                    "type": "ISBN", "value": "9788702075403"
                   }
                 ],
                 "contributors": [
@@ -7210,7 +7210,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702114348"
+                    "type": "ISBN", "value": "9788702114348"
                   }
                 ],
                 "contributors": [
@@ -7292,7 +7292,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702173246"
+                    "type": "ISBN", "value": "9788702173246"
                   }
                 ],
                 "contributors": [
@@ -7374,7 +7374,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702227888"
+                    "type": "ISBN", "value": "9788702227888"
                   }
                 ],
                 "contributors": [
@@ -7459,7 +7459,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702272468"
+                    "type": "ISBN", "value": "9788702272468"
                   }
                 ],
                 "contributors": [
@@ -7542,7 +7542,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702272468"
+                  "type": "ISBN", "value": "9788702272468"
                 }
               ],
               "contributors": [
@@ -7618,7 +7618,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702272468"
+                  "type": "ISBN", "value": "9788702272468"
                 }
               ],
               "contributors": [
@@ -8239,7 +8239,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702002805"
+                    "type": "ISBN", "value": "9788702002805"
                   },
                   {
                     "value": "87-02-00280-9"
@@ -8401,7 +8401,7 @@
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
                   {
-                    "value": "9788703011745"
+                    "type": "ISBN", "value": "9788703011745"
                   },
                   {
                     "value": "87-03-01174-7"
@@ -8562,7 +8562,7 @@
                 "publisher": ["Gyldendal Lyd"],
                 "identifiers": [
                   {
-                    "value": "9788702075410"
+                    "type": "ISBN", "value": "9788702075410"
                   }
                 ],
                 "contributors": [
@@ -8644,7 +8644,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702114362"
+                    "type": "ISBN", "value": "9788702114362"
                   }
                 ],
                 "contributors": [
@@ -8726,7 +8726,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702284799"
+                    "type": "ISBN", "value": "9788702284799"
                   }
                 ],
                 "contributors": [
@@ -8811,7 +8811,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702173253"
+                    "type": "ISBN", "value": "9788702173253"
                   }
                 ],
                 "contributors": [
@@ -8893,7 +8893,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702272475"
+                    "type": "ISBN", "value": "9788702272475"
                   }
                 ],
                 "contributors": [
@@ -8976,7 +8976,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702284799"
+                  "type": "ISBN", "value": "9788702284799"
                 }
               ],
               "contributors": [
@@ -9055,7 +9055,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702284799"
+                  "type": "ISBN", "value": "9788702284799"
                 }
               ],
               "contributors": [
@@ -9277,7 +9277,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702215694"
+                    "type": "ISBN", "value": "9788702215694"
                   }
                 ],
                 "contributors": [
@@ -9371,7 +9371,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702215694"
+                  "type": "ISBN", "value": "9788702215694"
                 }
               ],
               "contributors": [
@@ -9458,7 +9458,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702215694"
+                  "type": "ISBN", "value": "9788702215694"
                 }
               ],
               "contributors": [
@@ -9669,7 +9669,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781526646651"
+                    "type": "ISBN", "value": "9781526646651"
                   }
                 ],
                 "contributors": [
@@ -10804,7 +10804,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747532699"
+                    "type": "ISBN", "value": "9780747532699"
                   }
                 ],
                 "contributors": [],
@@ -10978,13 +10978,13 @@
                 "publisher": ["HNP"],
                 "identifiers": [
                   {
-                    "value": "9781907545016"
+                    "type": "ISBN", "value": "9781907545016"
                   },
                   {
-                    "value": "9781907545009"
+                    "type": "ISBN", "value": "9781907545009"
                   },
                   {
-                    "value": "9781408882221"
+                    "type": "ISBN", "value": "9781408882221"
                   }
                 ],
                 "contributors": [],
@@ -11068,7 +11068,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408810545"
+                    "type": "ISBN", "value": "9781408810545"
                   }
                 ],
                 "contributors": [],
@@ -11152,10 +11152,10 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408855652"
+                    "type": "ISBN", "value": "9781408855652"
                   },
                   {
-                    "value": "9781408855898"
+                    "type": "ISBN", "value": "9781408855898"
                   }
                 ],
                 "contributors": [],
@@ -11241,7 +11241,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408845646"
+                    "type": "ISBN", "value": "9781408845646"
                   }
                 ],
                 "contributors": [
@@ -11325,7 +11325,7 @@
               "publisher": ["Bloomsbury"],
               "identifiers": [
                 {
-                  "value": "9781526646651"
+                  "type": "ISBN", "value": "9781526646651"
                 }
               ],
               "contributors": [
@@ -11407,7 +11407,7 @@
               "publisher": ["Bloomsbury"],
               "identifiers": [
                 {
-                  "value": "9781526646651"
+                  "type": "ISBN", "value": "9781526646651"
                 }
               ],
               "contributors": [
@@ -11797,7 +11797,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747574507"
+                    "type": "ISBN", "value": "9780747574507"
                   }
                 ],
                 "contributors": [],
@@ -11978,7 +11978,7 @@
                     "value": "0-439-13959-7"
                   },
                   {
-                    "value": "9780439139595"
+                    "type": "ISBN", "value": "9780439139595"
                   }
                 ],
                 "contributors": [],
@@ -12766,7 +12766,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747546245"
+                    "type": "ISBN", "value": "9780747546245"
                   }
                 ],
                 "contributors": [],
@@ -12852,19 +12852,19 @@
                 "publisher": ["HNP", "Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408882276"
+                    "type": "ISBN", "value": "9781408882276"
                   },
                   {
-                    "value": "9780747587088"
+                    "type": "ISBN", "value": "9780747587088"
                   },
                   {
-                    "value": "9780747587040"
+                    "type": "ISBN", "value": "9780747587040"
                   },
                   {
-                    "value": "9781408824108"
+                    "type": "ISBN", "value": "9781408824108"
                   },
                   {
-                    "value": "9781408821589"
+                    "type": "ISBN", "value": "9781408821589"
                   }
                 ],
                 "contributors": [
@@ -12952,7 +12952,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408810576"
+                    "type": "ISBN", "value": "9781408810576"
                   }
                 ],
                 "contributors": [],
@@ -13036,7 +13036,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747582380"
+                    "type": "ISBN", "value": "9780747582380"
                   }
                 ],
                 "contributors": [],
@@ -13120,10 +13120,10 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408855683"
+                    "type": "ISBN", "value": "9781408855683"
                   },
                   {
-                    "value": "9781408855928"
+                    "type": "ISBN", "value": "9781408855928"
                   }
                 ],
                 "contributors": [],
@@ -13207,7 +13207,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408821589"
+                    "type": "ISBN", "value": "9781408821589"
                   }
                 ],
                 "contributors": [
@@ -13295,7 +13295,7 @@
                 "publisher": ["Scholastic"],
                 "identifiers": [
                   {
-                    "value": "9780439139601"
+                    "type": "ISBN", "value": "9780439139601"
                   }
                 ],
                 "contributors": [
@@ -13385,7 +13385,7 @@
                 "publisher": ["Bloomsbury Children's Books"],
                 "identifiers": [
                   {
-                    "value": "9781408845677"
+                    "type": "ISBN", "value": "9781408845677"
                   }
                 ],
                 "contributors": [
@@ -13474,7 +13474,7 @@
               "publisher": ["Bloomsbury Children's Books"],
               "identifiers": [
                 {
-                  "value": "9781408845677"
+                  "type": "ISBN", "value": "9781408845677"
                 }
               ],
               "contributors": [
@@ -13556,7 +13556,7 @@
               "publisher": ["Bloomsbury Children's Books"],
               "identifiers": [
                 {
-                  "value": "9781408845677"
+                  "type": "ISBN", "value": "9781408845677"
                 }
               ],
               "contributors": [
@@ -14038,7 +14038,7 @@
                     "value": "0-439-06486-4"
                   },
                   {
-                    "value": "9780439064866"
+                    "type": "ISBN", "value": "9780439064866"
                   }
                 ],
                 "contributors": [],
@@ -15180,7 +15180,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408810552"
+                    "type": "ISBN", "value": "9781408810552"
                   }
                 ],
                 "contributors": [],
@@ -15264,7 +15264,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747562184"
+                    "type": "ISBN", "value": "9780747562184"
                   }
                 ],
                 "contributors": [],
@@ -15348,10 +15348,10 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408855669"
+                    "type": "ISBN", "value": "9781408855669"
                   },
                   {
-                    "value": "9781408855904"
+                    "type": "ISBN", "value": "9781408855904"
                   }
                 ],
                 "contributors": [],
@@ -15437,10 +15437,10 @@
                 "publisher": ["HNP", "Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408821510"
+                    "type": "ISBN", "value": "9781408821510"
                   },
                   {
-                    "value": "9781408882252"
+                    "type": "ISBN", "value": "9781408882252"
                   }
                 ],
                 "contributors": [
@@ -15530,7 +15530,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408845653"
+                    "type": "ISBN", "value": "9781408845653"
                   }
                 ],
                 "contributors": [
@@ -15616,7 +15616,7 @@
               "publisher": ["Bloomsbury"],
               "identifiers": [
                 {
-                  "value": "9781408845653"
+                  "type": "ISBN", "value": "9781408845653"
                 }
               ],
               "contributors": [
@@ -15695,7 +15695,7 @@
               "publisher": ["Bloomsbury"],
               "identifiers": [
                 {
-                  "value": "9781408845653"
+                  "type": "ISBN", "value": "9781408845653"
                 }
               ],
               "contributors": [
@@ -18063,7 +18063,7 @@
                     "value": "0439136350"
                   },
                   {
-                    "value": "9780439136358"
+                    "type": "ISBN", "value": "9780439136358"
                   }
                 ],
                 "contributors": [],
@@ -18583,7 +18583,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747542155"
+                    "type": "ISBN", "value": "9780747542155"
                   }
                 ],
                 "contributors": [],
@@ -18755,13 +18755,13 @@
                 "publisher": ["HNP", "Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747586517"
+                    "type": "ISBN", "value": "9780747586517"
                   },
                   {
-                    "value": "9781408821602"
+                    "type": "ISBN", "value": "9781408821602"
                   },
                   {
-                    "value": "9781408882269"
+                    "type": "ISBN", "value": "9781408882269"
                   }
                 ],
                 "contributors": [
@@ -18849,7 +18849,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408810569"
+                    "type": "ISBN", "value": "9781408810569"
                   }
                 ],
                 "contributors": [],
@@ -18933,7 +18933,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747573760"
+                    "type": "ISBN", "value": "9780747573760"
                   }
                 ],
                 "contributors": [],
@@ -19017,10 +19017,10 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408855676"
+                    "type": "ISBN", "value": "9781408855676"
                   },
                   {
-                    "value": "9781408855911"
+                    "type": "ISBN", "value": "9781408855911"
                   }
                 ],
                 "contributors": [],
@@ -19104,10 +19104,10 @@
                 "publisher": ["HNP and Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408824139"
+                    "type": "ISBN", "value": "9781408824139"
                   },
                   {
-                    "value": "9781408821602"
+                    "type": "ISBN", "value": "9781408821602"
                   }
                 ],
                 "contributors": [
@@ -19197,7 +19197,7 @@
                 "publisher": ["Bloomsbury Publishing"],
                 "identifiers": [
                   {
-                    "value": "9781408845660"
+                    "type": "ISBN", "value": "9781408845660"
                   }
                 ],
                 "contributors": [
@@ -19283,7 +19283,7 @@
               "publisher": ["Bloomsbury Publishing"],
               "identifiers": [
                 {
-                  "value": "9781408845660"
+                  "type": "ISBN", "value": "9781408845660"
                 }
               ],
               "contributors": [
@@ -19362,7 +19362,7 @@
               "publisher": ["Bloomsbury Publishing"],
               "identifiers": [
                 {
-                  "value": "9781408845660"
+                  "type": "ISBN", "value": "9781408845660"
                 }
               ],
               "contributors": [
@@ -20763,7 +20763,7 @@
                 "publisher": ["Bloomsbury Children's Books"],
                 "identifiers": [
                   {
-                    "value": "9781408845684"
+                    "type": "ISBN", "value": "9781408845684"
                   }
                 ],
                 "contributors": [
@@ -21366,7 +21366,7 @@
                 "publisher": ["Bloomsbury Childrens books"],
                 "identifiers": [
                   {
-                    "value": "9781526618160"
+                    "type": "ISBN", "value": "9781526618160"
                   }
                 ],
                 "contributors": [],
@@ -21712,7 +21712,7 @@
                 "publisher": ["Cover to Cover"],
                 "identifiers": [
                   {
-                    "value": "9781408882238"
+                    "type": "ISBN", "value": "9781408882238"
                   },
                   {
                     "value": "1-85549-687-9"
@@ -21883,7 +21883,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747591269"
+                    "type": "ISBN", "value": "9780747591269"
                   }
                 ],
                 "contributors": [],
@@ -21967,7 +21967,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408810590"
+                    "type": "ISBN", "value": "9781408810590"
                   }
                 ],
                 "contributors": [],
@@ -22051,7 +22051,7 @@
                 "publisher": ["HNP"],
                 "identifiers": [
                   {
-                    "value": "9781907545122"
+                    "type": "ISBN", "value": "9781907545122"
                   }
                 ],
                 "contributors": [
@@ -22139,10 +22139,10 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408855935"
+                    "type": "ISBN", "value": "9781408855935"
                   },
                   {
-                    "value": "9781408855690"
+                    "type": "ISBN", "value": "9781408855690"
                   }
                 ],
                 "contributors": [],
@@ -22230,7 +22230,7 @@
                 "publisher": ["Levine"],
                 "identifiers": [
                   {
-                    "value": "9780439358064"
+                    "type": "ISBN", "value": "9780439358064"
                   }
                 ],
                 "contributors": [
@@ -22320,7 +22320,7 @@
               "publisher": ["Bloomsbury Children's Books"],
               "identifiers": [
                 {
-                  "value": "9781408845684"
+                  "type": "ISBN", "value": "9781408845684"
                 }
               ],
               "contributors": [
@@ -22403,7 +22403,7 @@
               "publisher": ["Bloomsbury Children's Books"],
               "identifiers": [
                 {
-                  "value": "9781408845684"
+                  "type": "ISBN", "value": "9781408845684"
                 }
               ],
               "contributors": [
@@ -25405,10 +25405,10 @@
                 "publisher": ["HNP", "Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408882283"
+                    "type": "ISBN", "value": "9781408882283"
                   },
                   {
-                    "value": "9781408821596"
+                    "type": "ISBN", "value": "9781408821596"
                   },
                   {
                     "value": "0-7475-8259-9"
@@ -25580,7 +25580,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747584681"
+                    "type": "ISBN", "value": "9780747584681"
                   }
                 ],
                 "contributors": [],
@@ -25664,7 +25664,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408810583"
+                    "type": "ISBN", "value": "9781408810583"
                   }
                 ],
                 "contributors": [],
@@ -25748,7 +25748,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9780747598466"
+                    "type": "ISBN", "value": "9780747598466"
                   }
                 ],
                 "contributors": [],
@@ -25832,10 +25832,10 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408855706"
+                    "type": "ISBN", "value": "9781408855706"
                   },
                   {
-                    "value": "9781408855942"
+                    "type": "ISBN", "value": "9781408855942"
                   }
                 ],
                 "contributors": [],
@@ -25919,7 +25919,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   {
-                    "value": "9781408821596"
+                    "type": "ISBN", "value": "9781408821596"
                   }
                 ],
                 "contributors": [
@@ -26010,7 +26010,7 @@
                     "value": "0-7475-8110-X"
                   },
                   {
-                    "value": "9780747581109"
+                    "type": "ISBN", "value": "9780747581109"
                   }
                 ],
                 "contributors": [],
@@ -26093,7 +26093,7 @@
                 "publisher": ["Levine"],
                 "identifiers": [
                   {
-                    "value": "9780439784542"
+                    "type": "ISBN", "value": "9780439784542"
                   }
                 ],
                 "contributors": [
@@ -26177,10 +26177,10 @@
               "publisher": ["Bloomsbury"],
               "identifiers": [
                 {
-                  "value": "9781408855706"
+                  "type": "ISBN", "value": "9781408855706"
                 },
                 {
-                  "value": "9781408855942"
+                  "type": "ISBN", "value": "9781408855942"
                 }
               ],
               "contributors": [],
@@ -26258,10 +26258,10 @@
               "publisher": ["Bloomsbury"],
               "identifiers": [
                 {
-                  "value": "9781408855706"
+                  "type": "ISBN", "value": "9781408855706"
                 },
                 {
-                  "value": "9781408855942"
+                  "type": "ISBN", "value": "9781408855942"
                 }
               ],
               "contributors": [],
@@ -26478,7 +26478,7 @@
                 "publisher": ["Little, Brown"],
                 "identifiers": [
                   {
-                    "value": "9780751565355"
+                    "type": "ISBN", "value": "9780751565355"
                   }
                 ],
                 "contributors": [],
@@ -26566,7 +26566,7 @@
               "publisher": ["Little, Brown"],
               "identifiers": [
                 {
-                  "value": "9780751565355"
+                  "type": "ISBN", "value": "9780751565355"
                 }
               ],
               "contributors": [],
@@ -26647,7 +26647,7 @@
               "publisher": ["Little, Brown"],
               "identifiers": [
                 {
-                  "value": "9780751565355"
+                  "type": "ISBN", "value": "9780751565355"
                 }
               ],
               "contributors": [],
@@ -26854,7 +26854,7 @@
                     "value": "0-590-35340-3"
                   },
                   {
-                    "value": "9780590353403"
+                    "type": "ISBN", "value": "9780590353403"
                   }
                 ],
                 "contributors": [],
@@ -27112,7 +27112,7 @@
                 "publisher": ["Arthur A. Levine"],
                 "identifiers": [
                   {
-                    "value": "9780545790352"
+                    "type": "ISBN", "value": "9780545790352"
                   }
                 ],
                 "contributors": [
@@ -27200,7 +27200,7 @@
                 "publisher": ["Scholastic"],
                 "identifiers": [
                   {
-                    "value": "9781338299144"
+                    "type": "ISBN", "value": "9781338299144"
                   }
                 ],
                 "contributors": [
@@ -27295,7 +27295,7 @@
               "publisher": ["Scholastic"],
               "identifiers": [
                 {
-                  "value": "9781338299144"
+                  "type": "ISBN", "value": "9781338299144"
                 }
               ],
               "contributors": [
@@ -27383,7 +27383,7 @@
               "publisher": ["Scholastic"],
               "identifiers": [
                 {
-                  "value": "9781338299144"
+                  "type": "ISBN", "value": "9781338299144"
                 }
               ],
               "contributors": [
@@ -27774,7 +27774,7 @@
                 "publisher": ["Der Hörverlag"],
                 "identifiers": [
                   {
-                    "value": "9783867173513"
+                    "type": "ISBN", "value": "9783867173513"
                   }
                 ],
                 "contributors": [],
@@ -27853,7 +27853,7 @@
                 "publisher": ["Carlsen"],
                 "identifiers": [
                   {
-                    "value": "9783551354013"
+                    "type": "ISBN", "value": "9783551354013"
                   }
                 ],
                 "contributors": [
@@ -27943,7 +27943,7 @@
                 "publisher": ["Der Hörverlag"],
                 "identifiers": [
                   {
-                    "value": "9783844511369"
+                    "type": "ISBN", "value": "9783844511369"
                   }
                 ],
                 "contributors": [
@@ -28036,7 +28036,7 @@
                 "publisher": ["Carlsen"],
                 "identifiers": [
                   {
-                    "value": "9783551559012"
+                    "type": "ISBN", "value": "9783551559012"
                   }
                 ],
                 "contributors": [
@@ -28130,7 +28130,7 @@
               "publisher": ["Carlsen"],
               "identifiers": [
                 {
-                  "value": "9783551559012"
+                  "type": "ISBN", "value": "9783551559012"
                 }
               ],
               "contributors": [
@@ -28217,7 +28217,7 @@
               "publisher": ["Carlsen"],
               "identifiers": [
                 {
-                  "value": "9783551559012"
+                  "type": "ISBN", "value": "9783551559012"
                 }
               ],
               "contributors": [
@@ -30035,7 +30035,7 @@
                 "publisher": ["Der Hörverlag"],
                 "identifiers": [
                   {
-                    "value": "9783867173520"
+                    "type": "ISBN", "value": "9783867173520"
                   }
                 ],
                 "contributors": [],
@@ -30114,7 +30114,7 @@
                 "publisher": ["Carlsen"],
                 "identifiers": [
                   {
-                    "value": "9783551354020"
+                    "type": "ISBN", "value": "9783551354020"
                   }
                 ],
                 "contributors": [
@@ -30204,7 +30204,7 @@
                 "publisher": ["Der Hörverlag"],
                 "identifiers": [
                   {
-                    "value": "9783844511369"
+                    "type": "ISBN", "value": "9783844511369"
                   }
                 ],
                 "contributors": [
@@ -30298,7 +30298,7 @@
               "publisher": ["Der Hörverlag"],
               "identifiers": [
                 {
-                  "value": "9783844511369"
+                  "type": "ISBN", "value": "9783844511369"
                 }
               ],
               "contributors": [
@@ -30383,7 +30383,7 @@
               "publisher": ["Carlsen"],
               "identifiers": [
                 {
-                  "value": "9783551354020"
+                  "type": "ISBN", "value": "9783551354020"
                 }
               ],
               "contributors": [
@@ -30592,7 +30592,7 @@
                 "publisher": ["Rosmen"],
                 "identifiers": [
                   {
-                    "value": "9785353014355"
+                    "type": "ISBN", "value": "9785353014355"
                   }
                 ],
                 "contributors": [
@@ -30764,7 +30764,7 @@
                 "publisher": ["Machaon"],
                 "identifiers": [
                   {
-                    "value": "9785389077904"
+                    "type": "ISBN", "value": "9785389077904"
                   }
                 ],
                 "contributors": [
@@ -30853,7 +30853,7 @@
               "publisher": ["Machaon"],
               "identifiers": [
                 {
-                  "value": "9785389077904"
+                  "type": "ISBN", "value": "9785389077904"
                 }
               ],
               "contributors": [
@@ -30935,7 +30935,7 @@
               "publisher": ["Machaon"],
               "identifiers": [
                 {
-                  "value": "9785389077904"
+                  "type": "ISBN", "value": "9785389077904"
                 }
               ],
               "contributors": [
@@ -31223,7 +31223,7 @@
                 "publisher": ["Rosmen"],
                 "identifiers": [
                   {
-                    "value": "9785353003090"
+                    "type": "ISBN", "value": "9785353003090"
                   }
                 ],
                 "contributors": [
@@ -31306,7 +31306,7 @@
                 "publisher": ["Machaon"],
                 "identifiers": [
                   {
-                    "value": "9785389077812"
+                    "type": "ISBN", "value": "9785389077812"
                   }
                 ],
                 "contributors": [
@@ -31395,7 +31395,7 @@
               "publisher": ["Machaon"],
               "identifiers": [
                 {
-                  "value": "9785389077812"
+                  "type": "ISBN", "value": "9785389077812"
                 }
               ],
               "contributors": [
@@ -31477,7 +31477,7 @@
               "publisher": ["Machaon"],
               "identifiers": [
                 {
-                  "value": "9785389077812"
+                  "type": "ISBN", "value": "9785389077812"
                 }
               ],
               "contributors": [
@@ -31686,7 +31686,7 @@
                 "publisher": ["Media Rodzina"],
                 "identifiers": [
                   {
-                    "value": "9788372780164"
+                    "type": "ISBN", "value": "9788372780164"
                   },
                   {
                     "value": "83-7278-014-5"
@@ -31773,7 +31773,7 @@
                 "publisher": ["Media Rodzina"],
                 "identifiers": [
                   {
-                    "value": "9788372780164"
+                    "type": "ISBN", "value": "9788372780164"
                   }
                 ],
                 "contributors": [],
@@ -31842,7 +31842,7 @@
               "publisher": ["Media Rodzina"],
               "identifiers": [
                 {
-                  "value": "9788372780164"
+                  "type": "ISBN", "value": "9788372780164"
                 },
                 {
                   "value": "83-7278-014-5"
@@ -31923,7 +31923,7 @@
               "publisher": ["Media Rodzina"],
               "identifiers": [
                 {
-                  "value": "9788372780164"
+                  "type": "ISBN", "value": "9788372780164"
                 },
                 {
                   "value": "83-7278-014-5"
