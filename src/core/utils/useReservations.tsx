@@ -3,7 +3,12 @@ import {
   mapFBSReservationGroupToReservationType,
   mapPublizonReservationToReservationType
 } from "./helpers/list-mapper";
-import { getReadyForPickup } from "../../apps/reservation-list/utils/helpers";
+import {
+  getReadyForPickup,
+  sortByPickupNumber,
+  sortByNumberInQueue,
+  sortByOldestPickupDeadline
+} from "../../apps/reservation-list/utils/helpers";
 import { ReservationType } from "./types/reservation-type";
 import { dashboardReservedApiValueText } from "../configuration/api-strings";
 import useGetReservationGroups from "./useGetReservationGroups";
@@ -60,20 +65,26 @@ const useReservations: UseReservations = () => {
   ];
 
   // Combine "ready to loan" reservations from both FBS and Publizon
-  const reservationsReadyToLoanFBS = getReadyForPickup(mappedReservationsFbs);
-  const reservationsReadyToLoanPublizon = getReadyForPickup(
-    mappedReservationsPublizon
+  // Sort by pickup number (alphanumeric) with fallback to pickup deadline
+  const reservationsReadyToLoanFBS = sortByPickupNumber(
+    getReadyForPickup(mappedReservationsFbs)
   );
-  const reservationsReadyToLoan = [
+  const reservationsReadyToLoanPublizon = sortByPickupNumber(
+    getReadyForPickup(mappedReservationsPublizon)
+  );
+  const reservationsReadyToLoan = sortByPickupNumber([
     ...reservationsReadyToLoanFBS,
     ...reservationsReadyToLoanPublizon
-  ];
+  ]);
 
   // Combine "still in queue" reservations from both FBS and Publizon
-  const reservationsQueuedFBS = getQueuedReservations(mappedReservationsFbs);
-  const reservationsQueuedPublizon = getQueuedReservations(
-    mappedReservationsPublizon
+  // FBS: Sort by queue number, Publizon: Sort by expected redeem date (pickupDeadline)
+  const reservationsQueuedFBS = sortByNumberInQueue(
+    getQueuedReservations(mappedReservationsFbs)
   );
+  const reservationsQueuedPublizon = sortByOldestPickupDeadline(
+    getQueuedReservations(mappedReservationsPublizon)
+  ) as ReservationType[];
   const reservationsQueued = [
     ...reservationsQueuedFBS,
     ...reservationsQueuedPublizon
