@@ -4,7 +4,7 @@ import { useCopyToClipboard, usePrevious } from "react-use";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Check.svg";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
-import useGetCleanBranches from "../../core/utils/branches";
+import useGetSearchBranches from "../../core/utils/branches";
 import { Work } from "../../core/utils/types/entities";
 import {
   ComplexSearchWithPaginationQuery,
@@ -56,7 +56,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
 }) => {
   const t = useText();
   const [copiedLinkToSearch, setCopiedLinkToSearch] = useState<boolean>(false);
-  const cleanBranches = useGetCleanBranches();
+  const cleanBranches = useGetSearchBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState<number>(0);
   const { PagerComponent, page, resetPage } = usePager({

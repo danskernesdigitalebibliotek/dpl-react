@@ -49,10 +49,10 @@ export const useGetBranches = (key: string): TBranch[] => {
   return whitelistBranches;
 };
 
-const useGetCleanBranches = () => {
+const useGetSearchBranches = () => {
   const branches = useGetBranches("blacklistedSearchBranchesConfig");
   const cleanBranches = cleanBranchesId(branches);
   return cleanBranches;
 };
 
-export default useGetCleanBranches;
+export default useGetSearchBranches;

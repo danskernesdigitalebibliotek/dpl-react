@@ -29,7 +29,7 @@ import {
   redirectTo
 } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
-import useGetCleanBranches from "../../core/utils/branches";
+import useGetSearchBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
@@ -54,7 +54,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const zeroHitsSearchUrl = u("zeroHitsSearchUrl");
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
-  const cleanBranches = useGetCleanBranches();
+  const cleanBranches = useGetSearchBranches();
   const t = useText();
   const [resultItems, setResultItems] = useState<Work[] | null>(null);
   const [hitcount, setHitCount] = useState<number>(0);
