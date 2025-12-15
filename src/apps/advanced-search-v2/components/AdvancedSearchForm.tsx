@@ -62,7 +62,7 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
   return (
     <section className="advanced-search-v2__form">
       {/* Filter inputs */}
-      <div className="advanced-search-v2__suggests">
+      <div className="advanced-search-v2__filters">
         {filters.map((filter, index) => {
           const config =
             SEARCH_TERM_OPTIONS.find((item) => item.value === filter.term) ??
@@ -95,7 +95,7 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
 
         <button
           type="button"
-          className="advanced-search-v2__add-suggest"
+          className="advanced-search-v2__add-filter"
           onClick={handleAddFilter}
         >
           <img src={PlusButtonIcon} alt="" />

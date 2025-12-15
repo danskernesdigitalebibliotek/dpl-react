@@ -1,6 +1,6 @@
 import React from "react";
 import { useQueryState, parseAsBoolean, parseAsJson } from "nuqs";
-import AdvancedSearchFilterGroup from "./AdvancedSearchFilterGroup";
+import AdvancedSearchFilterGroup from "./AdvancedSearchFacetGroup";
 import AdvancedSearchToggle from "./AdvancedSearchToggle";
 import { useText } from "../../../core/utils/text";
 import {
@@ -105,10 +105,10 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
   };
 
   return (
-    <aside className="advanced-search-filters">
-      <div className="advanced-search-filters__container">
+    <aside className="advanced-search-facets">
+      <div className="advanced-search-facets__container">
         {/* Toggles section */}
-        <ul className="advanced-search-filters__toggles">
+        <ul className="advanced-search-facets__toggles">
           <li>
             <AdvancedSearchToggle
               id="on-shelf"
@@ -132,7 +132,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
         </ul>
 
         {/* Filter groups */}
-        <ul className="advanced-search-filters__groups">
+        <ul className="advanced-search-facets__groups">
           {FACETS_CONFIG.map((config) => {
             const selectedValues = getSelectedValues(config.facetField);
             const selectedCount = getSelectedCount(config.facetField);
