@@ -17,6 +17,19 @@ type UseWorkUrlResult = {
   isLoading: boolean;
 };
 
+/**
+ * Hook to generate a URL to a work page from a loan or reservation.
+ *
+ * Supports both physical and digital materials:
+ * - Physical: Constructs URL directly from PID (synchronous, no query needed)
+ * - Digital: Looks up work by ISBN via GraphQL query (async)
+ *
+ * The hook prefers the physical path when a PID is available, falling back
+ * to the digital path when only an ISBN identifier is provided.
+ *
+ * The generated URL includes the material type as a query parameter,
+ * ensuring the work page opens with the correct material type selected.
+ */
 const useWorkUrl = ({
   identifier,
   pid,
