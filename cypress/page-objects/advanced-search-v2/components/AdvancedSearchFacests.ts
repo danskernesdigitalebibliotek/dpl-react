@@ -1,6 +1,6 @@
 import { ComponentObject } from "@hammzj/cypress-page-object";
 
-export class AdvancedSearchFiltersComponent extends ComponentObject {
+export class AdvancedSearchFacetsComponent extends ComponentObject {
   constructor() {
     super(() => cy.get(".advanced-search-facets"));
 
