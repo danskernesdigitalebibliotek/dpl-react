@@ -6,17 +6,17 @@ export class AdvancedSearchFormComponent extends ComponentObject {
 
     this.addElements = {
       rowWrappers: () =>
-        this.container().find(".advanced-search-suggest-wrapper"),
-      rows: () => this.container().find(".advanced-search-suggest"),
+        this.container().find(".advanced-search-filter-wrapper"),
+      rows: () => this.container().find(".advanced-search-filter"),
       addRowButton: () =>
-        this.container().find(".advanced-search-v2__add-suggest"),
+        this.container().find(".advanced-search-v2__add-filter"),
       searchButton: () => this.container().contains("button", "Search"),
       resetButton: () =>
         this.container().find(".advanced-search-v2__reset-button"),
       removeRowButtons: () =>
-        this.container().find(".advanced-search-suggest__remove-button"),
+        this.container().find(".advanced-search-filter__remove-button"),
       searchTermSelects: () =>
-        this.container().find(".advanced-search-suggest .select-button")
+        this.container().find(".advanced-search-filter .select-button")
     };
   }
 
@@ -76,7 +76,7 @@ export class AdvancedSearchFormComponent extends ComponentObject {
     this.elements
       .rowWrappers()
       .eq(index)
-      .next(".advanced-search-suggest__operators")
+      .next(".advanced-search-filter__operators")
       .contains("button", operator)
       .click();
   }
@@ -183,8 +183,8 @@ export class AdvancedSearchFormComponent extends ComponentObject {
     this.elements
       .rowWrappers()
       .eq(index)
-      .next(".advanced-search-suggest__operators")
-      .find("button.advanced-search-suggest__operator--active")
+      .next(".advanced-search-filter__operators")
+      .find("button.advanced-search-filter__operator--active")
       .should("contain", operator);
   }
 
