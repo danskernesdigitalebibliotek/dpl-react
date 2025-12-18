@@ -106,15 +106,15 @@ describe("Material Page Object Test", () => {
       // Then: Should display 3 availability labels
       materialPage.elements.headerAvailabilityLabels().should("have.length", 3);
 
-      // And: First label (e-bog) should show type and availability
+      // And: First label (e-bog) should show type and availability (non-physical shows "Available")
       materialPage
         .getHeaderAvailabilityLabel(0)
         .shouldContainAll(["e-bog", "Available"]);
 
-      // And: Second label (bog) should show type and availability
+      // And: Second label (bog) should show type and availability (physical shows "At home")
       materialPage
         .getHeaderAvailabilityLabel(1)
-        .shouldContainAll(["bog", "Available"]);
+        .shouldContainAll(["bog", "At home"]);
 
       // And: Third label (lydbog) should show type and availability
       materialPage
@@ -322,10 +322,10 @@ describe("Material Page Object Test", () => {
           // Then: Should display 4 manifestations
           editions.elements.manifestationItems().should("have.length", 4);
 
-          // And: First manifestation (physical book) should have correct availability and buttons
+          // And: First manifestation (physical book) should have correct availability and buttons (physical shows "At home")
           editions
             .getManifestationItem(0)
-            .shouldContainAll(["bog", "Available", "Reserve", "Find on shelf"]);
+            .shouldContainAll(["bog", "At home", "Reserve", "Find on shelf"]);
 
           // And: Second manifestation (physical book unavailable) should have correct availability
           editions
@@ -592,27 +592,27 @@ describe("Material Page Object Test", () => {
           findOnShelf
             .verifyLibraryHolding({
               libraryName: "Hovedbiblioteket",
-              label: "Available",
+              label: "At home",
               editionTitle: "De syv søstre (2017)",
               expectedCount: "2"
             })
             .verifyLibraryHolding({
               libraryName: "Hovedbiblioteket",
-              label: "Available",
+              label: "At home",
               editionTitle: "De syv søstre (2016)",
               expectedCount: "0"
             });
 
           findOnShelf.verifyLibraryHolding({
             libraryName: "Fjernlager",
-            label: "Available",
+            label: "At home",
             editionTitle: "De syv søstre (2017)",
             expectedCount: "1"
           });
 
           findOnShelf.verifyLibraryHolding({
             libraryName: "Islands Brygge",
-            label: "Available",
+            label: "At home",
             editionTitle: "De syv søstre (2017)",
             expectedCount: "3"
           });
@@ -647,21 +647,21 @@ describe("Material Page Object Test", () => {
 
           findOnShelf.verifyLibraryHolding({
             libraryName: "Hovedbiblioteket",
-            label: "Available",
+            label: "At home",
             editionTitle: "De syv søstre (2017)",
             expectedCount: "2"
           });
 
           findOnShelf.verifyLibraryHolding({
             libraryName: "Fjernlager",
-            label: "Available",
+            label: "At home",
             editionTitle: "De syv søstre (2017)",
             expectedCount: "1"
           });
 
           findOnShelf.verifyLibraryHolding({
             libraryName: "Islands Brygge",
-            label: "Available",
+            label: "At home",
             editionTitle: "De syv søstre (2017)",
             expectedCount: "3"
           });
@@ -766,10 +766,10 @@ describe("Material Page Object Test", () => {
           .caption()
           .shouldContainAll(["1 libraries have material"]);
 
-        // And: Should show library holdings
+        // And: Should show library holdings (physical materials show "At home")
         findOnShelf.verifyLibraryHolding({
           libraryName: "Hovedbiblioteket",
-          label: "Available",
+          label: "At home",
           editionTitle: "Alt for damerne (1946)",
           expectedCount: "1"
         });

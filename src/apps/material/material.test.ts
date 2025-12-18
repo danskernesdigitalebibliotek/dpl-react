@@ -93,7 +93,7 @@ describe("Material", () => {
       .should("have.length", 1);
   });
 
-  it("Shows the book availability as available", () => {
+  it("Shows the book availability as available (physical material shows 'At home')", () => {
     cy.interceptGraphql({
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
@@ -103,12 +103,13 @@ describe("Material", () => {
 
     cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
+    // Physical materials (like books) show "At home" when available
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
       .contains("bog")
       .parent()
       .find('[data-cy="availability-label-status"]')
-      .should("have.text", "Available");
+      .should("have.text", "At home");
   });
 
   it("Can open material details", () => {

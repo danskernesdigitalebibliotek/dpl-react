@@ -10,6 +10,8 @@ export type DisclosureSummaryProps = {
   headingLevel?: HeadingLevelType;
   mainIconPath?: string;
   isAvailable?: boolean;
+  /** Whether this material is non-physical (online/digital). Defaults to false (physical). */
+  isNonPhysical?: boolean;
   itemRef?: React.MutableRefObject<null>;
   className?: string;
   dataCy?: string;
@@ -20,11 +22,19 @@ const DisclosureSummary: React.FunctionComponent<DisclosureSummaryProps> = ({
   headingLevel = "h3",
   mainIconPath,
   isAvailable,
+  isNonPhysical = false,
   itemRef,
   className,
   dataCy = "disclosure-summary"
 }) => {
   const t = useText();
+
+  const getAvailableText = () => {
+    // Use different text for physical vs non-physical materials when available
+    return isNonPhysical
+      ? t("availabilityAvailableText")
+      : t("availabilityAvailablePhysicalText");
+  };
   return (
     <summary
       ref={itemRef}
@@ -48,9 +58,7 @@ const DisclosureSummary: React.FunctionComponent<DisclosureSummaryProps> = ({
       {isAvailable !== undefined && (
         <Pagefold
           text={
-            isAvailable
-              ? t("availabilityAvailableText")
-              : t("availabilityUnavailableText")
+            isAvailable ? getAvailableText() : t("availabilityUnavailableText")
           }
           state={isAvailable ? "success" : "alert"}
         />
