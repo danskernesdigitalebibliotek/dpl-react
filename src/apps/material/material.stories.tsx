@@ -1298,3 +1298,59 @@ export const FindOnShelfHideUnavailable: Story = {
     findOnShelfHideUnavailableHoldingsConfig: "1"
   }
 };
+
+export const ContentsTheMostRelaxingClassicalMusicInTheUniverse: Story = {
+  name: "With contents: the most relaxing classical music in the universe (work-of:870970-basis:140264814)",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:140264814"
+  }
+};
+
+export const ContentsErhvervsjuraForDeFinansielleUddannelser: Story = {
+  name: "With contents: erhvervsjura for de finansielle uddannelser (work-of:870970-basis:52531802)",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:52531802"
+  }
+};
+
+export const ContentsVelsignelserCarolineAlbertineMinor: Story = {
+  name: "With contents: velsignelser caroline albertine minor (work-of:870970-basis:52974755)",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:52974755"
+  }
+};
+
+export const ContentsFjortenFantastiskeEventyr: Story = {
+  name: "With contents: fjorten fantastiske eventyr for boern unge og voksne h c andersen f 1805 (work-of:870970-basis:139683226)",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:139683226"
+  }
+};
+
+export const ContentsErhvervsjuraDorteDittmann: Story = {
+  name: "With contents: erhvervsjura dorte dittmann (work-of:870970-basis:54650205)",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:54650205"
+  }
+};
+
+export const ContentsNordvestBirgitteZacho: Story = {
+  name: "With contents: nordvest birgitte zacho (work-of:870970-basis:46429168)",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:46429168"
+  }
+};
+
+export const ContentsTrespassersKashmir: Story = {
+  name: "With contents: trespassers kashmir (work-of:870970-basis:28888309)",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:28888309"
+  }
+};
