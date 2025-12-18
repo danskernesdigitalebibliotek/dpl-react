@@ -189,7 +189,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -277,7 +276,6 @@
             "notes": [],
             "physicalDescription": {},
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -393,7 +391,6 @@
               "materialUnits": [{ "extent": "16 t., 30 min." }]
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -503,7 +500,6 @@
             "materialUnits": [{ "extent": "16 t., 30 min." }]
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -612,7 +608,6 @@
             "materialUnits": [{ "extent": "16 t., 30 min." }]
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"

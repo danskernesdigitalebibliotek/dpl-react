@@ -103,7 +103,6 @@
                   "playingTime": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -211,7 +210,6 @@
                 "playingTime": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -318,7 +316,6 @@
                 "playingTime": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -426,7 +423,6 @@
                   "playingTime": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -508,7 +504,6 @@
                 "playingTime": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -589,7 +584,6 @@
                 "playingTime": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"

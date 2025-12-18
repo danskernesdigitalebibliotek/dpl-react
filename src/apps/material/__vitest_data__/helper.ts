@@ -83,7 +83,6 @@ export default {
           playingTime: "2t., 31 min."
         },
         hostPublication: null,
-        manifestationParts: null,
         accessTypes: [
           {
             code: "PHYSICAL"
@@ -179,7 +178,6 @@ export default {
           playingTime: null
         },
         hostPublication: null,
-        manifestationParts: null,
         accessTypes: [
           {
             code: "ONLINE"
@@ -272,7 +270,6 @@ export default {
           playingTime: null
         },
         hostPublication: null,
-        manifestationParts: null,
         accessTypes: [
           {
             code: "ONLINE"
@@ -353,7 +350,6 @@ export default {
           numberOfPages: 104
         },
         hostPublication: null,
-        manifestationParts: null,
         accessTypes: [
           {
             code: "PHYSICAL"

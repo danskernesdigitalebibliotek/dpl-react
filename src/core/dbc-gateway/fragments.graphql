@@ -120,11 +120,6 @@ fragment ManifestationsSimpleFields on Manifestation {
   hostPublication {
     summary
   }
-  manifestationParts {
-    parts {
-      title
-    }
-  }
   accessTypes {
     code
   }
