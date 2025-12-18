@@ -17,6 +17,7 @@ import { useUrls } from "../../core/utils/url";
 import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 import { materialIsFiction } from "../../core/utils/helpers/general";
 import SeriesList from "../card-item-list/card-list-item/series-list";
+import MaterialContents from "./MaterialContents/MaterialContents";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
@@ -69,18 +70,24 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
       ]
     : [];
 
+  const bestRepresentationContents =
+    work.manifestations.bestRepresentation?.contents;
+
   return (
     <section className="material-description" data-cy="material-description">
       <>
         {work.abstract && (
           <>
-            <h2 className="text-header-h4 pb-24">
+            <h2 className="text-header-h4 mb-24">
               {t("descriptionHeadlineText")}
             </h2>
             <p className="text-body-large material-description__content">
               {work.abstract[0]}
             </p>
           </>
+        )}
+        {bestRepresentationContents && (
+          <MaterialContents contents={bestRepresentationContents} />
         )}
         <div className="material-description__links mt-32">
           {shouldShowDk5 && dk5MainEntry && (

@@ -30,6 +30,9 @@ import copyLinkArgs, {
 import editionSwitchModalArgs, {
   argTypes as editionSwitchModalArgTypes
 } from "../../core/storybook/editionSwitchModalArgs";
+import materialContentsArgs, {
+  argTypes as materialContentsArgTypes
+} from "../../components/material/MaterialContents/MaterialContentsArgs";
 
 const meta: Meta<typeof MaterialEntry> = {
   title: "Apps / Material",
@@ -47,6 +50,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...reservationMaterialDetailsPropsArgTypes,
     ...reservationListArgTypes,
     ...editionSwitchModalArgTypes,
+    ...materialContentsArgTypes,
     searchUrl: {
       description: "Path to the search result page",
       control: { type: "text" }
@@ -860,6 +864,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...reservationMaterialDetailsProps,
     ...reservationListArgs,
     ...editionSwitchModalArgs,
+    ...materialContentsArgs,
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
