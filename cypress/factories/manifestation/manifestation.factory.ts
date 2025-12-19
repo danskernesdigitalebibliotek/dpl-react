@@ -91,7 +91,6 @@ export const manifestationFactory = Factory.define<ManifestationForWorkMedium>(
       numberOfPages: 523
     },
     hostPublication: null,
-    manifestationParts: null,
     accessTypes: [
       {
         code: AccessTypeCodeEnum.Physical

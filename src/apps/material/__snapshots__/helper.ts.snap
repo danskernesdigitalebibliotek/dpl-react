@@ -61,7 +61,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         ],
         "notes": [],
       },
-      "manifestationParts": null,
       "materialTypes": [
         {
           "materialTypeSpecific": {
@@ -158,7 +157,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         ],
         "notes": [],
       },
-      "manifestationParts": null,
       "materialTypes": [
         {
           "materialTypeSpecific": {
@@ -259,7 +257,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         ],
         "notes": [],
       },
-      "manifestationParts": null,
       "materialTypes": [
         {
           "materialTypeSpecific": {
@@ -365,7 +362,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         ],
         "notes": [],
       },
-      "manifestationParts": null,
       "materialTypes": [
         {
           "materialTypeSpecific": {

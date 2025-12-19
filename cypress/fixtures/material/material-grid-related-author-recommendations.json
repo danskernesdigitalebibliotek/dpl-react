@@ -178,7 +178,6 @@
                   "numberOfPages": 727
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -293,7 +292,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -403,7 +401,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -495,7 +492,6 @@
                 "numberOfPages": 727
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -710,7 +706,6 @@
                   "numberOfPages": 656
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -833,7 +828,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -952,7 +946,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -1053,7 +1046,6 @@
                 "numberOfPages": 656
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -1254,7 +1246,6 @@
                 "notes": [],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -1353,7 +1344,6 @@
                   "numberOfPages": 523
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -1445,7 +1435,6 @@
                   "numberOfPages": 523
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -1554,7 +1543,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -1647,7 +1635,6 @@
                 "numberOfPages": 523
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -1739,7 +1726,6 @@
                 "numberOfPages": 523
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -1939,7 +1925,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -2037,7 +2022,6 @@
                   "numberOfPages": 587
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2149,7 +2133,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2245,7 +2228,6 @@
                   "numberOfPages": 587
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2342,7 +2324,6 @@
                 "numberOfPages": 587
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -2438,7 +2419,6 @@
                 "numberOfPages": 587
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -2654,7 +2634,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2750,7 +2729,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -2853,7 +2831,6 @@
                   "numberOfPages": 757
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2966,7 +2943,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -3062,7 +3038,6 @@
                 "numberOfPages": 757
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -3278,7 +3253,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -3374,7 +3348,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -3472,7 +3445,6 @@
                   "numberOfPages": 636
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -3585,7 +3557,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -3681,7 +3652,6 @@
                 "numberOfPages": 636
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -3897,7 +3867,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -3993,7 +3962,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -4096,7 +4064,6 @@
                   "numberOfPages": 581
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -4209,7 +4176,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -4305,7 +4271,6 @@
                 "numberOfPages": 581
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -4505,7 +4470,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -4624,7 +4588,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -4720,7 +4683,6 @@
                   "numberOfPages": 567
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -4833,7 +4795,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -4929,7 +4890,6 @@
                 "numberOfPages": 567
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
