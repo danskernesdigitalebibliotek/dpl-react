@@ -38,9 +38,7 @@ export const MaterialContent: React.FC<MaterialContentProps> = ({
       <h2 className="material-content__heading">{contentEntity.heading}</h2>
 
       {contentEntity.raw && (
-        <p className="text-body-large material-content__raw">
-          {contentEntity.raw}
-        </p>
+        <p className="material-content__raw">{contentEntity.raw}</p>
       )}
 
       {contentEntity.entries && contentEntity.entries.length > 0 && (

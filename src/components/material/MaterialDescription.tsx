@@ -76,14 +76,12 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   return (
     <section className="material-description" data-cy="material-description">
       <>
-        {work.abstract && (
+        {work.abstract && work.abstract[0] && (
           <>
-            <h2 className="text-header-h4 mb-24">
+            <h2 className="material-description__heading">
               {t("descriptionHeadlineText")}
             </h2>
-            <p className="text-body-large material-description__content">
-              {work.abstract[0]}
-            </p>
+            <p className="material-description__content">{work.abstract[0]}</p>
           </>
         )}
         {bestRepresentationContents && (
