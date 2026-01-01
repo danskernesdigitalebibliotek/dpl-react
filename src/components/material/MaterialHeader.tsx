@@ -107,8 +107,8 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
 
   return (
     <header className="border-bottom">
-      <div className="material-header hero-grid hero-grid--material">
-        <div className="material-header__cover hero-grid__visual">
+      <div className="material-header">
+        <div className="material-header__cover">
           <Cover
             ids={coverPids}
             bestRepresentation={bestRepresentation}
@@ -120,7 +120,7 @@ const MaterialHeader: React.FC<MaterialHeaderProps> = ({
         </div>
         <div
           data-cy="material-header-content"
-          className="material-header__content hero-grid__content"
+          className="material-header__content"
         >
           <ButtonFavourite
             title={String(title)}
