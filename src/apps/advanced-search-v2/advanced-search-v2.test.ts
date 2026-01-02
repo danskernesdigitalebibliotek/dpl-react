@@ -4,6 +4,9 @@ import { givenComplexSearchWithPaginationResponse } from "../../../cypress/inter
 import { givenComplexFacetSearchResponse } from "../../../cypress/intercepts/fbi/complexFacetSearch";
 import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
 
+const currentYear = new Date().getFullYear();
+const lastYear = currentYear - 1;
+
 describe("Advanced Search V2", () => {
   let page: AdvancedSearchV2Page;
 
@@ -321,9 +324,9 @@ describe("Advanced Search V2", () => {
         form.enterSearchTerm(0, "nyheder");
         form.openRangeSelect("Year");
         form.selectRangePreset("Seneste 2 år");
-        form.verifyRangeInputValues("2024", "2025");
+        form.verifyRangeInputValues(`${lastYear}`, `${currentYear}`);
         form.closePopover();
-        form.verifyRangeBadgeContains("Year", "2024-2025");
+        form.verifyRangeBadgeContains("Year", `${lastYear}-${currentYear}`);
         form.clickSearch();
       });
 
@@ -352,8 +355,8 @@ describe("Advanced Search V2", () => {
         form.openRangeSelect("Year");
         form.verifyRangeInputValues("", "");
         form.selectRangePreset("Seneste 2 år");
-        form.verifyRangeInputValues("2024", "2025");
-        form.verifyRangeBadgeContains("Year", "2024-2025");
+        form.verifyRangeInputValues(`${lastYear}`, `${currentYear}`);
+        form.verifyRangeBadgeContains("Year", `${lastYear}-${currentYear}`);
         form.resetRange();
         form.verifyRangeInputValues("", "");
         form.closePopover();
