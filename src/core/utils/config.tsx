@@ -50,7 +50,9 @@ export const useConfig = (): UseConfigFunction => {
       return JSON.parse(data[key]);
     }
     if (options?.transformer === "stringToArray") {
-      return data[key].split(",");
+      // Adding .filter() to remove any non-values.
+      // Without it, "" becomes [""] and " , " becomes [" "," "] rather than [].
+      return data[key].split(",").filter(Boolean);
     }
     if (options?.transformer === "stringToNumber") {
       return Number(data[key]);

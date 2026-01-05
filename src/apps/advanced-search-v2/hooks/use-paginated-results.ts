@@ -8,7 +8,7 @@ import {
 } from "../../../core/dbc-gateway/generated/graphql";
 import { SortOption } from "../types";
 import { getSortInput } from "../lib/sort-utils";
-import useGetCleanBranches from "../../../core/utils/branches";
+import useGetSearchBranches from "../../../core/utils/branches";
 import { usePrevious } from "react-use";
 
 export interface UsePaginatedResultsReturn {
@@ -45,7 +45,7 @@ export const usePaginatedResults = ({
   pageSize,
   sort
 }: UsePaginatedResultsProps): UsePaginatedResultsReturn => {
-  const cleanBranches = useGetCleanBranches();
+  const cleanBranches = useGetSearchBranches();
   const [resultItems, setResultItems] = useState<Work[]>([]);
   const [hitcount, setHitCount] = useState(0);
 
