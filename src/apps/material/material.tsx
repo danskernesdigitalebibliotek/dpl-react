@@ -7,7 +7,10 @@ import DisclosureControllable from "../../components/Disclosures/DisclosureContr
 import DisclosureSummary from "../../components/Disclosures/DisclosureSummary";
 import DigitalModal from "../../components/material/digital-modal/DigitalModal";
 import InfomediaModal from "../../components/material/infomedia/InfomediaModal";
-import { hasCorrectAccess } from "../../components/material/material-buttons/helper";
+import {
+  hasCorrectAccess,
+  hasCorrectAccessType
+} from "../../components/material/material-buttons/helper";
 import MaterialDescription from "../../components/material/MaterialDescription";
 import MaterialDetailsList from "../../components/material/MaterialDetailsList";
 import MaterialHeader from "../../components/material/MaterialHeader";
@@ -194,21 +197,24 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           isAvailable={isAvailable}
         >
           {manifestations.map((manifestation) => (
-            <>
-              <ReservationFindOnShelfModals
-                key={manifestation.pid}
-                patron={userData?.patron}
-                manifestations={[manifestation]}
-                selectedPeriodical={selectedPeriodical}
-                work={work}
-                setSelectedPeriodical={setSelectedPeriodical}
-              />
-              <OnlineInternalModal
-                workId={wid}
-                selectedManifestations={[manifestation]}
-              />
-            </>
+            <ReservationFindOnShelfModals
+              key={manifestation.pid}
+              patron={userData?.patron}
+              manifestations={[manifestation]}
+              selectedPeriodical={selectedPeriodical}
+              work={work}
+              setSelectedPeriodical={setSelectedPeriodical}
+            />
           ))}
+          {hasCorrectAccessType(
+            AccessTypeCodeEnum.Online,
+            selectedManifestations
+          ) && (
+            <OnlineInternalModal
+              workId={wid}
+              selectedManifestations={selectedManifestations}
+            />
+          )}
           {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
             <InfomediaModal
               selectedManifestations={selectedManifestations}
