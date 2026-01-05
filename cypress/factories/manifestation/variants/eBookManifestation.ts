@@ -1,5 +1,8 @@
 import { manifestationFactory } from "../manifestation.factory";
-import { AccessTypeCodeEnum } from "../../../../src/core/dbc-gateway/generated/graphql";
+import {
+  AccessTypeCodeEnum,
+  IdentifierTypeEnum
+} from "../../../../src/core/dbc-gateway/generated/graphql";
 
 export const eBookManifestation = manifestationFactory.build({
   pid: "870970-basis:140969516",
@@ -16,9 +19,11 @@ export const eBookManifestation = manifestationFactory.build({
 
   identifiers: [
     {
+      type: IdentifierTypeEnum.Isbn,
       value: "9788702441000"
     },
     {
+      type: IdentifierTypeEnum.Isbn,
       value: "9788702441000"
     }
   ],

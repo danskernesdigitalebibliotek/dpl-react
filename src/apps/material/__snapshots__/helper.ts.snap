@@ -49,6 +49,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "hostPublication": null,
       "identifiers": [
         {
+          "type": "ISBN",
           "value": "0-19-423069-4",
         },
       ],
@@ -145,6 +146,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "hostPublication": null,
       "identifiers": [
         {
+          "type": "ISBN",
           "value": "9780553900330",
         },
       ],
@@ -245,6 +247,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "hostPublication": null,
       "identifiers": [
         {
+          "type": "ISBN",
           "value": "9780739346273",
         },
       ],
@@ -347,6 +350,7 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "hostPublication": null,
       "identifiers": [
         {
+          "type": "ISBN",
           "value": "9780230026810",
         },
         {

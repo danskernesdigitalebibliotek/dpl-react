@@ -143,7 +143,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763861649"
+                    "type": "ISBN", "value": "9788763861649"
                   }
                 ],
                 "contributors": [
@@ -240,7 +240,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702343755"
+                    "type": "ISBN", "value": "9788702343755"
                   }
                 ],
                 "contributors": [
@@ -349,7 +349,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702343755"
+                  "type": "ISBN", "value": "9788702343755"
                 }
               ],
               "contributors": [
@@ -457,7 +457,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763861649"
+                  "type": "ISBN", "value": "9788763861649"
                 }
               ],
               "contributors": [
@@ -671,7 +671,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763865708"
+                    "type": "ISBN", "value": "9788763865708"
                   }
                 ],
                 "contributors": [
@@ -776,7 +776,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702411799"
+                    "type": "ISBN", "value": "9788702411799"
                   }
                 ],
                 "contributors": [
@@ -894,7 +894,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702411799"
+                  "type": "ISBN", "value": "9788702411799"
                 }
               ],
               "contributors": [
@@ -1011,7 +1011,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763865708"
+                  "type": "ISBN", "value": "9788763865708"
                 }
               ],
               "contributors": [
@@ -1211,10 +1211,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763844123"
+                    "type": "ISBN", "value": "9788763844123"
                   },
                   {
-                    "value": "9788763844123"
+                    "type": "ISBN", "value": "9788763844123"
                   }
                 ],
                 "contributors": [
@@ -1309,7 +1309,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763849630"
+                    "type": "ISBN", "value": "9788763849630"
                   }
                 ],
                 "contributors": [
@@ -1400,7 +1400,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763844116"
+                    "type": "ISBN", "value": "9788763844116"
                   }
                 ],
                 "contributors": [
@@ -1491,7 +1491,7 @@
                 "publisher": ["Rosinante"],
                 "identifiers": [
                   {
-                    "value": "9788763850636"
+                    "type": "ISBN", "value": "9788763850636"
                   }
                 ],
                 "contributors": [
@@ -1600,7 +1600,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763849630"
+                  "type": "ISBN", "value": "9788763849630"
                 }
               ],
               "contributors": [
@@ -1691,7 +1691,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763849630"
+                  "type": "ISBN", "value": "9788763849630"
                 }
               ],
               "contributors": [
@@ -1886,10 +1886,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763854474"
+                    "type": "ISBN", "value": "9788763854474"
                   },
                   {
-                    "value": "9788763854474"
+                    "type": "ISBN", "value": "9788763854474"
                   }
                 ],
                 "contributors": [
@@ -1983,7 +1983,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763854467"
+                    "type": "ISBN", "value": "9788763854467"
                   }
                 ],
                 "contributors": [
@@ -2078,7 +2078,7 @@
                 "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [
                   {
-                    "value": "9788763899796"
+                    "type": "ISBN", "value": "9788763899796"
                   }
                 ],
                 "contributors": [
@@ -2189,7 +2189,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763862653"
+                    "type": "ISBN", "value": "9788763862653"
                   }
                 ],
                 "contributors": [
@@ -2285,7 +2285,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763862653"
+                  "type": "ISBN", "value": "9788763862653"
                 }
               ],
               "contributors": [
@@ -2380,7 +2380,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763862653"
+                  "type": "ISBN", "value": "9788763862653"
                 }
               ],
               "contributors": [
@@ -2579,7 +2579,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788763864695"
+                    "type": "ISBN", "value": "9788763864695"
                   }
                 ],
                 "contributors": [
@@ -2690,10 +2690,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763864671"
+                    "type": "ISBN", "value": "9788763864671"
                   },
                   {
-                    "value": "9788763864671"
+                    "type": "ISBN", "value": "9788763864671"
                   }
                 ],
                 "contributors": [
@@ -2792,7 +2792,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763861182"
+                    "type": "ISBN", "value": "9788763861182"
                   }
                 ],
                 "contributors": [
@@ -2888,7 +2888,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788763864695"
+                  "type": "ISBN", "value": "9788763864695"
                 }
               ],
               "contributors": [
@@ -2999,7 +2999,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763861182"
+                  "type": "ISBN", "value": "9788763861182"
                 }
               ],
               "contributors": [
@@ -3198,7 +3198,7 @@
                 "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [
                   {
-                    "value": "9788763897174"
+                    "type": "ISBN", "value": "9788763897174"
                   }
                 ],
                 "contributors": [
@@ -3309,10 +3309,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763859059"
+                    "type": "ISBN", "value": "9788763859059"
                   },
                   {
-                    "value": "9788763859059"
+                    "type": "ISBN", "value": "9788763859059"
                   }
                 ],
                 "contributors": [
@@ -3406,7 +3406,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763855099"
+                    "type": "ISBN", "value": "9788763855099"
                   }
                 ],
                 "contributors": [
@@ -3502,7 +3502,7 @@
               "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
               "identifiers": [
                 {
-                  "value": "9788763897174"
+                  "type": "ISBN", "value": "9788763897174"
                 }
               ],
               "contributors": [
@@ -3613,7 +3613,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763855099"
+                  "type": "ISBN", "value": "9788763855099"
                 }
               ],
               "contributors": [
@@ -3812,7 +3812,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763899628"
+                    "type": "ISBN", "value": "9788763899628"
                   }
                 ],
                 "contributors": [
@@ -3923,10 +3923,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763844147"
+                    "type": "ISBN", "value": "9788763844147"
                   },
                   {
-                    "value": "9788763844147"
+                    "type": "ISBN", "value": "9788763844147"
                   }
                 ],
                 "contributors": [
@@ -4025,7 +4025,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763844130"
+                    "type": "ISBN", "value": "9788763844130"
                   }
                 ],
                 "contributors": [
@@ -4121,7 +4121,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763899628"
+                  "type": "ISBN", "value": "9788763899628"
                 }
               ],
               "contributors": [
@@ -4232,7 +4232,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763844130"
+                  "type": "ISBN", "value": "9788763844130"
                 }
               ],
               "contributors": [
@@ -4431,10 +4431,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763852470"
+                    "type": "ISBN", "value": "9788763852470"
                   },
                   {
-                    "value": "9788763852470"
+                    "type": "ISBN", "value": "9788763852470"
                   }
                 ],
                 "contributors": [
@@ -4533,7 +4533,7 @@
                 "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [
                   {
-                    "value": "9788763899390"
+                    "type": "ISBN", "value": "9788763899390"
                   }
                 ],
                 "contributors": [
@@ -4644,7 +4644,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763850209"
+                    "type": "ISBN", "value": "9788763850209"
                   }
                 ],
                 "contributors": [
@@ -4740,7 +4740,7 @@
               "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
               "identifiers": [
                 {
-                  "value": "9788763899390"
+                  "type": "ISBN", "value": "9788763899390"
                 }
               ],
               "contributors": [
@@ -4851,7 +4851,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763850209"
+                  "type": "ISBN", "value": "9788763850209"
                 }
               ],
               "contributors": [

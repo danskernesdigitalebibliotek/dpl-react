@@ -307,7 +307,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756795036"
+                "type": "ISBN", "value": "9788756795036"
               }
             ],
             "contributors": [
@@ -2655,7 +2655,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756773126"
+                "type": "ISBN", "value": "9788756773126"
               },
               {
                 "value": "8756773129"
@@ -2744,7 +2744,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756781107"
+                "type": "ISBN", "value": "9788756781107"
               }
             ],
             "contributors": [],
@@ -2994,7 +2994,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756781107"
+                "type": "ISBN", "value": "9788756781107"
               }
             ],
             "contributors": [],
@@ -3076,7 +3076,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756773126"
+                "type": "ISBN", "value": "9788756773126"
               },
               {
                 "value": "8756773129"
@@ -3330,7 +3330,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740025323"
+                "type": "ISBN", "value": "9788740025323"
               }
             ],
             "contributors": [
@@ -3759,7 +3759,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740013115"
+                "type": "ISBN", "value": "9788740013115"
               }
             ],
             "contributors": [
@@ -3860,7 +3860,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756795036"
+                "type": "ISBN", "value": "9788756795036"
               }
             ],
             "contributors": [
@@ -3989,7 +3989,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740003437"
+                "type": "ISBN", "value": "9788740003437"
               }
             ],
             "contributors": [
@@ -4191,7 +4191,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740063585"
+                "type": "ISBN", "value": "9788740063585"
               }
             ],
             "contributors": [
@@ -4337,7 +4337,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756795036"
+                "type": "ISBN", "value": "9788756795036"
               }
             ],
             "contributors": [
@@ -4466,7 +4466,7 @@
                 "value": "8756773129"
               },
               {
-                "value": "9788756773126"
+                "type": "ISBN", "value": "9788756773126"
               }
             ],
             "contributors": [],
@@ -4543,7 +4543,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740003437"
+                "type": "ISBN", "value": "9788740003437"
               }
             ],
             "contributors": [
@@ -4663,7 +4663,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740013115"
+                "type": "ISBN", "value": "9788740013115"
               }
             ],
             "contributors": [
@@ -4761,7 +4761,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740088588"
+                "type": "ISBN", "value": "9788740088588"
               }
             ],
             "contributors": [
@@ -5310,7 +5310,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756773126"
+                "type": "ISBN", "value": "9788756773126"
               },
               {
                 "value": "87-567-7312-9"
@@ -5398,7 +5398,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756781107"
+                "type": "ISBN", "value": "9788756781107"
               }
             ],
             "contributors": [],
@@ -5478,7 +5478,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756795036"
+                "type": "ISBN", "value": "9788756795036"
               }
             ],
             "contributors": [
@@ -5599,7 +5599,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740003437"
+                "type": "ISBN", "value": "9788740003437"
               }
             ],
             "contributors": [
@@ -5710,7 +5710,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740059311"
+                "type": "ISBN", "value": "9788740059311"
               }
             ],
             "contributors": [
@@ -5803,7 +5803,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740010671"
+                "type": "ISBN", "value": "9788740010671"
               }
             ],
             "contributors": [
@@ -5915,7 +5915,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740013115"
+                "type": "ISBN", "value": "9788740013115"
               }
             ],
             "contributors": [
@@ -6010,7 +6010,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740018493"
+                "type": "ISBN", "value": "9788740018493"
               }
             ],
             "contributors": [
@@ -6105,7 +6105,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740025316"
+                "type": "ISBN", "value": "9788740025316"
               }
             ],
             "contributors": [
@@ -6211,7 +6211,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740025323"
+                "type": "ISBN", "value": "9788740025323"
               }
             ],
             "contributors": [
@@ -6306,7 +6306,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740067156"
+                "type": "ISBN", "value": "9788740067156"
               }
             ],
             "contributors": [
@@ -6422,7 +6422,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740063585"
+                "type": "ISBN", "value": "9788740063585"
               }
             ],
             "contributors": [
@@ -6573,7 +6573,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740067163"
+                "type": "ISBN", "value": "9788740067163"
               }
             ],
             "contributors": [
@@ -6767,7 +6767,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756781107"
+                "type": "ISBN", "value": "9788756781107"
               }
             ],
             "contributors": [],
@@ -6852,7 +6852,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740003437"
+                "type": "ISBN", "value": "9788740003437"
               }
             ],
             "contributors": [
@@ -6968,7 +6968,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740063585"
+                "type": "ISBN", "value": "9788740063585"
               }
             ],
             "contributors": [
@@ -7210,7 +7210,7 @@
           "publisher": ["Politiken"],
           "identifiers": [
             {
-              "value": "9788740088588"
+              "type": "ISBN", "value": "9788740088588"
             }
           ],
           "contributors": [
@@ -7341,7 +7341,7 @@
           "publisher": ["Politiken"],
           "identifiers": [
             {
-              "value": "9788740088588"
+              "type": "ISBN", "value": "9788740088588"
             }
           ],
           "contributors": [

@@ -60,7 +60,7 @@
                 "publisher": ["Politiken"],
                 "identifiers": [
                   {
-                    "value": "9788740075212"
+                    "type": "ISBN", "value": "9788740075212"
                   }
                 ],
                 "contributors": [
@@ -167,7 +167,7 @@
               "publisher": ["Politiken"],
               "identifiers": [
                 {
-                  "value": "9788740075212"
+                  "type": "ISBN", "value": "9788740075212"
                 }
               ],
               "contributors": [
@@ -273,7 +273,7 @@
               "publisher": ["Politiken"],
               "identifiers": [
                 {
-                  "value": "9788740075212"
+                  "type": "ISBN", "value": "9788740075212"
                 }
               ],
               "contributors": [
@@ -401,7 +401,7 @@
                 "publisher": ["Random House"],
                 "identifiers": [
                   {
-                    "value": "9780593593806"
+                    "type": "ISBN", "value": "9780593593806"
                   }
                 ],
                 "contributors": [],
@@ -482,7 +482,7 @@
               "publisher": ["Random House"],
               "identifiers": [
                 {
-                  "value": "9780593593806"
+                  "type": "ISBN", "value": "9780593593806"
                 }
               ],
               "contributors": [],
@@ -562,7 +562,7 @@
               "publisher": ["Random House"],
               "identifiers": [
                 {
-                  "value": "9780593593806"
+                  "type": "ISBN", "value": "9780593593806"
                 }
               ],
               "contributors": [],

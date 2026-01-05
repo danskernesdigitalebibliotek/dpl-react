@@ -32,12 +32,6 @@ describe("Campaign", () => {
       fixtureFilePath: "material/availability.json"
     });
 
-    // Intercept material list service.
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
-
     cy.interceptGraphql({
       operationName: "intelligentFacets",
       fixtureFilePath: "search-result/facet-line/intelligentFacets"

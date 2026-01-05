@@ -2356,7 +2356,11 @@ export type GetSmallWorkQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -2490,7 +2494,11 @@ export type GetSmallWorkQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -2624,7 +2632,11 @@ export type GetSmallWorkQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3013,7 +3025,11 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3147,7 +3163,11 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3281,7 +3301,11 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3524,7 +3548,11 @@ export type GetMaterialGloballyQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3658,7 +3686,11 @@ export type GetMaterialGloballyQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3792,7 +3824,11 @@ export type GetMaterialGloballyQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -4079,7 +4115,11 @@ export type RecommendFromFaustQuery = {
               | { __typename: "Corporation"; display: string; nameSort: string }
               | { __typename: "Person"; display: string; nameSort: string }
             >;
-            identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+            identifiers: Array<{
+              __typename?: "Identifier";
+              type: IdentifierTypeEnum;
+              value: string;
+            }>;
             contributors: Array<
               | {
                   __typename?: "Corporation";
@@ -4213,7 +4253,11 @@ export type RecommendFromFaustQuery = {
               | { __typename: "Corporation"; display: string; nameSort: string }
               | { __typename: "Person"; display: string; nameSort: string }
             >;
-            identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+            identifiers: Array<{
+              __typename?: "Identifier";
+              type: IdentifierTypeEnum;
+              value: string;
+            }>;
             contributors: Array<
               | {
                   __typename?: "Corporation";
@@ -4347,7 +4391,11 @@ export type RecommendFromFaustQuery = {
               | { __typename: "Corporation"; display: string; nameSort: string }
               | { __typename: "Person"; display: string; nameSort: string }
             >;
-            identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+            identifiers: Array<{
+              __typename?: "Identifier";
+              type: IdentifierTypeEnum;
+              value: string;
+            }>;
             contributors: Array<
               | {
                   __typename?: "Corporation";
@@ -4543,7 +4591,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -4677,7 +4729,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -4811,7 +4867,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -5055,7 +5115,11 @@ export type ComplexSearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -5189,7 +5253,11 @@ export type ComplexSearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -5323,7 +5391,11 @@ export type ComplexSearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -5658,7 +5730,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string; nameSort: string }
       | { __typename: "Person"; display: string; nameSort: string }
     >;
-    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+    identifiers: Array<{
+      __typename?: "Identifier";
+      type: IdentifierTypeEnum;
+      value: string;
+    }>;
     contributors: Array<
       | {
           __typename?: "Corporation";
@@ -5786,7 +5862,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string; nameSort: string }
       | { __typename: "Person"; display: string; nameSort: string }
     >;
-    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+    identifiers: Array<{
+      __typename?: "Identifier";
+      type: IdentifierTypeEnum;
+      value: string;
+    }>;
     contributors: Array<
       | {
           __typename?: "Corporation";
@@ -5914,7 +5994,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string; nameSort: string }
       | { __typename: "Person"; display: string; nameSort: string }
     >;
-    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+    identifiers: Array<{
+      __typename?: "Identifier";
+      type: IdentifierTypeEnum;
+      value: string;
+    }>;
     contributors: Array<
       | {
           __typename?: "Corporation";
@@ -6074,7 +6158,11 @@ export type ManifestationsSimpleFieldsFragment = {
     | { __typename: "Corporation"; display: string; nameSort: string }
     | { __typename: "Person"; display: string; nameSort: string }
   >;
-  identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+  identifiers: Array<{
+    __typename?: "Identifier";
+    type: IdentifierTypeEnum;
+    value: string;
+  }>;
   contributors: Array<
     | {
         __typename?: "Corporation";
@@ -6341,7 +6429,11 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -6475,7 +6567,11 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -6609,7 +6705,11 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -6845,7 +6945,11 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -6979,7 +7083,11 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -7113,7 +7221,11 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -7414,6 +7526,7 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   publisher
   identifiers {
+    type
     value
   }
   contributors {

@@ -59,7 +59,7 @@
             "publisher": ["JR Books"],
             "identifiers": [
               {
-                "value": "9781906779832"
+                "type": "ISBN", "value": "9781906779832"
               }
             ],
             "contributors": [],
@@ -144,7 +144,7 @@
           "publisher": ["JR Books"],
           "identifiers": [
             {
-              "value": "9781906779832"
+              "type": "ISBN", "value": "9781906779832"
             }
           ],
           "contributors": [],
@@ -228,7 +228,7 @@
           "publisher": ["JR Books"],
           "identifiers": [
             {
-              "value": "9781906779832"
+              "type": "ISBN", "value": "9781906779832"
             }
           ],
           "contributors": [],

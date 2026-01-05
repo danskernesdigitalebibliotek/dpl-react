@@ -12,6 +12,7 @@ import {
 } from "../../components/material/material-buttons/helper";
 import {
   AccessTypeCodeEnum,
+  IdentifierTypeEnum,
   WorkTypeEnum
 } from "../../core/dbc-gateway/generated/graphql";
 import {
@@ -150,7 +151,10 @@ export const getManifestationChildrenOrAdults = (
 };
 
 export const getManifestationIsbn = (manifestation: Manifestation) => {
-  return manifestation.identifiers?.[0]?.value ?? "";
+  const isbnIdentifier = manifestation.identifiers?.find(
+    (identifier) => identifier.type === IdentifierTypeEnum.Isbn
+  );
+  return isbnIdentifier?.value ?? "";
 };
 
 export const getManifestationSource = (manifestation: Manifestation) => {
@@ -440,10 +444,12 @@ export const divideManifestationsByMaterialType = (
     {}
   );
 
-export const getAllIdentifiers = (manifestations: Manifestation[]) => {
+export const getAllIsbns = (manifestations: Manifestation[]) => {
   return manifestations
     .map((manifestation) =>
-      manifestation.identifiers.map((identifier) => identifier.value)
+      manifestation.identifiers
+        .filter((identifier) => identifier.type === IdentifierTypeEnum.Isbn)
+        .map((identifier) => identifier.value)
     )
     .flat();
 };

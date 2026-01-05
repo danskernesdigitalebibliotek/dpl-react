@@ -41,8 +41,8 @@
                 ],
                 "publisher": ["Memoris"],
                 "identifiers": [
-                  { "value": "9788793681095" },
-                  { "value": "9788793681095" }
+                  { "type": "ISBN", "value": "9788793681095" },
+                  { "type": "ISBN", "value": "9788793681095" }
                 ],
                 "contributors": [{ "display": "Birgitte Brix" }],
                 "edition": {
@@ -89,7 +89,7 @@
                   { "display": "Angela Levin", "__typename": "Person" }
                 ],
                 "publisher": ["Memoris"],
-                "identifiers": [{ "value": "9788793681088" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788793681088" }],
                 "contributors": [{ "display": "Birgitte Brix" }],
                 "edition": {
                   "summary": "1. udgave, 2018",
@@ -131,8 +131,8 @@
                 ],
                 "publisher": ["Memoris"],
                 "identifiers": [
-                  { "value": "9788793681132" },
-                  { "value": "9788793681132" }
+                  { "type": "ISBN", "value": "9788793681132" },
+                  { "type": "ISBN", "value": "9788793681132" }
                 ],
                 "contributors": [
                   { "display": "Randi Winther" },
@@ -182,7 +182,7 @@
                   { "display": "Angela Levin", "__typename": "Person" }
                 ],
                 "publisher": ["Memoris"],
-                "identifiers": [{ "value": "9788793681231" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788793681231" }],
                 "contributors": [
                   { "display": "Randi Winther" },
                   { "display": "Birgitte Brix" }
@@ -227,7 +227,7 @@
                 { "display": "Angela Levin", "__typename": "Person" }
               ],
               "publisher": ["Memoris"],
-              "identifiers": [{ "value": "9788793681231" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788793681231" }],
               "contributors": [
                 { "display": "Randi Winther" },
                 { "display": "Birgitte Brix" }
@@ -268,7 +268,7 @@
                 { "display": "Angela Levin", "__typename": "Person" }
               ],
               "publisher": ["Memoris"],
-              "identifiers": [{ "value": "9788793681088" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788793681088" }],
               "contributors": [{ "display": "Birgitte Brix" }],
               "edition": {
                 "summary": "1. udgave, 2018",
@@ -485,7 +485,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702307566" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702307566" }],
                 "contributors": [
                   { "display": "Jim Kay" },
                   { "display": "Neil Packer" },
@@ -751,7 +751,7 @@
                 ],
                 "publisher": ["Gyldendal"],
                 "identifiers": [
-                  { "value": "9788702029444" },
+                  { "type": "ISBN", "value": "9788702029444" },
                   { "value": "87-02-02944-8" }
                 ],
                 "contributors": [],
@@ -840,7 +840,7 @@
                 ],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
-                  { "value": "9788703014807" },
+                  { "type": "ISBN", "value": "9788703014807" },
                   { "value": "87-03-01480-0" }
                 ],
                 "contributors": [],
@@ -883,7 +883,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702075427" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702075427" }],
                 "contributors": [{ "display": "Jesper Christensen (f. 1948)" }],
                 "edition": {
                   "summary": "2009",
@@ -924,7 +924,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702114393" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702114393" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -965,7 +965,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702173260" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702173260" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "5. udgave, 2015",
@@ -1006,7 +1006,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702272482" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702272482" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "6. udgave, 2018",
@@ -1048,7 +1048,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702307566" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702307566" }],
               "contributors": [
                 { "display": "Jim Kay" },
                 { "display": "Neil Packer" },
@@ -1098,7 +1098,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702307566" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702307566" }],
               "contributors": [
                 { "display": "Jim Kay" },
                 { "display": "Neil Packer" },
@@ -1449,7 +1449,7 @@
                 ],
                 "publisher": ["Gyldendal"],
                 "identifiers": [
-                  { "value": "9788700398368" },
+                  { "type": "ISBN", "value": "9788700398368" },
                   { "value": "87-00-39836-5" }
                 ],
                 "contributors": [],
@@ -1847,7 +1847,7 @@
                 ],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
-                  { "value": "9788703011714" },
+                  { "type": "ISBN", "value": "9788703011714" },
                   { "value": "87-03-01171-2" }
                 ],
                 "contributors": [],
@@ -1892,7 +1892,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702075380" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702075380" }],
                 "contributors": [{ "display": "Jesper Christensen (f. 1948)" }],
                 "edition": {
                   "summary": "2009",
@@ -1933,7 +1933,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702113990" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702113990" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "5. udgave, 2012",
@@ -1974,7 +1974,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702301588" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702301588" }],
                 "contributors": [
                   { "display": "Hanna Lützen" },
                   { "display": "MinaLima (firma)" }
@@ -2023,7 +2023,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788700774636" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788700774636" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "Særudgave, 2008",
@@ -2064,7 +2064,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702173222" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702173222" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "6 udgave, 2015",
@@ -2105,7 +2105,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702179859" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702179859" }],
                 "contributors": [
                   { "display": "Jim Kay" },
                   { "display": "Hanna Lützen" }
@@ -2149,7 +2149,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702272451" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702272451" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "8. udgave, 2018",
@@ -2191,7 +2191,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702301588" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702301588" }],
               "contributors": [
                 { "display": "Hanna Lützen" },
                 { "display": "MinaLima (firma)" }
@@ -2240,7 +2240,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702301588" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702301588" }],
               "contributors": [
                 { "display": "Hanna Lützen" },
                 { "display": "MinaLima (firma)" }
@@ -2726,7 +2726,7 @@
                 ],
                 "publisher": ["Gyldendal"],
                 "identifiers": [
-                  { "value": "9788702048513" },
+                  { "type": "ISBN", "value": "9788702048513" },
                   { "value": "87-02-04851-5" }
                 ],
                 "contributors": [],
@@ -2769,7 +2769,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702075434" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702075434" }],
                 "contributors": [{ "display": "Jesper Christensen (f. 1948)" }],
                 "edition": {
                   "summary": "2009",
@@ -2810,7 +2810,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702114423" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702114423" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -2851,7 +2851,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702173277" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702173277" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "1., i.e 5. udgave, 2015",
@@ -2892,7 +2892,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702272499" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702272499" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "6. udgave, 2018",
@@ -2934,7 +2934,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702272499" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702272499" }],
               "contributors": [{ "display": "Hanna Lützen" }],
               "edition": {
                 "summary": "6. udgave, 2018",
@@ -2975,7 +2975,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702272499" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702272499" }],
               "contributors": [{ "display": "Hanna Lützen" }],
               "edition": {
                 "summary": "6. udgave, 2018",
@@ -3187,7 +3187,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702062281" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702062281" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2007",
@@ -3232,7 +3232,7 @@
                   }
                 ],
                 "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702062311" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702062311" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2007",
@@ -3273,7 +3273,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702069990" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702069990" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2. udgave, 2008",
@@ -3314,7 +3314,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702075441" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702075441" }],
                 "contributors": [{ "display": "Jesper Christensen (f. 1948)" }],
                 "edition": {
                   "summary": "2009",
@@ -3355,7 +3355,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702114430" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702114430" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -3396,7 +3396,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702173284" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702173284" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "5. udgave, 2015",
@@ -3437,7 +3437,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702272420" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702272420" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "6. udgave, 2018",
@@ -3479,7 +3479,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702272420" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702272420" }],
               "contributors": [{ "display": "Hanna Lützen" }],
               "edition": {
                 "summary": "6. udgave, 2018",
@@ -3520,7 +3520,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702272420" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702272420" }],
               "contributors": [{ "display": "Hanna Lützen" }],
               "edition": {
                 "summary": "6. udgave, 2018",
@@ -3780,7 +3780,7 @@
                 ],
                 "publisher": ["Gyldendal"],
                 "identifiers": [
-                  { "value": "9788700459946" },
+                  { "type": "ISBN", "value": "9788700459946" },
                   { "value": "87-00-45994-1" }
                 ],
                 "contributors": [],
@@ -4129,7 +4129,7 @@
                 ],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
-                  { "value": "9788703011721" },
+                  { "type": "ISBN", "value": "9788703011721" },
                   { "value": "87-03-01172-0" }
                 ],
                 "contributors": [],
@@ -4174,7 +4174,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702075397" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702075397" }],
                 "contributors": [{ "display": "Jesper Christensen (f. 1948)" }],
                 "edition": {
                   "summary": "2009",
@@ -4215,7 +4215,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702114331" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702114331" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "5. udgave, 2012",
@@ -4256,7 +4256,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702173239" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702173239" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "6. udgave, 2015",
@@ -4299,7 +4299,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702204681" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702204681" }],
                 "contributors": [
                   { "display": "Jim Kay" },
                   { "display": "Hanna Lützen" }
@@ -4343,7 +4343,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702272444" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702272444" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "8. udgave, 2018",
@@ -4386,7 +4386,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702319361" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702319361" }],
                 "contributors": [
                   { "display": "Hanna Lützen" },
                   { "display": "MinaLima (firma)" }
@@ -4433,7 +4433,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702319361" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702319361" }],
               "contributors": [
                 { "display": "Hanna Lützen" },
                 { "display": "MinaLima (firma)" }
@@ -4479,7 +4479,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702319361" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702319361" }],
               "contributors": [
                 { "display": "Hanna Lützen" },
                 { "display": "MinaLima (firma)" }
@@ -4539,7 +4539,7 @@
                 ],
                 "creators": [],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702257199" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702257199" }],
                 "contributors": [
                   { "display": "Joanne K. Rowling" },
                   { "display": "Hanna Lützen" },
@@ -4593,7 +4593,7 @@
               ],
               "creators": [],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702257199" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702257199" }],
               "contributors": [
                 { "display": "Joanne K. Rowling" },
                 { "display": "Hanna Lützen" },
@@ -4646,7 +4646,7 @@
               ],
               "creators": [],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702257199" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702257199" }],
               "contributors": [
                 { "display": "Joanne K. Rowling" },
                 { "display": "Hanna Lützen" },
@@ -4960,7 +4960,7 @@
                 ],
                 "publisher": ["Gyldendal"],
                 "identifiers": [
-                  { "value": "9788700470460" },
+                  { "type": "ISBN", "value": "9788700470460" },
                   { "value": "87-00-47046-5" }
                 ],
                 "contributors": [],
@@ -5221,7 +5221,7 @@
                 ],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
-                  { "value": "9788703011738" },
+                  { "type": "ISBN", "value": "9788703011738" },
                   { "value": "87-03-01173-9" }
                 ],
                 "contributors": [],
@@ -5313,7 +5313,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702075403" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702075403" }],
                 "contributors": [{ "display": "Jesper Christensen (f. 1948)" }],
                 "edition": {
                   "summary": "2009",
@@ -5354,7 +5354,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702114348" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702114348" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "5. udgave, 2012",
@@ -5395,7 +5395,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702173246" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702173246" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "6. udgave, 2015",
@@ -5436,7 +5436,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702227888" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702227888" }],
                 "contributors": [
                   { "display": "Jim Kay" },
                   { "display": "Hanna Lützen" }
@@ -5480,7 +5480,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702272468" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702272468" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "8. udgave, 2018",
@@ -5522,7 +5522,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702272468" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702272468" }],
               "contributors": [{ "display": "Hanna Lützen" }],
               "edition": {
                 "summary": "8. udgave, 2018",
@@ -5563,7 +5563,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702272468" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702272468" }],
               "contributors": [{ "display": "Hanna Lützen" }],
               "edition": {
                 "summary": "8. udgave, 2018",
@@ -5996,7 +5996,7 @@
                 ],
                 "publisher": ["Gyldendal"],
                 "identifiers": [
-                  { "value": "9788702002805" },
+                  { "type": "ISBN", "value": "9788702002805" },
                   { "value": "87-02-00280-9" }
                 ],
                 "contributors": [],
@@ -6081,7 +6081,7 @@
                 ],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
-                  { "value": "9788703011745" },
+                  { "type": "ISBN", "value": "9788703011745" },
                   { "value": "87-03-01174-7" }
                 ],
                 "contributors": [],
@@ -6169,7 +6169,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702075410" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702075410" }],
                 "contributors": [{ "display": "Jesper Christensen (f. 1948)" }],
                 "edition": {
                   "summary": "2009",
@@ -6210,7 +6210,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702114362" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702114362" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "5. udgave, 2012",
@@ -6251,7 +6251,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702284799" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702284799" }],
                 "contributors": [
                   { "display": "Hanna Lützen" },
                   { "display": "Jim Kay" }
@@ -6295,7 +6295,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702173253" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702173253" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "6. udgave, 2015",
@@ -6336,7 +6336,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702272475" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702272475" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "7. udgave, 2018",
@@ -6378,7 +6378,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702284799" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702284799" }],
               "contributors": [
                 { "display": "Hanna Lützen" },
                 { "display": "Jim Kay" }
@@ -6422,7 +6422,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702284799" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702284799" }],
               "contributors": [
                 { "display": "Hanna Lützen" },
                 { "display": "Jim Kay" }
@@ -6632,7 +6632,7 @@
                   }
                 ],
                 "publisher": ["Carlsen"],
-                "identifiers": [{ "value": "9788711565339" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788711565339" }],
                 "contributors": [{ "display": "Sara Ejersbo Frederiksen" }],
                 "edition": {
                   "summary": "1. udgave, 2016",
@@ -6674,7 +6674,7 @@
                 }
               ],
               "publisher": ["Carlsen"],
-              "identifiers": [{ "value": "9788711565339" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788711565339" }],
               "contributors": [{ "display": "Sara Ejersbo Frederiksen" }],
               "edition": {
                 "summary": "1. udgave, 2016",
@@ -6715,7 +6715,7 @@
                 }
               ],
               "publisher": ["Carlsen"],
-              "identifiers": [{ "value": "9788711565339" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788711565339" }],
               "contributors": [{ "display": "Sara Ejersbo Frederiksen" }],
               "edition": {
                 "summary": "1. udgave, 2016",
@@ -6774,7 +6774,7 @@
                   { "display": "Sarah Oliver", "__typename": "Person" }
                 ],
                 "publisher": ["Turbulenz"],
-                "identifiers": [{ "value": "9788771480290" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771480290" }],
                 "contributors": [
                   { "display": "Brian Christensen" },
                   { "display": "Sarah Nørgaard Jensen" }
@@ -6822,8 +6822,8 @@
                 ],
                 "publisher": ["Turbulenz"],
                 "identifiers": [
-                  { "value": "9788792861917" },
-                  { "value": "9788792861917" }
+                  { "type": "ISBN", "value": "9788792861917" },
+                  { "type": "ISBN", "value": "9788792861917" }
                 ],
                 "contributors": [
                   { "display": "Brian Christensen" },
@@ -6884,8 +6884,8 @@
               ],
               "publisher": ["Turbulenz"],
               "identifiers": [
-                { "value": "9788792861917" },
-                { "value": "9788792861917" }
+                { "type": "ISBN", "value": "9788792861917" },
+                { "type": "ISBN", "value": "9788792861917" }
               ],
               "contributors": [
                 { "display": "Brian Christensen" },
@@ -6944,7 +6944,7 @@
                 { "display": "Sarah Oliver", "__typename": "Person" }
               ],
               "publisher": ["Turbulenz"],
-              "identifiers": [{ "value": "9788771480290" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771480290" }],
               "contributors": [
                 { "display": "Brian Christensen" },
                 { "display": "Sarah Nørgaard Jensen" }
@@ -7166,7 +7166,7 @@
                   { "display": "Jack Thorne", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702215694" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702215694" }],
                 "contributors": [
                   { "display": "Hanna Lützen" },
                   { "display": "Mette Nejmann" }
@@ -7213,7 +7213,7 @@
                 { "display": "Jack Thorne", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702215694" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702215694" }],
               "contributors": [
                 { "display": "Hanna Lützen" },
                 { "display": "Mette Nejmann" }
@@ -7259,7 +7259,7 @@
                 { "display": "Jack Thorne", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702215694" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702215694" }],
               "contributors": [
                 { "display": "Hanna Lützen" },
                 { "display": "Mette Nejmann" }
@@ -7468,7 +7468,7 @@
                   { "display": "Christian Mohr Boisen", "__typename": "Person" }
                 ],
                 "publisher": ["Carlsen"],
-                "identifiers": [{ "value": "9788711908976" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788711908976" }],
                 "contributors": [{ "display": "Sanne Katrine Haugaard" }],
                 "edition": {
                   "summary": "2019",
@@ -7507,8 +7507,8 @@
                 ],
                 "publisher": ["Carlsen"],
                 "identifiers": [
-                  { "value": "9788711909294" },
-                  { "value": "9788711909294" }
+                  { "type": "ISBN", "value": "9788711909294" },
+                  { "type": "ISBN", "value": "9788711909294" }
                 ],
                 "contributors": [{ "display": "Sanne Katrine Haugaard" }],
                 "edition": {
@@ -7560,8 +7560,8 @@
               ],
               "publisher": ["Carlsen"],
               "identifiers": [
-                { "value": "9788711909294" },
-                { "value": "9788711909294" }
+                { "type": "ISBN", "value": "9788711909294" },
+                { "type": "ISBN", "value": "9788711909294" }
               ],
               "contributors": [{ "display": "Sanne Katrine Haugaard" }],
               "edition": {
@@ -7611,7 +7611,7 @@
                 { "display": "Christian Mohr Boisen", "__typename": "Person" }
               ],
               "publisher": ["Carlsen"],
-              "identifiers": [{ "value": "9788711908976" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788711908976" }],
               "contributors": [{ "display": "Sanne Katrine Haugaard" }],
               "edition": {
                 "summary": "2019",
@@ -7828,7 +7828,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781526646651" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781526646651" }],
                 "contributors": [{ "display": "Thomas Taylor" }],
                 "edition": {
                   "summary": "Bloomsbury, silver anniversary edition 2022, 2022",
@@ -8381,7 +8381,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747532699" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747532699" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Bloomsbury, New edition 2000, 2000",
@@ -8467,9 +8467,9 @@
                 ],
                 "publisher": ["HNP"],
                 "identifiers": [
-                  { "value": "9781907545016" },
-                  { "value": "9781907545009" },
-                  { "value": "9781408882221" }
+                  { "type": "ISBN", "value": "9781907545016" },
+                  { "type": "ISBN", "value": "9781907545009" },
+                  { "type": "ISBN", "value": "9781408882221" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -8511,7 +8511,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408810545" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408810545" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Signature edition, 2010",
@@ -8553,8 +8553,8 @@
                 ],
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408855652" },
-                  { "value": "9781408855898" }
+                  { "type": "ISBN", "value": "9781408855652" },
+                  { "type": "ISBN", "value": "9781408855898" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -8598,7 +8598,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408845646" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408845646" }],
                 "contributors": [{ "display": "Jim Kay" }],
                 "edition": {
                   "summary": "2015",
@@ -8640,7 +8640,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury"],
-              "identifiers": [{ "value": "9781526646651" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781526646651" }],
               "contributors": [{ "display": "Thomas Taylor" }],
               "edition": {
                 "summary": "Bloomsbury, silver anniversary edition 2022, 2022",
@@ -8681,7 +8681,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury"],
-              "identifiers": [{ "value": "9781526646651" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781526646651" }],
               "contributors": [{ "display": "Thomas Taylor" }],
               "edition": {
                 "summary": "Bloomsbury, silver anniversary edition 2022, 2022",
@@ -8982,7 +8982,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747574507" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747574507" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Bloomsbury paperbacks, 2004",
@@ -9074,7 +9074,7 @@
                 "publisher": ["Levine"],
                 "identifiers": [
                   { "value": "0-439-13959-7" },
-                  { "value": "9780439139595" }
+                  { "type": "ISBN", "value": "9780439139595" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -9464,7 +9464,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747546245" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747546245" }],
                 "contributors": [],
                 "edition": {
                   "summary": "New edition 2003, 2003",
@@ -9508,11 +9508,11 @@
                 ],
                 "publisher": ["HNP", "Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408882276" },
-                  { "value": "9780747587088" },
-                  { "value": "9780747587040" },
-                  { "value": "9781408824108" },
-                  { "value": "9781408821589" }
+                  { "type": "ISBN", "value": "9781408882276" },
+                  { "type": "ISBN", "value": "9780747587088" },
+                  { "type": "ISBN", "value": "9780747587040" },
+                  { "type": "ISBN", "value": "9781408824108" },
+                  { "type": "ISBN", "value": "9781408821589" }
                 ],
                 "contributors": [{ "display": "Stephen Fry" }],
                 "edition": {
@@ -9554,7 +9554,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408810576" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408810576" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Signature edition, 2010",
@@ -9595,7 +9595,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747582380" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747582380" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Bloomsbury, new pbk. edition 2005, 2005",
@@ -9637,8 +9637,8 @@
                 ],
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408855683" },
-                  { "value": "9781408855928" }
+                  { "type": "ISBN", "value": "9781408855683" },
+                  { "type": "ISBN", "value": "9781408855928" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -9680,7 +9680,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408821589" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408821589" }],
                 "contributors": [{ "display": "Stephen Fry" }],
                 "edition": {
                   "summary": "2001",
@@ -9724,7 +9724,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Scholastic"],
-                "identifiers": [{ "value": "9780439139601" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780439139601" }],
                 "contributors": [{ "display": "Mary Grandpré" }],
                 "edition": {
                   "summary": "1. Scholastic trade paperback, 2002",
@@ -9767,7 +9767,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury Children's Books"],
-                "identifiers": [{ "value": "9781408845677" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408845677" }],
                 "contributors": [{ "display": "Jim Kay" }],
                 "edition": {
                   "summary": "2019",
@@ -9809,7 +9809,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury Children's Books"],
-              "identifiers": [{ "value": "9781408845677" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781408845677" }],
               "contributors": [{ "display": "Jim Kay" }],
               "edition": {
                 "summary": "2019",
@@ -9850,7 +9850,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury Children's Books"],
-              "identifiers": [{ "value": "9781408845677" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781408845677" }],
               "contributors": [{ "display": "Jim Kay" }],
               "edition": {
                 "summary": "2019",
@@ -10796,8 +10796,8 @@
                 ],
                 "publisher": ["Memoris"],
                 "identifiers": [
-                  { "value": "9788793681040" },
-                  { "value": "9788793681040" }
+                  { "type": "ISBN", "value": "9788793681040" },
+                  { "type": "ISBN", "value": "9788793681040" }
                 ],
                 "contributors": [{ "display": "Michael Jepsen" }],
                 "edition": {
@@ -10847,7 +10847,7 @@
                   { "display": "Emily Herbert", "__typename": "Person" }
                 ],
                 "publisher": ["Memoris"],
-                "identifiers": [{ "value": "9788793681019" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788793681019" }],
                 "contributors": [{ "display": "Michael Jepsen" }],
                 "edition": {
                   "summary": "1. udgave, 2018",
@@ -10892,8 +10892,8 @@
                 ],
                 "publisher": ["Memoris"],
                 "identifiers": [
-                  { "value": "9788793681071" },
-                  { "value": "9788793681071" }
+                  { "type": "ISBN", "value": "9788793681071" },
+                  { "type": "ISBN", "value": "9788793681071" }
                 ],
                 "contributors": [
                   { "display": "Randi Winther" },
@@ -10946,7 +10946,7 @@
                   { "display": "Emily Herbert", "__typename": "Person" }
                 ],
                 "publisher": ["Memoris"],
-                "identifiers": [{ "value": "9788793681224" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788793681224" }],
                 "contributors": [
                   { "display": "Randi Winther" },
                   { "display": "Michael Jepsen" }
@@ -10994,7 +10994,7 @@
                 { "display": "Emily Herbert", "__typename": "Person" }
               ],
               "publisher": ["Memoris"],
-              "identifiers": [{ "value": "9788793681224" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788793681224" }],
               "contributors": [
                 { "display": "Randi Winther" },
                 { "display": "Michael Jepsen" }
@@ -11038,7 +11038,7 @@
                 { "display": "Emily Herbert", "__typename": "Person" }
               ],
               "publisher": ["Memoris"],
-              "identifiers": [{ "value": "9788793681019" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788793681019" }],
               "contributors": [{ "display": "Michael Jepsen" }],
               "edition": {
                 "summary": "1. udgave, 2018",
@@ -11097,7 +11097,7 @@
                   { "display": "Joël Dicker", "__typename": "Person" }
                 ],
                 "publisher": ["People's"],
-                "identifiers": [{ "value": "9788772385495" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772385495" }],
                 "contributors": [{ "display": "Mette Olesen" }],
                 "edition": {
                   "summary": "3. udgave, 2022",
@@ -11138,7 +11138,7 @@
                   { "display": "Joël Dicker", "__typename": "Person" }
                 ],
                 "publisher": ["Rosinante"],
-                "identifiers": [{ "value": "9788763830683" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788763830683" }],
                 "contributors": [{ "display": "Mette Olesen" }],
                 "edition": {
                   "summary": "1. eBogs-udgave, 1. udgave, 2014",
@@ -11177,7 +11177,7 @@
                   { "display": "Joël Dicker", "__typename": "Person" }
                 ],
                 "publisher": ["Rosinante"],
-                "identifiers": [{ "value": "9788763829434" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788763829434" }],
                 "contributors": [{ "display": "Mette Olesen" }],
                 "edition": {
                   "summary": "1. udgave, 2014",
@@ -11218,7 +11218,7 @@
                   { "display": "Joël Dicker", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendals Bogklubber"],
-                "identifiers": [{ "value": "9788703064895" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788703064895" }],
                 "contributors": [{ "display": "Mette Olesen" }],
                 "edition": {
                   "summary": "1. bogklubudgave, 2014",
@@ -11259,7 +11259,7 @@
                   { "display": "Joël Dicker", "__typename": "Person" }
                 ],
                 "publisher": ["Rosinante"],
-                "identifiers": [{ "value": "9788763834759" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788763834759" }],
                 "contributors": [
                   { "display": "Peter Carstens" },
                   { "display": "Mette Olesen" }
@@ -11301,7 +11301,7 @@
                   { "display": "Joël Dicker", "__typename": "Person" }
                 ],
                 "publisher": ["Rosinante"],
-                "identifiers": [{ "value": "9788763837125" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788763837125" }],
                 "contributors": [
                   { "display": "Peter Carstens" },
                   { "display": "Mette Olesen" }
@@ -11345,7 +11345,7 @@
                   { "display": "Joël Dicker", "__typename": "Person" }
                 ],
                 "publisher": ["Rosinante"],
-                "identifiers": [{ "value": "9788763840620" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788763840620" }],
                 "contributors": [
                   { "display": "Peter Carstens" },
                   { "display": "Mette Olesen" }
@@ -11389,7 +11389,7 @@
                   { "display": "Joël Dicker", "__typename": "Person" }
                 ],
                 "publisher": ["Rosinante"],
-                "identifiers": [{ "value": "9788763838535" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788763838535" }],
                 "contributors": [{ "display": "Mette Olesen" }],
                 "edition": {
                   "summary": "2. udgave, 2015",
@@ -11430,7 +11430,7 @@
                   { "display": "Joël Dicker", "__typename": "Person" }
                 ],
                 "publisher": ["Rosinante"],
-                "identifiers": [{ "value": "9788763846493" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788763846493" }],
                 "contributors": [{ "display": "Mette Olesen" }],
                 "edition": {
                   "summary": "3. udgave, 2016",
@@ -11472,8 +11472,8 @@
                 ],
                 "publisher": ["People's"],
                 "identifiers": [
-                  { "value": "9788772387277" },
-                  { "value": "9788772387277" }
+                  { "type": "ISBN", "value": "9788772387277" },
+                  { "type": "ISBN", "value": "9788772387277" }
                 ],
                 "contributors": [
                   { "display": "Peter Carstens" },
@@ -11524,8 +11524,8 @@
                 ],
                 "publisher": ["People's"],
                 "identifiers": [
-                  { "value": "9788772387321" },
-                  { "value": "9788772387321" }
+                  { "type": "ISBN", "value": "9788772387321" },
+                  { "type": "ISBN", "value": "9788772387321" }
                 ],
                 "contributors": [{ "display": "Mette Olesen" }],
                 "edition": {
@@ -11573,7 +11573,7 @@
                 { "display": "Joël Dicker", "__typename": "Person" }
               ],
               "publisher": ["People's"],
-              "identifiers": [{ "value": "9788772385495" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772385495" }],
               "contributors": [{ "display": "Mette Olesen" }],
               "edition": {
                 "summary": "3. udgave, 2022",
@@ -11614,7 +11614,7 @@
                 { "display": "Joël Dicker", "__typename": "Person" }
               ],
               "publisher": ["People's"],
-              "identifiers": [{ "value": "9788772385495" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772385495" }],
               "contributors": [{ "display": "Mette Olesen" }],
               "edition": {
                 "summary": "3. udgave, 2022",
@@ -11671,7 +11671,7 @@
                 ],
                 "creators": [],
                 "publisher": ["Frydenlund"],
-                "identifiers": [{ "value": "9788771187854" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771187854" }],
                 "contributors": [
                   { "display": "Gregory Bassham" },
                   { "display": "Rebekka Hjelholt Svendsen" }
@@ -11717,7 +11717,7 @@
               ],
               "creators": [],
               "publisher": ["Frydenlund"],
-              "identifiers": [{ "value": "9788771187854" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771187854" }],
               "contributors": [
                 { "display": "Gregory Bassham" },
                 { "display": "Rebekka Hjelholt Svendsen" }
@@ -11762,7 +11762,7 @@
               ],
               "creators": [],
               "publisher": ["Frydenlund"],
-              "identifiers": [{ "value": "9788771187854" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771187854" }],
               "contributors": [
                 { "display": "Gregory Bassham" },
                 { "display": "Rebekka Hjelholt Svendsen" }
@@ -11977,7 +11977,7 @@
                   }
                 ],
                 "publisher": ["Høst"],
-                "identifiers": [{ "value": "9788763841450" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788763841450" }],
                 "contributors": [{ "display": "Bodil Bang Heinemeier" }],
                 "edition": {
                   "summary": "1. udgave, 2015",
@@ -12019,7 +12019,7 @@
                 }
               ],
               "publisher": ["Høst"],
-              "identifiers": [{ "value": "9788763841450" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788763841450" }],
               "contributors": [{ "display": "Bodil Bang Heinemeier" }],
               "edition": {
                 "summary": "1. udgave, 2015",
@@ -12060,7 +12060,7 @@
                 }
               ],
               "publisher": ["Høst"],
-              "identifiers": [{ "value": "9788763841450" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788763841450" }],
               "contributors": [{ "display": "Bodil Bang Heinemeier" }],
               "edition": {
                 "summary": "1. udgave, 2015",
@@ -12409,7 +12409,7 @@
                 "publisher": ["Arthur A. Levine Books"],
                 "identifiers": [
                   { "value": "0-439-06486-4" },
-                  { "value": "9780439064866" }
+                  { "type": "ISBN", "value": "9780439064866" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -12973,7 +12973,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408810552" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408810552" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Signature edition, 2010",
@@ -13014,7 +13014,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747562184" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747562184" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Bloomsbury, new pbk. edition 2002, 2002",
@@ -13056,8 +13056,8 @@
                 ],
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408855669" },
-                  { "value": "9781408855904" }
+                  { "type": "ISBN", "value": "9781408855669" },
+                  { "type": "ISBN", "value": "9781408855904" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -13102,8 +13102,8 @@
                 ],
                 "publisher": ["HNP", "Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408821510" },
-                  { "value": "9781408882252" }
+                  { "type": "ISBN", "value": "9781408821510" },
+                  { "type": "ISBN", "value": "9781408882252" }
                 ],
                 "contributors": [{ "display": "Stephen Fry" }],
                 "edition": {
@@ -13147,7 +13147,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408845653" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408845653" }],
                 "contributors": [{ "display": "Jim Kay" }],
                 "edition": {
                   "summary": "2016",
@@ -13191,7 +13191,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury"],
-              "identifiers": [{ "value": "9781408845653" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781408845653" }],
               "contributors": [{ "display": "Jim Kay" }],
               "edition": {
                 "summary": "2016",
@@ -13234,7 +13234,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury"],
-              "identifiers": [{ "value": "9781408845653" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781408845653" }],
               "contributors": [{ "display": "Jim Kay" }],
               "edition": {
                 "summary": "2016",
@@ -13683,7 +13683,7 @@
                   { "display": "Elin Lindell", "__typename": "Person" }
                 ],
                 "publisher": ["ABC"],
-                "identifiers": [{ "value": "9788779162884" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788779162884" }],
                 "contributors": [{ "display": "Anja Hitz" }],
                 "edition": {
                   "summary": "1. udgave, 2015",
@@ -13725,8 +13725,8 @@
                 ],
                 "publisher": ["ABC"],
                 "identifiers": [
-                  { "value": "9788779163256" },
-                  { "value": "9788779163256" }
+                  { "type": "ISBN", "value": "9788779163256" },
+                  { "type": "ISBN", "value": "9788779163256" }
                 ],
                 "contributors": [{ "display": "Anja Hitz" }],
                 "edition": {
@@ -13778,8 +13778,8 @@
               ],
               "publisher": ["ABC"],
               "identifiers": [
-                { "value": "9788779163256" },
-                { "value": "9788779163256" }
+                { "type": "ISBN", "value": "9788779163256" },
+                { "type": "ISBN", "value": "9788779163256" }
               ],
               "contributors": [{ "display": "Anja Hitz" }],
               "edition": {
@@ -13829,7 +13829,7 @@
                 { "display": "Elin Lindell", "__typename": "Person" }
               ],
               "publisher": ["ABC"],
-              "identifiers": [{ "value": "9788779162884" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788779162884" }],
               "contributors": [{ "display": "Anja Hitz" }],
               "edition": {
                 "summary": "1. udgave, 2015",
@@ -15132,7 +15132,7 @@
                 "publisher": ["Arthur A. Levine Books"],
                 "identifiers": [
                   { "value": "0439136350" },
-                  { "value": "9780439136358" }
+                  { "type": "ISBN", "value": "9780439136358" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -15389,7 +15389,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747542155" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747542155" }],
                 "contributors": [],
                 "edition": {
                   "summary": "New edition 2000, 2000",
@@ -15476,9 +15476,9 @@
                 ],
                 "publisher": ["HNP", "Bloomsbury"],
                 "identifiers": [
-                  { "value": "9780747586517" },
-                  { "value": "9781408821602" },
-                  { "value": "9781408882269" }
+                  { "type": "ISBN", "value": "9780747586517" },
+                  { "type": "ISBN", "value": "9781408821602" },
+                  { "type": "ISBN", "value": "9781408882269" }
                 ],
                 "contributors": [{ "display": "Stephen Fry" }],
                 "edition": {
@@ -15520,7 +15520,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408810569" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408810569" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Signature edition, 2010",
@@ -15561,7 +15561,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747573760" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747573760" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Bloomsbury, new pbk. edition 2004, 2004",
@@ -15603,8 +15603,8 @@
                 ],
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408855676" },
-                  { "value": "9781408855911" }
+                  { "type": "ISBN", "value": "9781408855676" },
+                  { "type": "ISBN", "value": "9781408855911" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -15647,8 +15647,8 @@
                 ],
                 "publisher": ["HNP and Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408824139" },
-                  { "value": "9781408821602" }
+                  { "type": "ISBN", "value": "9781408824139" },
+                  { "type": "ISBN", "value": "9781408821602" }
                 ],
                 "contributors": [{ "display": "Stephen Fry" }],
                 "edition": {
@@ -15692,7 +15692,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury Publishing"],
-                "identifiers": [{ "value": "9781408845660" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408845660" }],
                 "contributors": [{ "display": "Jim Kay" }],
                 "edition": {
                   "summary": "2017",
@@ -15736,7 +15736,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury Publishing"],
-              "identifiers": [{ "value": "9781408845660" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781408845660" }],
               "contributors": [{ "display": "Jim Kay" }],
               "edition": {
                 "summary": "2017",
@@ -15779,7 +15779,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury Publishing"],
-              "identifiers": [{ "value": "9781408845660" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781408845660" }],
               "contributors": [{ "display": "Jim Kay" }],
               "edition": {
                 "summary": "2017",
@@ -17642,7 +17642,7 @@
                   { "display": "Jim Kay", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury Children's Books"],
-                "identifiers": [{ "value": "9781408845684" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408845684" }],
                 "contributors": [{ "display": "Neil Packer" }],
                 "edition": {
                   "summary": "2022",
@@ -17932,7 +17932,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury Childrens books"],
-                "identifiers": [{ "value": "9781526618160" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781526618160" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Hogwarts house edition, 2020, 2020",
@@ -18101,7 +18101,7 @@
                 ],
                 "publisher": ["Cover to Cover"],
                 "identifiers": [
-                  { "value": "9781408882238" },
+                  { "type": "ISBN", "value": "9781408882238" },
                   { "value": "1-85549-687-9" }
                 ],
                 "contributors": [],
@@ -18185,7 +18185,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747591269" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747591269" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Bloomsbury, new pbk. edition 2007, 2007",
@@ -18226,7 +18226,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408810590" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408810590" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Signature edition, 2010",
@@ -18267,7 +18267,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["HNP"],
-                "identifiers": [{ "value": "9781907545122" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781907545122" }],
                 "contributors": [{ "display": "Stephen Fry" }],
                 "edition": {
                   "summary": "2010",
@@ -18312,8 +18312,8 @@
                 ],
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408855935" },
-                  { "value": "9781408855690" }
+                  { "type": "ISBN", "value": "9781408855935" },
+                  { "type": "ISBN", "value": "9781408855690" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -18359,7 +18359,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Levine"],
-                "identifiers": [{ "value": "9780439358064" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780439358064" }],
                 "contributors": [{ "display": "Mary Grandpré" }],
                 "edition": {
                   "summary": "Levine, 2003",
@@ -18404,7 +18404,7 @@
                 { "display": "Jim Kay", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury Children's Books"],
-              "identifiers": [{ "value": "9781408845684" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781408845684" }],
               "contributors": [{ "display": "Neil Packer" }],
               "edition": {
                 "summary": "2022",
@@ -18448,7 +18448,7 @@
                 { "display": "Jim Kay", "__typename": "Person" }
               ],
               "publisher": ["Bloomsbury Children's Books"],
-              "identifiers": [{ "value": "9781408845684" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781408845684" }],
               "contributors": [{ "display": "Neil Packer" }],
               "edition": {
                 "summary": "2022",
@@ -19584,7 +19584,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747591061" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747591061" }],
                 "contributors": [],
                 "edition": {
                   "summary": "1. edition, adult, 2007",
@@ -19666,7 +19666,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747591054" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747591054" }],
                 "contributors": [],
                 "edition": {
                   "summary": "1. edition, 2007",
@@ -19708,7 +19708,7 @@
                   { "display": "Stephen Fry", "__typename": "Person" }
                 ],
                 "publisher": ["HNP", "Bloomsbury"],
-                "identifiers": [{ "value": "9780747591092" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747591092" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2007",
@@ -19750,7 +19750,7 @@
                   { "display": "Stephen Fry", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747591108" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747591108" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Adult, 2007",
@@ -19791,7 +19791,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747595830" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747595830" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Pbk. edition 2008, 2008",
@@ -19832,7 +19832,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408810606" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408810606" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2010",
@@ -19874,8 +19874,8 @@
                 ],
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408855713" },
-                  { "value": "9781408855959" }
+                  { "type": "ISBN", "value": "9781408855713" },
+                  { "type": "ISBN", "value": "9781408855959" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -19920,8 +19920,8 @@
                 ],
                 "publisher": ["HNP", "Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408882245" },
-                  { "value": "9781408821572" }
+                  { "type": "ISBN", "value": "9781408882245" },
+                  { "type": "ISBN", "value": "9781408821572" }
                 ],
                 "contributors": [{ "display": "Stephen Fry" }],
                 "edition": {
@@ -19967,7 +19967,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Levine"],
-                "identifiers": [{ "value": "9780545010221" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780545010221" }],
                 "contributors": [{ "display": "Mary Grandpré" }],
                 "edition": {
                   "summary": "Levine, 2007",
@@ -20010,8 +20010,8 @@
               ],
               "publisher": ["Bloomsbury"],
               "identifiers": [
-                { "value": "9781408855713" },
-                { "value": "9781408855959" }
+                { "type": "ISBN", "value": "9781408855713" },
+                { "type": "ISBN", "value": "9781408855959" }
               ],
               "contributors": [],
               "edition": {
@@ -20054,8 +20054,8 @@
               ],
               "publisher": ["Bloomsbury"],
               "identifiers": [
-                { "value": "9781408855713" },
-                { "value": "9781408855959" }
+                { "type": "ISBN", "value": "9781408855713" },
+                { "type": "ISBN", "value": "9781408855959" }
               ],
               "contributors": [],
               "edition": {
@@ -20802,7 +20802,7 @@
                   { "display": "Michael Part", "__typename": "Person" }
                 ],
                 "publisher": ["Turbine"],
-                "identifiers": [{ "value": "9788740653199" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788740653199" }],
                 "contributors": [{ "display": "Tommy Heisz" }],
                 "edition": {
                   "summary": "1. udgave, 2019",
@@ -20844,7 +20844,7 @@
                 { "display": "Michael Part", "__typename": "Person" }
               ],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788740653199" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788740653199" }],
               "contributors": [{ "display": "Tommy Heisz" }],
               "edition": {
                 "summary": "1. udgave, 2019",
@@ -20885,7 +20885,7 @@
                 { "display": "Michael Part", "__typename": "Person" }
               ],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788740653199" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788740653199" }],
               "contributors": [{ "display": "Tommy Heisz" }],
               "edition": {
                 "summary": "1. udgave, 2019",
@@ -21192,7 +21192,7 @@
                   { "display": "Leo Timmers", "__typename": "Person" }
                 ],
                 "publisher": ["Turbine"],
-                "identifiers": [{ "value": "9788740619089" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788740619089" }],
                 "contributors": [{ "display": "Marie Brocks Larsen" }],
                 "edition": {
                   "summary": "2017",
@@ -21234,7 +21234,7 @@
                 { "display": "Leo Timmers", "__typename": "Person" }
               ],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788740619089" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788740619089" }],
               "contributors": [{ "display": "Marie Brocks Larsen" }],
               "edition": {
                 "summary": "2017",
@@ -21275,7 +21275,7 @@
                 { "display": "Leo Timmers", "__typename": "Person" }
               ],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788740619089" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788740619089" }],
               "contributors": [{ "display": "Marie Brocks Larsen" }],
               "edition": {
                 "summary": "2017",
@@ -21491,7 +21491,7 @@
                   { "display": "John Tiffany", "__typename": "Person" }
                 ],
                 "publisher": ["Little, Brown"],
-                "identifiers": [{ "value": "9780751565355" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780751565355" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Special rehearsal edition, 2016",
@@ -21535,7 +21535,7 @@
                 { "display": "John Tiffany", "__typename": "Person" }
               ],
               "publisher": ["Little, Brown"],
-              "identifiers": [{ "value": "9780751565355" }],
+              "identifiers": [{ "type": "ISBN", "value": "9780751565355" }],
               "contributors": [],
               "edition": {
                 "summary": "Special rehearsal edition, 2016",
@@ -21578,7 +21578,7 @@
                 { "display": "John Tiffany", "__typename": "Person" }
               ],
               "publisher": ["Little, Brown"],
-              "identifiers": [{ "value": "9780751565355" }],
+              "identifiers": [{ "type": "ISBN", "value": "9780751565355" }],
               "contributors": [],
               "edition": {
                 "summary": "Special rehearsal edition, 2016",
@@ -22593,8 +22593,8 @@
                 ],
                 "publisher": ["HNP", "Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408882283" },
-                  { "value": "9781408821596" },
+                  { "type": "ISBN", "value": "9781408882283" },
+                  { "type": "ISBN", "value": "9781408821596" },
                   { "value": "0-7475-8259-9" }
                 ],
                 "contributors": [{ "display": "Stephen Fry" }],
@@ -22680,7 +22680,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747584681" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747584681" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Paperback edition 2006, 2006",
@@ -22721,7 +22721,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408810583" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408810583" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Signature edition, 2010",
@@ -22762,7 +22762,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9780747598466" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780747598466" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Bloomsbury, new pbk. edition 2009, 2009",
@@ -22804,8 +22804,8 @@
                 ],
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
-                  { "value": "9781408855706" },
-                  { "value": "9781408855942" }
+                  { "type": "ISBN", "value": "9781408855706" },
+                  { "type": "ISBN", "value": "9781408855942" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -22847,7 +22847,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Bloomsbury"],
-                "identifiers": [{ "value": "9781408821596" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781408821596" }],
                 "contributors": [{ "display": "Stephen Fry" }],
                 "edition": {
                   "summary": "2011",
@@ -22893,7 +22893,7 @@
                 "publisher": ["Bloomsbury"],
                 "identifiers": [
                   { "value": "0-7475-8110-X" },
-                  { "value": "9780747581109" }
+                  { "type": "ISBN", "value": "9780747581109" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -22939,7 +22939,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Levine"],
-                "identifiers": [{ "value": "9780439784542" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780439784542" }],
                 "contributors": [{ "display": "Mary Grandpré" }],
                 "edition": {
                   "summary": "Levine, 2005",
@@ -22982,8 +22982,8 @@
               ],
               "publisher": ["Bloomsbury"],
               "identifiers": [
-                { "value": "9781408855706" },
-                { "value": "9781408855942" }
+                { "type": "ISBN", "value": "9781408855706" },
+                { "type": "ISBN", "value": "9781408855942" }
               ],
               "contributors": [],
               "edition": {
@@ -23026,8 +23026,8 @@
               ],
               "publisher": ["Bloomsbury"],
               "identifiers": [
-                { "value": "9781408855706" },
-                { "value": "9781408855942" }
+                { "type": "ISBN", "value": "9781408855706" },
+                { "type": "ISBN", "value": "9781408855942" }
               ],
               "contributors": [],
               "edition": {
@@ -23792,7 +23792,7 @@
                   { "display": "Lauren Weisberger", "__typename": "Person" }
                 ],
                 "publisher": ["Sommer & Sørensen"],
-                "identifiers": [{ "value": "9788790189969" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788790189969" }],
                 "contributors": [{ "display": "Sara Koch" }],
                 "edition": {
                   "summary": "1. udgave, 2009",
@@ -23877,7 +23877,7 @@
                   { "display": "Lauren Weisberger", "__typename": "Person" }
                 ],
                 "publisher": ["Sommer & Sørensen"],
-                "identifiers": [{ "value": "9788792355096" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788792355096" }],
                 "contributors": [{ "display": "Sara Koch" }],
                 "edition": {
                   "summary": "2. udgave, 2010",
@@ -23918,7 +23918,7 @@
                   { "display": "Lauren Weisberger", "__typename": "Person" }
                 ],
                 "publisher": ["Lytteratur"],
-                "identifiers": [{ "value": "9788770892193" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770892193" }],
                 "contributors": [
                   { "display": "Louise Herbert" },
                   { "display": "Sara Koch" }
@@ -23962,7 +23962,7 @@
                   { "display": "Lauren Weisberger", "__typename": "Person" }
                 ],
                 "publisher": ["Lytteratur"],
-                "identifiers": [{ "value": "9788770892209" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770892209" }],
                 "contributors": [
                   { "display": "Louise Herbert" },
                   { "display": "Sara Koch" }
@@ -24007,7 +24007,7 @@
                 { "display": "Lauren Weisberger", "__typename": "Person" }
               ],
               "publisher": ["Lytteratur"],
-              "identifiers": [{ "value": "9788770892209" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770892209" }],
               "contributors": [
                 { "display": "Louise Herbert" },
                 { "display": "Sara Koch" }
@@ -24051,7 +24051,7 @@
                 { "display": "Lauren Weisberger", "__typename": "Person" }
               ],
               "publisher": ["Sommer & Sørensen"],
-              "identifiers": [{ "value": "9788792355096" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788792355096" }],
               "contributors": [{ "display": "Sara Koch" }],
               "edition": {
                 "summary": "2. udgave, 2010",
@@ -24265,7 +24265,7 @@
                   { "display": "Sonja Kaiblinger", "__typename": "Person" }
                 ],
                 "publisher": ["Turbine"],
-                "identifiers": [{ "value": "9788771418125" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771418125" }],
                 "contributors": [
                   { "display": "Fréderic Bertrand" },
                   { "display": "Jacob Jonia" }
@@ -24310,7 +24310,7 @@
                 { "display": "Sonja Kaiblinger", "__typename": "Person" }
               ],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788771418125" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771418125" }],
               "contributors": [
                 { "display": "Fréderic Bertrand" },
                 { "display": "Jacob Jonia" }
@@ -24354,7 +24354,7 @@
                 { "display": "Sonja Kaiblinger", "__typename": "Person" }
               ],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788771418125" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771418125" }],
               "contributors": [
                 { "display": "Fréderic Bertrand" },
                 { "display": "Jacob Jonia" }
@@ -25222,7 +25222,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770073851" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770073851" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2020",
@@ -25258,7 +25258,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770073844" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770073844" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2020",
@@ -25294,7 +25294,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770071529" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071529" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. udgave, 2019",
@@ -25330,7 +25330,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770071987" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071987" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. udgave, 2019",
@@ -25367,7 +25367,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788770071710" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071710" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -25406,7 +25406,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788770071703" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071703" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -25445,7 +25445,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
-                "identifiers": [{ "value": "9788703090955" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788703090955" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. bogklubudgave, 2019",
@@ -25481,7 +25481,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770071697" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071697" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -25519,7 +25519,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770073844" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770073844" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "4. udgave, 2020",
@@ -25555,7 +25555,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770073851" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770073851" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2020",
@@ -25765,7 +25765,7 @@
                   { "display": "Davy Ocean", "__typename": "Person" }
                 ],
                 "publisher": ["Turbine"],
-                "identifiers": [{ "value": "9788740612387" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788740612387" }],
                 "contributors": [
                   { "display": "Aaron Blecha" },
                   { "display": "Natasja Erbillor" }
@@ -25808,7 +25808,7 @@
               ],
               "creators": [{ "display": "Davy Ocean", "__typename": "Person" }],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788740612387" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788740612387" }],
               "contributors": [
                 { "display": "Aaron Blecha" },
                 { "display": "Natasja Erbillor" }
@@ -25850,7 +25850,7 @@
               ],
               "creators": [{ "display": "Davy Ocean", "__typename": "Person" }],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788740612387" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788740612387" }],
               "contributors": [
                 { "display": "Aaron Blecha" },
                 { "display": "Natasja Erbillor" }
@@ -26063,7 +26063,7 @@
                   { "display": "Davy Ocean", "__typename": "Person" }
                 ],
                 "publisher": ["Turbine"],
-                "identifiers": [{ "value": "9788740604221" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788740604221" }],
                 "contributors": [
                   { "display": "Aaron Blecha" },
                   { "display": "Natasja Erbillor" }
@@ -26106,7 +26106,7 @@
               ],
               "creators": [{ "display": "Davy Ocean", "__typename": "Person" }],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788740604221" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788740604221" }],
               "contributors": [
                 { "display": "Aaron Blecha" },
                 { "display": "Natasja Erbillor" }
@@ -26148,7 +26148,7 @@
               ],
               "creators": [{ "display": "Davy Ocean", "__typename": "Person" }],
               "publisher": ["Turbine"],
-              "identifiers": [{ "value": "9788740604221" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788740604221" }],
               "contributors": [
                 { "display": "Aaron Blecha" },
                 { "display": "Natasja Erbillor" }
@@ -26353,7 +26353,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771467321" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771467321" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. udgave, 2017",
@@ -26389,7 +26389,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771468007" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771468007" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "2. udgave, 2017",
@@ -26426,7 +26426,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788771467819" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771467819" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -26465,7 +26465,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771467826" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771467826" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -26502,7 +26502,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788771467802" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771467802" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -26541,7 +26541,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
-                "identifiers": [{ "value": "9788703079837" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788703079837" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. bogklubudgave, 2017",
@@ -26577,7 +26577,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770070102" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770070102" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2018",
@@ -26613,7 +26613,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770070096" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770070096" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2018",
@@ -26650,7 +26650,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770070096" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770070096" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2018",
@@ -26686,7 +26686,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770070096" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770070096" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2018",
@@ -26896,7 +26896,7 @@
                   { "display": "Elin Lindell", "__typename": "Person" }
                 ],
                 "publisher": ["ABC"],
-                "identifiers": [{ "value": "9788779163577" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788779163577" }],
                 "contributors": [{ "display": "Anita Hitz" }],
                 "edition": {
                   "summary": "1. udgave, 2015",
@@ -26938,8 +26938,8 @@
                 ],
                 "publisher": ["ABC"],
                 "identifiers": [
-                  { "value": "9788779163409" },
-                  { "value": "9788779163409" }
+                  { "type": "ISBN", "value": "9788779163409" },
+                  { "type": "ISBN", "value": "9788779163409" }
                 ],
                 "contributors": [{ "display": "Anita Hitz" }],
                 "edition": {
@@ -26991,8 +26991,8 @@
               ],
               "publisher": ["ABC"],
               "identifiers": [
-                { "value": "9788779163409" },
-                { "value": "9788779163409" }
+                { "type": "ISBN", "value": "9788779163409" },
+                { "type": "ISBN", "value": "9788779163409" }
               ],
               "contributors": [{ "display": "Anita Hitz" }],
               "edition": {
@@ -27042,7 +27042,7 @@
                 { "display": "Elin Lindell", "__typename": "Person" }
               ],
               "publisher": ["ABC"],
-              "identifiers": [{ "value": "9788779163577" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788779163577" }],
               "contributors": [{ "display": "Anita Hitz" }],
               "edition": {
                 "summary": "1. udgave, 2015",
@@ -27252,7 +27252,7 @@
                   { "display": "Jim Højberg", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702093070" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702093070" }],
                 "contributors": [
                   { "display": "Jon Ranheimsæter" },
                   { "display": "Hanne Leth" }
@@ -27297,7 +27297,7 @@
                 { "display": "Jim Højberg", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702093070" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702093070" }],
               "contributors": [
                 { "display": "Jon Ranheimsæter" },
                 { "display": "Hanne Leth" }
@@ -27341,7 +27341,7 @@
                 { "display": "Jim Højberg", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702093070" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702093070" }],
               "contributors": [
                 { "display": "Jon Ranheimsæter" },
                 { "display": "Hanne Leth" }

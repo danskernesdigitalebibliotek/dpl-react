@@ -41,8 +41,8 @@
                 ],
                 "publisher": ["Memoris"],
                 "identifiers": [
-                  { "value": "9788793681095" },
-                  { "value": "9788793681095" }
+                  { "type": "ISBN", "value": "9788793681095" },
+                  { "type": "ISBN", "value": "9788793681095" }
                 ],
                 "contributors": [{ "display": "Birgitte Brix" }],
                 "edition": {
@@ -89,7 +89,7 @@
                   { "display": "Angela Levin", "__typename": "Person" }
                 ],
                 "publisher": ["Memoris"],
-                "identifiers": [{ "value": "9788793681088" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788793681088" }],
                 "contributors": [{ "display": "Birgitte Brix" }],
                 "edition": {
                   "summary": "1. udgave, 2018",
@@ -131,8 +131,8 @@
                 ],
                 "publisher": ["Memoris"],
                 "identifiers": [
-                  { "value": "9788793681132" },
-                  { "value": "9788793681132" }
+                  { "type": "ISBN", "value": "9788793681132" },
+                  { "type": "ISBN", "value": "9788793681132" }
                 ],
                 "contributors": [
                   { "display": "Randi Winther" },
@@ -182,7 +182,7 @@
                   { "display": "Angela Levin", "__typename": "Person" }
                 ],
                 "publisher": ["Memoris"],
-                "identifiers": [{ "value": "9788793681231" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788793681231" }],
                 "contributors": [
                   { "display": "Randi Winther" },
                   { "display": "Birgitte Brix" }
@@ -227,7 +227,7 @@
                 { "display": "Angela Levin", "__typename": "Person" }
               ],
               "publisher": ["Memoris"],
-              "identifiers": [{ "value": "9788793681231" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788793681231" }],
               "contributors": [
                 { "display": "Randi Winther" },
                 { "display": "Birgitte Brix" }
@@ -268,7 +268,7 @@
                 { "display": "Angela Levin", "__typename": "Person" }
               ],
               "publisher": ["Memoris"],
-              "identifiers": [{ "value": "9788793681088" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788793681088" }],
               "contributors": [{ "display": "Birgitte Brix" }],
               "edition": {
                 "summary": "1. udgave, 2018",
@@ -432,7 +432,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702307566" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702307566" }],
                 "contributors": [
                   { "display": "Jim Kay" },
                   { "display": "Neil Packer" },
@@ -698,7 +698,7 @@
                 ],
                 "publisher": ["Gyldendal"],
                 "identifiers": [
-                  { "value": "9788702029444" },
+                  { "type": "ISBN", "value": "9788702029444" },
                   { "value": "87-02-02944-8" }
                 ],
                 "contributors": [],
@@ -787,7 +787,7 @@
                 ],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
-                  { "value": "9788703014807" },
+                  { "type": "ISBN", "value": "9788703014807" },
                   { "value": "87-03-01480-0" }
                 ],
                 "contributors": [],
@@ -830,7 +830,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal Lyd"],
-                "identifiers": [{ "value": "9788702075427" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702075427" }],
                 "contributors": [{ "display": "Jesper Christensen (f. 1948)" }],
                 "edition": {
                   "summary": "2009",
@@ -871,7 +871,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702114393" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702114393" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -912,7 +912,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702173260" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702173260" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "5. udgave, 2015",
@@ -953,7 +953,7 @@
                   { "display": "Joanne K. Rowling", "__typename": "Person" }
                 ],
                 "publisher": ["Gyldendal"],
-                "identifiers": [{ "value": "9788702272482" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788702272482" }],
                 "contributors": [{ "display": "Hanna Lützen" }],
                 "edition": {
                   "summary": "6. udgave, 2018",
@@ -995,7 +995,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702307566" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702307566" }],
               "contributors": [
                 { "display": "Jim Kay" },
                 { "display": "Neil Packer" },
@@ -1045,7 +1045,7 @@
                 { "display": "Joanne K. Rowling", "__typename": "Person" }
               ],
               "publisher": ["Gyldendal"],
-              "identifiers": [{ "value": "9788702307566" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788702307566" }],
               "contributors": [
                 { "display": "Jim Kay" },
                 { "display": "Neil Packer" },
