@@ -79,7 +79,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -160,7 +159,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -244,7 +242,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -310,7 +307,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756795036"
+                "type": "ISBN", "value": "9788756795036"
               }
             ],
             "contributors": [
@@ -373,7 +370,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -457,7 +453,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -544,7 +539,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -625,7 +619,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -706,7 +699,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -787,7 +779,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -868,7 +859,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -954,7 +944,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1035,7 +1024,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1124,7 +1112,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1191,7 +1178,6 @@
             "notes": [],
             "physicalDescription": {},
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1269,7 +1255,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1353,7 +1338,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1440,7 +1424,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1526,7 +1509,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1612,7 +1594,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1688,7 +1669,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1774,7 +1754,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1863,7 +1842,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -1956,7 +1934,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2047,7 +2024,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2131,7 +2107,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2218,7 +2193,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2299,7 +2273,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2380,7 +2353,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2469,7 +2441,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2549,7 +2520,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2627,7 +2597,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2686,7 +2655,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756773126"
+                "type": "ISBN", "value": "9788756773126"
               },
               {
                 "value": "8756773129"
@@ -2720,7 +2689,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2776,7 +2744,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756781107"
+                "type": "ISBN", "value": "9788756781107"
               }
             ],
             "contributors": [],
@@ -2806,7 +2774,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2891,7 +2858,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -2975,7 +2941,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3029,7 +2994,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756781107"
+                "type": "ISBN", "value": "9788756781107"
               }
             ],
             "contributors": [],
@@ -3058,7 +3023,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3112,7 +3076,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756773126"
+                "type": "ISBN", "value": "9788756773126"
               },
               {
                 "value": "8756773129"
@@ -3144,7 +3108,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3229,7 +3192,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3310,7 +3272,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3369,7 +3330,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740025323"
+                "type": "ISBN", "value": "9788740025323"
               }
             ],
             "contributors": [
@@ -3412,7 +3373,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3500,7 +3460,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3584,7 +3543,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3669,7 +3627,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3749,7 +3706,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3803,7 +3759,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740013115"
+                "type": "ISBN", "value": "9788740013115"
               }
             ],
             "contributors": [
@@ -3846,7 +3802,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -3905,7 +3860,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756795036"
+                "type": "ISBN", "value": "9788756795036"
               }
             ],
             "contributors": [
@@ -3976,7 +3931,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -4035,7 +3989,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740003437"
+                "type": "ISBN", "value": "9788740003437"
               }
             ],
             "contributors": [
@@ -4100,7 +4054,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -4185,7 +4138,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -4239,7 +4191,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740063585"
+                "type": "ISBN", "value": "9788740063585"
               }
             ],
             "contributors": [
@@ -4332,7 +4284,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -4386,7 +4337,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756795036"
+                "type": "ISBN", "value": "9788756795036"
               }
             ],
             "contributors": [
@@ -4457,7 +4408,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -4516,7 +4466,7 @@
                 "value": "8756773129"
               },
               {
-                "value": "9788756773126"
+                "type": "ISBN", "value": "9788756773126"
               }
             ],
             "contributors": [],
@@ -4538,7 +4488,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -4594,7 +4543,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740003437"
+                "type": "ISBN", "value": "9788740003437"
               }
             ],
             "contributors": [
@@ -4659,7 +4608,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -4715,7 +4663,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740013115"
+                "type": "ISBN", "value": "9788740013115"
               }
             ],
             "contributors": [
@@ -4758,7 +4706,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -4814,7 +4761,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740088588"
+                "type": "ISBN", "value": "9788740088588"
               }
             ],
             "contributors": [
@@ -4887,7 +4834,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -4968,7 +4914,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -5049,7 +4994,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -5130,7 +5074,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -5214,7 +5157,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -5304,7 +5246,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -5369,7 +5310,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756773126"
+                "type": "ISBN", "value": "9788756773126"
               },
               {
                 "value": "87-567-7312-9"
@@ -5394,7 +5335,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -5458,7 +5398,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756781107"
+                "type": "ISBN", "value": "9788756781107"
               }
             ],
             "contributors": [],
@@ -5480,7 +5420,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -5539,7 +5478,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756795036"
+                "type": "ISBN", "value": "9788756795036"
               }
             ],
             "contributors": [
@@ -5602,7 +5541,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -5661,7 +5599,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740003437"
+                "type": "ISBN", "value": "9788740003437"
               }
             ],
             "contributors": [
@@ -5714,7 +5652,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -5773,7 +5710,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740059311"
+                "type": "ISBN", "value": "9788740059311"
               }
             ],
             "contributors": [
@@ -5813,7 +5750,6 @@
               "materialUnits": [{ "extent": "80 min." }]
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -5867,7 +5803,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740010671"
+                "type": "ISBN", "value": "9788740010671"
               }
             ],
             "contributors": [
@@ -5916,7 +5852,6 @@
             "notes": [],
             "physicalDescription": {},
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -5980,7 +5915,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740013115"
+                "type": "ISBN", "value": "9788740013115"
               }
             ],
             "contributors": [
@@ -6017,7 +5952,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -6076,7 +6010,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740018493"
+                "type": "ISBN", "value": "9788740018493"
               }
             ],
             "contributors": [
@@ -6113,7 +6047,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -6172,7 +6105,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740025316"
+                "type": "ISBN", "value": "9788740025316"
               }
             ],
             "contributors": [
@@ -6225,7 +6158,6 @@
             ],
             "physicalDescription": {},
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -6279,7 +6211,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740025323"
+                "type": "ISBN", "value": "9788740025323"
               }
             ],
             "contributors": [
@@ -6316,7 +6248,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -6375,7 +6306,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740067156"
+                "type": "ISBN", "value": "9788740067156"
               }
             ],
             "contributors": [
@@ -6438,7 +6369,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -6492,7 +6422,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740063585"
+                "type": "ISBN", "value": "9788740063585"
               }
             ],
             "contributors": [
@@ -6585,7 +6515,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -6644,7 +6573,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740067163"
+                "type": "ISBN", "value": "9788740067163"
               }
             ],
             "contributors": [
@@ -6694,7 +6623,6 @@
               "materialUnits": [{ "extent": "80 min." }]
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -6773,7 +6701,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -6840,7 +6767,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788756781107"
+                "type": "ISBN", "value": "9788756781107"
               }
             ],
             "contributors": [],
@@ -6862,7 +6789,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -6926,7 +6852,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740003437"
+                "type": "ISBN", "value": "9788740003437"
               }
             ],
             "contributors": [
@@ -6979,7 +6905,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -7043,7 +6968,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740063585"
+                "type": "ISBN", "value": "9788740063585"
               }
             ],
             "contributors": [
@@ -7136,7 +7061,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -7220,7 +7144,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -7287,7 +7210,7 @@
           "publisher": ["Politiken"],
           "identifiers": [
             {
-              "value": "9788740088588"
+              "type": "ISBN", "value": "9788740088588"
             }
           ],
           "contributors": [
@@ -7360,7 +7283,6 @@
             "playingTime": null
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -7419,7 +7341,7 @@
           "publisher": ["Politiken"],
           "identifiers": [
             {
-              "value": "9788740088588"
+              "type": "ISBN", "value": "9788740088588"
             }
           ],
           "contributors": [
@@ -7492,7 +7414,6 @@
             "playingTime": null
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"

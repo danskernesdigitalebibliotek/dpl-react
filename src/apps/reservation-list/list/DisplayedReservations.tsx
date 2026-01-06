@@ -2,10 +2,6 @@ import * as React from "react";
 import { FC } from "react";
 import List from "./list";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
-import {
-  sortByNumberInQueue,
-  sortByOldestPickupDeadline
-} from "../utils/helpers";
 import { useText } from "../../../core/utils/text";
 import useReservations from "../../../core/utils/useReservations";
 
@@ -30,11 +26,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
         openReservationDetailsModal={openReservationDetailsModal}
         pageSize={pageSize}
         header={t("reservationListReadyForPickupTitleText")}
-        reservations={
-          sortByOldestPickupDeadline(
-            readyToLoanReservations
-          ) as ReservationType[]
-        }
+        reservations={readyToLoanReservations}
         emptyListDataCy="reservation-list-ready-for-pickup-empty-list"
         emptyListLabel={t("reservationListReadyForPickupEmptyText")}
       />
@@ -42,7 +34,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
         openReservationDetailsModal={openReservationDetailsModal}
         pageSize={pageSize}
         header={t("reservationListPhysicalReservationsHeaderText")}
-        reservations={sortByNumberInQueue(reservedReservationsFBS)}
+        reservations={reservedReservationsFBS}
         emptyListDataCy="reservation-list-physical-reservations-empty-list"
         emptyListLabel={t("reservationListPhysicalReservationsEmptyText")}
       />
@@ -51,11 +43,7 @@ const DisplayedReservations: FC<DisplayedReservationsProps> = ({
         pageSize={pageSize}
         header={t("reservationListDigitalReservationsHeaderText")}
         emptyListDataCy="reservation-list-digital-reservations-empty-list"
-        reservations={
-          sortByOldestPickupDeadline(
-            reservedReservationsPublizon
-          ) as ReservationType[]
-        }
+        reservations={reservedReservationsPublizon}
         emptyListLabel={t("reservationListDigitalReservationsEmptyText")}
       />
     </>

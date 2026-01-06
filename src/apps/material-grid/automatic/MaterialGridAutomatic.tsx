@@ -5,7 +5,7 @@ import {
   HoldingsStatusEnum,
   useComplexSearchWithPaginationQuery
 } from "../../../core/dbc-gateway/generated/graphql";
-import useGetCleanBranches from "../../../core/utils/branches";
+import useGetSearchBranches from "../../../core/utils/branches";
 import { useText } from "../../../core/utils/text";
 import { WorkId } from "../../../core/utils/types/ids";
 import { commaSeparatedStringToArray } from "../../advanced-search/helpers";
@@ -42,7 +42,7 @@ const MaterialGridAutomatic: React.FC<MaterialGridAutomaticProps> = ({
 }) => {
   const t = useText();
   const buttonText = t("buttonText");
-  const cleanBranches = useGetCleanBranches();
+  const cleanBranches = useGetSearchBranches();
 
   const { data, isLoading } = useComplexSearchWithPaginationQuery({
     cql,

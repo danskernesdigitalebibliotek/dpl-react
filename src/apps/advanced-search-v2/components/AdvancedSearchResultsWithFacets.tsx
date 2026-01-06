@@ -82,18 +82,18 @@ const AdvancedSearchResultsWithFacets: React.FC<
               <AdvancedSortSelect sortOption={sort} setSortOption={setSort} />
 
               <Dialog isSidebar closeDialog={closeDialog} ref={dialogRef}>
-                <div className="advanced-search-filters__dialog">
-                  <div className="advanced-search-filters__dialog-content">
-                    <h2 className="advanced-search-filters__dialog-content__heading">
+                <div className="advanced-search-facets__dialog">
+                  <div className="advanced-search-facets__dialog-content">
+                    <h2 className="advanced-search-facets__dialog-content__heading">
                       {t("advancedSearchFilterMaterialsText", {
                         placeholders: { "@hitcount": hitcount }
                       })}
                     </h2>
                     <AdvancedSearchFacets cql={cql} />
                   </div>
-                  <div className="advanced-search-filters__dialog__actions">
+                  <div className="advanced-search-facets__dialog__actions">
                     <Button
-                      classNames="advanced-search-filters__dialog__actions__button"
+                      classNames="advanced-search-facets__dialog__actions__button"
                       collapsible
                       label={t("advancedSearchShowResultsText")}
                       size="medium"

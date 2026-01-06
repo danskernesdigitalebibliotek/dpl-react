@@ -143,7 +143,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763861649"
+                    "type": "ISBN", "value": "9788763861649"
                   }
                 ],
                 "contributors": [
@@ -178,7 +178,6 @@
                   "numberOfPages": 727
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -241,7 +240,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702343755"
+                    "type": "ISBN", "value": "9788702343755"
                   }
                 ],
                 "contributors": [
@@ -293,7 +292,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -351,7 +349,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702343755"
+                  "type": "ISBN", "value": "9788702343755"
                 }
               ],
               "contributors": [
@@ -403,7 +401,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -460,7 +457,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763861649"
+                  "type": "ISBN", "value": "9788763861649"
                 }
               ],
               "contributors": [
@@ -495,7 +492,6 @@
                 "numberOfPages": 727
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -675,7 +671,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763865708"
+                    "type": "ISBN", "value": "9788763865708"
                   }
                 ],
                 "contributors": [
@@ -710,7 +706,6 @@
                   "numberOfPages": 656
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -781,7 +776,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788702411799"
+                    "type": "ISBN", "value": "9788702411799"
                   }
                 ],
                 "contributors": [
@@ -833,7 +828,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -900,7 +894,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788702411799"
+                  "type": "ISBN", "value": "9788702411799"
                 }
               ],
               "contributors": [
@@ -952,7 +946,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -1018,7 +1011,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763865708"
+                  "type": "ISBN", "value": "9788763865708"
                 }
               ],
               "contributors": [
@@ -1053,7 +1046,6 @@
                 "numberOfPages": 656
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -1219,10 +1211,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763844123"
+                    "type": "ISBN", "value": "9788763844123"
                   },
                   {
-                    "value": "9788763844123"
+                    "type": "ISBN", "value": "9788763844123"
                   }
                 ],
                 "contributors": [
@@ -1254,7 +1246,6 @@
                 "notes": [],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -1318,7 +1309,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763849630"
+                    "type": "ISBN", "value": "9788763849630"
                   }
                 ],
                 "contributors": [
@@ -1353,7 +1344,6 @@
                   "numberOfPages": 523
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -1410,7 +1400,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763844116"
+                    "type": "ISBN", "value": "9788763844116"
                   }
                 ],
                 "contributors": [
@@ -1445,7 +1435,6 @@
                   "numberOfPages": 523
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -1502,7 +1491,7 @@
                 "publisher": ["Rosinante"],
                 "identifiers": [
                   {
-                    "value": "9788763850636"
+                    "type": "ISBN", "value": "9788763850636"
                   }
                 ],
                 "contributors": [
@@ -1554,7 +1543,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -1612,7 +1600,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763849630"
+                  "type": "ISBN", "value": "9788763849630"
                 }
               ],
               "contributors": [
@@ -1647,7 +1635,6 @@
                 "numberOfPages": 523
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -1704,7 +1691,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763849630"
+                  "type": "ISBN", "value": "9788763849630"
                 }
               ],
               "contributors": [
@@ -1739,7 +1726,6 @@
                 "numberOfPages": 523
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -1900,10 +1886,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763854474"
+                    "type": "ISBN", "value": "9788763854474"
                   },
                   {
-                    "value": "9788763854474"
+                    "type": "ISBN", "value": "9788763854474"
                   }
                 ],
                 "contributors": [
@@ -1939,7 +1925,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -1998,7 +1983,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763854467"
+                    "type": "ISBN", "value": "9788763854467"
                   }
                 ],
                 "contributors": [
@@ -2037,7 +2022,6 @@
                   "numberOfPages": 587
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2094,7 +2078,7 @@
                 "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [
                   {
-                    "value": "9788763899796"
+                    "type": "ISBN", "value": "9788763899796"
                   }
                 ],
                 "contributors": [
@@ -2149,7 +2133,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2206,7 +2189,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763862653"
+                    "type": "ISBN", "value": "9788763862653"
                   }
                 ],
                 "contributors": [
@@ -2245,7 +2228,6 @@
                   "numberOfPages": 587
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2303,7 +2285,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763862653"
+                  "type": "ISBN", "value": "9788763862653"
                 }
               ],
               "contributors": [
@@ -2342,7 +2324,6 @@
                 "numberOfPages": 587
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -2399,7 +2380,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763862653"
+                  "type": "ISBN", "value": "9788763862653"
                 }
               ],
               "contributors": [
@@ -2438,7 +2419,6 @@
                 "numberOfPages": 587
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -2599,7 +2579,7 @@
                 "publisher": ["Gyldendal"],
                 "identifiers": [
                   {
-                    "value": "9788763864695"
+                    "type": "ISBN", "value": "9788763864695"
                   }
                 ],
                 "contributors": [
@@ -2654,7 +2634,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2711,10 +2690,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763864671"
+                    "type": "ISBN", "value": "9788763864671"
                   },
                   {
-                    "value": "9788763864671"
+                    "type": "ISBN", "value": "9788763864671"
                   }
                 ],
                 "contributors": [
@@ -2750,7 +2729,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -2814,7 +2792,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763861182"
+                    "type": "ISBN", "value": "9788763861182"
                   }
                 ],
                 "contributors": [
@@ -2853,7 +2831,6 @@
                   "numberOfPages": 757
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -2911,7 +2888,7 @@
               "publisher": ["Gyldendal"],
               "identifiers": [
                 {
-                  "value": "9788763864695"
+                  "type": "ISBN", "value": "9788763864695"
                 }
               ],
               "contributors": [
@@ -2966,7 +2943,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -3023,7 +2999,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763861182"
+                  "type": "ISBN", "value": "9788763861182"
                 }
               ],
               "contributors": [
@@ -3062,7 +3038,6 @@
                 "numberOfPages": 757
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -3223,7 +3198,7 @@
                 "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [
                   {
-                    "value": "9788763897174"
+                    "type": "ISBN", "value": "9788763897174"
                   }
                 ],
                 "contributors": [
@@ -3278,7 +3253,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -3335,10 +3309,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763859059"
+                    "type": "ISBN", "value": "9788763859059"
                   },
                   {
-                    "value": "9788763859059"
+                    "type": "ISBN", "value": "9788763859059"
                   }
                 ],
                 "contributors": [
@@ -3374,7 +3348,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -3433,7 +3406,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763855099"
+                    "type": "ISBN", "value": "9788763855099"
                   }
                 ],
                 "contributors": [
@@ -3472,7 +3445,6 @@
                   "numberOfPages": 636
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -3530,7 +3502,7 @@
               "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
               "identifiers": [
                 {
-                  "value": "9788763897174"
+                  "type": "ISBN", "value": "9788763897174"
                 }
               ],
               "contributors": [
@@ -3585,7 +3557,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -3642,7 +3613,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763855099"
+                  "type": "ISBN", "value": "9788763855099"
                 }
               ],
               "contributors": [
@@ -3681,7 +3652,6 @@
                 "numberOfPages": 636
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -3842,7 +3812,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763899628"
+                    "type": "ISBN", "value": "9788763899628"
                   }
                 ],
                 "contributors": [
@@ -3897,7 +3867,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -3954,10 +3923,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763844147"
+                    "type": "ISBN", "value": "9788763844147"
                   },
                   {
-                    "value": "9788763844147"
+                    "type": "ISBN", "value": "9788763844147"
                   }
                 ],
                 "contributors": [
@@ -3993,7 +3962,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -4057,7 +4025,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763844130"
+                    "type": "ISBN", "value": "9788763844130"
                   }
                 ],
                 "contributors": [
@@ -4096,7 +4064,6 @@
                   "numberOfPages": 581
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -4154,7 +4121,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763899628"
+                  "type": "ISBN", "value": "9788763899628"
                 }
               ],
               "contributors": [
@@ -4209,7 +4176,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -4266,7 +4232,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763844130"
+                  "type": "ISBN", "value": "9788763844130"
                 }
               ],
               "contributors": [
@@ -4305,7 +4271,6 @@
                 "numberOfPages": 581
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -4466,10 +4431,10 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763852470"
+                    "type": "ISBN", "value": "9788763852470"
                   },
                   {
-                    "value": "9788763852470"
+                    "type": "ISBN", "value": "9788763852470"
                   }
                 ],
                 "contributors": [
@@ -4505,7 +4470,6 @@
                 ],
                 "physicalDescription": null,
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "ONLINE"
@@ -4569,7 +4533,7 @@
                 "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
                 "identifiers": [
                   {
-                    "value": "9788763899390"
+                    "type": "ISBN", "value": "9788763899390"
                   }
                 ],
                 "contributors": [
@@ -4624,7 +4588,6 @@
                   "numberOfPages": null
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -4681,7 +4644,7 @@
                 "publisher": ["Cicero"],
                 "identifiers": [
                   {
-                    "value": "9788763850209"
+                    "type": "ISBN", "value": "9788763850209"
                   }
                 ],
                 "contributors": [
@@ -4720,7 +4683,6 @@
                   "numberOfPages": 567
                 },
                 "hostPublication": null,
-                "manifestationParts": null,
                 "accessTypes": [
                   {
                     "code": "PHYSICAL"
@@ -4778,7 +4740,7 @@
               "publisher": ["Cicero", "AV Forlaget Den Grimme Ælling"],
               "identifiers": [
                 {
-                  "value": "9788763899390"
+                  "type": "ISBN", "value": "9788763899390"
                 }
               ],
               "contributors": [
@@ -4833,7 +4795,6 @@
                 "numberOfPages": null
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"
@@ -4890,7 +4851,7 @@
               "publisher": ["Cicero"],
               "identifiers": [
                 {
-                  "value": "9788763850209"
+                  "type": "ISBN", "value": "9788763850209"
                 }
               ],
               "contributors": [
@@ -4929,7 +4890,6 @@
                 "numberOfPages": 567
               },
               "hostPublication": null,
-              "manifestationParts": null,
               "accessTypes": [
                 {
                   "code": "PHYSICAL"

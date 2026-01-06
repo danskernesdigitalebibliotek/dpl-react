@@ -59,7 +59,7 @@
             "publisher": ["JR Books"],
             "identifiers": [
               {
-                "value": "9781906779832"
+                "type": "ISBN", "value": "9781906779832"
               }
             ],
             "contributors": [],
@@ -85,7 +85,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -145,7 +144,7 @@
           "publisher": ["JR Books"],
           "identifiers": [
             {
-              "value": "9781906779832"
+              "type": "ISBN", "value": "9781906779832"
             }
           ],
           "contributors": [],
@@ -171,7 +170,6 @@
             "playingTime": null
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -230,7 +228,7 @@
           "publisher": ["JR Books"],
           "identifiers": [
             {
-              "value": "9781906779832"
+              "type": "ISBN", "value": "9781906779832"
             }
           ],
           "contributors": [],
@@ -256,7 +254,6 @@
             "playingTime": null
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"

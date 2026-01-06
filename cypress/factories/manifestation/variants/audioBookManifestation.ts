@@ -1,4 +1,5 @@
 import { manifestationFactory } from "../manifestation.factory";
+import { IdentifierTypeEnum } from "../../../../src/core/dbc-gateway/generated/graphql";
 
 export const audioBookManifestation = manifestationFactory.build({
   pid: "870970-basis:52643414",
@@ -19,6 +20,7 @@ export const audioBookManifestation = manifestationFactory.build({
   publisher: ["Rosinante"],
   identifiers: [
     {
+      type: IdentifierTypeEnum.Isbn,
       value: "9788763850636"
     }
   ],

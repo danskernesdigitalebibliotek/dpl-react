@@ -10,7 +10,7 @@
                 "pid": "710100-katalog:22677780",
                 "identifiers": [
                   {
-                    "value": "9788700459946"
+                    "type": "ISBN", "value": "9788700459946"
                   },
                   {
                     "value": "87-00-45994-1"
@@ -43,7 +43,7 @@
                 "pid": "870970-basis:27639097",
                 "identifiers": [
                   {
-                    "value": "9788702075397"
+                    "type": "ISBN", "value": "9788702075397"
                   }
                 ],
                 "materialTypes": [
@@ -58,7 +58,7 @@
                 "pid": "870970-basis:29316945",
                 "identifiers": [
                   {
-                    "value": "9788702114331"
+                    "type": "ISBN", "value": "9788702114331"
                   }
                 ],
                 "materialTypes": [
@@ -73,7 +73,7 @@
                 "pid": "870970-basis:51980239",
                 "identifiers": [
                   {
-                    "value": "9788702173239"
+                    "type": "ISBN", "value": "9788702173239"
                   }
                 ],
                 "materialTypes": [
@@ -88,7 +88,7 @@
                 "pid": "870970-basis:52652219",
                 "identifiers": [
                   {
-                    "value": "9788702204681"
+                    "type": "ISBN", "value": "9788702204681"
                   }
                 ],
                 "materialTypes": [
@@ -103,7 +103,7 @@
                 "pid": "870970-basis:54871929",
                 "identifiers": [
                   {
-                    "value": "9788702272444"
+                    "type": "ISBN", "value": "9788702272444"
                   }
                 ],
                 "materialTypes": [
@@ -118,7 +118,7 @@
                 "pid": "870970-basis:61636935",
                 "identifiers": [
                   {
-                    "value": "9788702319361"
+                    "type": "ISBN", "value": "9788702319361"
                   }
                 ],
                 "materialTypes": [

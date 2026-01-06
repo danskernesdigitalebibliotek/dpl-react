@@ -4,9 +4,9 @@ import {
   NestedComponents
 } from "@hammzj/cypress-page-object";
 import { AdvancedSearchFormComponent } from "./components/AdvancedSearchForm";
-import { AdvancedSearchFiltersComponent } from "./components/AdvancedSearchFilters";
 import { AdvancedSearchSortComponent } from "./components/AdvancedSearchSort";
 import { SummaryComponent } from "./components/summary";
+import { AdvancedSearchFacetsComponent } from "./components/AdvancedSearchFacests";
 
 export class AdvancedSearchV2Page extends PageObject {
   public elements!: Elements;
@@ -34,7 +34,7 @@ export class AdvancedSearchV2Page extends PageObject {
       Filters: (fn) =>
         this.performWithin(
           this.container(),
-          new AdvancedSearchFiltersComponent(),
+          new AdvancedSearchFacetsComponent(),
           fn
         ),
       Sort: (fn) =>

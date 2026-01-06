@@ -56,7 +56,7 @@
             "publisher": ["Turbine"],
             "identifiers": [
               {
-                "value": "9788740692570"
+                "type": "ISBN", "value": "9788740692570"
               }
             ],
             "contributors": [
@@ -136,10 +136,10 @@
             "publisher": ["Turbine"],
             "identifiers": [
               {
-                "value": "9788740692587"
+                "type": "ISBN", "value": "9788740692587"
               },
               {
-                "value": "9788740692587"
+                "type": "ISBN", "value": "9788740692587"
               }
             ],
             "contributors": [
@@ -232,7 +232,7 @@
             "publisher": ["Turbine"],
             "identifiers": [
               {
-                "value": "9788740692570"
+                "type": "ISBN", "value": "9788740692570"
               }
             ],
             "contributors": [
@@ -318,7 +318,7 @@
           "publisher": ["Turbine"],
           "identifiers": [
             {
-              "value": "9788740692570"
+              "type": "ISBN", "value": "9788740692570"
             }
           ],
           "contributors": [
@@ -403,7 +403,7 @@
           "publisher": ["Turbine"],
           "identifiers": [
             {
-              "value": "9788740692570"
+              "type": "ISBN", "value": "9788740692570"
             }
           ],
           "contributors": [

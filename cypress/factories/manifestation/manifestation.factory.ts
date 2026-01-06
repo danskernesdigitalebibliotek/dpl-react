@@ -4,7 +4,8 @@ import {
   WorkMediumFragment,
   FictionNonfictionCodeEnum,
   AccessTypeCodeEnum,
-  ChildOrAdultCodeEnum
+  ChildOrAdultCodeEnum,
+  IdentifierTypeEnum
 } from "../../../src/core/dbc-gateway/generated/graphql";
 
 // Use the fragment-narrowed type to match exactly what WorkMedium expects
@@ -50,6 +51,7 @@ export const manifestationFactory = Factory.define<ManifestationForWorkMedium>(
     publisher: ["Cicero"],
     identifiers: [
       {
+        type: IdentifierTypeEnum.Isbn,
         value: "9788763844116"
       }
     ],
@@ -91,7 +93,6 @@ export const manifestationFactory = Factory.define<ManifestationForWorkMedium>(
       numberOfPages: 523
     },
     hostPublication: null,
-    manifestationParts: null,
     accessTypes: [
       {
         code: AccessTypeCodeEnum.Physical

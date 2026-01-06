@@ -67,6 +67,7 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   publisher
   identifiers {
+    type
     value
   }
   contributors {
@@ -119,11 +120,6 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   hostPublication {
     summary
-  }
-  manifestationParts {
-    parts {
-      title
-    }
   }
   accessTypes {
     code

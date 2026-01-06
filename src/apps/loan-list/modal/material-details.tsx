@@ -21,7 +21,7 @@ import { RequestStatus } from "../../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
 import { formatDate } from "../../../core/utils/helpers/date";
-import useGetWorkUrlFromPublizonIdentifier from "../../../core/utils/useGetWorkUrlFromPublizonIdentifier";
+import useWorkUrl from "../../../core/utils/useWorkUrl";
 
 interface MaterialDetailsProps {
   loan: LoanType | null;
@@ -33,7 +33,15 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   material,
   modalId
 }) => {
-  const { workUrl } = useGetWorkUrlFromPublizonIdentifier(loan?.identifier);
+  const { authors, materialType, year, title, pid, description, series } =
+    material || {};
+
+  const { workUrl } = useWorkUrl({
+    identifier: loan?.identifier,
+    pid,
+    materialType
+  });
+
   const [renewingStatus, setRenewingStatus] = useState<RequestStatus>("idle");
   const [renewingResponse, setRenewingResponse] = useState<
     RenewedLoanV2[] | null
@@ -59,8 +67,6 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
     periodical,
     renewalStatusList
   } = loan;
-  const { authors, materialType, year, title, pid, description, series } =
-    material || {};
 
   return (
     <>
@@ -97,6 +103,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
             description={description}
             materialType={materialType}
             isbnForCover={identifier || ""}
+            workUrl={workUrl}
           >
             {dueDate && (
               <StatusBadge

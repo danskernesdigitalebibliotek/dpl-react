@@ -201,6 +201,7 @@ export enum ComplexSearchFacetsEnum {
   Generalmaterialtype = "GENERALMATERIALTYPE",
   Genreandform = "GENREANDFORM",
   Hostpublication = "HOSTPUBLICATION",
+  Hostpublicationtype = "HOSTPUBLICATIONTYPE",
   Instrument = "INSTRUMENT",
   Issue = "ISSUE",
   Language = "LANGUAGE",
@@ -2355,7 +2356,11 @@ export type GetSmallWorkQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -2424,10 +2429,6 @@ export type GetSmallWorkQuery = {
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
-        } | null;
-        manifestationParts?: {
-          __typename?: "ManifestationParts";
-          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
         accessTypes: Array<{
           __typename?: "AccessType";
@@ -2493,7 +2494,11 @@ export type GetSmallWorkQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -2562,10 +2567,6 @@ export type GetSmallWorkQuery = {
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
-        } | null;
-        manifestationParts?: {
-          __typename?: "ManifestationParts";
-          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
         accessTypes: Array<{
           __typename?: "AccessType";
@@ -2631,7 +2632,11 @@ export type GetSmallWorkQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -2700,10 +2705,6 @@ export type GetSmallWorkQuery = {
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
-        } | null;
-        manifestationParts?: {
-          __typename?: "ManifestationParts";
-          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
         accessTypes: Array<{
           __typename?: "AccessType";
@@ -3024,7 +3025,11 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3093,10 +3098,6 @@ export type GetMaterialQuery = {
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
-        } | null;
-        manifestationParts?: {
-          __typename?: "ManifestationParts";
-          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
         accessTypes: Array<{
           __typename?: "AccessType";
@@ -3162,7 +3163,11 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3231,10 +3236,6 @@ export type GetMaterialQuery = {
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
-        } | null;
-        manifestationParts?: {
-          __typename?: "ManifestationParts";
-          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
         accessTypes: Array<{
           __typename?: "AccessType";
@@ -3300,7 +3301,11 @@ export type GetMaterialQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3369,10 +3374,6 @@ export type GetMaterialQuery = {
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
-        } | null;
-        manifestationParts?: {
-          __typename?: "ManifestationParts";
-          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
         accessTypes: Array<{
           __typename?: "AccessType";
@@ -3547,7 +3548,11 @@ export type GetMaterialGloballyQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3616,10 +3621,6 @@ export type GetMaterialGloballyQuery = {
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
-        } | null;
-        manifestationParts?: {
-          __typename?: "ManifestationParts";
-          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
         accessTypes: Array<{
           __typename?: "AccessType";
@@ -3685,7 +3686,11 @@ export type GetMaterialGloballyQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3754,10 +3759,6 @@ export type GetMaterialGloballyQuery = {
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
-        } | null;
-        manifestationParts?: {
-          __typename?: "ManifestationParts";
-          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
         accessTypes: Array<{
           __typename?: "AccessType";
@@ -3823,7 +3824,11 @@ export type GetMaterialGloballyQuery = {
           | { __typename: "Corporation"; display: string; nameSort: string }
           | { __typename: "Person"; display: string; nameSort: string }
         >;
-        identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+        identifiers: Array<{
+          __typename?: "Identifier";
+          type: IdentifierTypeEnum;
+          value: string;
+        }>;
         contributors: Array<
           | {
               __typename?: "Corporation";
@@ -3892,10 +3897,6 @@ export type GetMaterialGloballyQuery = {
         hostPublication?: {
           __typename?: "HostPublication";
           summary: string;
-        } | null;
-        manifestationParts?: {
-          __typename?: "ManifestationParts";
-          parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
         } | null;
         accessTypes: Array<{
           __typename?: "AccessType";
@@ -4114,7 +4115,11 @@ export type RecommendFromFaustQuery = {
               | { __typename: "Corporation"; display: string; nameSort: string }
               | { __typename: "Person"; display: string; nameSort: string }
             >;
-            identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+            identifiers: Array<{
+              __typename?: "Identifier";
+              type: IdentifierTypeEnum;
+              value: string;
+            }>;
             contributors: Array<
               | {
                   __typename?: "Corporation";
@@ -4183,10 +4188,6 @@ export type RecommendFromFaustQuery = {
             hostPublication?: {
               __typename?: "HostPublication";
               summary: string;
-            } | null;
-            manifestationParts?: {
-              __typename?: "ManifestationParts";
-              parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
             } | null;
             accessTypes: Array<{
               __typename?: "AccessType";
@@ -4252,7 +4253,11 @@ export type RecommendFromFaustQuery = {
               | { __typename: "Corporation"; display: string; nameSort: string }
               | { __typename: "Person"; display: string; nameSort: string }
             >;
-            identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+            identifiers: Array<{
+              __typename?: "Identifier";
+              type: IdentifierTypeEnum;
+              value: string;
+            }>;
             contributors: Array<
               | {
                   __typename?: "Corporation";
@@ -4321,10 +4326,6 @@ export type RecommendFromFaustQuery = {
             hostPublication?: {
               __typename?: "HostPublication";
               summary: string;
-            } | null;
-            manifestationParts?: {
-              __typename?: "ManifestationParts";
-              parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
             } | null;
             accessTypes: Array<{
               __typename?: "AccessType";
@@ -4390,7 +4391,11 @@ export type RecommendFromFaustQuery = {
               | { __typename: "Corporation"; display: string; nameSort: string }
               | { __typename: "Person"; display: string; nameSort: string }
             >;
-            identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+            identifiers: Array<{
+              __typename?: "Identifier";
+              type: IdentifierTypeEnum;
+              value: string;
+            }>;
             contributors: Array<
               | {
                   __typename?: "Corporation";
@@ -4459,10 +4464,6 @@ export type RecommendFromFaustQuery = {
             hostPublication?: {
               __typename?: "HostPublication";
               summary: string;
-            } | null;
-            manifestationParts?: {
-              __typename?: "ManifestationParts";
-              parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
             } | null;
             accessTypes: Array<{
               __typename?: "AccessType";
@@ -4590,7 +4591,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -4659,10 +4664,6 @@ export type SearchWithPaginationQuery = {
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
-          } | null;
-          manifestationParts?: {
-            __typename?: "ManifestationParts";
-            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
@@ -4728,7 +4729,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -4797,10 +4802,6 @@ export type SearchWithPaginationQuery = {
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
-          } | null;
-          manifestationParts?: {
-            __typename?: "ManifestationParts";
-            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
@@ -4866,7 +4867,11 @@ export type SearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -4935,10 +4940,6 @@ export type SearchWithPaginationQuery = {
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
-          } | null;
-          manifestationParts?: {
-            __typename?: "ManifestationParts";
-            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
@@ -5114,7 +5115,11 @@ export type ComplexSearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -5183,10 +5188,6 @@ export type ComplexSearchWithPaginationQuery = {
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
-          } | null;
-          manifestationParts?: {
-            __typename?: "ManifestationParts";
-            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
@@ -5252,7 +5253,11 @@ export type ComplexSearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -5321,10 +5326,6 @@ export type ComplexSearchWithPaginationQuery = {
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
-          } | null;
-          manifestationParts?: {
-            __typename?: "ManifestationParts";
-            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
@@ -5390,7 +5391,11 @@ export type ComplexSearchWithPaginationQuery = {
             | { __typename: "Corporation"; display: string; nameSort: string }
             | { __typename: "Person"; display: string; nameSort: string }
           >;
-          identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+          identifiers: Array<{
+            __typename?: "Identifier";
+            type: IdentifierTypeEnum;
+            value: string;
+          }>;
           contributors: Array<
             | {
                 __typename?: "Corporation";
@@ -5459,10 +5464,6 @@ export type ComplexSearchWithPaginationQuery = {
           hostPublication?: {
             __typename?: "HostPublication";
             summary: string;
-          } | null;
-          manifestationParts?: {
-            __typename?: "ManifestationParts";
-            parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
           } | null;
           accessTypes: Array<{
             __typename?: "AccessType";
@@ -5729,7 +5730,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string; nameSort: string }
       | { __typename: "Person"; display: string; nameSort: string }
     >;
-    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+    identifiers: Array<{
+      __typename?: "Identifier";
+      type: IdentifierTypeEnum;
+      value: string;
+    }>;
     contributors: Array<
       | {
           __typename?: "Corporation";
@@ -5798,10 +5803,6 @@ export type ManifestationsSimpleFragment = {
     hostPublication?: {
       __typename?: "HostPublication";
       summary: string;
-    } | null;
-    manifestationParts?: {
-      __typename?: "ManifestationParts";
-      parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
     } | null;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCodeEnum }>;
     access: Array<
@@ -5861,7 +5862,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string; nameSort: string }
       | { __typename: "Person"; display: string; nameSort: string }
     >;
-    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+    identifiers: Array<{
+      __typename?: "Identifier";
+      type: IdentifierTypeEnum;
+      value: string;
+    }>;
     contributors: Array<
       | {
           __typename?: "Corporation";
@@ -5930,10 +5935,6 @@ export type ManifestationsSimpleFragment = {
     hostPublication?: {
       __typename?: "HostPublication";
       summary: string;
-    } | null;
-    manifestationParts?: {
-      __typename?: "ManifestationParts";
-      parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
     } | null;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCodeEnum }>;
     access: Array<
@@ -5993,7 +5994,11 @@ export type ManifestationsSimpleFragment = {
       | { __typename: "Corporation"; display: string; nameSort: string }
       | { __typename: "Person"; display: string; nameSort: string }
     >;
-    identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+    identifiers: Array<{
+      __typename?: "Identifier";
+      type: IdentifierTypeEnum;
+      value: string;
+    }>;
     contributors: Array<
       | {
           __typename?: "Corporation";
@@ -6062,10 +6067,6 @@ export type ManifestationsSimpleFragment = {
     hostPublication?: {
       __typename?: "HostPublication";
       summary: string;
-    } | null;
-    manifestationParts?: {
-      __typename?: "ManifestationParts";
-      parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
     } | null;
     accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCodeEnum }>;
     access: Array<
@@ -6157,7 +6158,11 @@ export type ManifestationsSimpleFieldsFragment = {
     | { __typename: "Corporation"; display: string; nameSort: string }
     | { __typename: "Person"; display: string; nameSort: string }
   >;
-  identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+  identifiers: Array<{
+    __typename?: "Identifier";
+    type: IdentifierTypeEnum;
+    value: string;
+  }>;
   contributors: Array<
     | {
         __typename?: "Corporation";
@@ -6224,10 +6229,6 @@ export type ManifestationsSimpleFieldsFragment = {
     numberOfPages?: number | null;
   } | null;
   hostPublication?: { __typename?: "HostPublication"; summary: string } | null;
-  manifestationParts?: {
-    __typename?: "ManifestationParts";
-    parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
-  } | null;
   accessTypes: Array<{ __typename?: "AccessType"; code: AccessTypeCodeEnum }>;
   access: Array<
     | {
@@ -6428,7 +6429,11 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -6497,10 +6502,6 @@ export type WorkSmallFragment = {
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
-      } | null;
-      manifestationParts?: {
-        __typename?: "ManifestationParts";
-        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
       accessTypes: Array<{
         __typename?: "AccessType";
@@ -6566,7 +6567,11 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -6635,10 +6640,6 @@ export type WorkSmallFragment = {
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
-      } | null;
-      manifestationParts?: {
-        __typename?: "ManifestationParts";
-        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
       accessTypes: Array<{
         __typename?: "AccessType";
@@ -6704,7 +6705,11 @@ export type WorkSmallFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -6773,10 +6778,6 @@ export type WorkSmallFragment = {
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
-      } | null;
-      manifestationParts?: {
-        __typename?: "ManifestationParts";
-        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
       accessTypes: Array<{
         __typename?: "AccessType";
@@ -6944,7 +6945,11 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -7013,10 +7018,6 @@ export type WorkMediumFragment = {
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
-      } | null;
-      manifestationParts?: {
-        __typename?: "ManifestationParts";
-        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
       accessTypes: Array<{
         __typename?: "AccessType";
@@ -7082,7 +7083,11 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -7151,10 +7156,6 @@ export type WorkMediumFragment = {
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
-      } | null;
-      manifestationParts?: {
-        __typename?: "ManifestationParts";
-        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
       accessTypes: Array<{
         __typename?: "AccessType";
@@ -7220,7 +7221,11 @@ export type WorkMediumFragment = {
         | { __typename: "Corporation"; display: string; nameSort: string }
         | { __typename: "Person"; display: string; nameSort: string }
       >;
-      identifiers: Array<{ __typename?: "Identifier"; value: string }>;
+      identifiers: Array<{
+        __typename?: "Identifier";
+        type: IdentifierTypeEnum;
+        value: string;
+      }>;
       contributors: Array<
         | {
             __typename?: "Corporation";
@@ -7289,10 +7294,6 @@ export type WorkMediumFragment = {
       hostPublication?: {
         __typename?: "HostPublication";
         summary: string;
-      } | null;
-      manifestationParts?: {
-        __typename?: "ManifestationParts";
-        parts: Array<{ __typename?: "ManifestationPart"; title: string }>;
       } | null;
       accessTypes: Array<{
         __typename?: "AccessType";
@@ -7525,6 +7526,7 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   publisher
   identifiers {
+    type
     value
   }
   contributors {
@@ -7576,11 +7578,6 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   hostPublication {
     summary
-  }
-  manifestationParts {
-    parts {
-      title
-    }
   }
   accessTypes {
     code
