@@ -17,10 +17,40 @@ import {
 import { FACETS_CONFIG, FACET_FIELDS } from "../lib/facet-configs";
 import { isValidFacetState } from "../lib/validation";
 import { sortFacetValues } from "../lib/facet-sort-utils";
+import {
+  AccessTypeFilterValue,
+  AgeGroupFilterValue,
+  FictionTypeFilterValue
+} from "../types";
 
 interface AdvancedSearchFacetsProps {
   cql: string;
 }
+
+// Radio button options
+export const ACCESS_TYPE_OPTIONS: Array<{
+  value: AccessTypeFilterValue;
+  label: string;
+}> = [
+  { value: "online", label: "Online" },
+  { value: "fysisk", label: "Fysisk" }
+];
+
+export const FICTION_TYPE_OPTIONS: Array<{
+  value: FictionTypeFilterValue;
+  label: string;
+}> = [
+  { value: "fiction", label: "Fiktion" },
+  { value: "nonfiction", label: "Non-fiktion" }
+];
+
+export const AGE_GROUP_OPTIONS: Array<{
+  value: AgeGroupFilterValue;
+  label: string;
+}> = [
+  { value: "til voksne", label: "Voksne" },
+  { value: "til børn", label: "Børn" }
+];
 
 const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
   const t = useText();
@@ -153,10 +183,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
           <div style={{ marginBottom: "16px" }}>
             <AdvancedSearchRadioGroup
               name="access-type"
-              options={[
-                { value: "online", label: "Online" },
-                { value: "fysisk", label: "Fysisk" }
-              ]}
+              options={ACCESS_TYPE_OPTIONS}
               selectedValue={accessType ?? null}
               onChange={(value) => setAccessType(value, { history: "push" })}
             />
@@ -164,10 +191,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
           <div style={{ marginBottom: "16px" }}>
             <AdvancedSearchRadioGroup
               name="fiction-type"
-              options={[
-                { value: "fiction", label: "Fiktion" },
-                { value: "nonfiction", label: "Non-fiktion" }
-              ]}
+              options={FICTION_TYPE_OPTIONS}
               selectedValue={fictionType ?? null}
               onChange={(value) => setFictionType(value, { history: "push" })}
             />
@@ -175,10 +199,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
           <div>
             <AdvancedSearchRadioGroup
               name="age-group"
-              options={[
-                { value: "til voksne", label: "Voksne" },
-                { value: "til børn", label: "Børn" }
-              ]}
+              options={AGE_GROUP_OPTIONS}
               selectedValue={ageGroup ?? null}
               onChange={(value) => setAgeGroup(value, { history: "push" })}
             />
