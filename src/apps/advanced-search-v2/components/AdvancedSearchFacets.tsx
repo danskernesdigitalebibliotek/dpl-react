@@ -1,7 +1,13 @@
 import React from "react";
-import { useQueryState, parseAsBoolean, parseAsJson } from "nuqs";
+import {
+  useQueryState,
+  parseAsBoolean,
+  parseAsJson,
+  parseAsString
+} from "nuqs";
 import AdvancedSearchFilterGroup from "./AdvancedSearchFacetGroup";
 import AdvancedSearchToggle from "./AdvancedSearchToggle";
+import AdvancedSearchRadioGroup from "./AdvancedSearchRadioGroup";
 import { useText } from "../../../core/utils/text";
 import {
   ComplexSearchFacetsEnum,
@@ -28,6 +34,17 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
     "onlyExtraTitles",
     parseAsBoolean.withDefault(false)
   );
+
+  // Radio button filter states
+  const [accessType, setAccessType] = useQueryState(
+    "accessType",
+    parseAsString
+  );
+  const [fictionType, setFictionType] = useQueryState(
+    "fictionType",
+    parseAsString
+  );
+  const [ageGroup, setAgeGroup] = useQueryState("ageGroup", parseAsString);
 
   // Facets are fetched in a separate query from search results.
   // The FBI API supports this and it allows facet counts to update
@@ -130,6 +147,43 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
             />
           </li>
         </ul>
+
+        {/* Radio button filters */}
+        <div style={{ padding: "16px 0", borderBottom: "1px solid #e0e0e0" }}>
+          <div style={{ marginBottom: "16px" }}>
+            <AdvancedSearchRadioGroup
+              name="access-type"
+              options={[
+                { value: "online", label: "Online" },
+                { value: "fysisk", label: "Fysisk" }
+              ]}
+              selectedValue={accessType ?? null}
+              onChange={(value) => setAccessType(value, { history: "push" })}
+            />
+          </div>
+          <div style={{ marginBottom: "16px" }}>
+            <AdvancedSearchRadioGroup
+              name="fiction-type"
+              options={[
+                { value: "fiction", label: "Fiktion" },
+                { value: "nonfiction", label: "Non-fiktion" }
+              ]}
+              selectedValue={fictionType ?? null}
+              onChange={(value) => setFictionType(value, { history: "push" })}
+            />
+          </div>
+          <div>
+            <AdvancedSearchRadioGroup
+              name="age-group"
+              options={[
+                { value: "til voksne", label: "Voksne" },
+                { value: "til børn", label: "Børn" }
+              ]}
+              selectedValue={ageGroup ?? null}
+              onChange={(value) => setAgeGroup(value, { history: "push" })}
+            />
+          </div>
+        </div>
 
         {/* Filter groups */}
         <ul className="advanced-search-facets__groups">

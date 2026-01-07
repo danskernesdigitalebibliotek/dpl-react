@@ -136,7 +136,10 @@ export const buildCQLQuery = (
   filters: FilterState[],
   preSearchFacets: FacetState[],
   facets: FacetState[],
-  onlyExtraTitles?: boolean
+  onlyExtraTitles?: boolean,
+  accessType?: string | null,
+  fictionType?: string | null,
+  ageGroup?: string | null
 ): string => {
   const parts: string[] = [];
 
@@ -157,6 +160,17 @@ export const buildCQLQuery = (
   // Add toggle filters
   if (onlyExtraTitles) {
     parts.push('term.canAlwaysBeLoaned="true"');
+  }
+
+  // Add radio button filters
+  if (accessType) {
+    parts.push(`term.accesstype="${accessType}"`);
+  }
+  if (fictionType) {
+    parts.push(`term.fictionnonfiction="${fictionType}"`);
+  }
+  if (ageGroup) {
+    parts.push(`term.childrenoradults="${ageGroup}"`);
   }
 
   // Join all parts with AND, or return wildcard if no query
