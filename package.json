@@ -33,6 +33,7 @@
     "start:storybook:test": "NODE_ENV=test storybook dev --port 57021 --quiet --ci",
     "start:storybook:dev": "NODE_ENV=development  storybook dev --port 80",
     "dev": "npx concurrently --raw \"yarn start:storybook:dev\" \"yarn watch\"",
+    "typecheck": "tsc --noEmit",
     "test:unit": "vitest",
     "test:integration": "cypress run",
     "cypress:open": "cypress open",
