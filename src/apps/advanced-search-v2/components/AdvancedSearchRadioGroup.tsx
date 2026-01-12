@@ -1,4 +1,5 @@
 import React from "react";
+import { RadioGroup, Radio, Label } from "@headlessui/react";
 
 interface RadioOption {
   value: string;
@@ -12,50 +13,53 @@ interface AdvancedSearchRadioGroupProps {
   onChange: (value: string | null) => void;
 }
 
-const AdvancedSearchRadioGroup: React.FC<AdvancedSearchRadioGroupProps> = ({
-  name,
+const AdvancedSearchRadioGroup = ({
   options,
   selectedValue,
   onChange
-}) => {
-  const handleClick = (value: string) => {
+}: AdvancedSearchRadioGroupProps) => {
+  const handleRadioClick = (optionValue: string) => {
     // Toggle: if clicking the already-selected value, deselect it
-    if (selectedValue === value) {
+    if (selectedValue === optionValue) {
       onChange(null);
     } else {
-      onChange(value);
+      onChange(optionValue);
     }
   };
 
   return (
-    <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+    <RadioGroup
+      value={selectedValue ?? undefined}
+      className="advanced-search-radio-group"
+    >
       {options.map((option) => (
-        <label
+        <Radio
           key={option.value}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "4px",
-            cursor: "pointer",
-            fontSize: "14px"
+          value={option.value}
+          onClick={(e) => {
+            e.preventDefault();
+            handleRadioClick(option.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleRadioClick(option.value);
+            }
           }}
         >
-          <input
-            type="radio"
-            name={name}
-            value={option.value}
-            checked={selectedValue === option.value}
-            onChange={() => handleClick(option.value)}
-            style={{
-              cursor: "pointer",
-              width: "16px",
-              height: "16px"
-            }}
-          />
-          {option.label}
-        </label>
+          {({ checked }) => (
+            <Label className="advanced-search-radio-group__label">
+              <span
+                className={`advanced-search-radio-group__input ${
+                  checked ? "advanced-search-radio-group__input--checked" : ""
+                }`}
+              />
+              {option.label}
+            </Label>
+          )}
+        </Radio>
       ))}
-    </div>
+    </RadioGroup>
   );
 };
 

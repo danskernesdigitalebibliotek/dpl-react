@@ -18,9 +18,9 @@ import { FACETS_CONFIG, FACET_FIELDS } from "../lib/facet-configs";
 import { isValidFacetState } from "../lib/validation";
 import { sortFacetValues } from "../lib/facet-sort-utils";
 import {
-  AccessTypeFilterValue,
-  AgeGroupFilterValue,
-  FictionTypeFilterValue
+  AccessTypeFilterOptions,
+  AgeGroupFilterOptions,
+  FictionTypeFilterOptions
 } from "../types";
 
 interface AdvancedSearchFacetsProps {
@@ -28,26 +28,15 @@ interface AdvancedSearchFacetsProps {
 }
 
 // Radio button options
-export const ACCESS_TYPE_OPTIONS: Array<{
-  value: AccessTypeFilterValue;
-  label: string;
-}> = [
+const ACCESS_TYPE_OPTIONS: AccessTypeFilterOptions[] = [
   { value: "online", label: "Online" },
   { value: "fysisk", label: "Fysisk" }
 ];
-
-export const FICTION_TYPE_OPTIONS: Array<{
-  value: FictionTypeFilterValue;
-  label: string;
-}> = [
+const FICTION_TYPE_OPTIONS: FictionTypeFilterOptions[] = [
   { value: "fiction", label: "Fiktion" },
   { value: "nonfiction", label: "Non-fiktion" }
 ];
-
-export const AGE_GROUP_OPTIONS: Array<{
-  value: AgeGroupFilterValue;
-  label: string;
-}> = [
+const AGE_GROUP_OPTIONS: AgeGroupFilterOptions[] = [
   { value: "til voksne", label: "Voksne" },
   { value: "til børn", label: "Børn" }
 ];
@@ -179,31 +168,28 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
         </ul>
 
         {/* Radio button filters */}
-        <div style={{ padding: "16px 0", borderBottom: "1px solid #e0e0e0" }}>
-          <div style={{ marginBottom: "16px" }}>
-            <AdvancedSearchRadioGroup
-              name="access-type"
-              options={ACCESS_TYPE_OPTIONS}
-              selectedValue={accessType ?? null}
-              onChange={(value) => setAccessType(value, { history: "push" })}
-            />
-          </div>
-          <div style={{ marginBottom: "16px" }}>
-            <AdvancedSearchRadioGroup
-              name="fiction-type"
-              options={FICTION_TYPE_OPTIONS}
-              selectedValue={fictionType ?? null}
-              onChange={(value) => setFictionType(value, { history: "push" })}
-            />
-          </div>
-          <div>
-            <AdvancedSearchRadioGroup
-              name="age-group"
-              options={AGE_GROUP_OPTIONS}
-              selectedValue={ageGroup ?? null}
-              onChange={(value) => setAgeGroup(value, { history: "push" })}
-            />
-          </div>
+        <div className="advanced-search-radio-group-wrapper">
+          <AdvancedSearchRadioGroup
+            name="access-type"
+            options={ACCESS_TYPE_OPTIONS}
+            selectedValue={accessType}
+            onChange={(value) => setAccessType(value, { history: "push" })}
+          />
+
+          <AdvancedSearchRadioGroup
+            name="fiction-type"
+            options={FICTION_TYPE_OPTIONS}
+            selectedValue={fictionType}
+            onChange={(value) => {
+              setFictionType(value, { history: "push" });
+            }}
+          />
+          <AdvancedSearchRadioGroup
+            name="age-group"
+            options={AGE_GROUP_OPTIONS}
+            selectedValue={ageGroup}
+            onChange={(value) => setAgeGroup(value, { history: "push" })}
+          />
         </div>
 
         {/* Filter groups */}

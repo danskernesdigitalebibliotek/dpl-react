@@ -63,6 +63,12 @@ export enum SortOption {
 }
 
 // Radio button filter types
-export type AccessTypeFilterValue = "online" | "fysisk";
-export type FictionTypeFilterValue = "fiction" | "nonfiction";
-export type AgeGroupFilterValue = "til voksne" | "til børn";
+export type AccessTypeFilterOptions =
+  | { value: "online"; label: "Online" }
+  | { value: "fysisk"; label: "Fysisk" };
+export type FictionTypeFilterOptions =
+  | { value: "fiction"; label: "Fiktion" }
+  | { value: "nonfiction"; label: "Non-fiktion" };
+export type AgeGroupFilterOptions =
+  | { value: "til voksne"; label: "Voksne" }
+  | { value: "til børn"; label: "Børn" };
