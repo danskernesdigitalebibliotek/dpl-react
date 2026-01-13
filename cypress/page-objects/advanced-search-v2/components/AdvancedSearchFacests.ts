@@ -182,4 +182,67 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
       .find(".advanced-search-facet-group__item-count")
       .should("contain", count);
   }
+
+  // Radio button group actions
+
+  /**
+   * Select a radio button by its label text
+   */
+  selectRadioOption(labelText: string) {
+    this.container()
+      .find(".advanced-search-radio-group")
+      .contains(".advanced-search-radio-group__label", labelText)
+      .parent()
+      .click();
+  }
+
+  /**
+   * Select a radio button using keyboard (Enter key)
+   */
+  selectRadioOptionWithEnter(labelText: string) {
+    this.container()
+      .find(".advanced-search-radio-group")
+      .contains(".advanced-search-radio-group__label", labelText)
+      .parent()
+      .focus()
+      .type("{enter}");
+  }
+
+  /**
+   * Select a radio button using keyboard (Space key)
+   */
+  selectRadioOptionWithSpace(labelText: string) {
+    this.container()
+      .find(".advanced-search-radio-group")
+      .contains(".advanced-search-radio-group__label", labelText)
+      .parent()
+      .focus()
+      .type(" ");
+  }
+
+  // Radio button group verification methods
+
+  /**
+   * Verify a radio button is selected by label text
+   */
+  verifyRadioOptionIsSelected(labelText: string) {
+    this.container()
+      .find(".advanced-search-radio-group")
+      .contains(".advanced-search-radio-group__label", labelText)
+      .parent()
+      .find(".advanced-search-radio-group__input--checked")
+      .should("exist");
+  }
+
+  /**
+   * Verify a radio button is not selected by label text
+   */
+  verifyRadioOptionIsNotSelected(labelText: string) {
+    this.container()
+      .find(".advanced-search-radio-group")
+      .contains(".advanced-search-radio-group__label", labelText)
+      .parent()
+      .find(".advanced-search-radio-group__input--checked")
+      .should("not.exist");
+  }
 }

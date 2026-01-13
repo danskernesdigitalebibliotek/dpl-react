@@ -755,4 +755,118 @@ describe("Advanced Search V2", () => {
       ]);
     });
   });
+
+  describe("Radio Button Filters", () => {
+    beforeEach(() => {
+      page.components.Form((form) => {
+        form.enterSearchTerm(0, "Kim Fupz");
+        form.clickSearch();
+      });
+      page.verifyResultsAreVisible();
+    });
+
+    it("allows selecting and deselecting access type radio options", () => {
+      page.components.Filters((filters) => {
+        // Select Online
+        filters.selectRadioOption("Online");
+        filters.verifyRadioOptionIsSelected("Online");
+      });
+
+      page.verifyUrlContains("accessType=online");
+
+      page.components.Filters((filters) => {
+        // Click Online again to deselect
+        filters.selectRadioOption("Online");
+        filters.verifyRadioOptionIsNotSelected("Online");
+      });
+
+      page.verifyUrlDoesNotContain("accessType");
+    });
+
+    it("allows selecting fiction type radio options", () => {
+      page.components.Filters((filters) => {
+        // Select Fiktion
+        filters.selectRadioOption("Fiktion");
+        filters.verifyRadioOptionIsSelected("Fiktion");
+      });
+
+      page.verifyUrlContains("fictionType=fiction");
+    });
+
+    it("allows selecting age group radio options", () => {
+      page.components.Filters((filters) => {
+        // Select Voksne
+        filters.selectRadioOption("Voksne");
+        filters.verifyRadioOptionIsSelected("Voksne");
+      });
+
+      page.verifyUrlContains("ageGroup=til");
+      page.verifyUrlContains("voksne");
+    });
+
+    it("allows switching between radio options in same group", () => {
+      page.components.Filters((filters) => {
+        // Select Online
+        filters.selectRadioOption("Online");
+      });
+
+      page.verifyUrlContains("accessType=online");
+
+      page.components.Filters((filters) => {
+        // Switch to Fysisk
+        filters.selectRadioOption("Fysisk");
+
+        // Verify Fysisk is selected and Online is not
+        filters.verifyRadioOptionIsSelected("Fysisk");
+        filters.verifyRadioOptionIsNotSelected("Online");
+      });
+
+      page.verifyUrlContains("accessType=fysisk");
+      page.verifyUrlDoesNotContain("accessType=online");
+    });
+
+    it("supports keyboard interaction with Enter key", () => {
+      page.components.Filters((filters) => {
+        // Focus and press Enter on Online option
+        filters.selectRadioOptionWithEnter("Online");
+        filters.verifyRadioOptionIsSelected("Online");
+      });
+
+      page.verifyUrlContains("accessType=online");
+    });
+
+    it("supports keyboard interaction with Space key", () => {
+      page.components.Filters((filters) => {
+        // Focus and press Space on Fiktion option
+        filters.selectRadioOptionWithSpace("Fiktion");
+        filters.verifyRadioOptionIsSelected("Fiktion");
+      });
+
+      page.verifyUrlContains("fictionType=fiction");
+    });
+
+    it("allows selecting options from multiple radio groups independently", () => {
+      page.components.Filters((filters) => {
+        // Select from access type
+        filters.selectRadioOption("Online");
+
+        // Select from fiction type
+        filters.selectRadioOption("Fiktion");
+
+        // Select from age group
+        filters.selectRadioOption("Voksne");
+
+        // Verify all three are selected
+        filters.verifyRadioOptionIsSelected("Online");
+        filters.verifyRadioOptionIsSelected("Fiktion");
+        filters.verifyRadioOptionIsSelected("Voksne");
+      });
+
+      // Verify URL contains all parameters
+      page.verifyUrlContains("accessType=online");
+      page.verifyUrlContains("fictionType=fiction");
+      page.verifyUrlContains("ageGroup=til");
+      page.verifyUrlContains("voksne");
+    });
+  });
 });
