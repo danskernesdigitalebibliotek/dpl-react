@@ -1,10 +1,7 @@
 import { compact, first, groupBy, head, uniq, uniqBy } from "lodash";
 import { UseQueryOptions } from "react-query";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
-import {
-  ListData,
-  ListItemType
-} from "../../components/material/MaterialDetailsList";
+import { ListData } from "../../components/material/MaterialDetailsList";
 import {
   hasCorrectAccessType,
   isArticle,
