@@ -30,6 +30,9 @@ import copyLinkArgs, {
 import editionSwitchModalArgs, {
   argTypes as editionSwitchModalArgTypes
 } from "../../core/storybook/editionSwitchModalArgs";
+import materialContentsArgs, {
+  argTypes as materialContentsArgTypes
+} from "../../components/material/MaterialContents/MaterialContentsArgs";
 
 const meta: Meta<typeof MaterialEntry> = {
   title: "Apps / Material",
@@ -47,6 +50,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...reservationMaterialDetailsPropsArgTypes,
     ...reservationListArgTypes,
     ...editionSwitchModalArgTypes,
+    ...materialContentsArgTypes,
     searchUrl: {
       description: "Path to the search result page",
       control: { type: "text" }
@@ -860,6 +864,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...reservationMaterialDetailsProps,
     ...reservationListArgs,
     ...editionSwitchModalArgs,
+    ...materialContentsArgs,
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
@@ -1296,5 +1301,45 @@ export const FindOnShelfHideUnavailable: Story = {
   args: {
     ...Default.args,
     findOnShelfHideUnavailableHoldingsConfig: "1"
+  }
+};
+
+export const ContentsSmiple: Story = {
+  name: "With contents: simple",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:139683226"
+  }
+};
+
+export const ContentsMany: Story = {
+  name: "With contents: many",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:52531802"
+  }
+};
+
+export const ContentsComplex: Story = {
+  name: "With contents: complex",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:140264814"
+  }
+};
+
+export const ContentsEditions: Story = {
+  name: "With contents: editions",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:52974755"
+  }
+};
+
+export const ContentsRaw: Story = {
+  name: "With contents: raw",
+  args: {
+    ...Default.args,
+    wid: "work-of:150086-netmusik:00795041726629"
   }
 };

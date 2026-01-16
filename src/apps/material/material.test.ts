@@ -375,32 +375,6 @@ describe("Material", () => {
         .contains("Dimensions")
         .next()
         .should("contain.text", "Stereo");
-
-      // Verify "Contents" field and its list values
-      cy.get(".list-description__item")
-        .contains("Contents")
-        .next()
-        .within(() => {
-          // Validate each list item in "Contents"
-          const contents = [
-            "Hello hooray",
-            "Raped and freezin'",
-            "Elected",
-            "Billion dollar babies",
-            "Unfinished sweet",
-            "No more Mr. Nice Guy",
-            "Generation landslide",
-            "Sick things",
-            "Mary Ann",
-            "I love the dead"
-          ];
-
-          contents.forEach((item, index) => {
-            cy.get(".list-description__value--list li")
-              .eq(index)
-              .should("have.text", item);
-          });
-        });
     });
   });
 
