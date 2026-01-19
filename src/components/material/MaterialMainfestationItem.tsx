@@ -12,6 +12,7 @@ import { useText } from "../../core/utils/text";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
 import CopyLink from "../copy-link/CopyLink";
+import MaterialContents from "./MaterialContents/MaterialContents";
 import { Manifestation } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
 import {
@@ -187,6 +188,11 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
               className="mt-24"
               data={detailsListData}
             />
+            {manifestation.contents && (
+              <div className="mt-24">
+                <MaterialContents contents={manifestation.contents} />
+              </div>
+            )}
             <CopyLink
               label={t("copyLinkToEditionText")}
               url={getCurrentUrlWithHash(manifestationId)}

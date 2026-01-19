@@ -2383,9 +2383,41 @@ export type GetSmallWorkQuery = {
           __typename?: "ContentsEntity";
           heading: string;
           type: ContentsEntityEnum;
+          raw?: string | null;
           entries?: Array<{
             __typename?: "ContentEntry";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
             title: { __typename?: "ContentEntryTitle"; display: string };
+            creators?: {
+              __typename?: "ContentEntryCreators";
+              persons?: Array<{
+                __typename?: "Person";
+                display: string;
+                nameSort: string;
+                firstName?: string | null;
+                lastName?: string | null;
+                attributeToName?: string | null;
+              }> | null;
+              corporations?: Array<{
+                __typename?: "Corporation";
+                display: string;
+                nameSort: string;
+                main?: string | null;
+              }> | null;
+            } | null;
+            sublevel?: Array<{
+              __typename?: "ContentSublevel";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+              sublevel?: Array<{
+                __typename?: "ContentSublevelLast";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+              }> | null;
+            }> | null;
           }> | null;
         }> | null;
         edition?: {
@@ -2521,9 +2553,41 @@ export type GetSmallWorkQuery = {
           __typename?: "ContentsEntity";
           heading: string;
           type: ContentsEntityEnum;
+          raw?: string | null;
           entries?: Array<{
             __typename?: "ContentEntry";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
             title: { __typename?: "ContentEntryTitle"; display: string };
+            creators?: {
+              __typename?: "ContentEntryCreators";
+              persons?: Array<{
+                __typename?: "Person";
+                display: string;
+                nameSort: string;
+                firstName?: string | null;
+                lastName?: string | null;
+                attributeToName?: string | null;
+              }> | null;
+              corporations?: Array<{
+                __typename?: "Corporation";
+                display: string;
+                nameSort: string;
+                main?: string | null;
+              }> | null;
+            } | null;
+            sublevel?: Array<{
+              __typename?: "ContentSublevel";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+              sublevel?: Array<{
+                __typename?: "ContentSublevelLast";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+              }> | null;
+            }> | null;
           }> | null;
         }> | null;
         edition?: {
@@ -2659,9 +2723,41 @@ export type GetSmallWorkQuery = {
           __typename?: "ContentsEntity";
           heading: string;
           type: ContentsEntityEnum;
+          raw?: string | null;
           entries?: Array<{
             __typename?: "ContentEntry";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
             title: { __typename?: "ContentEntryTitle"; display: string };
+            creators?: {
+              __typename?: "ContentEntryCreators";
+              persons?: Array<{
+                __typename?: "Person";
+                display: string;
+                nameSort: string;
+                firstName?: string | null;
+                lastName?: string | null;
+                attributeToName?: string | null;
+              }> | null;
+              corporations?: Array<{
+                __typename?: "Corporation";
+                display: string;
+                nameSort: string;
+                main?: string | null;
+              }> | null;
+            } | null;
+            sublevel?: Array<{
+              __typename?: "ContentSublevel";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+              sublevel?: Array<{
+                __typename?: "ContentSublevelLast";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+              }> | null;
+            }> | null;
           }> | null;
         }> | null;
         edition?: {
@@ -3052,9 +3148,41 @@ export type GetMaterialQuery = {
           __typename?: "ContentsEntity";
           heading: string;
           type: ContentsEntityEnum;
+          raw?: string | null;
           entries?: Array<{
             __typename?: "ContentEntry";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
             title: { __typename?: "ContentEntryTitle"; display: string };
+            creators?: {
+              __typename?: "ContentEntryCreators";
+              persons?: Array<{
+                __typename?: "Person";
+                display: string;
+                nameSort: string;
+                firstName?: string | null;
+                lastName?: string | null;
+                attributeToName?: string | null;
+              }> | null;
+              corporations?: Array<{
+                __typename?: "Corporation";
+                display: string;
+                nameSort: string;
+                main?: string | null;
+              }> | null;
+            } | null;
+            sublevel?: Array<{
+              __typename?: "ContentSublevel";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+              sublevel?: Array<{
+                __typename?: "ContentSublevelLast";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+              }> | null;
+            }> | null;
           }> | null;
         }> | null;
         edition?: {
@@ -3190,9 +3318,41 @@ export type GetMaterialQuery = {
           __typename?: "ContentsEntity";
           heading: string;
           type: ContentsEntityEnum;
+          raw?: string | null;
           entries?: Array<{
             __typename?: "ContentEntry";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
             title: { __typename?: "ContentEntryTitle"; display: string };
+            creators?: {
+              __typename?: "ContentEntryCreators";
+              persons?: Array<{
+                __typename?: "Person";
+                display: string;
+                nameSort: string;
+                firstName?: string | null;
+                lastName?: string | null;
+                attributeToName?: string | null;
+              }> | null;
+              corporations?: Array<{
+                __typename?: "Corporation";
+                display: string;
+                nameSort: string;
+                main?: string | null;
+              }> | null;
+            } | null;
+            sublevel?: Array<{
+              __typename?: "ContentSublevel";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+              sublevel?: Array<{
+                __typename?: "ContentSublevelLast";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+              }> | null;
+            }> | null;
           }> | null;
         }> | null;
         edition?: {
@@ -3328,9 +3488,41 @@ export type GetMaterialQuery = {
           __typename?: "ContentsEntity";
           heading: string;
           type: ContentsEntityEnum;
+          raw?: string | null;
           entries?: Array<{
             __typename?: "ContentEntry";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
             title: { __typename?: "ContentEntryTitle"; display: string };
+            creators?: {
+              __typename?: "ContentEntryCreators";
+              persons?: Array<{
+                __typename?: "Person";
+                display: string;
+                nameSort: string;
+                firstName?: string | null;
+                lastName?: string | null;
+                attributeToName?: string | null;
+              }> | null;
+              corporations?: Array<{
+                __typename?: "Corporation";
+                display: string;
+                nameSort: string;
+                main?: string | null;
+              }> | null;
+            } | null;
+            sublevel?: Array<{
+              __typename?: "ContentSublevel";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+              sublevel?: Array<{
+                __typename?: "ContentSublevelLast";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+              }> | null;
+            }> | null;
           }> | null;
         }> | null;
         edition?: {
@@ -3575,9 +3767,41 @@ export type GetMaterialGloballyQuery = {
           __typename?: "ContentsEntity";
           heading: string;
           type: ContentsEntityEnum;
+          raw?: string | null;
           entries?: Array<{
             __typename?: "ContentEntry";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
             title: { __typename?: "ContentEntryTitle"; display: string };
+            creators?: {
+              __typename?: "ContentEntryCreators";
+              persons?: Array<{
+                __typename?: "Person";
+                display: string;
+                nameSort: string;
+                firstName?: string | null;
+                lastName?: string | null;
+                attributeToName?: string | null;
+              }> | null;
+              corporations?: Array<{
+                __typename?: "Corporation";
+                display: string;
+                nameSort: string;
+                main?: string | null;
+              }> | null;
+            } | null;
+            sublevel?: Array<{
+              __typename?: "ContentSublevel";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+              sublevel?: Array<{
+                __typename?: "ContentSublevelLast";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+              }> | null;
+            }> | null;
           }> | null;
         }> | null;
         edition?: {
@@ -3713,9 +3937,41 @@ export type GetMaterialGloballyQuery = {
           __typename?: "ContentsEntity";
           heading: string;
           type: ContentsEntityEnum;
+          raw?: string | null;
           entries?: Array<{
             __typename?: "ContentEntry";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
             title: { __typename?: "ContentEntryTitle"; display: string };
+            creators?: {
+              __typename?: "ContentEntryCreators";
+              persons?: Array<{
+                __typename?: "Person";
+                display: string;
+                nameSort: string;
+                firstName?: string | null;
+                lastName?: string | null;
+                attributeToName?: string | null;
+              }> | null;
+              corporations?: Array<{
+                __typename?: "Corporation";
+                display: string;
+                nameSort: string;
+                main?: string | null;
+              }> | null;
+            } | null;
+            sublevel?: Array<{
+              __typename?: "ContentSublevel";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+              sublevel?: Array<{
+                __typename?: "ContentSublevelLast";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+              }> | null;
+            }> | null;
           }> | null;
         }> | null;
         edition?: {
@@ -3851,9 +4107,41 @@ export type GetMaterialGloballyQuery = {
           __typename?: "ContentsEntity";
           heading: string;
           type: ContentsEntityEnum;
+          raw?: string | null;
           entries?: Array<{
             __typename?: "ContentEntry";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
             title: { __typename?: "ContentEntryTitle"; display: string };
+            creators?: {
+              __typename?: "ContentEntryCreators";
+              persons?: Array<{
+                __typename?: "Person";
+                display: string;
+                nameSort: string;
+                firstName?: string | null;
+                lastName?: string | null;
+                attributeToName?: string | null;
+              }> | null;
+              corporations?: Array<{
+                __typename?: "Corporation";
+                display: string;
+                nameSort: string;
+                main?: string | null;
+              }> | null;
+            } | null;
+            sublevel?: Array<{
+              __typename?: "ContentSublevel";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+              sublevel?: Array<{
+                __typename?: "ContentSublevelLast";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+              }> | null;
+            }> | null;
           }> | null;
         }> | null;
         edition?: {
@@ -4142,9 +4430,44 @@ export type RecommendFromFaustQuery = {
               __typename?: "ContentsEntity";
               heading: string;
               type: ContentsEntityEnum;
+              raw?: string | null;
               entries?: Array<{
                 __typename?: "ContentEntry";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
                 title: { __typename?: "ContentEntryTitle"; display: string };
+                creators?: {
+                  __typename?: "ContentEntryCreators";
+                  persons?: Array<{
+                    __typename?: "Person";
+                    display: string;
+                    nameSort: string;
+                    firstName?: string | null;
+                    lastName?: string | null;
+                    attributeToName?: string | null;
+                  }> | null;
+                  corporations?: Array<{
+                    __typename?: "Corporation";
+                    display: string;
+                    nameSort: string;
+                    main?: string | null;
+                  }> | null;
+                } | null;
+                sublevel?: Array<{
+                  __typename?: "ContentSublevel";
+                  contributors?: Array<string> | null;
+                  playingTime?: string | null;
+                  title: { __typename?: "ContentEntryTitle"; display: string };
+                  sublevel?: Array<{
+                    __typename?: "ContentSublevelLast";
+                    contributors?: Array<string> | null;
+                    playingTime?: string | null;
+                    title: {
+                      __typename?: "ContentEntryTitle";
+                      display: string;
+                    };
+                  }> | null;
+                }> | null;
               }> | null;
             }> | null;
             edition?: {
@@ -4280,9 +4603,44 @@ export type RecommendFromFaustQuery = {
               __typename?: "ContentsEntity";
               heading: string;
               type: ContentsEntityEnum;
+              raw?: string | null;
               entries?: Array<{
                 __typename?: "ContentEntry";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
                 title: { __typename?: "ContentEntryTitle"; display: string };
+                creators?: {
+                  __typename?: "ContentEntryCreators";
+                  persons?: Array<{
+                    __typename?: "Person";
+                    display: string;
+                    nameSort: string;
+                    firstName?: string | null;
+                    lastName?: string | null;
+                    attributeToName?: string | null;
+                  }> | null;
+                  corporations?: Array<{
+                    __typename?: "Corporation";
+                    display: string;
+                    nameSort: string;
+                    main?: string | null;
+                  }> | null;
+                } | null;
+                sublevel?: Array<{
+                  __typename?: "ContentSublevel";
+                  contributors?: Array<string> | null;
+                  playingTime?: string | null;
+                  title: { __typename?: "ContentEntryTitle"; display: string };
+                  sublevel?: Array<{
+                    __typename?: "ContentSublevelLast";
+                    contributors?: Array<string> | null;
+                    playingTime?: string | null;
+                    title: {
+                      __typename?: "ContentEntryTitle";
+                      display: string;
+                    };
+                  }> | null;
+                }> | null;
               }> | null;
             }> | null;
             edition?: {
@@ -4418,9 +4776,44 @@ export type RecommendFromFaustQuery = {
               __typename?: "ContentsEntity";
               heading: string;
               type: ContentsEntityEnum;
+              raw?: string | null;
               entries?: Array<{
                 __typename?: "ContentEntry";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
                 title: { __typename?: "ContentEntryTitle"; display: string };
+                creators?: {
+                  __typename?: "ContentEntryCreators";
+                  persons?: Array<{
+                    __typename?: "Person";
+                    display: string;
+                    nameSort: string;
+                    firstName?: string | null;
+                    lastName?: string | null;
+                    attributeToName?: string | null;
+                  }> | null;
+                  corporations?: Array<{
+                    __typename?: "Corporation";
+                    display: string;
+                    nameSort: string;
+                    main?: string | null;
+                  }> | null;
+                } | null;
+                sublevel?: Array<{
+                  __typename?: "ContentSublevel";
+                  contributors?: Array<string> | null;
+                  playingTime?: string | null;
+                  title: { __typename?: "ContentEntryTitle"; display: string };
+                  sublevel?: Array<{
+                    __typename?: "ContentSublevelLast";
+                    contributors?: Array<string> | null;
+                    playingTime?: string | null;
+                    title: {
+                      __typename?: "ContentEntryTitle";
+                      display: string;
+                    };
+                  }> | null;
+                }> | null;
               }> | null;
             }> | null;
             edition?: {
@@ -4618,9 +5011,41 @@ export type SearchWithPaginationQuery = {
             __typename?: "ContentsEntity";
             heading: string;
             type: ContentsEntityEnum;
+            raw?: string | null;
             entries?: Array<{
               __typename?: "ContentEntry";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
               title: { __typename?: "ContentEntryTitle"; display: string };
+              creators?: {
+                __typename?: "ContentEntryCreators";
+                persons?: Array<{
+                  __typename?: "Person";
+                  display: string;
+                  nameSort: string;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  attributeToName?: string | null;
+                }> | null;
+                corporations?: Array<{
+                  __typename?: "Corporation";
+                  display: string;
+                  nameSort: string;
+                  main?: string | null;
+                }> | null;
+              } | null;
+              sublevel?: Array<{
+                __typename?: "ContentSublevel";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+                sublevel?: Array<{
+                  __typename?: "ContentSublevelLast";
+                  contributors?: Array<string> | null;
+                  playingTime?: string | null;
+                  title: { __typename?: "ContentEntryTitle"; display: string };
+                }> | null;
+              }> | null;
             }> | null;
           }> | null;
           edition?: {
@@ -4756,9 +5181,41 @@ export type SearchWithPaginationQuery = {
             __typename?: "ContentsEntity";
             heading: string;
             type: ContentsEntityEnum;
+            raw?: string | null;
             entries?: Array<{
               __typename?: "ContentEntry";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
               title: { __typename?: "ContentEntryTitle"; display: string };
+              creators?: {
+                __typename?: "ContentEntryCreators";
+                persons?: Array<{
+                  __typename?: "Person";
+                  display: string;
+                  nameSort: string;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  attributeToName?: string | null;
+                }> | null;
+                corporations?: Array<{
+                  __typename?: "Corporation";
+                  display: string;
+                  nameSort: string;
+                  main?: string | null;
+                }> | null;
+              } | null;
+              sublevel?: Array<{
+                __typename?: "ContentSublevel";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+                sublevel?: Array<{
+                  __typename?: "ContentSublevelLast";
+                  contributors?: Array<string> | null;
+                  playingTime?: string | null;
+                  title: { __typename?: "ContentEntryTitle"; display: string };
+                }> | null;
+              }> | null;
             }> | null;
           }> | null;
           edition?: {
@@ -4894,9 +5351,41 @@ export type SearchWithPaginationQuery = {
             __typename?: "ContentsEntity";
             heading: string;
             type: ContentsEntityEnum;
+            raw?: string | null;
             entries?: Array<{
               __typename?: "ContentEntry";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
               title: { __typename?: "ContentEntryTitle"; display: string };
+              creators?: {
+                __typename?: "ContentEntryCreators";
+                persons?: Array<{
+                  __typename?: "Person";
+                  display: string;
+                  nameSort: string;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  attributeToName?: string | null;
+                }> | null;
+                corporations?: Array<{
+                  __typename?: "Corporation";
+                  display: string;
+                  nameSort: string;
+                  main?: string | null;
+                }> | null;
+              } | null;
+              sublevel?: Array<{
+                __typename?: "ContentSublevel";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+                sublevel?: Array<{
+                  __typename?: "ContentSublevelLast";
+                  contributors?: Array<string> | null;
+                  playingTime?: string | null;
+                  title: { __typename?: "ContentEntryTitle"; display: string };
+                }> | null;
+              }> | null;
             }> | null;
           }> | null;
           edition?: {
@@ -5142,9 +5631,41 @@ export type ComplexSearchWithPaginationQuery = {
             __typename?: "ContentsEntity";
             heading: string;
             type: ContentsEntityEnum;
+            raw?: string | null;
             entries?: Array<{
               __typename?: "ContentEntry";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
               title: { __typename?: "ContentEntryTitle"; display: string };
+              creators?: {
+                __typename?: "ContentEntryCreators";
+                persons?: Array<{
+                  __typename?: "Person";
+                  display: string;
+                  nameSort: string;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  attributeToName?: string | null;
+                }> | null;
+                corporations?: Array<{
+                  __typename?: "Corporation";
+                  display: string;
+                  nameSort: string;
+                  main?: string | null;
+                }> | null;
+              } | null;
+              sublevel?: Array<{
+                __typename?: "ContentSublevel";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+                sublevel?: Array<{
+                  __typename?: "ContentSublevelLast";
+                  contributors?: Array<string> | null;
+                  playingTime?: string | null;
+                  title: { __typename?: "ContentEntryTitle"; display: string };
+                }> | null;
+              }> | null;
             }> | null;
           }> | null;
           edition?: {
@@ -5280,9 +5801,41 @@ export type ComplexSearchWithPaginationQuery = {
             __typename?: "ContentsEntity";
             heading: string;
             type: ContentsEntityEnum;
+            raw?: string | null;
             entries?: Array<{
               __typename?: "ContentEntry";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
               title: { __typename?: "ContentEntryTitle"; display: string };
+              creators?: {
+                __typename?: "ContentEntryCreators";
+                persons?: Array<{
+                  __typename?: "Person";
+                  display: string;
+                  nameSort: string;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  attributeToName?: string | null;
+                }> | null;
+                corporations?: Array<{
+                  __typename?: "Corporation";
+                  display: string;
+                  nameSort: string;
+                  main?: string | null;
+                }> | null;
+              } | null;
+              sublevel?: Array<{
+                __typename?: "ContentSublevel";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+                sublevel?: Array<{
+                  __typename?: "ContentSublevelLast";
+                  contributors?: Array<string> | null;
+                  playingTime?: string | null;
+                  title: { __typename?: "ContentEntryTitle"; display: string };
+                }> | null;
+              }> | null;
             }> | null;
           }> | null;
           edition?: {
@@ -5418,9 +5971,41 @@ export type ComplexSearchWithPaginationQuery = {
             __typename?: "ContentsEntity";
             heading: string;
             type: ContentsEntityEnum;
+            raw?: string | null;
             entries?: Array<{
               __typename?: "ContentEntry";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
               title: { __typename?: "ContentEntryTitle"; display: string };
+              creators?: {
+                __typename?: "ContentEntryCreators";
+                persons?: Array<{
+                  __typename?: "Person";
+                  display: string;
+                  nameSort: string;
+                  firstName?: string | null;
+                  lastName?: string | null;
+                  attributeToName?: string | null;
+                }> | null;
+                corporations?: Array<{
+                  __typename?: "Corporation";
+                  display: string;
+                  nameSort: string;
+                  main?: string | null;
+                }> | null;
+              } | null;
+              sublevel?: Array<{
+                __typename?: "ContentSublevel";
+                contributors?: Array<string> | null;
+                playingTime?: string | null;
+                title: { __typename?: "ContentEntryTitle"; display: string };
+                sublevel?: Array<{
+                  __typename?: "ContentSublevelLast";
+                  contributors?: Array<string> | null;
+                  playingTime?: string | null;
+                  title: { __typename?: "ContentEntryTitle"; display: string };
+                }> | null;
+              }> | null;
             }> | null;
           }> | null;
           edition?: {
@@ -5757,9 +6342,41 @@ export type ManifestationsSimpleFragment = {
       __typename?: "ContentsEntity";
       heading: string;
       type: ContentsEntityEnum;
+      raw?: string | null;
       entries?: Array<{
         __typename?: "ContentEntry";
+        contributors?: Array<string> | null;
+        playingTime?: string | null;
         title: { __typename?: "ContentEntryTitle"; display: string };
+        creators?: {
+          __typename?: "ContentEntryCreators";
+          persons?: Array<{
+            __typename?: "Person";
+            display: string;
+            nameSort: string;
+            firstName?: string | null;
+            lastName?: string | null;
+            attributeToName?: string | null;
+          }> | null;
+          corporations?: Array<{
+            __typename?: "Corporation";
+            display: string;
+            nameSort: string;
+            main?: string | null;
+          }> | null;
+        } | null;
+        sublevel?: Array<{
+          __typename?: "ContentSublevel";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
+          title: { __typename?: "ContentEntryTitle"; display: string };
+          sublevel?: Array<{
+            __typename?: "ContentSublevelLast";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
+            title: { __typename?: "ContentEntryTitle"; display: string };
+          }> | null;
+        }> | null;
       }> | null;
     }> | null;
     edition?: {
@@ -5889,9 +6506,41 @@ export type ManifestationsSimpleFragment = {
       __typename?: "ContentsEntity";
       heading: string;
       type: ContentsEntityEnum;
+      raw?: string | null;
       entries?: Array<{
         __typename?: "ContentEntry";
+        contributors?: Array<string> | null;
+        playingTime?: string | null;
         title: { __typename?: "ContentEntryTitle"; display: string };
+        creators?: {
+          __typename?: "ContentEntryCreators";
+          persons?: Array<{
+            __typename?: "Person";
+            display: string;
+            nameSort: string;
+            firstName?: string | null;
+            lastName?: string | null;
+            attributeToName?: string | null;
+          }> | null;
+          corporations?: Array<{
+            __typename?: "Corporation";
+            display: string;
+            nameSort: string;
+            main?: string | null;
+          }> | null;
+        } | null;
+        sublevel?: Array<{
+          __typename?: "ContentSublevel";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
+          title: { __typename?: "ContentEntryTitle"; display: string };
+          sublevel?: Array<{
+            __typename?: "ContentSublevelLast";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
+            title: { __typename?: "ContentEntryTitle"; display: string };
+          }> | null;
+        }> | null;
       }> | null;
     }> | null;
     edition?: {
@@ -6021,9 +6670,41 @@ export type ManifestationsSimpleFragment = {
       __typename?: "ContentsEntity";
       heading: string;
       type: ContentsEntityEnum;
+      raw?: string | null;
       entries?: Array<{
         __typename?: "ContentEntry";
+        contributors?: Array<string> | null;
+        playingTime?: string | null;
         title: { __typename?: "ContentEntryTitle"; display: string };
+        creators?: {
+          __typename?: "ContentEntryCreators";
+          persons?: Array<{
+            __typename?: "Person";
+            display: string;
+            nameSort: string;
+            firstName?: string | null;
+            lastName?: string | null;
+            attributeToName?: string | null;
+          }> | null;
+          corporations?: Array<{
+            __typename?: "Corporation";
+            display: string;
+            nameSort: string;
+            main?: string | null;
+          }> | null;
+        } | null;
+        sublevel?: Array<{
+          __typename?: "ContentSublevel";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
+          title: { __typename?: "ContentEntryTitle"; display: string };
+          sublevel?: Array<{
+            __typename?: "ContentSublevelLast";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
+            title: { __typename?: "ContentEntryTitle"; display: string };
+          }> | null;
+        }> | null;
       }> | null;
     }> | null;
     edition?: {
@@ -6185,9 +6866,41 @@ export type ManifestationsSimpleFieldsFragment = {
     __typename?: "ContentsEntity";
     heading: string;
     type: ContentsEntityEnum;
+    raw?: string | null;
     entries?: Array<{
       __typename?: "ContentEntry";
+      contributors?: Array<string> | null;
+      playingTime?: string | null;
       title: { __typename?: "ContentEntryTitle"; display: string };
+      creators?: {
+        __typename?: "ContentEntryCreators";
+        persons?: Array<{
+          __typename?: "Person";
+          display: string;
+          nameSort: string;
+          firstName?: string | null;
+          lastName?: string | null;
+          attributeToName?: string | null;
+        }> | null;
+        corporations?: Array<{
+          __typename?: "Corporation";
+          display: string;
+          nameSort: string;
+          main?: string | null;
+        }> | null;
+      } | null;
+      sublevel?: Array<{
+        __typename?: "ContentSublevel";
+        contributors?: Array<string> | null;
+        playingTime?: string | null;
+        title: { __typename?: "ContentEntryTitle"; display: string };
+        sublevel?: Array<{
+          __typename?: "ContentSublevelLast";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
+          title: { __typename?: "ContentEntryTitle"; display: string };
+        }> | null;
+      }> | null;
     }> | null;
   }> | null;
   edition?: {
@@ -6456,9 +7169,41 @@ export type WorkSmallFragment = {
         __typename?: "ContentsEntity";
         heading: string;
         type: ContentsEntityEnum;
+        raw?: string | null;
         entries?: Array<{
           __typename?: "ContentEntry";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
           title: { __typename?: "ContentEntryTitle"; display: string };
+          creators?: {
+            __typename?: "ContentEntryCreators";
+            persons?: Array<{
+              __typename?: "Person";
+              display: string;
+              nameSort: string;
+              firstName?: string | null;
+              lastName?: string | null;
+              attributeToName?: string | null;
+            }> | null;
+            corporations?: Array<{
+              __typename?: "Corporation";
+              display: string;
+              nameSort: string;
+              main?: string | null;
+            }> | null;
+          } | null;
+          sublevel?: Array<{
+            __typename?: "ContentSublevel";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
+            title: { __typename?: "ContentEntryTitle"; display: string };
+            sublevel?: Array<{
+              __typename?: "ContentSublevelLast";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+            }> | null;
+          }> | null;
         }> | null;
       }> | null;
       edition?: {
@@ -6594,9 +7339,41 @@ export type WorkSmallFragment = {
         __typename?: "ContentsEntity";
         heading: string;
         type: ContentsEntityEnum;
+        raw?: string | null;
         entries?: Array<{
           __typename?: "ContentEntry";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
           title: { __typename?: "ContentEntryTitle"; display: string };
+          creators?: {
+            __typename?: "ContentEntryCreators";
+            persons?: Array<{
+              __typename?: "Person";
+              display: string;
+              nameSort: string;
+              firstName?: string | null;
+              lastName?: string | null;
+              attributeToName?: string | null;
+            }> | null;
+            corporations?: Array<{
+              __typename?: "Corporation";
+              display: string;
+              nameSort: string;
+              main?: string | null;
+            }> | null;
+          } | null;
+          sublevel?: Array<{
+            __typename?: "ContentSublevel";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
+            title: { __typename?: "ContentEntryTitle"; display: string };
+            sublevel?: Array<{
+              __typename?: "ContentSublevelLast";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+            }> | null;
+          }> | null;
         }> | null;
       }> | null;
       edition?: {
@@ -6732,9 +7509,41 @@ export type WorkSmallFragment = {
         __typename?: "ContentsEntity";
         heading: string;
         type: ContentsEntityEnum;
+        raw?: string | null;
         entries?: Array<{
           __typename?: "ContentEntry";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
           title: { __typename?: "ContentEntryTitle"; display: string };
+          creators?: {
+            __typename?: "ContentEntryCreators";
+            persons?: Array<{
+              __typename?: "Person";
+              display: string;
+              nameSort: string;
+              firstName?: string | null;
+              lastName?: string | null;
+              attributeToName?: string | null;
+            }> | null;
+            corporations?: Array<{
+              __typename?: "Corporation";
+              display: string;
+              nameSort: string;
+              main?: string | null;
+            }> | null;
+          } | null;
+          sublevel?: Array<{
+            __typename?: "ContentSublevel";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
+            title: { __typename?: "ContentEntryTitle"; display: string };
+            sublevel?: Array<{
+              __typename?: "ContentSublevelLast";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+            }> | null;
+          }> | null;
         }> | null;
       }> | null;
       edition?: {
@@ -6972,9 +7781,41 @@ export type WorkMediumFragment = {
         __typename?: "ContentsEntity";
         heading: string;
         type: ContentsEntityEnum;
+        raw?: string | null;
         entries?: Array<{
           __typename?: "ContentEntry";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
           title: { __typename?: "ContentEntryTitle"; display: string };
+          creators?: {
+            __typename?: "ContentEntryCreators";
+            persons?: Array<{
+              __typename?: "Person";
+              display: string;
+              nameSort: string;
+              firstName?: string | null;
+              lastName?: string | null;
+              attributeToName?: string | null;
+            }> | null;
+            corporations?: Array<{
+              __typename?: "Corporation";
+              display: string;
+              nameSort: string;
+              main?: string | null;
+            }> | null;
+          } | null;
+          sublevel?: Array<{
+            __typename?: "ContentSublevel";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
+            title: { __typename?: "ContentEntryTitle"; display: string };
+            sublevel?: Array<{
+              __typename?: "ContentSublevelLast";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+            }> | null;
+          }> | null;
         }> | null;
       }> | null;
       edition?: {
@@ -7110,9 +7951,41 @@ export type WorkMediumFragment = {
         __typename?: "ContentsEntity";
         heading: string;
         type: ContentsEntityEnum;
+        raw?: string | null;
         entries?: Array<{
           __typename?: "ContentEntry";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
           title: { __typename?: "ContentEntryTitle"; display: string };
+          creators?: {
+            __typename?: "ContentEntryCreators";
+            persons?: Array<{
+              __typename?: "Person";
+              display: string;
+              nameSort: string;
+              firstName?: string | null;
+              lastName?: string | null;
+              attributeToName?: string | null;
+            }> | null;
+            corporations?: Array<{
+              __typename?: "Corporation";
+              display: string;
+              nameSort: string;
+              main?: string | null;
+            }> | null;
+          } | null;
+          sublevel?: Array<{
+            __typename?: "ContentSublevel";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
+            title: { __typename?: "ContentEntryTitle"; display: string };
+            sublevel?: Array<{
+              __typename?: "ContentSublevelLast";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+            }> | null;
+          }> | null;
         }> | null;
       }> | null;
       edition?: {
@@ -7248,9 +8121,41 @@ export type WorkMediumFragment = {
         __typename?: "ContentsEntity";
         heading: string;
         type: ContentsEntityEnum;
+        raw?: string | null;
         entries?: Array<{
           __typename?: "ContentEntry";
+          contributors?: Array<string> | null;
+          playingTime?: string | null;
           title: { __typename?: "ContentEntryTitle"; display: string };
+          creators?: {
+            __typename?: "ContentEntryCreators";
+            persons?: Array<{
+              __typename?: "Person";
+              display: string;
+              nameSort: string;
+              firstName?: string | null;
+              lastName?: string | null;
+              attributeToName?: string | null;
+            }> | null;
+            corporations?: Array<{
+              __typename?: "Corporation";
+              display: string;
+              nameSort: string;
+              main?: string | null;
+            }> | null;
+          } | null;
+          sublevel?: Array<{
+            __typename?: "ContentSublevel";
+            contributors?: Array<string> | null;
+            playingTime?: string | null;
+            title: { __typename?: "ContentEntryTitle"; display: string };
+            sublevel?: Array<{
+              __typename?: "ContentSublevelLast";
+              contributors?: Array<string> | null;
+              playingTime?: string | null;
+              title: { __typename?: "ContentEntryTitle"; display: string };
+            }> | null;
+          }> | null;
         }> | null;
       }> | null;
       edition?: {
@@ -7540,9 +8445,40 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   contents {
     heading
     type
+    raw
     entries {
       title {
         display
+      }
+      creators {
+        persons {
+          display
+          nameSort
+          firstName
+          lastName
+          attributeToName
+        }
+        corporations {
+          display
+          nameSort
+          main
+        }
+      }
+      contributors
+      playingTime
+      sublevel {
+        title {
+          display
+        }
+        contributors
+        playingTime
+        sublevel {
+          title {
+            display
+          }
+          contributors
+          playingTime
+        }
       }
     }
   }

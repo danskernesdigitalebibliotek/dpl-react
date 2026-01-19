@@ -1,10 +1,7 @@
 import { compact, first, groupBy, head, uniq, uniqBy } from "lodash";
 import { UseQueryOptions } from "react-query";
 import { ManifestationHoldings } from "../../components/find-on-shelf/types";
-import {
-  ListData,
-  ListItemType
-} from "../../components/material/MaterialDetailsList";
+import { ListData } from "../../components/material/MaterialDetailsList";
 import {
   hasCorrectAccessType,
   isArticle,
@@ -266,13 +263,6 @@ export const getManifestationHostPublication = (
 ) => {
   return manifestation.hostPublication?.summary ?? "";
 };
-export const getManifestationContents = (manifestation: Manifestation) => {
-  // Get the first contents object
-  const firstContents = manifestation.contents?.[0];
-
-  // Return all display titles from the first contents object
-  return firstContents?.entries?.map((entry) => entry.title.display) || "";
-};
 
 export const getDetailsListData = ({
   manifestation,
@@ -356,11 +346,6 @@ export const getDetailsListData = ({
       value: getManifestationHostPublication(
         manifestation ?? fallBackManifestation
       )
-    },
-    {
-      label: t("detailsListPartsText"),
-      value: getManifestationContents(manifestation ?? fallBackManifestation),
-      type: ListItemType.List
     }
   ];
 };

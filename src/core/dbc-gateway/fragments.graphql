@@ -81,9 +81,40 @@ fragment ManifestationsSimpleFields on Manifestation {
   contents {
     heading
     type
+    raw
     entries {
       title {
         display
+      }
+      creators {
+        persons {
+          display
+          nameSort
+          firstName
+          lastName
+          attributeToName
+        }
+        corporations {
+          display
+          nameSort
+          main
+        }
+      }
+      contributors
+      playingTime
+      sublevel {
+        title {
+          display
+        }
+        contributors
+        playingTime
+        sublevel {
+          title {
+            display
+          }
+          contributors
+          playingTime
+        }
       }
     }
   }

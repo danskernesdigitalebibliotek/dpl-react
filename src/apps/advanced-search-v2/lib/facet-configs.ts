@@ -5,11 +5,6 @@ import { FacetConfig } from "../types";
 
 export const FACETS_CONFIG: FacetConfig[] = [
   {
-    label: "advancedSearchFacetAccessTypeText",
-    facetField: ComplexSearchFacetsEnum.Accesstype
-  },
-  // Fiktion / Nonfiktion - Not available in ComplexSearchFacetsEnum
-  {
     label: "advancedSearchFacetFormatText",
     facetField: ComplexSearchFacetsEnum.Specificmaterialtype
   },
@@ -29,7 +24,6 @@ export const FACETS_CONFIG: FacetConfig[] = [
     label: "advancedSearchFacetSourceText",
     facetField: ComplexSearchFacetsEnum.Source
   },
-
   {
     label: "advancedSearchFacetHostPublicationText",
     facetField: ComplexSearchFacetsEnum.Hostpublication
@@ -50,7 +44,6 @@ export const FACETS_CONFIG: FacetConfig[] = [
     label: "advancedSearchFacetFictionalCharacterText",
     facetField: ComplexSearchFacetsEnum.Fictionalcharacter
   },
-  // For børn / voksne - Not available in ComplexSearchFacetsEnum
   {
     label: "advancedSearchFacetAgeText",
     facetField: ComplexSearchFacetsEnum.Ages
