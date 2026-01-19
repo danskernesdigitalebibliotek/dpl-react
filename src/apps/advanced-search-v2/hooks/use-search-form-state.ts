@@ -46,7 +46,10 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
     onlyExtraTitles: parseAsBoolean.withDefault(false),
     sort: parseAsStringEnum<SortOption>(Object.values(SortOption)).withDefault(
       SortOption.Relevance
-    )
+    ),
+    accessType: parseAsStringEnum(["online", "fysisk"] as const),
+    fictionType: parseAsStringEnum(["fiction", "nonfiction"] as const),
+    ageGroup: parseAsStringEnum(["til voksne", "til børn"] as const)
   });
 
   // Local state for temporary changes - initialize from URL
@@ -140,20 +143,26 @@ export const useSearchFormState = (): UseSearchFormStateReturn => {
       {
         filters: INITIAL_FILTER_STATE,
         preSearchFacets: [],
-        facets: []
+        facets: [],
+        accessType: null,
+        fictionType: null,
+        ageGroup: null
       },
       { history: "push" }
     );
   };
 
-  // Clear facets (sidebar filters), toggles, and sort when returning to edit
+  // Clear facets (sidebar filters), toggles, radio buttons, and sort when returning to edit
   const clearFacets = () => {
     setUrlState(
       {
         facets: [],
         onShelf: false,
         onlyExtraTitles: false,
-        sort: null
+        sort: null,
+        accessType: null,
+        fictionType: null,
+        ageGroup: null
       },
       { history: "push" }
     );

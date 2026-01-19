@@ -61,3 +61,14 @@ export enum SortOption {
   LatestPubDateAsc = "sort.latestpublicationdate.asc",
   LatestPubDateDesc = "sort.latestpublicationdate.desc"
 }
+
+// Radio button filter types
+export type AccessTypeFilterOptions =
+  | { value: "online"; label: "Online" }
+  | { value: "fysisk"; label: "Fysisk" };
+export type FictionTypeFilterOptions =
+  | { value: "fiction"; label: "Fiktion" }
+  | { value: "nonfiction"; label: "Non-fiktion" };
+export type AgeGroupFilterOptions =
+  | { value: "til voksne"; label: "Voksne" }
+  | { value: "til børn"; label: "Børn" };

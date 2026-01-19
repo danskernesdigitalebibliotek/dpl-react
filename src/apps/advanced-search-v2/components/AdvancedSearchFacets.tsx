@@ -1,7 +1,13 @@
 import React from "react";
-import { useQueryState, parseAsBoolean, parseAsJson } from "nuqs";
+import {
+  useQueryState,
+  parseAsBoolean,
+  parseAsJson,
+  parseAsString
+} from "nuqs";
 import AdvancedSearchFilterGroup from "./AdvancedSearchFacetGroup";
 import AdvancedSearchToggle from "./AdvancedSearchToggle";
+import AdvancedSearchRadioGroup from "./AdvancedSearchRadioGroup";
 import { useText } from "../../../core/utils/text";
 import {
   ComplexSearchFacetsEnum,
@@ -11,10 +17,29 @@ import {
 import { FACETS_CONFIG, FACET_FIELDS } from "../lib/facet-configs";
 import { isValidFacetState } from "../lib/validation";
 import { sortFacetValues } from "../lib/facet-sort-utils";
+import {
+  AccessTypeFilterOptions,
+  AgeGroupFilterOptions,
+  FictionTypeFilterOptions
+} from "../types";
 
 interface AdvancedSearchFacetsProps {
   cql: string;
 }
+
+// Radio button options
+const ACCESS_TYPE_OPTIONS: AccessTypeFilterOptions[] = [
+  { value: "online", label: "Online" },
+  { value: "fysisk", label: "Fysisk" }
+];
+const FICTION_TYPE_OPTIONS: FictionTypeFilterOptions[] = [
+  { value: "fiction", label: "Fiktion" },
+  { value: "nonfiction", label: "Non-fiktion" }
+];
+const AGE_GROUP_OPTIONS: AgeGroupFilterOptions[] = [
+  { value: "til voksne", label: "Voksne" },
+  { value: "til børn", label: "Børn" }
+];
 
 const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
   const t = useText();
@@ -28,6 +53,17 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
     "onlyExtraTitles",
     parseAsBoolean.withDefault(false)
   );
+
+  // Radio button filter states
+  const [accessType, setAccessType] = useQueryState(
+    "accessType",
+    parseAsString
+  );
+  const [fictionType, setFictionType] = useQueryState(
+    "fictionType",
+    parseAsString
+  );
+  const [ageGroup, setAgeGroup] = useQueryState("ageGroup", parseAsString);
 
   // Facets are fetched in a separate query from search results.
   // The FBI API supports this and it allows facet counts to update
@@ -130,6 +166,31 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
             />
           </li>
         </ul>
+
+        {/* Radio button filters */}
+        <div className="advanced-search-radio-group-wrapper">
+          <AdvancedSearchRadioGroup
+            name="access-type"
+            options={ACCESS_TYPE_OPTIONS}
+            selectedValue={accessType}
+            onChange={(value) => setAccessType(value, { history: "push" })}
+          />
+
+          <AdvancedSearchRadioGroup
+            name="fiction-type"
+            options={FICTION_TYPE_OPTIONS}
+            selectedValue={fictionType}
+            onChange={(value) => {
+              setFictionType(value, { history: "push" });
+            }}
+          />
+          <AdvancedSearchRadioGroup
+            name="age-group"
+            options={AGE_GROUP_OPTIONS}
+            selectedValue={ageGroup}
+            onChange={(value) => setAgeGroup(value, { history: "push" })}
+          />
+        </div>
 
         {/* Filter groups */}
         <ul className="advanced-search-facets__groups">
