@@ -10,6 +10,8 @@ type AvailabilityLabelVisualProps = {
   cursorPointer?: boolean;
   isAvailable?: boolean;
   availabilityText?: string;
+  /** Whether this material is non-physical (online/digital). Defaults to false (physical). */
+  isNonPhysical?: boolean;
 };
 
 const AvailabilityLabelVisual: React.FunctionComponent<
@@ -20,15 +22,21 @@ const AvailabilityLabelVisual: React.FunctionComponent<
   cursorPointer,
   isAvailable,
   quantity,
-  availabilityText
+  availabilityText,
+  isNonPhysical = false
 }) => {
   const t = useText();
 
-  const getAvailabilityText =
-    availabilityText ||
-    (isAvailable
+  const getAvailableText = () => {
+    // Use different text for physical vs non-physical materials when available
+    return isNonPhysical
       ? t("availabilityAvailableText")
-      : t("availabilityUnavailableText"));
+      : t("availabilityAvailablePhysicalText");
+  };
+
+  const computedAvailabilityText =
+    availabilityText ||
+    (isAvailable ? getAvailableText() : t("availabilityUnavailableText"));
 
   return (
     <div
@@ -38,7 +46,7 @@ const AvailabilityLabelVisual: React.FunctionComponent<
         selected={selected}
         isAvailable={isAvailable}
         manifestText={manifestText}
-        availabilityText={getAvailabilityText}
+        availabilityText={computedAvailabilityText}
         quantity={quantity}
         isLoading={false}
       />
