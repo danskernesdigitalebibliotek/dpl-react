@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import {
-  ComplexSearchFacetsEnum,
-  ComplexSearchFacetValue
+  FacetFieldEnum,
+  FacetValue
 } from "../../../core/dbc-gateway/generated/graphql";
 import { useText } from "../../../core/utils/text";
 import CheckBox from "../../../components/checkbox/Checkbox";
@@ -10,18 +10,18 @@ import iconExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build
 import iconPlus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Plus.svg";
 import iconMinus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Minus.svg";
 
-interface AdvancedSearchFilterGroupProps {
-  facetField: ComplexSearchFacetsEnum;
+interface SearchResultFacetGroupProps {
+  facetField: FacetFieldEnum;
   label: string;
   selectedValues: string[];
   selectedCount: number;
-  facetValues: ComplexSearchFacetValue[];
+  facetValues: FacetValue[];
   onChange: (selectedValues: string[]) => void;
 }
 
 const INITIAL_DISPLAY_LIMIT = 5;
 
-const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
+const SearchResultFacetGroup: React.FC<SearchResultFacetGroupProps> = ({
   facetField,
   label,
   selectedValues,
@@ -85,7 +85,7 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
             className="search-v2-facet-group__content"
           >
             {displayedValues.map((facetValue) => {
-              const value = facetValue.key;
+              const value = facetValue.term;
               const count = facetValue.score ?? 0;
               const isChecked = selectedValues.includes(value);
               const countId = `filter-${facetField}-${value}-count`;
@@ -130,8 +130,8 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                 />
                 <span>
                   {showAll
-                    ? t("advancedSearchShowLessText")
-                    : t("advancedSearchShowAllText")}
+                    ? 't("advancedSearchShowLessText")'
+                    : 't("advancedSearchShowAllText")'}
                 </span>
               </button>
             </div>
@@ -142,4 +142,4 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
   );
 };
 
-export default AdvancedSearchFilterGroup;
+export default SearchResultFacetGroup;

@@ -5,6 +5,7 @@ import { useFormVisibility } from "./hooks/use-form-visibility";
 import { useText } from "../../core/utils/text";
 import { useSearchFormState } from "./hooks/use-search-form-state";
 import { useCqlSearchUrl } from "./hooks/use-cql-search-url";
+import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 
 interface AdvancedSearchV2Props {
   pageSize: number;
@@ -32,10 +33,8 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
   };
 
   return (
-    <div className="advanced-search-v2">
-      <h1 className="advanced-search-v2__title">
-        {t("advancedSearchTitleText")}
-      </h1>
+    <div className="search-v2">
+      <SearchResultHeader headerTitle={t("advancedSearchTitleText")} />
 
       {!showResults && (
         <AdvancedSearchForm

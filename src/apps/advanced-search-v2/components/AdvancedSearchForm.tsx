@@ -60,9 +60,9 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
     );
 
   return (
-    <section className="advanced-search-v2__form">
+    <section className="search-v2__form">
       {/* Filter inputs */}
-      <div className="advanced-search-v2__filters">
+      <div className="search-v2__filters">
         {filters.map((filter, index) => {
           const config =
             SEARCH_TERM_OPTIONS.find((item) => item.value === filter.term) ??
@@ -95,18 +95,18 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
 
         <button
           type="button"
-          className="advanced-search-v2__add-filter"
+          className="search-v2__add-filter"
           onClick={handleAddFilter}
         >
           <img src={PlusButtonIcon} alt="" />
           <span>{t("advancedSearchAddRowText")}</span>
         </button>
       </div>
-      <div className="advanced-search-v2__selects-wrapper">
-        <h2 className="advanced-search-v2__selects-wrapper__title">
+      <div className="search-v2__selects-wrapper">
+        <h2 className="search-v2__selects-wrapper__title">
           {t("advancedSearchLimitSearchText")}
         </h2>
-        <div className="advanced-search-v2__selects-grid">
+        <div className="search-v2__selects-grid">
           {INITIAL_PRE_SEARCH_FACETS_STATE.map((config) => {
             const currentPreSearchFacet = preSearchFacets.find(
               (f) => f.facetField === config.facetField
@@ -176,7 +176,7 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
           })}
         </div>
       </div>
-      <div className="advanced-search-v2__action-buttons">
+      <div className="search-v2__action-buttons">
         <Button
           label={t("advancedSearchSearchButtonText")}
           buttonType="none"
@@ -193,7 +193,7 @@ const AdvancedSearchForm: React.FC<AdvancedSearchFormProps> = ({
             size="large"
             variant="outline"
             onClick={handleClearFilters}
-            classNames="advanced-search-v2__reset-button"
+            classNames="search-v2__reset-button"
           />
         )}
       </div>

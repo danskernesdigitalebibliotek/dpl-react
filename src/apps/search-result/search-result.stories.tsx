@@ -206,6 +206,10 @@ const meta: Meta<typeof SearchResultEntry> = {
     webSearchLinkText: {
       description: "Web search link text",
       control: { type: "text" }
+    },
+    showingMaterialsText: {
+      description: "Showing materials text",
+      control: { type: "text" }
     }
   }
 };
@@ -236,7 +240,7 @@ export const Primary: Story = {
     resultPagerStatusText: "Showing @itemsShown out of @hitcount results",
     numberDescriptionText: "Nr.",
     inSeriesText: "in series",
-    showingResultsForText: "Showing results for “@query”",
+    showingMaterialsText: "Showing materials (@hitcount)",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
     blacklistedAvailabilityBranchesConfig:

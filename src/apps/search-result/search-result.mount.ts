@@ -1,4 +1,5 @@
 import addMount from "../../core/addMount";
-import SearchResult from "./search-result.entry";
+import SearchResultV2 from "../search-result-v2/SearchResultV2.entry";
 
-addMount({ appName: "search-result", app: SearchResult });
+// Using V2 component with sidebar facets
+addMount({ appName: "search-result", app: SearchResultV2 });
