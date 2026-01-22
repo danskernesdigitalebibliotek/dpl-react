@@ -5,10 +5,10 @@ import {
   parseAsJson,
   parseAsString
 } from "nuqs";
-import AdvancedSearchFilterGroup from "./AdvancedSearchFacetGroup";
 import AdvancedSearchToggle from "./AdvancedSearchToggle";
 import AdvancedSearchRadioGroup from "./AdvancedSearchRadioGroup";
 import { useText } from "../../../core/utils/text";
+import SearchFacetGroup from "../../../components/facet-browser/SearchFacetGroup";
 import {
   ComplexSearchFacetsEnum,
   useComplexFacetSearchQuery,
@@ -211,7 +211,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
             );
 
             return (
-              <AdvancedSearchFilterGroup
+              <SearchFacetGroup
                 key={config.facetField}
                 facetField={config.facetField}
                 label={t(config.label)}
@@ -219,6 +219,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
                 selectedCount={selectedCount}
                 facetValues={facetValues}
                 onChange={(vals) => handleFacetChange(config.facetField, vals)}
+                getValue={(facetValue) => facetValue.key}
               />
             );
           })}

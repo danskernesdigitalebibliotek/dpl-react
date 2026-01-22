@@ -1,9 +1,9 @@
 import React from "react";
 import { useQueryState, parseAsJson } from "nuqs";
-import SearchResultFacetGroup from "./SearchResultFacetGroup";
 import { useText } from "../../../core/utils/text";
 import { FacetResult } from "../../../core/dbc-gateway/generated/graphql";
 import { getFacetFieldTranslation } from "../../../components/facet-browser/helper";
+import SearchFacetGroup from "../../../components/facet-browser/SearchFacetGroup";
 
 interface SearchResultFacetsProps {
   facets: FacetResult[] | null;
@@ -113,7 +113,7 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
             const label = t(getFacetFieldTranslation(facetField));
 
             return (
-              <SearchResultFacetGroup
+              <SearchFacetGroup
                 key={facetName}
                 facetField={facetField}
                 label={label}
@@ -121,6 +121,7 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
                 selectedCount={selectedCount}
                 facetValues={facetResult.values}
                 onChange={(vals) => handleFacetChange(facetName, vals)}
+                getValue={(facetValue) => facetValue.term}
               />
             );
           })}
