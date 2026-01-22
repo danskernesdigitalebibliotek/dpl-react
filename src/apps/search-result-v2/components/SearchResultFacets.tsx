@@ -119,6 +119,7 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
                 label={label}
                 selectedValues={selectedValues}
                 selectedCount={selectedCount}
+                showScore={false}
                 facetValues={facetResult.values}
                 onChange={(vals) => handleFacetChange(facetName, vals)}
                 getValue={(facetValue) => facetValue.term}
