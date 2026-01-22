@@ -1,34 +1,43 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import {
-  FacetFieldEnum,
-  FacetValue
-} from "../../../core/dbc-gateway/generated/graphql";
-import { useText } from "../../../core/utils/text";
-import CheckBox from "../../../components/checkbox/Checkbox";
+import { useText } from "../../core/utils/text";
+import CheckBox from "../checkbox/Checkbox";
 import iconExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import iconPlus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Plus.svg";
 import iconMinus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Minus.svg";
 
-interface SearchResultFacetGroupProps {
-  facetField: FacetFieldEnum;
+export interface SearchFacetGroupProps<
+  TFacetField extends string | number,
+  TValue extends { score?: number | null }
+> {
+  facetField: TFacetField;
   label: string;
   selectedValues: string[];
   selectedCount: number;
-  facetValues: FacetValue[];
+  facetValues: TValue[];
+  showScore?: boolean;
   onChange: (selectedValues: string[]) => void;
+  /**
+   * Returns the string value used both as the checkbox label and the value stored in selectedValues.
+   */
+  getValue: (facetValue: TValue) => string;
 }
 
 const INITIAL_DISPLAY_LIMIT = 5;
 
-const SearchResultFacetGroup: React.FC<SearchResultFacetGroupProps> = ({
+function SearchFacetGroup<
+  TFacetField extends string | number,
+  TValue extends { score?: number | null }
+>({
   facetField,
   label,
   selectedValues,
   selectedCount,
   facetValues,
-  onChange
-}) => {
+  showScore = true,
+  onChange,
+  getValue
+}: SearchFacetGroupProps<TFacetField, TValue>) {
   const t = useText();
   const [isExpanded, setIsExpanded] = useState(false);
   const [showAll, setShowAll] = useState(false);
@@ -85,7 +94,7 @@ const SearchResultFacetGroup: React.FC<SearchResultFacetGroupProps> = ({
             className="search-v2-facet-group__content"
           >
             {displayedValues.map((facetValue) => {
-              const value = facetValue.term;
+              const value = getValue(facetValue);
               const count = facetValue.score ?? 0;
               const isChecked = selectedValues.includes(value);
               const countId = `filter-${facetField}-${value}-count`;
@@ -101,7 +110,7 @@ const SearchResultFacetGroup: React.FC<SearchResultFacetGroupProps> = ({
                     }
                     ariaDescribedBy={count > 0 ? countId : undefined}
                   />
-                  {count > 0 && (
+                  {showScore && count > 0 && (
                     <span
                       id={countId}
                       className="search-v2-facet-group__item-count"
@@ -140,6 +149,6 @@ const SearchResultFacetGroup: React.FC<SearchResultFacetGroupProps> = ({
       )}
     </li>
   );
-};
+}
 
-export default SearchResultFacetGroup;
+export default SearchFacetGroup;
