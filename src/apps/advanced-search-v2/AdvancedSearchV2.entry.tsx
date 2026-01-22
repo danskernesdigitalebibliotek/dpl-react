@@ -56,13 +56,13 @@ const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({
   });
 
   return (
-    <div>
+    <>
       <GuardedApp app="advanced-search">
         <NuqsAdapter>
           <AdvancedSearchV2 pageSize={pageSize} />
         </NuqsAdapter>
       </GuardedApp>
-    </div>
+    </>
   );
 };
 

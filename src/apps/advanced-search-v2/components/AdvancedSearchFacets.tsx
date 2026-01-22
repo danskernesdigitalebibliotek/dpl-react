@@ -141,10 +141,10 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
   };
 
   return (
-    <aside className="advanced-search-facets">
-      <div className="advanced-search-facets__container">
+    <aside className="search-v2-facets">
+      <div className="search-v2-facets__container">
         {/* Toggles section */}
-        <ul className="advanced-search-facets__toggles">
+        <ul className="search-v2-facets__toggles">
           <li>
             <AdvancedSearchToggle
               id="on-shelf"
@@ -193,7 +193,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
         </div>
 
         {/* Filter groups */}
-        <ul className="advanced-search-facets__groups">
+        <ul className="search-v2-facets__groups">
           {FACETS_CONFIG.map((config) => {
             const selectedValues = getSelectedValues(config.facetField);
             const selectedCount = getSelectedCount(config.facetField);
