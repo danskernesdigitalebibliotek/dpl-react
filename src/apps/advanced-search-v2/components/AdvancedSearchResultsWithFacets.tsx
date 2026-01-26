@@ -110,6 +110,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
                 resultItems={resultItems}
                 page={page}
                 pageSize={pageSize}
+                isLoading={isLoadingOrRefetching}
               />
               <PagerComponent isLoading={isLoadingOrRefetching} />
             </>
