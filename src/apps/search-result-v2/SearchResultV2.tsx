@@ -29,7 +29,6 @@ import SearchResultInvalidSearch from "../search-result/search-result-not-valid-
 import { useUrls } from "../../core/utils/url";
 import { useConfig } from "../../core/utils/config";
 import { isWildcardQuery } from "../advanced-search-v2/lib/query-builder";
-import SearchToggle from "../../components/search-toggle/SearchToggle";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultFacets from "./components/SearchResultFacets";
 import Campaign from "../../components/campaign/Campaign";
