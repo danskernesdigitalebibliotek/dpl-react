@@ -28,9 +28,15 @@ import useGetSearchBranches from "../../core/utils/branches";
 import SearchResultInvalidSearch from "../search-result/search-result-not-valid-search";
 import { useUrls } from "../../core/utils/url";
 import { useConfig } from "../../core/utils/config";
-import SearchResultResults from "./components/SearchResultResults";
 import { isWildcardQuery } from "../advanced-search-v2/lib/query-builder";
 import SearchToggle from "../../components/search-toggle/SearchToggle";
+import SearchResultList from "../../components/card-item-list/SearchResultList";
+import SearchResultFacets from "./components/SearchResultFacets";
+import Campaign from "../../components/campaign/Campaign";
+import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-filter.svg";
+import useDialog from "../../components/dialog/useDialog";
+import Dialog from "../../components/dialog/Dialog";
+import { Button } from "../../components/Buttons/Button";
 
 interface SearchResultV2Props {
   q: string;
@@ -111,6 +117,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   );
   const minimalQueryLength = 1;
   const config = useConfig();
+  const { openDialogWithContent, closeDialog, dialogRef } = useDialog();
 
   // Facets state from URL via nuqs
   const [facetsFromUrl] = useQueryState(
@@ -305,26 +312,77 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
         }
       />
 
-      {!isLoading && resultItems && (
-        <SearchResultResults
-          hitcount={hitcount}
-          resultItems={resultItems}
-          page={page}
-          pageSize={pageSize}
-          facets={facets}
-          campaignData={campaignData}
-          isLoading={isLoading}
-          PagerComponent={PagerComponent}
-          infoBoxProps={{
-            title: infoBoxTitle,
-            html: infoBoxHtml,
-            buttonLabel: infoBoxButtonLabel,
-            buttonUrl: infoBoxButtonUrl
-              ? new URL(infoBoxButtonUrl, getCurrentLocation())
-              : undefined
-          }}
-        />
-      )}
+      <div className="search-v2__results">
+        <div className="search-v2__grid">
+          <SearchResultFacets facets={facets} />
+
+          <section>
+            <div className="search-v2__results-top-bar">
+              <div className="search-v2__results-top-bar__left">
+                <h2
+                  className="search-v2__results-heading"
+                  id="search-result-v2"
+                  aria-live="polite"
+                >
+                  {/* TODO: translation */}
+                  {`Din søgning har ${hitcount} resultater`}
+                </h2>
+              </div>
+              <div className="search-v2__results-top-bar__right">
+                <button
+                  onClick={() => openDialogWithContent(true)}
+                  className="search-v2__modify-filters-button"
+                >
+                  <img src={IconFilter} alt="" />
+                  <span>{t("addMoreFiltersText")}</span>
+                </button>
+
+                <Dialog isSidebar closeDialog={closeDialog} ref={dialogRef}>
+                  <div className="search-v2-facets__dialog">
+                    <div className="search-v2-facets__dialog-content">
+                      <h2 className="search-v2-facets__dialog-content__heading">
+                        {/* TODO: translation */}
+                        {`Din søgning har ${hitcount} resultater`}
+                      </h2>
+                      <SearchResultFacets facets={facets} />
+                    </div>
+                    <div className="search-v2-facets__dialog__actions">
+                      <Button
+                        classNames="search-v2-facets__dialog__actions__button"
+                        collapsible
+                        label={'t("advancedSearchShowResultsText")'}
+                        size="medium"
+                        buttonType="none"
+                        variant="filled"
+                        onClick={closeDialog}
+                      />
+                    </div>
+                  </div>
+                </Dialog>
+              </div>
+            </div>
+
+            {campaignData && campaignData.data && (
+              <Campaign campaignData={campaignData.data} />
+            )}
+
+            <SearchResultList
+              resultItems={resultItems || []}
+              page={page}
+              pageSize={pageSize}
+              infoBoxProps={{
+                title: infoBoxTitle,
+                html: infoBoxHtml,
+                buttonLabel: infoBoxButtonLabel,
+                buttonUrl: infoBoxButtonUrl
+                  ? new URL(infoBoxButtonUrl, getCurrentLocation())
+                  : undefined
+              }}
+            />
+            <PagerComponent isLoading={isLoading} />
+          </section>
+        </div>
+      </div>
     </div>
   );
 };
