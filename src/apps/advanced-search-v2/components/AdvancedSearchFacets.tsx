@@ -5,7 +5,7 @@ import {
   parseAsJson,
   parseAsString
 } from "nuqs";
-import AdvancedSearchToggle from "./AdvancedSearchToggle";
+import SearchToggle from "../../../components/search-toggle/SearchToggle";
 import AdvancedSearchRadioGroup from "./AdvancedSearchRadioGroup";
 import { useText } from "../../../core/utils/text";
 import SearchFacetGroup from "../../../components/facet-browser/SearchFacetGroup";
@@ -146,7 +146,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
         {/* Toggles section */}
         <ul className="search-v2-facets__toggles">
           <li>
-            <AdvancedSearchToggle
+            <SearchToggle
               id="on-shelf"
               label={t("advancedSearchOnShelfText")}
               description={t("advancedSearchOnShelfDescriptionText")}
@@ -155,7 +155,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
             />
           </li>
           <li>
-            <AdvancedSearchToggle
+            <SearchToggle
               id="only-extra-titles"
               label={t("advancedSearchOnlyExtraTitlesText")}
               description={t("advancedSearchOnlyExtraTitlesDescriptionText")}

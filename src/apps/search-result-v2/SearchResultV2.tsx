@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDeepCompareEffect } from "react-use";
-import { useQueryState, parseAsJson } from "nuqs";
+import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
 import {
-  FacetFieldEnum,
   SearchWithPaginationQuery,
   useSearchWithPaginationQuery,
-  useSearchFacetQuery
+  useSearchFacetQuery,
+  HoldingsStatusEnum
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
 import {
@@ -30,6 +30,7 @@ import { useUrls } from "../../core/utils/url";
 import { useConfig } from "../../core/utils/config";
 import SearchResultResults from "./components/SearchResultResults";
 import { isWildcardQuery } from "../advanced-search-v2/lib/query-builder";
+import SearchToggle from "../../components/search-toggle/SearchToggle";
 
 interface SearchResultV2Props {
   q: string;
@@ -120,8 +121,23 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
     }).withDefault([])
   );
 
+  // "On shelf" toggle state stored in URL (shared with advanced search)
+  const [onShelf, setOnShelf] = useQueryState(
+    "onShelf",
+    parseAsBoolean.withDefault(false)
+  );
+
   // Convert nuqs facets to filters format
-  const filters = convertFacetsToFilters(facetsFromUrl);
+  const facetFilters = convertFacetsToFilters(facetsFromUrl);
+
+  // Base filters (facets + branches)
+  const baseFilters = createFilters(facetFilters, cleanBranches);
+
+  // Include holdings status when "on shelf" is enabled
+  const searchFilters = {
+    ...baseFilters,
+    ...(onShelf ? { status: [HoldingsStatusEnum.Onshelf] } : {})
+  };
 
   const { PagerComponent, page } = usePager({
     hitcount,
@@ -132,7 +148,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   // then make sure that we reset the entire result set.
   useDeepCompareEffect(() => {
     setResultItems([]);
-  }, [q, pageSize, filters]);
+  }, [q, pageSize]);
 
   const { collectPageStatistics } = useCollectPageStatistics();
   useEffect(() => {
@@ -150,7 +166,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
       q: { all: q },
       facets: allFacetFields,
       facetLimit: 10,
-      filters: createFilters(filters, cleanBranches)
+      filters: searchFilters
     },
     {
       keepPreviousData: true,
@@ -188,7 +204,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
       q: { all: q },
       offset: page * pageSize,
       limit: pageSize,
-      filters: createFilters(filters, cleanBranches)
+      filters: searchFilters
     },
     {
       enabled: q.length >= minimalQueryLength,
