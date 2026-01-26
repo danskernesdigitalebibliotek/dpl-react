@@ -34,47 +34,33 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
 
   const searchInfoBoxIndex = pageSize;
 
+  const showSkeletons = isLoading;
+
   return (
     <ul
       className={clsx("content-list", className)}
       data-cy="search-result-list"
     >
-      {!isLoading ? (
-        resultItems?.map((item, i) => {
-          const isFirstNewItem = i === page * pageSize;
+      {resultItems?.map((item, i) => {
+        const isFirstNewItem = i === page * pageSize;
 
-          if (
-            i === searchInfoBoxIndex &&
-            infoBoxProps?.title &&
-            infoBoxProps?.html
-          ) {
-            return (
-              <Fragment key={item.workId}>
-                <MaterialListItem className="content-list__item content-list__item--info-box">
-                  <CardListInfoBox
-                    title={infoBoxProps?.title}
-                    html={infoBoxProps?.html}
-                    buttonLabel={infoBoxProps?.buttonLabel}
-                    buttonUrl={infoBoxProps?.buttonUrl}
-                  />
-                </MaterialListItem>
-                <MaterialListItem
-                  className="content-list__item"
-                  ref={isFirstNewItem ? lastItemRef : null}
-                >
-                  <CardListItem
-                    item={item}
-                    coverTint={getCoverTint(i)}
-                    resultNumber={i + 1}
-                  />
-                </MaterialListItem>
-              </Fragment>
-            );
-          } else {
-            return (
+        if (
+          i === searchInfoBoxIndex &&
+          infoBoxProps?.title &&
+          infoBoxProps?.html
+        ) {
+          return (
+            <Fragment key={item.workId}>
+              <MaterialListItem className="content-list__item content-list__item--info-box">
+                <CardListInfoBox
+                  title={infoBoxProps?.title}
+                  html={infoBoxProps?.html}
+                  buttonLabel={infoBoxProps?.buttonLabel}
+                  buttonUrl={infoBoxProps?.buttonUrl}
+                />
+              </MaterialListItem>
               <MaterialListItem
                 className="content-list__item"
-                key={item.workId}
                 ref={isFirstNewItem ? lastItemRef : null}
               >
                 <CardListItem
@@ -83,14 +69,31 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
                   resultNumber={i + 1}
                 />
               </MaterialListItem>
-            );
-          }
-        })
-      ) : (
+            </Fragment>
+          );
+        } else {
+          return (
+            <MaterialListItem
+              className="content-list__item"
+              key={item.workId}
+              ref={isFirstNewItem ? lastItemRef : null}
+            >
+              <CardListItem
+                item={item}
+                coverTint={getCoverTint(i)}
+                resultNumber={i + 1}
+              />
+            </MaterialListItem>
+          );
+        }
+      })}
+
+      {showSkeletons && (
         <>
           {/*
-            Show skeleton search result items if no data is available yet.
-            We'll show 5 items which should cover most screens.
+            Show skeleton search result items if no data is available yet or
+            while loading additional pages. We'll show 5 items which should
+            cover most screens.
           */}
           {[...Array(5)].map((_, index) => (
             <li key={index} className="content-list__item">
