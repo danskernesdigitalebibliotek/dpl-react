@@ -1,7 +1,10 @@
 import React from "react";
-import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
+import { useQueryState, parseAsJson } from "nuqs";
 import { useText } from "../../../core/utils/text";
-import { FacetResult } from "../../../core/dbc-gateway/generated/graphql";
+import {
+  FacetResult,
+  FacetFieldEnum
+} from "../../../core/dbc-gateway/generated/graphql";
 import { getFacetFieldTranslation } from "../../../components/facet-browser/helper";
 import SearchFacetGroup from "../../../components/facet-browser/SearchFacetGroup";
 import SearchToggle from "../../../components/search-toggle/SearchToggle";
@@ -42,16 +45,6 @@ const isValidFacetState = (value: unknown): value is FacetState[] => {
 
 const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
   const t = useText();
-
-  // Toggle states
-  const [onShelf, setOnShelf] = useQueryState(
-    "onShelf",
-    parseAsBoolean.withDefault(false)
-  );
-  const [onlyExtraTitles, setOnlyExtraTitles] = useQueryState(
-    "onlyExtraTitles",
-    parseAsBoolean.withDefault(false)
-  );
 
   // Facets state stored in URL
   const [facetsFromUrl, setFacetsInUrl] = useQueryState(
@@ -109,34 +102,54 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
   };
 
   // Filter out facets with no values
-  const availableFacets = facets?.filter((f) => f.values.length > 0) ?? [];
+  const allAvailableFacets = facets?.filter((f) => f.values.length > 0) ?? [];
+
+  // Special handling for "Canalwaysbeloaned" facet as a toggle
+  const canAlwaysBeLoanedFacet = allAvailableFacets.find(
+    (f) => f.type === FacetFieldEnum.Canalwaysbeloaned
+  );
+  const canAlwaysBeLoanedFacetName = canAlwaysBeLoanedFacet?.name;
+  const canAlwaysBeLoanedSelectedValues = canAlwaysBeLoanedFacetName
+    ? getSelectedValues(canAlwaysBeLoanedFacetName)
+    : [];
+  const isCanAlwaysBeLoanedChecked = canAlwaysBeLoanedSelectedValues.length > 0;
+
+  const handleCanAlwaysBeLoanedToggle = (checked: boolean) => {
+    if (!canAlwaysBeLoanedFacet || !canAlwaysBeLoanedFacetName) return;
+
+    // Assume single-value facet; use first value term as filter value
+    const firstValue = canAlwaysBeLoanedFacet.values[0];
+    if (!firstValue) return;
+
+    if (checked) {
+      handleFacetChange(canAlwaysBeLoanedFacetName, [firstValue.term]);
+    } else {
+      handleFacetChange(canAlwaysBeLoanedFacetName, []);
+    }
+  };
+
+  // Facets shown as regular groups (exclude Canalwaysbeloaned which is now a toggle)
+  const availableFacets = allAvailableFacets.filter(
+    (f) => f.type !== FacetFieldEnum.Canalwaysbeloaned
+  );
 
   return (
     <aside className="search-v2-facets">
       <div className="search-v2-facets__container">
         {/* Toggles section */}
-        <ul className="search-v2-facets__toggles">
-          <li>
-            <SearchToggle
-              id="on-shelf"
-              label={'t("advancedSearchOnShelfText")'}
-              description={'t("advancedSearchOnShelfDescriptionText")'}
-              checked={onShelf}
-              onChange={(checked) => setOnShelf(checked, { history: "push" })}
-            />
-          </li>
-          <li>
-            <SearchToggle
-              id="only-extra-titles"
-              label={'t("advancedSearchOnlyExtraTitlesText")'}
-              description={'t("advancedSearchOnlyExtraTitlesDescriptionText")'}
-              checked={onlyExtraTitles}
-              onChange={(checked) =>
-                setOnlyExtraTitles(checked, { history: "push" })
-              }
-            />
-          </li>
-        </ul>
+        {canAlwaysBeLoanedFacet && (
+          <ul className="search-v2-facets__toggles">
+            <li>
+              <SearchToggle
+                id="can-always-be-loaned"
+                label={'t("facetCanAlwaysBeLoanedText")'}
+                description={'t("facetCanAlwaysBeLoanedDescriptionText")'}
+                checked={isCanAlwaysBeLoanedChecked}
+                onChange={(checked) => handleCanAlwaysBeLoanedToggle(checked)}
+              />
+            </li>
+          </ul>
+        )}
 
         {/* Filter groups - dynamically rendered from API response */}
         <ul className="search-v2-facets__groups">
