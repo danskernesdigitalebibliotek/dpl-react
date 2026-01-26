@@ -324,7 +324,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
                   aria-live="polite"
                 >
                   {/* TODO: translation */}
-                  {`Din søgning har ${hitcount} resultater`}
+                  {`Din søgning har ${hitcount && !isLoading ? hitcount : 0} resultater`}
                 </h2>
               </div>
               <div className="search-v2__results-top-bar__right">
@@ -341,7 +341,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
                     <div className="search-v2-facets__dialog-content">
                       <h2 className="search-v2-facets__dialog-content__heading">
                         {/* TODO: translation */}
-                        {`Din søgning har ${hitcount} resultater`}
+                        {`Din søgning har ${hitcount && !isLoading ? hitcount : 0} resultater`}
                       </h2>
                       <SearchResultFacets facets={facets} />
                     </div>
@@ -365,20 +365,25 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
               <Campaign campaignData={campaignData.data} />
             )}
 
-            <SearchResultList
-              resultItems={resultItems || []}
-              page={page}
-              pageSize={pageSize}
-              infoBoxProps={{
-                title: infoBoxTitle,
-                html: infoBoxHtml,
-                buttonLabel: infoBoxButtonLabel,
-                buttonUrl: infoBoxButtonUrl
-                  ? new URL(infoBoxButtonUrl, getCurrentLocation())
-                  : undefined
-              }}
-            />
-            <PagerComponent isLoading={isLoading} />
+            {resultItems && (
+              <>
+                <SearchResultList
+                  resultItems={resultItems}
+                  isLoading={isLoading || !resultItems.length}
+                  page={page}
+                  pageSize={pageSize}
+                  infoBoxProps={{
+                    title: infoBoxTitle,
+                    html: infoBoxHtml,
+                    buttonLabel: infoBoxButtonLabel,
+                    buttonUrl: infoBoxButtonUrl
+                      ? new URL(infoBoxButtonUrl, getCurrentLocation())
+                      : undefined
+                  }}
+                />
+                <PagerComponent isLoading={isLoading} />
+              </>
+            )}
           </section>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useQueryState, parseAsJson } from "nuqs";
 import { useText } from "../../../core/utils/text";
 import {
@@ -180,4 +180,4 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
   );
 };
 
-export default SearchResultFacets;
+export default memo(SearchResultFacets);
