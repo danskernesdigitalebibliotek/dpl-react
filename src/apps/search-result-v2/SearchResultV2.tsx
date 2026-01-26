@@ -295,7 +295,10 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
       <SearchResultHeader
         headerTitle={headerTitle}
         subtitleRenderProp={
-          webSearchConfig && !isWildcardQuerySearch ? (
+          !isWildcardQuerySearch &&
+          webSearchConfig?.hasWebSearchResults &&
+          webSearchConfig?.webSearchUrl &&
+          webSearchConfig?.webSearchText ? (
             <>
               {`${t("webSearchLinkText")} `}
               <a
