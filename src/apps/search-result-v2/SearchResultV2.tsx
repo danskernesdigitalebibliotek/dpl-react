@@ -145,16 +145,17 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
     ...(onShelf ? { status: [HoldingsStatusEnum.Onshelf] } : {})
   };
 
-  const { PagerComponent, page } = usePager({
+  const { PagerComponent, page, resetPage } = usePager({
     hitcount,
     pageSize
   });
 
-  // If q changes (eg. in Storybook context)
-  // then make sure that we reset the entire result set.
+  // If q or filters change (eg. in Storybook context or via facets)
+  // then make sure that we reset the entire result set and pager.
   useDeepCompareEffect(() => {
     setResultItems([]);
-  }, [q, pageSize]);
+    resetPage();
+  }, [q, pageSize, searchFilters]);
 
   const { collectPageStatistics } = useCollectPageStatistics();
   useEffect(() => {
