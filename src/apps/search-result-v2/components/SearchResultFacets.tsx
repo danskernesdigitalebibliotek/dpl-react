@@ -1,9 +1,10 @@
 import React from "react";
-import { useQueryState, parseAsJson } from "nuqs";
+import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
 import { useText } from "../../../core/utils/text";
 import { FacetResult } from "../../../core/dbc-gateway/generated/graphql";
 import { getFacetFieldTranslation } from "../../../components/facet-browser/helper";
 import SearchFacetGroup from "../../../components/facet-browser/SearchFacetGroup";
+import SearchToggle from "../../../components/search-toggle/SearchToggle";
 
 interface SearchResultFacetsProps {
   facets: FacetResult[] | null;
@@ -41,6 +42,16 @@ const isValidFacetState = (value: unknown): value is FacetState[] => {
 
 const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
   const t = useText();
+
+  // Toggle states
+  const [onShelf, setOnShelf] = useQueryState(
+    "onShelf",
+    parseAsBoolean.withDefault(false)
+  );
+  const [onlyExtraTitles, setOnlyExtraTitles] = useQueryState(
+    "onlyExtraTitles",
+    parseAsBoolean.withDefault(false)
+  );
 
   // Facets state stored in URL
   const [facetsFromUrl, setFacetsInUrl] = useQueryState(
@@ -103,6 +114,30 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
   return (
     <aside className="search-v2-facets">
       <div className="search-v2-facets__container">
+        {/* Toggles section */}
+        <ul className="search-v2-facets__toggles">
+          <li>
+            <SearchToggle
+              id="on-shelf"
+              label={'t("advancedSearchOnShelfText")'}
+              description={'t("advancedSearchOnShelfDescriptionText")'}
+              checked={onShelf}
+              onChange={(checked) => setOnShelf(checked, { history: "push" })}
+            />
+          </li>
+          <li>
+            <SearchToggle
+              id="only-extra-titles"
+              label={'t("advancedSearchOnlyExtraTitlesText")'}
+              description={'t("advancedSearchOnlyExtraTitlesDescriptionText")'}
+              checked={onlyExtraTitles}
+              onChange={(checked) =>
+                setOnlyExtraTitles(checked, { history: "push" })
+              }
+            />
+          </li>
+        </ul>
+
         {/* Filter groups - dynamically rendered from API response */}
         <ul className="search-v2-facets__groups">
           {availableFacets.map((facetResult) => {
