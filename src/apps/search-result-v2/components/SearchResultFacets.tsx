@@ -108,6 +108,9 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
     (filter) => filter.type === FacetFieldEnum.Childrenoradults
   )?.name;
 
+  // Fixed facet name for "can always be loaned" filter in SearchFiltersInput
+  const CAN_ALWAYS_BE_LOANED_FACET_NAME = "canAlwaysBeLoaned";
+
   type AccessTypeFilterOptions =
     | { value: "Digital"; label: "Online" }
     | { value: "Fysisk"; label: "Fysisk" };
@@ -155,28 +158,16 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
     return getSelectedValues(facetName).length;
   };
 
-  // Special handling for "Canalwaysbeloaned" facet as a toggle
-  const canAlwaysBeLoanedFacet = allAvailableFacets.find(
-    (filter) => filter.type === FacetFieldEnum.Canalwaysbeloaned
+  // Selected state for "can always be loaned" toggle comes from URL facet state
+  const canAlwaysBeLoanedSelectedValues = getSelectedValues(
+    CAN_ALWAYS_BE_LOANED_FACET_NAME
   );
-  const canAlwaysBeLoanedFacetName = canAlwaysBeLoanedFacet?.name;
-  const canAlwaysBeLoanedSelectedValues = canAlwaysBeLoanedFacetName
-    ? getSelectedValues(canAlwaysBeLoanedFacetName)
-    : [];
   const isCanAlwaysBeLoanedChecked = canAlwaysBeLoanedSelectedValues.length > 0;
 
   // Toggle / radio handlers: update facetsFromUrl based on selection
   const handleCanAlwaysBeLoanedToggle = (checked: boolean) => {
-    if (!canAlwaysBeLoanedFacet || !canAlwaysBeLoanedFacetName) return;
-
-    // Assume single-value facet; use first value term as filter value
-    const firstValue = canAlwaysBeLoanedFacet.values[0];
-    if (!firstValue) return;
-
-    handleFacetChange(
-      canAlwaysBeLoanedFacetName,
-      checked ? [firstValue.term] : []
-    );
+    // Use fixed filter value "true" for canAlwaysBeLoaned SearchFiltersInput
+    handleFacetChange(CAN_ALWAYS_BE_LOANED_FACET_NAME, checked ? ["true"] : []);
   };
 
   const handleRadioFacetChange = (
@@ -210,18 +201,16 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
               onChange={(checked) => setOnShelf(checked, { history: "push" })}
             />
           </li>
-          {canAlwaysBeLoanedFacet && (
-            <li>
-              {/* TODO: translate */}
-              <SearchToggle
-                id="can-always-be-loaned"
-                label={'t("facetCanAlwaysBeLoanedText")'}
-                description={'t("facetCanAlwaysBeLoanedDescriptionText")'}
-                checked={isCanAlwaysBeLoanedChecked}
-                onChange={(checked) => handleCanAlwaysBeLoanedToggle(checked)}
-              />
-            </li>
-          )}
+          <li>
+            {/* TODO: translate */}
+            <SearchToggle
+              id="can-always-be-loaned"
+              label={'t("facetCanAlwaysBeLoanedText")'}
+              description={'t("facetCanAlwaysBeLoanedDescriptionText")'}
+              checked={isCanAlwaysBeLoanedChecked}
+              onChange={(checked) => handleCanAlwaysBeLoanedToggle(checked)}
+            />
+          </li>
         </ul>
 
         {/* Advanced search-style radio groups */}
