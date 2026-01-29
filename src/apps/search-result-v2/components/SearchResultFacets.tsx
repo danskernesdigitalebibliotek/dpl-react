@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { useQueryState, parseAsJson } from "nuqs";
+import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
 import { useText } from "../../../core/utils/text";
 import {
   FacetResult,
@@ -8,11 +8,7 @@ import {
 import { getFacetFieldTranslation } from "../../../components/facet-browser/helper";
 import SearchFacetGroup from "../../../components/facet-browser/SearchFacetGroup";
 import SearchToggle from "../../../components/search-toggle/SearchToggle";
-
-interface SearchResultFacetsProps {
-  facets: FacetResult[] | null;
-}
-
+import AdvancedSearchRadioGroup from "../../advanced-search-v2/components/AdvancedSearchRadioGroup";
 // Type for facet state stored in URL
 // Uses facetName (camelCase string like "materialTypesGeneral") as that's what the API expects for filters
 type FacetState = {
@@ -43,8 +39,14 @@ const isValidFacetState = (value: unknown): value is FacetState[] => {
   });
 };
 
-const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
+const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   const t = useText();
+
+  // "On shelf" toggle state stored in URL
+  const [onShelf, setOnShelf] = useQueryState(
+    "onShelf",
+    parseAsBoolean.withDefault(false)
+  );
 
   // Facets state stored in URL
   const [facetsFromUrl, setFacetsInUrl] = useQueryState(
@@ -91,9 +93,61 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
     );
   };
 
+  // Filter out facets with no values
+  const allAvailableFacets =
+    facets?.filter((filter) => filter.values.length > 0) ?? [];
+
+  // Map radios to corresponding facet names so they affect facetsFromUrl
+  const accessTypeFacetName = allAvailableFacets.find(
+    (filter) => filter.type === FacetFieldEnum.Accesstypes
+  )?.name;
+  const fictionTypeFacetName = allAvailableFacets.find(
+    (filter) => filter.type === FacetFieldEnum.Fictionnonfiction
+  )?.name;
+  const ageGroupFacetName = allAvailableFacets.find(
+    (filter) => filter.type === FacetFieldEnum.Childrenoradults
+  )?.name;
+
+  type AccessTypeFilterOptions =
+    | { value: "Digital"; label: "Online" }
+    | { value: "Fysisk"; label: "Fysisk" };
+  type FictionTypeFilterOptions =
+    | { value: "Ikke angivet"; label: "Fiktion" }
+    | { value: "Faglitteratur"; label: "Non-fiktion" };
+  type AgeGroupFilterOptions =
+    | { value: "til voksne"; label: "Voksne" }
+    | { value: "til børn"; label: "Børn" };
+
+  // Radio button options (mirroring AdvancedSearch)
+  const ACCESS_TYPE_OPTIONS: AccessTypeFilterOptions[] = [
+    { value: "Digital", label: "Online" },
+    { value: "Fysisk", label: "Fysisk" }
+  ];
+  const FICTION_TYPE_OPTIONS: FictionTypeFilterOptions[] = [
+    { value: "Ikke angivet", label: "Fiktion" },
+    { value: "Faglitteratur", label: "Non-fiktion" }
+  ];
+  const AGE_GROUP_OPTIONS: AgeGroupFilterOptions[] = [
+    { value: "til voksne", label: "Voksne" },
+    { value: "til børn", label: "Børn" }
+  ];
+
+  // facet names used by radio groups (may be undefined until facets load)
+  const radioFacetNames = [
+    accessTypeFacetName,
+    fictionTypeFacetName,
+    ageGroupFacetName
+  ].filter((name): name is string => Boolean(name));
+
+  // facets used for generic facet groups (exclude radio-driven facets)
+  const nonRadioFacetsFromUrl = facetsFromUrl.filter(
+    (f) => !radioFacetNames.includes(f.facetName)
+  );
+
   const getSelectedValues = (facetName: string): string[] => {
     return (
-      facetsFromUrl.find((f) => f.facetName === facetName)?.selectedValues ?? []
+      nonRadioFacetsFromUrl.find((f) => f.facetName === facetName)
+        ?.selectedValues ?? []
     );
   };
 
@@ -101,12 +155,9 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
     return getSelectedValues(facetName).length;
   };
 
-  // Filter out facets with no values
-  const allAvailableFacets = facets?.filter((f) => f.values.length > 0) ?? [];
-
   // Special handling for "Canalwaysbeloaned" facet as a toggle
   const canAlwaysBeLoanedFacet = allAvailableFacets.find(
-    (f) => f.type === FacetFieldEnum.Canalwaysbeloaned
+    (filter) => filter.type === FacetFieldEnum.Canalwaysbeloaned
   );
   const canAlwaysBeLoanedFacetName = canAlwaysBeLoanedFacet?.name;
   const canAlwaysBeLoanedSelectedValues = canAlwaysBeLoanedFacetName
@@ -114,6 +165,7 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
     : [];
   const isCanAlwaysBeLoanedChecked = canAlwaysBeLoanedSelectedValues.length > 0;
 
+  // Toggle / radio handlers: update facetsFromUrl based on selection
   const handleCanAlwaysBeLoanedToggle = (checked: boolean) => {
     if (!canAlwaysBeLoanedFacet || !canAlwaysBeLoanedFacetName) return;
 
@@ -121,25 +173,46 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
     const firstValue = canAlwaysBeLoanedFacet.values[0];
     if (!firstValue) return;
 
-    if (checked) {
-      handleFacetChange(canAlwaysBeLoanedFacetName, [firstValue.term]);
-    } else {
-      handleFacetChange(canAlwaysBeLoanedFacetName, []);
-    }
+    handleFacetChange(
+      canAlwaysBeLoanedFacetName,
+      checked ? [firstValue.term] : []
+    );
   };
 
-  // Facets shown as regular groups (exclude Canalwaysbeloaned which is now a toggle)
+  const handleRadioFacetChange = (
+    facetName: string | undefined,
+    value: string | null
+  ) => {
+    if (!facetName) return;
+    handleFacetChange(facetName, value ? [value] : []);
+  };
+
+  // Facets shown as regular groups (exclude Canalwaysbeloaned and radio-driven facets)
   const availableFacets = allAvailableFacets.filter(
-    (f) => f.type !== FacetFieldEnum.Canalwaysbeloaned
+    (facet) =>
+      facet.type !== FacetFieldEnum.Canalwaysbeloaned &&
+      facet.type !== FacetFieldEnum.Accesstypes &&
+      facet.type !== FacetFieldEnum.Fictionnonfiction &&
+      facet.type !== FacetFieldEnum.Childrenoradults
   );
 
   return (
     <aside className="search-v2-facets">
       <div className="search-v2-facets__container">
         {/* Toggles section */}
-        {canAlwaysBeLoanedFacet && (
-          <ul className="search-v2-facets__toggles">
+        <ul className="search-v2-facets__toggles">
+          <li>
+            <SearchToggle
+              id="on-shelf"
+              label={'t("advancedSearchOnShelfText")'}
+              description={'t("advancedSearchOnShelfDescriptionText")'}
+              checked={onShelf}
+              onChange={(checked) => setOnShelf(checked, { history: "push" })}
+            />
+          </li>
+          {canAlwaysBeLoanedFacet && (
             <li>
+              {/* TODO: translate */}
               <SearchToggle
                 id="can-always-be-loaned"
                 label={'t("facetCanAlwaysBeLoanedText")'}
@@ -148,14 +221,61 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
                 onChange={(checked) => handleCanAlwaysBeLoanedToggle(checked)}
               />
             </li>
-          </ul>
-        )}
+          )}
+        </ul>
+
+        {/* Advanced search-style radio groups */}
+        <div className="advanced-search-radio-group-wrapper">
+          <AdvancedSearchRadioGroup
+            name="access-type"
+            options={ACCESS_TYPE_OPTIONS}
+            selectedValue={
+              accessTypeFacetName
+                ? (facetsFromUrl.find(
+                    (f) => f.facetName === accessTypeFacetName
+                  )?.selectedValues[0] ?? null)
+                : null
+            }
+            onChange={(value) =>
+              handleRadioFacetChange(accessTypeFacetName, value)
+            }
+          />
+
+          <AdvancedSearchRadioGroup
+            name="fiction-type"
+            options={FICTION_TYPE_OPTIONS}
+            selectedValue={
+              fictionTypeFacetName
+                ? (facetsFromUrl.find(
+                    (f) => f.facetName === fictionTypeFacetName
+                  )?.selectedValues[0] ?? null)
+                : null
+            }
+            onChange={(value) =>
+              handleRadioFacetChange(fictionTypeFacetName, value)
+            }
+          />
+
+          <AdvancedSearchRadioGroup
+            name="age-group"
+            options={AGE_GROUP_OPTIONS}
+            selectedValue={
+              ageGroupFacetName
+                ? (facetsFromUrl.find((f) => f.facetName === ageGroupFacetName)
+                    ?.selectedValues[0] ?? null)
+                : null
+            }
+            onChange={(value) =>
+              handleRadioFacetChange(ageGroupFacetName, value)
+            }
+          />
+        </div>
 
         {/* Filter groups - dynamically rendered from API response */}
         <ul className="search-v2-facets__groups">
-          {availableFacets.map((facetResult) => {
-            const facetName = facetResult.name;
-            const facetField = facetResult.type;
+          {availableFacets.map((facet) => {
+            const facetName = facet.name;
+            const facetField = facet.type;
             const selectedValues = getSelectedValues(facetName);
             const selectedCount = getSelectedCount(facetName);
             const label = t(getFacetFieldTranslation(facetField));
@@ -168,7 +288,7 @@ const SearchResultFacets: React.FC<SearchResultFacetsProps> = ({ facets }) => {
                 selectedValues={selectedValues}
                 selectedCount={selectedCount}
                 showScore={false}
-                facetValues={facetResult.values}
+                facetValues={facet.values}
                 onChange={(vals) => handleFacetChange(facetName, vals)}
                 getValue={(facetValue) => facetValue.term}
               />

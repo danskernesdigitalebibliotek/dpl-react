@@ -24,7 +24,7 @@ import {
 import { statistics } from "../../core/statistics/statistics";
 import { getCurrentLocation, redirectTo } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
-import useGetSearchBranches from "../../core/utils/branches";
+import { cleanBranchesId, TBranch } from "../../core/utils/branches";
 import SearchResultInvalidSearch from "../search-result/search-result-not-valid-search";
 import { useUrls } from "../../core/utils/url";
 import { useConfig } from "../../core/utils/config";
@@ -106,7 +106,6 @@ const convertFacetsToFilters = (facets: FacetState[]) => {
 const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   const u = useUrls();
   const zeroHitsSearchUrl = u("zeroHitsSearchUrl");
-  const cleanBranches = useGetSearchBranches();
   const t = useText();
   const [resultItems, setResultItems] = useState<Work[] | null>(null);
   const [hitcount, setHitCount] = useState<number>(0);
@@ -116,6 +115,11 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   );
   const minimalQueryLength = 1;
   const config = useConfig();
+  const branches = config<TBranch[]>("branchesConfig", {
+    transformer: "jsonParse"
+  });
+  const cleanBranches = cleanBranchesId(branches);
+
   const { openDialogWithContent, closeDialog, dialogRef } = useDialog();
 
   // Facets state from URL via nuqs
@@ -128,18 +132,14 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   );
 
   // "On shelf" toggle state stored in URL (shared with advanced search)
-  const [onShelf, setOnShelf] = useQueryState(
-    "onShelf",
-    parseAsBoolean.withDefault(false)
-  );
+  const [onShelf] = useQueryState("onShelf", parseAsBoolean.withDefault(false));
 
   // Convert nuqs facets to filters format
   const facetFilters = convertFacetsToFilters(facetsFromUrl);
 
   // Base filters (facets + branches)
   const baseFilters = createFilters(facetFilters, cleanBranches);
-
-  // Include holdings status when "on shelf" is enabled
+  // Include holdings status (radios are applied via facets, not direct filters)
   const searchFilters = {
     ...baseFilters,
     ...(onShelf ? { status: [HoldingsStatusEnum.Onshelf] } : {})
@@ -373,7 +373,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
               <>
                 <SearchResultList
                   resultItems={resultItems}
-                  isLoading={isLoading || !resultItems.length}
+                  isLoading={isLoading}
                   page={page}
                   pageSize={pageSize}
                   infoBoxProps={{
