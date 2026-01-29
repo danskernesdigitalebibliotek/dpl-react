@@ -172,7 +172,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
     {
       q: { all: q },
       facets: allFacetFields,
-      facetLimit: 10,
+      facetLimit: 50,
       filters: searchFilters
     },
     {
