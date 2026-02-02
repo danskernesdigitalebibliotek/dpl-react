@@ -39,7 +39,7 @@ export interface AdvancedSearchEntryProps
     AdvancedSearchV2CqlSearchArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
-  showingMaterialsText: string;
+  searchShowingMaterialsText: string;
   addMoreFiltersText: string;
 }
 

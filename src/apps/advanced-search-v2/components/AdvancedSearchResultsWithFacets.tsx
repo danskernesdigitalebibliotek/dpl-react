@@ -62,7 +62,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
                 id="advanced-search-result"
                 aria-live="polite"
               >
-                {t("showingMaterialsText", {
+                {t("searchShowingMaterialsText", {
                   placeholders: { "@hitcount": hitcount }
                 })}
               </h2>
@@ -92,7 +92,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
                     <Button
                       classNames="search-v2-facets__dialog__actions__button"
                       collapsible
-                      label={t("advancedSearchShowResultsText")}
+                      label={t("searchShowResultsText")}
                       size="medium"
                       buttonType="none"
                       variant="filled"
