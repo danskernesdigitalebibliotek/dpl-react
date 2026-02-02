@@ -115,27 +115,27 @@ export const argTypes = {
     description: "Edit search link text",
     control: { type: "text" }
   },
-  advancedSearchOnShelfText: {
+  searchOnShelfText: {
     description: "Text for on shelf toggle",
     control: { type: "text" }
   },
-  advancedSearchOnShelfDescriptionText: {
+  searchOnShelfDescriptionText: {
     description: "Description for on shelf toggle",
     control: { type: "text" }
   },
-  advancedSearchOnlyExtraTitlesText: {
+  searchOnlyExtraTitlesText: {
     description: "Text for only extra titles toggle",
     control: { type: "text" }
   },
-  advancedSearchOnlyExtraTitlesDescriptionText: {
+  searchOnlyExtraTitlesDescriptionText: {
     description: "Description for only extra titles toggle",
     control: { type: "text" }
   },
-  advancedSearchShowAllText: {
+  searchShowAllText: {
     description: "Show all text",
     control: { type: "text" }
   },
-  advancedSearchShowLessText: {
+  searchShowLessText: {
     description: "Show less text",
     control: { type: "text" }
   },
@@ -296,14 +296,14 @@ export default {
     "Enter fictional character...",
   advancedSearchPlaceholderHostPublicationText: "Enter host publication...",
   advancedSearchEditSearchText: "Edit search",
-  advancedSearchOnShelfText: "On shelf",
-  advancedSearchOnShelfDescriptionText:
+  searchOnShelfText: "On shelf",
+  searchOnShelfDescriptionText:
     "Only show results available at the library now.",
-  advancedSearchOnlyExtraTitlesText: 'Only "Extra Titles"',
-  advancedSearchOnlyExtraTitlesDescriptionText:
+  searchOnlyExtraTitlesText: 'Only "Extra Titles"',
+  searchOnlyExtraTitlesDescriptionText:
     "Only show results not limited by digital loan quotas.",
-  advancedSearchShowAllText: "Show all",
-  advancedSearchShowLessText: "Show less",
+  searchShowAllText: "Show all",
+  searchShowLessText: "Show less",
   advancedSearchFacetMaterialTypeText: "Material type",
   advancedSearchFacetFormatText: "Format",
   advancedSearchFacetGenreAndFormText: "Genre and form",
@@ -368,12 +368,12 @@ export interface AdvancedSearchV2Args {
   advancedSearchPlaceholderFictionalCharacterText: string;
   advancedSearchPlaceholderHostPublicationText: string;
   advancedSearchEditSearchText: string;
-  advancedSearchOnShelfText: string;
-  advancedSearchOnShelfDescriptionText: string;
-  advancedSearchOnlyExtraTitlesText: string;
-  advancedSearchOnlyExtraTitlesDescriptionText: string;
-  advancedSearchShowAllText: string;
-  advancedSearchShowLessText: string;
+  searchOnShelfText: string;
+  searchOnShelfDescriptionText: string;
+  searchOnlyExtraTitlesText: string;
+  searchOnlyExtraTitlesDescriptionText: string;
+  searchShowAllText: string;
+  searchShowLessText: string;
   advancedSearchResetText: string;
   advancedSearchFacetMaterialTypeText: string;
   advancedSearchFacetFormatText: string;

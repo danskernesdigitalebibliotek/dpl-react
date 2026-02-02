@@ -148,8 +148,8 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
           <li>
             <SearchToggle
               id="on-shelf"
-              label={t("advancedSearchOnShelfText")}
-              description={t("advancedSearchOnShelfDescriptionText")}
+              label={t("searchOnShelfText")}
+              description={t("searchOnShelfDescriptionText")}
               checked={onShelf}
               onChange={(checked) => setOnShelf(checked, { history: "push" })}
             />
@@ -157,8 +157,8 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
           <li>
             <SearchToggle
               id="only-extra-titles"
-              label={t("advancedSearchOnlyExtraTitlesText")}
-              description={t("advancedSearchOnlyExtraTitlesDescriptionText")}
+              label={t("searchOnlyExtraTitlesText")}
+              description={t("searchOnlyExtraTitlesDescriptionText")}
               checked={onlyExtraTitles}
               onChange={(checked) =>
                 setOnlyExtraTitles(checked, { history: "push" })
