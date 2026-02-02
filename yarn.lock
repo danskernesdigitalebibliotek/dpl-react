@@ -7447,18 +7447,18 @@ flatted@^3.1.0, flatted@^3.2.9, flatted@^3.3.1, flatted@^3.3.3:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.3.tgz#67c8fad95454a7c7abebf74bb78ee74a44023358"
   integrity sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==
 
-focus-trap-react@^11.0.6:
-  version "11.0.6"
-  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-11.0.6.tgz#c47f79e45719bfc74a8a543062f94ed06cba876c"
-  integrity sha512-8YbWR8kDf2pQ8G9LT11p39VY4T7eWVrj00Fhp1HUSdv5uW9q6+WK8OMAdy9Ui7vGb1zNouFDzwBIqJwt82rIYQ==
+focus-trap-react@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-12.0.0.tgz#fc1efacfde54691bd64e915bd7799759dc1bbf19"
+  integrity sha512-bTPk+jbG0Q3zqHjY7KjdmjqMKGKVrKbMwXxHX9+FTYENWxmLryJVoI3ZfStRSJ26uPipl+th9DIPhCyjeEBYdg==
   dependencies:
-    focus-trap "^7.8.0"
+    focus-trap "^8.0.0"
     tabbable "^6.4.0"
 
-focus-trap@^7.8.0:
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-7.8.0.tgz#b1d9463fa42b93ad7a5223d750493a6c09b672a8"
-  integrity sha512-/yNdlIkpWbM0ptxno3ONTuf+2g318kh2ez3KSeZN5dZ8YC6AAmgeWz+GasYYiBJPFaYcSAPeu4GfhUaChzIJXA==
+focus-trap@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-8.0.0.tgz#39ce25e930dbf58a3dfabc4f9b46d8488151e2de"
+  integrity sha512-Aa84FOGHs99vVwufDMdq2qgOwXPC2e9U66GcqBhn1/jEHPDhJaP8PYhkIbqG9lhfL5Kddk/567lj46LLHYCRUw==
   dependencies:
     tabbable "^6.4.0"
 
