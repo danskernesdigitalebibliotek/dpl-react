@@ -116,7 +116,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-webpack-plugin": "^5.0.2",
     "glob": "11.0.1",
-    "globals": "^17.1.0",
+    "globals": "^17.3.0",
     "happy-dom": "^20.4.0",
     "istanbul-lib-coverage": "^3.2.2",
     "markdownlint-cli2": "^0.16.0",
