@@ -138,9 +138,7 @@ function SearchFacetGroup<
                   className="search-v2-facet-group__show-all-icon"
                 />
                 <span>
-                  {showAll
-                    ? 't("advancedSearchShowLessText")'
-                    : 't("advancedSearchShowAllText")'}
+                  {showAll ? t("searchShowLessText") : t("searchShowAllText")}
                 </span>
               </button>
             </div>

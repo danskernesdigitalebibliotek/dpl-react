@@ -155,6 +155,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   useDeepCompareEffect(() => {
     setResultItems([]);
     resetPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q, pageSize, searchFilters]);
 
   const { collectPageStatistics } = useCollectPageStatistics();
@@ -186,7 +187,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   );
 
   const campaignFacets = facetData?.search.facets || null;
-  const facets = facetData?.search.facets || null;
+  const facets = facetData?.search.facets || [];
 
   useDeepCompareEffect(() => {
     if (campaignFacets) {
@@ -327,8 +328,9 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
                   id="search-result-v2"
                   aria-live="polite"
                 >
-                  {/* TODO: translation */}
-                  {`Din søgning har ${hitcount && !isLoading ? hitcount : 0} resultater`}
+                  {t("searchShowingMaterialsText", {
+                    count: hitcount && !isLoading ? hitcount : 0
+                  })}
                 </h2>
               </div>
               <div className="search-v2__results-top-bar__right">
@@ -344,8 +346,9 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
                   <div className="search-v2-facets__dialog">
                     <div className="search-v2-facets__dialog-content">
                       <h2 className="search-v2-facets__dialog-content__heading">
-                        {/* TODO: translation */}
-                        {`Din søgning har ${hitcount && !isLoading ? hitcount : 0} resultater`}
+                        {t("searchShowingMaterialsText", {
+                          count: hitcount && !isLoading ? hitcount : 0
+                        })}
                       </h2>
                       <SearchResultFacets facets={facets} />
                     </div>
@@ -353,7 +356,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
                       <Button
                         classNames="search-v2-facets__dialog__actions__button"
                         collapsible
-                        label={'t("advancedSearchShowResultsText")'}
+                        label={t("searchShowResultsText")}
                         size="medium"
                         buttonType="none"
                         variant="filled"

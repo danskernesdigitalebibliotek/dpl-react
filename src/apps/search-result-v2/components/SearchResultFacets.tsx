@@ -195,18 +195,17 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
           <li>
             <SearchToggle
               id="on-shelf"
-              label={'t("advancedSearchOnShelfText")'}
-              description={'t("advancedSearchOnShelfDescriptionText")'}
+              label={t("searchOnShelfText")}
+              description={t("searchOnShelfDescriptionText")}
               checked={onShelf}
               onChange={(checked) => setOnShelf(checked, { history: "push" })}
             />
           </li>
           <li>
-            {/* TODO: translate */}
             <SearchToggle
               id="can-always-be-loaned"
-              label={'t("facetCanAlwaysBeLoanedText")'}
-              description={'t("facetCanAlwaysBeLoanedDescriptionText")'}
+              label={t("searchCanAlwaysBeLoanedText")}
+              description={t("searchCanAlwaysBeLoanedDescriptionText")}
               checked={isCanAlwaysBeLoanedChecked}
               onChange={(checked) => handleCanAlwaysBeLoanedToggle(checked)}
             />
