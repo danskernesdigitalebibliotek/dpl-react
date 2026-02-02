@@ -39,7 +39,12 @@ function SearchFacetGroup<
   getValue
 }: SearchFacetGroupProps<TFacetField, TValue>) {
   const t = useText();
-  const [isExpanded, setIsExpanded] = useState(false);
+  // Open the facet group initially if any value is already selected.
+  // This only runs on mount; subsequent changes to selectedValues/selectedCount
+  // will not automatically toggle the expanded state.
+  const [isExpanded, setIsExpanded] = useState(
+    () => selectedCount > 0 || selectedValues.length > 0
+  );
   const [showAll, setShowAll] = useState(false);
 
   const handleCheckboxChange = (value: string, checked: boolean) => {
