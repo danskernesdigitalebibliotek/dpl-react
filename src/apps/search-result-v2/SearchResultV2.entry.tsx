@@ -13,10 +13,10 @@ import { NuqsAdapter } from "nuqs/adapters/react";
 
 interface SearchResultV2EntryTextProps {
   addMoreFiltersText: string;
-  advancedSearchFilterMaterialsText: string;
-  advancedSearchShowResultsText: string;
-  advancedSearchShowLessText: string;
-  advancedSearchShowAllText: string;
+  searchFilterMaterialsText: string;
+  searchShowResultsText: string;
+  searchShowLessText: string;
+  searchShowAllText: string;
   byAuthorText: string;
   etAlText: string;
   facetAccessTypesText: string;
@@ -40,7 +40,7 @@ interface SearchResultV2EntryTextProps {
   loadingText: string;
   numberDescriptionText: string;
   resultPagerStatusText: string;
-  showingMaterialsText: string;
+  searchShowingMaterialsText: string;
   showingResultsForText: string;
   showMoreText: string;
   showResultsText: string;
@@ -65,7 +65,7 @@ export interface SearchResultV2EntryProps
   q?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
-  showingMaterialsText: string;
+  searchShowingMaterialsText: string;
 }
 
 const SearchResultV2Entry: React.FC<SearchResultV2EntryProps> = ({

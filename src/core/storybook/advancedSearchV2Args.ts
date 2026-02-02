@@ -259,7 +259,7 @@ export const argTypes = {
     description: "Dialog heading for filtering materials with count",
     control: { type: "text" }
   },
-  advancedSearchShowResultsText: {
+  searchShowResultsText: {
     description: "Button text to show results and close filter dialog",
     control: { type: "text" }
   }
@@ -335,7 +335,7 @@ export default {
   advancedSearchAgeBadgeSingleText: "@age year olds",
   advancedSearchAgeBadgeRangeText: "@from-@to year olds",
   advancedSearchFilterMaterialsText: "Filter materials (@hitcount)",
-  advancedSearchShowResultsText: "Show results"
+  searchShowResultsText: "Show results"
 };
 
 export interface AdvancedSearchV2Args {
@@ -405,5 +405,5 @@ export interface AdvancedSearchV2Args {
   advancedSearchAgeBadgeSingleText: string;
   advancedSearchAgeBadgeRangeText: string;
   advancedSearchFilterMaterialsText: string;
-  advancedSearchShowResultsText: string;
+  searchShowResultsText: string;
 }
