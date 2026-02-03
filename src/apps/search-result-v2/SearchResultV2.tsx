@@ -289,7 +289,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
                   <div className="search-v2-facets__dialog">
                     <div className="search-v2-facets__dialog-content">
                       <h2 className="search-v2-facets__dialog-content__heading">
-                        {t("searchShowingMaterialsText", {
+                        {t("searchDialogFilterMaterialsText", {
                           placeholders: { "@hitcount": hitcount }
                         })}
                       </h2>
