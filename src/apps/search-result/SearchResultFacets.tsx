@@ -1,14 +1,14 @@
 import React, { memo } from "react";
 import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
-import { useText } from "../../../core/utils/text";
+import { useText } from "../../core/utils/text";
 import {
   FacetResult,
   FacetFieldEnum
-} from "../../../core/dbc-gateway/generated/graphql";
-import { getFacetFieldTranslation } from "../../../components/facet-browser/helper";
-import SearchFacetGroup from "../../../components/facet-browser/SearchFacetGroup";
-import SearchToggle from "../../../components/search-toggle/SearchToggle";
-import AdvancedSearchRadioGroup from "../../advanced-search-v2/components/AdvancedSearchRadioGroup";
+} from "../../core/dbc-gateway/generated/graphql";
+import { getFacetFieldTranslation } from "../../components/facet-browser/helper";
+import SearchFacetGroup from "../../components/facet-browser/SearchFacetGroup";
+import SearchToggle from "../../components/search-toggle/SearchToggle";
+import AdvancedSearchRadioGroup from "../advanced-search-v2/components/AdvancedSearchRadioGroup";
 // Type for facet state stored in URL
 // Uses facetName (camelCase string like "materialTypesGeneral") as that's what the API expects for filters
 type FacetState = {

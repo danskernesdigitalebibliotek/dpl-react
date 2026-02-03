@@ -18,12 +18,12 @@ import {
 import { getCurrentLocation, redirectTo } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { cleanBranchesId, TBranch } from "../../core/utils/branches";
-import SearchResultInvalidSearch from "../search-result/search-result-not-valid-search";
+import SearchResultInvalidSearch from "./search-result-not-valid-search";
 import { useUrls } from "../../core/utils/url";
 import { useConfig } from "../../core/utils/config";
 import { isWildcardQuery } from "../advanced-search-v2/lib/query-builder";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
-import SearchResultFacets from "./components/SearchResultFacets";
+import SearchResultFacets from "./SearchResultFacets";
 import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-filter.svg";
 import useDialog from "../../components/dialog/useDialog";
 import Dialog from "../../components/dialog/Dialog";
