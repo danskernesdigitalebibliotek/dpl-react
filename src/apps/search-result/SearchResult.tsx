@@ -28,72 +28,12 @@ import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 import useDialog from "../../components/dialog/useDialog";
 import Dialog from "../../components/dialog/Dialog";
 import { Button } from "../../components/Buttons/Button";
+import { convertFacetsToFilters, isValidFacetsState } from "./helpers";
 
 interface SearchResultV2Props {
   q: string;
   pageSize: number;
 }
-
-type InfoBoxConfig = {
-  title?: string;
-  content: { value?: string };
-  buttonLabel?: string;
-  buttonUrl?: string;
-};
-
-// Type for facet state stored in URL
-// Uses facetName (camelCase string like "materialTypesGeneral") as that's what the API expects for filters
-type FacetState = {
-  facetName: string;
-  selectedValues: string[];
-};
-
-// Validation function for facet state from URL
-const isValidFacetState = (value: unknown): value is FacetState[] => {
-  if (!Array.isArray(value)) return false;
-
-  return value.every((item) => {
-    if (typeof item !== "object" || item === null) return false;
-
-    const { facetName, selectedValues } = item as Record<string, unknown>;
-
-    if (typeof facetName !== "string") {
-      return false;
-    }
-    if (
-      !Array.isArray(selectedValues) ||
-      !selectedValues.every((v) => typeof v === "string")
-    ) {
-      return false;
-    }
-
-    return true;
-  });
-};
-
-// Convert nuqs facet state to filter format expected by createFilters
-const convertFacetsToFilters = (facets: FacetState[]) => {
-  const filters: {
-    [key: string]: {
-      [key: string]: { key: string; term: string; traceId: string };
-    };
-  } = {};
-
-  facets.forEach(({ facetName, selectedValues }) => {
-    if (selectedValues.length > 0) {
-      filters[facetName] = {};
-      selectedValues.forEach((value) => {
-        filters[facetName][value] = {
-          key: value,
-          term: value,
-          traceId: "url-facet"
-        };
-      });
-    }
-  });
-
-  return filters;
-};
 
 const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   const u = useUrls();
@@ -113,8 +53,8 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   // Facets state from URL via nuqs
   const [facetsFromUrl] = useQueryState(
     "facets",
-    parseAsJson((value) => {
-      if (isValidFacetState(value)) return value;
+    parseAsJson((facetsState) => {
+      if (isValidFacetsState(facetsState)) return facetsState;
       return [];
     }).withDefault([])
   );
@@ -225,7 +165,12 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
     content: infoBoxContent,
     buttonLabel: infoBoxButtonLabel,
     buttonUrl: infoBoxButtonUrl
-  } = config<InfoBoxConfig>("searchInfoboxConfig", {
+  } = config<{
+    title?: string;
+    content: { value?: string };
+    buttonLabel?: string;
+    buttonUrl?: string;
+  }>("searchInfoboxConfig", {
     transformer: "jsonParse"
   });
   const infoBoxHtml = infoBoxContent?.value || "";
