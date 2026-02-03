@@ -196,25 +196,24 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           isGlobalMaterial={workType === "global"}
           isAvailable={isAvailable}
         >
-          {manifestations.map((manifestation) => (
-            <React.Fragment key={manifestation.pid}>
+          {manifestations.map((manifestation) =>
+            hasCorrectAccessType(AccessTypeCodeEnum.Online, [manifestation]) ? (
+              <OnlineInternalModal
+                key={manifestation.pid}
+                workId={wid}
+                selectedManifestations={[manifestation]}
+              />
+            ) : (
               <ReservationFindOnShelfModals
+                key={manifestation.pid}
                 patron={userData?.patron}
                 manifestations={[manifestation]}
                 selectedPeriodical={selectedPeriodical}
                 work={work}
                 setSelectedPeriodical={setSelectedPeriodical}
               />
-              {hasCorrectAccessType(AccessTypeCodeEnum.Online, [
-                manifestation
-              ]) && (
-                <OnlineInternalModal
-                  workId={wid}
-                  selectedManifestations={[manifestation]}
-                />
-              )}
-            </React.Fragment>
-          ))}
+            )
+          )}
           {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
             <InfomediaModal
               selectedManifestations={selectedManifestations}
