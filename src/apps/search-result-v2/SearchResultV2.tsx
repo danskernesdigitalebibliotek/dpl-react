@@ -15,13 +15,6 @@ import {
   allFacetFields,
   getPlaceHolderFacets
 } from "../../components/facet-browser/helper";
-import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
-import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
-import {
-  CampaignMatchPOST200,
-  CampaignMatchPOSTBodyItem
-} from "../../core/dpl-cms/model";
-import { statistics } from "../../core/statistics/statistics";
 import { getCurrentLocation, redirectTo } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { cleanBranchesId, TBranch } from "../../core/utils/branches";
@@ -31,7 +24,6 @@ import { useConfig } from "../../core/utils/config";
 import { isWildcardQuery } from "../advanced-search-v2/lib/query-builder";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultFacets from "./components/SearchResultFacets";
-import Campaign from "../../components/campaign/Campaign";
 import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-filter.svg";
 import useDialog from "../../components/dialog/useDialog";
 import Dialog from "../../components/dialog/Dialog";
@@ -109,10 +101,6 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   const t = useText();
   const [resultItems, setResultItems] = useState<Work[] | null>(null);
   const [hitcount, setHitCount] = useState<number>(0);
-  const { mutate } = useCampaignMatchPOST();
-  const [campaignData, setCampaignData] = useState<CampaignMatchPOST200 | null>(
-    null
-  );
   const minimalQueryLength = 1;
   const config = useConfig();
   const branches = config<TBranch[]>("branchesConfig", {
@@ -158,16 +146,6 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q, pageSize, searchFilters]);
 
-  const { collectPageStatistics } = useCollectPageStatistics();
-  useEffect(() => {
-    collectPageStatistics({
-      ...statistics.searchQuery,
-      trackedData: q
-    });
-    // We actually just want to track if the query changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [q]);
-
   // Fetch facets for campaign matching
   const { data: facetData } = useSearchFacetQuery(
     {
@@ -186,27 +164,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
     }
   );
 
-  const campaignFacets = facetData?.search.facets || null;
   const facets = facetData?.search.facets || [];
-
-  useDeepCompareEffect(() => {
-    if (campaignFacets) {
-      mutate(
-        {
-          data: campaignFacets as CampaignMatchPOSTBodyItem[],
-          params: {
-            _format: "json"
-          }
-        },
-        {
-          onSuccess: (campaign) => {
-            setCampaignData(campaign);
-          }
-        }
-      );
-    }
-  }, [campaignFacets, mutate]);
-
   const { data, isLoading } = useSearchWithPaginationQuery(
     {
       q: { all: q },
@@ -250,17 +208,6 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
 
     setResultItems(resultWorks);
   }, [data, page]);
-
-  useEffect(() => {
-    if (campaignData?.data?.title) {
-      collectPageStatistics({
-        ...statistics.campaignShown,
-        trackedData: campaignData.data.title
-      });
-    }
-    // We only want to track when campaignData changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [campaignData]);
 
   if (!q || q.length < minimalQueryLength) {
     return <SearchResultInvalidSearch />;
@@ -323,11 +270,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
           <section>
             <div className="search-v2__results-top-bar">
               <div className="search-v2__results-top-bar__left">
-                <h2
-                  className="search-v2__results-heading"
-                  id="search-result-v2"
-                  aria-live="polite"
-                >
+                <h2 className="search-v2__results-heading">
                   {t("searchShowingMaterialsText", {
                     placeholders: { "@hitcount": hitcount }
                   })}
@@ -367,10 +310,6 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
                 </Dialog>
               </div>
             </div>
-
-            {campaignData && campaignData.data && (
-              <Campaign campaignData={campaignData.data} />
-            )}
 
             {resultItems && (
               <>
