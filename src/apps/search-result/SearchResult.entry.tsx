@@ -4,7 +4,7 @@ import { withConfig } from "../../core/utils/config";
 import { pageSizeGlobal, getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
-import SearchResultV2 from "./SearchResultV2";
+import SearchResultV2 from "./SearchResult";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
