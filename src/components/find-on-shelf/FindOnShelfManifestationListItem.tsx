@@ -10,19 +10,11 @@ export interface FindOnShelfManifestationListItemProps {
   title: string;
   publicationYear: string | null;
   numberAvailable: number;
-  author: string;
 }
 
 const FindOnShelfManifestationListItem: FC<
   FindOnShelfManifestationListItemProps
-> = ({
-  shelfmark,
-  locationArray,
-  title,
-  publicationYear,
-  numberAvailable,
-  author
-}) => {
+> = ({ shelfmark, locationArray, title, publicationYear, numberAvailable }) => {
   const t = useText();
 
   const shelfmarkFullText = shelfmark
@@ -42,7 +34,7 @@ const FindOnShelfManifestationListItem: FC<
       </span>
       <span role="cell">
         {locationArrayWithShelfmark.length
-          ? getFindOnShelfLocationText(locationArrayWithShelfmark, author)
+          ? getFindOnShelfLocationText(locationArrayWithShelfmark)
           : t("findOnShelfModalNoLocationSpecifiedText")}
       </span>
       <span className="find-on-shelf__item-count-text" role="cell">
