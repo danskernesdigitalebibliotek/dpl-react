@@ -103,7 +103,10 @@ export const manifestationFactory = Factory.define<ManifestationForWorkMedium>(
         loanIsPossible: true
       }
     ],
-    shelfmark: null,
+    shelfmark: {
+      shelfmark: "shelfmark",
+      postfix: "postfix"
+    },
     workYear: null,
     catalogueCodes: {
       nationalBibliography: ["DBF201835"],
