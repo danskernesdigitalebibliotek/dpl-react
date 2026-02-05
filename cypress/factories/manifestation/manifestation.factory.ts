@@ -44,8 +44,7 @@ export const manifestationFactory = Factory.define<ManifestationForWorkMedium>(
     creators: [
       {
         __typename: "Person" as const,
-        display: "Lucinda Riley",
-        nameSort: "riley lucinda"
+        display: "Lucinda Riley"
       }
     ],
     publisher: ["Cicero"],

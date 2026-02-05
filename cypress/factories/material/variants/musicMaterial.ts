@@ -17,7 +17,6 @@ export const musicMaterial = materialFactory.build({
     creators: [
       {
         __typename: "Person" as const,
-        nameSort: "Music Artist",
         display: "Music Artist"
       }
     ]

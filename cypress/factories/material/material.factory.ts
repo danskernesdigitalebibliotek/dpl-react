@@ -42,7 +42,6 @@ export const materialFactory = Factory.define<GetMaterialQuery>(() => ({
     creators: [
       {
         __typename: "Person" as const,
-        nameSort: "riley lucinda",
         display: "Lucinda Riley"
       }
     ],
