@@ -196,24 +196,23 @@ const Material: React.FC<MaterialProps> = ({ wid }) => {
           isGlobalMaterial={workType === "global"}
           isAvailable={isAvailable}
         >
-          {manifestations.map((manifestation) => (
-            <ReservationFindOnShelfModals
-              key={manifestation.pid}
-              patron={userData?.patron}
-              manifestations={[manifestation]}
-              selectedPeriodical={selectedPeriodical}
-              work={work}
-              setSelectedPeriodical={setSelectedPeriodical}
-            />
-          ))}
-          {hasCorrectAccessType(
-            AccessTypeCodeEnum.Online,
-            selectedManifestations
-          ) && (
-            <OnlineInternalModal
-              workId={wid}
-              selectedManifestations={selectedManifestations}
-            />
+          {manifestations.map((manifestation) =>
+            hasCorrectAccessType(AccessTypeCodeEnum.Online, [manifestation]) ? (
+              <OnlineInternalModal
+                key={manifestation.pid}
+                workId={wid}
+                selectedManifestations={[manifestation]}
+              />
+            ) : (
+              <ReservationFindOnShelfModals
+                key={manifestation.pid}
+                patron={userData?.patron}
+                manifestations={[manifestation]}
+                selectedPeriodical={selectedPeriodical}
+                work={work}
+                setSelectedPeriodical={setSelectedPeriodical}
+              />
+            )
           )}
           {infomediaIds.length > 0 && !isAnonymous() && !isUserBlocked && (
             <InfomediaModal
