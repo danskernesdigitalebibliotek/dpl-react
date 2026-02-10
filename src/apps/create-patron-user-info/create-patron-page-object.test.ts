@@ -127,17 +127,17 @@ describe("Create Patron - Page Objects Integration", () => {
     });
   });
 
-  describe("Find Library Dialog through dawa autocomplete", () => {
-    it("Should display the suggestions list when typing in the dawa input field", () => {
+  describe("Find Library Dialog through address autocomplete", () => {
+    it("Should display the suggestions list when typing in the address input field", () => {
       givenGSearchAddresses();
       createPatronPage.openFindLibraryDialog();
       createPatronPage.verifyFindLibraryDialogIsVisible();
       createPatronPage.components.DialogFindLibrary((dialog) => {
-        dialog.typeAddressInDawaInput("Suomisvej");
-        dialog.verifyDawaSuggestionListIsVisible();
-        dialog.clickFirstDawaSuggestion();
-        dialog.verifyDawaSuggestionListIsNotExisting();
-        dialog.verifyDawaSuggestionIsInsertedInInput();
+        dialog.typeAddressInInput("Suomisvej");
+        dialog.verifyAddressSuggestionListIsVisible();
+        dialog.clickFirstAddressSuggestion();
+        dialog.verifyAddressSuggestionListIsNotExisting();
+        dialog.verifyAddressSuggestionIsInsertedInInput();
       });
     });
   });
@@ -152,7 +152,7 @@ describe("Create Patron - Page Objects Integration", () => {
 
       createPatronPage.components.DialogFindLibrary((dialog) => {
         dialog.clickReverseGeoLocationButton();
-        dialog.verifyDawaSuggestionListIsNotExisting();
+        dialog.verifyAddressSuggestionListIsNotExisting();
         dialog.verifyReverseLocationIsInsertedInInput();
       });
     });
