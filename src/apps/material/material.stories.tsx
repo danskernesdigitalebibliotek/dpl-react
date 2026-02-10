@@ -67,6 +67,11 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Agency ID from OpenID Connect configuration",
       control: { type: "text" }
     },
+    localSubjectsAgencyIdsConfig: {
+      description:
+        "Comma-separated list of agency ID prefixes for local subjects",
+      control: { type: "text" }
+    },
     smsNotificationsForReservationsEnabledConfig: {
       description: "SMS notifications for reservations is enabled",
       control: { type: "text" }
@@ -869,6 +874,7 @@ const meta: Meta<typeof MaterialEntry> = {
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
     agencyIdConfig: "710100",
+    localSubjectsAgencyIdsConfig: "",
     smsNotificationsForReservationsEnabledConfig: "1",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
