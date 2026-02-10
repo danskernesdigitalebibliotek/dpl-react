@@ -109,8 +109,8 @@ function FindLibraryDialog({
       <div className="find-library-dialog__location-group">
         <GSearchInput
           id="address-input-2"
-          label={t("findLibraryDialogDawaInputLabelText")}
-          placeholder={t("findLibraryDialogDawaInputPlaceholderText")}
+          label={t("findLibraryDialogAddressInputLabelText")}
+          placeholder={t("findLibraryDialogAddressInputPlaceholderText")}
           type="text"
           query={query}
           onQueryChange={(query) => setQuery(query)}
