@@ -3,7 +3,6 @@ import { defineConfig } from "cypress";
 import plugins from "./cypress/plugins";
 
 export default defineConfig({
-  projectId: "4trcdv",
   defaultCommandTimeout: 10000,
   pageLoadTimeout: 10000,
   requestTimeout: 30000,
