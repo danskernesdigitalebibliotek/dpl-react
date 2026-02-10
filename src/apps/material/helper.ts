@@ -519,7 +519,7 @@ const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
   ]);
 
 const getLocalAgencySubjects = (
-  manifestations: Manifestation[],
+  manifestations: Pick<Manifestation, "pid" | "subjects">[],
   agencyIds: string[]
 ): string[] =>
   manifestations
@@ -532,7 +532,7 @@ export const getAllSubjects = ({
   agencyIds
 }: {
   subjects: Work["subjects"];
-  manifestations: Manifestation[];
+  manifestations: Pick<Manifestation, "pid" | "subjects">[];
   agencyIds: string[];
 }): string[] =>
   uniq([
