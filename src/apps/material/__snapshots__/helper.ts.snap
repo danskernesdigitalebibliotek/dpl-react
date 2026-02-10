@@ -84,6 +84,9 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "source": [
         "Bibliotekskatalog",
       ],
+      "subjects": {
+        "all": [],
+      },
       "titles": {
         "main": [
           "I, Robot (Oxford bookworms library, ved Rowena Akinyemi)",
@@ -182,6 +185,9 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "source": [
         "eReolen Global",
       ],
+      "subjects": {
+        "all": [],
+      },
       "titles": {
         "main": [
           "I, Robot",
@@ -284,6 +290,9 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "source": [
         "eReolen Global",
       ],
+      "subjects": {
+        "all": [],
+      },
       "titles": {
         "main": [
           "I, Robot",
@@ -397,6 +406,9 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
       "source": [
         "Bibliotekskatalog",
       ],
+      "subjects": {
+        "all": [],
+      },
       "titles": {
         "main": [
           "I, Robot (Ved Tricia Reilly)",

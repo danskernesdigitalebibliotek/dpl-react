@@ -17,6 +17,9 @@ export const manifestationFactory = Factory.define<ManifestationForWorkMedium>(
     pid: "870970-basis:52557240",
     genreAndForm: ["romaner", "slægtsromaner"],
     source: ["Bibliotekskatalog"],
+    subjects: {
+      all: []
+    },
     languages: {
       main: [
         {
