@@ -7,6 +7,9 @@ export default {
         pid: "870970-basis:44504928",
         genreAndForm: ["noveller"],
         source: ["Bibliotekskatalog"],
+        subjects: {
+          all: []
+        },
         languages: {
           main: [
             {
@@ -111,6 +114,9 @@ export default {
         pid: "150061-ebog:ODN0000039136",
         genreAndForm: [],
         source: ["eReolen Global"],
+        subjects: {
+          all: []
+        },
         languages: {
           main: [
             {
@@ -204,6 +210,9 @@ export default {
         pid: "150061-netlydbog:ODN0000105225",
         genreAndForm: [],
         source: ["eReolen Global"],
+        subjects: {
+          all: []
+        },
         languages: {
           main: [
             {
@@ -297,6 +306,9 @@ export default {
         pid: "870970-basis:23798255",
         genreAndForm: ["noveller"],
         source: ["Bibliotekskatalog"],
+        subjects: {
+          all: []
+        },
         languages: {
           main: [
             {
