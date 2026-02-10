@@ -1,0 +1,17 @@
+export const givenGSearchAddresses = () => {
+  // https://api.dataforsyningen.dk/rest/gsearch/v2.0/adresse?q=suomi&limit=10&token=xxx
+  cy.interceptRest({
+    aliasName: "gsearchAddresses",
+    url: "https://api.dataforsyningen.dk/rest/gsearch/v2.0/adresse*",
+    fixtureFilePath: "find-library/gsearch-addresses.json"
+  });
+};
+
+export const givenGSearchAddressReverseGeo = () => {
+  // https://api.dataforsyningen.dk/rest/gsearch/v2.0/adgangsadresse_reverse?x=12.554823940146234&y=55.67931490419412&token=xxx
+  cy.interceptRest({
+    aliasName: "gsearchReverseGeo",
+    url: "https://api.dataforsyningen.dk/rest/gsearch/v2.0/adgangsadresse_reverse*",
+    fixtureFilePath: "find-library/gsearch-reverse-geo.json"
+  });
+};

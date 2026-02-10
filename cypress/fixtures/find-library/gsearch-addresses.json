@@ -1,0 +1,38 @@
+[
+  {
+    "id": "363cc2db-6789-1eb8-e044-0003ba298018",
+    "vejnavn": "Suomisvej",
+    "husnummer": "2",
+    "postnummer": "3310",
+    "postnummernavn": "Ølsted",
+    "visningstekst": "Suomisvej 2, 3310 Ølsted",
+    "geometri": {
+      "type": "MultiPoint",
+      "coordinates": [[12.05570852, 55.89030819]]
+    }
+  },
+  {
+    "id": "1949e062-99d0-4bd1-9f40-6f4c9dd7ecba",
+    "vejnavn": "Suomisvej",
+    "husnummer": "2",
+    "postnummer": "1927",
+    "postnummernavn": "Frederiksberg C",
+    "visningstekst": "Suomisvej 2, 2., 1927 Frederiksberg C",
+    "geometri": {
+      "type": "MultiPoint",
+      "coordinates": [[12.55511495, 55.67936222]]
+    }
+  },
+  {
+    "id": "342eb536-4639-4750-a4ed-a63d16b5cad1",
+    "vejnavn": "Suomisvej",
+    "husnummer": "2",
+    "postnummer": "1927",
+    "postnummernavn": "Frederiksberg C",
+    "visningstekst": "Suomisvej 2, 1927 Frederiksberg C",
+    "geometri": {
+      "type": "MultiPoint",
+      "coordinates": [[12.55511495, 55.67936222]]
+    }
+  }
+]
