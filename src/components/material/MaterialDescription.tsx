@@ -1,7 +1,7 @@
 import React from "react";
 import {
   getUniqueMovies,
-  getDbcVerifiedSubjectsFirst,
+  getAllSubjects,
   materialContainsDanish
 } from "../../apps/material/helper";
 import {
@@ -10,6 +10,7 @@ import {
   constructSearchUrl,
   constructSubjectSearchUrl
 } from "../../core/utils/helpers/url";
+import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
 import { Pid, WorkId } from "../../core/utils/types/ids";
@@ -27,9 +28,21 @@ export interface MaterialDescriptionProps {
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const t = useText();
   const u = useUrls();
+  const config = useConfig();
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
-  const { fictionNonfiction, series, subjects, relations, dk5MainEntry } = work;
+  const {
+    fictionNonfiction,
+    series,
+    subjects,
+    relations,
+    dk5MainEntry,
+    manifestations
+  } = work;
+
+  const localSubjectsAgencyIds = config("localSubjectsAgencyIdsConfig", {
+    transformer: "stringToArray"
+  });
 
   const isFiction = materialIsFiction(work);
 
@@ -49,7 +62,11 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
       })) ??
     [];
 
-  const subjectsList = getDbcVerifiedSubjectsFirst(subjects).map((item) => ({
+  const subjectsList = getAllSubjects({
+    subjects,
+    manifestations: manifestations.all,
+    agencyIds: localSubjectsAgencyIds
+  }).map((item) => ({
     url: constructSubjectSearchUrl(searchUrl, item),
     term: item
   }));
