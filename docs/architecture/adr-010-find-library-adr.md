@@ -22,13 +22,15 @@ To address these issues, the “Find Library” functionality was introduced as 
 
 We introduced a new interactive **Find Library Dialog**, enabling multiple new capabilities:
 
-### 1. **Address-based lookup using DAWA**
+### 1. **Address-based lookup using Dataforsyningen GSearch API**
 
-A new component, `DawaInput`, was implemented to query the Danish Dataforsyningen (DAWA) API for address suggestions, using:
+A new component, `GSearchInput`, was implemented to query the Danish Dataforsyningen GSearch API v2.0 for address suggestions, using:
 
 - Debounced input
-- Async lookup through a dedicated module (`address-lookup/dawa-reqests`)
+- Async lookup through a dedicated module (`address-lookup/gsearch-requests`)
 - Selection handling with lat/lng extraction
+
+**Update (2025):** The original `DawaInput` component was replaced with `GSearchInput` to use the newer GSearch API v2.0, which provides better support and features.
 
 ### 2. **Geolocation support**
 
@@ -37,7 +39,7 @@ This uses:
 
 - A new `geo-location/getCurrentPosition` helper
 - Translation-powered error messages (`geoLocationError*Text`)
-- Reverse geocoding via DAWA (`getReverseGeocode`)
+- Reverse geocoding via GSearch API (`getReverseGeocode`)
 
 ### 3. **Proximity calculation**
 
@@ -77,7 +79,7 @@ This toggles between:
 To enable these behaviors cleanly:
 
 - `branchesConfig` now supports optional `location` objects.
-- DAWA-related logic was extracted into reusable async functions.
+- GSearch-related logic was extracted into reusable async functions.
 - Geolocation logic was centralized and translation-aware.
 - Unused or obsolete components were removed or replaced.
 - All text strings were converted to `useText()` keys for translation.
@@ -92,7 +94,7 @@ Rejected because:
 - Not user-friendly with many branches
 - Does not support location-based sorting
 
-### 2. **Use DAWA autocomplete directly in the dropdown**
+### 2. **Use GSearch autocomplete directly in the dropdown**
 
 Rejected because:
 
@@ -125,7 +127,7 @@ Rejected for now:
 
 ### Negative / Considerations
 
-- Introduces new external dependencies on DAWA APIs.
+- Introduces new external dependencies on Dataforsyningen GSearch APIs.
 - Requires maintaining translation keys for multiple error states.
 - Slightly higher complexity in the UI, with additional modals.
 - Geolocation may fail in environments where browser permissions are blocked.
