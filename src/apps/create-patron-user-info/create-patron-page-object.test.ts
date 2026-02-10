@@ -1,7 +1,7 @@
 import {
-  givenDawaAddressess,
-  givenDawaAddressReverseGeo
-} from "../../../cypress/intercepts/dawa/addresses";
+  givenGSearchAddresses,
+  givenGSearchAddressReverseGeo
+} from "../../../cypress/intercepts/gsearch/addresses";
 import { givenLocationLatLong } from "../../../cypress/intercepts/geolocation/geolocation";
 import { CreatePatronPage } from "../../../cypress/page-objects/create-patron/CreatePatronPage";
 
@@ -129,7 +129,7 @@ describe("Create Patron - Page Objects Integration", () => {
 
   describe("Find Library Dialog through dawa autocomplete", () => {
     it("Should display the suggestions list when typing in the dawa input field", () => {
-      givenDawaAddressess();
+      givenGSearchAddresses();
       createPatronPage.openFindLibraryDialog();
       createPatronPage.verifyFindLibraryDialogIsVisible();
       createPatronPage.components.DialogFindLibrary((dialog) => {
@@ -144,8 +144,8 @@ describe("Create Patron - Page Objects Integration", () => {
 
   describe("Find Library Dialog through reverse geolocation", () => {
     it("Should display reversed geo location when clicking the reverse geo location button", () => {
-      givenDawaAddressess();
-      givenDawaAddressReverseGeo();
+      givenGSearchAddresses();
+      givenGSearchAddressReverseGeo();
       createPatronPage.openFindLibraryDialog();
       createPatronPage.verifyFindLibraryDialogIsVisible();
       givenLocationLatLong();
