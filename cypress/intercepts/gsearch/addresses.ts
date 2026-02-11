@@ -7,7 +7,6 @@ export const givenGSearchAddresses = () => {
 };
 
 export const givenGSearchAddressReverseGeo = () => {
-  // https://api.dataforsyningen.dk/rest/gsearch/v2.0/adgangsadresse_reverse?x=12.554823940146234&y=55.67931490419412&token=xxx
   cy.interceptRest({
     aliasName: "gsearchReverseGeo",
     url: "https://api.dataforsyningen.dk/rest/gsearch/v2.0/adgangsadresse_reverse*",
