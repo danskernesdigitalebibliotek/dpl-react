@@ -32,8 +32,8 @@ const getToken = (): string => {
   const token = process.env.STORYBOOK_DATAFORSYNINGEN;
   if (!token) {
     // eslint-disable-next-line no-console
-    console.error(
-      "DATAFORSYNINGEN token is not set. Please add STORYBOOK_DATAFORSYNINGEN to your .env file."
+    console.warn(
+      "DATAFORSYNINGEN token is not set. API calls will fail unless intercepted (e.g., during tests)."
     );
   }
   return token || "";
@@ -81,9 +81,6 @@ export const getReverseGeocode = async (
   };
 
   const token = getToken();
-  if (!token) {
-    throw new Error(messages.fetchError);
-  }
 
   try {
     const response = await fetch(
@@ -114,9 +111,6 @@ export async function getAddressesFromLocationQuery(
   query: string
 ): Promise<AddressWithCoordinates[]> {
   const token = getToken();
-  if (!token) {
-    return [];
-  }
 
   try {
     const url = `${GSEARCH_BASE_URL}/adresse?q=${encodeURIComponent(query)}&limit=10&srid=4326&token=${token}`;
