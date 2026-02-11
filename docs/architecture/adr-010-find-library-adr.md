@@ -30,7 +30,7 @@ A new component, `GSearchInput`, was implemented to query the Danish Dataforsyni
 - Async lookup through a dedicated module (`address-lookup/gsearch-requests`)
 - Selection handling with lat/lng extraction
 
-**Update (2025):** The original `DawaInput` component was replaced with `GSearchInput` to use the newer GSearch API v2.0, which provides better support and features.
+**Update (2025):** The original `DawaInput` component was replaced with `GSearchInput` to use the newer GSearch API as Dawa is no longer supported.
 
 ### 2. **Geolocation support**
 
