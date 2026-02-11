@@ -29,7 +29,7 @@ const GSEARCH_BASE_URL = "https://api.dataforsyningen.dk/rest/gsearch/v2.0";
  * Get DATAFORSYNINGEN token from environment variables
  */
 const getToken = (): string => {
-  const token = process.env.STORYBOOK_DATAFORSYNINGEN;
+  const token = process.env.DATAFORSYNINGEN_TOKEN;
   if (!token) {
     // eslint-disable-next-line no-console
     console.warn(
