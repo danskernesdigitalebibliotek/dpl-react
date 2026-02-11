@@ -1,5 +1,4 @@
 export const givenGSearchAddresses = () => {
-  // https://api.dataforsyningen.dk/rest/gsearch/v2.0/adresse?q=suomi&limit=10&token=xxx
   cy.interceptRest({
     aliasName: "gsearchAddresses",
     url: "https://api.dataforsyningen.dk/rest/gsearch/v2.0/adresse*",
