@@ -18,9 +18,13 @@ const StatusMessage: FC<StatusMessageProps> = ({
   return (
     <>
       {renewalStatusList &&
-        renewalStatusList.map((text) => {
+        renewalStatusList.map((text, index) => {
           if (text !== "deniedOtherReason") {
-            return <span className={className}>{getStatusText(text, t)}</span>;
+            return (
+              <span key={index} className={className}>
+                {getStatusText(text, t)}
+              </span>
+            );
           }
           return null;
         })}

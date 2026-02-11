@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
 import { useText } from "../../../../core/utils/text";
 import { MaterialProps } from "../../../loan-list/materials/utils/material-fetch-hoc";
 import { ReservationType } from "../../../../core/utils/types/reservation-type";
@@ -11,7 +10,7 @@ export interface ReservationDetailsRedirectProps {
   openReservationDeleteModal: (deleteReservation: ReservationType) => void;
   className?: string;
   linkClassNames?: string;
-  externalLink: URL;
+  workUrl: URL;
 }
 
 const ReservationDetailsRedirect: FC<
@@ -21,7 +20,7 @@ const ReservationDetailsRedirect: FC<
   openReservationDeleteModal,
   className,
   linkClassNames,
-  externalLink
+  workUrl
 }) => {
   const t = useText();
 
@@ -39,14 +38,14 @@ const ReservationDetailsRedirect: FC<
         dataCy="remove-digital-reservation-button"
       />
       <LinkButton
-        dataCy="go-to-ereolen-button"
+        dataCy="view-material-button"
         size="small"
-        url={externalLink}
+        url={workUrl}
         variant="filled"
-        id="go-to-ereolen-button"
+        id="view-material-button"
+        iconClassNames="btn-icon invert"
       >
-        {t("reservationDetailsDigitalReservationGoToEreolenText")}
-        <img src={ExternalLinkIcon} className="btn-icon invert" alt="" />
+        {t("viewMaterialText")}
       </LinkButton>
     </div>
   );

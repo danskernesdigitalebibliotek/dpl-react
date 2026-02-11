@@ -3,6 +3,7 @@ import ArrowButton from "../../../components/Buttons/ArrowButton";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
 import StatusCircleIcon from "../../loan-list/materials/utils/status-circle-icon";
 import InfoLabel from "../../../components/atoms/labels/InfoLabel";
+import { ReservationLabelWithOptionalStockInfo } from "./reservation-label-with-optional-stock-info";
 
 interface ReservationStatusProps {
   reservationInfo?: ReservationType;
@@ -15,6 +16,7 @@ interface ReservationStatusProps {
   children?: ReactNode;
   showArrow?: boolean;
   className?: string;
+  holdings?: number;
 }
 
 const ReservationStatus: FC<ReservationStatusProps> = ({
@@ -27,7 +29,8 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
   label,
   children,
   showArrow = true,
-  className
+  className,
+  holdings
 }) => {
   const notificationClickEventHandler = () => {
     if (openReservationDetailsModal && reservationInfo) {
@@ -53,11 +56,16 @@ const ReservationStatus: FC<ReservationStatusProps> = ({
           <div className="list-reservation__deadline">
             {info && <InfoLabel>{info}</InfoLabel>}
             {typeof label === "string" && (
-              <p className="text-small-caption">{label}</p>
+              <ReservationLabelWithOptionalStockInfo
+                label={label}
+                holdings={holdings}
+              />
             )}
             {Array.isArray(label) &&
-              label.map((localLabel) => (
-                <p className="text-small-caption">{localLabel}</p>
+              label.map((localLabel, index) => (
+                <p key={index} className="text-small-caption">
+                  {localLabel}
+                </p>
               ))}
           </div>
         </div>

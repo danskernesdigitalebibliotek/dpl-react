@@ -1,14 +1,25 @@
-import { AgencyBranch } from "../fbs/model";
 import { useConfig } from "./config";
 
+export type TBranch = {
+  branchId: string;
+  title: string;
+  location?: {
+    lat: string;
+    lng: string;
+    value: string;
+    address: string;
+    city: string;
+  };
+};
+
 export const excludeBlacklistedBranches = (
-  branches: AgencyBranch[],
+  branches: TBranch[],
   blacklist: string[]
-): AgencyBranch[] => {
+): TBranch[] => {
   return branches.filter((item) => !blacklist.includes(item.branchId));
 };
 
-export const cleanBranchesId = (branches: AgencyBranch[]): string[] => {
+export const cleanBranchesId = (branches: TBranch[]): string[] => {
   return (
     branches
       .map((branch) => {
@@ -23,25 +34,48 @@ export const cleanBranchesId = (branches: AgencyBranch[]): string[] => {
   );
 };
 
-export const useGetBranches = (key: string): AgencyBranch[] => {
+/**
+ * Getting branches that are not blacklisted.
+ *
+ * @param blacklistKey
+ *  The config key that contains the ID of the blacklist.
+ *  Different lists (search, pickup etc.) might have different types.
+ * @param preferEmptyResult
+ *  If set, return an empty array if blacklist filtering has no effect.
+ *  This is useful for filters, where an empty array already means all filters.
+ */
+export const useGetBranches = (
+  blacklistKey: string,
+  preferEmptyResult: boolean = false
+): TBranch[] => {
   const config = useConfig();
-  const branches = config<AgencyBranch[]>("branchesConfig", {
+  const branches = config<TBranch[]>("branchesConfig", {
     transformer: "jsonParse"
   });
-  const blacklistBranches = config(key, {
+  const blacklistBranches = config(blacklistKey, {
     transformer: "stringToArray"
   });
+
+  if (preferEmptyResult && !blacklistBranches.length) {
+    return [];
+  }
+
   const whitelistBranches = excludeBlacklistedBranches(
     branches,
     blacklistBranches
   );
+
+  if (preferEmptyResult && whitelistBranches.length == branches.length) {
+    return [];
+  }
+
   return whitelistBranches;
 };
 
-const useGetCleanBranches = () => {
-  const branches = useGetBranches("blacklistedSearchBranchesConfig");
+const useGetSearchBranches = () => {
+  const branches = useGetBranches("blacklistedSearchBranchesConfig", true);
   const cleanBranches = cleanBranchesId(branches);
   return cleanBranches;
 };
 
-export default useGetCleanBranches;
+export default useGetSearchBranches;

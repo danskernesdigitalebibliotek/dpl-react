@@ -1,5 +1,5 @@
+import { createRoot } from "react-dom/client";
 import { createElement } from "react";
-import { render } from "react-dom";
 import { withErrorBoundary } from "react-error-boundary";
 import { setToken } from "./token";
 import Store from "../components/store";
@@ -24,10 +24,11 @@ function mount(context) {
     // Ensure that the application exists.
     const isValidMount = app;
     if (isValidMount) {
-      // Todo: This should be updated because render() is deprecated.
+      const root = createRoot(container);
+
       // After the update, ensure that prefixes (identifierPrefix) are specified for all apps.
       // This will guarantee unique IDs everywhere useID() is utilized.
-      render(
+      root.render(
         createElement(
           Store,
           {},
@@ -38,7 +39,6 @@ function mount(context) {
                 // Logging should be acceptable in an error handler.
                 // eslint-disable-next-line no-console
                 console.error(error, info);
-
                 forwardError(error, info);
               }
             }),
@@ -46,8 +46,7 @@ function mount(context) {
               ...container.dataset
             }
           )
-        ),
-        container
+        )
       );
     }
   }

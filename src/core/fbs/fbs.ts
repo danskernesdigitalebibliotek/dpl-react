@@ -16,10 +16,11 @@ import type {
 } from "react-query";
 import type {
   AgencyBranch,
+  AuthenticatedPatronV10,
   AuthenticatedPatronV4,
-  AuthenticatedPatronV6,
+  AuthenticatedPatronV8,
   AvailabilityV3,
-  CreatePatronRequestV3,
+  CreatePatronRequestV7,
   CreateReservationBatch,
   CreateReservationBatchV2,
   DeleteReservationsParams,
@@ -36,14 +37,15 @@ import type {
   ReservationDetailsV2,
   ReservationResponseV2,
   UpdateGuardianRequest,
-  UpdatePatronRequestV4,
+  UpdatePatronRequestV3,
+  UpdatePatronRequestV6,
   UpdateReservationBatch
 } from "./model";
 import { fetcher } from "./mutator/fetcher";
 import type { ErrorType, BodyType } from "./mutator/fetcher";
 
 /**
- *
+ * 
  Returns array of branches.
  <p>Can be used for giving the patron the option of choosing a preferred branch or where to pick up
  reservations.</p>
@@ -201,7 +203,7 @@ export const useDeleteReservations = <
 };
 
 /**
- *
+ * 
  Returns an array of reservation details.
  <p>When the patron picks up the reserved materials,
  the reservation will no longer be returned.
@@ -294,7 +296,7 @@ export function useGetReservations<
 }
 
 /**
- *
+ * 
  Returns an array of reservation details for the created reservations.
  <p></p>
  The response contains reservation state, which can be any of these values:
@@ -393,7 +395,7 @@ export const useAddReservationsDeprecated = <
 };
 
 /**
- *
+ * 
  Returns an array of the updated reservation details.
  <p></p>
  The response contains reservation state, which can be any of these values:
@@ -486,7 +488,7 @@ export const useUpdateReservations = <
 };
 
 /**
- *
+ * 
  Returns an array of reservation details.
  <p>When the patron picks up the reserved materials,
  the reservation will no longer be returned.
@@ -581,7 +583,7 @@ export function useGetReservationsV2<
 }
 
 /**
- *
+ * 
  <p>Given a CreateReservationBatch, it creates a list of reservations and returns a ReservationResponse.</p>
  <p>The CreateReservationBatch.type indicates the reservation type of the request. If left out the request will be considered of type
  normal. The type can be any of the following values:</p>
@@ -711,7 +713,7 @@ export const useAddReservationsV2 = <
 };
 
 /**
- *
+ * 
  Returns an array of availability for each bibliographical record.
  * @summary Get availability of bibliographical records.
  */
@@ -799,7 +801,7 @@ export function useGetAvailabilityV3<
 }
 
 /**
- *
+ * 
  Returns an array of holdings for each bibliographical record.
  The holdings lists the materials on each placement, and whether they are available on-shelf or lent out.
  * @summary Get placement holdings for bibliographical records.
@@ -862,7 +864,8 @@ export type GetHoldingsLogisticsV1QueryError = ErrorType<void>;
 /**
  * @summary Get placement holdings for bibliographical records.
  */
-export const useGetHoldingsLogisticsV1 = <
+
+export function useGetHoldingsLogisticsV1<
   TData = Awaited<ReturnType<typeof getHoldingsLogisticsV1>>,
   TError = ErrorType<void>
 >(
@@ -874,7 +877,7 @@ export const useGetHoldingsLogisticsV1 = <
       TData
     >;
   }
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
   const queryOptions = getGetHoldingsLogisticsV1QueryOptions(params, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
@@ -887,7 +890,7 @@ export const useGetHoldingsLogisticsV1 = <
 }
 
 /**
- *
+ * 
  Returns array of fees.
  <p>If the fee covers loaned materials, information about the materials is returned.
  Each fee in the response includes a 'type', which is used to distinguish between different types of
@@ -981,97 +984,106 @@ export function useGetFeesV2<
 }
 
 /**
- *
+ * 
  When a patron doesn't have a patron account in the library system, but logs in using a trusted authentication
  source (e.g NemId), the patron account can be created using this service. Name and address will be automatically
- fetched from CPR-Registry, and cannot be supplied by the client. If the CPR-Registry is not authorized to
- provide information about the patron, then repsonse message 404 will be sent back
- <p></p>
- If a patron is blocked the reason is available as a code:
+ fetched from configured person registry, and cannot be supplied by the client. If the configured person registry is not authorized to
+ provide information about the patron, then response message 404 will be sent back
+ <p>Multiple email addresses and phone numbers can be stored for a patron.</p>
+ <p>If multiple email addresses are supplied having receiveNotification as true, then only one of them will be randomly stored
+ as preferred and the rest will be stored as not preferred.</p>
+ <p>If multiple phone numbers are supplied having receiveNotification as true, then only one of them will be randomly stored
+ as preferred and the rest will be stored as not preferred.</p>
+ <p>
+ This version includes a possibility of including a BlockStatus in the request.
+ The reason of the blockstatus must be one of the following one-letter choices
  <ul>
-     <li>- 'O': library card stolen</li>
-     <li>- 'U': exclusion</li>
-     <li>- 'F': extended exclusion</li>
-     <li>- 'S': blocked by self service automaton</li>
-     <li>- 'W': self created at website</li>
+ <li>- 'O': library card stolen</li></li>
+ <li>- 'F': extended exclusion</li>
+ <li>- 'U': exclusion</li>
+ <li>- 'S': blocked by self service automaton</li>
+ <li>- 'W': self created at website</li>
+ <li>- 'E': maximum amount of allowed debt exceeded</li>
+ <li>- 'D': deceased</li>
  </ul>
- <p>The codes are informational, and can be used for looking up end user messages by the client system. However,
- the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>
+
+ <p>If the request includes a blockstatus for the patron, and the blockedSince date is not given or in the wrong format, or the blockedReason is not one of the one-letter choices shown above, then response message 400 will be sent back.
+ </p>
  * @summary Create a new patron who is a person.
  */
-export const createV4 = (
-  createPatronRequestV3: BodyType<CreatePatronRequestV3>
+export const createV9 = (
+  createPatronRequestV7: BodyType<CreatePatronRequestV7>
 ) => {
-  return fetcher<AuthenticatedPatronV4>({
-    url: `/external/agencyid/patrons/v4`,
+  return fetcher<AuthenticatedPatronV10>({
+    url: `/external/agencyid/patrons/v9`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    data: createPatronRequestV3
+    data: createPatronRequestV7
   });
 };
 
-export const getCreateV4MutationOptions = <
+export const getCreateV9MutationOptions = <
   TError = ErrorType<void>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof createV4>>,
+    Awaited<ReturnType<typeof createV9>>,
     TError,
-    { data: BodyType<CreatePatronRequestV3> },
+    { data: BodyType<CreatePatronRequestV7> },
     TContext
   >;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof createV4>>,
+  Awaited<ReturnType<typeof createV9>>,
   TError,
-  { data: BodyType<CreatePatronRequestV3> },
+  { data: BodyType<CreatePatronRequestV7> },
   TContext
 > => {
   const { mutation: mutationOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof createV4>>,
-    { data: BodyType<CreatePatronRequestV3> }
+    Awaited<ReturnType<typeof createV9>>,
+    { data: BodyType<CreatePatronRequestV7> }
   > = (props) => {
     const { data } = props ?? {};
 
-    return createV4(data);
+    return createV9(data);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type CreateV4MutationResult = NonNullable<
-  Awaited<ReturnType<typeof createV4>>
+export type CreateV9MutationResult = NonNullable<
+  Awaited<ReturnType<typeof createV9>>
 >;
-export type CreateV4MutationBody = BodyType<CreatePatronRequestV3>;
-export type CreateV4MutationError = ErrorType<void>;
+export type CreateV9MutationBody = BodyType<CreatePatronRequestV7>;
+export type CreateV9MutationError = ErrorType<void>;
 
 /**
  * @summary Create a new patron who is a person.
  */
-export const useCreateV4 = <
+export const useCreateV9 = <
   TError = ErrorType<void>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof createV4>>,
+    Awaited<ReturnType<typeof createV9>>,
     TError,
-    { data: BodyType<CreatePatronRequestV3> },
+    { data: BodyType<CreatePatronRequestV7> },
     TContext
   >;
 }): UseMutationResult<
-  Awaited<ReturnType<typeof createV4>>,
+  Awaited<ReturnType<typeof createV9>>,
   TError,
-  { data: BodyType<CreatePatronRequestV3> },
+  { data: BodyType<CreatePatronRequestV7> },
   TContext
 > => {
-  const mutationOptions = getCreateV4MutationOptions(options);
+  const mutationOptions = getCreateV9MutationOptions(options);
 
   return useMutation(mutationOptions);
 };
 
 /**
- *
+ * 
 
  Returns the id of the patron if the request succeeds.
  Name and address will be automatically fetched from the CPR-Registry.
@@ -1156,7 +1168,7 @@ export const useCreateWithGuardian = <
 };
 
 /**
- *
+ * 
  If the person doesn't have a guardian, a new one is created with the information provided.
 
  Returns the id of the patron if the request succeeds.
@@ -1240,7 +1252,7 @@ export const useUpdateGuardian = <
 };
 
 /**
- *
+ * 
  Returns an array of the updated loans.
  <p>
  If the materials could not be renewed, the return date will be unchanged.
@@ -1341,7 +1353,7 @@ export const useRenewLoansV2 = <
 };
 
 /**
- *
+ * 
  Returns an array of loans.
  <p>
  </p>
@@ -1441,7 +1453,7 @@ export function useGetLoansV2<
 }
 
 /**
- *
+ * 
  <p></p>
  If a patron is blocked the reason is available as a code:
  <ul>
@@ -1455,62 +1467,62 @@ export function useGetLoansV2<
  the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>
  * @summary Returns the patron details
  */
-export const getPatronInformationByPatronIdV2 = (signal?: AbortSignal) => {
-  return fetcher<AuthenticatedPatronV6>({
-    url: `/external/agencyid/patrons/patronid/v2`,
+export const getPatronInformationByPatronIdV4 = (signal?: AbortSignal) => {
+  return fetcher<AuthenticatedPatronV8>({
+    url: `/external/agencyid/patrons/patronid/v4`,
     method: "GET",
     signal
   });
 };
 
-export const getGetPatronInformationByPatronIdV2QueryKey = () => {
-  return [`/external/agencyid/patrons/patronid/v2`] as const;
+export const getGetPatronInformationByPatronIdV4QueryKey = () => {
+  return [`/external/agencyid/patrons/patronid/v4`] as const;
 };
 
-export const getGetPatronInformationByPatronIdV2QueryOptions = <
-  TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
+export const getGetPatronInformationByPatronIdV4QueryOptions = <
+  TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>,
   TError = ErrorType<void>
 >(
   queryOptions?: UseQueryOptions<
-    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
+    Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>,
     TError,
     TData
   >
 ) => {
   const queryKey =
-    queryOptions?.queryKey ?? getGetPatronInformationByPatronIdV2QueryKey();
+    queryOptions?.queryKey ?? getGetPatronInformationByPatronIdV4QueryKey();
 
   const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>
-  > = ({ signal }) => getPatronInformationByPatronIdV2(signal);
+    Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>
+  > = ({ signal }) => getPatronInformationByPatronIdV4(signal);
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
+    Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>,
     TError,
     TData
   > & { queryKey: QueryKey };
 };
 
-export type GetPatronInformationByPatronIdV2QueryResult = NonNullable<
-  Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>
+export type GetPatronInformationByPatronIdV4QueryResult = NonNullable<
+  Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>
 >;
-export type GetPatronInformationByPatronIdV2QueryError = ErrorType<void>;
+export type GetPatronInformationByPatronIdV4QueryError = ErrorType<void>;
 
 /**
  * @summary Returns the patron details
  */
 
-export function useGetPatronInformationByPatronIdV2<
-  TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
+export function useGetPatronInformationByPatronIdV4<
+  TData = Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>,
   TError = ErrorType<void>
 >(
   queryOptions?: UseQueryOptions<
-    Awaited<ReturnType<typeof getPatronInformationByPatronIdV2>>,
+    Awaited<ReturnType<typeof getPatronInformationByPatronIdV4>>,
     TError,
     TData
   >
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
-  const options = getGetPatronInformationByPatronIdV2QueryOptions(queryOptions);
+  const options = getGetPatronInformationByPatronIdV4QueryOptions(queryOptions);
 
   const query = useQuery(options) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
@@ -1522,7 +1534,7 @@ export function useGetPatronInformationByPatronIdV2<
 }
 
 /**
- *
+ * 
  The name and address cannot be supplied by the client. If the CPR-Registry is not authorized to provide
  information about the patron, then the name and address will not be updated.
  <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>
@@ -1539,73 +1551,167 @@ export function useGetPatronInformationByPatronIdV2<
  the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>
  * @summary Update information about the patron.
  */
-export const updateV5 = (
-  updatePatronRequestV4: BodyType<UpdatePatronRequestV4>
+export const updateV4 = (
+  updatePatronRequestV3: BodyType<UpdatePatronRequestV3>
 ) => {
-  return fetcher<AuthenticatedPatronV6>({
-    url: `/external/agencyid/patrons/patronid/v5`,
+  return fetcher<AuthenticatedPatronV4>({
+    url: `/external/agencyid/patrons/patronid/v4`,
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    data: updatePatronRequestV4
+    data: updatePatronRequestV3
   });
 };
 
-export const getUpdateV5MutationOptions = <
+export const getUpdateV4MutationOptions = <
   TError = ErrorType<void>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof updateV5>>,
+    Awaited<ReturnType<typeof updateV4>>,
     TError,
-    { data: BodyType<UpdatePatronRequestV4> },
+    { data: BodyType<UpdatePatronRequestV3> },
     TContext
   >;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof updateV5>>,
+  Awaited<ReturnType<typeof updateV4>>,
   TError,
-  { data: BodyType<UpdatePatronRequestV4> },
+  { data: BodyType<UpdatePatronRequestV3> },
   TContext
 > => {
   const { mutation: mutationOptions } = options ?? {};
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof updateV5>>,
-    { data: BodyType<UpdatePatronRequestV4> }
+    Awaited<ReturnType<typeof updateV4>>,
+    { data: BodyType<UpdatePatronRequestV3> }
   > = (props) => {
     const { data } = props ?? {};
 
-    return updateV5(data);
+    return updateV4(data);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type UpdateV5MutationResult = NonNullable<
-  Awaited<ReturnType<typeof updateV5>>
+export type UpdateV4MutationResult = NonNullable<
+  Awaited<ReturnType<typeof updateV4>>
 >;
-export type UpdateV5MutationBody = BodyType<UpdatePatronRequestV4>;
-export type UpdateV5MutationError = ErrorType<void>;
+export type UpdateV4MutationBody = BodyType<UpdatePatronRequestV3>;
+export type UpdateV4MutationError = ErrorType<void>;
 
 /**
  * @summary Update information about the patron.
  */
-export const useUpdateV5 = <
+export const useUpdateV4 = <
   TError = ErrorType<void>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof updateV5>>,
+    Awaited<ReturnType<typeof updateV4>>,
     TError,
-    { data: BodyType<UpdatePatronRequestV4> },
+    { data: BodyType<UpdatePatronRequestV3> },
     TContext
   >;
 }): UseMutationResult<
-  Awaited<ReturnType<typeof updateV5>>,
+  Awaited<ReturnType<typeof updateV4>>,
   TError,
-  { data: BodyType<UpdatePatronRequestV4> },
+  { data: BodyType<UpdatePatronRequestV3> },
   TContext
 > => {
-  const mutationOptions = getUpdateV5MutationOptions(options);
+  const mutationOptions = getUpdateV4MutationOptions(options);
+
+  return useMutation(mutationOptions);
+};
+
+/**
+ * 
+ The name and address cannot be supplied by the client. If the configured person registry is not authorized to provide
+ information about the patron, then the name and address will not be updated.
+ <p>It is possible to either update just the pincode, update just some patron settings, or update both.</p>
+ <p>Multiple email addresses and phone numbers can be stored for a patron.</p>
+ <p>If multiple email addresses are supplied having receiveNotification as true, then only one of them will be randomly stored
+ as preferred and the rest will be stored as not preferred.</p>
+ <p>If multiple phone numbers are supplied having receiveNotification as true, then only one of them will be randomly stored
+ as preferred and the rest will be stored as not preferred.</p>
+ <p></p>
+ If a patron is blocked the reason is available as a code:
+ <ul>
+     <li>- 'O': library card stolen</li>
+     <li>- 'U': exclusion</li>
+     <li>- 'F': extended exclusion</li>
+     <li>- 'S': blocked by self service automaton</li>
+     <li>- 'W': self created at website</li>
+ </ul>
+ <p>The codes are informational, and can be used for looking up end user messages by the client system. However,
+ the list is subject to change at any time, so any unexpected values should be interpreted as 'other reason'.</p>
+ * @summary Update information about the patron.
+ */
+export const updateV8 = (
+  updatePatronRequestV6: BodyType<UpdatePatronRequestV6>
+) => {
+  return fetcher<void>({
+    url: `/external/agencyid/patrons/patronid/v8`,
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    data: updatePatronRequestV6
+  });
+};
+
+export const getUpdateV8MutationOptions = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateV8>>,
+    TError,
+    { data: BodyType<UpdatePatronRequestV6> },
+    TContext
+  >;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof updateV8>>,
+  TError,
+  { data: BodyType<UpdatePatronRequestV6> },
+  TContext
+> => {
+  const { mutation: mutationOptions } = options ?? {};
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof updateV8>>,
+    { data: BodyType<UpdatePatronRequestV6> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return updateV8(data);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type UpdateV8MutationResult = NonNullable<
+  Awaited<ReturnType<typeof updateV8>>
+>;
+export type UpdateV8MutationBody = BodyType<UpdatePatronRequestV6>;
+export type UpdateV8MutationError = ErrorType<void>;
+
+/**
+ * @summary Update information about the patron.
+ */
+export const useUpdateV8 = <
+  TError = ErrorType<void>,
+  TContext = unknown
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof updateV8>>,
+    TError,
+    { data: BodyType<UpdatePatronRequestV6> },
+    TContext
+  >;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof updateV8>>,
+  TError,
+  { data: BodyType<UpdatePatronRequestV6> },
+  TContext
+> => {
+  const mutationOptions = getUpdateV8MutationOptions(options);
 
   return useMutation(mutationOptions);
 };

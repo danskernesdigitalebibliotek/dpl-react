@@ -34,7 +34,11 @@ const meta: Meta<typeof ReservationList> = {
     ...reservationListArgTypes,
     ...globalTextArgTypes,
     blacklistedSearchBranchesConfig: {
-      description: "Blacklisted branches",
+      description: "Blacklisted search branches",
+      control: { type: "text" }
+    },
+    blacklistedAvailabilityBranchesConfig: {
+      description: "Blacklisted availability branches",
       control: { type: "text" }
     },
     expirationWarningDaysBeforeConfig: {
@@ -44,7 +48,7 @@ const meta: Meta<typeof ReservationList> = {
       control: { type: "text" }
     },
     blacklistedPickupBranchesConfig: {
-      description: "Blacklisted branches",
+      description: "Blacklisted pickup branches",
       control: { type: "text" }
     },
     branchesConfig: {
@@ -59,13 +63,7 @@ const meta: Meta<typeof ReservationList> = {
       control: { type: "number" }
     },
     // Urls
-    ereolenMyPageUrl: {
-      control: { type: "text" }
-    },
     pauseReservationInfoUrl: {
-      control: { type: "text" }
-    },
-    ereolenHomepageUrl: {
       control: { type: "text" }
     },
     // Texts
@@ -94,6 +92,12 @@ const meta: Meta<typeof ReservationList> = {
       control: { type: "text" }
     },
     materialByAuthorText: {
+      control: { type: "text" }
+    },
+    viewMaterialText: {
+      control: { type: "text" }
+    },
+    materialUrl: {
       control: { type: "text" }
     },
     materialAndAuthorText: {
@@ -209,6 +213,8 @@ export const Default: Story = {
     ...globalTextArgs,
     blacklistedSearchBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
+    blacklistedAvailabilityBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
     expirationWarningDaysBeforeConfig: "6",
     pauseReservationStartDateConfig: "2022-06-30",
     blacklistedPickupBranchesConfig:
@@ -219,10 +225,8 @@ export const Default: Story = {
     pageSizeDesktop: 20,
     pageSizeMobile: 10,
     // Urls
-    ereolenMyPageUrl: "https://ereolen.dk/user/me/",
     pauseReservationInfoUrl:
       "https://images.unsplash.com/photo-1571043733612-d5444ff7d4ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80",
-    ereolenHomepageUrl: "https://ereolen.dk/",
     // Texts
     reservationListHeaderText: "Your reservations",
     reservationListPhysicalReservationsHeaderText: "Physical reservations",
@@ -236,7 +240,11 @@ export const Default: Story = {
     reservationListDigitalReservationsEmptyText:
       "At the moment you have 0 reservations on digital items",
     materialByAuthorText: "By",
+    viewMaterialText: "View material",
+    materialUrl: "/work/:workid",
     materialAndAuthorText: "and",
+    materialsInStockInfoText:
+      '{"type":"plural","text":["We have 1 copy of the material in stock. ","We have @count copies of the material in stock."]}',
     etAlText: "et al.",
     reservationListNumberInQueueText:
       "There are @count people in the queue before you",

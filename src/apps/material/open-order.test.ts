@@ -1,10 +1,8 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 const navigateToMaterial = () => {
   cy.createFakeAuthenticatedSession();
   cy.visit(
     "/iframe.html?args=&id=apps-material--overbygnings-matriale"
-  ).scrollTo("bottom");
+  ).scrollTo("bottom", { duration: 1500 });
   cy.getBySel("material-description").scrollIntoView();
   cy.getBySel("material-button-reservable-on-another-library")
     .first()
@@ -86,6 +84,16 @@ describe("Open Order Functionality", () => {
       fixtureFilePath: "material/open-order/fbi-api.json"
     });
 
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
+
     cy.interceptRest({
       aliasName: "holdings",
       url: "**/agencyid/catalog/holdingsLogistics/**",
@@ -100,14 +108,8 @@ describe("Open Order Functionality", () => {
 
     cy.interceptRest({
       aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
+      url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
-    });
-
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
     });
 
     cy.interceptRest({
@@ -121,15 +123,6 @@ describe("Open Order Functionality", () => {
       statusCode: 404
     }).as("Favorite list service");
 
-    // Intercept covers.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
     // Intercept url "translation".
     cy.interceptRest({
       aliasName: "UrlProxy",

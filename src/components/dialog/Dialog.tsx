@@ -1,9 +1,6 @@
-// The dialog element allready has keyboard support
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { forwardRef } from "react";
 import clsx from "clsx";
-import iconCross from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-cross.svg";
+import iconCross from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import useEscapeKey from "./useEscapeKey";
 
 type DialogType = {
@@ -16,6 +13,8 @@ const Dialog = forwardRef<HTMLDialogElement, DialogType>(
   ({ children, closeDialog, isSidebar }, ref) => {
     useEscapeKey({ closeDialog });
     return (
+      // The dialog element already has keyboard support
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
       <dialog
         className={clsx("dialog", { "dialog--sidebar": isSidebar })}
         ref={ref}
@@ -26,16 +25,21 @@ const Dialog = forwardRef<HTMLDialogElement, DialogType>(
           }
         }}
       >
-        <button
-          type="button"
-          onClick={closeDialog}
-          className="dialog__close-button"
-        >
-          <img src={iconCross} alt="" aria-label="Close dialog" />
-        </button>
+        <div className="dialog__top-bar">
+          <button
+            type="button"
+            onClick={closeDialog}
+            className="dialog__close-button"
+            aria-label="Close"
+          >
+            <img src={iconCross} alt="" />
+          </button>
+        </div>
         {children}
       </dialog>
     );
   }
 );
+
+Dialog.displayName = "Dialog";
 export default Dialog;

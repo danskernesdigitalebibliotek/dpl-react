@@ -7,7 +7,10 @@ import {
 import { useText } from "../../core/utils/text";
 import { Manifestation, Work } from "../../core/utils/types/entities";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
-import { getManifestationBasedOnType } from "../material/helper";
+import {
+  getManifestationBasedOnType,
+  getManifestationTitle
+} from "../material/helper";
 import MaterialTypeNotFoundError from "./Errors/MaterialTypeNotFoundError";
 import WorkNotFoundError from "./Errors/WorkNotFoundError";
 import ErrorState from "./Errors/errorState";
@@ -83,7 +86,7 @@ const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
           size="large"
           displaySize="small"
           animate
-          alt={`Cover for ${materialForDisplay.titles.main}`}
+          alt={`Cover for ${getManifestationTitle(materialForDisplay)}`}
           shadow="small"
         />
         <div>
@@ -92,7 +95,7 @@ const MaterialSearchPreview: FC<MaterialSearchPreviewProps> = ({
               {t("materialSearchPreviewTitleText")}:
             </span>
             <span className="material-search__preview-detail">
-              {materialForDisplay.titles.main}
+              {getManifestationTitle(materialForDisplay)}
             </span>
           </div>
           <div className="material-search__preview-item">

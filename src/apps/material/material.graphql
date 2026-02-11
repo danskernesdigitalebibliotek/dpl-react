@@ -10,18 +10,21 @@ query getMaterialGlobally($wid: String!) {
   }
 }
 
-
-query getInfomedia ($id: String!) {
+query getInfomedia($id: String!) {
   infomedia(id: $id) {
     error
     article {
+      byLine
+      dateLine
       headLine
+      hedLine
+      paper
       text
     }
   }
 }
 
-query getReviewManifestations ($pid: [String!]!) {
+query getReviewManifestations($pid: [String!]!) {
   manifestations(pid: $pid) {
     ...ManifestationReviewFields
   }

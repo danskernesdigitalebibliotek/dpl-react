@@ -5,7 +5,7 @@ import { withConfig } from "../../../core/utils/config";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
 import MaterialGridAutomatic from "./MaterialGridAutomatic";
-import { ValidSelectedIncrements } from "../materiel-grid-util";
+import { parseBoolean } from "../../../core/utils/helpers/general";
 
 interface MaterialGridAutomaticEntryConfigProps {
   blacklistedAvailabilityBranchesConfig: string;
@@ -18,27 +18,46 @@ export interface MaterialGridAutomaticEntryProps
   extends GlobalEntryTextProps,
     MaterialGridAutomaticEntryConfigProps {
   cql: string;
+  location?: string;
+  sublocation?: string;
+  branch?: string;
+  department?: string;
+  onshelf?: string;
+  sort?: string;
   title?: string;
   description?: string;
-  selectedAmountOfMaterialsForDisplay: ValidSelectedIncrements;
+  requestedAmount: number;
   buttonText: string;
   materialUrl: string;
+  firstaccessiondateitem?: string;
 }
 
 const MaterialGridAutomaticEntry: React.FC<MaterialGridAutomaticEntryProps> = ({
   cql,
+  location,
+  sublocation,
+  branch,
+  department,
+  onshelf,
+  sort,
   title,
   description,
-  selectedAmountOfMaterialsForDisplay,
-  buttonText
+  requestedAmount,
+  firstaccessiondateitem
 }) => (
   <GuardedApp app="material-grid-automatic">
     <MaterialGridAutomatic
       cql={cql}
+      location={location}
+      sublocation={sublocation}
+      branch={branch}
+      department={department}
+      onshelf={parseBoolean(onshelf)}
+      sort={sort}
       title={title}
       description={description}
-      selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
-      buttonText={buttonText}
+      requestedAmount={requestedAmount}
+      firstaccessiondateitem={firstaccessiondateitem}
     />
   </GuardedApp>
 );

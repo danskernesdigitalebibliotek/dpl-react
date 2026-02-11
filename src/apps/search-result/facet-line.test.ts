@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("The facet line", () => {
   beforeEach(() => {
     // Clear the session storage to avoid previously saved facets
@@ -26,30 +24,13 @@ describe("The facet line", () => {
       url: "**/availability/v3?recordid=**",
       fixtureFilePath: "material/availability.json"
     });
-
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
-
-    // Intercept all images from Cloudinary.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    ).as("Harry Potter cover");
-
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
 
     cy.visit("/iframe.html?id=apps-search-result--primary");
-    cy.wait(["@Availability", "@Cover service", "@Material list service"]);
+    cy.wait("@Availability");
   });
 
   it("Renders facets with a single term as a button", () => {

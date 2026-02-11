@@ -25,9 +25,6 @@ export const getOnlineMaterialType = (
   sourceName: AccessUrl["origin"],
   materialTypes: MaterialType["materialTypeSpecific"]["display"][]
 ) => {
-  if (sourceName.toLowerCase().includes("ereol")) {
-    return "ebook";
-  }
   if (sourceName.toLowerCase().includes("filmstriben")) {
     return "emovie";
   }
@@ -80,8 +77,6 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
   ) => {
     const onlineMaterialType = getOnlineMaterialType(sourceName, materialTypes);
     switch (onlineMaterialType) {
-      case "ebook":
-        return t("goToText", { placeholders: { "@source": "ereolen" } });
       case "emovie":
         return t("goToText", { placeholders: { "@source": "filmstriben" } });
       case "audiobook":
@@ -90,6 +85,7 @@ const MaterialButtonOnlineExternal: FC<MaterialButtonOnlineExternalProps> = ({
         return t("seeOnlineText");
     }
   };
+
   return (
     <LinkButton
       url={translatedUrl}

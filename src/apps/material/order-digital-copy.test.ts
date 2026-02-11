@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("Material - Order digital copy", () => {
   beforeEach(() => {
     cy.interceptGraphql({
@@ -7,26 +5,16 @@ describe("Material - Order digital copy", () => {
       fixtureFilePath: "material/order-digital-copy/order-digital-fbi-api"
     });
 
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
+
     cy.interceptRest({
       aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
+      url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
     });
-
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
-    });
-
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
 
     cy.interceptRest({
       aliasName: "Availability",
@@ -40,13 +28,19 @@ describe("Material - Order digital copy", () => {
       fixtureFilePath: "material/holdings.json"
     });
 
+    cy.interceptRest({
+      aliasName: "UserInfo",
+      url: "**/userinfo",
+      fixtureFilePath: "material/userinfo.json"
+    });
+
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404
     }).as("Favorite list service");
 
     cy.visit("/iframe.html?id=apps-material--digital&viewMode=story");
     cy.createFakeAuthenticatedSession();
-    cy.scrollTo("bottom");
+    cy.scrollTo("bottom", { duration: 200 });
   });
 
   it("Render a material that can be ordered as a digital copy", () => {
@@ -86,9 +80,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -112,9 +106,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -139,9 +133,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -166,9 +160,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -193,9 +187,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({
@@ -220,9 +214,9 @@ describe("Material - Order digital copy", () => {
       .should("be.visible")
       .click();
 
+    cy.getBySel("email-order-digital-copy").clear();
     cy.getBySel("email-order-digital-copy")
       .should("be.visible")
-      .clear()
       .type("new-mail.test.com");
 
     cy.interceptGraphql({

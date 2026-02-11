@@ -24,7 +24,8 @@ const GroupModalContent: FC<GroupModalContentProps> = ({
 }) => {
   const t = useText();
 
-  const intersectionRef = useRef(null);
+  const intersectionRef = useRef<HTMLDivElement | null>(null);
+  // @ts-expect-error: react-use does not yet support React 19, and TS will throw an error until it has been fixed
   const intersection = useIntersection(intersectionRef, {
     threshold: 0
   });

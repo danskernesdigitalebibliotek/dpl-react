@@ -1,5 +1,5 @@
 const path = require("path");
-const glob = require("glob");
+const { glob } = require("glob");
 const webpack = require("webpack");
 const VersionFile = require("webpack-version-file-plugin");
 const { EnvironmentPlugin } = require("webpack");
@@ -15,7 +15,7 @@ module.exports = (_env, argv) => {
       const distPath = entryPath
         .replace(/src\/apps\/.+\//, "")
         .replace(".mount.ts", "");
-      acc[distPath] = entryPath;
+      acc[distPath] = `./${entryPath}`;
       return acc;
     }, {});
 
@@ -25,20 +25,21 @@ module.exports = (_env, argv) => {
     }),
     new ESLintPlugin({
       files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
-      context: path.resolve(__dirname, "./src"),
-      useEslintrc: true
+      context: path.resolve(__dirname, "./src")
     })
   ];
 
   if (process.env.VERSION_FILE_NAME && process.env.VERSION_FILE_VERSION) {
+    const currentTime = new Date();
     plugins.push(
       new VersionFile({
         template: path.join(__dirname, ".version.json.ejs"),
         outputFile: path.join(__dirname, "dist/version.json"),
         name: process.env.VERSION_FILE_NAME,
         version: process.env.VERSION_FILE_VERSION,
+        currentTime, // Required
         // We intentionally do not use any information from package.json but
-        // VersionFile require that we provide it.
+        // VersionFile requires that we provide it.
         packageFile: path.join(__dirname, "package.json")
       })
     );
@@ -68,7 +69,9 @@ module.exports = (_env, argv) => {
       splitChunks: {
         name: () => "bundle",
         chunks: "all"
-      }
+      },
+      // Enable tree-shaking to remove unused Lodash methods
+      usedExports: true
     },
     resolve: {
       extensions: [".js", ".jsx", ".tsx", ".ts", ".json"]

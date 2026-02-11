@@ -1,6 +1,8 @@
 import * as React from "react";
-import MaterialGrid, { MaterialGridItemProps } from "../MaterialGrid";
-import { calculateAmountToDisplay } from "../materiel-grid-util";
+import MaterialGrid, {
+  MaterialGridItemProps
+} from "../../../components/material-grid/MaterialGrid";
+import { useText } from "../../../core/utils/text";
 
 export type MaterialGridManualProps = {
   materials: MaterialGridItemProps[];
@@ -13,16 +15,15 @@ const MaterialGridManual: React.FC<MaterialGridManualProps> = ({
   title,
   description
 }) => {
-  const selectedAmountOfMaterialsForDisplay = calculateAmountToDisplay(
-    materials.length
-  );
+  const t = useText();
+  const buttonText = t("buttonText");
 
   return (
     <MaterialGrid
       title={title}
       description={description}
       materials={materials}
-      selectedAmountOfMaterialsForDisplay={selectedAmountOfMaterialsForDisplay}
+      buttonText={buttonText}
     />
   );
 };

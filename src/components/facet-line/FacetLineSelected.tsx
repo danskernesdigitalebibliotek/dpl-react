@@ -2,9 +2,13 @@ import React, { useEffect, useRef } from "react";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import ButtonTag from "../Buttons/ButtonTag";
 import { useText } from "../../core/utils/text";
+import { FacetBrowserModalId } from "../facet-browser/helper";
+import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-filter.svg";
+import { useModalButtonHandler } from "../../core/utils/modal";
 
 const FacetLineSelected = () => {
   const { filters, removeFromFilter } = useFilterHandler();
+  const { open } = useModalButtonHandler();
   const buttonsRef = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const t = useText();
 
@@ -44,6 +48,16 @@ const FacetLineSelected = () => {
             ))}
           </React.Fragment>
         ))}
+        <li className="facet-line-more-filters">
+          <ButtonTag
+            onClick={() => open(FacetBrowserModalId)}
+            dataCy="facet-line-open-browser"
+            className="btn--link-styling"
+          >
+            <img src={IconFilter} alt="" className="mr-8" />
+            <span className="link-tag">{t("addMoreFiltersText")}</span>
+          </ButtonTag>
+        </li>
       </ul>
     </section>
   );

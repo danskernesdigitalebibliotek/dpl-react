@@ -1,6 +1,6 @@
 import { FormSelectValue } from "../../../../components/reservation/forms/types";
-import { getFutureDateString } from "../../../../components/reservation/helper";
 import { ComplexSearchWithPaginationWorkAccessQuery } from "../../../../core/dbc-gateway/generated/graphql";
+import { getFutureDateString } from "../../../../core/utils/helpers/date";
 
 type AccessManifestations =
   ComplexSearchWithPaginationWorkAccessQuery["complexSearch"]["works"][0]["manifestations"]["all"];
@@ -46,7 +46,7 @@ export const getReservationsForSaving = ({
   selectedBranch: string;
 }) => {
   const getSelectedExpiryDate = (value: FormSelectValue) =>
-    typeof value === "number" ? getFutureDateString(value) : expiryDate ?? "";
+    typeof value === "number" ? getFutureDateString(value) : (expiryDate ?? "");
   const getSelectedPickupBranch = (value: FormSelectValue) =>
     typeof value === "string" ? value : selectedBranch;
 

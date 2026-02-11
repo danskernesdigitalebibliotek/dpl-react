@@ -13,7 +13,7 @@ import {
   createFilters,
   useGetFacets
 } from "../../components/facet-browser/helper";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
 import { useCampaignMatchPOST } from "../../core/dpl-cms/dpl-cms";
 import {
   CampaignMatchPOST200,
@@ -23,22 +23,39 @@ import Campaign from "../../components/campaign/Campaign";
 import FacetBrowserModal from "../../components/facet-browser/FacetBrowserModal";
 import { statistics } from "../../core/statistics/statistics";
 import FacetLine from "../../components/facet-line/FacetLine";
-import { getUrlQueryParam } from "../../core/utils/helpers/url";
-import useGetCleanBranches from "../../core/utils/branches";
+import {
+  getCurrentLocation,
+  getUrlQueryParam,
+  redirectTo
+} from "../../core/utils/helpers/url";
+import { useText } from "../../core/utils/text";
+import useGetSearchBranches from "../../core/utils/branches";
 import useFilterHandler from "./useFilterHandler";
 import SearchResultSkeleton from "./search-result-skeleton";
-import SearchResultZeroHits from "./search-result-zero-hits";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
+import { formatSearchDisplayQuery } from "./helper";
+import { useUrls } from "../../core/utils/url";
+import { useConfig } from "../../core/utils/config";
 
 interface SearchResultProps {
   q: string;
   pageSize: number;
 }
 
+type InfoBoxConfig = {
+  title?: string;
+  content: { value?: string };
+  buttonLabel?: string;
+  buttonUrl?: string;
+};
+
 const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
+  const u = useUrls();
+  const zeroHitsSearchUrl = u("zeroHitsSearchUrl");
   const { filters, clearFilter, addFilterFromUrlParamListener } =
     useFilterHandler();
-  const cleanBranches = useGetCleanBranches();
+  const cleanBranches = useGetSearchBranches();
+  const t = useText();
   const [resultItems, setResultItems] = useState<Work[] | null>(null);
   const [hitcount, setHitCount] = useState<number>(0);
   const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
@@ -51,7 +68,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     null
   );
   const { facets: campaignFacets } = useGetFacets(q, filters);
-  const minimalQueryLength = 3;
+  const minimalQueryLength = 1;
+  const config = useConfig();
 
   // If q changes (eg. in Storybook context)
   // then make sure that we reset the entire result set.
@@ -59,11 +77,10 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     setResultItems([]);
   }, [q, pageSize, filters]);
 
-  const { track } = useStatistics();
+  const { collectPageStatistics } = useCollectPageStatistics();
   useEffect(() => {
-    track("click", {
-      id: statistics.searchQuery.id,
-      name: statistics.searchQuery.name,
+    collectPageStatistics({
+      ...statistics.searchQuery,
       trackedData: q
     });
     // We actually just want to track if the query changes.
@@ -92,8 +109,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // This is an initial, intentionally simple approach supporting what is required by the search header.
   // It could be reworked to support all filters and terms at a later point.
   useEffectOnce(() => {
+    addFilterFromUrlParamListener(FacetFieldEnum.Creators);
+    addFilterFromUrlParamListener(FacetFieldEnum.Subjects);
     addFilterFromUrlParamListener(FacetFieldEnum.Materialtypesspecific);
     addFilterFromUrlParamListener(FacetFieldEnum.Worktypes);
+    addFilterFromUrlParamListener(FacetFieldEnum.Dk5);
   });
 
   const { data, isLoading } = useSearchWithPaginationQuery(
@@ -103,7 +123,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       limit: pageSize,
       filters: createFilters(filters, cleanBranches)
     },
-    { enabled: q.length >= minimalQueryLength }
+    {
+      enabled: q.length >= minimalQueryLength,
+      onSuccess: (data) => {
+        if (data.search.hitcount === 0) {
+          redirectTo(zeroHitsSearchUrl);
+        }
+      }
+    }
   );
 
   useEffect(() => {
@@ -141,9 +168,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       setCanWeTrackHitcount(true);
       return;
     }
-    track("click", {
-      id: statistics.searchResultCount.id,
-      name: statistics.searchResultCount.name,
+    collectPageStatistics({
+      ...statistics.searchResultCount,
       trackedData: hitcount ? hitcount.toString() : "0"
     });
     // We actaully just want to track if the hitcount changes.
@@ -152,9 +178,8 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
 
   useEffect(() => {
     if (campaignData?.data?.title) {
-      track("click", {
-        id: statistics.campaignShown.id,
-        name: statistics.campaignShown.name,
+      collectPageStatistics({
+        ...statistics.campaignShown,
         trackedData: campaignData.data.title
       });
     }
@@ -173,9 +198,25 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     return <SearchResultInvalidSearch />;
   }
 
-  const shouldShowZeroHits = () => {
-    return !isLoading && hitcount === 0;
-  };
+  const displayQuery = formatSearchDisplayQuery({
+    q,
+    creator: getUrlQueryParam("creators"),
+    subject: getUrlQueryParam("subjects"),
+    dk5: getUrlQueryParam("dk5"),
+    t
+  });
+
+  // Get search info box data from config
+  const {
+    title: infoBoxTitle,
+    content: infoBoxContent,
+    buttonLabel: infoBoxButtonLabel,
+    buttonUrl: infoBoxButtonUrl
+  } = config<InfoBoxConfig>("searchInfoboxConfig", {
+    transformer: "jsonParse"
+  });
+  const infoBoxHtml = infoBoxContent?.value || "";
+
   // We are handling loading state for every element separately inside this return(),
   // because then we achieve smoother experience using the filters - not having
   // to loose the filter modal upon selecting a filter.
@@ -183,11 +224,9 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
     <div className="content-list-page">
       {isLoading && <SearchResultSkeleton q={q} />}
 
-      {shouldShowZeroHits() && <SearchResultZeroHits />}
-
-      {!isLoading && !shouldShowZeroHits() && resultItems && (
+      {!isLoading && resultItems && (
         <>
-          <SearchResultHeader hitcount={hitcount} q={q} />
+          <SearchResultHeader hitcount={hitcount} displayQuery={displayQuery} />
           <FacetLine q={q} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />
@@ -196,6 +235,14 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
             resultItems={resultItems}
             page={page}
             pageSize={pageSize}
+            infoBoxProps={{
+              title: infoBoxTitle,
+              html: infoBoxHtml,
+              buttonLabel: infoBoxButtonLabel,
+              buttonUrl: infoBoxButtonUrl
+                ? new URL(infoBoxButtonUrl, getCurrentLocation())
+                : undefined
+            }}
           />
           <PagerComponent isLoading={isLoading} />
         </>

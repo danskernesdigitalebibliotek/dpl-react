@@ -9,7 +9,7 @@ import { ErrorType, fetcher } from "./fetcher";
 import { useUrls } from "../utils/url";
 import { getUserToken } from "../utils/helpers/user";
 
-type UserInfoData = {
+export type UserInfoData = {
   attributes: {
     cpr: number;
     userId: string;
@@ -21,16 +21,19 @@ type UserInfoData = {
     }[];
     municipality: `${number}`;
     municipalityAgencyId: `${number}`;
+    pincode: string;
   };
 };
 
 const getUserInfoQueryKey = (url: string) => {
   const userToken = getUserToken();
+
   if (!userToken) {
-    throw new Error("User token is missing");
+    // eslint-disable-next-line no-console
+    console.error("userToken is missing");
   }
 
-  return `${url}:${userToken}`;
+  return userToken ? `${url}:${userToken}` : url;
 };
 
 type UserInfoFunction = () => Promise<UserInfoData | null | undefined>;

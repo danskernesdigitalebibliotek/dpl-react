@@ -11,7 +11,6 @@ export interface AutosuggestTextItemProps {
   };
   item: Suggestion;
   index: number;
-  generateItemId: (objectItem: Suggestion) => string;
   getItemProps: UseComboboxPropGetters<Suggestion>["getItemProps"];
   dataCy?: string;
 }
@@ -20,7 +19,6 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
   classes,
   item,
   index,
-  generateItemId,
   getItemProps,
   dataCy = "autosuggest-text-item"
 }) => {
@@ -32,33 +30,29 @@ const AutosuggestTextItem: React.FC<AutosuggestTextItemProps> = ({
 
   const t = useText();
   return (
-    <>
-      {/* eslint-disable react/jsx-props-no-spreading */}
-      {/* The downshift combobox works this way by design */}
-      <li
-        className={classes.textSuggestion}
-        key={generateItemId(item)}
-        {...getItemProps({ item, index })}
-        data-cy={dataCy}
-        lang={isoLang}
-      >
-        <p className="autosuggest__text text-body-medium-regular">
-          {/* eslint-enable react/jsx-props-no-spreading */}
-          {item.type === SuggestionTypeEnum.Creator
-            ? `${item.term} (${t("stringSuggestionAuthorText")})`
-            : null}
-          {item.type === SuggestionTypeEnum.Subject
-            ? `${item.term} (${t("stringSuggestionTopicText")})`
-            : null}
-          {item.type === SuggestionTypeEnum.Composit
-            ? `${item.work?.titles.main} (${t("stringSuggestionWorkText")})`
-            : null}
-          {item.type === SuggestionTypeEnum.Title
-            ? `${item.term} (${t("stringSuggestionWorkText")})`
-            : null}
-        </p>
-      </li>
-    </>
+    <li
+      className={classes.textSuggestion}
+      // TODO: Explicitly define prop types for better clarity
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...getItemProps({ item, index })}
+      data-cy={dataCy}
+      lang={isoLang}
+    >
+      <p className="autosuggest__text text-body-medium-regular">
+        {item.type === SuggestionTypeEnum.Creator
+          ? `${item.term} (${t("stringSuggestionAuthorText")})`
+          : null}
+        {item.type === SuggestionTypeEnum.Subject
+          ? `${item.term} (${t("stringSuggestionTopicText")})`
+          : null}
+        {item.type === SuggestionTypeEnum.Composit
+          ? `${item.work?.titles.main} (${t("stringSuggestionWorkText")})`
+          : null}
+        {item.type === SuggestionTypeEnum.Title
+          ? `${item.term} (${t("stringSuggestionWorkText")})`
+          : null}
+      </p>
+    </li>
   );
 };
 

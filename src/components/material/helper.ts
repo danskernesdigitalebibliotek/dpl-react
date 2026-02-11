@@ -1,6 +1,8 @@
+import { getFirstManifestation } from "../../apps/material/helper";
 import { AccessTypeCodeEnum } from "../../core/dbc-gateway/generated/graphql";
 import { Manifestation } from "../../core/utils/types/entities";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
+import { getReaderPlayerType } from "../reader-player/helper";
 import { hasCorrectMaterialType, isArticle } from "./material-buttons/helper";
 
 export const isPhysical = (manifestations: Manifestation[]) => {
@@ -12,20 +14,42 @@ export const isPhysical = (manifestations: Manifestation[]) => {
 };
 
 export const isPeriodical = (manifestations: Manifestation[]) => {
-  return hasCorrectMaterialType(
-    ManifestationMaterialType.magazine,
-    manifestations
+  return (
+    hasCorrectMaterialType(
+      ManifestationMaterialType.magazine,
+      manifestations
+    ) ||
+    hasCorrectMaterialType(
+      ManifestationMaterialType.yearBook,
+      manifestations
+    ) ||
+    hasCorrectMaterialType(
+      ManifestationMaterialType.yearBookOnline,
+      manifestations
+    ) ||
+    hasCorrectMaterialType(ManifestationMaterialType.newspaper, manifestations)
   );
+};
+
+export const isMaterialButtonsOnlineInternal = (
+  manifestation: Manifestation
+) => {
+  return Boolean(getReaderPlayerType(manifestation));
 };
 
 export const shouldShowMaterialAvailabilityText = (
   manifestations: Manifestation[]
 ) => {
-  return (
+  const firstManifestation = getFirstManifestation(manifestations);
+  const shouldShowOnlineAvailability =
+    firstManifestation && isMaterialButtonsOnlineInternal(firstManifestation);
+
+  const shouldShowPhysicalAvailability =
     isPhysical(manifestations) &&
     !isPeriodical(manifestations) &&
-    !isArticle(manifestations)
-  );
+    !isArticle(manifestations);
+
+  return shouldShowOnlineAvailability || shouldShowPhysicalAvailability;
 };
 
 export default {};

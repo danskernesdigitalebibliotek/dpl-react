@@ -20,7 +20,7 @@ import {
   constructModalId,
   getModalIds
 } from "../../core/utils/helpers/modal-helpers";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 
 interface LoansGroupModalProps {
@@ -61,7 +61,7 @@ const LoansGroupModal: FC<LoansGroupModalProps> = ({
   const [renewingResponse, setRenewingResponse] = useState<
     RenewedLoanV2[] | null
   >(null);
-  const { track } = useStatistics();
+  const { track } = useEventStatistics();
   const {
     handler: renew,
     requestStatus: renewingStatus,

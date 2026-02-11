@@ -13,7 +13,7 @@ const Heading: React.FunctionComponent<HeadingProps> = ({
   level,
   className
 }) => {
-  const HeadingTag = level as keyof JSX.IntrinsicElements;
+  const HeadingTag = level as React.ElementType;
 
   return <HeadingTag className={className}>{children}</HeadingTag>;
 };

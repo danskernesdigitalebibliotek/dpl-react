@@ -10,7 +10,9 @@ import {
   getReviewRelease
 } from "../../core/utils/helpers/general";
 import {
-  currentLocationWithParametersUrl,
+  createUrlHash,
+  getCurrentLocation,
+  HashPrefix,
   isUrlValid,
   redirectToLoginAndBack
 } from "../../core/utils/helpers/url";
@@ -50,20 +52,17 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     (accessItem) => accessItem.__typename === "InfomediaService"
   ) as Pick<InfomediaService, "id">[];
   const infomediaId = infomediaAccess[0].id;
-  const { data, error } = useGetInfomediaQuery({
+  const { data, error, isLoading } = useGetInfomediaQuery({
     id: infomediaId
   });
 
   const onClick = (reviewId: string) => {
-    const returnUrl = currentLocationWithParametersUrl({
-      disclosure: "disclosure-reviews"
-    });
-    returnUrl.hash = reviewId;
+    const returnUrl = new URL(getCurrentLocation());
+    returnUrl.hash = createUrlHash(HashPrefix.REVIEW, reviewId);
     redirectToLoginAndBack({ authUrl, returnUrl });
   };
 
-  // If there is an anchor we scroll down to it.
-  useScrollToLocation(data);
+  useScrollToLocation([data, isLoading]);
 
   if (error) {
     return null;
@@ -72,9 +71,17 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
     return null;
   }
   const { infomedia } = data;
+
+  const id = createUrlHash(HashPrefix.REVIEW, infomediaId);
+
   if (infomedia.error) {
     return (
-      <li className="review text-small-caption" data-cy={dataCy}>
+      <li
+        className="review text-small-caption"
+        id={id}
+        data-scroll-target={id}
+        data-cy={dataCy}
+      >
         {(authors || date || publication) && (
           <ReviewMetadata
             author={authors}
@@ -109,7 +116,7 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   ) as Pick<AccessUrl, "origin" | "url">[];
 
   return (
-    <li className="review text-small-caption" id={infomediaId}>
+    <li className="review text-small-caption" id={id} data-scroll-target={id}>
       {(authors || date || publication) && (
         <ReviewMetadata
           author={authors}
@@ -123,10 +130,10 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
       )}
       {/* We consider infomedia to be a trustworthy source & decided not to
       sanitize the text data that we render as HTML. */}
-      {/* eslint-disable react/no-danger */}
       {infomedia.article?.text && (
         <p
           className="review__body mb-8"
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: infomedia.article?.text }}
         />
       )}

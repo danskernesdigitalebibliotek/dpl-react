@@ -9,6 +9,30 @@ import globalTextArgs, {
 import globalConfigArgs, {
   argTypes as globalConfigArgTypes
 } from "../../core/storybook/globalConfigArgs";
+import deleteReservationModalArgs, {
+  argTypes as deleteReservationModalArgTypes
+} from "../../core/storybook/deleteReservationModalArgs";
+import publizonErrorArgs, {
+  argTypes as publizonErrorArgTypes
+} from "../../core/storybook/publizonErrorArgs";
+import mappArgs, {
+  argTypes as mappArgTypes
+} from "../../core/storybook/mappArgs";
+import reservationMaterialDetailsProps, {
+  argTypes as reservationMaterialDetailsPropsArgTypes
+} from "../../core/storybook/reservationMaterialDetailsArgs";
+import reservationListArgs, {
+  argTypes as reservationListArgTypes
+} from "../../core/storybook/reservationListArgs";
+import copyLinkArgs, {
+  argTypes as copyLinkArgTypes
+} from "../../core/storybook/copyLinkArgs";
+import editionSwitchModalArgs, {
+  argTypes as editionSwitchModalArgTypes
+} from "../../core/storybook/editionSwitchModalArgs";
+import materialContentsArgs, {
+  argTypes as materialContentsArgTypes
+} from "../../components/material/MaterialContents/MaterialContentsArgs";
 
 const meta: Meta<typeof MaterialEntry> = {
   title: "Apps / Material",
@@ -19,6 +43,14 @@ const meta: Meta<typeof MaterialEntry> = {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
+    ...deleteReservationModalArgTypes,
+    ...publizonErrorArgTypes,
+    ...copyLinkArgTypes,
+    ...mappArgTypes,
+    ...reservationMaterialDetailsPropsArgTypes,
+    ...reservationListArgTypes,
+    ...editionSwitchModalArgTypes,
+    ...materialContentsArgTypes,
     searchUrl: {
       description: "Path to the search result page",
       control: { type: "text" }
@@ -29,6 +61,10 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     wid: {
       description: "Work ID",
+      control: { type: "text" }
+    },
+    agencyIdConfig: {
+      description: "Agency ID from OpenID Connect configuration",
       control: { type: "text" }
     },
     smsNotificationsForReservationsEnabledConfig: {
@@ -51,6 +87,15 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Branches",
       control: { type: "text" }
     },
+    findOnShelfDisclosuresDefaultOpenConfig: {
+      description: "Find on shelf disclosures default open",
+      control: { type: "text" }
+    },
+    findOnShelfHideUnavailableHoldingsConfig: {
+      description:
+        "Hide unavailable holdings (0 available copies) in Find on Shelf modal",
+      control: { type: "text" }
+    },
     materialHeaderAllEditionsText: {
       description: "Text for the fiction edition text",
       control: { type: "text" }
@@ -59,12 +104,44 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "By (author)",
       control: { type: "text" }
     },
+    materialGridRelatedTitleText: {
+      description: "Material grid related title",
+      control: { type: "text" }
+    },
+    materialGridRelatedRecommendationsDataLabelText: {
+      description: "Recommendation data label",
+      control: { type: "text" }
+    },
+    materialGridRelatedSeriesDataLabelText: {
+      description: "Series data label",
+      control: { type: "text" }
+    },
+    materialGridRelatedAuthorDataLabelText: {
+      description: "Author data label",
+      control: { type: "text" }
+    },
+    materialGridRelatedInlineFiltersAriaLabelText: {
+      description: "Filter displayed materials",
+      control: { type: "text" }
+    },
+    materialGridRelatedSelectAriaLabelText: {
+      description: "Select material filter",
+      control: { type: "text" }
+    },
     periodicalSelectYearText: {
       description: "Year",
       control: { type: "text" }
     },
     periodicalSelectEditionText: {
       description: "Edition/Week",
+      control: { type: "text" }
+    },
+    playerModalCloseButtonText: {
+      description: "Close",
+      control: { type: "text" }
+    },
+    playerModalDescriptionText: {
+      description: "Player modal description text",
       control: { type: "text" }
     },
     reserveBookText: {
@@ -77,6 +154,14 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     reserveWithMaterialTypeText: {
       description: "Reserve",
+      control: { type: "text" }
+    },
+    reservableFromAnotherLibraryMissingEmailText: {
+      description: "Reservable on another library - need to add email",
+      control: { type: "text" }
+    },
+    reservableFromAnotherLibraryExtraInfoText: {
+      description: "Reservable on another library - extra info",
       control: { type: "text" }
     },
     reservableFromAnotherLibraryText: {
@@ -235,6 +320,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Loading",
       control: { type: "text" }
     },
+    loanWithMaterialTypeText: {
+      description: "Loan with material type text",
+      control: { type: "text" }
+    },
     getOnlineText: {
       description: "Get online",
       control: { type: "text" }
@@ -289,6 +378,22 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     onlineLimitMonthAudiobookInfoText: {
       description: "Online limit info text",
+      control: { type: "text" }
+    },
+    onlineMaterialPlayerText: {
+      description: "Material button online player text",
+      control: { type: "text" }
+    },
+    onlineMaterialReaderText: {
+      description: "Material button online reader text",
+      control: { type: "text" }
+    },
+    onlineMaterialTeaserText: {
+      description: "Material button online teaser text",
+      control: { type: "text" }
+    },
+    approveLoanText: {
+      description: "Approve loan",
       control: { type: "text" }
     },
     approveReservationText: {
@@ -347,6 +452,58 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Ok button text",
       control: { type: "text" }
     },
+    onlineInternalModalCloseAriaLabelText: {
+      description: "Close reader/player modal",
+      control: { type: "text" }
+    },
+    onlineInternalModalScreenReaderDescriptionText: {
+      description: "reader/player modal screen reader description",
+      control: { type: "text" }
+    },
+    onlineInternalModalEnsureNotificationText: {
+      description: "Ensure notification",
+      control: { type: "text" }
+    },
+    onlineInternalResponseErrorSubtitleText: {
+      description: "reader/player Error subtitle",
+      control: { type: "text" }
+    },
+    onlineInternalResponseErrorTitleText: {
+      description: "reader/player Error title",
+      control: { type: "text" }
+    },
+    onlineInternalResponseLoanedSubtitleText: {
+      description: "reader/player Loan response subtitle",
+      control: { type: "text" }
+    },
+    onlineInternalResponseLoanedTitleText: {
+      description: "reader/player Loan response title",
+      control: { type: "text" }
+    },
+    onlineInternalResponseReservedSubtitleText: {
+      description: "reader/player reservation response subtitle",
+      control: { type: "text" }
+    },
+    onlineInternalResponseReservedTitleText: {
+      description: "reader/player reservation response title",
+      control: { type: "text" }
+    },
+    onlineInternalErrorsText: {
+      description: "reader/player Loan/reservation error text",
+      control: { type: "text" }
+    },
+    onlineInternalSuccessLoanedText: {
+      description: "E-material is loaned",
+      control: { type: "text" }
+    },
+    onlineInternalSuccessReservedText: {
+      description: "E-material is reserved",
+      control: { type: "text" }
+    },
+    onlineInternalSuccessManualBorrowingNoticeText: {
+      description: "Manual borrowing notice",
+      control: { type: "text" }
+    },
     missingDataText: {
       description: "Missing data text",
       control: { type: "text" }
@@ -357,6 +514,10 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     reservationModalCloseModalAriaLabelText: {
       description: "Close Reservation modal",
+      control: { type: "text" }
+    },
+    libraryAssessmentText: {
+      description: "Library assessment text shown in review metadata",
       control: { type: "text" }
     },
     librariesHaveTheMaterialText: {
@@ -466,6 +627,10 @@ const meta: Meta<typeof MaterialEntry> = {
     },
     infomediaModalCloseModalAriaLabelText: {
       description: "Close infomedia modal",
+      control: { type: "text" }
+    },
+    infomediaCopyrightText: {
+      description: "Infomedia copyright notice text",
       control: { type: "text" }
     },
     saveButtonText: {
@@ -708,9 +873,18 @@ const meta: Meta<typeof MaterialEntry> = {
     ...serviceUrlArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    ...deleteReservationModalArgs,
+    ...publizonErrorArgs,
+    ...copyLinkArgs,
+    ...mappArgs,
+    ...reservationMaterialDetailsProps,
+    ...reservationListArgs,
+    ...editionSwitchModalArgs,
+    ...materialContentsArgs,
     searchUrl: "/search",
     materialUrl: "/work/:workid",
     wid: "work-of:870970-basis:52557240",
+    agencyIdConfig: "710100",
     smsNotificationsForReservationsEnabledConfig: "1",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
@@ -720,13 +894,27 @@ const meta: Meta<typeof MaterialEntry> = {
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
     branchesConfig:
       '[\n   {\n      "branchId":"DK-775120",\n      "title":"Højbjerg"\n   },\n   {\n      "branchId":"DK-775122",\n      "title":"Beder-Malling"\n   },\n   {\n      "branchId":"DK-775144",\n      "title":"Gellerup"\n   },\n   {\n      "branchId":"DK-775167",\n      "title":"Lystrup"\n   },\n   {\n      "branchId":"DK-775146",\n      "title":"Harlev"\n   },\n   {\n      "branchId":"DK-775168",\n      "title":"Skødstrup"\n   },\n   {\n      "branchId":"FBS-751010",\n      "title":"Arresten"\n   },\n   {\n      "branchId":"DK-775147",\n      "title":"Hasle"\n   },\n   {\n      "branchId":"FBS-751032",\n      "title":"Må ikke benyttes"\n   },\n   {\n      "branchId":"FBS-751031",\n      "title":"Fjernlager 1"\n   },\n   {\n      "branchId":"DK-775126",\n      "title":"Solbjerg"\n   },\n   {\n      "branchId":"FBS-751030",\n      "title":"ITK"\n   },\n   {\n      "branchId":"DK-775149",\n      "title":"Sabro"\n   },\n   {\n      "branchId":"DK-775127",\n      "title":"Tranbjerg"\n   },\n   {\n      "branchId":"DK-775160",\n      "title":"Risskov"\n   },\n   {\n      "branchId":"DK-775162",\n      "title":"Hjortshøj"\n   },\n   {\n      "branchId":"DK-775140",\n      "title":"Åby"\n   },\n   {\n      "branchId":"FBS-751009",\n      "title":"Fjernlager 2"\n   },\n   {\n      "branchId":"FBS-751029",\n      "title":"Stadsarkivet"\n   },\n   {\n      "branchId":"FBS-751027",\n      "title":"Intern"\n   },\n   {\n      "branchId":"FBS-751026",\n      "title":"Fælles undervejs"\n   },\n   {\n      "branchId":"FBS-751025",\n      "title":"Fællessekretariatet"\n   },\n   {\n      "branchId":"DK-775133",\n      "title":"Bavnehøj"\n   },\n   {\n      "branchId":"FBS-751024",\n      "title":"Fjernlånte materialer"\n   },\n   {\n      "branchId":"DK-775100",\n      "title":"Hovedbiblioteket"\n   },\n   {\n      "branchId":"DK-775170",\n      "title":"Trige"\n   },\n   {\n      "branchId":"DK-775150",\n      "title":"Tilst"\n   },\n   {\n      "branchId":"DK-775130",\n      "title":"Viby"\n   },\n   {\n      "branchId":"DK-775164",\n      "title":"Egå"\n   }\n]',
+    findOnShelfDisclosuresDefaultOpenConfig: "0",
+    findOnShelfHideUnavailableHoldingsConfig: "0",
     materialHeaderAllEditionsText: "All editions",
     materialHeaderAuthorByText: "By",
+    materialGridRelatedTitleText: "Other materials",
+    materialGridRelatedRecommendationsDataLabelText: "Recommendations",
+    materialGridRelatedSeriesDataLabelText: "In same series",
+    materialGridRelatedAuthorDataLabelText: "By same author",
+    materialGridRelatedInlineFiltersAriaLabelText: "Filter displayed materials",
+    materialGridRelatedSelectAriaLabelText: "Select material filter",
     periodicalSelectYearText: "Year",
     periodicalSelectEditionText: "Edition",
+    playerModalDescriptionText: "Modal for player",
+    playerModalCloseButtonText: "Close",
     reserveBookText: "Reserve book",
     reserveText: "Reserve",
     reserveWithMaterialTypeText: "Reserve @materialType",
+    reservableFromAnotherLibraryMissingEmailText:
+      "You need to add an email address to reserve from another library.",
+    reservableFromAnotherLibraryExtraInfoText:
+      "NOTE! This material is ordered from another library. Therefore, it may take a few days before it appears on your list of reservations.",
     reservableFromAnotherLibraryText: "Ordered from another library.",
     findOnBookshelfText: "Find on shelf",
     descriptionHeadlineText: "Description",
@@ -767,6 +955,7 @@ const meta: Meta<typeof MaterialEntry> = {
     editionText: "Edition",
     readArticleText: "Read article",
     loadingText: "Loading",
+    loanWithMaterialTypeText: "Loan @materialType",
     getOnlineText: "Get online",
     seeOnlineText: "See online",
     listenOnlineText: "Listen online",
@@ -787,6 +976,10 @@ const meta: Meta<typeof MaterialEntry> = {
       "You have borrowed @count out of @limit possible e-books this month",
     onlineLimitMonthAudiobookInfoText:
       "You have borrowed @count out of @limit possible audio-books this month",
+    onlineMaterialPlayerText: "Listen to @materialType",
+    onlineMaterialReaderText: "Read @materialType",
+    onlineMaterialTeaserText: "Try @materialType",
+    approveLoanText: "Approve loan",
     approveReservationText: "Approve reservation",
     shiftText: "Change",
     reservationDetailsPickUpAtTitleText: "Pick up at",
@@ -805,9 +998,31 @@ const meta: Meta<typeof MaterialEntry> = {
       "We're sorry. Unfortunately, there has been an error. Try again, please.",
     tryAginButtonText: "Try again",
     okButtonText: "Ok",
+    onlineInternalModalCloseAriaLabelText: "Close reader/player modal",
+    onlineInternalModalScreenReaderDescriptionText:
+      "Modal for reader/player material",
+    onlineInternalModalEnsureNotificationText:
+      "If you wish to receive notifications when the material is ready for loan, you need to add your email address or phone number.",
+    onlineInternalResponseErrorSubtitleText:
+      "@title could not be borrowed or reserved",
+    onlineInternalResponseErrorTitleText: "Something went wrong.",
+    onlineInternalResponseLoanedSubtitleText: "@title is borrowed to you",
+    onlineInternalResponseLoanedTitleText:
+      "You have now borrowed the material!",
+    onlineInternalResponseReservedSubtitleText: "@title is reserved for you",
+    onlineInternalResponseReservedTitleText:
+      "The material is now reserved for you!",
+    onlineInternalErrorsText: "something went wrong",
+    onlineInternalSuccessLoanedText:
+      "You can read/listen to the material until @expirationDate",
+    onlineInternalSuccessReservedText:
+      "You have reserved the material. If you have provided an phonenumber or email during the reservation, you will receive a notification when the material is ready.",
+    onlineInternalSuccessManualBorrowingNoticeText:
+      "Please note that the loan does not happen automatically. You must manually borrow the digital material yourself within 48 hours",
     missingDataText: "Missing data",
     reservationModalScreenReaderModalDescriptionText: "Modal for reservation",
     reservationModalCloseModalAriaLabelText: "Close reservation modal",
+    libraryAssessmentText: "Library assessment",
     librariesHaveTheMaterialText: "libraries have material",
     findOnShelfModalScreenReaderModalDescriptionText: "Modal for reservation",
     findOnShelfModalCloseModalAriaLabelText: "Close reservation modal",
@@ -839,6 +1054,8 @@ const meta: Meta<typeof MaterialEntry> = {
     chooseOneText: "Choose one",
     infomediaModalScreenReaderModalDescriptionText: "Modal for infomedia",
     infomediaModalCloseModalAriaLabelText: "Close infomedia modal",
+    infomediaCopyrightText:
+      "All material in Infomedia is covered by copyright law and may not be copied without special permission.",
     saveButtonText: "Save",
     orderDigitalCopyModalScreenReaderModalDescriptionText:
       "Modal for Order digital copy",
@@ -938,10 +1155,31 @@ export const Periodical: Story = {
   }
 };
 
+export const periodicalMultipleAccesses: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:07664400"
+  }
+};
+
+export const yearbookPeriodical: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:49236115"
+  }
+};
+
+export const newspaperPeriodical: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:49294182"
+  }
+};
+
 export const Infomedia: Story = {
   args: {
     ...Default.args,
-    wid: "work-of:870971-avis:35731733"
+    wid: "work-of:870971-avis:138119807"
   }
 };
 
@@ -1036,6 +1274,13 @@ export const DigitalArticle: Story = {
   }
 };
 
+export const DigitalArticlePhysicalAccess: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870971-tsart:34310815"
+  }
+};
+
 export const irregularFaustId1InLargeSameSeries: Story = {
   args: {
     ...Default.args,
@@ -1061,5 +1306,60 @@ export const Journal: Story = {
   args: {
     ...Default.args,
     wid: "work-of:870970-basis:01007556"
+  }
+};
+
+export const gameOfThronesSeason7: Story = {
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:53795633"
+  }
+};
+
+export const FindOnShelfHideUnavailable: Story = {
+  name: "Find on Shelf - Hide Unavailable Holdings",
+  args: {
+    ...Default.args,
+    findOnShelfHideUnavailableHoldingsConfig: "1"
+  }
+};
+
+export const ContentsSmiple: Story = {
+  name: "With contents: simple",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:139683226"
+  }
+};
+
+export const ContentsMany: Story = {
+  name: "With contents: many",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:52531802"
+  }
+};
+
+export const ContentsComplex: Story = {
+  name: "With contents: complex",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:140264814"
+  }
+};
+
+export const ContentsEditions: Story = {
+  name: "With contents: editions",
+  args: {
+    ...Default.args,
+    wid: "work-of:870970-basis:52974755"
+  }
+};
+
+export const ContentsRaw: Story = {
+  name: "With contents: raw",
+  args: {
+    ...Default.args,
+    wid: "work-of:150086-netmusik:00795041726629"
   }
 };

@@ -8,17 +8,20 @@ export interface MaterialButtonDisabledProps {
   reason?: string;
   size?: ButtonSize;
   dataCy?: string;
+  classNames?: string;
 }
 
 const MaterialButtonDisabled: FC<MaterialButtonDisabledProps> = ({
   label,
   reason,
   size,
-  dataCy = "material-header-buttons-cant-reserve"
+  dataCy = "material-header-buttons-cant-reserve",
+  classNames
 }) => {
   return (
     <>
       <Button
+        classNames={classNames}
         label={label}
         buttonType="none"
         variant="filled"

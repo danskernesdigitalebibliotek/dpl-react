@@ -12,7 +12,7 @@ fragment ManifestationsSimple on Manifestations {
 
 fragment ManifestationsAccess on Manifestations {
   all {
-    pid,
+    pid
     identifiers {
       type
       value
@@ -67,6 +67,7 @@ fragment ManifestationsSimpleFields on Manifestation {
   }
   publisher
   identifiers {
+    type
     value
   }
   contributors {
@@ -74,6 +75,46 @@ fragment ManifestationsSimpleFields on Manifestation {
     roles {
       function {
         singular
+      }
+    }
+  }
+  contents {
+    heading
+    type
+    raw
+    entries {
+      title {
+        display
+      }
+      creators {
+        persons {
+          display
+          nameSort
+          firstName
+          lastName
+          attributeToName
+        }
+        corporations {
+          display
+          nameSort
+          main
+        }
+      }
+      contributors
+      playingTime
+      sublevel {
+        title {
+          display
+        }
+        contributors
+        playingTime
+        sublevel {
+          title {
+            display
+          }
+          contributors
+          playingTime
+        }
       }
     }
   }
@@ -92,6 +133,10 @@ fragment ManifestationsSimpleFields on Manifestation {
     ages {
       display
     }
+    childrenOrAdults {
+      display
+      code
+    }
   }
   notes {
     display
@@ -107,11 +152,6 @@ fragment ManifestationsSimpleFields on Manifestation {
   hostPublication {
     summary
   }
-  manifestationParts {
-    parts {
-      title
-    }
-  }
   accessTypes {
     code
   }
@@ -121,6 +161,7 @@ fragment ManifestationsSimpleFields on Manifestation {
       origin
       url
       loginRequired
+      status
     }
     ... on InfomediaService {
       id
@@ -233,6 +274,12 @@ fragment WorkSmall on Work {
   titles {
     full
     original
+    tvSeries {
+      title
+      season {
+        display
+      }
+    }
   }
   abstract
   creators {
@@ -279,6 +326,7 @@ fragment WorkMedium on Work {
   }
   dk5MainEntry {
     display
+    code
   }
   relations {
     hasReview {

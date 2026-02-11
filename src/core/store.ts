@@ -31,7 +31,11 @@ const persistConfig = {
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().prepend(extractServiceBaseUrls as Middleware),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"]
+      }
+    }).prepend(extractServiceBaseUrls as Middleware),
   reducer: persistReducer(
     persistConfig,
     combineReducers({

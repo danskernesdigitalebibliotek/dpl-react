@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { DatesSetArg, EventInput } from "@fullcalendar/core";
 import { useQueryClient } from "react-query";
-import { formatCmsEventsToFullCalendar, getStringForDateInput } from "./helper";
+import { formatCmsEventsToFullCalendar } from "./helper";
 import {
   getDplOpeningHoursListGETQueryKey,
   useDplOpeningHoursCreatePOST,
@@ -15,6 +15,7 @@ import {
 } from "../../core/dpl-cms/model";
 import { useConfig } from "../../core/utils/config";
 import { HandleEventRemoveType } from "./types";
+import { formatDateForAPI } from "../../core/utils/helpers/date";
 
 const useOpeningHoursEditor = () => {
   const config = useConfig();
@@ -27,15 +28,18 @@ const useOpeningHoursEditor = () => {
     {
       branch_id: openingHoursBranchId,
       ...(datesSet && {
-        from_date: getStringForDateInput(datesSet.start),
-        to_date: getStringForDateInput(datesSet.end)
+        from_date: formatDateForAPI(datesSet.start),
+        to_date: formatDateForAPI(datesSet.end)
       })
     },
     { enabled: !!datesSet }
   );
-  const { mutate: removeOpeningHours } = useDplOpeningHoursDeleteDELETE();
-  const { mutate: createOpeningHours } = useDplOpeningHoursCreatePOST();
-  const { mutate: updateOpeningHours } = useDplOpeningHoursUpdatePATCH();
+  const { mutate: removeOpeningHours, isLoading: removeOpeningHoursLoading } =
+    useDplOpeningHoursDeleteDELETE();
+  const { mutate: createOpeningHours, isLoading: createOpeningHoursLoading } =
+    useDplOpeningHoursCreatePOST();
+  const { mutate: updateOpeningHours, isLoading: updateOpeningHoursLoading } =
+    useDplOpeningHoursUpdatePATCH();
   const [events, setEvents] = useState<EventInput[]>([]);
 
   useEffect(() => {
@@ -137,7 +141,11 @@ const useOpeningHoursEditor = () => {
     handleEventAdd,
     handleEventRemove,
     handleEventEditing,
-    handleDatesSet
+    handleDatesSet,
+    isLoading:
+      updateOpeningHoursLoading ||
+      removeOpeningHoursLoading ||
+      createOpeningHoursLoading
   };
 };
 

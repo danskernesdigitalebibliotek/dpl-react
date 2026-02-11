@@ -3,39 +3,29 @@ import { getLinkHandler } from "./getLinkHandler";
 
 export interface LinkProps {
   href: URL;
-  onClick?: () => Promise<void>;
   children: React.ReactNode;
   isNewTab?: boolean;
   className?: string;
   id?: string;
-  trackClick?: () => Promise<unknown>;
   dataCy?: string;
   ariaLabelledBy?: string;
   stopPropagation?: boolean;
   isHiddenFromScreenReaders?: boolean;
+  trackClick?: () => Promise<unknown>;
 }
 
 const Link: React.FC<LinkProps> = ({
   href,
-  onClick,
   children,
   isNewTab = false,
   className,
   id,
-  trackClick,
   dataCy,
   ariaLabelledBy,
   stopPropagation = false,
-  isHiddenFromScreenReaders
+  isHiddenFromScreenReaders,
+  trackClick
 }) => {
-  const handleClick = getLinkHandler({
-    type: "click",
-    isNewTab,
-    stopPropagation,
-    url: href,
-    trackClick
-  });
-
   const handleKeyUp = getLinkHandler({
     type: "keyup",
     isNewTab,
@@ -44,13 +34,13 @@ const Link: React.FC<LinkProps> = ({
     trackClick
   });
 
-  const onclickHandler = onClick
-    ? (
-        e:
-          | React.MouseEvent<HTMLAnchorElement>
-          | React.KeyboardEvent<HTMLAnchorElement>
-      ) => onClick().then(() => handleClick(e))
-    : handleClick;
+  const handleClick = getLinkHandler({
+    type: "click",
+    isNewTab,
+    stopPropagation,
+    url: href,
+    trackClick
+  });
 
   return (
     <a
@@ -60,8 +50,8 @@ const Link: React.FC<LinkProps> = ({
       target={isNewTab ? "_blank" : undefined}
       rel="noreferrer"
       className={className}
-      onClick={onclickHandler}
       onKeyUp={handleKeyUp}
+      onClick={handleClick}
       aria-labelledby={ariaLabelledBy}
       tabIndex={isHiddenFromScreenReaders ? -1 : 0}
       aria-hidden={isHiddenFromScreenReaders}

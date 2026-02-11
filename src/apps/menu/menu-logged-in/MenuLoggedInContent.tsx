@@ -4,7 +4,7 @@ import Link from "../../../components/atoms/links/Link";
 import MenuNavigationItem, {
   MenuNavigationDataType
 } from "../menu-navigation-list/MenuNavigationItem";
-import { AuthenticatedPatronV6, FeeV2 } from "../../../core/fbs/model";
+import { FeeV2 } from "../../../core/fbs/model";
 import { useUrls } from "../../../core/utils/url";
 import { useGetFeesV2 } from "../../../core/fbs/fbs";
 import { useConfig } from "../../../core/utils/config";
@@ -14,6 +14,9 @@ import useReservations from "../../../core/utils/useReservations";
 import useLoans from "../../../core/utils/useLoans";
 import { usePatronData } from "../../../core/utils/helpers/usePatronData";
 import { resetPersistedData } from "../../../core/store";
+import { Button } from "../../../components/Buttons/Button";
+import { redirectTo } from "../../../core/utils/helpers/url";
+import { AuthenticatedPatron } from "../../../core/utils/types/entities";
 
 interface MenuLoggedInContentProps {
   pageSize: number;
@@ -46,7 +49,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
     }
   );
   const [userData, setUserData] = useState<
-    AuthenticatedPatronV6 | null | undefined
+    AuthenticatedPatron | null | undefined
   >();
   const [feeCount, setFeeCount] = useState<number>(0);
 
@@ -66,6 +69,11 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
     loansOverdue.length !== 0 ||
     loansSoonOverdue.length !== 0 ||
     reservations.length !== 0;
+
+  const handleOnClick = () => {
+    resetPersistedData();
+    redirectTo(logoutUrl);
+  };
 
   return (
     <div className="modal-login modal-login--authenticated">
@@ -101,6 +109,7 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
           <ul className="modal-profile__links">
             {menuNavigationData.map((menuNavigationItem) => (
               <MenuNavigationItem
+                key={menuNavigationItem.dataId}
                 menuNavigationItem={menuNavigationItem}
                 loansCount={loans.length}
                 reservationCount={reservations.length}
@@ -110,13 +119,16 @@ const MenuLoggedInContent: FC<MenuLoggedInContentProps> = ({ pageSize }) => {
           </ul>
         </nav>
         <div className="modal-profile__btn-logout mx-32">
-          <Link
-            className="btn-primary btn-filled btn-large arrow__hover--right-small"
-            onClick={() => resetPersistedData()}
-            href={logoutUrl}
-          >
-            {t("menuLogOutText")}
-          </Link>
+          <Button
+            label={t("menuLogOutText")}
+            buttonType="none"
+            size="large"
+            variant="filled"
+            collapsible={false}
+            onClick={handleOnClick}
+            canOnlyBeClickedOnce
+            dataCy="menu-logout-button"
+          />
         </div>
       </div>
     </div>

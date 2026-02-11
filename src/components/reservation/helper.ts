@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { UseTextFunction } from "../../core/utils/text";
 import {
   AgencyBranch,
@@ -42,16 +41,6 @@ export const getNoInterestAfter = (
     return interestPeriodFound.label;
   }
   return `${days} ${t("daysText")}`;
-};
-
-export const getFutureDateString = (num: number) => {
-  const futureDate = dayjs().add(num, "day").format("YYYY-MM-DD");
-  return futureDate;
-};
-
-export const getFutureDateStringISO = (num: number) => {
-  const futureDate = dayjs().add(num, "day").format("YYYY-MM-DDTHH:mm:ssZ");
-  return futureDate;
 };
 
 type Periodical = Pick<
@@ -131,9 +120,16 @@ export const constructReservationData = ({
 };
 
 export const getAuthorLine = (
-  manifestation: Manifestation,
+  manifestation: Manifestation | undefined,
   t: UseTextFunction
 ) => {
+  // Manifestation may be undefined if it is retrieved from an array which might
+  // be empty.
+  if (manifestation === undefined) {
+    // This should never happen. Therefore, it’s not translated.
+    return [t("materialHeaderAuthorByText"), "Unknown"].join(" ");
+  }
+
   const { creators } = manifestation;
   const publicationYear = getManifestationPublicationYear(manifestation);
   const author = creatorsToString(flattenCreators(creators), t) || null;
@@ -241,7 +237,8 @@ export const getInstantLoanBranchHoldings = (
         // and is available, it is an instant loan.
         return (
           instantLoanStrings.some(
-            (instantLoanString) => instantLoanString === materialGroup.name
+            (instantLoanString) =>
+              instantLoanString.trim() === materialGroup.name.trim()
           ) && available
         );
       });

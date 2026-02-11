@@ -42,6 +42,7 @@ const InspirationRecommender: FC = () => {
         {recommendedMaterials &&
           recommendedMaterials.search.works.map((work) => (
             <RecommendMaterial
+              key={work.workId}
               app="inspiration-recommender"
               work={work as Work}
             />

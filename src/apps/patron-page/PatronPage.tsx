@@ -13,12 +13,19 @@ import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import PatronPageSkeleton from "./PatronPageSkeleton";
 import useSavePatron from "../../core/utils/useSavePatron";
 import { Patron } from "../../core/utils/types/entities";
+import { useGetV1UserCardnumberFriendly } from "../../core/publizon/publizon";
+import { FriendlyCardResult } from "../../core/publizon/model";
 
 const PatronPage: FC = () => {
   const t = useText();
   const u = useUrls();
   const deletePatronUrl = u("deletePatronUrl");
   const { data: patronData, isLoading } = usePatronData();
+  const { data: patronCardNumber } = useGetV1UserCardnumberFriendly({
+    query: {
+      enabled: !!patronData
+    }
+  });
   const [patron, setPatron] = useState<Patron | null>(null);
   const [pin, setPin] = useState<string | null>(null);
   const [isPinChangeValid, setIsPinChangeValid] = useState<boolean>(true);
@@ -100,7 +107,13 @@ const PatronPage: FC = () => {
     <form className="dpl-patron-page" onSubmit={(e) => handleSubmit(e)}>
       <h1 className="text-header-h1 my-32">{t("patronPageHeaderText")}</h1>
       <NotificationComponent />
-      {patron && <BasicDetailsSection patron={patron} />}
+      {patron && (
+        <BasicDetailsSection
+          patron={patron}
+          // Cast patronCardNumber to FriendlyCardResult (Api dose not an array)
+          patronCardNumber={patronCardNumber as FriendlyCardResult}
+        />
+      )}
       <div className="patron-page-info">
         {patron && (
           <ContactInfoSection

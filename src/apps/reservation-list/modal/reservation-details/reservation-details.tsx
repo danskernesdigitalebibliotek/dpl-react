@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import {
   isDigitalReservation,
   isPhysicalReservation,
@@ -16,12 +16,7 @@ import fetchDigitalMaterial from "../../../loan-list/materials/utils/digital-mat
 import PhysicalListDetails from "./physical-list-details";
 import { useConfig } from "../../../../core/utils/config";
 import MaterialButtonLoading from "../../../../components/material/material-buttons/generic/MaterialButtonLoading";
-import { useComplexSearchWithPaginationWorkAccessQuery } from "../../../../core/dbc-gateway/generated/graphql";
-import {
-  findAccessManifestationByIdentifier,
-  findEreolAccessLinkFromManifestations
-} from "./helper";
-import { useUrls } from "../../../../core/utils/url";
+import useWorkUrl from "../../../../core/utils/useWorkUrl";
 
 export interface ReservationDetailsProps {
   reservation: ReservationType;
@@ -34,11 +29,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
   openReservationDeleteModal
 }) => {
   const t = useText();
-  const u = useUrls();
-  const ereolenHomepageUrl = u("ereolenHomepageUrl");
-
   const config = useConfig();
-  const [externalUrl, setExternalUrl] = useState<URL | null>(null);
   const { state, identifier } = reservation;
   const { authors, pid, year, title, description, materialType } =
     material || {};
@@ -52,27 +43,11 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
     (state === readyForPickupState && allowRemoveReadyReservations) ||
     state !== readyForPickupState;
 
-  const { data: complexSearchData, isLoading: isLoadingComplexSearch } =
-    useComplexSearchWithPaginationWorkAccessQuery(
-      { cql: `term.isbn=${identifier}`, offset: 0, limit: 1, filters: {} },
-      { enabled: !!identifier }
-    );
-
-  useEffect(() => {
-    if (!complexSearchData || complexSearchData.complexSearch.hitcount === 0) {
-      return;
-    }
-    const matchingManifestations = findAccessManifestationByIdentifier(
-      complexSearchData.complexSearch.works[0].manifestations.all,
-      identifier || ""
-    );
-    setExternalUrl(
-      new URL(
-        findEreolAccessLinkFromManifestations(matchingManifestations) ||
-          ereolenHomepageUrl
-      )
-    );
-  }, [complexSearchData, identifier, ereolenHomepageUrl]);
+  const { workUrl, isLoading } = useWorkUrl({
+    identifier,
+    pid,
+    materialType
+  });
 
   return (
     <div className="modal-details__container">
@@ -87,6 +62,7 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
             description={description}
             materialType={materialType}
             series={material.series}
+            workUrl={workUrl}
           >
             {state === readyForPickupState && (
               <div className="status-label status-label--info">
@@ -102,22 +78,20 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
                 reservation={reservation}
               />
             )}
-          {isDigitalReservation(reservation) && isLoadingComplexSearch && (
+          {isDigitalReservation(reservation) && isLoading && (
             <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
               <MaterialButtonLoading classNames="modal-details__buttons--hide-on-mobile" />
             </div>
           )}
-          {isDigitalReservation(reservation) &&
-            !isLoadingComplexSearch &&
-            externalUrl && (
-              <ReservationDetailsRedirect
-                openReservationDeleteModal={openReservationDeleteModal}
-                reservation={reservation}
-                className="modal-details__buttons--hide-on-mobile"
-                linkClassNames="mx-16"
-                externalLink={externalUrl}
-              />
-            )}
+          {isDigitalReservation(reservation) && !isLoading && workUrl && (
+            <ReservationDetailsRedirect
+              openReservationDeleteModal={openReservationDeleteModal}
+              reservation={reservation}
+              className="modal-details__buttons--hide-on-mobile"
+              linkClassNames="mx-16"
+              workUrl={workUrl}
+            />
+          )}
           <div className="modal-details__list">
             {isDigitalReservation(reservation) && (
               <DigitalListDetails reservation={reservation} />
@@ -134,16 +108,14 @@ const ReservationDetails: FC<ReservationDetailsProps & MaterialProps> = ({
                 reservation={reservation}
               />
             )}
-          {isDigitalReservation(reservation) &&
-            !isLoadingComplexSearch &&
-            externalUrl && (
-              <ReservationDetailsRedirect
-                openReservationDeleteModal={openReservationDeleteModal}
-                linkClassNames="my-16"
-                reservation={reservation}
-                externalLink={externalUrl}
-              />
-            )}
+          {isDigitalReservation(reservation) && !isLoading && workUrl && (
+            <ReservationDetailsRedirect
+              openReservationDeleteModal={openReservationDeleteModal}
+              linkClassNames="my-16"
+              reservation={reservation}
+              workUrl={workUrl}
+            />
+          )}
         </>
       )}
     </div>

@@ -57,10 +57,39 @@ export default meta;
 
 type Story = StoryObj<typeof Cover>;
 
-export const Item: Story = {
+export const NoIds: Story = {
   render: (args) => {
     const WrappedCover = withUrls(Cover);
-    // eslint-disable-next-line react/jsx-props-no-spreading
+    return <WrappedCover {...args} />;
+  }
+};
+
+export const WithPid: Story = {
+  args: {
+    ids: ["870970-basis:53292968"]
+  },
+  render: (args) => {
+    const WrappedCover = withUrls(Cover);
+    return <WrappedCover {...args} />;
+  }
+};
+export const MultiplePids: Story = {
+  args: {
+    ids: ["870970-basis:06373674", "870970-basis:53292968"]
+  },
+  render: (args) => {
+    const WrappedCover = withUrls(Cover);
+    return <WrappedCover {...args} />;
+  }
+};
+
+export const WithIsbn: Story = {
+  args: {
+    ids: ["9788763844123"],
+    idType: "isbn"
+  },
+  render: (args) => {
+    const WrappedCover = withUrls(Cover);
     return <WrappedCover {...args} />;
   }
 };

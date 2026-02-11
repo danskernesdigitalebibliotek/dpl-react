@@ -1,4 +1,5 @@
 import { MultiselectOption } from "../../components/multiselect/types";
+import { SortOrderEnum } from "../../core/dbc-gateway/generated/graphql";
 
 export const advancedSearchIndexes = [
   "all",
@@ -34,7 +35,7 @@ export const advancedSearchIndexTranslations = {
   "term.isbn": "advancedSearchIdentifierText"
 } as const;
 
-export type AdvancedSearchIndex = typeof advancedSearchIndexes[number];
+export type AdvancedSearchIndex = (typeof advancedSearchIndexes)[number];
 
 export type AdvancedSearchClause = {
   value: "AND" | "OR" | "NOT";
@@ -106,3 +107,49 @@ export const advancedSearchFilters = {
   fiction: "term.fictionnonfiction",
   accessibility: "term.accesstype"
 };
+
+export const enum AdvancedSortMapStrings {
+  Relevance = "relevance",
+  TitleAsc = "sort.title.asc",
+  TitleDesc = "sort.title.desc",
+  CreatorAsc = "sort.creator.asc",
+  CreatorDesc = "sort.creator.desc",
+  LatestPubDateAsc = "sort.latestpublicationdate.asc",
+  LatestPubDateDesc = "sort.latestpublicationdate.desc"
+}
+
+type AdvancedSortMapType = Record<
+  AdvancedSortMapStrings,
+  { index: string; order: SortOrderEnum } | undefined
+>;
+
+export const advancedSortMap: AdvancedSortMapType = {
+  // AdvancedSortMapStrings.Relevance is undefined to indicate default sorting (no explicit sort parameter sent)
+  [AdvancedSortMapStrings.Relevance]: undefined,
+  [AdvancedSortMapStrings.TitleAsc]: {
+    index: "sort.title",
+    order: SortOrderEnum.Asc
+  },
+  [AdvancedSortMapStrings.TitleDesc]: {
+    index: "sort.title",
+    order: SortOrderEnum.Desc
+  },
+  [AdvancedSortMapStrings.CreatorAsc]: {
+    index: "sort.creator",
+    order: SortOrderEnum.Asc
+  },
+  [AdvancedSortMapStrings.CreatorDesc]: {
+    index: "sort.creator",
+    order: SortOrderEnum.Desc
+  },
+  [AdvancedSortMapStrings.LatestPubDateAsc]: {
+    index: "sort.latestpublicationdate",
+    order: SortOrderEnum.Asc
+  },
+  [AdvancedSortMapStrings.LatestPubDateDesc]: {
+    index: "sort.latestpublicationdate",
+    order: SortOrderEnum.Desc
+  }
+};
+
+export type FirstAccessionOperatorFilter = ">" | "=" | "<";

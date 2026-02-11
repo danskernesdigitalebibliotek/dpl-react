@@ -5,8 +5,8 @@ import {
   FacetValue,
   useSearchFacetQuery
 } from "../../core/dbc-gateway/generated/graphql";
-import useGetCleanBranches from "../../core/utils/branches";
-import { Filter, FilterItemTerm } from "../../core/filter.slice";
+import useGetSearchBranches from "../../core/utils/branches";
+import { FacetOrigin, Filter, FilterItemTerm } from "../../core/filter.slice";
 import invalidSwitchCase from "../../core/utils/helpers/invalid-switch-case";
 import { Facets } from "../../core/utils/types/entities";
 
@@ -20,7 +20,11 @@ export const allFacetFields = [
   FacetFieldEnum.Mainlanguages,
   FacetFieldEnum.Genreandform,
   FacetFieldEnum.Materialtypesspecific,
-  FacetFieldEnum.Fictionalcharacters
+  FacetFieldEnum.Fictionalcharacters,
+  FacetFieldEnum.Year,
+  FacetFieldEnum.Canalwaysbeloaned,
+  FacetFieldEnum.Dk5,
+  FacetFieldEnum.Gameplatform
 ];
 
 export const getPlaceHolderFacets = (facets: string[]) =>
@@ -30,7 +34,8 @@ export const getPlaceHolderFacets = (facets: string[]) =>
     values: [
       {
         key: "",
-        term: ""
+        term: "",
+        traceId: ""
       }
     ]
   }));
@@ -60,7 +65,7 @@ export const createFilters = (
 };
 
 export function useGetFacets(query: string, filters: Filter) {
-  const cleanBranches = useGetCleanBranches();
+  const cleanBranches = useGetSearchBranches();
 
   const { data, isLoading } = useSearchFacetQuery(
     {
@@ -84,14 +89,17 @@ export function useGetFacets(query: string, filters: Filter) {
 
 export const FacetBrowserModalId = "facet-browser-modal";
 
-export function getAllFilterPathsAsString(filterObject: {
-  [key: string]: { [key: string]: FilterItemTerm };
-}) {
+export function getAllFilterPathsAsString(
+  filterObject: Filter,
+  origin: FacetOrigin
+) {
   const mappedFilterValues = mapValues(filterObject, (filter) => {
-    return Object.keys(filter);
+    return Object.keys(filter).filter((term) => filter[term].origin === origin);
   });
+
   const filterNames = Object.keys(mappedFilterValues);
   let allFilterPathsAsString = "";
+
   filterNames.forEach((filterName) => {
     mappedFilterValues[filterName].forEach((filterValue) => {
       if (allFilterPathsAsString !== "") {
@@ -102,6 +110,7 @@ export function getAllFilterPathsAsString(filterObject: {
       );
     });
   });
+
   return allFilterPathsAsString;
 }
 
@@ -182,19 +191,22 @@ if (import.meta.vitest) {
       Dansk: {
         key: "dan",
         term: "Dansk",
-        score: 295
+        score: 295,
+        traceId: "1"
       },
       Engelsk: {
         key: "eng",
         term: "Engelsk",
-        score: 9
+        score: 9,
+        traceId: "2"
       }
     },
     accessTypes: {
       Fysisk: {
         key: "PHYSICAL",
         term: "Fysisk",
-        score: 356
+        score: 356,
+        traceId: "3"
       }
     }
   };
@@ -207,7 +219,8 @@ if (import.meta.vitest) {
         {
           key: "computerspil",
           term: "computerspil",
-          score: 26
+          score: 26,
+          traceId: "1"
         }
       ]
     },
@@ -218,12 +231,14 @@ if (import.meta.vitest) {
         {
           key: "dan",
           term: "Dansk",
-          score: 427
+          score: 427,
+          traceId: "2"
         },
         {
           key: "eng",
           term: "Engelsk",
-          score: 82
+          score: 82,
+          traceId: "3"
         }
       ]
     },
@@ -234,27 +249,32 @@ if (import.meta.vitest) {
         {
           key: "artikler",
           term: "artikler",
-          score: 346
+          score: 346,
+          traceId: "4"
         },
         {
           key: "bøger",
           term: "bøger",
-          score: 74
+          score: 74,
+          traceId: "5"
         },
         {
           key: "e-bøger",
           term: "e-bøger",
-          score: 38
+          score: 38,
+          traceId: "6"
         },
         {
           key: "computerspil",
           term: "computerspil",
-          score: 26
+          score: 26,
+          traceId: "7"
         },
         {
           key: "film",
           term: "film",
-          score: 9
+          score: 9,
+          traceId: "8"
         }
       ]
     }

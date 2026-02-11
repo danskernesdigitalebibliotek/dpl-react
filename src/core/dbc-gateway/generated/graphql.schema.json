@@ -1,10 +1,12 @@
 {
   "__schema": {
     "queryType": {
-      "name": "Query"
+      "name": "Query",
+      "kind": "OBJECT"
     },
     "mutationType": {
-      "name": "Mutation"
+      "name": "Mutation",
+      "kind": "OBJECT"
     },
     "subscriptionType": null,
     "types": [
@@ -212,6 +214,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "urlText",
+            "description": "Description/type of URL",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -282,8 +296,8 @@
               "name": "PEGI",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'Audience.pegi' instead expires: 01/06-2025"
           },
           {
             "name": "ages",
@@ -412,6 +426,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "MediaCouncilAgeRestriction",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pegi",
+            "description": "PEGI age rating for games ",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PEGI",
               "ofType": null
             },
             "isDeprecated": false,
@@ -552,6 +578,80 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CataloguedPublicationStatus",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "code",
+            "description": "The code representing the catalogued publication status.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "CataloguedPublicationStatusEnum",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "display",
+            "description": "The display text corresponding to the publication status code.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "CataloguedPublicationStatusEnum",
+        "description": "Represents the publication status of a catalogued manifestation.",
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "NT",
+            "description": "New title",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NU",
+            "description": "New edition",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "OP",
+            "description": "New print run",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -787,6 +887,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -817,6 +929,18 @@
           },
           {
             "name": "CATALOGUECODE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CHAMBERMUSICTYPE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CHOIRTYPE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -895,6 +1019,18 @@
           },
           {
             "name": "HOSTPUBLICATION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "HOSTPUBLICATIONTYPE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "INSTRUMENT",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -1288,6 +1424,102 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ComplexSearchIndex",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "aliases",
+            "description": "Aliases for this index",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "facet",
+            "description": "Can be used for faceting",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "index",
+            "description": "The name of a Complex Search index",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "search",
+            "description": "Can be used for searching",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sort",
+            "description": "Can be used for sorting",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ComplexSearchResponse",
         "description": "The search response",
         "isOneOf": null,
@@ -1673,6 +1905,442 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentEntry",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "contributors",
+            "description": "Additional 'authors' (lyricists, arrangers, performers/soloists etc.), quoted as strings (including possible author's statement) from the record",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "creators",
+            "description": "Main creator(s) of the entry i.e. composer (classical music), artist/band (rhythmic music), author (fiction, articles). For music and sheet music always only 1 creator, for articles and fiction possibly more than 1",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContentEntryCreators",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "playingTime",
+            "description": "Playing time for music tracks, quoted from the record",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sublevel",
+            "description": "Possible entry data (title, creators, contributors, playingtime) subordinate to the entry's top level",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ContentSublevel",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "Top level title of the entry",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ContentEntryTitle",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentEntryCreators",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "corporations",
+            "description": "Details about a corporation or conference, name, role, etc.",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Corporation",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "persons",
+            "description": "Details about a person, name, role etc.",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Person",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentEntryTitle",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "display",
+            "description": "Title of the content entry",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentSublevel",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "contributors",
+            "description": "Additional 'authors' (lyricists, arrangers, performers/soloists etc.) related to the title on sublevel 1, quoted as strings (including possible author's statement) from the record",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "playingTime",
+            "description": "Playing time for music tracks",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sublevel",
+            "description": "Possible entry data (title, contributors, playingtime) subordinate to the entry's sublevel 1",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ContentSublevelLast",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "Title subordinate to the title in the entry's top level",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ContentEntryTitle",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentSublevelLast",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "contributors",
+            "description": "Additional 'authors' (lyricists, arrangers, performers/soloists etc.) related to the title on sublevel 1, quoted as strings (including possible author's statement) from the record",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "playingTime",
+            "description": "Playing time for music tracks",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "Title subordinate to the title in the entry's top level",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ContentEntryTitle",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentsEntity",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "entries",
+            "description": "Content entry with title and possible creator(s), contributors and (for some music and movies) playing time",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ContentEntry",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "heading",
+            "description": "Heading for the contents of this entity",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "raw",
+            "description": "Contents text note quoted as it is from the marc field. Used for non-machine-decipherable content notes (un)formatted in only 1 subfield)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": "ENUM for type of content entries (music tracks, articles, fiction etc.) in this entity",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "ContentsEntityEnum",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ContentsEntityEnum",
+        "description": null,
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "ARTICLES",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CHAPTERS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "FICTION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "MUSIC_TRACKS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NOT_SPECIFIED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SHEET_MUSIC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -2140,6 +2808,18 @@
             "deprecationReason": null
           },
           {
+            "name": "viafid",
+            "description": "VIAF identifier of the creator",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "year",
             "description": "Year of the conference",
             "args": [],
@@ -2235,6 +2915,30 @@
             "deprecationReason": null
           },
           {
+            "name": "large",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CoverDetails",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "medium",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CoverDetails",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "origin",
             "description": null,
             "args": [],
@@ -2247,12 +2951,96 @@
             "deprecationReason": null
           },
           {
+            "name": "original",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CoverDetails",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "small",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CoverDetails",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "thumbnail",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "xSmall",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CoverDetails",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CoverDetails",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "height",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "width",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2322,6 +3110,18 @@
                   }
                 }
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "viafid",
+            "description": "VIAF identifier of the creator",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2534,6 +3334,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this didYouMean value. \nIt is generated in the response and should be included in subsequent\nAPI calls when this manifestation is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -3081,6 +3897,22 @@
           {
             "name": "term",
             "description": "A value of a facet field",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this facet value. \nIt is generated in the response and should be included in subsequent\nAPI calls when this manifestation is selected.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -3983,150 +4815,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "OBJECT",
-        "name": "ItemIdResponse",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "itemOrderEntity",
-            "description": "ItemId response object.",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "ItemOrderEntity",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "message",
-            "description": "Message field in case of an error.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ItemOrderEntity",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "itemId",
-            "description": "Item ID, the same value that was queried.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "itemOrderKey",
-            "description": "Key for the row in the database, can be ignored as it's only relevant for ORS.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "orderId",
-            "description": "Order ID associated with the item ID.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "requesterId",
-            "description": "Agency ID of the borrower of the material.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "responderId",
-            "description": "Agency ID of the lender of the material.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "timestamp",
-            "description": "Timestamp of when the row was created in the database.\nExample: \"2024-09-09T07:32:24.081+00:00\"",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "INPUT_OBJECT",
         "name": "KidRecommenderTagsInput",
         "description": null,
@@ -4814,6 +5502,18 @@
             "deprecationReason": null
           },
           {
+            "name": "cataloguedPublicationStatus",
+            "description": "The publication status of a catalogued manifestation.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CataloguedPublicationStatus",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "classifications",
             "description": "Classification codes for this manifestation from any classification system",
             "args": [],
@@ -4831,6 +5531,26 @@
                     "name": "Classification",
                     "ofType": null
                   }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contents",
+            "description": "Content title entries with possible creators, contributors and playing time for music tracks, sheet music titles, articles, poems, short stories etc.",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ContentsEntity",
+                  "ofType": null
                 }
               }
             },
@@ -5070,6 +5790,18 @@
             "deprecationReason": null
           },
           {
+            "name": "localId",
+            "description": "Identification of the local id of this manifestation",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "manifestationParts",
             "description": "Tracks on music album, sheet music content, or articles/short stories etc. in this manifestation",
             "args": [],
@@ -5078,20 +5810,8 @@
               "name": "ManifestationParts",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "marc",
-            "description": "Field for presenting bibliographic records in MARC format",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "MarcRecord",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'Manifestation.contents' instead expires: 01/11-2025"
           },
           {
             "name": "materialTypes",
@@ -5302,6 +6022,18 @@
             "deprecationReason": null
           },
           {
+            "name": "sheetMusicCategories",
+            "description": "Material that can be identified as sheet music",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SheetMusicCategory",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "shelfmark",
             "description": "Information about on which shelf in the library this manifestation can be found",
             "args": [],
@@ -5362,8 +6094,8 @@
               "name": "TableOfContent",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'Manifestation.contents' instead expires: 01/11-2025"
           },
           {
             "name": "titles",
@@ -6042,6 +6774,30 @@
             "deprecationReason": null
           },
           {
+            "name": "bestRepresentations",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Manifestation",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "first",
             "description": null,
             "args": [],
@@ -6096,151 +6852,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Marc",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "getMarcByRecordId",
-            "description": "Gets the MARC record collection for the given record identifier, containing either standalone or head and/or section and volume records.",
-            "args": [
-              {
-                "name": "recordId",
-                "description": "The marc record identifier",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "MarcRecord",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "MarcRecord",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "agencyId",
-            "description": "The library agency",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           },
           {
-            "name": "bibliographicRecordId",
-            "description": "The bibliographic record identifier",
+            "name": "searchHits",
+            "description": "A list of manifestations that matched the search query.\n\nThis field is populated only when a work is retrieved within a search context.\nEach entry is a SearchHit object representing a manifestation that matched the search criteria.\nOnly one manifestation per unit is returned.",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "content",
-            "description": "The MARC record collection content as marcXchange XML string",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "contentSerializationFormat",
-            "description": "The serialization format of the MARC record content. Defaults to 'marcXchange'",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "deleted",
-            "description": "Flag indicating whether or not the record is deleted",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": "The marc record identifier",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SearchHit",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -7346,6 +7973,22 @@
             "deprecationReason": null
           },
           {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this suggestion. \nIt is generated in the response and should be included in subsequent\nAPI calls when this manifestation is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": "The type of suggestion title/creator/tag",
             "args": [],
@@ -7655,6 +8298,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "urls",
+            "description": "A link and possible link text",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AccessUrl",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -7673,6 +8332,12 @@
         "enumValues": [
           {
             "name": "CONNECTION_TO_OTHER_WORKS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CONTAINS_AI_GENERATED_CONTENT",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -7766,6 +8431,12 @@
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "WITHDRAWN_PUBLICATION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -7816,51 +8487,6 @@
             "deprecationReason": null
           }
         ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "OrsQuery",
-        "description": null,
-        "isOneOf": null,
-        "fields": [
-          {
-            "name": "itemOrder",
-            "description": "Method to retrieve sender and receiver information from ORS based on an itemId.",
-            "args": [
-              {
-                "name": "itemId",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ItemIdResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -8092,6 +8718,18 @@
                 "name": "SubjectTypeEnum",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "viafid",
+            "description": "VIAF identifier of the creator",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -8425,6 +9063,26 @@
             "deprecationReason": null
           },
           {
+            "name": "complexSearchIndexes",
+            "description": "All indexes in complex search",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ComplexSearchIndex",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "complexSuggest",
             "description": null,
             "args": [
@@ -8710,22 +9368,6 @@
             "deprecationReason": null
           },
           {
-            "name": "marc",
-            "description": "Field for presenting bibliographic records in MARC format",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Marc",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "mood",
             "description": null,
             "args": [],
@@ -8735,22 +9377,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "MoodQueries",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ors",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "OrsQuery",
                 "ofType": null
               }
             },
@@ -8828,6 +9454,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "RecommendationResponse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "recommendations",
+            "description": "Access to various types of recommendations.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Recommendations",
                 "ofType": null
               }
             },
@@ -8929,8 +9571,8 @@
                 }
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Use 'Recommendations.subjects' instead expires: 01/03-2025"
           },
           {
             "name": "ris",
@@ -9535,6 +10177,75 @@
       },
       {
         "kind": "OBJECT",
+        "name": "Recommendations",
+        "description": "Get different kinds of recommendations",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "subjects",
+            "description": "Retrieve subject-based recommendations based on a list of query strings and an optional limit.\n- q: An array of strings used to generate subject recommendations.\n- limit: The maximum number of recommendations to return.",
+            "args": [
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "q",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "String",
+                        "ofType": null
+                      }
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SubjectRecommendation",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "RelatedPublication",
         "description": null,
         "isOneOf": null,
@@ -9617,7 +10328,7 @@
           },
           {
             "name": "url",
-            "description": "URL of the related publication",
+            "description": "The first URL of the urls in related publications",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -9635,6 +10346,26 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "urls",
+            "description": "Alle urls of the related publication",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10984,6 +11715,30 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "SearchHit",
+        "description": "A search hit that encapsulates a matched manifestation from a search query.",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "match",
+            "description": "The manifestation that was matched during the search.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Manifestation",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "SearchQueryInput",
         "description": "The supported fields to query",
@@ -11358,6 +12113,22 @@
             "deprecationReason": null
           },
           {
+            "name": "hitcount",
+            "description": "The number of members in the series",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "identifyingAddition",
             "description": "Additional information ",
             "args": [],
@@ -11543,6 +12314,22 @@
             "deprecationReason": null
           },
           {
+            "name": "traceId",
+            "description": "Traceid for tracking",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "workTypes",
             "description": "WorkTypes for the series",
             "args": [],
@@ -11643,6 +12430,126 @@
             "ofType": null
           }
         ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SheetMusicCategory",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "chamberMusicTypes",
+            "description": "The types of chamber music material covers",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "choirTypes",
+            "description": "The types of choir material covers",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "forMusicalExercise",
+            "description": "I this node for exercises",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "instruments",
+            "description": "The types of instruments material covers",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "orchestraTypes",
+            "description": "The types of orchestra material covers",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -11977,6 +12884,50 @@
             "ofType": null
           }
         ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SubjectRecommendation",
+        "description": "Details about a single subject recommendation.",
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "subject",
+            "description": "The recommended subject.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this subject recommendation. \nIt is generated in the response and should be included in subsequent\nAPI calls when this suggestion is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
       },
       {
         "kind": "OBJECT",
@@ -13661,6 +14612,22 @@
             "deprecationReason": null
           },
           {
+            "name": "traceId",
+            "description": "A unique identifier for tracking user interactions with this universe.\nIt is generated in the response and should be included in subsequent\nAPI calls when this work is selected.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "universeId",
             "description": "An id that identifies a universe.",
             "args": [],
@@ -13983,18 +14950,6 @@
                 "name": "Manifestations",
                 "ofType": null
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "marc",
-            "description": "Field for presenting bibliographic records in MARC format",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "MarcRecord",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null

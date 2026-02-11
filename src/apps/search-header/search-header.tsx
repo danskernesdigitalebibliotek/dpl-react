@@ -11,10 +11,11 @@ import { Autosuggest } from "../../components/autosuggest/autosuggest";
 import { Suggestion } from "../../core/utils/types/autosuggest";
 import { useUrls } from "../../core/utils/url";
 import {
-  constructAdvancedSearchUrl,
+  constructCreatorSearchUrl,
   constructMaterialUrl,
   constructSearchUrl,
   constructSearchUrlWithFilter,
+  constructSubjectSearchUrl,
   redirectTo
 } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
@@ -23,12 +24,13 @@ import {
   determineSuggestionTerm,
   findNonWorkSuggestion,
   getAutosuggestCategoryList,
-  isDisplayedAsWorkSuggestion
+  getInitialSearchQuery
 } from "./helpers";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 import HeaderDropdown from "../../components/header-dropdown/HeaderDropdown";
 import useFilterHandler from "../search-result/useFilterHandler";
+import { cleanCreatorName } from "../../core/utils/helpers/material";
 
 const SearchHeader: React.FC = () => {
   const t = useText();
@@ -36,29 +38,26 @@ const SearchHeader: React.FC = () => {
   const searchUrl = u("searchUrl");
   const materialUrl = u("materialUrl");
   const advancedSearchUrl = u("advancedSearchUrl");
-  const [q, setQ] = useState<string>("");
+  const initialQuery = getInitialSearchQuery();
+  const [q, setQ] = useState<string>(initialQuery);
   const [qWithoutQuery, setQWithoutQuery] = useState<string>(q);
   const [suggestItems, setSuggestItems] = useState<
-    SuggestionsFromQueryStringQuery["suggest"]["result"] | []
+    SuggestionsFromQueryStringQuery["localSuggest"]["result"] | []
   >([]);
-  const minimalQueryLength = 3;
+
+  const minimalAutosuggestCharacters = 3;
   // we need to convert between string and suggestion result object so
   // that the value in the search field on enter click doesn't become [object][object]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [currentlySelectedItem, setCurrentlySelectedItem] = useState<any>("");
   const [isAutosuggestOpen, setIsAutosuggestOpen] = useState<boolean>(false);
+  const [hasUserTyped, setHasUserTyped] = useState<boolean>(false);
   const { clearFilter } = useFilterHandler();
-  const {
-    data,
-    isLoading,
-    status
-  }: {
-    data: SuggestionsFromQueryStringQuery | undefined;
-    isLoading: boolean;
-    status: string;
-  } = useSuggestionsFromQueryStringQuery(
+  const { data, isLoading, status } = useSuggestionsFromQueryStringQuery(
     { q },
-    { enabled: q.length >= minimalQueryLength }
+    {
+      enabled: q.length >= minimalAutosuggestCharacters
+    }
   );
   const [isHeaderDropdownOpen, setIsHeaderDropdownOpen] =
     useState<boolean>(false);
@@ -67,12 +66,12 @@ const SearchHeader: React.FC = () => {
   const [highlightedIndexAfterClick, setHighlightedIndexAfterClick] = useState<
     number | null
   >(null);
-  const { track } = useStatistics();
+  const { track } = useEventStatistics();
 
   // Make sure to only assign the data once.
   useEffect(() => {
     if (data) {
-      const arrayOfResults = data.suggest.result;
+      const arrayOfResults = data.localSuggest.result;
       setSuggestItems(arrayOfResults);
     }
   }, [data]);
@@ -84,7 +83,8 @@ const SearchHeader: React.FC = () => {
   // The first suggestion that is not of SuggestionType.Title - used for showing/
   // /hiding autosuggest categories suggestions.
   let nonWorkSuggestion: Suggestion | undefined;
-  let orderedData: SuggestionsFromQueryStringQuery["suggest"]["result"] = [];
+  let orderedData: SuggestionsFromQueryStringQuery["localSuggest"]["result"] =
+    [];
 
   if (originalData) {
     nonWorkSuggestion = findNonWorkSuggestion(originalData);
@@ -112,22 +112,18 @@ const SearchHeader: React.FC = () => {
     }
   }
 
-  // Autosuggest opening and closing based on input text length.
+  // Autosuggest opening and closing based on input text length and user interaction.
   useEffect(() => {
-    if (data && data.suggest.result.length > 0) {
+    if (
+      hasUserTyped &&
+      suggestItems.length > 0 &&
+      (status === "success" || status === "loading")
+    ) {
       setIsAutosuggestOpen(true);
     } else {
       setIsAutosuggestOpen(false);
     }
-  }, [data]);
-
-  useEffect(() => {
-    if (qWithoutQuery.length > 2) {
-      setIsAutosuggestOpen(true);
-    } else {
-      setIsAutosuggestOpen(false);
-    }
-  }, [qWithoutQuery]);
+  }, [hasUserTyped, status, suggestItems, qWithoutQuery]);
 
   function handleSelectedItemChange(
     changes: UseComboboxStateChange<Suggestion>
@@ -198,6 +194,7 @@ const SearchHeader: React.FC = () => {
     if (type === useCombobox.stateChangeTypes.InputChange) {
       setQ(inputValue);
       setQWithoutQuery(inputValue);
+      setHasUserTyped(true);
       return;
     }
     setQWithoutQuery(inputValue);
@@ -212,11 +209,12 @@ const SearchHeader: React.FC = () => {
     ) {
       return;
     }
+
+    // Determine how to handle the selected item. Since a single text suggestion
+    // can shown both as a material and as a category suggestion we need to
+    // determine if that was the case first.
     // If this item is shown as one of work suggestions redirect to material page.
-    if (
-      selectedItem.work?.workId &&
-      isDisplayedAsWorkSuggestion(selectedItem.work, materialData)
-    ) {
+    if (selectedItem.work?.workId && materialData.includes(selectedItem)) {
       track("click", {
         id: statistics.autosuggestClick.id,
         name: statistics.autosuggestClick.name,
@@ -230,6 +228,7 @@ const SearchHeader: React.FC = () => {
       });
       return;
     }
+
     // If this item is shown as a category suggestion
     if (
       nonWorkSuggestion &&
@@ -260,6 +259,49 @@ const SearchHeader: React.FC = () => {
       });
       return;
     }
+
+    // If this item is a creator, subject or title text suggestion, redirect to
+    // the search page using the suggested term as a part of the query.
+    if (
+      [
+        SuggestionTypeEnum.Creator,
+        SuggestionTypeEnum.Subject,
+        SuggestionTypeEnum.Title
+      ].includes(selectedItem.type)
+    ) {
+      const selectedItemString = selectedItem.term;
+      let url: URL | never;
+      switch (selectedItem.type) {
+        case SuggestionTypeEnum.Creator:
+          url = constructCreatorSearchUrl(
+            searchUrl,
+            // Suggested creators may contain elements which are not valid
+            // creator filters. Clean it up before redirecting.
+            cleanCreatorName(selectedItem.term)
+          );
+          break;
+        case SuggestionTypeEnum.Subject:
+          url = constructSubjectSearchUrl(searchUrl, selectedItem.term);
+          break;
+        case SuggestionTypeEnum.Title:
+          // We do not have a specific search page handling for titles so
+          // instead do a phrase search for the title.
+          url = constructSearchUrl(searchUrl, '"' + selectedItem.term + '"');
+          break;
+      }
+
+      track("click", {
+        id: statistics.autosuggestClick.id,
+        name: statistics.autosuggestClick.name,
+        trackedData: selectedItemString
+      }).then(() => {
+        // Before redirecting we need to clean persisted filters from previous search.
+        clearFilter();
+        redirectTo(url);
+      });
+      return;
+    }
+
     // Otherwise redirect to search result page & track autosuggest click.
     track("click", {
       id: statistics.autosuggestClick.id,
@@ -303,30 +345,10 @@ const SearchHeader: React.FC = () => {
     }, 100);
   });
 
-  const [redirectUrl, setRedirectUrl] = useState<URL>(
-    constructSearchUrl(searchUrl, q)
-  );
-
-  useEffect(() => {
-    // We redirect to Advanced search results instead of regular search results if:
-    // - the query is wrapped in double quotes
-    // - the query is not just empty double quotes
-    if (
-      q.trim().charAt(0) === '"' &&
-      q.trim().charAt(q.length - 1) === '"' &&
-      q.trim() !== '""' &&
-      q.trim() !== '"'
-    ) {
-      setRedirectUrl(constructAdvancedSearchUrl(advancedSearchUrl, q));
-    } else {
-      setRedirectUrl(constructSearchUrl(searchUrl, q));
-    }
-  }, [q, advancedSearchUrl, searchUrl]);
+  const redirectUrl = constructSearchUrl(searchUrl, q);
 
   return (
     <div className="header__menu-second">
-      {/* The downshift combobox uses prop spreading by design */}
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <div className="header__menu-search">
         <SearchBar
           q={q}
@@ -336,15 +358,16 @@ const SearchHeader: React.FC = () => {
           setQWithoutQuery={setQWithoutQuery}
           isHeaderDropdownOpen={isHeaderDropdownOpen}
           setIsHeaderDropdownOpen={setIsHeaderDropdownOpen}
+          advancedSearchUrl={advancedSearchUrl}
           redirectUrl={redirectUrl}
         />
         <Autosuggest
           textData={textData}
           materialData={materialData}
           categoryData={categoryData}
-          status={status}
           getMenuProps={getMenuProps}
           highlightedIndex={highlightedIndex}
+          setIsOpen={setIsAutosuggestOpen}
           getItemProps={getItemProps}
           isOpen={isAutosuggestOpen}
           isLoading={isLoading}

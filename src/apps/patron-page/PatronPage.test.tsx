@@ -5,10 +5,10 @@ describe("Patron page", () => {
 
     cy.intercept({
       method: "PUT",
-      url: "**/external/agencyid/patrons/patronid/v5"
+      url: "**/external/agencyid/patrons/patronid/v8"
     }).as("PUT-patron");
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: null
       }
@@ -67,7 +67,7 @@ describe("Patron page", () => {
       message: "OK"
     }).as("Loans");
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       authenticateStatus: "VALID",
       patron: {
         address: {
@@ -115,7 +115,7 @@ describe("Patron page", () => {
     // ID 36 2.b. Digital loans - quota
     cy.get(".dpl-patron-page .dpl-status-loans")
       .find("h2")
-      .should("have.text", "Digital loans (eReolen)");
+      .should("have.text", "Digital loans");
 
     // ID 36 2.b.i. Number of digital loans (ebook - audiobooks) the patron has left in "this" month
     cy.get(".dpl-patron-page .dpl-status-loans")

@@ -5,6 +5,10 @@ import {
   formatDateDependingOnDigitalMaterial,
   formatDateTime
 } from "../../core/utils/helpers/date";
+import {
+  dateFormatDash,
+  dateFormatDashWithTime
+} from "../../core/configuration/date-format";
 
 // We're describing a test suite for the `dateHasPassed` function
 describe("formatDate helper function", () => {
@@ -17,7 +21,7 @@ describe("formatDate helper function", () => {
 
     // We use dayjs to format the test date in the same way as our function
     // This will be the expected result
-    const expectedResult = dayjs(testDate).format("DD-MM-YYYY");
+    const expectedResult = dayjs(testDate).format(dateFormatDash);
 
     // We compare the result of our function to the expected result
     // If they match, our function is working correctly
@@ -33,7 +37,7 @@ describe("formatDateTime", () => {
     const date = "2022-04-22T14:30:00Z";
 
     // Expected result from the function
-    const expectedResult = dayjs(date).format("DD-MM-YYYY HH:mm");
+    const expectedResult = dayjs(date).format(dateFormatDashWithTime);
 
     // Call the function with the test data
     const result = formatDateTime(date);
@@ -49,13 +53,13 @@ describe("Date helper tests", () => {
   it("should correctly format date and time", () => {
     const date = dayjs().format(); // Get current date
     const formattedDate = formatDateTime(date);
-    expect(formattedDate).toBe(dayjs(date).format("DD-MM-YYYY HH:mm"));
+    expect(formattedDate).toBe(dayjs(date).format(dateFormatDashWithTime));
   });
   // Test for formatDate function
   it("should correctly format date", () => {
     const date = dayjs().format(); // Get current date
     const formattedDate = formatDate(date);
-    expect(formattedDate).toBe(dayjs(date).format("DD-MM-YYYY"));
+    expect(formattedDate).toBe(dayjs(date).format(dateFormatDash));
   });
   // Test for formatDateDependingOnDigitalMaterial function
   it("should format date depending on digital material", () => {
@@ -70,10 +74,10 @@ describe("Date helper tests", () => {
 
     // Check if date is formatted correctly depending on whether material is digital or not
     expect(formattedDigitalMaterialDate).toBe(
-      dayjs(date).format("DD-MM-YYYY HH:mm")
+      dayjs(date).format(dateFormatDashWithTime)
     );
     expect(formattedNonDigitalMaterialDate).toBe(
-      dayjs(date).format("DD-MM-YYYY")
+      dayjs(date).format(dateFormatDash)
     );
   });
 });

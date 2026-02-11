@@ -7,19 +7,24 @@ import { constructMaterialUrl } from "../../core/utils/helpers/url";
 import { WorkId } from "../../core/utils/types/ids";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
 import { useUrls } from "../../core/utils/url";
-import RecommendedMaterial from "../recommended-material/RecommendedMaterial";
+
 import RecommendationMaterialSkeleton from "./RecommendationSkeleton";
+import RecommendedMaterial from "../../components/recommended-material/recommended-material";
 
 export type RecommendationProps = {
   wid: WorkId;
   materialType?: ManifestationMaterialType;
   positionImageRight?: boolean;
+  title?: string;
+  description?: string;
 };
 
 const Recommendation: React.FC<RecommendationProps> = ({
   wid,
   materialType,
-  positionImageRight
+  positionImageRight,
+  title,
+  description
 }) => {
   const u = useUrls();
 
@@ -29,8 +34,10 @@ const Recommendation: React.FC<RecommendationProps> = ({
     wid
   });
 
-  if (isLoading || !data?.work) {
+  if (isLoading) {
     return <RecommendationMaterialSkeleton />;
+  } else if (!data?.work) {
+    return null;
   }
 
   const {
@@ -42,6 +49,9 @@ const Recommendation: React.FC<RecommendationProps> = ({
 
   const materialFullUrl = constructMaterialUrl(materialUrl, wid, materialType);
   const materialDescription = abstract?.[0];
+
+  const activeTitle = !title ? materialFullTitle : title;
+  const activeDescription = !description ? materialDescription : description;
 
   return (
     <div
@@ -57,13 +67,13 @@ const Recommendation: React.FC<RecommendationProps> = ({
         className="recommendation__texts arrow__hover--right-small"
       >
         <h3 className="recommendation__title" data-cy="recommendation-title">
-          {materialFullTitle}
+          {activeTitle}
         </h3>
         <p
           className="recommendation__description"
           data-cy="recommendation-description"
         >
-          {materialDescription}
+          {activeDescription}
         </p>
         <Arrow />
       </Link>

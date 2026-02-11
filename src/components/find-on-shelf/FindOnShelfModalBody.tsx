@@ -3,6 +3,7 @@ import { FC } from "react";
 import { partition } from "lodash";
 import {
   isAnyManifestationAvailableOnBranch,
+  totalAvailableMaterials,
   totalBranchesHaveMaterial,
   useGetHoldings
 } from "../../apps/material/helper";
@@ -26,6 +27,7 @@ import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
 import DisclosureSummary from "../Disclosures/DisclosureSummary";
 import { constructModalId } from "../../core/utils/helpers/modal-helpers";
+import { isConfigValueOne } from "../reservation/helper";
 
 export const findOnShelfModalId = (faustIds: FaustId[]) => {
   return constructModalId("find-on-shelf-modal", faustIds.sort());
@@ -33,7 +35,7 @@ export const findOnShelfModalId = (faustIds: FaustId[]) => {
 
 export interface FindOnShelfModalBodyProps {
   manifestations: Manifestation[];
-  workTitles: string[];
+  workTitle: string;
   authors: Work["creators"];
   selectedPeriodical: PeriodicalEdition | null;
   setSelectedPeriodical: (selectedPeriodical: PeriodicalEdition) => void;
@@ -41,12 +43,18 @@ export interface FindOnShelfModalBodyProps {
 
 const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
   manifestations,
-  workTitles,
+  workTitle,
   authors,
   selectedPeriodical,
   setSelectedPeriodical
 }) => {
   const config = useConfig();
+  const findOnShelfDisclosuresIsOpen = isConfigValueOne(
+    config("findOnShelfDisclosuresDefaultOpenConfig")
+  );
+  const findOnShelfHideUnavailableHoldings = isConfigValueOne(
+    config("findOnShelfHideUnavailableHoldingsConfig")
+  );
   const t = useText();
   const pidArray = getManifestationsPids(manifestations);
   const faustIdArray = pidArray.map((manifestationPid) =>
@@ -64,7 +72,6 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
       creatorsToString(flattenCreatorsLastNameFirst(authors), t)
     )
   );
-  const title = workTitles.join(", ");
   const isPeriodical = manifestations.some((manifestation) => {
     return manifestation.materialTypes.some((materialType) => {
       return materialType.materialTypeSpecific.display === "tidsskrift";
@@ -180,13 +187,32 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
       );
     }
   );
+
+  // Filter out holdings with 0 available items if the setting is enabled.
+  const branchesWithAvailableHoldingsOnly =
+    finalDataFilterOutBlacklistedBranches.map((branchHoldings) =>
+      // First filter: Remove individual holding lines with 0 available copies
+      // within each branch (e.g., remove 2016 edition but keep 2017 edition)
+      branchHoldings.filter(
+        (holding) => totalAvailableMaterials(holding.holding.materials) > 0
+      )
+    );
+
+  const branchesWithHoldings = branchesWithAvailableHoldingsOnly.filter(
+    // Second filter: Remove entire branches that have no holdings left
+    // after the first filter (e.g., remove "Vesterbro" if all editions were 0)
+    (branchHoldings) => branchHoldings.length > 0
+  );
+
   const finalDataToShow: ManifestationHoldings[] =
-    finalDataFilterOutBlacklistedBranches;
+    findOnShelfHideUnavailableHoldings
+      ? branchesWithHoldings
+      : finalDataFilterOutBlacklistedBranches;
 
   return (
     <>
       <h2 className="text-header-h2 modal-find-on-shelf__headline">
-        {title}
+        {workTitle}
         {author && ` / ${author}`}
       </h2>
       {isPeriodical && selectedPeriodical && (
@@ -210,7 +236,7 @@ const FindOnShelfModalBody: FC<FindOnShelfModalBodyProps> = ({
             return (
               <Disclosure
                 key={libraryBranch[0].holding.branch.branchId}
-                open={finalData.length === 1}
+                open={findOnShelfDisclosuresIsOpen || finalData.length === 1}
                 className="disclosure--full-width"
                 dataCy="find-on-shelf-modal-body-disclosure"
                 summary={

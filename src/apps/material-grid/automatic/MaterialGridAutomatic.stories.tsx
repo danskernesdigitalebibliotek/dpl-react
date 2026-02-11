@@ -7,7 +7,8 @@ import serviceUrlArgs, {
   argTypes as serviceUrlArgTypes
 } from "../../../core/storybook/serviceUrlArgs";
 import MaterialGridAutomatic from "./MaterialGridAutomatic.entry";
-import MaterialGridSkeleton from "../MaterialGridSkeleton";
+import MaterialGridSkeleton from "../../../components/material-grid/MaterialGridSkeleton";
+import { AdvancedSortMapStrings } from "../../advanced-search/types";
 
 const meta: Meta<typeof MaterialGridAutomatic> = {
   title: "Apps / Material Grid / Automatic",
@@ -30,11 +31,54 @@ const meta: Meta<typeof MaterialGridAutomatic> = {
       description:
         "CQL search string to use for the material grid, search for a result and copy the CQL string from an advanced search"
     },
-    selectedAmountOfMaterialsForDisplay: {
-      description: "Amount of materials to show",
+    location: {
+      description: "Location filter",
+      control: { type: "text" }
+    },
+    sublocation: {
+      description: "Sublocation filter",
+      control: { type: "text" }
+    },
+    branch: {
+      description: "Branch filter",
+      control: { type: "text" }
+    },
+    department: {
+      description: "Department filter",
+      control: { type: "text" }
+    },
+    onshelf: {
+      description: "On shelf filter",
+      control: { type: "text" }
+    },
+    sort: {
+      description: "Sort order",
       control: {
-        type: "select",
-        options: [4, 8, 12, 16, 20, 24, 28, 32]
+        type: "select"
+      },
+      options: [
+        AdvancedSortMapStrings.Relevance,
+        AdvancedSortMapStrings.TitleAsc,
+        AdvancedSortMapStrings.TitleDesc,
+        AdvancedSortMapStrings.CreatorAsc,
+        AdvancedSortMapStrings.CreatorDesc,
+        AdvancedSortMapStrings.LatestPubDateAsc,
+        AdvancedSortMapStrings.LatestPubDateDesc
+      ],
+      labels: {
+        [AdvancedSortMapStrings.Relevance]: "Relevance",
+        [AdvancedSortMapStrings.TitleAsc]: "Title A-Z",
+        [AdvancedSortMapStrings.TitleDesc]: "Title Z-A",
+        [AdvancedSortMapStrings.CreatorAsc]: "Creator A-Z",
+        [AdvancedSortMapStrings.CreatorDesc]: "Creator Z-A",
+        [AdvancedSortMapStrings.LatestPubDateAsc]: "Oldest First",
+        [AdvancedSortMapStrings.LatestPubDateDesc]: "Newest First"
+      }
+    },
+    requestedAmount: {
+      description: "Requested amount of materials to show",
+      control: {
+        type: "number"
       }
     },
     buttonText: {
@@ -80,7 +124,14 @@ export const Primary: Story = {
     description:
       "This is a long description of the materials selected, or whatever else you want to put in here",
     cql: "'heste' OR 'PIPPI'",
-    selectedAmountOfMaterialsForDisplay: 12,
+    location: "",
+    sublocation: "",
+    branch: "",
+    department: "",
+    onshelf: "false",
+    sort: AdvancedSortMapStrings.Relevance,
+    firstaccessiondateitem: "",
+    requestedAmount: 12,
     buttonText: "Show all",
     materialUrl: "/work/:workid",
     etAlText: "et al.",

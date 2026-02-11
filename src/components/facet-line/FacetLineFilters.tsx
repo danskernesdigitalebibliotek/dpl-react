@@ -4,12 +4,10 @@ import {
   FacetFieldEnum,
   FacetValue
 } from "../../core/dbc-gateway/generated/graphql";
-import { useModalButtonHandler } from "../../core/utils/modal";
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
 import Dropdown from "../Dropdown/Dropdown";
 import {
-  FacetBrowserModalId,
   createFacetsMap,
   findTermInFacetMap,
   getFacetFieldTranslation
@@ -24,7 +22,6 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   facets = []
 }) => {
   const t = useText();
-  const { open } = useModalButtonHandler();
   const { filters, addToFilter } = useFilterHandler();
   // TODO: Since the huge refactoring of the FBI API,
   // summer 2024, a lot of changes has been introduced
@@ -35,12 +32,16 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
   const facetMap = createFacetsMap(facets);
 
   const formatValuesToDropdown = (facet: string, values: FacetValue[]) => {
-    return values.map((value) => {
+    const dropdownValues = values.map((value) => {
       return {
         label: value.term,
         value: value.key
       };
     });
+    if (facet.toUpperCase() === FacetFieldEnum.Year.toUpperCase()) {
+      dropdownValues.sort((a, b) => Number(b.label) - Number(a.label));
+    }
+    return dropdownValues;
   };
 
   const handleDropdownOnchange = (
@@ -53,7 +54,8 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
 
     addToFilter({
       facet,
-      term
+      term,
+      origin: "facetLine"
     });
   };
 
@@ -64,13 +66,13 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
       </h2>
       <ul className="facet-line mt-48">
         {facets &&
-          facets.map(({ name, values }) => {
+          facets.map(({ name, values }, index) => {
             if (values.length > 1) {
               const translatedName = getFacetFieldTranslation(
                 name as FacetFieldEnum
               );
               return (
-                <li className="facet-line__item">
+                <li key={index} className="facet-line__item">
                   <Dropdown
                     cyData={`facet-line-${name}-dropdown`}
                     placeholder={{
@@ -94,26 +96,27 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
             return (
               <>
                 {values.map((termObj) => {
-                  const { term, score } = termObj;
+                  const { term } = termObj;
 
                   const onClickHandler = () =>
                     addToFilter({
                       facet: name,
-                      term: termObj
+                      term: termObj,
+                      origin: "facetLine"
                     });
 
                   // Removes the selected term from the filter line because it is now displayed in the selected line
                   if (filters?.[name]?.[term]) return null;
 
                   return (
-                    <li className="facet-line__item">
+                    <li key={termObj.key} className="facet-line__item">
                       <ButtonTag
                         key={term}
                         onClick={onClickHandler}
                         selected={false}
                         dataCy={`facet-line-term-${term}`}
                       >
-                        {`${term} (${score})`}
+                        {`${term}`}
                       </ButtonTag>
                     </li>
                   );
@@ -121,14 +124,6 @@ const FacetLineFilters: React.FunctionComponent<FacetLineFiltersProps> = ({
               </>
             );
           })}
-        <li className="facet-line__item">
-          <ButtonTag
-            onClick={() => open(FacetBrowserModalId)}
-            dataCy="facet-line-open-browser"
-          >
-            {t("addMoreFiltersText")}
-          </ButtonTag>
-        </li>
       </ul>
     </section>
   );

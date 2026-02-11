@@ -139,7 +139,6 @@
             "hostPublication": {
               "summary": "Dansk noter, Nr. 3 (2010)"
             },
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -227,7 +226,6 @@
           "hostPublication": {
             "summary": "Dansk noter, Nr. 3 (2010)"
           },
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -314,7 +312,6 @@
           "hostPublication": {
             "summary": "Dansk noter, Nr. 3 (2010)"
           },
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -395,7 +392,8 @@
         "code": "NONFICTION"
       },
       "dk5MainEntry": {
-        "display": "19.1 Forskningsteknik i alm."
+        "display": "19.1 Forskningsteknik i alm.",
+        "code": "19.1"
       },
       "relations": {
         "hasReview": [],

@@ -1,7 +1,8 @@
 import React from "react";
 import {
   getAllFaustIds,
-  getManifestationType
+  getAllPids,
+  getMaterialType
 } from "../../../../core/utils/helpers/general";
 import { isBlocked } from "../../../../core/utils/helpers/user";
 import { ButtonSize } from "../../../../core/utils/types/button";
@@ -17,19 +18,24 @@ import useGetAvailability from "../../../../core/utils/useGetAvailability";
 import { useConfig } from "../../../../core/utils/config";
 
 export interface MaterialButtonsPhysicalProps {
+  isSpecificManifestation?: boolean;
   manifestations: Manifestation[];
   size?: ButtonSize;
   dataCy?: string;
+  isEditionPicker?: boolean;
 }
 
 const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
+  isSpecificManifestation,
   manifestations,
   size,
-  dataCy = "material-buttons-physical"
+  dataCy = "material-buttons-physical",
+  isEditionPicker = false
 }) => {
   const t = useText();
   const config = useConfig();
   const faustIds = getAllFaustIds(manifestations);
+  const pids = getAllPids(manifestations);
   // We extract loading of Availability here, as it isn't possible within
   // UseReservableManifestations. React query uses cached version of the data
   // so we can determine if the request inside UseReservableManifestations is
@@ -45,11 +51,17 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
   const isUserBlocked = !!(userData?.patron && isBlocked(userData?.patron));
 
   if (isLoading || isLoadingAvailability) {
-    return <MaterialButtonLoading />;
+    return <MaterialButtonLoading classNames="reserve-button" />;
   }
 
   if (!reservableManifestations || reservableManifestations.length < 1) {
-    return <MaterialButtonDisabled size={size} label={t("cantReserveText")} />;
+    return (
+      <MaterialButtonDisabled
+        size={size}
+        label={t("cantReserveText")}
+        classNames="reserve-button"
+      />
+    );
   }
 
   if (isUserBlocked) {
@@ -64,9 +76,11 @@ const MaterialButtonsPhysical: React.FC<MaterialButtonsPhysicalProps> = ({
     return (
       <MaterialButtonReservePhysical
         dataCy={dataCy}
-        manifestationMaterialType={getManifestationType(manifestations)}
-        faustIds={faustIds}
+        manifestationMaterialType={getMaterialType(manifestations)}
         size={size}
+        isSpecificManifestation={isSpecificManifestation}
+        pids={pids}
+        isEditionPicker={isEditionPicker}
       />
     );
   }

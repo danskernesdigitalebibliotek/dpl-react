@@ -12,10 +12,7 @@ import {
   useUpdateReservations,
   getGetReservationsV2QueryKey
 } from "../../../../core/fbs/fbs";
-import {
-  getFutureDateString,
-  getPreferredBranch
-} from "../../../../components/reservation/helper";
+import { getPreferredBranch } from "../../../../components/reservation/helper";
 import { AgencyBranch } from "../../../../core/fbs/model";
 import ListDetails from "../../../../components/list-details/list-details";
 import { useConfig } from "../../../../core/utils/config";
@@ -29,7 +26,10 @@ import { excludeBlacklistedBranches } from "../../../../core/utils/branches";
 import ReservationFormListItem from "../../../../components/reservation/ReservationFormListItem";
 import NoInterestAfterModal from "../../../../components/reservation/forms/NoInterestAfterModal";
 import { RequestStatus } from "../../../../core/utils/types/request";
-import { formatDate } from "../../../../core/utils/helpers/date";
+import {
+  formatDate,
+  getFutureDateString
+} from "../../../../core/utils/helpers/date";
 import { getReadyForPickup } from "../../utils/helpers";
 import { Periods } from "../../../../components/reservation/types";
 import { FormSelectValue } from "../../../../components/reservation/forms/types";
@@ -83,7 +83,8 @@ const PhysicalListDetails: FC<PhysicalListDetailsProps & MaterialProps> = ({
   const saveChanges = (formSelectValue: FormSelectValue) => {
     setReservationStatus("pending");
     if (!reservationIds || reservationIds.length === 0 || !selectedBranch) {
-      console.error("Missing reservationId or selectedBranch"); // eslint-disable-line no-console
+      // eslint-disable-next-line no-console
+      console.error("Missing reservationId or selectedBranch");
       setReservationStatus("error");
       return;
     }

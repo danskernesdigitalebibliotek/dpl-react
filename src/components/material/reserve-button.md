@@ -27,7 +27,7 @@ ButtonWithType[The button says 'Reserve /material type/' + is enabled]
 CannotbeReserved[The button says 'Cannot be reserved' + Is disabled]
 
 5{Does the manifestation have origin and url?}
---Yes--> Ereol[The button says: 'Go to + origin' e.g. 'Gå til ereolen]
+--Yes--> Ereol[The button says: 'Go to + origin' e.g. 'Gå til materialet]
 5{Does the manifestation have origin and url?}
 --No--> 6{Does the manifestation have an issn digital article id?}
 
@@ -35,3 +35,4 @@ CannotbeReserved[The button says 'Cannot be reserved' + Is disabled]
 --yes--> DigitalArticle[The button says: 'Order digital copy']
 6{Does the manifestation have an issn digital article id?}
 --No--> InfomediaArticle[The button says 'See online']
+```

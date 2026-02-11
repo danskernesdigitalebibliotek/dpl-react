@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 import ReservationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Reservations.svg";
 import LoansIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Loans.svg";
 import EbookIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Ebook.svg";
-import ExternalLinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/buttons/icon-btn-external-link.svg";
 import { useText } from "../../../core/utils/text";
 import { isDigital } from "../utils/helpers";
 import { materialIsOverdue } from "../../../core/utils/helpers/general";
@@ -22,6 +21,7 @@ import { RequestStatus } from "../../../core/utils/types/request";
 import { RenewedLoanV2 } from "../../../core/fbs/model";
 import RenewalModalMessage from "../../../components/renewal/RenewalModalMessage";
 import { formatDate } from "../../../core/utils/helpers/date";
+import useWorkUrl from "../../../core/utils/useWorkUrl";
 
 interface MaterialDetailsProps {
   loan: LoanType | null;
@@ -33,6 +33,15 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
   material,
   modalId
 }) => {
+  const { authors, materialType, year, title, pid, description, series } =
+    material || {};
+
+  const { workUrl } = useWorkUrl({
+    identifier: loan?.identifier,
+    pid,
+    materialType
+  });
+
   const [renewingStatus, setRenewingStatus] = useState<RequestStatus>("idle");
   const [renewingResponse, setRenewingResponse] = useState<
     RenewedLoanV2[] | null
@@ -40,7 +49,6 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
 
   const t = useText();
   const u = useUrls();
-  const ereolenMyPageUrl = u("ereolenMyPageUrl");
   const viewFeesAndCompensationRatesUrl = u("viewFeesAndCompensationRatesUrl");
 
   if (!loan) {
@@ -59,8 +67,6 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
     periodical,
     renewalStatusList
   } = loan;
-  const { authors, materialType, year, title, pid, description, series } =
-    material || {};
 
   return (
     <>
@@ -97,6 +103,7 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
             description={description}
             materialType={materialType}
             isbnForCover={identifier || ""}
+            workUrl={workUrl}
           >
             {dueDate && (
               <StatusBadge
@@ -119,18 +126,13 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {isDigital(loan) && (
+          {isDigital(loan) && workUrl && (
             <div className="modal-details__buttons modal-details__buttons--hide-on-mobile">
               <Link
-                href={ereolenMyPageUrl}
+                href={workUrl}
                 className="btn-primary btn-filled btn-small arrow__hover--right-small"
               >
-                {t("materialDetailsGoToEreolenText")}
-                <img
-                  src={ExternalLinkIcon}
-                  className="btn-icon invert"
-                  alt=""
-                />
+                {t("viewMaterialText")}
               </Link>
             </div>
           )}
@@ -186,18 +188,13 @@ const MaterialDetails: FC<MaterialDetailsProps & MaterialProps> = ({
               renewalStatusList={renewalStatusList}
             />
           )}
-          {isDigital(loan) && (
+          {isDigital(loan) && workUrl && (
             <div className="modal-details__buttons">
               <Link
-                href={ereolenMyPageUrl}
+                href={workUrl}
                 className="btn-primary btn-filled btn-small arrow__hover--right-small modal-details__buttons__full-width"
               >
-                {t("materialDetailsGoToEreolenText")}
-                <img
-                  src={ExternalLinkIcon}
-                  className="btn-icon invert"
-                  alt=""
-                />
+                {t("viewMaterialText")}
               </Link>
             </div>
           )}

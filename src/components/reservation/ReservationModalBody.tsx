@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { first } from "lodash";
 import Various from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Various.svg";
 import { useQueryClient } from "react-query";
+import { useModalButtonHandler } from "../../core/utils/modal";
 import {
   convertPostIdsToFaustIds,
   getAllPids,
-  getMaterialTypes,
-  getManifestationType,
+  getMaterialType,
   materialIsFiction
 } from "../../core/utils/helpers/general";
 import { useText } from "../../core/utils/text";
@@ -14,7 +15,6 @@ import { Cover } from "../cover/cover";
 import ReservationFormListItem from "./ReservationFormListItem";
 import {
   AgencyBranch,
-  AuthenticatedPatronV6,
   HoldingsForBibliographicalRecordLogisticsV1,
   ReservationResponseV2
 } from "../../core/fbs/model";
@@ -22,18 +22,23 @@ import UserListItems from "./UserListItems";
 import ReservationSucces from "./ReservationSucces";
 import ReservationError from "./ReservationError";
 import {
+  getManifestationTitle,
   getTotalHoldings,
   getTotalReservations,
   reservationModalId,
+  editionSwitchModalId,
   useGetHoldings
 } from "../../apps/material/helper";
 import {
   getGetHoldingsLogisticsV1QueryKey,
   useAddReservationsV2
 } from "../../core/fbs/fbs";
-import { Manifestation, Work } from "../../core/utils/types/entities";
 import {
-  getFutureDateString,
+  AuthenticatedPatron,
+  Manifestation,
+  Work
+} from "../../core/utils/types/entities";
+import {
   getPreferredBranch,
   constructReservationData,
   getAuthorLine,
@@ -41,13 +46,12 @@ import {
   getInstantLoanBranchHoldings,
   getInstantLoanBranchHoldingsAboveThreshold,
   removePrefixFromBranchId,
-  translateOpenOrderStatus,
-  getFutureDateStringISO
+  translateOpenOrderStatus
 } from "./helper";
 import UseReservableManifestations from "../../core/utils/UseReservableManifestations";
 import { PeriodicalEdition } from "../material/periodical/helper";
 import { useConfig } from "../../core/utils/config";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../core/statistics/useStatistics";
 import StockAndReservationInfo from "../material/StockAndReservationInfo";
 import MaterialAvailabilityTextParagraph from "../material/MaterialAvailabilityText/generic/MaterialAvailabilityTextParagraph";
 import { statistics } from "../../core/statistics/statistics";
@@ -66,6 +70,10 @@ import useReservableFromAnotherLibrary from "../../core/utils/useReservableFromA
 import { usePatronData } from "../../core/utils/helpers/usePatronData";
 import { Periods } from "./types";
 import { RequestStatus } from "../../core/utils/types/request";
+import {
+  getFutureDateString,
+  getFutureDateStringISO
+} from "../../core/utils/helpers/date";
 
 type ReservationModalProps = {
   selectedManifestations: Manifestation[];
@@ -80,6 +88,7 @@ export const ReservationModalBody = ({
 }: ReservationModalProps) => {
   const t = useText();
   const config = useConfig();
+  const { open } = useModalButtonHandler();
   const { defaultInterestDaysForOpenOrder } = getConf(
     "reservation",
     configuration
@@ -108,8 +117,7 @@ export const ReservationModalBody = ({
     branches,
     blacklistBranchesInstantLoan.concat(blacklistPickupBranches)
   );
-
-  const mainManifestationType = getManifestationType(selectedManifestations);
+  const mainManifestationType = getMaterialType(selectedManifestations);
   const { reservableManifestations } = UseReservableManifestations({
     manifestations: selectedManifestations,
     type: mainManifestationType
@@ -131,7 +139,7 @@ export const ReservationModalBody = ({
     config,
     blacklist: "availability"
   });
-  const { track } = useStatistics();
+  const { track } = useEventStatistics();
   const { otherManifestationPreferred } = useAlternativeAvailableManifestation(
     work,
     allPids
@@ -151,23 +159,28 @@ export const ReservationModalBody = ({
   if (!userResponse.data || !holdingsResponse.data) {
     return null;
   }
-  const { data: userData } = userResponse as { data: AuthenticatedPatronV6 };
+  const { data: userData } = userResponse as { data: AuthenticatedPatron };
   const { data: holdingsData } = holdingsResponse as {
     data: HoldingsForBibliographicalRecordLogisticsV1[];
   };
   const holdings = getTotalHoldings(holdingsData);
   const reservations = getTotalReservations(holdingsData);
   const { patron } = userData;
-  const authorLine = getAuthorLine(selectedManifestations[0], t);
+  const authorLine = getAuthorLine(first(selectedManifestations), t);
   const interestPeriods = config<Periods>("interestPeriodsConfig", {
     transformer: "jsonParse"
   });
   const interestPeriod =
     selectedInterest || interestPeriods.defaultInterestPeriod.value;
   const expiryDate = getFutureDateString(interestPeriod);
+  const materialType = getMaterialType(selectedManifestations);
+
+  const canSubmitFbs =
+    manifestationsToReserve?.length && !materialIsReservableFromAnotherLibrary;
+  const canSubmitOpenOrder = materialIsReservableFromAnotherLibrary && patron;
 
   const saveReservation = () => {
-    if (manifestationsToReserve?.length) {
+    if (canSubmitFbs) {
       setReservationStatus("pending");
       // Save reservation to FBS.
       mutateAddReservations(
@@ -186,7 +199,7 @@ export const ReservationModalBody = ({
             track("click", {
               id: statistics.reservation.id,
               name: statistics.reservation.name,
-              trackedData: work.workId
+              trackedData: `${work.workId} ${materialType}`
             });
             // This state is used to show the success or error modal.
             setReservationResponse(res);
@@ -200,9 +213,7 @@ export const ReservationModalBody = ({
           }
         }
       );
-    }
-
-    if (materialIsReservableFromAnotherLibrary && patron) {
+    } else if (canSubmitOpenOrder) {
       setReservationStatus("pending");
       const { patronId, name, emailAddress, preferredPickupBranch } = patron;
       // Save reservation to open order.
@@ -259,6 +270,16 @@ export const ReservationModalBody = ({
       instantLoanThreshold
     );
 
+  const userHasEmail = Boolean(patron?.emailAddress);
+
+  // Disable submit based on the exact conditions used in saveReservation
+  const isSubmitDisabled =
+    reservationStatus === "pending" || !(canSubmitFbs || canSubmitOpenOrder);
+
+  const handleEditionSwitchClick = () => {
+    open(editionSwitchModalId());
+  };
+
   return (
     <>
       {!reservationResults && !openOrderResponse && (
@@ -266,11 +287,9 @@ export const ReservationModalBody = ({
           <header className="reservation-modal-header">
             <Cover ids={[manifestation.pid]} size="medium" animate />
             <div className="reservation-modal-description">
-              <div className="reservation-modal-tag">
-                {getMaterialTypes(selectedManifestations)[0]}
-              </div>
+              <div className="reservation-modal-tag">{materialType}</div>
               <h2 className="text-header-h2 mt-22 mb-8">
-                {manifestation.titles.main}
+                {getManifestationTitle(manifestation)}
                 {selectedPeriodical && ` ${selectedPeriodical.displayText}`}
               </h2>
               {authorLine && (
@@ -282,7 +301,11 @@ export const ReservationModalBody = ({
             <div className="reservation-modal-submit">
               <MaterialAvailabilityTextParagraph>
                 {materialIsReservableFromAnotherLibrary ? (
-                  t("reservableFromAnotherLibraryText")
+                  userHasEmail ? (
+                    t("reservableFromAnotherLibraryExtraInfoText")
+                  ) : (
+                    t("reservableFromAnotherLibraryMissingEmailText")
+                  )
                 ) : (
                   <StockAndReservationInfo
                     stockCount={holdings}
@@ -295,17 +318,29 @@ export const ReservationModalBody = ({
                 label={t("approveReservationText")}
                 buttonType="none"
                 variant="filled"
-                disabled={reservationStatus === "pending"}
+                disabled={isSubmitDisabled}
                 collapsible={false}
                 size="small"
                 onClick={saveReservation}
               />
             </div>
             <div className="reservation-modal-list">
+              {instantLoanEnabled &&
+                instantLoanBranchHoldingsAboveThreshold.length > 0 && (
+                  <InstantLoan
+                    manifestation={manifestation}
+                    instantLoanBranchHoldings={
+                      instantLoanBranchHoldingsAboveThreshold
+                    }
+                  />
+                )}
               <ReservationFormListItem
                 icon={Various}
                 title={t("editionText")}
                 text={selectedPeriodical?.displayText || editionText || ""}
+                isPossibleToChangeReservationDetails
+                changeHandler={handleEditionSwitchClick}
+                buttonAriaLabel={t("editionSwitchButtonChangeText")}
               />
               {!materialIsFiction(work) && otherManifestationPreferred && (
                 <PromoBar
@@ -314,7 +349,9 @@ export const ReservationModalBody = ({
                   type="info"
                   text={t("materialIsAvailableInAnotherEditionText", {
                     placeholders: {
-                      "@title": otherManifestationPreferred.titles.main[0],
+                      "@title": getManifestationTitle(
+                        otherManifestationPreferred
+                      ),
                       "@authorAndYear":
                         getAuthorLine(otherManifestationPreferred, t) ?? "",
                       "@reservations": otherManifestationPreferred.reservations
@@ -339,16 +376,6 @@ export const ReservationModalBody = ({
                   reservationStatus={reservationStatus}
                 />
               )}
-
-              {instantLoanEnabled &&
-                instantLoanBranchHoldingsAboveThreshold.length > 0 && (
-                  <InstantLoan
-                    manifestation={manifestation}
-                    instantLoanBranchHoldings={
-                      instantLoanBranchHoldingsAboveThreshold
-                    }
-                  />
-                )}
             </div>
           </div>
         </section>
@@ -378,8 +405,7 @@ export const ReservationModalBody = ({
       )}
       {reservationSuccess && reservationDetails && (
         <ReservationSucces
-          modalId={reservationModalId(faustIds)}
-          title={manifestation.titles.main[0]}
+          title={getManifestationTitle(manifestation)}
           preferredPickupBranch={getPreferredBranch(
             reservationDetails.pickupBranch,
             branches

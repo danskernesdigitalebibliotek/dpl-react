@@ -12,6 +12,7 @@ export type Option<TValue extends FormSelectValue = string> = {
 type DropdownProps<TValueType extends FormSelectValue> = {
   options: Option<TValueType>[];
   label?: string;
+  labelClassName?: string;
   id?: string;
   ariaLabel: string;
   labelledBy?: string;
@@ -34,6 +35,7 @@ const Dropdown = <TValueType extends FormSelectValue>({
   placeholder,
   cyData,
   label,
+  labelClassName,
   id,
   labelledBy,
   defaultValue
@@ -56,7 +58,11 @@ const Dropdown = <TValueType extends FormSelectValue>({
 
   return (
     <div className={classes.root}>
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && (
+        <label htmlFor={id} className={labelClassName}>
+          {label}
+        </label>
+      )}
       <div className={classes.root}>
         <select
           id={id}

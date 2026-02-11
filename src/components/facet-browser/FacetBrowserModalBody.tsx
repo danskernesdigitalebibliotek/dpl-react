@@ -1,17 +1,15 @@
 import React from "react";
-import { isEmpty, upperFirst } from "lodash";
-import { useDeepCompareEffect } from "react-use";
+import { upperFirst } from "lodash";
 import { useText } from "../../core/utils/text";
 import { Button } from "../Buttons/Button";
 import ButtonTag from "../Buttons/ButtonTag";
 import DisclosureControllable from "../Disclosures/DisclosureControllable";
-import { useStatistics } from "../../core/statistics/useStatistics";
-import { statistics } from "../../core/statistics/statistics";
 import { useModalButtonHandler } from "../../core/utils/modal";
-import { FacetBrowserModalId, getAllFilterPathsAsString } from "./helper";
+import { FacetBrowserModalId } from "./helper";
 import useFilterHandler from "../../apps/search-result/useFilterHandler";
 import DisclosureSummary from "../Disclosures/DisclosureSummary";
 import { Facets } from "../../core/utils/types/entities";
+import { FacetFieldEnum } from "../../core/dbc-gateway/generated/graphql";
 
 interface FacetBrowserModalBodyProps {
   facets: Facets;
@@ -24,20 +22,6 @@ const FacetBrowserModalBody: React.FunctionComponent<
 
   const t = useText();
   const { close } = useModalButtonHandler();
-  const { track } = useStatistics();
-
-  useDeepCompareEffect(() => {
-    if (isEmpty(filters)) {
-      return;
-    }
-    track("click", {
-      id: statistics.searchFacets.id,
-      name: statistics.searchFacets.name,
-      trackedData: getAllFilterPathsAsString(filters)
-    });
-    // We only want to track when filters change value.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
 
   return (
     <section className="facet-browser">
@@ -49,7 +33,10 @@ const FacetBrowserModalBody: React.FunctionComponent<
           const { name, values } = facet;
           // Remove facets disclosures with no tags
           if (values.length === 0) return null;
-
+          if (name.toUpperCase() === FacetFieldEnum.Year.toUpperCase()) {
+            // Sort year facets in descending order by value
+            values.sort((a, b) => Number(b.term) - Number(a.term));
+          }
           const hasSelectedTerms = Boolean(filters[name]);
 
           return (
@@ -84,19 +71,22 @@ const FacetBrowserModalBody: React.FunctionComponent<
                     e.stopPropagation();
                     return selected
                       ? removeFromFilter({ facet: name, term: termItem })
-                      : addToFilter({ facet: name, term: termItem });
+                      : addToFilter({
+                          facet: name,
+                          term: termItem,
+                          origin: "facetBrowser"
+                        });
                   };
 
                   return (
-                    <li>
+                    <li key={termItem.key}>
                       <ButtonTag
                         key={term}
                         onClick={handleAddOrRemoveFilter}
                         selected={selected}
                         dataCy={`facet-browser-${name}-${term}`}
                       >
-                        {termItem.term}{" "}
-                        {termItem?.score && `(${termItem.score})`}
+                        {termItem.term}
                       </ButtonTag>
                     </li>
                   );

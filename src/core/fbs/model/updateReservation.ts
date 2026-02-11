@@ -7,10 +7,10 @@
 
 export interface UpdateReservation {
   /** The date where the patron is no longer interested in the reserved material.
- If not set, a date will be calculated from the libraries default interest period */
+ If not set, the reservation will keep the original date. */
   expiryDate?: string;
   /** ISIL-number of pickup branch.
- If not set, will default to patrons preferred pickup branch */
+ If not set, the reservation will keep the original pickup branch. */
   pickupBranch?: string;
   /** Identifies the reservation */
   reservationId: number;

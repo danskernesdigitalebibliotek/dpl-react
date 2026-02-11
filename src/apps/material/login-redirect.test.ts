@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("Material", () => {
   it("Redirects to login & opens reservation modal on subsequent land-in", () => {
     window.sessionStorage.removeItem("user");
@@ -9,11 +7,10 @@ describe("Material", () => {
     cy.wait("@getMaterial GraphQL operation");
 
     // Activate lazy loading
-    cy.scrollTo("bottom");
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
+    cy.getBySel("material-header-buttons-physical").scrollIntoView();
     cy.getBySel("material-header-buttons-physical")
-      .scrollIntoView()
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
@@ -36,12 +33,13 @@ describe("Material", () => {
     cy.wait("@getMaterial GraphQL operation");
 
     // Activate lazy loading
-    cy.scrollTo("bottom");
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
+    cy.getBySel("material-header-buttons-physical").scrollIntoView({
+      duration: 500
+    });
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
-      .scrollIntoView()
       .and("contain", "Reserve bog")
       .click();
 
@@ -53,27 +51,23 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
+    });
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
     });
     cy.interceptRest({
       aliasName: "Availability",
       url: "**/availability/v3?recordid=**",
       fixtureFilePath: "material/availability.json"
     });
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
+
     cy.interceptRest({
       aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
+      url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
     });
 

@@ -14,6 +14,7 @@ replaceInFile({
   to: "export enum SortOrder {$1}"
 })
   .then((results: unknown) => {
+    // eslint-disable-next-line no-console
     console.log("Replacement results:", results);
   })
   .catch((error: unknown) => {
@@ -28,6 +29,7 @@ replaceInFile({
       to: "$1"
     })
       .then((results: unknown) => {
+        // eslint-disable-next-line no-console
         console.log("Replacement results:", results);
       })
       .catch((error: unknown) => {

@@ -6,7 +6,7 @@ describe("Modals", () => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: null
       }
@@ -63,14 +63,14 @@ describe("Modals", () => {
       }
     }).as("work");
 
-    cy.intercept("GET", "**covers**", {
-      statusCode: 200,
-      body: []
-    }).as("cover");
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
     cy.visit(
       "/iframe.html?path=/story/apps-loan-list--loan-list-details-modal"
     );
-    cy.wait(["@loans", "@work", "@cover"]);
+    cy.wait(["@loans", "@work"]);
 
     cy.get(".modal-details__container").should("exist");
   });

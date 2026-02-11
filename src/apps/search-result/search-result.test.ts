@@ -1,4 +1,4 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
+import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 
 describe("Search Result", () => {
   it("Should render the site", () => {
@@ -20,7 +20,7 @@ describe("Search Result", () => {
   it("Renders the images", () => {
     cy.get(".content-list .card-list-item img")
       .should("have.attr", "src")
-      .and("match", coverUrlPattern);
+      .and("match", FbiCoverUrlPattern);
   });
 
   it("Renders the favorite buttons", () => {
@@ -66,7 +66,16 @@ describe("Search Result", () => {
 
   it("Loads more search result items after clicking show more results", () => {
     cy.get(".result-pager button").click();
-    cy.getBySel("search-result-list").find("li").should("have.length", 4);
+    cy.getBySel("search-result-list")
+      .find(".content-list__item")
+      .not(".content-list__item--info-box")
+      .should("have.length", 4);
+  });
+
+  it("Loads more search result items will show an info box", () => {
+    cy.getBySel("search-result-list")
+      .find(".content-list__item--info-box")
+      .should("be.visible");
   });
 
   it("Updates the pager info after clicking show more results", () => {
@@ -84,18 +93,6 @@ describe("Search Result", () => {
     cy.getBySel("card-list-item").first().should("contain", "2018");
   });
 
-  it("Renders the 0-result page correctly", () => {
-    // Overwrite graphql search query fixture.
-    cy.interceptGraphql({
-      operationName: "searchWithPagination",
-      fixtureFilePath: "search-result/fbi-api-no-results.json"
-    });
-    cy.visit(
-      "/iframe.html?id=apps-search-result--primary&args=pageSizeDesktop:2;pageSizeMobile:2"
-    );
-    cy.getBySel("search-result-zero-hits").should("be.visible");
-  });
-
   beforeEach(() => {
     // Intercept graphql search query.
     cy.fixture("search-result/fbi-api.json")
@@ -104,20 +101,10 @@ describe("Search Result", () => {
       })
       .as("Graphql search query");
     // Intercept all images from Cloudinary.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    ).as("Harry Potter cover");
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
     // Intercept availability service.
     cy.intercept("GET", "**/availability/v3**", {
       statusCode: 200,
@@ -130,12 +117,6 @@ describe("Search Result", () => {
         }
       ]
     }).as("Availability service");
-
-    // Intercept material list service.
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
 
     // Intercept campaign query.
     cy.fixture("search-result/campaign.json")

@@ -47,6 +47,7 @@ const useInfiniteScrollLoading = ({
     };
   }, [handleScroll]);
 
+  // @ts-expect-error: react-use does not yet support React 19, and TS will throw an error until it has been fixed
   // Handle intersection to load more items when the last item becomes visible using useIntersection
   const intersection = useIntersection(lastItemRef, {
     root: containerRef.current,

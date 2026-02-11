@@ -170,7 +170,6 @@
               "materialUnits": [{ "extent": "ca. 109 min." }]
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -342,7 +341,6 @@
               "materialUnits": [{ "extent": "ca. 113 min." }]
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -510,7 +508,6 @@
               "materialUnits": [{ "extent": "Ca. 113 min." }]
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -521,7 +518,8 @@
                 "__typename": "AccessUrl",
                 "origin": "www.filmstriben.dk",
                 "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
-                "loginRequired": false
+                "loginRequired": false,
+                "status": "OK"
               }
             ],
             "shelfmark": {
@@ -686,7 +684,6 @@
             "materialUnits": [{ "extent": "Ca. 113 min." }]
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "ONLINE"
@@ -697,7 +694,8 @@
               "__typename": "AccessUrl",
               "origin": "www.filmstriben.dk",
               "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
-              "loginRequired": false
+              "loginRequired": false,
+              "status": "OK"
             }
           ],
           "shelfmark": {
@@ -861,7 +859,6 @@
             "materialUnits": [{ "extent": "Ca. 113 min." }]
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "ONLINE"
@@ -872,7 +869,8 @@
               "__typename": "AccessUrl",
               "origin": "www.filmstriben.dk",
               "url": "http://www.filmstriben.dk/fjernleje/film/details.aspx?id=9000004315",
-              "loginRequired": false
+              "loginRequired": false,
+              "status": "OK"
             }
           ],
           "shelfmark": {
@@ -976,7 +974,8 @@
         "code": "FICTION"
       },
       "dk5MainEntry": {
-        "display": "77.7 Spillefilm"
+        "display": "77.7 Spillefilm",
+        "code": "77.7"
       },
       "relations": {
         "hasReview": [

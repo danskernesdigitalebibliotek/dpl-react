@@ -7,6 +7,9 @@ import { withUrls } from "../../core/utils/url";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import AdvancedSearch from "./AdvancedSearch";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { MappArgs } from "../../core/storybook/mappArgs";
+import withPageStatistics from "../../core/statistics/withPageStatistics";
+import { AdvancedSortSelectArgs } from "../../core/storybook/AdvancedSortSelect";
 
 interface AdvancedSearchEntryTextProps {
   byAuthorText: string;
@@ -72,6 +75,18 @@ interface AdvancedSearchEntryTextProps {
   advancedSearchFilterLocationDescriptionText: string;
   advancedSearchFilterSublocationText: string;
   advancedSearchFilterSublocationDescriptionText: string;
+  advancedSearchFilterBranchText: string;
+  advancedSearchFilterBranchDescriptionText: string;
+  advancedSearchFilterDepartmentText: string;
+  advancedSearchFilterDepartmentDescriptionText: string;
+  advancedSearchFirstAccessionDateText: string;
+  advancedSearchFirstAccessionDateOperatorText: string;
+  advancedSearchFilterLaterThanText: string;
+  advancedSearchFilterExactDateText: string;
+  advancedSearchFilterEarlierThanText: string;
+  advancedSearchFirstAccessionDateDescriptionText: string;
+  advancedSearchFirstAccessionDateSpecifyDateText: string;
+  cqlSearchExternalHelpLinkText: string;
 }
 
 interface AdvancedSearchEntryConfigProps {
@@ -85,7 +100,9 @@ export interface AdvancedSearchEntryProps
   extends GlobalUrlEntryPropsInterface,
     GlobalEntryTextProps,
     AdvancedSearchEntryConfigProps,
-    AdvancedSearchEntryTextProps {
+    AdvancedSearchEntryTextProps,
+    MappArgs,
+    AdvancedSortSelectArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
   showingMaterialsText: string;
@@ -112,4 +129,6 @@ const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({
   );
 };
 
-export default withConfig(withUrls(withText(AdvancedSearchEntry)));
+export default withConfig(
+  withUrls(withText(withPageStatistics(AdvancedSearchEntry)))
+);

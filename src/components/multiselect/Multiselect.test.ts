@@ -42,14 +42,14 @@ describe("Multiselect", () => {
 
   it("Allows selection of multiple values", () => {
     cy.get("button:visible").click();
+    cy.get("[role=option]").eq(1).click();
     cy.get("[role=option]")
       .eq(1)
-      .click()
       .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "true");
+    cy.get("[role=option]").eq(2).click();
     cy.get("[role=option]")
       .eq(2)
-      .click()
       .should("contain", "Available")
       .and("have.attr", "aria-selected", "true");
     cy.get("[role=option]")
@@ -126,9 +126,9 @@ describe("Multiselect", () => {
     cy.visit("/iframe.html?args=&id=components-multiselect--single-selected");
     cy.contains("An error occurred");
     cy.get("button:visible").click();
+    cy.get("[role=option]").eq(1).click();
     cy.get("[role=option]")
       .eq(1)
-      .click()
       .should("contain", "An error occurred")
       .and("have.attr", "aria-selected", "true");
   });

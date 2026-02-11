@@ -1,4 +1,9 @@
-query intelligentFacets ($q: SearchQueryInput!, $facetsLimit: Int!, $valuesLimit: Int!, $filters: SearchFiltersInput!) {
+query intelligentFacets(
+  $q: SearchQueryInput!
+  $facetsLimit: Int!
+  $valuesLimit: Int!
+  $filters: SearchFiltersInput!
+) {
   search(q: $q, filters: $filters) {
     intelligentFacets(limit: $facetsLimit) {
       name
@@ -7,6 +12,7 @@ query intelligentFacets ($q: SearchQueryInput!, $facetsLimit: Int!, $valuesLimit
         key
         term
         score
+        traceId
       }
     }
   }

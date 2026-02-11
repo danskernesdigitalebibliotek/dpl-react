@@ -3,6 +3,10 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import "@cypress/code-coverage/support";
 import { hasOperationName } from "../utils/graphql-test-utils";
+import { Operations } from "../../src/core/dbc-gateway/types";
+
+// Install cypress-terminal-report logs collector
+require("cypress-terminal-report/src/installLogsCollector")();
 
 const TOKEN_LIBRARY_KEY = "library";
 const TOKEN_USER_KEY = "user";
@@ -26,13 +30,14 @@ Cypress.Commands.add("createFakeAuthenticatedSession", () => {
 /**
  * interceptGraphql is used to make a graphQLrequest that returns fixture data
  *
- * @param {string} operationName The name of the operation to be mocked.
+ * @param {Operations} operationName The name of the operation to be mocked.
  * @param {string} fixtureFilePath The path to the fixture file to use as response
  *
  */
 type InterceptGraphqlParams = {
-  operationName: string;
+  operationName: Operations;
   fixtureFilePath?: string;
+  body?: unknown;
   statusCode?: number;
 };
 Cypress.Commands.add(
@@ -40,12 +45,15 @@ Cypress.Commands.add(
   ({
     operationName,
     fixtureFilePath,
+    body,
     statusCode = 200
   }: InterceptGraphqlParams) => {
     cy.intercept("POST", "**/next*/graphql", (req) => {
       if (hasOperationName(req, operationName)) {
         if (fixtureFilePath) {
           req.reply({ fixture: fixtureFilePath, statusCode });
+        } else if (body) {
+          req.reply({ statusCode, body });
         } else {
           req.reply({ statusCode });
         }
@@ -102,6 +110,46 @@ Cypress.Commands.add(
   }
 );
 
+/**
+ * Check that an element contains all specified texts
+ * @param texts Array of texts to check for
+ * @example cy.get('.tags').shouldContainAll(['tag1', 'tag2', 'tag3'])
+ */
+Cypress.Commands.add(
+  "shouldContainAll",
+  { prevSubject: true },
+  (subject, texts: string[]) => {
+    cy.wrap(subject).within(() => {
+      texts.forEach((text) => {
+        cy.contains(text).scrollIntoView();
+        cy.contains(text).should("be.visible");
+      });
+    });
+    return cy.wrap(subject);
+  }
+);
+
+/**
+ * Mock geolocation
+ * @param latitude Latitude to mock
+ * @param longitude Longitude to mock
+ * @example cy.mockGeolocation(55.9383, 12.3036) // Coordinates near Suomisvej 2, 3310 Ølsted
+ */
+Cypress.Commands.add(
+  "mockGeolocation",
+  (latitude: number, longitude: number) => {
+    cy.window().then(($window) => {
+      cy.stub(
+        $window.navigator.geolocation,
+        "getCurrentPosition",
+        (callback) => {
+          return callback({ coords: { latitude, longitude } });
+        }
+      );
+    });
+  }
+);
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -111,7 +159,7 @@ declare global {
        */
       createFakeLibrarySession(): void;
       createFakeAuthenticatedSession(): void;
-      interceptGraphql(prams: InterceptGraphqlParams): void;
+      interceptGraphql(params: InterceptGraphqlParams): void;
       interceptRest(params: InterceptRestParams): void;
       getBySel(selector: string, checkVisible?: boolean): Chainable;
       getBySelLike(selector: string, checkVisible?: boolean): Chainable;
@@ -120,6 +168,12 @@ declare global {
         endSelector: string,
         checkVisible?: boolean
       ): Chainable;
+      /**
+       * Check that an element contains all specified texts
+       * @example cy.get('.tags').shouldContainAll(['tag1', 'tag2'])
+       */
+      shouldContainAll(texts: string[]): Chainable;
+      mockGeolocation(latitude: number, longitude: number): void;
     }
   }
 }

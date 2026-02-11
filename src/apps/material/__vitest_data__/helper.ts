@@ -50,6 +50,7 @@ export default {
         publisher: ["Macmillan"],
         identifiers: [
           {
+            type: "ISBN",
             value: "9780230026810"
           },
           {
@@ -69,7 +70,8 @@ export default {
         },
         audience: {
           generalAudience: [],
-          ages: []
+          ages: [],
+          childrenOrAdults: []
         },
         notes: [
           {
@@ -82,7 +84,6 @@ export default {
           playingTime: "2t., 31 min."
         },
         hostPublication: null,
-        manifestationParts: null,
         accessTypes: [
           {
             code: "PHYSICAL"
@@ -144,6 +145,7 @@ export default {
         publisher: [],
         identifiers: [
           {
+            type: "ISBN",
             value: "9780553900330"
           }
         ],
@@ -162,7 +164,8 @@ export default {
             "820. Lexile",
             "6.1. ATOS Level"
           ],
-          ages: []
+          ages: [],
+          childrenOrAdults: []
         },
         notes: [
           {
@@ -177,7 +180,6 @@ export default {
           playingTime: null
         },
         hostPublication: null,
-        manifestationParts: null,
         accessTypes: [
           {
             code: "ONLINE"
@@ -240,6 +242,7 @@ export default {
         publisher: ["Random House Audio"],
         identifiers: [
           {
+            type: "ISBN",
             value: "9780739346273"
           }
         ],
@@ -256,7 +259,8 @@ export default {
             "Text Difficulty 3 - Text Difficulty 4",
             "820. Lexile"
           ],
-          ages: []
+          ages: [],
+          childrenOrAdults: []
         },
         notes: [
           {
@@ -269,7 +273,6 @@ export default {
           playingTime: null
         },
         hostPublication: null,
-        manifestationParts: null,
         accessTypes: [
           {
             code: "ONLINE"
@@ -328,6 +331,7 @@ export default {
         publisher: ["Oxford University Press"],
         identifiers: [
           {
+            type: "ISBN",
             value: "0-19-423069-4"
           }
         ],
@@ -341,7 +345,8 @@ export default {
         dateFirstEdition: null,
         audience: {
           generalAudience: [],
-          ages: []
+          ages: [],
+          childrenOrAdults: []
         },
         notes: [],
         physicalDescription: {
@@ -349,7 +354,6 @@ export default {
           numberOfPages: 104
         },
         hostPublication: null,
-        manifestationParts: null,
         accessTypes: [
           {
             code: "PHYSICAL"

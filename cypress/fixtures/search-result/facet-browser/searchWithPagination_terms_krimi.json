@@ -184,7 +184,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770073851" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770073851" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2020",
@@ -220,7 +220,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770073844" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770073844" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2020",
@@ -256,7 +256,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770071529" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071529" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. udgave, 2019",
@@ -292,7 +292,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770071987" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071987" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. udgave, 2019",
@@ -329,7 +329,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788770071710" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071710" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -368,7 +368,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788770071703" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071703" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -407,7 +407,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
-                "identifiers": [{ "value": "9788703090955" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788703090955" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. bogklubudgave, 2019",
@@ -443,7 +443,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770071697" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770071697" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -481,7 +481,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770073844" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770073844" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "4. udgave, 2020",
@@ -517,7 +517,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770073851" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770073851" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2020",
@@ -719,7 +719,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771467321" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771467321" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. udgave, 2017",
@@ -755,7 +755,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771468007" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771468007" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "2. udgave, 2017",
@@ -792,7 +792,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788771467819" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771467819" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -831,7 +831,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771467826" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771467826" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -868,7 +868,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788771467802" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771467802" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -907,7 +907,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
-                "identifiers": [{ "value": "9788703079837" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788703079837" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. bogklubudgave, 2017",
@@ -943,7 +943,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770070102" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770070102" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2018",
@@ -979,7 +979,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770070096" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770070096" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2018",
@@ -1016,7 +1016,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770070096" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770070096" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2018",
@@ -1052,7 +1052,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770070096" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770070096" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2018",
@@ -1419,7 +1419,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770530507" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770530507" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2. udgave, 2007",
@@ -1458,7 +1458,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770531849" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770531849" }],
                 "contributors": [],
                 "edition": {
                   "summary": "3. udgave, 2008",
@@ -1497,7 +1497,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533362" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533362" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, Særudgave, 2009",
@@ -1536,7 +1536,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533966" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533966" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -1576,7 +1576,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537919" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537919" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -1610,7 +1610,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770539517" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770539517" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -1652,7 +1652,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533461" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533461" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -1694,7 +1694,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771465754" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771465754" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2016",
@@ -1734,7 +1734,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465754" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465754" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -1773,7 +1773,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465754" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465754" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -1978,7 +1978,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770539791" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770539791" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "2013",
@@ -2017,7 +2017,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771460353" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771460353" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -2059,7 +2059,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771460360" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771460360" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -2101,7 +2101,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771460346" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771460346" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "2. udgave, 2013",
@@ -2138,7 +2138,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770539715" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770539715" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -2178,7 +2178,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
-                "identifiers": [{ "value": "9788703061207" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788703061207" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. bogklubudgave, 2013",
@@ -2217,7 +2217,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771461305" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771461305" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2014",
@@ -2257,8 +2257,8 @@
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [
-                  { "value": "9788771465846" },
-                  { "value": "9788771461305" }
+                  { "type": "ISBN", "value": "9788771465846" },
+                  { "type": "ISBN", "value": "9788771461305" }
                 ],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
@@ -2297,8 +2297,8 @@
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [
-                { "value": "9788771465846" },
-                { "value": "9788771461305" }
+                { "type": "ISBN", "value": "9788771465846" },
+                { "type": "ISBN", "value": "9788771461305" }
               ],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
@@ -2336,8 +2336,8 @@
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
               "identifiers": [
-                { "value": "9788771465846" },
-                { "value": "9788771461305" }
+                { "type": "ISBN", "value": "9788771465846" },
+                { "type": "ISBN", "value": "9788771461305" }
               ],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
@@ -2540,7 +2540,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770077231" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770077231" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "6. udgave, 2022",
@@ -2651,7 +2651,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788773948958" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788773948958" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2. udgave, 2005",
@@ -2723,7 +2723,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "for Dansk Supermarked"],
-                "identifiers": [{ "value": "9788770740968" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770740968" }],
                 "contributors": [],
                 "edition": {
                   "summary": "3. udgave, 2008",
@@ -2759,7 +2759,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770531863" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770531863" }],
                 "contributors": [],
                 "edition": {
                   "summary": "3. udgave, 2008",
@@ -2795,7 +2795,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533386" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533386" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, Særudgave, 2009",
@@ -2831,7 +2831,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533980" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533980" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -2865,7 +2865,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537933" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537933" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "Ny udgave, 2012",
@@ -2902,7 +2902,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533485" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533485" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -2941,7 +2941,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771465778" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771465778" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2016",
@@ -2978,7 +2978,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770077231" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770077231" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "6. udgave, 2022",
@@ -3014,7 +3014,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770077231" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770077231" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "6. udgave, 2022",
@@ -3226,7 +3226,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788772043074" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772043074" }],
                 "contributors": [{ "display": "Line Beck Rasmussen" }],
                 "edition": {
                   "summary": "1. udgave, 2019",
@@ -3267,7 +3267,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788772043944" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772043944" }],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
                   { "display": "Line Beck Rasmussen" }
@@ -3312,8 +3312,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788772044262" },
-                  { "value": "9788772044262" }
+                  { "type": "ISBN", "value": "9788772044262" },
+                  { "type": "ISBN", "value": "9788772044262" }
                 ],
                 "contributors": [{ "display": "Line Beck Rasmussen" }],
                 "edition": {
@@ -3361,8 +3361,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788772044026" },
-                  { "value": "9788772044026" }
+                  { "type": "ISBN", "value": "9788772044026" },
+                  { "type": "ISBN", "value": "9788772044026" }
                 ],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
@@ -3418,7 +3418,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788772045382" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772045382" }],
                 "contributors": [{ "display": "Line Beck Rasmussen" }],
                 "edition": {
                   "summary": "2. udgave, 2020",
@@ -3460,7 +3460,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788772045382" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772045382" }],
               "contributors": [{ "display": "Line Beck Rasmussen" }],
               "edition": {
                 "summary": "2. udgave, 2020",
@@ -3501,7 +3501,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788772045382" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772045382" }],
               "contributors": [{ "display": "Line Beck Rasmussen" }],
               "edition": {
                 "summary": "2. udgave, 2020",
@@ -3865,7 +3865,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770530514" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770530514" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2. udgave, 2007",
@@ -3904,7 +3904,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770531856" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770531856" }],
                 "contributors": [],
                 "edition": {
                   "summary": "3. udgave, 2008",
@@ -3943,7 +3943,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533379" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533379" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, Særudgave, 2009",
@@ -3982,7 +3982,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533973" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533973" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -4022,7 +4022,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537926" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537926" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -4056,7 +4056,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770539524" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770539524" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -4098,7 +4098,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533478" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533478" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -4140,7 +4140,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771465761" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771465761" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2016",
@@ -4180,7 +4180,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465761" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465761" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -4219,7 +4219,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465761" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465761" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -4427,7 +4427,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533188" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533188" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "2009",
@@ -4466,7 +4466,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533652" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533652" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -4508,7 +4508,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
-                "identifiers": [{ "value": "9788703039664" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788703039664" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. bogklubudgave, 2009",
@@ -4547,7 +4547,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770535984" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770535984" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "3. udgave, 2011",
@@ -4586,7 +4586,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770534031" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770534031" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -4626,7 +4626,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537995" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537995" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -4660,7 +4660,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533539" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533539" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -4702,7 +4702,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770535977" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770535977" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "2. udgave, 2011",
@@ -4741,7 +4741,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771465822" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771465822" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2016",
@@ -4781,7 +4781,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465822" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465822" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -4820,7 +4820,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465822" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465822" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -5022,7 +5022,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770536516" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770536516" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "2011",
@@ -5058,7 +5058,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537032" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537032" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -5097,7 +5097,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
-                "identifiers": [{ "value": "9788703051918" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788703051918" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "1. bogklubudgave, 2012",
@@ -5133,7 +5133,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537865" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537865" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -5170,7 +5170,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770538015" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770538015" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -5208,7 +5208,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770539876" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770539876" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2013",
@@ -5247,7 +5247,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770536530" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770536530" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -5286,7 +5286,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771460162" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771460162" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2013",
@@ -5322,7 +5322,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771465839" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771465839" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "6. udgave, 2016",
@@ -5359,7 +5359,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465839" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465839" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "6. udgave, 2016",
@@ -5395,7 +5395,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465839" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465839" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "6. udgave, 2016",
@@ -5604,7 +5604,7 @@
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [
-                  { "value": "9788773949771" },
+                  { "type": "ISBN", "value": "9788773949771" },
                   { "value": "87-7394-977-9" }
                 ],
                 "contributors": [],
@@ -5685,7 +5685,7 @@
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
-                  { "value": "9788703015699" },
+                  { "type": "ISBN", "value": "9788703015699" },
                   { "value": "87-03-01569-6" }
                 ],
                 "contributors": [],
@@ -5726,7 +5726,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770530682" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770530682" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2. udgave, 2007",
@@ -5765,7 +5765,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770531894" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770531894" }],
                 "contributors": [],
                 "edition": {
                   "summary": "3. udgave, 2008",
@@ -5804,7 +5804,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770534017" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770534017" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -5841,7 +5841,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537971" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537971" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -5875,7 +5875,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533515" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533515" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -5917,7 +5917,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771465808" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771465808" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2016",
@@ -5957,7 +5957,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465808" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465808" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -5996,7 +5996,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465808" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465808" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -6453,7 +6453,7 @@
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [
-                  { "value": "9788773949788" },
+                  { "type": "ISBN", "value": "9788773949788" },
                   { "value": "87-7394-978-7" }
                 ],
                 "contributors": [],
@@ -6494,7 +6494,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770531887" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770531887" }],
                 "contributors": [],
                 "edition": {
                   "summary": "3. udgave, 2008",
@@ -6533,7 +6533,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533409" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533409" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, Særudgave, 2009",
@@ -6572,7 +6572,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770534000" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770534000" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -6609,7 +6609,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537964" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537964" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -6643,7 +6643,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533508" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533508" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -6685,7 +6685,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771465792" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771465792" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2016",
@@ -6725,7 +6725,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465792" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465792" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -6764,7 +6764,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465792" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465792" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -6977,8 +6977,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788772043593" },
-                  { "value": "9788772043593" }
+                  { "type": "ISBN", "value": "9788772043593" },
+                  { "type": "ISBN", "value": "9788772043593" }
                 ],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
@@ -7028,7 +7028,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788772043333" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772043333" }],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
                   { "display": "Søren K. Barsøe" }
@@ -7072,7 +7072,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788772042091" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772042091" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "1. udgave, 2018",
@@ -7114,8 +7114,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788772043494" },
-                  { "value": "9788772043494" }
+                  { "type": "ISBN", "value": "9788772043494" },
+                  { "type": "ISBN", "value": "9788772043494" }
                 ],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
@@ -7163,7 +7163,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788772043333" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772043333" }],
               "contributors": [
                 { "display": "Thomas Gulstad" },
                 { "display": "Søren K. Barsøe" }
@@ -7207,7 +7207,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788772042091" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772042091" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "1. udgave, 2018",
@@ -7497,7 +7497,7 @@
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Gyldendals Bogklubber"],
                 "identifiers": [
-                  { "value": "9788703003672" },
+                  { "type": "ISBN", "value": "9788703003672" },
                   { "value": "87-03-00367-1" }
                 ],
                 "contributors": [],
@@ -7620,7 +7620,7 @@
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
                 "identifiers": [
-                  { "value": "9788773949634" },
+                  { "type": "ISBN", "value": "9788773949634" },
                   { "value": "87-7394-963-9" }
                 ],
                 "contributors": [],
@@ -7661,7 +7661,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk", "for Dansk Supermarked"],
-                "identifiers": [{ "value": "9788770740975" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770740975" }],
                 "contributors": [],
                 "edition": {
                   "summary": "3. udgave, 2008",
@@ -7700,7 +7700,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770531870" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770531870" }],
                 "contributors": [],
                 "edition": {
                   "summary": "3. udgave, 2008",
@@ -7739,7 +7739,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533393" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533393" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, Særudgave, 2009",
@@ -7778,7 +7778,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533997" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533997" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -7815,7 +7815,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537940" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537940" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "4. udgave, 2012",
@@ -7849,7 +7849,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533492" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533492" }],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
                   { "display": "Allan Hilton Andersen" }
@@ -7891,7 +7891,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771465785" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771465785" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "5. udgave, 2016",
@@ -7931,7 +7931,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465785" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465785" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -7970,7 +7970,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771465785" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771465785" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "5. udgave, 2016",
@@ -8182,7 +8182,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788772042244" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772042244" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "2. udgave, 2019",
@@ -8223,7 +8223,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788771299854" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771299854" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "1. udgave, 2017",
@@ -8265,8 +8265,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788772041667" },
-                  { "value": "9788772041667" }
+                  { "type": "ISBN", "value": "9788772041667" },
+                  { "type": "ISBN", "value": "9788772041667" }
                 ],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
@@ -8313,7 +8313,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788772041315" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772041315" }],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
                   { "display": "Søren K. Barsøe" }
@@ -8357,7 +8357,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788772041322" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772041322" }],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
                   { "display": "Søren K. Barsøe" }
@@ -8402,8 +8402,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788772041698" },
-                  { "value": "9788772041698" }
+                  { "type": "ISBN", "value": "9788772041698" },
+                  { "type": "ISBN", "value": "9788772041698" }
                 ],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
@@ -8454,7 +8454,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788772042244" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772042244" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "2. udgave, 2019",
@@ -8495,7 +8495,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788772042244" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772042244" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "2. udgave, 2019",
@@ -8705,8 +8705,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771297119" },
-                  { "value": "9788771297119" }
+                  { "type": "ISBN", "value": "9788771297119" },
+                  { "type": "ISBN", "value": "9788771297119" }
                 ],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
@@ -8753,7 +8753,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788771293654" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771293654" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "1. udgave, 2015",
@@ -8882,7 +8882,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788771298109" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771298109" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "2. udgave, 2016",
@@ -8924,8 +8924,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771297461" },
-                  { "value": "9788771297461" }
+                  { "type": "ISBN", "value": "9788771297461" },
+                  { "type": "ISBN", "value": "9788771297461" }
                 ],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
@@ -8973,7 +8973,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788771298109" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771298109" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "2. udgave, 2016",
@@ -9011,7 +9011,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788771298109" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771298109" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "2. udgave, 2016",
@@ -9223,7 +9223,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788779555686" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788779555686" }],
                 "contributors": [],
                 "edition": {
                   "summary": "1. udgave, 2008",
@@ -9305,7 +9305,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788779557819" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788779557819" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "2. udgave, 2010",
@@ -9391,8 +9391,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771293951" },
-                  { "value": "9788771293951" }
+                  { "type": "ISBN", "value": "9788771293951" },
+                  { "type": "ISBN", "value": "9788771293951" }
                 ],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
@@ -9444,8 +9444,8 @@
               ],
               "publisher": ["Klim"],
               "identifiers": [
-                { "value": "9788771293951" },
-                { "value": "9788771293951" }
+                { "type": "ISBN", "value": "9788771293951" },
+                { "type": "ISBN", "value": "9788771293951" }
               ],
               "contributors": [
                 { "display": "Bent Otto Hansen" },
@@ -9495,7 +9495,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788779557819" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788779557819" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "2. udgave, 2010",
@@ -9705,8 +9705,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788772045535" },
-                  { "value": "9788772045535" }
+                  { "type": "ISBN", "value": "9788772045535" },
+                  { "type": "ISBN", "value": "9788772045535" }
                 ],
                 "contributors": [{ "display": "Inger Kristensen" }],
                 "edition": {
@@ -9753,7 +9753,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788772045184" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772045184" }],
                 "contributors": [{ "display": "Inger Kristensen" }],
                 "edition": {
                   "summary": "1. udgave, 2020",
@@ -9795,8 +9795,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788772045580" },
-                  { "value": "9788772045580" }
+                  { "type": "ISBN", "value": "9788772045580" },
+                  { "type": "ISBN", "value": "9788772045580" }
                 ],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
@@ -9846,7 +9846,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim", "AV Forlaget Den Grimme Ælling"],
-                "identifiers": [{ "value": "9788772045511" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788772045511" }],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
                   { "display": "Inger Kristensen" }
@@ -9891,7 +9891,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim", "AV Forlaget Den Grimme Ælling"],
-              "identifiers": [{ "value": "9788772045511" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772045511" }],
               "contributors": [
                 { "display": "Thomas Gulstad" },
                 { "display": "Inger Kristensen" }
@@ -9935,7 +9935,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788772045184" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788772045184" }],
               "contributors": [{ "display": "Inger Kristensen" }],
               "edition": {
                 "summary": "1. udgave, 2020",
@@ -10144,7 +10144,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788771298413" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771298413" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "1. udgave, 2016",
@@ -10186,8 +10186,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771299380" },
-                  { "value": "9788771299380" }
+                  { "type": "ISBN", "value": "9788771299380" },
+                  { "type": "ISBN", "value": "9788771299380" }
                 ],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
@@ -10323,8 +10323,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771299472" },
-                  { "value": "9788771299472" }
+                  { "type": "ISBN", "value": "9788771299472" },
+                  { "type": "ISBN", "value": "9788771299472" }
                 ],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
@@ -10374,7 +10374,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788771299960" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771299960" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "2. udgave, 2017",
@@ -10416,7 +10416,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788771299960" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771299960" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "2. udgave, 2017",
@@ -10457,7 +10457,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788771299960" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771299960" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "2. udgave, 2017",
@@ -10666,7 +10666,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788771293197" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771293197" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "1. udgave, 2014",
@@ -10796,8 +10796,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771293876" },
-                  { "value": "9788771293876" }
+                  { "type": "ISBN", "value": "9788771293876" },
+                  { "type": "ISBN", "value": "9788771293876" }
                 ],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
@@ -10845,8 +10845,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771294101" },
-                  { "value": "9788771294101" }
+                  { "type": "ISBN", "value": "9788771294101" },
+                  { "type": "ISBN", "value": "9788771294101" }
                 ],
                 "contributors": [
                   { "display": "Thomas Gulstad" },
@@ -10895,8 +10895,8 @@
               ],
               "publisher": ["Klim"],
               "identifiers": [
-                { "value": "9788771293876" },
-                { "value": "9788771293876" }
+                { "type": "ISBN", "value": "9788771293876" },
+                { "type": "ISBN", "value": "9788771293876" }
               ],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
@@ -10940,7 +10940,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788771293197" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771293197" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "1. udgave, 2014",
@@ -11474,7 +11474,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788779554948" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788779554948" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2. udgave, 2007",
@@ -11516,7 +11516,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788779554948" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788779554948" }],
               "contributors": [],
               "edition": {
                 "summary": "2. udgave, 2007",
@@ -11557,7 +11557,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788779554948" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788779554948" }],
               "contributors": [],
               "edition": {
                 "summary": "2. udgave, 2007",
@@ -11766,7 +11766,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788779555204" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788779555204" }],
                 "contributors": [],
                 "edition": {
                   "summary": "1. udgave, 2008",
@@ -11848,7 +11848,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788779556560" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788779556560" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "2. udgave, 2010",
@@ -11890,7 +11890,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788779556560" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788779556560" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "2. udgave, 2010",
@@ -11931,7 +11931,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788779556560" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788779556560" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "2. udgave, 2010",
@@ -12309,8 +12309,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771290516" },
-                  { "value": "9788771290516" }
+                  { "type": "ISBN", "value": "9788771290516" },
+                  { "type": "ISBN", "value": "9788771290516" }
                 ],
                 "contributors": [
                   { "display": "Jesper Bøllehuus" },
@@ -12362,8 +12362,8 @@
               ],
               "publisher": ["Klim"],
               "identifiers": [
-                { "value": "9788771290516" },
-                { "value": "9788771290516" }
+                { "type": "ISBN", "value": "9788771290516" },
+                { "type": "ISBN", "value": "9788771290516" }
               ],
               "contributors": [
                 { "display": "Jesper Bøllehuus" },
@@ -12874,8 +12874,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771290530" },
-                  { "value": "9788771290530" }
+                  { "type": "ISBN", "value": "9788771290530" },
+                  { "type": "ISBN", "value": "9788771290530" }
                 ],
                 "contributors": [
                   { "display": "Kim Janson" },
@@ -12927,8 +12927,8 @@
               ],
               "publisher": ["Klim"],
               "identifiers": [
-                { "value": "9788771290530" },
-                { "value": "9788771290530" }
+                { "type": "ISBN", "value": "9788771290530" },
+                { "type": "ISBN", "value": "9788771290530" }
               ],
               "contributors": [
                 { "display": "Kim Janson" },
@@ -13564,7 +13564,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Klim"],
-                "identifiers": [{ "value": "9788771292138" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771292138" }],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
                   "summary": "1. udgave, 2013",
@@ -13694,8 +13694,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771292596" },
-                  { "value": "9788771292596" }
+                  { "type": "ISBN", "value": "9788771292596" },
+                  { "type": "ISBN", "value": "9788771292596" }
                 ],
                 "contributors": [
                   { "display": "Bent Otto Hansen" },
@@ -13746,8 +13746,8 @@
                 ],
                 "publisher": ["Klim"],
                 "identifiers": [
-                  { "value": "9788771292787" },
-                  { "value": "9788771292787" }
+                  { "type": "ISBN", "value": "9788771292787" },
+                  { "type": "ISBN", "value": "9788771292787" }
                 ],
                 "contributors": [{ "display": "Søren K. Barsøe" }],
                 "edition": {
@@ -13793,8 +13793,8 @@
               ],
               "publisher": ["Klim"],
               "identifiers": [
-                { "value": "9788771292787" },
-                { "value": "9788771292787" }
+                { "type": "ISBN", "value": "9788771292787" },
+                { "type": "ISBN", "value": "9788771292787" }
               ],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
@@ -13838,7 +13838,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Klim"],
-              "identifiers": [{ "value": "9788771292138" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771292138" }],
               "contributors": [{ "display": "Søren K. Barsøe" }],
               "edition": {
                 "summary": "1. udgave, 2013",
@@ -14809,7 +14809,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Hachette Audio"],
-                "identifiers": [{ "value": "9781549142314" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781549142314" }],
                 "contributors": [
                   { "display": "Christine Lakin" },
                   { "display": "Titus Welliver" }
@@ -14850,7 +14850,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Orion"],
-                "identifiers": [{ "value": "9781409182726" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781409182726" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2018",
@@ -14889,7 +14889,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Hachette Audio"],
-              "identifiers": [{ "value": "9781549142314" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781549142314" }],
               "contributors": [
                 { "display": "Christine Lakin" },
                 { "display": "Titus Welliver" }
@@ -14930,7 +14930,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Orion"],
-              "identifiers": [{ "value": "9781409182726" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781409182726" }],
               "contributors": [],
               "edition": {
                 "summary": "2018",
@@ -15146,7 +15146,7 @@
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
                 "publisher": ["Tellerup"],
-                "identifiers": [{ "value": "9788758808420" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788758808420" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2009",
@@ -15192,7 +15192,7 @@
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
                 "publisher": ["Superlux"],
-                "identifiers": [{ "value": "9788775671021" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788775671021" }],
                 "contributors": [{ "display": "Valdemar Tellerup" }],
                 "edition": {
                   "summary": "1. udgave, 2022",
@@ -15239,8 +15239,8 @@
                 ],
                 "publisher": ["Superlux"],
                 "identifiers": [
-                  { "value": "9788775671038" },
-                  { "value": "9788775671038" }
+                  { "type": "ISBN", "value": "9788775671038" },
+                  { "type": "ISBN", "value": "9788775671038" }
                 ],
                 "contributors": [{ "display": "Valdemar Tellerup" }],
                 "edition": {
@@ -15294,8 +15294,8 @@
                 ],
                 "publisher": ["Superlux"],
                 "identifiers": [
-                  { "value": "9788775671045" },
-                  { "value": "9788775671045" }
+                  { "type": "ISBN", "value": "9788775671045" },
+                  { "type": "ISBN", "value": "9788775671045" }
                 ],
                 "contributors": [
                   { "display": "Stephan Garmark (f. 1980)" },
@@ -15353,8 +15353,8 @@
               ],
               "publisher": ["Superlux"],
               "identifiers": [
-                { "value": "9788775671045" },
-                { "value": "9788775671045" }
+                { "type": "ISBN", "value": "9788775671045" },
+                { "type": "ISBN", "value": "9788775671045" }
               ],
               "contributors": [
                 { "display": "Stephan Garmark (f. 1980)" },
@@ -15410,7 +15410,7 @@
                 { "display": "Jim Butcher", "__typename": "Person" }
               ],
               "publisher": ["Superlux"],
-              "identifiers": [{ "value": "9788775671021" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788775671021" }],
               "contributors": [{ "display": "Valdemar Tellerup" }],
               "edition": {
                 "summary": "1. udgave, 2022",
@@ -15620,8 +15620,8 @@
                 ],
                 "publisher": ["Allen & Unwin"],
                 "identifiers": [
-                  { "value": "9781760293833" },
-                  { "value": "9781409145530" }
+                  { "type": "ISBN", "value": "9781760293833" },
+                  { "type": "ISBN", "value": "9781409145530" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -15666,7 +15666,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Orion Audiobooks"],
-                "identifiers": [{ "value": "9781409167365" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781409167365" }],
                 "contributors": [{ "display": "Titus Welliver" }],
                 "edition": {
                   "summary": "2016",
@@ -15708,8 +15708,8 @@
                 ],
                 "publisher": ["Orion Books"],
                 "identifiers": [
-                  { "value": "9781409145530" },
-                  { "value": "9781409147480" }
+                  { "type": "ISBN", "value": "9781409145530" },
+                  { "type": "ISBN", "value": "9781409147480" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -15752,8 +15752,8 @@
                 ],
                 "publisher": ["Grand Central"],
                 "identifiers": [
-                  { "value": "9781455524211" },
-                  { "value": "9780316225953" }
+                  { "type": "ISBN", "value": "9781455524211" },
+                  { "type": "ISBN", "value": "9780316225953" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -15797,8 +15797,8 @@
               ],
               "publisher": ["Grand Central"],
               "identifiers": [
-                { "value": "9781455524211" },
-                { "value": "9780316225953" }
+                { "type": "ISBN", "value": "9781455524211" },
+                { "type": "ISBN", "value": "9780316225953" }
               ],
               "contributors": [],
               "edition": {
@@ -15841,8 +15841,8 @@
               ],
               "publisher": ["Grand Central"],
               "identifiers": [
-                { "value": "9781455524211" },
-                { "value": "9780316225953" }
+                { "type": "ISBN", "value": "9781455524211" },
+                { "type": "ISBN", "value": "9780316225953" }
               ],
               "contributors": [],
               "edition": {
@@ -15898,8 +15898,8 @@
                 ],
                 "publisher": ["Orion Books"],
                 "identifiers": [
-                  { "value": "9781409145554" },
-                  { "value": "9781409147572" }
+                  { "type": "ISBN", "value": "9781409145554" },
+                  { "type": "ISBN", "value": "9781409147572" }
                 ],
                 "contributors": [],
                 "edition": {
@@ -15940,8 +15940,8 @@
               ],
               "publisher": ["Orion Books"],
               "identifiers": [
-                { "value": "9781409145554" },
-                { "value": "9781409147572" }
+                { "type": "ISBN", "value": "9781409145554" },
+                { "type": "ISBN", "value": "9781409147572" }
               ],
               "contributors": [],
               "edition": {
@@ -15981,8 +15981,8 @@
               ],
               "publisher": ["Orion Books"],
               "identifiers": [
-                { "value": "9781409145554" },
-                { "value": "9781409147572" }
+                { "type": "ISBN", "value": "9781409145554" },
+                { "type": "ISBN", "value": "9781409147572" }
               ],
               "contributors": [],
               "edition": {
@@ -16189,7 +16189,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Orion"],
-                "identifiers": [{ "value": "9781409186045" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781409186045" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2019",
@@ -16227,7 +16227,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Hachette Audio", "Blackstone Publishing"],
-                "identifiers": [{ "value": "9781549153983" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781549153983" }],
                 "contributors": [
                   { "display": "Christine Lakin" },
                   { "display": "Titus Welliver" }
@@ -16269,7 +16269,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Hachette Audio", "Blackstone Publishing"],
-              "identifiers": [{ "value": "9781549153983" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781549153983" }],
               "contributors": [
                 { "display": "Christine Lakin" },
                 { "display": "Titus Welliver" }
@@ -16310,7 +16310,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Orion"],
-              "identifiers": [{ "value": "9781409186045" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781409186045" }],
               "contributors": [],
               "edition": {
                 "summary": "2019",
@@ -16366,7 +16366,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771460377" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771460377" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "3. udgave, 2013",
@@ -16406,7 +16406,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771460377" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771460377" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "3. udgave, 2013",
@@ -16445,7 +16445,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771460377" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771460377" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "3. udgave, 2013",
@@ -16793,7 +16793,7 @@
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
                 "publisher": ["People'sPress"],
-                "identifiers": [{ "value": "9788771376678" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771376678" }],
                 "contributors": [
                   { "display": "Kurt Kreutzfeld" },
                   { "display": "Haruki Murakami" }
@@ -16837,7 +16837,7 @@
                   { "display": "Raymond Chandler", "__typename": "Person" }
                 ],
                 "publisher": ["People'sPress"],
-                "identifiers": [{ "value": "9788771376708" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771376708" }],
                 "contributors": [{ "display": "Kurt Kreutzfeld" }],
                 "edition": {
                   "summary": "5. udgave, 2013",
@@ -16874,7 +16874,7 @@
                 { "display": "Raymond Chandler", "__typename": "Person" }
               ],
               "publisher": ["People'sPress"],
-              "identifiers": [{ "value": "9788771376708" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771376708" }],
               "contributors": [{ "display": "Kurt Kreutzfeld" }],
               "edition": {
                 "summary": "5. udgave, 2013",
@@ -16910,7 +16910,7 @@
                 { "display": "Raymond Chandler", "__typename": "Person" }
               ],
               "publisher": ["People'sPress"],
-              "identifiers": [{ "value": "9788771376678" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771376678" }],
               "contributors": [
                 { "display": "Kurt Kreutzfeld" },
                 { "display": "Haruki Murakami" }
@@ -16969,7 +16969,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771467697" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771467697" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "3. udgave, 2017",
@@ -17009,7 +17009,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771467697" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771467697" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "3. udgave, 2017",
@@ -17048,7 +17048,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771467697" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771467697" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "3. udgave, 2017",
@@ -17106,7 +17106,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771466096" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771466096" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "6. udgave, 2016",
@@ -17146,7 +17146,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771466096" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771466096" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "6. udgave, 2016",
@@ -17185,7 +17185,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771466096" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771466096" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "6. udgave, 2016",
@@ -17322,7 +17322,7 @@
                   { "display": "Stieg Trenter", "__typename": "Person" }
                 ],
                 "publisher": ["Lindhardt og Ringhof"],
-                "identifiers": [{ "value": "9788711835173" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788711835173" }],
                 "contributors": [{ "display": "Mogens Cohrt" }],
                 "edition": {
                   "summary": "1. L&R udgave, 2017",
@@ -17364,8 +17364,8 @@
                 ],
                 "publisher": ["Lindhardt og Ringhof"],
                 "identifiers": [
-                  { "value": "9788711472071" },
-                  { "value": "9788711472071" }
+                  { "type": "ISBN", "value": "9788711472071" },
+                  { "type": "ISBN", "value": "9788711472071" }
                 ],
                 "contributors": [{ "display": "Mogens Cohrt" }],
                 "edition": {
@@ -17410,8 +17410,8 @@
                 ],
                 "publisher": ["Lindhardt og Ringhof"],
                 "identifiers": [
-                  { "value": "9788711924891" },
-                  { "value": "9788711924891" }
+                  { "type": "ISBN", "value": "9788711924891" },
+                  { "type": "ISBN", "value": "9788711924891" }
                 ],
                 "contributors": [
                   { "display": "Chili Turèll" },
@@ -17463,8 +17463,8 @@
               ],
               "publisher": ["Lindhardt og Ringhof"],
               "identifiers": [
-                { "value": "9788711924891" },
-                { "value": "9788711924891" }
+                { "type": "ISBN", "value": "9788711924891" },
+                { "type": "ISBN", "value": "9788711924891" }
               ],
               "contributors": [
                 { "display": "Chili Turèll" },
@@ -17514,7 +17514,7 @@
                 { "display": "Stieg Trenter", "__typename": "Person" }
               ],
               "publisher": ["Lindhardt og Ringhof"],
-              "identifiers": [{ "value": "9788711835173" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788711835173" }],
               "contributors": [{ "display": "Mogens Cohrt" }],
               "edition": {
                 "summary": "1. L&R udgave, 2017",
@@ -17570,7 +17570,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770533737" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770533737" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "2. udgave, 2009",
@@ -17610,7 +17610,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770533737" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770533737" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "2. udgave, 2009",
@@ -17649,7 +17649,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770533737" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770533737" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "2. udgave, 2009",
@@ -17854,7 +17854,7 @@
                   { "display": "James Marsters", "__typename": "Person" }
                 ],
                 "publisher": ["Buzzy Multimedia"],
-                "identifiers": [{ "value": "9780979074943" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780979074943" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Unabridged, 2009",
@@ -17915,7 +17915,7 @@
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
                 "publisher": ["Orbit"],
-                "identifiers": [{ "value": "9781841493985" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781841493985" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Orbit, 2007",
@@ -17991,7 +17991,7 @@
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
                 "publisher": ["Roc"],
-                "identifiers": [{ "value": "9780451457813" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780451457813" }],
                 "contributors": [],
                 "edition": {
                   "summary": "2000",
@@ -18029,7 +18029,7 @@
                   { "display": "Jim Butcher", "__typename": "Person" }
                 ],
                 "publisher": ["Orbit"],
-                "identifiers": [{ "value": "9780356500270" }],
+                "identifiers": [{ "type": "ISBN", "value": "9780356500270" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Paperback edition, 2011",
@@ -18068,7 +18068,7 @@
                 { "display": "Jim Butcher", "__typename": "Person" }
               ],
               "publisher": ["Orbit"],
-              "identifiers": [{ "value": "9780356500270" }],
+              "identifiers": [{ "type": "ISBN", "value": "9780356500270" }],
               "contributors": [],
               "edition": {
                 "summary": "Paperback edition, 2011",
@@ -18106,7 +18106,7 @@
                 { "display": "Jim Butcher", "__typename": "Person" }
               ],
               "publisher": ["Orbit"],
-              "identifiers": [{ "value": "9780356500270" }],
+              "identifiers": [{ "type": "ISBN", "value": "9780356500270" }],
               "contributors": [],
               "edition": {
                 "summary": "Paperback edition, 2011",
@@ -18159,7 +18159,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788770537247" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788770537247" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "2. udgave, 2011",
@@ -18199,7 +18199,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770537247" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770537247" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "2. udgave, 2011",
@@ -18238,7 +18238,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788770537247" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788770537247" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "2. udgave, 2011",
@@ -18909,7 +18909,7 @@
                   { "display": "Len Cariou", "__typename": "Person" }
                 ],
                 "publisher": [],
-                "identifiers": [{ "value": "9781607880448" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781607880448" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Unabridged, 2005",
@@ -19253,7 +19253,7 @@
                   { "display": "Michael Connelly", "__typename": "Person" }
                 ],
                 "publisher": ["Orion"],
-                "identifiers": [{ "value": "9781409157298" }],
+                "identifiers": [{ "type": "ISBN", "value": "9781409157298" }],
                 "contributors": [],
                 "edition": {
                   "summary": "Reissued, 2015",
@@ -19292,7 +19292,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Orion"],
-              "identifiers": [{ "value": "9781409157298" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781409157298" }],
               "contributors": [],
               "edition": {
                 "summary": "Reissued, 2015",
@@ -19330,7 +19330,7 @@
                 { "display": "Michael Connelly", "__typename": "Person" }
               ],
               "publisher": ["Orion"],
-              "identifiers": [{ "value": "9781409157298" }],
+              "identifiers": [{ "type": "ISBN", "value": "9781409157298" }],
               "contributors": [],
               "edition": {
                 "summary": "Reissued, 2015",
@@ -19386,7 +19386,7 @@
                 ],
                 "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
                 "publisher": ["Modtryk"],
-                "identifiers": [{ "value": "9788771466119" }],
+                "identifiers": [{ "type": "ISBN", "value": "9788771466119" }],
                 "contributors": [{ "display": "Allan Hilton Andersen" }],
                 "edition": {
                   "summary": "6. udgave, 2016",
@@ -19426,7 +19426,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771466119" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771466119" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "6. udgave, 2016",
@@ -19465,7 +19465,7 @@
               ],
               "creators": [{ "display": "Jo Nesbø", "__typename": "Person" }],
               "publisher": ["Modtryk"],
-              "identifiers": [{ "value": "9788771466119" }],
+              "identifiers": [{ "type": "ISBN", "value": "9788771466119" }],
               "contributors": [{ "display": "Allan Hilton Andersen" }],
               "edition": {
                 "summary": "6. udgave, 2016",

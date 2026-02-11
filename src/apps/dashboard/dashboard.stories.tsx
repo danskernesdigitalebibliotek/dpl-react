@@ -62,12 +62,15 @@ const meta: Meta<typeof DashBoard> = {
     reservationsUrl: {
       control: { type: "text" }
     },
-    ereolenHomepageUrl: {
-      control: { type: "text" }
-    },
     yourProfileText: {
       control: { type: "text" }
     },
+    // Config
+    blacklistedAvailabilityBranchesConfig: {
+      description: "Blacklisted availability branches",
+      control: { type: "text" }
+    },
+    // Texts.
     feesText: {
       control: { type: "text" }
     },
@@ -170,9 +173,10 @@ export const Primary: Story = {
     ...reservationListArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    blacklistedAvailabilityBranchesConfig:
+      "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",
     physicalLoansUrl: "/user/me/loans",
     reservationsUrl: "/user/me/reservations",
-    ereolenHomepageUrl: "https://ereolen.dk/",
     yourProfileText: "Your profile",
     feesText: "Fees",
     totalOwedText: "You owe in total",

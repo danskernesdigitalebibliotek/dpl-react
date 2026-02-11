@@ -5,13 +5,9 @@ import {
 } from "../../../core/publizon/publizon";
 import { LibraryProfile, UserData } from "../../../core/publizon/model";
 import { useText } from "../../../core/utils/text";
-import { useUrls } from "../../../core/utils/url";
-import Link from "../../../components/atoms/links/Link";
 
 const StatusSection: FC = () => {
   const t = useText();
-  const u = useUrls();
-  const alwaysAvailableEreolenUrl = u("alwaysAvailableEreolenUrl");
 
   const { data: libraryProfileFetched } = useGetV1LibraryProfile();
   const { isSuccess, data } = useGetV1UserLoans();
@@ -67,10 +63,7 @@ const StatusSection: FC = () => {
             {t("patronPageStatusSectionHeaderText")}
           </h2>
           <div className="text-body-small-regular mb-8">
-            {t("patronPageStatusSectionBodyText")}{" "}
-            <Link href={alwaysAvailableEreolenUrl}>
-              {t("patronPageStatusSectionLinkText")}
-            </Link>
+            {t("patronPageStatusSectionBodyText")}
           </div>
           <div className="text-body-small-regular mt-8 mb-8">
             {t("patronPageStatusSectionReservationsText", {

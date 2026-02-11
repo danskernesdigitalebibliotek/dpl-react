@@ -2,13 +2,13 @@ import * as React from "react";
 import { FC } from "react";
 // Do not understand why eslint is complaining about this import
 // It is for sure listed in the dependencies of package.json.
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Flatpickr from "react-flatpickr";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import "flatpickr/dist/flatpickr.css";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Danish } from "flatpickr/dist/l10n/da";
 import dayjs from "dayjs";
+import { dateFormatDayjs } from "../../core/configuration/date-format";
 
 export interface DateRangeInputProps {
   setStartDate: (date: string) => void;
@@ -33,12 +33,15 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
 }) => {
   const refLabel = React.useRef<HTMLLabelElement | null>(null);
 
-  const scrollCalendarIntoView = () => {
-    refLabel.current?.scrollIntoView();
+  // Disable past dates - only allow today and future dates
+  // Using disable instead of minDate because minDate causes unexpected behavior
+  // where existing date ranges don't display correctly
+  const isPastDate = (date: Date) => {
+    return dayjs(date).isBefore(dayjs(), "day");
   };
 
   // We only create a default date if both start and end date are set
-  // Because it is about defing a range.
+  // Because it is about defining a range.
   const value =
     startDate && endDate
       ? [dayjs(startDate).toDate(), dayjs(endDate).toDate()]
@@ -54,18 +57,25 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
         >
           {label}
         </label>
+        {/* TODO: fix typescript issue */}
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
         <Flatpickr
           id="date-range"
           value={value}
           options={{
             altInput: true,
             altFormat: "j. F Y",
-            minDate: dayjs().toDate(),
+            disable: [isPastDate],
             locale: Danish,
             dateFormat: "d-m-Y",
             static: true,
             mode: "range",
-            onOpen: scrollCalendarIntoView,
+            defaultDate: new Date(),
+            onOpen: () => {
+              // Scroll the page to ensure the input is visible in the viewport
+              refLabel.current?.scrollIntoView();
+            },
             onReady: (dates, currentDateStr, self) => {
               self.altInput?.setAttribute("aria-label", label);
               const classes =
@@ -92,8 +102,8 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
           }}
           onChange={([start, end]) => {
             if (start && end) {
-              setStartDate(dayjs(start).format("YYYY-MM-DD"));
-              setEndDate(dayjs(end).format("YYYY-MM-DD"));
+              setStartDate(dayjs(start).format(dateFormatDayjs));
+              setEndDate(dayjs(end).format(dateFormatDayjs));
             }
           }}
         />

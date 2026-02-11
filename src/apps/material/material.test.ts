@@ -1,4 +1,4 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
+import { FbiCoverUrlPattern } from "../../../cypress/fixtures/fixture.types";
 
 describe("Material", () => {
   it("Renders a title", () => {
@@ -15,9 +15,10 @@ describe("Material", () => {
       operationName: "getMaterial",
       fixtureFilePath: "material/fbi-api.json"
     });
+
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.get("img").should("have.attr", "src").and("match", coverUrlPattern);
+    cy.get("img").should("have.attr", "src").and("match", FbiCoverUrlPattern);
   });
 
   it("Renders favorite buttons", () => {
@@ -41,7 +42,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-header-content").scrollIntoView();
+    cy.getBySel("material-header-content").scrollIntoView({ duration: 100 });
 
     cy.getBySel("material-description-series-0")
       .should("be.visible")
@@ -84,7 +85,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-header-content").scrollIntoView();
+    cy.getBySel("material-header-content").scrollIntoView({ duration: 100 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -100,7 +101,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 100 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -277,6 +278,14 @@ describe("Material", () => {
       fixtureFilePath: "material/infomedia-fbi-api.json"
     });
 
+    cy.interceptRest({
+      aliasName: "UserInfo",
+      url: "**/userinfo",
+      fixtureFilePath: "material/userinfo.json"
+    });
+
+    cy.createFakeAuthenticatedSession();
+
     cy.visit(
       "/iframe.html?args=&id=apps-material--infomedia&viewMode=story&type=artikel"
     );
@@ -366,32 +375,6 @@ describe("Material", () => {
         .contains("Dimensions")
         .next()
         .should("contain.text", "Stereo");
-
-      // Verify "Contents" field and its list values
-      cy.get(".list-description__item")
-        .contains("Contents")
-        .next()
-        .within(() => {
-          // Validate each list item in "Contents"
-          const contents = [
-            "Hello hooray",
-            "Raped and freezin'",
-            "Elected",
-            "Billion dollar babies",
-            "Unfinished sweet",
-            "No more Mr. Nice Guy",
-            "Generation landslide",
-            "Sick things",
-            "Mary Ann",
-            "I love the dead"
-          ];
-
-          contents.forEach((item, index) => {
-            cy.get(".list-description__value--list li")
-              .eq(index)
-              .should("have.text", item);
-          });
-        });
     });
   });
 
@@ -405,9 +388,9 @@ describe("Material", () => {
 
     cy.scrollTo("bottom");
 
+    cy.getBySel("material-editions-disclosure").click();
     cy.getBySel("material-editions-disclosure")
       .should("contain", "Editions")
-      .click()
       .then((disclosure) => {
         cy.wrap(disclosure).should("contain", "Reserve");
       });
@@ -422,14 +405,14 @@ describe("Material", () => {
     cy.createFakeAuthenticatedSession();
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("reservation-modal-list-item-text")
       .should("be.visible")
@@ -451,18 +434,16 @@ describe("Material", () => {
       fixtureFilePath: "material/fbi-api.json"
     });
     cy.createFakeAuthenticatedSession();
-    cy.visit(
-      "/iframe.html?id=apps-material--default&viewMode=story&type=bog"
-    ).scrollTo("bottom");
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("material-header-buttons-physical")
       .should("be.visible")
       .and("contain", "Reserve bog")
       .click();
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("reservation-modal-submit-button", true)
       .should("be.visible")
@@ -501,7 +482,7 @@ describe("Material", () => {
     cy.getBySel("material-reviews-disclosure").should("be.visible").click();
     cy.getBySel("material-reviews").should(
       "contain",
-      "Dorthe Marlene Jørgensen, 2016"
+      "Dorthe Marlene Jørgensen - Library assessment, 2016"
     );
   });
 
@@ -513,7 +494,7 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
@@ -530,13 +511,90 @@ describe("Material", () => {
 
     cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
 
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 500 });
 
     cy.getBySel("availability-label")
       .find('[data-cy="availability-label-type"]')
       .contains("lydbog")
       .parent()
       .should("have.attr", "aria-pressed", "false");
+  });
+
+  it("Can favorite a material", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    // Intercept like button to show it as filled
+    cy.intercept("PUT", "**/list/default/**", {
+      statusCode: 200
+    }).as("Favorite list service");
+
+    cy.createFakeAuthenticatedSession();
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    // Material should show an unfilled heart icon
+    cy.get(".icon-favourite").should(
+      "not.have.class",
+      "icon-favourite--filled"
+    );
+
+    // Favorite the material
+    cy.get(".button-favourite").click();
+
+    // Material should show a filled heart icon
+    cy.get(".icon-favourite").should("have.class", "icon-favourite--filled");
+  });
+
+  it("Displays 8 recommended materials in the related grid", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    cy.getBySel("material-grid-related").should("exist");
+
+    cy.get('[data-cy="material-grid-related"] li').should("have.length", 8);
+  });
+
+  it("Renders 3 filter buttons and can click author and series filters", () => {
+    cy.interceptGraphql({
+      operationName: "getMaterial",
+      fixtureFilePath: "material/fbi-api.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "complexSearchWithPagination",
+      fixtureFilePath:
+        "material/material-grid-related-author-recommendations.json"
+    });
+
+    cy.visit("/iframe.html?id=apps-material--default&viewMode=story&type=bog");
+
+    // Check if there are 3 filters render
+    cy.get('[data-cy="material-grid-related-filter-button"]').should(
+      "have.length",
+      3
+    );
+
+    cy.contains(
+      '[data-cy="material-grid-related-filter-button"]',
+      "By same author"
+    ).click();
+
+    cy.contains(
+      '[data-cy="material-grid-related-filter-button"]',
+      "In same series"
+    ).click();
   });
 
   beforeEach(() => {
@@ -561,14 +619,19 @@ describe("Material", () => {
 
     cy.interceptRest({
       aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
+      url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
     });
 
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "complexSearchWithPagination",
+      fixtureFilePath:
+        "material/material-grid-related-author-recommendations.json"
     });
 
     cy.interceptRest({
@@ -577,25 +640,21 @@ describe("Material", () => {
       fixtureFilePath: "material/availability.json"
     });
 
-    // Intercept like button
+    // Intercept like button to show it as unfilled
     cy.intercept("HEAD", "**/list/default/**", {
       statusCode: 404
     }).as("Favorite list service");
 
-    // Intercept covers.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
     // Intercept url "translation".
     cy.interceptRest({
       aliasName: "UrlProxy",
       url: "**/dpl-url-proxy?url=**",
       fixtureFilePath: "material/dpl-url-proxy.json"
+    });
+    // Intercept covers
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
     });
   });
 });

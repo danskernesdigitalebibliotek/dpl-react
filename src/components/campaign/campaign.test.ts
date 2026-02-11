@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 export function isImageLoaded(cy: Cypress.cy) {
   cy.getBySel("campaign-image")
     .should("be.visible")
@@ -21,20 +19,10 @@ describe("Campaign", () => {
       fixtureFilePath: "search-result/facet-query-result"
     });
 
-    // Intercept all images from Cloudinary.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    ).as("Harry Potter cover");
     // Intercept covers.
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
     });
 
     // Intercept availability service.
@@ -43,12 +31,6 @@ describe("Campaign", () => {
       url: "**/availability/v3?recordid=**",
       fixtureFilePath: "material/availability.json"
     });
-
-    // Intercept material list service.
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
 
     cy.interceptGraphql({
       operationName: "intelligentFacets",
@@ -70,6 +52,7 @@ describe("Campaign", () => {
 
     isImageLoaded(cy);
     cy.getBySel("campaign-image").should("have.attr", "alt");
+    cy.getBySel("campaign-body").scrollIntoView({ duration: 500 });
     cy.getBySel("campaign-body").should("be.visible").contains("Harry Potter");
   });
 

@@ -13,9 +13,9 @@ query searchWithPagination(
 }
 
 query complexSearchWithPaginationWorkAccess(
-  $cql: String!,
-  $offset: Int!,
-  $limit: PaginationLimitScalar!,
+  $cql: String!
+  $offset: Int!
+  $limit: PaginationLimitScalar!
   $filters: ComplexSearchFiltersInput!
 ) {
   complexSearch(cql: $cql, filters: $filters) {
@@ -27,14 +27,15 @@ query complexSearchWithPaginationWorkAccess(
 }
 
 query complexSearchWithPagination(
-  $cql: String!,
-  $offset: Int!,
-  $limit: PaginationLimitScalar!,
+  $cql: String!
+  $offset: Int!
+  $limit: PaginationLimitScalar!
   $filters: ComplexSearchFiltersInput!
+  $sort: [SortInput!]
 ) {
   complexSearch(cql: $cql, filters: $filters) {
     hitcount
-    works(offset: $offset, limit: $limit) {
+    works(offset: $offset, limit: $limit, sort: $sort) {
       ...WorkSmall
     }
   }

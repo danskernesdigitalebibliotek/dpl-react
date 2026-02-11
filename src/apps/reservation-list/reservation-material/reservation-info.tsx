@@ -3,14 +3,14 @@ import check from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/ba
 import { useDeepCompareEffect } from "react-use";
 import { useText } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
-import {
-  getColors,
-  daysBetweenTodayAndDate
-} from "../../../core/utils/helpers/general";
+import { getColors } from "../../../core/utils/helpers/general";
+import { calculateRoundedUpDaysUntil } from "../../../core/utils/helpers/date";
 import { getPreferredBranch } from "../../../components/reservation/helper";
 import ReservationStatus from "./reservation-status";
 import { useGetBranches } from "../../../core/utils/branches";
 import { getReservationStatusInfoLabel } from "../utils/helpers";
+import { getTotalHoldings, useGetHoldings } from "../../material/helper";
+import { useConfig } from "../../../core/utils/config";
 
 interface ReservationInfoProps {
   reservationInfo: ReservationType;
@@ -30,8 +30,9 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   isDigital
 }) => {
   const t = useText();
-
+  const config = useConfig();
   const {
+    faust,
     state,
     expiryDate,
     pickupBranch,
@@ -39,6 +40,14 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
     pickupDeadline,
     pickupNumber
   } = reservationInfo;
+
+  const { data: holdingsData } = useGetHoldings({
+    faustIds: [String(faust)],
+    config,
+    blacklist: "availability",
+    options: { query: { enabled: !!faust } }
+  });
+  const holdings = getTotalHoldings(holdingsData || []);
 
   const [pickupLibrary, setPickupLibrary] = useState<string>("");
   const { success } = getColors();
@@ -92,6 +101,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         empty={!showStatusCircleIcon}
         showArrow={showArrow}
         className={reservationStatusClassNameOverride}
+        holdings={holdings}
       >
         <div className="counter__value color-secondary-gray">
           <img src={check} alt="" />
@@ -122,6 +132,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
         empty={!showStatusCircleIcon}
         showArrow={showArrow}
         className={reservationStatusClassNameOverride}
+        holdings={holdings}
       >
         {/* I am not using string interpolation here because of styling */}
         {/* if somehow it is possible to break text in one div into two lines */}
@@ -138,29 +149,33 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
   }
 
   if (state === "reserved" && !pickupBranch && pickupDeadline) {
-    const daysBetweenTodayAndPickup = daysBetweenTodayAndDate(pickupDeadline);
+    const daysBetweenTodayAndPickup =
+      calculateRoundedUpDaysUntil(pickupDeadline);
     const reservationAvailableLabel = showStatusCircleIcon
       ? t("reservationListAvailableInText", {
-          placeholders: { "@count": daysBetweenTodayAndDate(pickupDeadline) }
+          placeholders: {
+            "@count": calculateRoundedUpDaysUntil(pickupDeadline)
+          }
         })
       : "";
 
     return (
       <ReservationStatus
-        percent={daysBetweenTodayAndDate(pickupDeadline) / 100}
+        percent={calculateRoundedUpDaysUntil(pickupDeadline) / 100}
         label={reservationAvailableLabel}
         reservationInfo={reservationInfo}
         openReservationDetailsModal={openReservationDetailsModal}
         empty={!showStatusCircleIcon}
         showArrow={showArrow}
         className={reservationStatusClassNameOverride}
+        holdings={holdings}
       >
         <span className="counter__value color-secondary-gray">
           {/* I am not using string interpolation here because of styling */}
           {/* if somehow it is possible to break text in one div into two lines */}
           {/* where the first line has another font size AND is only the first "word" */}
           {/* then this should be changed to do that */}
-          {daysBetweenTodayAndDate(pickupDeadline) > 0
+          {calculateRoundedUpDaysUntil(pickupDeadline) > 0
             ? daysBetweenTodayAndPickup
             : 0}{" "}
         </span>
@@ -182,6 +197,7 @@ const ReservationInfo: FC<ReservationInfoProps> = ({
       empty
       showArrow={showArrow}
       className={reservationStatusClassNameOverride}
+      holdings={holdings}
     />
   );
 };

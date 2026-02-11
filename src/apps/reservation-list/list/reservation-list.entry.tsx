@@ -12,14 +12,15 @@ import { DeleteReservationModalArgs } from "../../../core/storybook/deleteReserv
 import { GlobalEntryTextProps } from "../../../core/storybook/globalTextArgs";
 
 export interface ReservationListUrlProps {
-  ereolenMyPageUrl: string;
   expirationWarningDaysBeforeConfig: string;
   pauseReservationInfoUrl: string;
+  userinfoUrl: string;
 }
 
 export interface ReservationListConfigProps {
   blacklistedPickupBranchesConfig: string;
   blacklistedSearchBranchesConfig: string;
+  blacklistedAvailabilityBranchesConfig: string;
   branchesConfig: string;
   expirationWarningDaysBeforeConfig: string;
   pauseReservationStartDateConfig: string;
@@ -30,6 +31,8 @@ export interface ReservationListTextProps {
   expiresSoonText: string;
   materialAndAuthorText: string;
   materialByAuthorText: string;
+  materialsInStockInfoText: string;
+  materialUrl: string;
   pauseReservationModalBodyText: string;
   pauseReservationModalCancelButtonLabelText: string;
   pauseReservationModalCloseModalText: string;
@@ -70,6 +73,7 @@ export interface ReservationListTextProps {
   reservationListYouAreInQueueText: string;
   resultPagerStatusText: string;
   showMoreText: string;
+  viewMaterialText: string;
 }
 
 export interface ReservationListEntryWithPageSizeProps

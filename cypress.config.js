@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { defineConfig } = require("cypress");
-const plugins = require("./cypress/plugins");
+import { defineConfig } from "cypress";
+import plugins from "./cypress/plugins";
 
-module.exports = defineConfig({
+export default defineConfig({
   projectId: "4trcdv",
   defaultCommandTimeout: 10000,
   pageLoadTimeout: 10000,
@@ -17,6 +17,18 @@ module.exports = defineConfig({
     baseUrl: "http://localhost:57021",
     testIsolation: false,
     setupNodeEvents(on, config) {
+      const terminalReportOptions = {
+        printLogsToConsole: "onFail",
+        printLogsToFile: "always",
+        outputCompactLogs: 1,
+        outputVerbose: false,
+        includeSuccessfulHookLogs: false
+      };
+      require("cypress-terminal-report/src/installLogsPrinter")(
+        on,
+        terminalReportOptions
+      );
+
       return plugins(on, config);
     }
   }

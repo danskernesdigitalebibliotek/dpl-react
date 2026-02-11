@@ -131,7 +131,7 @@
             "publisher": ["Politiken"],
             "identifiers": [
               {
-                "value": "9788740074918"
+                "type": "ISBN", "value": "9788740074918"
               }
             ],
             "contributors": [],
@@ -160,7 +160,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -229,7 +228,7 @@
           "publisher": ["Politiken"],
           "identifiers": [
             {
-              "value": "9788740074918"
+              "type": "ISBN", "value": "9788740074918"
             }
           ],
           "contributors": [],
@@ -258,7 +257,6 @@
             "playingTime": null
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -326,7 +324,7 @@
           "publisher": ["Politiken"],
           "identifiers": [
             {
-              "value": "9788740074918"
+              "type": "ISBN", "value": "9788740074918"
             }
           ],
           "contributors": [],
@@ -355,7 +353,6 @@
             "playingTime": null
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -557,7 +554,8 @@
         "code": "FICTION"
       },
       "dk5MainEntry": {
-        "display": "Skønlitteratur"
+        "display": "Skønlitteratur",
+        "code": "sk"
       },
       "relations": {
         "hasReview": [

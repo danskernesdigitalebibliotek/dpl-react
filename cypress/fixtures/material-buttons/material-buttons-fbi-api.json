@@ -155,7 +155,7 @@
             "publisher": ["Cicero"],
             "identifiers": [
               {
-                "value": "9788763844116"
+                "type": "ISBN", "type": "ISBN", "type": "ISBN", "value": "9788763844116"
               }
             ],
             "contributors": [
@@ -188,7 +188,6 @@
               "playingTime": null
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -244,10 +243,10 @@
             "publisher": ["Cicero"],
             "identifiers": [
               {
-                "value": "9788763844123"
+                "type": "ISBN", "type": "ISBN", "value": "9788763844123"
               },
               {
-                "value": "9788763844123"
+                "type": "ISBN", "type": "ISBN", "value": "9788763844123"
               }
             ],
             "contributors": [
@@ -276,7 +275,6 @@
             "notes": [],
             "physicalDescription": {},
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "ONLINE"
@@ -339,7 +337,7 @@
             "publisher": ["Rosinante"],
             "identifiers": [
               {
-                "value": "9788763850636"
+                "type": "ISBN", "type": "ISBN", "value": "9788763850636"
               }
             ],
             "contributors": [
@@ -392,7 +390,6 @@
               "materialUnits": [{ "extent": "16 t., 30 min." }]
             },
             "hostPublication": null,
-            "manifestationParts": null,
             "accessTypes": [
               {
                 "code": "PHYSICAL"
@@ -449,7 +446,7 @@
           "publisher": ["Rosinante"],
           "identifiers": [
             {
-              "value": "9788763850636"
+              "type": "ISBN", "type": "ISBN", "value": "9788763850636"
             }
           ],
           "contributors": [
@@ -502,7 +499,6 @@
             "materialUnits": [{ "extent": "16 t., 30 min." }]
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -558,7 +554,7 @@
           "publisher": ["Rosinante"],
           "identifiers": [
             {
-              "value": "9788763850636"
+              "type": "ISBN", "type": "ISBN", "value": "9788763850636"
             }
           ],
           "contributors": [
@@ -611,7 +607,6 @@
             "materialUnits": [{ "extent": "16 t., 30 min." }]
           },
           "hostPublication": null,
-          "manifestationParts": null,
           "accessTypes": [
             {
               "code": "PHYSICAL"
@@ -689,7 +684,8 @@
         "code": "FICTION"
       },
       "dk5MainEntry": {
-        "display": "Skønlitteratur"
+        "display": "Skønlitteratur",
+        "code": "sk"
       },
       "relations": {
         "hasReview": [

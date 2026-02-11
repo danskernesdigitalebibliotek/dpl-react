@@ -51,8 +51,8 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
         {/*
           We'll show 5 skeleton cards which should cover most screens.
         */}
-        {[...Array(5)].map(() => (
-          <li className="content-list__item">
+        {[...Array(5)].map((_, index) => (
+          <li key={index} className="content-list__item">
             <CardListItemSkeleton />
           </li>
         ))}

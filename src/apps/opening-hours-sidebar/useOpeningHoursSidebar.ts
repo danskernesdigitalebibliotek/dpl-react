@@ -1,10 +1,7 @@
 import { useDplOpeningHoursListGET } from "../../core/dpl-cms/dpl-cms";
 import { useConfig } from "../../core/utils/config";
-import {
-  formatDateForAPI,
-  convertBranchesToLibraries,
-  BranchConfigType
-} from "./helper";
+import { formatDateForAPI } from "../../core/utils/helpers/date";
+import { convertBranchesToLibraries, BranchConfigType } from "./helper";
 
 const useOpeningHoursSidebar = () => {
   const config = useConfig();

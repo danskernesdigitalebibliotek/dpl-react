@@ -148,9 +148,6 @@ const meta: Meta<typeof WrappedMenu> = {
     menuSignUpUrl: {
       control: { type: "text" }
     },
-    ereolenHomepageUrl: {
-      control: { type: "text" }
-    },
     expirationWarningDaysBeforeConfig: {
       control: { type: "text" }
     },
@@ -212,13 +209,11 @@ export const UserMenu: Story = {
     menuLoginUrl: "/Login",
     menuSignUpText: "Sign up",
     menuSignUpUrl: "/Signup",
-    ereolenHomepageUrl: "https://ereolen.dk/",
     expirationWarningDaysBeforeConfig: "6",
     searchHeaderLoginText: "Login",
     searchHeaderFavoritesText: "Liked"
   },
   render: (args) => {
-    // eslint-disable-next-line react/jsx-props-no-spreading
     const menu = <WrappedMenu {...args} />;
     // We use the Header component as context to the search bar.
     // It is the Header that creates the Search bar's design -

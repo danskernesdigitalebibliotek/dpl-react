@@ -1,0 +1,2722 @@
+[
+    {
+        "recordId": "07664400",
+        "reservable": true,
+        "reservations": 15,
+        "holdings": [
+            {
+                "branch": {
+                    "branchId": "DK-710109",
+                    "title": "Øbro Jagtvej"
+                },
+                "lmsPlacement": null,
+                "logisticsPlacement": [
+                    "Øbro Jagtvej",
+                    "3.sal",
+                    "Voksen",
+                    "Tidsskrifter"
+                ],
+                "materials": [
+                    {
+                        "itemNumber": "5393553040",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 20",
+                            "volumeNumber": "20"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393606063",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 18",
+                            "volumeNumber": "18"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393557631",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 16",
+                            "volumeNumber": "16"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393556899",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 17",
+                            "volumeNumber": "17"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393561493",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 15",
+                            "volumeNumber": "15"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393636213",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 12",
+                            "volumeNumber": "12"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393568447",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 11",
+                            "volumeNumber": "11"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393569052",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 10",
+                            "volumeNumber": "10"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393570654",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 09",
+                            "volumeNumber": "09"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393638984",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 08",
+                            "volumeNumber": "08"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393573149",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 07",
+                            "volumeNumber": "07"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641403",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 06",
+                            "volumeNumber": "06"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641810",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 05",
+                            "volumeNumber": "05"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393644399",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 04",
+                            "volumeNumber": "04"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393645263",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 03",
+                            "volumeNumber": "03"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393646278",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 02",
+                            "volumeNumber": "02"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393647185",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 01",
+                            "volumeNumber": "01"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393299845",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2023",
+                            "displayText": "2023, nr. 18",
+                            "volumeNumber": "18"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393300533",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2023",
+                            "displayText": "2023, nr. 19",
+                            "volumeNumber": "19"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393647673",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 52",
+                            "volumeNumber": "52"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710121",
+                    "title": "Østerbro"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": null,
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "A1015007288A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 21",
+                            "volumeNumber": "21"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393554098",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 19",
+                            "volumeNumber": "19"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393557641",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 16",
+                            "volumeNumber": "16"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "A1014780860A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 13",
+                            "volumeNumber": "13"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393606111",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 18",
+                            "volumeNumber": "18"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393556945",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 17",
+                            "volumeNumber": "17"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393554136",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 19",
+                            "volumeNumber": "19"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710113",
+                    "title": "Sundby"
+                },
+                "lmsPlacement": null,
+                "logisticsPlacement": [
+                    "Sundby",
+                    "1. sal",
+                    "Voksen",
+                    "Tidsskrifter"
+                ],
+                "materials": [
+                    {
+                        "itemNumber": "5393647223",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 01",
+                            "volumeNumber": "01"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393646324",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 02",
+                            "volumeNumber": "02"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393573181",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 07",
+                            "volumeNumber": "07"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641446",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 06",
+                            "volumeNumber": "06"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393639034",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 08",
+                            "volumeNumber": "08"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393568481",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 11",
+                            "volumeNumber": "11"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393569095",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 10",
+                            "volumeNumber": "10"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393636256",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 12",
+                            "volumeNumber": "12"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393557682",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 16",
+                            "volumeNumber": "16"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393561541",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 15",
+                            "volumeNumber": "15"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393553091",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 20",
+                            "volumeNumber": "20"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710121",
+                    "title": "Østerbro"
+                },
+                "lmsPlacement": null,
+                "logisticsPlacement": [
+                    "Østerbro",
+                    "Voksen",
+                    "Tidsskrifter"
+                ],
+                "materials": [
+                    {
+                        "itemNumber": "5393553059",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 20",
+                            "volumeNumber": "20"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393561507",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 15",
+                            "volumeNumber": "15"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393636221",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 12",
+                            "volumeNumber": "12"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393568455",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 11",
+                            "volumeNumber": "11"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393569060",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 10",
+                            "volumeNumber": "10"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393638992",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 08",
+                            "volumeNumber": "08"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393570662",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 09",
+                            "volumeNumber": "09"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393573157",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 07",
+                            "volumeNumber": "07"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641411",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 06",
+                            "volumeNumber": "06"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393644402",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 04",
+                            "volumeNumber": "04"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641829",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 05",
+                            "volumeNumber": "05"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393645271",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 03",
+                            "volumeNumber": "03"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393646286",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 02",
+                            "volumeNumber": "02"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393647193",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 01",
+                            "volumeNumber": "01"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393647681",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 52",
+                            "volumeNumber": "52"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710100",
+                    "title": "Hovedbiblioteket"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": {
+                        "locationId": "mag",
+                        "title": "Fjernmagasin, skal reserveres"
+                    },
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "A1014780863A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 13",
+                            "volumeNumber": "13"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393556910",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 17",
+                            "volumeNumber": "17"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "A1015007284A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 21",
+                            "volumeNumber": "21"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "FBS-101002",
+                    "title": "FjernUDlån (afh.sted)"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": {
+                        "locationId": "mag",
+                        "title": "Fjernmagasin, skal reserveres"
+                    },
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "5393421500",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 14",
+                            "volumeNumber": "14"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710113",
+                    "title": "Sundby"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": null,
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "A1014780838A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 13",
+                            "volumeNumber": "13"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "A1015007275A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 21",
+                            "volumeNumber": "21"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "FBS-101009",
+                    "title": "Fjernlager 2"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": null,
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "5393645301",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 03",
+                            "volumeNumber": "03"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393644437",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 04",
+                            "volumeNumber": "04"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641853",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 05",
+                            "volumeNumber": "05"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393570697",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 09",
+                            "volumeNumber": "09"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710118",
+                    "title": "Vanløse"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": null,
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "5393606071",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 18",
+                            "volumeNumber": "18"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "A1015007282A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 21",
+                            "volumeNumber": "21"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    },
+                    {
+                        "itemNumber": "A1014780841A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 13",
+                            "volumeNumber": "13"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393636231",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 12",
+                            "volumeNumber": "12"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "FBS-101009",
+                    "title": "Fjernlager 2"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": {
+                        "locationId": "mag",
+                        "title": "Fjernmagasin, skal reserveres"
+                    },
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "5393569044",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 10",
+                            "volumeNumber": "10"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393606081",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 18",
+                            "volumeNumber": "18"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710109",
+                    "title": "Øbro Jagtvej"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": null,
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "A1015007290A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 21",
+                            "volumeNumber": "21"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    },
+                    {
+                        "itemNumber": "A1014780862A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 13",
+                            "volumeNumber": "13"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710105",
+                    "title": "Brønshøj"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": null,
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "5393647215",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 01",
+                            "volumeNumber": "01"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393646316",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 02",
+                            "volumeNumber": "02"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393645298",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 03",
+                            "volumeNumber": "03"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393644429",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 04",
+                            "volumeNumber": "04"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641845",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 05",
+                            "volumeNumber": "05"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641438",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 06",
+                            "volumeNumber": "06"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393573173",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 07",
+                            "volumeNumber": "07"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393639018",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 08",
+                            "volumeNumber": "08"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393570689",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 09",
+                            "volumeNumber": "09"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393569087",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 10",
+                            "volumeNumber": "10"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393568471",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 11",
+                            "volumeNumber": "11"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "A1014780839A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 13",
+                            "volumeNumber": "13"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393557674",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 16",
+                            "volumeNumber": "16"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393556937",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 17",
+                            "volumeNumber": "17"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393606101",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 18",
+                            "volumeNumber": "18"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393554128",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 19",
+                            "volumeNumber": "19"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393553083",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 20",
+                            "volumeNumber": "20"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    },
+                    {
+                        "itemNumber": "A1015007280A",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 21",
+                            "volumeNumber": "21"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710118",
+                    "title": "Vanløse"
+                },
+                "lmsPlacement": null,
+                "logisticsPlacement": [
+                    "Vanløse",
+                    "Voksen",
+                    "Tidsskrifter"
+                ],
+                "materials": [
+                    {
+                        "itemNumber": "5393553075",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 20",
+                            "volumeNumber": "20"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393554111",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 19",
+                            "volumeNumber": "19"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393606098",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 18",
+                            "volumeNumber": "18"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393556929",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 17",
+                            "volumeNumber": "17"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393557666",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 16",
+                            "volumeNumber": "16"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393561523",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 15",
+                            "volumeNumber": "15"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393568463",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 11",
+                            "volumeNumber": "11"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393569079",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 10",
+                            "volumeNumber": "10"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393570670",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 09",
+                            "volumeNumber": "09"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393639001",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 08",
+                            "volumeNumber": "08"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393573165",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 07",
+                            "volumeNumber": "07"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641421",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 06",
+                            "volumeNumber": "06"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641837",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 05",
+                            "volumeNumber": "05"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393644410",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 04",
+                            "volumeNumber": "04"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393645281",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 03",
+                            "volumeNumber": "03"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393646308",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 02",
+                            "volumeNumber": "02"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393647207",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 01",
+                            "volumeNumber": "01"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "FBS-101003",
+                    "title": "Fjernlager (cso)"
+                },
+                "lmsPlacement": {
+                    "department": {
+                        "departmentId": "vo",
+                        "title": "Voksen"
+                    },
+                    "section": null,
+                    "location": null,
+                    "sublocation": {
+                        "sublocationId": "tss",
+                        "title": "Tidsskrifter"
+                    }
+                },
+                "logisticsPlacement": [],
+                "materials": [
+                    {
+                        "itemNumber": "5393556902",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 17",
+                            "volumeNumber": "17"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393636248",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 12",
+                            "volumeNumber": "12"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393561531",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 15",
+                            "volumeNumber": "15"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393554081",
+                        "available": false,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 19",
+                            "volumeNumber": "19"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    }
+                ]
+            },
+            {
+                "branch": {
+                    "branchId": "DK-710100",
+                    "title": "Hovedbiblioteket"
+                },
+                "lmsPlacement": null,
+                "logisticsPlacement": [
+                    "Hovedbiblioteket",
+                    "Fjernmagasin · Skal bestilles",
+                    "Tidsskrifter"
+                ],
+                "materials": [
+                    {
+                        "itemNumber": "5393414741",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 01",
+                            "volumeNumber": "01"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393415020",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 02",
+                            "volumeNumber": "02"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5344543961",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 03",
+                            "volumeNumber": "03"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5344544486",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 04",
+                            "volumeNumber": "04"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393393728",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 05",
+                            "volumeNumber": "05"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5344296997",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 06",
+                            "volumeNumber": "06"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393396506",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 07",
+                            "volumeNumber": "07"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393398428",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 08",
+                            "volumeNumber": "08"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393400902",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 10",
+                            "volumeNumber": "10"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393402311",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 11",
+                            "volumeNumber": "11"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393403723",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 12",
+                            "volumeNumber": "12"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393419867",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 13",
+                            "volumeNumber": "13"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5344306641",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 15",
+                            "volumeNumber": "15"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5344308375",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 16",
+                            "volumeNumber": "16"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393424461",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 17",
+                            "volumeNumber": "17"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393451221",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 18",
+                            "volumeNumber": "18"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393451833",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 19",
+                            "volumeNumber": "19"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393428531",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 20",
+                            "volumeNumber": "20"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393429595",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 21",
+                            "volumeNumber": "21"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393455901",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 22",
+                            "volumeNumber": "22"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393457173",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 23",
+                            "volumeNumber": "23"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393459036",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 24",
+                            "volumeNumber": "24"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393459141",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 25",
+                            "volumeNumber": "25"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393510228",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 26",
+                            "volumeNumber": "26"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393461944",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 27",
+                            "volumeNumber": "27"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393513952",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 28",
+                            "volumeNumber": "28"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393517036",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 29",
+                            "volumeNumber": "29"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393519004",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 30",
+                            "volumeNumber": "30"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393519438",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 31",
+                            "volumeNumber": "31"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393521254",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 32",
+                            "volumeNumber": "32"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393462592",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 34",
+                            "volumeNumber": "34"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393526175",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 33",
+                            "volumeNumber": "33"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393465079",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 35",
+                            "volumeNumber": "35"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393466393",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 37",
+                            "volumeNumber": "37"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393467306",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 38",
+                            "volumeNumber": "38"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393468426",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 39",
+                            "volumeNumber": "39"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393532892",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 40",
+                            "volumeNumber": "40"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393534062",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 41",
+                            "volumeNumber": "41"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393537691",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 42",
+                            "volumeNumber": "42"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393539013",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 43",
+                            "volumeNumber": "43"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393472636",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 44",
+                            "volumeNumber": "44"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393473594",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 45",
+                            "volumeNumber": "45"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393541743",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 46",
+                            "volumeNumber": "46"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393476208",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 47",
+                            "volumeNumber": "47"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393544386",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 48",
+                            "volumeNumber": "48"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393437865",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 49",
+                            "volumeNumber": "49"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393547423",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 50",
+                            "volumeNumber": "50"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393649633",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 51",
+                            "volumeNumber": "51"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393647665",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2024",
+                            "displayText": "2024, nr. 52",
+                            "volumeNumber": "52"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393647177",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 01",
+                            "volumeNumber": "01"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393646261",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 02",
+                            "volumeNumber": "02"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393645255",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 03",
+                            "volumeNumber": "03"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393643538",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 04",
+                            "volumeNumber": "04"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393641802",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 05",
+                            "volumeNumber": "05"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393574935",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 06",
+                            "volumeNumber": "06"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393639093",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 07",
+                            "volumeNumber": "07"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393572231",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 08",
+                            "volumeNumber": "08"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393570646",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 09",
+                            "volumeNumber": "09"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393568439",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 11",
+                            "volumeNumber": "11"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393636205",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 12",
+                            "volumeNumber": "12"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393561515",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 15",
+                            "volumeNumber": "15"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393554101",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 19",
+                            "volumeNumber": "19"
+                        },
+                        "materialGroup": {
+                            "name": "Standard",
+                            "description": "Std. materialegruppe"
+                        }
+                    },
+                    {
+                        "itemNumber": "5393553067",
+                        "available": true,
+                        "periodical": {
+                            "volume": null,
+                            "volumeYear": "2025",
+                            "displayText": "2025, nr. 20",
+                            "volumeNumber": "20"
+                        },
+                        "materialGroup": {
+                            "name": "nytss",
+                            "description": "Nyeste nr. ikke til hjemlån"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,9 +1,10 @@
 import * as React from "react";
 import { FC } from "react";
+import { first } from "lodash";
 import { AccessUrl } from "../../../../core/dbc-gateway/generated/graphql";
 import InvalidUrlError from "../../../../core/errors/InvalidUrlError";
 import { statistics } from "../../../../core/statistics/statistics";
-import { useStatistics } from "../../../../core/statistics/useStatistics";
+import { useEventStatistics } from "../../../../core/statistics/useStatistics";
 import { isUrlValid } from "../../../../core/utils/helpers/url";
 import { ButtonSize } from "../../../../core/utils/types/button";
 import { Manifestation } from "../../../../core/utils/types/entities";
@@ -13,6 +14,9 @@ import MaterialButtonOnlineDigitalArticle from "./MaterialButtonOnlineDigitalArt
 import MaterialButtonOnlineExternal from "./MaterialButtonOnlineExternal";
 import MaterialButtonOnlineInfomediaArticle from "./MaterialButtonOnlineInfomediaArticle";
 import { ManifestationMaterialType } from "../../../../core/utils/types/material-type";
+import MaterialButtonsOnlineInternal from "./MaterialButtonsOnlineInternal";
+import { getReaderPlayerType } from "../../../reader-player/helper";
+import { getFirstManifestation } from "../../../../apps/material/helper";
 
 export interface MaterialButtonsOnlineProps {
   manifestations: Manifestation[];
@@ -20,6 +24,7 @@ export interface MaterialButtonsOnlineProps {
   workId: WorkId;
   dataCy?: string;
   ariaLabelledBy: string;
+  isEditionPicker?: boolean;
 }
 
 const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
@@ -27,9 +32,10 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
   size,
   workId,
   dataCy = "material-buttons-online",
-  ariaLabelledBy
+  ariaLabelledBy,
+  isEditionPicker = false
 }) => {
-  const { track } = useStatistics();
+  const { track } = useEventStatistics();
   const trackOnlineView = () => {
     return track("click", {
       id: statistics.onlineReservation.id,
@@ -37,17 +43,44 @@ const MaterialButtonsOnline: FC<MaterialButtonsOnlineProps> = ({
       trackedData: workId
     });
   };
+  const readerPlayerType = getReaderPlayerType(
+    getFirstManifestation(manifestations)
+  );
 
-  // Find 'Ereol' object or default to the first 'access' object
-  const accessElement =
-    manifestations[0].access.find((item) => item.__typename === "Ereol") ||
-    manifestations[0].access[0];
+  if (readerPlayerType === "player" || readerPlayerType === "reader") {
+    return (
+      <MaterialButtonsOnlineInternal
+        openModal
+        size={size}
+        manifestations={manifestations}
+        dataCy={`${dataCy}-internal`}
+        workId={workId}
+        isEditionPicker={isEditionPicker}
+      />
+    );
+  }
 
-  // If the access type is an external type we'll show corresponding button.
-  if (
-    hasCorrectAccess("Ereol", manifestations) ||
-    hasCorrectAccess("AccessUrl", manifestations)
-  ) {
+  // Check if the access type is external (e.g., Filmstriben or eReolen Global).
+  if (hasCorrectAccess("AccessUrl", manifestations)) {
+    // Get the first manifestation
+    const manifestation = first(manifestations);
+
+    // Get the first active access element, but prefer DBC Webarkiv.
+    const accessElement =
+      manifestation?.access?.find(
+        (access) =>
+          access.__typename === "AccessUrl" &&
+          access.status === "OK" &&
+          access.origin === "DBC Webarkiv"
+      ) ||
+      manifestation?.access?.find(
+        (access) => access.__typename === "AccessUrl" && access.status === "OK"
+      );
+
+    if (!accessElement) {
+      // If there is no active access element, don't render anything.
+      return null;
+    }
     const { origin, url: externalUrl } = accessElement as AccessUrl;
 
     //  We have experienced that externalUrl is not always valid.

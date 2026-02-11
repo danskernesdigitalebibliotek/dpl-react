@@ -1,7 +1,12 @@
+//  Todo: Fix infinite loop in MaterialDetailsModal
+//  Please see https://reload.atlassian.net/browse/DDFBRA-303
 import React, { FC, ReactNode } from "react";
 import Modal from "../../../core/utils/modal";
 import { useText } from "../../../core/utils/text";
-import { ReservationType } from "../../../core/utils/types/reservation-type";
+import {
+  reservationId,
+  ReservationType
+} from "../../../core/utils/types/reservation-type";
 import { loanId, LoanType } from "../../../core/utils/types/loan-type";
 import { getModalIds } from "../../../core/utils/helpers/modal-helpers";
 
@@ -14,7 +19,7 @@ export function reservationDetailsModalId(
   reservation: ReservationType
 ): string {
   const prefix = String(getModalIds().reservationDetails);
-  const fragment = String(reservation.identifier || reservation.faust);
+  const fragment = reservationId(reservation);
   // TODO: Use constructModalId() instead of string concatenation.
   // This should done once we get around the manually added suffix in
   // src/core/configuration/modal-ids.json.

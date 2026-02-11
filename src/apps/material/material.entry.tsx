@@ -7,9 +7,17 @@ import { withUrls } from "../../core/utils/url";
 import Material from "./material";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { DeleteReservationModalArgs } from "../../core/storybook/deleteReservationModalArgs";
+import { PublizonErrorArgs } from "../../core/storybook/publizonErrorArgs";
+import { CopyLinkArgs } from "../../core/storybook/copyLinkArgs";
+import { MappArgs } from "../../core/storybook/mappArgs";
+import { EditionSwitchModalArgs } from "../../core/storybook/editionSwitchModalArgs";
+import withPageStatistics from "../../core/statistics/withPageStatistics";
+import useSetSmoothScroll from "../../core/utils/useSetSmoothScroll";
 
 interface MaterialEntryTextProps {
   alreadyReservedText: string;
+  approveLoanText: string;
   approveReservationText: string;
   blockedButtonText: string;
   cantReserveText: string;
@@ -64,6 +72,7 @@ interface MaterialEntryTextProps {
   goToText: string;
   reservationDetailsNoInterestAfterTitleText: string;
   identifierText: string;
+  infomediaCopyrightText: string;
   infomediaModalCloseModalAriaLabelText: string;
   infomediaModalScreenReaderModalDescriptionText: string;
   inSameSeriesText: string;
@@ -72,12 +81,20 @@ interface MaterialEntryTextProps {
   instantLoanTitleText: string;
   instantLoanUnderlineDescriptionText: string;
   interestPeriodsConfig: string;
+  libraryAssessmentText: string;
   librariesHaveTheMaterialText: string;
   listenOnlineText: string;
   loadingText: string;
+  loanWithMaterialTypeText: string;
   loginToSeeReviewText: string;
   materialHeaderAllEditionsText: string;
   materialHeaderAuthorByText: string;
+  materialGridRelatedTitleText: string;
+  materialGridRelatedRecommendationsDataLabelText: string;
+  materialGridRelatedSeriesDataLabelText: string;
+  materialGridRelatedAuthorDataLabelText: string;
+  materialGridRelatedSelectAriaLabelText: string;
+  materialGridRelatedInlineFiltersAriaLabelText: string;
   materialIsAvailableInAnotherEditionText: string;
   materialIsIncludedText: string;
   materialIsLoanedOutText: string;
@@ -98,8 +115,24 @@ interface MaterialEntryTextProps {
   numberDescriptionText: string;
   numberInQueueText: string;
   okButtonText: string;
+  onlineInternalModalCloseAriaLabelText: string;
+  onlineInternalModalScreenReaderDescriptionText: string;
+  onlineInternalModalEnsureNotificationText: string;
+  onlineInternalResponseErrorSubtitleText: string;
+  onlineInternalResponseErrorTitleText: string;
+  onlineInternalResponseLoanedSubtitleText: string;
+  onlineInternalResponseLoanedTitleText: string;
+  onlineInternalResponseReservedSubtitleText: string;
+  onlineInternalResponseReservedTitleText: string;
+  onlineInternalErrorsText: string;
+  onlineInternalSuccessLoanedText: string;
+  onlineInternalSuccessManualBorrowingNoticeText: string;
+  onlineInternalSuccessReservedText: string;
   onlineLimitMonthAudiobookInfoText: string;
   onlineLimitMonthEbookInfoText: string;
+  onlineMaterialPlayerText: string;
+  onlineMaterialReaderText: string;
+  onlineMaterialTeaserText: string;
   openOrderAuthenticationErrorText: string;
   openOrderErrorMissingPincodeText: string;
   openOrderInvalidOrderText: string;
@@ -144,13 +177,17 @@ interface MaterialEntryTextProps {
   outOfText: string;
   periodicalSelectEditionText: string;
   periodicalSelectYearText: string;
-  reservationDetailsPickUpAtTitleText: string;
+  playerModalCloseButtonText: string;
+  playerModalDescriptionText: string;
   queueText: string;
   ratingIsText: string;
   readArticleText: string;
   receiveEmailWhenMaterialReadyText: string;
   receiveSmsWhenMaterialReadyText: string;
+  reservableFromAnotherLibraryMissingEmailText: string;
+  reservableFromAnotherLibraryExtraInfoText: string;
   reservableFromAnotherLibraryText: string;
+  reservationDetailsPickUpAtTitleText: string;
   reservationErrorsDescriptionText: string;
   reservationErrorsTitleText: string;
   reservationModalCloseModalAriaLabelText: string;
@@ -174,10 +211,13 @@ interface MaterialEntryTextProps {
 }
 
 interface MaterialEntryConfigProps {
+  agencyIdConfig: string;
   blacklistedAvailabilityBranchesConfig?: string;
   blacklistedInstantLoanBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
   branchesConfig: string;
+  findOnShelfDisclosuresDefaultOpenConfig: string;
+  findOnShelfHideUnavailableHoldingsConfig: string;
   instantLoanConfig: string;
   smsNotificationsForReservationsEnabledConfig: string;
 }
@@ -186,14 +226,24 @@ export interface MaterialEntryProps
   extends GlobalUrlEntryPropsInterface,
     MaterialEntryTextProps,
     GlobalEntryTextProps,
-    MaterialEntryConfigProps {
+    MaterialEntryConfigProps,
+    DeleteReservationModalArgs,
+    PublizonErrorArgs,
+    CopyLinkArgs,
+    MappArgs,
+    EditionSwitchModalArgs {
   wid: WorkId;
 }
 
-const WrappedMaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => (
-  <GuardedApp app="material">
-    <Material wid={wid} />
-  </GuardedApp>
-);
+const WrappedMaterialEntry: React.FC<MaterialEntryProps> = ({ wid }) => {
+  useSetSmoothScroll();
+  return (
+    <GuardedApp app="material">
+      <Material wid={wid} />
+    </GuardedApp>
+  );
+};
 
-export default withConfig(withUrls(withText(WrappedMaterialEntry)));
+export default withConfig(
+  withUrls(withText(withPageStatistics(WrappedMaterialEntry, 5000)))
+);

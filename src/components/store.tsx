@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -39,7 +38,11 @@ const queryClient = new QueryClient({
   }
 });
 
-function Store({ children }: { children: React.ReactNode }) {
+interface StoreProps {
+  children: React.ReactNode;
+}
+
+function Store({ children }: StoreProps) {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
@@ -48,9 +51,5 @@ function Store({ children }: { children: React.ReactNode }) {
     </Provider>
   );
 }
-
-Store.propTypes = {
-  children: PropTypes.node.isRequired
-};
 
 export default Store;

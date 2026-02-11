@@ -5,6 +5,7 @@ import {
   SuggestionsFromQueryStringQuery,
   SuggestionTypeEnum
 } from "../../core/dbc-gateway/generated/graphql";
+import { getUrlQueryParam } from "../../core/utils/helpers/url";
 
 export const getAutosuggestCategoryList = (t: UseTextFunction) => {
   const autosuggestCategoryList = [
@@ -48,7 +49,7 @@ export const getAutosuggestCategoryList = (t: UseTextFunction) => {
 };
 
 export function findNonWorkSuggestion(
-  originalData: SuggestionsFromQueryStringQuery["suggest"]["result"] | []
+  originalData: SuggestionsFromQueryStringQuery["localSuggest"]["result"] | []
 ) {
   return originalData.find(
     (item) =>
@@ -64,14 +65,10 @@ export function determineSuggestionTerm(suggestion: Suggestion): string {
   return suggestion.term;
 }
 
-export function isDisplayedAsWorkSuggestion(
-  selectedItem: Suggestion["work"],
-  currentMaterialData: Suggestion[]
-) {
-  const dataWithWorkId = currentMaterialData.filter(
-    (item) => item.work?.workId === selectedItem?.workId
-  );
-  return Boolean(dataWithWorkId.length);
+export function getInitialSearchQuery(): string {
+  const qParam = getUrlQueryParam("q");
+  // If q is "*" or doesn't exist, return empty string for display
+  return qParam === "*" || !qParam ? "" : qParam;
 }
 
 export default {};

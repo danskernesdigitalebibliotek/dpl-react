@@ -221,6 +221,105 @@ export const Primary: Story = {
         defaultValue: { summary: "Log in again" }
       },
       control: { type: "text" }
+    },
+    librarySelectEmptyStateText: {
+      description: "Library select empty state text",
+      table: {
+        type: { summary: "text" },
+        defaultValue: { summary: "Choose library" }
+      },
+      control: { type: "text" }
+    },
+    findLibraryDialogTitleText: {
+      description: "Find library dialog title text",
+      table: {
+        type: { summary: "text" },
+        defaultValue: { summary: "Find nearest library" }
+      },
+      control: { type: "text" }
+    },
+    findLibraryDialogDawaInputLabelText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: { summary: "Enter your address" }
+      },
+      control: { type: "text" }
+    },
+    findLibraryDialogDawaInputPlaceholderText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: { summary: "Fx Torvegade 1, 1401 København K" }
+      },
+      control: { type: "text" }
+    },
+    findLibraryDialogGeoLocationButtonText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: { summary: "Find nearest library using your location" }
+      },
+      control: { type: "text" }
+    },
+    findLibraryDialogSuggestionsListLabelText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: { summary: "Choose library" }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorNotSupportedText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "Geolocation is not supported by your browser."
+        }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorPermissionDeniedText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary:
+            "You have denied access to your location. Allow location access in your browser."
+        }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorPositionUnavailableText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "Your location is not available at the moment."
+        }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorTimeoutText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "The request for your location timed out. Please try again."
+        }
+      },
+      control: { type: "text" }
+    },
+    geoLocationErrorDefaultText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "An error occurred while retrieving your location."
+        }
+      },
+      control: { type: "text" }
+    },
+    reverseGeocodeErrorDefaultText: {
+      table: {
+        type: { summary: "text" },
+        defaultValue: {
+          summary: "Could not fetch address."
+        }
+      },
+      control: { type: "text" }
     }
   },
   args: {
@@ -233,8 +332,8 @@ export const Primary: Story = {
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
     minAgeConfig: "18",
-    branchesConfig: `[{"branchId":"DK-775120","title":"Højbjerg"},{"branchId":"DK-775122","title":"Beder-Malling"},{"branchId":"DK-775144","title":"Gellerup"},{"branchId":"DK-775167","title":"Lystrup"},{"branchId":"DK-775146","title":"Harlev"},{"branchId":"DK-775168","title":"Skødstrup"},{"branchId":"FBS-751010","title":"Arresten"},{"branchId":"DK-775147","title":"Hasle"},{"branchId":"FBS-751032","title":"Må ikke benyttes"},{"branchId":"FBS-751031","title":"Fjernlager 1"},{"branchId":"DK-775126","title":"Solbjerg"},{"branchId":"FBS-751030","title":"ITK"},{"branchId":"DK-775149","title":"Sabro"},{"branchId":"DK-775127","title":"Tranbjerg"},{"branchId":"DK-775160","title":"Risskov"},{"branchId":"DK-775162","title":"Hjortshøj"},{"branchId":"DK-775140","title":"Åby"},{"branchId":"FBS-751009","title":"Fjernlager 2"},{"branchId":"FBS-751029","title":"Stadsarkivet"},{"branchId":"FBS-751027","title":"Intern"},{"branchId":"FBS-751026","title":"Fælles undervejs"},{"branchId":"FBS-751025","title":"Fællessekretariatet"},{"branchId":"DK-775133","title":"Bavnehøj"},{"branchId":"FBS-751024","title":"Fjernlånte materialer"},{"branchId":"DK-775100","title":"Hovedbiblioteket"},{"branchId":"DK-775170","title":"Trige"},{"branchId":"DK-775150","title":"Tilst"},{"branchId":"DK-775130","title":"Viby"},{"branchId":"DK-775164","title":"Egå"}]`,
-    userinfoUrl: "https://login.bib.dk/userinfo",
+    branchesConfig: `[{"branchId":"DK-710111","title":"Grønlandsk Bibliotek","location":{"address":"Ukendt addresse et sted i Grønland","value":"Ukendt addresse et sted i Grønland"}},{"branchId":"DK-710110","title":"Biblioteket Rentemestervej","location":{"address":"Suomisvej 7 st. 2","city":"1927 Frederiksberg C","value":"Suomisvej 7 st. 2 1927 Frederiksberg C","lat":"55.6795","lng":"12.5563"}},{"branchId":"DK-710113","title":"Sundby","location":{"address":"Baaringvadvænget 2","city":"5580 Nørre Aaby","value":"Baaringvadvænget 2 5580 Nørre Aaby","lat":"55.4534","lng":"9.89213"}},{"branchId":"DK-710112","title":"Solvang","location":{"address":"Banestien 2 ","city":"6310 Broager","value":"Banestien 2 6310 Broager ","lat":"54.8862","lng":"9.67579"}},{"branchId":"DK-710115","title":"Sydhavn","location":{"address":"Dummy Street 15","city":"2450 København SV","value":"Dummy Street 15 2450 København SV","lat":"55.6530","lng":"12.5450"}},{"branchId":"DK-710114","title":"Bibliotekshuset","location":{"address":"Dummy Street 14","city":"1500 København V","value":"Dummy Street 14 1500 København V","lat":"55.6730","lng":"12.5650"}},{"branchId":"DK-710117","title":"Valby","location":{"address":"Dummy Street 17","city":"2500 Valby","value":"Dummy Street 17 2500 Valby","lat":"55.6670","lng":"12.5010"}},{"branchId":"DK-710116","title":"Tingbjerg","location":{"address":"Dummy Street 16","city":"2700 Brønshøj","value":"Dummy Street 16 2700 Brønshøj","lat":"55.7100","lng":"12.5200"}},{"branchId":"DK-710119","title":"Vesterbro","location":{"address":"Dummy Street 19","city":"1620 København V","value":"Dummy Street 19 1620 København V","lat":"55.6680","lng":"12.5520"}},{"branchId":"DK-710118","title":"Vanløse","location":{"address":"Dummy Street 18","city":"2720 Vanløse","value":"Dummy Street 18 2720 Vanløse","lat":"55.6830","lng":"12.4880"}},{"branchId":"DK-710100","title":"Hovedbiblioteket","location":{"address":"Dummy Street 100","city":"1550 København V","value":"Dummy Street 100 1550 København V","lat":"55.6760","lng":"12.5700"}},{"branchId":"DK-710120","title":"Vigerslev","location":{"address":"Dummy Street 120","city":"2500 Valby","value":"Dummy Street 120 2500 Valby","lat":"55.6550","lng":"12.4950"}},{"branchId":"DK-710122","title":"Ørestad","location":{"address":"Dummy Street 122","city":"2300 København S","value":"Dummy Street 122 2300 København S","lat":"55.6380","lng":"12.5780"}},{"branchId":"DK-710121","title":"Østerbro","location":{"address":"Dummy Street 121","city":"2100 København Ø","value":"Dummy Street 121 2100 København Ø","lat":"55.7050","lng":"12.5760"}},{"branchId":"DK-710104","title":"Blågården","location":{"address":"Dummy Street 104","city":"2200 København N","value":"Dummy Street 104 2200 København N","lat":"55.6900","lng":"12.5550"}},{"branchId":"DK-710106","title":"Christianshavn","location":{"address":"Dummy Street 106","city":"1420 København K","value":"Dummy Street 106 1420 København K","lat":"55.6730","lng":"12.5930"}},{"branchId":"DK-710105","title":"Brønshøj","location":{"address":"Dummy Street 105","city":"2700 Brønshøj","value":"Dummy Street 105 2700 Brønshøj","lat":"55.7020","lng":"12.5100"}},{"branchId":"DK-710108","title":"Islands Brygge","location":{"address":"Dummy Street 108","city":"2300 København S","value":"Dummy Street 108 2300 København S","lat":"55.6600","lng":"12.5800"}},{"branchId":"DK-710107","title":"Husum","location":{"address":"Dummy Street 107","city":"2700 Brønshøj","value":"Dummy Street 107 2700 Brønshøj","lat":"55.7050","lng":"12.5250"}},{"branchId":"DK-710109","title":"Øbro Jagtvej"}]`,
+    branchAddressSearchEnabledConfig: "1",
     dashboardUrl: "/user/me/dashboard",
     agencyConfig: "999999",
     textNotificationsEnabledConfig: "1",
@@ -271,7 +370,28 @@ export const Primary: Story = {
       "You are now registered as a user and need to log in again to be able to use the application.",
     postRegisterRedirectInfoBottomText:
       "You will be sent to the Adgangsplatformen to log in again in @seconds seconds.",
-    postRegisterRedirectButtonText: "Log in again"
+    postRegisterRedirectButtonText: "Log in again",
+
+    librarySelectEmptyStateText: "Choose library",
+    findLibraryDialogTitleText: "Find nearest library",
+    findLibraryDialogDawaInputLabelText: "Enter your address",
+    findLibraryDialogDawaInputPlaceholderText:
+      "Ex. Torvegade 1, 1401 København K",
+    findLibraryDialogGeoLocationButtonText:
+      "Find nearest library using your location",
+    findLibraryDialogSuggestionsListLabelText: "Choose library",
+
+    geoLocationErrorNotSupportedText:
+      "Geolocation is not supported by your browser.",
+    geoLocationErrorPermissionDeniedText:
+      "You have denied access to your location. Allow location access in your browser.",
+    geoLocationErrorPositionUnavailableText:
+      "Your location is not available at the moment.",
+    geoLocationErrorTimeoutText:
+      "The request for your location timed out. Please try again.",
+    geoLocationErrorDefaultText:
+      "An error occurred while retrieving your location.",
+    reverseGeocodeErrorDefaultText: "Could not fetch address"
   },
   decorators: [
     (Story) => {

@@ -131,7 +131,7 @@ export const Search: Story = {
     stringSuggestionWorkText: "material",
     stringSuggestionTopicText: "topic",
     searchUrl: "/search",
-    advancedSearchUrl: "/advanced-search",
+    advancedSearchUrl: "/advancedsearch",
     searchHeaderDropdownText: "Dropdown with additional search functions",
     materialUrl: "/work/:workid",
     autosuggestBookCategoryText: "Books",
@@ -151,7 +151,6 @@ export const Search: Story = {
   // It is the Header that creates the Search bar's design -
   // - without it, the Search bar loses its shape.
   render: (args: SearchHeaderEntryProps) => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <StoryHeader search={<SearchHeaderEntry {...args} />} />
   )
 };

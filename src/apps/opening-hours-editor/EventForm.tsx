@@ -1,15 +1,12 @@
-// I dont know why eslint is complaining about label-has-associated-control
-// as the label is associated with the input field. I will disable it for now.
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
 import { OpeningHoursCategoriesType } from "./types";
 import { useText } from "../../core/utils/text";
 import {
   extractTime,
-  getDateString,
-  getStringForDateInput,
-  getWeekDayName
-} from "./helper";
+  formatDate,
+  formatDateForAPI,
+  formatWeekday
+} from "../../core/utils/helpers/date";
 
 export type EventFormOnSubmitType = {
   category: OpeningHoursCategoriesType;
@@ -46,8 +43,8 @@ const EventForm: React.FC<EventFormProps> = ({
 
   const initialStartTime = extractTime(startDate);
   const initialEndTime = extractTime(endDate);
-  const weekDayName = getWeekDayName(startDate);
-  const startDateString = getDateString(startDate);
+  const weekDayName = formatWeekday(startDate);
+  const startDateString = formatDate(startDate);
 
   const [startTime, setStartTime] = useState(initialStartTime);
   const [endTime, setEndTime] = useState(initialEndTime);
@@ -174,7 +171,7 @@ const EventForm: React.FC<EventFormProps> = ({
             type="date"
             className="opening-hours-editor-form__time-input"
             id="event-form-end-date"
-            min={getStringForDateInput(startDate)}
+            min={formatDateForAPI(startDate)}
             disabled={!isRepeated}
             required={isRepeated}
             value={repeatedEndDate || ""}

@@ -1,3 +1,4 @@
+import { FbiCoverUrlPattern } from "../../../../cypress/fixtures/fixture.types";
 import { TOKEN_LIBRARY_KEY } from "../../../core/token";
 
 describe("Loan list", () => {
@@ -12,7 +13,7 @@ describe("Loan list", () => {
       win.sessionStorage.setItem(TOKEN_LIBRARY_KEY, "random-token");
     });
 
-    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v2**", {
+    cy.intercept("GET", "**/external/agencyid/patrons/patronid/v4**", {
       patron: {
         blockStatus: null
       }
@@ -161,36 +162,20 @@ describe("Loan list", () => {
       }
     }).as("digital_loans");
 
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("cover");
+    cy.interceptGraphql({
+      operationName: "getManifestationViaMaterialByFaust",
+      fixtureFilePath: "reservation-details/fbi-api.json"
+    });
 
-    cy.intercept("POST", "**/next*/**", {
-      statusCode: 200,
-      body: {
-        data: {
-          manifestation: {
-            pid: "870970-basis:22629344",
-            titles: { full: ["Dummy Some Title"] },
-            abstract: ["Dummy Some abstract ..."],
-            edition: {
-              summary: "3. udgave, 1. oplag (2019)",
-              publicationYear: {
-                display: "2006"
-              }
-            },
-            materialTypes: [{ materialTypeSpecific: { display: "Dummy bog" } }],
-            creators: [
-              { display: "Dummy Jens Jensen" },
-              { display: "Dummy Some Corporation" }
-            ]
-          }
-        }
-      }
-    }).as("work");
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
+
+    cy.interceptGraphql({
+      operationName: "GetBestRepresentationPidByIsbn",
+      fixtureFilePath: "cover/cover-get-best-representation-by-isbn.json"
+    });
 
     cy.intercept("GET", "**v1/products/**", {
       product: {
@@ -287,7 +272,7 @@ describe("Loan list", () => {
     ).as("renew");
 
     cy.visit("/iframe.html?path=/story/apps-loan-list--primary");
-    cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"]);
+    cy.wait(["@physical_loans", "@digital_loans"]);
   });
 
   // TODO: Fix this test
@@ -336,10 +321,7 @@ describe("Loan list", () => {
     cy.get(".list-reservation-container")
       .find(".list-reservation .cover img")
       .should("have.attr", "src")
-      .should(
-        "include",
-        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
-      );
+      .and("match", FbiCoverUrlPattern);
 
     // ID 42 2.b. Material types including accessibility of material
     cy.get(".list-reservation-container")
@@ -374,9 +356,13 @@ describe("Loan list", () => {
     cy.get(".list-reservation-container")
       .find(".list-reservation")
       .eq(0)
-      .scrollIntoView()
-      .find(".list-reservation__information div a")
-      .should("exist");
+      .scrollIntoView();
+    cy.get(".list-reservation-container")
+      .find(".list-reservation")
+      .eq(0)
+      .within(() => {
+        cy.get(".list-reservation__information div a").should("exist");
+      });
 
     // 2.b.iv.3.c. Only shown if loan is overdue
     cy.get(".list-reservation-container")
@@ -480,7 +466,7 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 24-10-2022 08:32");
+      .should("have.text", "Due date 24-10-2022 06:32");
 
     // 2.c.ii. Loans have...
     // ID 42 2.a. Material cover
@@ -488,10 +474,7 @@ describe("Loan list", () => {
       .eq(1)
       .find(".list-reservation .cover img")
       .should("have.attr", "src")
-      .should(
-        "include",
-        "https://res.cloudinary.com/dandigbib/image/upload/t_ddb_cover_small/v1543886053/bogportalen.dk/9788700398368.jpg"
-      );
+      .and("match", FbiCoverUrlPattern);
 
     // ID 42 2.b. Material types including accessibility of material
     cy.get(".list-reservation-container")
@@ -549,21 +532,21 @@ describe("Loan list", () => {
       .find(".list-reservation")
       .eq(0)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 24-10-2022 08:32");
+      .should("have.text", "Due date 24-10-2022 06:32");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(2)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 28-10-2022 08:32");
+      .should("have.text", "Due date 28-10-2022 06:32");
 
     cy.get(".list-reservation-container")
       .eq(1)
       .find(".list-reservation")
       .eq(2)
       .find(".list-reservation__deadline p")
-      .should("have.text", "Due date 28-10-2022 08:32");
+      .should("have.text", "Due date 28-10-2022 06:32");
   });
 
   it("It opens loans group modal (physical)", () => {
@@ -766,7 +749,7 @@ describe("Loan list", () => {
       "/iframe.html?id=apps-loan-list--primary&args=pageSizeDesktop:2;pageSizeMobile:2"
     );
 
-    cy.wait(["@physical_loans", "@digital_loans", "@work", "@cover"]);
+    cy.wait(["@physical_loans", "@digital_loans"]);
 
     // 2.b.iv.9.v. If more than 25 loans -> pagination (because of pageSizeDesktop/pageSizeMobile the limit is 2 not 25)
     cy.get(".loan-list-page").find(".result-pager").should("have.length", 2);

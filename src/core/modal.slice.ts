@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  appendQueryParametersToUrl,
   getCurrentLocation,
   removeQueryParametersFromUrl,
   setQueryParametersInUrl
@@ -8,10 +7,15 @@ import {
 
 export type ModalId = string;
 
+export type ModalOptions = {
+  updateUrl?: boolean;
+  modalsToClose?: string[];
+};
+
 interface PayloadProps {
   payload: {
     modalId: ModalId;
-  };
+  } & ModalOptions;
 }
 
 interface StateProps {
@@ -52,9 +56,10 @@ const modalSlice = createSlice({
   reducers: {
     openModal(state: StateProps, action: PayloadProps) {
       // Disables background scrolling whilst the Modal is open
-      if (typeof window && window.document) {
+      if (typeof window !== "undefined" && window.document) {
         document.body.style.overflow = "hidden";
       }
+
       // If there is a modalid in the payload, and if this modalid is not saved
       // then save the modalid
       if (
@@ -62,17 +67,17 @@ const modalSlice = createSlice({
         !state.modalIds.includes(action.payload.modalId)
       ) {
         state.modalIds.push(action.payload.modalId);
-        const searchParams = new URLSearchParams(window.location.search);
-        const alreadyOpenModals = searchParams.get("modal");
-        if (alreadyOpenModals !== action.payload.modalId) {
-          window.history.pushState(
-            "",
-            "",
-            appendQueryParametersToUrl(new URL(getCurrentLocation()), {
-              modal: `${alreadyOpenModals ?? ""}${action.payload.modalId}`
-            })
-          );
-        }
+
+        const currentURL = new URL(getCurrentLocation());
+        const searchParamsModalIds = currentURL.searchParams.getAll("modal");
+
+        state.modalIds.forEach((modalId) => {
+          if (searchParamsModalIds && !searchParamsModalIds.includes(modalId)) {
+            currentURL.searchParams.append("modal", modalId);
+          }
+        });
+
+        window.history.pushState("", "", currentURL);
       }
       const { activeElement } = document;
       // Prevent body from double triggering focus store when url contains modalId

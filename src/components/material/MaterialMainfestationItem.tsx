@@ -1,4 +1,5 @@
 import React, { useId, FC, useState } from "react";
+import clsx from "clsx";
 import ExpandIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import { AvailabilityLabel } from "../availability-label/availability-label";
 import { Cover } from "../cover/cover";
@@ -10,6 +11,8 @@ import {
 import { useText } from "../../core/utils/text";
 import MaterialDetailsList, { ListData } from "./MaterialDetailsList";
 import MaterialButtons from "./material-buttons/MaterialButtons";
+import CopyLink from "../copy-link/CopyLink";
+import MaterialContents from "./MaterialContents/MaterialContents";
 import { Manifestation } from "../../core/utils/types/entities";
 import { WorkId } from "../../core/utils/types/ids";
 import {
@@ -27,22 +30,32 @@ import {
   getManifestationOriginalTitle,
   getManifestationPhysicalDescription,
   getManifestationPublisher,
-  getManifestationSource
+  getManifestationSource,
+  getManifestationTitle
 } from "../../apps/material/helper";
+import {
+  getCurrentUrlWithHash,
+  createUrlHash,
+  getIdFromUrlHash,
+  HashPrefix
+} from "../../core/utils/helpers/url";
 
 export interface MaterialMainfestationItemProps {
   manifestation: Manifestation;
   workId: WorkId;
+  isEditionPicker?: boolean;
 }
 
 const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
-  manifestation: { materialTypes, pid, titles, creators, identifiers, edition },
+  manifestation: { materialTypes, pid, creators, identifiers, edition },
   manifestation,
-  workId
+  workId,
+  isEditionPicker = false
 }) => {
   const mainfestationTitleId = useId();
   const t = useText();
-  const [isOpen, setIsOpen] = useState(false);
+  const shouldOpenDetails = getIdFromUrlHash(HashPrefix.MANIFESTATION) === pid;
+  const [isOpen, setIsOpen] = useState(shouldOpenDetails);
   const faustId = convertPostIdToFaustId(pid);
   const author = creatorsToString(flattenCreators(creators), t);
 
@@ -110,9 +123,16 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
   const accessTypesCodes = manifestation.accessTypes.map((item) => item.code);
   const access = manifestation.access.map((acc) => acc.__typename);
   const detailsId = `material-details-${pid}`;
+  const manifestationId = createUrlHash(HashPrefix.MANIFESTATION, pid);
 
   return (
-    <div className="material-manifestation-item">
+    <div
+      className={clsx("material-manifestation-item", {
+        "material-manifestation-item--no-side-margins": isEditionPicker
+      })}
+      id={manifestationId}
+      data-scroll-target={manifestationId}
+    >
       <div className="material-manifestation-item__availability">
         <AvailabilityLabel
           key={`${faustId}-material-manifestation-item`}
@@ -133,7 +153,7 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           id={mainfestationTitleId}
           className="material-manifestation-item__title text-header-h4"
         >
-          {titles?.main[0]}
+          {getManifestationTitle(manifestation)}
         </h3>
         <p className="text-small-caption">
           {t("materialHeaderAuthorByText")} {author}
@@ -162,19 +182,33 @@ const MaterialMainfestationItem: FC<MaterialMainfestationItemProps> = ({
           <img src={ExpandIcon} alt="" />
         </div>
         {isOpen && (
-          <MaterialDetailsList
-            id={detailsId}
-            className="mt-24"
-            data={detailsListData}
-          />
+          <>
+            <MaterialDetailsList
+              id={detailsId}
+              className="mt-24"
+              data={detailsListData}
+            />
+            {manifestation.contents && (
+              <div className="mt-24">
+                <MaterialContents contents={manifestation.contents} />
+              </div>
+            )}
+            <CopyLink
+              label={t("copyLinkToEditionText")}
+              url={getCurrentUrlWithHash(manifestationId)}
+              className="mt-24 mb-24"
+            />
+          </>
         )}
       </div>
       <div className="material-manifestation-item__buttons">
         <MaterialButtons
+          isSpecificManifestation
           manifestations={[manifestation]}
           size="small"
           workId={workId}
           materialTitleId={mainfestationTitleId}
+          isEditionPicker={isEditionPicker}
         />
       </div>
     </div>

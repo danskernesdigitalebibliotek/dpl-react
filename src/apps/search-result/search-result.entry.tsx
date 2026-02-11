@@ -7,6 +7,8 @@ import { withUrls } from "../../core/utils/url";
 import SearchResult from "./search-result";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { MappArgs } from "../../core/storybook/mappArgs";
+import withPageStatistics from "../../core/statistics/withPageStatistics";
 
 interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
@@ -36,7 +38,6 @@ interface SearchResultEntryTextProps {
   numberDescriptionText: string;
   resultPagerStatusText: string;
   showingResultsForText: string;
-  noSearchResultText: string;
   showMoreText: string;
   showResultsText: string;
   invalidSearchText: string;
@@ -52,13 +53,15 @@ interface SearchResultEntryConfigProps {
   blacklistedPickupBranchesConfig?: string;
   blacklistedSearchBranchesConfig?: string;
   branchesConfig: string;
+  searchInfoboxConfig: string;
 }
 
 export interface SearchResultEntryProps
   extends GlobalUrlEntryPropsInterface,
     SearchResultEntryConfigProps,
     GlobalEntryTextProps,
-    SearchResultEntryTextProps {
+    SearchResultEntryTextProps,
+    MappArgs {
   q?: string;
   pageSizeDesktop?: number;
   pageSizeMobile?: number;
@@ -92,4 +95,6 @@ const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   );
 };
 
-export default withConfig(withUrls(withText(SearchResultEntry)));
+export default withConfig(
+  withUrls(withText(withPageStatistics(SearchResultEntry)))
+);

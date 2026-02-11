@@ -11,6 +11,12 @@ export const mapFacetToFilter = (facet: FacetFieldEnum) => {
       return "materialTypesSpecific";
     case FacetFieldEnum.Worktypes:
       return "workTypes";
+    case FacetFieldEnum.Creators:
+      return "creators";
+    case FacetFieldEnum.Subjects:
+      return "subjects";
+    case FacetFieldEnum.Dk5:
+      return "dk5";
     default:
       return "invalid";
   }
@@ -27,6 +33,29 @@ export const getFirstMaterialTypeFromFilters = (
   return materialTypeFilter && allMaterialTypes.includes(materialTypeFilter)
     ? materialTypeFilter
     : undefined;
+};
+
+export const formatSearchDisplayQuery = ({
+  q,
+  creator,
+  subject,
+  dk5,
+  t
+}: {
+  q?: string;
+  creator?: string | null;
+  subject?: string | null;
+  dk5?: string | null;
+  t: (key: string) => string;
+}): string => {
+  return [
+    q && q !== "*" ? q : null,
+    creator ? `${t("byAuthorText")}: ${creator}` : null,
+    subject ? `${t("facetSubjectsText")}: ${subject}` : null,
+    dk5 ? `${t("facetDk5Text")}: ${dk5}` : null
+  ]
+    .filter(Boolean)
+    .join("; ");
 };
 
 export default {};

@@ -31,7 +31,6 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
   const t = useText();
   return (
     <>
-      {/* eslint-disable react/jsx-props-no-spreading */}
       {/* The downshift combobox works this way by design (line 54) */}
       {materialData.map((item, incorrectIndex) => {
         // incorrectIndex because in the whole of autosuggest dropdown it is
@@ -68,14 +67,15 @@ const AutosuggestMaterial: React.FC<AutosuggestMaterialProps> = ({
                 highlightedIndex === index
             })}
             key={workId}
+            // TODO: Explicitly define prop types for better clarity
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...getItemProps({ item, index })}
             data-cy={dataCy}
           >
-            {/* eslint-enable react/jsx-props-no-spreading */}
             <div className="autosuggest__material-card">
               <Cover
                 animate
-                size="xsmall"
+                size="xSmall"
                 ids={coverPids}
                 bestRepresentation={bestRepresentation as Manifestation}
                 shadow="small"

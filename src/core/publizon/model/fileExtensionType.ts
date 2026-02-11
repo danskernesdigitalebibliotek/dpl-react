@@ -8,7 +8,7 @@ Orders/loans created in test environment will not be invoiced. Please request a 
  */
 
 export type FileExtensionType =
-  typeof FileExtensionType[keyof typeof FileExtensionType];
+  (typeof FileExtensionType)[keyof typeof FileExtensionType];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const FileExtensionType = {

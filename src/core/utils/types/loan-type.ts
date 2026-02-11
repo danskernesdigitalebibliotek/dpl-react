@@ -8,6 +8,7 @@ export interface LoanType extends ListType {
   materialItemNumber?: string | null;
   renewalStatusList: string[];
   loanType: string | null;
+  orderId?: string | null;
 }
 
 export function isLoanType(item: ListType): item is LoanType {

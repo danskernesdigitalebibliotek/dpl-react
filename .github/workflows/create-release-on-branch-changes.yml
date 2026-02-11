@@ -30,16 +30,16 @@ jobs:
           echo "DIST_FILENAME=dist-${RELEASE_BRANCH_SLUGGED}.zip" >> "$GITHUB_ENV"
 
       # Checkout the HEAD of the PR branch to get the latest commit message.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Get release description
         run: |
           echo "RELEASE_DESCRIPTION=$(git show -s --format=%s)" >> "$GITHUB_ENV"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
@@ -60,13 +60,12 @@ jobs:
         run: |
           zip -r -j ${{ env.DIST_FILENAME }} dist/
 
-
       - name: Delete existing releases
-        uses: dev-drprasad/delete-tag-and-release@v1.1
-        with:
-          tag_name: ${{ env.TAG_NAME }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
+        run: gh release delete ${{ env.TAG_NAME }} --cleanup-tag -y
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # The step will fail if the release does not exist.
+        continue-on-error: true
 
       - name: Create or update tag
         uses: EndBug/latest-tag@v1.6.2
@@ -75,8 +74,10 @@ jobs:
 
       - name: Create release
         id: create-release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.5.0
         with:
+          prerelease: true
+          draft: false
           target_commitish: ${{ env.RELEASE_SHA }}
           tag_name: ${{ env.TAG_NAME }}
           body: ${{ env.RELEASE_DESCRIPTION }}

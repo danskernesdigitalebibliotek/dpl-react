@@ -21,9 +21,9 @@ jobs:
           echo "BUILD_VERSION=${RELEASE_NAME}-${RELEASE_SHA}" >> "$GITHUB_ENV"
           echo "DIST_FILENAME=dist-${RELEASE_NAME_SLUGGED}-${RELEASE_SHA}.zip" >> "$GITHUB_ENV"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
@@ -46,7 +46,7 @@ jobs:
 
       - name: Create release
         id: create-release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.5.0
         with:
           files: ${{ env.DIST_FILENAME }}
 

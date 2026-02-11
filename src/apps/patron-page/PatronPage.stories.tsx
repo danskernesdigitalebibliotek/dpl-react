@@ -46,12 +46,6 @@ const meta: Meta<typeof PatronPage> = {
     textNotificationsEnabledConfig: {
       control: { type: "text" }
     },
-    alwaysAvailableEreolenUrl: {
-      control: { type: "text" }
-    },
-    ereolenHomepageUrl: {
-      control: { type: "text" }
-    },
     // Texts
     patronPageHeaderText: {
       control: { type: "text" }
@@ -86,6 +80,9 @@ const meta: Meta<typeof PatronPage> = {
     patronPageBasicDetailsNameLabelText: {
       control: { type: "text" }
     },
+    patronPageBasicFriendlyCardNumberLabelText: {
+      control: { type: "text" }
+    },
     patronPageBasicDetailsAddressLabelText: {
       control: { type: "text" }
     },
@@ -108,9 +105,6 @@ const meta: Meta<typeof PatronPage> = {
       control: { type: "text" }
     },
     patronPageStatusSectionBodyText: {
-      control: { type: "text" }
-    },
-    patronPageStatusSectionLinkText: {
       control: { type: "text" }
     },
     patronPageStatusSectionLoanHeaderText: {
@@ -217,9 +211,6 @@ const meta: Meta<typeof PatronPage> = {
     pauseReservationInfoUrl:
       "https://images.unsplash.com/photo-1560888126-5c13ad3f9345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80", // A goat.
     textNotificationsEnabledConfig: "1",
-    alwaysAvailableEreolenUrl:
-      "https://images.unsplash.com/photo-1560888126-5c13ad3f9345?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80", // A goat.
-    ereolenHomepageUrl: "https://ereolen.dk/",
     // Texts
     patronPageHeaderText: "Patron profile page",
     pauseReservationModalHeaderText: "Pause reservations on physical items",
@@ -234,6 +225,7 @@ const meta: Meta<typeof PatronPage> = {
     pauseReservationModalCancelButtonLabelText: "Cancel pause",
     patronPageBasicDetailsHeaderText: "Basic details",
     patronPageBasicDetailsNameLabelText: "Name",
+    patronPageBasicFriendlyCardNumberLabelText: "Card number",
     patronPageBasicDetailsAddressLabelText: "Address",
     patronContactInfoHeaderText: "Contact information",
     patronContactPhoneLabelText: "Phone number",
@@ -242,11 +234,9 @@ const meta: Meta<typeof PatronPage> = {
     patronContactEmailLabelText: "E-mail",
     patronContactEmailCheckboxText:
       "Receive emails about your loans, reservations, and so forth",
-    patronPageStatusSectionHeaderText: "Digital loans (eReolen)",
+    patronPageStatusSectionHeaderText: "Digital loans",
     patronPageStatusSectionBodyText:
       "There is a number of materials without limitation to amounts of loans per month.",
-    patronPageStatusSectionLinkText:
-      "Click here, to see titles always eligible to be loaned",
     patronPageStatusSectionLoanHeaderText: "Loans per month",
     patronPageStatusSectionLoansEbooksText: "E-books",
     patronPageStatusSectionLoansAudioBooksText: "Audiobooks",

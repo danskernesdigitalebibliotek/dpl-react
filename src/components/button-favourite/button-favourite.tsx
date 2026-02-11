@@ -9,7 +9,8 @@ import {
 } from "../../core/material-list-api/material-list";
 import { useText } from "../../core/utils/text";
 import { Pid, WorkId } from "../../core/utils/types/ids";
-import { useStatistics } from "../../core/statistics/useStatistics";
+import { isAnonymous } from "../../core/utils/helpers/user";
+import { useEventStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
 
 export type ButtonFavouriteId = WorkId | Pid;
@@ -26,17 +27,25 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
   darkBackground,
   title
 }) => {
+  const isUserAnonymous = isAnonymous();
   const [fillState, setFillState] = useState<boolean>(false);
-  const [isLoadingHeart, setIsLoadingHeart] = useState<boolean>(true);
+  const [isLoadingHeart, setIsLoadingHeart] =
+    useState<boolean>(!isUserAnonymous);
   const t = useText();
   const { mutate: hasItem } = useHasItem();
   const { mutate: removeItem } = useRemoveItem();
-  const { track } = useStatistics();
+  const { track } = useEventStatistics();
   const queryClient = useQueryClient();
 
   const listId = "default";
 
   useEffect(() => {
+    // Don't check favorites if user is not logged in
+    if (isUserAnonymous) {
+      setIsLoadingHeart(false);
+      return;
+    }
+
     // The heart icon needs to change into a loading icon while the material
     // is being removed from the favorite list
     setIsLoadingHeart(true);
@@ -59,7 +68,7 @@ const ButtonFavourite: React.FC<ButtonFavouriteProps> = ({
         }
       }
     );
-  }, [id, hasItem]);
+  }, [id, hasItem, isUserAnonymous]);
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

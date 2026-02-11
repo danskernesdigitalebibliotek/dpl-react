@@ -35,6 +35,13 @@ const usePager = ({ hitcount, pageSize, overrideItemsShown }: PagerProps) => {
     setPage(currentPage);
   };
 
+  const resetPage = () => {
+    setPage(0);
+    setFirstInNewPage(null);
+    const onLastPage = pageSize >= hitcount;
+    setItemsShown(onLastPage ? hitcount : pageSize);
+  };
+
   const PagerComponent: React.FC<PagerComponentProps> = ({
     isLoading,
     classNames = ""
@@ -49,7 +56,7 @@ const usePager = ({ hitcount, pageSize, overrideItemsShown }: PagerProps) => {
       />
     ) : null;
 
-  return { itemsShown, PagerComponent, page, firstInNewPage };
+  return { itemsShown, PagerComponent, page, firstInNewPage, resetPage };
 };
 
 export default usePager;

@@ -2,14 +2,19 @@ import React, { ReactNode, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CloseIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/CloseLarge.svg";
 import clsx from "clsx";
-import FocusTrap from "focus-trap-react";
-import { closeAllModals, closeModal, openModal } from "../modal.slice";
+import { FocusTrap } from "focus-trap-react";
+import {
+  closeAllModals,
+  closeModal,
+  openModal,
+  ModalOptions
+} from "../modal.slice";
 import { isAnonymous } from "./helpers/user";
 import {
   currentLocationWithParametersUrl,
   redirectToLoginAndBack
 } from "./helpers/url";
-import { isVitestEnvironment } from "./helpers/vitest";
+import { isEnterOrSpacePressed } from "./helpers/general";
 
 type ModalId = string;
 
@@ -32,6 +37,8 @@ export interface ModalIdsProps {
   };
 }
 
+const MODAL_Z_INDEX = 400;
+
 function Modal({
   modalId,
   closeModalAriaLabelText,
@@ -47,25 +54,12 @@ function Modal({
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    // Deep link stuff: if the id is in the url, open the modal
-    if (searchParams.get("modal")?.includes(modalId)) {
-      dispatch(openModal({ modalId }));
-    }
-    // If modal parameter exists, but modal ID doesn't exist - remove it
-    // from the URL and re-enable scrolling (disabled in modal.slice)
-    // to prevent trying to open uninitialized modals
-    if (
-      searchParams.get("modal") &&
-      !searchParams.get("modal")?.includes(modalId)
-    ) {
-      searchParams.delete("modal");
-      window.history.replaceState(
-        {},
-        "",
-        window.location.href.replace(`&modal=${searchParams.get("modal")}`, "")
-      );
-      document.body.style.overflow = "";
-    }
+
+    const modalIdsInUrl = searchParams.getAll("modal");
+
+    modalIdsInUrl.forEach((id) => {
+      dispatch(openModal({ modalId: id }));
+    });
   }, [modalId, dispatch]);
 
   // Check if the modal should be open
@@ -80,31 +74,35 @@ function Modal({
     dispatch(closeModal({ modalId }));
   };
 
+  const handleCloseKeyUp = (e: React.KeyboardEvent) => {
+    if (isEnterOrSpacePressed(e.key)) {
+      close();
+    }
+  };
+
   return (
     <FocusTrap
       focusTrapOptions={{
-        // Set fallbackFocus when running vitest to avoid focus trap errors.
-        fallbackFocus: isVitestEnvironment ? "body" : undefined
+        // Set fallbackFocus to avoid focus trap errors.
+        fallbackFocus: "body"
       }}
     >
       <div>
-        {/* The backdrop doesn't have a role or keyboard listener because it barely duplicates
-          the close button's functionality which possesses both. */}
-        {/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-        <div
+        <button
           className="modal-backdrop"
+          aria-label={closeModalAriaLabelText}
           style={{
             // Some elements are designed with z-index which means they pop up over the modal
             // so we add 20 to the z-index of the modal (20 is the highest z-index - header).
             // The index of the modalid is used, so the newest modal is always on top of
             // the remaining modals
-            zIndex: modalIds.indexOf(modalId) + 20
+            zIndex: modalIds.indexOf(modalId) + MODAL_Z_INDEX
           }}
-          onClick={() => {
+          onMouseUp={() => {
             close();
           }}
+          onKeyUp={handleCloseKeyUp}
         />
-        {/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(
             "modal",
@@ -118,7 +116,7 @@ function Modal({
           data-cy={dataCy}
           style={{
             // same as comment above
-            zIndex: modalIds.indexOf(modalId) + 21
+            zIndex: modalIds.indexOf(modalId) + MODAL_Z_INDEX + 1
           }}
         >
           <div
@@ -134,12 +132,13 @@ function Modal({
             }`}
             style={{
               // same as comment above
-              zIndex: modalIds.indexOf(modalId) + 20
+              zIndex: modalIds.indexOf(modalId) + MODAL_Z_INDEX
             }}
             aria-label={closeModalAriaLabelText}
-            onClick={() => {
+            onMouseUp={() => {
               close();
             }}
+            onKeyUp={handleCloseKeyUp}
             data-cy={`modal-${modalId}-close-button`}
           >
             <img src={CloseIcon} alt="" style={{ pointerEvents: "none" }} />
@@ -156,13 +155,33 @@ export type GuardedOpenModalProps = {
   authUrl: URL;
   modalId: string;
   trackOnlineView?: () => Promise<unknown>;
+  options?: ModalOptions;
 };
 
 export const useModalButtonHandler = () => {
   const dispatch = useDispatch();
+  const { modalIds } = useSelector((s: ModalIdsProps) => s.modal);
+
+  const closeModals = (modalsToClose: string[]) => {
+    modalsToClose.forEach((id) => {
+      if (modalIds.includes(id)) {
+        dispatch(closeModal({ modalId: id }));
+      }
+    });
+  };
+
   return {
-    open: (modalId: ModalId) => {
-      return dispatch(openModal({ modalId }));
+    open: (modalId: ModalId, options?: ModalOptions) => {
+      if (options?.modalsToClose) {
+        closeModals(options.modalsToClose);
+      }
+
+      return dispatch(
+        openModal({
+          modalId,
+          updateUrl: options?.updateUrl
+        })
+      );
     },
     close: (modalId: ModalId) => {
       return dispatch(closeModal({ modalId }));
@@ -173,7 +192,8 @@ export const useModalButtonHandler = () => {
     openGuarded: ({
       authUrl,
       modalId,
-      trackOnlineView
+      trackOnlineView,
+      options
     }: GuardedOpenModalProps) => {
       // Redirect anonymous users to the login platform, including a return link
       // to this page with an open modal.
@@ -188,11 +208,21 @@ export const useModalButtonHandler = () => {
         });
         return;
       }
-      // If user is not anonymous we just open the given modal + potentially track it.
+
+      if (options?.modalsToClose) {
+        closeModals(options.modalsToClose);
+      }
+
       if (trackOnlineView) {
         trackOnlineView();
       }
-      dispatch(openModal({ modalId }));
+
+      dispatch(
+        openModal({
+          modalId,
+          updateUrl: options?.updateUrl
+        })
+      );
     }
   };
 };

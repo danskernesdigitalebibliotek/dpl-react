@@ -21,9 +21,9 @@ export interface DashBoardProps {
   physicalLoansUrl: string;
   feesPageUrl: string;
   reservationsUrl: string;
-  ereolenHomepageUrl: string;
   // Config
   blacklistedPickupBranchesConfig: string;
+  blacklistedAvailabilityBranchesConfig: string;
   branchesConfig: string;
   expirationWarningDaysBeforeConfig: string;
   // Texts

@@ -1,20 +1,14 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("Material - Periodical", () => {
   beforeEach(() => {
-    cy.interceptRest({
-      aliasName: "Cover",
-      url: "**/api/v2/covers?**",
-      fixtureFilePath: "cover.json"
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
     });
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    );
+
+    cy.interceptGraphql({
+      operationName: "WorkRecommendations",
+      fixtureFilePath: "material/material-grid-related-recommendations.json"
+    });
 
     cy.interceptRest({
       aliasName: "Availability",
@@ -24,7 +18,7 @@ describe("Material - Periodical", () => {
 
     cy.interceptRest({
       aliasName: "user",
-      url: "**/agencyid/patrons/patronid/v2",
+      url: "**/agencyid/patrons/patronid/v4",
       fixtureFilePath: "material/user.json"
     });
 
@@ -50,7 +44,7 @@ describe("Material - Periodical", () => {
   });
 
   it("Render periodical + change to 2021, 32 + Aprove resevation", () => {
-    cy.getBySel("material-description").scrollIntoView();
+    cy.getBySel("material-description").scrollIntoView({ duration: 200 });
     cy.get("#year").select("2021");
     cy.get("#editions").should("have.value", "32");
     cy.getBySel("material-header-buttons-physical")

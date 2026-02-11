@@ -1,0 +1,27 @@
+query GetCoversByPids($pids: [String!]!) {
+  manifestations(pid: $pids) {
+    pid
+    cover {
+      xSmall {
+        url
+        width
+        height
+      }
+      small {
+        url
+        width
+        height
+      }
+      medium {
+        url
+        width
+        height
+      }
+      large {
+        url
+        width
+        height
+      }
+    }
+  }
+}

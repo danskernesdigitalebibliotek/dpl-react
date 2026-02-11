@@ -7,7 +7,7 @@ import serviceUrlArgs, {
   argTypes as serviceUrlArgTypes
 } from "../../core/storybook/serviceUrlArgs";
 
-import DisplayMaterialTypeOptions from "../recommended-material/recommendedMaterialDisplayTypeData";
+import DisplayMaterialTypeOptions from "../../components/recommended-material/recommendedMaterialDisplayTypeData";
 import RecommendationSkeleton from "./RecommendationSkeleton";
 import Recommendation from "./recommendation.entry";
 import { ManifestationMaterialType } from "../../core/utils/types/material-type";
@@ -35,6 +35,12 @@ const meta: Meta<typeof Recommendation> = {
     etAlText: {
       description: "Et al. Text",
       control: { type: "text" }
+    },
+    title: {
+      control: { type: "text" }
+    },
+    description: {
+      control: { type: "text" }
     }
   }
 };
@@ -51,7 +57,9 @@ export const Default: Story = {
     materialType: "bog" as ManifestationMaterialType,
     positionImageRight: false,
     materialUrl: "/work/:workid",
-    etAlText: "et al."
+    etAlText: "et al.",
+    title: undefined,
+    description: undefined
   }
 };
 
@@ -60,6 +68,5 @@ export const Skeleton: Story = {
     ...Default.args
   },
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
   render: (args) => <RecommendationSkeleton {...args} />
 };

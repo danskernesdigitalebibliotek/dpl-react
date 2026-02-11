@@ -2,6 +2,10 @@ import { WorkId } from "../types/ids";
 
 export const getCurrentLocation = () => String(window.location);
 
+export const getQueryParams = (url: URL): Record<string, string> => {
+  return Object.fromEntries(url.searchParams);
+};
+
 export const appendQueryParametersToUrl = (
   url: URL,
   parameters: { [key: string]: string }
@@ -44,8 +48,12 @@ export const removeQueryParametersFromUrl = (parameter: string) => {
   replaceCurrentLocation(processedUrl);
 };
 
-export const redirectTo = (url: URL): void => {
-  window.location.assign(String(url));
+export const redirectTo = (url: URL, isNewTab?: boolean): void => {
+  if (isNewTab) {
+    window.open(String(url), "_blank");
+  } else {
+    window.location.assign(String(url));
+  }
 };
 
 export const constructUrlWithPlaceholder = (
@@ -100,6 +108,33 @@ export const constructMaterialUrl = (
 export const constructSearchUrl = (searchUrl: URL, q: string) =>
   appendQueryParametersToUrl(searchUrl, {
     q
+  });
+
+export const constructCreatorSearchUrl = (searchUrl: URL, creator: string) =>
+  constructSearchUrlWithFilter({
+    searchUrl,
+    // For creator searches, q should always be "*"
+    selectedItemString: "*",
+    // Facets only work with lowercase values
+    filter: { creators: creator.toLowerCase() }
+  });
+
+export const constructSubjectSearchUrl = (searchUrl: URL, subject: string) =>
+  constructSearchUrlWithFilter({
+    searchUrl,
+    // For subject searches, q should always be "*"
+    selectedItemString: "*",
+    // Facets only work with lowercase values
+    filter: { subjects: subject.toLowerCase() }
+  });
+
+export const constructDK5SearchUrl = (searchUrl: URL, dk5: string) =>
+  constructSearchUrlWithFilter({
+    searchUrl,
+    // For DK5 searches, q should always be "*"
+    selectedItemString: "*",
+    // Facets only work with lowercase values
+    filter: { dk5: dk5.toLowerCase() }
   });
 
 export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>
@@ -157,7 +192,7 @@ export const isUrlValid = (text: string) => {
   try {
     const url = new URL(text);
     return url.protocol === "http:" || url.protocol === "https:";
-  } catch (err) {
+  } catch {
     return false;
   }
 };
@@ -165,3 +200,34 @@ export const isUrlValid = (text: string) => {
 export const currentLocationWithParametersUrl = (
   params: Record<string, string>
 ) => appendQueryParametersToUrl(new URL(getCurrentLocation()), params);
+
+export const getCurrentUrlWithHash = (hash: string): string => {
+  const { origin, pathname, search } = window.location;
+  return `${origin}${pathname}${search}#${hash}`;
+};
+
+// Hash-based URL utilities
+export enum HashPrefix {
+  MANIFESTATION = "manifestation-",
+  REVIEW = "review-"
+}
+
+export const createUrlHash = (prefix: HashPrefix, id: string): string => {
+  return `${prefix}${id}`;
+};
+
+export const getIdFromUrlHash = (prefix: HashPrefix): string | null => {
+  const hash = window.location.hash;
+  if (hash.startsWith(`#${prefix}`)) {
+    return hash.replace(`#${prefix}`, "");
+  }
+  return null;
+};
+
+export const getFromUrlHash = () => {
+  const hash = window.location.hash;
+  if (hash) {
+    return hash.replace("#", "");
+  }
+  return null;
+};

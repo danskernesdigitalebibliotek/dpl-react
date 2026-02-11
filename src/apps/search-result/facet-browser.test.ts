@@ -1,5 +1,3 @@
-const coverUrlPattern = /^https:\/\/res\.cloudinary\.com\/.*\.(jpg|jpeg|png)$/;
-
 describe("The Facet Browser", () => {
   beforeEach(() => {
     // Clear the session storage to avoid previously saved facets
@@ -27,70 +25,45 @@ describe("The Facet Browser", () => {
       fixtureFilePath: "material/availability"
     });
 
-    // Intercept all images from Cloudinary.
-    cy.intercept(
-      {
-        url: coverUrlPattern
-      },
-      {
-        fixture: "images/cover.jpg"
-      }
-    ).as("Harry Potter cover");
-
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
-
-    // Intercept material list service.
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
-
+    cy.interceptGraphql({
+      operationName: "GetCoversByPids",
+      fixtureFilePath: "cover/cover.json"
+    });
     cy.visit("/iframe.html?id=apps-search-result--primary");
-    cy.wait(["@Availability", "@Cover service", "@Material list service"]);
+    cy.wait("@Availability");
     cy.getBySel("facet-line-open-browser").click();
   });
 
   it("Renders all facets", () => {
-    cy.getBySel("facet-browser-mainLanguages")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-mainLanguages").scrollIntoView();
+    cy.getBySel("facet-browser-mainLanguages").should("be.visible");
 
-    cy.getBySel("facet-browser-accessTypes")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-accessTypes").scrollIntoView();
+    cy.getBySel("facet-browser-accessTypes").should("be.visible");
 
-    cy.getBySel("facet-browser-childrenOrAdults")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-childrenOrAdults").scrollIntoView();
+    cy.getBySel("facet-browser-childrenOrAdults").should("be.visible");
 
-    cy.getBySel("facet-browser-creators").scrollIntoView().should("be.visible");
+    cy.getBySel("facet-browser-creators").scrollIntoView();
+    cy.getBySel("facet-browser-creators").should("be.visible");
 
-    cy.getBySel("facet-browser-fictionNonfiction")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-fictionNonfiction").scrollIntoView();
+    cy.getBySel("facet-browser-fictionNonfiction").should("be.visible");
 
-    cy.getBySel("facet-browser-fictionNonfiction")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-fictionNonfiction").scrollIntoView();
+    cy.getBySel("facet-browser-fictionNonfiction").should("be.visible");
 
-    cy.getBySel("facet-browser-genreAndForm")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-genreAndForm").scrollIntoView();
+    cy.getBySel("facet-browser-genreAndForm").should("be.visible");
 
-    cy.getBySel("facet-browser-materialTypes")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-materialTypes").scrollIntoView();
+    cy.getBySel("facet-browser-materialTypes").should("be.visible");
 
-    cy.getBySel("facet-browser-subjects").scrollIntoView().should("be.visible");
+    cy.getBySel("facet-browser-subjects").scrollIntoView();
+    cy.getBySel("facet-browser-subjects").should("be.visible");
 
-    cy.getBySel("facet-browser-workTypes")
-      .scrollIntoView()
-      .should("be.visible");
+    cy.getBySel("facet-browser-workTypes").scrollIntoView();
+    cy.getBySel("facet-browser-workTypes").should("be.visible");
   });
 
   it("Renders all terms in a facet when clicked", () => {
@@ -172,24 +145,15 @@ describe("The Facet Browser", () => {
 
     cy.getBySel("facet-browser-creators-Joanne K. Rowling")
       .should("be.visible")
-      .and("have.attr", "aria-pressed", "true")
-      .click()
-      .should("have.attr", "aria-pressed", "false");
+      .and("have.attr", "aria-pressed", "true");
+    cy.getBySel("facet-browser-creators-Joanne K. Rowling").click();
+    cy.getBySel("facet-browser-creators-Joanne K. Rowling").should(
+      "have.attr",
+      "aria-pressed",
+      "false"
+    );
 
     cy.getBySel("modal-facet-browser-modal-close-button").click();
-
-    // Intercept covers.
-    cy.fixture("cover.json")
-      .then((result) => {
-        cy.intercept("GET", "**/covers**", result);
-      })
-      .as("Cover service");
-
-    // Intercept material list service.
-    cy.intercept("HEAD", "**/list/default/**", {
-      statusCode: 404,
-      body: {}
-    }).as("Material list service");
 
     // Intercept campaign query.
     cy.fixture("search-result/campaign.json")
@@ -198,10 +162,8 @@ describe("The Facet Browser", () => {
       })
       .as("Campaign service - full campaign");
 
-    cy.wait(["@Material list service"]);
-
     cy.visit("/iframe.html?id=apps-search-result--primary");
-    cy.contains("button", "+ more filters").click();
+    cy.contains("button", "More filters").click();
   });
 });
 

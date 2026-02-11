@@ -4,7 +4,7 @@ import { GlobalEntryTextProps } from "../../../core/storybook/globalTextArgs";
 import { withConfig } from "../../../core/utils/config";
 import { withText } from "../../../core/utils/text";
 import { withUrls } from "../../../core/utils/url";
-import { MaterialGridItemProps } from "../MaterialGrid";
+import { MaterialGridItemProps } from "../../../components/material-grid/MaterialGrid";
 import MaterialGridManual from "./MaterialGridManual";
 
 interface MaterialGridManualEntryConfigProps {
