@@ -31,6 +31,7 @@ const GSEARCH_BASE_URL = "https://api.dataforsyningen.dk/rest/gsearch/v2.0";
 const getToken = (): string => {
   const token = process.env.STORYBOOK_DATAFORSYNINGEN;
   if (!token) {
+    // eslint-disable-next-line no-console
     console.error(
       "DATAFORSYNINGEN token is not set. Please add STORYBOOK_DATAFORSYNINGEN to your .env file."
     );
@@ -112,27 +113,22 @@ export const getReverseGeocode = async (
 export async function getAddressesFromLocationQuery(
   query: string
 ): Promise<AddressWithCoordinates[]> {
-  console.log("getAddressesFromLocationQuery called with query:", query);
   const token = getToken();
   if (!token) {
-    console.log("No token, returning empty array");
     return [];
   }
 
   try {
     const url = `${GSEARCH_BASE_URL}/adresse?q=${encodeURIComponent(query)}&limit=10&srid=4326&token=${token}`;
-    console.log("Fetching addresses from:", url.replace(token, "***TOKEN***"));
     const response = await fetch(url);
 
     if (!response.ok) {
-      console.error("Response not OK:", response.status, response.statusText);
       return [];
     }
 
     const data = await response.json();
 
     if (Array.isArray(data)) {
-      console.log("Found addresses:", data.length);
       return data
         .map((result: GSearchAddress) => convertGSearchToAddress(result))
         .filter(
@@ -142,6 +138,7 @@ export async function getAddressesFromLocationQuery(
 
     return [];
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Error fetching addresses:", error);
     return [];
   }
