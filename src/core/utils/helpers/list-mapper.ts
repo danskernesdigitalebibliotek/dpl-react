@@ -14,14 +14,17 @@ function getYearFromDataString(date: string) {
   return new Date(date).getFullYear();
 }
 
-function getSeriesString(series: ManifestationBasicDetailsFragment["series"]) {
-  // TODO: Since the series has changed it structure and can have multiple members
-  // we need to double check if we can only look at the first member entry.
+function getSeriesString(
+  series: ManifestationBasicDetailsFragment["series"],
+  workId: string
+) {
   return series
     .map(({ title, members }) => {
-      if (members[0].numberInSeries) {
-        const number = members[0].numberInSeries;
-        return `${title} ${number}`;
+      const currentMember = members.find(
+        (member) => member.work.workId === workId
+      );
+      if (currentMember?.numberInSeries) {
+        return `${title} ${currentMember.numberInSeries}`;
       }
       return title;
     })
@@ -138,6 +141,7 @@ export const mapManifestationToBasicDetailsType = (
     abstract,
     titles,
     pid,
+    ownerWork,
     materialTypes,
     creators,
     series,
@@ -168,7 +172,7 @@ export const mapManifestationToBasicDetailsType = (
       series.length > 0 &&
       series[0].members &&
       series[0].members.length > 0
-        ? getSeriesString(series)
+        ? getSeriesString(series, ownerWork.workId)
         : "",
     materialType: materialTypes
       ? materialTypes[0].materialTypeSpecific.display

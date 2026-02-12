@@ -53,7 +53,8 @@ export type AccessUnion =
   | DigitalArticleService
   | Ereol
   | InfomediaService
-  | InterLibraryLoan;
+  | InterLibraryLoan
+  | Publizon;
 
 export type AccessUrl = {
   __typename?: "AccessUrl";
@@ -194,6 +195,7 @@ export enum ComplexSearchFacetsEnum {
   Creatorcontributor = "CREATORCONTRIBUTOR",
   Creatorcontributorfunction = "CREATORCONTRIBUTORFUNCTION",
   Creatorfunction = "CREATORFUNCTION",
+  Datefirstedition = "DATEFIRSTEDITION",
   Fictionalcharacter = "FICTIONALCHARACTER",
   Filmnationality = "FILMNATIONALITY",
   Gameplatform = "GAMEPLATFORM",
@@ -1058,7 +1060,9 @@ export type ManifestationTitles = {
 export type Manifestations = {
   __typename?: "Manifestations";
   all: Array<Manifestation>;
+  /** The best representation of all manifestations. Corresponds to the first element in the bestRepresentations list. */
   bestRepresentation: Manifestation;
+  /** All manifestations sorted after best representation. Newer is better. Records from DBC or KB are considered better. MaterialType.specific 'bog', 'music (cd)', and 'film (dvd)' are also considered better */
   bestRepresentations: Array<Manifestation>;
   first: Manifestation;
   latest: Manifestation;
@@ -1382,6 +1386,27 @@ export type PublicationYear = {
   endYear?: Maybe<Scalars["Int"]["output"]>;
   frequency?: Maybe<Scalars["String"]["output"]>;
   year?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type Publizon = {
+  __typename?: "Publizon";
+  /** URL to the material on the public library's website, built from the agency's lookupUrl and the manifestation workId. Defaults to the logged-in user's municipality agency. */
+  agencyUrl?: Maybe<Scalars["String"]["output"]>;
+  /** The total duration of the resource in seconds, if available. */
+  durationInSeconds?: Maybe<Scalars["Int"]["output"]>;
+  /** The file size of the resource in bytes, if available. */
+  fileSizeInBytes?: Maybe<Scalars["Int"]["output"]>;
+  /** The file format of the Publizon resource (e.g., "epub", "mp3"). */
+  format?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * URL of the sample provided by Publizon (Pubhub), typically a preview
+   * of the e-book or audiobook content.
+   */
+  sample: Scalars["String"]["output"];
+};
+
+export type PublizonAgencyUrlArgs = {
+  agencyId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type Query = {
@@ -2483,6 +2508,7 @@ export type GetSmallWorkQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -2653,6 +2679,7 @@ export type GetSmallWorkQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -2823,6 +2850,7 @@ export type GetSmallWorkQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -2847,6 +2875,7 @@ export type ManifestationBasicDetailsFragment = {
   __typename?: "Manifestation";
   pid: string;
   abstract: Array<string>;
+  ownerWork: { __typename?: "Work"; workId: string };
   titles: { __typename?: "ManifestationTitles"; full: Array<string> };
   materialTypes: Array<{
     __typename?: "MaterialType";
@@ -2872,6 +2901,7 @@ export type ManifestationBasicDetailsFragment = {
     members: Array<{
       __typename?: "SerieWork";
       numberInSeries?: string | null;
+      work: { __typename?: "Work"; workId: string };
     }>;
   }>;
   languages?: {
@@ -2894,6 +2924,7 @@ export type GetManifestationViaMaterialByFaustQuery = {
     __typename?: "Manifestation";
     pid: string;
     abstract: Array<string>;
+    ownerWork: { __typename?: "Work"; workId: string };
     titles: { __typename?: "ManifestationTitles"; full: Array<string> };
     materialTypes: Array<{
       __typename?: "MaterialType";
@@ -2919,6 +2950,7 @@ export type GetManifestationViaMaterialByFaustQuery = {
       members: Array<{
         __typename?: "SerieWork";
         numberInSeries?: string | null;
+        work: { __typename?: "Work"; workId: string };
       }>;
     }>;
     languages?: {
@@ -2948,6 +2980,7 @@ export type GetManifestationViaBestRepresentationByFaustQuery = {
           __typename?: "Manifestation";
           pid: string;
           abstract: Array<string>;
+          ownerWork: { __typename?: "Work"; workId: string };
           titles: { __typename?: "ManifestationTitles"; full: Array<string> };
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -2973,6 +3006,7 @@ export type GetManifestationViaBestRepresentationByFaustQuery = {
             members: Array<{
               __typename?: "SerieWork";
               numberInSeries?: string | null;
+              work: { __typename?: "Work"; workId: string };
             }>;
           }>;
           languages?: {
@@ -3248,6 +3282,7 @@ export type GetMaterialQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3418,6 +3453,7 @@ export type GetMaterialQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3588,6 +3624,7 @@ export type GetMaterialQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3867,6 +3904,7 @@ export type GetMaterialGloballyQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -4037,6 +4075,7 @@ export type GetMaterialGloballyQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -4207,6 +4246,7 @@ export type GetMaterialGloballyQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -4267,6 +4307,7 @@ export type GetReviewManifestationsQuery = {
       | { __typename: "Ereol" }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan" }
+      | { __typename: "Publizon" }
     >;
     edition?: {
       __typename?: "Edition";
@@ -4533,6 +4574,7 @@ export type RecommendFromFaustQuery = {
                 }
               | { __typename: "InfomediaService"; id: string }
               | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+              | { __typename: "Publizon" }
             >;
             shelfmark?: {
               __typename?: "Shelfmark";
@@ -4706,6 +4748,7 @@ export type RecommendFromFaustQuery = {
                 }
               | { __typename: "InfomediaService"; id: string }
               | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+              | { __typename: "Publizon" }
             >;
             shelfmark?: {
               __typename?: "Shelfmark";
@@ -4879,6 +4922,7 @@ export type RecommendFromFaustQuery = {
                 }
               | { __typename: "InfomediaService"; id: string }
               | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+              | { __typename: "Publizon" }
             >;
             shelfmark?: {
               __typename?: "Shelfmark";
@@ -5111,6 +5155,7 @@ export type SearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5281,6 +5326,7 @@ export type SearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5451,6 +5497,7 @@ export type SearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5513,6 +5560,7 @@ export type ComplexSearchWithPaginationWorkAccessQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
         }>;
       };
@@ -5731,6 +5779,7 @@ export type ComplexSearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5901,6 +5950,7 @@ export type ComplexSearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -6071,6 +6121,7 @@ export type ComplexSearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -6439,6 +6490,7 @@ export type ManifestationsSimpleFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
@@ -6603,6 +6655,7 @@ export type ManifestationsSimpleFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
@@ -6767,6 +6820,7 @@ export type ManifestationsSimpleFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
@@ -6808,6 +6862,7 @@ export type ManifestationsAccessFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
   }>;
 };
@@ -6960,6 +7015,7 @@ export type ManifestationsSimpleFieldsFragment = {
       }
     | { __typename: "InfomediaService"; id: string }
     | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+    | { __typename: "Publizon" }
   >;
   shelfmark?: {
     __typename?: "Shelfmark";
@@ -6987,6 +7043,7 @@ export type ManifestationReviewFieldsFragment = {
     | { __typename: "Ereol" }
     | { __typename: "InfomediaService"; id: string }
     | { __typename: "InterLibraryLoan" }
+    | { __typename: "Publizon" }
   >;
   edition?: {
     __typename?: "Edition";
@@ -7069,6 +7126,7 @@ export type WorkAccessFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
     }>;
   };
@@ -7269,6 +7327,7 @@ export type WorkSmallFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7439,6 +7498,7 @@ export type WorkSmallFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7609,6 +7669,7 @@ export type WorkSmallFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7881,6 +7942,7 @@ export type WorkMediumFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -8051,6 +8113,7 @@ export type WorkMediumFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -8221,6 +8284,7 @@ export type WorkMediumFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -8266,6 +8330,9 @@ export const ManifestationBasicDetailsFragmentDoc = `
     fragment ManifestationBasicDetails on Manifestation {
   ...WithLanguages
   pid
+  ownerWork {
+    workId
+  }
   titles {
     full
   }
@@ -8287,6 +8354,9 @@ export const ManifestationBasicDetailsFragmentDoc = `
     title
     members {
       numberInSeries
+      work {
+        workId
+      }
     }
   }
 }
