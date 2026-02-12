@@ -35,6 +35,11 @@ interface SearchResultV2EntryTextProps {
   facetSubjectsText: string;
   facetWorkTypesText: string;
   facetYearText: string;
+  facetAgeText: string;
+  facetGeneralAudienceText: string;
+  facetLixText: string;
+  facetLetText: string;
+  facetLibraryRecommendationText: string;
   filterListText: string;
   inSeriesText: string;
   loadingText: string;
