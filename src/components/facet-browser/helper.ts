@@ -24,7 +24,12 @@ export const allFacetFields = [
   FacetFieldEnum.Year,
   FacetFieldEnum.Canalwaysbeloaned,
   FacetFieldEnum.Dk5,
-  FacetFieldEnum.Gameplatform
+  FacetFieldEnum.Gameplatform,
+  FacetFieldEnum.Age,
+  FacetFieldEnum.Generalaudience,
+  FacetFieldEnum.Lix,
+  FacetFieldEnum.Let,
+  FacetFieldEnum.Libraryrecommendation
 ];
 
 export const getPlaceHolderFacets = (facets: string[]) =>
@@ -146,6 +151,16 @@ export const getFacetFieldTranslation = (name: FacetFieldEnum) => {
       return "facetYearText";
     case FacetFieldEnum.Gameplatform.toLowerCase():
       return "facetGamePlatformText";
+    case FacetFieldEnum.Age.toLowerCase():
+      return "facetAgeText";
+    case FacetFieldEnum.Generalaudience.toLowerCase():
+      return "facetGeneralAudienceText";
+    case FacetFieldEnum.Lix.toLowerCase():
+      return "facetLixText";
+    case FacetFieldEnum.Let.toLowerCase():
+      return "facetLetText";
+    case FacetFieldEnum.Libraryrecommendation.toLowerCase():
+      return "facetLibraryRecommendationText";
     default:
       return invalidSwitchCase<string>(name as never);
   }
