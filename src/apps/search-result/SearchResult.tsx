@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import useSearchResultTracking from "./useSearchResultTracking";
 import { useDeepCompareEffect } from "react-use";
 import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
@@ -15,8 +16,6 @@ import {
   allFacetFields,
   getPlaceHolderFacets
 } from "../../components/facet-browser/helper";
-import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
-import { statistics } from "../../core/statistics/statistics";
 import { getCurrentLocation, redirectTo } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { cleanBranchesId, TBranch } from "../../core/utils/branches";
@@ -43,7 +42,6 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   const t = useText();
   const [resultItems, setResultItems] = useState<Work[] | null>(null);
   const [hitcount, setHitCount] = useState<number>(0);
-  const [canWeTrackHitcount, setCanWeTrackHitcount] = useState<boolean>(false);
   const minimalQueryLength = 1;
   const config = useConfig();
   const branches = config<TBranch[]>("branchesConfig", {
@@ -152,31 +150,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
     setResultItems(resultWorks);
   }, [data, page]);
 
-  const { collectPageStatistics } = useCollectPageStatistics();
-  useEffect(() => {
-    collectPageStatistics({
-      ...statistics.searchQuery,
-      trackedData: q
-    });
-    // We actually just want to track if the query changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [q]);
-
-  useEffect(() => {
-    // We want to disregard the first hitcount because it is always 0 and doesn't
-    // represent reality (the number is set manually by us in the code). We only
-    // track all the following hitcount values that are based on the data.
-    if (!canWeTrackHitcount) {
-      setCanWeTrackHitcount(true);
-      return;
-    }
-    collectPageStatistics({
-      ...statistics.searchResultCount,
-      trackedData: hitcount ? hitcount.toString() : "0"
-    });
-    // We actually just want to track if the hitcount changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hitcount]);
+  useSearchResultTracking({ q, hitcount });
 
   if (!q || q.length < minimalQueryLength) {
     return <SearchResultInvalidSearch />;
