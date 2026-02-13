@@ -60,27 +60,36 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   );
 
   const handleFacetChange = (facetName: string, selectedValues: string[]) => {
-    let updatedFacets: FacetState[];
-
     // Remove facet if empty
     if (selectedValues.length === 0) {
-      updatedFacets = facetsFromUrl.filter((f) => f.facetName !== facetName);
-    } else {
-      const existingFacet = facetsFromUrl.find(
-        (f) => f.facetName === facetName
+      const updatedFacets = facetsFromUrl.filter(
+        (f) => f.facetName !== facetName
       );
-
-      if (existingFacet) {
-        // Update existing facet
-        updatedFacets = facetsFromUrl.map((f) =>
-          f.facetName === facetName ? { ...f, selectedValues } : f
-        );
-      } else {
-        // Add new facet
-        updatedFacets = [...facetsFromUrl, { facetName, selectedValues }];
-      }
+      setFacetsInUrl(updatedFacets, { history: "push" });
+      trackFacetChange(updatedFacets);
+      return;
     }
 
+    const existingFacet = facetsFromUrl.find((f) => f.facetName === facetName);
+
+    // Update existing facet
+    if (existingFacet) {
+      const updatedFacets = facetsFromUrl.map((f) =>
+        f.facetName === facetName ? { ...f, selectedValues } : f
+      );
+      setFacetsInUrl(updatedFacets, { history: "push" });
+      trackFacetChange(updatedFacets);
+      return;
+    }
+
+    // Add new facet
+    const updatedFacets = [
+      ...facetsFromUrl,
+      {
+        facetName,
+        selectedValues
+      }
+    ];
     setFacetsInUrl(updatedFacets, { history: "push" });
     trackFacetChange(updatedFacets);
   };
