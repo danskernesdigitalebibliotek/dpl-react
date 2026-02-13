@@ -6,6 +6,8 @@ import {
   FacetFieldEnum
 } from "../../core/dbc-gateway/generated/graphql";
 import { getFacetFieldTranslation } from "../../components/facet-browser/helper";
+import { useEventStatistics } from "../../core/statistics/useStatistics";
+import { statistics } from "../../core/statistics/statistics";
 import SearchFacetGroup from "../../components/facet-browser/SearchFacetGroup";
 import SearchToggle from "../../components/search-toggle/SearchToggle";
 import AdvancedSearchRadioGroup from "../advanced-search-v2/components/AdvancedSearchRadioGroup";
@@ -41,6 +43,7 @@ const isValidFacetState = (value: unknown): value is FacetState[] => {
 
 const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   const t = useText();
+  const { track } = useEventStatistics();
 
   // "On shelf" toggle state stored in URL
   const [onShelf, setOnShelf] = useQueryState(
@@ -58,39 +61,40 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   );
 
   const handleFacetChange = (facetName: string, selectedValues: string[]) => {
+    let updatedFacets: FacetState[];
+
     // Remove facet if empty
     if (selectedValues.length === 0) {
-      setFacetsInUrl(
-        facetsFromUrl.filter((f) => f.facetName !== facetName),
-        { history: "push" }
+      updatedFacets = facetsFromUrl.filter((f) => f.facetName !== facetName);
+    } else {
+      const existingFacet = facetsFromUrl.find(
+        (f) => f.facetName === facetName
       );
-      return;
-    }
 
-    const existingFacet = facetsFromUrl.find((f) => f.facetName === facetName);
-
-    // Update existing facet
-    if (existingFacet) {
-      setFacetsInUrl(
-        facetsFromUrl.map((f) =>
+      if (existingFacet) {
+        // Update existing facet
+        updatedFacets = facetsFromUrl.map((f) =>
           f.facetName === facetName ? { ...f, selectedValues } : f
-        ),
-        { history: "push" }
-      );
-      return;
+        );
+      } else {
+        // Add new facet
+        updatedFacets = [...facetsFromUrl, { facetName, selectedValues }];
+      }
     }
 
-    // Add new facet
-    setFacetsInUrl(
-      [
-        ...facetsFromUrl,
-        {
-          facetName,
-          selectedValues
-        }
-      ],
-      { history: "push" }
-    );
+    setFacetsInUrl(updatedFacets, { history: "push" });
+
+    // Track facet selection in the same format as the old search result:
+    // "facet.name:value;facet.name:value2"
+    const trackedData = updatedFacets
+      .flatMap((f) => f.selectedValues.map((v) => `facet.${f.facetName}:${v}`))
+      .join(";");
+
+    track("click", {
+      id: statistics.searchFacets.id,
+      name: statistics.searchFacets.name,
+      trackedData
+    });
   };
 
   // Filter out facets with no values
