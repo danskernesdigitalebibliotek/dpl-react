@@ -6,8 +6,7 @@ import {
   FacetFieldEnum
 } from "../../core/dbc-gateway/generated/graphql";
 import { getFacetFieldTranslation } from "../../components/facet-browser/helper";
-import { useEventStatistics } from "../../core/statistics/useStatistics";
-import { statistics } from "../../core/statistics/statistics";
+import { useFacetTracking } from "./useSearchResultTracking";
 import SearchFacetGroup from "../../components/facet-browser/SearchFacetGroup";
 import SearchToggle from "../../components/search-toggle/SearchToggle";
 import AdvancedSearchRadioGroup from "../advanced-search-v2/components/AdvancedSearchRadioGroup";
@@ -43,7 +42,7 @@ const isValidFacetState = (value: unknown): value is FacetState[] => {
 
 const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   const t = useText();
-  const { track } = useEventStatistics();
+  const { trackFacetChange } = useFacetTracking();
 
   // "On shelf" toggle state stored in URL
   const [onShelf, setOnShelf] = useQueryState(
@@ -83,18 +82,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
     }
 
     setFacetsInUrl(updatedFacets, { history: "push" });
-
-    // Track facet selection in the same format as the old search result:
-    // "facet.name:value;facet.name:value2"
-    const trackedData = updatedFacets
-      .flatMap((f) => f.selectedValues.map((v) => `facet.${f.facetName}:${v}`))
-      .join(";");
-
-    track("click", {
-      id: statistics.searchFacets.id,
-      name: statistics.searchFacets.name,
-      trackedData
-    });
+    trackFacetChange(updatedFacets);
   };
 
   // Filter out facets with no values
