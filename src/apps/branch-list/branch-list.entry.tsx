@@ -5,6 +5,15 @@ import BranchList from "./branch-list";
 
 interface BranchListEntryTextProps {
   branchListTitleText: string;
+  branchListAddressSearchLabelText: string;
+  branchListAddressSearchPlaceholderText: string;
+  branchListGeoLocationButtonText: string;
+  geoLocationErrorNotSupportedText: string;
+  geoLocationErrorPermissionDeniedText: string;
+  geoLocationErrorPositionUnavailableText: string;
+  geoLocationErrorTimeoutText: string;
+  geoLocationErrorDefaultText: string;
+  reverseGeocodeErrorDefaultText: string;
 }
 
 interface BranchListEntryConfigProps {

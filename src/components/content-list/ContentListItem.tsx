@@ -7,6 +7,7 @@ type ContentListItemProps = {
   title: string;
   image?: string;
   tags?: ReactNode;
+  meta?: ReactNode;
   children?: ReactNode;
 };
 
@@ -15,6 +16,7 @@ const ContentListItem: FC<ContentListItemProps> = ({
   title,
   image,
   tags,
+  meta,
   children
 }) => (
   <li className="content-list__item">
@@ -34,7 +36,9 @@ const ContentListItem: FC<ContentListItemProps> = ({
               <div className="content-list-item__description">{children}</div>
             )}
           </div>
-          <div className="content-list-item__content-top-container__meta" />
+          <div className="content-list-item__content-top-container__meta">
+            {meta}
+          </div>
         </div>
         <div className="content-list-item__content-bottom-container" />
       </div>
