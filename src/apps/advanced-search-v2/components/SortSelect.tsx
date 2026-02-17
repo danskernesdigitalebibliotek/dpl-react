@@ -26,16 +26,13 @@ const AdvancedSortSelect: React.FC<SortSelectProps> = ({
 
   return (
     <div className="search__sort-select">
-      <label
-        className="search__sort-select__label"
-        htmlFor="advanced-sort-select"
-      >
+      <label className="search__sort-select__label" htmlFor="sort-select">
         {t("advancedSearchSortLabelText")}
       </label>
       <div className="search__sort-select__select-wrapper">
         <select
           className="search__sort-select__select"
-          id="advanced-sort-select"
+          id="sort-select"
           value={sortOption}
           onChange={handleChange}
         >
