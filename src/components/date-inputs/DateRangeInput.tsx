@@ -33,10 +33,6 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
 }) => {
   const refLabel = React.useRef<HTMLLabelElement | null>(null);
 
-  const scrollCalendarIntoView = () => {
-    refLabel.current?.scrollIntoView();
-  };
-
   // Disable past dates - only allow today and future dates
   // Using disable instead of minDate because minDate causes unexpected behavior
   // where existing date ranges don't display correctly
@@ -75,7 +71,11 @@ const DateRangeInput: FC<DateRangeInputProps> = ({
             dateFormat: "d-m-Y",
             static: true,
             mode: "range",
-            onOpen: scrollCalendarIntoView,
+            defaultDate: new Date(),
+            onOpen: () => {
+              // Scroll the page to ensure the input is visible in the viewport
+              refLabel.current?.scrollIntoView();
+            },
             onReady: (dates, currentDateStr, self) => {
               self.altInput?.setAttribute("aria-label", label);
               const classes =
