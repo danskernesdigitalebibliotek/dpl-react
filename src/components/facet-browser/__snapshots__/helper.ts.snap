@@ -231,5 +231,60 @@ exports[`getPlaceHolderFacets > should get placeholder facets 1`] = `
       },
     ],
   },
+  {
+    "name": "AGE",
+    "type": "AGE",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+        "traceId": "",
+      },
+    ],
+  },
+  {
+    "name": "GENERALAUDIENCE",
+    "type": "GENERALAUDIENCE",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+        "traceId": "",
+      },
+    ],
+  },
+  {
+    "name": "LIX",
+    "type": "LIX",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+        "traceId": "",
+      },
+    ],
+  },
+  {
+    "name": "LET",
+    "type": "LET",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+        "traceId": "",
+      },
+    ],
+  },
+  {
+    "name": "LIBRARYRECOMMENDATION",
+    "type": "LIBRARYRECOMMENDATION",
+    "values": [
+      {
+        "key": "",
+        "term": "",
+        "traceId": "",
+      },
+    ],
+  },
 ]
 `;
