@@ -18,7 +18,7 @@ export class AdvancedSearchV2Page extends PageObject {
     });
 
     this.addElements = {
-      form: () => cy.get(".advanced-search-v2__form"),
+      form: () => cy.get(".search__form"),
       summary: () => cy.get(".search-summary")
     };
 
