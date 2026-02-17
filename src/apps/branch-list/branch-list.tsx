@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import Arrow from "../../components/atoms/icons/arrow/arrow";
-import MediaImage from "../../components/media-container/MediaImage";
+import ContentListPage from "../../components/content-list/ContentListPage";
+import ContentList from "../../components/content-list/ContentList";
+import ContentListItem from "../../components/content-list/ContentListItem";
 import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 
@@ -22,43 +23,26 @@ const BranchList: FC = () => {
   const title = t("branchListTitleText");
 
   return (
-    <div className="content-list-page">
-      <h1 className="content-list-page__heading">{title}</h1>
-      <ul className="content-list">
+    <ContentListPage title={title}>
+      <ContentList>
         {branches.map((branch) => (
-          <li key={branch.url} className="content-list__item">
-            <a
-              className="content-list-item content-list-item-grid arrow__hover--right-small"
-              href={branch.url}
-            >
-              <div className="content-list-item__image-container">
-                <MediaImage src={branch.image} />
-              </div>
-              <div className="content-list-item__content">
-                <div className="content-list-item__tag-container" />
-                <div className="content-list-item__content-top-container">
-                  <div className="content-list-item__content-top-container__inner">
-                    <h2 className="content-list-item__title">{branch.title}</h2>
-                    {(branch.address || branch.city) && (
-                      <div className="content-list-item__description">
-                        <div className="address" translate="no">
-                          {branch.address}
-                          <br />
-                          {branch.city}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="content-list-item__content-top-container__meta" />
-                </div>
-                <div className="content-list-item__content-bottom-container" />
-              </div>
-              <Arrow />
-            </a>
-          </li>
+          <ContentListItem
+            key={branch.url}
+            url={branch.url}
+            title={branch.title}
+            image={branch.image}
+          >
+            {(branch.address || branch.city) && (
+              <address>
+                {branch.address}
+                <br />
+                {branch.city}
+              </address>
+            )}
+          </ContentListItem>
         ))}
-      </ul>
-    </div>
+      </ContentList>
+    </ContentListPage>
   );
 };
 
