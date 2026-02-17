@@ -4,14 +4,14 @@ import { withConfig } from "../../core/utils/config";
 import { pageSizeGlobal, getParams } from "../../core/utils/helpers/general";
 import { withText } from "../../core/utils/text";
 import { withUrls } from "../../core/utils/url";
-import SearchResultV2 from "./SearchResult";
+import SearchResult from "./SearchResult";
 import GlobalUrlEntryPropsInterface from "../../core/utils/types/global-url-props";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { MappArgs } from "../../core/storybook/mappArgs";
 import withPageStatistics from "../../core/statistics/withPageStatistics";
 import { NuqsAdapter } from "nuqs/adapters/react";
 
-interface SearchResultV2EntryTextProps {
+interface SearchResultEntryTextProps {
   addMoreFiltersText: string;
   searchFilterMaterialsText: string;
   searchShowResultsText: string;
@@ -53,7 +53,7 @@ interface SearchResultV2EntryTextProps {
   invalidSearchDescriptionText: string;
 }
 
-interface SearchResultV2EntryConfigProps {
+interface SearchResultEntryConfigProps {
   blacklistedAvailabilityBranchesConfig: string;
   blacklistedPickupBranchesConfig?: string;
   blacklistedSearchBranchesConfig?: string;
@@ -61,11 +61,11 @@ interface SearchResultV2EntryConfigProps {
   searchInfoboxConfig: string;
 }
 
-export interface SearchResultV2EntryProps
+export interface SearchResultEntryProps
   extends GlobalUrlEntryPropsInterface,
-    SearchResultV2EntryConfigProps,
+    SearchResultEntryConfigProps,
     GlobalEntryTextProps,
-    SearchResultV2EntryTextProps,
+    SearchResultEntryTextProps,
     MappArgs {
   q?: string;
   pageSizeDesktop?: number;
@@ -73,7 +73,7 @@ export interface SearchResultV2EntryProps
   searchShowingMaterialsText: string;
 }
 
-const SearchResultV2Entry: React.FC<SearchResultV2EntryProps> = ({
+const SearchResultEntry: React.FC<SearchResultEntryProps> = ({
   q,
   pageSizeDesktop,
   pageSizeMobile
@@ -95,7 +95,7 @@ const SearchResultV2Entry: React.FC<SearchResultV2EntryProps> = ({
       {(searchQuery || searchQuery === "") && (
         <GuardedApp app="search-result">
           <NuqsAdapter>
-            <SearchResultV2 q={searchQuery} pageSize={pageSize} />
+            <SearchResult q={searchQuery} pageSize={pageSize} />
           </NuqsAdapter>
         </GuardedApp>
       )}
@@ -104,5 +104,5 @@ const SearchResultV2Entry: React.FC<SearchResultV2EntryProps> = ({
 };
 
 export default withConfig(
-  withUrls(withText(withPageStatistics(SearchResultV2Entry)))
+  withUrls(withText(withPageStatistics(SearchResultEntry)))
 );

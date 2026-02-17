@@ -2,10 +2,12 @@ import React, { Fragment, memo, useEffect } from "react";
 import clsx from "clsx";
 import { getCoverTint } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
-import CardListItem from "./card-list-item/card-list-item";
-import CardListItemSkeleton from "./card-list-item/card-list-item-skeleton";
-import MaterialListItem from "./MaterialListItem";
-import CardListInfoBox, { CardListInfoBoxProps } from "./CardListInfoBox";
+import CardListItem from "../../components/card-item-list/card-list-item/card-list-item";
+import CardListItemSkeleton from "../../components/card-item-list/card-list-item/card-list-item-skeleton";
+import MaterialListItem from "../../components/card-item-list/MaterialListItem";
+import CardListInfoBox, {
+  CardListInfoBoxProps
+} from "../../components/card-item-list/CardListInfoBox";
 
 export interface SearchResultListProps {
   resultItems?: Work[];
@@ -33,8 +35,6 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
   }, [page, resultItems]);
 
   const searchInfoBoxIndex = pageSize;
-
-  const showSkeletons = isLoading;
 
   return (
     <ul
@@ -88,7 +88,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
         }
       })}
 
-      {showSkeletons && (
+      {isLoading && (
         <>
           {/*
             Show skeleton search result items if no data is available yet or

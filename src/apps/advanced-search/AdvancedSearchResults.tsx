@@ -12,7 +12,7 @@ import {
   useComplexSearchWithPaginationQuery
 } from "../../core/dbc-gateway/generated/graphql";
 import usePager from "../../components/result-pager/use-pager";
-import SearchResultList from "../../components/card-item-list/SearchResultList";
+import SearchResultList from "../search-result/SearchResultList";
 import SearchResultZeroHits from "../search-result/search-result-zero-hits";
 import { currentLocationWithParametersUrl } from "../../core/utils/helpers/url";
 import { LocationFilter } from "./LocationFilter";

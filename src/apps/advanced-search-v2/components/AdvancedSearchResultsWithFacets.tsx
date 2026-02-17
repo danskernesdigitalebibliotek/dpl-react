@@ -1,8 +1,7 @@
 import React from "react";
 import { useText } from "../../../core/utils/text";
-import SearchResultList from "../../../components/card-item-list/SearchResultList";
+import SearchResultList from "../../search-result/SearchResultList";
 import AdvancedSearchFacets from "./AdvancedSearchFacets";
-import SearchSummary from "./SearchSummary";
 import AdvancedSortSelect from "./SortSelect";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
@@ -12,6 +11,7 @@ import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 import useDialog from "../../../components/dialog/useDialog";
 import Dialog from "../../../components/dialog/Dialog";
 import { Button } from "../../../components/Buttons/Button";
+import SearchSummary from "./SearchSummary";
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;

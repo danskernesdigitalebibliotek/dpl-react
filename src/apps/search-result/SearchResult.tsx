@@ -22,7 +22,7 @@ import { cleanBranchesId, TBranch } from "../../core/utils/branches";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
 import { useUrls } from "../../core/utils/url";
 import { useConfig } from "../../core/utils/config";
-import SearchResultList from "../../components/card-item-list/SearchResultList";
+import SearchResultList from "./SearchResultList";
 import SearchResultFacets from "./SearchResultFacets";
 import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-filter.svg";
 import useDialog from "../../components/dialog/useDialog";
@@ -31,12 +31,12 @@ import { Button } from "../../components/Buttons/Button";
 import { convertFacetsToFilters, isValidFacetsState } from "./helpers";
 import { isWildcardQuery } from "../advanced-search-v2/lib/query-builder";
 
-interface SearchResultV2Props {
+interface SearchResultProps {
   q: string;
   pageSize: number;
 }
 
-const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
+const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const u = useUrls();
   const zeroHitsSearchUrl = u("zeroHitsSearchUrl");
   const t = useText();
@@ -210,7 +210,6 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
           ) : null
         }
       />
-
       <div className="search__results">
         <div className="search__grid">
           <SearchResultFacets facets={facets} />
@@ -285,4 +284,4 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   );
 };
 
-export default SearchResultV2;
+export default SearchResult;
