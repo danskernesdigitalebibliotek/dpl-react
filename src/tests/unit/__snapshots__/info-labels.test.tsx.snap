@@ -14,7 +14,7 @@ exports[`ReservationStatusInfoLabel > Should show the markup for the for a reser
   class="status-label status-label--info"
   data-cy="reservation-status-info-label"
 >
-  Borrow before 12-12-2022 11:12
+  Borrow before 12-12-2022 12:12
 </div>
 `;
 
