@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { SortOrderEnum } from "../../core/dbc-gateway/generated/graphql";
 import { getSortInput } from "../../apps/advanced-search-v2/lib/sort-utils";
 import { SortOption } from "../../apps/advanced-search-v2/types";
-import { SortOrderEnum } from "../../core/dbc-gateway/generated/graphql";
 
 describe("getSortInput", () => {
   it("returns undefined for Relevance (default sort)", () => {

@@ -9,7 +9,8 @@ import { getFacetFieldTranslation } from "../../components/facet-browser/helper"
 import { useFacetTracking } from "./useSearchResultTracking";
 import SearchFacetGroup from "../../components/facet-browser/SearchFacetGroup";
 import SearchToggle from "../../components/search-toggle/SearchToggle";
-import AdvancedSearchRadioGroup from "../advanced-search-v2/components/AdvancedSearchRadioGroup";
+import AdvancedSearchRadioButtonGroup from "../../components/search-radio-button-group/SearchRadioButtonGroup";
+
 // Type for facet state stored in URL
 // Uses facetName (camelCase string like "materialTypesGeneral") as that's what the API expects for filters
 type FacetState = {
@@ -189,10 +190,10 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   );
 
   return (
-    <aside className="search-v2-facets">
-      <div className="search-v2-facets__container">
+    <aside className="search-facets">
+      <div className="search-facets__container">
         {/* Toggles section */}
-        <ul className="search-v2-facets__toggles">
+        <ul className="search-facets__toggles">
           <li>
             <SearchToggle
               id="on-shelf"
@@ -214,8 +215,8 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
         </ul>
 
         {/* Advanced search-style radio groups */}
-        <div className="advanced-search-radio-group-wrapper">
-          <AdvancedSearchRadioGroup
+        <div className="search-radio-button-group-wrapper">
+          <AdvancedSearchRadioButtonGroup
             name="access-type"
             options={ACCESS_TYPE_OPTIONS}
             selectedValue={
@@ -230,7 +231,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
             }
           />
 
-          <AdvancedSearchRadioGroup
+          <AdvancedSearchRadioButtonGroup
             name="fiction-type"
             options={FICTION_TYPE_OPTIONS}
             selectedValue={
@@ -245,7 +246,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
             }
           />
 
-          <AdvancedSearchRadioGroup
+          <AdvancedSearchRadioButtonGroup
             name="age-group"
             options={AGE_GROUP_OPTIONS}
             selectedValue={
@@ -261,7 +262,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
         </div>
 
         {/* Filter groups - dynamically rendered from API response */}
-        <ul className="search-v2-facets__groups">
+        <ul className="search-facets__groups">
           {availableFacets.map((facet) => {
             const facetName = facet.name;
             const facetField = facet.type;

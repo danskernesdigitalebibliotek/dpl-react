@@ -25,16 +25,16 @@ const AdvancedSortSelect: React.FC<SortSelectProps> = ({
   };
 
   return (
-    <div className="search-v2__sort-select">
+    <div className="search__sort-select">
       <label
-        className="search-v2__sort-select__label"
+        className="search__sort-select__label"
         htmlFor="advanced-sort-select"
       >
         {t("advancedSearchSortLabelText")}
       </label>
-      <div className="search-v2__sort-select__select-wrapper">
+      <div className="search__sort-select__select-wrapper">
         <select
-          className="search-v2__sort-select__select"
+          className="search__sort-select__select"
           id="advanced-sort-select"
           value={sortOption}
           onChange={handleChange}
@@ -67,8 +67,8 @@ const AdvancedSortSelect: React.FC<SortSelectProps> = ({
             </option>
           </optgroup>
         </select>
-        <div className="search-v2__dropdown__arrows">
-          <img className="search-v2__dropdown__arrow" src={IconExpand} alt="" />
+        <div className="search__dropdown__arrows">
+          <img className="search__dropdown__arrow" src={IconExpand} alt="" />
         </div>
       </div>
     </div>

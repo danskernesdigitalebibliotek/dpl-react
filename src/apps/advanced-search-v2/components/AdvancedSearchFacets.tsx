@@ -6,7 +6,7 @@ import {
   parseAsString
 } from "nuqs";
 import SearchToggle from "../../../components/search-toggle/SearchToggle";
-import AdvancedSearchRadioGroup from "./AdvancedSearchRadioGroup";
+import SearchRadioButtonGroup from "../../../components/search-radio-button-group/SearchRadioButtonGroup";
 import { useText } from "../../../core/utils/text";
 import SearchFacetGroup from "../../../components/facet-browser/SearchFacetGroup";
 import {
@@ -141,10 +141,10 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
   };
 
   return (
-    <aside className="search-v2-facets">
-      <div className="search-v2-facets__container">
+    <aside className="search-facets">
+      <div className="search-facets__container">
         {/* Toggles section */}
-        <ul className="search-v2-facets__toggles">
+        <ul className="search-facets__toggles">
           <li>
             <SearchToggle
               id="on-shelf"
@@ -168,15 +168,15 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
         </ul>
 
         {/* Radio button filters */}
-        <div className="advanced-search-radio-group-wrapper">
-          <AdvancedSearchRadioGroup
+        <div className="search-radio-button-group-wrapper">
+          <SearchRadioButtonGroup
             name="access-type"
             options={ACCESS_TYPE_OPTIONS}
             selectedValue={accessType}
             onChange={(value) => setAccessType(value, { history: "push" })}
           />
 
-          <AdvancedSearchRadioGroup
+          <SearchRadioButtonGroup
             name="fiction-type"
             options={FICTION_TYPE_OPTIONS}
             selectedValue={fictionType}
@@ -184,7 +184,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
               setFictionType(value, { history: "push" });
             }}
           />
-          <AdvancedSearchRadioGroup
+          <SearchRadioButtonGroup
             name="age-group"
             options={AGE_GROUP_OPTIONS}
             selectedValue={ageGroup}
@@ -193,7 +193,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
         </div>
 
         {/* Filter groups */}
-        <ul className="search-v2-facets__groups">
+        <ul className="search-facets__groups">
           {FACETS_CONFIG.map((config) => {
             const selectedValues = getSelectedValues(config.facetField);
             const selectedCount = getSelectedCount(config.facetField);

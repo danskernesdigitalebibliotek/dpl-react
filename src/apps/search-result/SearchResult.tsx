@@ -22,7 +22,6 @@ import { cleanBranchesId, TBranch } from "../../core/utils/branches";
 import SearchResultInvalidSearch from "./search-result-not-valid-search";
 import { useUrls } from "../../core/utils/url";
 import { useConfig } from "../../core/utils/config";
-import { isWildcardQuery } from "../advanced-search-v2/lib/query-builder";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import SearchResultFacets from "./SearchResultFacets";
 import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-filter.svg";
@@ -30,6 +29,7 @@ import useDialog from "../../components/dialog/useDialog";
 import Dialog from "../../components/dialog/Dialog";
 import { Button } from "../../components/Buttons/Button";
 import { convertFacetsToFilters, isValidFacetsState } from "./helpers";
+import { isWildcardQuery } from "../advanced-search-v2/lib/query-builder";
 
 interface SearchResultV2Props {
   q: string;
@@ -188,7 +188,7 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
   });
 
   return (
-    <div className="search-v2">
+    <div className="search">
       <SearchResultHeader
         headerTitle={headerTitle}
         subtitleRenderProp={
@@ -211,41 +211,41 @@ const SearchResultV2: React.FC<SearchResultV2Props> = ({ q, pageSize }) => {
         }
       />
 
-      <div className="search-v2__results">
-        <div className="search-v2__grid">
+      <div className="search__results">
+        <div className="search__grid">
           <SearchResultFacets facets={facets} />
 
           <section>
-            <div className="search-v2__results-top-bar">
-              <div className="search-v2__results-top-bar__left">
-                <h2 className="search-v2__results-heading">
+            <div className="search__results-top-bar">
+              <div className="search__results-top-bar__left">
+                <h2 className="search__results-heading">
                   {t("searchShowingMaterialsText", {
                     placeholders: { "@hitcount": hitcount }
                   })}
                 </h2>
               </div>
-              <div className="search-v2__results-top-bar__right">
+              <div className="search__results-top-bar__right">
                 <button
                   onClick={() => openDialogWithContent(true)}
-                  className="search-v2__modify-filters-button"
+                  className="search__modify-filters-button"
                 >
                   <img src={IconFilter} alt="" />
                   <span>{t("addMoreFiltersText")}</span>
                 </button>
 
                 <Dialog isSidebar closeDialog={closeDialog} ref={dialogRef}>
-                  <div className="search-v2-facets__dialog">
-                    <div className="search-v2-facets__dialog-content">
-                      <h2 className="search-v2-facets__dialog-content__heading">
+                  <div className="search-facets__dialog">
+                    <div className="search-facets__dialog-content">
+                      <h2 className="search-facets__dialog-content__heading">
                         {t("searchDialogFilterMaterialsText", {
                           placeholders: { "@hitcount": hitcount }
                         })}
                       </h2>
                       <SearchResultFacets facets={facets} />
                     </div>
-                    <div className="search-v2-facets__dialog__actions">
+                    <div className="search-facets__dialog__actions">
                       <Button
-                        classNames="search-v2-facets__dialog__actions__button"
+                        classNames="search-facets__dialog__actions__button"
                         collapsible
                         label={t("searchShowResultsText")}
                         size="medium"

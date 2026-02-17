@@ -33,7 +33,7 @@ const AdvancedSearchV2: React.FC<AdvancedSearchV2Props> = ({ pageSize }) => {
   };
 
   return (
-    <div className="search-v2">
+    <div className="search">
       <SearchResultHeader headerTitle={t("advancedSearchTitleText")} />
 
       {!showResults && (

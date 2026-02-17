@@ -1,6 +1,6 @@
 import { ComponentObject } from "@hammzj/cypress-page-object";
 
-export class AdvancedSearchFormComponent extends ComponentObject {
+export class SearchFormComponent extends ComponentObject {
   constructor() {
     super(() => cy.get(".advanced-search-v2__form"));
 

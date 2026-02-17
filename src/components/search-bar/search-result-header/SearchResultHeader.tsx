@@ -10,16 +10,16 @@ const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
   subtitleRenderProp
 }) => {
   return (
-    <div className="search-v2__header">
+    <div className="search__header">
       <h1
-        className="search-v2__header__title"
+        className="search__header__title"
         data-cy="search-result-header"
         aria-live="polite"
       >
         {headerTitle}
       </h1>
       {subtitleRenderProp && (
-        <h2 className="search-v2__header__subtitle">{subtitleRenderProp}</h2>
+        <h2 className="search__header__subtitle">{subtitleRenderProp}</h2>
       )}
     </div>
   );

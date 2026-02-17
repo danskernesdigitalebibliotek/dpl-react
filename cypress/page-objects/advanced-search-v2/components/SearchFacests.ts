@@ -1,8 +1,8 @@
 import { ComponentObject } from "@hammzj/cypress-page-object";
 
-export class AdvancedSearchFacetsComponent extends ComponentObject {
+export class SearchFacetsComponent extends ComponentObject {
   constructor() {
-    super(() => cy.get(".advanced-search-facets"));
+    super(() => cy.get(".search-facets"));
 
     this.addElements = {
       toggleOnShelf: () => this.container().find("#on-shelf"),
@@ -33,9 +33,9 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   toggleFilterGroup(label: string) {
     this.container()
-      .find(".advanced-search-facet-group")
-      .contains(".advanced-search-facet-group__label", label)
-      .parents(".advanced-search-facet-group__header")
+      .find(".search-facet-group")
+      .contains(".search-facet-group__label", label)
+      .parents(".search-facet-group__header")
       .click();
   }
 
@@ -44,8 +44,8 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   selectFacetValue(groupLabel: string, value: string) {
     this.getFilterGroup(groupLabel)
-      .find(".advanced-search-facet-group__content")
-      .contains(".advanced-search-facet-group__item", value)
+      .find(".search-facet-group__content")
+      .contains(".search-facet-group__item", value)
       .find("input[type='checkbox']")
       .check({ force: true });
   }
@@ -55,8 +55,8 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   deselectFacetValue(groupLabel: string, value: string) {
     this.getFilterGroup(groupLabel)
-      .find(".advanced-search-facet-group__content")
-      .contains(".advanced-search-facet-group__item", value)
+      .find(".search-facet-group__content")
+      .contains(".search-facet-group__item", value)
       .find("input[type='checkbox']")
       .uncheck({ force: true });
   }
@@ -66,15 +66,15 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   clickShowAllInGroup(groupLabel: string) {
     this.getFilterGroup(groupLabel)
-      .find(".advanced-search-facet-group__show-all")
+      .find(".search-facet-group__show-all")
       .click();
   }
 
   // Helper to get a filter group by label
   private getFilterGroup(label: string) {
     return this.container()
-      .find(".advanced-search-facet-group")
-      .filter(`:has(.advanced-search-facet-group__label:contains("${label}"))`);
+      .find(".search-facet-group")
+      .filter(`:has(.search-facet-group__label:contains("${label}"))`);
   }
 
   // Verification methods
@@ -104,10 +104,10 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyFilterGroupIsExpanded(label: string) {
     this.getFilterGroup(label)
-      .find(".advanced-search-facet-group__header")
+      .find(".search-facet-group__header")
       .should("have.attr", "aria-expanded", "true");
     this.getFilterGroup(label)
-      .find(".advanced-search-facet-group__content")
+      .find(".search-facet-group__content")
       .should("exist");
   }
 
@@ -116,10 +116,10 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyFilterGroupIsCollapsed(label: string) {
     this.getFilterGroup(label)
-      .find(".advanced-search-facet-group__header")
+      .find(".search-facet-group__header")
       .should("have.attr", "aria-expanded", "false");
     this.getFilterGroup(label)
-      .find(".advanced-search-facet-group__content")
+      .find(".search-facet-group__content")
       .should("not.exist");
   }
 
@@ -128,7 +128,7 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyFilterGroupBadgeCount(label: string, count: number) {
     this.getFilterGroup(label)
-      .find(".advanced-search-facet-group__count-badge")
+      .find(".search-facet-group__count-badge")
       .should("contain", count);
   }
 
@@ -137,8 +137,8 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyFacetValueIsSelected(groupLabel: string, value: string) {
     this.getFilterGroup(groupLabel)
-      .find(".advanced-search-facet-group__content")
-      .contains(".advanced-search-facet-group__item", value)
+      .find(".search-facet-group__content")
+      .contains(".search-facet-group__item", value)
       .find("input[type='checkbox']")
       .should("be.checked");
   }
@@ -148,8 +148,8 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyFacetValueIsNotSelected(groupLabel: string, value: string) {
     this.getFilterGroup(groupLabel)
-      .find(".advanced-search-facet-group__content")
-      .contains(".advanced-search-facet-group__item", value)
+      .find(".search-facet-group__content")
+      .contains(".search-facet-group__item", value)
       .find("input[type='checkbox']")
       .should("not.be.checked");
   }
@@ -159,7 +159,7 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyFacetItemCount(groupLabel: string, count: number) {
     this.getFilterGroup(groupLabel)
-      .find(".advanced-search-facet-group__item")
+      .find(".search-facet-group__item")
       .should("have.length", count);
   }
 
@@ -168,7 +168,7 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyShowAllButtonExists(groupLabel: string) {
     this.getFilterGroup(groupLabel)
-      .find(".advanced-search-facet-group__show-all")
+      .find(".search-facet-group__show-all")
       .should("exist");
   }
 
@@ -177,9 +177,9 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyFacetValueCount(groupLabel: string, value: string, count: number) {
     this.getFilterGroup(groupLabel)
-      .find(".advanced-search-facet-group__content")
-      .contains(".advanced-search-facet-group__item", value)
-      .find(".advanced-search-facet-group__item-count")
+      .find(".search-facet-group__content")
+      .contains(".search-facet-group__item", value)
+      .find(".search-facet-group__item-count")
       .should("contain", count);
   }
 
@@ -190,8 +190,8 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   selectRadioOption(labelText: string) {
     this.container()
-      .find(".advanced-search-radio-group")
-      .contains(".advanced-search-radio-group__label", labelText)
+      .find(".search-radio-button-group")
+      .contains(".search-radio-button-group__label", labelText)
       .parent()
       .click();
   }
@@ -201,8 +201,8 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   selectRadioOptionWithEnter(labelText: string) {
     this.container()
-      .find(".advanced-search-radio-group")
-      .contains(".advanced-search-radio-group__label", labelText)
+      .find(".search-radio-button-group")
+      .contains(".search-radio-button-group__label", labelText)
       .parent()
       .focus()
       .type("{enter}");
@@ -213,8 +213,8 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   selectRadioOptionWithSpace(labelText: string) {
     this.container()
-      .find(".advanced-search-radio-group")
-      .contains(".advanced-search-radio-group__label", labelText)
+      .find(".search-radio-button-group")
+      .contains(".search-radio-button-group__label", labelText)
       .parent()
       .focus()
       .type(" ");
@@ -227,10 +227,10 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyRadioOptionIsSelected(labelText: string) {
     this.container()
-      .find(".advanced-search-radio-group")
-      .contains(".advanced-search-radio-group__label", labelText)
+      .find(".search-radio-button-group")
+      .contains(".search-radio-button-group__label", labelText)
       .parent()
-      .find(".advanced-search-radio-group__input--checked")
+      .find(".search-radio-button-group__input--checked")
       .should("exist");
   }
 
@@ -239,10 +239,10 @@ export class AdvancedSearchFacetsComponent extends ComponentObject {
    */
   verifyRadioOptionIsNotSelected(labelText: string) {
     this.container()
-      .find(".advanced-search-radio-group")
-      .contains(".advanced-search-radio-group__label", labelText)
+      .find(".search-radio-button-group")
+      .contains(".search-radio-button-group__label", labelText)
       .parent()
-      .find(".advanced-search-radio-group__input--checked")
+      .find(".search-radio-button-group__input--checked")
       .should("not.exist");
   }
 }

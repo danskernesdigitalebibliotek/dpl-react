@@ -66,18 +66,18 @@ function SearchFacetGroup<
   }
 
   return (
-    <li className="search-v2-facet-group">
+    <li className="search-facet-group">
       <button
         type="button"
-        className="search-v2-facet-group__header"
+        className="search-facet-group__header"
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
         aria-controls={`filter-group-content-${facetField}`}
       >
-        <div className="search-v2-facet-group__header-content">
-          <span className="search-v2-facet-group__label">{label}</span>
+        <div className="search-facet-group__header-content">
+          <span className="search-facet-group__label">{label}</span>
           {selectedCount > 0 && (
-            <span className="search-v2-facet-group__count-badge">
+            <span className="search-facet-group__count-badge">
               {selectedCount}
             </span>
           )}
@@ -86,8 +86,8 @@ function SearchFacetGroup<
           src={iconExpandMore}
           alt=""
           className={clsx(
-            "search-v2-facet-group__chevron",
-            isExpanded && "search-v2-facet-group__chevron--expanded"
+            "search-facet-group__chevron",
+            isExpanded && "search-facet-group__chevron--expanded"
           )}
         />
       </button>
@@ -96,7 +96,7 @@ function SearchFacetGroup<
         <>
           <ul
             id={`filter-group-content-${facetField}`}
-            className="search-v2-facet-group__content"
+            className="search-facet-group__content"
           >
             {displayedValues.map((facetValue) => {
               const value = getValue(facetValue);
@@ -105,7 +105,7 @@ function SearchFacetGroup<
               const countId = `filter-${facetField}-${value}-count`;
 
               return (
-                <li key={value} className="search-v2-facet-group__item">
+                <li key={value} className="search-facet-group__item">
                   <CheckBox
                     id={`filter-${facetField}-${value}`}
                     label={value}
@@ -118,7 +118,7 @@ function SearchFacetGroup<
                   {showScore && count > 0 && (
                     <span
                       id={countId}
-                      className="search-v2-facet-group__item-count"
+                      className="search-facet-group__item-count"
                     >
                       {count}
                     </span>
@@ -129,10 +129,10 @@ function SearchFacetGroup<
           </ul>
 
           {hasMoreValues && (
-            <div className="search-v2-facet-group__footer">
+            <div className="search-facet-group__footer">
               <button
                 type="button"
-                className="search-v2-facet-group__show-all"
+                className="search-facet-group__show-all"
                 onClick={() => setShowAll(!showAll)}
                 aria-controls={`filter-group-content-${facetField}`}
                 aria-expanded={showAll}
@@ -140,7 +140,7 @@ function SearchFacetGroup<
                 <img
                   src={showAll ? iconMinus : iconPlus}
                   alt=""
-                  className="search-v2-facet-group__show-all-icon"
+                  className="search-facet-group__show-all-icon"
                 />
                 <span>
                   {showAll ? t("searchShowLessText") : t("searchShowAllText")}
