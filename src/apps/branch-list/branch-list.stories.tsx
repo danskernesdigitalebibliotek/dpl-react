@@ -110,7 +110,14 @@ export const Default: Story = {
 export const WithoutImages: Story = {
   args: {
     branchesConfig: JSON.stringify(
-      branchesData.map(({ image, ...rest }) => rest)
+      branchesData.map((branch) => ({
+        title: branch.title,
+        url: branch.url,
+        address: branch.address,
+        city: branch.city,
+        lat: branch.lat,
+        lng: branch.lng
+      }))
     )
   },
   render: (args) => <BranchListEntry {...args} />
