@@ -1,11 +1,9 @@
-import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
-import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import React, { FC, useCallback } from "react";
 import ContentListPage from "../../components/content-list/ContentListPage";
 import ContentList from "../../components/content-list/ContentList";
 import ContentListFilters from "../../components/content-list/ContentListFilters";
 import ContentListItem from "../../components/content-list/ContentListItem";
-import GSearchInput from "../../components/gsearch-input/GSearchInput";
+import AddressSearchBar from "../../components/address-search-bar/AddressSearchBar";
 import useAddressSorting from "../../core/address-lookup/useAddressSorting";
 import {
   formatDistance,
@@ -49,29 +47,17 @@ const BranchList: FC = () => {
   return (
     <ContentListPage title={t("branchListTitleText")}>
       <ContentListFilters>
-        <GSearchInput
+        <AddressSearchBar
           id="branch-list-address-input"
           label={t("branchListAddressSearchLabelText")}
-          type="text"
           placeholder={t("branchListAddressSearchPlaceholderText")}
+          buttonText={t("branchListGeoLocationButtonText")}
           query={query}
           onQueryChange={handleQueryChange}
           onAddressSelect={handleAddressSelect}
+          onGetUserLocation={handleGetUserLocation}
+          geoLocationError={geoLocationError}
         />
-        <button
-          type="button"
-          onClick={handleGetUserLocation}
-          className="find-library-dialog__location"
-        >
-          <img src={LocationIcon} alt="" />
-          <p>{t("branchListGeoLocationButtonText")}</p>
-        </button>
-        {geoLocationError && (
-          <div className="find-library-dialog__error-message" role="alert">
-            <img src={WarningIcon} alt="" />
-            <p>{geoLocationError}</p>
-          </div>
-        )}
       </ContentListFilters>
       <ContentList>
         {branchesWithDistance.map(({ item: branch, distance }) => (

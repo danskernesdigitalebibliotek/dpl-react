@@ -1,5 +1,3 @@
-import LocationIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Location.svg";
-import WarningIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-warning.svg";
 import React, { useCallback } from "react";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
@@ -9,7 +7,7 @@ import {
   parseCoordinates
 } from "../../core/utils/helpers/distance";
 import { TBranch } from "../../core/utils/branches";
-import GSearchInput from "../../components/gsearch-input/GSearchInput";
+import AddressSearchBar from "../../components/address-search-bar/AddressSearchBar";
 
 type FindLibraryDialogProps = {
   branches?: TBranch[];
@@ -50,31 +48,17 @@ function FindLibraryDialog({
       <h2 className="find-library-dialog__title">
         {t("findLibraryDialogTitleText")}
       </h2>
-      <div className="find-library-dialog__location-group">
-        <GSearchInput
-          id="address-input-2"
-          label={t("findLibraryDialogAddressInputLabelText")}
-          placeholder={t("findLibraryDialogAddressInputPlaceholderText")}
-          type="text"
-          query={query}
-          onQueryChange={handleQueryChange}
-          onAddressSelect={handleAddressSelect}
-        />
-        <button
-          type="button"
-          onClick={handleGetUserLocation}
-          className="find-library-dialog__location"
-        >
-          <img src={LocationIcon} alt="" />
-          <p>{t("findLibraryDialogGeoLocationButtonText")}</p>
-        </button>
-        {geoLocationError && (
-          <div className="find-library-dialog__error-message" role="alert">
-            <img src={WarningIcon} alt="" />
-            <p>{geoLocationError}</p>
-          </div>
-        )}
-      </div>
+      <AddressSearchBar
+        id="address-input-2"
+        label={t("findLibraryDialogAddressInputLabelText")}
+        placeholder={t("findLibraryDialogAddressInputPlaceholderText")}
+        buttonText={t("findLibraryDialogGeoLocationButtonText")}
+        query={query}
+        onQueryChange={handleQueryChange}
+        onAddressSelect={handleAddressSelect}
+        onGetUserLocation={handleGetUserLocation}
+        geoLocationError={geoLocationError}
+      />
       <div className="find-library-dialog__location-list">
         <p className="find-library-dialog__location-list__title">
           {t("findLibraryDialogSuggestionsListLabelText")}
