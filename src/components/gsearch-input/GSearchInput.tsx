@@ -10,7 +10,6 @@ import {
 
 export type InputProps = {
   label: string;
-  type: "text";
   id: string;
   query: string;
   description?: string;

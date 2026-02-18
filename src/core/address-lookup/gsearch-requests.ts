@@ -12,13 +12,8 @@ export type GSearchAddress = {
 };
 
 export type AddressWithCoordinates = {
-  vejnavn: string;
-  betegnelse: string;
-  x: number;
-  y: number;
   id: string;
-  postnr: string;
-  postnrnavn: string;
+  betegnelse: string;
   lat: number;
   lng: number;
 };
@@ -54,15 +49,10 @@ const convertGSearchToAddress = (
   const [lng, lat] = coords;
 
   return {
-    vejnavn: result.vejnavn,
-    betegnelse: result.visningstekst,
-    x: lng,
-    y: lat,
-    lat,
-    lng,
     id: result.id,
-    postnr: result.postnummer,
-    postnrnavn: result.postnummernavn
+    betegnelse: result.visningstekst,
+    lat,
+    lng
   };
 };
 

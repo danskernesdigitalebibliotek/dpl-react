@@ -32,7 +32,6 @@ const AddressSearchBar = ({
       id={id}
       label={label}
       placeholder={placeholder}
-      type="text"
       query={query}
       onQueryChange={onQueryChange}
       onAddressSelect={onAddressSelect}
