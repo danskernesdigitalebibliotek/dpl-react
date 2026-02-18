@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import BranchListEntry from "./branch-list.entry";
+import geoLocationArgs, {
+  argTypes as geoLocationArgTypes
+} from "../../core/storybook/geoLocationArgs";
+import dataforsyningenArgs, {
+  argTypes as dataforsyningenArgTypes
+} from "../../core/storybook/dataforsyningenArgs";
 
 const branchesData = [
   {
@@ -48,7 +54,11 @@ const branchesData = [
 const meta: Meta<typeof BranchListEntry> = {
   title: "Apps / Branch List",
   component: BranchListEntry,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore: can't figure out how to type geoLocationArgTypes
   argTypes: {
+    ...geoLocationArgTypes,
+    ...dataforsyningenArgTypes,
     branchesConfig: {
       name: "Branches data (JSON)",
       control: { type: "text" }
@@ -71,23 +81,13 @@ const meta: Meta<typeof BranchListEntry> = {
     }
   },
   args: {
+    ...geoLocationArgs,
+    ...dataforsyningenArgs,
     branchesConfig: JSON.stringify(branchesData),
-    dataforsyningenTokenConfig: process.env.STORYBOOK_DATAFORSYNINGEN || "",
     branchListTitleText: "Branches",
     branchListAddressSearchLabelText: "Sort by distance - enter your address",
     branchListAddressSearchPlaceholderText: "Enter your address",
-    branchListGeoLocationButtonText: "Find nearest library from your location",
-    geoLocationErrorNotSupportedText:
-      "Geolocation is not supported by your browser.",
-    geoLocationErrorPermissionDeniedText:
-      "You have denied access to your location.",
-    geoLocationErrorPositionUnavailableText:
-      "Your location is not available at the moment.",
-    geoLocationErrorTimeoutText:
-      "The request for your location timed out. Please try again.",
-    geoLocationErrorDefaultText:
-      "An error occurred while fetching your location.",
-    reverseGeocodeErrorDefaultText: "Could not find address for your location."
+    branchListGeoLocationButtonText: "Find nearest library from your location"
   }
 };
 
