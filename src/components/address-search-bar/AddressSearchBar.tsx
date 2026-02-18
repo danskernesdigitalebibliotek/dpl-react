@@ -27,7 +27,7 @@ const AddressSearchBar = ({
   onGetUserLocation,
   geoLocationError
 }: AddressSearchBarProps) => (
-  <div className="find-library-dialog__location-group">
+  <div className="address-search-bar">
     <GSearchInput
       id={id}
       label={label}
@@ -40,13 +40,13 @@ const AddressSearchBar = ({
     <button
       type="button"
       onClick={onGetUserLocation}
-      className="find-library-dialog__location"
+      className="address-search-bar__location-button"
     >
       <img src={LocationIcon} alt="" />
       <p>{buttonText}</p>
     </button>
     {geoLocationError && (
-      <div className="find-library-dialog__error-message" role="alert">
+      <div className="address-search-bar__error-message" role="alert">
         <img src={WarningIcon} alt="" />
         <p>{geoLocationError}</p>
       </div>

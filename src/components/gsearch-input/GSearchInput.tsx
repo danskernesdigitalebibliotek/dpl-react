@@ -84,22 +84,22 @@ const GSearchInput = ({
   });
 
   return (
-    <div className="dawa-input-wrapper">
-      <label className="dawa-input-wrapper__label" {...getLabelProps()}>
+    <div className="address-input-wrapper">
+      <label className="address-input-wrapper__label" {...getLabelProps()}>
         {label}
       </label>
-      <div className="dawa-input__input-wrapper">
+      <div className="address-input__combobox">
         <input
           id={id}
           placeholder={placeholder}
-          className="dawa-input"
+          className="address-input"
           {...getInputProps()}
         />
         <ul
           className={clsx(
-            "dawa-input__address-suggestions",
+            "address-input__suggestions",
             !(isOpen && addresses.length) &&
-              "dawa-input__address-suggestions--hidden"
+              "address-input__suggestions--hidden"
           )}
           {...getMenuProps()}
         >
@@ -107,11 +107,11 @@ const GSearchInput = ({
             addresses.map((address, index) => (
               <li
                 className={clsx(
-                  "dawa-input__address-suggestions__item",
+                  "address-input__suggestions__item",
                   highlightedIndex === index &&
-                    "dawa-input__address-suggestions__item--highlighted",
+                    "address-input__suggestions__item--highlighted",
                   selectedItem === address &&
-                    "dawa-input__address-suggestions__item--selected"
+                    "address-input__suggestions__item--selected"
                 )}
                 key={address.id}
                 {...getItemProps({ item: address, index })}
