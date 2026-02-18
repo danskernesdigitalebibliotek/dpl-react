@@ -5,7 +5,7 @@ export class AdvancedSearchSortComponent extends ComponentObject {
     super(() => cy.get(".search__sort-select"));
 
     this.addElements = {
-      select: () => this.container().find("#advanced-sort-select"),
+      select: () => this.container().find("#sort-select"),
       label: () => this.container().find(".search__sort-select__label")
     };
   }
