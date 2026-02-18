@@ -15,6 +15,7 @@ interface CreatePatronConfigProps {
   branchesConfig: string;
   textNotificationsEnabledConfig: string;
   branchAddressSearchEnabledConfig: string;
+  dataforsyningenTokenConfig: string;
 }
 interface CreatePatronUrlProps {
   authUrl: string;

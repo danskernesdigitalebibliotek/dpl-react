@@ -21,20 +21,6 @@ export type AddressWithCoordinates = {
 const GSEARCH_BASE_URL = "https://api.dataforsyningen.dk/rest/gsearch/v2.0";
 
 /**
- * Get DATAFORSYNINGEN token from environment variables
- */
-const getToken = (): string => {
-  const token = process.env.STORYBOOK_DATAFORSYNINGEN;
-  if (!token) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      "DATAFORSYNINGEN token is not set. API calls will fail unless intercepted (e.g., during tests)."
-    );
-  }
-  return token || "";
-};
-
-/**
  * Convert GSearch address result to our internal format
  */
 const convertGSearchToAddress = (
@@ -59,18 +45,18 @@ const convertGSearchToAddress = (
 /**
  * Reverse geocode: convert coordinates to address
  */
-export const getReverseGeocode = async (
-  lat: number,
-  lng: number,
-  errorMessages?: {
-    fetchError?: string;
-  }
-): Promise<AddressWithCoordinates | null> => {
-  const messages = {
-    fetchError: errorMessages?.fetchError ?? "Could not fetch address"
-  };
-
-  const token = getToken();
+export const getReverseGeocode = async ({
+  lat,
+  lng,
+  errorMessages,
+  token = ""
+}: {
+  lat: number;
+  lng: number;
+  errorMessages?: { fetchError?: string };
+  token?: string;
+}): Promise<AddressWithCoordinates | null> => {
+  const fetchError = errorMessages?.fetchError ?? "Could not fetch address";
 
   try {
     const response = await fetch(
@@ -78,7 +64,7 @@ export const getReverseGeocode = async (
     );
 
     if (!response.ok) {
-      throw new Error(messages.fetchError);
+      throw new Error(fetchError);
     }
 
     const data = await response.json();
@@ -90,18 +76,20 @@ export const getReverseGeocode = async (
 
     return null;
   } catch {
-    throw new Error(messages.fetchError);
+    throw new Error(fetchError);
   }
 };
 
 /**
  * Search for addresses using a query string
  */
-export async function getAddressesFromLocationQuery(
-  query: string
-): Promise<AddressWithCoordinates[]> {
-  const token = getToken();
-
+export async function getAddressesFromLocationQuery({
+  query,
+  token = ""
+}: {
+  query: string;
+  token?: string;
+}): Promise<AddressWithCoordinates[]> {
   try {
     const url = `${GSEARCH_BASE_URL}/adresse?q=${encodeURIComponent(query)}&limit=10&srid=4326&token=${token}`;
     const response = await fetch(url);

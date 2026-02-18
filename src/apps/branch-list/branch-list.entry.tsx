@@ -18,6 +18,7 @@ interface BranchListEntryTextProps {
 
 interface BranchListEntryConfigProps {
   branchesConfig: string;
+  dataforsyningenTokenConfig: string;
 }
 
 const BranchListEntry: FC<

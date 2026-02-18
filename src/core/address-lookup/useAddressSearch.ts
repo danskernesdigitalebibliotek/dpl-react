@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { AddressWithCoordinates, getReverseGeocode } from "./gsearch-requests";
 import { getCurrentPosition } from "../geo-location/geo-location";
 import { useText } from "../utils/text";
+import { useConfig } from "../utils/config";
 
 /**
  * Shared hook for managing address search state with GSearchInput.
@@ -11,6 +12,8 @@ import { useText } from "../utils/text";
  */
 const useAddressSearch = () => {
   const t = useText();
+  const config = useConfig();
+  const token = config<string>("dataforsyningenTokenConfig") || "";
   const [query, setQuery] = useState("");
   const [selectedAddress, setSelectedAddress] =
     useState<AddressWithCoordinates | null>(null);
@@ -44,8 +47,11 @@ const useAddressSearch = () => {
       });
       const { latitude, longitude } = coords;
 
-      const address = await getReverseGeocode(latitude, longitude, {
-        fetchError: t("reverseGeocodeErrorDefaultText")
+      const address = await getReverseGeocode({
+        lat: latitude,
+        lng: longitude,
+        errorMessages: { fetchError: t("reverseGeocodeErrorDefaultText") },
+        token
       });
 
       if (address) {
@@ -59,7 +65,7 @@ const useAddressSearch = () => {
           : t("geoLocationErrorDefaultText");
       setGeoLocationError(errorMessage);
     }
-  }, [t]);
+  }, [t, token]);
 
   return {
     query,

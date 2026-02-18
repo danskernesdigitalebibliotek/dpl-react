@@ -7,6 +7,7 @@ import {
   AddressWithCoordinates,
   getAddressesFromLocationQuery
 } from "../../core/address-lookup/gsearch-requests";
+import { useConfig } from "../../core/utils/config";
 
 export type InputProps = {
   label: string;
@@ -21,7 +22,7 @@ export type InputProps = {
 
 const MIN_QUERY_LENGTH = 3;
 
-function useGetGSearchAddresses(query: string) {
+function useGetGSearchAddresses(query: string, token?: string) {
   const [addresses, setAddresses] = useState<AddressWithCoordinates[]>([]);
 
   const debouncedFetch = useMemo(
@@ -32,10 +33,13 @@ function useGetGSearchAddresses(query: string) {
           return;
         }
 
-        const result = await getAddressesFromLocationQuery(searchQuery);
+        const result = await getAddressesFromLocationQuery({
+          query: searchQuery,
+          token
+        });
         setAddresses(result);
       }, 300),
-    []
+    [token]
   );
 
   useEffect(() => {
@@ -56,7 +60,9 @@ const GSearchInput = ({
   onAddressSelect,
   onQueryChange
 }: InputProps) => {
-  const { addresses } = useGetGSearchAddresses(query);
+  const config = useConfig();
+  const token = config<string>("dataforsyningenTokenConfig") || "";
+  const { addresses } = useGetGSearchAddresses(query, token);
 
   const {
     isOpen,

@@ -80,11 +80,11 @@ const meta: Meta<typeof BranchListEntry> = {
   },
   args: {
     branchesConfig: JSON.stringify(branchesData),
+    dataforsyningenTokenConfig: process.env.STORYBOOK_DATAFORSYNINGEN || "",
     branchListTitleText: "Branches",
     branchListAddressSearchLabelText: "Sort by distance - enter your address",
     branchListAddressSearchPlaceholderText: "Enter your address",
-    branchListGeoLocationButtonText:
-      "Find nearest library from your location",
+    branchListGeoLocationButtonText: "Find nearest library from your location",
     geoLocationErrorNotSupportedText:
       "Geolocation is not supported by your browser.",
     geoLocationErrorPermissionDeniedText:
