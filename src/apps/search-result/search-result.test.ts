@@ -118,12 +118,12 @@ describe("Search Result", () => {
       ]
     }).as("Availability service");
 
-    // Intercept campaign query.
-    cy.fixture("search-result/campaign.json")
-      .then((result) => {
-        cy.intercept("**/dpl_campaign/match", result);
-      })
-      .as("Campaign service - full campaign");
+    // // Intercept campaign query.
+    // cy.fixture("search-result/campaign.json")
+    //   .then((result) => {
+    //     cy.intercept("**/dpl_campaign/match", result);
+    //   })
+    //   .as("Campaign service - full campaign");
   });
 });
 
