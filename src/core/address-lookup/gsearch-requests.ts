@@ -1,4 +1,7 @@
-import { wgs84ToUtm32n } from "../utils/helpers/coordinate-projection";
+import {
+  wgs84ToUtm32n,
+  utm32nToWgs84
+} from "../utils/helpers/coordinate-projection";
 import { calculateDistance } from "../utils/helpers/distance";
 
 export type GSearchAddress = {
@@ -90,10 +93,15 @@ export const getReverseGeocode = async ({
     const data = await response.json();
 
     if (Array.isArray(data) && data.length > 0) {
-      // Convert API results to internal format, discarding any with missing coordinates
+      // Convert API results to internal format, discarding any with missing coordinates.
+      // The API returns EPSG:25832 coordinates (no srid param), so convert to WGS84.
       const addresses = data
         .map((result: GSearchAddress) => convertGSearchToAddress(result))
-        .filter((a): a is AddressWithCoordinates => a !== null);
+        .filter((a): a is AddressWithCoordinates => a !== null)
+        .map((a) => {
+          const wgs84 = utm32nToWgs84(a.lng, a.lat);
+          return { ...a, lat: wgs84.lat, lng: wgs84.lng };
+        });
 
       if (addresses.length === 0) return null;
 

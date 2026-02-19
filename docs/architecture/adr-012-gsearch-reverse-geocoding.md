@@ -41,6 +41,12 @@ GSearch v2.0 supports ECQL spatial filters via the `filter` parameter:
 
 Coordinates in filters **must** be in EPSG:25832 (ETRS89 / UTM zone 32N).
 
+### `srid` parameter is incompatible with spatial filters
+
+The GSearch API documents a `srid` query parameter to control the output coordinate system (e.g. `srid=4326` for WGS84).
+However, combining `srid=4326` with a `filter` parameter returns **400 Bad Request** (`UnableToExecuteStatementException: Invalid input`).
+Without `srid`, results default to EPSG:25832 coordinates. This means we must convert the returned coordinates ourselves.
+
 ## Decision
 
 Use GSearch v2.0 with a `BBOX` spatial filter to approximate reverse geocoding:
@@ -49,8 +55,9 @@ Use GSearch v2.0 with a `BBOX` spatial filter to approximate reverse geocoding:
 2. Create a 50m bounding box (25m radius) around the converted point
 3. Query `GET /rest/gsearch/v2.0/adresse?q=1&filter=BBOX(geometri,...)&limit=10&token=...`
 4. Convert all results to internal format, discarding any with missing coordinates
-5. Calculate the Haversine distance from the browser coordinates to each result
-6. Return the closest match
+5. Convert returned EPSG:25832 coordinates back to WGS84 using the inverse UTM projection
+6. Calculate the Haversine distance from the browser coordinates to each result
+7. Return the closest match
 
 ## Trade-offs
 
