@@ -1,5 +1,6 @@
+import { useMemo } from "react";
 import useAddressSearch from "./useAddressSearch";
-import useDistanceSorting from "./useDistanceSorting";
+import sortByDistance from "./sortByDistance";
 
 type Coordinates = { lat: number; lng: number };
 
@@ -16,10 +17,10 @@ const useAddressSorting = <T>(
 ) => {
   const addressSearch = useAddressSearch();
 
-  const sortedItems = useDistanceSorting(
-    items,
-    addressSearch.selectedAddress,
-    getCoordinates
+  const sortedItems = useMemo(
+    () =>
+      sortByDistance(items, addressSearch.selectedAddress, getCoordinates),
+    [items, addressSearch.selectedAddress, getCoordinates]
   );
 
   return {
