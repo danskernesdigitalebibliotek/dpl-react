@@ -1,6 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState, useMemo } from "react";
-import { useCombobox } from "downshift";
+/* eslint-disable react/jsx-props-no-spreading -- downshift's prop getter API is designed for spreading */
+import React, { useState, useMemo, useCallback } from "react";
+import { useCombobox, UseComboboxStateChangeTypes } from "downshift";
 import clsx from "clsx";
 import { debounce } from "lodash";
 import {
@@ -22,7 +22,16 @@ export type InputProps = {
 
 const MIN_QUERY_LENGTH = 3;
 
-function useGetGSearchAddresses(query: string, token?: string) {
+const GSearchInput = ({
+  label,
+  id,
+  placeholder,
+  query,
+  onAddressSelect,
+  onQueryChange
+}: InputProps) => {
+  const config = useConfig();
+  const token = config<string>("dataforsyningenTokenConfig") || "";
   const [addresses, setAddresses] = useState<AddressWithCoordinates[]>([]);
 
   const debouncedFetch = useMemo(
@@ -42,27 +51,28 @@ function useGetGSearchAddresses(query: string, token?: string) {
     [token]
   );
 
-  useEffect(() => {
-    debouncedFetch(query);
-    return () => {
-      debouncedFetch.cancel();
-    };
-  }, [query, debouncedFetch]);
+  const handleInputValueChange = useCallback(
+    ({
+      inputValue: newInputValue,
+      type
+    }: {
+      inputValue?: string;
+      type: UseComboboxStateChangeTypes;
+    }) => {
+      const value = newInputValue || "";
+      onQueryChange(value);
 
-  return { addresses };
-}
-
-const GSearchInput = ({
-  label,
-  id,
-  placeholder,
-  query,
-  onAddressSelect,
-  onQueryChange
-}: InputProps) => {
-  const config = useConfig();
-  const token = config<string>("dataforsyningenTokenConfig") || "";
-  const { addresses } = useGetGSearchAddresses(query, token);
+      // Only fetch when the user is typing, not on programmatic changes
+      // (e.g. reverse geocode or selecting a suggestion).
+      if (type === useCombobox.stateChangeTypes.InputChange) {
+        debouncedFetch(value);
+      } else {
+        debouncedFetch.cancel();
+        setAddresses([]);
+      }
+    },
+    [onQueryChange, debouncedFetch]
+  );
 
   const {
     isOpen,
@@ -78,9 +88,7 @@ const GSearchInput = ({
     itemToString(item) {
       return item ? item.betegnelse : "";
     },
-    onInputValueChange({ inputValue: newInputValue }) {
-      onQueryChange(newInputValue || "");
-    },
+    onInputValueChange: handleInputValueChange,
     onSelectedItemChange({ selectedItem: newSelectedItem }) {
       if (newSelectedItem) {
         onAddressSelect(newSelectedItem);
