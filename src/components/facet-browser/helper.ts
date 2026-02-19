@@ -140,9 +140,9 @@ export const getFacetFieldTranslation = (name: FacetFieldEnum) => {
     case FacetFieldEnum.Mainlanguages.toLowerCase():
       return "facetMainLanguagesText";
     case FacetFieldEnum.Materialtypesspecific.toLowerCase():
-      return "facetMaterialTypesGeneralText";
-    case FacetFieldEnum.Materialtypesgeneral.toLowerCase():
       return "facetMaterialTypesSpecificText";
+    case FacetFieldEnum.Materialtypesgeneral.toLowerCase():
+      return "facetMaterialTypesGeneralText";
     case FacetFieldEnum.Subjects.toLowerCase():
       return "facetSubjectsText";
     case FacetFieldEnum.Worktypes.toLowerCase():
