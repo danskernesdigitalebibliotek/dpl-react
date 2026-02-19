@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { useQueryState, parseAsJson, parseAsBoolean } from "nuqs";
 import { useText } from "../../core/utils/text";
 import {
@@ -10,6 +10,7 @@ import { useFacetTracking } from "./useSearchResultTracking";
 import SearchFacetGroup from "../../components/facet-browser/SearchFacetGroup";
 import SearchToggle from "../../components/search-toggle/SearchToggle";
 import AdvancedSearchRadioButtonGroup from "../../components/search-radio-button-group/SearchRadioButtonGroup";
+import { sortSimpleSearchFacetValues } from "../advanced-search-v2/lib/facet-sort-utils";
 
 // Type for facet state stored in URL
 // Uses facetName (camelCase string like "materialTypesGeneral") as that's what the API expects for filters
@@ -96,8 +97,10 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   };
 
   // Filter out facets with no values
-  const allAvailableFacets =
-    facets?.filter((filter) => filter.values.length > 0) ?? [];
+  const allAvailableFacets = useMemo(
+    () => facets?.filter((filter) => filter.values.length > 0) ?? [],
+    [facets]
+  );
 
   // Map radios to corresponding facet names so they affect facetsFromUrl
   const accessTypeFacetName = allAvailableFacets.find(
@@ -181,12 +184,22 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   };
 
   // Facets shown as regular groups (exclude Canalwaysbeloaned and radio-driven facets)
-  const availableFacets = allAvailableFacets.filter(
-    (facet) =>
-      facet.type !== FacetFieldEnum.Canalwaysbeloaned &&
-      facet.type !== FacetFieldEnum.Accesstypes &&
-      facet.type !== FacetFieldEnum.Fictionnonfiction &&
-      facet.type !== FacetFieldEnum.Childrenoradults
+  // Apply sorting to facet values based on facet type
+  const availableFacets = useMemo(
+    () =>
+      allAvailableFacets
+        .filter(
+          (facet) =>
+            facet.type !== FacetFieldEnum.Canalwaysbeloaned &&
+            facet.type !== FacetFieldEnum.Accesstypes &&
+            facet.type !== FacetFieldEnum.Fictionnonfiction &&
+            facet.type !== FacetFieldEnum.Childrenoradults
+        )
+        .map((facet) => ({
+          ...facet,
+          values: sortSimpleSearchFacetValues(facet.type, facet.values)
+        })),
+    [allAvailableFacets]
   );
 
   return (
