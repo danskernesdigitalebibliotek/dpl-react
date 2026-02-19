@@ -17,6 +17,13 @@ interface SearchResultEntryTextProps {
   searchShowResultsText: string;
   searchShowLessText: string;
   searchShowAllText: string;
+  searchOnShelfText: string;
+  searchOnShelfDescriptionText: string;
+  searchCanAlwaysBeLoanedText: string;
+  searchCanAlwaysBeLoanedDescriptionText: string;
+  searchDialogFilterMaterialsText: string;
+  webSearchConfig: string;
+  webSearchLinkText: string;
   byAuthorText: string;
   etAlText: string;
   facetAccessTypesText: string;
