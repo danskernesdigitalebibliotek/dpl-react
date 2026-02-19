@@ -18,8 +18,7 @@ const useAddressSorting = <T>(
   const addressSearch = useAddressSearch();
 
   const sortedItems = useMemo(
-    () =>
-      sortByDistance(items, addressSearch.selectedAddress, getCoordinates),
+    () => sortByDistance(items, addressSearch.selectedAddress, getCoordinates),
     [items, addressSearch.selectedAddress, getCoordinates]
   );
 
