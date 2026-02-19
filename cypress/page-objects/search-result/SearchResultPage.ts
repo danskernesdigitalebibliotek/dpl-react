@@ -99,6 +99,6 @@ export class SearchResultPage extends PageObject {
   }
 
   verifyDialogIsClosed() {
-    this.elements.dialog().should("not.exist");
+    this.elements.dialog().should("not.have.attr", "open");
   }
 }
