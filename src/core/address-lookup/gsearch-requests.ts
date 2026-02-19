@@ -1,3 +1,5 @@
+import { calculateDistance } from "../utils/helpers/distance";
+
 export type GSearchAddress = {
   id: string;
   vejnavn: string;
@@ -19,6 +21,18 @@ export type AddressWithCoordinates = {
 };
 
 const GSEARCH_BASE_URL = "https://api.dataforsyningen.dk/rest/gsearch/v2.0";
+
+const findClosestAddress = (
+  lat: number,
+  lng: number,
+  addresses: AddressWithCoordinates[]
+): AddressWithCoordinates => {
+  return addresses.reduce((closest, address) => {
+    const distClosest = calculateDistance(lat, lng, closest.lat, closest.lng);
+    const distAddress = calculateDistance(lat, lng, address.lat, address.lng);
+    return distAddress < distClosest ? address : closest;
+  });
+};
 
 /**
  * Convert GSearch address result to our internal format
@@ -134,7 +148,14 @@ export const getReverseGeocode = async ({
     const data = await response.json();
 
     if (Array.isArray(data) && data.length > 0) {
-      return convertGSearchToAddress(data[0]);
+      // Convert API results to internal format, discarding any with missing coordinates
+      const addresses = data
+        .map((result: GSearchAddress) => convertGSearchToAddress(result))
+        .filter((a): a is AddressWithCoordinates => a !== null);
+
+      if (addresses.length === 0) return null;
+
+      return findClosestAddress(lat, lng, addresses);
     }
 
     return null;

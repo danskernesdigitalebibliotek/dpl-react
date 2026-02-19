@@ -46,9 +46,11 @@ Coordinates in filters **must** be in EPSG:25832 (ETRS89 / UTM zone 32N).
 Use GSearch v2.0 with a `BBOX` spatial filter to approximate reverse geocoding:
 
 1. Convert WGS84 coordinates (from browser geolocation) to EPSG:25832 using the standard UTM projection formula
-2. Create a 200m bounding box around the converted point
-3. Query `GET /rest/gsearch/v2.0/adresse?q=1&filter=BBOX(geometri,...)&limit=1&token=...`
-4. Return the first result
+2. Create a 50m bounding box (25m radius) around the converted point
+3. Query `GET /rest/gsearch/v2.0/adresse?q=1&filter=BBOX(geometri,...)&limit=10&token=...`
+4. Convert all results to internal format, discarding any with missing coordinates
+5. Calculate the Haversine distance from the browser coordinates to each result
+6. Return the closest match
 
 ## Trade-offs
 
@@ -62,7 +64,7 @@ outperforming letter-based queries like `q=e` (12 results) or `q=a` (11 results)
 
 | Limitation | Impact | Mitigation |
 |---|---|---|
-| Results sorted by text relevance, not distance | Returned address may not be the absolute nearest | Small BBOX (100m radius) keeps all results close |
+| Results sorted by text relevance, not distance | API does not return nearest-first | Fetch 10 results and pick the closest by Haversine distance |
 | `q=1` doesn't match every address | Addresses without any digit could be missed | Extremely rare in practice |
 | Coordinate conversion adds code complexity | ~50 lines of UTM projection math | Standard well-tested formula, accurate to ~5m |
 
