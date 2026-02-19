@@ -39,10 +39,17 @@ const findClosestAddress = (
 };
 
 /**
- * Convert GSearch address result to our internal format
+ * Convert GSearch address result to our internal format.
+ *
+ * GeoJSON coordinates are [x, y]. The meaning depends on the coordinate system:
+ * - With srid=4326: [longitude, latitude] (WGS84 degrees)
+ * - Without srid (default 25832): [easting, northing] (UTM32N meters)
+ *
+ * The transformCoords callback converts raw [x, y] to WGS84 lat/lng.
  */
 const convertGSearchToAddress = (
-  result: GSearchAddress
+  result: GSearchAddress,
+  transformCoords: (x: number, y: number) => { lat: number; lng: number }
 ): AddressWithCoordinates | null => {
   const coords = result.geometri?.coordinates?.[0];
 
@@ -50,7 +57,7 @@ const convertGSearchToAddress = (
     return null;
   }
 
-  const [lng, lat] = coords;
+  const { lat, lng } = transformCoords(coords[0], coords[1]);
 
   return {
     id: result.id,
@@ -93,15 +100,13 @@ export const getReverseGeocode = async ({
     const data = await response.json();
 
     if (Array.isArray(data) && data.length > 0) {
-      // Convert API results to internal format, discarding any with missing coordinates.
-      // The API returns EPSG:25832 coordinates (no srid param), so convert to WGS84.
+      // The API returns EPSG:25832 coordinates (srid=4326 is incompatible with
+      // spatial filters), so convert to WGS84 via utm32nToWgs84.
       const addresses = data
-        .map((result: GSearchAddress) => convertGSearchToAddress(result))
-        .filter((a): a is AddressWithCoordinates => a !== null)
-        .map((a) => {
-          const wgs84 = utm32nToWgs84(a.lng, a.lat);
-          return { ...a, lat: wgs84.lat, lng: wgs84.lng };
-        });
+        .map((result: GSearchAddress) =>
+          convertGSearchToAddress(result, utm32nToWgs84)
+        )
+        .filter((a): a is AddressWithCoordinates => a !== null);
 
       if (addresses.length === 0) return null;
 
@@ -135,8 +140,10 @@ export async function getAddressesFromLocationQuery({
     const data = await response.json();
 
     if (Array.isArray(data)) {
+      // srid=4326 gives WGS84: GeoJSON [x, y] = [lng, lat]
+      const wgs84 = (x: number, y: number) => ({ lat: y, lng: x });
       return data
-        .map((result: GSearchAddress) => convertGSearchToAddress(result))
+        .map((result: GSearchAddress) => convertGSearchToAddress(result, wgs84))
         .filter(
           (address: AddressWithCoordinates | null) => address !== null
         ) as AddressWithCoordinates[];
