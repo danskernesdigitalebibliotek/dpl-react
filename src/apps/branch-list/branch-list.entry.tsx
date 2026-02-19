@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
+import { DataforsyningenArgs } from "../../core/storybook/dataforsyningenArgs";
 import BranchList from "./branch-list";
 
 interface BranchListEntryTextProps {
@@ -18,11 +19,10 @@ interface BranchListEntryTextProps {
 
 interface BranchListEntryConfigProps {
   branchesConfig: string;
-  dataforsyningenTokenConfig: string;
 }
 
 const BranchListEntry: FC<
-  BranchListEntryTextProps & BranchListEntryConfigProps
+  BranchListEntryTextProps & BranchListEntryConfigProps & DataforsyningenArgs
 > = () => {
   return <BranchList />;
 };

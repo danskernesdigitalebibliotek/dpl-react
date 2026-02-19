@@ -3,6 +3,7 @@ import { withConfig } from "../../core/utils/config";
 import { withText } from "../../core/utils/text";
 import { useUrls, withUrls } from "../../core/utils/url";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
+import { DataforsyningenArgs } from "../../core/storybook/dataforsyningenArgs";
 import { isUnregistered } from "../../core/utils/helpers/user";
 import { redirectTo } from "../../core/utils/helpers/url";
 import CreatePatron from "./CreatePatron";
@@ -15,7 +16,6 @@ interface CreatePatronConfigProps {
   branchesConfig: string;
   textNotificationsEnabledConfig: string;
   branchAddressSearchEnabledConfig: string;
-  dataforsyningenTokenConfig: string;
 }
 interface CreatePatronUrlProps {
   authUrl: string;
@@ -74,6 +74,7 @@ interface CreatePatronTextProps {
 export interface CreatePatronProps
   extends CreatePatronConfigProps,
     GlobalEntryTextProps,
+    DataforsyningenArgs,
     CreatePatronUrlProps,
     CreatePatronTextProps {
   fakeCpr?: string;
