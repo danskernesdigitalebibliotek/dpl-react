@@ -133,9 +133,9 @@ describe("facet-sort-utils", () => {
     describe("LibraryRecommendation facet", () => {
       it("sorts library recommendation values in ascending order", () => {
         const values = [
-          createFacetValue("for 12 år"),
-          createFacetValue("for 7 år"),
-          createFacetValue("for 15 år")
+          createFacetValue("fra 12 år"),
+          createFacetValue("fra 7 år"),
+          createFacetValue("fra 15 år")
         ];
 
         const sorted = sortFacetValues(
@@ -144,19 +144,20 @@ describe("facet-sort-utils", () => {
         );
 
         expect(sorted.map((v) => v.key)).toEqual([
-          "for 7 år",
-          "for 12 år",
-          "for 15 år"
+          "fra 7 år",
+          "fra 12 år",
+          "fra 15 år"
         ]);
       });
     });
 
     describe("GeneralAudience facet", () => {
-      it("sorts general audience values alphabetically", () => {
+      it("sorts general audience values using natural sorting", () => {
         const values = [
-          createFacetValue("voksne"),
-          createFacetValue("børn"),
-          createFacetValue("unge")
+          createFacetValue("for 10. klasse"),
+          createFacetValue("for 2. klasse"),
+          createFacetValue("Velegnet til oplæsning"),
+          createFacetValue("for 1. klasse")
         ];
 
         const sorted = sortFacetValues(
@@ -164,7 +165,12 @@ describe("facet-sort-utils", () => {
           values
         );
 
-        expect(sorted.map((v) => v.key)).toEqual(["børn", "unge", "voksne"]);
+        expect(sorted.map((v) => v.key)).toEqual([
+          "for 1. klasse",
+          "for 2. klasse",
+          "for 10. klasse",
+          "Velegnet til oplæsning"
+        ]);
       });
     });
 
@@ -293,9 +299,9 @@ describe("facet-sort-utils", () => {
     describe("LibraryRecommendation facet", () => {
       it("sorts library recommendation values in ascending order", () => {
         const values = [
-          createSimpleFacetValue("for 12 år"),
-          createSimpleFacetValue("for 7 år"),
-          createSimpleFacetValue("for 15 år")
+          createSimpleFacetValue("fra 12 år"),
+          createSimpleFacetValue("fra 7 år"),
+          createSimpleFacetValue("fra 15 år")
         ];
 
         const sorted = sortSimpleSearchFacetValues(
@@ -304,19 +310,20 @@ describe("facet-sort-utils", () => {
         );
 
         expect(sorted.map((v) => v.term)).toEqual([
-          "for 7 år",
-          "for 12 år",
-          "for 15 år"
+          "fra 7 år",
+          "fra 12 år",
+          "fra 15 år"
         ]);
       });
     });
 
     describe("GeneralAudience facet", () => {
-      it("sorts general audience values alphabetically", () => {
+      it("sorts general audience values using natural sorting", () => {
         const values = [
-          createSimpleFacetValue("voksne"),
-          createSimpleFacetValue("børn"),
-          createSimpleFacetValue("unge")
+          createSimpleFacetValue("for 10. klasse"),
+          createSimpleFacetValue("for 2. klasse"),
+          createSimpleFacetValue("Velegnet til oplæsning"),
+          createSimpleFacetValue("for 1. klasse")
         ];
 
         const sorted = sortSimpleSearchFacetValues(
@@ -324,7 +331,12 @@ describe("facet-sort-utils", () => {
           values
         );
 
-        expect(sorted.map((v) => v.term)).toEqual(["børn", "unge", "voksne"]);
+        expect(sorted.map((v) => v.term)).toEqual([
+          "for 1. klasse",
+          "for 2. klasse",
+          "for 10. klasse",
+          "Velegnet til oplæsning"
+        ]);
       });
     });
 
