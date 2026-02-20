@@ -53,7 +53,8 @@ export type AccessUnion =
   | DigitalArticleService
   | Ereol
   | InfomediaService
-  | InterLibraryLoan;
+  | InterLibraryLoan
+  | Publizon;
 
 export type AccessUrl = {
   __typename?: "AccessUrl";
@@ -1384,6 +1385,27 @@ export type PublicationYear = {
   year?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type Publizon = {
+  __typename?: "Publizon";
+  /** URL to the material on the public library's website, built from the agency's lookupUrl and the manifestation workId. Defaults to the logged-in user's municipality agency. */
+  agencyUrl?: Maybe<Scalars["String"]["output"]>;
+  /** The total duration of the resource in seconds, if available. */
+  durationInSeconds?: Maybe<Scalars["Int"]["output"]>;
+  /** The file size of the resource in bytes, if available. */
+  fileSizeInBytes?: Maybe<Scalars["Int"]["output"]>;
+  /** The file format of the Publizon resource (e.g., "epub", "mp3"). */
+  format?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * URL of the sample provided by Publizon (Pubhub), typically a preview
+   * of the e-book or audiobook content.
+   */
+  sample: Scalars["String"]["output"];
+};
+
+export type PublizonAgencyUrlArgs = {
+  agencyId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 export type Query = {
   __typename?: "Query";
   complexSearch: ComplexSearchResponse;
@@ -2335,6 +2357,19 @@ export type GetSmallWorkQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -2483,6 +2518,7 @@ export type GetSmallWorkQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -2505,6 +2541,19 @@ export type GetSmallWorkQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -2653,6 +2702,7 @@ export type GetSmallWorkQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -2675,6 +2725,19 @@ export type GetSmallWorkQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -2823,6 +2886,7 @@ export type GetSmallWorkQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3100,6 +3164,19 @@ export type GetMaterialQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -3248,6 +3325,7 @@ export type GetMaterialQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3270,6 +3348,19 @@ export type GetMaterialQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -3418,6 +3509,7 @@ export type GetMaterialQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3440,6 +3532,19 @@ export type GetMaterialQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -3588,6 +3693,7 @@ export type GetMaterialQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3719,6 +3825,19 @@ export type GetMaterialGloballyQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -3867,6 +3986,7 @@ export type GetMaterialGloballyQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3889,6 +4009,19 @@ export type GetMaterialGloballyQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -4037,6 +4170,7 @@ export type GetMaterialGloballyQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -4059,6 +4193,19 @@ export type GetMaterialGloballyQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -4207,6 +4354,7 @@ export type GetMaterialGloballyQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -4267,6 +4415,7 @@ export type GetReviewManifestationsQuery = {
       | { __typename: "Ereol" }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan" }
+      | { __typename: "Publizon" }
     >;
     edition?: {
       __typename?: "Edition";
@@ -4382,6 +4531,19 @@ export type RecommendFromFaustQuery = {
             genreAndForm: Array<string>;
             source: Array<string>;
             publisher: Array<string>;
+            subjects: {
+              __typename?: "SubjectContainer";
+              all: Array<
+                | { __typename?: "Corporation"; display: string }
+                | { __typename?: "Mood"; display: string }
+                | { __typename?: "NarrativeTechnique"; display: string }
+                | { __typename?: "Person"; display: string }
+                | { __typename?: "Setting"; display: string }
+                | { __typename?: "SubjectText"; display: string }
+                | { __typename?: "SubjectWithRating"; display: string }
+                | { __typename?: "TimePeriod"; display: string }
+              >;
+            };
             titles: {
               __typename?: "ManifestationTitles";
               main: Array<string>;
@@ -4533,6 +4695,7 @@ export type RecommendFromFaustQuery = {
                 }
               | { __typename: "InfomediaService"; id: string }
               | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+              | { __typename: "Publizon" }
             >;
             shelfmark?: {
               __typename?: "Shelfmark";
@@ -4555,6 +4718,19 @@ export type RecommendFromFaustQuery = {
             genreAndForm: Array<string>;
             source: Array<string>;
             publisher: Array<string>;
+            subjects: {
+              __typename?: "SubjectContainer";
+              all: Array<
+                | { __typename?: "Corporation"; display: string }
+                | { __typename?: "Mood"; display: string }
+                | { __typename?: "NarrativeTechnique"; display: string }
+                | { __typename?: "Person"; display: string }
+                | { __typename?: "Setting"; display: string }
+                | { __typename?: "SubjectText"; display: string }
+                | { __typename?: "SubjectWithRating"; display: string }
+                | { __typename?: "TimePeriod"; display: string }
+              >;
+            };
             titles: {
               __typename?: "ManifestationTitles";
               main: Array<string>;
@@ -4706,6 +4882,7 @@ export type RecommendFromFaustQuery = {
                 }
               | { __typename: "InfomediaService"; id: string }
               | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+              | { __typename: "Publizon" }
             >;
             shelfmark?: {
               __typename?: "Shelfmark";
@@ -4728,6 +4905,19 @@ export type RecommendFromFaustQuery = {
             genreAndForm: Array<string>;
             source: Array<string>;
             publisher: Array<string>;
+            subjects: {
+              __typename?: "SubjectContainer";
+              all: Array<
+                | { __typename?: "Corporation"; display: string }
+                | { __typename?: "Mood"; display: string }
+                | { __typename?: "NarrativeTechnique"; display: string }
+                | { __typename?: "Person"; display: string }
+                | { __typename?: "Setting"; display: string }
+                | { __typename?: "SubjectText"; display: string }
+                | { __typename?: "SubjectWithRating"; display: string }
+                | { __typename?: "TimePeriod"; display: string }
+              >;
+            };
             titles: {
               __typename?: "ManifestationTitles";
               main: Array<string>;
@@ -4879,6 +5069,7 @@ export type RecommendFromFaustQuery = {
                 }
               | { __typename: "InfomediaService"; id: string }
               | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+              | { __typename: "Publizon" }
             >;
             shelfmark?: {
               __typename?: "Shelfmark";
@@ -4963,6 +5154,19 @@ export type SearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5111,6 +5315,7 @@ export type SearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5133,6 +5338,19 @@ export type SearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5281,6 +5499,7 @@ export type SearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5303,6 +5522,19 @@ export type SearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5451,6 +5683,7 @@ export type SearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5513,6 +5746,7 @@ export type ComplexSearchWithPaginationWorkAccessQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
         }>;
       };
@@ -5583,6 +5817,19 @@ export type ComplexSearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5731,6 +5978,7 @@ export type ComplexSearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5753,6 +6001,19 @@ export type ComplexSearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5901,6 +6162,7 @@ export type ComplexSearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5923,6 +6185,19 @@ export type ComplexSearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -6071,6 +6346,7 @@ export type ComplexSearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -6294,6 +6570,19 @@ export type ManifestationsSimpleFragment = {
     genreAndForm: Array<string>;
     source: Array<string>;
     publisher: Array<string>;
+    subjects: {
+      __typename?: "SubjectContainer";
+      all: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Mood"; display: string }
+        | { __typename?: "NarrativeTechnique"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "Setting"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
+    };
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -6439,6 +6728,7 @@ export type ManifestationsSimpleFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
@@ -6458,6 +6748,19 @@ export type ManifestationsSimpleFragment = {
     genreAndForm: Array<string>;
     source: Array<string>;
     publisher: Array<string>;
+    subjects: {
+      __typename?: "SubjectContainer";
+      all: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Mood"; display: string }
+        | { __typename?: "NarrativeTechnique"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "Setting"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
+    };
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -6603,6 +6906,7 @@ export type ManifestationsSimpleFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
@@ -6622,6 +6926,19 @@ export type ManifestationsSimpleFragment = {
     genreAndForm: Array<string>;
     source: Array<string>;
     publisher: Array<string>;
+    subjects: {
+      __typename?: "SubjectContainer";
+      all: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Mood"; display: string }
+        | { __typename?: "NarrativeTechnique"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "Setting"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
+    };
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -6767,6 +7084,7 @@ export type ManifestationsSimpleFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
@@ -6808,6 +7126,7 @@ export type ManifestationsAccessFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
   }>;
 };
@@ -6818,6 +7137,19 @@ export type ManifestationsSimpleFieldsFragment = {
   genreAndForm: Array<string>;
   source: Array<string>;
   publisher: Array<string>;
+  subjects: {
+    __typename?: "SubjectContainer";
+    all: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Mood"; display: string }
+      | { __typename?: "NarrativeTechnique"; display: string }
+      | { __typename?: "Person"; display: string }
+      | { __typename?: "Setting"; display: string }
+      | { __typename?: "SubjectText"; display: string }
+      | { __typename?: "SubjectWithRating"; display: string }
+      | { __typename?: "TimePeriod"; display: string }
+    >;
+  };
   titles: {
     __typename?: "ManifestationTitles";
     main: Array<string>;
@@ -6960,6 +7292,7 @@ export type ManifestationsSimpleFieldsFragment = {
       }
     | { __typename: "InfomediaService"; id: string }
     | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+    | { __typename: "Publizon" }
   >;
   shelfmark?: {
     __typename?: "Shelfmark";
@@ -6987,6 +7320,7 @@ export type ManifestationReviewFieldsFragment = {
     | { __typename: "Ereol" }
     | { __typename: "InfomediaService"; id: string }
     | { __typename: "InterLibraryLoan" }
+    | { __typename: "Publizon" }
   >;
   edition?: {
     __typename?: "Edition";
@@ -7069,6 +7403,7 @@ export type WorkAccessFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
     }>;
   };
@@ -7121,6 +7456,19 @@ export type WorkSmallFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -7269,6 +7617,7 @@ export type WorkSmallFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7291,6 +7640,19 @@ export type WorkSmallFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -7439,6 +7801,7 @@ export type WorkSmallFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7461,6 +7824,19 @@ export type WorkSmallFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -7609,6 +7985,7 @@ export type WorkSmallFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7733,6 +8110,19 @@ export type WorkMediumFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -7881,6 +8271,7 @@ export type WorkMediumFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7903,6 +8294,19 @@ export type WorkMediumFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -8051,6 +8455,7 @@ export type WorkMediumFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -8073,6 +8478,19 @@ export type WorkMediumFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -8221,6 +8639,7 @@ export type WorkMediumFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -8410,6 +8829,11 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   pid
   genreAndForm
   source
+  subjects {
+    all {
+      display
+    }
+  }
   ...WithLanguages
   titles {
     main
