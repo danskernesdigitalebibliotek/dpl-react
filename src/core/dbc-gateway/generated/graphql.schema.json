@@ -118,6 +118,11 @@
             "kind": "OBJECT",
             "name": "InterLibraryLoan",
             "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Publizon",
+            "ofType": null
           }
         ]
       },
@@ -977,6 +982,12 @@
           },
           {
             "name": "CREATORFUNCTION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DATEFIRSTEDITION",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -6759,7 +6770,7 @@
           },
           {
             "name": "bestRepresentation",
-            "description": null,
+            "description": "The best representation of all manifestations. Corresponds to the first element in the bestRepresentations list.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -6775,7 +6786,7 @@
           },
           {
             "name": "bestRepresentations",
-            "description": null,
+            "description": "All manifestations sorted after best representation. Newer is better. Records from DBC or KB are considered better. MaterialType.specific 'bog', 'music (cd)', and 'film (dvd)' are also considered better",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -8989,6 +9000,95 @@
               "kind": "SCALAR",
               "name": "Int",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Publizon",
+        "description": null,
+        "isOneOf": null,
+        "fields": [
+          {
+            "name": "agencyUrl",
+            "description": "URL to the material on the public library's website, built from the agency's lookupUrl and the manifestation workId. Defaults to the logged-in user's municipality agency.",
+            "args": [
+              {
+                "name": "agencyId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "durationInSeconds",
+            "description": "The total duration of the resource in seconds, if available.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fileSizeInBytes",
+            "description": "The file size of the resource in bytes, if available.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "format",
+            "description": "The file format of the Publizon resource (e.g., \"epub\", \"mp3\").",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sample",
+            "description": "URL of the sample provided by Publizon (Pubhub), typically a preview\nof the e-book or audiobook content.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null

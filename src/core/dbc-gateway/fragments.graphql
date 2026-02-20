@@ -279,6 +279,9 @@ fragment WorkSmall on Work {
       season {
         display
       }
+      disc {
+        display
+      }
     }
   }
   abstract
