@@ -11,7 +11,7 @@ export class DialogFindLibrary extends ComponentObject {
         this.container().find(".find-library-dialog__location-list"),
       locationListItems: () =>
         this.container().find(".find-library-dialog__location-list__item"),
-      dawaInputAddressSuggestions: () =>
+      addressInputSuggestions: () =>
         this.container().find(".dawa-input__address-suggestions"),
       geoLocationGroupInput: () =>
         this.elements.geoLocationGroup().find("input")
@@ -26,23 +26,23 @@ export class DialogFindLibrary extends ComponentObject {
     this.elements.locationList().shouldContainAll(libraryNames);
   }
 
-  typeAddressInDawaInput(address: string) {
+  typeAddressInInput(address: string) {
     this.elements.geoLocationGroupInput().type(address);
   }
 
-  verifyDawaSuggestionListIsVisible() {
-    this.elements.dawaInputAddressSuggestions().should("be.visible");
+  verifyAddressSuggestionListIsVisible() {
+    this.elements.addressInputSuggestions().should("be.visible");
   }
 
-  clickFirstDawaSuggestion() {
-    this.elements.dawaInputAddressSuggestions().find("li").eq(0).click();
+  clickFirstAddressSuggestion() {
+    this.elements.addressInputSuggestions().find("li").eq(0).click();
   }
 
-  verifyDawaSuggestionListIsNotExisting() {
-    this.elements.dawaInputAddressSuggestions().should("not.be.visible");
+  verifyAddressSuggestionListIsNotExisting() {
+    this.elements.addressInputSuggestions().should("not.be.visible");
   }
 
-  verifyDawaSuggestionIsInsertedInInput() {
+  verifyAddressSuggestionIsInsertedInInput() {
     this.elements
       .geoLocationGroupInput()
       .should("have.value", "Suomisvej 2, 3310 Ølsted");

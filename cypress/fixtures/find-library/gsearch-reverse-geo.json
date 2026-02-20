@@ -1,0 +1,14 @@
+[
+  {
+    "id": "0a3f507b-5ced-32b8-e044-0003ba298018",
+    "vejnavn": "Suomisvej",
+    "husnummer": "2",
+    "postnummer": "1927",
+    "postnummernavn": "Frederiksberg C",
+    "visningstekst": "Suomisvej 2, 1927 Frederiksberg C",
+    "geometri": {
+      "type": "MultiPoint",
+      "coordinates": [[12.55511495, 55.67936222]]
+    }
+  }
+]
