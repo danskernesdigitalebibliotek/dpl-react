@@ -1,3 +1,9 @@
+import {
+  wgs84ToUtm32n,
+  utm32nToWgs84
+} from "../utils/helpers/coordinate-projection";
+import { calculateDistance } from "../utils/helpers/distance";
+
 export type GSearchAddress = {
   id: string;
   vejnavn: string;
@@ -12,38 +18,38 @@ export type GSearchAddress = {
 };
 
 export type AddressWithCoordinates = {
-  vejnavn: string;
-  betegnelse: string;
-  x: number;
-  y: number;
   id: string;
-  postnr: string;
-  postnrnavn: string;
+  betegnelse: string;
   lat: number;
   lng: number;
 };
 
 const GSEARCH_BASE_URL = "https://api.dataforsyningen.dk/rest/gsearch/v2.0";
 
-/**
- * Get DATAFORSYNINGEN token from environment variables
- */
-const getToken = (): string => {
-  const token = process.env.STORYBOOK_DATAFORSYNINGEN;
-  if (!token) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      "DATAFORSYNINGEN token is not set. API calls will fail unless intercepted (e.g., during tests)."
-    );
-  }
-  return token || "";
+const findClosestAddress = (
+  lat: number,
+  lng: number,
+  addresses: AddressWithCoordinates[]
+): AddressWithCoordinates => {
+  return addresses.reduce((closest, address) => {
+    const distClosest = calculateDistance(lat, lng, closest.lat, closest.lng);
+    const distAddress = calculateDistance(lat, lng, address.lat, address.lng);
+    return distAddress < distClosest ? address : closest;
+  });
 };
 
 /**
- * Convert GSearch address result to our internal format
+ * Convert GSearch address result to our internal format.
+ *
+ * GeoJSON coordinates are [x, y]. The meaning depends on the coordinate system:
+ * - With srid=4326: [longitude, latitude] (WGS84 degrees)
+ * - Without srid (default 25832): [easting, northing] (UTM32N meters)
+ *
+ * The transformCoords callback converts raw [x, y] to WGS84 lat/lng.
  */
 const convertGSearchToAddress = (
-  result: GSearchAddress
+  result: GSearchAddress,
+  transformCoords: (x: number, y: number) => { lat: number; lng: number }
 ): AddressWithCoordinates | null => {
   const coords = result.geometri?.coordinates?.[0];
 
@@ -51,67 +57,78 @@ const convertGSearchToAddress = (
     return null;
   }
 
-  const [lng, lat] = coords;
+  const { lat, lng } = transformCoords(coords[0], coords[1]);
 
   return {
-    vejnavn: result.vejnavn,
-    betegnelse: result.visningstekst,
-    x: lng,
-    y: lat,
-    lat,
-    lng,
     id: result.id,
-    postnr: result.postnummer,
-    postnrnavn: result.postnummernavn
+    betegnelse: result.visningstekst,
+    lat,
+    lng
   };
 };
 
 /**
- * Reverse geocode: convert coordinates to address
+ * Reverse geocode: convert coordinates to the nearest address.
+ * Uses GSearch with a BBOX spatial filter around the given coordinates.
  */
-export const getReverseGeocode = async (
-  lat: number,
-  lng: number,
-  errorMessages?: {
-    fetchError?: string;
-  }
-): Promise<AddressWithCoordinates | null> => {
-  const messages = {
-    fetchError: errorMessages?.fetchError ?? "Could not fetch address"
-  };
-
-  const token = getToken();
+export const getReverseGeocode = async ({
+  lat,
+  lng,
+  errorMessages,
+  token = ""
+}: {
+  lat: number;
+  lng: number;
+  errorMessages?: { fetchError?: string };
+  token?: string;
+}): Promise<AddressWithCoordinates | null> => {
+  const fetchError = errorMessages?.fetchError ?? "Could not fetch address";
+  const bboxRadius = 25; // meters
 
   try {
-    const response = await fetch(
-      `${GSEARCH_BASE_URL}/adgangsadresse_reverse?x=${lng}&y=${lat}&srid=4326&token=${token}`
-    );
+    const { x, y } = wgs84ToUtm32n(lat, lng);
+    const bbox = `${x - bboxRadius},${y - bboxRadius},${x + bboxRadius},${y + bboxRadius}`;
+    const filter = `BBOX(geometri,${bbox},'epsg:25832')`;
+
+    const url = `${GSEARCH_BASE_URL}/adresse?q=1&filter=${encodeURIComponent(filter)}&limit=10&token=${token}`;
+    const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(messages.fetchError);
+      throw new Error(fetchError);
     }
 
     const data = await response.json();
 
     if (Array.isArray(data) && data.length > 0) {
-      const result = convertGSearchToAddress(data[0]);
-      return result;
+      // The API returns EPSG:25832 coordinates (srid=4326 is incompatible with
+      // spatial filters), so convert to WGS84 via utm32nToWgs84.
+      const addresses = data
+        .map((result: GSearchAddress) =>
+          convertGSearchToAddress(result, utm32nToWgs84)
+        )
+        .filter((a): a is AddressWithCoordinates => a !== null);
+
+      if (addresses.length === 0) return null;
+
+      return findClosestAddress(lat, lng, addresses);
     }
 
     return null;
   } catch {
-    throw new Error(messages.fetchError);
+    throw new Error(fetchError);
   }
 };
 
 /**
  * Search for addresses using a query string
  */
-export async function getAddressesFromLocationQuery(
-  query: string
-): Promise<AddressWithCoordinates[]> {
-  const token = getToken();
-
+export async function getAddressesFromLocationQuery({
+  query,
+  token = ""
+}: {
+  query: string;
+  token?: string;
+}): Promise<AddressWithCoordinates[]> {
   try {
     const url = `${GSEARCH_BASE_URL}/adresse?q=${encodeURIComponent(query)}&limit=10&srid=4326&token=${token}`;
     const response = await fetch(url);
@@ -123,8 +140,10 @@ export async function getAddressesFromLocationQuery(
     const data = await response.json();
 
     if (Array.isArray(data)) {
+      // srid=4326 gives WGS84: GeoJSON [x, y] = [lng, lat]
+      const wgs84 = (x: number, y: number) => ({ lat: y, lng: x });
       return data
-        .map((result: GSearchAddress) => convertGSearchToAddress(result))
+        .map((result: GSearchAddress) => convertGSearchToAddress(result, wgs84))
         .filter(
           (address: AddressWithCoordinates | null) => address !== null
         ) as AddressWithCoordinates[];

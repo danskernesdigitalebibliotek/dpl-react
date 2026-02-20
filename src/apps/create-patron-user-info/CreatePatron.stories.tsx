@@ -14,6 +14,12 @@ import globalConfigArgs, {
   argTypes as globalConfigArgTypes
 } from "../../core/storybook/globalConfigArgs";
 import { TOKEN_UNREGISTERED_USER_KEY, setToken } from "../../core/token";
+import geoLocationArgs, {
+  argTypes as geoLocationArgTypes
+} from "../../core/storybook/geoLocationArgs";
+import dataforsyningenArgs, {
+  argTypes as dataforsyningenArgTypes
+} from "../../core/storybook/dataforsyningenArgs";
 
 const meta: Meta<typeof CreatePatron> = {
   title: "Apps / Create patron",
@@ -31,6 +37,8 @@ export const Primary: Story = {
     ...serviceUrlArgTypes,
     ...globalTextArgTypes,
     ...globalConfigArgTypes,
+    ...geoLocationArgTypes,
+    ...dataforsyningenArgTypes,
     patronPageConfirmPincodeLabelText: {
       table: {
         type: { summary: "text" },
@@ -265,61 +273,6 @@ export const Primary: Story = {
         defaultValue: { summary: "Choose library" }
       },
       control: { type: "text" }
-    },
-    geoLocationErrorNotSupportedText: {
-      table: {
-        type: { summary: "text" },
-        defaultValue: {
-          summary: "Geolocation is not supported by your browser."
-        }
-      },
-      control: { type: "text" }
-    },
-    geoLocationErrorPermissionDeniedText: {
-      table: {
-        type: { summary: "text" },
-        defaultValue: {
-          summary:
-            "You have denied access to your location. Allow location access in your browser."
-        }
-      },
-      control: { type: "text" }
-    },
-    geoLocationErrorPositionUnavailableText: {
-      table: {
-        type: { summary: "text" },
-        defaultValue: {
-          summary: "Your location is not available at the moment."
-        }
-      },
-      control: { type: "text" }
-    },
-    geoLocationErrorTimeoutText: {
-      table: {
-        type: { summary: "text" },
-        defaultValue: {
-          summary: "The request for your location timed out. Please try again."
-        }
-      },
-      control: { type: "text" }
-    },
-    geoLocationErrorDefaultText: {
-      table: {
-        type: { summary: "text" },
-        defaultValue: {
-          summary: "An error occurred while retrieving your location."
-        }
-      },
-      control: { type: "text" }
-    },
-    reverseGeocodeErrorDefaultText: {
-      table: {
-        type: { summary: "text" },
-        defaultValue: {
-          summary: "Could not fetch address."
-        }
-      },
-      control: { type: "text" }
     }
   },
   args: {
@@ -327,6 +280,8 @@ export const Primary: Story = {
     ...pincodeArgs,
     ...globalTextArgs,
     ...globalConfigArgs,
+    ...geoLocationArgs,
+    ...dataforsyningenArgs,
     authUrl: "/login",
     logoutUrl: "/logout",
     blacklistedPickupBranchesConfig:
@@ -380,15 +335,8 @@ export const Primary: Story = {
     findLibraryDialogGeoLocationButtonText:
       "Find nearest library using your location",
     findLibraryDialogSuggestionsListLabelText: "Choose library",
-
-    geoLocationErrorNotSupportedText:
-      "Geolocation is not supported by your browser.",
     geoLocationErrorPermissionDeniedText:
       "You have denied access to your location. Allow location access in your browser.",
-    geoLocationErrorPositionUnavailableText:
-      "Your location is not available at the moment.",
-    geoLocationErrorTimeoutText:
-      "The request for your location timed out. Please try again.",
     geoLocationErrorDefaultText:
       "An error occurred while retrieving your location.",
     reverseGeocodeErrorDefaultText: "Could not fetch address"
