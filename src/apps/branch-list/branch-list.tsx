@@ -3,6 +3,7 @@ import ContentListPage from "../../components/content-list/ContentListPage";
 import ContentList from "../../components/content-list/ContentList";
 import ContentListFilters from "../../components/content-list/ContentListFilters";
 import ContentListItem from "../../components/content-list/ContentListItem";
+import BranchListItem from "../../components/content-list/BranchListItem";
 import AddressSearchBar from "../../components/address-search-bar/AddressSearchBar";
 import useAddressSorting from "../../core/address-lookup/useAddressSorting";
 import {
@@ -61,20 +62,17 @@ const BranchList: FC = () => {
       </ContentListFilters>
       <ContentList>
         {branchesWithDistance.map(({ item: branch, distance }) => (
-          <ContentListItem
-            key={branch.url}
-            url={branch.url}
-            title={branch.title}
-            image={branch.image}
-            meta={distance !== null ? formatDistance(distance) : undefined}
-          >
-            {(branch.address || branch.city) && (
-              <address>
-                {branch.address}
-                <br />
-                {branch.city}
-              </address>
-            )}
+          <ContentListItem key={branch.url}>
+            <BranchListItem
+              url={branch.url}
+              title={branch.title}
+              image={branch.image}
+              address={branch.address}
+              city={branch.city}
+              distance={
+                distance !== null ? formatDistance(distance) : undefined
+              }
+            />
           </ContentListItem>
         ))}
       </ContentList>
