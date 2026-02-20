@@ -13,18 +13,15 @@
       "creators": [
         {
           "display": "Louise Størling Hedegaard",
-          "__typename": "Person",
-          "nameSort": "hedegård louise størling"
+          "__typename": "Person"
         },
         {
           "display": "Anders Rune Lander",
-          "__typename": "Person",
-          "nameSort": "lander anders rune"
+          "__typename": "Person"
         },
         {
           "display": "Jon Trærup Andersen",
-          "__typename": "Person",
-          "nameSort": "trærup andersen jon"
+          "__typename": "Person"
         }
       ],
       "series": [],
@@ -65,17 +62,14 @@
             "creators": [
               {
                 "display": "Louise Størling Hedegaard",
-                "nameSort": "hedegård louise størling",
                 "__typename": "Person"
               },
               {
                 "display": "Anders Rune Lander",
-                "nameSort": "lander anders rune",
                 "__typename": "Person"
               },
               {
                 "display": "Jon Trærup Andersen",
-                "nameSort": "trærup andersen jon",
                 "__typename": "Person"
               }
             ],
@@ -180,17 +174,14 @@
           "creators": [
             {
               "display": "Louise Størling Hedegaard",
-              "nameSort": "hedegård louise størling",
               "__typename": "Person"
             },
             {
               "display": "Anders Rune Lander",
-              "nameSort": "lander anders rune",
               "__typename": "Person"
             },
             {
               "display": "Jon Trærup Andersen",
-              "nameSort": "trærup andersen jon",
               "__typename": "Person"
             }
           ],
@@ -294,17 +285,14 @@
           "creators": [
             {
               "display": "Louise Størling Hedegaard",
-              "nameSort": "hedegård louise størling",
               "__typename": "Person"
             },
             {
               "display": "Anders Rune Lander",
-              "nameSort": "lander anders rune",
               "__typename": "Person"
             },
             {
               "display": "Jon Trærup Andersen",
-              "nameSort": "trærup andersen jon",
               "__typename": "Person"
             }
           ],

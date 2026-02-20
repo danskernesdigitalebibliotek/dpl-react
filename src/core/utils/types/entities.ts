@@ -7,6 +7,7 @@ import {
   InterLibraryLoan,
   ManifestationReviewFieldsFragment,
   ManifestationsSimpleFieldsFragment,
+  Publizon,
   Relations,
   WorkMediumFragment,
   WorkSmallFragment
@@ -69,4 +70,5 @@ export type AccessTypes =
   | DigitalArticleService["__typename"]
   | Ereol["__typename"]
   | InfomediaService["__typename"]
-  | InterLibraryLoan["__typename"];
+  | InterLibraryLoan["__typename"]
+  | Publizon["__typename"];
