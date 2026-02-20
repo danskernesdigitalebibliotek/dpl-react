@@ -4,7 +4,7 @@
       "facets": [
         {
           "name": "mainLanguages",
-          "type": "",
+          "type": "MAINLANGUAGES",
           "values": [
             {
               "key": "eng",
@@ -60,7 +60,7 @@
         },
         {
           "name": "accessTypes",
-          "type": "",
+          "type": "ACCESSTYPES",
           "values": [
             {
               "key": "physical",
@@ -76,7 +76,7 @@
         },
         {
           "name": "childrenOrAdults",
-          "type": "",
+          "type": "CHILDRENORADULTS",
           "values": [
             {
               "key": "voksenmaterialer",
@@ -92,7 +92,7 @@
         },
         {
           "name": "creators",
-          "type": "",
+          "type": "CREATORS",
           "values": [
             {
               "key": "Joanne K. Rowling",
@@ -148,6 +148,7 @@
         },
         {
           "name": "fictionNonfiction",
+          "type": "FICTIONNONFICTION",
           "values": [
             {
               "key": "nonfiktion",
@@ -163,12 +164,12 @@
         },
         {
           "name": "fictionalCharacter",
-          "type": "",
+          "type": "FICTIONALCHARACTERS",
           "values": []
         },
         {
           "name": "genreAndForm",
-          "type": "",
+          "type": "GENREANDFORM",
           "values": [
             {
               "key": "jazz",
@@ -224,7 +225,7 @@
         },
         {
           "name": "materialTypes",
-          "type": "",
+          "type": "MATERIALTYPESSPECIFIC",
           "values": [
             {
               "key": "bog",
@@ -280,7 +281,7 @@
         },
         {
           "name": "subjects",
-          "type": "",
+          "type": "SUBJECTS",
           "values": [
             {
               "key": "vokal",
@@ -336,7 +337,7 @@
         },
         {
           "name": "workTypes",
-          "type": "",
+          "type": "WORKTYPES",
           "values": [
             {
               "key": "literature",

@@ -1,22 +1,19 @@
 import { ComponentObject } from "@hammzj/cypress-page-object";
 
-export class AdvancedSearchFormComponent extends ComponentObject {
+export class SearchFormComponent extends ComponentObject {
   constructor() {
-    super(() => cy.get(".advanced-search-v2__form"));
+    super(() => cy.get(".search__form"));
 
     this.addElements = {
-      rowWrappers: () =>
-        this.container().find(".advanced-search-filter-wrapper"),
-      rows: () => this.container().find(".advanced-search-filter"),
-      addRowButton: () =>
-        this.container().find(".advanced-search-v2__add-filter"),
+      rowWrappers: () => this.container().find(".search-filter-wrapper"),
+      rows: () => this.container().find(".search-filter"),
+      addRowButton: () => this.container().find(".search__add-filter"),
       searchButton: () => this.container().contains("button", "Search"),
-      resetButton: () =>
-        this.container().find(".advanced-search-v2__reset-button"),
+      resetButton: () => this.container().find(".search__reset-button"),
       removeRowButtons: () =>
-        this.container().find(".advanced-search-filter__remove-button"),
+        this.container().find(".search-filter__remove-button"),
       searchTermSelects: () =>
-        this.container().find(".advanced-search-filter .select-button")
+        this.container().find(".search-filter .select-button")
     };
   }
 
@@ -76,7 +73,7 @@ export class AdvancedSearchFormComponent extends ComponentObject {
     this.elements
       .rowWrappers()
       .eq(index)
-      .next(".advanced-search-filter__operators")
+      .next(".search-filter__operators")
       .contains("button", operator)
       .click();
   }
@@ -183,8 +180,8 @@ export class AdvancedSearchFormComponent extends ComponentObject {
     this.elements
       .rowWrappers()
       .eq(index)
-      .next(".advanced-search-filter__operators")
-      .find("button.advanced-search-filter__operator--active")
+      .next(".search-filter__operators")
+      .find("button.search-filter__operator--active")
       .should("contain", operator);
   }
 

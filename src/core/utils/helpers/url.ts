@@ -111,30 +111,24 @@ export const constructSearchUrl = (searchUrl: URL, q: string) =>
   });
 
 export const constructCreatorSearchUrl = (searchUrl: URL, creator: string) =>
-  constructSearchUrlWithFilter({
+  constructSearchUrlWithFacets({
     searchUrl,
-    // For creator searches, q should always be "*"
-    selectedItemString: "*",
-    // Facets only work with lowercase values
-    filter: { creators: creator.toLowerCase() }
+    q: "*",
+    facets: [{ facetName: "creators", selectedValues: [creator.toLowerCase()] }]
   });
 
 export const constructSubjectSearchUrl = (searchUrl: URL, subject: string) =>
-  constructSearchUrlWithFilter({
+  constructSearchUrlWithFacets({
     searchUrl,
-    // For subject searches, q should always be "*"
-    selectedItemString: "*",
-    // Facets only work with lowercase values
-    filter: { subjects: subject.toLowerCase() }
+    q: "*",
+    facets: [{ facetName: "subjects", selectedValues: [subject.toLowerCase()] }]
   });
 
 export const constructDK5SearchUrl = (searchUrl: URL, dk5: string) =>
-  constructSearchUrlWithFilter({
+  constructSearchUrlWithFacets({
     searchUrl,
-    // For DK5 searches, q should always be "*"
-    selectedItemString: "*",
-    // Facets only work with lowercase values
-    filter: { dk5: dk5.toLowerCase() }
+    q: "*",
+    facets: [{ facetName: "dk5", selectedValues: [dk5.toLowerCase()] }]
   });
 
 export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>
@@ -142,15 +136,49 @@ export const constructAdvancedSearchUrl = (advancedSearchUrl: URL, q: string) =>
     advancedSearchCql: q
   });
 
+// Type for facet state in URL (matches search-result-v2 format)
+type FacetUrlState = {
+  facetName: string;
+  selectedValues: string[];
+};
+
+/**
+ * Constructs a search URL with facets in JSON format for search-result-v2
+ */
+export const constructSearchUrlWithFacets = (args: {
+  searchUrl: URL;
+  q: string;
+  facets: FacetUrlState[];
+}) => {
+  const { searchUrl, q, facets } = args;
+  const processedUrl = new URL(searchUrl);
+  processedUrl.searchParams.set("q", encodeURI(q));
+  if (facets.length > 0) {
+    processedUrl.searchParams.set("facets", JSON.stringify(facets));
+  }
+  return processedUrl;
+};
+
+/**
+ * @deprecated Use constructSearchUrlWithFacets instead for search-result-v2 compatibility
+ */
 export const constructSearchUrlWithFilter = (args: {
   searchUrl: URL;
   selectedItemString: string;
   filter: { [type: string]: string };
 }) => {
   const { searchUrl, selectedItemString, filter } = args;
-  return appendQueryParametersToUrl(searchUrl, {
+  // Convert old filter format to new facets format
+  const facets: FacetUrlState[] = Object.entries(filter).map(
+    ([facetName, value]) => ({
+      facetName,
+      selectedValues: [value]
+    })
+  );
+  return constructSearchUrlWithFacets({
+    searchUrl,
     q: selectedItemString,
-    ...filter
+    facets
   });
 };
 
