@@ -12,6 +12,7 @@ import {
 } from "../../core/utils/helpers/distance";
 import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
+import { isConfigValueOne } from "../../components/reservation/helper";
 
 type Branch = {
   title: string;
@@ -31,6 +32,10 @@ const BranchList: FC = () => {
     transformer: "jsonParse"
   });
 
+  const isAddressSearchEnabled = isConfigValueOne(
+    config("branchAddressSearchEnabledConfig")
+  );
+
   const getCoordinates = useCallback(
     (branch: Branch) => parseCoordinates(branch.lat, branch.lng),
     []
@@ -47,19 +52,21 @@ const BranchList: FC = () => {
 
   return (
     <ContentListPage title={t("branchListTitleText")}>
-      <ContentListFilters>
-        <AddressSearchBar
-          id="branch-list-address-input"
-          label={t("branchListAddressSearchLabelText")}
-          placeholder={t("branchListAddressSearchPlaceholderText")}
-          buttonText={t("branchListGeoLocationButtonText")}
-          query={query}
-          onQueryChange={handleQueryChange}
-          onAddressSelect={handleAddressSelect}
-          onGetUserLocation={handleGetUserLocation}
-          geoLocationError={geoLocationError}
-        />
-      </ContentListFilters>
+      {isAddressSearchEnabled && (
+        <ContentListFilters>
+          <AddressSearchBar
+            id="branch-list-address-input"
+            label={t("branchListAddressSearchLabelText")}
+            placeholder={t("branchListAddressSearchPlaceholderText")}
+            buttonText={t("branchListGeoLocationButtonText")}
+            query={query}
+            onQueryChange={handleQueryChange}
+            onAddressSelect={handleAddressSelect}
+            onGetUserLocation={handleGetUserLocation}
+            geoLocationError={geoLocationError}
+          />
+        </ContentListFilters>
+      )}
       <ContentList>
         {branchesWithDistance.map(({ item: branch, distance }) => (
           <ContentListItem key={branch.url}>
