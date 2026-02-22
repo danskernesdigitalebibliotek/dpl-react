@@ -7,6 +7,9 @@ import geoLocationArgs, {
 import dataforsyningenArgs, {
   argTypes as dataforsyningenArgTypes
 } from "../../core/storybook/dataforsyningenArgs";
+import branchAddressSearchArgs, {
+  argTypes as branchAddressSearchArgTypes
+} from "../../core/storybook/branchAddressSearchArgs";
 
 const branchesData = [
   {
@@ -59,6 +62,7 @@ const meta: Meta<typeof BranchListEntry> = {
   argTypes: {
     ...geoLocationArgTypes,
     ...dataforsyningenArgTypes,
+    ...branchAddressSearchArgTypes,
     branchesConfig: {
       name: "Branches data (JSON)",
       control: { type: "text" }
@@ -83,6 +87,7 @@ const meta: Meta<typeof BranchListEntry> = {
   args: {
     ...geoLocationArgs,
     ...dataforsyningenArgs,
+    ...branchAddressSearchArgs,
     branchesConfig: JSON.stringify(branchesData),
     branchListTitleText: "Branches",
     branchListAddressSearchLabelText: "Sort by distance - enter your address",

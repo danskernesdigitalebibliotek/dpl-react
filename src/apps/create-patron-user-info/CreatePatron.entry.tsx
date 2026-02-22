@@ -4,6 +4,7 @@ import { withText } from "../../core/utils/text";
 import { useUrls, withUrls } from "../../core/utils/url";
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import { DataforsyningenArgs } from "../../core/storybook/dataforsyningenArgs";
+import { BranchAddressSearchArgs } from "../../core/storybook/branchAddressSearchArgs";
 import { isUnregistered } from "../../core/utils/helpers/user";
 import { redirectTo } from "../../core/utils/helpers/url";
 import CreatePatron from "./CreatePatron";
@@ -15,7 +16,6 @@ interface CreatePatronConfigProps {
   blacklistedPickupBranchesConfig: string;
   branchesConfig: string;
   textNotificationsEnabledConfig: string;
-  branchAddressSearchEnabledConfig: string;
 }
 interface CreatePatronUrlProps {
   authUrl: string;
@@ -75,6 +75,7 @@ export interface CreatePatronProps
   extends CreatePatronConfigProps,
     GlobalEntryTextProps,
     DataforsyningenArgs,
+    BranchAddressSearchArgs,
     CreatePatronUrlProps,
     CreatePatronTextProps {
   fakeCpr?: string;
