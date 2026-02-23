@@ -653,14 +653,11 @@ export const getWorkTitle = (work: Work): string => {
 
   // If the work is a TV series, show "Title - Season X, Disc Y" if available,
   // or just the series title if the season is missing.
-  if (titles.tvSeries?.title && titles.tvSeries?.season?.display) {
-    const { title, season, disc } = titles.tvSeries;
-    const discSuffix = disc?.display ? `, ${disc.display}` : "";
-    return `${title} - ${season.display}${discSuffix}`;
-  }
-
   if (titles.tvSeries?.title) {
-    return titles.tvSeries.title;
+    const { title, season, disc } = titles.tvSeries;
+    const seasonPart = season?.display ? ` - ${season.display}` : "";
+    const discSuffix = disc?.display ? `, ${disc.display}` : "";
+    return `${title}${seasonPart}${discSuffix}`;
   }
 
   // If Danish is among the main languages and a full title exists,
@@ -797,6 +794,31 @@ if (import.meta.vitest) {
 
       const title = getWorkTitle(work);
       expect(title).toMatchInlineSnapshot(`"Game of thrones - sæson 1"`);
+    });
+
+    it("returns tvSeries title with disc if season is null but disc exists", () => {
+      const work = {
+        titles: {
+          full: ["Matador, disc 1"],
+          original: ["Matador"],
+          tvSeries: {
+            title: "Matador",
+            season: null,
+            disc: {
+              display: "disc 1"
+            }
+          }
+        },
+        mainLanguages: [
+          {
+            display: "dansk",
+            isoCode: "dan"
+          }
+        ]
+      } as unknown as Work;
+
+      const title = getWorkTitle(work);
+      expect(title).toMatchInlineSnapshot(`"Matador, disc 1"`);
     });
 
     it("returns tvSeries title if season is undefined", () => {
