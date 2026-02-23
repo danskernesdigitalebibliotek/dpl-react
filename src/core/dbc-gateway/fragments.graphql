@@ -271,12 +271,6 @@ fragment WorkSmall on Work {
   titles {
     full
     original
-    tvSeries {
-      title
-      season {
-        display
-      }
-    }
   }
   abstract
   creators {
@@ -298,6 +292,9 @@ fragment WorkSmall on Work {
 fragment WorkMedium on Work {
   ...WorkSmall
   materialTypes {
+    materialTypeGeneral {
+      code
+    }
     materialTypeSpecific {
       display
     }

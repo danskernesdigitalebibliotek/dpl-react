@@ -6,8 +6,7 @@
         "full": [
           "Farmakologisk behandling af overaktiv blæresyndrom - hvad skal jeg nu vælge?"
         ],
-        "original": [],
-        "tvSeries": null
+        "original": []
       },
       "abstract": [],
       "creators": [
@@ -366,6 +365,9 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "ARTICLES"
+          },
           "materialTypeSpecific": {
             "display": "artikel (online)"
           }
