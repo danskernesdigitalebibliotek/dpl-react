@@ -707,6 +707,27 @@ describe("Material Page Object Test", () => {
           ]);
         });
       });
+
+      it("Should display shelfmark with middle dot separator between shelfmark and postfix", () => {
+        // Given: A material page with shelfmark data
+        materialPage = new MaterialPage();
+        givenAMaterial();
+
+        // When: The user opens FindOnShelf
+        materialPage.visit([]);
+        materialPage.openFindOnShelf();
+
+        materialPage.components.ModalFindOnShelf((findOnShelf) => {
+          // Then: Shelfmark should be displayed with middle dot separator (shelfmark · postfix)
+          findOnShelf.verifyLibraryHolding({
+            libraryName: "Hovedbiblioteket",
+            label: "Available",
+            editionTitle: "De syv søstre (2017)",
+            expectedCount: "2",
+            expectedShelfmark: "shelfmark · postfix"
+          });
+        });
+      });
     });
   });
 

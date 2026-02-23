@@ -29,7 +29,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         {
           "__typename": "Person",
           "display": "Isaac Asimov",
-          "nameSort": "Asimov, Isaac",
         },
       ],
       "dateFirstEdition": null,
@@ -128,7 +127,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         {
           "__typename": "Person",
           "display": "Isaac Asimov",
-          "nameSort": "Asimov, Isaac",
         },
       ],
       "dateFirstEdition": null,
@@ -225,7 +223,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         {
           "__typename": "Person",
           "display": "Isaac Asimov",
-          "nameSort": "Asimov, Isaac",
         },
         {
           "__typename": "Person",
@@ -323,7 +320,6 @@ exports[`divideManifestationsByMaterialType > should divide manifestations by ma
         {
           "__typename": "Person",
           "display": "Isaac Asimov",
-          "nameSort": "Asimov, Isaac",
         },
         {
           "__typename": "Person",
