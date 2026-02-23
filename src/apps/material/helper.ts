@@ -640,8 +640,9 @@ export const getManifestationBasedOnType = (
 
 export const getWorkTitle = (work: Work): string => {
   const { titles, mainLanguages, manifestations } = work;
-  // If the work is a movie, we prefer using the translated full title.
-  // Avoid showing language details here as it might lead users to think there are no subtitles.
+  // For movies and TV series, use the full title directly.
+  // It already contains all relevant details (season, disc, episodes, etc.)
+  // and matches what the grid/card views display.
   if (manifestations?.all && isMovie(manifestations.all)) {
     if (titles.full.length) {
       return titles.full.join(", ");
@@ -649,15 +650,6 @@ export const getWorkTitle = (work: Work): string => {
     if (titles.original?.length) {
       return titles.original.join(", ");
     }
-  }
-
-  // If the work is a TV series, show "Title - Season X, Disc Y" if available,
-  // or just the series title if the season is missing.
-  if (titles.tvSeries?.title) {
-    const { title, season, disc } = titles.tvSeries;
-    const seasonPart = season?.display ? ` - ${season.display}` : "";
-    const discSuffix = disc?.display ? `, ${disc.display}` : "";
-    return `${title}${seasonPart}${discSuffix}`;
   }
 
   // If Danish is among the main languages and a full title exists,
@@ -772,75 +764,66 @@ if (import.meta.vitest) {
       expect(title).toMatchInlineSnapshot(`"Jaws"`);
     });
 
-    it("returns tvSeries title and season if both exist", () => {
+    it("returns full title for TV series on blu-ray", () => {
       const work = {
         titles: {
-          full: ["Game of thrones"],
-          original: [],
-          tvSeries: {
-            title: "Game of thrones",
-            season: {
-              display: "sæson 1"
-            }
-          }
+          full: ["Game of thrones, sæson 1"],
+          original: []
         },
         mainLanguages: [
           {
             display: "engelsk",
             isoCode: "eng"
           }
-        ]
+        ],
+        manifestations: {
+          all: [
+            {
+              materialTypes: [
+                {
+                  materialTypeSpecific: {
+                    display: ManifestationMaterialType.movieBluRay
+                  }
+                }
+              ]
+            }
+          ]
+        }
       } as unknown as Work;
 
       const title = getWorkTitle(work);
-      expect(title).toMatchInlineSnapshot(`"Game of thrones - sæson 1"`);
+      expect(title).toMatchInlineSnapshot(`"Game of thrones, sæson 1"`);
     });
 
-    it("returns tvSeries title with disc if season is null but disc exists", () => {
+    it("returns full title for TV series on dvd with disc", () => {
       const work = {
         titles: {
           full: ["Matador, disc 1"],
-          original: ["Matador"],
-          tvSeries: {
-            title: "Matador",
-            season: null,
-            disc: {
-              display: "disc 1"
-            }
-          }
+          original: ["Matador"]
         },
         mainLanguages: [
           {
             display: "dansk",
             isoCode: "dan"
           }
-        ]
+        ],
+        manifestations: {
+          all: [
+            {
+              materialTypes: [
+                {
+                  materialTypeSpecific: {
+                    display: ManifestationMaterialType.movieDvd
+                  }
+                }
+              ]
+            }
+          ]
+        }
       } as unknown as Work;
 
       const title = getWorkTitle(work);
       expect(title).toMatchInlineSnapshot(`"Matador, disc 1"`);
-    });
-
-    it("returns tvSeries title if season is undefined", () => {
-      const work = {
-        titles: {
-          full: ["Some Full Title"],
-          original: ["Original Title"],
-          tvSeries: {
-            title: "Another TV Show",
-            season: []
-          }
-        },
-        mainLanguages: [
-          {
-            display: "English",
-            isoCode: "eng"
-          }
-        ]
-      } as unknown as Work;
-
-      const title = getWorkTitle(work);
-      expect(title).toMatchInlineSnapshot(`"Another TV Show"`);
     });
 
     it("returns the first full title if main language is Danish", () => {
