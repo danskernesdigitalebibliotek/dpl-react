@@ -53,6 +53,7 @@ interface SearchResultEntryTextProps {
   numberDescriptionText: string;
   resultPagerStatusText: string;
   searchShowingMaterialsText: string;
+  showingAllMaterialsText: string;
   showingResultsForText: string;
   showMoreText: string;
   showResultsText: string;

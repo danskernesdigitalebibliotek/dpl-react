@@ -159,7 +159,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const isWildcardQuerySearch = isWildcardQuery(q);
 
   const headerTitle = isWildcardQuerySearch
-    ? "Viser alle materialer"
+    ? t("showingAllMaterialsText")
     : t("showingResultsForText", { placeholders: { "@query": q } });
 
   // Get search info box data from config

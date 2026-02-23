@@ -9,38 +9,37 @@ import { getFacetFieldTranslation } from "../../components/facet-browser/helper"
 import { useFacetTracking } from "./useSearchResultTracking";
 import SearchFacetGroup from "../../components/facet-browser/SearchFacetGroup";
 import SearchToggle from "../../components/search-toggle/SearchToggle";
-import AdvancedSearchRadioButtonGroup from "../../components/search-radio-button-group/SearchRadioButtonGroup";
+import SearchRadioButtonGroup from "../../components/search-radio-button-group/SearchRadioButtonGroup";
 import { sortSimpleSearchFacetValues } from "../advanced-search-v2/lib/facet-sort-utils";
+import { isValidFacetsState } from "./helpers";
 
-// Type for facet state stored in URL
-// Uses facetName (camelCase string like "materialTypesGeneral") as that's what the API expects for filters
-type FacetState = {
-  facetName: string;
-  selectedValues: string[];
-};
+// Fixed facet name for "can always be loaned" filter in SearchFiltersInput
+const CAN_ALWAYS_BE_LOANED_FACET_NAME = "canAlwaysBeLoaned";
 
-// Validation function for facet state from URL
-const isValidFacetState = (value: unknown): value is FacetState[] => {
-  if (!Array.isArray(value)) return false;
+type AccessTypeFilterOptions =
+  | { value: "Digital"; label: "Online" }
+  | { value: "Fysisk"; label: "Fysisk" };
+type FictionTypeFilterOptions =
+  | { value: "Ikke angivet"; label: "Fiktion" }
+  | { value: "Faglitteratur"; label: "Non-fiktion" };
+type AgeGroupFilterOptions =
+  | { value: "til voksne"; label: "Voksne" }
+  | { value: "til børn"; label: "Børn" };
 
-  return value.every((item) => {
-    if (typeof item !== "object" || item === null) return false;
-
-    const { facetName, selectedValues } = item as Record<string, unknown>;
-
-    if (typeof facetName !== "string") {
-      return false;
-    }
-    if (
-      !Array.isArray(selectedValues) ||
-      !selectedValues.every((v) => typeof v === "string")
-    ) {
-      return false;
-    }
-
-    return true;
-  });
-};
+// Radio button options — values match the API-returned facet term values
+// (differs from advanced search which uses CQL-based filter values)
+const ACCESS_TYPE_OPTIONS: AccessTypeFilterOptions[] = [
+  { value: "Digital", label: "Online" },
+  { value: "Fysisk", label: "Fysisk" }
+];
+const FICTION_TYPE_OPTIONS: FictionTypeFilterOptions[] = [
+  { value: "Ikke angivet", label: "Fiktion" },
+  { value: "Faglitteratur", label: "Non-fiktion" }
+];
+const AGE_GROUP_OPTIONS: AgeGroupFilterOptions[] = [
+  { value: "til voksne", label: "Voksne" },
+  { value: "til børn", label: "Børn" }
+];
 
 const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   const t = useText();
@@ -56,7 +55,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   const [facetsFromUrl, setFacetsInUrl] = useQueryState(
     "facets",
     parseAsJson((value) => {
-      if (isValidFacetState(value)) return value;
+      if (isValidFacetsState(value)) return value;
       return [];
     }).withDefault([])
   );
@@ -112,33 +111,6 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
   const ageGroupFacetName = allAvailableFacets.find(
     (filter) => filter.type === FacetFieldEnum.Childrenoradults
   )?.name;
-
-  // Fixed facet name for "can always be loaned" filter in SearchFiltersInput
-  const CAN_ALWAYS_BE_LOANED_FACET_NAME = "canAlwaysBeLoaned";
-
-  type AccessTypeFilterOptions =
-    | { value: "Digital"; label: "Online" }
-    | { value: "Fysisk"; label: "Fysisk" };
-  type FictionTypeFilterOptions =
-    | { value: "Ikke angivet"; label: "Fiktion" }
-    | { value: "Faglitteratur"; label: "Non-fiktion" };
-  type AgeGroupFilterOptions =
-    | { value: "til voksne"; label: "Voksne" }
-    | { value: "til børn"; label: "Børn" };
-
-  // Radio button options (mirroring AdvancedSearch)
-  const ACCESS_TYPE_OPTIONS: AccessTypeFilterOptions[] = [
-    { value: "Digital", label: "Online" },
-    { value: "Fysisk", label: "Fysisk" }
-  ];
-  const FICTION_TYPE_OPTIONS: FictionTypeFilterOptions[] = [
-    { value: "Ikke angivet", label: "Fiktion" },
-    { value: "Faglitteratur", label: "Non-fiktion" }
-  ];
-  const AGE_GROUP_OPTIONS: AgeGroupFilterOptions[] = [
-    { value: "til voksne", label: "Voksne" },
-    { value: "til børn", label: "Børn" }
-  ];
 
   // facet names used by radio groups (may be undefined until facets load)
   const radioFacetNames = [
@@ -229,7 +201,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
 
         {/* Advanced search-style radio groups */}
         <div className="search-radio-button-group-wrapper">
-          <AdvancedSearchRadioButtonGroup
+          <SearchRadioButtonGroup
             name="access-type"
             options={ACCESS_TYPE_OPTIONS}
             selectedValue={
@@ -244,7 +216,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
             }
           />
 
-          <AdvancedSearchRadioButtonGroup
+          <SearchRadioButtonGroup
             name="fiction-type"
             options={FICTION_TYPE_OPTIONS}
             selectedValue={
@@ -259,7 +231,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
             }
           />
 
-          <AdvancedSearchRadioButtonGroup
+          <SearchRadioButtonGroup
             name="age-group"
             options={AGE_GROUP_OPTIONS}
             selectedValue={
