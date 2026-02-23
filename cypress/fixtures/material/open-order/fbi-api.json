@@ -278,6 +278,9 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "BOOKS"
+          },
           "materialTypeSpecific": {
             "display": "bog"
           }

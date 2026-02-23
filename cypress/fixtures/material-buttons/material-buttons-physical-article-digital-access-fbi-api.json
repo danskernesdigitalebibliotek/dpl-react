@@ -4,8 +4,7 @@
       "workId": "work-of:870970-basis:07664400",
       "titles": {
         "full": ["Der Spiegel"],
-        "original": [],
-        "tvSeries": null
+        "original": []
       },
       "abstract": [],
       "creators": [],
@@ -336,6 +335,9 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "NEWSPAPER_JOURNALS"
+          },
           "materialTypeSpecific": {
             "display": "tidsskrift"
           }

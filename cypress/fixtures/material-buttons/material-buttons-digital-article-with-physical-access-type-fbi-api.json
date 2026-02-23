@@ -4,8 +4,7 @@
       "workId": "work-of:870971-tsart:34310815",
       "titles": {
         "full": ["Faglig formidling er ikke kun skriveteknik"],
-        "original": [],
-        "tvSeries": null
+        "original": []
       },
       "abstract": ["Om skriftlig formidling af faglig viden til ikke-fagfolk."],
       "creators": [
@@ -356,6 +355,9 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "ARTICLES"
+          },
           "materialTypeSpecific": {
             "display": "artikel"
           }
