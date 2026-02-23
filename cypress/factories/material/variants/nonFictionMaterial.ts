@@ -25,8 +25,7 @@ export const nonFictionMaterial = materialFactory.build({
   work: {
     titles: {
       full: ["Turen går til Rom"],
-      original: null,
-      tvSeries: null
+      original: null
     },
     genreAndForm: ["rejsebøger", "rejsebeskrivelser"],
     fictionNonfiction: {

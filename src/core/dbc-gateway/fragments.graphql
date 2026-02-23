@@ -295,6 +295,9 @@ fragment WorkSmall on Work {
 fragment WorkMedium on Work {
   ...WorkSmall
   materialTypes {
+    materialTypeGeneral {
+      code
+    }
     materialTypeSpecific {
       display
     }

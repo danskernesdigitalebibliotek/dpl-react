@@ -4,11 +4,11 @@ import { ManifestationHoldings } from "../../components/find-on-shelf/types";
 import { ListData } from "../../components/material/MaterialDetailsList";
 import {
   hasCorrectAccessType,
-  isArticle,
-  isMovie
+  isArticle
 } from "../../components/material/material-buttons/helper";
 import {
   AccessTypeCodeEnum,
+  GeneralMaterialTypeCodeEnum,
   IdentifierTypeEnum,
   WorkTypeEnum
 } from "../../core/dbc-gateway/generated/graphql";
@@ -639,11 +639,18 @@ export const getManifestationBasedOnType = (
 };
 
 export const getWorkTitle = (work: Work): string => {
-  const { titles, mainLanguages, manifestations } = work;
+  const { titles, mainLanguages } = work;
   // For movies and TV series, use the full title directly.
   // It already contains all relevant details (season, disc, episodes, etc.)
   // and matches what the grid/card views display.
-  if (manifestations?.all && isMovie(manifestations.all)) {
+  const isMovieOrTvSeries = work.materialTypes?.some(
+    ({ materialTypeGeneral }) =>
+      [
+        GeneralMaterialTypeCodeEnum.Films,
+        GeneralMaterialTypeCodeEnum.TvSeries
+      ].includes(materialTypeGeneral.code)
+  );
+  if (isMovieOrTvSeries) {
     if (titles.full.length) {
       return titles.full.join(", ");
     }
@@ -709,8 +716,7 @@ if (import.meta.vitest) {
       const work = {
         titles: {
           full: ["Dødens gab"],
-          original: ["Jaws"],
-          tvSeries: null
+          original: ["Jaws"]
         },
         mainLanguages: [
           {
@@ -718,19 +724,13 @@ if (import.meta.vitest) {
             isoCode: "eng"
           }
         ],
-        manifestations: {
-          all: [
-            {
-              materialTypes: [
-                {
-                  materialTypeSpecific: {
-                    display: ManifestationMaterialType.movieBluRay
-                  }
-                }
-              ]
+        materialTypes: [
+          {
+            materialTypeGeneral: {
+              code: GeneralMaterialTypeCodeEnum.Films
             }
-          ]
-        }
+          }
+        ]
       } as unknown as Work;
 
       const title = getWorkTitle(work);
@@ -741,30 +741,23 @@ if (import.meta.vitest) {
       const work = {
         titles: {
           full: [],
-          original: ["Jaws"],
-          tvSeries: null
+          original: ["Jaws"]
         },
         mainLanguages: [],
-        manifestations: {
-          all: [
-            {
-              materialTypes: [
-                {
-                  materialTypeSpecific: {
-                    display: ManifestationMaterialType.movieBluRay
-                  }
-                }
-              ]
+        materialTypes: [
+          {
+            materialTypeGeneral: {
+              code: GeneralMaterialTypeCodeEnum.Films
             }
-          ]
-        }
+          }
+        ]
       } as unknown as Work;
 
       const title = getWorkTitle(work);
       expect(title).toMatchInlineSnapshot(`"Jaws"`);
     });
 
-    it("returns full title for TV series on blu-ray", () => {
+    it("returns full title for TV series", () => {
       const work = {
         titles: {
           full: ["Game of thrones, sæson 1"],
@@ -776,26 +769,20 @@ if (import.meta.vitest) {
             isoCode: "eng"
           }
         ],
-        manifestations: {
-          all: [
-            {
-              materialTypes: [
-                {
-                  materialTypeSpecific: {
-                    display: ManifestationMaterialType.movieBluRay
-                  }
-                }
-              ]
+        materialTypes: [
+          {
+            materialTypeGeneral: {
+              code: GeneralMaterialTypeCodeEnum.TvSeries
             }
-          ]
-        }
+          }
+        ]
       } as unknown as Work;
 
       const title = getWorkTitle(work);
       expect(title).toMatchInlineSnapshot(`"Game of thrones, sæson 1"`);
     });
 
-    it("returns full title for TV series on dvd with disc", () => {
+    it("returns full title for TV series with disc", () => {
       const work = {
         titles: {
           full: ["Matador, disc 1"],
@@ -807,19 +794,13 @@ if (import.meta.vitest) {
             isoCode: "dan"
           }
         ],
-        manifestations: {
-          all: [
-            {
-              materialTypes: [
-                {
-                  materialTypeSpecific: {
-                    display: ManifestationMaterialType.movieDvd
-                  }
-                }
-              ]
+        materialTypes: [
+          {
+            materialTypeGeneral: {
+              code: GeneralMaterialTypeCodeEnum.TvSeries
             }
-          ]
-        }
+          }
+        ]
       } as unknown as Work;
 
       const title = getWorkTitle(work);

@@ -16,8 +16,7 @@ export const workSmallFactory = Factory.define<WorkSmall>(() => {
     workId: "work-of:870970-basis:12345678",
     titles: {
       full: ["Test Titel"],
-      original: ["Original Title"],
-      tvSeries: null
+      original: ["Original Title"]
     },
     abstract: ["En beskrivelse af værket"],
     creators: [
