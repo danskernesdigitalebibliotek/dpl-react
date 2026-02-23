@@ -512,35 +512,19 @@ export const getUniqueMovies = (relations: Work["relations"]) => {
   return uniqBy(movies, (item) => item.ownerWork.workId);
 };
 
-const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
+export const getDbcVerifiedSubjectsFirst = (subjects: Work["subjects"]) =>
   uniq([
     ...subjects.dbcVerified.map((item) => item.display),
     ...subjects.all.map((item) => item.display)
   ]);
 
-const getLocalAgencySubjects = (
+export const getLocalAgencySubjects = (
   manifestations: Pick<Manifestation, "pid" | "subjects">[],
   agencyIds: string[]
 ): string[] =>
   manifestations
     .filter((m) => agencyIds.some((id) => m.pid.startsWith(id)))
     .flatMap((m) => m.subjects?.all?.map((s) => s.display) ?? []);
-
-export const getAllSubjects = ({
-  subjects,
-  manifestations,
-  agencyIds
-}: {
-  subjects: Work["subjects"];
-  manifestations: Pick<Manifestation, "pid" | "subjects">[];
-  agencyIds: string[];
-}): string[] =>
-  uniq([
-    // dbcVerified needs to be first, because it is the most accurate
-    ...getDbcVerifiedSubjectsFirst(subjects),
-    // Local subjects from agency manifestations (e.g., Faroese, Greenlandic, or library-specific)
-    ...getLocalAgencySubjects(manifestations, agencyIds)
-  ]);
 
 export const isParallelReservation = (manifestations: Manifestation[]) =>
   manifestations.length > 1 &&

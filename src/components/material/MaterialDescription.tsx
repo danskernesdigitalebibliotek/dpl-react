@@ -1,7 +1,8 @@
 import React from "react";
 import {
   getUniqueMovies,
-  getAllSubjects,
+  getDbcVerifiedSubjectsFirst,
+  getLocalAgencySubjects,
   materialContainsDanish
 } from "../../apps/material/helper";
 import {
@@ -62,14 +63,22 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
       })) ??
     [];
 
-  const subjectsList = getAllSubjects({
-    subjects,
-    manifestations: manifestations.all,
-    agencyIds: localSubjectsAgencyIds
-  }).map((item) => ({
+  const dbcSubjects = getDbcVerifiedSubjectsFirst(subjects).map((item) => ({
     url: constructSubjectSearchUrl(searchUrl, item),
     term: item
   }));
+
+  const localSubjects = getLocalAgencySubjects(
+    manifestations.all,
+    localSubjectsAgencyIds
+  )
+    .filter((item) => !dbcSubjects.some((dbc) => dbc.term === item))
+    .map((item) => ({
+      url: constructSearchUrl(searchUrl, item),
+      term: item
+    }));
+
+  const subjectsList = [...dbcSubjects, ...localSubjects];
 
   const filmAdaptationsList = getUniqueMovies(relations).map((item) => {
     return {
