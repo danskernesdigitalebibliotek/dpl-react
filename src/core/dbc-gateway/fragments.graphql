@@ -46,6 +46,11 @@ fragment ManifestationsSimpleFields on Manifestation {
   pid
   genreAndForm
   source
+  subjects {
+    all {
+      display
+    }
+  }
   ...WithLanguages
   titles {
     main
