@@ -80,7 +80,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
       term: item
     }));
 
-  const subjectsList = [...dbcSubjects, ...localSubjects];
+  const subjectsList = [...localSubjects, ...dbcSubjects];
 
   const filmAdaptationsList = getUniqueMovies(relations).map((item) => {
     return {
