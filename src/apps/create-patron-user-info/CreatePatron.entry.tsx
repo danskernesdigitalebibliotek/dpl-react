@@ -56,8 +56,8 @@ interface CreatePatronTextProps {
 
   librarySelectEmptyStateText: string;
   findLibraryDialogTitleText: string;
-  findLibraryDialogDawaInputLabelText: string;
-  findLibraryDialogDawaInputPlaceholderText: string;
+  findLibraryDialogAddressInputLabelText: string;
+  findLibraryDialogAddressInputPlaceholderText: string;
   findLibraryDialogGeoLocationButtonText: string;
   findLibraryDialogSuggestionsListLabelText: string;
 

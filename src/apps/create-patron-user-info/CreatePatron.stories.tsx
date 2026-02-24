@@ -238,14 +238,14 @@ export const Primary: Story = {
       },
       control: { type: "text" }
     },
-    findLibraryDialogDawaInputLabelText: {
+    findLibraryDialogAddressInputLabelText: {
       table: {
         type: { summary: "text" },
         defaultValue: { summary: "Enter your address" }
       },
       control: { type: "text" }
     },
-    findLibraryDialogDawaInputPlaceholderText: {
+    findLibraryDialogAddressInputPlaceholderText: {
       table: {
         type: { summary: "text" },
         defaultValue: { summary: "Fx Torvegade 1, 1401 København K" }
@@ -374,8 +374,8 @@ export const Primary: Story = {
 
     librarySelectEmptyStateText: "Choose library",
     findLibraryDialogTitleText: "Find nearest library",
-    findLibraryDialogDawaInputLabelText: "Enter your address",
-    findLibraryDialogDawaInputPlaceholderText:
+    findLibraryDialogAddressInputLabelText: "Enter your address",
+    findLibraryDialogAddressInputPlaceholderText:
       "Ex. Torvegade 1, 1401 København K",
     findLibraryDialogGeoLocationButtonText:
       "Find nearest library using your location",

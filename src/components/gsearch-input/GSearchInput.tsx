@@ -4,9 +4,9 @@ import { useCombobox } from "downshift";
 import clsx from "clsx";
 import { debounce } from "lodash";
 import {
-  DawaAddress,
+  AddressWithCoordinates,
   getAddressesFromLocationQuery
-} from "../../core/address-lookup/dawa-reqests";
+} from "../../core/address-lookup/gsearch-requests";
 
 export type InputProps = {
   label: string;
@@ -16,14 +16,14 @@ export type InputProps = {
   description?: string;
   classNames?: string;
   placeholder?: string;
-  onDawaAddressSelect: (address: DawaAddress) => void;
+  onAddressSelect: (address: AddressWithCoordinates) => void;
   onQueryChange: (query: string) => void;
 };
 
 const MIN_QUERY_LENGTH = 3;
 
-function useGetDawaAddresses(query: string) {
-  const [addresses, setAddresses] = useState<DawaAddress[]>([]);
+function useGetGSearchAddresses(query: string) {
+  const [addresses, setAddresses] = useState<AddressWithCoordinates[]>([]);
 
   const debouncedFetch = useMemo(
     () =>
@@ -49,15 +49,15 @@ function useGetDawaAddresses(query: string) {
   return { addresses };
 }
 
-const DawaInput = ({
+const GSearchInput = ({
   label,
   id,
   placeholder,
   query,
-  onDawaAddressSelect,
+  onAddressSelect,
   onQueryChange
 }: InputProps) => {
-  const { addresses } = useGetDawaAddresses(query);
+  const { addresses } = useGetGSearchAddresses(query);
 
   const {
     isOpen,
@@ -78,7 +78,7 @@ const DawaInput = ({
     },
     onSelectedItemChange({ selectedItem: newSelectedItem }) {
       if (newSelectedItem) {
-        onDawaAddressSelect(newSelectedItem);
+        onAddressSelect(newSelectedItem);
       }
     }
   });
@@ -125,4 +125,4 @@ const DawaInput = ({
   );
 };
 
-export default DawaInput;
+export default GSearchInput;
