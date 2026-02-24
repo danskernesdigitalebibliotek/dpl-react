@@ -70,18 +70,6 @@ const meta: Meta<typeof BranchListEntry> = {
     branchListTitleText: {
       name: "Page title",
       control: { type: "text" }
-    },
-    branchListAddressSearchLabelText: {
-      name: "Address search label",
-      control: { type: "text" }
-    },
-    branchListAddressSearchPlaceholderText: {
-      name: "Address search placeholder",
-      control: { type: "text" }
-    },
-    branchListGeoLocationButtonText: {
-      name: "Geolocation button text",
-      control: { type: "text" }
     }
   },
   args: {
@@ -89,10 +77,7 @@ const meta: Meta<typeof BranchListEntry> = {
     ...dataforsyningenArgs,
     ...branchAddressSearchArgs,
     branchesConfig: JSON.stringify(branchesData),
-    branchListTitleText: "Branches",
-    branchListAddressSearchLabelText: "Sort by distance - enter your address",
-    branchListAddressSearchPlaceholderText: "Enter your address",
-    branchListGeoLocationButtonText: "Find nearest library from your location"
+    branchListTitleText: "Branches"
   }
 };
 

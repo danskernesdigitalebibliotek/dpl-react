@@ -50,9 +50,9 @@ function FindLibraryDialog({
       </h2>
       <AddressSearchBar
         id="address-input-2"
-        label={t("findLibraryDialogAddressInputLabelText")}
-        placeholder={t("findLibraryDialogAddressInputPlaceholderText")}
-        buttonText={t("findLibraryDialogGeoLocationButtonText")}
+        label={t("addressSearchLabelText")}
+        placeholder={t("addressSearchPlaceholderText")}
+        buttonText={t("addressSearchGeoLocationButtonText")}
         query={query}
         onQueryChange={handleQueryChange}
         onAddressSelect={handleAddressSelect}

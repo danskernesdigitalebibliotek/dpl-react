@@ -250,27 +250,6 @@ export const Primary: Story = {
       },
       control: { type: "text" }
     },
-    findLibraryDialogAddressInputLabelText: {
-      table: {
-        type: { summary: "text" },
-        defaultValue: { summary: "Enter your address" }
-      },
-      control: { type: "text" }
-    },
-    findLibraryDialogAddressInputPlaceholderText: {
-      table: {
-        type: { summary: "text" },
-        defaultValue: { summary: "Fx Torvegade 1, 1401 København K" }
-      },
-      control: { type: "text" }
-    },
-    findLibraryDialogGeoLocationButtonText: {
-      table: {
-        type: { summary: "text" },
-        defaultValue: { summary: "Find nearest library using your location" }
-      },
-      control: { type: "text" }
-    },
     findLibraryDialogSuggestionsListLabelText: {
       table: {
         type: { summary: "text" },
@@ -333,11 +312,6 @@ export const Primary: Story = {
 
     librarySelectEmptyStateText: "Choose library",
     findLibraryDialogTitleText: "Find nearest library",
-    findLibraryDialogAddressInputLabelText: "Enter your address",
-    findLibraryDialogAddressInputPlaceholderText:
-      "Ex. Torvegade 1, 1401 København K",
-    findLibraryDialogGeoLocationButtonText:
-      "Find nearest library using your location",
     findLibraryDialogSuggestionsListLabelText: "Choose library",
     geoLocationErrorPermissionDeniedText:
       "You have denied access to your location. Allow location access in your browser.",

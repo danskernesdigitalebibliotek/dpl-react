@@ -56,9 +56,9 @@ const BranchList: FC = () => {
         <ContentListFilters>
           <AddressSearchBar
             id="branch-list-address-input"
-            label={t("branchListAddressSearchLabelText")}
-            placeholder={t("branchListAddressSearchPlaceholderText")}
-            buttonText={t("branchListGeoLocationButtonText")}
+            label={t("addressSearchLabelText")}
+            placeholder={t("addressSearchPlaceholderText")}
+            buttonText={t("addressSearchGeoLocationButtonText")}
             query={query}
             onQueryChange={handleQueryChange}
             onAddressSelect={handleAddressSelect}
