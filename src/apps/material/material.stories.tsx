@@ -59,6 +59,10 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Path to the material page",
       control: { type: "text" }
     },
+    advancedSearchUrl: {
+      description: "Path to the advanced search page",
+      control: { type: "text" }
+    },
     wid: {
       description: "Work ID",
       control: { type: "text" }
@@ -872,6 +876,7 @@ const meta: Meta<typeof MaterialEntry> = {
     ...materialContentsArgs,
     searchUrl: "/search",
     materialUrl: "/work/:workid",
+    advancedSearchUrl: "/advancedsearch",
     wid: "work-of:870970-basis:52557240",
     agencyIdConfig: "710100",
     localSubjectsAgencyIdsConfig: "",
