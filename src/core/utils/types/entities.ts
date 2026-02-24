@@ -5,6 +5,7 @@ import {
   FacetResult,
   InfomediaService,
   InterLibraryLoan,
+  Publizon,
   ManifestationReviewFieldsFragment,
   ManifestationsSimpleFieldsFragment,
   Publizon,
