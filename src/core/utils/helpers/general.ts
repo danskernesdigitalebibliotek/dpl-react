@@ -23,6 +23,7 @@ import { formatCurrency } from "./currency";
 import {
   dateHasPassed,
   calculateDateYearsDifference,
+  formatShortDate,
   getUnixTimestamp
 } from "./date";
 
@@ -447,13 +448,14 @@ export const getPublicationName = (
 export const getReviewRelease = (
   dateFirstEdition: ManifestationReviewFieldsFragment["dateFirstEdition"],
   workYear: ManifestationReviewFieldsFragment["workYear"],
-  edition: ManifestationReviewFieldsFragment["edition"]
+  edition: ManifestationReviewFieldsFragment["edition"],
+  recordCreationDate?: ManifestationReviewFieldsFragment["recordCreationDate"]
 ) => {
   return (
     dateFirstEdition?.display ||
     workYear?.display ||
     edition?.publicationYear?.display ||
-    null
+    (recordCreationDate ? formatShortDate(recordCreationDate) : null)
   );
 };
 

@@ -4211,6 +4211,7 @@ export type GetReviewManifestationsQuery = {
   manifestations: Array<{
     __typename?: "Manifestation";
     pid: string;
+    recordCreationDate: string;
     creators: Array<
       | { __typename?: "Corporation"; display: string }
       | { __typename?: "Person"; display: string }
@@ -6897,6 +6898,7 @@ export type ManifestationsSimpleFieldsFragment = {
 export type ManifestationReviewFieldsFragment = {
   __typename?: "Manifestation";
   pid: string;
+  recordCreationDate: string;
   creators: Array<
     | { __typename?: "Corporation"; display: string }
     | { __typename?: "Person"; display: string }
@@ -8204,6 +8206,7 @@ export const ManifestationBasicDetailsFragmentDoc = `
 export const ManifestationReviewFieldsFragmentDoc = `
     fragment ManifestationReviewFields on Manifestation {
   pid
+  recordCreationDate
   creators {
     display
   }
