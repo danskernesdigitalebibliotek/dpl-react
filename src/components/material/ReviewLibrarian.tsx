@@ -16,6 +16,7 @@ export interface ReviewLibrarianProps {
 const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
   review: {
     pid,
+    recordCreationDate,
     workYear,
     dateFirstEdition,
     creators,
@@ -25,7 +26,12 @@ const ReviewLibrarian: React.FC<ReviewLibrarianProps> = ({
   },
   dataCy = "review-librarian"
 }) => {
-  const date = getReviewRelease(dateFirstEdition, workYear, edition);
+  const date = getReviewRelease(
+    dateFirstEdition,
+    workYear,
+    edition,
+    recordCreationDate
+  );
   const authors = getAuthorNames(creators);
   const publication = getPublicationName(hostPublication);
 
