@@ -9,8 +9,8 @@ import { getFacetFieldTranslation } from "../../components/facet-browser/helper"
 import { useFacetTracking } from "./useSearchResultTracking";
 import SearchFacetGroup from "../../components/facet-browser/SearchFacetGroup";
 import SearchToggle from "../../components/search-toggle/SearchToggle";
-import AdvancedSearchRadioButtonGroup from "../../components/search-radio-button-group/SearchRadioButtonGroup";
 import { sortSimpleSearchFacetValues } from "../advanced-search-v2/lib/facet-sort-utils";
+import SearchRadioButtonGroup from "../../components/search-radio-button-group/SearchRadioButtonGroup";
 
 // Type for facet state stored in URL
 // Uses facetName (camelCase string like "materialTypesGeneral") as that's what the API expects for filters
@@ -120,7 +120,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
     | { value: "Digital"; label: "Online" }
     | { value: "Fysisk"; label: "Fysisk" };
   type FictionTypeFilterOptions =
-    | { value: "Ikke angivet"; label: "Fiktion" }
+    | { value: "Skønlitteratur"; label: "Fiktion" }
     | { value: "Faglitteratur"; label: "Non-fiktion" };
   type AgeGroupFilterOptions =
     | { value: "til voksne"; label: "Voksne" }
@@ -132,7 +132,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
     { value: "Fysisk", label: "Fysisk" }
   ];
   const FICTION_TYPE_OPTIONS: FictionTypeFilterOptions[] = [
-    { value: "Ikke angivet", label: "Fiktion" },
+    { value: "Skønlitteratur", label: "Fiktion" },
     { value: "Faglitteratur", label: "Non-fiktion" }
   ];
   const AGE_GROUP_OPTIONS: AgeGroupFilterOptions[] = [
@@ -229,7 +229,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
 
         {/* Advanced search-style radio groups */}
         <div className="search-radio-button-group-wrapper">
-          <AdvancedSearchRadioButtonGroup
+          <SearchRadioButtonGroup
             name="access-type"
             options={ACCESS_TYPE_OPTIONS}
             selectedValue={
@@ -244,7 +244,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
             }
           />
 
-          <AdvancedSearchRadioButtonGroup
+          <SearchRadioButtonGroup
             name="fiction-type"
             options={FICTION_TYPE_OPTIONS}
             selectedValue={
@@ -259,7 +259,7 @@ const SearchResultFacets = ({ facets }: { facets: FacetResult[] }) => {
             }
           />
 
-          <AdvancedSearchRadioButtonGroup
+          <SearchRadioButtonGroup
             name="age-group"
             options={AGE_GROUP_OPTIONS}
             selectedValue={
