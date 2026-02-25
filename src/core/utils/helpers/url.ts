@@ -162,6 +162,14 @@ export const constructSearchUrlWithFacets = (args: {
 /**
  * @deprecated Use constructSearchUrlWithFacets instead for search-result-v2 compatibility
  */
+export const constructAdvancedSearchSubjectUrl = (
+  advancedSearchUrl: URL,
+  subject: string
+) => {
+  const filters = JSON.stringify([{ term: "term.subject", query: subject }]);
+  return new URL(`${advancedSearchUrl}?filters=${filters}&view=results`);
+};
+
 export const constructSearchUrlWithFilter = (args: {
   searchUrl: URL;
   selectedItemString: string;

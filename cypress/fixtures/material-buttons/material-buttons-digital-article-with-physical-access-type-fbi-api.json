@@ -4,15 +4,13 @@
       "workId": "work-of:870971-tsart:34310815",
       "titles": {
         "full": ["Faglig formidling er ikke kun skriveteknik"],
-        "original": [],
-        "tvSeries": null
+        "original": []
       },
       "abstract": ["Om skriftlig formidling af faglig viden til ikke-fagfolk."],
       "creators": [
         {
           "display": "Leif Becker Jensen",
-          "__typename": "Person",
-          "nameSort": "becker jensen leif"
+          "__typename": "Person"
         }
       ],
       "series": [
@@ -98,7 +96,6 @@
             "creators": [
               {
                 "display": "Leif Becker Jensen",
-                "nameSort": "becker jensen leif",
                 "__typename": "Person"
               }
             ],
@@ -194,7 +191,6 @@
           "creators": [
             {
               "display": "Leif Becker Jensen",
-              "nameSort": "becker jensen leif",
               "__typename": "Person"
             }
           ],
@@ -289,7 +285,6 @@
           "creators": [
             {
               "display": "Leif Becker Jensen",
-              "nameSort": "becker jensen leif",
               "__typename": "Person"
             }
           ],
@@ -356,6 +351,9 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "ARTICLES"
+          },
           "materialTypeSpecific": {
             "display": "artikel"
           }

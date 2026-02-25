@@ -2,6 +2,9 @@
   "data": {
     "manifestation": {
       "pid": "870970-basis:22629344",
+      "ownerWork": {
+        "workId": "work-of:870970-basis:22252852"
+      },
       "titles": { "full": ["Dummy Some Title"] },
       "abstract": ["Dummy Some abstract ..."],
       "edition": {

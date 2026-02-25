@@ -455,11 +455,17 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "BOOKS"
+          },
           "materialTypeSpecific": {
             "display": "bog"
           }
         },
         {
+          "materialTypeGeneral": {
+            "code": "EBOOKS"
+          },
           "materialTypeSpecific": {
             "display": "e-bog"
           }

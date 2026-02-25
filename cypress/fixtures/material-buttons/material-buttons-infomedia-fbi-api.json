@@ -298,11 +298,17 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "ARTICLES"
+          },
           "materialTypeSpecific": {
             "display": "artikel (online)"
           }
         },
         {
+          "materialTypeGeneral": {
+            "code": "ARTICLES"
+          },
           "materialTypeSpecific": {
             "display": "artikel"
           }

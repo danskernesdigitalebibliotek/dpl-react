@@ -574,6 +574,9 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "MUSIC"
+          },
           "materialTypeSpecific": {
             "display": "musik (cd)"
           }

@@ -53,7 +53,8 @@ export type AccessUnion =
   | DigitalArticleService
   | Ereol
   | InfomediaService
-  | InterLibraryLoan;
+  | InterLibraryLoan
+  | Publizon;
 
 export type AccessUrl = {
   __typename?: "AccessUrl";
@@ -84,11 +85,6 @@ export enum AccessUrlTypeEnum {
 
 export type Audience = {
   __typename?: "Audience";
-  /**
-   * PEGI age rating for games
-   * @deprecated Use 'Audience.pegi' instead expires: 01/06-2025
-   */
-  PEGI?: Maybe<Pegi>;
   /** Range of numbers with either beginning of range or end of range or both e.g. 6-10, 1980-1999 */
   ages: Array<Range>;
   /** Is this material for children or adults */
@@ -194,6 +190,7 @@ export enum ComplexSearchFacetsEnum {
   Creatorcontributor = "CREATORCONTRIBUTOR",
   Creatorcontributorfunction = "CREATORCONTRIBUTORFUNCTION",
   Creatorfunction = "CREATORFUNCTION",
+  Datefirstedition = "DATEFIRSTEDITION",
   Fictionalcharacter = "FICTIONALCHARACTER",
   Filmnationality = "FILMNATIONALITY",
   Gameplatform = "GAMEPLATFORM",
@@ -746,6 +743,14 @@ export enum IdentifierTypeEnum {
   Uri = "URI"
 }
 
+export type IllAutomationMaterialGroup = {
+  __typename?: "IllAutomationMaterialGroup";
+  /** The material group (1-9) */
+  id: Scalars["Int"]["output"];
+  /** The name of the material group */
+  name: Scalars["String"]["output"];
+};
+
 export type InfomediaArticle = {
   __typename?: "InfomediaArticle";
   byLine?: Maybe<Scalars["String"]["output"]>;
@@ -922,17 +927,14 @@ export type Manifestation = {
   hostPublication?: Maybe<HostPublication>;
   /** Identifiers for this manifestation - often used for search indexes */
   identifiers: Array<Identifier>;
+  /** automation material group info */
+  illAutomationMaterialGroup?: Maybe<IllAutomationMaterialGroup>;
   /** Languages in this manifestation */
   languages?: Maybe<Languages>;
   /** Details about the latest printing of this manifestation */
   latestPrinting?: Maybe<Printing>;
   /** Identification of the local id of this manifestation */
   localId?: Maybe<Scalars["String"]["output"]>;
-  /**
-   * Tracks on music album, sheet music content, or articles/short stories etc. in this manifestation
-   * @deprecated Use 'Manifestation.contents' instead expires: 01/11-2025
-   */
-  manifestationParts?: Maybe<ManifestationParts>;
   /** The type of material of the manifestation based on bibliotek.dk types */
   materialTypes: Array<MaterialType>;
   /** Notes about the manifestation */
@@ -943,6 +945,8 @@ export type Manifestation = {
   physicalDescription?: Maybe<PhysicalUnitDescription>;
   /** Unique identification of the manifestation e.g 870970-basis:54029519 */
   pid: Scalars["String"]["output"];
+  /** The city or place where the item was published */
+  placeOfPublication: Array<Scalars["String"]["output"]>;
   /** Publisher of this manifestion */
   publisher: Array<Scalars["String"]["output"]>;
   /** The creation date of the record describing this manifestation in the format YYYYMMDD */
@@ -963,11 +967,6 @@ export type Manifestation = {
   source: Array<Scalars["String"]["output"]>;
   /** Subjects for this manifestation */
   subjects: SubjectContainer;
-  /**
-   * Quotation of the manifestation's table of contents or a similar content list
-   * @deprecated Use 'Manifestation.contents' instead expires: 01/11-2025
-   */
-  tableOfContents?: Maybe<TableOfContent>;
   /** Different kinds of titles for this work */
   titles: ManifestationTitles;
   /**
@@ -986,41 +985,6 @@ export type Manifestation = {
   workTypes: Array<WorkTypeEnum>;
   /** The year this manifestation was originally published or produced */
   workYear?: Maybe<PublicationYear>;
-};
-
-export type ManifestationPart = {
-  __typename?: "ManifestationPart";
-  /** Classification of this entry (music track or literary analysis) */
-  classifications: Array<Classification>;
-  /** Contributors from description - additional contributor to this entry */
-  contributorsFromDescription: Array<Scalars["String"]["output"]>;
-  /** The creator of the music track or literary analysis */
-  creators: Array<CreatorInterface>;
-  /** Additional creator or contributor to this entry (music track or literary analysis) as described on the publication. E.g. 'arr.: H. Cornell' */
-  creatorsFromDescription: Array<Scalars["String"]["output"]>;
-  /** The playing time for this specific part (i.e. the duration of a music track)  */
-  playingTime?: Maybe<Scalars["String"]["output"]>;
-  /** Subjects of this entry (music track or literary analysis) */
-  subjects?: Maybe<Array<SubjectInterface>>;
-  /** The title of the entry (music track or title of a literary analysis) */
-  title: Scalars["String"]["output"];
-};
-
-export enum ManifestationPartTypeEnum {
-  MusicTracks = "MUSIC_TRACKS",
-  NotSpecified = "NOT_SPECIFIED",
-  PartsOfBook = "PARTS_OF_BOOK",
-  SheetMusicContent = "SHEET_MUSIC_CONTENT"
-}
-
-export type ManifestationParts = {
-  __typename?: "ManifestationParts";
-  /** Heading for the music content note */
-  heading?: Maybe<Scalars["String"]["output"]>;
-  /** The creator and title etc of the individual parts */
-  parts: Array<ManifestationPart>;
-  /** The type of manifestation parts, is this music tracks, book parts etc. */
-  type: ManifestationPartTypeEnum;
 };
 
 export type ManifestationReview = {
@@ -1058,7 +1022,9 @@ export type ManifestationTitles = {
 export type Manifestations = {
   __typename?: "Manifestations";
   all: Array<Manifestation>;
+  /** The best representation of all manifestations. Corresponds to the first element in the bestRepresentations list. */
   bestRepresentation: Manifestation;
+  /** All manifestations sorted after best representation. Newer is better. Records from DBC or KB are considered better. MaterialType.specific 'bog', 'music (cd)', and 'film (dvd)' are also considered better */
   bestRepresentations: Array<Manifestation>;
   first: Manifestation;
   latest: Manifestation;
@@ -1384,6 +1350,27 @@ export type PublicationYear = {
   year?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type Publizon = {
+  __typename?: "Publizon";
+  /** URL to the material on the public library's website, built from the agency's lookupUrl and the manifestation workId. Defaults to the logged-in user's municipality agency. */
+  agencyUrl?: Maybe<Scalars["String"]["output"]>;
+  /** The total duration of the resource in seconds, if available. */
+  durationInSeconds?: Maybe<Scalars["Int"]["output"]>;
+  /** The file size of the resource in bytes, if available. */
+  fileSizeInBytes?: Maybe<Scalars["Int"]["output"]>;
+  /** The file format of the Publizon resource (e.g., "epub", "mp3"). */
+  format?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * URL of the sample provided by Publizon (Pubhub), typically a preview
+   * of the e-book or audiobook content.
+   */
+  sample: Scalars["String"]["output"];
+};
+
+export type PublizonAgencyUrlArgs = {
+  agencyId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 export type Query = {
   __typename?: "Query";
   complexSearch: ComplexSearchResponse;
@@ -1402,8 +1389,6 @@ export type Query = {
   /** Access to various types of recommendations. */
   recommendations: Recommendations;
   refWorks: Scalars["String"]["output"];
-  /** @deprecated Use 'Recommendations.subjects' instead expires: 01/03-2025 */
-  relatedSubjects?: Maybe<Array<Scalars["String"]["output"]>>;
   ris: Scalars["String"]["output"];
   search: SearchResponse;
   series?: Maybe<Series>;
@@ -1455,11 +1440,6 @@ export type QueryRecommendArgs = {
 
 export type QueryRefWorksArgs = {
   pids: Array<Scalars["String"]["input"]>;
-};
-
-export type QueryRelatedSubjectsArgs = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  q: Array<Scalars["String"]["input"]>;
 };
 
 export type QueryRisArgs = {
@@ -2036,13 +2016,6 @@ export enum SuggestionTypeEnum {
   Title = "TITLE"
 }
 
-export type TableOfContent = {
-  __typename?: "TableOfContent";
-  content?: Maybe<Scalars["String"]["output"]>;
-  heading?: Maybe<Scalars["String"]["output"]>;
-  listOfContent?: Maybe<Array<TableOfContent>>;
-};
-
 export type TimePeriod = SubjectInterface & {
   __typename?: "TimePeriod";
   display: Scalars["String"]["output"];
@@ -2297,14 +2270,6 @@ export type GetSmallWorkQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
-      tvSeries?: {
-        __typename?: "TvSeries";
-        title?: string | null;
-        season?: {
-          __typename?: "TvSeriesDetails";
-          display?: string | null;
-        } | null;
-      } | null;
     };
     creators: Array<
       | { __typename: "Corporation"; display: string }
@@ -2335,6 +2300,19 @@ export type GetSmallWorkQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -2353,8 +2331,8 @@ export type GetSmallWorkQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string; nameSort: string }
-          | { __typename: "Person"; display: string; nameSort: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
         identifiers: Array<{
           __typename?: "Identifier";
@@ -2394,7 +2372,6 @@ export type GetSmallWorkQuery = {
               persons?: Array<{
                 __typename?: "Person";
                 display: string;
-                nameSort: string;
                 firstName?: string | null;
                 lastName?: string | null;
                 attributeToName?: string | null;
@@ -2402,7 +2379,6 @@ export type GetSmallWorkQuery = {
               corporations?: Array<{
                 __typename?: "Corporation";
                 display: string;
-                nameSort: string;
                 main?: string | null;
               }> | null;
             } | null;
@@ -2483,6 +2459,7 @@ export type GetSmallWorkQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -2505,6 +2482,19 @@ export type GetSmallWorkQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -2523,8 +2513,8 @@ export type GetSmallWorkQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string; nameSort: string }
-          | { __typename: "Person"; display: string; nameSort: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
         identifiers: Array<{
           __typename?: "Identifier";
@@ -2564,7 +2554,6 @@ export type GetSmallWorkQuery = {
               persons?: Array<{
                 __typename?: "Person";
                 display: string;
-                nameSort: string;
                 firstName?: string | null;
                 lastName?: string | null;
                 attributeToName?: string | null;
@@ -2572,7 +2561,6 @@ export type GetSmallWorkQuery = {
               corporations?: Array<{
                 __typename?: "Corporation";
                 display: string;
-                nameSort: string;
                 main?: string | null;
               }> | null;
             } | null;
@@ -2653,6 +2641,7 @@ export type GetSmallWorkQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -2675,6 +2664,19 @@ export type GetSmallWorkQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -2693,8 +2695,8 @@ export type GetSmallWorkQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string; nameSort: string }
-          | { __typename: "Person"; display: string; nameSort: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
         identifiers: Array<{
           __typename?: "Identifier";
@@ -2734,7 +2736,6 @@ export type GetSmallWorkQuery = {
               persons?: Array<{
                 __typename?: "Person";
                 display: string;
-                nameSort: string;
                 firstName?: string | null;
                 lastName?: string | null;
                 attributeToName?: string | null;
@@ -2742,7 +2743,6 @@ export type GetSmallWorkQuery = {
               corporations?: Array<{
                 __typename?: "Corporation";
                 display: string;
-                nameSort: string;
                 main?: string | null;
               }> | null;
             } | null;
@@ -2823,6 +2823,7 @@ export type GetSmallWorkQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -2847,6 +2848,7 @@ export type ManifestationBasicDetailsFragment = {
   __typename?: "Manifestation";
   pid: string;
   abstract: Array<string>;
+  ownerWork: { __typename?: "Work"; workId: string };
   titles: { __typename?: "ManifestationTitles"; full: Array<string> };
   materialTypes: Array<{
     __typename?: "MaterialType";
@@ -2872,6 +2874,7 @@ export type ManifestationBasicDetailsFragment = {
     members: Array<{
       __typename?: "SerieWork";
       numberInSeries?: string | null;
+      work: { __typename?: "Work"; workId: string };
     }>;
   }>;
   languages?: {
@@ -2894,6 +2897,7 @@ export type GetManifestationViaMaterialByFaustQuery = {
     __typename?: "Manifestation";
     pid: string;
     abstract: Array<string>;
+    ownerWork: { __typename?: "Work"; workId: string };
     titles: { __typename?: "ManifestationTitles"; full: Array<string> };
     materialTypes: Array<{
       __typename?: "MaterialType";
@@ -2919,6 +2923,7 @@ export type GetManifestationViaMaterialByFaustQuery = {
       members: Array<{
         __typename?: "SerieWork";
         numberInSeries?: string | null;
+        work: { __typename?: "Work"; workId: string };
       }>;
     }>;
     languages?: {
@@ -2948,6 +2953,7 @@ export type GetManifestationViaBestRepresentationByFaustQuery = {
           __typename?: "Manifestation";
           pid: string;
           abstract: Array<string>;
+          ownerWork: { __typename?: "Work"; workId: string };
           titles: { __typename?: "ManifestationTitles"; full: Array<string> };
           materialTypes: Array<{
             __typename?: "MaterialType";
@@ -2973,6 +2979,7 @@ export type GetManifestationViaBestRepresentationByFaustQuery = {
             members: Array<{
               __typename?: "SerieWork";
               numberInSeries?: string | null;
+              work: { __typename?: "Work"; workId: string };
             }>;
           }>;
           languages?: {
@@ -3002,15 +3009,15 @@ export type GetMaterialQuery = {
     genreAndForm: Array<string>;
     materialTypes: Array<{
       __typename?: "MaterialType";
+      materialTypeGeneral: {
+        __typename?: "GeneralMaterialType";
+        code: GeneralMaterialTypeCodeEnum;
+      };
       materialTypeSpecific: {
         __typename?: "SpecificMaterialType";
         display: string;
       };
     }>;
-    creators: Array<
-      | { __typename: "Corporation"; nameSort: string; display: string }
-      | { __typename: "Person"; nameSort: string; display: string }
-    >;
     mainLanguages: Array<{
       __typename?: "Language";
       display: string;
@@ -3066,15 +3073,11 @@ export type GetMaterialQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
-      tvSeries?: {
-        __typename?: "TvSeries";
-        title?: string | null;
-        season?: {
-          __typename?: "TvSeriesDetails";
-          display?: string | null;
-        } | null;
-      } | null;
     };
+    creators: Array<
+      | { __typename: "Corporation"; display: string }
+      | { __typename: "Person"; display: string }
+    >;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -3100,6 +3103,19 @@ export type GetMaterialQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -3118,8 +3134,8 @@ export type GetMaterialQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string; nameSort: string }
-          | { __typename: "Person"; display: string; nameSort: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
         identifiers: Array<{
           __typename?: "Identifier";
@@ -3159,7 +3175,6 @@ export type GetMaterialQuery = {
               persons?: Array<{
                 __typename?: "Person";
                 display: string;
-                nameSort: string;
                 firstName?: string | null;
                 lastName?: string | null;
                 attributeToName?: string | null;
@@ -3167,7 +3182,6 @@ export type GetMaterialQuery = {
               corporations?: Array<{
                 __typename?: "Corporation";
                 display: string;
-                nameSort: string;
                 main?: string | null;
               }> | null;
             } | null;
@@ -3248,6 +3262,7 @@ export type GetMaterialQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3270,6 +3285,19 @@ export type GetMaterialQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -3288,8 +3316,8 @@ export type GetMaterialQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string; nameSort: string }
-          | { __typename: "Person"; display: string; nameSort: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
         identifiers: Array<{
           __typename?: "Identifier";
@@ -3329,7 +3357,6 @@ export type GetMaterialQuery = {
               persons?: Array<{
                 __typename?: "Person";
                 display: string;
-                nameSort: string;
                 firstName?: string | null;
                 lastName?: string | null;
                 attributeToName?: string | null;
@@ -3337,7 +3364,6 @@ export type GetMaterialQuery = {
               corporations?: Array<{
                 __typename?: "Corporation";
                 display: string;
-                nameSort: string;
                 main?: string | null;
               }> | null;
             } | null;
@@ -3418,6 +3444,7 @@ export type GetMaterialQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3440,6 +3467,19 @@ export type GetMaterialQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -3458,8 +3498,8 @@ export type GetMaterialQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string; nameSort: string }
-          | { __typename: "Person"; display: string; nameSort: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
         identifiers: Array<{
           __typename?: "Identifier";
@@ -3499,7 +3539,6 @@ export type GetMaterialQuery = {
               persons?: Array<{
                 __typename?: "Person";
                 display: string;
-                nameSort: string;
                 firstName?: string | null;
                 lastName?: string | null;
                 attributeToName?: string | null;
@@ -3507,7 +3546,6 @@ export type GetMaterialQuery = {
               corporations?: Array<{
                 __typename?: "Corporation";
                 display: string;
-                nameSort: string;
                 main?: string | null;
               }> | null;
             } | null;
@@ -3588,6 +3626,7 @@ export type GetMaterialQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3621,15 +3660,15 @@ export type GetMaterialGloballyQuery = {
     genreAndForm: Array<string>;
     materialTypes: Array<{
       __typename?: "MaterialType";
+      materialTypeGeneral: {
+        __typename?: "GeneralMaterialType";
+        code: GeneralMaterialTypeCodeEnum;
+      };
       materialTypeSpecific: {
         __typename?: "SpecificMaterialType";
         display: string;
       };
     }>;
-    creators: Array<
-      | { __typename: "Corporation"; nameSort: string; display: string }
-      | { __typename: "Person"; nameSort: string; display: string }
-    >;
     mainLanguages: Array<{
       __typename?: "Language";
       display: string;
@@ -3685,15 +3724,11 @@ export type GetMaterialGloballyQuery = {
       __typename?: "WorkTitles";
       full: Array<string>;
       original?: Array<string> | null;
-      tvSeries?: {
-        __typename?: "TvSeries";
-        title?: string | null;
-        season?: {
-          __typename?: "TvSeriesDetails";
-          display?: string | null;
-        } | null;
-      } | null;
     };
+    creators: Array<
+      | { __typename: "Corporation"; display: string }
+      | { __typename: "Person"; display: string }
+    >;
     series: Array<{
       __typename?: "Series";
       title: string;
@@ -3719,6 +3754,19 @@ export type GetMaterialGloballyQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -3737,8 +3785,8 @@ export type GetMaterialGloballyQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string; nameSort: string }
-          | { __typename: "Person"; display: string; nameSort: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
         identifiers: Array<{
           __typename?: "Identifier";
@@ -3778,7 +3826,6 @@ export type GetMaterialGloballyQuery = {
               persons?: Array<{
                 __typename?: "Person";
                 display: string;
-                nameSort: string;
                 firstName?: string | null;
                 lastName?: string | null;
                 attributeToName?: string | null;
@@ -3786,7 +3833,6 @@ export type GetMaterialGloballyQuery = {
               corporations?: Array<{
                 __typename?: "Corporation";
                 display: string;
-                nameSort: string;
                 main?: string | null;
               }> | null;
             } | null;
@@ -3867,6 +3913,7 @@ export type GetMaterialGloballyQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -3889,6 +3936,19 @@ export type GetMaterialGloballyQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -3907,8 +3967,8 @@ export type GetMaterialGloballyQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string; nameSort: string }
-          | { __typename: "Person"; display: string; nameSort: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
         identifiers: Array<{
           __typename?: "Identifier";
@@ -3948,7 +4008,6 @@ export type GetMaterialGloballyQuery = {
               persons?: Array<{
                 __typename?: "Person";
                 display: string;
-                nameSort: string;
                 firstName?: string | null;
                 lastName?: string | null;
                 attributeToName?: string | null;
@@ -3956,7 +4015,6 @@ export type GetMaterialGloballyQuery = {
               corporations?: Array<{
                 __typename?: "Corporation";
                 display: string;
-                nameSort: string;
                 main?: string | null;
               }> | null;
             } | null;
@@ -4037,6 +4095,7 @@ export type GetMaterialGloballyQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -4059,6 +4118,19 @@ export type GetMaterialGloballyQuery = {
         genreAndForm: Array<string>;
         source: Array<string>;
         publisher: Array<string>;
+        subjects: {
+          __typename?: "SubjectContainer";
+          all: Array<
+            | { __typename?: "Corporation"; display: string }
+            | { __typename?: "Mood"; display: string }
+            | { __typename?: "NarrativeTechnique"; display: string }
+            | { __typename?: "Person"; display: string }
+            | { __typename?: "Setting"; display: string }
+            | { __typename?: "SubjectText"; display: string }
+            | { __typename?: "SubjectWithRating"; display: string }
+            | { __typename?: "TimePeriod"; display: string }
+          >;
+        };
         titles: {
           __typename?: "ManifestationTitles";
           main: Array<string>;
@@ -4077,8 +4149,8 @@ export type GetMaterialGloballyQuery = {
           };
         }>;
         creators: Array<
-          | { __typename: "Corporation"; display: string; nameSort: string }
-          | { __typename: "Person"; display: string; nameSort: string }
+          | { __typename: "Corporation"; display: string }
+          | { __typename: "Person"; display: string }
         >;
         identifiers: Array<{
           __typename?: "Identifier";
@@ -4118,7 +4190,6 @@ export type GetMaterialGloballyQuery = {
               persons?: Array<{
                 __typename?: "Person";
                 display: string;
-                nameSort: string;
                 firstName?: string | null;
                 lastName?: string | null;
                 attributeToName?: string | null;
@@ -4126,7 +4197,6 @@ export type GetMaterialGloballyQuery = {
               corporations?: Array<{
                 __typename?: "Corporation";
                 display: string;
-                nameSort: string;
                 main?: string | null;
               }> | null;
             } | null;
@@ -4207,6 +4277,7 @@ export type GetMaterialGloballyQuery = {
             }
           | { __typename: "InfomediaService"; id: string }
           | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+          | { __typename: "Publizon" }
         >;
         shelfmark?: {
           __typename?: "Shelfmark";
@@ -4257,6 +4328,7 @@ export type GetReviewManifestationsQuery = {
   manifestations: Array<{
     __typename?: "Manifestation";
     pid: string;
+    recordCreationDate: string;
     creators: Array<
       | { __typename?: "Corporation"; display: string }
       | { __typename?: "Person"; display: string }
@@ -4267,6 +4339,7 @@ export type GetReviewManifestationsQuery = {
       | { __typename: "Ereol" }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan" }
+      | { __typename: "Publizon" }
     >;
     edition?: {
       __typename?: "Edition";
@@ -4341,14 +4414,6 @@ export type RecommendFromFaustQuery = {
           __typename?: "WorkTitles";
           full: Array<string>;
           original?: Array<string> | null;
-          tvSeries?: {
-            __typename?: "TvSeries";
-            title?: string | null;
-            season?: {
-              __typename?: "TvSeriesDetails";
-              display?: string | null;
-            } | null;
-          } | null;
         };
         creators: Array<
           | { __typename: "Corporation"; display: string }
@@ -4382,6 +4447,19 @@ export type RecommendFromFaustQuery = {
             genreAndForm: Array<string>;
             source: Array<string>;
             publisher: Array<string>;
+            subjects: {
+              __typename?: "SubjectContainer";
+              all: Array<
+                | { __typename?: "Corporation"; display: string }
+                | { __typename?: "Mood"; display: string }
+                | { __typename?: "NarrativeTechnique"; display: string }
+                | { __typename?: "Person"; display: string }
+                | { __typename?: "Setting"; display: string }
+                | { __typename?: "SubjectText"; display: string }
+                | { __typename?: "SubjectWithRating"; display: string }
+                | { __typename?: "TimePeriod"; display: string }
+              >;
+            };
             titles: {
               __typename?: "ManifestationTitles";
               main: Array<string>;
@@ -4400,8 +4478,8 @@ export type RecommendFromFaustQuery = {
               };
             }>;
             creators: Array<
-              | { __typename: "Corporation"; display: string; nameSort: string }
-              | { __typename: "Person"; display: string; nameSort: string }
+              | { __typename: "Corporation"; display: string }
+              | { __typename: "Person"; display: string }
             >;
             identifiers: Array<{
               __typename?: "Identifier";
@@ -4441,7 +4519,6 @@ export type RecommendFromFaustQuery = {
                   persons?: Array<{
                     __typename?: "Person";
                     display: string;
-                    nameSort: string;
                     firstName?: string | null;
                     lastName?: string | null;
                     attributeToName?: string | null;
@@ -4449,7 +4526,6 @@ export type RecommendFromFaustQuery = {
                   corporations?: Array<{
                     __typename?: "Corporation";
                     display: string;
-                    nameSort: string;
                     main?: string | null;
                   }> | null;
                 } | null;
@@ -4533,6 +4609,7 @@ export type RecommendFromFaustQuery = {
                 }
               | { __typename: "InfomediaService"; id: string }
               | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+              | { __typename: "Publizon" }
             >;
             shelfmark?: {
               __typename?: "Shelfmark";
@@ -4555,6 +4632,19 @@ export type RecommendFromFaustQuery = {
             genreAndForm: Array<string>;
             source: Array<string>;
             publisher: Array<string>;
+            subjects: {
+              __typename?: "SubjectContainer";
+              all: Array<
+                | { __typename?: "Corporation"; display: string }
+                | { __typename?: "Mood"; display: string }
+                | { __typename?: "NarrativeTechnique"; display: string }
+                | { __typename?: "Person"; display: string }
+                | { __typename?: "Setting"; display: string }
+                | { __typename?: "SubjectText"; display: string }
+                | { __typename?: "SubjectWithRating"; display: string }
+                | { __typename?: "TimePeriod"; display: string }
+              >;
+            };
             titles: {
               __typename?: "ManifestationTitles";
               main: Array<string>;
@@ -4573,8 +4663,8 @@ export type RecommendFromFaustQuery = {
               };
             }>;
             creators: Array<
-              | { __typename: "Corporation"; display: string; nameSort: string }
-              | { __typename: "Person"; display: string; nameSort: string }
+              | { __typename: "Corporation"; display: string }
+              | { __typename: "Person"; display: string }
             >;
             identifiers: Array<{
               __typename?: "Identifier";
@@ -4614,7 +4704,6 @@ export type RecommendFromFaustQuery = {
                   persons?: Array<{
                     __typename?: "Person";
                     display: string;
-                    nameSort: string;
                     firstName?: string | null;
                     lastName?: string | null;
                     attributeToName?: string | null;
@@ -4622,7 +4711,6 @@ export type RecommendFromFaustQuery = {
                   corporations?: Array<{
                     __typename?: "Corporation";
                     display: string;
-                    nameSort: string;
                     main?: string | null;
                   }> | null;
                 } | null;
@@ -4706,6 +4794,7 @@ export type RecommendFromFaustQuery = {
                 }
               | { __typename: "InfomediaService"; id: string }
               | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+              | { __typename: "Publizon" }
             >;
             shelfmark?: {
               __typename?: "Shelfmark";
@@ -4728,6 +4817,19 @@ export type RecommendFromFaustQuery = {
             genreAndForm: Array<string>;
             source: Array<string>;
             publisher: Array<string>;
+            subjects: {
+              __typename?: "SubjectContainer";
+              all: Array<
+                | { __typename?: "Corporation"; display: string }
+                | { __typename?: "Mood"; display: string }
+                | { __typename?: "NarrativeTechnique"; display: string }
+                | { __typename?: "Person"; display: string }
+                | { __typename?: "Setting"; display: string }
+                | { __typename?: "SubjectText"; display: string }
+                | { __typename?: "SubjectWithRating"; display: string }
+                | { __typename?: "TimePeriod"; display: string }
+              >;
+            };
             titles: {
               __typename?: "ManifestationTitles";
               main: Array<string>;
@@ -4746,8 +4848,8 @@ export type RecommendFromFaustQuery = {
               };
             }>;
             creators: Array<
-              | { __typename: "Corporation"; display: string; nameSort: string }
-              | { __typename: "Person"; display: string; nameSort: string }
+              | { __typename: "Corporation"; display: string }
+              | { __typename: "Person"; display: string }
             >;
             identifiers: Array<{
               __typename?: "Identifier";
@@ -4787,7 +4889,6 @@ export type RecommendFromFaustQuery = {
                   persons?: Array<{
                     __typename?: "Person";
                     display: string;
-                    nameSort: string;
                     firstName?: string | null;
                     lastName?: string | null;
                     attributeToName?: string | null;
@@ -4795,7 +4896,6 @@ export type RecommendFromFaustQuery = {
                   corporations?: Array<{
                     __typename?: "Corporation";
                     display: string;
-                    nameSort: string;
                     main?: string | null;
                   }> | null;
                 } | null;
@@ -4879,6 +4979,7 @@ export type RecommendFromFaustQuery = {
                 }
               | { __typename: "InfomediaService"; id: string }
               | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+              | { __typename: "Publizon" }
             >;
             shelfmark?: {
               __typename?: "Shelfmark";
@@ -4922,14 +5023,6 @@ export type SearchWithPaginationQuery = {
         __typename?: "WorkTitles";
         full: Array<string>;
         original?: Array<string> | null;
-        tvSeries?: {
-          __typename?: "TvSeries";
-          title?: string | null;
-          season?: {
-            __typename?: "TvSeriesDetails";
-            display?: string | null;
-          } | null;
-        } | null;
       };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -4963,6 +5056,19 @@ export type SearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -4981,8 +5087,8 @@ export type SearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string; nameSort: string }
-            | { __typename: "Person"; display: string; nameSort: string }
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
           >;
           identifiers: Array<{
             __typename?: "Identifier";
@@ -5022,7 +5128,6 @@ export type SearchWithPaginationQuery = {
                 persons?: Array<{
                   __typename?: "Person";
                   display: string;
-                  nameSort: string;
                   firstName?: string | null;
                   lastName?: string | null;
                   attributeToName?: string | null;
@@ -5030,7 +5135,6 @@ export type SearchWithPaginationQuery = {
                 corporations?: Array<{
                   __typename?: "Corporation";
                   display: string;
-                  nameSort: string;
                   main?: string | null;
                 }> | null;
               } | null;
@@ -5111,6 +5215,7 @@ export type SearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5133,6 +5238,19 @@ export type SearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5151,8 +5269,8 @@ export type SearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string; nameSort: string }
-            | { __typename: "Person"; display: string; nameSort: string }
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
           >;
           identifiers: Array<{
             __typename?: "Identifier";
@@ -5192,7 +5310,6 @@ export type SearchWithPaginationQuery = {
                 persons?: Array<{
                   __typename?: "Person";
                   display: string;
-                  nameSort: string;
                   firstName?: string | null;
                   lastName?: string | null;
                   attributeToName?: string | null;
@@ -5200,7 +5317,6 @@ export type SearchWithPaginationQuery = {
                 corporations?: Array<{
                   __typename?: "Corporation";
                   display: string;
-                  nameSort: string;
                   main?: string | null;
                 }> | null;
               } | null;
@@ -5281,6 +5397,7 @@ export type SearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5303,6 +5420,19 @@ export type SearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5321,8 +5451,8 @@ export type SearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string; nameSort: string }
-            | { __typename: "Person"; display: string; nameSort: string }
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
           >;
           identifiers: Array<{
             __typename?: "Identifier";
@@ -5362,7 +5492,6 @@ export type SearchWithPaginationQuery = {
                 persons?: Array<{
                   __typename?: "Person";
                   display: string;
-                  nameSort: string;
                   firstName?: string | null;
                   lastName?: string | null;
                   attributeToName?: string | null;
@@ -5370,7 +5499,6 @@ export type SearchWithPaginationQuery = {
                 corporations?: Array<{
                   __typename?: "Corporation";
                   display: string;
-                  nameSort: string;
                   main?: string | null;
                 }> | null;
               } | null;
@@ -5451,6 +5579,7 @@ export type SearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5513,6 +5642,7 @@ export type ComplexSearchWithPaginationWorkAccessQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
         }>;
       };
@@ -5542,14 +5672,6 @@ export type ComplexSearchWithPaginationQuery = {
         __typename?: "WorkTitles";
         full: Array<string>;
         original?: Array<string> | null;
-        tvSeries?: {
-          __typename?: "TvSeries";
-          title?: string | null;
-          season?: {
-            __typename?: "TvSeriesDetails";
-            display?: string | null;
-          } | null;
-        } | null;
       };
       creators: Array<
         | { __typename: "Corporation"; display: string }
@@ -5583,6 +5705,19 @@ export type ComplexSearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5601,8 +5736,8 @@ export type ComplexSearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string; nameSort: string }
-            | { __typename: "Person"; display: string; nameSort: string }
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
           >;
           identifiers: Array<{
             __typename?: "Identifier";
@@ -5642,7 +5777,6 @@ export type ComplexSearchWithPaginationQuery = {
                 persons?: Array<{
                   __typename?: "Person";
                   display: string;
-                  nameSort: string;
                   firstName?: string | null;
                   lastName?: string | null;
                   attributeToName?: string | null;
@@ -5650,7 +5784,6 @@ export type ComplexSearchWithPaginationQuery = {
                 corporations?: Array<{
                   __typename?: "Corporation";
                   display: string;
-                  nameSort: string;
                   main?: string | null;
                 }> | null;
               } | null;
@@ -5731,6 +5864,7 @@ export type ComplexSearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5753,6 +5887,19 @@ export type ComplexSearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5771,8 +5918,8 @@ export type ComplexSearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string; nameSort: string }
-            | { __typename: "Person"; display: string; nameSort: string }
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
           >;
           identifiers: Array<{
             __typename?: "Identifier";
@@ -5812,7 +5959,6 @@ export type ComplexSearchWithPaginationQuery = {
                 persons?: Array<{
                   __typename?: "Person";
                   display: string;
-                  nameSort: string;
                   firstName?: string | null;
                   lastName?: string | null;
                   attributeToName?: string | null;
@@ -5820,7 +5966,6 @@ export type ComplexSearchWithPaginationQuery = {
                 corporations?: Array<{
                   __typename?: "Corporation";
                   display: string;
-                  nameSort: string;
                   main?: string | null;
                 }> | null;
               } | null;
@@ -5901,6 +6046,7 @@ export type ComplexSearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -5923,6 +6069,19 @@ export type ComplexSearchWithPaginationQuery = {
           genreAndForm: Array<string>;
           source: Array<string>;
           publisher: Array<string>;
+          subjects: {
+            __typename?: "SubjectContainer";
+            all: Array<
+              | { __typename?: "Corporation"; display: string }
+              | { __typename?: "Mood"; display: string }
+              | { __typename?: "NarrativeTechnique"; display: string }
+              | { __typename?: "Person"; display: string }
+              | { __typename?: "Setting"; display: string }
+              | { __typename?: "SubjectText"; display: string }
+              | { __typename?: "SubjectWithRating"; display: string }
+              | { __typename?: "TimePeriod"; display: string }
+            >;
+          };
           titles: {
             __typename?: "ManifestationTitles";
             main: Array<string>;
@@ -5941,8 +6100,8 @@ export type ComplexSearchWithPaginationQuery = {
             };
           }>;
           creators: Array<
-            | { __typename: "Corporation"; display: string; nameSort: string }
-            | { __typename: "Person"; display: string; nameSort: string }
+            | { __typename: "Corporation"; display: string }
+            | { __typename: "Person"; display: string }
           >;
           identifiers: Array<{
             __typename?: "Identifier";
@@ -5982,7 +6141,6 @@ export type ComplexSearchWithPaginationQuery = {
                 persons?: Array<{
                   __typename?: "Person";
                   display: string;
-                  nameSort: string;
                   firstName?: string | null;
                   lastName?: string | null;
                   attributeToName?: string | null;
@@ -5990,7 +6148,6 @@ export type ComplexSearchWithPaginationQuery = {
                 corporations?: Array<{
                   __typename?: "Corporation";
                   display: string;
-                  nameSort: string;
                   main?: string | null;
                 }> | null;
               } | null;
@@ -6071,6 +6228,7 @@ export type ComplexSearchWithPaginationQuery = {
               }
             | { __typename: "InfomediaService"; id: string }
             | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+            | { __typename: "Publizon" }
           >;
           shelfmark?: {
             __typename?: "Shelfmark";
@@ -6294,6 +6452,19 @@ export type ManifestationsSimpleFragment = {
     genreAndForm: Array<string>;
     source: Array<string>;
     publisher: Array<string>;
+    subjects: {
+      __typename?: "SubjectContainer";
+      all: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Mood"; display: string }
+        | { __typename?: "NarrativeTechnique"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "Setting"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
+    };
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -6312,8 +6483,8 @@ export type ManifestationsSimpleFragment = {
       };
     }>;
     creators: Array<
-      | { __typename: "Corporation"; display: string; nameSort: string }
-      | { __typename: "Person"; display: string; nameSort: string }
+      | { __typename: "Corporation"; display: string }
+      | { __typename: "Person"; display: string }
     >;
     identifiers: Array<{
       __typename?: "Identifier";
@@ -6353,7 +6524,6 @@ export type ManifestationsSimpleFragment = {
           persons?: Array<{
             __typename?: "Person";
             display: string;
-            nameSort: string;
             firstName?: string | null;
             lastName?: string | null;
             attributeToName?: string | null;
@@ -6361,7 +6531,6 @@ export type ManifestationsSimpleFragment = {
           corporations?: Array<{
             __typename?: "Corporation";
             display: string;
-            nameSort: string;
             main?: string | null;
           }> | null;
         } | null;
@@ -6439,6 +6608,7 @@ export type ManifestationsSimpleFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
@@ -6458,6 +6628,19 @@ export type ManifestationsSimpleFragment = {
     genreAndForm: Array<string>;
     source: Array<string>;
     publisher: Array<string>;
+    subjects: {
+      __typename?: "SubjectContainer";
+      all: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Mood"; display: string }
+        | { __typename?: "NarrativeTechnique"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "Setting"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
+    };
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -6476,8 +6659,8 @@ export type ManifestationsSimpleFragment = {
       };
     }>;
     creators: Array<
-      | { __typename: "Corporation"; display: string; nameSort: string }
-      | { __typename: "Person"; display: string; nameSort: string }
+      | { __typename: "Corporation"; display: string }
+      | { __typename: "Person"; display: string }
     >;
     identifiers: Array<{
       __typename?: "Identifier";
@@ -6517,7 +6700,6 @@ export type ManifestationsSimpleFragment = {
           persons?: Array<{
             __typename?: "Person";
             display: string;
-            nameSort: string;
             firstName?: string | null;
             lastName?: string | null;
             attributeToName?: string | null;
@@ -6525,7 +6707,6 @@ export type ManifestationsSimpleFragment = {
           corporations?: Array<{
             __typename?: "Corporation";
             display: string;
-            nameSort: string;
             main?: string | null;
           }> | null;
         } | null;
@@ -6603,6 +6784,7 @@ export type ManifestationsSimpleFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
@@ -6622,6 +6804,19 @@ export type ManifestationsSimpleFragment = {
     genreAndForm: Array<string>;
     source: Array<string>;
     publisher: Array<string>;
+    subjects: {
+      __typename?: "SubjectContainer";
+      all: Array<
+        | { __typename?: "Corporation"; display: string }
+        | { __typename?: "Mood"; display: string }
+        | { __typename?: "NarrativeTechnique"; display: string }
+        | { __typename?: "Person"; display: string }
+        | { __typename?: "Setting"; display: string }
+        | { __typename?: "SubjectText"; display: string }
+        | { __typename?: "SubjectWithRating"; display: string }
+        | { __typename?: "TimePeriod"; display: string }
+      >;
+    };
     titles: {
       __typename?: "ManifestationTitles";
       main: Array<string>;
@@ -6640,8 +6835,8 @@ export type ManifestationsSimpleFragment = {
       };
     }>;
     creators: Array<
-      | { __typename: "Corporation"; display: string; nameSort: string }
-      | { __typename: "Person"; display: string; nameSort: string }
+      | { __typename: "Corporation"; display: string }
+      | { __typename: "Person"; display: string }
     >;
     identifiers: Array<{
       __typename?: "Identifier";
@@ -6681,7 +6876,6 @@ export type ManifestationsSimpleFragment = {
           persons?: Array<{
             __typename?: "Person";
             display: string;
-            nameSort: string;
             firstName?: string | null;
             lastName?: string | null;
             attributeToName?: string | null;
@@ -6689,7 +6883,6 @@ export type ManifestationsSimpleFragment = {
           corporations?: Array<{
             __typename?: "Corporation";
             display: string;
-            nameSort: string;
             main?: string | null;
           }> | null;
         } | null;
@@ -6767,6 +6960,7 @@ export type ManifestationsSimpleFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
     shelfmark?: {
       __typename?: "Shelfmark";
@@ -6808,6 +7002,7 @@ export type ManifestationsAccessFragment = {
         }
       | { __typename: "InfomediaService"; id: string }
       | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+      | { __typename: "Publizon" }
     >;
   }>;
 };
@@ -6818,6 +7013,19 @@ export type ManifestationsSimpleFieldsFragment = {
   genreAndForm: Array<string>;
   source: Array<string>;
   publisher: Array<string>;
+  subjects: {
+    __typename?: "SubjectContainer";
+    all: Array<
+      | { __typename?: "Corporation"; display: string }
+      | { __typename?: "Mood"; display: string }
+      | { __typename?: "NarrativeTechnique"; display: string }
+      | { __typename?: "Person"; display: string }
+      | { __typename?: "Setting"; display: string }
+      | { __typename?: "SubjectText"; display: string }
+      | { __typename?: "SubjectWithRating"; display: string }
+      | { __typename?: "TimePeriod"; display: string }
+    >;
+  };
   titles: {
     __typename?: "ManifestationTitles";
     main: Array<string>;
@@ -6836,8 +7044,8 @@ export type ManifestationsSimpleFieldsFragment = {
     };
   }>;
   creators: Array<
-    | { __typename: "Corporation"; display: string; nameSort: string }
-    | { __typename: "Person"; display: string; nameSort: string }
+    | { __typename: "Corporation"; display: string }
+    | { __typename: "Person"; display: string }
   >;
   identifiers: Array<{
     __typename?: "Identifier";
@@ -6877,7 +7085,6 @@ export type ManifestationsSimpleFieldsFragment = {
         persons?: Array<{
           __typename?: "Person";
           display: string;
-          nameSort: string;
           firstName?: string | null;
           lastName?: string | null;
           attributeToName?: string | null;
@@ -6885,7 +7092,6 @@ export type ManifestationsSimpleFieldsFragment = {
         corporations?: Array<{
           __typename?: "Corporation";
           display: string;
-          nameSort: string;
           main?: string | null;
         }> | null;
       } | null;
@@ -6960,6 +7166,7 @@ export type ManifestationsSimpleFieldsFragment = {
       }
     | { __typename: "InfomediaService"; id: string }
     | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+    | { __typename: "Publizon" }
   >;
   shelfmark?: {
     __typename?: "Shelfmark";
@@ -6977,6 +7184,7 @@ export type ManifestationsSimpleFieldsFragment = {
 export type ManifestationReviewFieldsFragment = {
   __typename?: "Manifestation";
   pid: string;
+  recordCreationDate: string;
   creators: Array<
     | { __typename?: "Corporation"; display: string }
     | { __typename?: "Person"; display: string }
@@ -6987,6 +7195,7 @@ export type ManifestationReviewFieldsFragment = {
     | { __typename: "Ereol" }
     | { __typename: "InfomediaService"; id: string }
     | { __typename: "InterLibraryLoan" }
+    | { __typename: "Publizon" }
   >;
   edition?: {
     __typename?: "Edition";
@@ -7069,6 +7278,7 @@ export type WorkAccessFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
     }>;
   };
@@ -7083,14 +7293,6 @@ export type WorkSmallFragment = {
     __typename?: "WorkTitles";
     full: Array<string>;
     original?: Array<string> | null;
-    tvSeries?: {
-      __typename?: "TvSeries";
-      title?: string | null;
-      season?: {
-        __typename?: "TvSeriesDetails";
-        display?: string | null;
-      } | null;
-    } | null;
   };
   creators: Array<
     | { __typename: "Corporation"; display: string }
@@ -7121,6 +7323,19 @@ export type WorkSmallFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -7139,8 +7354,8 @@ export type WorkSmallFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string; nameSort: string }
-        | { __typename: "Person"; display: string; nameSort: string }
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
       >;
       identifiers: Array<{
         __typename?: "Identifier";
@@ -7180,7 +7395,6 @@ export type WorkSmallFragment = {
             persons?: Array<{
               __typename?: "Person";
               display: string;
-              nameSort: string;
               firstName?: string | null;
               lastName?: string | null;
               attributeToName?: string | null;
@@ -7188,7 +7402,6 @@ export type WorkSmallFragment = {
             corporations?: Array<{
               __typename?: "Corporation";
               display: string;
-              nameSort: string;
               main?: string | null;
             }> | null;
           } | null;
@@ -7269,6 +7482,7 @@ export type WorkSmallFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7291,6 +7505,19 @@ export type WorkSmallFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -7309,8 +7536,8 @@ export type WorkSmallFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string; nameSort: string }
-        | { __typename: "Person"; display: string; nameSort: string }
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
       >;
       identifiers: Array<{
         __typename?: "Identifier";
@@ -7350,7 +7577,6 @@ export type WorkSmallFragment = {
             persons?: Array<{
               __typename?: "Person";
               display: string;
-              nameSort: string;
               firstName?: string | null;
               lastName?: string | null;
               attributeToName?: string | null;
@@ -7358,7 +7584,6 @@ export type WorkSmallFragment = {
             corporations?: Array<{
               __typename?: "Corporation";
               display: string;
-              nameSort: string;
               main?: string | null;
             }> | null;
           } | null;
@@ -7439,6 +7664,7 @@ export type WorkSmallFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7461,6 +7687,19 @@ export type WorkSmallFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -7479,8 +7718,8 @@ export type WorkSmallFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string; nameSort: string }
-        | { __typename: "Person"; display: string; nameSort: string }
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
       >;
       identifiers: Array<{
         __typename?: "Identifier";
@@ -7520,7 +7759,6 @@ export type WorkSmallFragment = {
             persons?: Array<{
               __typename?: "Person";
               display: string;
-              nameSort: string;
               firstName?: string | null;
               lastName?: string | null;
               attributeToName?: string | null;
@@ -7528,7 +7766,6 @@ export type WorkSmallFragment = {
             corporations?: Array<{
               __typename?: "Corporation";
               display: string;
-              nameSort: string;
               main?: string | null;
             }> | null;
           } | null;
@@ -7609,6 +7846,7 @@ export type WorkSmallFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7635,15 +7873,15 @@ export type WorkMediumFragment = {
   genreAndForm: Array<string>;
   materialTypes: Array<{
     __typename?: "MaterialType";
+    materialTypeGeneral: {
+      __typename?: "GeneralMaterialType";
+      code: GeneralMaterialTypeCodeEnum;
+    };
     materialTypeSpecific: {
       __typename?: "SpecificMaterialType";
       display: string;
     };
   }>;
-  creators: Array<
-    | { __typename: "Corporation"; nameSort: string; display: string }
-    | { __typename: "Person"; nameSort: string; display: string }
-  >;
   mainLanguages: Array<{
     __typename?: "Language";
     display: string;
@@ -7699,15 +7937,11 @@ export type WorkMediumFragment = {
     __typename?: "WorkTitles";
     full: Array<string>;
     original?: Array<string> | null;
-    tvSeries?: {
-      __typename?: "TvSeries";
-      title?: string | null;
-      season?: {
-        __typename?: "TvSeriesDetails";
-        display?: string | null;
-      } | null;
-    } | null;
   };
+  creators: Array<
+    | { __typename: "Corporation"; display: string }
+    | { __typename: "Person"; display: string }
+  >;
   series: Array<{
     __typename?: "Series";
     title: string;
@@ -7733,6 +7967,19 @@ export type WorkMediumFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -7751,8 +7998,8 @@ export type WorkMediumFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string; nameSort: string }
-        | { __typename: "Person"; display: string; nameSort: string }
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
       >;
       identifiers: Array<{
         __typename?: "Identifier";
@@ -7792,7 +8039,6 @@ export type WorkMediumFragment = {
             persons?: Array<{
               __typename?: "Person";
               display: string;
-              nameSort: string;
               firstName?: string | null;
               lastName?: string | null;
               attributeToName?: string | null;
@@ -7800,7 +8046,6 @@ export type WorkMediumFragment = {
             corporations?: Array<{
               __typename?: "Corporation";
               display: string;
-              nameSort: string;
               main?: string | null;
             }> | null;
           } | null;
@@ -7881,6 +8126,7 @@ export type WorkMediumFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -7903,6 +8149,19 @@ export type WorkMediumFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -7921,8 +8180,8 @@ export type WorkMediumFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string; nameSort: string }
-        | { __typename: "Person"; display: string; nameSort: string }
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
       >;
       identifiers: Array<{
         __typename?: "Identifier";
@@ -7962,7 +8221,6 @@ export type WorkMediumFragment = {
             persons?: Array<{
               __typename?: "Person";
               display: string;
-              nameSort: string;
               firstName?: string | null;
               lastName?: string | null;
               attributeToName?: string | null;
@@ -7970,7 +8228,6 @@ export type WorkMediumFragment = {
             corporations?: Array<{
               __typename?: "Corporation";
               display: string;
-              nameSort: string;
               main?: string | null;
             }> | null;
           } | null;
@@ -8051,6 +8308,7 @@ export type WorkMediumFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -8073,6 +8331,19 @@ export type WorkMediumFragment = {
       genreAndForm: Array<string>;
       source: Array<string>;
       publisher: Array<string>;
+      subjects: {
+        __typename?: "SubjectContainer";
+        all: Array<
+          | { __typename?: "Corporation"; display: string }
+          | { __typename?: "Mood"; display: string }
+          | { __typename?: "NarrativeTechnique"; display: string }
+          | { __typename?: "Person"; display: string }
+          | { __typename?: "Setting"; display: string }
+          | { __typename?: "SubjectText"; display: string }
+          | { __typename?: "SubjectWithRating"; display: string }
+          | { __typename?: "TimePeriod"; display: string }
+        >;
+      };
       titles: {
         __typename?: "ManifestationTitles";
         main: Array<string>;
@@ -8091,8 +8362,8 @@ export type WorkMediumFragment = {
         };
       }>;
       creators: Array<
-        | { __typename: "Corporation"; display: string; nameSort: string }
-        | { __typename: "Person"; display: string; nameSort: string }
+        | { __typename: "Corporation"; display: string }
+        | { __typename: "Person"; display: string }
       >;
       identifiers: Array<{
         __typename?: "Identifier";
@@ -8132,7 +8403,6 @@ export type WorkMediumFragment = {
             persons?: Array<{
               __typename?: "Person";
               display: string;
-              nameSort: string;
               firstName?: string | null;
               lastName?: string | null;
               attributeToName?: string | null;
@@ -8140,7 +8410,6 @@ export type WorkMediumFragment = {
             corporations?: Array<{
               __typename?: "Corporation";
               display: string;
-              nameSort: string;
               main?: string | null;
             }> | null;
           } | null;
@@ -8221,6 +8490,7 @@ export type WorkMediumFragment = {
           }
         | { __typename: "InfomediaService"; id: string }
         | { __typename: "InterLibraryLoan"; loanIsPossible: boolean }
+        | { __typename: "Publizon" }
       >;
       shelfmark?: {
         __typename?: "Shelfmark";
@@ -8266,6 +8536,9 @@ export const ManifestationBasicDetailsFragmentDoc = `
     fragment ManifestationBasicDetails on Manifestation {
   ...WithLanguages
   pid
+  ownerWork {
+    workId
+  }
   titles {
     full
   }
@@ -8287,6 +8560,9 @@ export const ManifestationBasicDetailsFragmentDoc = `
     title
     members {
       numberInSeries
+      work {
+        workId
+      }
     }
   }
 }
@@ -8294,6 +8570,7 @@ export const ManifestationBasicDetailsFragmentDoc = `
 export const ManifestationReviewFieldsFragmentDoc = `
     fragment ManifestationReviewFields on Manifestation {
   pid
+  recordCreationDate
   creators {
     display
   }
@@ -8410,6 +8687,11 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   pid
   genreAndForm
   source
+  subjects {
+    all {
+      display
+    }
+  }
   ...WithLanguages
   titles {
     main
@@ -8426,7 +8708,6 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
   }
   creators {
     display
-    nameSort
     __typename
   }
   publisher
@@ -8453,14 +8734,12 @@ export const ManifestationsSimpleFieldsFragmentDoc = `
       creators {
         persons {
           display
-          nameSort
           firstName
           lastName
           attributeToName
         }
         corporations {
           display
-          nameSort
           main
         }
       }
@@ -8573,12 +8852,6 @@ export const WorkSmallFragmentDoc = `
   titles {
     full
     original
-    tvSeries {
-      title
-      season {
-        display
-      }
-    }
   }
   abstract
   creators {
@@ -8602,12 +8875,12 @@ export const WorkMediumFragmentDoc = `
     fragment WorkMedium on Work {
   ...WorkSmall
   materialTypes {
+    materialTypeGeneral {
+      code
+    }
     materialTypeSpecific {
       display
     }
-  }
-  creators {
-    nameSort
   }
   mainLanguages {
     display
