@@ -8,7 +8,7 @@ import {
 import SearchToggle from "../../../components/search-toggle/SearchToggle";
 import SearchRadioButtonGroup from "../../../components/search-radio-button-group/SearchRadioButtonGroup";
 import { useText } from "../../../core/utils/text";
-import SearchFacetGroup from "../../../components/facet-browser/SearchFacetGroup";
+import SearchFacetGroup from "../../search-result/SearchFacetGroup";
 import {
   ComplexSearchFacetsEnum,
   useComplexFacetSearchQuery,

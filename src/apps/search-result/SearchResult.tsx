@@ -11,11 +11,6 @@ import {
   HoldingsStatusEnum
 } from "../../core/dbc-gateway/generated/graphql";
 import { Work } from "../../core/utils/types/entities";
-import {
-  createFilters,
-  allFacetFields,
-  getPlaceHolderFacets
-} from "../../components/facet-browser/helper";
 import { getCurrentLocation, redirectTo } from "../../core/utils/helpers/url";
 import { useText } from "../../core/utils/text";
 import { cleanBranchesId, TBranch } from "../../core/utils/branches";
@@ -30,6 +25,7 @@ import Dialog from "../../components/dialog/Dialog";
 import { Button } from "../../components/Buttons/Button";
 import { convertFacetsToFilters, isValidFacetsState } from "./helpers";
 import { isWildcardQuery } from "../advanced-search-v2/lib/query-builder";
+import { allFacetFields, createFilters } from "./helper";
 
 interface SearchResultProps {
   q: string;
@@ -96,12 +92,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       filters: searchFilters
     },
     {
-      keepPreviousData: true,
-      placeholderData: {
-        search: {
-          facets: getPlaceHolderFacets(allFacetFields)
-        }
-      }
+      keepPreviousData: true
     }
   );
 
@@ -159,7 +150,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   const isWildcardQuerySearch = isWildcardQuery(q);
 
   const headerTitle = isWildcardQuerySearch
-    ? "Viser alle materialer"
+    ? t("showingAllMaterialsText")
     : t("showingResultsForText", { placeholders: { "@query": q } });
 
   // Get search info box data from config

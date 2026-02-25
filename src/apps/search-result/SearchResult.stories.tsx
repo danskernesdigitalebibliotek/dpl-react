@@ -72,6 +72,7 @@ export const Default: Story = {
     showMoreText: "show more",
     resultPagerStatusText: "Showing @itemsShown out of @hitcount results",
     searchShowingMaterialsText: "@hitcount materials",
+    showingAllMaterialsText: "Showing all materials",
     showingResultsForText: 'Showing results for "@query"',
     addMoreFiltersText: "More filters",
     searchShowResultsText: "Show results",
