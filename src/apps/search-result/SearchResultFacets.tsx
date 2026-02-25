@@ -5,13 +5,13 @@ import {
   FacetResult,
   FacetFieldEnum
 } from "../../core/dbc-gateway/generated/graphql";
-import { getFacetFieldTranslation } from "../../components/facet-browser/helper";
 import { useFacetTracking } from "./useSearchResultTracking";
-import SearchFacetGroup from "../../components/facet-browser/SearchFacetGroup";
+import SearchFacetGroup from "./SearchFacetGroup";
 import SearchToggle from "../../components/search-toggle/SearchToggle";
 import { isValidFacetsState } from "./helpers";
 import { sortSimpleSearchFacetValues } from "../advanced-search-v2/lib/facet-sort-utils";
 import SearchRadioButtonGroup from "../../components/search-radio-button-group/SearchRadioButtonGroup";
+import { getFacetFieldTranslation } from "./helper";
 
 // Fixed facet name for "can always be loaned" filter in SearchFiltersInput
 const CAN_ALWAYS_BE_LOANED_FACET_NAME = "canAlwaysBeLoaned";
