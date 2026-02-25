@@ -12,24 +12,24 @@ import { Facets } from "../../core/utils/types/entities";
 
 export const allFacetFields = [
   FacetFieldEnum.Materialtypesgeneral,
-  FacetFieldEnum.Creators,
-  FacetFieldEnum.Subjects,
-  FacetFieldEnum.Fictionnonfiction,
-  FacetFieldEnum.Childrenoradults,
-  FacetFieldEnum.Accesstypes,
-  FacetFieldEnum.Mainlanguages,
-  FacetFieldEnum.Genreandform,
   FacetFieldEnum.Materialtypesspecific,
-  FacetFieldEnum.Fictionalcharacters,
+  FacetFieldEnum.Creators,
   FacetFieldEnum.Year,
-  FacetFieldEnum.Canalwaysbeloaned,
+  FacetFieldEnum.Mainlanguages,
+  FacetFieldEnum.Subjects,
+  FacetFieldEnum.Genreandform,
+  FacetFieldEnum.Fictionalcharacters,
   FacetFieldEnum.Dk5,
-  FacetFieldEnum.Gameplatform,
   FacetFieldEnum.Age,
+  FacetFieldEnum.Libraryrecommendation,
   FacetFieldEnum.Generalaudience,
   FacetFieldEnum.Lix,
   FacetFieldEnum.Let,
-  FacetFieldEnum.Libraryrecommendation
+  FacetFieldEnum.Gameplatform,
+  FacetFieldEnum.Accesstypes,
+  FacetFieldEnum.Canalwaysbeloaned,
+  FacetFieldEnum.Fictionnonfiction,
+  FacetFieldEnum.Childrenoradults
 ];
 
 export const getPlaceHolderFacets = (facets: string[]) =>
