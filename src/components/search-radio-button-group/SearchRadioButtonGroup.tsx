@@ -6,18 +6,18 @@ interface RadioOption {
   label: string;
 }
 
-interface AdvancedSearchRadioGroupProps {
+interface SearchRadioButtonGroupProps {
   name: string;
   options: RadioOption[];
   selectedValue: string | null;
   onChange: (value: string | null) => void;
 }
 
-const AdvancedSearchRadioGroup = ({
+const SearchRadioButtonGroup = ({
   options,
   selectedValue,
   onChange
-}: AdvancedSearchRadioGroupProps) => {
+}: SearchRadioButtonGroupProps) => {
   const handleRadioClick = (optionValue: string) => {
     // Toggle: if clicking the already-selected value, deselect it
     if (selectedValue === optionValue) {
@@ -30,7 +30,7 @@ const AdvancedSearchRadioGroup = ({
   return (
     <RadioGroup
       value={selectedValue ?? undefined}
-      className="advanced-search-radio-group"
+      className="search-radio-button-group"
     >
       {options.map((option) => (
         <Radio
@@ -48,10 +48,10 @@ const AdvancedSearchRadioGroup = ({
           }}
         >
           {({ checked }) => (
-            <Label className="advanced-search-radio-group__label">
+            <Label className="search-radio-button-group__label">
               <span
-                className={`advanced-search-radio-group__input ${
-                  checked ? "advanced-search-radio-group__input--checked" : ""
+                className={`search-radio-button-group__input ${
+                  checked ? "search-radio-button-group__input--checked" : ""
                 }`}
               />
               {option.label}
@@ -63,4 +63,4 @@ const AdvancedSearchRadioGroup = ({
   );
 };
 
-export default AdvancedSearchRadioGroup;
+export default SearchRadioButtonGroup;

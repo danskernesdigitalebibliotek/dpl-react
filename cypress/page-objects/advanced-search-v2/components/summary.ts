@@ -2,14 +2,12 @@ import { ComponentObject } from "@hammzj/cypress-page-object";
 
 export class SummaryComponent extends ComponentObject {
   constructor() {
-    super(() => cy.get(".advanced-search-summary"));
+    super(() => cy.get(".search-summary"));
 
     this.addElements = {
-      items: () => this.container().find(".advanced-search-summary__item"),
-      operators: () =>
-        this.container().find(".advanced-search-summary__operator"),
-      editButton: () =>
-        this.container().find(".advanced-search-summary__edit-link")
+      items: () => this.container().find(".search-summary__item"),
+      operators: () => this.container().find(".search-summary__operator"),
+      editButton: () => this.container().find(".search-summary__edit-link")
     };
   }
 

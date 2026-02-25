@@ -39,7 +39,7 @@ export interface AdvancedSearchEntryProps
     AdvancedSearchV2CqlSearchArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
-  showingMaterialsText: string;
+  searchShowingMaterialsText: string;
   addMoreFiltersText: string;
 }
 
@@ -56,13 +56,13 @@ const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({
   });
 
   return (
-    <div>
+    <>
       <GuardedApp app="advanced-search">
         <NuqsAdapter>
           <AdvancedSearchV2 pageSize={pageSize} />
         </NuqsAdapter>
       </GuardedApp>
-    </div>
+    </>
   );
 };
 

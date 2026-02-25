@@ -2,12 +2,11 @@ import { ComponentObject } from "@hammzj/cypress-page-object";
 
 export class AdvancedSearchSortComponent extends ComponentObject {
   constructor() {
-    super(() => cy.get(".advanced-search-v2__sort-select"));
+    super(() => cy.get(".search__sort-select"));
 
     this.addElements = {
-      select: () => this.container().find("#advanced-sort-select"),
-      label: () =>
-        this.container().find(".advanced-search-v2__sort-select__label")
+      select: () => this.container().find("#sort-select"),
+      label: () => this.container().find(".search__sort-select__label")
     };
   }
 

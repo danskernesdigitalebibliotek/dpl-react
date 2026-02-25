@@ -3,10 +3,10 @@ import {
   Elements,
   NestedComponents
 } from "@hammzj/cypress-page-object";
-import { AdvancedSearchFormComponent } from "./components/AdvancedSearchForm";
-import { AdvancedSearchSortComponent } from "./components/AdvancedSearchSort";
+import { SearchFormComponent } from "./components/SearchForm";
 import { SummaryComponent } from "./components/summary";
-import { AdvancedSearchFacetsComponent } from "./components/AdvancedSearchFacests";
+import { SearchFacetsComponent } from "./components/SearchFacests";
+import { AdvancedSearchSortComponent } from "./components/AdvancedSearchSort";
 
 export class AdvancedSearchV2Page extends PageObject {
   public elements!: Elements;
@@ -18,25 +18,17 @@ export class AdvancedSearchV2Page extends PageObject {
     });
 
     this.addElements = {
-      form: () => cy.get(".advanced-search-v2__form"),
-      summary: () => cy.get(".advanced-search-summary")
+      form: () => cy.get(".search__form"),
+      summary: () => cy.get(".search-summary")
     };
 
     this.addNestedComponents = {
       Form: (fn) =>
-        this.performWithin(
-          this.container(),
-          new AdvancedSearchFormComponent(),
-          fn
-        ),
+        this.performWithin(this.container(), new SearchFormComponent(), fn),
       Summary: (fn) =>
         this.performWithin(this.container(), new SummaryComponent(), fn),
       Filters: (fn) =>
-        this.performWithin(
-          this.container(),
-          new AdvancedSearchFacetsComponent(),
-          fn
-        ),
+        this.performWithin(this.container(), new SearchFacetsComponent(), fn),
       Sort: (fn) =>
         this.performWithin(
           this.container(),

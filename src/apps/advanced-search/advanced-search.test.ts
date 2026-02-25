@@ -39,29 +39,9 @@ describe("Search Result", () => {
     cy.getBySel("advanced-search-header-row").first().type("Harry");
     cy.getBySel("advanced-search-header-row").eq(1).click();
     cy.getBySel("advanced-search-header-row").eq(1).type("Prince");
-    cy.getBySel("advanced-search-material-types").first().click();
-    cy.getBySel("advanced-search-material-types")
-      .first()
-      .find("li")
-      .eq(1)
-      .should("contain", "Book")
-      .click();
-    cy.getBySel("advanced-search-material-types").first().click();
     cy.getBySel("preview-section", true).should(
       "contain",
-      "'Harry' AND 'Prince' AND term.generalmaterialtype='bøger'"
-    );
-    cy.getBySel("advanced-search-accessibility").first().click();
-    cy.getBySel("advanced-search-accessibility")
-      .first()
-      .find("li")
-      .eq(2)
-      .should("contain", "Online")
-      .click();
-    cy.getBySel("advanced-search-accessibility").first().click();
-    cy.getBySel("preview-section", true).should(
-      "contain",
-      "'Harry' AND 'Prince' AND term.generalmaterialtype='bøger' AND term.accesstype='online'"
+      "'Harry' AND 'Prince'"
     );
   });
 
@@ -84,19 +64,6 @@ describe("Search Result", () => {
         cy.get("input").type("Magi");
         cy.get("select").select(2);
       });
-    cy.getBySel("advanced-search-material-types").click();
-    cy.getBySel("advanced-search-material-types").within(() => {
-      cy.get("[role=option]").eq(1).click();
-      cy.get("[role=option]").eq(2).click();
-    });
-    cy.getBySel("advanced-search-fiction").click();
-    cy.getBySel("advanced-search-fiction").within(() => {
-      cy.get("[role=option]").eq(1).click();
-    });
-    cy.getBySel("advanced-search-accessibility").click();
-    cy.getBySel("advanced-search-accessibility").within(() => {
-      cy.get("[role=option]").eq(1).click();
-    });
 
     cy.getBySel("advanced-search-reset", true).click();
 
@@ -106,15 +73,6 @@ describe("Search Result", () => {
     cy.getBySel("advanced-search-header-row").each(() => {
       cy.get("input").should("have.value", "");
       cy.get("select").should("have.value", "all");
-    });
-
-    // We currently have no good way to identify selected options in the
-    // multiselect so checking the text of the button is the best we can do.
-    const multiSelects = ["material-types", "fiction", "accessibility"];
-    multiSelects.forEach((multiSelect) => {
-      cy.getBySel(`advanced-search-${multiSelect}`)
-        .find("button")
-        .should("contain", "All");
     });
 
     // The preview should be reset as well
@@ -145,19 +103,6 @@ describe("Search Result", () => {
         cy.get("input").type("Rowling");
         cy.get("select").select(1);
       });
-    cy.getBySel("advanced-search-material-types").click();
-    cy.getBySel("advanced-search-material-types").within(() => {
-      cy.get("[role=option]").eq(1).click();
-      cy.get("[role=option]").eq(2).click();
-    });
-    cy.getBySel("advanced-search-fiction").click();
-    cy.getBySel("advanced-search-fiction").within(() => {
-      cy.get("[role=option]").eq(1).click();
-    });
-    cy.getBySel("advanced-search-accessibility").click();
-    cy.getBySel("advanced-search-accessibility").within(() => {
-      cy.get("[role=option]").eq(1).click();
-    });
 
     // Perform the search to persist it in the url.
     cy.getBySel("search-button").click();
@@ -185,13 +130,6 @@ describe("Search Result", () => {
         cy.get("input").should("have.value", "Rowling");
         cy.get("select").should("have.value", "term.creatorcontributor");
       });
-    // We currently have no good way to identify selected options in the
-    // multiselect so checking the text of the button is the best we can do.
-    cy.getBySel("advanced-search-material-types")
-      .should("contain", "Book")
-      .should("contain", "Ebook");
-    cy.getBySel("advanced-search-fiction").should("contain", "Fiction");
-    cy.getBySel("advanced-search-accessibility").should("contain", "Physical");
   });
 
   it("Should persist CQL query in url", () => {

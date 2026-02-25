@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
-import {
-  mergeSelectFacetOptions,
-  type DynamicFacet
-} from "../../apps/advanced-search-v2/hooks/use-merged-facet-options";
 import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
-import type {
-  PreSelectFacetConfig,
-  Option
+import {
+  DIVIDER_VALUE,
+  Option,
+  PreSelectFacetConfig
 } from "../../apps/advanced-search-v2/types";
-import { DIVIDER_VALUE } from "../../apps/advanced-search-v2/types";
+import {
+  DynamicFacet,
+  mergeSelectFacetOptions
+} from "../../apps/advanced-search-v2/hooks/use-merged-facet-options";
 
 const createSelectConfig = (
   facetField: ComplexSearchFacetsEnum,

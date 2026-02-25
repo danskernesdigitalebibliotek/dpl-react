@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AdvancedSearchRow from "./AdvancedSearchRow";
 import {
-  AdvancedSearchFilterData,
-  advancedSearchAccessibility,
-  advancedSearchFiction,
-  advancedSearchMaterialTypes,
   AdvancedSearchQuery,
   initialAdvancedSearchQuery,
   FirstAccessionOperatorFilter
 } from "./types";
 import { useText } from "../../core/utils/text";
 import PreviewSection from "./PreviewSection";
-import Multiselect from "../../components/multiselect/Multiselect";
-import {
-  MultiselectExternalUpdateFunction,
-  MultiselectOption
-} from "../../components/multiselect/types";
 import CqlSearchHeader from "./CqlSearchHeader";
 import {
   shouldAdvancedSearchButtonBeDisabled,
@@ -101,20 +92,6 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
     setPreviewCql(cql);
   }, [internalSearchObject]);
 
-  const updateFiltersData = (filtersUpdate: {
-    key: keyof AdvancedSearchFilterData;
-    value: MultiselectOption[];
-  }) => {
-    if (!internalSearchObject?.filters[filtersUpdate.key].length) {
-      return;
-    }
-    const newSearchObject = { ...internalSearchObject };
-    newSearchObject.filters = {
-      ...newSearchObject.filters,
-      [filtersUpdate.key]: filtersUpdate.value
-    };
-    setInternalSearchObject(newSearchObject);
-  };
   const reset = () => {
     setSearchObject(structuredClone(initialAdvancedSearchQuery));
   };
@@ -218,47 +195,6 @@ const AdvancedSearchHeader: React.FC<AdvancedSearchHeaderProps> = ({
             />
           </div>
 
-          <section className="advanced-search__filters">
-            <div className="advanced-search__filter">
-              <Multiselect
-                caption={t("advancedSearchFilterMaterialTypeText")}
-                options={advancedSearchMaterialTypes}
-                defaultValue={internalSearchObject.filters.materialTypes}
-                updateExternalState={{
-                  key: "materialTypes",
-                  externalUpdateFunction:
-                    updateFiltersData as MultiselectExternalUpdateFunction
-                }}
-                dataCy="advanced-search-material-types"
-              />
-            </div>
-            <div className="advanced-search__filter">
-              <Multiselect
-                caption={t("advancedSearchFilterLiteratureFormText")}
-                options={advancedSearchFiction}
-                defaultValue={internalSearchObject.filters.fiction}
-                updateExternalState={{
-                  key: "fiction",
-                  externalUpdateFunction:
-                    updateFiltersData as MultiselectExternalUpdateFunction
-                }}
-                dataCy="advanced-search-fiction"
-              />
-            </div>
-            <div className="advanced-search__filter">
-              <Multiselect
-                caption={t("advancedSearchFilterAccessText")}
-                options={advancedSearchAccessibility}
-                defaultValue={internalSearchObject.filters.accessibility}
-                updateExternalState={{
-                  key: "accessibility",
-                  externalUpdateFunction:
-                    updateFiltersData as MultiselectExternalUpdateFunction
-                }}
-                dataCy="advanced-search-accessibility"
-              />
-            </div>
-          </section>
           <CheckBox
             id="on-shelf"
             selected={onShelf}

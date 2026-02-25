@@ -34,6 +34,8 @@ export const statistics: Statistics = {
   },
   searchFacets: {
     id: 20,
+    // Name kept for backwards compatibility with existing Mapp tracking data,
+    // even though the facet browser is now a sidebar (SearchResultFacets).
     name: "Filtrering vha facetbrowser",
     parameterName: ""
   },

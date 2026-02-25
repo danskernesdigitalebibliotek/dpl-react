@@ -3,7 +3,8 @@ import dayjs from "dayjs";
 import {
   formatDate,
   formatDateDependingOnDigitalMaterial,
-  formatDateTime
+  formatDateTime,
+  formatDateTimeUtc
 } from "../../core/utils/helpers/date";
 import {
   dateFormatDash,
@@ -73,9 +74,8 @@ describe("Date helper tests", () => {
       formatDateDependingOnDigitalMaterial(nonDigitalMaterial);
 
     // Check if date is formatted correctly depending on whether material is digital or not
-    expect(formattedDigitalMaterialDate).toBe(
-      dayjs(date).format(dateFormatDashWithTime)
-    );
+    // Digital materials use UTC time formatting
+    expect(formattedDigitalMaterialDate).toBe(formatDateTimeUtc(date));
     expect(formattedNonDigitalMaterialDate).toBe(
       dayjs(date).format(dateFormatDash)
     );

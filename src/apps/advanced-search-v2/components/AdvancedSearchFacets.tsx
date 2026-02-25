@@ -5,10 +5,10 @@ import {
   parseAsJson,
   parseAsString
 } from "nuqs";
-import AdvancedSearchFilterGroup from "./AdvancedSearchFacetGroup";
-import AdvancedSearchToggle from "./AdvancedSearchToggle";
-import AdvancedSearchRadioGroup from "./AdvancedSearchRadioGroup";
+import SearchToggle from "../../../components/search-toggle/SearchToggle";
+import SearchRadioButtonGroup from "../../../components/search-radio-button-group/SearchRadioButtonGroup";
 import { useText } from "../../../core/utils/text";
+import SearchFacetGroup from "../../search-result/SearchFacetGroup";
 import {
   ComplexSearchFacetsEnum,
   useComplexFacetSearchQuery,
@@ -141,24 +141,24 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
   };
 
   return (
-    <aside className="advanced-search-facets">
-      <div className="advanced-search-facets__container">
+    <aside className="search-facets">
+      <div className="search-facets__container">
         {/* Toggles section */}
-        <ul className="advanced-search-facets__toggles">
+        <ul className="search-facets__toggles">
           <li>
-            <AdvancedSearchToggle
+            <SearchToggle
               id="on-shelf"
-              label={t("advancedSearchOnShelfText")}
-              description={t("advancedSearchOnShelfDescriptionText")}
+              label={t("searchOnShelfText")}
+              description={t("searchOnShelfDescriptionText")}
               checked={onShelf}
               onChange={(checked) => setOnShelf(checked, { history: "push" })}
             />
           </li>
           <li>
-            <AdvancedSearchToggle
+            <SearchToggle
               id="only-extra-titles"
-              label={t("advancedSearchOnlyExtraTitlesText")}
-              description={t("advancedSearchOnlyExtraTitlesDescriptionText")}
+              label={t("searchOnlyExtraTitlesText")}
+              description={t("searchOnlyExtraTitlesDescriptionText")}
               checked={onlyExtraTitles}
               onChange={(checked) =>
                 setOnlyExtraTitles(checked, { history: "push" })
@@ -168,15 +168,15 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
         </ul>
 
         {/* Radio button filters */}
-        <div className="advanced-search-radio-group-wrapper">
-          <AdvancedSearchRadioGroup
+        <div className="search-radio-button-group-wrapper">
+          <SearchRadioButtonGroup
             name="access-type"
             options={ACCESS_TYPE_OPTIONS}
             selectedValue={accessType}
             onChange={(value) => setAccessType(value, { history: "push" })}
           />
 
-          <AdvancedSearchRadioGroup
+          <SearchRadioButtonGroup
             name="fiction-type"
             options={FICTION_TYPE_OPTIONS}
             selectedValue={fictionType}
@@ -184,7 +184,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
               setFictionType(value, { history: "push" });
             }}
           />
-          <AdvancedSearchRadioGroup
+          <SearchRadioButtonGroup
             name="age-group"
             options={AGE_GROUP_OPTIONS}
             selectedValue={ageGroup}
@@ -193,7 +193,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
         </div>
 
         {/* Filter groups */}
-        <ul className="advanced-search-facets__groups">
+        <ul className="search-facets__groups">
           {FACETS_CONFIG.map((config) => {
             const selectedValues = getSelectedValues(config.facetField);
             const selectedCount = getSelectedCount(config.facetField);
@@ -211,7 +211,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
             );
 
             return (
-              <AdvancedSearchFilterGroup
+              <SearchFacetGroup
                 key={config.facetField}
                 facetField={config.facetField}
                 label={t(config.label)}
@@ -219,6 +219,7 @@ const AdvancedSearchFacets: React.FC<AdvancedSearchFacetsProps> = ({ cql }) => {
                 selectedCount={selectedCount}
                 facetValues={facetValues}
                 onChange={(vals) => handleFacetChange(config.facetField, vals)}
+                getValue={(facetValue) => facetValue.key}
               />
             );
           })}

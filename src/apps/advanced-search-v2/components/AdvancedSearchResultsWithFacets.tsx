@@ -1,9 +1,8 @@
 import React from "react";
 import { useText } from "../../../core/utils/text";
-import SearchResultList from "../../../components/card-item-list/SearchResultList";
+import SearchResultList from "../../search-result/SearchResultList";
 import AdvancedSearchFacets from "./AdvancedSearchFacets";
-import AdvancedSearchSummary from "./AdvancedSearchSummary";
-import AdvancedSortSelect from "./AdvancedSortSelect";
+import AdvancedSortSelect from "./SortSelect";
 import { useSearchQueries } from "../hooks/use-search-queries";
 import { usePaginatedResults } from "../hooks/use-paginated-results";
 import { useFormVisibility } from "../hooks/use-form-visibility";
@@ -12,6 +11,7 @@ import IconFilter from "@danskernesdigitalebibliotek/dpl-design-system/build/ico
 import useDialog from "../../../components/dialog/useDialog";
 import Dialog from "../../../components/dialog/Dialog";
 import { Button } from "../../../components/Buttons/Button";
+import SearchSummary from "./SearchSummary";
 
 interface AdvancedSearchResultsWithFacetsProps {
   pageSize: number;
@@ -40,8 +40,8 @@ const AdvancedSearchResultsWithFacets: React.FC<
   if (!isSearchEnabled) return null;
 
   return (
-    <div className="advanced-search-v2__results">
-      <AdvancedSearchSummary
+    <div className="search__results">
+      <SearchSummary
         customCqlUrl={customCqlUrl}
         customCqlUrlLabel={customCqlUrlLabel}
         onEditClick={() => {
@@ -51,30 +51,27 @@ const AdvancedSearchResultsWithFacets: React.FC<
         }}
       />
 
-      <div className="advanced-search-v2__grid">
+      <div className="search__grid">
         <AdvancedSearchFacets cql={cql} />
 
         <section>
-          <div className="advanced-search-v2__results-top-bar">
-            <div className="advanced-search-v2__results-top-bar__left">
+          <div className="search__results-top-bar">
+            <div className="search__results-top-bar__left">
               <h2
-                className="advanced-search-v2__results-heading"
+                className="search__results-heading"
                 id="advanced-search-result"
                 aria-live="polite"
               >
-                {t("showingMaterialsText", {
+                {t("searchShowingMaterialsText", {
                   placeholders: { "@hitcount": hitcount }
                 })}
               </h2>
-              <CopyLink
-                className="advanced-search-v2__copy-link"
-                label="Kopier link"
-              />
+              <CopyLink className="search__copy-link" label="Kopier link" />
             </div>
-            <div className="advanced-search-v2__results-top-bar__right">
+            <div className="search__results-top-bar__right">
               <button
                 onClick={() => openDialogWithContent(true)}
-                className="advanced-search-v2__modify-filters-button"
+                className="search__modify-filters-button"
               >
                 <img src={IconFilter} alt="" />
                 <span>{t("addMoreFiltersText")}</span>
@@ -82,20 +79,20 @@ const AdvancedSearchResultsWithFacets: React.FC<
               <AdvancedSortSelect sortOption={sort} setSortOption={setSort} />
 
               <Dialog isSidebar closeDialog={closeDialog} ref={dialogRef}>
-                <div className="advanced-search-facets__dialog">
-                  <div className="advanced-search-facets__dialog-content">
-                    <h2 className="advanced-search-facets__dialog-content__heading">
+                <div className="search-facets__dialog">
+                  <div className="search-facets__dialog-content">
+                    <h2 className="search-facets__dialog-content__heading">
                       {t("advancedSearchFilterMaterialsText", {
                         placeholders: { "@hitcount": hitcount }
                       })}
                     </h2>
                     <AdvancedSearchFacets cql={cql} />
                   </div>
-                  <div className="advanced-search-facets__dialog__actions">
+                  <div className="search-facets__dialog__actions">
                     <Button
-                      classNames="advanced-search-facets__dialog__actions__button"
+                      classNames="search-facets__dialog__actions__button"
                       collapsible
-                      label={t("advancedSearchShowResultsText")}
+                      label={t("searchShowResultsText")}
                       size="medium"
                       buttonType="none"
                       variant="filled"
@@ -113,6 +110,7 @@ const AdvancedSearchResultsWithFacets: React.FC<
                 resultItems={resultItems}
                 page={page}
                 pageSize={pageSize}
+                isLoading={isLoadingOrRefetching}
               />
               <PagerComponent isLoading={isLoadingOrRefetching} />
             </>

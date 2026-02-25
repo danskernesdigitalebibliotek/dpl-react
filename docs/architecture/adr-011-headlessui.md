@@ -27,9 +27,9 @@ The library enhances the following components:
 - **Combobox** - Used in `ComboBoxAutosuggest.tsx` and `MultiSelect.tsx` for
   autosuggest and multi-select functionality with keyboard navigation
 - **Listbox** - Used in `SearchTermSelect.tsx` for the search term type selector
-- **Popover** - Used in `MultiSelect.tsx` and `AdvancedSearchRangeSelect.tsx` for
+- **Popover** - Used in `MultiSelect.tsx` and `RangeSelect.tsx` for
   dropdown panels that overlay content
-- **RadioGroup/Radio** - Used in `AdvancedSearchRangeSelect.tsx` for range presets
+- **RadioGroup/Radio** - Used in `RangeSelect.tsx` for range presets
 
 Headless UI was chosen because:
 

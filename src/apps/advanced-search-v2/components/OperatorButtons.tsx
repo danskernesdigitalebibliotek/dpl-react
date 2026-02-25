@@ -17,13 +17,13 @@ const OperatorButtons: React.FC<OperatorButtonsProps> = ({
   const operatorLabelsMap = getOperatorLabelsMap(t);
 
   return (
-    <div className="advanced-search-filter__operators">
+    <div className="search-filter__operators">
       {OPERATOR_ORDER.map((operator) => (
         <button
           key={operator}
           type="button"
-          className={clsx("advanced-search-filter__operator", {
-            "advanced-search-filter__operator--active": value === operator
+          className={clsx("search-filter__operator", {
+            "search-filter__operator--active": value === operator
           })}
           onClick={() => onChange(operator)}
         >
