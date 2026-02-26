@@ -59,10 +59,17 @@ function FindLibraryDialog({
         onGetUserLocation={handleGetUserLocation}
         geoLocationError={geoLocationError}
       />
-      <div className="find-library-dialog__location-list">
-        <p className="find-library-dialog__location-list__title">
+      <div
+        className="find-library-dialog__location-list"
+        role="group"
+        aria-labelledby="find-library-dialog-pickup-heading"
+      >
+        <h3
+          id="find-library-dialog-pickup-heading"
+          className="find-library-dialog__location-list__title"
+        >
           {t("findLibraryDialogSuggestionsListLabelText")}
-        </p>
+        </h3>
 
         {sortedBranches.map(({ item: branch, distance }) => {
           const isSelected = branch.branchId === selectedBranchId;
