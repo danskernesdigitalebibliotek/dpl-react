@@ -1,11 +1,12 @@
-import React, { FC, useCallback } from "react";
+import React, { FC } from "react";
 import ContentListPage from "../../components/content-list/ContentListPage";
 import ContentList from "../../components/content-list/ContentList";
 import ContentListFilters from "../../components/content-list/ContentListFilters";
 import ContentListItem from "../../components/content-list/ContentListItem";
 import BranchListItem from "../../components/content-list/BranchListItem";
 import AddressSearchBar from "../../components/address-search-bar/AddressSearchBar";
-import useAddressSorting from "../../core/address-lookup/useAddressSorting";
+import useAddressSearch from "../../core/address-lookup/useAddressSearch";
+import sortByDistance from "../../core/address-lookup/sortByDistance";
 import {
   formatDistance,
   parseCoordinates
@@ -36,19 +37,20 @@ const BranchList: FC = () => {
     config("branchAddressSearchEnabledConfig")
   );
 
-  const getCoordinates = useCallback(
-    (branch: Branch) => parseCoordinates(branch.lat, branch.lng),
-    []
-  );
-
   const {
     query,
     handleQueryChange,
     handleAddressSelect,
     handleGetUserLocation,
     geoLocationError,
-    sortedItems: branchesWithDistance
-  } = useAddressSorting(branches, getCoordinates);
+    selectedAddress
+  } = useAddressSearch();
+
+  const branchesWithDistance = sortByDistance(
+    branches,
+    selectedAddress,
+    (branch: Branch) => parseCoordinates(branch.lat, branch.lng)
+  );
 
   return (
     <ContentListPage title={t("branchListTitleText")}>
