@@ -1,12 +1,12 @@
 import React, { Fragment, memo, useEffect } from "react";
 import { isEmpty } from "lodash";
-import clsx from "clsx";
 import { getCoverTint } from "../../core/utils/helpers/general";
 import { Work } from "../../core/utils/types/entities";
 import CardListItem from "./card-list-item/card-list-item";
 import CardListItemSkeleton from "./card-list-item/card-list-item-skeleton";
 import MaterialListItem from "./MaterialListItem";
 import CardListInfoBox, { CardListInfoBoxProps } from "./CardListInfoBox";
+import ContentList from "../content-list/ContentList";
 
 export interface SearchResultListProps {
   resultItems: Work[];
@@ -35,10 +35,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
   const searchInfoBoxIndex = pageSize;
 
   return (
-    <ul
-      className={clsx("content-list", className)}
-      data-cy="search-result-list"
-    >
+    <ContentList className={className} dataCy="search-result-list">
       {/*
           Show skeleton search result items if no data is available yet.
           We'll show 5 items which should cover most screens.
@@ -96,7 +93,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({
             );
           }
         })}
-    </ul>
+    </ContentList>
   );
 };
 

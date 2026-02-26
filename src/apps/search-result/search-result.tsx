@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDeepCompareEffect, useEffectOnce } from "react-use";
 import SearchResultHeader from "../../components/search-bar/search-result-header/SearchResultHeader";
 import usePager from "../../components/result-pager/use-pager";
+import ContentListPage from "../../components/content-list/ContentListPage";
 import SearchResultList from "../../components/card-item-list/SearchResultList";
 import {
   FacetFieldEnum,
@@ -220,13 +221,24 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
   // We are handling loading state for every element separately inside this return(),
   // because then we achieve smoother experience using the filters - not having
   // to loose the filter modal upon selecting a filter.
+  const headingTitle = isLoading
+    ? t("showingResultsForText", { placeholders: { "@query": q } })
+    : `${t("showingResultsForText", {
+        placeholders: { "@query": displayQuery }
+      })} (${hitcount})`;
+
   return (
-    <div className="content-list-page">
-      {isLoading && <SearchResultSkeleton q={q} />}
+    <ContentListPage
+      title={headingTitle}
+      headingClassName={isLoading ? "text-loading" : undefined}
+      headingDataCy="search-result-header"
+      headingAriaLive="polite"
+    >
+      {isLoading && <SearchResultSkeleton />}
 
       {!isLoading && resultItems && (
         <>
-          <SearchResultHeader hitcount={hitcount} displayQuery={displayQuery} />
+          <SearchResultHeader />
           <FacetLine q={q} />
           {campaignData && campaignData.data && (
             <Campaign campaignData={campaignData.data} />
@@ -249,7 +261,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ q, pageSize }) => {
       )}
       {/* We know we can show the facet browser after the first valid search. */}
       {resultItems !== null && <FacetBrowserModal q={q} />}
-    </div>
+    </ContentListPage>
   );
 };
 

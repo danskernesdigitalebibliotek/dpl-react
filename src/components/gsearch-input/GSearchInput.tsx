@@ -1,16 +1,16 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState, useMemo } from "react";
-import { useCombobox } from "downshift";
+/* eslint-disable react/jsx-props-no-spreading -- downshift's prop getter API is designed for spreading */
+import React, { useState, useMemo, useCallback } from "react";
+import { useCombobox, UseComboboxStateChangeTypes } from "downshift";
 import clsx from "clsx";
 import { debounce } from "lodash";
 import {
   AddressWithCoordinates,
   getAddressesFromLocationQuery
 } from "../../core/address-lookup/gsearch-requests";
+import { useConfig } from "../../core/utils/config";
 
 export type InputProps = {
   label: string;
-  type: "text";
   id: string;
   query: string;
   description?: string;
@@ -22,7 +22,16 @@ export type InputProps = {
 
 const MIN_QUERY_LENGTH = 3;
 
-function useGetGSearchAddresses(query: string) {
+const GSearchInput = ({
+  label,
+  id,
+  placeholder,
+  query,
+  onAddressSelect,
+  onQueryChange
+}: InputProps) => {
+  const config = useConfig();
+  const token = config<string>("dataforsyningenTokenConfig") || "";
   const [addresses, setAddresses] = useState<AddressWithCoordinates[]>([]);
 
   const debouncedFetch = useMemo(
@@ -33,31 +42,37 @@ function useGetGSearchAddresses(query: string) {
           return;
         }
 
-        const result = await getAddressesFromLocationQuery(searchQuery);
+        const result = await getAddressesFromLocationQuery({
+          query: searchQuery,
+          token
+        });
         setAddresses(result);
       }, 300),
-    []
+    [token]
   );
 
-  useEffect(() => {
-    debouncedFetch(query);
-    return () => {
-      debouncedFetch.cancel();
-    };
-  }, [query, debouncedFetch]);
+  const handleInputValueChange = useCallback(
+    ({
+      inputValue: newInputValue,
+      type
+    }: {
+      inputValue?: string;
+      type: UseComboboxStateChangeTypes;
+    }) => {
+      const value = newInputValue || "";
+      onQueryChange(value);
 
-  return { addresses };
-}
-
-const GSearchInput = ({
-  label,
-  id,
-  placeholder,
-  query,
-  onAddressSelect,
-  onQueryChange
-}: InputProps) => {
-  const { addresses } = useGetGSearchAddresses(query);
+      // Only fetch when the user is typing, not on programmatic changes
+      // (e.g. reverse geocode or selecting a suggestion).
+      if (type === useCombobox.stateChangeTypes.InputChange) {
+        debouncedFetch(value);
+      } else {
+        debouncedFetch.cancel();
+        setAddresses([]);
+      }
+    },
+    [onQueryChange, debouncedFetch]
+  );
 
   const {
     isOpen,
@@ -73,9 +88,7 @@ const GSearchInput = ({
     itemToString(item) {
       return item ? item.betegnelse : "";
     },
-    onInputValueChange({ inputValue: newInputValue }) {
-      onQueryChange(newInputValue || "");
-    },
+    onInputValueChange: handleInputValueChange,
     onSelectedItemChange({ selectedItem: newSelectedItem }) {
       if (newSelectedItem) {
         onAddressSelect(newSelectedItem);
@@ -84,22 +97,22 @@ const GSearchInput = ({
   });
 
   return (
-    <div className="dawa-input-wrapper">
-      <label className="dawa-input-wrapper__label" {...getLabelProps()}>
+    <div className="address-input-wrapper">
+      <label className="address-input-wrapper__label" {...getLabelProps()}>
         {label}
       </label>
-      <div className="dawa-input__input-wrapper">
+      <div className="address-input__combobox">
         <input
           id={id}
           placeholder={placeholder}
-          className="dawa-input"
+          className="address-input"
           {...getInputProps()}
         />
         <ul
           className={clsx(
-            "dawa-input__address-suggestions",
+            "address-input__suggestions",
             !(isOpen && addresses.length) &&
-              "dawa-input__address-suggestions--hidden"
+              "address-input__suggestions--hidden"
           )}
           {...getMenuProps()}
         >
@@ -107,11 +120,11 @@ const GSearchInput = ({
             addresses.map((address, index) => (
               <li
                 className={clsx(
-                  "dawa-input__address-suggestions__item",
+                  "address-input__suggestions__item",
                   highlightedIndex === index &&
-                    "dawa-input__address-suggestions__item--highlighted",
+                    "address-input__suggestions__item--highlighted",
                   selectedItem === address &&
-                    "dawa-input__address-suggestions__item--selected"
+                    "address-input__suggestions__item--selected"
                 )}
                 key={address.id}
                 {...getItemProps({ item: address, index })}

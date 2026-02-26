@@ -26,23 +26,42 @@ export const getCurrentPosition = (errorMessages?: {
       "An error occurred while fetching your location."
   };
 
-  return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) {
-      reject(new Error(messages.notSupported));
-      return;
-    }
+  const getPosition = (
+    enableHighAccuracy: boolean
+  ): Promise<{ latitude: number; longitude: number }> =>
+    new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          });
+        },
+        reject,
+        { enableHighAccuracy, timeout: 10000, maximumAge: 0 }
+      );
+    });
 
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const coords = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        };
-        resolve(coords);
-      },
-      (error) => {
-        let errorMessage = messages.default;
+  if (!navigator.geolocation) {
+    return Promise.reject(new Error(messages.notSupported));
+  }
 
+  // Try high accuracy (GPS) first, fall back to low accuracy (Wi-Fi/IP)
+  // for desktops that lack GPS hardware.
+  return getPosition(true)
+    .catch((error) => {
+      if (
+        error instanceof GeolocationPositionError &&
+        error.code === error.POSITION_UNAVAILABLE
+      ) {
+        return getPosition(false);
+      }
+      throw error;
+    })
+    .catch((error) => {
+      let errorMessage = messages.default;
+
+      if (error instanceof GeolocationPositionError) {
         switch (error.code) {
           case error.PERMISSION_DENIED:
             errorMessage = messages.permissionDenied;
@@ -54,14 +73,8 @@ export const getCurrentPosition = (errorMessages?: {
             errorMessage = messages.timeout;
             break;
         }
-
-        reject(new Error(errorMessage));
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0
       }
-    );
-  });
+
+      throw new Error(errorMessage);
+    });
 };

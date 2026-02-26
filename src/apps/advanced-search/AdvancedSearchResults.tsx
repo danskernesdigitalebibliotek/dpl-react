@@ -22,6 +22,7 @@ import {
   AdvancedSortMapStrings,
   FirstAccessionOperatorFilter
 } from "./types";
+import ContentListPage from "../../components/content-list/ContentListPage";
 
 interface AdvancedSearchResultProps {
   q: string;
@@ -174,22 +175,24 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
   return (
     <>
       {!showContentOnly && <div className="advanced-search__divider" />}
-      <section className="content-list-page">
-        <h2
-          className="content-list-page__heading"
-          /* ID is used to scroll to the results upon hitting the search button. */
-          id="advanced-search-result"
-          aria-live="polite"
-        >
-          {isLoading && <>{t("loadingResultsText")}</>}
-          {shouldShowResultHeadline && (
-            <>
-              {t("showingMaterialsText", {
-                placeholders: { "@hitcount": hitcount }
-              })}
-            </>
-          )}
-        </h2>
+      <ContentListPage
+        title={
+          <>
+            {isLoading && <>{t("loadingResultsText")}</>}
+            {shouldShowResultHeadline && (
+              <>
+                {t("showingMaterialsText", {
+                  placeholders: { "@hitcount": hitcount }
+                })}
+              </>
+            )}
+          </>
+        }
+        headingLevel="h2"
+        // ID is used to scroll to the results upon hitting the search button.
+        headingId="advanced-search-result"
+        headingAriaLive="polite"
+      >
         {!showContentOnly && (
           <div className="content-list-page__subheading">
             <button
@@ -226,7 +229,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
           </>
         )}
         {!isLoading && hitcount === 0 && <SearchResultZeroHits />}
-      </section>
+      </ContentListPage>
     </>
   );
 };
