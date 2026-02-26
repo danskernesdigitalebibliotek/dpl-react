@@ -22,7 +22,7 @@ const SearchResultHeader: React.FC = () => {
 
   return (
     <h2 className="content-list-page__subheading">
-      {t("webSearchLinkText")}&nbsp;
+      {`${t("webSearchLinkText")} `}
       <a
         className="link-tag text-body-medium-medium"
         href={webSearchConfig.webSearchUrl}
