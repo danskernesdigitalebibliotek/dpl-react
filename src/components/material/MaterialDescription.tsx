@@ -44,6 +44,13 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
     manifestations
   } = work;
 
+  const { enabled: showShareButtons } = config<{ enabled: boolean }>(
+    "shareConfig",
+    {
+      transformer: "jsonParse"
+    }
+  );
+
   const localSubjectsAgencyIds = config("localSubjectsAgencyIdsConfig", {
     transformer: "stringToArray"
   });
@@ -156,7 +163,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
             dataCy="material-description-film-adaptations"
           />
         </div>
-        <ButtonShare className="mt-64" />
+        {showShareButtons && <ButtonShare className="mt-64" />}
       </>
     </section>
   );

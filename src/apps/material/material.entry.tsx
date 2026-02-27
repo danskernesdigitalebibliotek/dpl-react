@@ -219,6 +219,7 @@ interface MaterialEntryConfigProps {
   findOnShelfDisclosuresDefaultOpenConfig: string;
   findOnShelfHideUnavailableHoldingsConfig: string;
   instantLoanConfig: string;
+  shareConfig?: string;
   localSubjectsAgencyIdsConfig?: string;
   smsNotificationsForReservationsEnabledConfig: string;
 }
