@@ -59,12 +59,21 @@ const meta: Meta<typeof MaterialEntry> = {
       description: "Path to the material page",
       control: { type: "text" }
     },
+    advancedSearchUrl: {
+      description: "Path to the advanced search page",
+      control: { type: "text" }
+    },
     wid: {
       description: "Work ID",
       control: { type: "text" }
     },
     agencyIdConfig: {
       description: "Agency ID from OpenID Connect configuration",
+      control: { type: "text" }
+    },
+    localSubjectsAgencyIdsConfig: {
+      description:
+        "Comma-separated list of agency ID prefixes for local subjects",
       control: { type: "text" }
     },
     smsNotificationsForReservationsEnabledConfig: {
@@ -883,8 +892,10 @@ const meta: Meta<typeof MaterialEntry> = {
     ...materialContentsArgs,
     searchUrl: "/search",
     materialUrl: "/work/:workid",
+    advancedSearchUrl: "/advancedsearch",
     wid: "work-of:870970-basis:52557240",
     agencyIdConfig: "710100",
+    localSubjectsAgencyIdsConfig: "",
     smsNotificationsForReservationsEnabledConfig: "1",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024,DK-775164",

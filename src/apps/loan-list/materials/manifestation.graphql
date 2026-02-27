@@ -1,6 +1,9 @@
 fragment ManifestationBasicDetails on Manifestation {
   ...WithLanguages
   pid
+  ownerWork {
+    workId
+  }
   titles {
     full
   }
@@ -22,6 +25,9 @@ fragment ManifestationBasicDetails on Manifestation {
     title
     members {
       numberInSeries
+      work {
+        workId
+      }
     }
   }
 }

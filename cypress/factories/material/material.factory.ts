@@ -2,7 +2,8 @@ import { Factory } from "fishery";
 
 import {
   GetMaterialQuery,
-  FictionNonfictionCodeEnum
+  FictionNonfictionCodeEnum,
+  GeneralMaterialTypeCodeEnum
 } from "../../../src/core/dbc-gateway/generated/graphql";
 
 import { eBookManifestation } from "../manifestation/variants/eBookManifestation";
@@ -15,8 +16,7 @@ export const materialFactory = Factory.define<GetMaterialQuery>(() => ({
     workId: "work-of:870970-basis:52557240",
     titles: {
       full: ["De syv søstre : Maias historie"],
-      original: ["The seven sisters"],
-      tvSeries: null
+      original: ["The seven sisters"]
     },
     abstract: [
       "Pa Salt dør og hans seks adoptivdøtre står tilbage med muligheden for at finde deres ophav."
@@ -24,25 +24,21 @@ export const materialFactory = Factory.define<GetMaterialQuery>(() => ({
     genreAndForm: ["romaner", "slægtsromaner"],
     materialTypes: [
       {
-        materialTypeSpecific: {
-          display: "e-bog"
-        }
+        materialTypeGeneral: { code: GeneralMaterialTypeCodeEnum.Ebooks },
+        materialTypeSpecific: { display: "e-bog" }
       },
       {
-        materialTypeSpecific: {
-          display: "lydbog (cd-mp3)"
-        }
+        materialTypeGeneral: { code: GeneralMaterialTypeCodeEnum.AudioBooks },
+        materialTypeSpecific: { display: "lydbog (cd-mp3)" }
       },
       {
-        materialTypeSpecific: {
-          display: "bog"
-        }
+        materialTypeGeneral: { code: GeneralMaterialTypeCodeEnum.Books },
+        materialTypeSpecific: { display: "bog" }
       }
     ],
     creators: [
       {
         __typename: "Person" as const,
-        nameSort: "riley lucinda",
         display: "Lucinda Riley"
       }
     ],

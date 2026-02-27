@@ -31,12 +31,14 @@ export class ModalFindOnShelfComponent extends ComponentObject {
     libraryName,
     label,
     editionTitle,
-    expectedCount
+    expectedCount,
+    expectedShelfmark
   }: {
     libraryName: string;
     label: "Available" | "Unavailable";
     editionTitle: string;
     expectedCount: string;
+    expectedShelfmark?: string;
   }) {
     this.getLibraryDisclosureByName(libraryName)
       .scrollIntoView()
@@ -53,12 +55,16 @@ export class ModalFindOnShelfComponent extends ComponentObject {
         // Verify the edition title and count in the find-on-shelf list
         cy.get(".find-on-shelf__row")
           .filter(`:contains("${editionTitle}")`)
-          .scrollIntoView();
+          .then(($row) => {
+            cy.wrap($row).scrollIntoView();
+            cy.wrap($row).should("be.visible");
+            cy.wrap($row).should("contain", expectedCount);
 
-        cy.get(".find-on-shelf__row")
-          .filter(`:contains("${editionTitle}")`)
-          .should("be.visible")
-          .should("contain", expectedCount);
+            // Optionally verify shelfmark display
+            if (expectedShelfmark) {
+              cy.wrap($row).should("contain", expectedShelfmark);
+            }
+          });
       });
 
     return this;
