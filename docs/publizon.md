@@ -171,6 +171,10 @@ The spec originates from the upstream
 The generated output lives in `src/core/publizon/publizon.ts` and exports React
 Query hooks.
 
+> **Note on "adapter" terminology:** `publizon-adapter.yaml` refers to the
+> OpenAPI spec from the upstream `publizon-adapter` repository — it is not an
+> adapter pattern for the reader/player components.
+
 ### Key endpoints
 
 | Endpoint | Method | Description |
@@ -246,12 +250,41 @@ the lending flow:
    `isAlreadyReserved`.
 4. Resolves the `orderId` (needed for the reader/player) from the user's loans.
 
-## Reader & player (iframes)
+## Reader & player
+
+The reader and player are **decoupled from the API layer**. They are third-party
+PubHub components loaded via external scripts that only need two pieces of data:
+
+- An **order number** (`orderId`) — for loaned material
+- An **identifier** — for teasers/samples
+
+The API layer (REST or SOAP, depending on the user type) is responsible for
+providing this data, but the reader/player has no direct dependency on the API.
+Once the `orderId` or `identifier` is available, the component can render
+independently.
+
+### Data acquisition
+
+The `orderId` / `identifier` can be obtained through two paths depending on how
+the user authenticated:
+
+**Adgangsplatform users (REST)** — the React app calls REST endpoints through
+the backend proxy (`pubhub-openplatform.dbc.dk`). The `useGetV1UserLoans()` hook
+fetches loans and resolves the `orderId`. This is the path documented in the
+"Loan & reservation flow" section above.
+
+**UNI-Login users (SOAP via dpl-go)** — the `dpl-go` service makes SOAP calls
+to Publizon (`libraryservices.pubhub.dk/v2_7/`). Key SOAP operations include
+`GetLibraryUserOrderListAsync()` and `CreateLoanAsync()`. The UNI-Login ID
+(`uniid`) is used as the `cardnumber` parameter. These calls return the same
+data structure (`orderId`, `identifier`) that the reader/player needs. This path
+is outside the React codebase — see the `dpl-go` repository for details.
 
 ### Ebook reader
 
 The `Reader` component (`src/components/reader-player/Reader.tsx`) renders
-ebooks using external scripts from PubHub.
+ebooks via **script injection** — external PubHub scripts are loaded into
+`<head>` and they take over a `<div id="pubhub-reader">`. This is not an iframe.
 
 On mount it dynamically appends the following assets to `<head>`:
 
