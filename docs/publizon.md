@@ -166,6 +166,8 @@ See `docs/request_mocking_wiremock.md` for more on the mock setup.
 
 The API client is generated from the OpenAPI spec at
 `src/core/publizon/publizon-adapter.yaml` using [Orval](https://orval.dev).
+The spec originates from the upstream
+[publizon-adapter](https://github.com/DBCDK/publizon-adapter) repository.
 The generated output lives in `src/core/publizon/publizon.ts` and exports React
 Query hooks.
 
