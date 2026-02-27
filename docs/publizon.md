@@ -8,52 +8,157 @@ reading/playback.
 
 ## Authentication
 
+### Overview
+
 Requests to the Publizon API use bearer token authentication via the
-`Authorization` header.
+`Authorization` header. The upstream Publizon API uses OAuth 2.0 password grant
+with the token endpoint `https://login.bib.dk/oauth/token` (Adgangsplatformen —
+the Danish library login platform).
 
-Two token types are supported (in priority order):
+### Token types
 
-1. **`user`** — represents the authenticated library patron. Preferred when
-   available.
-2. **`library`** — represents the library organisation. Used as fallback when no
-   user token exists.
+Three token types exist in the system (`src/core/token.js`):
 
-Token resolution in the fetcher (`src/core/publizon/mutator/fetcher.ts`):
+| Token type | Constant | Description |
+|------------|----------|-------------|
+| `user` | `TOKEN_USER_KEY` | Authenticated library patron. Provides access to personal information. Preferred for Publizon requests. |
+| `library` | `TOKEN_LIBRARY_KEY` | Library/agency token. Provides the same access level as a user token but without personal data. Used as fallback. |
+| `unregistered-user` | `TOKEN_UNREGISTERED_USER_KEY` | Issued after Adgangsplatformen login for unregistered users. Not used for Publizon. |
+
+The Publizon fetcher resolves the token with user-first priority
+(`src/core/publizon/mutator/fetcher.ts`):
 
 ```ts
 const token = getToken(TOKEN_USER_KEY) ?? getToken(TOKEN_LIBRARY_KEY);
 ```
 
-Tokens are stored and retrieved via `getToken()` / `setToken()` in
-`src/core/token.js`.
+If neither token is available, requests are sent without an `Authorization`
+header (the `authHeaders` object will be empty).
 
-The OpenAPI spec also defines `clientId`, `licenseKey`, and `cardNumber` request
-headers. These are injected at the proxy level and are not set by the React
-application.
+### How tokens are set
 
-The upstream Publizon API uses OAuth 2.0 password grant with the token endpoint
-`https://login.bib.dk/oauth/token`.
+Tokens are stored in a module-level `tokens` object in `src/core/token.js` and
+set via `setToken(type, value)`. The mechanism differs between production and
+development:
+
+#### Production (Drupal CMS)
+
+The CMS exposes `window.dplReact.setToken` as a global function
+(`src/core/mount.js`). Drupal calls this before mounting the React apps:
+
+```js
+window.dplReact.setToken("user", "<token-from-adgangsplatformen>");
+window.dplReact.mount(context);
+```
+
+- The **user token** is obtained when a patron logs in via Adgangsplatformen
+  (OpenID Connect). Drupal's `dpl_login` module handles this flow.
+- The **library token** is generated server-side by the `dpl_library_token`
+  Drupal module. It uses OAuth 2.0 password grant with the agency ID as both
+  username and password (e.g. `@100200`), authenticated with the client ID and
+  secret via HTTP Basic Auth. The token is cached in Drupal's key-value store at
+  half its validity period to ensure it is always fresh.
+
+#### Development (Storybook)
+
+Storybook provides `UserToken` and `LibraryToken` input components
+(`src/apps/adgangsplatformen/`) that let developers paste tokens manually. These
+are persisted in `sessionStorage` and set via `setToken()`.
+
+### Proxy-level headers
+
+The OpenAPI spec defines three additional required headers on most endpoints:
+
+- `clientId` (UUID) — identifies the calling application
+- `licenseKey` — the library's Publizon license key
+- `cardNumber` — the borrower's card number
+
+**These headers are not set by the React application.** They are injected by the
+backend proxy that sits between the React app and the actual Publizon API. The
+React fetcher only adds the `Authorization` bearer token and any headers passed
+from Orval-generated code.
+
+### Token refresh
+
+There is no token refresh mechanism in the React application. If a token
+expires, the user must re-authenticate through Adgangsplatformen. On the
+Drupal/CMS side, the library token is automatically re-fetched when the cached
+copy expires.
 
 ## Proxy & base URL
 
-The React app never calls the Publizon API directly. All requests go through a
-backend proxy whose base URL is resolved at runtime via Redux middleware.
+### Architecture
 
-The middleware (`src/core/utils/reduxMiddleware/extractServiceBaseUrls.ts`)
-intercepts `url/addUrlEntries` actions and extracts the key `publizonBaseUrl`
-into a module-level store. The fetcher reads this value with:
+The React app never calls the Publizon API directly. All requests go through a
+backend proxy. The flow is:
+
+```text
+React app
+  → fetch("{publizonBaseUrl}/v1/{endpoint}", { Authorization: "Bearer {token}" })
+    → Backend proxy (adds clientId, licenseKey, cardNumber headers)
+      → Publizon API (library-api.pubhub.dk)
+```
+
+The proxy is responsible for:
+
+1. Injecting `clientId`, `licenseKey`, and `cardNumber` headers
+2. Forwarding the bearer token
+3. Routing to the correct Publizon environment (QA vs production)
+
+### Base URL configuration
+
+The base URL flows from the CMS to the React app through several layers:
+
+1. **Drupal configuration** — stored in `dpl_publizon.settings` (managed by
+   `DplPublizonSettings` in the `dpl_publizon` module). The admin form
+   `PublizonSettingsForm` provides a "Publizon service url" field.
+
+2. **HTML data attributes** — Drupal renders React app containers as
+   `<div data-dpl-app="..." data-publizon-base-url="...">`. All props ending
+   with `Url` are extracted by the `withUrls` HOC (`src/core/utils/url.tsx`).
+
+3. **Redux store** — `withUrls` dispatches `addUrlEntries` which stores the URLs
+   in the `url` slice (`src/core/url.slice.ts`).
+
+4. **Middleware extraction** — the `extractServiceBaseUrls` middleware
+   (`src/core/utils/reduxMiddleware/extractServiceBaseUrls.ts`) intercepts
+   `url/addUrlEntries` and pulls `publizonBaseUrl` into a module-level store,
+   keeping service URLs separate from the Redux state.
+
+5. **Fetcher access** — the fetcher reads the URL with:
 
 ```ts
 getServiceBaseUrl(serviceUrlKeys.publizon) // "publizonBaseUrl"
 ```
 
-All Publizon API paths are prefixed with `/v1/`, so a typical resolved URL looks
-like `{publizonBaseUrl}/v1/user/loans`.
+The URL helper (`src/core/fetchers/helpers.ts`) builds the final URL:
 
-| Environment | Base URL |
-|-------------|----------|
-| Development (Docker) | `http://publizon-mock.docker` (WireMock) |
-| Production  | Configured via `PUBLIZON_BASEURL` env var |
+```ts
+getServiceUrlWithParams({ baseUrl, url, params })
+// → "{baseUrl}{path}?{params}"
+```
+
+### Environments
+
+| Environment | Base URL | Source |
+|-------------|----------|--------|
+| Production | `https://pubhub-openplatform.dbc.dk` | Drupal config / `dpl_publizon.settings` |
+| Storybook | `process.env.PUBLIZON_BASEURL` or `https://pubhub-openplatform.dbc.dk` | `src/core/storybook/serviceUrlArgs.ts` |
+| Development (Docker) | `http://publizon-mock.docker` | WireMock container |
+
+### WireMock (development mock)
+
+In the Docker development environment, a WireMock container (`wiremock-publizon`)
+serves as the Publizon proxy at `http://publizon-mock.docker:8080`. It provides:
+
+- **CORS stub** — responds to `OPTIONS` requests on all paths with permissive
+  CORS headers (`.docker/wiremock/publizon/mappings/cors-*.json`)
+- **Endpoint stubs** — pre-recorded responses for loans, reservations, products,
+  loan status, library profile, checklist, and card number endpoints
+- **No header validation** — unlike production, the mock does not require
+  `clientId`, `licenseKey`, or `cardNumber` headers
+
+Mapping files live in `.docker/wiremock/publizon/mappings/`.
 
 See `docs/request_mocking_wiremock.md` for more on the mock setup.
 
@@ -96,12 +201,14 @@ Material types are split into two groups
 (`src/components/reader-player/helper.ts`):
 
 **Reader types** (rendered in the ebook reader):
+
 - `ebook`
 - `pictureBookOnline`
 - `animatedSeriesOnline`
 - `yearBookOnline`
 
 **Player types** (rendered in the audio player):
+
 - `audioBook`
 - `podcast`
 - `musicOnline`
@@ -238,7 +345,12 @@ user-facing messages in `src/core/utils/helpers/publizon.ts`:
 | `src/core/publizon/mutator/fetcher.ts` | Auth & request execution |
 | `src/core/publizon/mutator/PublizonServiceError.ts` | Error class |
 | `src/core/token.js` | Token storage |
+| `src/core/mount.js` | Global `window.dplReact` init (setToken, mount) |
+| `src/core/url.slice.ts` | Redux URL slice |
+| `src/core/utils/url.tsx` | `withUrls` HOC — extracts URL props into Redux |
+| `src/core/fetchers/helpers.ts` | URL building (`getServiceUrlWithParams`) |
 | `src/core/utils/reduxMiddleware/extractServiceBaseUrls.ts` | URL routing |
+| `src/core/storybook/serviceUrlArgs.ts` | Storybook default URLs |
 | `src/components/reader-player/Reader.tsx` | Ebook reader component |
 | `src/components/reader-player/Player.tsx` | Audio player component |
 | `src/components/reader-player/helper.ts` | Asset management & type routing |
