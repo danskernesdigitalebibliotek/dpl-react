@@ -5,7 +5,10 @@ import { useText } from "../../core/utils/text";
 import LinkNoStyle from "../atoms/links/LinkNoStyle";
 import { useCollectPageStatistics } from "../../core/statistics/useStatistics";
 import { statistics } from "../../core/statistics/statistics";
-import { getParentAvailabilityLabelClass } from "./helper";
+import {
+  getParentAvailabilityLabelClass,
+  isNonPhysicalForAvailabilityLabel
+} from "./helper";
 import AvailabilityLabelInside from "./availability-label-inside";
 import { FaustId } from "../../core/utils/types/ids";
 import useAvailabilityData from "./useAvailabilityData";
@@ -50,9 +53,17 @@ export const AvailabilityLabel: React.FC<AvailabilityLabelProps> = ({
     manifestText
   });
 
-  const availabilityText = isAvailable
-    ? t("availabilityAvailableText")
-    : t("availabilityUnavailableText");
+  const getAvailabilityText = () => {
+    if (!isAvailable) {
+      return t("availabilityUnavailableText");
+    }
+    // Use different text for physical vs non-physical materials when available
+    return isNonPhysicalForAvailabilityLabel(accessTypes, access)
+      ? t("availabilityAvailableText")
+      : t("availabilityAvailablePhysicalText");
+  };
+
+  const availabilityText = getAvailabilityText();
 
   useDeepCompareEffect(() => {
     // Track material availability (status) if the button is active - also meaning
