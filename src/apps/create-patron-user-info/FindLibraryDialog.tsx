@@ -4,13 +4,13 @@ import React, { useState, useMemo } from "react";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
 import {
-  DawaAddress,
+  AddressWithCoordinates,
   getReverseGeocode
-} from "../../core/address-lookup/dawa-reqests";
+} from "../../core/address-lookup/gsearch-requests";
 import { calculateDistanceBetweenTwoCoordinates } from "./helper";
 import { getCurrentPosition } from "../../core/geo-location/geo-location";
 import { TBranch } from "../../core/utils/branches";
-import DawaInput from "../../components/dawa-input/DawaInput";
+import GSearchInput from "../../components/gsearch-input/GSearchInput";
 
 type FindLibraryDialogProps = {
   branches?: TBranch[];
@@ -23,8 +23,8 @@ function FindLibraryDialog({
   selectedBranchId,
   handleBranchSelect
 }: FindLibraryDialogProps) {
-  const [selectedDawaAddress, setSelectedDawaAddress] =
-    useState<DawaAddress | null>(null);
+  const [selectedAddress, setSelectedAddress] =
+    useState<AddressWithCoordinates | null>(null);
   const [geoLocationError, setGeoLocationError] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const t = useText();
@@ -35,8 +35,8 @@ function FindLibraryDialog({
     }
   };
 
-  const handleDawaAddressSelect = (address: DawaAddress) => {
-    setSelectedDawaAddress(address);
+  const handleAddressSelect = (address: AddressWithCoordinates) => {
+    setSelectedAddress(address);
   };
 
   const handleGetUserLocation = async () => {
@@ -57,7 +57,7 @@ function FindLibraryDialog({
       });
 
       if (address) {
-        setSelectedDawaAddress(address);
+        setSelectedAddress(address);
         setQuery(address.betegnelse || "");
       }
     } catch (error) {
@@ -70,7 +70,7 @@ function FindLibraryDialog({
   };
 
   const branchesWithDistance = useMemo(() => {
-    if (!branches || !selectedDawaAddress?.lat || !selectedDawaAddress?.lng) {
+    if (!branches || !selectedAddress?.lat || !selectedAddress?.lng) {
       return branches?.map((branch) => ({ branch, distance: null })) || [];
     }
 
@@ -83,8 +83,8 @@ function FindLibraryDialog({
       }
 
       const distance = calculateDistanceBetweenTwoCoordinates(
-        selectedDawaAddress.lat!,
-        selectedDawaAddress.lng!,
+        selectedAddress.lat!,
+        selectedAddress.lng!,
         lat!,
         lng!
       );
@@ -99,7 +99,7 @@ function FindLibraryDialog({
     });
 
     return sortedBranches;
-  }, [branches, selectedDawaAddress]);
+  }, [branches, selectedAddress]);
 
   return (
     <div className="find-library-dialog">
@@ -107,15 +107,15 @@ function FindLibraryDialog({
         {t("findLibraryDialogTitleText")}
       </h2>
       <div className="find-library-dialog__location-group">
-        <DawaInput
+        <GSearchInput
           id="address-input-2"
-          label={t("findLibraryDialogDawaInputLabelText")}
-          placeholder={t("findLibraryDialogDawaInputPlaceholderText")}
+          label={t("findLibraryDialogAddressInputLabelText")}
+          placeholder={t("findLibraryDialogAddressInputPlaceholderText")}
           type="text"
           query={query}
           onQueryChange={(query) => setQuery(query)}
-          onDawaAddressSelect={(address) => {
-            handleDawaAddressSelect(address);
+          onAddressSelect={(address) => {
+            handleAddressSelect(address);
             setQuery(address.betegnelse);
           }}
         />
