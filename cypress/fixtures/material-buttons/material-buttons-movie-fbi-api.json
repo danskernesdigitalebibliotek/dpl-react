@@ -891,16 +891,25 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "FILMS"
+          },
           "materialTypeSpecific": {
             "display": "film (online)"
           }
         },
         {
+          "materialTypeGeneral": {
+            "code": "FILMS"
+          },
           "materialTypeSpecific": {
             "display": "film (blu-ray)"
           }
         },
         {
+          "materialTypeGeneral": {
+            "code": "FILMS"
+          },
           "materialTypeSpecific": {
             "display": "film (dvd)"
           }

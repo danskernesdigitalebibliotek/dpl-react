@@ -17,6 +17,9 @@ export const manifestationFactory = Factory.define<ManifestationForWorkMedium>(
     pid: "870970-basis:52557240",
     genreAndForm: ["romaner", "slægtsromaner"],
     source: ["Bibliotekskatalog"],
+    subjects: {
+      all: []
+    },
     languages: {
       main: [
         {
@@ -44,8 +47,7 @@ export const manifestationFactory = Factory.define<ManifestationForWorkMedium>(
     creators: [
       {
         __typename: "Person" as const,
-        display: "Lucinda Riley",
-        nameSort: "riley lucinda"
+        display: "Lucinda Riley"
       }
     ],
     publisher: ["Cicero"],
@@ -104,7 +106,10 @@ export const manifestationFactory = Factory.define<ManifestationForWorkMedium>(
         loanIsPossible: true
       }
     ],
-    shelfmark: null,
+    shelfmark: {
+      shelfmark: "shelfmark",
+      postfix: "postfix"
+    },
     workYear: null,
     catalogueCodes: {
       nationalBibliography: ["DBF201835"],

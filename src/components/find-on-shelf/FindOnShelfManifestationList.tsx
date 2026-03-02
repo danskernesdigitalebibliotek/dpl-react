@@ -9,12 +9,10 @@ import { getLocationArray } from "./helper";
 
 export interface FindOnShelfManifestationListProps {
   libraryBranchHoldings: ManifestationHoldings;
-  author: string;
 }
 
 const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
-  libraryBranchHoldings,
-  author
+  libraryBranchHoldings
 }) => {
   const t = useText();
 
@@ -56,7 +54,6 @@ const FindOnShelfManifestationList: FC<FindOnShelfManifestationListProps> = ({
               branchHolding.holding.materials
             )}
             key={branchHolding.holding.branch.branchId}
-            author={author}
           />
         );
       })}

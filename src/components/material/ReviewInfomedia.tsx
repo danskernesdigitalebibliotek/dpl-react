@@ -31,6 +31,7 @@ export interface ReviewInfomediaProps {
 
 const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   review: {
+    recordCreationDate,
     workYear,
     dateFirstEdition,
     access,
@@ -45,7 +46,12 @@ const ReviewInfomedia: React.FC<ReviewInfomediaProps> = ({
   const u = useUrls();
   const authUrl = u("authUrl");
 
-  const date = getReviewRelease(dateFirstEdition, workYear, edition);
+  const date = getReviewRelease(
+    dateFirstEdition,
+    workYear,
+    edition,
+    recordCreationDate
+  );
   const authors = getAuthorNames(creators);
   const publication = getPublicationName(hostPublication);
   const infomediaAccess = access.filter(

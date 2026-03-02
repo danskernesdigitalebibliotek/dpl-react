@@ -299,6 +299,9 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "NEWSPAPER_JOURNALS"
+          },
           "materialTypeSpecific": {
             "display": "tidsskrift"
           }

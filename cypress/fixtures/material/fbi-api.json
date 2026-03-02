@@ -637,16 +637,25 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "AUDIO_BOOKS"
+          },
           "materialTypeSpecific": {
             "display": "lydbog (cd-mp3)"
           }
         },
         {
+          "materialTypeGeneral": {
+            "code": "EBOOKS"
+          },
           "materialTypeSpecific": {
             "display": "e-bog"
           }
         },
         {
+          "materialTypeGeneral": {
+            "code": "BOOKS"
+          },
           "materialTypeSpecific": {
             "display": "bog"
           }

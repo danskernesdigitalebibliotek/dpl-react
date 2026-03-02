@@ -23,15 +23,9 @@ import { formatCurrency } from "./currency";
 import {
   dateHasPassed,
   calculateDateYearsDifference,
+  formatShortDate,
   getUnixTimestamp
 } from "./date";
-
-export const capitalizeFirstLetters = (str: string) => {
-  return str
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};
 
 export const getManifestationPublicationYear = (
   manifestation: Manifestation
@@ -57,17 +51,6 @@ export const flattenCreators = (creators: WorkSmall["creators"]) =>
   creators.map((creator) => {
     return creator.display;
   });
-
-export const flattenCreatorsLastNameFirst = (creators: Work["creators"]) =>
-  creators.map((creator) => {
-    return creator.nameSort;
-  });
-
-export const divideFirstNameByComma = (creatorString: string) => {
-  const parts = creatorString.split(" ");
-  parts[0] += ",";
-  return parts.join(" ");
-};
 
 const getCreatorsFromManifestations = (manifestations: Manifestation[]) => {
   const creators = manifestations.reduce<string[]>((acc: string[], curr) => {
@@ -465,13 +448,14 @@ export const getPublicationName = (
 export const getReviewRelease = (
   dateFirstEdition: ManifestationReviewFieldsFragment["dateFirstEdition"],
   workYear: ManifestationReviewFieldsFragment["workYear"],
-  edition: ManifestationReviewFieldsFragment["edition"]
+  edition: ManifestationReviewFieldsFragment["edition"],
+  recordCreationDate?: ManifestationReviewFieldsFragment["recordCreationDate"]
 ) => {
   return (
     dateFirstEdition?.display ||
     workYear?.display ||
     edition?.publicationYear?.display ||
-    null
+    (recordCreationDate ? formatShortDate(recordCreationDate) : null)
   );
 };
 

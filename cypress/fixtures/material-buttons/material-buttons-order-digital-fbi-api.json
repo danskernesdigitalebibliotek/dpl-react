@@ -340,6 +340,9 @@
       },
       "materialTypes": [
         {
+          "materialTypeGeneral": {
+            "code": "ARTICLES"
+          },
           "materialTypeSpecific": {
             "display": "artikel"
           }

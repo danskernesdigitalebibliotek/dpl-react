@@ -36,7 +36,7 @@ const ReviewMetadata: React.FC<ReviewMetadataProps> = ({
     const isLibrarianText = isLibrarian ? t("libraryAssessmentText") : "";
     const authorAndHostSeparator =
       authorText && (hostText || isLibrarianText) ? " - " : "";
-    const dateText = returnDate && `, ${returnDate}`;
+    const dateText = returnDate ? `, ${returnDate}` : "";
 
     return `
     ${authorText}${authorAndHostSeparator}${hostText}${isLibrarianText}${dateText}

@@ -30,6 +30,11 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: stable
+
       - name: Cypress run
         uses: cypress-io/github-action@v7
         with:
@@ -44,13 +49,13 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload screenshots
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: cypress-screenshots-${{ matrix.containers }}
           path: cypress/screenshots
       - name: Upload videos
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: cypress-videos-${{ matrix.containers }}
