@@ -9,7 +9,7 @@ export const givenGSearchAddresses = () => {
 export const givenGSearchAddressReverseGeo = () => {
   cy.interceptRest({
     aliasName: "gsearchReverseGeo",
-    url: "https://api.dataforsyningen.dk/rest/gsearch/v2.0/adgangsadresse_reverse*",
+    url: "https://api.dataforsyningen.dk/rest/gsearch/v2.0/adresse*filter=BBOX*",
     fixtureFilePath: "find-library/gsearch-reverse-geo.json"
   });
 };

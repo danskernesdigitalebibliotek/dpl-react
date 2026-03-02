@@ -6,13 +6,13 @@ export class DialogFindLibrary extends ComponentObject {
     this.addElements = {
       title: () => this.container().find(".find-library-dialog__title"),
       geoLocationGroup: () =>
-        this.container().find(".find-library-dialog__location-group"),
+        this.container().find(".address-search-bar"),
       locationList: () =>
         this.container().find(".find-library-dialog__location-list"),
       locationListItems: () =>
         this.container().find(".find-library-dialog__location-list__item"),
       addressInputSuggestions: () =>
-        this.container().find(".dawa-input__address-suggestions"),
+        this.container().find(".address-input__suggestions"),
       geoLocationGroupInput: () =>
         this.elements.geoLocationGroup().find("input")
     };
@@ -51,7 +51,7 @@ export class DialogFindLibrary extends ComponentObject {
   clickReverseGeoLocationButton() {
     this.elements
       .geoLocationGroup()
-      .find(".find-library-dialog__location")
+      .find(".address-search-bar__location-button")
       .click();
   }
 

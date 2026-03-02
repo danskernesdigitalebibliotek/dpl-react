@@ -7,6 +7,8 @@ import { WorkId } from "../../core/utils/types/ids";
 import CardListItemAdapter from "../../components/card-item-list/card-list-item/card-list-item-adapter";
 import MaterialListItem from "../../components/card-item-list/MaterialListItem";
 import CardListItemSkeleton from "../../components/card-item-list/card-list-item/card-list-item-skeleton";
+import ContentListPage from "../../components/content-list/ContentListPage";
+import ContentList from "../../components/content-list/ContentList";
 
 export interface FavoritesListProps {
   pageSize: number;
@@ -47,7 +49,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
       <div className="ssc content-list">
         <div className="ssc-line w-10 mt-32">&nbsp;</div>
       </div>
-      <ul className="content-list">
+      <ContentList>
         {/*
           We'll show 5 skeleton cards which should cover most screens.
         */}
@@ -56,7 +58,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
             <CardListItemSkeleton />
           </li>
         ))}
-      </ul>
+      </ContentList>
     </>
   );
 
@@ -70,7 +72,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
 
   const renderContent = () =>
     displayedMaterials.length > 0 ? (
-      <ul className="content-list">
+      <ContentList>
         {displayedMaterials.map((id, i) => {
           const isFirstNewItem = i === page * pageSize;
           return (
@@ -83,7 +85,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
             </MaterialListItem>
           );
         })}
-      </ul>
+      </ContentList>
     ) : (
       <EmptyList
         classNames="mt-24"
@@ -92,10 +94,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
     );
 
   return (
-    <div className="content-list-page">
-      <h1 className="content-list-page__heading">
-        {t("favoritesListHeaderText")}
-      </h1>
+    <ContentListPage title={t("favoritesListHeaderText")}>
       {isLoading ? (
         skeletonList
       ) : (
@@ -105,7 +104,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ pageSize }) => {
           <PagerComponent />
         </>
       )}
-    </div>
+    </ContentListPage>
   );
 };
 
