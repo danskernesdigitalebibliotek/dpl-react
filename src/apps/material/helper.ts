@@ -652,6 +652,7 @@ export const getWorkTitle = (work: Work): string => {
   // and matches what the grid/card views display.
   const isMovieOrTvSeries = work.materialTypes?.some(
     ({ materialTypeGeneral }) =>
+      materialTypeGeneral &&
       [
         GeneralMaterialTypeCodeEnum.Films,
         GeneralMaterialTypeCodeEnum.TvSeries
