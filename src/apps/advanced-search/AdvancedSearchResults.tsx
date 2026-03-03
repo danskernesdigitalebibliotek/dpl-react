@@ -181,7 +181,7 @@ const AdvancedSearchResult: React.FC<AdvancedSearchResultProps> = ({
             {isLoading && <>{t("loadingResultsText")}</>}
             {shouldShowResultHeadline && (
               <>
-                {t("showingMaterialsText", {
+                {t("searchShowingMaterialsText", {
                   placeholders: { "@hitcount": hitcount }
                 })}
               </>
