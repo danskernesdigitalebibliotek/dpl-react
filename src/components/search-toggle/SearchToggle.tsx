@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import clsx from "clsx";
 
 interface SearchToggleProps {
@@ -16,22 +16,24 @@ const SearchToggle: React.FC<SearchToggleProps> = ({
   checked,
   onChange
 }) => {
+  const uniqueId = `${id}-${useId()}`;
   return (
     <div className="search-toggle">
       <button
         type="button"
         role="switch"
         aria-checked={checked}
+        aria-label={label}
         onClick={() => onChange(!checked)}
         className={clsx(
           "search-toggle__button",
           checked && "search-toggle__button--checked"
         )}
-        id={id}
+        id={uniqueId}
       >
         <span className="search-toggle__slider" />
       </button>
-      <label htmlFor={id} className="search-toggle__content cursor-pointer">
+      <label htmlFor={uniqueId} className="search-toggle__content cursor-pointer">
         <span className="search-toggle__label">{label}</span>
         <span className="search-toggle__description">{description}</span>
       </label>
