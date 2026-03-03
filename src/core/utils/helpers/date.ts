@@ -108,6 +108,10 @@ export const formatDateStringISO = (date: Date) => {
 export const formatCustomDateString = (dateString: string) =>
   dayjs(dateString).format(dateFormatCustom);
 
+export const formatShortDate = (dateString: string): string => {
+  return dayjs(dateString).format("D. MMM YYYY");
+};
+
 export const formatDateDependingOnDigitalMaterial = ({
   date,
   isDigital

@@ -2,14 +2,17 @@ import React from "react";
 import {
   getUniqueMovies,
   getDbcVerifiedSubjectsFirst,
+  getLocalAgencySubjects,
   materialContainsDanish
 } from "../../apps/material/helper";
 import {
+  constructAdvancedSearchSubjectUrl,
   constructDK5SearchUrl,
   constructMaterialUrl,
   constructSearchUrl,
   constructSubjectSearchUrl
 } from "../../core/utils/helpers/url";
+import { useConfig } from "../../core/utils/config";
 import { useText } from "../../core/utils/text";
 import { Work } from "../../core/utils/types/entities";
 import { Pid, WorkId } from "../../core/utils/types/ids";
@@ -27,9 +30,22 @@ export interface MaterialDescriptionProps {
 const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
   const t = useText();
   const u = useUrls();
+  const config = useConfig();
   const searchUrl = u("searchUrl");
+  const advancedSearchUrl = u("advancedSearchUrl");
   const materialUrl = u("materialUrl");
-  const { fictionNonfiction, series, subjects, relations, dk5MainEntry } = work;
+  const {
+    fictionNonfiction,
+    series,
+    subjects,
+    relations,
+    dk5MainEntry,
+    manifestations
+  } = work;
+
+  const localSubjectsAgencyIds = config("localSubjectsAgencyIdsConfig", {
+    transformer: "stringToArray"
+  });
 
   const isFiction = materialIsFiction(work);
 
@@ -49,10 +65,22 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
       })) ??
     [];
 
-  const subjectsList = getDbcVerifiedSubjectsFirst(subjects).map((item) => ({
+  const dbcSubjects = getDbcVerifiedSubjectsFirst(subjects).map((item) => ({
     url: constructSubjectSearchUrl(searchUrl, item),
     term: item
   }));
+
+  const localSubjects = getLocalAgencySubjects(
+    manifestations.all,
+    localSubjectsAgencyIds
+  )
+    .filter((item) => !dbcSubjects.some((dbc) => dbc.term === item))
+    .map((item) => ({
+      url: constructAdvancedSearchSubjectUrl(advancedSearchUrl, item),
+      term: item
+    }));
+
+  const subjectsList = [...localSubjects, ...dbcSubjects];
 
   const filmAdaptationsList = getUniqueMovies(relations).map((item) => {
     return {

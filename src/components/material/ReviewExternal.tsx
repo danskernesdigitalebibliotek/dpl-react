@@ -19,6 +19,7 @@ export interface ReviewExternalProps {
 const ReviewExternal: React.FC<ReviewExternalProps> = ({
   review: {
     pid,
+    recordCreationDate,
     workYear,
     dateFirstEdition,
     creators,
@@ -29,7 +30,12 @@ const ReviewExternal: React.FC<ReviewExternalProps> = ({
   },
   dataCy = "review-external"
 }) => {
-  const date = getReviewRelease(dateFirstEdition, workYear, edition);
+  const date = getReviewRelease(
+    dateFirstEdition,
+    workYear,
+    edition,
+    recordCreationDate
+  );
   const authors = getAuthorNames(creators);
   const publication = getPublicationName(hostPublication);
   // This value needs to be casted, because TS for some reason doesn't accept that we filter the access

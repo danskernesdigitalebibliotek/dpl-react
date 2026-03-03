@@ -2,7 +2,8 @@ import { materialFactory } from "../material.factory";
 import { manifestationFactory } from "../../manifestation/manifestation.factory";
 import {
   AccessTypeCodeEnum,
-  FictionNonfictionCodeEnum
+  FictionNonfictionCodeEnum,
+  GeneralMaterialTypeCodeEnum
 } from "../../../../src/core/dbc-gateway/generated/graphql";
 
 export const periodicalManifestation = manifestationFactory.build({
@@ -36,16 +37,16 @@ export const periodicalMaterial = materialFactory.build({
     workId: "work-of:870970-basis:06373674",
     titles: {
       full: ["Alt for damerne"],
-      original: [],
-      tvSeries: null
+      original: []
     },
     abstract: [],
     genreAndForm: ["tidsskrift"],
     materialTypes: [
       {
-        materialTypeSpecific: {
-          display: "tidsskrift"
-        }
+        materialTypeGeneral: {
+          code: GeneralMaterialTypeCodeEnum.NewspaperJournals
+        },
+        materialTypeSpecific: { display: "tidsskrift" }
       }
     ],
     fictionNonfiction: {

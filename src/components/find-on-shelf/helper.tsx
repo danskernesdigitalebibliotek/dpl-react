@@ -25,12 +25,9 @@ export const getLocationArray = (
 };
 
 export const getFindOnShelfLocationText = (
-  locationArray: (string | undefined)[],
-  author: string
+  locationArray: (string | undefined)[]
 ) => {
-  return `${locationArray.join(" · ")}${
-    author && author !== "undefined" ? ` · ${author}` : ""
-  }`;
+  return locationArray.join(" · ");
 };
 
 export default {};

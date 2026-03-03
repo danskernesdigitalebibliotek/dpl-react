@@ -2,11 +2,6 @@ import React, { memo } from "react";
 import { useText } from "../../../core/utils/text";
 import { useConfig } from "../../../core/utils/config";
 
-export interface SearchResultHeaderProps {
-  hitcount: number;
-  displayQuery: string;
-}
-
 type WebSearchConfigType = {
   webSearchUrl: string;
   webSearchText: string;
@@ -14,41 +9,29 @@ type WebSearchConfigType = {
   hasWebSearchResults: boolean;
 };
 
-const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
-  hitcount,
-  displayQuery
-}) => {
+const SearchResultHeader: React.FC = () => {
   const t = useText();
   const config = useConfig();
   const webSearchConfig = config<WebSearchConfigType>("webSearchConfig", {
     transformer: "jsonParse"
   });
 
+  if (!webSearchConfig.hasWebSearchResults) {
+    return null;
+  }
+
   return (
-    <>
-      <h1
-        className="content-list-page__heading"
-        data-cy="search-result-header"
-        aria-live="polite"
+    <h2 className="content-list-page__subheading">
+      {`${t("webSearchLinkText")} `}
+      <a
+        className="link-tag text-body-medium-medium"
+        href={webSearchConfig.webSearchUrl}
       >
-        {`${t("showingResultsForText", {
-          placeholders: { "@query": displayQuery }
-        })} (${hitcount})`}
-      </h1>
-      {webSearchConfig.hasWebSearchResults && (
-        <h2 className="content-list-page__subheading">
-          {t("webSearchLinkText")}&nbsp;
-          <a
-            className="link-tag text-body-medium-medium"
-            href={webSearchConfig.webSearchUrl}
-          >
-            {webSearchConfig.webSearchTotal
-              ? `${webSearchConfig.webSearchText} (${webSearchConfig.webSearchTotal})`
-              : webSearchConfig.webSearchText}
-          </a>
-        </h2>
-      )}
-    </>
+        {webSearchConfig.webSearchTotal
+          ? `${webSearchConfig.webSearchText} (${webSearchConfig.webSearchTotal})`
+          : webSearchConfig.webSearchText}
+      </a>
+    </h2>
   );
 };
 

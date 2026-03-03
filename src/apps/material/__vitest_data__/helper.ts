@@ -7,6 +7,9 @@ export default {
         pid: "870970-basis:44504928",
         genreAndForm: ["noveller"],
         source: ["Bibliotekskatalog"],
+        subjects: {
+          all: []
+        },
         languages: {
           main: [
             {
@@ -39,8 +42,7 @@ export default {
         creators: [
           {
             display: "Isaac Asimov",
-            __typename: "Person",
-            nameSort: "Asimov, Isaac"
+            __typename: "Person"
           },
           {
             display: "Tricia Reilly",
@@ -111,6 +113,9 @@ export default {
         pid: "150061-ebog:ODN0000039136",
         genreAndForm: [],
         source: ["eReolen Global"],
+        subjects: {
+          all: []
+        },
         languages: {
           main: [
             {
@@ -138,8 +143,7 @@ export default {
         creators: [
           {
             display: "Isaac Asimov",
-            __typename: "Person",
-            nameSort: "Asimov, Isaac"
+            __typename: "Person"
           }
         ],
         publisher: [],
@@ -204,6 +208,9 @@ export default {
         pid: "150061-netlydbog:ODN0000105225",
         genreAndForm: [],
         source: ["eReolen Global"],
+        subjects: {
+          all: []
+        },
         languages: {
           main: [
             {
@@ -231,8 +238,7 @@ export default {
         creators: [
           {
             display: "Isaac Asimov",
-            __typename: "Person",
-            nameSort: "Asimov, Isaac"
+            __typename: "Person"
           },
           {
             display: "Scott Brick",
@@ -297,6 +303,9 @@ export default {
         pid: "870970-basis:23798255",
         genreAndForm: ["noveller"],
         source: ["Bibliotekskatalog"],
+        subjects: {
+          all: []
+        },
         languages: {
           main: [
             {
@@ -324,8 +333,7 @@ export default {
         creators: [
           {
             display: "Isaac Asimov",
-            __typename: "Person",
-            nameSort: "Asimov, Isaac"
+            __typename: "Person"
           }
         ],
         publisher: ["Oxford University Press"],
