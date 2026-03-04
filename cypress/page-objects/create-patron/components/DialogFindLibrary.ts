@@ -6,13 +6,13 @@ export class DialogFindLibrary extends ComponentObject {
     this.addElements = {
       title: () => this.container().find(".find-library-dialog__title"),
       geoLocationGroup: () =>
-        this.container().find(".find-library-dialog__location-group"),
+        this.container().find(".address-search-bar"),
       locationList: () =>
         this.container().find(".find-library-dialog__location-list"),
       locationListItems: () =>
         this.container().find(".find-library-dialog__location-list__item"),
-      dawaInputAddressSuggestions: () =>
-        this.container().find(".dawa-input__address-suggestions"),
+      addressInputSuggestions: () =>
+        this.container().find(".address-input__suggestions"),
       geoLocationGroupInput: () =>
         this.elements.geoLocationGroup().find("input")
     };
@@ -26,23 +26,23 @@ export class DialogFindLibrary extends ComponentObject {
     this.elements.locationList().shouldContainAll(libraryNames);
   }
 
-  typeAddressInDawaInput(address: string) {
+  typeAddressInInput(address: string) {
     this.elements.geoLocationGroupInput().type(address);
   }
 
-  verifyDawaSuggestionListIsVisible() {
-    this.elements.dawaInputAddressSuggestions().should("be.visible");
+  verifyAddressSuggestionListIsVisible() {
+    this.elements.addressInputSuggestions().should("be.visible");
   }
 
-  clickFirstDawaSuggestion() {
-    this.elements.dawaInputAddressSuggestions().find("li").eq(0).click();
+  clickFirstAddressSuggestion() {
+    this.elements.addressInputSuggestions().find("li").eq(0).click();
   }
 
-  verifyDawaSuggestionListIsNotExisting() {
-    this.elements.dawaInputAddressSuggestions().should("not.be.visible");
+  verifyAddressSuggestionListIsNotExisting() {
+    this.elements.addressInputSuggestions().should("not.be.visible");
   }
 
-  verifyDawaSuggestionIsInsertedInInput() {
+  verifyAddressSuggestionIsInsertedInInput() {
     this.elements
       .geoLocationGroupInput()
       .should("have.value", "Suomisvej 2, 3310 Ølsted");
@@ -51,7 +51,7 @@ export class DialogFindLibrary extends ComponentObject {
   clickReverseGeoLocationButton() {
     this.elements
       .geoLocationGroup()
-      .find(".find-library-dialog__location")
+      .find(".address-search-bar__location-button")
       .click();
   }
 
