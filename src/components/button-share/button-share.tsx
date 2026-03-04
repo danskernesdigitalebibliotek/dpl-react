@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check_small.svg";
 import FacebookIcon from "./facebook-icon";
 import LinkIcon from "./link-icon";
 import { useText } from "../../core/utils/text";
+import useCopyToClipboard from "../../core/utils/useCopyToClipboard";
 
 type ButtonShareProps = {
   className?: string;
@@ -18,10 +20,11 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
   const copyButtonAreaLabel = t("copyLinkAriaLabelText");
 
   const [showFixedButtons, setShowFixedButtons] = useState(true);
+  const { isCopied, copyToClipboard } = useCopyToClipboard();
   const shareButtonRef = useRef<HTMLAnchorElement>(null);
 
   const onShareButtonClick = () => {
-    navigator.clipboard.writeText(href);
+    copyToClipboard(href);
   };
 
   // Hide fixed buttons when share button is in view or above viewport
@@ -51,6 +54,12 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
     return () => {};
   }, []);
 
+  const copyIcon = isCopied ? (
+    <img src={CheckIcon} alt="" aria-hidden="true" />
+  ) : (
+    <LinkIcon />
+  );
+
   return (
     <div className={clsx("button-share", className)}>
       {showFixedButtons && (
@@ -68,9 +77,12 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
             type="button"
             onClick={onShareButtonClick}
             aria-label={copyButtonAreaLabel}
-            className="button-share__button button-share__button--fixed"
+            className={clsx(
+              "button-share__button button-share__button--fixed",
+              { "button-share__button--success": isCopied }
+            )}
           >
-            <LinkIcon />
+            {copyIcon}
           </button>
         </div>
       )}
@@ -89,10 +101,14 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
         type="button"
         onClick={onShareButtonClick}
         aria-label={copyButtonAreaLabel}
-        className="button-share__button"
+        className={clsx("button-share__button", {
+          "button-share__button--success": isCopied
+        })}
       >
-        <LinkIcon />
-        {t("copyLinkText")}
+        {copyIcon}
+        <span aria-live="polite">
+          {isCopied ? t("copyLinkSuccessText") : t("copyLinkText")}
+        </span>
       </button>
     </div>
   );

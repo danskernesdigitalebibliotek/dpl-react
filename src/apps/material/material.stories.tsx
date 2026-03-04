@@ -880,6 +880,10 @@ const meta: Meta<typeof MaterialEntry> = {
     copyLinkAriaLabelText: {
       description: "Copy this page URL to clipboard",
       control: { type: "text" }
+    },
+    copyLinkSuccessText: {
+      description: "Copy link success text",
+      control: { type: "text" }
     }
   },
   args: {
@@ -1154,7 +1158,8 @@ const meta: Meta<typeof MaterialEntry> = {
     shareOnFacebookText: "Share on Facebook",
     shareOnFacebookAriaLabelText: "Share this page on Facebook",
     copyLinkText: "Copy link",
-    copyLinkAriaLabelText: "Copy this page URL to clipboard"
+    copyLinkAriaLabelText: "Copy this page URL to clipboard",
+    copyLinkSuccessText: "Link copied"
   }
 };
 

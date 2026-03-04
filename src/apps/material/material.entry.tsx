@@ -208,6 +208,7 @@ interface MaterialEntryTextProps {
   shareOnFacebookAriaLabelText: string;
   copyLinkText: string;
   copyLinkAriaLabelText: string;
+  copyLinkSuccessText: string;
 }
 
 interface MaterialEntryConfigProps {

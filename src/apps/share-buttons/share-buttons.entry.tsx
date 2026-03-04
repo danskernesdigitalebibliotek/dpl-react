@@ -10,6 +10,7 @@ export interface ShareButtonsEntryTextProps {
   shareOnFacebookAriaLabelText: string;
   copyLinkText: string;
   copyLinkAriaLabelText: string;
+  copyLinkSuccessText: string;
 }
 
 const ShareButtonsEntry: FC<

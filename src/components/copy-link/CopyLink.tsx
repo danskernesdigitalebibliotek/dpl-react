@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import LinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/link.svg";
 import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check_small.svg";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
+import useCopyToClipboard from "../../core/utils/useCopyToClipboard";
 
 export interface CopyLinkProps {
   label?: string;
@@ -19,7 +20,7 @@ const CopyLink: React.FC<CopyLinkProps> = ({
   className,
   successDuration = 2000
 }) => {
-  const [isCopied, setIsCopied] = useState(false);
+  const { isCopied, copyToClipboard } = useCopyToClipboard(successDuration);
   const t = useText();
 
   const defaultLabel = label || t("copyLinkDefaultText");
@@ -27,11 +28,7 @@ const CopyLink: React.FC<CopyLinkProps> = ({
 
   const handleCopyLink = () => {
     const linkToCopy = url || window.location.href;
-    navigator.clipboard.writeText(linkToCopy);
-    setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, successDuration);
+    copyToClipboard(linkToCopy);
   };
 
   return (
