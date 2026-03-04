@@ -30,28 +30,26 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
   // Hide fixed buttons when share button is in view or above viewport
   useEffect(() => {
     const shareButton = shareButtonRef.current;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const isIntersecting = entries.some((entry) => entry.isIntersecting);
-        const isAboveViewport = entries.some((entry) => {
-          // return true if the share button is above the viewport
-          return entry.boundingClientRect.top < 0;
-        });
-        setShowFixedButtons(!isIntersecting && !isAboveViewport);
-      },
-      { threshold: 1 }
-    );
+    let observer: IntersectionObserver | undefined;
 
     if (shareButton) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const isIntersecting = entries.some((entry) => entry.isIntersecting);
+          const isAboveViewport = entries.some((entry) => {
+            // return true if the share button is above the viewport
+            return entry.boundingClientRect.top < 0;
+          });
+          setShowFixedButtons(!isIntersecting && !isAboveViewport);
+        },
+        { threshold: 1 }
+      );
       observer.observe(shareButton);
-
-      return () => {
-        // Clean up observer on unmount
-        observer.disconnect();
-      };
     }
 
-    return () => {};
+    return () => {
+      observer?.disconnect();
+    };
   }, []);
 
   const copyIcon = isCopied ? (
