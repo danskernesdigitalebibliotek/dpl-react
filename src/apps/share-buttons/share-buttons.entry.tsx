@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { withText } from "../../core/utils/text";
 import { withConfig } from "../../core/utils/config";
-import { withUrls } from "../../core/utils/url";
+
 import { GlobalEntryTextProps } from "../../core/storybook/globalTextArgs";
 import ButtonShare from "../../components/button-share/button-share";
 
@@ -19,4 +19,4 @@ const ShareButtonsEntry: FC<
   return <ButtonShare />;
 };
 
-export default withConfig(withUrls(withText(ShareButtonsEntry)));
+export default withConfig(withText(ShareButtonsEntry));
