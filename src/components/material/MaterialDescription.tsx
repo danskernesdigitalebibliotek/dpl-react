@@ -21,6 +21,7 @@ import HorizontalTermLine from "../horizontal-term-line/HorizontalTermLine";
 import { materialIsFiction } from "../../core/utils/helpers/general";
 import SeriesList from "../card-item-list/card-list-item/series-list";
 import MaterialContents from "./MaterialContents/MaterialContents";
+import ButtonShare from "../button-share/button-share";
 
 export interface MaterialDescriptionProps {
   pid: Pid;
@@ -42,6 +43,13 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
     dk5MainEntry,
     manifestations
   } = work;
+
+  const { enabled: showShareButtons } = config<{ enabled: boolean }>(
+    "shareConfig",
+    {
+      transformer: "jsonParse"
+    }
+  );
 
   const localSubjectsAgencyIds = config("localSubjectsAgencyIdsConfig", {
     transformer: "stringToArray"
@@ -155,6 +163,7 @@ const MaterialDescription: React.FC<MaterialDescriptionProps> = ({ work }) => {
             dataCy="material-description-film-adaptations"
           />
         </div>
+        {showShareButtons && <ButtonShare className="mt-64" />}
       </>
     </section>
   );
