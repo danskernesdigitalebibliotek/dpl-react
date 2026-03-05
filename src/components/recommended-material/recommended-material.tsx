@@ -110,22 +110,27 @@ const RecommendedMaterialComp: React.FC<RecommendedMaterialProps> = ({
         trackClick={trackData}
       />
       <div className="recommended-material__texts">
-        <Link
-          href={materialFullUrl}
-          className="recommended-material__description"
-          dataCy="recommended-description"
-          trackClick={trackData}
-        >
-          {fullTitle}
-        </Link>
-        <Link
-          href={materialFullUrl}
-          className="recommended-material__author"
-          dataCy="recommended-author"
-          trackClick={trackData}
-        >
-          {author}
-        </Link>
+        {fullTitle && (
+          <Link
+            href={materialFullUrl}
+            className="recommended-material__description"
+            dataCy="recommended-description"
+            trackClick={trackData}
+          >
+            {fullTitle}
+          </Link>
+        )}
+
+        {author && (
+          <Link
+            href={materialFullUrl}
+            className="recommended-material__author"
+            dataCy="recommended-author"
+            trackClick={trackData}
+          >
+            {author}
+          </Link>
+        )}
       </div>
     </div>
   );
