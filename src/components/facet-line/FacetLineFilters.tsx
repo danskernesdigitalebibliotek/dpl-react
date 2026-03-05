@@ -7,12 +7,11 @@ import {
 import { useText } from "../../core/utils/text";
 import ButtonTag from "../Buttons/ButtonTag";
 import Dropdown from "../Dropdown/Dropdown";
+import { Facets } from "../../core/utils/types/entities";
 import {
-  createFacetsMap,
   findTermInFacetMap,
   getFacetFieldTranslation
-} from "../facet-browser/helper";
-import { Facets } from "../../core/utils/types/entities";
+} from "../../apps/search-result/helper";
 
 type FacetLineFiltersProps = {
   facets: Facets;

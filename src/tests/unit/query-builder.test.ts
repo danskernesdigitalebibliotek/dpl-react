@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
+import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
 import {
-  buildFilterInputTerms,
-  buildPreSearchFacetTerms,
-  buildPostSearchFacetTerms,
   buildCQLQuery,
+  buildFilterInputTerms,
+  buildPostSearchFacetTerms,
+  buildPreSearchFacetTerms,
   isWildcardQuery
 } from "../../apps/advanced-search-v2/lib/query-builder";
-import { FilterState, FacetState } from "../../apps/advanced-search-v2/types";
-import { ComplexSearchFacetsEnum } from "../../core/dbc-gateway/generated/graphql";
+import { FacetState, FilterState } from "../../apps/advanced-search-v2/types";
 
 describe("buildFilterInputTerms", () => {
   it("returns empty string for empty array", () => {

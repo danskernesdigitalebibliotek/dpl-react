@@ -257,6 +257,7 @@ describe("Advanced Search V2", () => {
         form.enterSearchTerm(0, "børn");
         form.openRangeSelect("Age");
         form.selectRangePreset("For 3-6-årige");
+        form.closePopover();
         form.verifyRangeBadgeContains("Age", "3-6 year olds");
         form.clickSearch();
       });

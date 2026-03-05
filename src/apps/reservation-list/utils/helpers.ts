@@ -1,7 +1,8 @@
 import { ReservationDetailsV2 } from "../../../core/fbs/model";
 import {
   calculateRoundedUpDaysUntil,
-  formatDateDependingOnDigitalMaterial
+  formatDateDependingOnDigitalMaterial,
+  formatDateTimeUtc
 } from "../../../core/utils/helpers/date";
 import { UseTextFunction } from "../../../core/utils/text";
 import { ReservationType } from "../../../core/utils/types/reservation-type";
@@ -118,10 +119,14 @@ if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 
   describe("getReservationStatusInfoLabel", () => {
+    const testDate = "12-12-2012 12:12";
+    // Digital materials use UTC time formatting
+    const expectedUtcDate = formatDateTimeUtc(testDate);
+
     it("Should deliver correct label for a DIGITAL material when providing a branch", () => {
       const output = getReservationStatusInfoLabel({
         pickupBranch: "SOME-BRANCH",
-        date: "12-12-2012 12:12",
+        date: testDate,
         isDigital: true,
         t: (key, options) =>
           JSON.stringify({
@@ -131,13 +136,13 @@ if (import.meta.vitest) {
       });
 
       expect(output).toBe(
-        `{"key":"reservationPickUpLatestText","options":{"placeholders":{"@date":"12-12-2012 12:12"}}}`
+        `{"key":"reservationPickUpLatestText","options":{"placeholders":{"@date":"${expectedUtcDate}"}}}`
       );
     });
     it("Should deliver correct label for a DIGITAL material when NOT providing a branch", () => {
       const output = getReservationStatusInfoLabel({
         pickupBranch: null,
-        date: "12-12-2012 12:12",
+        date: testDate,
         isDigital: true,
         t: (key, options) =>
           JSON.stringify({
@@ -147,7 +152,7 @@ if (import.meta.vitest) {
       });
 
       expect(output).toBe(
-        `{"key":"reservationListLoanBeforeText","options":{"placeholders":{"@date":"12-12-2012 12:12"}}}`
+        `{"key":"reservationListLoanBeforeText","options":{"placeholders":{"@date":"${expectedUtcDate}"}}}`
       );
     });
     it("Should deliver correct label for a NON DIGITAL material when providing a branch", () => {

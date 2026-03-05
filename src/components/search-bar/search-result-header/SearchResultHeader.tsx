@@ -1,38 +1,28 @@
-import React, { memo } from "react";
-import { useText } from "../../../core/utils/text";
-import { useConfig } from "../../../core/utils/config";
+import React from "react";
 
-type WebSearchConfigType = {
-  webSearchUrl: string;
-  webSearchText: string;
-  webSearchTotal: string;
-  hasWebSearchResults: boolean;
-};
+export interface SearchResultHeaderProps {
+  headerTitle: string;
+  subtitleRenderProp?: React.ReactNode;
+}
 
-const SearchResultHeader: React.FC = () => {
-  const t = useText();
-  const config = useConfig();
-  const webSearchConfig = config<WebSearchConfigType>("webSearchConfig", {
-    transformer: "jsonParse"
-  });
-
-  if (!webSearchConfig.hasWebSearchResults) {
-    return null;
-  }
-
+const SearchResultHeader: React.FC<SearchResultHeaderProps> = ({
+  headerTitle,
+  subtitleRenderProp
+}) => {
   return (
-    <h2 className="content-list-page__subheading">
-      {`${t("webSearchLinkText")} `}
-      <a
-        className="link-tag text-body-medium-medium"
-        href={webSearchConfig.webSearchUrl}
+    <div className="search__header">
+      <h1
+        className="search__header__title"
+        data-cy="search-result-header"
+        aria-live="polite"
       >
-        {webSearchConfig.webSearchTotal
-          ? `${webSearchConfig.webSearchText} (${webSearchConfig.webSearchTotal})`
-          : webSearchConfig.webSearchText}
-      </a>
-    </h2>
+        {headerTitle}
+      </h1>
+      {subtitleRenderProp && (
+        <h2 className="search__header__subtitle">{subtitleRenderProp}</h2>
+      )}
+    </div>
   );
 };
 
-export default memo(SearchResultHeader);
+export default SearchResultHeader;
