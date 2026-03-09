@@ -35,7 +35,7 @@ export class ModalFindOnShelfComponent extends ComponentObject {
     expectedShelfmark
   }: {
     libraryName: string;
-    label: "Available" | "Unavailable";
+    label: "Available" | "At home" | "Unavailable";
     editionTitle: string;
     expectedCount: string;
     expectedShelfmark?: string;

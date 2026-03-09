@@ -27,9 +27,17 @@ export const argTypes = {
     control: { type: "text" }
   },
   availabilityAvailableText: {
-    description: "Availability: available text",
+    description:
+      "Availability: available text (for non-physical/digital materials)",
     table: {
       defaultValue: { summary: "Available" }
+    },
+    control: { type: "text" }
+  },
+  availabilityAvailablePhysicalText: {
+    description: "Availability: available text (for physical materials)",
+    table: {
+      defaultValue: { summary: "At home" }
     },
     control: { type: "text" }
   },
@@ -313,6 +321,7 @@ export default {
   multiselectAllOptionText: "All",
   groupModalGoToMaterialAriaLabelText: "Go to @label material details",
   availabilityAvailableText: "Available",
+  availabilityAvailablePhysicalText: "At home",
   availabilityUnavailableText: "Unavailable",
   loansNotOverdueText: "Longer return time",
   patronContactInfoBodyText: "Patron contact info body text",
@@ -369,6 +378,7 @@ export interface GlobalEntryTextProps {
   multiselectAllOptionText: string;
   groupModalGoToMaterialAriaLabelText: string;
   availabilityAvailableText: string;
+  availabilityAvailablePhysicalText: string;
   availabilityUnavailableText: string;
   loansNotOverdueText: string;
   patronContactInfoBodyText: string;
