@@ -105,7 +105,7 @@ export interface AdvancedSearchEntryProps
     AdvancedSortSelectArgs {
   pageSizeDesktop: number;
   pageSizeMobile: number;
-  showingMaterialsText: string;
+  searchShowingMaterialsText: string;
 }
 
 const AdvancedSearchEntry: React.FC<AdvancedSearchEntryProps> = ({

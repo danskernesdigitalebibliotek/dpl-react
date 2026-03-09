@@ -55,8 +55,8 @@ const AdvancedSearchFilterRow = ({
 
   return (
     <>
-      <div className="advanced-search-filter-wrapper">
-        <div className="advanced-search-filter">
+      <div className="search-filter-wrapper">
+        <div className="search-filter">
           <SearchTermSelect
             // Force remount so native autoFocus runs reliably when focusing a different row
             key={shouldAutoFocus ? "focus" : "idle"}
@@ -65,7 +65,7 @@ const AdvancedSearchFilterRow = ({
             onChange={onSelectedTermChange}
           />
 
-          <div className="advanced-search-filter__combobox-wrapper">
+          <div className="search-filter__combobox-wrapper">
             <ComboBoxAutosuggest
               items={items}
               value={query}
@@ -77,7 +77,7 @@ const AdvancedSearchFilterRow = ({
         {showRemoveButton && (
           <button
             type="button"
-            className="advanced-search-filter__remove-button"
+            className="search-filter__remove-button"
             onClick={onRemove}
             aria-label={t("advancedSearchRemoveRowText")}
           >

@@ -1,8 +1,8 @@
 import React from "react";
-import AdvancedSearchRangeSelect from "./AdvancedSearchRangeSelect";
 import { RangePreset, RangeValue } from "../types";
 import { useText } from "../../../core/utils/text";
 import { parseRangeFromStrings, rangeToStrings } from "../helpers/rangeAdapter";
+import RangeSelect from "./RangeSelect";
 
 type AdvancedSearchPublicationYearSelectProps = {
   label: string;
@@ -28,7 +28,7 @@ const AdvancedSearchPublicationYearSelect: React.FC<
   const handleChange = (range: RangeValue) => onUpdate(rangeToStrings(range));
 
   return (
-    <AdvancedSearchRangeSelect
+    <RangeSelect
       label={label}
       value={value}
       onChange={handleChange}

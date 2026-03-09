@@ -87,7 +87,7 @@ const meta: Meta<typeof AdvancedSearchV2Entry> = {
       description: "Result pager status text",
       control: { type: "text" }
     },
-    showingMaterialsText: {
+    searchShowingMaterialsText: {
       description: "Showing materials",
       control: { type: "text" }
     },
@@ -142,7 +142,7 @@ export const Default: Story = {
     inSeriesText: "in series",
     showMoreText: "show more",
     resultPagerStatusText: "Showing @itemsShown out of @hitcount results",
-    showingMaterialsText: "@hitcount materials",
+    searchShowingMaterialsText: "@hitcount materials",
     blacklistedPickupBranchesConfig:
       "FBS-751032,FBS-751031,FBS-751009,FBS-751027,FBS-751024",
     blacklistedAvailabilityBranchesConfig:

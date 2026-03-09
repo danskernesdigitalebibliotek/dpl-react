@@ -7,13 +7,13 @@ import { Operator } from "../types";
 import { INITIAL_PRE_SEARCH_FACETS_STATE } from "../lib/initial-state";
 import Link from "../../../components/atoms/links/Link";
 
-interface AdvancedSearchSummaryProps {
+interface SearchSummaryProps {
   customCqlUrl?: URL;
   customCqlUrlLabel?: string;
   onEditClick?: () => void;
 }
 
-const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
+const SearchSummary: React.FC<SearchSummaryProps> = ({
   customCqlUrl,
   customCqlUrlLabel,
   onEditClick
@@ -24,20 +24,20 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
   const { filters, preSearchFacets } = urlState;
 
   const renderOperator = (operator: Operator) => (
-    <div className="advanced-search-summary__operator">
+    <div className="search-summary__operator">
       {operatorLabelsMap[operator]}
     </div>
   );
 
   const renderItem = (label: string, value: string) => (
-    <div className="advanced-search-summary__item">
-      <span className="advanced-search-summary__label">{label}:</span>
-      <span className="advanced-search-summary__value">{value}</span>
+    <div className="search-summary__item">
+      <span className="search-summary__label">{label}:</span>
+      <span className="search-summary__value">{value}</span>
     </div>
   );
   return (
-    <div className="advanced-search-summary">
-      <div className="advanced-search-summary__items">
+    <div className="search-summary">
+      <div className="search-summary__items">
         {filters.map((filter, index) => {
           if (!filter.query.trim()) return null;
           const config = SEARCH_TERM_OPTIONS.find(
@@ -46,7 +46,7 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           if (!config) {
             // eslint-disable-next-line no-console
             console.warn(
-              `AdvancedSearchSummary: No config found for filter term "${filter.term}"`
+              `SearchSummary: No config found for filter term "${filter.term}"`
             );
             return null;
           }
@@ -70,7 +70,7 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           if (!config) {
             // eslint-disable-next-line no-console
             console.warn(
-              `AdvancedSearchSummary: No config found for facet field "${preSearchFacet.facetField}"`
+              `SearchSummary: No config found for facet field "${preSearchFacet.facetField}"`
             );
             return null;
           }
@@ -111,11 +111,11 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
           );
         })}
       </div>
-      <div className="advanced-search-summary__links">
+      <div className="search-summary__links">
         {onEditClick && (
           <button
             type="button"
-            className="advanced-search-summary__edit-link"
+            className="search-summary__edit-link"
             onClick={onEditClick}
           >
             {t("advancedSearchEditSearchText")}
@@ -123,10 +123,7 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
         )}
 
         {customCqlUrl && customCqlUrlLabel && (
-          <Link
-            href={customCqlUrl}
-            className="advanced-search-summary__cql-link"
-          >
+          <Link href={customCqlUrl} className="search-summary__cql-link">
             {customCqlUrlLabel}
           </Link>
         )}
@@ -135,4 +132,4 @@ const AdvancedSearchSummary: React.FC<AdvancedSearchSummaryProps> = ({
   );
 };
 
-export default AdvancedSearchSummary;
+export default SearchSummary;
