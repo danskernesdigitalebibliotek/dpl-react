@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check_small.svg";
 import FacebookIcon from "./facebook-icon";
+import CheckmarkIcon from "../checkmark-icon/checkmark-icon";
 import LinkIcon from "./link-icon";
 import { useText } from "../../core/utils/text";
 import useCopyToClipboard from "../../core/utils/useCopyToClipboard";
@@ -52,11 +52,7 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
     };
   }, []);
 
-  const copyIcon = isCopied ? (
-    <img src={CheckIcon} alt="" aria-hidden="true" />
-  ) : (
-    <LinkIcon />
-  );
+  const copyIcon = isCopied ? <CheckmarkIcon /> : <LinkIcon />;
 
   return (
     <div className={clsx("button-share", className)}>
@@ -75,10 +71,7 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
             type="button"
             onClick={onShareButtonClick}
             aria-label={copyButtonAreaLabel}
-            className={clsx(
-              "button-share__button button-share__button--fixed",
-              { "button-share__button--success": isCopied }
-            )}
+            className="button-share__button button-share__button--fixed"
           >
             {copyIcon}
           </button>
@@ -99,9 +92,7 @@ const ButtonShare: React.FC<ButtonShareProps> = ({ className }) => {
         type="button"
         onClick={onShareButtonClick}
         aria-label={copyButtonAreaLabel}
-        className={clsx("button-share__button", {
-          "button-share__button--success": isCopied
-        })}
+        className="button-share__button"
       >
         {copyIcon}
         <span aria-live="polite">

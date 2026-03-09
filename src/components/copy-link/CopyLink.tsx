@@ -1,6 +1,6 @@
 import React from "react";
 import LinkIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/link.svg";
-import CheckIcon from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/basic/icon-check_small.svg";
+import CheckmarkIcon from "../checkmark-icon/checkmark-icon";
 import clsx from "clsx";
 import { useText } from "../../core/utils/text";
 import useCopyToClipboard from "../../core/utils/useCopyToClipboard";
@@ -33,18 +33,20 @@ const CopyLink: React.FC<CopyLinkProps> = ({
 
   return (
     <button
-      className={clsx("copy-link", className)}
+      className={clsx("copy-link", className, {
+        "copy-link--success": isCopied
+      })}
       onClick={handleCopyLink}
       type="button"
     >
-      <span
-        className={clsx("link-tag text-small-caption", {
-          "copy-link--success": isCopied
-        })}
-      >
+      <span className="link-tag text-small-caption">
         {isCopied ? defaultSuccessLabel : defaultLabel}
       </span>
-      <img src={isCopied ? CheckIcon : LinkIcon} alt="" aria-hidden="true" />
+      {isCopied ? (
+        <CheckmarkIcon />
+      ) : (
+        <img src={LinkIcon} alt="" aria-hidden="true" />
+      )}
     </button>
   );
 };
