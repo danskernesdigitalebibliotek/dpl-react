@@ -5,8 +5,9 @@ export class SearchFacetsComponent extends ComponentObject {
     super(() => cy.get(".search-facets"));
 
     this.addElements = {
-      toggleOnShelf: () => this.container().find("#on-shelf"),
-      toggleOnlyExtraTitles: () => this.container().find("#only-extra-titles")
+      toggleOnShelf: () => this.container().find("[data-cy='on-shelf']"),
+      toggleOnlyExtraTitles: () =>
+        this.container().find("[data-cy='only-extra-titles']")
     };
   }
 

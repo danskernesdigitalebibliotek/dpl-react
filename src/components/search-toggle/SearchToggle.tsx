@@ -30,6 +30,7 @@ const SearchToggle: React.FC<SearchToggleProps> = ({
           checked && "search-toggle__button--checked"
         )}
         id={uniqueId}
+        data-cy={id}
       >
         <span className="search-toggle__slider" />
       </button>
