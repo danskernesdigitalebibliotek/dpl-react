@@ -33,7 +33,10 @@ const SearchToggle: React.FC<SearchToggleProps> = ({
       >
         <span className="search-toggle__slider" />
       </button>
-      <label htmlFor={uniqueId} className="search-toggle__content cursor-pointer">
+      <label
+        htmlFor={uniqueId}
+        className="search-toggle__content cursor-pointer"
+      >
         <span className="search-toggle__label">{label}</span>
         <span className="search-toggle__description">{description}</span>
       </label>
