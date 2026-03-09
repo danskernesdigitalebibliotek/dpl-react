@@ -204,6 +204,11 @@ interface MaterialEntryTextProps {
   shiftText: string;
   subjectNumberText: string;
   tryAginButtonText: string;
+  shareOnFacebookText: string;
+  shareOnFacebookAriaLabelText: string;
+  copyLinkText: string;
+  copyLinkAriaLabelText: string;
+  copyLinkSuccessText: string;
 }
 
 interface MaterialEntryConfigProps {
@@ -215,6 +220,7 @@ interface MaterialEntryConfigProps {
   findOnShelfDisclosuresDefaultOpenConfig: string;
   findOnShelfHideUnavailableHoldingsConfig: string;
   instantLoanConfig: string;
+  shareConfig?: string;
   localSubjectsAgencyIdsConfig?: string;
   smsNotificationsForReservationsEnabledConfig: string;
 }
