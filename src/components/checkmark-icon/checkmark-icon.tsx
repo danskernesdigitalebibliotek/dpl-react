@@ -1,10 +1,8 @@
 import React from "react";
 
 const CheckmarkIcon = () => {
-  // This svg is a copy from public/icons/collection/Check.svg.
-  // Except for the white fill
-  // If you find out it no longer matches the original file, please update it
-  // It is made as inline svg to be able to change fill value from props
+  // Inline SVG so it inherits color from CSS via currentColor.
+  // Copied from public/icons/collection/Check.svg — keep in sync if it changes.
   return (
     <svg
       width="24"
