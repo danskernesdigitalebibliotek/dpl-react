@@ -24,14 +24,13 @@ function ResultPager({
         })}
       </p>
       {/* If all items are not visible yet, we need to show the button. */}
-      {itemsShown !== hitcount && (
+      {itemsShown !== hitcount && !isLoading && (
         <button
-          disabled={isLoading}
           type="button"
           className="btn-primary btn-outline btn-medium arrow__hover--right-small uppercase"
           onClick={setPageHandler}
         >
-          {isLoading ? t("loadingText") : t("showMoreText")}
+          {t("showMoreText")}
         </button>
       )}
     </div>

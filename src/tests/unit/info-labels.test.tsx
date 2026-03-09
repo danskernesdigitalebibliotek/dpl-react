@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import InfoLabel from "../../components/atoms/labels/InfoLabel";
 import ReservationStatusInfoLabel from "../../components/reservation/ReservationStatusInfoLabel";
 import textReducer from "../../core/text.slice";
+import { formatDateTimeUtc } from "../../core/utils/helpers/date";
 
 configure({
   testIdAttribute: "data-cy"
@@ -52,13 +53,16 @@ describe("ReservationStatusInfoLabel", () => {
   });
 
   it("Should show the markup for the for a reservation status for a DIGITAL reservation status info label", async () => {
+    const testDate = "12-12-22 12:12";
+    // Digital materials use UTC time formatting
+    const expectedUtcDate = formatDateTimeUtc(testDate);
     const { getByText } = render(
       <Wrapper>
-        <ReservationStatusInfoLabel date="12-12-22 12:12" isDigital />
+        <ReservationStatusInfoLabel date={testDate} isDigital />
       </Wrapper>
     );
 
-    const label = getByText("Borrow before 12-12-2022 12:12");
+    const label = getByText(`Borrow before ${expectedUtcDate}`);
 
     expect(label).toMatchSnapshot();
   });

@@ -1,36 +1,50 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import {
-  ComplexSearchFacetsEnum,
-  ComplexSearchFacetValue
-} from "../../../core/dbc-gateway/generated/graphql";
-import { useText } from "../../../core/utils/text";
-import CheckBox from "../../../components/checkbox/Checkbox";
+import { useText } from "../../core/utils/text";
+import CheckBox from "../../components/checkbox/Checkbox";
 import iconExpandMore from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/ExpandMore.svg";
 import iconPlus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Plus.svg";
 import iconMinus from "@danskernesdigitalebibliotek/dpl-design-system/build/icons/collection/Minus.svg";
 
-interface AdvancedSearchFilterGroupProps {
-  facetField: ComplexSearchFacetsEnum;
+export interface SearchFacetGroupProps<
+  TFacetField extends string | number,
+  TValue extends { score?: number | null }
+> {
+  facetField: TFacetField;
   label: string;
   selectedValues: string[];
   selectedCount: number;
-  facetValues: ComplexSearchFacetValue[];
+  facetValues: TValue[];
+  showScore?: boolean;
   onChange: (selectedValues: string[]) => void;
+  /**
+   * Returns the string value used both as the checkbox label and the value stored in selectedValues.
+   */
+  getValue: (facetValue: TValue) => string;
 }
 
 const INITIAL_DISPLAY_LIMIT = 5;
 
-const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
+function SearchFacetGroup<
+  TFacetField extends string | number,
+  TValue extends { score?: number | null }
+>({
   facetField,
   label,
   selectedValues,
   selectedCount,
   facetValues,
-  onChange
-}) => {
+  showScore = true,
+  onChange,
+  getValue
+}: SearchFacetGroupProps<TFacetField, TValue>) {
   const t = useText();
-  const [isExpanded, setIsExpanded] = useState(false);
+  // Open the facet group initially if any value is already selected.
+  // This only runs on mount; subsequent changes to selectedValues/selectedCount
+  // will not automatically toggle the expanded state.
+  const [isExpanded, setIsExpanded] = useState(
+    () => selectedCount > 0 || selectedValues.length > 0
+  );
   const [showAll, setShowAll] = useState(false);
 
   const handleCheckboxChange = (value: string, checked: boolean) => {
@@ -52,18 +66,18 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
   }
 
   return (
-    <li className="advanced-search-facet-group">
+    <li className="search-facet-group">
       <button
         type="button"
-        className="advanced-search-facet-group__header"
+        className="search-facet-group__header"
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
         aria-controls={`filter-group-content-${facetField}`}
       >
-        <div className="advanced-search-facet-group__header-content">
-          <span className="advanced-search-facet-group__label">{label}</span>
+        <div className="search-facet-group__header-content">
+          <span className="search-facet-group__label">{label}</span>
           {selectedCount > 0 && (
-            <span className="advanced-search-facet-group__count-badge">
+            <span className="search-facet-group__count-badge">
               {selectedCount}
             </span>
           )}
@@ -72,8 +86,8 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
           src={iconExpandMore}
           alt=""
           className={clsx(
-            "advanced-search-facet-group__chevron",
-            isExpanded && "advanced-search-facet-group__chevron--expanded"
+            "search-facet-group__chevron",
+            isExpanded && "search-facet-group__chevron--expanded"
           )}
         />
       </button>
@@ -82,16 +96,16 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
         <>
           <ul
             id={`filter-group-content-${facetField}`}
-            className="advanced-search-facet-group__content"
+            className="search-facet-group__content"
           >
             {displayedValues.map((facetValue) => {
-              const value = facetValue.key;
+              const value = getValue(facetValue);
               const count = facetValue.score ?? 0;
               const isChecked = selectedValues.includes(value);
               const countId = `filter-${facetField}-${value}-count`;
 
               return (
-                <li key={value} className="advanced-search-facet-group__item">
+                <li key={value} className="search-facet-group__item">
                   <CheckBox
                     id={`filter-${facetField}-${value}`}
                     label={value}
@@ -101,10 +115,10 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                     }
                     ariaDescribedBy={count > 0 ? countId : undefined}
                   />
-                  {count > 0 && (
+                  {showScore && count > 0 && (
                     <span
                       id={countId}
-                      className="advanced-search-facet-group__item-count"
+                      className="search-facet-group__item-count"
                     >
                       {count}
                     </span>
@@ -115,10 +129,10 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
           </ul>
 
           {hasMoreValues && (
-            <div className="advanced-search-facet-group__footer">
+            <div className="search-facet-group__footer">
               <button
                 type="button"
-                className="advanced-search-facet-group__show-all"
+                className="search-facet-group__show-all"
                 onClick={() => setShowAll(!showAll)}
                 aria-controls={`filter-group-content-${facetField}`}
                 aria-expanded={showAll}
@@ -126,12 +140,10 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
                 <img
                   src={showAll ? iconMinus : iconPlus}
                   alt=""
-                  className="advanced-search-facet-group__show-all-icon"
+                  className="search-facet-group__show-all-icon"
                 />
                 <span>
-                  {showAll
-                    ? t("advancedSearchShowLessText")
-                    : t("advancedSearchShowAllText")}
+                  {showAll ? t("searchShowLessText") : t("searchShowAllText")}
                 </span>
               </button>
             </div>
@@ -140,6 +152,6 @@ const AdvancedSearchFilterGroup: React.FC<AdvancedSearchFilterGroupProps> = ({
       )}
     </li>
   );
-};
+}
 
-export default AdvancedSearchFilterGroup;
+export default SearchFacetGroup;
