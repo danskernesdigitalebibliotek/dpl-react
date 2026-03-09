@@ -4,7 +4,7 @@ All new pull requests should be instead opened in the new mono-repo:
 
 [danskernesdigitalebibliotek/dpl-web](https://github.com/danskernesdigitalebibliotek/dpl-web)
 
--------
+---
 
 <!-- markdownlint-disable-next-line first-line-h1 -->
 ![https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-react/master/logo.png](https://raw.githubusercontent.com/danskernesdigitalebibliotek/dpl-react/master/logo.png)
